@@ -356,14 +356,15 @@ class Login extends CI_Controller {
     }
 		
 		// Controlamos si es SUPERADMIN
-		if ($email == "varcreative" && $password == "f7aa0c22ac15e0d2a258ea62a48d20ab") {
+    // 1805Inmovar2020
+		if ($email == "inmovar" && $password == "9fa6c4b0bfb38bf9bd996c995032c59b") {
 			
 			// Guardamos el usuario en la session
 			$_SESSION["id"] = 0;
       $_SESSION["superusuario"] = 1;
 			$_SESSION["perfil"] = -1;
 			$_SESSION["nombre_usuario"] = "Superadmin";
-			$_SESSION["email"] = "info@pymvar.com.ar";
+			$_SESSION["email"] = "info@inmovar.com.ar";
 			$_SESSION["id_empresa"] = 0;
 			$_SESSION["estado"] = 0;
       $_SESSION["lang"] = "es";
