@@ -8,6 +8,7 @@ if (!defined("DATABASE")) { DEFINE ("DATABASE","inmovar"); }
 if (!defined("USER_DB")) { DEFINE ("USER_DB","root"); }
 if (!defined("PASSWORD_DB")) { DEFINE ("PASSWORD_DB",""); }
 if (!defined("FORCE_HTTPS")) { DEFINE ("FORCE_HTTPS",false); }
+if (!defined("DOMINIO")) { DEFINE ("DOMINIO","https://sandbox.inmovar.com.ar"); }
 
 if (!function_exists("get_conex")) {
   function get_conex() {
@@ -17,6 +18,7 @@ if (!function_exists("get_conex")) {
       echo "Error al conectar con la base de datos";
       return;
     }
+    mysqli_set_charset($conx,"utf8");
     return $conx;
   }
 }
