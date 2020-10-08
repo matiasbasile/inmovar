@@ -22,7 +22,7 @@
               <span>¿Todavía no tenes cuenta en Inmovar?</span>          
             </div>
             <div class="dtc vat">
-              <a href="https://www.inmovar.com/registro/" target="_blank" class="button-registrate">REGISTRATE GRATIS</a>
+              <a href="login/registro/" class="button-registrate">REGISTRATE GRATIS</a>
             </div>
           </div>
         </div>

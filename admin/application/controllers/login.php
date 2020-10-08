@@ -27,6 +27,12 @@ class Login extends CI_Controller {
       "base_url"=>$this->config->item("base_url"),
     ));
   }
+
+  public function registro() {
+    $this->load->view('registro',array(
+      "base_url"=>$this->config->item("base_url"),
+    ));
+  }
 	
 	public function restaurar() {
 		$id = $this->input->get("id");
