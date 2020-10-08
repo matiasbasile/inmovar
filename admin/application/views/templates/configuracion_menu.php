@@ -1,0 +1,340 @@
+<script type="text/template" id="configuracion_menu_edit_template">
+<div class="wrapper-md">
+  <div class="centrado rform">
+    <div class="header-lg pt0">
+      <div class="row">
+        <div class="col-md-6">
+          <h1 style="font-size:32px !important">Configuración</h1>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <ul class="submenu">
+          <li>
+            <a class="<%= (id_modulo == "integraciones")?"active":"" %>" href="app/#configuracion/integraciones">
+              <span class="material-icons">arrow_forward_ios</span>
+              Portales
+            </a>
+          </li>
+          <li>
+            <a class="<%= (id_modulo == "api")?"active":"" %>" href="app/#configuracion/api">
+              <span class="material-icons">arrow_forward_ios</span>
+              API para desarrolladores
+            </a>
+          </li>
+          <li>
+            <a class="<%= (id_modulo == "notificaciones")?"active":"" %>" href="app/#configuracion/notificaciones">
+              <span class="material-icons">arrow_forward_ios</span>
+              Notificaciones
+            </a>
+          </li>
+          <li>
+            <a class="<%= (id_modulo == "usuarios")?"active":"" %>" href="app/#configuracion/usuarios-perfiles">
+              <span class="material-icons">arrow_forward_ios</span>
+              Usuarios y perfiles
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-9">
+        <div id="configuracion_content"></div>
+      </div>
+    </div>
+  </div>
+</div>
+</script>
+
+<script type="text/template" id="configuracion_integraciones">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="padder">
+        <div class="form-group mb0 clearfix expand-link cp">
+          <label class="control-label cp">
+            MercadoLibre
+          </label>
+          <div class="panel-description">
+            Sincronice las propiedades con MercadoLibre
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body expand">
+      <div class="padder">
+        <% if (isEmpty(ML_ACCESS_TOKEN)) { %>
+          <a class="btn btn-default" href="https://www.varcreative.com/connect_meli.php?id_empresa=<%= ID_EMPRESA %>" target="_blank">Habilitar la sincronizacion</a>
+        <% } else { %>
+
+          <div class="form-group">
+            <label class="control-label">Descripcion de su empresa que se compartira con sus propiedades</label>
+            <textarea name="ml_texto_empresa" class="form-control h200"><%= ml_texto_empresa %></textarea>
+          </div>
+
+          <?php
+          $label = lang(array(
+            "es"=>"Im&aacute;genes adicionales",
+            "en"=>"Photos",
+          )); ?>
+          <?php 
+          multiple_upload(array(
+            "name"=>"images_meli",
+            "label"=>$label,
+            "url"=>"articulos/function/save_image/",
+            "width"=>(isset($empresa->config["producto_galeria_image_width"]) ? $empresa->config["producto_galeria_image_width"] : 800),
+            "height"=>(isset($empresa->config["producto_galeria_image_height"]) ? $empresa->config["producto_galeria_image_height"] : 600),
+            "resizable"=>(isset($empresa->config["producto_galeria_image_resizable"]) ? $empresa->config["producto_galeria_image_resizable"] : 0),
+            "upload_multiple"=>true,
+          )); ?>
+
+          <div class="clearfix">
+            <a class="btn btn-default borrar_sincro_meli">Dejar de sincronizar</a>
+            <button class="btn fr btn-info guardar"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
+          </div>
+
+        <% } %>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="padder">
+        <div class="form-group mb0 clearfix expand-link cp">
+          <label class="control-label cp">
+            OLX
+          </label>
+          <div class="panel-description">
+            Sincronice las propiedades con OLX
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body expand">
+      <div class="clearfix">
+        <button class="btn fr btn-info guardar"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
+      </div>            
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="padder">
+        <div class="form-group mb0 clearfix expand-link cp">
+          <label class="control-label cp">
+            Argenprop
+          </label>
+          <div class="panel-description">
+            Sincronice las propiedades con Argenprop
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body expand">
+      <div class="padder">
+        <div class="form-group">
+          <label class="control-label">Usuario</label>
+          <input type="text" class="form-control" name="argenprop_usuario" value="<%= argenprop_usuario %>" />
+        </div>
+        <div class="form-group">
+          <label class="control-label">Contraseña</label>
+          <input type="text" class="form-control" name="argenprop_password" value="<%= argenprop_password %>" />
+        </div>
+        <div class="form-group">
+          <label class="control-label">ID Vendedor</label>
+          <input type="text" class="form-control" name="argenprop_id_vendedor" value="<%= argenprop_id_vendedor %>" />
+        </div>
+
+        <div class="clearfix">
+          <button class="btn fr btn-info guardar"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="padder">
+        <div class="form-group mb0 clearfix expand-link cp">
+          <label class="control-label cp">
+            Tokko Brokers
+          </label>
+          <div class="panel-description">
+            Sincronice las propiedades con Tokko Brokers
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body expand">
+      <div class="padder">
+        <div class="form-group">
+          <label class="control-label">API Key</label>
+          <input type="text" class="form-control" name="tokko_apikey" value="<%= tokko_apikey %>" />
+        </div>
+        <div class="form-group">
+          <div class="checkbox">
+            <label class="i-checks">
+              <input type="checkbox" id="web_seo_tokko_enviar_consultas" name="tokko_enviar_consultas" <%= (tokko_enviar_consultas == 1) ? 'checked' : '' %>><i></i> 
+              Enviar consultas a Tokko Brokers.
+            </label>
+          </div>                    
+        </div>                  
+        <div class="form-group">
+          <div class="checkbox">
+            <label class="i-checks">
+              <input type="checkbox" id="web_seo_tokko_importacion" name="tokko_importacion" <%= (tokko_importacion == 1) ? 'checked' : '' %>><i></i> 
+              Importar automáticamente propiedades de Tokko Brokers.
+            </label>
+          </div>                    
+        </div>                  
+
+        <div class="clearfix">
+          <button class="btn fr btn-info guardar"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="padder">
+        <div class="form-group mb0 clearfix expand-link cp">
+          <label class="control-label cp">
+            Inmobusqueda
+          </label>
+          <div class="panel-description">
+            Sincronice las propiedades con Inmobusqueda
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body expand">
+      <div class="padder">
+        <div class="form-group">
+          <label class="control-label">URL de propiedades</label>
+          <input type="text" class="form-control" name="url_inmobusqueda" value="<%= url_inmobusqueda %>" />
+        </div>
+
+        <div class="clearfix">
+          <button class="btn fr btn-info guardar"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</script>
+
+<script type="text/template" id="configuracion_api">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="padder">
+        <div class="form-group mb0 clearfix expand-link cp">
+          <label class="control-label cp">
+            API Key
+          </label>
+          <div class="panel-description">
+            Datos de conexión para sincronizar propiedades con Inmovar.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body expand" style="display:block">
+      <div class="padder">
+        <div class="form-group">
+          <label class="control-label">Clave privada</label>
+          <input type="text" disabled class="form-control" value="<%= hex_md5(ID_EMPRESA) %>" />
+        </div>
+      </div>
+    </div>
+  </div>  
+</script>
+
+<script type="text/template" id="configuracion_notificaciones">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="padder">
+        <div class="form-group mb0 clearfix expand-link cp">
+          <label class="control-label cp">
+            Notificaciones
+          </label>
+          <div class="panel-description">
+            Configure las notificaciones que desea recibir.
+          </div>
+        </div>
+      </div>
+    </div>          
+    <div class="panel-body expand" style="display:block">
+      <div class="padder">
+        <div class="form-group">
+          <label class="control-label">Enviar como copia oculta las notificaciones del sistema a las siguientes direcciones (separadas por coma)</label>
+          <input type="text" class="form-control" value="<%= bcc_email %>" name="bcc_email"/>
+        </div>
+
+        <div class="form-group">
+          <div class="checkbox">
+            <label class="i-checks">
+              <input type="checkbox" id="crm_notificar_tareas" name="crm_notificar_tareas" <%= (crm_notificar_tareas == 1) ? 'checked' : '' %>><i></i>
+              Notificar por email cuando se asigna una nueva tarea.
+            </label>
+          </div>                    
+        </div>
+
+        <div class="form-group">
+          <div class="checkbox">
+            <label class="i-checks">
+              <input type="checkbox" id="crm_notificar_asignaciones_usuarios" name="crm_notificar_asignaciones_usuarios" <%= (crm_notificar_asignaciones_usuarios == 1) ? 'checked' : '' %>><i></i>
+              Notificar por email cuando se asigna un usuario a un contacto.
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Notificaciones de nuevas consultas</label>
+          <select id="crm_enviar_emails_usuarios" name="crm_enviar_emails_usuarios" class="form-control">
+            <option <%= (crm_enviar_emails_usuarios == 0)?"selected":"" %> value="0">Enviar email al correo de la empresa</option>
+            <option <%= (crm_enviar_emails_usuarios == 1)?"selected":"" %> value="1">Enviar email solo al usuario asignado de la propiedad</option>
+            <option <%= (crm_enviar_emails_usuarios == 2)?"selected":"" %> value="2">Enviar email a ambos correos, el de la empresa y el usuario asignado a la propiedad</option>
+          </select>
+        </div>  
+
+        <div class="clearfix">
+          <button class="btn fr btn-info guardar"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
+        </div>
+      </div>
+    </div>
+  </div>  
+</script>
+
+
+<script type="text/template" id="configuracion_usuarios">
+  <a href="app/#configuracion/usuarios" class="panel panel-default db cp">
+    <div class="panel-body">
+      <div class="padder">
+        <div class="form-group mb0 clearfix">
+          <label class="control-label cp">
+            Usuarios
+          </label>
+          <div class="panel-description">
+            Crear, modificar o eliminar cuentas de usuario.
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>
+
+  <a href="app/#configuracion/perfiles" class="panel panel-default db cp">
+    <div class="panel-body">
+      <div class="padder">
+        <div class="form-group mb0 clearfix expand-link cp">
+          <label class="control-label cp">
+            Perfiles
+          </label>
+          <div class="panel-description">
+            Administrar las acciones que puede realizar cada perfil de usuario.
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>
+</script>

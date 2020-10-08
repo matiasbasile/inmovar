@@ -1,0 +1,16 @@
+admin/uploads/
+admin/uploads/*
+importar/
+instalacion/
+backup/
+admin/application/config/*
+importacion/
+importar/
+admin/logs/*
+*.txt
+*.log
+*.sql
+*.zip
+*.gz
+*.rar
+*.bat

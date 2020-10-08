@@ -1,0 +1,541 @@
+(function(){
+
+  window.app = {};
+  app.collections = {};
+  app.models = {};
+  app.views = {};
+  app.mixins = {};
+  app.modules = {}; // Referencia a todos los modulos del sistema
+
+  $(document).ready(function() {
+
+    var Workspace = Backbone.Router.extend({
+      
+      // Define todas las rutas de la aplicacion
+      // tiene un comportamiento por defecto que puede ser sobreescrito
+      // Si existe una funcion con el mismo nombre que el modulo, se sobreescribe
+      // sino funciona con la siguiente logica:
+      // :mod indica el nombre del modulo
+      // :id es el ID del elemento
+      // Ej:
+      // modulo/    listado
+      // modulo/0   nuevo
+      // modulo/1   editar
+      routes: {
+
+        // REGLAS DE EXCEPCIONES
+        "ver_proyecto/:id":function(id) {
+          this.ver_empresas(id);
+        },
+        "nuevo_proyecto/:id":function(id) {
+          this.nueva_empresa(id);
+        },  
+
+        // Configuracion de la web
+        "menu_web(/)": "ver_web", // DESP ELIMINAR
+        "web(/)": "ver_web",
+        "web/:id(/)": "ver_web",
+
+        // Configuracion General
+        "configuracion_menu(/)": "ver_configuracion", // DESP ELIMINAR
+        "configuracion(/)": "ver_configuracion",
+        "configuracion/:id(/)": "ver_configuracion",
+
+        // Tutoriales
+        "tutoriales(/)": "ver_tutoriales",
+        "tutoriales/:id(/)": "ver_tutoriales",
+
+        // Permisos de la RED
+        "permisos_red(/)": "ver_permisos_red",
+        "permisos_red/:id(/)": "ver_permisos_red",
+
+        // 
+        "contacto_acciones/:id": "ver_contacto_acciones",
+
+        // Funcionamiento de ABM General
+        '': 'router',
+        ':mod(/)': 'router',
+        ':mod/:id(/)': 'router',    
+      },
+
+      // Funcion principal
+      router: function(mod, id) {
+        var self = this;
+        mod = mod || 'inicio'; // Por defecto
+        if (typeof(this[mod]) != "undefined") {
+          // Si la funcion que estamos llamando esta definida, la llamamos
+          this[mod](id);
+          return;
+        }
+
+        // Calculamos el permiso a ese modulo
+        var permiso = 3;
+        //var permiso = control.check(mod);
+        //if (permiso <= 0) return; // No lo dejamos continuar
+
+        mod = ucfirst(mod); // Primera en mayuscula
+        if (id == undefined) {
+
+          // Si existe una pagina unica para ese modulo
+          if (typeof app.views[mod+"SingleView"] != "undefined") {
+
+            // Si existe un modelo especifico, sino ponemos el generico
+            var modelo = new app.models.AbstractModel();
+            if (typeof app.models[mod] != "undefined") {
+              modelo = new app.models[mod]();
+            }
+            var view = new app.views[mod+"SingleView"]({
+              model: modelo,
+              permiso: permiso,
+            });
+          } else {
+            // Es un LISTADO
+            var view = new app.views[mod+"TableView"]({
+              collection: new app.collections[mod](),
+              permiso: permiso,
+            });            
+          }
+          this.mostrar({
+            "top" : view.el,
+          });
+
+        } else if (id == 0) {
+          // Es un elemento NUEVO
+          let view = new app.views[mod+"EditView"]({
+            model: new app.models[mod](),
+            permiso: permiso
+          });
+          this.mostrar({
+            "top" : view.el,
+          });
+
+        } else if (id != 0) {
+          // EDICION
+          var modelo = new app.models[mod]({ "id": id });
+          console.log(modelo);
+          modelo.fetch({
+            "success":function() {
+              var view = new app.views[mod+"EditView"]({
+                model: modelo,
+                permiso: permiso
+              });
+              self.mostrar({
+                "top" : view.el,
+              });
+            }
+          });
+        }
+      },
+
+      // ==========================================
+      // FUNCIONES DE EXCEPCIONES
+
+      mostrar_notificaciones() {
+        if ($("#notification_panel").is(":visible")) {
+          $("#notification_panel").hide();
+          return;
+        }
+        $("#notification_panel").show();
+        $("#notification_panel .list-group").empty();
+        $.ajax({
+          "url":"notificaciones/function/buscar/",
+          "dataType":"json",
+          "success":function(r) {
+            for(var i=0;i<r.results.length;i++) {
+              var n = r.results[i];
+              var el = new app.views.NotificacionItem({
+                "model":new app.models.AbstractModel(n),
+              });
+              $("#notification_panel .list-group").append(el.el);
+            }
+            if (r.results.length > 0) {
+              $(".notification_quantity").show();
+              $(".notification_quantity").html(r.results.length);
+            } else {
+              $(".notification_quantity").html("");
+              $(".notification_quantity").hide();
+            }
+          },
+        });
+      },
+
+      ver_permisos_red: function(id) {
+        var self = this;
+        var edit = new app.views.PermisosRedView({
+          model: new app.models.AbstractModel(),
+          id_inmobiliaria: ((typeof id == "undefined")?0:id),
+        });
+        self.mostrar({
+          "top": edit.el,
+        });
+      },       
+
+      ver_web: function(id) {
+        var self = this;
+        if (id == undefined) id = "diseno";
+        var edit = new app.views.WebSingleView({
+          model: new app.models.AbstractModel({
+            "id_modulo":id,
+          }),
+        });
+        self.mostrar({
+          "top" : edit.el,
+        });
+      },
+
+      ver_configuracion: function(id) {
+        var self = this;
+        if (id == undefined) id = "integraciones";
+        var edit = new app.views.Configuracion_menuSingleView({
+          model: new app.models.AbstractModel({
+            "id_modulo":id,
+          }),
+        });
+        self.mostrar({
+          "top" : edit.el,
+        });
+      },
+
+      ver_tutoriales: function(id) {
+        var self = this;
+        if (id == undefined) id = "propiedades";
+        var edit = new app.views.TutorialesSingleView({
+          model: new app.models.AbstractModel({
+            "id_modulo":id,
+          }),
+        });
+        self.mostrar({
+          "top" : edit.el,
+        });
+      },      
+
+      ver_empresas: function(id_proyecto) {
+        var permiso = (PERFIL == -1)?3:0;
+        if (permiso > 0) {
+          if (id_proyecto == undefined) id_proyecto = 0;
+          var empresas = new app.collections.Empresas();
+          var view = new app.views.EmpresasTableView({
+            collection: empresas,
+            permiso: permiso,
+            id_proyecto: id_proyecto,
+          });    
+          this.mostrar({
+            "top" : view.el,
+          });
+        }
+      },
+      
+      nueva_empresa: function(id_proyecto) {
+        var self = this;
+        var permiso = (PERFIL == -1)?3:0;
+        if (permiso > 0) {
+          var empresa = new app.models.Empresas({
+            "asignado_a":ID_USUARIO,
+            "id_proyecto":id_proyecto,
+          });
+          var view = new app.views.EmpresasEditView({
+            model: empresa,
+            permiso: permiso
+          });
+          this.mostrar({
+            "top" : view.el,
+          });
+        }                
+      },
+
+      ver_contacto_acciones: function(id) {
+        var self = this;
+        var permiso = control.check("contactos");
+        if (control.check("consultas")>0) {
+          var permiso = control.check("consultas");
+        }
+        if (permiso > 0) {
+          var contacto = new app.models.Contacto({"id":id});
+          contacto.fetch({
+            "success":function() {
+              var edit = new app.views.ContactoFichaView({
+                model: contacto,
+                permiso: permiso,
+                contacto_tab_principal: "seguimiento", // Abrimos en la parte de seguimiento
+              });
+              self.mostrar({
+                "top" : edit.el,
+                "top_height": "100%",
+                "full": 1,
+              });
+            }
+          });
+        }
+      },      
+
+      // Antes de cambiar a la siguiente pagina del ROUTER
+      before: function () {
+        $(".customcomplete.closable").remove(); // Cerramos si hay un customcomplete abierto
+      },
+
+      // ==========================================
+      // FUNCION PARA MOSTRAR EN EL TEMPLATE
+
+      mostrar: function(params) {
+        var self = this;
+        // Valores por defecto de los parametros
+        params.top || ( params.top = "" );
+        params.top_width || ( params.top_width = "100%" );
+        params.top_height || ( params.top_height = "" );
+        params.full || ( params.full = 0 );
+        if (typeof params.mostrar_mensaje_full == "undefined") params.mostrar_mensaje_full = MENSAJE_CUENTA_NIVEL;
+        
+        $("#top_container").hide();
+        $("#top_container").empty();
+        $("#top_container").html(params.top);
+        $("#top_container").css("width",params.top_width);
+        
+        if (params.top === "") $("#top_container").hide();
+        else $("#top_container").fadeIn();
+
+        // Si tenemos que tomar el 100% del alto
+        if (params.full == 1) {
+          $(".app-content").addClass("app-content-full-height");
+          $(".app-header-fixed").addClass("app-aside-folded");
+          $("#top_container").addClass("full-height");
+        }
+
+        // Si tenemos que mostrar el mensaje full
+        if (params.mostrar_mensaje_full == 2) {
+          $(".full-message").show();
+        } else {
+          $(".full-message").hide();
+        }
+
+        // Controlamos si hay algun editor de texto
+        $("textarea[data-ckeditor='basic']").each(function(i,e){
+          self.crear_editor($(e).attr("id"));
+        });
+
+      },
+
+      // ==========================
+      // FUNCIONES COMUNES:
+
+      crear_editor:function(nombre,config) {
+        // Esto se hace para que no tire error de que el CKEditor ya fue creado
+        if (typeof config === "undefined") config = {};
+        CKEDITOR.dtd.$removeEmpty['span'] = false;
+        if (IDIOMA == "en") {
+          config.defaultLanguage = 'en';
+          config.language = 'en-EN';
+          config.wsc_lang = 'en_EN';
+          config.scayt_sLang = 'en_EN';
+        } else {
+          config.defaultLanguage = 'es';
+          config.language = 'es-ES';
+          config.wsc_lang = 'es_ES';
+          config.scayt_sLang = 'es_ES';
+        }
+        config.filebrowserBrowseUrl = '/admin/uploads/'+ID_EMPRESA+'/editor/index.php';
+        config.disableNativeSpellChecker = false;
+        config.allowedContent = true;
+        config.extraPlugins = 'image2,youtube,codemirror,widget,lineutils,colordialog,fontawesome,confighelper,scayt,iframe,font,pastefromword';
+        config.uploadUrl = '/admin/uploads/'+ID_EMPRESA+'/editor/connectors/php/filemanager.php';
+        config.contentsCss = ['/admin/resources/css/font-awesome.min.css','/admin/resources/js/libs/ckeditor_4.6/contents.css'];
+        config.toolbar = [
+          { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'] },
+          { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', 'FontSize', 'Image', 'PasteFromWord', 'Link', 'Unlink', 'TextColor','BGColor' ] },
+        ];
+        config.forcePasteAsPlainText = true;
+        config.scayt_autoStartup = true;
+        config.scayt_autoStartup = true;
+        myinstance = CKEDITOR.instances[nombre];
+        if (myinstance) CKEDITOR.remove(myinstance);
+        CKEDITOR.replace(nombre,config);
+      },    
+
+      toggle_menu: function() {
+        $('.app-aside').toggleClass('off-screen');
+      },
+
+      asignar_color: function(i) {
+        if (i == 0) return "#14d0ad";
+        else if (i == 1) return "#28bfd2";
+        else if (i == 2) return "#e7ad63";
+        else if (i == 3) return "#7798cd";
+        else if (i == 4) return "#ea6c5e";
+        else if (i == 5) return "#7266ba";
+        else if (i == 6) return "#ff8137";
+        else if (i == 7) return "#ea5ed9";
+        else return "#000";
+      },
+
+      crear_nestable: function(array, config) {
+
+        if (typeof config === "undefined") config = {};
+        config.seleccionar = (config.seleccionar || false);
+        if (typeof config.ordenable === "undefined") config = {};
+
+        if (typeof array === "undefined") return "";
+        if (array.length == 0) return "";
+        var r = '<ol class="dd-list">';
+        for(var i=0;i<array.length;i++) {
+          var o = array[i];
+          r+='<li class="dd-item dd3-item" data-id="'+o.id+'">';
+          if (!config.seleccionar) r+='<div class="dd-handle dd3-handle">Drag</div>';
+          r+='<div class="dd3-content">';
+          if (!config.seleccionar) {
+            r+= '<label class="i-checks m-b-none m-r-xs">';
+            r+= '<input class="esc check-row" value="'+o.id+'" type="checkbox"><i></i>';
+            r+= '</label>';
+            r+= '<a href="javascript:void" class="editar cp text-info">'+(typeof o.title != "undefined" ? o.title : (typeof o.nombre != "undefined" ? o.nombre : "") )+'</a>';
+          } else {
+            r+=o.title;
+          } 
+          r+='</div>';       
+            if (!config.seleccionar) {
+            r+=workspace.crear_nestable(o.children);
+          }
+          r+='</li>';
+        }
+        r+='</ol>';
+        return r;
+      },      
+
+      // Crea el arbol de <select> a partir de una estructura de Array con children
+      crear_select:function(array,ident,selected,condition) {
+        var r = "";
+        if (!$.isArray(array) || array.length <= 0) return r;
+        for(var i=0;i<array.length;i++) {
+          var o = array[i];
+
+          var ingresar = true;
+          if (typeof condition == "function") {
+            ingresar = condition(o);
+          }
+          if (ingresar) {
+            // En data-ids ponemos todos los hijos de la categoria padre
+            var ids = workspace.get_sub_ids(o.children);
+            var ids_s = (ids.length > 0) ? o.id+"-"+ids.join("-") : o.id;
+
+            r+= "<option data-ids='"+ids_s+"' value='"+o.id+"' "+((selected == o.id)?"selected":"");
+            if (typeof o.totaliza_en != "undefined") r+=" data-totaliza_en='"+o.totaliza_en+"' ";
+            r+=">";
+            r+= ident + o.title;
+            r+="</option>";
+            r+= workspace.crear_select(o.children,ident+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",selected,condition);          
+          }
+        }
+        return r;
+      },
+      get_sub_ids:function(array) {
+        // Esta funcion es utilizada para obtener todos los IDS de las categorias hijos
+        var ids = new Array();
+        for(var i=0;i<array.length;i++) {
+          var o = array[i];
+          ids.push(o.id);
+          if (o.children.length > 0) ids = ids.concat(workspace.get_sub_ids(o.children));
+        }
+        return ids;
+      },
+
+      // Aplana una estructura con children
+      flatten: function(array) {
+        var res = new Array();
+        if (!$.isArray(array) || array.length <= 0) return null;
+        for(var i=0;i<array.length;i++) {
+          var o = array[i];
+          res.push(o);
+          var r = this.flatten(o.children);
+          if (r !== null) res = res.concat(r);
+        }
+        return res;
+      },
+
+      // Abre un lightbox con un mensaje de espera
+      esperar: function(mensaje) {
+        var a = new app.mixins.Wait({
+          model: new app.models.AbstractModel(),
+          mensaje: mensaje,
+        });
+        crearLightboxHTML({
+          "html":a.el,
+          "width":400,
+          "height":200,
+        });
+      },
+      
+      cerrar_impresion: function() {
+        $('.modal:last').modal('hide');        
+      },
+
+      volver_superadmin: function() {
+        $.ajax({
+          "url":"login/cambiar_empresa/",
+          "dataType":"json",
+          "success":function(r) {
+            if (r.error == false) window.location = "app/";
+          }
+        });
+      },
+      
+      imprimir_reporte: function(url,callback) {
+        var iframe = "<iframe style='width:100%; border:none; height:600px;' src='"+url+"'></iframe>";
+        iframe+='<div class="text-right wrapper">';
+        iframe+='<button class="btn btn-default" onclick="workspace.cerrar_impresion()">Cerrar</button>';
+        iframe+='</div>';
+        crearLightboxHTML({
+          "html":iframe,
+          "width":920,
+          "height":600,
+          "callback":callback
+        });
+      },
+
+    }); // FIN WORKSPACE
+
+    window.workspace = new Workspace();
+
+    // Cuando cambia de pagina
+    window.workspace.on("route", function(route, params) {
+
+      // Si hay algun EventSource abierto, lo cerramos
+      if (typeof window.source !== "undefined") {
+        window.source.close();
+      }
+
+      $('.app-aside').removeClass('off-screen');
+
+      window.ajax_request = 0;
+      
+      // Simulamos el resize del window por si en la pagina que estamos entrando tiene que tener la barra cerrada
+      $(window).trigger("resize");
+      
+      // Simulamos un click en el header para que se cierren los autocompletes si quedaron abiertos
+      $(".navbar-header").trigger("click");
+
+    });
+      
+    Backbone.history.start();
+    
+    if (inicio != "") {
+      location.hash = inicio;
+    }
+    
+    $(".navbar-btn").click(function(e){
+      $(".app").toggleClass("app-aside-folded");
+    });
+
+    // Esta funcion se llama cada cierto tiempo, con el unico objetivo
+    // de mantener viva la session
+    window.setInterval(function() {
+      $.ajax({
+        cache: false,
+        type: "GET",
+        url: "/admin/app/refresh_session/",
+        success: function(data) {}
+      });
+    },600000); // Cada 10 minutos        
+    
+  });
+
+  // IMPORTANTE: LAS CONSULTAS EN AJAX NO SE PUEDEN CACHEAR
+  $.ajaxSetup({ cache: false, timeout: 0 });
+  
+})();
