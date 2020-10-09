@@ -77,7 +77,7 @@
 
               <div class="form-group">
                 <label class="control-label"><?php echo lang(array("es"=>"Perfil","en"=>"Profile")); ?></label>
-                <select class="form-control" id="usuarios_perfiles"></select>
+                <select class="form-control" id="usuario_perfiles"></select>
               </div>
 
             </div>

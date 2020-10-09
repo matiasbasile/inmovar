@@ -446,13 +446,6 @@
       $(this.el).find("#usuario_horario_desde").mask("99:99");
       $(this.el).find("#usuario_horario_hasta").mask("99:99");
 
-      $(this.el).find("#usuario_horario_entrega_desde").mask("99:99");
-      $(this.el).find("#usuario_horario_entrega_hasta").mask("99:99");
-
-      $(this.el).find("#usuarios_sucursales").select2({
-        tags: true,
-      });
-
       this.stopListening();
       this.listenTo(this.model, 'change_table', self.render_tabla_fotos);
       this.render_tabla_fotos();
@@ -461,7 +454,7 @@
       new app.mixins.Select({
         modelClass: app.models.Perfil,
         url: "perfiles/",
-        render: "#usuarios_perfiles",
+        render: "#usuario_perfiles",
         name : "id_perfiles",
         firstOptions: ["<option value='0'>-</option>"],
         selected : self.model.get("id_perfiles"),
@@ -679,7 +672,7 @@
         });
 
         this.model.set({
-          "id_perfiles": ((self.$("#usuarios_perfiles").length > 0) ? self.$("#usuarios_perfiles").val() : self.id_perfil_default),
+          "id_perfiles": ((self.$("#usuario_perfiles").length > 0) ? self.$("#usuario_perfiles").val() : self.id_perfil_default),
         });
 
         if (this.$("#hidden_path_2").length > 0) {
