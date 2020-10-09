@@ -53,10 +53,6 @@
               <div id="propiedad_preview_tab1" class="tab-pane active">
                 <div id="propiedades_preview_slider" class="flexslider">
                   <ul class="slides">
-                    <% var imagen = (isEmpty(path)) ? "" : ((path.indexOf("http")==0) ? path : '/admin/'+path) %>
-                    <li>
-                      <div style="overflow: hidden; width: 100%; height: 400px; background-image: url(<%= imagen %>); background-repeat: no-repeat; background-position: center center; background-size: contain"></div>
-                    </li>
                     <% for (var i=0;i< images.length;i++) { %>
                       <% var im2 = images[i] %>
                       <% var im = (isEmpty(im2)) ? "" : ((im2.indexOf("http")==0) ? im2 : '/admin/'+im2) %>
@@ -68,10 +64,6 @@
                 </div>
                 <div id="propiedades_preview_carousel" class="flexslider">
                   <ul class="slides">
-                    <% var imagen = (isEmpty(path)) ? "" : ((path.indexOf("http")==0) ? path : '/admin/'+path) %>
-                    <li>
-                      <div style="overflow: hidden; width: 100%; height: 100px; background-image: url(<%= imagen %>); background-repeat: no-repeat; background-position: center center; background-size: contain"></div>
-                    </li>
                     <% for (var i=0;i< images.length;i++) { %>
                       <% var im2 = images[i] %>
                       <% var im = (isEmpty(im2)) ? "" : ((im2.indexOf("http")==0) ? im2 : '/admin/'+im2) %>
