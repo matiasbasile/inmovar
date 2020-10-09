@@ -677,10 +677,8 @@ class Propiedades extends REST_Controller {
       }      
     }
 
-    // Excepciones
-    if ($id_empresa == 70 && sizeof($images)>0) {
-      $array->path = $images[0];
-    }
+    // La primera foto del array es la imagen principal
+    if (sizeof($images)>0) $array->path = $images[0];
 
     if (is_null($array->id_propietario)) $array->id_propietario = 0;
         
@@ -883,10 +881,8 @@ class Propiedades extends REST_Controller {
       }      
     }
 
-    // Excepciones
-    if ($id_empresa == 70 && sizeof($images)>0) {
-      $array->path = $images[0];
-    }
+    // La primera foto del array es la imagen principal
+    if (sizeof($images)>0) $array->path = $images[0];
 
     if (is_null($array->id_propietario)) $array->id_propietario = 0;
       
