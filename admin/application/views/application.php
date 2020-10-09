@@ -468,7 +468,7 @@ window.onload = function () {
             <?php } ?>
             <?php if ($perfil != -1) { ?>
               <li>
-                <a href="app/#usuario/<?php echo $id_usuario; ?>">
+                <a href="app/#usuarios/<?php echo $id_usuario; ?>">
                   <?php echo lang(array("es"=>"Perfil","en"=>"Profile")); ?>
                 </a>
               </li>
