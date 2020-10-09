@@ -449,14 +449,6 @@ class Empresas extends REST_Controller {
     $obj->id_plan = $id_plan;
     $res = $this->modelo->insert($obj);
 
-    // Creamos una nueva tarea en background para que pueda ejecutarse
-    /*
-    $this->load->model("Tarea_Background_Model");
-    $this->Tarea_Background_Model->guardar(array(
-      "url"=>"https://www.varcreative.com/admin/permisos_red/function/notificar/".$res["id"]."/",
-    ));
-    */
-
     echo json_encode(array(
       "error"=>0,
     ));

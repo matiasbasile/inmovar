@@ -395,8 +395,8 @@
 </script>
 
 <script type="text/template" id="notificacion_item_template">
-  <?php // NOTIFICACION NORMAL ?>
-  <% if (tipo == 0) { %>
+  <?php // NOTIFICACION DE BIENVENIDA DE UNA NUEVA INMOBILIARIA ?>
+  <% if (tipo == 4) { %>
     <div class="panel notification-panel mb0 tac">
       <a href="javascript:void(0)" class="fr cp limpiar_notificacion">
         <span class="material-icons">close</span>
@@ -464,7 +464,7 @@
         <span class="material-icons">close</span>
       </a>
       <h3>Nuevo</h3>
-      <p>Tienes 1433 consultas vencidos</p>
+      <p>Tiene consultas vencidas</p>
     </div>
 
   <% } %>

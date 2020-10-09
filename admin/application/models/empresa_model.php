@@ -1142,6 +1142,7 @@ class Empresa_Model extends Abstract_Model {
         "id_empresa"=>$r->id,
         "titulo"=>"$array->nombre",
         "texto"=>"Dale la bienvenida a un nuevo colega",
+        "importancia"=>"B",
         "link"=>$id_empresa,
       ));
     }

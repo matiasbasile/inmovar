@@ -67,6 +67,17 @@ class Notificacion_Model extends Abstract_Model {
       $lista[] = $r;
     }
 
+    // Aviso de nueva inmobiliaria
+    $sql = "SELECT * FROM com_log WHERE id_empresa = $id_empresa AND importancia = 'B' AND leida = 0 ";
+    $sql.= "ORDER BY fecha DESC ";
+    $q = $this->db->query($sql);
+    foreach($q->result() as $r) {
+      $r->titulo = $r->texto;
+      $r->texto = $r->texto_2;
+      $r->tipo = 4; // Bienvenido
+      $r->visto = $r->leida;
+      $lista[] = $r;
+    }
     return array(
     	"results"=>$lista,
     	"total"=>sizeof($lista),
