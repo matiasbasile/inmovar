@@ -36,7 +36,7 @@
               <div class="h1 c1"><%= total_consultas %></div>
             </div>
           </div>
-          <a class="link fs14 block" href="app/#consultas"><i class="fa fa-external-link mr5"></i> 3 consultas sin responder</a>
+          <a class="link fs14 block" href="app/#consultas"><i class="fa fa-external-link mr5"></i> Consultas sin responder</a>
         </div>
       </div>
 
@@ -50,7 +50,7 @@
               <div class="h1 c1"><%= total_propiedades_red %></div>
             </div>
           </div>
-          <a class="link fs14 block" href="app/#consultas"><i class="fa fa-external-link mr5"></i> 3 propiedades por revisar</a>
+          <a class="link fs14 block" href="app/#propiedades"><i class="fa fa-external-link mr5"></i> Propiedades por revisar</a>
         </div>
       </div>  
 
@@ -64,7 +64,7 @@
               <div class="h1 c1"><%= total_propiedades_tu_red %></div>
             </div>
           </div>
-          <a class="link fs14 block" href="app/#consultas"><i class="fa fa-external-link mr5"></i> 2 invitaciones pendientes</a>
+          <a class="link fs14 block" href="app/#permisos_red"><i class="fa fa-external-link mr5"></i> Invitaciones pendientes</a>
         </div>
       </div>  
 
