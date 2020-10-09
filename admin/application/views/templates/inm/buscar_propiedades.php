@@ -84,7 +84,7 @@
       </div>
       */ ?>
 
-      <div class="col-md-3 col-sm-6 col-xs-12 mh50 pr5 pl5">
+      <div class="col-md-4 col-sm-6 col-xs-12 mh50 pr5 pl5">
         <div class="form-group">
           <div class="input-group">
             <span class="input-group-btn">
@@ -107,7 +107,7 @@
         </div>
       </div>
 
-      <div class="col-md-2 col-sm-3 col-xs-12 mh50 pr5 pl5">
+      <div class="col-md-4 col-sm-3 col-xs-12 mh50 pr5 pl5">
         <div class="form-group">
           <select style="width: 100%" id="propiedades_buscar_tipos_estado">
             <% for(var i=0;i< window.tipos_estado.length;i++) { %>
@@ -122,50 +122,46 @@
           <input type="text" class="form-control no-model" value="<%= window.propiedades_direccion %>" id="propiedades_buscar_direccion" placeholder="Nombre de calle" />
         </div>
       </div>
-      <div class="col-sm-6 col-xs-12 mh50 pr0 pl0">
-        <div class="row pl10 pr10">
-          <div class="col-sm-3 col-xs-12 mh50 pr5 pl5">
-            <select class="form-control no-model" id="propiedades_buscar_dormitorios">
-              <option <%= (isEmpty(window.propiedades_dormitorios)) ? "selected":"" %> value="">Dormitorios</option>
-              <option <%= (window.propiedades_dormitorios == "1") ? "selected":"" %> value="1">1</option>
-              <option <%= (window.propiedades_dormitorios == "2") ? "selected":"" %> value="2">2</option>
-              <option <%= (window.propiedades_dormitorios == "3") ? "selected":"" %> value="3">3</option>
-              <option <%= (window.propiedades_dormitorios == "4") ? "selected":"" %> value="4">4</option>
-              <option <%= (window.propiedades_dormitorios == "5") ? "selected":"" %> value="5">5</option>
-              <option <%= (window.propiedades_dormitorios == "6") ? "selected":"" %> value="6">6</option>
-              <option <%= (window.propiedades_dormitorios == "7") ? "selected":"" %> value="7">M&aacute;s</option>
-            </select>
-          </div>
-          <div class="col-sm-3 col-xs-12 mh50 pr5 pl5">
-            <select class="form-control no-model" id="propiedades_buscar_banios">
-              <option <%= (isEmpty(window.propiedades_banios)) ? "selected":"" %> value="">Ba&ntilde;os</option>
-              <option <%= (window.propiedades_banios == "1") ? "selected":"" %> value="1">1</option>
-              <option <%= (window.propiedades_banios == "2") ? "selected":"" %> value="2">2</option>
-              <option <%= (window.propiedades_banios == "3") ? "selected":"" %> value="3">3</option>
-              <option <%= (window.propiedades_banios == "4") ? "selected":"" %> value="4">4</option>
-              <option <%= (window.propiedades_banios == "5") ? "selected":"" %> value="5">5</option>
-              <option <%= (window.propiedades_banios == "6") ? "selected":"" %> value="6">6</option>
-              <option <%= (window.propiedades_banios == "7") ? "selected":"" %> value="7">M&aacute;s</option>
-            </select>
-          </div>
-          <div class="col-sm-3 col-xs-12 mh50 pr5 pl5">
-            <div class="form-group">
-              <select style="width: 100%" id="propiedades_buscar_compartida_en">
-                <option <%= (window.propiedades_compartida_en == "")?"selected":"" %> value="">Todas</option>
-                <option <%= (window.propiedades_compartida_en == "web")?"selected":"" %> value="web">Web</option>
-                <option <%= (window.propiedades_compartida_en == "red")?"selected":"" %> value="red">Red Inmovar</option>
-                <option <%= (window.propiedades_compartida_en == "meli")?"selected":"" %> value="meli">MercadoLibre</option>
-                <option <%= (window.propiedades_compartida_en == "olx")?"selected":"" %> value="olx">OLX</option>
-                <option <%= (window.propiedades_compartida_en == "inmobusquedas")?"selected":"" %> value="inmobusquedas">Inmobusqueda</option>
-                <option <%= (window.propiedades_compartida_en == "argenprop")?"selected":"" %> value="argenprop">Argenprop</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-sm-3 col-xs-12 mh50 pr5 pl5">
-            <div class="form-group">
-              <select class="form-control" disabled="disabled" id="propiedades_buscar_compartida_en_filtros"></select>
-            </div>
-          </div>
+      <div class="col-sm-3 col-xs-12 mh50 pr5 pl5">
+        <select class="form-control no-model" id="propiedades_buscar_dormitorios">
+          <option <%= (isEmpty(window.propiedades_dormitorios)) ? "selected":"" %> value="">Dormitorios</option>
+          <option <%= (window.propiedades_dormitorios == "1") ? "selected":"" %> value="1">1</option>
+          <option <%= (window.propiedades_dormitorios == "2") ? "selected":"" %> value="2">2</option>
+          <option <%= (window.propiedades_dormitorios == "3") ? "selected":"" %> value="3">3</option>
+          <option <%= (window.propiedades_dormitorios == "4") ? "selected":"" %> value="4">4</option>
+          <option <%= (window.propiedades_dormitorios == "5") ? "selected":"" %> value="5">5</option>
+          <option <%= (window.propiedades_dormitorios == "6") ? "selected":"" %> value="6">6</option>
+          <option <%= (window.propiedades_dormitorios == "7") ? "selected":"" %> value="7">M&aacute;s</option>
+        </select>
+      </div>
+      <div class="col-sm-3 col-xs-12 mh50 pr5 pl5">
+        <select class="form-control no-model" id="propiedades_buscar_banios">
+          <option <%= (isEmpty(window.propiedades_banios)) ? "selected":"" %> value="">Ba&ntilde;os</option>
+          <option <%= (window.propiedades_banios == "1") ? "selected":"" %> value="1">1</option>
+          <option <%= (window.propiedades_banios == "2") ? "selected":"" %> value="2">2</option>
+          <option <%= (window.propiedades_banios == "3") ? "selected":"" %> value="3">3</option>
+          <option <%= (window.propiedades_banios == "4") ? "selected":"" %> value="4">4</option>
+          <option <%= (window.propiedades_banios == "5") ? "selected":"" %> value="5">5</option>
+          <option <%= (window.propiedades_banios == "6") ? "selected":"" %> value="6">6</option>
+          <option <%= (window.propiedades_banios == "7") ? "selected":"" %> value="7">M&aacute;s</option>
+        </select>
+      </div>
+      <div class="col-sm-3 col-xs-12 mh50 pr5 pl5">
+        <div class="form-group">
+          <select style="width: 100%" id="propiedades_buscar_compartida_en">
+            <option <%= (window.propiedades_compartida_en == "")?"selected":"" %> value="">Todas</option>
+            <option <%= (window.propiedades_compartida_en == "web")?"selected":"" %> value="web">Web</option>
+            <option <%= (window.propiedades_compartida_en == "red")?"selected":"" %> value="red">Red Inmovar</option>
+            <option <%= (window.propiedades_compartida_en == "meli")?"selected":"" %> value="meli">MercadoLibre</option>
+            <option <%= (window.propiedades_compartida_en == "olx")?"selected":"" %> value="olx">OLX</option>
+            <option <%= (window.propiedades_compartida_en == "inmobusquedas")?"selected":"" %> value="inmobusquedas">Inmobusqueda</option>
+            <option <%= (window.propiedades_compartida_en == "argenprop")?"selected":"" %> value="argenprop">Argenprop</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-3 col-xs-12 mh50 pr5 pl5">
+        <div class="form-group">
+          <select class="form-control" disabled="disabled" id="propiedades_buscar_compartida_en_filtros"></select>
         </div>
       </div>
       <?php /*
