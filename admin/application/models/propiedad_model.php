@@ -470,7 +470,10 @@ class Propiedad_Model extends Abstract_Model {
     if (!empty($id_tipo_estado)) $sql_where.= "AND A.id_tipo_estado = $id_tipo_estado ";
     if (!empty($id_tipo_operacion)) $sql_where.= "AND A.id_tipo_operacion IN ($id_tipo_operacion) ";
     if (!empty($id_tipo_inmueble)) $sql_where.= "AND A.id_tipo_inmueble IN ($id_tipo_inmueble) ";
-    if (!empty($id_usuario)) $sql_where.= "AND A.id_usuario = $id_usuario ";
+    
+    // Si estamos buscando por la red inmovar, el filtro de SOLO_USUARIO no deberia aplicarse
+    if (!empty($id_usuario) && empty($buscar_red)) $sql_where.= "AND A.id_usuario = $id_usuario ";
+
     if (!empty($id_propietario)) $sql_where.= "AND A.id_propietario = $id_propietario ";
     if (!empty($id_localidad)) $sql_where.= "AND A.id_localidad IN ($id_localidad) ";
     if (!empty($calle)) $sql_where.= "AND A.calle = '$calle' ";
