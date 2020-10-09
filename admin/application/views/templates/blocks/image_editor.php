@@ -32,10 +32,12 @@
     <canvas id='canvas' style='max-width:100%;'></canvas>
   </div>
   <div class='modal-footer'>
-    <label class="pull-left" style="margin-top:7px; margin-right: 5px;">Fondo: </label>
-    <div style="width:220px" class="input-group colorpicker-component pull-left">
-      <input type="text" class="form-control" value="<%= (typeof COLOR_FONDO_IMAGENES_DEFECTO != 'undefined' && COLOR_FONDO_IMAGENES_DEFECTO != '') ? COLOR_FONDO_IMAGENES_DEFECTO : '#FFFFFF'  %>" />
-      <span class="input-group-addon"><i></i></span>
+    <div style="display:none">
+      <label class="pull-left" style="margin-top:7px; margin-right: 5px;">Fondo: </label>
+      <div style="width:220px" class="input-group colorpicker-component pull-left">
+        <input type="text" class="form-control" value="<%= (typeof COLOR_FONDO_IMAGENES_DEFECTO != 'undefined' && COLOR_FONDO_IMAGENES_DEFECTO != '') ? COLOR_FONDO_IMAGENES_DEFECTO : '#FFFFFF'  %>" />
+        <span class="input-group-addon"><i></i></span>
+      </div>
     </div>
     <button class='crop-ok btn btn-success pull-right'>Aceptar</button>
   </div>

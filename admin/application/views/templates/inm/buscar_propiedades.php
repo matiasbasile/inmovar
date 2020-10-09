@@ -65,7 +65,8 @@
   <div class="wrapper clearfix">
     <div class="row pl10 pr10">
 
-      <div class="col-md-3 col-sm-6 col-xs-12 mh50 pr5 pl5">
+      <?php /*
+      <div class="col-md-3 dn col-sm-6 col-xs-12 mh50 pr5 pl5">
         <div class="form-group">
           <div class="input-group">
             <span class="input-group-btn">
@@ -81,6 +82,7 @@
           </div>
         </div>
       </div>
+      */ ?>
 
       <div class="col-md-3 col-sm-6 col-xs-12 mh50 pr5 pl5">
         <div class="form-group">
@@ -104,9 +106,7 @@
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="row pl10 pr10">
       <div class="col-md-2 col-sm-3 col-xs-12 mh50 pr5 pl5">
         <div class="form-group">
           <select style="width: 100%" id="propiedades_buscar_tipos_estado">
@@ -168,6 +168,7 @@
           </div>
         </div>
       </div>
+      <?php /*
       <div class="col-md-2 col-sm-3 col-xs-12 mh50 pr5 pl5">
         <button data-toggle="tooltip" title="Ver como lista" id="propiedades_ver_lista" class="btn btn-default <%= (window.propiedades_mapa == 0)?'btn-info':'' %>">
           <i class="fa fa-list"></i>
@@ -176,6 +177,7 @@
           <i class="fa fa-map-marker"></i>
         </button>
       </div>
+      */ ?>
 
     </div>
     

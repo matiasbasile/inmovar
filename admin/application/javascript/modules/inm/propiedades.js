@@ -650,6 +650,7 @@
         window.propiedades_banios = this.$("#propiedades_buscar_banios").val();  
         cambio_parametros = true;
       }
+      /*
       var apto_banco = (this.$("#propiedades_buscar_apto_banco").hasClass("btn-info")?1:0);
       if (window.propiedades_apto_banco != apto_banco) {
         window.propiedades_apto_banco = apto_banco;  
@@ -660,6 +661,7 @@
         window.propiedades_acepta_permuta = acepta_permuta;  
         cambio_parametros = true;
       }
+      */
 
       if (this.$("#propiedades_buscar_compartida_en").length > 0 && this.$("#propiedades_buscar_compartida_en").val() != null) {
         var compatida_en = this.$("#propiedades_buscar_compartida_en").val();
@@ -698,8 +700,8 @@
         "monto_2":window.propiedades_monto_2,
         "monto_tipo":window.propiedades_monto_tipo,
         "monto_moneda":window.propiedades_monto_moneda,
-        "apto_banco":window.propiedades_apto_banco,
-        "acepta_permuta":window.propiedades_acepta_permuta,
+        //"apto_banco":window.propiedades_apto_banco,
+        //"acepta_permuta":window.propiedades_acepta_permuta,
         "dormitorios":window.propiedades_dormitorios,
         "banios":window.propiedades_banios,
         "filtro_meli":window.propiedades_filtro_meli,
