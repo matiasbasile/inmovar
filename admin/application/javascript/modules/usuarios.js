@@ -77,7 +77,7 @@
 
 (function ( app ) {
 
-  app.views.UsuarioItem = app.mixins.View.extend({
+  app.views.UsuariosItem = app.mixins.View.extend({
     tagName: "tr",
     template: _.template($('#usuarios_item').html()),
     myEvents: {
@@ -360,7 +360,7 @@
     },
 
     addOne : function ( item ) {
-      var view = new app.views.UsuarioItem({
+      var view = new app.views.UsuariosItem({
         model: item,
       });
       $(this.el).find("tbody").append(view.render().el);
@@ -452,7 +452,7 @@
       $(this.el).find("#images_tabla").sortable();
 
       new app.mixins.Select({
-        modelClass: app.models.Perfil,
+        modelClass: app.models.Perfiles,
         url: "perfiles/",
         render: "#usuario_perfiles",
         name : "id_perfiles",

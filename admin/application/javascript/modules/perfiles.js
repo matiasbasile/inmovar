@@ -319,7 +319,7 @@
   },
   
     limpiar : function() {
-      this.model = new app.models.Perfil()
+      this.model = new app.models.Perfiles();
       this.render();
     },  
   });
