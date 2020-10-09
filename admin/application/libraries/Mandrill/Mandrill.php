@@ -166,6 +166,9 @@ function mandrill_send($conf = array()) {
   $body = isset($conf["body"]) ? $conf["body"] : "";
   $body = utf8_encode(str_replace("'", "\"", $body));
 
+  // Si esta todo vacio, no enviamos
+  if (empty($subject) && empty($body)) return FALSE;  
+
   $important = isset($conf["important"]) ? $conf["important"] : false;
   $from = isset($conf["from"]) ? $conf["from"] : "no-reply@varcreative.com";
   $from_name = isset($conf["from_name"]) ? $conf["from_name"] : "Varcreative";
