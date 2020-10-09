@@ -66,7 +66,7 @@
     <div class="row pl10 pr10">
 
       <?php /*
-      <div class="col-md-3 dn col-sm-6 col-xs-12 mh50 pr5 pl5">
+      <div class="col-md-3 dn col-sm-6 col-xs-12 h50 pr5 pl5">
         <div class="form-group">
           <div class="input-group">
             <span class="input-group-btn">
@@ -84,7 +84,7 @@
       </div>
       */ ?>
 
-      <div class="col-md-4 col-sm-6 col-xs-12 mh50 pr5 pl5">
+      <div class="col-md-3 col-sm-6 col-xs-12 h50 pr5 pl5">
         <div class="form-group">
           <div class="input-group">
             <span class="input-group-btn">
@@ -107,7 +107,7 @@
         </div>
       </div>
 
-      <div class="col-md-4 col-sm-3 col-xs-12 mh50 pr5 pl5">
+      <div class="col-md-3 col-sm-3 col-xs-12 h50 pr5 pl5">
         <div class="form-group">
           <select style="width: 100%" id="propiedades_buscar_tipos_estado">
             <% for(var i=0;i< window.tipos_estado.length;i++) { %>
@@ -117,12 +117,7 @@
           </select>
         </div>
       </div>
-      <div class="col-md-2 col-sm-3 col-xs-12 mh50 pr5 pl5">
-        <div class="form-group">
-          <input type="text" class="form-control no-model" value="<%= window.propiedades_direccion %>" id="propiedades_buscar_direccion" placeholder="Nombre de calle" />
-        </div>
-      </div>
-      <div class="col-sm-3 col-xs-12 mh50 pr5 pl5">
+      <div class="col-sm-3 col-xs-12 h50 pr5 pl5">
         <select class="form-control no-model" id="propiedades_buscar_dormitorios">
           <option <%= (isEmpty(window.propiedades_dormitorios)) ? "selected":"" %> value="">Dormitorios</option>
           <option <%= (window.propiedades_dormitorios == "1") ? "selected":"" %> value="1">1</option>
@@ -134,7 +129,7 @@
           <option <%= (window.propiedades_dormitorios == "7") ? "selected":"" %> value="7">M&aacute;s</option>
         </select>
       </div>
-      <div class="col-sm-3 col-xs-12 mh50 pr5 pl5">
+      <div class="col-sm-3 col-xs-12 h50 pr5 pl5">
         <select class="form-control no-model" id="propiedades_buscar_banios">
           <option <%= (isEmpty(window.propiedades_banios)) ? "selected":"" %> value="">Ba&ntilde;os</option>
           <option <%= (window.propiedades_banios == "1") ? "selected":"" %> value="1">1</option>
@@ -146,7 +141,12 @@
           <option <%= (window.propiedades_banios == "7") ? "selected":"" %> value="7">M&aacute;s</option>
         </select>
       </div>
-      <div class="col-sm-3 col-xs-12 mh50 pr5 pl5">
+      <div class="col-sm-3 col-xs-12 h50 pr5 pl5">
+        <div class="form-group">
+          <input type="text" class="form-control no-model" value="<%= window.propiedades_direccion %>" id="propiedades_buscar_direccion" placeholder="Nombre de calle" />
+        </div>
+      </div>
+      <div class="col-sm-3 col-xs-12 h50 pr5 pl5">
         <div class="form-group">
           <select style="width: 100%" id="propiedades_buscar_compartida_en">
             <option <%= (window.propiedades_compartida_en == "")?"selected":"" %> value="">Todas</option>
@@ -159,13 +159,13 @@
           </select>
         </div>
       </div>
-      <div class="col-sm-3 col-xs-12 mh50 pr5 pl5">
+      <div class="col-sm-3 col-xs-12 h50 pr5 pl5">
         <div class="form-group">
           <select class="form-control" disabled="disabled" id="propiedades_buscar_compartida_en_filtros"></select>
         </div>
       </div>
       <?php /*
-      <div class="col-md-2 col-sm-3 col-xs-12 mh50 pr5 pl5">
+      <div class="col-md-2 col-sm-3 col-xs-12 h50 pr5 pl5">
         <button data-toggle="tooltip" title="Ver como lista" id="propiedades_ver_lista" class="btn btn-default <%= (window.propiedades_mapa == 0)?'btn-info':'' %>">
           <i class="fa fa-list"></i>
         </button>
