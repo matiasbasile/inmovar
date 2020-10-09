@@ -75,31 +75,11 @@
                 </div>
               </div>
 
-              <% if (admin == 0 && ID_PROYECTO != 14) { %>
-                <div class="form-group">
-                  <label class="control-label"><?php echo lang(array("es"=>"Perfil","en"=>"Profile")); ?></label>
-                  <select class="form-control" id="usuarios_perfiles"></select>
-                </div>
-              <% } %>
-              <% if (control.check("almacenes")>0) { %>
-                <div class="form-group">
-                  <label class="control-label">Sucursal</label>
-                  <select multiple class="form-control" id="usuarios_sucursales" style="width:100%">
-                    <% for (var i=0; i< almacenes.length; i++) { %>
-                      <% var almacen = almacenes[i] %>
-                      <% var encontro = false %>
-                      <% for (var j=0; j< sucursales.length; j++) { %>
-                        <% var sc = sucursales[j] %>
-                        <% if (sc.id_sucursal == almacen.id) { %>
-                          <% encontro = true %>
-                          <% break %>
-                        <% } %>
-                      <% } %>
-                      <option <%= (encontro)?"selected":"" %> value="<%= almacen.id %>"><%= almacen.nombre %></option>
-                    <% } %>
-                  </select>
-                </div>
-              <% } %>
+              <div class="form-group">
+                <label class="control-label"><?php echo lang(array("es"=>"Perfil","en"=>"Profile")); ?></label>
+                <select class="form-control" id="usuarios_perfiles"></select>
+              </div>
+
             </div>
           </div>
         </div>
@@ -142,306 +122,144 @@
           </div> 
         <% } %>       
 
-        <% if (ID_PROYECTO == 14) { %>
-
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <div class="padder">
-                <div class="form-group mb0 clearfix">
-                  <label class="control-label">
-                    <?php echo lang(array("es"=>"Datos personales","en"=>"Personal information")); ?>
-                  </label>
-                  <a class="expand-link fr">
-                    <?php echo lang(array(
-                      "es"=>"+ Ver opciones",
-                      "en"=>"+ View options",
-                    )); ?>
-                  </a>
-                  <div class="panel-description">
-                    <?php echo lang(array(
-                      "es"=>"Informaci&oacute;n de contacto, foto, etc.",
-                      "en"=>"Contact information such as telephone, photo, etc.",
-                    )); ?>                  
-                  </div>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="padder">
+              <div class="form-group mb0 clearfix">
+                <label class="control-label">
+                  <?php echo lang(array("es"=>"Datos personales","en"=>"Personal information")); ?>
+                </label>
+                <a class="expand-link fr">
+                  <?php echo lang(array(
+                    "es"=>"+ Ver opciones",
+                    "en"=>"+ View options",
+                  )); ?>
+                </a>
+                <div class="panel-description">
+                  <?php echo lang(array(
+                    "es"=>"Informaci&oacute;n de contacto, foto, etc.",
+                    "en"=>"Contact information such as telephone, photo, etc.",
+                  )); ?>                  
                 </div>
-              </div>
-            </div>
-            <div class="panel-body expand" style="display: block;">
-              <div class="padder">
-
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label class="control-label"><?php echo lang(array("es"=>"Celular","en"=>"Mobile")); ?></label>
-                      <div class="">
-                        <input type="text" name="celular" class="form-control" id="celular" value="<%= celular %>"/>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label class="control-label"><?php echo lang(array("es"=>"Cargo","en"=>"Position")); ?></label>
-                      <div class="">
-                        <input type="text" name="cargo" class="form-control" id="cargo" value="<%= cargo %>"/>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label class="control-label"><?php echo lang(array("es"=>"Idioma","en"=>"Language")); ?></label>
-                      <div class="">
-                        <select class="form-control" name="language" id="usuario_language">
-                          <option <%= (language=="es")?"selected":"" %> value="es"><?php echo lang(array("es"=>"Espa&ntilde;ol","en"=>"Spanish")); ?></option>
-                          <option <%= (language=="en")?"selected":"" %> value="en"><?php echo lang(array("es"=>"Ingl&eacute;s","en"=>"English")); ?></option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <?php
-                single_upload(array(
-                  "name"=>"path",
-                  "label"=>lang(array("es"=>"Foto","en"=>"Photo")),
-                  "url"=>"/admin/usuarios/function/save_image/",
-                  "width"=>(isset($empresa->config["usuario_image_width"]) ? $empresa->config["usuario_image_width"] : 256),
-                  "height"=>(isset($empresa->config["usuario_image_height"]) ? $empresa->config["usuario_image_height"] : 256),
-                )); ?>
-
               </div>
             </div>
           </div>
+          <div class="panel-body expand">
+            <div class="padder">
 
-        <% } else if (ID_EMPRESA == 1284) { %>
-
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <div class="padder">
-                <div class="form-group mb0 clearfix">
-                  <label class="control-label">Datos del comercio</label>
-                  <a class="expand-link fr">
-                    <?php echo lang(array(
-                      "es"=>"+ Ver opciones",
-                      "en"=>"+ View options",
-                    )); ?>
-                  </a>
-                  <div class="panel-description">Informaci&oacute;n de contacto y redes sociales.</div>
+              <% if (control.check("vendedores")>0) { %>
+                <div class="form-group">
+                  <label class="control-label">Vendedor</label>
+                  <select class="form-control" id="usuario_vendedores"></select>
                 </div>
-              </div>
-            </div>
-            <div class="panel-body expand">
-              <div class="padder">
+              <% } %>
 
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="control-label">Ciudad</label>
-                      <div class="">
-                        <input type="text" name="custom_1" class="form-control" id="custom_1" value="<%= custom_1 %>"/>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="control-label"><?php echo lang(array("es"=>"Direcci&oacute;n","en"=>"Address")); ?></label>
-                      <div class="">
-                        <input type="text" name="direccion" class="form-control" id="direccion" value="<%= direccion %>"/>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="control-label"><?php echo lang(array("es"=>"Tel&eacute;fono","en"=>"Telephone")); ?></label>
-                      <div class="">
-                        <input type="text" name="telefono" class="form-control" id="telefono" value="<%= telefono %>"/>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="control-label">Whatsapp</label>
-                      <div class="">
-                        <input type="text" placeholder="Sin 0 ni 15. Ej: 1112345678" name="celular" class="form-control" id="celular" value="<%= celular %>"/>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="control-label">Facebook</label>
-                      <div class="">
-                        <input type="text" name="facebook" placeholder="Copiar URL (https://www.facebook.com/tunegocio) " class="form-control" id="facebook" value="<%= facebook %>"/>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="control-label">Instagram</label>
-                      <div class="">
-                        <input type="text" name="instagram" class="form-control" placeholder="@TuComercio" id="instagram" value="<%= instagram %>"/>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <?php
-                single_upload(array(
-                  "name"=>"path",
-                  "label"=>lang(array("es"=>"Foto","en"=>"Photo")),
-                  "url"=>"/admin/usuarios/function/save_image/",
-                  "width"=>(isset($empresa->config["usuario_image_width"]) ? $empresa->config["usuario_image_width"] : 256),
-                  "height"=>(isset($empresa->config["usuario_image_height"]) ? $empresa->config["usuario_image_height"] : 256),
-                )); ?>
-
-              </div>
-            </div>
-          </div>        
-
-        <% } else { %>
-
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <div class="padder">
-                <div class="form-group mb0 clearfix">
-                  <label class="control-label">
-                    <?php echo lang(array("es"=>"Datos personales","en"=>"Personal information")); ?>
-                  </label>
-                  <a class="expand-link fr">
-                    <?php echo lang(array(
-                      "es"=>"+ Ver opciones",
-                      "en"=>"+ View options",
-                    )); ?>
-                  </a>
-                  <div class="panel-description">
-                    <?php echo lang(array(
-                      "es"=>"Informaci&oacute;n de contacto, foto, etc.",
-                      "en"=>"Contact information such as telephone, photo, etc.",
-                    )); ?>                  
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="panel-body expand">
-              <div class="padder">
-
-                <% if (control.check("vendedores")>0) { %>
+              <div class="row">
+                <div class="col-md-6">
                   <div class="form-group">
-                    <label class="control-label">Vendedor</label>
-                    <select class="form-control" id="usuario_vendedores"></select>
-                  </div>
-                <% } %>
-
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="control-label"><?php echo lang(array("es"=>"DNI","en"=>"Identification Number")); ?></label>
-                      <div class="">
-                        <input type="text" name="dni" class="form-control" id="dni" value="<%= dni %>"/>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="control-label"><?php echo lang(array("es"=>"Direcci&oacute;n","en"=>"Address")); ?></label>
-                      <div class="">
-                        <input type="text" name="direccion" class="form-control" id="direccion" value="<%= direccion %>"/>
-                      </div>
+                    <label class="control-label"><?php echo lang(array("es"=>"DNI","en"=>"Identification Number")); ?></label>
+                    <div class="">
+                      <input type="text" name="dni" class="form-control" id="dni" value="<%= dni %>"/>
                     </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label class="control-label"><?php echo lang(array("es"=>"Tel&eacute;fono","en"=>"Telephone")); ?></label>
-                      <div class="">
-                        <input type="text" name="telefono" class="form-control" id="telefono" value="<%= telefono %>"/>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label class="control-label"><?php echo lang(array("es"=>"Celular","en"=>"Mobile")); ?></label>
-                      <div class="">
-                        <input type="text" name="celular" class="form-control" id="celular" value="<%= celular %>"/>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label class="control-label"><?php echo lang(array("es"=>"Idioma","en"=>"Language")); ?></label>
-                      <div class="">
-                        <select class="form-control" name="language" id="usuario_language">
-                          <option <%= (language=="es")?"selected":"" %> value="es"><?php echo lang(array("es"=>"Espa&ntilde;ol","en"=>"Spanish")); ?></option>
-                          <option <%= (language=="en")?"selected":"" %> value="en"><?php echo lang(array("es"=>"Ingl&eacute;s","en"=>"English")); ?></option>
-                        </select>
-                      </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="control-label"><?php echo lang(array("es"=>"Direcci&oacute;n","en"=>"Address")); ?></label>
+                    <div class="">
+                      <input type="text" name="direccion" class="form-control" id="direccion" value="<%= direccion %>"/>
                     </div>
                   </div>
                 </div>
-
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="control-label"><?php echo lang(array("es"=>"Cargo","en"=>"Position")); ?></label>
-                      <div class="">
-                        <input type="text" name="cargo" class="form-control" id="cargo" value="<%= cargo %>"/>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="control-label"><?php echo lang(array("es"=>"Titulo","en"=>"Title")); ?></label>
-                      <div class="">
-                        <input type="text" name="titulo" class="form-control" id="titulo" value="<%= titulo %>"/>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <?php
-                single_upload(array(
-                  "name"=>"path",
-                  "label"=>lang(array("es"=>"Foto","en"=>"Photo")),
-                  "url"=>"/admin/usuarios/function/save_image/",
-                  "width"=>(isset($empresa->config["usuario_image_width"]) ? $empresa->config["usuario_image_width"] : 256),
-                  "height"=>(isset($empresa->config["usuario_image_height"]) ? $empresa->config["usuario_image_height"] : 256),
-                )); ?>
-
-                <?php
-                single_upload(array(
-                  "name"=>"path_2",
-                  "label"=>lang(array("es"=>"Portada","en"=>"Portada")),
-                  "url"=>"/admin/usuarios/function/save_image/",
-                  "width"=>(isset($empresa->config["usuario_image_2_width"]) ? $empresa->config["usuario_image_2_width"] : 256),
-                  "height"=>(isset($empresa->config["usuario_image_2_height"]) ? $empresa->config["usuario_image_2_height"] : 256),
-                )); ?>
-
-                <div class="form-group">
-                  <div class="checkbox">
-                    <label class="i-checks">
-                      <input type="checkbox" name="aparece_web" class="checkbox" value="1" <%= (aparece_web == 1)?"checked":"" %>><i></i>
-                      <?php echo lang(array("es"=>"Habilitar el usuario para que aparezca en la web","en"=>"Enable the user to appear on the web")); ?>
-                    </label>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <div class="checkbox">
-                    <label class="i-checks">
-                      <input type="checkbox" name="solo_usuario" class="checkbox" value="1" <%= (solo_usuario == 1)?"checked":"" %>><i></i>
-                      <?php echo lang(array("es"=>"Mostrar solamente la informacion correspondiente al usuario","en"=>"Show only the information created by the user")); ?>
-                    </label>
-                  </div>        
-                </div>
-
               </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="control-label"><?php echo lang(array("es"=>"Tel&eacute;fono","en"=>"Telephone")); ?></label>
+                    <div class="">
+                      <input type="text" name="telefono" class="form-control" id="telefono" value="<%= telefono %>"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="control-label"><?php echo lang(array("es"=>"Celular","en"=>"Mobile")); ?></label>
+                    <div class="">
+                      <input type="text" name="celular" class="form-control" id="celular" value="<%= celular %>"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="control-label"><?php echo lang(array("es"=>"Idioma","en"=>"Language")); ?></label>
+                    <div class="">
+                      <select class="form-control" name="language" id="usuario_language">
+                        <option <%= (language=="es")?"selected":"" %> value="es"><?php echo lang(array("es"=>"Espa&ntilde;ol","en"=>"Spanish")); ?></option>
+                        <option <%= (language=="en")?"selected":"" %> value="en"><?php echo lang(array("es"=>"Ingl&eacute;s","en"=>"English")); ?></option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="control-label"><?php echo lang(array("es"=>"Cargo","en"=>"Position")); ?></label>
+                    <div class="">
+                      <input type="text" name="cargo" class="form-control" id="cargo" value="<%= cargo %>"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="control-label"><?php echo lang(array("es"=>"Titulo","en"=>"Title")); ?></label>
+                    <div class="">
+                      <input type="text" name="titulo" class="form-control" id="titulo" value="<%= titulo %>"/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <?php
+              single_upload(array(
+                "name"=>"path",
+                "label"=>lang(array("es"=>"Foto","en"=>"Photo")),
+                "url"=>"/admin/usuarios/function/save_image/",
+                "width"=>(isset($empresa->config["usuario_image_width"]) ? $empresa->config["usuario_image_width"] : 256),
+                "height"=>(isset($empresa->config["usuario_image_height"]) ? $empresa->config["usuario_image_height"] : 256),
+              )); ?>
+
+              <?php
+              single_upload(array(
+                "name"=>"path_2",
+                "label"=>lang(array("es"=>"Portada","en"=>"Portada")),
+                "url"=>"/admin/usuarios/function/save_image/",
+                "width"=>(isset($empresa->config["usuario_image_2_width"]) ? $empresa->config["usuario_image_2_width"] : 256),
+                "height"=>(isset($empresa->config["usuario_image_2_height"]) ? $empresa->config["usuario_image_2_height"] : 256),
+              )); ?>
+
+              <div class="form-group">
+                <div class="checkbox">
+                  <label class="i-checks">
+                    <input type="checkbox" name="aparece_web" class="checkbox" value="1" <%= (aparece_web == 1)?"checked":"" %>><i></i>
+                    <?php echo lang(array("es"=>"Habilitar el usuario para que aparezca en la web","en"=>"Enable the user to appear on the web")); ?>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="checkbox">
+                  <label class="i-checks">
+                    <input type="checkbox" name="solo_usuario" class="checkbox" value="1" <%= (solo_usuario == 1)?"checked":"" %>><i></i>
+                    <?php echo lang(array("es"=>"Mostrar solamente la informacion correspondiente al usuario","en"=>"Show only the information created by the user")); ?>
+                  </label>
+                </div>        
+              </div>
+
             </div>
           </div>
-        <% } %>
+        </div>
 
         <% if (control.check("estadisticas_whatsapp")>0) { %>
           <div class="panel panel-default">
@@ -540,132 +358,6 @@
           </div>
         <% } %>
 
-        <% if (ID_EMPRESA == 1234) { %>
-
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <div class="padder">
-                <div class="form-group mb0 clearfix">
-                  <label class="control-label">Horarios de entrega</label>
-                  <a id="expand_mapa" class="expand-link fr">
-                    <?php echo lang(array(
-                      "es"=>"+ Ver opciones",
-                      "en"=>"+ View options",
-                    )); ?>
-                  </a>
-                  <div class="panel-description">
-                    Aqui puede configurar los dias y horarios que entregará los pedidos.
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="panel-body expand" style="<%= (horarios_entrega.length > 0)?'display:block':'' %>">
-              <div class="padder">
-                <div class="row clearfix">
-                  <div class="form-group col-sm-4">
-                    <label class="control-label">Dia de la semana</label>
-                    <select id="usuario_horario_entrega_dia" class="form-control no-model" style="width: 100%">
-                      <option value="1">Lunes</option>
-                      <option value="2">Martes</option>
-                      <option value="3">Miercoles</option>
-                      <option value="4">Jueves</option>
-                      <option value="5">Viernes</option>
-                      <option value="6">Sabado</option>
-                      <option value="7">Domingo</option>
-                    </select>
-                  </div>
-                  <div class="form-group col-sm-2">
-                    <label class="control-label">Hora desde</label>
-                    <input type="text" id="usuario_horario_entrega_desde" class="form-control">
-                  </div>
-                  <div class="form-group col-sm-2">
-                    <label class="control-label">Hora hasta</label>
-                    <input type="text" id="usuario_horario_entrega_hasta" class="form-control">
-                  </div>
-                  <div class="form-group col-sm-2">
-                    <label class="control-label">&nbsp;</label>
-                    <a id="horario_entrega_agregar" class="btn btn-info btn-block">+ Agregar</a>
-                  </div>
-                </div>
-                <div class="table-responsive">
-                  <table id="usuario_horario_entregas_tabla" class="table m-b-none default footable">
-                    <thead>
-                      <tr>
-                        <th style="display: none"></th>
-                        <th>Dia de la semana</th>
-                        <th>Desde</th>
-                        <th>Hasta</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <% for(var i=0;i< horarios_entrega.length;i++) { %>
-                        <% var p = horarios_entrega[i] %>
-                        <tr>
-                          <td class='dn dia'><%= p.dia %></td>
-                          <td class="editar_horario_entrega">
-                            <span class="text-info editar_horario_entrega">
-                              <%= (p.dia==1)?"Lunes":"" %>
-                              <%= (p.dia==2)?"Martes":"" %>
-                              <%= (p.dia==3)?"Miercoles":"" %>
-                              <%= (p.dia==4)?"Jueves":"" %>
-                              <%= (p.dia==5)?"Viernes":"" %>
-                              <%= (p.dia==6)?"Sabado":"" %>
-                              <%= (p.dia==7)?"Domingo":"" %>
-                            </span>
-                          </td>
-                          <td class="desde editar_horario_entrega"><%= p.desde.substr(0,5) %></td>
-                          <td class="hasta editar_horario_entrega"><%= p.hasta.substr(0,5) %></td>
-                          <td class="tar">
-                            <button class="btn btn-sm btn-white eliminar_horario_entrega"><i class="fa fa-trash"></i></button>
-                          </td>
-                        </tr>
-                      <% } %>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <div class="padder">
-                <div class="form-group mb0 clearfix">
-                  <label class="control-label">
-                    Datos de MercadoPago
-                  </label>
-                  <a class="expand-link fr">
-                    <?php echo lang(array(
-                      "es"=>"+ Ver opciones",
-                      "en"=>"+ View options",
-                    )); ?>
-                  </a>
-                  <div class="panel-description">
-                    Si desea habilitar MercadoPago, ingrese los siguientes datos
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="panel-body expand">
-              <div class="padder">   
-
-                <div class="form-group">
-                  <label class="control-label tal">Client ID</label>
-                  <input type="text" name="custom_1" class="form-control" value="<%= custom_1 %>"/>
-                </div>
-                <div class="form-group">
-                  <label class="control-label tal">Client Secret</label>
-                  <input type="text" name="custom_2" class="form-control" value="<%= custom_2 %>"/>
-                </div>
-                <div class="form-group">
-                  <a class="btn btn-default" href="https://www.mercadopago.com/mla/account/credentials?type=basic" target="_blank">Obtener credenciales</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% } %>
-        
         <?php /* GRUPO URBANO UTILIZA ESTAS OPCIONES */ ?>
         <% if (ID_EMPRESA == 45) { %>
           <div class="panel panel-default">
