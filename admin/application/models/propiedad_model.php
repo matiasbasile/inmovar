@@ -510,9 +510,17 @@ class Propiedad_Model extends Abstract_Model {
       if (!empty($buscar_red_empresa)) $sql_where_2.= " AND PR.id_empresa = $buscar_red_empresa ";
       $sql_where_2.= ") ";
 
+      // ARMAMOS LA CONSULTA PARA LA RED
       $sql = "SELECT ".$sql_fields.$sql_from.$sql_where.$sql_where_2;
       if (!empty($order)) $sql.= "ORDER BY $order ";
       if ($offset != 0) $sql.= "LIMIT $limit, $offset ";
+      $q = $this->db->query($sql);
+
+      $q_total = $this->db->query("SELECT FOUND_ROWS() AS total");
+      $total = $q_total->row();
+      $total2 = $total->total;
+      $total_red = $total->total;
+      $total_propias = 0;
 
     } else {
 
@@ -542,16 +550,20 @@ class Propiedad_Model extends Abstract_Model {
 
       if ($id_empresa != -1) $sql_where_2.= "AND A.id_empresa = $id_empresa ";
 
+      // ARMAMOS LA CONSULTA PRINCIPAL
       $sql = "SELECT ".$sql_fields.$sql_from.$sql_where.$sql_where_2;
       if (!empty($order)) $sql.= "ORDER BY $order ";
       if ($offset != 0) $sql.= "LIMIT $limit, $offset ";
+      $q = $this->db->query($sql);
+
+      $q_total = $this->db->query("SELECT FOUND_ROWS() AS total");
+      $total = $q_total->row();      
+
+      $total2 = $total->total;
+      $total_propias = $total->total;
+      $total_red = 0;      
     }
 
-    $sql_final = $sql;
-    $q = $this->db->query($sql);
-
-    $q_total = $this->db->query("SELECT FOUND_ROWS() AS total");
-    $total = $q_total->row();
 
     $salida = array();
     foreach($q->result() as $r) {
@@ -621,8 +633,12 @@ class Propiedad_Model extends Abstract_Model {
     }
     return array(
       "results"=>$salida,
-      "total"=>$total->total,
-      "sql"=>$sql_final,
+      "total"=>$total2,
+      "meta"=>array(
+        "total_red"=>$total_red,
+        "total_propias"=>$total_propias,
+      ),
+      
     );
   }
 

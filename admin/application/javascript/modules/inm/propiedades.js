@@ -849,7 +849,8 @@
         }
         // Renderizamos cada elemento del array
         if (this.collection.length > 0) this.collection.each(this.addOne);
-        this.$("#propiedades_total").html(this.collection.totalRecords);
+        this.$("#propiedades_propias_total").html(this.collection.meta("total_propias"));
+        this.$("#propiedades_red_total").html(this.collection.meta("total_red"));
       }
     },
         
