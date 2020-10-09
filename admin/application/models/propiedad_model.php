@@ -436,7 +436,7 @@ class Propiedad_Model extends Abstract_Model {
     $sql_count = "COUNT(*) AS cantidad ";
     
     $sql_fields = "SQL_CALC_FOUND_ROWS A.*, ";
-    $sql_fields.= "E.nombre AS inmobiliaria, WC.logo_1 AS logo_inmobiliaria, E.id AS id_inmobiliaria, ";
+    $sql_fields.= "E.razon_social AS inmobiliaria, WC.logo_1 AS logo_inmobiliaria, E.id AS id_inmobiliaria, ";
     $sql_fields.= "IF(A.valido_hasta='0000-00-00','',DATE_FORMAT(A.valido_hasta,'%d/%m/%Y')) AS valido_hasta, ";
     $sql_fields.= "IF(A.fecha_publicacion='0000-00-00','',DATE_FORMAT(A.fecha_publicacion,'%d/%m/%Y')) AS fecha_publicacion, ";
     $sql_fields.= "IF(P.nombre IS NULL,'',P.nombre) AS propietario, ";
