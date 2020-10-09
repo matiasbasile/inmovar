@@ -546,14 +546,6 @@
             <div class="col-md-2">
               <div class="form-group">
                 <label class="i-checks">
-                  <input type="checkbox" id="propiedad_servicios_wifi" name="servicios_wifi" class="checkbox" value="1" <%= (servicios_wifi == 1)?"checked":"" %> >
-                  <i></i> WiFi
-                </label>
-              </div>
-            </div>
-            <div class="col-md-2">
-              <div class="form-group">
-                <label class="i-checks">
                   <input type="checkbox" id="propiedad_servicios_uso_comercial" name="servicios_uso_comercial" class="checkbox" value="1" <%= (servicios_uso_comercial == 1)?"checked":"" %> >
                   <i></i> Uso Comercial
                 </label>

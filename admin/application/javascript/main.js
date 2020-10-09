@@ -351,7 +351,7 @@
       },    
 
       toggle_menu: function() {
-        $('.app-aside').toggleClass('off-screen');
+        //$('.app-aside').toggleClass('off-screen');
       },
 
       asignar_color: function(i) {
