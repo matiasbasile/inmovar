@@ -39,13 +39,6 @@
 </script>
 
 <script type="text/template" id="perfiles_edit_panel_template">
-<div class=" wrapper-md">
-  <% var modulo = control.get("perfiles") %>
-  <h1 class="m-n h3"><i class="fa fa-cog icono_principal"></i><?php echo lang(array("es"=>"Configuracion","en"=>"Configuration")); ?>
-    / <%= modulo.title %>
-    / <b><%= (id == undefined)?"<?php echo lang(array("es"=>"Nuevo","en"=>"New")); ?>":nombre %></b>
-  </h1>
-</div>  
 <div class="wrapper-md">
   <div class="centrado rform">
     <div class="row">
