@@ -47,6 +47,7 @@
       administrar_pagos: 0,
       configuraciones_especiales: "",
       limite: 0,
+      codigo: "",
     }
   });
       
@@ -480,6 +481,9 @@
       try {
         // Validamos los campos que sean necesarios
         validate_input("empresas_nombre",IS_EMPTY,"Por favor, ingrese un nombre.");
+        this.model.set({
+          "razon_social":self.$("#empresas_nombre").val(),
+        });
 
         if (!validateEmail($("#empresas_email").val())) {
           alert("Por favor, ingrese un email.");

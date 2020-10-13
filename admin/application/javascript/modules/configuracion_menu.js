@@ -27,6 +27,19 @@
           },
         });
 
+      } else if (self.model.get("id_modulo") == "datos") {
+        var conf = new app.models.Empresas({
+          "id":ID_EMPRESA
+        });
+        conf.fetch({
+          "success":function() {
+            var view = new app.views.ConfiguracionDatosView({
+              model: conf,
+            });
+            self.$("#configuracion_content").html(view.el);
+          },
+        });        
+
       } else if (self.model.get("id_modulo") == "api") {
 
         var view = new app.views.ConfiguracionApiView({
@@ -360,6 +373,57 @@
 })(app.views, app.models);
 
 
+// ============================================================
+// DATOS DE LA INMOBILIARIA
+
+(function ( views, models ) {
+
+  views.ConfiguracionDatosView = app.mixins.View.extend({
+
+    template: _.template($("#configuracion_datos").html()),
+
+    myEvents: {
+      "click .guardar": "guardar",
+    },
+
+    initialize: function(options) {
+      _.bindAll(this);
+      this.render();
+    },
+
+    render: function() {
+      var self = this;
+      $(this.el).html(this.template(this.model.toJSON()));
+      this.$("#empresas_cuit").mask("99-99999999-9");    
+      return this;
+    },
+        
+    validar: function() {
+      var self = this;
+      try {
+        this.model.set({
+          "id_tipo_contribuyente":self.$("#empresas_tipo_contribuyente").val(),
+        })
+        return true;
+      } catch(e) {
+        return false;
+      }
+    },
+
+    guardar: function() {
+      var self = this;
+      if (this.validar()) {
+        this.model.save({},{
+          success: function(model,response) {
+            location.reload();
+          }
+        });
+      }
+    },    
+  
+  });
+
+})(app.views, app.models);
 
 // ============================================================
 // USUARIOS Y PERFILES
@@ -381,6 +445,17 @@
     render: function() {
       var self = this;
       $(this.el).html(this.template(this.model.toJSON()));
+
+      var usuariosView = new app.views.UsuariosTableView({
+        collection: new app.collections.Usuarios(),
+      });
+      this.$("#usuarios_container").html(usuariosView.el);
+
+      var perfilesView = new app.views.PerfilesTableView({
+        collection: new app.collections.Perfiles(),
+      });
+      this.$("#perfiles_container").html(perfilesView.el);
+
       return this;
     },
         

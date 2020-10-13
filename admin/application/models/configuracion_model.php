@@ -41,6 +41,26 @@ class Configuracion_Model extends Abstract_Model {
 		return $row->local;
 	}
 
+  function tiene_activa_columna($config = array()) {
+    $id_empresa = isset($config["id_empresa"]) ? $config["id_empresa"] : parent::get_empresa();
+    $tabla = isset($config["tabla"]) ? $config["tabla"] : "";
+    $campo = isset($config["campo"]) ? $config["campo"] : "";
+    $sql = "SELECT * FROM tablas_configuracion ";
+    $sql.= "WHERE id_empresa = $id_empresa ";
+    $sql.= "AND tabla = '$tabla' ";
+    $q = $this->db->query($sql);
+    if ($q->num_rows() > 0) {
+      $r = $q->row();
+      $c = json_decode($r->configuracion);
+      foreach($c as $cc) {
+        if ($cc->campo == "items" && $cc->visible == 1) {
+          return TRUE;
+        }
+      }
+    }
+    return FALSE;
+  }  
+
 	// Devuelve la configuracion de la tabla articulos
 	function get_tabla_articulos($config = array()) {
 		$id_empresa = $config["id_empresa"];

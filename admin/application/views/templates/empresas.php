@@ -99,12 +99,6 @@
 </script>
 
 <script type="text/template" id="empresas_edit_panel_template">
-  <div class=" wrapper-md ng-scope">
-    <% var modulo = control.get("mis_datos") %>
-    <h1 class="m-n h3"><i class="fa fa-cog icono_principal"></i><?php echo lang(array("es"=>"Configuracion","en"=>"Configuration")); ?>
-      / <b><%= modulo.title %></b>
-    </h1>
-  </div>
   <div class="wrapper-md">
     <div class="centrado rform">
       <div class="row">
@@ -112,13 +106,34 @@
           <div class="panel panel-default">
             <div class="panel-body">
               <div class="padder">
-                <div class="form-group">
-                  <label class="control-label"><?php echo lang(array("es"=>"Nombre","en"=>"Name")); ?></label>
-                  <input type="text" name="nombre" class="form-control" id="empresas_nombre" value="<%= nombre %>"/>
+                <div class="form-group mb0 clearfix">
+                  <label class="control-label">
+                    Datos de la empresa
+                  </label>
+                  <a class="expand-link fr">
+                    <?php echo lang(array(
+                      "es"=>"+ Ver opciones",
+                      "en"=>"+ View options",
+                    )); ?>
+                  </a>
                 </div>
-                <div class="form-group">
-                  <label class="control-label">Email</label>
-                  <input type="text" name="email" class="form-control" id="empresas_email" value="<%= email %>"/>
+              </div>
+            </div>
+            <div class="panel-body expand" style="display:block">
+              <div class="padder">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="control-label">Nombre de la Inmobiliaria</label>
+                      <input type="text" name="nombre" class="form-control" id="empresas_nombre" value="<%= nombre %>"/>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="control-label">Email</label>
+                      <input type="text" name="email" class="form-control" id="empresas_email" value="<%= email %>"/>
+                    </div>
+                  </div>
                 </div>
                 <% if (PERFIL == -1) { %>
                   <div class="row">
@@ -163,99 +178,10 @@
                       </div>
                     </div>
                   </div>
-                <% } %>                
-                <% if (PERFIL == -1) { %>
                   <div class="form-group">
                     <label class="control-label">Observaciones</label>
-                    <textarea style="height:250px" name="comentarios" class="form-control" id="empresas_comentarios"><%= comentarios %></textarea>
+                    <textarea style="height:150px" name="comentarios" class="form-control" id="empresas_comentarios"><%= comentarios %></textarea>
                   </div>
-                <% } %>
-                <div class="form-group mb0 tar">
-                  <a class="expand-link">
-                    <?php echo lang(array(
-                      "es"=>"+ M&aacute;s opciones",
-                      "en"=>"+ More options",
-                    )); ?>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="panel-body expand">
-              <div class="padder">
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label class="control-label">Raz&oacute;n Social</label>
-                      <input type="text" name="razon_social" class="form-control" id="empresas_razon_social" value="<%= razon_social %>"/>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label class="control-label">Tipo de contribuyente</label>
-                      <select class="form-control" name="tipo_contribuyente" id="empresas_tipo_contribuyente">
-                        <option value="2" <%= (id_tipo_contribuyente == 2) ? "selected": "" %>>Monotributo</option>
-                        <option value="1" <%= (id_tipo_contribuyente == 1) ? "selected": "" %>>Responsable Inscripto</option>
-                        <option value="3" <%= (id_tipo_contribuyente == 3) ? "selected": "" %>>Exento</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label class="control-label">CUIT</label>
-                      <input type="text" name="cuit" class="form-control" id="empresas_cuit" value="<%= cuit %>"/>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label class="control-label">Tel&eacute;fono</label>
-                      <input type="text" name="telefono_empresa" class="form-control" id="empresas_telefono" value="<%= telefono_empresa %>"/>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label class="control-label">Direcci&oacute;n</label>
-                      <input type="text" name="direccion_empresa" class="form-control" id="empresas_direccion" value="<%= direccion_empresa %>"/>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label class="control-label">Localidad</label>
-                      <input type="text" value="<%= localidad %>" id="empresas_localidad" autocomplete="off" placeholder="Escriba una ciudad y seleccionela de la lista" class="form-control no-model"/>
-                    </div>
-                  </div>
-                </div>
-                <% if (id == undefined) { %>
-                  <div class="form-group">
-                    <label class="control-label">Duplicar desde</label>
-                    <select name="id_empresa_modelo" class="form-control" id="empresas_modelos"></select>
-                  </div>
-                <% } %>
-                <% if (id != undefined) { %>
-                  <div class="form-group">
-                    <?php
-                    single_upload(array(
-                     "name"=>"logo",
-                     "label"=>"Encabezado de informes",
-                     "url"=>"empresas/function/save_image/",
-                     "resizable"=>1,
-                     "description"=>"Utilizado en los comprobantes, remitos, presupuestos, etc. Tama&ntilde;o recomendado: 450 x 280 p&iacute;xeles"
-                     )); ?>
-                  </div>
-                   <div class="form-group">
-                    <?php
-                    single_upload(array(
-                     "name"=>"path",
-                     "label"=>"Foto de perfil del sistema",
-                     "url"=>"empresas/function/save_image/",
-                     "width"=>400,
-                     "height"=>400,
-                     "description"=>"Utilizado como imagen de perfil del sistema. Tama&ntilde;o recomendado: 200 x 200 p&iacute;xeles"
-                     )); ?>
-                   </div>
-                <% } %>
-                <% if (PERFIL == -1) { %>
                   <div class="form-group">
                     <label class="control-label">
                       <label class="i-checks m-b-none">
@@ -263,6 +189,12 @@
                         La empresa se encuentra activa.
                       </label>
                     </label>
+                  </div>                  
+                <% } %>
+                <% if (id == undefined) { %>
+                  <div class="form-group">
+                    <label class="control-label">Duplicar desde</label>
+                    <select name="id_empresa_modelo" class="form-control" id="empresas_modelos"></select>
                   </div>
                 <% } %>
               </div>

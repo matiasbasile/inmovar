@@ -112,7 +112,35 @@ class Propiedad_Model extends Abstract_Model {
         );        
       }
     }
-  }  
+  }
+
+  // Devuelve el total de propiedades compartidas en la red completa
+  function total_propiedades_red_completa() {
+    $sql = "SELECT IF(COUNT(*) IS NULL,0,COUNT(*)) AS cantidad ";
+    $sql.= "FROM inm_propiedades ";
+    $sql.= "WHERE activo = 1 ";
+    $sql.= "AND compartida = 1 ";
+    $q = $this->db->query($sql);
+    $r = $q->row();
+    return $r->cantidad;
+  }
+
+  function total_propiedades_red_empresa($config = array()) {
+    $id_empresa = isset($config["id_empresa"]) ? $config["id_empresa"] : parent::get_empresa();
+    $sql = "SELECT IF(COUNT(*) IS NULL,0,COUNT(*)) AS cantidad ";
+    $sql.= "FROM inm_propiedades A ";
+    $sql.= "WHERE A.activo = 1 ";
+    $sql.= "AND A.compartida = 1 ";
+    $sql.= "AND A.id_empresa != $id_empresa ";
+    $sql.= "AND A.id_empresa IN (";
+    $sql.= " SELECT PR.id_empresa FROM inm_permisos_red PR ";
+    $sql.= " WHERE PR.id_empresa_compartida = $id_empresa ";
+    $sql.= " AND PR.permiso_red = 1 "; // Tiene el permiso habilitado
+    $sql.= ") ";
+    $q = $this->db->query($sql);
+    $r = $q->row();
+    return $r->cantidad;
+  }
 
   function count_all() {
     if ($this->usa_id_empresa == 1) {
@@ -437,6 +465,7 @@ class Propiedad_Model extends Abstract_Model {
     
     $sql_fields = "SQL_CALC_FOUND_ROWS A.*, ";
     $sql_fields.= "E.razon_social AS inmobiliaria, WC.logo_1 AS logo_inmobiliaria, E.id AS id_inmobiliaria, ";
+    $sql_fields.= "E.codigo AS codigo_inmobiliaria, CONCAT(E.codigo,'-',A.codigo) AS codigo_completo, ";
     $sql_fields.= "IF(A.valido_hasta='0000-00-00','',DATE_FORMAT(A.valido_hasta,'%d/%m/%Y')) AS valido_hasta, ";
     $sql_fields.= "IF(A.fecha_publicacion='0000-00-00','',DATE_FORMAT(A.fecha_publicacion,'%d/%m/%Y')) AS fecha_publicacion, ";
     $sql_fields.= "IF(P.nombre IS NULL,'',P.nombre) AS propietario, ";
@@ -499,28 +528,35 @@ class Propiedad_Model extends Abstract_Model {
       $sql_where.= "OR (A.moneda = '".'U$S'."' AND (A.precio_final * $cotizacion) >= $monto AND (A.precio_final * $cotizacion) <= $monto_2 ) ";
       $sql_where.= ") ";      
     }
+
+    // Bloque de SQL que identifica que estamos buscando en la red
+    $sql_red = "AND A.compartida = 1 "; // En primer lugar tiene que estar compartida
+    $sql_red.= "AND A.id_empresa IN (";
+    $sql_red.= " SELECT PR.id_empresa FROM inm_permisos_red PR ";
+    $sql_red.= " WHERE PR.id_empresa_compartida = $id_empresa ";
+    $sql_red.= " AND PR.permiso_red = 1 "; // Tiene el permiso habilitado
+    if (!empty($buscar_red_empresa)) $sql_red.= " AND PR.id_empresa = $buscar_red_empresa ";
+    $sql_red.= ") ";
+
     if ($buscar_red == 1) {
 
-      // Si estamos buscando en la RED
-      $sql_where_2 = "AND A.compartida = 1 "; // En primer lugar tiene que estar compartida
-      $sql_where_2.= "AND A.id_empresa IN (";
-      $sql_where_2.= " SELECT PR.id_empresa FROM inm_permisos_red PR ";
-      $sql_where_2.= " WHERE PR.id_empresa_compartida = $id_empresa ";
-      $sql_where_2.= " AND PR.permiso_red = 1 "; // Tiene el permiso habilitado
-      if (!empty($buscar_red_empresa)) $sql_where_2.= " AND PR.id_empresa = $buscar_red_empresa ";
-      $sql_where_2.= ") ";
-
       // ARMAMOS LA CONSULTA PARA LA RED
-      $sql = "SELECT ".$sql_fields.$sql_from.$sql_where.$sql_where_2;
+      $sql = "SELECT ".$sql_fields.$sql_from.$sql_where.$sql_red;
       if (!empty($order)) $sql.= "ORDER BY $order ";
       if ($offset != 0) $sql.= "LIMIT $limit, $offset ";
       $q = $this->db->query($sql);
 
       $q_total = $this->db->query("SELECT FOUND_ROWS() AS total");
       $total = $q_total->row();
-      $total2 = $total->total;
       $total_red = $total->total;
-      $total_propias = 0;
+      $total2 = $total->total;
+
+      // Ahora hacemos la misma consulta, pero sobre mis propiedades
+      $sql_where_2 = "AND A.id_empresa = $id_empresa ";
+      $sql = "SELECT ".$sql_count.$sql_from.$sql_where.$sql_where_2;
+      $q_total = $this->db->query($sql);
+      $total = $q_total->row();
+      $total_propias = $total->cantidad;
 
     } else {
 
@@ -561,7 +597,12 @@ class Propiedad_Model extends Abstract_Model {
 
       $total2 = $total->total;
       $total_propias = $total->total;
-      $total_red = 0;      
+
+      // Ahora hacemos la misma consulta, pero sobre las propiedades de la RED
+      $sql = "SELECT ".$sql_count.$sql_from.$sql_where.$sql_red;
+      $q_total = $this->db->query($sql);
+      $total = $q_total->row();
+      $total_red = $total->cantidad;
     }
 
 
@@ -668,6 +709,7 @@ class Propiedad_Model extends Abstract_Model {
     $sql.= "IF(A.valido_hasta='0000-00-00','',DATE_FORMAT(A.valido_hasta,'%d/%m/%Y')) AS valido_hasta, ";
     $sql.= "IF(A.fecha_publicacion='0000-00-00','',DATE_FORMAT(A.fecha_publicacion,'%d/%m/%Y')) AS fecha_publicacion, ";
     $sql.= "E.nombre AS empresa, E.path AS empresa_path, E.telefono_empresa AS empresa_telefono, E.direccion_empresa AS empresa_direccion, E.email AS empresa_email, ";
+    $sql.= "E.codigo AS codigo_inmobiliaria, CONCAT(E.codigo,'-',A.codigo) AS codigo_completo, ";
     $sql.= "IF(P.nombre IS NULL,'',P.nombre) AS propietario, ";
     $sql.= "IF(P.telefono IS NULL,'',P.telefono) AS propietario_telefono, ";
     $sql.= "IF(P.email IS NULL,'',P.email) AS propietario_email, ";

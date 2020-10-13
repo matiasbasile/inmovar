@@ -1,30 +1,12 @@
 <script type="text/template" id="categorias_entradas_tree_panel_template">
-<div class=" wrapper-md ng-scope">
-	<h1 class="m-n h3"><i class="fa fa-file-text icono_principal"></i><?php echo lang(array("es"=>"Entradas","en"=>"Posts")); ?>
-		/ <b>
-			<?php echo lang(array("es"=>"  Categorías  ","en"=>"  Categories  ")); ?>
-		</b>
-	</h1>
-</div>
-<div class="wrapper-md pb0">
-	<div class="centrado">
-		<div class="panel panel-default">
-      <% if (control.check("categorias_entradas")>1) { %>
-  			<div class="panel-heading oh">
-  				<a class="btn btn-info btn-addon nuevo" href="javascript:void(0)">
-  					<i class="fa fa-plus"></i>
-  					<span class="hidden-xs">
-  						<?php echo lang(array("es"=>"  Nuevo  ","en"=>"  Add category  ")); ?>
-  					</span>
-  				</a>
-  			</div>
-      <% } %>
-			<div class="panel-body oh">
-				<div ui-jq="nestable" class="dd">
-				<%= workspace.crear_nestable(categorias_noticias) %>
-				</div>
-			</div>
-		</div>
+<% if (control.check("categorias_entradas")>1) { %>
+	<div class="panel-heading oh tar">
+		<a class="btn btn-info nuevo" href="javascript:void(0)">&nbsp;&nbsp;Nueva Categoría&nbsp;&nbsp;</a>
+	</div>
+<% } %>
+<div class="oh">
+	<div ui-jq="nestable" class="dd">
+    <%= workspace.crear_nestable(categorias_noticias) %>
 	</div>
 </div>
 </script>
@@ -97,7 +79,8 @@
 <script type="text/template" id="categorias_entradas_edit_panel_template">
 <div class="panel rform panel-default">
 	<div class="panel-heading">
-		<b><%= (id == undefined) ? "<?php echo lang(array("es"=>"Nueva","en"=>"New Category")); ?>" : nombre+" (ID:"+id+")" %></b>
+		<b>Editar categoría</b>
+    <i class="pull-right cerrar_lightbox fs20 fa fa-times cp"></i>
 	</div>
 	<div class="panel-body">
     <div class="form-group lang-control">
@@ -215,7 +198,7 @@
 		
 	</div>
 	<div class="panel-footer clearfix tar">
-		<button class="btn guardar btn-success"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
+		<button class="btn guardar btn-info"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
 		<% if (id != undefined && fija == 0) { %>
 			<button class="btn btn-danger eliminar fl"><?php echo lang(array("es"=>"Eliminar","en"=>"Delete")); ?></button>
 		<% } %>
@@ -237,7 +220,7 @@
 				<button class="btn cerrar tab btn-default btn-block"><?php echo lang(array("es"=>"Cerrar","en"=>"Close")); ?></button>
 			</div>
 			<div class="col-md-6">
-				<button class="btn guardar tab btn-success btn-block"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
+				<button class="btn guardar tab btn-info btn-block"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
 			</div>			
 		</div>
 	</div>

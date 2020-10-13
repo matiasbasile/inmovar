@@ -112,7 +112,22 @@
     },
     editar: function() {
       // Cuando editamos un elemento, indicamos a la vista que lo cargue en los campos
-    location.href = "app/#perfiles/"+this.model.id;
+      var self = this;
+      var perfil = new app.models.Perfiles({"id":self.model.id});
+      perfil.fetch({
+        "success":function(){
+          var that = self;
+          var v = new app.views.PerfilesEditView({
+            model: perfil,
+            lightbox: true,
+          });
+          crearLightboxHTML({
+            "html":v.el,
+            "width":800,
+            "height":400,
+          });
+        }
+      });
     },
     borrar: function() {
       if (confirmar("Realmente desea eliminar este elemento?")) {
@@ -142,56 +157,73 @@
 
 (function ( app ) {
 
-  app.views.PerfilesTableView = Backbone.View.extend({
+  app.views.PerfilesTableView = app.mixins.View.extend({
 
     template: _.template($("#perfiles_panel_template").html()),
 
-  initialize : function (options) {
+    myEvents: {
+      "click .nuevo":"nuevo",
+    },
 
-    _.bindAll(this); // Para que this pueda ser utilizado en las funciones
+    nuevo: function() {
+      var self = this;
+      var v = new app.views.PerfilesEditView({
+        model: new app.models.Perfiles(),
+        lightbox: true,
+      });
+      crearLightboxHTML({
+        "html":v.el,
+        "width":800,
+        "height":400,
+      });
+    },    
 
-    var lista = this.collection;
+    initialize : function (options) {
 
-    // Guardamos las referencias
-      this.options = options;
-    this.editView = this.options.editView;
+      _.bindAll(this); // Para que this pueda ser utilizado en las funciones
 
-    // Creamos la lista de paginacion
-    var pagination = new app.mixins.PaginationView({
-    collection: lista
-    });
+      var lista = this.collection;
 
-    // Creamos el buscador
-    var search = new app.mixins.SearchView({
-    collection: lista
-    });
+      // Guardamos las referencias
+        this.options = options;
+      this.editView = this.options.editView;
 
-    lista.on('add', this.addOne, this);
-    lista.on('reset', this.addAll, this);
-    lista.on('all', this.render, this);
+      // Creamos la lista de paginacion
+      var pagination = new app.mixins.PaginationView({
+      collection: lista
+      });
 
-    // Cargamos el template
-    $(this.el).html(this.template());
-    // Cargamos el paginador
-    $(this.el).find(".pagination_container").html(pagination.el);
-    // Cargamos el buscador
-    $(this.el).find(".search_container").html(search.el);
+      // Creamos el buscador
+      var search = new app.mixins.SearchView({
+      collection: lista
+      });
 
-    // Vamos a buscar los elementos y lo paginamos
-    lista.pager();
-  },
+      lista.on('add', this.addOne, this);
+      lista.on('reset', this.addAll, this);
+      lista.on('all', this.render, this);
 
-  addAll : function () {
-    $(this.el).find("tbody").empty();
-    this.collection.each(this.addOne);
-  },
+      // Cargamos el template
+      $(this.el).html(this.template());
+      // Cargamos el paginador
+      $(this.el).find(".pagination_container").html(pagination.el);
+      // Cargamos el buscador
+      $(this.el).find(".search_container").html(search.el);
 
-  addOne : function ( item ) {
-    var view = new app.views.PerfilesItem({
-      model: item,
-    });
-    $(this.el).find("tbody").append(view.render().el);
-  }
+      // Vamos a buscar los elementos y lo paginamos
+      lista.pager();
+    },
+
+    addAll : function () {
+      $(this.el).find("tbody").empty();
+      this.collection.each(this.addOne);
+    },
+
+    addOne : function ( item ) {
+      var view = new app.views.PerfilesItem({
+        model: item,
+      });
+      $(this.el).find("tbody").append(view.render().el);
+    }
 
   });
 })(app);
@@ -237,41 +269,41 @@
     if (!this.model.isNew()) id_perfil = this.model.id;
 
     $.ajax({
-    "url":'permisos/function/get_permisos_by_perfil/'+id_perfil+"/"+ID_PROYECTO,
-    "dataType":"json",
-    "success":function(r) {
-      $("#perfiles_tabla tbody").empty();
-      for(var i=0;i<r.length;i++) {
-      var modulo = r[i];
-      var tr = "";
+      "url":'permisos/function/get_permisos_by_perfil/'+id_perfil+"/"+ID_PROYECTO,
+      "dataType":"json",
+      "success":function(r) {
+        $("#perfiles_tabla tbody").empty();
+        for(var i=0;i<r.length;i++) {
+        var modulo = r[i];
+        var tr = "";
 
-      // Si estamos creando un perfil nuevo, ponemos todo como administrable
-      if (id_perfil == 0) modulo.permiso = 3;
+        // Si estamos creando un perfil nuevo, ponemos todo como administrable
+        if (id_perfil == 0) modulo.permiso = 3;
 
-      if (modulo.id_modulo != 0) {
-        tr+="<tr class='modulo' data-id='"+modulo.id_modulo+"'>";
-        tr+="<td>";
-        tr+=((modulo.orden_2 != 0 && modulo.orden_1 != 0)?"<span class='dib w30'></span>":"");
-        tr+="<span class=''>"+modulo.title+"</td>";
-        tr+="<td>";
-        tr+="<select class='permiso form-control no-model'>";
-        tr+="<option value='0' "+((modulo.permiso==0)?"selected":"")+">"+(IDIOMA == "en" ? "Hidden" : "Oculto")+"</option>";
-        tr+="<option value='1' "+((modulo.permiso==1)?"selected":"")+">"+(IDIOMA == "en" ? "Visible" : "Visible")+"</option>";
-        tr+="<option value='2' "+((modulo.permiso==2)?"selected":"")+">"+(IDIOMA == "en" ? "Editable" : "Editable")+"</option>";
-        tr+="<option value='3' "+((modulo.permiso==3)?"selected":"")+">"+(IDIOMA == "en" ? "Full" : "Administrable")+"</option>";
-        tr+="</select>";
-        tr+="</td>";
-        tr+="</tr>";
-      } else {
-        tr+="<tr>";
-        tr+="<td colspan='2'>";
-        tr+="<span class='bold'>"+modulo.title+"</td>";
-        tr+="</td>";
-        tr+="</tr>";
+        if (modulo.id_modulo != 0) {
+          tr+="<tr class='modulo' data-id='"+modulo.id_modulo+"'>";
+          tr+="<td>";
+          tr+=((modulo.orden_2 != 0 && modulo.orden_1 != 0)?"<span class='dib w30'></span>":"");
+          tr+="<span class=''>"+modulo.title+"</td>";
+          tr+="<td>";
+          tr+="<select class='permiso form-control no-model'>";
+          tr+="<option value='0' "+((modulo.permiso==0)?"selected":"")+">"+(IDIOMA == "en" ? "Hidden" : "Oculto")+"</option>";
+          tr+="<option value='1' "+((modulo.permiso==1)?"selected":"")+">"+(IDIOMA == "en" ? "Visible" : "Visible")+"</option>";
+          tr+="<option value='2' "+((modulo.permiso==2)?"selected":"")+">"+(IDIOMA == "en" ? "Editable" : "Editable")+"</option>";
+          tr+="<option value='3' "+((modulo.permiso==3)?"selected":"")+">"+(IDIOMA == "en" ? "Full" : "Administrable")+"</option>";
+          tr+="</select>";
+          tr+="</td>";
+          tr+="</tr>";
+        } else {
+          tr+="<tr>";
+          tr+="<td colspan='2'>";
+          tr+="<span class='bold'>"+modulo.title+"</td>";
+          tr+="</td>";
+          tr+="</tr>";
+        }
+        $("#perfiles_tabla tbody").append(tr);
+        }
       }
-      $("#perfiles_tabla tbody").append(tr);
-      }
-    }
     });
     return this;
   },
@@ -284,38 +316,45 @@
     this.render();
   },
 
-    guardar: function() 
-    {
-      // Obtenemos los IDS de los permisos seleccionados por el usuario
-      var ids = new Array();
-      $("#perfiles_tree select").each(function(i,e){
-        var id = $(e).data("id");
-        var permiso = $(e).val();
-        if (permiso == null) permiso = 1;
-        var o = { "id":id, "permiso":permiso };
-        ids.push(o);
-      });
+  guardar: function() {
 
-      // Obtenemos los IDS de los permisos seleccionados por el usuario
-      var ids = new Array();
-      $("#perfiles_tabla tbody .modulo").each(function(i,e){
-        var id = $(e).data("id");
-        var permiso = $(e).find(".permiso").val();
-        if (permiso == null) permiso = 0;
-        var o = { "id":id, "permiso":permiso };
-        ids.push(o);
-      });
-      // Lo agregamos el modelo
-      this.model.set({"permisos":ids});
+    var nombre = this.$("#perfiles_edit_nombre").val();
+    if (isEmpty(nombre)) {
+      alert("Por favor ingrese un nombre");
+      this.$("#perfiles_edit_nombre").focus();
+      return false;
+    }
 
-      if (this.model.id == null) {
+    // Obtenemos los IDS de los permisos seleccionados por el usuario
+    var ids = new Array();
+    $("#perfiles_tree select").each(function(i,e){
+      var id = $(e).data("id");
+      var permiso = $(e).val();
+      if (permiso == null) permiso = 1;
+      var o = { "id":id, "permiso":permiso };
+      ids.push(o);
+    });
+
+    // Obtenemos los IDS de los permisos seleccionados por el usuario
+    var ids = new Array();
+    $("#perfiles_tabla tbody .modulo").each(function(i,e){
+      var id = $(e).data("id");
+      var permiso = $(e).find(".permiso").val();
+      if (permiso == null) permiso = 0;
+      var o = { "id":id, "permiso":permiso };
+      ids.push(o);
+    });
+    // Lo agregamos el modelo
+    this.model.set({"permisos":ids});
+
+    if (this.model.id == null) {
       this.model.set({id:0});
-      }
-      this.model.save({},{
+    }
+    this.model.save({},{
       success: function(model,response) {
-          location.reload();
+        location.reload();
       }
-      });
+    });
   },
   
     limpiar : function() {

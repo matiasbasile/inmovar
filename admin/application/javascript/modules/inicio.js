@@ -1,10 +1,12 @@
 (function ( models ) {
 
   models.Inicio = Backbone.Model.extend({
-    urlRoot: '/admin/app/get_info_inmovar_dashboard/',
+    urlRoot: function(){
+      return 'app/get_info_inmovar_dashboard/?desde='+encodeURI(this.get("desde"))+"&hasta="+encodeURI(this.get("hasta"));
+    },
     defaults:{
-      "desde":"",
-      "hasta":"",
+      "desde":moment().subtract(1, 'months').format("DD/MM/YYYY"),
+      "hasta":moment().format("DD/MM/YYYY"),
       "total_propiedades":0,
       "total_consultas":0,
       "total_propiedades_red":0,
@@ -45,6 +47,19 @@ app.views.InicioSingleView = Backbone.View.extend({
     //createdatepicker($(this.el).find("#dashboard_fecha_desde"),anterior);
     //createdatepicker($(this.el).find("#dashboard_fecha_hasta"),new Date());
     this.render_grafico_facturacion();
+
+    this.$("#inicio_rango_fechas").rangepicker({
+      "startDate":self.model.get("desde"),
+      "endDate":self.model.get("hasta"),
+    });
+    this.$("#inicio_rango_fechas").on('apply.daterangepicker', function(ev, picker) {
+      self.model.set({
+        "desde":picker.startDate.format("DD/MM/YYYY"),
+        "hasta":picker.endDate.format("DD/MM/YYYY"),
+      });
+      self.model.fetch();
+    });    
+
     return this;
   },
   

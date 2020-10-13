@@ -457,34 +457,36 @@ class Empresas extends REST_Controller {
 
   function guardar_dominio() {
     $id_empresa = parent::get_empresa();
-    $dominio = $this->input->post("dominio");
-    if (empty($dominio)) {
-      echo json_encode(array(
-        "error"=>1,
-      ));
-      exit();
-    }
-    $dominio = str_replace("http://", "", $dominio);
+    $dominio = parent::get_post("dominio","");
     $dominio = str_replace("https://", "", $dominio);
+    $dominio = str_replace("http://", "", $dominio);
     $dominio = str_replace("www.", "", $dominio);
-    $dominio = ((strpos($dominio, "/") !== FALSE) ? substr($dominio, 0, strpos($dominio, "/")-1) : $dominio);
-    // Primero buscamos si ya existe el dominio en otra cuenta
-    $sql = "SELECT * FROM empresas_dominios WHERE dominio = '$dominio' AND id_empresa != $id_empresa";
-    $q = $this->db->query($sql);
-    if ($q->num_rows()>0) {
-      echo json_encode(array(
-        "error"=>1,
-        "mensaje"=>"El dominio $dominio ya esta registrado en otra cuenta.",
-      ));
-      exit();
+    if (strpos($dominio, "/") !== FALSE) $dominio = substr($dominio, 0, strpos($dominio, "/"));
+    $dominio = trim($dominio);
+    $dominio = str_replace(" ", "", $dominio);
+    if (empty($dominio)) {
+      echo json_encode(array("error"=>1)); exit();
     }
-    $this->db->query("DELETE FROM empresas_dominios WHERE id_empresa = $id_empresa ");
-    $this->db->query("INSERT INTO empresas_dominios (id_empresa,dominio) VALUES ('$id_empresa','$dominio')");  
-    $dominio = "www.".$dominio; // Lo agregamos con y sin www
-    $this->db->query("INSERT INTO empresas_dominios (id_empresa,dominio) VALUES ('$id_empresa','$dominio')");  
-    echo json_encode(array(
-      "error"=>0,
-    ));
+    $sql = "UPDATE empresas SET dominio_ppal = '$dominio' WHERE id = $id_empresa ";
+    $this->db->query($sql);
+    $sql = "DELETE FROM empresas_dominios WHERE id_empresa = $id_empresa ";
+    $this->db->query($sql);
+    $sql = "INSERT INTO empresas_dominios (id_empresa, dominio) VALUES ($id_empresa, '$dominio') ";
+    $this->db->query($sql);
+    $sql = "INSERT INTO empresas_dominios (id_empresa, dominio) VALUES ($id_empresa, 'www.$dominio') ";
+    $this->db->query($sql);
+    echo json_encode(array("error"=>0));
+  }
+
+  function guardar_template() {
+    $id_empresa = parent::get_empresa();
+    $id_template = parent::get_post("id_template",0);
+    if (empty($id_template)) {
+      echo json_encode(array("error"=>1)); exit();
+    }
+    $sql = "UPDATE empresas SET id_web_template = '$id_template' WHERE id = $id_empresa ";
+    $this->db->query($sql);
+    echo json_encode(array("error"=>0));
   }
 
   public function get_modulos($id_empresa) {

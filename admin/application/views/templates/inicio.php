@@ -2,11 +2,11 @@
   <div class="centrado rform">
     <div class="header-lg">
       <div class="row">
-        <div class="col-xs-6">
+        <div class="col-xs-12 col-sm-9">
           <h1>Dashboard</h1>
         </div>
-        <div class="col-xs-6 tar">
-          <input type="text" value="Última Semana" class="form-control w180 calendar fr mt20">
+        <div class="col-xs-12 col-sm-3 tar">
+          <input type="text" id="inicio_rango_fechas" value="Última Semana" class="form-control w100p calendar fr mt20">
         </div>
       </div>
     </div>

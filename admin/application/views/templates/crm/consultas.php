@@ -123,7 +123,7 @@
     <br/><span><%= (moment("DD/MM/YYYY") == fecha)?"Hoy":fecha %> <%= hora %></span>
   </td>
   <td>
-    <button class="btn etiqueta btn-menu-compartir mostrar_estado">
+    <button data-toggle="tooltip" title="Click para realizar acción" class="btn etiqueta btn-menu-compartir mostrar_estado">
       Vencida
     </button>
   </td>
@@ -191,7 +191,7 @@
   </form>
   <div class="panel-footer clearfix">
     <button class="cerrar_lightbox btn btn-default"><?php echo lang(array("es"=>"Cerrar","en"=>"Close")); ?></button>
-    <button class="btn guardar pull-right btn-success"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
+    <button class="btn guardar pull-right btn-info"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
   </div>
 </div>
 </script>

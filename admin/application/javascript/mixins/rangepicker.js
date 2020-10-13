@@ -51,8 +51,8 @@
     // Recorremos cada input
     this.filter("input[type=text]").each(function() {
       var input = $(this);
-      $(input).daterangepicker(options);
-      $(input).on("apply.daterangepicker",options.onSelect);
+      $(input).daterangepicker(settings);
+      //if (options.onSelect != undefined) $(input).on("apply.daterangepicker",options.onSelect);
     });
     return this;
   };

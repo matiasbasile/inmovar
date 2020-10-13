@@ -108,122 +108,11 @@
         var activo = this.model.get("activo");
         activo = (activo == 1)?0:1;
         self.model.set({"activo":activo});
-        if (ID_EMPRESA == 1245 || ID_EMPRESA == 1319) {
-          $.ajax({
-            "url":"usuarios/function/activar_usuario/",
-            "dataType":"json",
-            "data":{
-              "id":self.model.id,
-              "activo":activo,
-            },
-            "type":"post",
-            "success":function(){
-              self.render();
-            }
-          })
-        } else {
-          this.change_property({
-            "table":"com_usuarios",
-            "url":"usuarios/function/change_property/",
-            "attribute":"activo",
-            "value":activo,
-            "id":self.model.id,
-            "success":function(){
-              self.render();
-            }
-          });          
-        }
-        return false;
-      },
-      "click .reparto_propio":function(e) {
-        var self = this;
-        e.stopPropagation();
-        e.preventDefault();
-        var aparece_web = this.model.get("aparece_web");
-        aparece_web = (aparece_web == 1)?0:1;
-        self.model.set({"aparece_web":aparece_web});
         this.change_property({
           "table":"com_usuarios",
           "url":"usuarios/function/change_property/",
-          "attribute":"aparece_web",
-          "value":aparece_web,
-          "id":self.model.id,
-          "success":function(){
-            self.render();
-          }
-        });
-        return false;
-      },
-      "click .sumar_tiempo_servicio":function(e) {
-        var self = this;
-        e.stopPropagation();
-        e.preventDefault();
-        var id_referencia = this.model.get("id_referencia");
-        id_referencia = (id_referencia == 1)?0:1;
-        self.model.set({"id_referencia":id_referencia});
-        this.change_property({
-          "table":"com_usuarios",
-          "url":"usuarios/function/change_property/",
-          "attribute":"id_referencia",
-          "value":id_referencia,
-          "id":self.model.id,
-          "success":function(){
-            self.render();
-          }
-        });
-        return false;
-      }, 
-      "click .pickup":function(e) {
-        var self = this;
-        e.stopPropagation();
-        e.preventDefault();
-        var ocultar_notificaciones = this.model.get("ocultar_notificaciones");
-        ocultar_notificaciones = (ocultar_notificaciones == 1)?0:1;
-        self.model.set({"ocultar_notificaciones":ocultar_notificaciones});
-        this.change_property({
-          "table":"com_usuarios",
-          "url":"usuarios/function/change_property/",
-          "attribute":"ocultar_notificaciones",
-          "value":ocultar_notificaciones,
-          "id":self.model.id,
-          "success":function(){
-            self.render();
-          }
-        });
-        return false;
-      }, 
-      "click .habilitar_deposito":function(e) {
-        var self = this;
-        e.stopPropagation();
-        e.preventDefault();
-        var custom_1 = this.model.get("custom_1");
-        custom_1 = (custom_1 == 1)?0:1;
-        self.model.set({"custom_1":custom_1});
-        this.change_property({
-          "table":"com_usuarios_extension",
-          "url":"usuarios/function/change_property/",
-          "attribute":"custom_1",
-          "id_field":"id_usuario",
-          "value":custom_1,
-          "id":self.model.id,
-          "success":function(){
-            self.render();
-          }
-        });
-        return false;
-      }, 
-      "click .destacado":function(e) {
-        var self = this;
-        e.stopPropagation();
-        e.preventDefault();
-        var destacado = this.model.get("destacado");
-        destacado = (destacado == 1)?0:1;
-        self.model.set({"destacado":destacado});
-        this.change_property({
-          "table":"com_usuarios_extension",
-          "url":"usuarios/function/change_destacado/",
-          "attribute":"destacado",
-          "value":destacado,
+          "attribute":"activo",
+          "value":activo,
           "id":self.model.id,
           "success":function(){
             self.render();
@@ -234,6 +123,7 @@
     },
     initialize: function(options) {
       this.options = options;
+      this.view = options.view;
       _.bindAll(this);
     },
     render: function() {
@@ -243,12 +133,31 @@
       return this;
     },
     editar: function() {
-      location.href="app/#usuarios/"+this.model.id;
+      var self = this;
+      var usuario = new app.models.Usuarios({"id":self.model.id});
+      usuario.fetch({
+        "success":function(){
+          var that = self;
+          var v = new app.views.UsuariosEditView({
+            model: usuario,
+            lightbox: true,
+          });
+          crearLightboxHTML({
+            "html":v.el,
+            "width":800,
+            "height":400,
+            "callback":function() {
+              that.view.buscar();
+            }
+          });
+        }
+      });
     },
     borrar: function() {
       if (confirmar("Realmente desea eliminar este elemento?")) {
         this.model.destroy();  // Eliminamos el modelo
         $(this.el).remove();  // Lo eliminamos de la vista
+        this.view.buscar();
       }
     },
     login: function(e) {
@@ -279,6 +188,7 @@
 
     myEvents: {
       "click .buscar":"buscar",
+      "click .nuevo":"nuevo",
       "keypress #usuarios_buscar":function(e){
         if (e.which == 13) this.buscar();
       },
@@ -360,11 +270,29 @@
     },
 
     addOne : function ( item ) {
+      var self = this;
       var view = new app.views.UsuariosItem({
         model: item,
+        view: self,
       });
       $(this.el).find("tbody").append(view.render().el);
-    }
+    },
+
+    nuevo: function() {
+      var self = this;
+      var v = new app.views.UsuariosEditView({
+        model: new app.models.Usuarios(),
+        lightbox: true,
+      });
+      crearLightboxHTML({
+        "html":v.el,
+        "width":800,
+        "height":400,
+        "callback":function() {
+          self.buscar();
+        }
+      });
+    },
 
   });
 })(app);
@@ -429,6 +357,7 @@
     initialize: function(options) {
       _.bindAll(this);
       this.options = options;
+      this.view = options.view;
       this.id_perfil_default = (typeof options != undefined) ? options.id_perfil_default : PERFIL;
       this.render();
     },
@@ -437,7 +366,7 @@
       var self = this;
       var obj = { 
         id:this.model.id,
-        cambiar_password: (ID_USUARIO == this.model.id),
+        cambiar_password: (this.model.isNew() || ID_USUARIO == this.model.id),
       };
       $.extend(obj,this.model.toJSON());
 
@@ -703,7 +632,7 @@
         }
         this.model.save({},{
           success: function(model,response) {
-            location.reload();
+            $('.modal:last').modal('hide'); // Cerramos si hay otro lightbox abierto
           }
         });
       }

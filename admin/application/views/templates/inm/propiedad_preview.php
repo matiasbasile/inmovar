@@ -125,7 +125,7 @@
 
               <div class="clearfix">
                 <% if (!isEmpty(codigo)) { %>
-                  <b>C&oacute;digo:</b> <span><%= codigo %></span> 
+                  <b>C&oacute;digo:</b> <span><%= codigo_completo %></span> 
                 <% } %>
                 <span class="etiqueta pull-right"><%= tipo_estado %></span>
               </div>

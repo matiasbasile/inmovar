@@ -275,6 +275,7 @@ var consultas_tipos = <?php echo json_encode($consultas_tipos); ?>;
 var categorias_noticias = <?php echo json_encode($categorias_noticias); ?>;
 var categorias_videos = <?php echo json_encode($categorias_videos); ?>;
 var asuntos = <?php echo json_encode($asuntos); ?>;
+var templates = <?php echo json_encode($templates); ?>;
 
 // Usuarios del sistema
 var usuarios = new app.collections.Usuarios(<?php echo json_encode($usuarios); ?>);
@@ -468,8 +469,8 @@ window.onload = function () {
             <?php } ?>
             <?php if ($perfil != -1) { ?>
               <li>
-                <a href="app/#usuarios/<?php echo $id_usuario; ?>">
-                  <?php echo lang(array("es"=>"Perfil","en"=>"Profile")); ?>
+                <a href="app/#mi_cuenta">
+                  Estado de cuenta
                 </a>
               </li>
               <li class="divider"></li>

@@ -36,6 +36,9 @@
         "web(/)": "ver_web",
         "web/:id(/)": "ver_web",
 
+        // Edicion de plantilla
+        "editar_template(/)": "ver_editar_template",
+
         // Configuracion General
         "configuracion_menu(/)": "ver_configuracion", // DESP ELIMINAR
         "configuracion(/)": "ver_configuracion",
@@ -51,6 +54,8 @@
 
         // 
         "contacto_acciones/:id": "ver_contacto_acciones",
+
+        "mi_cuenta(/)": "ver_mi_cuenta",
 
         // Funcionamiento de ABM General
         '': 'router',
@@ -159,6 +164,40 @@
         });
       },
 
+      ver_editar_template: function() {
+        var self = this;
+        var conf = new app.models.WebConfiguracion({
+          "id":ID_EMPRESA
+        });
+        conf.fetch({
+          "success":function(model) {
+            var view = new app.views.WebConfiguracionEditView({
+              model: model,
+              id_modulo: "web_configuracion"
+            });
+            self.mostrar({
+              "top" : view.el,
+            });
+          }
+        });
+      },  
+
+      ver_mi_cuenta: function() {
+        var self = this;
+        $.ajax({
+          "url":"empresas/function/get_datos_cuenta/",
+          "dataType":"json",
+          "success":function(res) {
+            var view = new app.views.MiCuentaView({
+              model: new app.models.AbstractModel(res)
+            });
+            self.mostrar({
+              "top": view.el,
+            });                    
+          }
+        });
+      },  
+
       ver_permisos_red: function(id) {
         var self = this;
         var edit = new app.views.PermisosRedView({
@@ -185,7 +224,7 @@
 
       ver_configuracion: function(id) {
         var self = this;
-        if (id == undefined) id = "integraciones";
+        if (id == undefined) id = "datos";
         var edit = new app.views.Configuracion_menuSingleView({
           model: new app.models.AbstractModel({
             "id_modulo":id,

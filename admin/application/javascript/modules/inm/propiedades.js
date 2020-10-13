@@ -57,6 +57,7 @@
       id_tipo_estado:0,
       moneda: "",
       codigo: "",
+      codigo_completo: "", // Tiene el codigo de la empresa + codigo de la propiedad
       nombre: "",
       descripcion: "",
       fecha_ingreso: "",
@@ -835,18 +836,6 @@
             this.$(".seccion_vacia").show();
           }
         }
-        if (this.vista_busqueda) {
-          var tr = "<tr class='thead'>";
-          tr+='<td class="th" style="width:20px;"><label class="i-checks m-b-none"><input class="esc sel_todos" type="checkbox"><i></i></label></td>';
-          tr+='<td class="th w120"></td>';
-          tr+='<td class="th">Titulo</td>';
-          tr+='<td class="th">Direccion</td>';
-          tr+='<td class="th sorting">Operaci&oacute;n</td>';
-          tr+='<td class="th sorting">Tipo</td>';
-          tr+='<td class="th w200 tar sorting" data-sort-by="precio_final">Precio</td>';
-          tr+='</tr>';
-          $(this.el).find(".tbody").append(tr);
-        }
         // Renderizamos cada elemento del array
         if (this.collection.length > 0) this.collection.each(this.addOne);
         this.$("#propiedades_propias_total").html(this.collection.meta("total_propias"));
@@ -1116,10 +1105,6 @@
       },
 
       "click .data":"seleccionar",
-      "keyup .radio":function(e) {
-        if (e.which == 13) { this.seleccionar(); }
-        e.stopPropagation();
-      },
       "focus .radio":function(e) {
         $(e.currentTarget).parents(".tbody").find("tr").removeClass("fila_roja");
         $(e.currentTarget).parents("tr").addClass("fila_roja");
@@ -1508,7 +1493,7 @@
       return false;
     },
     seleccionar: function() {
-      if (this.habilitar_seleccion) {
+      if (this.habilitar_seleccion || this.vista_busqueda) {
         window.codigo_propiedad_seleccionado = this.model.get("codigo");
         window.propiedad_seleccionado = this.model;
         $('.modal:last').modal('hide');

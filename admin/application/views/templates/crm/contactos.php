@@ -148,12 +148,11 @@
 
 
 <script type="text/template" id="contacto_edit_template">
-<div class="panel panel-default mb0">
-  <div class="panel-heading font-bold">
+  <div class="modal-header">
     Nuevo Contacto
-    <i class="pull-right cerrar_lightbox fa fa-times cp"></i>
+    <i class="pull-right fs20 cerrar_lightbox fa fa-times cp"></i>
   </div>
-  <form class="panel-body" autocomplete="off">
+  <form class="modal-body" autocomplete="off">
     <div class="form-group">
       <input type="text" placeholder="Nombre y Apellido" autocomplete="off" id="contacto_cliente_nombre" name="nombre" class="form-control"/>
     </div>  
@@ -169,6 +168,14 @@
         </div>  
       </div>
     </div>
+    <div class="form-group">
+      <div class="input-group">
+        <input type="text" placeholder="Interesado en propiedad..." autocomplete="off" id="contacto_propiedad" class="form-control"/>
+        <span class="input-group-btn">
+          <button data-toggle="tooltip" title="Buscar propiedades" tabindex="-1" type="button" class="btn btn-default buscar_propiedades"><i class="fa fa-search"></i></button>
+        </span>        
+      </div>
+    </div>      
     <div class="row">
       <div class="col-xs-6">
         <div class="form-group">
@@ -193,9 +200,9 @@
       </div>  
     </div>
   </form>
-  <div class="panel-footer clearfix">
+  <div class="modal-footer clearfix">
     <button class="cerrar_lightbox btn btn-default">Cerrar</button>
-    <button class="btn guardar pull-right btn-success">Guardar</button>
+    <button class="btn guardar pull-right btn-info">Guardar</button>
   </div>
 </div>
 </script>

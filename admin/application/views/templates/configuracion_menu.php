@@ -12,6 +12,12 @@
       <div class="col-md-3">
         <ul class="submenu">
           <li>
+            <a class="<%= (id_modulo == "datos")?"active":"" %>" href="app/#configuracion/datos">
+              <span class="material-icons">arrow_forward_ios</span>
+              Datos de la inmobiliaria
+            </a>
+          </li>          
+          <li>
             <a class="<%= (id_modulo == "integraciones")?"active":"" %>" href="app/#configuracion/integraciones">
               <span class="material-icons">arrow_forward_ios</span>
               Portales
@@ -30,7 +36,7 @@
             </a>
           </li>
           <li>
-            <a class="<%= (id_modulo == "usuarios")?"active":"" %>" href="app/#configuracion/usuarios-perfiles">
+            <a class="<%= (id_modulo == "usuarios" || id_modulo == "perfiles" || id_modulo == "usuarios-perfiles")?"active":"" %>" href="app/#configuracion/usuarios-perfiles">
               <span class="material-icons">arrow_forward_ios</span>
               Usuarios y perfiles
             </a>
@@ -250,6 +256,65 @@
   </div>  
 </script>
 
+<script type="text/template" id="configuracion_datos">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="padder">
+        <div class="form-group mb0 clearfix expand-link cp">
+          <label class="control-label cp">
+            Datos de la inmobiliaria
+          </label>
+          <div class="panel-description">
+            Actualice los datos de su inmobiliaria.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body expand" style="display:block">
+      <div class="padder">
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Nro. de Matrícula</label>
+              <input type="text" name="codigo" class="form-control" id="empresas_codigo" value="<%= codigo %>"/>
+            </div>
+          </div>          
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Raz&oacute;n Social</label>
+              <input type="text" name="razon_social" class="form-control" id="empresas_razon_social" value="<%= razon_social %>"/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Tipo de contribuyente</label>
+              <select class="form-control" name="tipo_contribuyente" id="empresas_tipo_contribuyente">
+                <option value="2" <%= (id_tipo_contribuyente == 2) ? "selected": "" %>>Monotributo</option>
+                <option value="1" <%= (id_tipo_contribuyente == 1) ? "selected": "" %>>Responsable Inscripto</option>
+                <option value="3" <%= (id_tipo_contribuyente == 3) ? "selected": "" %>>Exento</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">CUIT</label>
+              <input type="text" name="cuit" class="form-control" id="empresas_cuit" value="<%= cuit %>"/>
+            </div>
+          </div>
+        </div>
+
+        <div class="clearfix">
+          <button class="btn fr btn-info guardar"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
+        </div>        
+
+      </div>
+    </div>
+  </div>  
+</script>
+
 <script type="text/template" id="configuracion_notificaciones">
   <div class="panel panel-default">
     <div class="panel-body">
@@ -308,10 +373,10 @@
 
 
 <script type="text/template" id="configuracion_usuarios">
-  <a href="app/#configuracion/usuarios" class="panel panel-default db cp">
+  <div class="panel panel-default">
     <div class="panel-body">
       <div class="padder">
-        <div class="form-group mb0 clearfix">
+        <div class="form-group mb0 clearfix expand-link cp">
           <label class="control-label cp">
             Usuarios
           </label>
@@ -321,9 +386,13 @@
         </div>
       </div>
     </div>
-  </a>
+    <div class="panel-body expand">
+      <div id="usuarios_container">
+      </div>
+    </div>
+  </div>
 
-  <a href="app/#configuracion/perfiles" class="panel panel-default db cp">
+  <div class="panel panel-default">
     <div class="panel-body">
       <div class="padder">
         <div class="form-group mb0 clearfix expand-link cp">
@@ -336,5 +405,9 @@
         </div>
       </div>
     </div>
-  </a>
+    <div class="panel-body expand">
+      <div id="perfiles_container">
+      </div>
+    </div>
+  </div>
 </script>

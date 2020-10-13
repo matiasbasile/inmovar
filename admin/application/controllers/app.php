@@ -36,6 +36,7 @@ class App extends CI_Controller {
     $paises = array();
     $provincias = array();
     $consultas_tipos = array();
+    $templates = array();
     $total_notificaciones = 0;
 
     $q = $this->db->query("SELECT * FROM com_idiomas ORDER BY id ASC");
@@ -166,6 +167,11 @@ class App extends CI_Controller {
         
       $q = $this->db->query("SELECT * FROM inm_tipos_inmueble ORDER BY orden ASC");
       $tipos_inmueble = $q->result();
+
+      // Obtenemos los templates publicos correspondientes a este proyecto
+      // o bien el template diseñado a medida para la empresa
+      $q = $this->db->query("SELECT * FROM web_templates WHERE (id_proyecto = $empresa->id_proyecto AND publico = 1) OR (id_empresa = $id_empresa) ORDER BY id DESC");
+      $templates = $q->result();      
 
       // Primero consultamos si no existen algunos registros especificos de la empresa      
       $q = $this->db->query("SELECT * FROM inm_tipos_operacion WHERE id_empresa = $id_empresa ORDER BY orden ASC");
@@ -310,6 +316,7 @@ class App extends CI_Controller {
       "latitud" => $latitud,
       "longitud" => $longitud,
       "categorias_videos" => $categorias_videos,
+      "templates" => $templates,
       
       "tipos_estado" => $tipos_estado,
       "tipos_inmueble" => $tipos_inmueble,
@@ -495,15 +502,26 @@ class App extends CI_Controller {
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
-    $desde = new DateTime("-1 month");
-    $hasta = new DateTime();
+    $fecha_desde = $this->input->get("desde");
+    $fecha_hasta = $this->input->get("hasta");
+    $this->load->helper("fecha_helper");
+    $desde = fecha_mysql($fecha_desde);
+    $hasta = fecha_mysql($fecha_hasta);
     $datos = array();
+    $datos["desde"] = $fecha_desde;
+    $datos["hasta"] = $fecha_hasta;
     
     $this->load->model("Propiedad_Model");
     $datos["total_propiedades"] = $this->Propiedad_Model->count_all();
     $datos["mas_visitadas"] = $this->Propiedad_Model->buscar(array(
       "offset"=>3
     ))["results"];
+
+    // Cantidad de propiedades que tiene la red en total
+    $datos["total_propiedades_red"] = $this->Propiedad_Model->total_propiedades_red_completa();
+
+    // Cantidad de propiedades que tiene la red compartida con esta inmobiliaria
+    $datos["total_propiedades_tu_red"] = $this->Propiedad_Model->total_propiedades_red_empresa();
     
     // Ultimas consultas
     $this->load->model("Consulta_Model");

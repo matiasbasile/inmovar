@@ -210,6 +210,21 @@
 
     myEvents: {
       "click .guardar": "guardar",
+      "click .elegir_disenio":function(e) {
+        if (!confirm("Desea elegir está plantilla para su web?")) return;
+        var id_template = $(e.currentTarget).data("id");
+        $.ajax({
+          "url":"empresas/function/guardar_template/",
+          "dataType":"json",
+          "type":"post",
+          "data":{
+            "id_template":id_template,
+          },
+          "success":function(){
+            location.reload();
+          }
+        });
+      }
     },
 
     initialize: function(options) {
@@ -313,6 +328,17 @@
     render: function() {
       var self = this;
       $(this.el).html(this.template(this.model.toJSON()));
+
+      var entradasView = new app.views.EntradasTableView({
+        collection: new app.collections.Entradas(),
+      });
+      this.$("#entradas_container").html(entradasView.el);
+
+      var categoriasView = new app.views.CategoriasEntradasTableView({
+        collection: new app.collections.CategoriasEntradas(),
+      });
+      this.$("#categorias_entradas_container").html(categoriasView.el);
+
       return this;
     },
   
@@ -393,6 +419,13 @@
 
     myEvents: {
       "click .guardar": "guardar",
+      "change #web_seo_habilitar_clienapp":function() {
+        if (this.$("#web_seo_habilitar_clienapp").is(":checked")) {
+          this.$(".clienapp_container").slideDown();
+        } else {
+          this.$(".clienapp_container").slideUp();
+        }
+      },      
     },
 
     initialize: function(options) {
@@ -410,6 +443,14 @@
       var self = this;
       try {
         $(".error").removeClass("error");
+
+        this.model.set({
+          "habilitar_clienapp":(this.$("#web_seo_habilitar_clienapp").is(":checked")?1:0),
+          "clienapp_formulario":(this.$("#web_seo_clienapp_formulario").is(":checked")?0:1),
+          "clienapp_mostrar_email":(this.$("#web_seo_clienapp_mostrar_email").is(":checked")?1:0),
+          "clienapp_abierto":(this.$("#web_seo_clienapp_abierto").is(":checked")?1:0),
+          "clienapp_sonido":(this.$("#web_seo_clienapp_sonido").is(":checked")?1:0),
+        });
 
         return true;
       } catch(e) {
@@ -510,6 +551,7 @@
     validar: function() {
       var self = this;
       try {
+        validate_input("web_dominio",IS_EMPTY,"Por favor, ingrese un nombre de dominio.");
         $(".error").removeClass("error");
 
         return true;
@@ -521,8 +563,15 @@
     guardar: function() {
       var self = this;
       if (this.validar()) {
-        this.model.save({},{
-          success: function(model,response) {
+        var dominio = this.$("#web_dominio").val();
+        $.ajax({
+          "url":"empresas/function/guardar_dominio/",
+          "dataType":"json",
+          "type":"post",
+          "data":{
+            "dominio":dominio,
+          },
+          "success":function() {
             location.reload();
           }
         });
@@ -591,10 +640,10 @@
 
   views.WebConfiguracionMapaEditView = app.mixins.View.extend({
 
-  template: _.template($("#web_configuracion_mapa_edit_panel_template").html()),
+    template: _.template($("#web_configuracion_mapa_edit_panel_template").html()),
 
-  myEvents: {
-    "click .guardar": "guardar",
+    myEvents: {
+      "click .guardar": "guardar",
       "click .add_marker": function() {
         var centro = this.map.getCenter();
         if (centro.lat() == this.latitud_original && centro.lng() == this.longitud_original) {
@@ -610,7 +659,7 @@
           self.map.setCenter(self.coor);
         },100);
       },
-  },
+    },
 
     initialize: function() {
       _.bindAll(this);
@@ -1256,6 +1305,401 @@
       this.render();
     },
     
+  });
+
+})(app.views, app.models);
+
+
+
+// -------------------------------
+//   VISTA DEL PANEL DE EDICION
+// -------------------------------
+(function ( views, models ) {
+
+  views.WebConfiguracionEditView = app.mixins.View.extend({
+
+    template: _.template($("#web_configuracion_edit_panel_template").html()),
+
+    className: "h100p",
+
+    myEvents: {
+      "click .guardar": "guardar",
+      "click .mostrar_ubicacion":function(){
+        var self = this;
+        var webConfiguracionMapaEditView = new app.views.WebConfiguracionMapaEditView({
+          model:self.model,
+          lightbox: true,
+        });
+        var d = $("<div/>").append(webConfiguracionMapaEditView.el);
+        crearLightboxHTML({
+          "html":d,
+          "width":800,
+          "height":500,
+        });
+      },
+      "click .conf_structure":"render_style",
+
+      "click .color_combination":function(e) {
+        var com = $(e.currentTarget);
+        var color1 = $(com).find("span:eq(0)").css("backgroundColor");
+        var color2 = $(com).find("span:eq(1)").css("backgroundColor");
+        var color3 = $(com).find("span:eq(2)").css("backgroundColor");
+        var color4 = $(com).find("span:eq(2)").css("backgroundColor");
+        var color5 = $(com).find("span:eq(2)").css("backgroundColor");
+        var color6 = $(com).find("span:eq(2)").css("backgroundColor");
+        this.$(".color_principal").colorpicker('setValue',color1);
+        this.$(".color_secundario").colorpicker('setValue',color2);
+        this.$(".color_terciario").colorpicker('setValue',color3);
+        if (this.$(".color_4").length > 0) this.$(".color_4").colorpicker('setValue',color4);
+        if (this.$(".color_5").length > 0) this.$(".color_5").colorpicker('setValue',color5);
+        if (this.$(".color_6").length > 0) this.$(".color_6").colorpicker('setValue',color6);
+      },
+      "click .header-accordion":function(e) {
+        var header = $(e.currentTarget);
+        var info = header.next(".info-accordion");
+        this.$(".info-accordion").not(info).slideUp();
+        this.$(".header-accordion").not(header).removeClass("active");
+        info.slideToggle();
+        header.toggleClass("active");
+      },  
+
+      "change #web_configuracion_instagram":function(e) {
+        var c = this.$("#web_configuracion_instagram").is(":checked");
+        if (c) this.$("#web_configuracion_instagram_id_cont").show();
+        else this.$("#web_configuracion_instagram_id_cont").hide();
+      },
+    },
+
+    initialize: function() {
+      _.bindAll(this);
+      this.render();
+    },
+
+    render: function() {
+      // Creamos un objeto para agregarle las otras propiedades que no son el modelo
+      var self = this;
+
+      $(this.el).html(this.template(this.model.toJSON()));
+      
+      $(this.el).find("#web_configuracion_asuntos").select2({
+        tags: true,
+      });
+      
+      this.render_sliders();
+      this.render_sliders_2();
+      if (typeof SLIDER_3 !== "undefined") this.render_sliders_3();
+      if (typeof SLIDER_4 !== "undefined") this.render_sliders_4();
+
+      //this.render_componentes();
+      
+      // Cuando se carga el IFRAME, agregamos un Style dentro del HEAD
+      // que es el que vamos a utilizar para modificar el estilo
+      this.$("#iframe").load(function(){
+        var style = document.createElement('style');
+          style.id = 'dynamic_content';
+          style.type ='text/css';
+        $(style).text(".editable:hover { cursor:pointer; outline: dashed 1px grey; }");
+        self.$("#iframe").contents().find("head").append(style);
+        
+        // Capturamos el evento cuando se hace click sobre un elemento editable
+        self.$("#iframe").contents().find(".editable").click(function(e){
+          e.preventDefault();
+          var id = $(e.currentTarget).data("id");
+          if (typeof id === "undefined") return;
+          var clave = $(e.currentTarget).data("clave");
+          var width = $(e.currentTarget).data("width");
+          if (typeof width === "undefined") width = 256;
+          var height = $(e.currentTarget).data("height");
+          if (typeof height === "undefined") height = 256;
+          var quality = $(e.currentTarget).data("quality");
+          if (typeof quality === "undefined") quality = 0.9;
+          var es_imagen = false;
+          if ($(e.currentTarget).is("img")) es_imagen = true;
+          else {
+            if ($(e.currentTarget).hasClass("editable-img")) es_imagen = true;
+          }
+
+          // Cargamos el modelo
+          var texto = new app.models.WebTexto({
+            "id":id,
+            "clave":clave,
+            "titulo":clave,
+            "id_empresa":ID_EMPRESA,
+            "id_web_template":ID_WEB_TEMPLATE,
+          });
+          texto.fetch({
+            "success":function() {
+              // Abrimos la vista en un lightbox
+              var textoEditView = new app.views.WebTextoEditView({
+                "model":texto,
+                "lightbox": true,
+                "es_imagen": es_imagen,
+                "width":width,
+                "height":height,
+                "quality":quality,
+              });
+              var d = $("<div/>").append(textoEditView.el);
+              crearLightboxHTML({
+                "html":d,
+                "width":800,
+                "height":500,
+              });
+              if (!es_imagen) {
+                workspace.crear_editor('web_textos_texto',{
+                  "toolbar":"Basic"
+                });                
+              }
+            },
+          });
+        });
+      });
+      
+      this.$(".color_fondo_imagenes_defecto").colorpicker({
+        format: "rgba"
+      });
+      
+      // COLOR PRINCIPAL
+      this.$(".color_principal").colorpicker({
+        "format": "rgb",
+        "align": "left",
+      }).on("changeColor",self.render_style);
+      
+      // COLOR SECUNDARIO
+      this.$(".color_secundario").colorpicker({
+        "format": "rgb",
+        "align": "left",
+      }).on("changeColor",self.render_style);
+      
+      // COLOR TERCIARIO
+      this.$(".color_terciario").colorpicker({
+        "format": "rgb",
+        "align": "left",
+      }).on("changeColor",self.render_style);
+
+      if (this.$(".color_4").length > 0) {
+        this.$(".color_4").colorpicker({
+          "format": "rgb",
+          "align": "left",
+        }).on("changeColor",self.render_style);
+      }
+
+      if (this.$(".color_5").length > 0) {
+        this.$(".color_5").colorpicker({
+          "format": "rgb",
+          "align": "left",
+        }).on("changeColor",self.render_style);
+      }
+
+      if (this.$(".color_6").length > 0) {
+        this.$(".color_6").colorpicker({
+          "format": "rgb",
+          "align": "left",
+        }).on("changeColor",self.render_style);
+      }
+
+      // Abrimos el primer elemento
+      this.$(".header-accordion").first().trigger("click");
+      
+      return this;
+    },
+
+    render_componentes: function() {
+      if (this.$("#web_configuracion_componentes").length > 0) {
+        var self = this;
+        var coleccion = new app.collections.WebComponentes();
+        var tabla = new app.views.WebComponentesListaView({
+          collection: coleccion,
+        });
+        this.$("#web_configuracion_componentes").html(tabla.el);
+      }
+    },
+    
+    render_sliders: function() {
+      var self = this;
+      var coleccion = new app.collections.Web_Slider();
+      coleccion.server_api = {
+        clave: "slider_1",
+      };      
+      var tabla = new app.views.Web_SliderListaView({
+        collection: coleccion,
+        editor: true,
+        permiso: 3,
+        clave: "slider_1",
+      });
+      this.$("#web_configuracion_sliders").html(tabla.el);
+    },
+
+    render_sliders_2: function() {
+      var self = this;
+      var coleccion = new app.collections.Web_Slider();
+      coleccion.server_api = {
+        clave:"slider_2",
+      };
+      var tabla = new app.views.Web_SliderListaView({
+        collection: coleccion,
+        editor: true,
+        permiso: 3,
+        clave: "slider_2",
+      });
+      this.$("#web_configuracion_sliders_2").html(tabla.el);
+    },   
+
+    render_sliders_3: function() {
+      var self = this;
+      var coleccion = new app.collections.Web_Slider();
+      coleccion.server_api = {
+        clave:"slider_3",
+      };
+      var tabla = new app.views.Web_SliderListaView({
+        collection: coleccion,
+        editor: true,
+        permiso: 3,
+        clave: "slider_3",
+      });
+      this.$("#web_configuracion_sliders_3").html(tabla.el);
+    },     
+
+    render_sliders_4: function() {
+      var self = this;
+      var coleccion = new app.collections.Web_Slider();
+      coleccion.server_api = {
+        clave:"slider_4",
+      };
+      var tabla = new app.views.Web_SliderListaView({
+        collection: coleccion,
+        editor: true,
+        permiso: 3,
+        clave: "slider_4",
+      });
+      this.$("#web_configuracion_sliders_4").html(tabla.el);
+    },     
+
+    render_sliders_5: function() {
+      var self = this;
+      var coleccion = new app.collections.Web_Slider();
+      coleccion.server_api = {
+        clave:"slider_5",
+      };
+      var tabla = new app.views.Web_SliderListaView({
+        collection: coleccion,
+        editor: true,
+        permiso: 3,
+        clave: "slider_5",
+      });
+      this.$("#web_configuracion_sliders_5").html(tabla.el);
+    },     
+    
+    render_style:function() {
+      
+      this.$("#iframe").contents().find("#dynamic_content").empty();
+      var r = this.$("#web_configuracion_template_custom").text();
+      
+      var color_principal = this.$(".color_principal").colorpicker("getValue");
+      var regexp = new RegExp("\{\{color_principal\}\}","g");
+      r = r.replace(regexp,color_principal);
+      
+      var color_secundario = this.$(".color_secundario").colorpicker("getValue");
+      var regexp = new RegExp("\{\{color_secundario\}\}","g");
+      r = r.replace(regexp,color_secundario);
+      
+      var color_terciario = this.$(".color_terciario").colorpicker("getValue");
+      var regexp = new RegExp("\{\{color_terciario\}\}","g");
+      r = r.replace(regexp,color_terciario);
+
+      if (this.$(".color_4").length > 0) {
+        var color_4 = this.$(".color_4").colorpicker("getValue");
+        var regexp = new RegExp("\{\{color_4\}\}","g");
+        r = r.replace(regexp,color_4);
+      }
+
+      if (this.$(".color_5").length > 0) {
+        var color_5 = this.$(".color_5").colorpicker("getValue");
+        var regexp = new RegExp("\{\{color_5\}\}","g");
+        r = r.replace(regexp,color_5);
+      }
+
+      if (this.$(".color_6").length > 0) {
+        var color_6 = this.$(".color_6").colorpicker("getValue");
+        var regexp = new RegExp("\{\{color_6\}\}","g");
+        r = r.replace(regexp,color_6);
+      }
+      
+      // Mostramos u ocultamos los elementos
+      r+="#ultimos { display: "+($("#web_configuracion_ultimos_productos").is(":checked") ? "block":"none")+" }";
+      r+="#destacados { display: "+($("#web_configuracion_productos_destacados").is(":checked") ? "block":"none")+" }";
+      r+=".banners { display: "+($("#web_configuracion_banners").is(":checked") ? "block":"none")+" }";
+      r+="#marcas { display: "+($("#web_configuracion_marcas").is(":checked") ? "block":"none")+" }";
+      r+="#logos { display: "+($("#web_configuracion_logos_mercadopago").is(":checked") ? "block":"none")+" }";
+      r+="#newsletter { display: "+($("#web_configuracion_newsletter").is(":checked") ? "block":"none")+" }";
+      r+="#footer_grande { display: "+($("#web_configuracion_footer_grande").is(":checked") ? "block":"none")+" }";
+      
+      this.$("#iframe").contents().find("#dynamic_content").append(r);
+    },
+
+    validar: function() {
+      var self = this;
+      try {
+      var color = this.$(".color_fondo_imagenes_defecto").colorpicker('getValue');
+      var color_principal = this.$(".color_principal").colorpicker('getValue');
+      var color_secundario = this.$(".color_secundario").colorpicker('getValue');
+      var color_terciario = this.$(".color_terciario").colorpicker('getValue');
+
+      if (self.$("#web_configuracion_asuntos").length > 0) {
+        var c = self.$("#web_configuracion_asuntos").select2("val");
+        if (c != null) this.model.set({ "asuntos_contacto":c.join(";;;") });
+      }
+
+      if (self.$("#web_configuracion_template_header").length > 0) {
+        this.model.set({
+          "template_header":self.$("#web_configuracion_template_header").val(),
+        });
+      }
+
+      this.model.set({          
+        //"archivo":$("#hidden_archivo").val(),
+        "no_imagen":$("#hidden_no_imagen").val(),
+        "marca_agua":$("#hidden_marca_agua").val(),
+        "favicon":$("#hidden_favicon").val(),
+        //"color_fondo_imagenes_defecto":color,
+        "color_principal":color_principal,
+        "color_secundario":color_secundario,
+        "color_terciario":color_terciario,
+        "logo_1":$("#hidden_logo_1").val(),
+      });
+
+      if (this.$(".color_4").length > 0) {
+        var color_4 = this.$(".color_4").colorpicker('getValue');
+        this.model.set({"color_4":color_4});
+      }
+
+      if (this.$(".color_5").length > 0) {
+        var color_5 = this.$(".color_5").colorpicker('getValue');
+        this.model.set({"color_5":color_5});
+      }
+
+      if (this.$(".color_6").length > 0) {
+        var color_6 = this.$(".color_6").colorpicker('getValue');
+        this.model.set({"color_6":color_6});
+      }
+
+      $(".error").removeClass("error");
+      return true;
+      } catch(e) {
+      return false;
+      }
+    },
+
+    guardar: function() 
+    {
+      var self = this;
+      if (this.validar()) {
+        this.model.save({},{
+          success: function(model,response) {
+            location.reload();
+          }
+        });
+      }
+  },  
   });
 
 })(app.views, app.models);

@@ -463,6 +463,7 @@
         
     myEvents: {
       "click .guardar": "guardar",
+      "click .buscar_propiedades":"buscar_propiedades",
       "click .id_origen":function(e){
         var clase = "btn-info";
         this.$(".id_origen.active").removeClass(clase);
@@ -516,6 +517,26 @@
       },100);
     },
 
+    buscar_propiedades: function() {
+      var self = this;
+      var view = new app.views.PropiedadesTableView({
+        "collection":new app.collections.Propiedades(),
+        "vista_busqueda":true,
+      });
+      crearLightboxHTML({
+        "html":view.el,
+        "width":860,
+        "height":140,
+        "callback":function() {
+          self.seleccionar_propiedad();
+        }
+      });
+    },
+
+    seleccionar_propiedad: function() {
+
+    },
+
     seleccionar_cliente: function(r) {
       var self = this;
       // Seteamos el cliente
@@ -555,14 +576,14 @@
           "fecha_ult_operacion":fecha,
         });
 
-        /*if (self.$(".id_origen.active").length > 0) {
+        if (self.$(".id_origen.active").length > 0) {
           this.model.set({
             "id_origen":self.$(".id_origen.active").data("id_origen"),
           });          
         } else {
           alert("Por favor marque un origen de la consulta.");
           return false;
-        }*/
+        }
         return true;
       } catch(e) {
         console.log(e)

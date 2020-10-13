@@ -560,94 +560,6 @@ class Empresa_Model extends Abstract_Model {
     $sql.= "WHERE id_empresa = 99 AND id = $id";
     $this->db->query($sql);
 
-    // RESTOVAR tiene otros campos
-    if ($data->id_proyecto == 10) {
-
-      $q = $this->db->query("SELECT * FROM delivery_configuracion WHERE id_empresa = $id");
-      if ($q->num_rows()>0) {
-
-        $data->link_web = "comercio/".filename($data->nombre,'-',0)."-$id/";
-
-        $this->db->where("id_empresa",$id);
-        $this->db->update("delivery_configuracion",array(
-          "ranking"=>$data->ranking,
-          "puntuacion"=>$data->puntuacion,
-          "utiliza_delivery"=>$data->utiliza_delivery,
-          "telefono_delivery"=>$data->telefono_delivery,
-          "email_delivery"=>$data->email_delivery,
-          "usar_sms"=>$data->usar_sms,
-          "radio"=>$data->radio,
-          "latitud_comercio"=>$data->latitud_comercio,
-          "longitud_comercio"=>$data->longitud_comercio,
-          "zoom_comercio"=>$data->zoom_comercio,
-          "acepta_pedidos_fuera_horario"=>$data->acepta_pedidos_fuera_horario,
-          "texto_comercio"=>$data->texto_comercio,
-          "costo_envio"=>$data->costo_envio,
-          "pedido_minimo"=>$data->pedido_minimo,
-          "horario_lunes_1"=>$data->horario_lunes_1,
-          "horario_lunes_2"=>$data->horario_lunes_2,
-          "horario_martes_1"=>$data->horario_martes_1,
-          "horario_martes_2"=>$data->horario_martes_2,
-          "horario_miercoles_1"=>$data->horario_miercoles_1,
-          "horario_miercoles_2"=>$data->horario_miercoles_2,
-          "horario_jueves_1"=>$data->horario_jueves_1,
-          "horario_jueves_2"=>$data->horario_jueves_2,
-          "horario_viernes_1"=>$data->horario_viernes_1,
-          "horario_viernes_2"=>$data->horario_viernes_2,
-          "horario_sabado_1"=>$data->horario_sabado_1,
-          "horario_sabado_2"=>$data->horario_sabado_2,
-          "horario_domingo_1"=>$data->horario_domingo_1,
-          "horario_domingo_2"=>$data->horario_domingo_2,
-          "horario_lunes_3"=>$data->horario_lunes_3,
-          "horario_lunes_4"=>$data->horario_lunes_4,
-          "horario_martes_3"=>$data->horario_martes_3,
-          "horario_martes_4"=>$data->horario_martes_4,
-          "horario_miercoles_3"=>$data->horario_miercoles_3,
-          "horario_miercoles_4"=>$data->horario_miercoles_4,
-          "horario_jueves_3"=>$data->horario_jueves_3,
-          "horario_jueves_4"=>$data->horario_jueves_4,
-          "horario_viernes_3"=>$data->horario_viernes_3,
-          "horario_viernes_4"=>$data->horario_viernes_4,
-          "horario_sabado_3"=>$data->horario_sabado_3,
-          "horario_sabado_4"=>$data->horario_sabado_4,
-          "horario_domingo_3"=>$data->horario_domingo_3,
-          "horario_domingo_4"=>$data->horario_domingo_4,
-          "link_web"=>$data->link_web,
-        ));
-
-        // CATEGORIAS
-        $this->db->query("DELETE FROM delivery_categorias_empresas WHERE id_empresa = $id ");
-        $i=1;
-        if (isset($data->categorias)) { 
-          foreach($data->categorias as $p) {
-            $qd = $this->db->query("SELECT * FROM delivery_categorias WHERE nombre = '$p'");
-            if ($qd->num_rows()>0) {
-              $d = $qd->row();
-              $this->db->insert("delivery_categorias_empresas",array(
-                "id_empresa"=>$id,
-                "id_categoria"=>$d->id,
-                "orden"=>$i,
-              ));
-              $i++;
-            }
-          }
-        }
-      }
-
-    // COLVAR TIENE OTRA CONFIGURACION
-    } else if ($data->id_proyecto == 5) {
-
-      $q = $this->db->query("SELECT * FROM aca_configuracion WHERE id_empresa = $id");
-      if ($q->num_rows()>0) {
-        $this->db->where("id_empresa",$id);
-        $this->db->update("aca_configuracion",array(
-          "perfil_escuela"=>$data->perfil_escuela,
-          "asistencia_docente_por_materia"=>$data->asistencia_docente_por_materia,
-          "asistencia_alumno_por_materia"=>$data->asistencia_alumno_por_materia,
-        ));
-      }
-    }
-
     return parent::update($id,$data);
   }
 
@@ -769,6 +681,11 @@ class Empresa_Model extends Abstract_Model {
     $this->load->helper("fecha_helper");
     $this->load->helper("file_helper");
     
+    // Guardamos el nombre en una variable temporal
+    // pero como nombre ponemos igual a la razon social (que seria el nombre de la inmobiliaria no el que se registro)
+    $nombre = $array->nombre;
+    $array->nombre = $array->razon_social;
+
     $crear_usuario = isset($array->crear_usuario) ? $array->crear_usuario : TRUE;
     $punto_venta = isset($array->punto_venta) ? $array->punto_venta : 2;
     $password = isset($array->password) ? $array->password : "";
@@ -788,9 +705,6 @@ class Empresa_Model extends Abstract_Model {
     $this->load->model("Tipo_Comprobante_Model");
     $comprobantes = $this->Tipo_Comprobante_Model->get_all();
     
-    if (empty($array->razon_social)) { 
-      $array->razon_social = $array->nombre; 
-    }
     $array->link = filename($array->razon_social,"-",0);
     
     //$this->db->db_debug = FALSE;
@@ -1106,8 +1020,9 @@ class Empresa_Model extends Abstract_Model {
       if ($crear_usuario == TRUE) {
         // TODO: controlar que no haya un usuario con el mismo nombre
         $aparece_web = ($array->id_proyecto == 14) ? 1 : 0;
+        // Aca usamos $nombre (que seria el nombre de la persona que se registro, no el nombre de la inmobiliaria)
         $sql = "INSERT INTO com_usuarios (nombre_usuario,password,id_empresa,nombre,fecha_alta,id_perfiles,activo,email,aparece_web,estado_inicial) VALUES (";
-        $sql.= "'$array->nombre','$password',$id_empresa,'$array->nombre','$f_tar',$id_perfil,1,'$array->email','$aparece_web',1)";
+        $sql.= "'$nombre','$password',$id_empresa,'$nombre','$f_tar',$id_perfil,1,'$array->email','$aparece_web',1)";
       } else {
         // NO HAY QUE CREAR UN USUARIO, SINO HAY QUE ENLAZARLO CON EL QUE YA SE REGISTRO
         $sql = "UPDATE com_usuarios SET ";
@@ -1156,7 +1071,7 @@ class Empresa_Model extends Abstract_Model {
       }
     }
 
-    $array->dominio_varcreative = "www.varcreative.com/sandbox/".$id_empresa."/";
+    $array->dominio_varcreative = "www.inmovar.com/sandbox/".$id_empresa."/";
     $this->db->query("UPDATE empresas SET dominio_varcreative = '$array->dominio_varcreative' WHERE id = $id_empresa ");
     
     //$this->db->trans_complete();

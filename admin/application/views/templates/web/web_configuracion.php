@@ -64,12 +64,12 @@
 </script>
 
 <script type="text/template" id="web_diseno_template">
-  <a href="app/#web_elegir_template" class="panel panel-default db cp">
+  <div class="panel panel-default db cp">
     <div class="panel-body">
       <div class="padder">
-        <div class="form-group mb0 clearfix">
+        <div class="form-group mb0 clearfix expand-link cp">
           <label class="control-label cp">
-            Elegir plantilla
+            Elegir diseño para la web
           </label>
           <div class="panel-description">
             Seleccione la plantilla preferida para su web.
@@ -77,7 +77,39 @@
         </div>
       </div>
     </div>
-  </a>
+    <div class="panel-body expand">
+      <div class="row">
+        <% for(var i=0;i<templates.length;i++) { %>
+          <% var opcion = templates[i]; %>
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="template-item <%= (ID_WEB_TEMPLATE == opcion.id) ? "selected":"" %>">
+              <img style="height:280px" src="<%= opcion.thumbnail %>"/>
+              <div class="template-item-footer">
+                <span class="bold white"><%= opcion.nombre %></span>
+              </div>
+              <div class="template-item-over">
+                <div class="template-item-over-nombre"><%= opcion.nombre %></div>
+                <% if (!isEmpty(opcion.link_demo)) { %>
+                  <div class="btn-item">
+                    <a href="<%= opcion.link_demo %>" target="_blank" class="btn">Ver demo</a>
+                  </div>
+                <% } %>
+                <% if (ID_WEB_TEMPLATE == opcion.id) { %>
+                  <div class="btn-item">
+                    <a href="app/#editar_template" class="btn">Editar plantilla</a>
+                  </div>
+                <% } else { %>
+                  <div class="btn-item">
+                    <button data-id="<%= opcion.id %>" class="btn elegir_disenio">Elegir dise&ntilde;o</button>
+                  </div>
+                <% } %>
+              </div>    
+            </div>
+          </div>
+        <% } %>  
+      </div>
+    </div>
+  </div>
 
   <div class="panel panel-default db cp">
     <div class="panel-body">
@@ -118,55 +150,6 @@
       <div class="padder">
         <div class="form-group mb0 clearfix expand-link cp">
           <label class="control-label cp">
-            Colores
-          </label>
-          <div class="panel-description">
-            Configurá los colores de tu web.
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="panel-body expand">
-      <div class="row">
-        <div class="col-md-4">
-          <div class="form-group oh cb">
-            <label class="control-label">Color 1</label>
-            <div class="input-group color_principal colorpicker-component">
-              <span class="input-group-addon"><i></i></span>
-              <input type="text" class="form-control" value="<%= color_principal %>" />
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="form-group oh cb">
-            <label class="control-label">Color 2</label>
-            <div class="input-group color_secundario colorpicker-component">
-              <span class="input-group-addon"><i></i></span>
-              <input type="text" class="form-control" value="<%= color_secundario %>" />              
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="form-group oh cb">
-            <label class="control-label">Color 3</label>
-            <div class="input-group color_terciario colorpicker-component">
-              <span class="input-group-addon"><i></i></span>
-              <input type="text" class="form-control" value="<%= color_terciario %>" />              
-            </div>
-          </div>      
-        </div>
-      </div>
-      <div class="clearfix">
-        <button class="btn fr btn-info guardar"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
-      </div>
-    </div>
-  </div>
-
-  <div class="panel panel-default db cp">
-    <div class="panel-body">
-      <div class="padder">
-        <div class="form-group mb0 clearfix expand-link cp">
-          <label class="control-label cp">
             Carrusel principal
           </label>
           <div class="panel-description">
@@ -180,30 +163,14 @@
     </div>
   </div>
 
+</script>
+
+<script type="text/template" id="web_contenido_template">
+
   <div class="panel panel-default db cp">
     <div class="panel-body">
       <div class="padder">
         <div class="form-group mb0 clearfix expand-link cp">
-          <label class="control-label cp">
-            Editor de textos
-          </label>
-          <div class="panel-description">
-            Agrega imágenes al carrusel principal de tu web.
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="panel-body expand">
-    </div>
-  </div>  
-
-</script>
-
-<script type="text/template" id="web_contenido_template">
-  <a href="app/#entradas" class="panel panel-default db cp">
-    <div class="panel-body">
-      <div class="padder">
-        <div class="form-group mb0 clearfix">
           <label class="control-label cp">
             Páginas
           </label>
@@ -213,12 +180,15 @@
         </div>
       </div>
     </div>
-  </a>
+    <div class="panel-body expand">
+      <div id="entradas_container"></div>
+    </div>
+  </div>
 
-  <a href="app/#categorias_entradas" class="panel panel-default db cp">
+  <div class="panel panel-default db cp">
     <div class="panel-body">
       <div class="padder">
-        <div class="form-group mb0 clearfix">
+        <div class="form-group mb0 clearfix expand-link cp">
           <label class="control-label cp">
             Categorias
           </label>
@@ -228,8 +198,10 @@
         </div>
       </div>
     </div>
-  </a>
-
+    <div class="panel-body expand">
+      <div id="categorias_entradas_container"></div>
+    </div>
+  </div>
 </script>
 
 
@@ -250,32 +222,32 @@
     <div class="panel-body expand">
       <div class="padder">
         <div class="form-group">
-          <div class="input-group">
-            <span class="input-group-addon w35"><i class="fa fa-facebook"></i></span>
+          <div class="input-group w100p">
+            <span class="input-group-addon w40"><i class="fa fa-facebook"></i></span>
             <input type="text" name="facebook" placeholder="Facebook Link" class="form-control" value="<%= facebook %>"/>
           </div>
         </div>
         <div class="form-group">
-          <div class="input-group">
-            <span class="input-group-addon w35"><i class="fa fa-twitter"></i></span>
+          <div class="input-group w100p">
+            <span class="input-group-addon w40"><i class="fa fa-twitter"></i></span>
             <input type="text" name="twitter" placeholder="Twitter Link" class="form-control" value="<%= twitter %>"/>
           </div>
         </div>
         <div class="form-group">
-          <div class="input-group">
-            <span class="input-group-addon w35"><i class="fa fa-youtube"></i></span>
+          <div class="input-group w100p">
+            <span class="input-group-addon w40"><i class="fa fa-youtube"></i></span>
             <input type="text" name="youtube" placeholder="Youtube Link" class="form-control" value="<%= youtube %>"/>
           </div>
         </div>
         <div class="form-group">
-          <div class="input-group">
-            <span class="input-group-addon w35"><i class="fa fa-instagram"></i></span>
+          <div class="input-group w100p">
+            <span class="input-group-addon w40"><i class="fa fa-instagram"></i></span>
             <input type="text" name="instagram" placeholder="Instagram Link" class="form-control" value="<%= instagram %>"/>
           </div>
         </div>
         <div class="form-group">
-          <div class="input-group">
-            <span class="input-group-addon w35"><i class="fa fa-linkedin"></i></span>
+          <div class="input-group w100p">
+            <span class="input-group-addon w40"><i class="fa fa-linkedin"></i></span>
             <input type="text" name="linkedin" placeholder="Linkedin Link" class="form-control" value="<%= linkedin %>"/>
           </div>
         </div>
@@ -491,9 +463,16 @@
         <div class="form-group">
           <div class="input-group">
             <span class="input-group-addon"><span class="material-icons fs17">language</span></span>
-            <input type="text" placeholder="Ej: www.misitio.com" class="form-control" value="<%= DOMINIO %>"/>
+            <input id="web_dominio" type="text" placeholder="Ej: www.misitio.com" class="form-control" value="<%= DOMINIO.replace("/","") %>"/>
           </div>
         </div>
+
+        <p class="mt20">Para delegar su web a nuestros servidores, utilice los siguientes servidores DNS: </p>
+        <div class="show-code mt10">
+          dane.ns.cloudflare.com<br/>
+          leah.ns.cloudflare.com
+        </div>
+
         <div class="clearfix">
           <button class="btn fr btn-info guardar"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
         </div>
@@ -594,7 +573,7 @@
         </div>
       </div>
     </div>
-    <div class="panel-body expand">
+    <div class="panel-body expand" style="display:<%= (habilitar_clienapp == 1)?"block":"" %>">
       <div class="padder">
         <?php include("configuracion_clienapp.php"); ?>
       </div>
@@ -672,7 +651,7 @@ if (!empty($empresa->path_template)) {
       </div>
     </div>
     <div class="form-group oh cb mt15">
-      <button class="btn btn-success guardar btn-block">
+      <button class="btn btn-info guardar btn-block">
       <?php echo lang(array(
         "es"=>"Guardar",
         "en"=>"Save changes",
@@ -688,32 +667,8 @@ if (!empty($empresa->path_template)) {
       )); ?>
   </div>
   <div class="info-accordion">
-    
-    <?php
-    if (isset($empresa->config["colores"])) {
-      $colores = $empresa->config["colores"];
-      if(!empty($colores)) { ?>
-      <p class="subtitle-accordion">&iexcl;Eleg&iacute; la combinaci&oacute;n que m&aacute;s te guste!</p>
-      <div class="colors_container">
-        <?php
-        $colores_array = explode("|",$colores);
-        foreach($colores_array as $comb) { ?>
-        <div class="color_combination">
-          <?php $colors = explode("%",$comb);
-          foreach($colors as $c) { ?>
-          <span style="background-color: <?php echo $c ?>"></span>
-          <?php } ?>
-        </div>
-        <?php } ?>
-      </div>
-      <?php } ?>
-    <?php } ?>
-    
     <p class="subtitle-accordion mt15">
-      <?php echo lang(array(
-        "es"=>"Edición avanzada",
-        "en"=>"Advanced edit"
-      )); ?>
+      Cambia los colores de la web
     </p>
     <div class="form-group oh cb">
       <div class="input-group color_principal colorpicker-component">
@@ -733,56 +688,13 @@ if (!empty($empresa->path_template)) {
         <input type="text" class="form-control" value="<%= color_terciario %>" />              
       </div>
     </div>
-    <?php /*
-    <div class="form-group oh cb">
-      <div class="input-group color_4 colorpicker-component">
-        <span class="input-group-addon"><i></i></span>
-        <input type="text" class="form-control" value="<%= color_4 %>" />              
-      </div>
-    </div>
-    <div class="form-group oh cb">
-      <div class="input-group color_5 colorpicker-component">
-        <span class="input-group-addon"><i></i></span>
-        <input type="text" class="form-control" value="<%= color_5 %>" />              
-      </div>
-    </div>
-    <div class="form-group oh cb">
-      <div class="input-group color_6 colorpicker-component">
-        <span class="input-group-addon"><i></i></span>
-        <input type="text" class="form-control" value="<%= color_6 %>" />
-      </div>
-    </div>
-    */ ?>
     <div class="form-group oh cb mt15">
-      <button class="btn btn-success guardar btn-block"><?php echo lang(array(
+      <button class="btn btn-info guardar btn-block"><?php echo lang(array(
         "es"=>"Guardar",
         "en"=>"Save changes"
       )); ?></button>
     </div>
   </div>       
-
-  <% if (ID_PROYECTO == 3) { %>
-    <div class="header-accordion bg-light lter">
-      <?php echo lang(array(
-        "es"=>"Menu de opciones",
-        "en"=>"Menu",
-      )); ?>
-    </div>
-    <div class="info-accordion">
-      <p class="subtitle-accordion">
-      <?php echo lang(array(
-        "es"=>"Edite los items que aparecerán en el menú de opciones.",
-        "en"=>"You can edit the items that will appear in the top menu.",
-      )); ?>
-      </p>
-      <button id="web_configuracion_configurar_menu" class="btn btn-info btn-block">
-        <?php echo lang(array(
-          "es"=>"Configurar",
-          "en"=>"Set up",
-        )); ?>        
-      </button>
-    </div>
-  <% } %>
 
   <?php 
   // ===========================================================================================
@@ -1017,7 +929,7 @@ if (!empty($empresa->path_template)) {
         <?php } ?>
 
         <div class="form-group oh cb mt15">
-          <button class="btn btn-success guardar btn-block">Guardar</button>
+          <button class="btn btn-info guardar btn-block">Guardar</button>
         </div>      
       </div>
     <?php } ?>
@@ -1035,7 +947,7 @@ if (!empty($empresa->path_template)) {
     </p>
     <div id="web_configuracion_sliders" class="ordenable"></div>
     <div class="form-group oh cb mt15">
-      <button class="btn btn-success guardar btn-block">
+      <button class="btn btn-info guardar btn-block">
       <?php echo lang(array(
         "es"=>"Guardar",
         "en"=>"Save changes"
@@ -1057,7 +969,7 @@ if (!empty($empresa->path_template)) {
       </p>
       <div id="web_configuracion_barras_productos" class="ordenable"></div>
       <div class="form-group oh cb mt15">
-        <button class="btn btn-success guardar btn-block">
+        <button class="btn btn-info guardar btn-block">
         <?php echo lang(array(
           "es"=>"Guardar",
           "en"=>"Save changes"
@@ -1080,7 +992,7 @@ if (!empty($empresa->path_template)) {
       </p>
       <div id="web_configuracion_sliders_2" class="ordenable"></div>
       <div class="form-group oh cb mt15">
-        <button class="btn btn-success guardar btn-block">
+        <button class="btn btn-info guardar btn-block">
       <?php echo lang(array(
         "es"=>"Guardar",
         "en"=>"Save changes"
@@ -1103,7 +1015,7 @@ if (!empty($empresa->path_template)) {
       </p>
       <div id="web_configuracion_sliders_3" class="ordenable"></div>
       <div class="form-group oh cb mt15">
-        <button class="btn btn-success guardar btn-block">
+        <button class="btn btn-info guardar btn-block">
       <?php echo lang(array(
         "es"=>"Guardar",
         "en"=>"Save changes"
@@ -1126,7 +1038,7 @@ if (!empty($empresa->path_template)) {
       </p>
       <div id="web_configuracion_sliders_4" class="ordenable"></div>
       <div class="form-group oh cb mt15">
-        <button class="btn btn-success guardar btn-block">
+        <button class="btn btn-info guardar btn-block">
       <?php echo lang(array(
         "es"=>"Guardar",
         "en"=>"Save changes"
@@ -1135,150 +1047,6 @@ if (!empty($empresa->path_template)) {
       </div>      
     </div>
   <?php } ?>
-
-  
-  <div class="header-accordion bg-light lter">
-    <?php echo lang(array(
-      "es"=>"Redes sociales",
-      "en"=>"Social networks"
-    )); ?>
-  </div>
-  <div class="info-accordion">
-    <p class="subtitle-accordion">
-      <?php echo lang(array(
-        "es"=>"Completa con los links a tus redes sociales",
-        "en"=>"Set the links to your social networks"
-      )); ?>
-    </p>
-    <div class="form-group">
-      <div class="input-group">
-        <span class="input-group-addon w35"><i class="fa fa-facebook w20"></i></span>
-        <input type="text" name="facebook" placeholder="Facebook Link" class="form-control" value="<%= facebook %>"/>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="input-group">
-        <span class="input-group-addon w35"><i class="fa fa-twitter w20"></i></span>
-        <input type="text" name="twitter" placeholder="Twitter Link" class="form-control" value="<%= twitter %>"/>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="input-group">
-        <span class="input-group-addon w35"><i class="fa fa-google-plus w20"></i></span>
-        <input type="text" name="google_plus" placeholder="Google + Link" class="form-control" value="<%= google_plus %>"/>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="input-group">
-        <span class="input-group-addon w35"><i class="fa fa-youtube w20"></i></span>
-        <input type="text" name="youtube" placeholder="Youtube Link" class="form-control" value="<%= youtube %>"/>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="input-group">
-        <span class="input-group-addon w35"><i class="fa fa-instagram w20"></i></span>
-        <input type="text" name="instagram" placeholder="Instagram Link" class="form-control" value="<%= instagram %>"/>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="input-group">
-        <span class="input-group-addon w35"><i class="fa fa-linkedin w20"></i></span>
-        <input type="text" name="linkedin" placeholder="Linkedin Link" class="form-control" value="<%= linkedin %>"/>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="input-group">
-        <span class="input-group-addon w35"><i class="fa fa-skype w20"></i></span>
-        <input type="text" name="skype" placeholder="Skype" class="form-control" value="<%= skype %>"/>
-      </div>
-    </div>    
-    <% if (ID_PROYECTO == 6) { %>
-      <div class="form-group">
-        <div class="input-group">
-          <span class="input-group-addon w35"><i class="fa fa-tripadvisor w20"></i></span>
-          <input type="text" name="tripadvisor" placeholder="Tripadvisor Link" class="form-control" value="<%= tripadvisor %>"/>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="input-group">
-          <span class="input-group-addon w35"><i class="fa fa-globe w20"></i></span>
-          <input type="text" name="booking" placeholder="Booking Link" class="form-control" value="<%= booking %>"/>
-        </div>
-      </div>
-    <% } %>
-    <div class="form-group oh cb mt15">
-      <button class="btn btn-success guardar btn-block">
-      <?php echo lang(array(
-        "es"=>"Guardar",
-        "en"=>"Save changes",
-      )); ?>
-      </button>
-    </div>      
-  </div>
-  <div class="header-accordion bg-light lter">
-    <?php echo lang(array(
-        "es"=>"Contacto",
-        "en"=>"Contact",
-    )); ?>
-  </div>
-  <div class="info-accordion">
-    <p class="subtitle-accordion">
-    <?php echo lang(array(
-        "es"=>"Ingresa tus datos de contacto para que los usuarios puedan ubicarte.",
-        "en"=>"Enter your contact information so that users can locate you.",
-    )); ?>
-    </p>
-    <p class="subtitle-accordion">
-    <?php echo lang(array(
-        "es"=>"DIRECCIÓN",
-        "en"=>"ADDRESS"
-    )); ?>
-    </p>
-    <div class="form-group">
-      <input type="text" name="direccion_web" placeholder="<?php echo lang(array("es"=>"Dirección","en"=>"Address")) ?>" class="form-control" value="<%= direccion_web %>"/>
-    </div>
-    <div class="form-group">
-      <input type="text" name="ciudad" placeholder="<?php echo lang(array("es"=>"Ciudad","en"=>"City")) ?>" class="form-control" value="<%= ciudad %>"/>
-    </div>
-    <div class="form-group">
-      <input type="text" name="codigo_postal" placeholder="<?php echo lang(array("es"=>"Código Postal","en"=>"Postal Code")) ?>" class="form-control" value="<%= codigo_postal %>"/>
-    </div>
-    <p class="subtitle-accordion mt20"><?php echo lang(array("es"=>"TELÉFONO","en"=>"YOUR PHONE")) ?></p>
-    <div class="form-group">
-      <input type="text" name="telefono_web" placeholder="<?php echo lang(array("es"=>"Teléfono","en"=>"Phone ")) ?>" class="form-control" value="<%= telefono_web %>"/>
-    </div>          
-    <div class="form-group">
-      <input type="text" name="telefono_2" placeholder="<?php echo lang(array("es"=>"Teléfono 2","en"=>"Phone two")) ?>" class="form-control" value="<%= telefono_2 %>"/>
-    </div>          
-    <div class="form-group">
-      <textarea name="horario" class="form-control" placeholder="<?php echo lang(array("es"=>"Horario","en"=>"Schedule")) ?>"><%= horario %></textarea>
-    </div>
-    <p class="subtitle-accordion mt20"><?php echo lang(array("es"=>"EMAIL DE CONTACTO","en"=>"CONTACT EMAIL")) ?></p>
-    <div class="form-group">
-      <input type="text" name="email" placeholder="<?php echo lang(array("es"=>"Dirección de Email","en"=>"Email address")) ?>" class="form-control" value="<%= email %>"/>
-    </div>
-    <p class="subtitle-accordion mt20"><?php echo lang(array("es"=>"ASUNTOS DE CONTACTO","en"=>"CONTACT MATTER")) ?></p>
-    <div class="form-group">
-      <select multiple id="web_configuracion_asuntos" style="width: 100%">
-        <% if (!isEmpty(asuntos_contacto)) { %>
-          <% var carac = asuntos_contacto.split(";;;") %>
-          <% for (var i=0; i< carac.length; i++) { %>
-            <% var o = carac[i] %>
-            <option selected><%= o %></option>
-          <% } %>
-        <% } %>
-      </select>
-    </div>
-    
-    <p class="subtitle-accordion mt20"><?php echo lang(array("es"=>"UBICACIÓN EN EL MAPA","en"=>"MAP LOCATION")) ?></p>
-    <div class="form-group oh cb">
-      <button class="btn btn-info mostrar_ubicacion btn-block"><?php echo lang(array("es"=>"Ver Mapa","en"=>"Search map")) ?></button>
-    </div>
-    
-    <div class="form-group oh cb mt15 mb50">
-      <button class="btn btn-success guardar btn-block"><?php echo lang(array("es"=>"Guardar","en"=>"Save")) ?></button>
-    </div>      
-  </div>  
 
   <div class="header-accordion bg-light lter">
     <?php echo lang(array("es"=>"Avanzada","en"=>"More options")) ?>
@@ -1338,7 +1106,7 @@ if (!empty($empresa->path_template)) {
       </select>
     </div>
     <div class="form-group oh cb mt15">
-      <button class="btn btn-success guardar btn-block">
+      <button class="btn btn-info guardar btn-block">
       <?php echo lang(array(
         "es"=>"Guardar",
         "en"=>"Save changes",
@@ -1411,7 +1179,7 @@ if (!empty($empresa->path_template)) {
     </div>
   </div>
   <div class="panel-footer">
-  <button class="guardar btn btn-md btn-success">
+  <button class="guardar btn btn-md btn-info">
       <?php echo lang(array(
         "es"=>"Guardar",
         "en"=>"Save changes",
@@ -1425,7 +1193,7 @@ if (!empty($empresa->path_template)) {
 <% if (editor) { %>
   <ul id="web_slider_table" data-ordenable-table="web_slider" class="list-group gutter list-group-lg list-group-sp ui-sortable ordenable"></ul>
   <div class="form-group oh cb">
-    <button class="btn btn-info agregar btn-block">
+    <button class="btn btn-default agregar btn-block">
     <?php echo lang(array(
         "es"=>"Agregar imagen",
         "en"=>"Add image",
@@ -1440,7 +1208,7 @@ if (!empty($empresa->path_template)) {
     <div class="panel panel-default">
       <div class="panel-heading oh">
         <div class="search_container col-lg-4 col-md-6 col-sm-9 col-xs-12"></div>
-        <a class="btn pull-right btn-success btn-addon" href="app/#web_slider"><i class="fa fa-plus"></i><?php echo lang(array("es"=>"Nuevo","en"=>"Add New")) ?></a>
+        <a class="btn pull-right btn-info btn-addon" href="app/#web_slider"><i class="fa fa-plus"></i><?php echo lang(array("es"=>"Nuevo","en"=>"Add New")) ?></a>
       </div>
       <div class="panel-body">
         <div class="table-responsive">
@@ -1676,7 +1444,7 @@ if (!empty($empresa->path_template)) {
 
   <% if (edicion) { %>
     <div class="panel-footer clearfix tar">
-      <button class="btn guardar btn-success"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
+      <button class="btn guardar btn-info"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
     </div>
   <% } %>
 </div>
@@ -1785,7 +1553,7 @@ if (!empty($empresa->path_template)) {
     </div>
   </div>
   <div class="panel-footer clearfix tar">
-    <button class="btn guardar btn-success"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
+    <button class="btn guardar btn-info"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
   </div>
 </div>
 </script>
@@ -1817,7 +1585,7 @@ if (!empty($empresa->path_template)) {
       </div>
     </div>
     <div class="panel-footer clearfix tar">
-      <button class="guardar btn btn-success">Guardar</button>
+      <button class="guardar btn btn-info">Guardar</button>
     </div>
   </div>
 </script>
@@ -1908,7 +1676,7 @@ if (!empty($empresa->path_template)) {
     </div>*/?>
   </div>
   <div class="panel-footer clearfix tar">
-    <button class="btn guardar btn-success"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
+    <button class="btn guardar btn-info"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
   </div>
 </div>
 </script>

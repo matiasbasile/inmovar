@@ -32,7 +32,7 @@
               <div class="form-group">
                 <label class="control-label">C&oacute;digo</label>
                 <div class="input-group">
-                  <span class="input-group-addon">123-</span>
+                  <span class="input-group-addon"><%= CODIGO %>-</span>
                   <input type="text" name="codigo" id="propiedad_codigo" value="<%= codigo %>" class="form-control"/>
                 </div>
               </div>

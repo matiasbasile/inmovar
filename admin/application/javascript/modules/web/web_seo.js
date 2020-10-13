@@ -145,15 +145,6 @@
             "tienda_registro_password":(this.$("#web_seo_tienda_registro_password").is(":checked")?1:0),
           });
         }
-        if (this.$("#web_seo_clienapp_abierto").length > 0) {
-          this.model.set({
-            "clienapp_formulario":(this.$("#web_seo_clienapp_formulario").is(":checked")?0:1),
-            "clienapp_mostrar_email":(this.$("#web_seo_clienapp_mostrar_email").is(":checked")?1:0),
-            "clienapp_abierto":(this.$("#web_seo_clienapp_abierto").is(":checked")?1:0),
-            "clienapp_sonido":(this.$("#web_seo_clienapp_sonido").is(":checked")?1:0),
-          });
-        }
-
         if (this.$("#web_seo_orden_listado").length > 0) {
           this.model.set({
             "orden_listado":(this.$("#web_seo_orden_listado").val()),

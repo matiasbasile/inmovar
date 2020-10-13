@@ -1,38 +1,43 @@
 <script type="text/template" id="propiedades_resultados_template">
 <% if (vista_busqueda) { %>
-  <div class="panel panel-default">
+  <div class="modal-header">
+    <b>Buscar propiedades</b>
+    <i class="pull-right cerrar_lightbox fs20 fa fa-times cp"></i>
+  </div>
+  <div class="modal-body">
+    
+    <?php include("buscar_propiedades.php") ?>
 
-    <?php include("buscar_propiedades_contacto.php") ?>
-
-    <div class="panel-body">
-      <div class="tab-container mb0">
-        <ul class="nav nav-tabs nav-tabs-2" role="tablist">
-          <li id="buscar_propias_tab" class="buscar_tab <%= (window.propiedades_buscar_red == 0)?"active":"" %>">
-            <a href="javascript:void(0)"><i class="material-icons mr5">home</i> Mis Propiedades</a>
-          </li>
-          <li id="buscar_red_tab" class="buscar_tab <%= (window.propiedades_buscar_red == 1)?"active":"" %>">
-            <a href="javascript:void(0)"><img src="/admin/resources/images/red_inmovar.png" style="width:14px;margin-right:5px"/> Red Inmovar</a>
-          </li>
-        </ul>
-        <div class="tab-content">
-          <div class="table-responsive-xs b-a pr oh table-fixed">
-            <table id="propiedades_tabla" class="table table-striped sortable m-b-none default footable">
-              <tbody class="tbody"></tbody>
-              <tfoot class="pagination_container hide-if-no-paging"></tfoot>
-            </table>
-          </div>
-        </div>
-        <div class="bulk_action tar m-t">
-          <div class="dib m-r">
-            <p><b class="cantidad_seleccionados"></b> elementos seleccionados</p>  
-          </div>
-          <button class="btn btn-default marcar_interes">Marcar Inter&eacute;s</button>
-          <button class="btn btn-info enviar">Enviar fichas por email</button>
-          <button class="btn btn-success enviar_whatsapp">Enviar Whatsapp</button>
+    <div class="tab-container mb0">
+      <ul class="nav nav-tabs nav-tabs-2" role="tablist">
+        <?php include("tabs_propiedades.php") ?>
+      </ul>
+      <div class="tab-content">
+        <div class="table-responsive">
+          <table id="propiedades_tabla" class="table table-striped sortable m-b-none default footable">
+            <thead>
+              <tr>
+                <th class="w50 tac"></th>
+                <th>Propiedad</th>
+                <th class="w150 sorting" data-sort-by="precio_final">Operación</th>
+                <th class="w150">Caract.</th>
+              </tr>
+            </thead>
+            <tbody class="tbody"></tbody>
+            <tfoot class="pagination_container hide-if-no-paging"></tfoot>
+          </table>
         </div>
       </div>
-
+      <div class="bulk_action tar m-t">
+        <div class="dib m-r">
+          <p><b class="cantidad_seleccionados"></b> elementos seleccionados</p>  
+        </div>
+        <button class="btn btn-default marcar_interes">Marcar Inter&eacute;s</button>
+        <button class="btn btn-info enviar">Enviar fichas por email</button>
+        <button class="btn btn-success enviar_whatsapp">Enviar Whatsapp</button>
+      </div>
     </div>
+
   </div>
 <% } else { %>
   <div class="centrado rform">
@@ -55,26 +60,7 @@
 
     <div class="tab-container mb0">
       <ul class="nav nav-tabs nav-tabs-2" role="tablist">
-        <li id="buscar_propias_tab" class="buscar_tab <%= (window.propiedades_buscar_red == 0)?"active":"" %>">
-          <a href="javascript:void(0)">
-            <i class="material-icons">store</i> Mis Propiedades
-            <span id="propiedades_propias_total" class="counter">0</span>
-          </a>
-        </li>
-        <li id="buscar_red_tab" class="buscar_tab <%= (window.propiedades_buscar_red == 1)?"active":"" %>">
-          <a href="javascript:void(0)">
-            <i class="material-icons">share</i> Red Inmovar
-            <span id="propiedades_red_total" class="counter">0</span>
-          </a>
-        </li>
-        <?php /*
-        <li id="buscar_similitudes_tab" class="buscar_tab <%= (window.propiedades_buscar_red == 2)?"active":"" %>">
-          <a href="javascript:void(0)">
-            <i class="material-icons">warning</i> Similitudes
-            <span id="propiedades_similitudes_total" class="counter">0</span>
-          </a>
-        </li>
-        */ ?>
+        <?php include("tabs_propiedades.php") ?>
       </ul>
     </div>
 
@@ -141,14 +127,16 @@
 
 <script type="text/template" id="propiedades_item_resultados_template">
   <% var clase = (activo==1)?"":"text-muted"; %>
-  <td>
-    <input type="hidden" id="<%= id %>_localidad" value="<%= id_localidad %>"/>
-    <input type="hidden" id="<%= id %>_tipo_operacion" value="<%= id_tipo_operacion %>"/>
-    <input type="hidden" id="<%= id %>_tipo_inmueble" value="<%= id_tipo_inmueble %>"/>
-    <label class="i-checks m-b-none">
-      <input class="esc check-row" value="<%= id %>" type="checkbox"><i></i>
-    </label>
-  </td>
+  <% if (!vista_busqueda) { %>
+    <td>
+      <input type="hidden" id="<%= id %>_localidad" value="<%= id_localidad %>"/>
+      <input type="hidden" id="<%= id %>_tipo_operacion" value="<%= id_tipo_operacion %>"/>
+      <input type="hidden" id="<%= id %>_tipo_inmueble" value="<%= id_tipo_inmueble %>"/>
+      <label class="i-checks m-b-none">
+        <input class="esc check-row" value="<%= id %>" type="checkbox"><i></i>
+      </label>
+    </td>
+  <% } %>
   <td class="<%= clase %> p0 data">
     <% if (!isEmpty(path)) { %>
       <% var prefix = (path.indexOf("http") == 0) ? "" : "/admin/" %>
@@ -166,13 +154,14 @@
     <% if (id_tipo_estado != 1) { %>
       <br/><span class="text-info"><%= tipo_estado %></span>
     <% } %>
+    <br/>Cod. <%= codigo_completo %>
   </td>
   <td class="<%= clase %> data">
     <% if (ambientes > 0) { %><%= ambientes %> Amb.<br/><% } %>
     <% if (banios > 1) { %><%= banios %> Baños<br/><% } %>
     <% if (superficie_total > 0) { %>Sup. <%= superficie_total %> m<sup>2</sup><br/><% } %>
   </td>
-  <% if (!seleccionar) { %>
+  <% if (!seleccionar && !vista_busqueda) { %>
 
     <?php // MIS PROPIEDADES ?>
     <% if (id_empresa == ID_EMPRESA) { %>

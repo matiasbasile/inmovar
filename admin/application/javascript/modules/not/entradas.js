@@ -151,6 +151,8 @@
     template: _.template($("#entradas_resultados_template").html()),
             
     myEvents: {
+      "click .buscar":"buscar",
+      "change #entradas_buscar_categorias":"buscar",
       "change #entradas_buscar":"buscar",
       "click #entradas_buscar_avanzada_btn":"buscar_avanzada",
       "click .enviar": "enviar",
@@ -160,6 +162,7 @@
       "click .eliminar_lote":"eliminar_lote",
       "click .destacar_lote":"destacar_lote",
       "click .activar_lote":"activar_lote",
+      "click .nuevo":"nuevo",
       "keydown #entradas_tabla tbody tr .radio:first":function(e) {
         // Si estamos en el primer elemento y apretamos la flechita de arriba
         if (e.which == 38) { e.preventDefault(); $("#entradas_texto").focus(); }
@@ -200,11 +203,48 @@
       $(this.el).find(".pagination_container").html(this.pagination.el);
 
       // Se clona el array con slice(0), porque sino quedaba el TODAS en el detalle
-      var cat = categorias_noticias.slice(0);
+      var cat = new Array();
+      cat.push({
+        activo: 1,
+        children: [],
+        fija: 0,
+        id: 0,
+        id_padre: 0,
+        key: "",
+        nombre_es: "Categoria",
+        title: "Categoria",
+      })
+      for(var i=0;i<window.categorias_noticias.length;i++) {
+        var c = categorias_noticias[i];
+        cat.push(c);
+      }
       var r = workspace.crear_select(cat,"",window.entradas_id_categoria);
       this.$("#entradas_buscar_categorias").html(r).select2({}).change(function(){
         window.entradas_id_categoria = $(this).val();
       });
+    },
+
+    nuevo: function() {
+      var self = this;
+      var v = new app.views.EntradasEditView({
+        model: new app.models.Entradas(),
+        view: self,
+        lightbox: true,
+      });
+      crearLightboxHTML({
+        "html":v.el,
+        "width":800,
+        "height":400,
+        "callback":function() {
+          self.buscar();
+        }
+      });
+      workspace.crear_editor('entrada_texto',{"toolbar":"Basic"});
+      // Eliminamos los editores para volverlos a crear
+      var en = CKEDITOR.instances["entrada_texto_en"];
+      if (en) CKEDITOR.remove(en);
+      var pt = CKEDITOR.instances["entrada_texto_pt"];
+      if (pt) CKEDITOR.remove(pt);      
     },
     
     buscar: function() {
@@ -217,7 +257,7 @@
       }
 
       if (window.entradas_id_categoria != this.$("#entradas_buscar_categorias").val()) {
-        window.entradas_id_categoria = this.$("#entradas_buscar_categorias").val().trim();
+        window.entradas_id_categoria = this.$("#entradas_buscar_categorias").val();
         cambio_parametros = true;
       }
 
@@ -258,8 +298,10 @@
     },
         
     addOne : function ( item ) {
+      var self = this;
       var view = new app.views.EntradasItemResultados({
         model: item,
+        view: self,
         habilitar_seleccion: this.habilitar_seleccion, 
       });
       $(this.el).find(".tbody").append(view.render().el);
@@ -349,42 +391,6 @@
     tagName: "tr",
     myEvents: {
       "click .data":"seleccionar",
-      "click .notificar_email":function() {
-        var self = this;
-        $.ajax({
-          "url":"entradas/function/notificar_email/"+self.model.id,
-          "dataType":"json",
-          "success":function(r){
-            alert(r.mensaje);
-            if (r.error == 0) location.reload();
-          }
-        });
-      },
-      "click .notificar_laboral_gym":function() {
-        var self = this;
-        $.ajax({
-          "timeout":0,
-          "url":"laboral_gym/function/notificar/",
-          "dataType":"json",
-          "type":"post",
-          "data":{
-            "id_entrada":self.model.id
-          },
-          "success":function(r){
-            alert(r.mensaje);
-          }
-        });
-      },
-      "click .notificar":function() {
-        var self = this;
-        $.ajax({
-          "url":"entradas/function/notificar/"+self.model.id,
-          "dataType":"json",
-          "success":function(r){
-            alert(r.mensaje);
-          }
-        });
-      },
       "keyup .radio":function(e) {
         if (e.which == 13) { this.seleccionar(); }
         e.stopPropagation();
@@ -461,69 +467,6 @@
         });
         return false;
       },
-      "click .nivel_importancia_0":function(e) {
-        var self = this;
-        e.stopPropagation();
-        e.preventDefault();
-        var nivel_importancia = 0;
-        self.model.set({"nivel_importancia":nivel_importancia});
-        $.ajax({
-          "url":"entradas/function/set_nivel_importancia/",
-          "dataType":"json",
-          "type":"post",
-          "data":{
-            "id":self.model.id,
-            "value":nivel_importancia,
-            "destacado":0,
-          },
-          "success":function(){
-            self.render();
-          }
-        });
-        return false;
-      },
-      "click .nivel_importancia_1":function(e) {
-        var self = this;
-        e.stopPropagation();
-        e.preventDefault();
-        var nivel_importancia = 1;
-        self.model.set({"nivel_importancia":nivel_importancia});
-        $.ajax({
-          "url":"entradas/function/set_nivel_importancia/",
-          "dataType":"json",
-          "type":"post",
-          "data":{
-            "id":self.model.id,
-            "value":nivel_importancia,
-            "destacado":1,
-          },
-          "success":function(){
-            self.render();
-          }
-        });
-        return false;
-      },
-      "click .nivel_importancia_2":function(e) {
-        var self = this;
-        e.stopPropagation();
-        e.preventDefault();
-        var nivel_importancia = 2;
-        self.model.set({"nivel_importancia":nivel_importancia});
-        $.ajax({
-          "url":"entradas/function/set_nivel_importancia/",
-          "dataType":"json",
-          "type":"post",
-          "data":{
-            "id":self.model.id,
-            "value":nivel_importancia,
-            "destacado":1,
-          },
-          "success":function(){
-            self.render();
-          }
-        });
-        return false;
-      },
       "click .duplicar":function(e) {
         var self = this;
         e.stopPropagation();
@@ -539,15 +482,6 @@
         }
         return false;
       },
-      "click .compilar_html":function(e) {
-        var self = this;
-        e.stopPropagation();
-        e.preventDefault();
-        if (confirm("Desea compilar la pagina?")) {
-          window.open("entradas/function/compilar/"+this.model.id,"_blank");
-        }
-        return false;
-      },            
       "click .eliminar":function(e) {
         var self = this;
         e.stopPropagation();
@@ -560,18 +494,39 @@
       },
     },
     seleccionar: function() {
-      if (this.habilitar_seleccion) {
-        //window.codigo_entrada_seleccionado = this.model.get("codigo");
-        window.entrada_seleccionado = this.model;
-        $('.modal:last').modal('hide');                
-      } else {
-        location.href="app/#entradas/"+this.model.id;
-      }
+      // Cuando editamos un elemento, indicamos a la vista que lo cargue en los campos
+      var self = this;
+      var modelo = new app.models.Entradas({"id":self.model.id});
+      modelo.fetch({
+        "success":function(){
+          var that = self;
+          var v = new app.views.EntradasEditView({
+            model: modelo,
+            view: self.view,
+            lightbox: true,
+          });
+          crearLightboxHTML({
+            "html":v.el,
+            "width":800,
+            "height":400,
+            "callback":function() {
+              that.view.buscar();
+            }            
+          });
+          workspace.crear_editor('entrada_texto',{"toolbar":"Basic"});
+          // Eliminamos los editores para volverlos a crear
+          var en = CKEDITOR.instances["entrada_texto_en"];
+          if (en) CKEDITOR.remove(en);
+          var pt = CKEDITOR.instances["entrada_texto_pt"];
+          if (pt) CKEDITOR.remove(pt);          
+        }
+      });
     },
     initialize: function(options) {
       var self = this;
       _.bindAll(this);
       this.options = options;
+      this.view = options.view;
       this.habilitar_seleccion = (this.options.habilitar_seleccion == undefined || this.options.habilitar_seleccion == false) ? false : true;
       this.render();
     },
@@ -1022,7 +977,6 @@
       this.expand_capacitaciones_key = 0;
 
       this.cargar_categorias_entradas();
-      if (this.$("#entrada_editores").length > 0) this.cargar_editores();
         
       var fecha = this.model.get("fecha");
       // Siempre que se edita se toma la nueva fecha
@@ -1042,36 +996,6 @@
         
       $(this.el).find("#images_tabla").sortable();
       $(this.el).find("#entradas_tabla_relacionados").sortable();
-
-      if (ID_EMPRESA == 70) {
-        try {
-          loadGoogleMaps('3',API_KEY_GOOGLE_MAPS).done(self.render_map);
-        } catch(e) {
-          console.log(e);
-        }
-        setTimeout(function(){
-          if (self.map == undefined) return;
-          google.maps.event.trigger(self.map, "resize");
-          self.map.setCenter(self.coor);
-        },100);
-      }
-
-      if (ID_EMPRESA == 225) this.expand_principal();
-
-      if (this.$("#entradas_clientes").length > 0) {
-        new app.mixins.Select({
-          modelClass: app.models.Cliente,
-          url: "clientes/?tipo=0",
-          render: "#entradas_clientes",
-          name : "id_cliente",
-          firstOptions: ["<option value='0'>-</option>"],
-          selected: this.model.get("id_cliente"),
-        });
-      }
-
-      if (ID_PROYECTO == 5) {
-        this.cargar_comisiones();
-      }
 
       if (self.$("#entrada_etiquetas").length > 0) { 
         self.$("#entrada_etiquetas").select2({
@@ -1105,7 +1029,7 @@
           escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
           minimumInputLength: 1,
         });
-      }      
+      }
 
       // Autoguardado cada 30 segundos
       // Primero se hace un setTimeout para que el window.timer no se elimine por workspace route
@@ -1354,8 +1278,6 @@
           "path_2": ((self.$("#hidden_path_2").length > 0) ? self.$("#hidden_path_2").val() : ""),
           "archivo": (self.$("#hidden_archivo").length > 0) ? self.$("#hidden_archivo").val() : "",
           "mostrar_fecha": ((self.$("#entrada_mostrar_fecha").length > 0) ? (self.$("#entrada_mostrar_fecha").is(":checked")?1:0) : 0),
-          "privada": ((self.$("#entrada_privada").length > 0) ? (self.$("#entrada_privada").is(":checked")?1:0) : 0),
-          "id_comision": (self.$("#entradas_comisiones").length > 0) ? self.$("#entradas_comisiones").val() : 0,
         });
 
         if (this.$("#entrada_pais").length > 0) {
@@ -1405,17 +1327,6 @@
           self.model.set({"categorias_relacionados":categorias_relacionados});
         }
         
-        // Coordenadas
-        if (self.marker != undefined) {
-          var pos = self.marker.getPosition();
-          var zoom = self.map.getZoom();
-          this.model.set({
-            "latitud":(isNaN(pos.lat())) ? 0 : pos.lat(),
-            "longitud":(isNaN(pos.lng())) ? 0 : pos.lng(),
-            "zoom":zoom,
-          });
-        } 
-
         if (this.$("#entradas_clientes").length > 0) {
           this.model.set({
             "id_cliente":this.$("#entradas_clientes").val(),
@@ -1446,90 +1357,6 @@
           });
         }
 
-        // SAMF
-        if (ID_EMPRESA == 285) {
-
-          if (typeof CKEDITOR.instances['entrada_custom_7'] != "undefined") {
-            self.model.set({
-              "custom_7":CKEDITOR.instances['entrada_custom_7'].getData(),
-            });
-          }
-          if (typeof CKEDITOR.instances['entrada_custom_8'] != "undefined") {
-            self.model.set({
-              "custom_8":CKEDITOR.instances['entrada_custom_8'].getData(),
-            });
-          }
-          if (typeof CKEDITOR.instances['entrada_custom_9'] != "undefined") {
-            self.model.set({
-              "custom_9":CKEDITOR.instances['entrada_custom_9'].getData(),
-            });
-          }
-          if (typeof CKEDITOR.instances['entrada_custom_10'] != "undefined") {
-            self.model.set({
-              "custom_10":CKEDITOR.instances['entrada_custom_10'].getData(),
-            });
-          }
-          if (typeof CKEDITOR.instances['entrada_custom_11'] != "undefined") {
-            self.model.set({
-              "custom_11":CKEDITOR.instances['entrada_custom_11'].getData(),
-            });
-          }
-          if (typeof CKEDITOR.instances['entrada_custom_12'] != "undefined") {
-            self.model.set({
-              "custom_12":CKEDITOR.instances['entrada_custom_12'].getData(),
-            });
-          }
-          if (typeof CKEDITOR.instances['entrada_custom_13'] != "undefined") {
-            self.model.set({
-              "custom_13":CKEDITOR.instances['entrada_custom_13'].getData(),
-            });
-          }
-          if (typeof CKEDITOR.instances['entrada_custom_14'] != "undefined") {
-            self.model.set({
-              "custom_14":CKEDITOR.instances['entrada_custom_14'].getData(),
-            });
-          }
-          if (typeof CKEDITOR.instances['entrada_custom_16'] != "undefined") {
-            self.model.set({
-              "custom_16":CKEDITOR.instances['entrada_custom_16'].getData(),
-            });
-          }
-
-        // COLEGIO DE ODONTOLOGOS
-        } else if (ID_EMPRESA == 606) {
-
-          if (typeof CKEDITOR.instances['entrada_custom_8'] != "undefined") {
-            self.model.set({
-              "custom_8":CKEDITOR.instances['entrada_custom_8'].getData(),
-            });
-          }
-          if (typeof CKEDITOR.instances['entrada_custom_9'] != "undefined") {
-            self.model.set({
-              "custom_9":CKEDITOR.instances['entrada_custom_9'].getData(),
-            });
-          }
-          if (typeof CKEDITOR.instances['entrada_custom_10'] != "undefined") {
-            self.model.set({
-              "custom_10":CKEDITOR.instances['entrada_custom_10'].getData(),
-            });
-          }
-          if (typeof CKEDITOR.instances['entrada_custom_11'] != "undefined") {
-            self.model.set({
-              "custom_11":CKEDITOR.instances['entrada_custom_11'].getData(),
-            });
-          }
-          if (typeof CKEDITOR.instances['entrada_custom_12'] != "undefined") {
-            self.model.set({
-              "custom_12":CKEDITOR.instances['entrada_custom_12'].getData(),
-            });
-          }
-          if (typeof CKEDITOR.instances['entrada_custom_13'] != "undefined") {
-            self.model.set({
-              "custom_13":CKEDITOR.instances['entrada_custom_13'].getData(),
-            });
-          }
-        }
-        
         $(".error").removeClass("error");
         return true;
       } catch(e) {
@@ -1552,7 +1379,7 @@
               show(response.mensaje);
               return;
             } else {
-              history.back();
+              $('.modal:last').modal('hide'); // Cerramos si hay otro lightbox abierto
             }
           }
         });
@@ -1573,7 +1400,7 @@
               show(response.mensaje);
               return;
             } else {
-              history.back();
+              $('.modal:last').modal('hide'); // Cerramos si hay otro lightbox abierto
             }
           }
         });
@@ -1600,7 +1427,7 @@
                 show(response.mensaje);
                 return;
               } else {
-                history.back();
+                $('.modal:last').modal('hide'); // Cerramos si hay otro lightbox abierto
               }
             }
           }
