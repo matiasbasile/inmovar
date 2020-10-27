@@ -36,7 +36,7 @@
     <div class="form-bot container">
       <form onsubmit="return enviar()">
         <label for="email">Correo electrónico</label><br>
-        <input type="text" id="email" placeholder="Ingresa tu email"><br>
+        <input type="text" id="email" value="<?php echo isset($_GET["email"]) ? $_GET["email"] : "" ?>" placeholder="Ingresa tu email"><br>
 
         <label for="password">Contraseña</label><br>
         <input type="password" id="password" placeholder="Ingresa tu contraseña"><br>

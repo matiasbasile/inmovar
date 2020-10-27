@@ -8,6 +8,37 @@ class Notificacion_Model extends Abstract_Model {
 		parent::__construct("com_log","id");
 	}
 
+  // Campo "importancia", se usa para tipificar las notificaciones
+  // S: Indica que es una solicitud de otra inmobiliaria
+  // W: Notificacion de alerta de similitud de propiedades
+  // N: Notificacion normal
+  // B: Bienvenida a una nueva inmobiliaria
+  // V: Consultas vencidas
+  // Z: Alerta de busquedas nuevas
+
+  // Esta funcion se encarga de controlar que haya busquedas nuevas de colegas
+  // Si hay, contamos la cantidad y la ponemos como una notificacion
+  // solo puede haber una notificacion de estas a la vez,
+  // por lo tanto eliminamos las anteriores en caso de que hayan para que no se repitan
+  function controlar_busquedas_nuevas($config = array()) {
+    $id_empresa = (isset($config["id_empresa"])) ? $config["id_empresa"] : parent::get_empresa();
+    $importancia = "Z";
+    $sql = "DELETE FROM com_log WHERE id_empresa = $id_empresa AND importancia = '$importancia' ";
+    $this->db->query($sql);
+    $this->load->model("Busqueda_Model");
+    $busquedas = $this->Busqueda_Model->buscar(array(
+      "not_id_empresa"=>$id_empresa,
+      "solo_contar"=>1
+    ));
+    if ($busquedas["total"]>0) {
+      $this->insertar(array(
+        "id_empresa"=>$id_empresa,
+        "texto"=>"Hay ".$busquedas["total"]." búsquedas activas",
+        "importancia"=>$importancia,
+      ));
+    }
+  }
+
   function insertar($config = array()) {
     $id_empresa = (isset($config["id_empresa"])) ? $config["id_empresa"] : parent::get_empresa();
     $fecha = (isset($config["fecha"])) ? $config["fecha"] : date("Y-m-d H:i:s");
@@ -37,7 +68,7 @@ class Notificacion_Model extends Abstract_Model {
     $q = $this->db->query($sql);
     foreach($q->result() as $r) {
       $r->titulo = $r->nombre;
-      $r->tipo = 1; // Indica que es una solicitud
+      $r->tipo = "S"; // Indica que es una solicitud
       $r->imagen = (!empty($r->path)) ? "/admin/".$r->path : "";
       $r->texto = "Solicita publicar tus propiedades en su sitio web";
       $lista[] = $r;
@@ -50,7 +81,7 @@ class Notificacion_Model extends Abstract_Model {
     foreach($q->result() as $r) {
       $r->titulo = $r->texto;
       $r->texto = $r->texto_2;
-      $r->tipo = 2; // Notificacion de alerta de similitud
+      $r->tipo = "W"; // Notificacion de alerta de similitud
       $r->visto = $r->leida;
       $lista[] = $r;
     }
@@ -62,10 +93,34 @@ class Notificacion_Model extends Abstract_Model {
     foreach($q->result() as $r) {
       $r->titulo = $r->texto;
       $r->texto = $r->texto_2;
-      $r->tipo = 3; // Notificacion normal
+      $r->tipo = "N"; // Notificacion normal
       $r->visto = $r->leida;
       $lista[] = $r;
     }
+
+    // Buscamos si hay alguna notificacion de busquedas nuevas
+    $sql = "SELECT * FROM com_log WHERE id_empresa = $id_empresa AND importancia = 'Z' AND leida = 0 ";
+    $sql.= "ORDER BY fecha DESC ";
+    $q = $this->db->query($sql);
+    foreach($q->result() as $r) {
+      $r->titulo = $r->texto;
+      $r->texto = $r->texto_2;
+      $r->tipo = "Z"; // Notificacion de busquedas nuevas
+      $r->visto = $r->leida;
+      $lista[] = $r;
+    }    
+
+    // Buscamos si hay alguna notificacion de tareas vencidas
+    $sql = "SELECT * FROM com_log WHERE id_empresa = $id_empresa AND importancia = 'V' AND leida = 0 ";
+    $sql.= "ORDER BY fecha DESC ";
+    $q = $this->db->query($sql);
+    foreach($q->result() as $r) {
+      $r->titulo = $r->texto;
+      $r->texto = $r->texto_2;
+      $r->tipo = "V"; // Notificacion de consultas vencidas
+      $r->visto = $r->leida;
+      $lista[] = $r;
+    }      
 
     // Aviso de nueva inmobiliaria
     $sql = "SELECT * FROM com_log WHERE id_empresa = $id_empresa AND importancia = 'B' AND leida = 0 ";
@@ -74,7 +129,7 @@ class Notificacion_Model extends Abstract_Model {
     foreach($q->result() as $r) {
       $r->titulo = $r->texto;
       $r->texto = $r->texto_2;
-      $r->tipo = 4; // Bienvenido
+      $r->tipo = "B"; // Bienvenido
       $r->visto = $r->leida;
       $lista[] = $r;
     }

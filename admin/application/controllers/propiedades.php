@@ -289,6 +289,7 @@ class Propiedades extends REST_Controller {
     echo json_encode($resultado);
   }   
 
+  // USADO EN UPLOAD MULTIPLE DE LA GALERIA DE FOTOS
   function upload_images($id_empresa = 0) {
     $id_empresa = (empty($id_empresa)) ? $this->get_empresa() : $id_empresa;
     return parent::upload_images(array(

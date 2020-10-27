@@ -3,7 +3,7 @@
     urlRoot: "notificaciones/",
     defaults: {
       titulo: "",
-      tipo: 0, // Tipo de Notificacion: lo usamos para cambiar el diseño
+      tipo: "", // Tipo de Notificacion: lo usamos para cambiar el diseño
       texto: "",
       imagen: "",
       link: "",

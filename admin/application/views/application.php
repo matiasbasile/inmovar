@@ -142,6 +142,7 @@ if (file_exists("application/views/templates/inm/tipos_inmueble.php")) include_o
 if (file_exists("application/views/templates/inm/tipos_operacion.php")) include_once ("application/views/templates/inm/tipos_operacion.php");
 if (file_exists("application/views/templates/inm/tipos_estado.php")) include_once ("application/views/templates/inm/tipos_estado.php");
 if (file_exists("application/views/templates/inm/propiedades.php")) include_once ("application/views/templates/inm/propiedades.php");
+if (file_exists("application/views/templates/inm/busquedas.php")) include_once ("application/views/templates/inm/busquedas.php");
 if (file_exists("application/views/templates/inm/permisos_red.php")) include_once ("application/views/templates/inm/permisos_red.php");
 ?>
 <!-- Modulo de Permisos -->
@@ -212,6 +213,9 @@ var control = new ControlPermiso();
 
 <?php /* <script type="text/javascript" src="resources/js/common.js"></script> */ ?>
 <script type="text/javascript" src="resources/js/libs/ckeditor_4.6/ckeditor.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
 <script type="text/javascript">
 var ajax_request = 0;

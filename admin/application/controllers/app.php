@@ -216,6 +216,11 @@ class App extends CI_Controller {
       }
 
       $this->load->model("Notificacion_Model");
+
+      // Controlamos que haya notificaciones sobre busquedas nuevas
+      $this->Notificacion_Model->controlar_busquedas_nuevas();
+
+      // Contamos la cantidad de notificaciones que tenemos que mostrar
       $notif = $this->Notificacion_Model->buscar();
       $total_notificaciones = $notif["total"];
     }
@@ -680,6 +685,7 @@ class App extends CI_Controller {
     $array[] = 'application/javascript/modules/web/web_configuracion.js';
     $array[] = 'application/javascript/modules/config/mi_cuenta.js';
     $array[] = 'application/javascript/modules/inm/propiedades.js';
+    $array[] = 'application/javascript/modules/inm/busquedas.js';
     $array[] = 'application/javascript/modules/inm/permisos_red.js';
     $array[] = 'application/javascript/modules/inm/dashboard.js';
     $array[] = 'application/javascript/modules/inm/tipos_operacion.js';

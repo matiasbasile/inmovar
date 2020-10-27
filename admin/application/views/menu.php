@@ -31,6 +31,9 @@
               <a href="app/#propiedades" class=""><i class="material-icons md-22">home</i><span>Propiedades</span></a>
             </li>
             <li>
+              <a href="app/#busquedas" class=""><i class="material-icons md-22">search</i><span>Búsquedas</span></a>
+            </li>
+            <li>
               <a href="app/#permisos_red" class=""><i class="material-icons md-22">share</i><span>Red Inmovar</span></a>
             </li>
             <li>

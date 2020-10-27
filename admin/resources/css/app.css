@@ -5124,6 +5124,7 @@ input[type=number].no-spinner::-webkit-outer-spin-button {
   -webkit-border-radius: 0px;
   width: 75px;
   height: 75px;
+  object-fit: cover;
 }
 #permisos_red_tabla .customcomplete-image { 
   object-fit: contain;
@@ -5253,3 +5254,15 @@ tfoot tr td { white-space: nowrap !important; }
 
 .id_origen.active { border-color: var(--c1); background-color: var(--c1); }
 .id_origen.active > i { color: white; }
+
+.col-md-20 { float: left; padding-left: 5px; padding-right: 5px; }
+@media (min-width: 768px) {
+  .col-md-20 { width: 20%; }
+}
+
+.story-container { margin-top: 50px; }
+.story-preview { width: 64px; height: 64px; border-radius: 100%; display: inline-block; margin-right: 15px; overflow: hidden; text-align: center; }
+.story-preview.nuevo { background-color: var(--c1); }
+.story-preview.nuevo > span { color: white; line-height: 64px; font-size: 32px; }
+.story-preview:hover { box-shadow: 0px 0px 10px #ccc; }
+.story-preview > img { width: 100%; object-fit: cover; height: 100%; display: block; }

@@ -396,7 +396,7 @@
 
 <script type="text/template" id="notificacion_item_template">
   <?php // NOTIFICACION DE BIENVENIDA DE UNA NUEVA INMOBILIARIA ?>
-  <% if (tipo == 4) { %>
+  <% if (tipo == "B") { %>
     <div class="panel notification-panel mb0 tac">
       <a href="javascript:void(0)" class="fr cp limpiar_notificacion">
         <span class="material-icons">close</span>
@@ -412,7 +412,7 @@
     </div>
 
   <?php // SOLICITUD PARA COMPARTIR EN LA WEB ?>
-  <% } else if (tipo == 1) { %>
+  <% } else if (tipo == "S") { %>
     <div class="panel notification-panel mb0 tac">
       <% if (!isEmpty(imagen)) { %>
         <div class="media">
@@ -442,7 +442,7 @@
     </div>
 
   <?php // ALERTA DE SIMILITUD DE PROPIEDADES ?>
-  <% } else if (tipo == 2) { %>    
+  <% } else if (tipo == "W") { %>    
     <div class="panel notification-panel mb0 tac">
       <a href="javascript:void(0)" class="fr cp limpiar_notificacion">
         <span class="material-icons">close</span>
@@ -457,8 +457,24 @@
       </div>
     </div>
 
+  <?php // ALERTA DE BUSQUEDAS NUEVAS ?>
+  <% } else if (tipo == "Z") { %>
+    <div class="panel notification-panel mb0 tac">
+      <a href="javascript:void(0)" class="fr cp limpiar_notificacion">
+        <span class="material-icons">close</span>
+      </a>
+      <div class="tac">
+        <span style="font-size: 36px;" class="material-icons">warning</span>
+      </div>
+      <h3>Nuevas búsquedas</h3>
+      <p><%= texto %></p>
+      <div class="mt5 mb5">
+        <a href="app/#busquedas/" class="btn btn-block btn-info">Ver búsquedas</a>
+      </div>
+    </div>
+
   <?php // ALERTA DE CONSULTAS VENCIDAS ?>
-  <% } else if (tipo == 3) { %>
+  <% } else if (tipo == "V") { %>
     <div class="panel notification-panel mb0 tac">
       <a href="javascript:void(0)" class="fr cp limpiar_notificacion">
         <span class="material-icons">close</span>

@@ -40,8 +40,13 @@
 
   </div>
 <% } else { %>
+
   <div class="centrado rform">
+
     <% if (!seleccionar) { %>
+
+      <?php include("historias.php"); ?>
+
       <div class="header-lg">
         <div class="row">
           <div class="col-md-6">
