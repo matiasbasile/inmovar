@@ -447,61 +447,25 @@ class Login extends CI_Controller {
               $web_configuracion = $q->row();
               $this->db->query("UPDATE web_configuracion SET primer_login = 0 WHERE id_empresa = $usuario->id_empresa ");
 
-              $this->load->model("Email_Template_Model");
-              if ($web_configuracion->tipo_empresa == 4) {
-                // La Plata Construye
-                $template = $this->Email_Template_Model->get_by_key("primeros-pasos",708);
-                if (!empty($template)) {
-                  $bcc_array = array("basile.matias99@gmail.com","misticastudio@gmail.com","leonardo.rica@gmail.com");
-                  require APPPATH.'libraries/Mandrill/Mandrill.php';
-                  $body = $template->texto;
-                  $body = str_replace("{{email}}",$usuario->email,$body);
-                  $body = str_replace("{{nombre}}",$usuario->nombre,$body);
-                  mandrill_send(array(
-                    "to"=>$usuario->email,
-                    "from"=>"no-reply@varcreative.com",
-                    "from_name"=>"La Plata Construye",
-                    "subject"=>$template->nombre,
-                    "body"=>$body,
-                    "bcc"=>$bcc_array,
-                  ));
-                }
-              } else if ($web_configuracion->id_proyecto == 2) {
-                // SHOPVAR
-                $template = $this->Email_Template_Model->get_by_key("primeros-pasos",119);
-                if (!empty($template)) {
-                  $bcc_array = array("basile.matias99@gmail.com","misticastudio@gmail.com");
-                  require APPPATH.'libraries/Mandrill/Mandrill.php';
-                  $body = $template->texto;
-                  $body = str_replace("{{email}}",$usuario->email,$body);
-                  $body = str_replace("{{nombre}}",$usuario->nombre,$body);
-                  mandrill_send(array(
-                    "to"=>$usuario->email,
-                    "from"=>"no-reply@varcreative.com",
-                    "from_name"=>"Shopvar",
-                    "subject"=>$template->nombre,
-                    "body"=>$body,
-                    "bcc"=>$bcc_array,
-                  ));
-                }
-              } else if ($web_configuracion->id_proyecto == 3) {
-                // INMOVAR
-                $template = $this->Email_Template_Model->get_by_key("primeros-pasos",118);
-                if (!empty($template)) {
-                  $bcc_array = array("basile.matias99@gmail.com","misticastudio@gmail.com");
-                  require APPPATH.'libraries/Mandrill/Mandrill.php';
-                  $body = $template->texto;
-                  $body = str_replace("{{email}}",$usuario->email,$body);
-                  $body = str_replace("{{nombre}}",htmlentities($usuario->nombre,ENT_QUOTES),$body);
-                  mandrill_send(array(
-                    "to"=>$usuario->email,
-                    "from"=>"no-reply@varcreative.com",
-                    "from_name"=>"Inmovar",
-                    "subject"=>$template->nombre,
-                    "body"=>$body,
-                    "bcc"=>$bcc_array,
-                  ));
-                }
+              $db2 = $this->load->database('db2', TRUE);
+              $sql = "SELECT * FROM crm_emails_templates ";
+              $sql.= "WHERE clave = 'primeros-pasos' AND id_empresa = 118 ";
+              $query = $db2->query($sql);
+              $template = $query->row();
+              if (!empty($template)) {
+                $bcc_array = array("basile.matias99@gmail.com","misticastudio@gmail.com");
+                require APPPATH.'libraries/Mandrill/Mandrill.php';
+                $body = $template->texto;
+                $body = str_replace("{{email}}",$usuario->email,$body);
+                $body = str_replace("{{nombre}}",htmlentities($usuario->nombre,ENT_QUOTES),$body);
+                mandrill_send(array(
+                  "to"=>$usuario->email,
+                  "from"=>"no-reply@varcreative.com",
+                  "from_name"=>"Inmovar",
+                  "subject"=>$template->nombre,
+                  "body"=>$body,
+                  "bcc"=>$bcc_array,
+                ));
               }
             }
           }
