@@ -626,20 +626,21 @@ class Propiedades_Meli extends REST_Controller {
     }
 
     // Imagenes
+    $base_url = "https://www.varcreative.com/sistema/";
     $body["pictures"] = array();
     // Imagen principal
     $body["pictures"][] = array(
-      "source"=>"https://www.varcreative.com/admin/".$propiedad->path,
+      "source"=>(strpos($propiedad->path, "https://") === 0 || strpos($propiedad->path, "http://") === 0) ? $propiedad->path : $base_url.$propiedad->path,
     );
 
     foreach($propiedad->images as $img) {
       $body["pictures"][] = array(
-        "source"=>"https://www.varcreative.com/admin/".$img,
+        "source"=>(strpos($img, "https://") === 0 || strpos($img, "http://") === 0) ? $img : $base_url.$img,
       );
     }
     foreach($propiedad->images_meli as $img) {
       $body["pictures"][] = array(
-        "source"=>"https://www.varcreative.com/admin/".$img,
+        "source"=>(strpos($img, "https://") === 0 || strpos($img, "http://") === 0) ? $img : $base_url.$img,
       );
     }
     if (empty($body["pictures"])) {

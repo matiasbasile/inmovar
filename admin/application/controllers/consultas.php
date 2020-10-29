@@ -228,6 +228,7 @@ class Consultas extends REST_Controller {
     $order = $this->input->get("order");
     $id_origen = $this->input->get("id_origen");
     $id_usuario = ($this->input->get("id_usuario") === FALSE) ? 0 : $this->input->get("id_usuario");
+    $vencidas = ($this->input->get("vencidas") === FALSE) ? 0 : $this->input->get("vencidas");
     $id_origenes = $this->input->get("id_origenes");
     if (!empty($order_by) && !empty($order)) $order = $order_by." ".$order;
     else $order = "";
@@ -239,6 +240,7 @@ class Consultas extends REST_Controller {
       "order"=>$order,
       "id_origen"=>$id_origen,
       "id_usuario"=>$id_usuario,
+      "vencidas"=>$vencidas,
       "id_origenes"=>$id_origenes,
       "tipo"=>$tipo,
     );
@@ -529,33 +531,6 @@ class Consultas extends REST_Controller {
       $sql.= "no_leido = 1 ";
       $sql.= "WHERE id = $contacto->id AND id_empresa = $id_empresa ";
       $this->db->query($sql);
-
-      // Si estamos consultando por una propiedad
-      if (!empty($id_propiedad)) {
-
-        // Guardamos el interes en la propiedad
-        $sql = "SELECT * FROM inm_propiedades_contactos WHERE id_empresa = '$id_empresa' AND id_contacto = '$contacto->id' AND id_propiedad = '$id_propiedad'  ";
-        $q_interesado = $this->db->query($sql);
-        if ($q_interesado->num_rows() == 0) {
-          $sql = "INSERT INTO inm_propiedades_contactos (id_empresa,id_contacto,fecha,id_propiedad,id_empresa_propiedad) VALUES(";
-          $sql.= " '$id_empresa','$contacto->id',NOW(),'$id_propiedad','$id_empresa_relacion' )";
-          $this->db->query($sql);
-        }
-
-        // Guardamos el tipo de busqueda dependiendo de los valores de la propiedad que consulto
-        $sql = "INSERT INTO inm_busquedas_contactos (id_empresa,id_cliente,id_localidad,id_tipo_operacion,id_tipo_inmueble,fecha) VALUES(";
-        $sql.= " '$id_empresa','$contacto->id','$propiedad->id_localidad','$propiedad->id_tipo_operacion','$propiedad->id_tipo_inmueble',NOW() )";
-        $this->db->query($sql);
-
-        // Etiquetamos automaticamente al cliente de acuerdo al tipo de propiedad que consulto
-        $this->load->model("Cliente_Model");
-        $tag = new stdClass();
-        $tag->id_empresa = $id_empresa;
-        $tag->id_cliente = $contacto->id;
-        $tag->nombre = $propiedad->tipo_operacion;
-        $tag->orden = 0;
-        $this->Cliente_Model->save_tag($tag);
-      }
 
       // TODO: ESTO POR AHORA ESTA PARA YACOUB, PERO DESPUES HABRIA QUE ELIMINARLO
       $tiene_email = FALSE;

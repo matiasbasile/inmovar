@@ -28,6 +28,7 @@
       altura: "",
       piso: "",
       numero: "",
+      titulo: "", // Este campo no se guarda sino que se usa para mostrar nada mas
       subtitulo: "",
       compartida: 1,
       entre_calles: "",

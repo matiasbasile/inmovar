@@ -632,7 +632,8 @@
         }
         this.model.save({},{
           success: function(model,response) {
-            $('.modal:last').modal('hide'); // Cerramos si hay otro lightbox abierto
+            location.reload();
+            //$('.modal:last').modal('hide'); // Cerramos si hay otro lightbox abierto
           }
         });
       }

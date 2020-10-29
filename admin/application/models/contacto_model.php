@@ -8,6 +8,59 @@ class Contacto_Model extends Abstract_Model {
 		parent::__construct("clientes","id","nombre ASC");
 	}
 
+  // Se esta creando un nuevo contacto desde el panel de control
+  function insert($data) {
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+    $this->load->helper("fecha_helper");
+    $id_propiedad = (isset($data->id_propiedad)) ? $data->id_propiedad : 0;
+    $id_contacto = (isset($data->id_contacto)) ? $data->id_contacto : 0;
+    $id_origen = (isset($data->id_origen)) ? $data->id_origen : 0;
+    $id_usuario = (isset($data->id_usuario)) ? $data->id_usuario : 0;
+    $texto = (isset($data->texto)) ? $data->texto : "";
+    $asunto = (isset($data->asunto)) ? $data->asunto : "";
+    $fecha_ult_operacion = (isset($data->fecha_ult_operacion)) ? $data->fecha_ult_operacion : date("d/m/Y H:i:s");
+    $data->fecha_ult_operacion = fecha_mysql($fecha_ult_operacion);
+
+    // Consultamos la fecha de vencimiento de acuerdo a la configuracion del tipo de consulta
+    if (isset($data->tipo)) {
+      $this->load->model("Consulta_Tipo_Model");
+      $tipo_estado = $this->Consulta_Tipo_Model->get($data->tipo);
+      if ($tipo_estado->tiempo_vencimiento > 0) {
+        $datetime = DateTime::createFromFormat('d/m/Y H:i', $fecha_ult_operacion);
+        if ($datetime != FALSE) {
+          $datetime->modify("+".$tipo_estado->tiempo_vencimiento." days");
+          $data->fecha_vencimiento = $datetime->format("Y-m-d H:i:s");
+        }
+      }      
+    }
+
+    if ($id_contacto == 0) {
+      $id = parent::insert($data);
+    } else {
+      parent::update($id_contacto,$data);
+      $id = $id_contacto;
+    }
+    // Tambien tenemos que insertar la consulta
+    if (!empty($id_usuario)) {
+      $this->load->model("Consulta_Model");
+      $consulta = new stdClass();
+      $consulta->tipo = 0; // Entrada
+      $consulta->id_contacto = $id;
+      $consulta->id_empresa = $data->id_empresa;
+      $consulta->id_origen = $id_origen;
+      $consulta->id_usuario = $id_usuario;
+      $consulta->fecha = $fecha_ult_operacion;
+      $consulta->texto = $texto;
+      $consulta->asunto = $asunto;
+      $consulta->id_referencia = $id_propiedad;
+      $this->Consulta_Model->insert($consulta);
+    }
+
+    return $id;
+  }
+
 	function get($id,$id_empresa = 0,$config = array()) {
 		if (empty($id)) return FALSE;
 		if ($id_empresa == 0) $id_empresa = parent::get_empresa();
@@ -25,7 +78,7 @@ class Contacto_Model extends Abstract_Model {
 		$sql.= "  IF (L.nombre IS NULL,'',L.nombre) AS localidad ";
 		$sql.= "FROM clientes C ";
 		$sql.= " LEFT JOIN tipos_iva TI ON (C.id_tipo_iva = TI.id) ";
-    $sql.= "LEFT JOIN crm_consultas_tipos TIP ON (C.tipo = TIP.id AND C.id_empresa = TIP.id_empresa) ";
+    $sql.= " LEFT JOIN crm_consultas_tipos TIP ON (C.tipo = TIP.id AND C.id_empresa = TIP.id_empresa) ";
 		$sql.= " LEFT JOIN com_localidades L ON (C.id_localidad = L.id) ";
 		$sql.= "WHERE C.id = $id ";
 		$sql.= "AND C.id_empresa = $id_empresa ";
@@ -34,31 +87,25 @@ class Contacto_Model extends Abstract_Model {
 		$row = $query->row(); 
     if ($row !== FALSE) {
       $this->load->model("Consulta_Model");
-      $res = $this->Consulta_Model->buscar(array(
+      $res = $this->Consulta_Model->buscar_consultas(array(
         "id_empresa"=>$id_empresa,
         "id_contacto"=>$row->id,
-        "id_sucursal"=>$id_sucursal,
         "offset"=>999999,
       ));
       $row->consultas = $res["results"];
 
       $sql = "SELECT CO.id, CO.subtitulo, CO.id_origen, CO.id_usuario,  ";
       $sql.= " IF(RES.id IS NULL,0,1) AS respondido, ";
-      if ($empresa->id_proyecto == 3) {
-        $sql.= " IF(PRO.nombre IS NULL,'',PRO.nombre) AS propiedad_nombre, ";
-        $sql.= " IF(PRO.id_tipo_operacion IS NULL,0,PRO.id_tipo_operacion) AS propiedad_id_tipo_operacion, ";
-        $sql.= " IF(OPE.id IS NULL,'',OPE.nombre) AS propiedad_tipo_operacion, ";
-      }
-      if ($empresa->id_proyecto == 3) 
+      $sql.= " IF(PRO.nombre IS NULL,'',PRO.nombre) AS propiedad_nombre, ";
+      $sql.= " IF(PRO.id_tipo_operacion IS NULL,0,PRO.id_tipo_operacion) AS propiedad_id_tipo_operacion, ";
+      $sql.= " IF(OPE.id IS NULL,'',OPE.nombre) AS propiedad_tipo_operacion, ";
       $sql.= " IF(USER.nombre IS NULL,'',USER.nombre) AS respondido_por, ";
       $sql.= " IF(RES.subtitulo IS NULL,'',RES.subtitulo) AS subtitulo ";
       $sql.= "FROM crm_consultas CO ";
       $sql.= "LEFT JOIN crm_consultas RES ON (RES.id_empresa = CO.id_empresa AND RES.id_contacto = CO.id_contacto AND RES.id_email_respuesta = CO.id AND RES.tipo = 1) ";
       $sql.= "LEFT JOIN com_usuarios USER ON (RES.id_usuario = USER.id AND RES.id_empresa = USER.id_empresa) ";
-      if ($empresa->id_proyecto == 3) {
-        $sql.= "LEFT JOIN inm_propiedades PRO ON (PRO.id_empresa = CO.id_empresa AND PRO.id = CO.id_referencia) ";
-        $sql.= "LEFT JOIN inm_tipos_operacion OPE ON (PRO.id_tipo_operacion = OPE.id) ";
-      }
+      $sql.= "LEFT JOIN inm_propiedades PRO ON (PRO.id_empresa = CO.id_empresa AND PRO.id = CO.id_referencia) ";
+      $sql.= "LEFT JOIN inm_tipos_operacion OPE ON (PRO.id_tipo_operacion = OPE.id) ";
       $sql.= "WHERE CO.id_contacto = $row->id AND CO.id_empresa = $row->id_empresa ";
       $sql.= "AND CO.tipo = 0 ";
       $sql.= "AND CO.id_origen NOT IN (20,32) "; // Que no tome las creaciones de usuario ni las notificaciones del mismo sistema

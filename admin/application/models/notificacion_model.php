@@ -39,6 +39,34 @@ class Notificacion_Model extends Abstract_Model {
     }
   }
 
+
+  // Esta funcion se encarga de controlar si hay consultas vencidas
+  // Si hay, contamos la cantidad y la ponemos como una notificacion
+  // solo puede haber una notificacion de estas a la vez,
+  // por lo tanto eliminamos las anteriores en caso de que hayan para que no se repitan
+  function controlar_consultas_vencidas($config = array()) {
+    $id_empresa = (isset($config["id_empresa"])) ? $config["id_empresa"] : parent::get_empresa();
+    $importancia = "V";
+    $sql = "DELETE FROM com_log WHERE id_empresa = $id_empresa AND importancia = '$importancia' ";
+    $this->db->query($sql);
+    $this->load->model("Consulta_Model");
+    $total = $this->Consulta_Model->buscar(array(
+      "id_empresa"=>$id_empresa,
+      "vencidas"=>1,
+      "limit"=>0,
+      "offset"=>1,
+      "solo_contar"=>1
+    ));
+    if ($total>0) {
+      $this->insertar(array(
+        "id_empresa"=>$id_empresa,
+        "texto"=>"Tenés $total consultas sin atender",
+        "importancia"=>$importancia,
+      ));
+    }
+  }
+
+
   function insertar($config = array()) {
     $id_empresa = (isset($config["id_empresa"])) ? $config["id_empresa"] : parent::get_empresa();
     $fecha = (isset($config["fecha"])) ? $config["fecha"] : date("Y-m-d H:i:s");
@@ -120,7 +148,7 @@ class Notificacion_Model extends Abstract_Model {
       $r->tipo = "V"; // Notificacion de consultas vencidas
       $r->visto = $r->leida;
       $lista[] = $r;
-    }      
+    }
 
     // Aviso de nueva inmobiliaria
     $sql = "SELECT * FROM com_log WHERE id_empresa = $id_empresa AND importancia = 'B' AND leida = 0 ";

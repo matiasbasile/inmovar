@@ -281,7 +281,7 @@
       createdatepicker(this.$("#propiedad_reserva_fecha_pago"),moment().format("DD/MM/YYYY"));      
 
       new app.mixins.Select({
-        modelClass: app.models.Propiedad,
+        modelClass: app.models.Propiedades,
         url: "propiedades/",
         render: "#propiedad_reserva_propiedades",
         fields: ["capacidad_maxima"],

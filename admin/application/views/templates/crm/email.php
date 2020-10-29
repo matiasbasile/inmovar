@@ -1,71 +1,76 @@
-<script type="text/template" id="emails_resultados_template">
-</script>
-
-<script type="text/template" id="emails_item_resultados_template">
-    <td class="w25 p5"><i title="Eliminar" class="fa fa-times eliminar text-danger" data-id="<%= id %>" /></td>
-</script>
-
-
 <script type="text/template" id="email_template">
 <div class="panel panel-default mb0">
-    <div class="panel-heading font-bold">
-        Enviar Email
-        <i class="pull-right cerrar_lightbox fa fa-times cp"></i>
-    </div>
-    <div class="panel-body">
-        <div class="form-horizontal">
-            <div class="form-group">
-                <div class="col-xs-12">
-                    <select id="email_from" class="form-control">
-                        <option><%= EMAIL_USUARIO %></option>
-                        <option><%= EMAIL %></option>
-                        <% if (email_from != EMAIL && email_from != EMAIL_USUARIO && !isEmpty(email_from)) { %>
-                            <option><%= email_from %></option>
-                        <% } %>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-xs-12">
-                    <input type="text" placeholder="Para: " name="email_to" id="email_nombre" value="<%= email_to %>" class="form-control"/>
-                </div>
-            </div>            
-            <div class="form-group">
-                <div class="col-xs-12">
-                    <input type="text" name="asunto" id="email_asunto" placeholder="Asunto: " value="<%= asunto %>" class="form-control"/>
-                </div>
-            </div>
-
-            <?php
-            single_file_upload(array(
-                "name"=>"archivo",
-                "label"=>"Adjuntar",
-                "url"=>"/admin/emails/function/save_file/",
-            )); ?>
-
-            <% if (adjuntos.length > 0) { %>
-                <div class="form-group">
-                    <div class="col-xs-12">
-                        <span class="m-r">Adjuntos: </span>
-                        <% for (var i=0;i<adjuntos.length;i++) { %>
-                            <% var adjunto = adjuntos[i]; %>
-                            <button data-position="<%= i %>" class="btn btn-default m-b"><%= adjunto.nombre %><i class="ml5 eliminar_adjunto fa fa-times"></i></button>
-                        <% } %>
-                    </div>
-                </div>
-            <% } %>
-            <div class="form-group">
-                <div class="col-xs-12">
-                    <textarea name="texto" id="email_texto"><%= texto %></textarea>
-                </div>
-            </div>            
+  <div class="panel-heading font-bold">
+    Enviar Email
+    <i class="pull-right cerrar_lightbox fa fa-times cp"></i>
+  </div>
+  <div class="panel-body">
+    <div class="form-horizontal">
+      <div class="form-group">
+        <div class="col-sm-3 col-md-2 col-xs-12">
+          <label class="control-label">Para:</label>
         </div>
+        <div class="col-sm-9 col-md-10 col-xs-12">
+          <input type="text" name="email" id="email_nombre" value="<%= email %>" class="form-control"/>
+        </div>
+      </div>      
+      <div class="form-group">
+        <div class="col-sm-3 col-md-2 col-xs-12">
+          <label class="control-label">Asunto:</label>
+        </div>
+        <div class="col-sm-9 col-md-10 col-xs-12">
+          <div class="input-group">
+            <input type="text" name="asunto" id="email_asunto" value="<%= asunto %>" class="form-control"/>
+            <div class="input-group-btn dropdown">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Plantillas <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu pull-right">
+                <li><a class="cargar_plantilla" href="javascript:void(0)">Cargar</a></li>
+                <li><a class="guardar_plantilla" href="javascript:void(0)">Guardar</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group col-xs-12">
+        <span class="btn btn-default fileinput-button">
+          <i class="glyphicon glyphicon-folder-open m-r-xs"></i>
+          <span>Adjuntar archivos</span>
+          <input id="fileupload" type="file" name="files[]" multiple>
+        </span>
+        <div id="progress" class="progress" style="display: none">
+          <div class="progress-bar progress-bar-success"></div>
+        </div>
+        <div id="files" class="files"></div>
+      </div>
+
+      <% if (links_adjuntos.length > 0) { %>
+        <div class="form-group">
+          <div class="col-sm-3 col-md-2 col-xs-12">
+            <label class="control-label">Fichas:</label>
+          </div>
+          <div class="col-sm-9 col-md-10 col-xs-12">
+            <% for (var i=0;i< links_adjuntos.length;i++) { %>
+              <% var adjunto = links_adjuntos[i]; %>
+              <button data-position="<%= i %>" class="btn btn-default m-b"><%= adjunto.nombre %><i class="ml5 eliminar_adjunto fa fa-times"></i></button>
+            <% } %>
+          </div>
+        </div>
+      <% } %>
+
+      <div class="form-group">
+        <div class="col-xs-12">
+          <textarea name="texto" id="email_texto"><%= texto %></textarea>
+        </div>
+      </div>      
     </div>
-    <div class="panel-footer clearfix">
-        <button class="cerrar_lightbox btn btn-danger">Cancelar</button>
-        <button class="btn guardar pull-right btn-info btn-addon">
-            <i class="fa fa-send"></i><span>Enviar</span>
-        </button>
-    </div>
+  </div>
+  <div class="panel-footer clearfix">
+    <button class="btn guardar pull-right btn-info btn-addon">
+      <i class="fa fa-send"></i><span>Enviar</span>
+    </button>
+  </div>
 </div>
 </script>

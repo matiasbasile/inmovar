@@ -578,7 +578,7 @@ body {
 }
 .app {
   height: auto;
-  min-height: 100%;
+  /*min-height: 100%;*/
   width: 100%;
   position: relative;
   padding-top: 56px;
@@ -1768,14 +1768,14 @@ fieldset[disabled] .btn-dark.active {
 }
 .btn-white {
   background-color: white;
-  border: solid 1px #0078bd;
-  color: #0078bd;
+  border: solid 1px var(--c1);
+  color: var(--c1);
 }
 .btn-white:hover,
 .btn-white:focus,
 .btn-white:active,
 .btn-white.active {
-  background-color: #0078bd; 
+  background-color: var(--c1); 
   color: white;
 }
 

@@ -44,7 +44,7 @@
         <input type="submit" class="button-submit" value="Ingresar a Inmovar"><br>
 
         <input type="checkbox" id="aceptar_terminos" />
-        <label for="aceptar_terminos">Acepto los <a href="">términos y condiciones</a></label>
+        <label for="aceptar_terminos">Acepto los <a target="_blank" href="https://www.inmovar.com/entrada/terminos-y-condiciones-41238">términos y condiciones</a></label>
       </form>
       <a href="login/recuperar/">¿Olvidaste tu contraseña?</a>
     </div>

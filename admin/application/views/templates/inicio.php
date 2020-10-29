@@ -6,7 +6,7 @@
           <h1>Dashboard</h1>
         </div>
         <div class="col-xs-12 col-sm-3 tar">
-          <input type="text" id="inicio_rango_fechas" value="Última Semana" class="form-control w100p calendar fr mt20">
+          <input type="text" id="inicio_rango_fechas" disabled value="Última Semana" class="form-control w100p calendar fr mt20">
         </div>
       </div>
     </div>
@@ -479,8 +479,11 @@
       <a href="javascript:void(0)" class="fr cp limpiar_notificacion">
         <span class="material-icons">close</span>
       </a>
-      <h3>Nuevo</h3>
-      <p>Tiene consultas vencidas</p>
+      <h3>Atención</h3>
+      <p><%= texto %></p>
+      <div class="mt5 mb5">
+        <a href="app/#consultas_vencidas/" class="btn btn-block btn-info">Ver consultas</a>
+      </div>
     </div>
 
   <% } %>

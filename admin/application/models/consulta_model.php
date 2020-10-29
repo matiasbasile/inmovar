@@ -43,6 +43,11 @@ class Consulta_Model extends Abstract_Model {
   // =====================================
   // Estas funciones sirven para filtrar por grupos de origenes
 
+  // Origenes que no tienen que aparecer en el listado de contactos
+  function get_not_origenes_listado() {
+    return "32,20,21,22";
+  }
+
   // Incluye clienapp y los registros manuales de whatsapp
   function get_origenes_consultas_whatsapp() {
     return "30,31,27";
@@ -119,9 +124,10 @@ class Consulta_Model extends Abstract_Model {
 
   function insert($data) {
     $id_empresa = parent::get_empresa();
+    $this->load->model("Cliente_Model");
     $this->load->helper("fecha_helper");
     if (isset($data->fecha)) {
-      if (isset($data->hora) && empty($data->hora) && strlen($data->fecha)>10) {
+      if (!isset($data->hora) || empty($data->hora) || strlen($data->fecha)>10) {
         $data->hora = substr($data->fecha, strpos($data->fecha, " ")+1);
       }
       $data->fecha = fecha_mysql($data->fecha);
@@ -194,8 +200,58 @@ class Consulta_Model extends Abstract_Model {
     $this->db->query($sql);
     $id = $this->db->insert_id();
 
+    // Si estamos consultando por una propiedad
+    if (isset($data->id_referencia) && !empty($data->id_referencia)) {
+
+      $id_propiedad = $data->id_referencia;
+      $this->load->model("Propiedad_Model");
+      $propiedad = $this->Propiedad_Model->get($id_propiedad,array(
+        "id_empresa"=>$id_empresa
+      ));
+
+      // Guardamos el interes en la propiedad
+      $sql = "SELECT * FROM inm_propiedades_contactos WHERE id_empresa = '$data->id_empresa' AND id_contacto = '$data->id_contacto' AND id_propiedad = '$id_propiedad'  ";
+      $q_interesado = $this->db->query($sql);
+      if ($q_interesado->num_rows() == 0) {
+        $data->id_empresa_relacion = (isset($data->id_empresa_relacion) ? $data->id_empresa_relacion : $data->id_empresa);
+        $sql = "INSERT INTO inm_propiedades_contactos (id_empresa,id_contacto,fecha,id_propiedad,id_empresa_propiedad) VALUES(";
+        $sql.= " '$id_empresa','$data->id_contacto',NOW(),'$id_propiedad','$data->id_empresa_relacion' )";
+        $this->db->query($sql);
+      }
+
+      // Guardamos el tipo de busqueda dependiendo de los valores de la propiedad que consulto
+      $sql = "INSERT INTO inm_busquedas_contactos (id_empresa,id_cliente,id_localidad,id_tipo_operacion,id_tipo_inmueble,fecha) VALUES(";
+      $sql.= " '$id_empresa','$data->id_contacto','$propiedad->id_localidad','$propiedad->id_tipo_operacion','$propiedad->id_tipo_inmueble',NOW() )";
+      $this->db->query($sql);
+
+      // Etiquetamos automaticamente al cliente de acuerdo al tipo de propiedad que consulto
+      $tag = new stdClass();
+      $tag->id_empresa = $id_empresa;
+      $tag->id_cliente = $data->id_contacto;
+      $tag->nombre = $propiedad->tipo_operacion;
+      $tag->orden = 0;
+      $this->Cliente_Model->save_tag($tag);
+    }
+
     // ESTAMOS MANDANDO
     if (isset($data->tipo) && $data->tipo == 1) {
+
+      // Si estamos mandando un email, y estamos en estado "A Contactar" [ID = 1], 
+      // pasamos automaticamente al estado "Contactado" [ID = 2]
+      if (isset($data->id_contacto)) {
+        $cliente = $this->Cliente_Model->get_by_id($data->id_contacto,array(
+          "id_empresa"=>$id_empresa
+        ));
+        if ($cliente->tipo == 1) {
+          // Editamos el tipo a 2
+          $this->Cliente_Model->editar_tipo(array(
+            "id_empresa"=>$id_empresa,
+            "id"=>$data->id_contacto,
+            "tipo"=>2,
+            "registrar_evento"=>0, // para evitar crear otra consulta con el movimiento de estado
+          ));
+        }
+      }      
 
       // Estamos enviando un EMAIL
       if ($data->id_origen == 5) {
@@ -212,7 +268,6 @@ class Consulta_Model extends Abstract_Model {
             $paciente = $this->Paciente_Model->get($data->id_paciente);
             $email = $paciente->email;
           } else if ($data->id_contacto != 0) {
-            $this->load->model("Cliente_Model");  
             $cliente = $this->Cliente_Model->get($data->id_contacto);
             $email = $cliente->email;
           }
@@ -268,7 +323,6 @@ class Consulta_Model extends Abstract_Model {
             }
 
             // Obtenemos el contacto
-            $this->load->model("Cliente_Model");
             $contacto = $this->Cliente_Model->get($data->id_contacto,$data->id_empresa);
             if ($contacto->tipo == 1) {
               // Si el tipo de contacto esta "A CONTACTAR"
@@ -345,6 +399,7 @@ class Consulta_Model extends Abstract_Model {
     $sql.= " IF(CO.email IS NULL,'',CO.email) AS email, ";
     $sql.= " IF(CO.telefono IS NULL,'',CO.telefono) AS telefono, ";
     $sql.= " IF(CO.celular IS NULL,'',CO.celular) AS celular, ";
+    $sql.= " IF(CO.fecha_vencimiento IS NULL,'',DATE_FORMAT(CO.fecha_vencimiento,'%d/%m/%Y %H:%i')) AS fecha_vencimiento, ";
     $sql.= " IF(P.nombre IS NULL,'',P.nombre) AS propiedad_nombre, ";
     $sql.= " IF(P.path IS NULL,'',P.path) AS propiedad_path, ";
     $sql.= " IF(P.calle IS NULL,'',CONCAT(P.calle,' ',P.altura)) AS propiedad_direccion, ";
@@ -440,13 +495,14 @@ class Consulta_Model extends Abstract_Model {
     
     $id_empresa = isset($conf["id_empresa"]) ? $conf["id_empresa"] : parent::get_empresa();
     if (empty($id_empresa)) return array();
+    $vencidas = isset($conf["vencidas"]) ? $conf["vencidas"] : 0;
     $buscar_respuestas = isset($conf["buscar_respuestas"]) ? $conf["buscar_respuestas"] : 1;
     $buscar_adjuntos = isset($conf["buscar_adjuntos"]) ? $conf["buscar_adjuntos"] : 1;
     $tiene_id_referencia = isset($conf["tiene_id_referencia"]) ? $conf["tiene_id_referencia"] : -1;
     $id_origen = isset($conf["id_origen"]) ? $conf["id_origen"] : 0;
     $custom_1 = isset($conf["custom_1"]) ? $conf["custom_1"] : "";
     $limit = isset($conf["limit"]) ? $conf["limit"] : 0;
-    $tipo = isset($conf["tipo"]) ? $conf["tipo"] : 1;
+    $tipo = isset($conf["tipo"]) ? $conf["tipo"] : -1;
     $id_usuario = isset($conf["id_usuario"]) ? $conf["id_usuario"] : 0;
     $id_contacto = isset($conf["id_contacto"]) ? $conf["id_contacto"] : 0;
     $estado = isset($conf["estado"]) ? $conf["estado"] : -1;
@@ -460,41 +516,34 @@ class Consulta_Model extends Abstract_Model {
     $not_ids_origen = isset($conf["not_ids_origen"]) ? $conf["not_ids_origen"] : "";
     $offset = isset($conf["offset"]) ? $conf["offset"] : 20;
     $id_origenes = isset($conf["id_origenes"]) ? str_replace("-",",",$conf["id_origenes"]) : "";
-    $id_consulta_padre = isset($conf["id_consulta_padre"]) ? $conf["id_consulta_padre"] : 0;
     $order_by = isset($conf["order_by"]) ? $conf["order_by"] : "C.fecha DESC, C.id DESC ";
+    $solo_contar = isset($conf["solo_contar"]) ? $conf["solo_contar"] : 0;
+    $buscar_totales = isset($conf["buscar_totales"]) ? $conf["buscar_totales"] : 1;
 
+    // Primero buscamos los clientes
     $sql = "SELECT SQL_CALC_FOUND_ROWS C.*, ";
+    $sql.= " DATE_FORMAT(C.fecha_vencimiento,'%d/%m/%Y %H:%i') AS fecha_vencimiento, ";
     $sql.= " IF(TIP.nombre IS NULL,'',TIP.nombre) AS consulta_tipo, ";
     $sql.= " IF(U.nombre IS NULL,'',U.nombre) AS usuario ";
     $sql.= "FROM clientes C ";    
     $sql.= "LEFT JOIN com_usuarios U ON (C.id_usuario = U.id AND C.id_empresa = U.id_empresa) ";
     $sql.= "LEFT JOIN crm_consultas_tipos TIP ON (C.tipo = TIP.id AND C.id_empresa = TIP.id_empresa) ";
     $sql.= "WHERE C.id_empresa = $id_empresa ";
-    $sql.= "AND C.tipo = $tipo ";
+    if ($tipo != -1) $sql.= "AND C.tipo = $tipo "; // Filtro por estado
     if (!empty($filter)) $sql.= "AND C.nombre LIKE '%".$filter."%' ";
     if (!empty($id_contacto)) $sql.= "AND C.id = $id_contacto ";
     if (!empty($id_usuario)) $sql.= "AND C.id_usuario = $id_usuario ";
+    // Si estamos buscando consultas vencidas, la fecha de vencimiento tiene que ser menor a la actual
+    // y el estado no puede ser FINALIZADO (98) ni ARCHIVADO (99)
+    if ($vencidas == 1) $sql.= "AND C.fecha_vencimiento <= NOW() AND C.tipo NOT IN (98,99) ";
     $sql.= "ORDER BY C.fecha_ult_operacion DESC ";
     $sql.= "LIMIT $limit, $offset";
-
-    /*    
-    if ($id_origen != 0) $sql.= "AND C.id_origen = $id_origen ";
-    else if (!empty($id_origenes)) $sql.= "AND C.id_origen IN ($id_origenes) ";
-    if (!empty($custom_1)) $sql.= "AND C.custom_1 = $custom_1 ";
-    if (!empty($id_asunto)) $sql.= "AND C.id_asunto = $id_asunto ";
-    if (!empty($not_ids_origen)) $sql.= "AND C.id_origen NOT IN ($not_ids_origen) ";
-    if ($tiene_id_referencia == 1) $sql.= "AND C.id_referencia != 0 ";
-    else if ($tiene_id_referencia == 0) $sql.= "AND C.id_referencia = 0 ";
-    if (!empty($fecha)) $sql.= "AND DATE_FORMAT(C.fecha,'%Y-%m-%d') = '$fecha' ";
-    if (!empty($desde)) $sql.= "AND DATE_FORMAT(C.fecha,'%Y-%m-%d') >= '$desde' ";
-    if (!empty($hasta)) $sql.= "AND DATE_FORMAT(C.fecha,'%Y-%m-%d') <= '$hasta' ";
-    if ($tipo != -1) $sql.= "AND C.tipo = '$tipo' ";
-    if ($estado != -1) $sql.= "AND C.estado = '$estado' ";
-    */
+    $sql2 = $sql;
     
     $q = $this->db->query($sql);
     $q_total = $this->db->query("SELECT FOUND_ROWS() AS total");
     $total = $q_total->row();
+    if ($solo_contar == 1) return $total->total;
 
     $resultado = array();
     foreach($q->result() as $res) {
@@ -514,36 +563,16 @@ class Consulta_Model extends Abstract_Model {
       $res->propiedad_tipo_inmueble = "";
       $res->propiedad_direccion = "";
       $res->propiedad_ciudad = "";
-      $sql = "SELECT ";
-      $sql.= " C.*, C.id AS id_consulta, ";
-      $sql.= " DATE_FORMAT(C.fecha,'%d/%m/%Y') AS fecha, ";
-      $sql.= " DATE_FORMAT(C.fecha,'%H:%i') AS hora, ";
-      $sql.= " IF(O.id IS NULL,0,O.id) AS id_origen, ";
-      $sql.= " IF(O.nombre IS NULL,'',O.nombre) AS origen, ";
-      $sql.= " IF(P.nombre IS NULL,'',P.nombre) AS propiedad_nombre, ";
-      $sql.= " IF(P.path IS NULL,'',P.path) AS propiedad_path, ";
-      $sql.= " IF(P.id IS NULL,0,P.id) AS propiedad_id, ";
-      $sql.= " IF(P.id_tipo_operacion IS NULL,0,P.id_tipo_operacion) AS propiedad_id_tipo_operacion, ";
-      $sql.= " IF(TIPO_OP.nombre IS NULL,'',TIPO_OP.nombre) AS propiedad_tipo_operacion, ";
-      $sql.= " IF(P.id_tipo_inmueble IS NULL,0,P.id_tipo_inmueble) AS propiedad_id_tipo_inmueble, ";      
-      $sql.= " IF(TIPO_INM.nombre IS NULL,'',TIPO_INM.nombre) AS propiedad_tipo_inmueble, ";
-      $sql.= " IF(P.calle IS NULL,'',CONCAT(P.calle,' ',P.altura)) AS propiedad_direccion, ";
-      $sql.= " IF(L.nombre IS NULL,'',L.nombre) AS propiedad_ciudad ";
-      $sql.= "FROM crm_consultas C ";
-      $sql.= "LEFT JOIN crm_consultas_tipos CON_TIPO ON (C.tipo = CON_TIPO.id AND C.id_empresa = CON_TIPO.id_empresa) ";
-      $sql.= "LEFT JOIN crm_origenes O ON (C.id_origen = O.id) ";
-      $sql.= "LEFT JOIN inm_propiedades P ON (C.id_referencia = P.id AND C.id_empresa_relacion = P.id_empresa) ";
-      $sql.= "LEFT JOIN inm_tipos_operacion TIPO_OP ON (P.id_tipo_operacion = TIPO_OP.id) ";
-      $sql.= "LEFT JOIN inm_tipos_inmueble TIPO_INM ON (P.id_tipo_inmueble = TIPO_INM.id) ";
-      $sql.= "LEFT JOIN com_localidades L ON (P.id_localidad = L.id) ";
-      $sql.= "WHERE C.id_empresa = $id_empresa ";
-      $sql.= "AND tipo = 0 "; // Consulta recibida por el cliente
-      $sql.= "AND id_origen NOT IN (12,13,14,15,16,18,20) "; // No tomamos en cuenta estos origenes
-      $sql.= "AND C.id_contacto = $res->id ";
-      $sql.= "ORDER BY fecha DESC ";
-      $qq = $this->db->query($sql);
-      if ($qq->num_rows() > 0) {
-        $rr = $qq->row();
+      // Y despues tomamos la ultima consulta
+      $consultas = $this->buscar_consultas(array(
+        "id_contacto"=>$res->id,
+        "limit"=>0,
+        "offset"=>1,
+        "tipo"=>0, // Consultas recibidas
+        "not_ids_origen"=>$this->get_not_origenes_listado(),
+      ));
+      if (sizeof($consultas["results"])>0) {
+        $rr = $consultas["results"][0];
         $res->id_consulta = $rr->id_consulta;
         $res->asunto = $rr->asunto;
         $res->fecha = $rr->fecha;
@@ -559,16 +588,93 @@ class Consulta_Model extends Abstract_Model {
         $res->propiedad_tipo_inmueble = $rr->propiedad_tipo_inmueble;
         $res->propiedad_ciudad = $rr->propiedad_ciudad;
         $res->propiedad_direccion = $rr->propiedad_direccion;
+
+        // Buscamos si tiene alguna actividad asignada
       }
 
       $resultado[] = $res;
     }
+
+    // Buscamos los totales de consultas por tipo
+    if ($buscar_totales == 1) {
+      $meta = array(
+        "totales"=>array(),
+      );
+      $this->load->model("Consulta_Tipo_Model");
+      $tipos = $this->Consulta_Tipo_Model->get_all();
+      foreach($tipos as $tipo) {
+        $sql = "SELECT IF(COUNT(*) IS NULL,0,COUNT(*)) AS cantidad ";
+        $sql.= "FROM clientes C ";
+        $sql.= "WHERE C.id_empresa = $id_empresa ";
+        $sql.= "AND C.activo = 1 ";
+        $sql.= "AND C.tipo = $tipo->id ";
+        $q = $this->db->query($sql);
+        $r = $q->row();
+        $meta["totales"][$tipo->id] = $r->cantidad;
+      }
+    }
     
     return array(
-      "sql"=>$sql,
-      "results"=>$q->result(),
+      "sql"=>$sql2,
+      "meta"=>$meta,
+      "results"=>$resultado,
       "total"=>$total->total,
     );
   }
+
+
+  function buscar_consultas($config = array()) {
+    
+    $id_empresa = isset($config["id_empresa"]) ? $config["id_empresa"] : parent::get_empresa();
+    $id_contacto = isset($config["id_contacto"]) ? $config["id_contacto"] : 0;
+    $not_ids_origen = isset($config["not_ids_origen"]) ? $config["not_ids_origen"] : "";
+    $limit = isset($config["limit"]) ? $config["limit"] : 0;
+    $tipo = isset($config["tipo"]) ? $config["tipo"] : -1;
+    $offset = isset($config["offset"]) ? $config["offset"] : 20;
+
+    $sql = "SELECT SQL_CALC_FOUND_ROWS ";
+    $sql.= " C.*, C.id AS id_consulta, ";
+    $sql.= " IF(CLI.nombre IS NULL,'',CLI.nombre) AS nombre, ";
+    $sql.= " IF(CLI.fecha_vencimiento IS NULL,'',DATE_FORMAT(CLI.fecha_vencimiento,'%d/%m/%Y %H:%i')) AS fecha_vencimiento, ";
+    $sql.= " IF(CLI.email IS NULL,'',CLI.email) AS email, ";
+    $sql.= " DATE_FORMAT(C.fecha,'%d/%m/%Y') AS fecha, ";
+    $sql.= " DATE_FORMAT(C.fecha,'%H:%i') AS hora, ";
+    $sql.= " IF(USUARIO.nombre IS NULL,'',USUARIO.nombre) AS usuario, ";
+    $sql.= " IF(O.nombre IS NULL,'',O.nombre) AS origen, ";
+    $sql.= " IF(P.nombre IS NULL,'',P.nombre) AS propiedad_nombre, ";
+    $sql.= " IF(P.path IS NULL,'',P.path) AS propiedad_path, ";
+    $sql.= " IF(P.id IS NULL,0,P.id) AS propiedad_id, ";
+    $sql.= " IF(P.id_tipo_operacion IS NULL,0,P.id_tipo_operacion) AS propiedad_id_tipo_operacion, ";
+    $sql.= " IF(TIPO_OP.nombre IS NULL,'',TIPO_OP.nombre) AS propiedad_tipo_operacion, ";
+    $sql.= " IF(P.id_tipo_inmueble IS NULL,0,P.id_tipo_inmueble) AS propiedad_id_tipo_inmueble, ";      
+    $sql.= " IF(TIPO_INM.nombre IS NULL,'',TIPO_INM.nombre) AS propiedad_tipo_inmueble, ";
+    $sql.= " IF(P.calle IS NULL,'',CONCAT(P.calle,' ',P.altura)) AS propiedad_direccion, ";
+    $sql.= " IF(L.nombre IS NULL,'',L.nombre) AS propiedad_ciudad ";
+    $sql.= "FROM crm_consultas C ";
+    $sql.= "LEFT JOIN clientes CLI ON (C.id_empresa = CLI.id_empresa AND C.id_contacto = CLI.id) ";
+    $sql.= "LEFT JOIN crm_consultas_tipos CON_TIPO ON (C.tipo = CON_TIPO.id AND C.id_empresa = CON_TIPO.id_empresa) ";
+    $sql.= "LEFT JOIN com_usuarios USUARIO ON (C.id_usuario = USUARIO.id AND C.id_empresa = USUARIO.id_empresa) ";
+    $sql.= "LEFT JOIN crm_origenes O ON (C.id_origen = O.id) ";
+    $sql.= "LEFT JOIN inm_propiedades P ON (C.id_referencia = P.id AND C.id_empresa_relacion = P.id_empresa) ";
+    $sql.= "LEFT JOIN inm_tipos_operacion TIPO_OP ON (P.id_tipo_operacion = TIPO_OP.id) ";
+    $sql.= "LEFT JOIN inm_tipos_inmueble TIPO_INM ON (P.id_tipo_inmueble = TIPO_INM.id) ";
+    $sql.= "LEFT JOIN com_localidades L ON (P.id_localidad = L.id) ";
+    $sql.= "WHERE C.id_empresa = $id_empresa ";
+    if ($tipo != -1) $sql.= "AND C.tipo = $tipo ";
+    if (!empty($not_ids_origen)) $sql.= "AND C.id_origen NOT IN ($not_ids_origen) ";
+    $sql.= "AND C.id_contacto = $id_contacto ";
+    $sql.= "ORDER BY C.fecha DESC ";
+    $sql.= "LIMIT $limit,$offset ";
+    $qq = $this->db->query($sql);
+
+    $q = $this->db->query($sql);
+    $q_total = $this->db->query("SELECT FOUND_ROWS() AS total");
+    $total = $q_total->row();
+    return array(
+      "results"=>$qq->result(),
+      "total"=>$total->total,
+    );    
+  }
+
 
 }

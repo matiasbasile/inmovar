@@ -664,6 +664,8 @@ class Propiedad_Model extends Abstract_Model {
         $r->permalink = $rrr->permalink;
         $r->status = $rrr->status;
       }
+
+      $r->titulo = $this->generar_titulo($r);
       /*
       if ($filtro_meli == 1 && $r->status != "active") $ingresar_row = 0;
       else if ($filtro_meli == 2 && $r->status != "paused") $ingresar_row = 0;
@@ -885,9 +887,19 @@ class Propiedad_Model extends Abstract_Model {
       $propiedad->status = "";
     }
 
+    $propiedad->titulo = $this->generar_titulo($propiedad);
+
     return $propiedad;
   }
   
+  // Generamos un titulo de acuerdo a los parametros
+  function generar_titulo($r) {
+    $s = "";
+    $s.= $r->tipo_inmueble." en ".$r->tipo_operacion;
+    if (!empty($r->localidad)) $s.= " en ".$r->localidad;
+    if (!empty($r->codigo_completo)) $s.=" [Cod: $r->codigo_completo]";
+    return $s; 
+  }
   
   
   function get_by_hash($hash) {

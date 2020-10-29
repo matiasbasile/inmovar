@@ -220,6 +220,9 @@ class App extends CI_Controller {
       // Controlamos que haya notificaciones sobre busquedas nuevas
       $this->Notificacion_Model->controlar_busquedas_nuevas();
 
+      // Controlamos que haya notificaciones de consultas vencidas
+      $this->Notificacion_Model->controlar_consultas_vencidas();
+
       // Contamos la cantidad de notificaciones que tenemos que mostrar
       $notif = $this->Notificacion_Model->buscar();
       $total_notificaciones = $notif["total"];
@@ -670,6 +673,9 @@ class App extends CI_Controller {
     $array[] = 'application/javascript/modules/monedas.js';
     $array[] = 'application/javascript/modules/provincias.js';
     $array[] = 'application/javascript/modules/localidades.js';
+    $array[] = 'application/javascript/modules/crm/email.js';
+    $array[] = 'application/javascript/modules/crm/asuntos.js';
+    $array[] = 'application/javascript/modules/crm/consultas_tipos.js';
     $array[] = 'application/javascript/modules/crm/emails_templates.js';
     $array[] = 'application/javascript/modules/crm/consultas.js';
     $array[] = 'application/javascript/modules/crm/contactos.js';

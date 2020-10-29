@@ -8,9 +8,43 @@ class Cliente_Model extends Abstract_Model {
 		parent::__construct("clientes","id","nombre ASC");
 	}
 
+  // CAMBIA EL VENCIMIENTO DE UN CLIENTE
+  // De acuerdo a las fechas del tipo de consulta
+  function editar_vencimiento($config = array()) {
+
+    $id_empresa = isset($config["id_empresa"]) ? $config["id_empresa"] : parent::get_empresa();
+    $id = isset($config["id"]) ? $config["id"] : 0;
+    $tipo = isset($config["tipo"]) ? $config["tipo"] : -1;
+    if ($id == 0) return array("error"=>1,"mensaje"=>"Falta el parametro id.");
+    if ($tipo == -1) return array("error"=>1,"mensaje"=>"Falta el parametro tipo.");
+
+    // Primero obtenemos el estado actual 
+    $sql = "SELECT * FROM clientes WHERE id = $id AND id_empresa = $id_empresa ";
+    $q = $this->db->query($sql);
+    if ($q->num_rows() == 0) {
+      return array("error"=>1,"mensaje"=>"No existe el cliente solicitado");
+    }
+    $cliente = $q->row();    
+
+    $this->load->model("Consulta_Tipo_Model");
+    $estado = $this->Consulta_Tipo_Model->get($tipo,array(
+      "id_empresa"=>$id_empresa,
+    ));
+
+    // Sumamos los dias que tiene configurado el estado a la fecha de hoy
+    $datetime = new DateTime();
+    $datetime->modify("+".$estado->tiempo_vencimiento." days");
+    $vencimiento = $datetime->format("Y-m-d H:i:s");
+
+    // Actualizamos el tipo en la tabla de clientes
+    $sql = "UPDATE clientes SET fecha_vencimiento = '$vencimiento' WHERE id_empresa = $id_empresa AND id = $id ";
+    $q = $this->db->query($sql);
+
+    return array("error"=>0);
+  }  
+
   // CAMBIA EL ESTADO DE UN CLIENTE
-  // Si el estado nuevo tiene configurado una plantilla
-  // se envia tambien ese email
+  // Al cambiar el estado tambien tiene que cambiar el vencimiento
   function editar_tipo($config = array()) {
 
     $id_empresa = isset($config["id_empresa"]) ? $config["id_empresa"] : parent::get_empresa();
@@ -19,6 +53,8 @@ class Cliente_Model extends Abstract_Model {
     $id_usuario = isset($config["id_usuario"]) ? $config["id_usuario"] : 0;
     $tipo = isset($config["tipo"]) ? $config["tipo"] : -1;
     $custom_1 = isset($config["custom_1"]) ? $config["custom_1"] : "";
+    $fecha_vencimiento = isset($config["fecha_vencimiento"]) ? $config["fecha_vencimiento"] : "";
+    $registrar_evento = isset($config["registrar_evento"]) ? $config["registrar_evento"] : 1;
 
     if ($id == 0) return array("error"=>1,"mensaje"=>"Falta el parametro id.");
     if ($tipo == -1) return array("error"=>1,"mensaje"=>"Falta el parametro tipo.");
@@ -45,24 +81,39 @@ class Cliente_Model extends Abstract_Model {
       "id_empresa"=>$id_empresa,
     ));
 
+    // Si no se envia una fecha de vencimiento (eso solo se hace en la visita programada)
+    // sumamos los dias que tiene configurado el estado nuevo a la fecha actual
+    if (empty($fecha_vencimiento)) {
+      $datetime = new DateTime();
+      $datetime->modify("+".$estado_nuevo->tiempo_vencimiento." days");
+      $vencimiento = $datetime->format("Y-m-d H:i:s");
+    } else {
+      $this->load->helper("fecha_helper");
+      $vencimiento = fecha_mysql($fecha_vencimiento);
+    }
+
     // Actualizamos el tipo en la tabla de clientes
-    $sql = "UPDATE clientes SET tipo = '$tipo' WHERE id_empresa = $id_empresa AND id = $id ";
+    $sql = "UPDATE clientes SET tipo = '$tipo', fecha_vencimiento = '$vencimiento' WHERE id_empresa = $id_empresa AND id = $id ";
     $q = $this->db->query($sql);
 
-    $usuario = $this->Usuario_Model->get($id_usuario,array(
-      "id_empresa"=>$id_empresa,
-    ));
-    if ($usuario !== FALSE) {
-      // Creamos un nuevo movimiento en el historial de ese cliente
-      $texto = $usuario->nombre." ha cambiado el estado: ".$estado_actual->nombre." > ".$estado_nuevo->nombre;
-    } else {
-      $texto = $estado_actual->nombre." > ".$estado_nuevo->nombre;
+    if ($registrar_evento == 1) {
+      $usuario = $this->Usuario_Model->get($id_usuario,array(
+        "id_empresa"=>$id_empresa,
+      ));
+      if ($usuario !== FALSE) {
+        // Creamos un nuevo movimiento en el historial de ese cliente
+        $texto = $usuario->nombre." ha cambiado el estado: ".$estado_actual->nombre." > ".$estado_nuevo->nombre;
+      } else {
+        $texto = $estado_actual->nombre." > ".$estado_nuevo->nombre;
+      }
+      $sql = "INSERT INTO crm_consultas (id_contacto,id_empresa,fecha,asunto,texto,id_usuario,tipo,id_origen,id_asunto,custom_1) VALUES (";
+      $sql.= " $id,$id_empresa,NOW(),'Cambio de estado','$texto',$id_usuario,0,32,'$id_asunto','$custom_1') ";
+      $this->db->query($sql);
     }
-    $sql = "INSERT INTO crm_consultas (id_contacto,id_empresa,fecha,asunto,texto,id_usuario,tipo,id_origen,id_asunto,custom_1) VALUES (";
-    $sql.= " $id,$id_empresa,NOW(),'Cambio de estado','$texto',$id_usuario,0,32,'$id_asunto','$custom_1') ";
-    $this->db->query($sql);
 
+    // TODO: esto no esta en la parte visual, pero no lo elimine porque esta bueno para un futuro
     // Si el estado tiene que disparar un email
+    /*
     if ($estado_nuevo->id_email_template != 0) {
       $temp = $this->Email_Template_Model->get($estado_nuevo->id_email_template,$id_empresa);
       if (!empty($temp)) {
@@ -79,6 +130,7 @@ class Cliente_Model extends Abstract_Model {
         ));
       }
     }
+    */
     return array("error"=>0);
   }
 
@@ -322,7 +374,6 @@ class Cliente_Model extends Abstract_Model {
   function delete($id) {
     $id_empresa = parent::get_empresa();
     $this->db->query("DELETE FROM turnos WHERE id_cliente = $id AND id_empresa = $id_empresa");
-    $this->db->query("DELETE FROM via_reservas WHERE id_cliente = $id AND id_empresa = $id_empresa");
     $this->db->query("DELETE FROM inm_propiedades_contactos WHERE id_contacto = $id AND id_empresa = $id_empresa");
     $this->db->query("DELETE FROM inm_busquedas_contactos WHERE id_cliente = $id AND id_empresa = $id_empresa");
     $this->db->query("DELETE FROM crm_consultas WHERE id_contacto = $id AND id_empresa = $id_empresa");

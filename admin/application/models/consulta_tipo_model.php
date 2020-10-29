@@ -25,8 +25,8 @@ class Consulta_Tipo_Model extends Abstract_Model {
       $r = $q->row();
       $ultimo = intval($r->ultimo) + 1;      
     }
-    $sql = "INSERT INTO crm_consultas_tipos (id,id_empresa,nombre,tiempo_proximo_estado, tiempo_vencimiento, activo,orden,id_email_template) VALUES (";
-    $sql.= "$ultimo, $data->id_empresa, '$data->nombre', '$data->tiempo_proximo_estado', '$data->tiempo_vencimiento', '$data->activo', '$data->orden','$data->id_email_template' )";
+    $sql = "INSERT INTO crm_consultas_tipos (id,id_empresa,nombre,tiempo_abandonado, tiempo_vencimiento, activo,orden,id_email_template) VALUES (";
+    $sql.= "$ultimo, $data->id_empresa, '$data->nombre', '$data->tiempo_abandonado', '$data->tiempo_vencimiento', '$data->activo', '$data->orden','$data->id_email_template' )";
     $this->db->query($sql);
     $id = $this->db->insert_id();
     return $id;
@@ -36,26 +36,108 @@ class Consulta_Tipo_Model extends Abstract_Model {
     $id_empresa = $config["id_empresa"];
     $imprimir = (isset($config["imprimir"]) ? $config["imprimir"] : 0);
     $salida = "";
+    $id_asunto = 0;
 
-    $sql = "INSERT INTO crm_consultas_tipos (id,id_empresa,nombre,color,orden,activo) VALUES(";
-    $sql.= "2,'$id_empresa','En Progreso','info',2,1)";
+    // A Contactar
+    $sql = "INSERT INTO crm_consultas_tipos (id,id_empresa,nombre,color,orden,activo,tiempo_vencimiento,tiempo_abandonado) VALUES(";
+    $sql.= "1,'$id_empresa','A contactar','warning',1,1,7,30)";
     if ($imprimir == 1) $salida.= $sql.";\n";
     else $this->db->query($sql);
 
-    $sql = "INSERT INTO crm_consultas_tipos (id,id_empresa,nombre,color,orden,activo) VALUES(";
-    $sql.= "1,'$id_empresa','A Contactar','warning',1,1)";
+    // Contactado
+    $sql = "INSERT INTO crm_consultas_tipos (id,id_empresa,nombre,color,orden,activo,tiempo_vencimiento,tiempo_abandonado) VALUES(";
+    $sql.= "2,'$id_empresa','Contactado','info',2,1,7,30)";
     if ($imprimir == 1) $salida.= $sql.";\n";
     else $this->db->query($sql);
+    $asuntos = array(
+      "Respondido por email",
+      "Respondido por redes sociales",
+      "Respondido por portales",
+      "Respondido por teléfono",
+      "Respondido personalmente",
+    );
+    for($i=0;$i<sizeof($asuntos);$i++) {
+      $asunto = $asuntos[$i];
+      $id_asunto++;
+      $sql = "INSERT INTO crm_asuntos (id,id_empresa,nombre,orden,activo,id_tipo) VALUES(";
+      $sql.= "$id_asunto,'$id_empresa','".$asunto."',$id_asunto,1,2)";
+      if ($imprimir == 1) $salida.= $sql.";\n";
+      else $this->db->query($sql);
+    }
 
-    $sql = "INSERT INTO crm_consultas_tipos (id,id_empresa,nombre,color,orden,activo) VALUES(";
-    $sql.= "0,'$id_empresa','Finalizado','success',3,1)";
+    // Actividad Programada
+    $sql = "INSERT INTO crm_consultas_tipos (id,id_empresa,nombre,color,orden,activo,tiempo_vencimiento,tiempo_abandonado) VALUES(";
+    $sql.= "3,'$id_empresa','Actividad programada','info',3,1,7,30)";
     if ($imprimir == 1) $salida.= $sql.";\n";
     else $this->db->query($sql);
+    $asuntos = array(
+      "Teléfono",
+      "Reunión",
+      "Visita",
+      "Videollamada",
+    );
+    for($i=0;$i<sizeof($asuntos);$i++) {
+      $asunto = $asuntos[$i];
+      $id_asunto++;
+      $sql = "INSERT INTO crm_asuntos (id,id_empresa,nombre,orden,activo,id_tipo) VALUES(";
+      $sql.= "$id_asunto,'$id_empresa','".$asunto."',$id_asunto,1,3)";
+      if ($imprimir == 1) $salida.= $sql.";\n";
+      else $this->db->query($sql);
+    }
 
-    $sql = "INSERT INTO crm_consultas_tipos (id,id_empresa,nombre,color,orden,activo) VALUES(";
-    $sql.= "3,'$id_empresa','Abandonado','danger',4,1)";
+    // En negociacion
+    $sql = "INSERT INTO crm_consultas_tipos (id,id_empresa,nombre,color,orden,activo,tiempo_vencimiento,tiempo_abandonado) VALUES(";
+    $sql.= "4,'$id_empresa','En negociación','success',4,1,7,30)";
     if ($imprimir == 1) $salida.= $sql.";\n";
     else $this->db->query($sql);
+    $asuntos = array(
+      "Listo para firmar",
+      "Esperando entrega y/o reserva",
+    );
+    for($i=0;$i<sizeof($asuntos);$i++) {
+      $asunto = $asuntos[$i];
+      $id_asunto++;
+      $sql = "INSERT INTO crm_asuntos (id,id_empresa,nombre,orden,activo,id_tipo) VALUES(";
+      $sql.= "$id_asunto,'$id_empresa','".$asunto."',$id_asunto,1,4)";
+      if ($imprimir == 1) $salida.= $sql.";\n";
+      else $this->db->query($sql);
+    }
+
+    // Finalizado
+    $sql = "INSERT INTO crm_consultas_tipos (id,id_empresa,nombre,color,orden,activo,tiempo_vencimiento,tiempo_abandonado) VALUES(";
+    $sql.= "98,'$id_empresa','Finalizado','success',98,1,0,0)";
+    if ($imprimir == 1) $salida.= $sql.";\n";
+    else $this->db->query($sql);
+    $asuntos = array(
+      "Se concretó la operación correctamente",
+    );
+    for($i=0;$i<sizeof($asuntos);$i++) {
+      $asunto = $asuntos[$i];
+      $id_asunto++;
+      $sql = "INSERT INTO crm_asuntos (id,id_empresa,nombre,orden,activo,id_tipo) VALUES(";
+      $sql.= "$id_asunto,'$id_empresa','".$asunto."',$id_asunto,1,98)";
+      if ($imprimir == 1) $salida.= $sql.";\n";
+      else $this->db->query($sql);
+    }    
+
+    // Archivada
+    $sql = "INSERT INTO crm_consultas_tipos (id,id_empresa,nombre,color,orden,activo,tiempo_vencimiento,tiempo_abandonado) VALUES(";
+    $sql.= "99,'$id_empresa','Archivada','danger',99,1,0,0)";
+    if ($imprimir == 1) $salida.= $sql.";\n";
+    else $this->db->query($sql);
+    $asuntos = array(
+      "No respondió el cliente",
+      "El cliente no está interesado",
+      "Los datos de contacto del cliente son erróneos",
+    );
+    for($i=0;$i<sizeof($asuntos);$i++) {
+      $asunto = $asuntos[$i];
+      $id_asunto++;
+      $sql = "INSERT INTO crm_asuntos (id,id_empresa,nombre,orden,activo,id_tipo) VALUES(";
+      $sql.= "$id_asunto,'$id_empresa','".$asunto."',$id_asunto,1,99)";
+      if ($imprimir == 1) $salida.= $sql.";\n";
+      else $this->db->query($sql);
+    }
 
     return $salida;
   }

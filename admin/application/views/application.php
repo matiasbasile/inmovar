@@ -129,6 +129,9 @@ if (file_exists("application/views/templates/crm/consultas.php")) include_once (
 if (file_exists("application/views/templates/crm/contactos.php")) include_once ("application/views/templates/crm/contactos.php");
 if (file_exists("application/views/templates/crm/eventos.php")) include_once ("application/views/templates/crm/eventos.php");
 if (file_exists("application/views/templates/crm/tareas.php")) include_once ("application/views/templates/crm/tareas.php");
+if (file_exists("application/views/templates/crm/email.php")) include_once ("application/views/templates/crm/email.php");
+if (file_exists("application/views/templates/crm/asuntos.php")) include_once ("application/views/templates/crm/asuntos.php");
+if (file_exists("application/views/templates/crm/consultas_tipos.php")) include_once ("application/views/templates/crm/consultas_tipos.php");
 if (file_exists("application/views/templates/crm/origenes.php")) include_once ("application/views/templates/crm/origenes.php");
 if (file_exists("application/views/templates/not/entradas.php")) include_once ("application/views/templates/not/entradas.php");
 if (file_exists("application/views/templates/clientes.php")) include_once ("application/views/templates/clientes.php");

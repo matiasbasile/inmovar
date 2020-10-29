@@ -20,10 +20,16 @@
           <li data-tipo="<%= tipo.id %>" class="cambiar_tab <%= (window.consultas_tipo == tipo.id)?"active":"" %>">
             <a href="javascript:void(0)">
               <%= tipo.nombre %>
-              <span class="consultas_estado consultas_estado_<%= tipo.id %>">(0)</span>
+              <span class="consultas_estado consultas_estado_<%= tipo.id %> counter">0</span>
             </a>
           </li>
         <% } %>
+        <li id="consultas_vencidas_tab" class="<%= (window.consultas_vencidas == 1)?"active":"" %>">
+          <a href="javascript:void(0)">
+            Vencidas
+            <span id="consultas_vencidas_counter" class="counter">0</span>
+          </a>
+        </li>
         <li>
           <a href="app/#consultastipos" class="btn-tab-large">
             <i class="material-icons md-22 mr0">settings</i>
@@ -61,7 +67,7 @@
                 <th style="min-width:250px"><?php echo lang(array("es"=>"Nombre","en"=>"Name")); ?></th>
                 <th class="pl0" colspan="2">Interesado en</th>
                 <th>Origen</th>
-                <th class="w150">Acciones</th>
+                <th class="w150">Estado</th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -98,102 +104,70 @@
       </div>
     </div>
   </td>
-  <td class="p0 data">
+  <td class="p0 data w40">
     <% if (!isEmpty(propiedad_path)) { %>
       <% var prefix = (propiedad_path.indexOf("http") == 0) ? "" : "/admin/" %>
-      <img src="<%= prefix + propiedad_path %>?t=<%= Math.ceil(Math.random()*10000) %>" class="customcomplete-image"/>
+      <img src="<%= prefix + propiedad_path %>?t=<%= Math.ceil(Math.random()*10000) %>" class="customcomplete-image mr0"/>
     <% } %>
   </td>
   <td class="data">
     <% if (propiedad_id != 0) { %>
+      <span class="negro"><%= propiedad_tipo_inmueble %> en <%= propiedad_tipo_operacion %></span><br/>
       <%= propiedad_direccion %>, <%= propiedad_ciudad %>
-      <br/><%= propiedad_tipo_operacion %>
     <% } else { %>
       <span>Asignar interés</span>
     <% } %>
   </td>
   <td class="data">
     <span style="color:#5a5a5a">
-      <% if (id_origen == 30) { %>
+      <% if (id_origen == 27 || id_origen == 30 || id_origen == 31) { %>
         <i class="fa fa-whatsapp"></i> Whatsapp
-      <% } else { %>
+
+      <% } else if (id_origen == 26) { %>
+        <i class="fa fa-facebook"></i> Facebook
+
+      <% } else if (id_origen == 28 || id_origen == 5 || id_origen == 21 || id_origen == 22 || id_origen == 28) { %>
+        <i class="fa fa-envelope"></i> Email
+
+      <% } else if (id_origen == 2) { %>
+        <i class="fa fa-globe"></i> Newsletter
+
+      <% } else if (id_origen == 3) { %>
+        <i class="fa fa-users"></i> Personal
+
+      <% } else if (id_origen == 4) { %>
+        <i class="fa fa-telephone"></i> Teléfono
+
+      <% } else if (id_origen == 14) { %>
+        <i class="fa fa-blank"></i> Nota
+
+      <% } else if (id_origen == 15) { %>
+        <i class="fa fa-envelope"></i> SMS
+
+      <% } else if (id_origen == 17) { %>
+        <i class="fa fa-envelope"></i> Tarea
+
+      <% } else if (id_origen == 25) { %>
+        <i class="fa fa-envelope"></i> MercadoLibre
+
+      <% } else if (id_origen == 1 || id_origen == 6 || id_origen == 7 || id_origen == 8 || id_origen == 9 || id_origen == 10) { %>
         <i class="fa fa-globe"></i> Web
+
       <% } %>
     </span>
     <br/><span><%= (moment("DD/MM/YYYY") == fecha)?"Hoy":fecha %> <%= hora %></span>
   </td>
   <td>
     <button data-toggle="tooltip" title="Click para realizar acción" class="btn etiqueta btn-menu-compartir mostrar_estado">
-      Vencida
+      <%= consulta_tipo %>
+      <?php /*
+      <% if (moment(fecha_vencimiento,"DD/MM/YYYY").isSameOrAfter(moment())) { %>
+        En progreso
+      <% } else { %>
+        Vencida
+      <% } %>*/?>
     </button>
   </td>
-</script>
-
-<script type="text/template" id="consulta_edit_template">
-<div class="panel panel-default mb0">
-  <div class="panel-heading font-bold">
-    <%= (!isEmpty(asunto)) ? asunto : ((id == undefined) ? "<?php echo lang(array("es"=>"Nueva Consulta","en"=>"New Contact")); ?>" : "<?php echo lang(array("es"=>"Consulta","en"=>"Contact")); ?>") %>
-    <i class="pull-right cerrar_lightbox fa fa-times cp"></i>
-  </div>
-  <form class="panel-body" autocomplete="off">
-    <div class="form-group">
-      <input type="text" placeholder="<?php echo lang(array("es"=>"Nombre y Apellido","en"=>"Full Name")); ?>" autocomplete="off" id="consulta_cliente_nombre" name="nombre" class="form-control"/>
-    </div>  
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <input type="text" placeholder="<?php echo lang(array("es"=>"Tel&eacute;fono","en"=>"Telephone")); ?>" autocomplete="off" id="consulta_cliente_telefono" name="telefono" class="form-control"/>
-        </div>  
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <input type="text" placeholder="<?php echo lang(array("es"=>"Email","en"=>"Email Address")); ?>" id="consulta_cliente_email" autocomplete="off" name="email" class="form-control"/>
-        </div>  
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-6">
-        <div class="form-group">
-          <div class="input-group">
-            <input type="text" placeholder="<?php echo lang(array("es"=>"Fecha","en"=>"Date")); ?>" id="consulta_fecha" autocomplete="off" value="<%= fecha %>" class="form-control" name="fecha"/>
-            <span class="input-group-btn">
-              <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="fa fa-calendar"></i></button>
-            </span>        
-          </div>
-        </div>
-      </div>  
-      <div class="col-xs-6">
-        <div class="form-group">
-          <div class="btn-group">
-            <label data-id_origen="4" data-toggle="tooltip" title="<?php echo lang(array("es"=>"Tel&eacute;fono","en"=>"Telephone")); ?>" class="btn btn-default active btn-info id_origen"><i class="fa fa-phone"></i></label>
-            <label data-id_origen="5" data-toggle="tooltip" title="Email" class="btn btn-default id_origen"><i class="fa fa-envelope"></i></label>
-            <label data-id_origen="26" data-toggle="tooltip" title="Facebook" class="btn btn-default id_origen"><i class="fa fa-facebook"></i></label>
-            <label data-id_origen="3" data-toggle="tooltip" title="Personal" class="btn btn-default id_origen"><i class="fa fa-users"></i></label>
-            <label data-id_origen="27" data-toggle="tooltip" title="Whatsapp" class="btn btn-default id_origen"><i class="fa fa-whatsapp"></i></label>
-          </div>
-        </div>
-      </div>  
-    </div>
-    <div class="form-group">
-      <textarea name="texto" class="form-control h100" placeholder="<?php echo lang(array("es"=>"Escriba aqui la consulta...","en"=>"Write the query here...")); ?>" id="consulta_texto"><%= texto %></textarea>
-    </div>
-    <?php /*
-    <% if (control.check("propiedades")>0) { %>
-      <div class="form-group">
-        <div class="checkbox">
-          <label class="i-checks">
-            <input type="checkbox" checked=""><i></i> Enviar ficha de propiedad al contacto al guardar.
-          </label>
-        </div>                  
-      </div>
-    <% } %>
-    */ ?>
-  </form>
-  <div class="panel-footer clearfix">
-    <button class="cerrar_lightbox btn btn-default"><?php echo lang(array("es"=>"Cerrar","en"=>"Close")); ?></button>
-    <button class="btn guardar pull-right btn-info"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
-  </div>
-</div>
 </script>
 
 <script type="text/template" id="crear_consulta_timeline_template">
@@ -403,13 +377,17 @@
         <div class="form-group">
           <label class="control-label bold">Cambiar de estado</label>
           <div>
+            <input type="hidden" id="consulta_cambio_estado_id_tipo" value="<%= tipo %>" />
             <div class="btn-group dropdown w100p">
-              <button class="btn btn-info btn-lg tac w100p dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= consulta_tipo %></button>
+              <button id="consulta_cambio_estado_boton_tipo" class="btn btn-info btn-lg tac w100p dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= consulta_tipo %></button>
               <span class="fs12 m-l-xs"></span>
               <ul class="dropdown-menu">
                 <% for (var i=0;i< consultas_tipos.length;i++) { %>
                   <% var t = consultas_tipos[i] %>
-                  <li><a href="javascript:void(0)" class="editar_tipo" data-tipo="<%= t.id %>"><%= t.nombre %></a></li>
+                  <?php // El estado A Contactar solamente se va a mostrar si ya esta en A Contactar (sino no se puede volver a este estado mas) ?>
+                  <% if ((i == 0 && tipo == 1) || i > 0) { %>
+                    <li><a href="javascript:void(0)" class="editar_tipo" data-tipo="<%= t.id %>"><%= t.nombre %></a></li>
+                  <% } %>
                 <% } %>          
               </ul>
             </div>
@@ -418,66 +396,36 @@
       </div>
     </div>
 
-    <ul class="nav nav-tabs nav-tabs-2" role="tablist">
-      <% var active_tab = "tab1" %>
-      <li class="active">
-        <a href="#tab_nota_cambiar_estado" role="tab" data-toggle="tab"><span class="material-icons fs14 mr5">help</span> Motivo</a>
-      </li>
-      <li>
-        <a href="#tab_tarea_cambiar_estado" role="tab" data-toggle="tab"><span class="material-icons fs14 mr5">event</span> Actividad</a>
-      </li>
-    </ul>
-    <div class="tab-content">
-      <div id="tab_tarea_cambiar_estado" class="tab-pane panel-body b-a">
-        <div class="row">
-          <div class="col-md-5">
-            <div class="form-group">
-              <div class="input-group">
-                <select id="cambiar_estado_consulta_asuntos" class="select w100p"></select>
-                <span class="input-group-btn">
-                  <button tabindex="-1" class="btn btn-default agregar_asunto">+</button>
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-7">
-            <div class="row">
-              <div class="col-md-8">
-                <div class="form-group">
-                  <div class="input-group">
-                    <input placeholder="Fecha" type="text" class="form-control no-model" id="cambiar_estado_consulta_fecha"/>
-                    <span class="input-group-btn">
-                      <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="fa fa-calendar"></i></button>
-                    </span>        
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div class="row">
+      <div class="col-md-6">
         <div class="form-group">
-          <textarea id="consulta_tarea_texto" placeholder="Escribe aqui la tarea para realizar..." class="form-control no-model h100"></textarea>
-        </div>
-        <div class="form-group clearfix tar">
-          <button class="btn btn-pd btn-info guardar_tarea">Guardar</button>
+          <label>Seleccione un motivo</label>
+          <select id="cambiar_estado_consulta_asuntos" class="form-control"></select>
         </div>
       </div>
+      <div id="cambiar_estado_consulta_fecha_cont" class="col-md-6">
+        <div class="form-group">
+          <label class="control-label">Fecha y hora de la actividad</label>
+          <div class="input-group">
+            <input placeholder="Fecha" type="text" class="form-control no-model" id="cambiar_estado_consulta_fecha"/>
+            <span class="input-group-btn">
+              <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="fa fa-calendar"></i></button>
+            </span>        
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <textarea id="consulta_nota" placeholder="Escribe aqui alguna nota u observacion..." class="form-control no-model h100"></textarea>
+    </div>
 
-      <div id="tab_nota_cambiar_estado" class="tab-pane panel-body b-a active">
-        <div class="form-group">
-          <select class="form-control no-model">
-            <option>Seleccione un motivo</option>
-            <option>No esta interesado</option>
-            <option>Dejó de responder</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <textarea id="consulta_nota" placeholder="Escribe aqui alguna nota u observacion..." class="form-control no-model h100"></textarea>
-        </div>
-        <div class="form-group tar">
-          <button class="btn btn-pd btn-info guardar_nota fr">Guardar</button>
-        </div>
-      </div>
+  </div>
+  <div class="panel-footer">
+    <div class="form-group tar">
+      <% if (moment(fecha_vencimiento,"DD/MM/YYYY").isSameOrBefore(moment())) { %>
+        <button data-toggle="tooltip" title="Posterga la fecha vencimiento de la consulta" class="btn btn-pd btn-white postergar">Postergar</button>
+      <% } %>
+      <button class="btn btn-pd btn-info guardar">Guardar</button>
     </div>
   </div>
 </div>
@@ -549,9 +497,11 @@
             Se envi&oacute; un email de interes
             <b><%= (tipo == 1) ? usuario.ucwords() : nombre.ucwords() %></b>
             <span class="text-muted fs13 pull-right">
+              <?php /*
               <% if (!isEmpty(fecha_visto)) { %>
                 <i class="fa fa-eye text-info mr5" data-toggle="tooltip" title="<%= fecha_visto %>"></i>
               <% } %>
+              */ ?>
               <i class="fa fa-clock-o"></i>
               <%= mostrar_fecha(fecha,hora) %>
             </span>
@@ -633,20 +583,21 @@
           <div class="pb5">
             <b><%= (tipo == 1) ? usuario.ucwords() : nombre.ucwords() %></b>
             <% if (id_origen == 10) { %>
-              <?php echo lang(array("es"=>"est&aacute; interesado en","en"=>"is interested in")); ?>
+              <?php echo lang(array("es"=>"está interesado en","en"=>"is interested in")); ?><%= (id_referencia != 0) ? " por:":":" %>
             <% } else if (id_origen == 3) { %>
-              <?php echo lang(array("es"=>"se contact&oacute;","en"=>"spoke")); ?>
+              <?php echo lang(array("es"=>"se contactó","en"=>"spoke")); ?><%= (id_referencia != 0) ? " por:":":" %>
             <% } else if (id_origen == 4) { %>
-              <?php echo lang(array("es"=>"llam&oacute;","en"=>"called")); ?>
+              <?php echo lang(array("es"=>"llamó por teléfono","en"=>"called")); ?><%= (id_referencia != 0) ? " por:":":" %>
             <% } else { %>
-              <?php echo lang(array("es"=>"escribi&oacute;","en"=>"wrote")); ?>
+              <?php echo lang(array("es"=>"escribió","en"=>"wrote")); ?><%= (id_referencia != 0) ? " por:":":" %>
             <% } %>
-            <%= (id_referencia != 0) ? " por:":":" %>
             <span class="text-muted fs13 pull-right">
 
+              <?php /*
               <% if ((id_origen == 5 || id_origen == 9 || id_origen == 10) && !isEmpty(fecha_visto)) { %>
                 <i class="fa fa-eye text-info mr5" data-toggle="tooltip" title="<%= fecha_visto %>"></i>
               <% } %>
+              */ ?>
 
               <i class="fa fa-clock-o"></i>
               <%= mostrar_fecha(fecha,hora) %>
@@ -662,7 +613,7 @@
                 </a>
               </div>
               <div class="dtc vam">
-                <span class="h4"><%= asunto %></span>
+                <span class="h4"><%= propiedad_tipo_inmueble %> en <%= propiedad_tipo_operacion %></span>
                 <br/><span class="text-muted fs14"><%= propiedad_direccion %> | <%= propiedad_ciudad %></span>
                 <% if (id_empresa_relacion != id_empresa) { %>
                   <span class="label bg-danger m-l-sm">Red</span>
@@ -693,7 +644,7 @@
             <% if (id_origen != 27) { %>
               <a href="javascript:void(0)" class="btn responder_email btn-white fr">
                 <i class="fa fa-mail-forward"></i>
-                Responder
+                Responder Email
               </a>
             <% } %>
           </div>
@@ -760,315 +711,4 @@
 
     </div>
   <% } %>
-</script>
-
-
-<script type="text/template" id="email_template">
-<div class="panel panel-default mb0">
-  <div class="panel-heading font-bold">
-    Enviar Email
-    <i class="pull-right cerrar_lightbox fa fa-times cp"></i>
-  </div>
-  <div class="panel-body">
-    <div class="form-horizontal">
-      <div class="form-group">
-        <div class="col-sm-3 col-md-2 col-xs-12">
-          <label class="control-label">Para:</label>
-        </div>
-        <div class="col-sm-9 col-md-10 col-xs-12">
-          <input type="text" name="email" id="email_nombre" value="<%= email %>" class="form-control"/>
-        </div>
-      </div>      
-      <div class="form-group">
-        <div class="col-sm-3 col-md-2 col-xs-12">
-          <label class="control-label">Asunto:</label>
-        </div>
-        <div class="col-sm-9 col-md-10 col-xs-12">
-          <div class="input-group">
-            <input type="text" name="asunto" id="email_asunto" value="<%= asunto %>" class="form-control"/>
-            <div class="input-group-btn dropdown">
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Plantillas <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu pull-right">
-                <li><a class="cargar_plantilla" href="javascript:void(0)">Cargar</a></li>
-                <li><a class="guardar_plantilla" href="javascript:void(0)">Guardar</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="form-group col-xs-12">
-        <span class="btn btn-default fileinput-button">
-          <i class="glyphicon glyphicon-folder-open m-r-xs"></i>
-          <span>Adjuntar archivos</span>
-          <input id="fileupload" type="file" name="files[]" multiple>
-        </span>
-        <div id="progress" class="progress" style="display: none">
-          <div class="progress-bar progress-bar-success"></div>
-        </div>
-        <div id="files" class="files"></div>
-      </div>
-
-      <% if (links_adjuntos.length > 0) { %>
-        <div class="form-group">
-          <div class="col-sm-3 col-md-2 col-xs-12">
-            <label class="control-label">Fichas:</label>
-          </div>
-          <div class="col-sm-9 col-md-10 col-xs-12">
-            <% for (var i=0;i< links_adjuntos.length;i++) { %>
-              <% var adjunto = links_adjuntos[i]; %>
-              <button data-position="<%= i %>" class="btn btn-default m-b"><%= adjunto.nombre %><i class="ml5 eliminar_adjunto fa fa-times"></i></button>
-            <% } %>
-          </div>
-        </div>
-      <% } %>
-
-      <div class="form-group">
-        <div class="col-xs-12">
-          <textarea name="texto" id="email_texto"><%= texto %></textarea>
-        </div>
-      </div>      
-    </div>
-  </div>
-  <div class="panel-footer clearfix">
-    <button class="btn guardar pull-right btn-info btn-addon">
-      <i class="fa fa-send"></i><span>Enviar</span>
-    </button>
-  </div>
-</div>
-</script>
-
-
-
-<script type="text/template" id="asuntos_panel_template">
-  <div class=" wrapper-md ng-scope">
-    <h1 class="m-n h3"><i class="fa fa-cog icono_principal"></i><?php echo lang(array("es"=>"Configuracion","en"=>"Configuration")); ?>
-      / <b>Asuntos</b>
-    </h1>
-  </div>
-  <div class="wrapper-md ng-scope">
-    <div class="panel panel-default">
-    
-      <div class="panel-heading oh">
-        <div class="row">
-          <div class="col-md-6 col-lg-3 sm-m-b">
-            <div class="search_container"></div>
-          </div>
-          <div class="col-md-6 col-lg-offset-3 col-lg-6 text-right">
-            <a class="btn btn-info btn-addon" href="app/#asunto"><i class="fa fa-plus"></i>&nbsp;&nbsp;Nuevo&nbsp;&nbsp;</a>
-          </div>
-        </div>
-      </div>
-      <div class="panel-body">
-        <div class="table-responsive">
-          <table id="asuntos_table" class="table table-striped sortable m-b-none default footable">
-            <thead>
-              <tr>
-                <th style="width:20px;">
-                  <label class="i-checks m-b-none">
-                    <input class="esc sel_todos" type="checkbox"><i></i>
-                  </label>
-                </th>
-                <th class="sorting" data-sort-by="nombre">Nombre</th>
-                <th class="w100"></th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-            <tfoot class="pagination_container hide-if-no-paging"></tfoot>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>  
-</script>
-
-
-<script type="text/template" id="asuntos_item">
-  <td>
-    <label class="i-checks m-b-none">
-      <input class="esc check-row" value="<%= id %>" type="checkbox"><i></i>
-    </label>
-  </td>
-  <td class="ver"><span class='text-info'><%= nombre %></span></td>
-  <td class="p5 td_acciones">
-    <% if (id_empresa > 0) { %>
-      <i title="Activo" class="fa-check iconito fa activo <%= (activo == 1)?"active":"" %>"></i>
-      <div class="btn-group dropdown ml10">
-        <button class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fa fa-plus"></i>
-        </button>   
-        <ul class="dropdown-menu pull-right">
-          <li><a href="javascript:void(0)" class="duplicar" data-id="<%= id %>">Duplicar</a></li>
-          <li><a href="javascript:void(0)" class="delete" data-id="<%= id %>">Eliminar</a></li>
-        </ul>
-      </div>
-    <% } %>
-  </td>
-</script>
-
-<script type="text/template" id="asuntos_edit_panel_template">
-<div class=" wrapper-md ng-scope">
-  <h1 class="m-n h3"><i class="fa fa-cog icono_principal"></i><?php echo lang(array("es"=>"Configuracion","en"=>"Configuration")); ?>
-    / Asuntos
-    / <b><%= (id == undefined) ? 'Nuevo' : nombre %></b>
-  </h1>
-</div>
-<div class="wrapper-md ng-scope">
-  <div class="centrado rform">
-    <div class="row">
-      <div class="col-md-4"></div>
-      <div class="col-md-8">
-        <div class="panel panel-default">
-          <div class="panel-body">
-          
-            <div class="padder">
-              <div class="form-group">
-                <label class="control-label">Nombre</label>
-                <input type="text" name="nombre" class="form-control" id="asuntos_nombre" value="<%= nombre %>"/>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="control-label">Color</label>
-                    <input type="text" name="color" class="form-control" id="asuntos_color" value="<%= color %>"/>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="control-label">Orden</label>
-                    <input type="text" name="orden" class="form-control" id="asuntos_orden" value="<%= orden %>"/>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <% if (id_empresa > 0) { %>
-          <button class="btn guardar btn-success">Guardar</button>
-        <% } %>
-      </div>
-    </div>
-  </div>
-</div>
-
-</script>
-
-<script type="text/template" id="asuntos_edit_mini_panel_template">
-<div class="panel pb0 mb0">
-  <div class="panel-body">
-    <div class="oh m-b">
-      <h4 class="h4 pull-left">Nuevo asunto</h4>
-      <i class="pull-right fa fa-times text-muted cp cerrar"></i>
-    </div>
-    <div class="form-group">
-      <input placeholder="Nombre" type="text" name="nombre" class="form-control tab" id="asuntos_mini_nombre" value="<%= nombre %>"/>
-    </div>
-    <div class="form-group clearfix mb0">
-      <a target="_blank" href="app/#asuntos" class="fl btn btn-default"><i class="fa fa-pencil"></i></a>
-      <button class="btn guardar fr tab btn-success">Guardar</button>
-    </div>
-  </div>
-</div>
-</script>
-
-<script type="text/template" id="consultas_item_template">
-  <a class="avatar-letra avatar mt0 thumb pull-left m-r" href="app/#cliente_acciones/<%= id_contacto %>">
-    <%= (isEmpty(nombre)) ? email.substr(0,1) : nombre.substr(0,1) %>
-  </a>
-  <div class="pull-right text-sm text-muted text-right">
-    <span class="hidden-xs"><%= fecha %></b> a las <b><%= hora %> hs.</b></span>
-    <% if (!isEmpty(email_usuario)) { %>
-      <br/><span class="consulta_hace">
-        Respondido por: <span class="label bg-light m-l-sm ng-binding"><%= email_usuario %></span>
-      </span>
-    <% } %>   
-  </div>
-  <div class="clear">
-    <div>
-        <a class="text-md" href="app/#cliente_acciones/<%= id_contacto %>">
-          <%= (isEmpty(nombre)) ? email : nombre %>
-        </a>
-        <% if (!isEmpty(usuario)) { %><span class="label bg-light m-l-sm ng-binding"><%= usuario %></span><% } %>
-    </div>
-    <a href="app/#cliente_acciones/<%= id_contacto %>" class="text-ellipsis m-t-xs"><%= (isEmpty(texto)) ? asunto : ((texto.length > 120) ? texto.substr(0,120)+"..." : texto) %></a>
-  </div>
-</script>
-
-<script type="text/template" id="consultas_tipos_tree_panel_template">
-  <div class="centrado rform">
-    <div class="header-lg">
-      <div class="row">
-        <div class="col-md-6">
-          <h1>Estados</h1>
-        </div>
-        <div class="col-md-6 tar">
-          <a class="btn btn-info nuevo" href="javascript:void(0)">
-            <span>&nbsp;&nbsp;Nuevo Estado&nbsp;&nbsp;</span>
-          </a>
-        </div>
-      </div>
-    </div>  
-    <div class="panel panel-default">
-      <div class="panel-heading clearfix">
-        Arrastre los estados de acuerdo al orden que seguirán las consultas
-      </div>
-      <div class="panel-body clearfix">
-        <div ui-jq="nestable" class="dd">
-          <ol class="dd-list">
-            <% for(var i=0;i<consultas_tipos.length;i++) { %>
-              <% var o = consultas_tipos[i] %>
-              <li class="dd-item dd3-item" data-id="<%= o.id %>">
-                <div class="dd-handle dd3-handle">Drag</div>
-                <div class="dd3-content">
-                  <a href="javascript:void" class="editar cp text-info"><%= o.nombre %></a>
-                </div>       
-              </li>
-            <% } %>
-          </ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</script>
-
-<script type="text/template" id="consultas_tipos_edit_panel_template">
-<div class="panel panel-default rform">
-  <div class="panel-heading">
-    <b><%= (id == undefined) ? "Nueva Categoria" : nombre+" ("+id+")" %></b>
-    <i class="fa fa-times cerrar fr cp"></i>
-  </div>
-  <div class="panel-body">
-    <div class="form-group">
-      <label class="control-label">Nombre</label>
-      <input <%= (!edicion)?"disabled":"" %> placeholder="Ej: En proceso, pendiente, en espera de confirmación, etc." type="text" name="nombre" class="form-control" id="consultas_tipos_nombre" value="<%= nombre %>"/>
-    </div>
-
-    <h4 class="bold">Automatización:</h4>
-
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label class="control-label">Vencimiento despues de (días):</label>
-          <input <%= (!edicion)?"disabled":"" %> placeholder="Días" type="text" name="tiempo_proximo_estado" class="form-control" id="consultas_tipos_tiempo_proximo_estado" value="<%= tiempo_proximo_estado %>"/>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <label class="control-label">Mover a Archivados despues de (días):</label>
-          <input <%= (!edicion)?"disabled":"" %> placeholder="Días" type="text" name="tiempo_vencimiento" class="form-control" id="consultas_tipos_tiempo_vencimiento" value="<%= tiempo_vencimiento %>"/>
-        </div>
-      </div>
-    </div>
-  </div>
-  <?php //<% if (control.check("consultas")>1) { %>?>
-    <div class="panel-footer clearfix tar" style="border-top: none">
-      <% if (id != undefined && control.check("consultas")>2) { %>
-        <button class="btn btn-danger eliminar fl">Eliminar</button>
-      <% } %>
-      <button class="btn guardar btn-info">Guardar</button>
-    </div>
-  <?php //<% } %>?>
-</div>
 </script>

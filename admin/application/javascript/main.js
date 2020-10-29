@@ -36,6 +36,9 @@
         "web(/)": "ver_web",
         "web/:id(/)": "ver_web",
 
+        // Consultas vencidas
+        "consultas_vencidas(/)": "ver_consultas_vencidas",
+
         // Edicion de plantilla
         "editar_template(/)": "ver_editar_template",
 
@@ -207,7 +210,20 @@
         self.mostrar({
           "top": edit.el,
         });
-      },       
+      },  
+
+      // Tabla especial que muestra las consultas vencidas
+      ver_consultas_vencidas: function() {
+        var self = this;
+        window.consultas_tipo = -1;
+        window.consultas_vencidas = 1;
+        var edit = new app.views.ConsultasTableView({
+          collection: new app.collections.Consultas(),
+        });
+        self.mostrar({
+          "top" : edit.el,
+        });        
+      },
 
       ver_web: function(id) {
         var self = this;
@@ -299,8 +315,6 @@
               });
               self.mostrar({
                 "top" : edit.el,
-                "top_height": "100%",
-                "full": 1,
               });
             }
           });
@@ -320,8 +334,6 @@
         // Valores por defecto de los parametros
         params.top || ( params.top = "" );
         params.top_width || ( params.top_width = "100%" );
-        params.top_height || ( params.top_height = "" );
-        params.full || ( params.full = 0 );
         if (typeof params.mostrar_mensaje_full == "undefined") params.mostrar_mensaje_full = MENSAJE_CUENTA_NIVEL;
         
         $("#top_container").hide();
@@ -331,13 +343,6 @@
         
         if (params.top === "") $("#top_container").hide();
         else $("#top_container").fadeIn();
-
-        // Si tenemos que tomar el 100% del alto
-        if (params.full == 1) {
-          $(".app-content").addClass("app-content-full-height");
-          $(".app-header-fixed").addClass("app-aside-folded");
-          $("#top_container").addClass("full-height");
-        }
 
         // Si tenemos que mostrar el mensaje full
         if (params.mostrar_mensaje_full == 2) {
@@ -355,6 +360,42 @@
 
       // ==========================
       // FUNCIONES COMUNES:
+
+      nuevo_email: function(consulta,callback) {
+
+        // Si no se manda un modelo
+        if (consulta == undefined) {
+          consulta = new app.models.Consulta({
+            "tipo":1, // 0=Recibido, 1=Enviado
+          });
+        }
+
+        // Si no tiene seteado adjuntos por defecto
+        if (typeof consulta.get("links_adjuntos") == "undefined") {
+          consulta.set({"links_adjuntos":[]});
+        }
+
+        // Indica que estamos mandando un email con el usuario que estamos logueados
+        consulta.set({
+          "id_origen":5,
+          "id_usuario":ID_USUARIO,
+          "fecha":moment().format("DD/MM/YYYY"),
+          "hora":moment().format("HH:mm:ss"),
+        });
+
+        var emailView = new app.views.EmailView({
+          model: consulta
+        });
+        var d = $("<div/>").append(emailView.el);
+        crearLightboxHTML({
+          "html":d,
+          "width":800,
+          "height":400,
+          "escapable":false,
+          "callback":callback,
+        });
+        this.crear_editor('email_texto');
+      },
 
       crear_editor:function(nombre,config) {
         // Esto se hace para que no tire error de que el CKEditor ya fue creado

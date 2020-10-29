@@ -81,6 +81,8 @@
   });
 })( app.collections, app.models.Consulta, Backbone.Paginator);
 
+// =============================================
+// TABLA DE CONSULTAS
 
 (function ( app ) {
 
@@ -89,6 +91,13 @@
     template: _.template($("#consultas_panel_template").html()),
 
     myEvents: {
+      "click #consultas_vencidas_tab":function(){
+        window.consultas_tipo = -1;
+        window.consultas_vencidas = 1;
+        this.$(".cambiar_tab").removeClass("active");
+        this.$("#consultas_vencidas_tab").addClass("active");
+        this.buscar();
+      },
       "click .nuevo_cliente": "nuevo_cliente",
       "keydown #consultas_table tbody tr .radio:first":function(e) {
         // Si estamos en el primer elemento y apretamos la flechita de arriba
@@ -108,8 +117,10 @@
         var self = this;
         var tipo = $(e.currentTarget).data("tipo");
         this.$(".cambiar_tab").removeClass("active");
+        this.$("#consultas_vencidas_tab").removeClass("active");
         $(e.currentTarget).addClass("active");
         this.cambio_parametros = true;
+        window.consultas_vencidas = 0;
         window.consultas_tipo = tipo;
         this.buscar();
       },
@@ -135,20 +146,10 @@
 
     nuevo_cliente: function() {
       var self = this;
-      if (ID_PROYECTO == 3) {
-        var view = new app.views.ContactoEditView({
-          model: new app.models.Clientes({
-            "tipo":2,
-            "custom_3":1,
-          }),
-          view: self,
-        });            
-      } else {
-        var view = new app.views.ConsultaEditView({
-          model: new app.models.Consulta(),
-          view: self,
-        });
-      }
+      var view = new app.views.ContactoEditView({
+        model: new app.models.Contacto(),
+        view: self,
+      });            
       crearLightboxHTML({
         "html":view.el,
         "width":550,
@@ -165,6 +166,7 @@
       window.consultas_filter = (typeof window.consultas_filter != "undefined") ? window.consultas_filter : "";
       window.consultas_page = (typeof window.consultas_page != "undefined") ? window.consultas_page : 1;
       window.consultas_tipo = (typeof window.consultas_tipo != "undefined") ? window.consultas_tipo : 1;
+      window.consultas_vencidas = (typeof window.consultas_vencidas != "undefined") ? window.consultas_vencidas : 0;
 
       this.cambio_parametros = false;
       this.render();
@@ -199,9 +201,10 @@
         this.cambio_parametros = false;
       }
       var datos = {
-        "term":encodeURIComponent(window.consultas_filter),
+        "filter":encodeURIComponent(window.consultas_filter),
         "codigo_propiedad":encodeURIComponent(window.consultas_codigo_propiedad),
         "tipo":window.consultas_tipo,
+        "vencidas":window.consultas_vencidas,
         "custom_3":window.consultas_custom_3,
         "custom_4":window.consultas_custom_4,
         "custom_5":window.consultas_custom_5,
@@ -286,18 +289,10 @@
       window.consultas_page = this.pagination.getPage();
       this.$("#consultas_table tbody").empty();
       if (this.collection.length > 0) this.collection.each(this.addOne);
-      
-      // Ponemos los totales
-      /*
-      var total = 0;
-      var estados = this.collection.meta("estados");
-      if (typeof estados != undefined) {
-        for (var i = 0; i < estados.length; i++) {
-          var e = estados[i];
-          this.$(".consultas_estado_"+e.tipo).html("("+e.cantidad+")");
-          total += parseInt(e.cantidad);
-        }
-      }*/
+      for(var v in this.collection._meta.totales) {
+        $(".consultas_estado_"+v).html(this.collection._meta.totales[v]);
+      }
+      this.$("#consultas_vencidas_counter").html(this.collection._meta.vencidas);
     },
 
     addOne : function ( item ) {
@@ -315,6 +310,8 @@
   });
 })(app);
 
+// =============================================
+// ITEM DE LA TABLA
 
 (function ( app ) {
 
@@ -335,7 +332,7 @@
           "width":600,
           "height":140,
           "callback":function() {
-            self.buscar();
+            self.parent.buscar();
           }
         });
       },
@@ -442,13 +439,9 @@
       if (this.habilitar_seleccion) {
         window.codigo_cliente_seleccionado = this.model.get("codigo");
         window.cliente_seleccionado = this.model;
-        $('.modal:last').modal('hide');                
+        $('.modal:last').modal('hide');
       } else {
-        if (ID_PROYECTO == 3) {
-          location.href="app/#contacto_acciones/"+this.model.id;    
-        } else {
-          location.href="app/#cliente_acciones/"+this.model.id;    
-        }
+        location.href="app/#contacto_acciones/"+this.model.id;    
       }
     },
     initialize: function(options) {
@@ -494,172 +487,6 @@
   });
 
 })( app );
-
-
-(function ( app ) {
-
-  app.views.ConsultaEditView = app.mixins.View.extend({
-
-    template: _.template($("#consulta_edit_template").html()),
-        
-    myEvents: {
-      "click .guardar": "guardar",
-      "click .id_origen":function(e){
-        var clase = "btn-info";
-        this.$(".id_origen.active").removeClass(clase);
-        this.$(".id_origen").removeClass("active");
-        var id_origen = $(e.currentTarget).data("id_origen");
-        $(e.currentTarget).addClass("active");
-        $(e.currentTarget).addClass(clase);
-      },
-    },
-
-    initialize: function(options) {
-      var self = this;
-      this.options = options;
-      _.bindAll(this);
-      this.view = this.options.view;
-      
-      var edicion = false;
-      if (this.options.permiso > 1) edicion = true;
-      var obj = { "edicion": edicion,"id":this.model.id }
-      _.extend(obj,this.model.toJSON());
-      $(this.el).html(this.template(obj));
-      this.guardando = 0;
-      this.render();
-    },
-      
-    render: function() {
-        
-      var self = this;
-      var fecha = this.model.get("fecha");
-      if (isEmpty(fecha)) fecha = new Date();
-      createtimepicker($(this.el).find("#consulta_fecha"),fecha);            
-      
-      /*
-      if (control.check("propiedades")>0) { 
-        var input = this.$("#consulta_propiedad");
-        $(input).customcomplete({
-          "url":"/admin/propiedades/function/ver/",
-          "form":null, // No quiero que se creen nuevos productos
-          "info":"localidad",
-          "image_field":"path",
-          "image_path":"/sistema",
-          "onSelect":function(item){
-            self.seleccionar_propiedad(item.element);
-          }
-        });
-      }
-      */
-
-      var input = this.$("#consulta_cliente_nombre");
-      $(input).customcomplete({
-        "url":"clientes/function/get_by_nombre/",
-        "form":null,
-        "hideNoResults":true,
-        "width":"300px",
-        "onSelect":function(item){
-          var cliente = new app.models.Cliente({"id":item.id});
-          cliente.fetch({
-            "success":function(){
-              self.seleccionar_cliente(cliente);
-            },
-          });
-        }
-      });
-
-      setTimeout(function(){
-        $('[data-toggle="tooltip"]').tooltip();
-      },100);
-    },
-
-    seleccionar_cliente: function(r) {
-      var self = this;
-      // Seteamos el cliente
-      self.model.set({
-        "id_contacto":r.id,
-        "nombre":r.get("nombre"),
-        "email":r.get("email"),
-        "telefono":r.get("telefono"),
-      });
-      self.$("#consulta_cliente_nombre").val(r.get("nombre"));
-      self.$("#consulta_cliente_email").val(r.get("email"));
-      self.$("#consulta_cliente_telefono").val(r.get("telefono"));
-
-      // Para cerrar el customcomplete que se abre
-      setTimeout(function(){
-        self.$('#consulta_cliente_nombre').trigger(jQuery.Event('keyup', {which: 27}));
-      },500);                
-    },
-    
-    validar: function() {
-      try {
-        var self = this;
-        var nombre = self.$("#consulta_cliente_nombre").val();
-        if (isEmpty(nombre)) {
-          alert("Por favor ingrese un nombre");
-          self.$("#consulta_cliente_nombre").focus();
-          return false;
-        }
-
-        var fecha = self.$("#consulta_fecha").val();
-        if (isEmpty(fecha)) {
-          alert("Por favor ingrese una fecha");
-          self.$("#consulta_fecha").focus();
-          return false;
-        }
-        this.model.set({
-          "fecha":fecha,
-        });
-
-        if (self.$(".id_origen.active").length > 0) {
-          this.model.set({
-            "id_origen":self.$(".id_origen.active").data("id_origen"),
-          });          
-        } else {
-          alert("Por favor marque un origen de la consulta.");
-          return false;
-        }
-        return true;
-      } catch(e) {
-        console.log(e)
-        return false;
-      }
-    },
-
-    guardar:function() {
-      var self = this;
-      if (this.validar() && this.guardando == 0) {
-        this.guardando = 1;
-        if (this.model.id == null) {
-          this.model.set({id:0});
-        }
-        this.model.save({},{
-          success: function(model,response) {
-            self.guardando = 0;
-            if (response.error == 1) {
-              show(response.mensaje);
-              return;
-            } else {
-              $('.modal:last').modal('hide');
-              if (ID_PROYECTO == 3) {
-                location.href = "app/#contacto_acciones/"+self.model.id;
-              } else {
-                if (typeof self.view !== undefined) self.view.buscar();
-              }
-            }
-          },
-          error: function() {
-            self.guardando = 0;
-          },
-        });
-      }	    
-    },
-      
-  });
-})(app);
-
-
 
 
 (function ( app ) {
@@ -1128,14 +955,15 @@
       var consulta = new app.models.Consulta({
         "email":self.model.get("email"),
         "id_contacto":self.model.get("id_contacto"),
-        "id_paciente":self.model.get("id_paciente"),
         "id_origen":self.model.get("id_origen"),
         "id_email_respuesta":self.model.id,
         "id_empresa":ID_EMPRESA,
         "tipo":1,
         "asunto":(isEmpty(self.model.get("asunto")) ? "Re: Consulta" : "Re: "+self.model.get("asunto")),
       });
-      workspace.nuevo_email(consulta);
+      workspace.nuevo_email(consulta,function(){
+        location.reload();
+      });
     },
     editar_texto: function() {
       this.$(".consulta_timeline_texto").hide();
@@ -1185,6 +1013,12 @@
     template: _.template($("#cambiar_estado_consulta_template").html()),
     myEvents: {
       "click .guardar":"guardar",
+      "click .postergar":"postergar",
+      "click .editar_tipo":function(e) {
+        var tipo_nombre = $(e.currentTarget).html();
+        var tipo_id = $(e.currentTarget).data("tipo");
+        this.editar_tipo(tipo_id,tipo_nombre);
+      }
     },        
     initialize: function(options) {
       var self = this;
@@ -1193,11 +1027,60 @@
       this.editor = options.editor;
       this.render();
     },
+
+    editar_tipo: function(tipo_id,tipo_nombre) {
+      var self = this;
+      this.$("#consulta_cambio_estado_id_tipo").val(tipo_id);
+      this.$("#consulta_cambio_estado_boton_tipo").html(tipo_nombre);
+
+      // Mostramos el postergar solamente si no cambiamos de estado
+      if (tipo_id == this.model.get("tipo")) this.$(".postergar").show();
+      else this.$(".postergar").hide();
+
+      // La fecha solamente se muestra cuando se programa una visita
+      if (tipo_id == 3) this.$("#cambiar_estado_consulta_fecha_cont").show();
+      else this.$("#cambiar_estado_consulta_fecha_cont").hide();
+
+      // Solamente mostramos los asuntos que corresponden con ese estado
+      this.$("#cambiar_estado_consulta_asuntos").val(0);
+      this.$("#cambiar_estado_consulta_asuntos option").hide();
+      this.$("#cambiar_estado_consulta_asuntos option[data-id_tipo=0]").show();
+      this.$("#cambiar_estado_consulta_asuntos option[data-id_tipo="+tipo_id+"]").show();
+    },
+
+    postergar: function() {
+      var self = this;
+      var tipo = this.$("#consulta_cambio_estado_id_tipo").val();
+      $.ajax({
+        "url":"clientes/function/editar_vencimiento/",
+        "dataType":"json",
+        "type":"post",
+        "data":{
+          "ids":self.model.id,
+          "tipo":tipo,
+        },
+        "success":function() {
+          self.cerrar();
+        },
+      });      
+    },
+
     guardar: function() {
       var self = this;
-      var id_asunto = this.$("#consulta_cambio_estado_motivo").val();
+      var id_asunto = this.$("#cambiar_estado_consulta_asuntos").val();
+      if (id_asunto == 0) {
+        alert("Para cambiar un estado debe seleccionar un motivo.");
+        return;
+      }
       var notas = this.$("#consulta_cambio_estado_notas").val();
-      custom_1 = "Motivo: "+this.$("#consulta_cambio_estado_motivo option:selected").text()+"\n"+"Notas: "+notas;
+      custom_1 = "Motivo: "+this.$("#cambiar_estado_consulta_asuntos option:selected").text();
+      if (!isEmpty(notas)) notas+="<br/>Notas: "+notas;
+
+      var tipo = this.$("#consulta_cambio_estado_id_tipo").val();
+      var fecha_vencimiento = "";
+      // Si es una actividad programada, mandamos la fecha de vencimiento nueva
+      if (tipo == 3) fecha_vencimiento = $("#cambiar_estado_consulta_fecha").val();
+
       $.ajax({
         "url":"clientes/function/editar_tipo/",
         "dataType":"json",
@@ -1206,8 +1089,9 @@
           "id_asunto":id_asunto,
           "custom_1":custom_1,
           "ids":self.model.id,
+          "fecha_vencimiento":fecha_vencimiento,
           "id_usuario":ID_USUARIO,
-          "tipo":self.tipo,
+          "tipo":tipo,
         },
         "success":function() {
           self.cerrar();
@@ -1216,670 +1100,31 @@
     }, 
     cargar_asuntos: function() {
       var s = "";
+      s+='<option data-id_tipo="0" value="0">-</option>';
       for(var i=0;i< window.asuntos.length;i++) {
         var o = window.asuntos[i]; 
-        s+='<option value="'+o.id+'">'+o.nombre+'</option>';
+        s+='<option data-id_tipo="'+o.id_tipo+'" value="'+o.id+'">'+o.nombre+'</option>';
       }
       this.$("#cambiar_estado_consulta_asuntos").html(s);
-      this.$("#cambiar_estado_consulta_asuntos").select2();
+    },
+    cerrar: function() {
+      $('.modal:last').modal('hide');
     },
     render: function() {
+      var self = this;
       var obj = this.model.toJSON();
       $(this.el).html(this.template(obj));
       this.cargar_asuntos();
-      createtimepicker(this.$("#cambiar_estado_consulta_fecha"),new Date());
+
+      var fecha = new Date();
+      if (self.model.get("tipo") == 3) fecha = moment(self.model.get("fecha_vencimiento"),"DD/MM/YYYY HH:mm").toDate();
+      createtimepicker(this.$("#cambiar_estado_consulta_fecha"),fecha);
+
+      // Por primera vez ejecutamos esta funcion asi mostramos bien los datos
+      this.editar_tipo(this.model.get("tipo"),this.model.get("consulta_tipo"));
+
+      $('[data-toggle="tooltip"]').tooltip();
       return this;
     },
   });
 })(app);
-
-
-
-(function ( app ) {
-
-  app.views.EmailView = app.mixins.View.extend({
-
-    template: _.template($("#email_template").html()),
-      
-    myEvents: {
-      "click .cargar_plantilla":"cargar_plantilla",
-      "click .guardar_plantilla":"guardar_plantilla",
-      "click .guardar": "guardar",
-      "click .eliminar_adjunto":"eliminar_adjunto",
-      "click .adjuntar_archivos": "adjuntar_archivos",
-    },
-    
-    initialize: function(options) {
-      var self = this;
-      this.options = options;
-      this.adjuntos = new Array();
-      _.bindAll(this);
-      var edicion = false;
-      if (this.options.permiso > 1) edicion = true;
-      var obj = { "edicion": edicion,"id":this.model.id }
-      _.extend(obj,this.model.toJSON());
-      $(this.el).html(this.template(obj));
-
-      this.$('#fileupload').fileupload({
-        url: "/admin/clientes/function/upload_files/",
-        dataType: 'json',
-        start: function() {
-          $("#progress").show();
-        },
-        done: function (e, data) {
-          $.each(data.result.files, function (index, file) {
-            self.adjuntos.push(file.url);
-            $('<p/>').text(file.name).appendTo('#files');
-          });
-          $("#progress").hide();
-        },
-        progressall: function (e, data) {
-          var progress = parseInt(data.loaded / data.total * 100, 10);
-          $('#progress .progress-bar').css(
-            'width',
-            progress + '%'
-          );
-        }
-      }).prop('disabled', !$.support.fileInput)
-        .parent().addClass($.support.fileInput ? undefined : 'disabled');
-    },
-
-    cargar_plantilla: function() {
-      var self = this;
-      window.email_template_seleccionado = null;
-      var lista = new app.views.EmailsTemplatesTableView({
-        collection: new app.collections.EmailsTemplates(),
-        habilitar_seleccion: true,
-      });
-      crearLightboxHTML({
-        "html":lista.el,
-        "width":450,
-        "height":140,
-        "callback":function() {
-          // Si selecciono algun template
-          if (window.email_template_seleccionado != null) {
-            var texto = window.email_template_seleccionado.get("texto");
-            var nombre = window.email_template_seleccionado.get("nombre");
-            CKEDITOR.instances['email_texto'].setData(texto);
-            self.$("#email_asunto").val(nombre);
-          }
-        }
-      });
-    },
-    guardar_plantilla: function() {
-      var self = this;
-      var nombre = this.$("#email_asunto").val();
-      if (isEmpty(nombre)) {
-        alert("Por favor ingrese un asunto para guardar la plantilla.");
-        this.$("#email_asunto").focus();
-        return;
-      }
-      var texto = CKEDITOR.instances['email_texto'].getData();
-      if (isEmpty(texto)) {
-        alert("Por favor ingrese algun texto en la plantilla que desea guardar.");
-        return;
-      }
-      var template = new app.models.EmailTemplate({
-        "nombre":nombre,
-        "texto":texto,
-      });
-      template.save({},{
-        "success":function() {
-          alert("La plantilla se ha guardado con exito.");
-        }
-      })
-    },
-    
-    validar: function() {
-      try {
-        var self = this;
-
-        var asunto = this.$("#email_asunto").val();
-        if (isEmpty(asunto)) {
-          alert("Por favor ingrese un asunto para el email.");
-          this.$("#email_asunto").focus();
-          return false;
-        }
-
-        var cktext = CKEDITOR.instances['email_texto'].getData();
-        self.model.set({
-          "adjuntos":self.adjuntos,
-          "texto":cktext,
-          "archivo":self.$("#hidden_archivo").val(),
-        });
-        return true;
-      } catch(e) {
-        return false;
-      }
-    },  
-  
-    guardar:function() {
-      if (this.validar()) {
-        if (this.model.id == null) {
-          this.model.set({id:0});
-        }
-        this.model.save({},{
-          success: function(model,response) {
-            if (response.error == 1) {
-              show(response.mensaje);
-              return;
-            } else {
-              //emails.add(model);
-              $('.modal:last').modal('hide');
-            }
-          }
-        });
-      }   
-    },
-    
-    adjuntar_archivos: function() {
-      
-    },
-    
-    eliminar_adjunto: function(e) {
-      var links_adjuntos = this.model.get("links_adjuntos");
-      var pos = $(e.currentTarget).data("position");
-      if (pos <= 0) return;
-      this.model.set("links_adjuntos",links_adjuntos.splice(pos,1));
-      $(e.currentTarget).parent().remove();
-    },
-  });
-})(app);
-
-
-
-(function ( models ) {
-
-  models.Asunto = Backbone.Model.extend({
-    urlRoot: "asuntos/",
-    defaults: {
-      nombre: "",
-      color: "",
-      activo: 1,
-      orden: 0,
-      id_empresa: ID_EMPRESA,
-    }
-  });
-
-})( app.models );
-
-
-(function (collections, model, paginator) {
-  collections.Asuntos = paginator.requestPager.extend({
-    model: model,
-    paginator_core: {
-      url: "asuntos/"
-    }
-  });
-})( app.collections, app.models.Asunto, Backbone.Paginator);
-
-
-(function ( app ) {
-  app.views.AsuntoItem = Backbone.View.extend({
-    tagName: "tr",
-    template: _.template($('#asuntos_item').html()),
-    events: {
-      "click .ver": "editar",
-      "click .delete": "borrar",
-      "click .duplicar": "duplicar"
-    },
-    initialize: function(options) {
-      this.model.bind("change",this.render,this);
-      this.model.bind("destroy",this.render,this);
-      this.options = options;
-      _.bindAll(this);
-    },
-    render: function() {
-      $(this.el).html(this.template(this.model.toJSON()));
-      return this;
-    },
-    editar: function() {
-      // Cuando editamos un elemento, indicamos a la vista que lo cargue en los campos
-      location.href="app/#asunto/"+this.model.id;
-    },
-    borrar: function(e) {
-      if (confirmar("Realmente desea eliminar este elemento?")) {
-        this.model.destroy();  // Eliminamos el modelo
-        $(this.el).remove();  // Lo eliminamos de la vista
-      }
-      e.stopPropagation();
-    },
-    duplicar: function(e) {
-      var clonado = this.model.clone();
-      clonado.set({id:null}); // Ponemos el ID como NULL para que se cree un nuevo elemento
-      clonado.save({},{
-        success: function(model,response) {
-          model.set({id:response.id});
-        }
-      });
-      this.model.collection.add(clonado);
-      e.stopPropagation();
-    }
-  });
-
-})( app );
-
-
-
-// ----------------------
-//   VISTA DE LA TABLA
-// ----------------------
-
-(function ( app ) {
-
-  app.views.AsuntosTableView = app.mixins.View.extend({
-
-   template: _.template($("#asuntos_panel_template").html()),
-
-   initialize : function (options) {
-
-      _.bindAll(this); // Para que this pueda ser utilizado en las funciones
-
-      var lista = this.collection;
-      this.options = options;
-
-      // Creamos la lista de paginacion
-      var pagination = new app.mixins.PaginationView({
-        collection: lista
-      });
-
-      // Creamos el buscador
-      var search = new app.mixins.SearchView({
-        collection: lista
-      });
-
-      this.collection.on('sync', this.addAll, this);
-
-      $(this.el).html(this.template());
-      $(this.el).find(".pagination_container").html(pagination.el);
-      $(this.el).find(".search_container").html(search.el);
-      lista.pager();
-    },
-
-    addAll : function () {
-      $(this.el).find("tbody").empty();
-      this.collection.each(this.addOne);
-    },
-
-    addOne : function ( item ) {
-      var view = new app.views.AsuntoItem({
-        model: item,
-      });
-      $(this.el).find("tbody").append(view.render().el);
-    }
-
-  });
-})(app);
-
-
-
-// -------------------------------
-//   VISTA DEL PANEL DE EDICION
-// -------------------------------
-(function ( views, models ) {
-
-  views.AsuntoEditView = app.mixins.View.extend({
-
-    template: _.template($("#asuntos_edit_panel_template").html()),
-
-    myEvents: {
-      "click .guardar": "guardar",
-      "click .nuevo": "limpiar",
-    },
-
-    initialize: function(options) {
-      this.model.bind("destroy",this.render,this);
-      _.bindAll(this);
-      this.options = options;
-      this.render();
-    },
-
-    render: function() {
-      var obj = { id:this.model.id };
-      $.extend(obj,this.model.toJSON());
-      $(this.el).html(this.template(obj));
-      return this;
-    },
-
-    validar: function() {
-      try {
-        // Validamos los campos que sean necesarios
-        validate_input("asuntos_nombre",IS_EMPTY,"Por favor, ingrese un nombre.");
-        // No hay ningun error
-        $(".error").removeClass("error");
-        return true;
-      } catch(e) {
-        return false;
-      }
-    },
-
-    guardar: function() {
-      var self = this;
-      if (this.validar()) {
-        if (this.model.id == null) {
-          this.model.set({id:0});
-        }
-        this.model.save({
-          "id_empresa":ID_EMPRESA,
-        },{
-          success: function(model,response) {
-            location.href="app/#asuntos";
-          }
-        });
-      }
-    },
-
-    limpiar : function() {
-      this.model = new app.models.Asunto();
-      this.render();
-    },
-
-  });
-
-})(app.views, app.models);
-
-
-
-// -------------------------------
-//   VISTA DEL PANEL DE EDICION
-// -------------------------------
-(function ( views, models ) {
-
-  views.AsuntoMiniEditView = app.mixins.View.extend({
-
-    template: _.template($("#asuntos_edit_mini_panel_template").html()),
-
-    myEvents: {
-      "click .guardar": "guardar",
-      "click .cerrar": "cerrar",
-      "keypress .tab":function(e) {
-        if (e.keyCode == 13) {
-          e.preventDefault();
-          $(e.currentTarget).parent().next().find(".tab").focus();
-        }
-      },
-      "keyup .tab":function(e) {
-        if (e.which == 27) this.cerrar();
-      },
-      "keypress .guardar":function(e) {
-        if (e.keyCode == 13) this.guardar();
-      },
-    },
-
-    initialize: function(options) {
-      this.options = options;
-      this.input = this.options.input;
-      this.onSave = this.options.onSave;
-      this.callback = this.options.callback;
-
-      _.bindAll(this);
-      this.render();
-    },
-
-    render: function() {
-      var self = this;
-      var obj = { id:this.model.id };
-      $.extend(obj,this.model.toJSON());
-
-      $(this.el).html(this.template(obj));
-
-      if (this.input != undefined) {
-        // Seteamos lo que tiene el input de referencia
-        $(this.el).find("#asuntos_mini_nombre").val($(this.input).val().trim());
-      }
-
-      return this;
-    },
-
-    focus: function() {
-      $(this.el).find("#asuntos_mini_nombre").focus();
-    },
-
-    validar: function() {
-      var self = this;
-      try {
-        validate_input("asuntos_mini_nombre",IS_EMPTY,"Por favor, ingrese un nombre.");
-        return true;
-      } catch(e) {
-        return false;
-      }
-    },
-
-    guardar: function() {
-      var self = this;
-      if (this.validar()) {
-        if (this.model.id == null) {
-          this.model.set({id:0});
-        }
-        this.model.save({
-          "id_empresa":ID_EMPRESA,
-          "nombre":$("#asuntos_mini_nombre").val(),
-          "color": "", // COLOR POR DEFECTO
-          "activo":1,
-        },{
-          success: function(model,response) {
-            if (response.error == 1) {
-              show(response.mensaje);
-            } else {
-              if (typeof self.onSave != "undefined") self.onSave(model);
-              if (typeof self.callback != "undefined") self.callback(model.id);
-              self.cerrar();
-            }
-          }
-        });
-      }
-    },
-
-    cerrar: function() {
-      $(this.el).parents(".customcomplete").remove();
-    },
-
-  });
-
-})(app.views, app.models);
-
-
-// ==========================================================================================
-// CONSULTAS TIPOS
-
-(function ( models ) {
-
-  models.Consultatipo = Backbone.Model.extend({
-    urlRoot: "consultas_tipos/",
-    defaults: {
-      nombre: "",
-      color: "",
-      orden: 0,
-      id_empresa: ID_EMPRESA,
-      activo: 1,
-      id_email_template: 0,
-      tiempo_proximo_estado: 0,
-      tiempo_vencimiento: 0,
-      id_proximo_estado: -1,
-    }
-  });
-
-})( app.models );
-
-
-(function (collections, model, paginator) {
-  collections.Consultastipos = paginator.requestPager.extend({
-    model: model,
-    paginator_core: {
-      url: "consultas_tipos/"
-    }
-  });
-})( app.collections, app.models.Consultatipo, Backbone.Paginator);
-
-
-(function ( app ) {
-
-  app.views.ConsultastiposTableView = app.mixins.View.extend({
-
-    template: _.template($("#consultas_tipos_tree_panel_template").html()),
-
-    myEvents: {
-      "click .editar":function(e) {
-        var self = this;
-        e.preventDefault();
-        var id = $(e.currentTarget).parents(".dd-item").data("id");
-        var cat = new app.models.Consultatipo({ id: id });
-        cat.fetch({
-          "success":function(){
-            self.ver(cat);
-          }
-        });
-      },
-      "click .nuevo":function() {
-        var modelo = new app.models.Consultatipo();
-        this.ver(modelo);
-      },
-    },
-
-    ver: function(modelo) {
-      var categoria = new app.views.ConsultatipoEditView({
-        model: modelo,
-        permiso: 3,
-      });
-      var d = $("<div/>").append(categoria.el);
-      crearLightboxHTML({
-        "html":d,
-        "width":600,
-        "height":500,
-        "escapable":false,
-      });
-    },
-    
-    initialize : function () {
-      _.bindAll(this); // Para que this pueda ser utilizado en las funciones
-      this.render();
-    },
-
-    render : function() {
-
-      var self = this;
-      $(this.el).html(this.template());
-
-      this.$('.dd').nestable();
-      this.$('.dd').on('change',this.reorder);            
-
-      return this;      
-    }, 
-
-    reorder: function() {
-      var serialize = this.$('.dd').nestable('serialize');
-      $.ajax({
-        "url":"consultas_tipos/function/reorder/",
-        "type":"post",
-        "dataType":"json",
-        "data":{
-          "datos":serialize,
-        }
-      });
-    },
-
-  });
-})(app);
-
-
-
-(function ( views, models ) {
-
-  views.ConsultatipoEditView = app.mixins.View.extend({
-
-    template: _.template($("#consultas_tipos_edit_panel_template").html()),
-
-    myEvents: {
-      "click .guardar": "guardar",
-      "click .nuevo": "limpiar",
-      "click .eliminar": "eliminar",
-      "click .cerrar": function(){
-        $('.modal:last').modal('hide');
-      },
-    },
-
-    eliminar : function() {
-      if (!confirmar("Realmente desea eliminar este elemento?")) return;
-      var self = this;      
-      var consulta_tipo = new app.models.Consultatipo({
-        "id":self.model.id
-      });
-      consulta_tipo.destroy();
-      consulta_tipo.fetch({
-        "success":function() {
-          location.reload();
-        }
-      });
-    },        
-
-    initialize: function(options) {
-      this.model.bind("destroy",this.render,this);
-      this.options = options;
-      _.bindAll(this);
-      this.render();      
-    },
-
-    render: function() {
-      var self = this;
-      var edicion = true;
-      //if (this.options.permiso > 1) edicion = true;
-      var obj = { edicion: edicion, id:this.model.id };
-      $.extend(obj,this.model.toJSON());
-      $(this.el).html(this.template(obj));
-
-      new app.mixins.Select({
-        modelClass: app.models.EmailTemplate,
-        url: "emails_templates/",
-        render: "#consultas_tipos_emails_templates",
-        firstOptions: ["<option value='0'>Seleccione una plantilla</option>"],
-        selected: self.model.get("id_email_template"),
-        onComplete:function(c) {
-          crear_select2("consultas_tipos_emails_templates");
-        },
-      });
-      return this;
-    },
-
-    validar: function() {
-      var self = this;
-      try {
-        validate_input("consultas_tipos_nombre",IS_EMPTY,"Por favor, ingrese un nombre.");
-
-        if (this.$("#consultas_tipos_emails_templates").length > 0) {
-          this.model.set({
-            "id_email_template":self.$("#consultas_tipos_emails_templates").val(),
-          });
-        }
-        this.model.set({
-          "id_proximo_estado":self.$("#consultas_tipos_proximo_estado").val(),
-        });
-        return true;
-      } catch(e) {
-        return false;
-      }
-    },
-
-    guardar: function() {
-      var self = this;
-      if (this.validar()) {
-        if (this.model.id == null) {
-          this.model.set({id:-1});
-        }
-        this.model.save({
-          "id_empresa":ID_EMPRESA,
-        },{
-          success: function(model,response) {
-            location.reload();
-          }
-        });
-      }
-    },
-
-    limpiar : function() {
-      this.model = new app.models.Consultatipo();
-      this.render();
-    },
-
-  });
-
-})(app.views, app.models);

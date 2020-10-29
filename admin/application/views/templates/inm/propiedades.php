@@ -45,7 +45,7 @@
 
     <% if (!seleccionar) { %>
 
-      <?php include("historias.php"); ?>
+      <?php //include("historias.php"); ?>
 
       <div class="header-lg">
         <div class="row">

@@ -29,10 +29,11 @@ class Clientes extends REST_Controller {
   function editar_tipo() {
     $id_empresa = parent::get_empresa();
     $ids = parent::get_post("ids");
-    $custom_1 = parent::get_post("custom_1","");
-    $id_asunto = parent::get_post("id_asunto",0);
+    $custom_1 = parent::get_post("custom_1",""); // OBSERVACIONES
+    $id_asunto = parent::get_post("id_asunto",0); // MOTIVO
     $ids = explode(",", $ids);
     $tipo = parent::get_post("tipo",-1);
+    $fecha_vencimiento = parent::get_post("fecha_vencimiento","");
     $id_usuario = parent::get_post("id_usuario",0);
 
     foreach($ids as $id) {
@@ -40,6 +41,7 @@ class Clientes extends REST_Controller {
         "id_empresa"=>$id_empresa,
         "id"=>$id,
         "id_usuario"=>$id_usuario,
+        "fecha_vencimiento"=>$fecha_vencimiento,
         "id_asunto"=>$id_asunto,
         "custom_1"=>$custom_1,
         "tipo"=>$tipo,
@@ -51,6 +53,26 @@ class Clientes extends REST_Controller {
     }
     echo json_encode(array("error"=>0));
   }
+
+  // USADO EN CRM/CONSULTAS
+  function editar_vencimiento() {
+    $id_empresa = parent::get_empresa();
+    $ids = parent::get_post("ids");
+    $ids = explode(",", $ids);
+    $tipo = parent::get_post("tipo",-1);
+    foreach($ids as $id) {
+      $salida = $this->modelo->editar_vencimiento(array(
+        "id_empresa"=>$id_empresa,
+        "id"=>$id,
+        "tipo"=>$tipo,
+      ));
+      if ($salida["error"] == 1) {
+        echo json_encode($salida);
+        exit();
+      }
+    }
+    echo json_encode(array("error"=>0));
+  }  
 
   function ver_calendario_pagos() {
     ini_set('display_errors', 1);
@@ -583,7 +605,7 @@ class Clientes extends REST_Controller {
   function get_consultas() {
     $this->load->model("Consulta_Model");
     $id_contacto = $this->input->post("id_cliente");
-    $res = $this->Consulta_Model->buscar(array(
+    $res = $this->Consulta_Model->buscar_consultas(array(
       "id_contacto"=>$id_contacto,
       "offset"=>999999,
     ));

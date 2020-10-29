@@ -17,16 +17,24 @@
                   <% } %>
                 </div>
                 <div class="col-xs-12">
-                  <h3 class="m-t-sm m-b-xs"><%= nombre.ucwords() %> </h3>
+                  <h3 class="m-t-sm m-b-xs">
+                    <%= nombre.ucwords() %> 
+                  </h3>
                   <a class="text-azul db fs14"><%= email.toLowerCase() %></a>
                   <% if (!isEmpty(telefono)) { %>
                     <a class="fs14 db"><%= telefono.toLowerCase() %></a>
                   <% } %>
                 </div>
+                <div class="col-xs-12">
+                  <a class="text-link fs12" href="app/#clientes/<%= id %>">
+                    Editar información
+                  </a>
+                </div>
               </div>
 
-              <div class="cb oh mt5 text-muted">
-                <select class="form-control no-model usuario_asignado">
+              <div class="cb oh mt15 mb15 text-muted">
+                <label class="fs14">Asignado a:</label>
+                <select id="contacto_ficha_usuarios" class="form-control no-model usuario_asignado">
                   <% for (var i=0; i< usuarios.length; i++) { %>
                     <% var u = usuarios.models[i] %>
                     <option <%= (u.id == id_usuario)?"selected":"" %> value="<%= u.id %>"><%= u.get("nombre") %></option>
@@ -34,20 +42,10 @@
                 </select>
               </div>
 
-              <div class="acerca_de m-t">
-                <div class="row">
-                  <div class="col-xs-8 pr0">
-                    <div class="form-group">
-                      <button class="btn btn-info mostrar_estado"><%= consulta_tipo %></button>
-                    </div>
-                  </div>
-                  <div class="col-xs-4">
-                    <div class="form-group mb0 tar">
-                      <a class="btn btn-white" href="app/#clientes/<%= id %>">
-                        <i class="fa fa-pencil"></i>
-                      </a>
-                    </div>
-                  </div>
+              <div class="acerca_de m-t text-muted">
+                <label class="fs14">Estado:</label>
+                <div class="form-group">
+                  <button class="btn btn-block btn-info mostrar_estado"><%= consulta_tipo %></button>
                 </div>
               </div>
 
@@ -66,6 +64,11 @@
               </a>
             </li>
             <li>
+              <a href="javascript:void(0)" class="cambiar_tab_grande" data-id="3" role="tab" data-toggle="tab"><i class="material-icons mr5">home</i>
+                Propiedades interesadas
+              </a>
+            </li>
+            <li>
               <a href="javascript:void(0)" class="cambiar_tab_grande" data-id="1" role="tab" data-toggle="tab"><i class="material-icons mr5">search</i>
                 Perfil de búsqueda
               </a>
@@ -77,38 +80,27 @@
           <div id="tab_grande_1" class="tab-pane tab_grande">
 
             <div class="panel panel-default">
-              <div id="contacto_propiedades_interesadas_vacio" style="display:block">
-                <div class="h3 tac" style="padding: 83px 0px;">No existen propiedades interesadas</div>
-              </div>
-              <div id="contacto_propiedades_interesadas" class="owl-carousel" style="height: 191px; overflow:auto; display:none"></div>
-            </div>
-
-            <div id="contacto_ficha_propiedades"></div>
-
-            <div class="panel panel-default">
-              <div id="contacto_busquedas_guardadas_vacio" style="display:block">
-                <div class="h3 tac" style="padding: 83px 0px;">No existen b&uacute;squedas guardadas</div>
-              </div>
-              <div id="contacto_busquedas_guardadas" class="table-responsive mb0" style="height: 191px; overflow:auto; display:none">
-                <table class="table table-small table-striped sortable m-b-none default footable">
-                  <thead>
-                    <tr>
-                      <th>Localidades</th>
-                      <th>Inmueble</th>
-                      <th>Operacion</th>
-                      <th>Fecha</th>
-                      <th class="w25"></th>
-                    </tr>
-                  </thead>
-                  <tbody></tbody>
-                </table>
+              <div class="panel-body">
+                <div id="contacto_busquedas_guardadas_vacio" style="display:block">
+                  <div class="h3 tac" style="padding: 83px 0px;">No existen b&uacute;squedas guardadas</div>
+                </div>
+                <div id="contacto_busquedas_guardadas" class="table-responsive mb0" style="height: 191px; overflow:auto; display:none">
+                  <table class="table table-striped sortable m-b-none default footable">
+                    <thead>
+                      <tr>
+                        <th>Localidades</th>
+                        <th>Inmueble</th>
+                        <th>Operacion</th>
+                        <th>Fecha</th>
+                        <th class="w25"></th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
               </div>
             </div>            
 
-          </div>
-
-          <div id="tab_grande_4" class="tab-pane tab_grande">
-            
           </div>
 
           <div id="tab_grande_2" class="tab-pane tab_grande active">
@@ -118,6 +110,17 @@
 
           <div id="tab_grande_3" class="tab-pane tab_grande">
 
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <div class="tar">
+                  <button class="btn btn-info buscar_propiedades">Buscar propiedades</button>
+                </div>
+                <div id="contacto_propiedades_interesadas_vacio" style="display:block">
+                  <div class="h3 tac" style="padding: 83px 0px;">No existen propiedades interesadas</div>
+                </div>
+                <div id="contacto_propiedades_interesadas" class="owl-carousel" style="height: 191px; overflow:auto; display:none"></div>
+              </div>
+            </div>
           </div>
 
         </div>
@@ -149,28 +152,49 @@
 
 <script type="text/template" id="contacto_edit_template">
   <div class="modal-header">
-    Nuevo Contacto
+    Nueva Consulta
     <i class="pull-right fs20 cerrar_lightbox fa fa-times cp"></i>
   </div>
   <form class="modal-body" autocomplete="off">
-    <div class="form-group">
-      <input type="text" placeholder="Nombre y Apellido" autocomplete="off" id="contacto_cliente_nombre" name="nombre" class="form-control"/>
-    </div>  
+    <div class="row">
+      <div class="col-md-6">    
+        <div class="form-group">
+          <input type="text" placeholder="Nombre y Apellido" autocomplete="off" id="contacto_cliente_nombre" name="nombre" class="form-control"/>
+        </div>
+      </div>
+      <div class="col-md-6">    
+        <div class="form-group">
+          <input type="text" placeholder="Email" id="contacto_cliente_email" name="email" class="form-control"/>
+        </div>
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <input type="text" placeholder="Celular" id="contacto_cliente_telefono" name="telefono" class="form-control"/>
-        </div>  
+          <div class="input-group">
+            <span class="input-group-btn">
+              <select class="form-control w100" id="contacto_cliente_telefono_prefijo" name="fax">
+                <?php include("application/views/templates/custom/paises.php"); ?>
+              </select>
+            </span>        
+            <input type="text" placeholder="Celular" id="contacto_cliente_telefono" name="telefono" class="form-control"/>
+          </div>
+        </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
-          <input type="text" placeholder="Email" id="contacto_cliente_email" name="email" class="form-control"/>
+          <select class="form-control" id="contacto_consulta_tipo" name="tipo">
+            <% for (var i=0;i< consultas_tipos.length;i++) { %>
+              <% var t = consultas_tipos[i] %>
+              <option <%= (t.id == tipo)?"selected":"" %> value="<%= t.id %>"><%= t.nombre %></option>
+            <% } %>
+          </select>
         </div>  
       </div>
     </div>
     <div class="form-group">
       <div class="input-group">
-        <input type="text" placeholder="Interesado en propiedad..." autocomplete="off" id="contacto_propiedad" class="form-control"/>
+        <input type="text" disabled placeholder="Interesado en propiedad..." autocomplete="off" id="contacto_propiedad" class="form-control"/>
         <span class="input-group-btn">
           <button data-toggle="tooltip" title="Buscar propiedades" tabindex="-1" type="button" class="btn btn-default buscar_propiedades"><i class="fa fa-search"></i></button>
         </span>        
@@ -180,7 +204,7 @@
       <div class="col-xs-6">
         <div class="form-group">
           <div class="input-group">
-            <input type="text" placeholder="Fecha" id="contacto_fecha" value="<%= fecha_ult_operacion %>" class="form-control" name="fecha_ult_operacion"/>
+            <input type="text" placeholder="Fecha" id="contacto_fecha" value="<%= fecha %>" class="form-control" name="fecha_ult_operacion"/>
             <span class="input-group-btn">
               <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="fa fa-calendar"></i></button>
             </span>        
@@ -198,6 +222,9 @@
           </div>
         </div>
       </div>  
+    </div>
+    <div class="form-group">
+      <textarea id="contacto_texto" name="texto" class="form-control" placeholder="Comentarios sobre la consulta..."></textarea>
     </div>
   </form>
   <div class="modal-footer clearfix">

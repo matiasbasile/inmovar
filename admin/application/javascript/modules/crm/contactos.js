@@ -3,11 +3,23 @@
   models.Contacto = Backbone.Model.extend({
     urlRoot: "contactos/",
     defaults: {
+      id_contacto: 0, // Lo usamos para saber si cargo un cliente nuevo o es uno anterior
       nombre: "",
       email: "",
       telefono: "",
       celular: "",
       direccion: "",
+      tipo: 1,
+      activo: 1,
+      fax: "549",
+
+      // Estos campos no son del contacto exactamente, sino de la consulta, pero como se carga todo junto la primera vez lo tenemos que poner
+      texto: "",
+      fecha: "",
+      id_origen: 0,
+      id_propiedad: 0,
+      id_empresa: ID_EMPRESA,
+      id_usuario: ID_USUARIO,
     }
   });
 	  
@@ -22,6 +34,7 @@
 
 		myEvents: {
       "click .advanced-search-btn":function(){}, // Para que no me haga dos veces dentro del PropiedadesTableView
+      "click .buscar_propiedades":"buscar_propiedades",
 
       "click .mostrar_estado":function(e) {
         e.preventDefault();
@@ -36,7 +49,7 @@
           "width":600,
           "height":140,
           "callback":function() {
-            self.render();
+            location.reload();
           }
         });
       },
@@ -70,34 +83,18 @@
       "click .editar_tipo":function(e) {
         var self = this;
         var tipo = $(e.currentTarget).data("tipo");
-        if (tipo == 3) {
-          var v = new app.views.ConsultaCambioEstado({
-            "model":self.model,
-            "tipo":tipo,
-          });
-          crearLightboxHTML({
-            "html":v.el,
-            "width":450,
-            "height":140,
-            "callback":function() {
-              self.fetch();
-            }
-          });        
-        } else {
-          $.ajax({
-            "url":"clientes/function/editar_tipo/",
-            "dataType":"json",
-            "type":"post",
-            "data":{
-              "ids":self.model.id,
-              "tipo":tipo,
-              "id_usuario":ID_USUARIO,
-            },
-            "success":function() {
-              self.fetch();
-            },
-          });
-        }
+        var v = new app.views.ConsultaCambioEstado({
+          "model":self.model,
+          "tipo":tipo,
+        });
+        crearLightboxHTML({
+          "html":v.el,
+          "width":450,
+          "height":140,
+          "callback":function() {
+            self.fetch();
+          }
+        });        
       },
       "click .change_custom":function(e) {
         var self = this;
@@ -154,6 +151,45 @@
       return false;
     },
 
+    buscar_propiedades: function() {
+      var self = this;
+      var view = new app.views.PropiedadesTableView({
+        "collection":new app.collections.Propiedades(),
+        "vista_busqueda":true,
+      });
+      crearLightboxHTML({
+        "html":view.el,
+        "width":860,
+        "height":140,
+        "callback":function() {
+          self.agregar_interes();
+        }
+      });
+    },
+
+    agregar_interes: function() {
+      if (typeof window.propiedad_seleccionado == "undefined") return;
+      var self = this;
+      var ids = new Array();
+      ids.push(window.propiedad_seleccionado.id);
+      $.ajax({
+        "url":"contactos/function/guardar_propiedades_interesadas/",
+        "type":"post",
+        "dataType":"json",
+        "data":{
+          "ids":ids,
+          "id_cliente":self.model.id,
+        },
+        "success":function(r) {
+          if (r.error == 1) alert("Ocurrio un error al guardar los intereses de las propiedades seleccionadas.");
+          else {
+            $('#contacto_propiedades_interesadas').owlCarousel('destroy'); 
+            self.render_propiedades_interesadas();
+          }
+        },
+      });
+    },    
+
     render: function() {
       var self = this;
     	var edicion = false;
@@ -161,17 +197,6 @@
       var obj = { edicion: edicion, id:this.model.id };
     	$.extend(obj,this.model.toJSON());
     	$(this.el).html(this.template(obj));
-
-      var propiedades = new app.views.PropiedadesTableView({
-        "collection": new app.collections.Propiedades(),
-        "permiso": 0,
-        "vista_busqueda": true,
-        "ficha_contacto":self,
-        "id_cliente": self.model.id,
-        "telefono": self.model.get("telefono"),
-        "email": self.model.get("email"),
-      });
-      this.$("#contacto_ficha_propiedades").html(propiedades.el);
 
       self.render_timeline();
       self.render_busquedas();
@@ -191,8 +216,10 @@
       var self = this;
       var modelo = new app.models.Consulta({
         "id_contacto":self.model.id,
+        "email":self.model.get("email"),
         "fecha":moment().format("DD/MM/YYYY"),
         "hora":moment().format("HH:mm:ss"),
+        "fax":self.model.get("fax"),
         "celular":self.model.get("celular"),
         "telefono":self.model.get("telefono"),
       });
@@ -415,7 +442,7 @@
           "url":"propiedades/function/ver_propiedad/"+self.model.get("id_propiedad")+"/"+self.model.get("id_empresa"),
           "dataType":"json",
           "success":function(r) {
-            var propiedad = new app.models.Propiedad(r);
+            var propiedad = new app.models.Propiedades(r);
             var view = new app.views.PropiedadPreview({
               model: propiedad,
               telefono: self.parent.model.get("telefono"),
@@ -463,6 +490,7 @@
         
     myEvents: {
       "click .guardar": "guardar",
+      "click #contacto_propiedad":"buscar_propiedades",
       "click .buscar_propiedades":"buscar_propiedades",
       "click .id_origen":function(e){
         var clase = "btn-info";
@@ -492,7 +520,7 @@
     render: function() {
         
       var self = this;
-      var fecha = this.model.get("fecha_ult_operacion");
+      var fecha = this.model.get("fecha");
       if (isEmpty(fecha)) fecha = new Date();
       createtimepicker($(this.el).find("#contacto_fecha"),fecha);            
       
@@ -503,7 +531,7 @@
         "hideNoResults":true,
         "width":"300px",
         "onSelect":function(item){
-          var cliente = new app.models.Cliente({"id":item.id});
+          var cliente = new app.models.Contacto({"id":item.id});
           cliente.fetch({
             "success":function(){
               self.seleccionar_cliente(cliente);
@@ -534,7 +562,11 @@
     },
 
     seleccionar_propiedad: function() {
-
+      if (typeof window.propiedad_seleccionado == "undefined") return;
+      this.$("#contacto_propiedad").val(window.propiedad_seleccionado.get("titulo"));
+      this.model.set({
+        "id_propiedad":window.propiedad_seleccionado.id,
+      });
     },
 
     seleccionar_cliente: function(r) {
@@ -574,6 +606,10 @@
         }
         this.model.set({
           "fecha_ult_operacion":fecha,
+          "texto":self.$("#contacto_texto").val(),
+          "asunto":self.$("#contacto_propiedad").val(),
+          "fax":self.$("#contacto_cliente_telefono_prefijo").val(),
+          "tipo":self.$("#contacto_consulta_tipo").val(),
         });
 
         if (self.$(".id_origen.active").length > 0) {
@@ -606,11 +642,7 @@
               return;
             } else {
               $('.modal:last').modal('hide');
-              if (ID_PROYECTO == 3) {
-                location.href = "app/#contacto_acciones/"+self.model.id;
-              } else {
-                if (typeof self.view !== undefined) self.view.buscar();
-              }
+              location.href = "app/#contacto_acciones/"+self.model.id;
             }
           },
           error: function() {

@@ -154,15 +154,19 @@
 </script>
 
 <script type="text/template" id="clientes_edit_panel_template">
-<div class="wrapper-md">
   <div class="centrado rform">
+    <div class="header-lg">
+      <div class="row">
+        <div class="col-md-6">
+          <h1>Contactos</h1>
+        </div>
+      </div>
+    </div>
     <?php include("cli/clientes_detalle_3.php"); ?>
     <% if (edicion) { %>
-      <div class="row">
-        <div class="col-md-10 col-md-offset-1 tar">
-          <div class="line b-b m-b-lg"></div>
-          <button class="btn guardar btn-success"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
-        </div>
+      <div class="tar">
+        <div class="line b-b m-b-lg"></div>
+        <button class="btn guardar btn-info"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
       </div>
     <% } %>
   </div>
