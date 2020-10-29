@@ -35,57 +35,6 @@
             </div>
           </div>
 
-          <div class="col-md-3 col-sm-6 col-xs-12 mh50 pr5 pl5">
-            <div class="form-group">
-              <div class="input-group">
-                <select multiple="multiple" class="form-control no-model" id="busquedas_buscar_localidades"></select>
-                <span class="input-group-btn">
-                  <div class="btn-group dropdown pull-right ml0">
-                    <button class="btn btn-default dropdown-toggle btn-addon" data-toggle="dropdown">
-                      <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                      <% for (var i=0;i< Math.min(window.localidades.length,10); i++) { %>
-                        <% var localidad = window.localidades[i] %>
-                        <li><a href="javascript:void(0)" data-id="<%= localidad.id %>" data-nombre="<%= localidad.nombre %>" class="setear_localidad"><%= localidad.nombre %> (<%= localidad.cantidad %>)</a></li>
-                      <% } %>
-                    </ul>
-                  </div>
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-2 col-sm-6 col-xs-12 mh50 pr5 pl5">
-            <div class="form-group">
-              <select style="width: 100%" id="busquedas_buscar_tipos_operacion">
-                <% for(var i=0;i< window.tipos_operacion.length;i++) { %>
-                  <% var o = tipos_operacion[i]; %>
-                  <option <%= (window.busquedas_id_tipo_operacion == o.id)?"selected":"" %> value="<%= o.id %>"><%= o.nombre %></option>
-                <% } %>
-              </select>
-            </div>
-          </div>    
-
-          <div class="col-md-2 col-sm-6 col-xs-12 mh50 pr5 pl5">
-            <div class="form-group">
-              <select style="width: 100%" id="busquedas_buscar_tipos_inmueble">
-                <% for(var i=0;i< window.tipos_inmueble.length;i++) { %>
-                  <% var o = tipos_inmueble[i]; %>
-                  <option <%= (window.busquedas_id_tipo_inmueble == o.id)?"selected":"" %> value="<%= o.id %>"><%= o.nombre %></option>
-                <% } %>
-              </select>    
-            </div>
-          </div>
-
-          <div class="col-md-2 col-sm-6 col-xs-12 mh50 pr5 pl5">
-            <div class="input-group">
-              <span class="input-group-btn">
-                <button class="btn-advanced-search m-l mt10 advanced-search-btn"><i class="fa fa-plus-circle"></i><span><?php echo lang(array("es"=>"M&aacute;s Filtros","en"=>"More Filters")); ?></span></button>
-              </span>
-            </div>
-          </div>
-
         </div>
       </div>
 
