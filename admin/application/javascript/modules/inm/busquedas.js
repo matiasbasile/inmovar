@@ -16,10 +16,10 @@
       localidad: "",
       archivo: "",
       audio: "",
-      id_localidad: ((typeof ID_LOCALIDAD != "undefined") ? ID_LOCALIDAD : 0),
-      id_departamento: ((typeof ID_DEPARTAMENTO != "undefined") ? ID_DEPARTAMENTO : 0),
-      id_provincia: ((typeof ID_PROVINCIA != "undefined") ? ID_PROVINCIA : 0),
-      id_pais: ((typeof ID_PAIS != "undefined") ? ID_PAIS : 0),
+      id_localidad: 513,
+      id_departamento: 9,
+      id_provincia: 1,
+      id_pais: 1,
       calle: "",
       altura: "",
       piso: "",
@@ -35,11 +35,14 @@
       id_inmobiliaria: 0,
       inmobiliaria: "",
       logo_inmobiliaria: "",
-      
+
+      latitud: 0,
+      longitud: 0,
+      zoom: 9,   
       id_tipo_inmueble:0,
       id_tipo_operacion:0,
       id_tipo_estado:0,
-      moneda: "",
+      moneda: "U$S",
       nombre: "",
       descripcion: "",
       fecha_ingreso: "",
@@ -656,84 +659,6 @@
       }
     },
 
-    render_map: function() {
-      var self = this;
-      var centro_latitud = 0; 
-      var centro_longitud = 0; 
-      var cantidad = 0;
-      var zoom = 12;
-      var marcadores = new Array();
-      if (this.collection.length > 0) {
-        this.collection.each(function(p){
-          if (p.get("latitud") != 0 && p.get("longitud") != 0) {
-            var lat = parseFloat(p.get("latitud"));
-            var lon = parseFloat(p.get("longitud"));
-            marcadores.push({
-              "lat":lat,
-              "lon":lon,
-              "id":p.id,
-              "id_empresa":p.get("id_empresa"),
-            });
-            centro_latitud += lat;
-            centro_longitud += lon;
-            cantidad++;
-          }
-        });
-      }
-      if (cantidad > 0) {
-        centro_latitud = centro_latitud / cantidad;
-        centro_longitud = centro_longitud / cantidad;
-      } else {
-        centro_latitud = -34.6156625; 
-        centro_longitud = -58.5033598;
-      }
-
-      self.coor = new google.maps.LatLng(centro_latitud,centro_longitud);
-      var mapOptions = {
-        zoom: zoom,
-        center: self.coor
-      }
-      self.map = new google.maps.Map(document.getElementById("busquedas_mapa"), mapOptions);
-      for(var i=0;i<marcadores.length;i++) {
-        var m = marcadores[i];
-        var marker = new google.maps.Marker({
-          position: new google.maps.LatLng(m.lat,m.lon),
-          map: self.map,
-        })
-        self.attachEvent(marker,m.id,m.id_empresa);
-      }
-    },
-
-    attachEvent: function(marker,id,id_empresa) {
-      var self = this;
-      google.maps.event.addListener(marker,'click', function(){
-        self.ver_lightbox(id,id_empresa);
-      });
-    },
-
-    ver_lightbox: function(id,id_empresa) {
-      var self = this;
-      $.ajax({
-        "url":"busquedas/function/ver_busqueda/"+id+"/"+id_empresa,
-        "dataType":"json",
-        "success":function(r) {
-          var busqueda = new app.models.Busquedas(r);
-          var view = new app.views.BusquedaPreview({
-            model: busqueda,
-            telefono: self.telefono,
-            email: self.email,
-            id_cliente: self.id_cliente,
-            ficha_contacto: self.ficha_contacto,
-          });
-          crearLightboxHTML({
-            "html":view.el,
-            "width":1200,
-            "height":500,
-          });
-        }
-      });
-    },
-
     addAll : function () {
       if (window.busquedas_mapa == 1) {
         this.$("#busquedas_tabla_cont").hide();
@@ -966,29 +891,6 @@
       this.$('[data-toggle="tooltip"]').tooltip(); 
       return this;
     },
-
-    ver_lightbox: function() {
-      var self = this;
-      $.ajax({
-        "url":"busquedas/function/ver_busqueda/"+self.model.id+"/"+self.model.get("id_empresa"),
-        "dataType":"json",
-        "success":function(r) {
-          var busqueda = new app.models.Busquedas(r);
-          var view = new app.views.BusquedaPreview({
-            model: busqueda,
-            telefono: self.telefono,
-            email: self.email,
-            id_cliente: self.id_cliente,
-            ficha_contacto: self.ficha_contacto,
-          });
-          crearLightboxHTML({
-            "html":view.el,
-            "width":1200,
-            "height":500,
-          });
-        }
-      });
-    },
   });
 })(app);
 
@@ -1005,6 +907,9 @@
             
     myEvents: {
       "click .guardar": "guardar",
+      "click #expand_mapa":"expand_mapa",
+      "click #cargar_mapa":"get_coords_by_address",  
+      "change #busqueda_calle":"get_coords_by_address",
 
       "change #busqueda_tipo_ubicacion":function(){
         var tipo_ubicacion = this.$("#busqueda_tipo_ubicacion").val();
@@ -1027,6 +932,7 @@
       "change #busqueda_localidades":function(){
         var id_localidad = this.$("#busqueda_localidades").val();
         this.cargar_barrios(id_localidad);
+        this.get_coords_by_address();
       },
 
       // ABRIMOS MODAL PARA UPLOAD MULTIPLE
@@ -1052,21 +958,127 @@
           this.$("#busqueda_precios").show();
         }
       },
+    },  
+
+    // Cuando expandimos por primera vez el panel de ubicacion
+    expand_mapa: function() {
+
+      var self = this;
+      if (this.expand_mapa_key == 1) return;
+      this.expand_mapa_key = 1;
+
+      var self = this;
+      try {
+        loadGoogleMaps('3',API_KEY_GOOGLE_MAPS).done(self.render_map);
+      } catch(e) {
+        setTimeout(function(){
+          self.render_map();
+        },1000);
+      }
+      setTimeout(function(){
+        if (self.map == undefined) self.render_map();
+        google.maps.event.trigger(self.map, "resize");
+        self.map.setCenter(self.coor);
+      },1000);
     },    
+
+    get_coords_by_address: function() {
+      var self = this;
+      if (self.map == undefined) return;
+      var calle = $("#busqueda_calle").val();
+      if (isEmpty(calle)) {
+        alert("Por favor ingrese una calle");
+        $("#busqueda_calle").focus();
+        return;
+      }
+      var localidad = $("#busqueda_localidades option:selected").text();
+      if (isEmpty(localidad)) {
+        alert("Por favor ingrese una localidad");
+        $("#busqueda_localidades").focus();
+        return;
+      }
+      localidad = localidad.replace("Casco Urbano","");
+      var provincia = this.$("#busqueda_provincias option:selected").text();
+      localidad = localidad + ", " + provincia;
+      var pais = this.$("#busqueda_paises option:selected").text();
+
+      var address = calle+", "+localidad+", "+provincia+", "+pais;
+      console.log(address);
+      self.geocoder.geocode( { 'address': address}, function(results, status) {
+        console.log(results);
+        if (status == google.maps.GeocoderStatus.OK) {
+          var location = results[0].geometry.location;
+          var latitud = location.lat();
+          var longitud = location.lng();
+          self.coor = new google.maps.LatLng(latitud,longitud);
+          self.map.setCenter(self.coor);
+          self.map.setZoom(18);
+          self.marker.setPosition(self.coor);
+
+          google.maps.event.addListener(self.marker,"dragend",function(event) {
+            var lat = event.latLng.lat(); 
+            var lng = event.latLng.lng();
+            self.model.set({
+              "latitud":latitud,
+              "longitud":longitud
+            });
+          }); 
+
+        } else {
+          alert("Geocode was not successful for the following reason: " + status);
+        }
+      });
+    },
+
+    render_map: function() {
+      var self = this;
+      var latitud = self.model.get("latitud");
+      var longitud = self.model.get("longitud");
+      var zoom = parseInt(self.model.get("zoom"));
+      if (latitud == 0 && longitud == 0) {
+        latitud = -34.6156625; longitud = -58.5033598; zoom: 9;
+      }
+      self.geocoder = new google.maps.Geocoder();
+      self.coor = new google.maps.LatLng(latitud,longitud);
+      var mapOptions = {
+        zoom: zoom,
+        center: self.coor
+      }
+      self.map = new google.maps.Map(document.getElementById("mapa"), mapOptions);
+      
+      // Place a draggable marker on the map
+      self.marker = new google.maps.Marker({
+        position: self.coor,
+        map: self.map,
+        draggable:true,
+        title:"Arrastralo a la direccion correcta"
+      });
+      google.maps.event.addListener(self.marker,"dragend",function(event) {
+        var lat = event.latLng.lat(); 
+        var lng = event.latLng.lng();
+        self.model.set({
+          "latitud":lat,
+          "longitud":lng
+        });
+      });             
+    },
                 
     initialize: function(options) {
       var self = this;
       _.bindAll(this);
-      
       var edicion = false;
       this.options = options;
       if (this.options.permiso > 1) edicion = true;
       var obj = { "edicion": edicion,"id":this.model.id }
       _.extend(obj,this.model.toJSON());
       $(this.el).html(this.template(obj));
+      this.render();
+    },
 
+    render: function() {
       this.item_temporada = null;
       this.item_impuesto = null;
+      this.expand_mapa_key = 0;
       
       this.$("#busqueda_tipos_operacion").select2({});
       this.$("#busqueda_tipos_inmueble").select2({});
@@ -1197,134 +1209,3 @@
           
   });
 })(app);
-
-
-(function ( views, models ) {
-  views.BusquedaPreview = app.mixins.View.extend({
-    template: _.template($("#busqueda_preview_template").html()),
-    className: "busqueda_preview",
-    myEvents: {
-      "click .editar":function() {
-        $('.modal:last').modal('hide');
-        location.href="app/#busquedas/"+this.model.id;
-      },
-      "click .enviar":"enviar",
-      "click .enviar_whatsapp":"enviar_whatsapp",
-      "click .marcar_interes":"marcar_interes",
-      "click #busqueda_preview_2_link":function() {
-        var self = this;
-        try {
-          loadGoogleMaps('3',API_KEY_GOOGLE_MAPS).done(self.render_map);
-        } catch(e) {
-          setTimeout(function(){
-            self.render_map();
-          },1000);
-        }
-      },
-    },
-    initialize: function(options) {
-      _.bindAll(this);
-      this.telefono = (typeof options.telefono != "undefined") ? options.telefono : "";
-      this.email = (typeof options.email != "undefined") ? options.email : "";
-      this.id_cliente = (typeof options.id_cliente != "undefined") ? options.id_cliente : 0;
-      this.ficha_contacto = (typeof options.ficha_contacto != "undefined") ? options.ficha_contacto : null;
-      this.render();
-    },
-    render: function() {
-      var self = this;
-      $(this.el).html(this.template(this.model.toJSON()));
-      this.render_galeria();
-      return this;
-    },
-    enviar_whatsapp: function() {
-      var self = this;
-      if (isEmpty(this.telefono)) {
-        alert("El cliente no tiene cargado un telefono.");
-        return;        
-      }
-      var link_completo = 'https://' + DOMINIO + ((DOMINIO.substr(DOMINIO.length - 1) == "/") ? "" : "/") + this.model.get("link");
-      var salida = "https://wa.me/"+this.telefono+"?text="+encodeURIComponent(link_completo);
-      window.open(salida,"_blank");
-    },
-    marcar_interes: function() {
-      var self = this;
-      $.ajax({
-        "url":"contactos/function/guardar_busquedas_interesadas/",
-        "type":"post",
-        "dataType":"json",
-        "data":{
-          "ids":new Array(self.model.id),
-          "id_empresa_busqueda":self.model.get("id_empresa"),
-          "id_cliente":self.id_cliente,
-        },
-        "success":function(r) {
-          if (r.error == 1) alert("Ocurrio un error al guardar los intereses de las busquedas seleccionadas.");
-          else {
-            $('#contacto_busquedas_interesadas').owlCarousel('destroy'); 
-            if (self.ficha_contacto != null) {
-              self.ficha_contacto.render_busquedas_interesadas();
-            }
-          }
-        },
-      });
-    },
-    enviar: function() {
-      var self = this;
-      var links_adjuntos = new Array();
-      links_adjuntos.push({
-        tipo: TIPO_ADJUNTO_PROPIEDAD,
-        id_objeto: self.model.id,
-        nombre: self.model.get("nombre"),
-      });
-      var email = new app.models.Consulta({
-        tipo: 1,
-        links_adjuntos:links_adjuntos,
-        asunto:"Fichas de Busquedas",
-        email: self.email,
-      });
-      workspace.nuevo_email(email);
-    },
-    render_map: function() {
-      var self = this;
-      var latitud = self.model.get("latitud");
-      var longitud = self.model.get("longitud");
-      var zoom = parseInt(self.model.get("zoom"));
-      if (latitud == 0 && longitud == 0) {
-        latitud = -34.6156625; longitud = -58.5033598; zoom: 9;
-      }
-      self.geocoder = new google.maps.Geocoder();
-      self.coor = new google.maps.LatLng(latitud,longitud);
-      var mapOptions = {
-        zoom: zoom,
-        center: self.coor
-      }
-      self.map = new google.maps.Map(document.getElementById("busqueda_preview_mapa"), mapOptions);
-      self.marker = new google.maps.Marker({
-        position: self.coor,
-        map: self.map,
-      });
-    },
-    render_galeria: function() {
-      // The slider being synced must be initialized first
-      this.$('#busquedas_preview_carousel').flexslider({
-        animation: "slide",
-        controlNav: false,
-        animationLoop: false,
-        slideshow: false,
-        itemWidth: 120,
-        asNavFor: '#busquedas_preview_slider',
-        prevText: "",
-        nextText: "",
-      });
-      this.$('#busquedas_preview_slider').flexslider({
-        animation: "slide",
-        controlNav: false,
-        animationLoop: false,
-        slideshow: false,
-        sync: "#busquedas_preview_carousel",
-        prevText: "",
-        nextText: "",
-      });
-    }
-  });
-})(app.views, app.models);

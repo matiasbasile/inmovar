@@ -503,53 +503,6 @@ class App extends CI_Controller {
       ));
     }        
   }
-  
-  function get_info_inmovar_dashboard() {
-
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
-
-    $fecha_desde = $this->input->get("desde");
-    $fecha_hasta = $this->input->get("hasta");
-    $this->load->helper("fecha_helper");
-    $desde = fecha_mysql($fecha_desde);
-    $hasta = fecha_mysql($fecha_hasta);
-    $datos = array();
-    $datos["desde"] = $fecha_desde;
-    $datos["hasta"] = $fecha_hasta;
-    
-    $this->load->model("Propiedad_Model");
-    $datos["total_propiedades"] = $this->Propiedad_Model->count_all();
-    $datos["mas_visitadas"] = $this->Propiedad_Model->buscar(array(
-      "offset"=>3
-    ))["results"];
-
-    // Cantidad de propiedades que tiene la red en total
-    $datos["total_propiedades_red"] = $this->Propiedad_Model->total_propiedades_red_completa();
-
-    // Cantidad de propiedades que tiene la red compartida con esta inmobiliaria
-    $datos["total_propiedades_tu_red"] = $this->Propiedad_Model->total_propiedades_red_empresa();
-    
-    // Ultimas consultas
-    $this->load->model("Consulta_Model");
-    $consultas = $this->Consulta_Model->buscar(array(
-      "tipo"=>1,
-      "offset"=>3
-    ));
-    $datos["consultas"] = $consultas["results"];
-    $datos["total_consultas"] = $this->Consulta_Model->count_all();
-
-    $datos["total_visitas"] = 1589;
-    $datos["visitas_sitio_web"] = round($datos["total_visitas"] * 0.58,0);
-    $datos["visitas_red"] = $datos["total_visitas"] - $datos["visitas_sitio_web"];
-
-    // TODO: HARDCODEADO
-    $datos["consultas_sitio_web"] = round($datos["total_consultas"] * 0.41,0);
-    $datos["consultas_red"] = $datos["total_consultas"] - $datos["consultas_sitio_web"];
-
-    echo json_encode($datos);
-  }
 
   function calcular_visitas($datos = array()) {
     try {

@@ -2,7 +2,7 @@
 
   models.Inicio = Backbone.Model.extend({
     urlRoot: function(){
-      return 'app/get_info_inmovar_dashboard/?desde='+encodeURI(this.get("desde"))+"&hasta="+encodeURI(this.get("hasta"));
+      return 'dashboard/function/get_info/?desde='+encodeURI(this.get("desde"))+"&hasta="+encodeURI(this.get("hasta"));
     },
     defaults:{
       "desde":moment().subtract(1, 'months').format("DD/MM/YYYY"),
@@ -46,7 +46,7 @@ app.views.InicioSingleView = Backbone.View.extend({
     //anterior.setDate(anterior.getDate()-30); 
     //createdatepicker($(this.el).find("#dashboard_fecha_desde"),anterior);
     //createdatepicker($(this.el).find("#dashboard_fecha_hasta"),new Date());
-    this.render_grafico_facturacion();
+    this.render_graficos();
 
     this.$("#inicio_rango_fechas").rangepicker({
       "startDate":self.model.get("desde"),
@@ -63,59 +63,67 @@ app.views.InicioSingleView = Backbone.View.extend({
     return this;
   },
   
-  render_grafico_facturacion: function(fecha_desde,a) {
+  render_graficos: function(fecha_desde,a) {
     var self = this;
-    this.$('#visitas_bar').highcharts({
-      chart: {
-        plotBackgroundColor: null,
-        plotShadow: false
-      },
-      title: { text: null },
-      tooltip: {
-        pointFormat: '<b>{point.percentage:.1f}%</b>'
-      },
-      colors: ['#1d36c2', '#0dd384'],
-      plotOptions: {
-        pie: {
-          allowPointSelect: true,
-          cursor: 'pointer',
-          dataLabels: { enabled: false }
-        }
-      },
-      series: [{
-        type: 'pie',
-        data: [
-          ['Sitio Web', self.model.get("visitas_sitio_web")],
-          ['Red', self.model.get("visitas_red")],
-        ]
-      }]
-    });    
+    var visitas_sitio_web = self.model.get("visitas_sitio_web");
+    var visitas_red = self.model.get("visitas_red");
+    if (visitas_sitio_web > 0 && visitas_red > 0) {
+      this.$('#visitas_bar').highcharts({
+        chart: {
+          plotBackgroundColor: null,
+          plotShadow: false
+        },
+        title: { text: null },
+        tooltip: {
+          pointFormat: '<b>{point.percentage:.1f}%</b>'
+        },
+        colors: ['#1d36c2', '#0dd384'],
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: { enabled: false }
+          }
+        },
+        series: [{
+          type: 'pie',
+          data: [
+            ['Sitio Web', visitas_sitio_web],
+            ['Red', visitas_red],
+          ]
+        }]
+      });
+    }
 
-    this.$('#consultas_bar').highcharts({
-      chart: {
-        plotBackgroundColor: null,
-        plotShadow: false
-      },
-      title: { text: null },
-      tooltip: {
-        pointFormat: '<b>{point.percentage:.1f}%</b>'
-      },
-      colors: ['#1d36c2', '#0dd384'],
-      plotOptions: {
-        pie: {
-          allowPointSelect: true,
-          cursor: 'pointer',
-          dataLabels: { enabled: false }
-        }
-      },
-      series: [{
-        type: 'pie',
-        data: [
-          ['Sitio Web', self.model.get("consultas_sitio_web")],
-          ['Red', self.model.get("consultas_red")],
-        ]
-      }]
-    });    
+    var consultas_sitio_web = self.model.get("consultas_sitio_web");
+    var consultas_red = self.model.get("consultas_red");
+    if (consultas_sitio_web > 0 && consultas_red > 0) {
+      this.$('#consultas_bar').highcharts({
+        chart: {
+          plotBackgroundColor: null,
+          plotShadow: false
+        },
+        title: { text: null },
+        tooltip: {
+          pointFormat: '<b>{point.percentage:.1f}%</b>'
+        },
+        colors: ['#1d36c2', '#0dd384'],
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: { enabled: false }
+          }
+        },
+        series: [{
+          type: 'pie',
+          data: [
+            ['Sitio Web', consultas_sitio_web],
+            ['Red', consultas_red],
+          ]
+        }]
+      });
+    }
   },
   
 });

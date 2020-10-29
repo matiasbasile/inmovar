@@ -96,7 +96,8 @@
             <thead>
               <tr>
                 <th>Descripción</th>
-                <th>Operación</th>
+                <th>Valores</th>
+                <th>Descripción</th>
                 <th>Inmobiliaria</th>
               </tr>
             </thead>
@@ -120,6 +121,7 @@
     Desde: <%= moneda %> <%= Number(precio_desde).format(0) %><br/>
     Hasta: <%= moneda %> <%= Number(precio_hasta).format(0) %><br/>
   </td>
+  <td><%= texto %></td>
   <td>
     <div class="dt">
       <div class="dtc">
