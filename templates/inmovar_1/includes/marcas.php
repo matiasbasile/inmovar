@@ -9,7 +9,7 @@ if (mysqli_num_rows($q)>0) { ?>
         <?php while(($r=mysqli_fetch_object($q))!==NULL) { ?>
           <div class="client">
             <a href="<?php echo (!empty($r->link))?$r->link:"javascript:void(0)" ?>">
-              <img src="/sistema/<?php echo $r->path; ?>" alt="<?php echo ($r->nombre); ?>" />
+              <img src="/admin/<?php echo $r->path; ?>" alt="<?php echo ($r->nombre); ?>" />
             </a>
           </div>
         <?php } ?>

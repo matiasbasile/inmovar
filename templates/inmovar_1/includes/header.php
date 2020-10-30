@@ -65,7 +65,7 @@ if (isset($_SESSION["favoritos"])) {
             <?php if (empty($empresa->logo_1)) { ?>
               <?php echo ($empresa->nombre); ?>
             <?php } else { ?>
-              <img src="/sistema/<?php echo $empresa->logo_1 ?>" alt="<?php echo ($empresa->nombre); ?>" />
+              <img src="/admin/<?php echo $empresa->logo_1 ?>" alt="<?php echo ($empresa->nombre); ?>" />
             <?php } ?>
           </a>
         </div>

@@ -29,7 +29,7 @@
                         <?php if (!empty($r->imagen)) { ?>
                           <img src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre); ?>" />
                         <?php } else if (!empty($empresa->no_imagen)) { ?>
-                          <img src="/sistema/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->nombre); ?>" />
+                          <img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->nombre); ?>" />
                         <?php } else { ?>
                           <img src="images/logo.png" alt="<?php echo ($r->nombre); ?>" />
                         <?php } ?>
@@ -95,7 +95,7 @@
         <span class="pull-right">
           <a class="inmovar-logo" href="https://www.inmovar.com" target="_blank">
             <span class="inmovar-frase">Tu Inmobiliaria Online!</span>
-            <img class="inmovar-logo-img" src="/templates/inmovarweb/images/varcreative-logo.png">  
+            <img class="inmovar-logo-img" src="assets/img/varcreative-logo.png">  
             <span class="inmovar-letra">inmovar</span>
           </a>
         </span>
@@ -104,10 +104,10 @@
   </div><!-- /.inner -->
 </footer>
 
-<script type="text/javascript" src="/sistema/resources/js/jquery.min.js"></script>
-<script type="text/javascript" src="/sistema/resources/js/libs/bootstrap.min.js"></script>
+<script type="text/javascript" src="/admin/resources/js/jquery.min.js"></script>
+<script type="text/javascript" src="/admin/resources/js/libs/bootstrap.min.js"></script>
 <script type="text/javascript" src="assets/js/smoothscroll.js"></script>
-<script type="text/javascript" src="/sistema/resources/js/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="/admin/resources/js/bootstrap-select.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery.placeholder.js"></script>
 <script type="text/javascript" src="assets/js/icheck.min.js"></script>
@@ -123,5 +123,5 @@
 <!--[if gt IE 8]>
 <script type="text/javascript" src="assets/js/ie.js"></script>
 <![endif]-->
-<script type="text/javascript" src="/sistema/resources/js/common.js"></script>
-<script type="text/javascript" src="/sistema/resources/js/main.js"></script>
+<script type="text/javascript" src="/admin/resources/js/common.js"></script>
+<script type="text/javascript" src="/admin/resources/js/main.js"></script>
