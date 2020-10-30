@@ -653,6 +653,7 @@ class App extends CI_Controller {
     $array[] = 'application/javascript/modules/inm/tipos_inmueble.js';
     $array[] = 'application/javascript/modules/inm/tipos_estado.js';
     $array[] = 'application/javascript/modules/clientes.js';
+    $array[] = 'application/javascript/modules/configuracion_menu.js';
 
     if ($id_proyecto == 0) {
       

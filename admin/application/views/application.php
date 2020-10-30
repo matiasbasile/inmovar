@@ -139,6 +139,7 @@ if (file_exists("application/views/templates/clientes.php")) include_once ("appl
 if (file_exists("application/views/templates/crm/contactos.php")) include_once ("application/views/templates/crm/contactos.php");
 if (file_exists("application/views/templates/web/web_textos.php")) include_once ("application/views/templates/web/web_textos.php");
 if (file_exists("application/views/templates/web/web_configuracion.php")) include_once ("application/views/templates/web/web_configuracion.php");
+if (file_exists("application/views/templates/configuracion_menu.php")) include_once ("application/views/templates/configuracion_menu.php");
 if (file_exists("application/views/templates/config/mi_cuenta.php")) include_once ("application/views/templates/config/mi_cuenta.php");
 if (file_exists("application/views/templates/inm/dashboard.php")) include_once ("application/views/templates/inm/dashboard.php");
 if (file_exists("application/views/templates/clientes.php")) include_once ("application/views/templates/clientes.php");
