@@ -708,7 +708,8 @@ class Empresa_Model extends Abstract_Model {
     //$this->db->db_debug = FALSE;
     //$this->db->trans_start();
 
-    if (!isset($array->id_empresa_modelo)) $id_empresa_modelo = 1;
+    if (!isset($array->id_empresa_modelo)) $array->id_empresa_modelo = 1;
+    $id_empresa_modelo = $array->id_empresa_modelo;
     unset($array->numero_ib);
     unset($array->fecha_inicio);
     unset($array->percibe_ib);
