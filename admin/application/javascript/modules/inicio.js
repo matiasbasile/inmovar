@@ -216,7 +216,7 @@ app.views.InicioSingleView = Backbone.View.extend({
 
 // PLANES DE PROYECTOS
 (function ( app ) {
-  app.views.Precios = app.mixins.View.extend({
+  app.views.PreciosSingleView = app.mixins.View.extend({
     template: _.template($("#precios_template").html()),
     myEvents:{
       "click .contratar_plan":function(e){
