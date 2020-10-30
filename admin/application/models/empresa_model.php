@@ -712,7 +712,7 @@ class Empresa_Model extends Abstract_Model {
       $id_empresa_modelo = $array->id_empresa_modelo;
       unset($array->id_empresa_modelo);
     } else {
-      $id_empresa_modelo = 0;
+      $id_empresa_modelo = 270;
     }
     unset($array->numero_ib);
     unset($array->fecha_inicio);
@@ -890,9 +890,6 @@ class Empresa_Model extends Abstract_Model {
     $tablas = array();
 
     $tablas = array(
-      "inm_propiedades",
-      "inm_propiedades_images",
-      "inm_propiedades_relacionados",
       "not_categorias",
       "not_entradas",
       "web_slider",
