@@ -16,13 +16,15 @@
               <span class="material-icons">arrow_forward_ios</span>
               Datos de la inmobiliaria
             </a>
-          </li>          
-          <li>
-            <a class="<%= (id_modulo == "integraciones")?"active":"" %>" href="app/#configuracion/integraciones">
-              <span class="material-icons">arrow_forward_ios</span>
-              Portales
-            </a>
           </li>
+          <% if (ID_PLAN > 1) { %>
+            <li>
+              <a class="<%= (id_modulo == "integraciones")?"active":"" %>" href="app/#configuracion/integraciones">
+                <span class="material-icons">arrow_forward_ios</span>
+                Portales
+              </a>
+            </li>
+          <% } %>
           <li>
             <a class="<%= (id_modulo == "api")?"active":"" %>" href="app/#configuracion/api">
               <span class="material-icons">arrow_forward_ios</span>

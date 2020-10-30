@@ -55,6 +55,8 @@
         "permisos_red(/)": "ver_permisos_red",
         "permisos_red/:id(/)": "ver_permisos_red",
 
+        "alquileres(/)": "ver_alquileres",
+
         // 
         "contacto_acciones/:id": "ver_contacto_acciones",
 
@@ -218,6 +220,16 @@
         var edit = new app.views.PermisosRedView({
           model: new app.models.AbstractModel(),
           id_inmobiliaria: ((typeof id == "undefined")?0:id),
+        });
+        self.mostrar({
+          "top": edit.el,
+        });
+      },  
+
+      ver_alquileres: function(id) {
+        var self = this;
+        var edit = new app.views.AlquileresTableView({
+          collection: new app.collections.Alquileres(),
         });
         self.mostrar({
           "top": edit.el,

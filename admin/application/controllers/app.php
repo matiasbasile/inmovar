@@ -645,6 +645,7 @@ class App extends CI_Controller {
     $array[] = 'application/javascript/modules/web/web_configuracion.js';
     $array[] = 'application/javascript/modules/config/mi_cuenta.js';
     $array[] = 'application/javascript/modules/inm/propiedades.js';
+    $array[] = 'application/javascript/modules/inm/alquileres.js';
     $array[] = 'application/javascript/modules/inm/busquedas.js';
     $array[] = 'application/javascript/modules/inm/permisos_red.js';
     $array[] = 'application/javascript/modules/inm/dashboard.js';

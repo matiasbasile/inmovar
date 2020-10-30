@@ -176,10 +176,11 @@
     },
 
     buscar: function() {
-      
-      if (window.consultas_filter != this.$("#consultas_buscar").val().trim()) {
-        window.consultas_filter = this.$("#consultas_buscar").val().trim();
-        this.cambio_parametros = true;
+      if (this.$("#consultas_buscar").length > 0) {
+        if (window.consultas_filter != this.$("#consultas_buscar").val().trim()) {
+          window.consultas_filter = this.$("#consultas_buscar").val().trim();
+          this.cambio_parametros = true;
+        }
       }
       if (this.$("#consultas_codigo_propiedad").length > 0) {
         if (window.consultas_codigo_propiedad != this.$("#consultas_codigo_propiedad").val().trim()) {
@@ -187,13 +188,17 @@
           this.cambio_parametros = true;
         }
       }
-      if (this.$("#consultas_desde").length > 0 && window.consultas_fecha_desde != this.$("#consultas_desde").val().trim()) {
-        window.consultas_fecha_desde = this.$("#consultas_desde").val().trim();
-        cambio_parametros = true;
+      if (this.$("#consultas_desde").length > 0) {
+        if (this.$("#consultas_desde").length > 0 && window.consultas_fecha_desde != this.$("#consultas_desde").val().trim()) {
+          window.consultas_fecha_desde = this.$("#consultas_desde").val().trim();
+          cambio_parametros = true;
+        }
       }
-      if (this.$("#consultas_hasta").length > 0 && window.consultas_fecha_hasta != this.$("#consultas_hasta").val().trim()) {
-        window.consultas_fecha_hasta = this.$("#consultas_hasta").val().trim();
-        cambio_parametros = true;
+      if (this.$("#consultas_hasta").length > 0) {
+        if (this.$("#consultas_hasta").length > 0 && window.consultas_fecha_hasta != this.$("#consultas_hasta").val().trim()) {
+          window.consultas_fecha_hasta = this.$("#consultas_hasta").val().trim();
+          cambio_parametros = true;
+        }
       }
 
       if (this.cambio_parametros) {

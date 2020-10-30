@@ -1,106 +1,124 @@
 <script type="text/template" id="alquileres_resultados_template">
-<div class="seccion_llena">
-  <% if (!seleccionar) { %>
-    <div class=" wrapper-md ng-scope">
-      <h1 class="m-n h3"><i class="glyphicon glyphicon-home icono_principal"></i>Alquileres
-      / <b>Contratos</b>
-      </h1>
-    </div>
-  <% } %>
-
-  <div class="<%= (seleccionar)?'':'wrapper-md' %> ng-scope">
-    <div class="panel panel-default">
-
-      <ul class="nav nav-tabs nav-tabs-2" role="tablist">
-        <li class="<%= (active=='alquileres')?'active':''%>">
-          <a href="<%= (active=='alquileres')?'javascript:void(0)':'app/#alquileres' %>"><i class="fa fa-key text-warning"></i> Alquileres</a>
-        </li>
-        <li class="<%= (active=='recibos_alquileres_adeudados')?'active':''%>">
-          <a href="<%= (active=='recibos_alquileres_adeudados')?'javascript:void(0)':'app/#recibos_alquileres/0' %>"><i class="fa fa-dollar text-danger"></i> Por cobrar</a>
-        </li>
-        <li class="<%= (active=='recibos_alquileres_pagados')?'active':''%>">
-          <a href="<%= (active=='recibos_alquileres_pagados')?'javascript:void(0)':'app/#recibos_alquileres/1' %>"><i class="fa fa-check text-success"></i> Pagados</a>
-        </li>
-      </ul>
-
-      <div class="panel-heading clearfix">
-        <div class="row">
-          <div class="<% if (!seleccionar) { %>col-md-6 <% } else { %> col-xs-12 <% } %> sm-m-b">
-            <div class="input-group">
-              <input type="text" id="alquileres_buscar" placeholder="Buscar..." autocomplete="off" class="form-control">
-              <span class="input-group-btn">
-                <button class="btn buscar btn-default"><i class="fa fa-search"></i></button>
-              </span>
-              <span class="input-group-btn">
-                <button class="btn-advanced-search m-l advanced-search-btn"><i class="fa fa-plus-circle"></i><span><?php echo lang(array("es"=>"M&aacute;s Filtros","en"=>"More Filters")); ?></span></button>
-              </span>
-            </div>
-          </div>
-          <% if (!seleccionar) { %>
-            <div class="col-md-6 text-right">
-              <a class="btn btn-info btn-addon ml5" href="app/#alquiler">
-                <i class="fa fa-plus"></i><span>&nbsp;&nbsp;Nuevo&nbsp;&nbsp;</span>
-              </a>
-            </div>
-          <% } %>
-        </div>
-      </div>
-      <div class="advanced-search-div bg-light dk" style="display:none">
-        <div class="wrapper clearfix">
-          <h4 class="m-t-xs"><span class="material-icons">tune</span> Filtros:</h4>
-          <div class="row pl10 pr10">
-            <div class="col-md-2 col-sm-3 col-xs-12 mh50 pr5 pl5">
-              <select class="form-control no-model" id="alquileres_buscar_estados">
-                <option value="0">Estado</option>
-                <option value="A">Activo</option>
-                <option value="R">Reservado</option>
-                <option value="C">Cancelado</option>
-                <option value="F">Finalizado</option>
-              </select>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12 mh50 pr5 pl5">
-              <input type="hidden" id="alquileres_buscar_id_propiedad" value="0" />
-              <input type="text" class="form-control no-model" placeholder="Propiedad" id="alquileres_buscar_propiedades" />
-            </div>
-            <div class="col-md-2 col-sm-3 col-xs-12 mh50 pr5 pl5">
-              <button id="alquileres_buscar_avanzada_btn" class="btn btn-dark btn-block"><i class="fa fa-search m-r-xs"></i> <?php echo lang(array("es"=>"Buscar","en"=>"Search")); ?></button>
-            </div>
-          </div>
-        </div>
-      </div>
-
+<% if (ID_PLAN > 0) { %>
+  <div class="centrado rform mt30 mb30">
+    <div class="panel panel-default tac">
       <div class="panel-body">
-        <div class="table-responsive">
-          <table id="alquileres_tabla" class="table <%= (seleccionar)?'table-small':'' %> table-striped sortable m-b-none default footable">
-            <thead>
-              <tr>
-                <% if (!seleccionar) { %>
-                  <th style="width:20px;">
-                    <label class="i-checks m-b-none">
-                      <input class="esc sel_todos" type="checkbox"><i></i>
-                    </label>
-                  </th>
-                <% } else { %>
-                  <th style="width:20px;"></th>
-                <% } %>
-                <th class="sorting" data-sort-by="cliente">Inquilino</th>
-                <th>Propiedad</th>
-                <th>Direcci&oacute;n</th>
-                <th class="sorting" data-sort-by="fecha_inicio">Desde</th>
-                <th class="sorting" data-sort-by="fecha_fin">Hasta</th>
-                <% if (!seleccionar) { %>
-                  <th class="w50" style="width:10px;"></th>
-                <% } %>
-              </tr>
-            </thead>
-            <tbody class="tbody"></tbody>
-            <tfoot class="pagination_container hide-if-no-paging"></tfoot>
-          </table>
+        <h1>Alquileres</h1>
+        <p>Inmovar</p>
+        <div>
+          <img style="max-width:450px;" class="w100p mb30" src="resources/images/alquileres.png" />
+        </div>
+        <p style="max-width:450px;" class="mb30 mla mra fs16">Aumente las ventas mejorando el seguimiento de clientes con <span class="c-main">Inmovar CRM</span></p>
+        <a class="btn btn-lg btn-info mb30" href="app/#precios">
+          <span>&nbsp;&nbsp;Activar Alquileres&nbsp;&nbsp;</span>
+        </a>
+      </div>    
+    </div>
+  </div>
+<% } else { %>  
+  <div class="seccion_llena">
+    <% if (!seleccionar) { %>
+      <div class=" wrapper-md ng-scope">
+        <h1 class="m-n h3"><i class="glyphicon glyphicon-home icono_principal"></i>Alquileres
+        / <b>Contratos</b>
+        </h1>
+      </div>
+    <% } %>
+
+    <div class="<%= (seleccionar)?'':'wrapper-md' %> ng-scope">
+      <div class="panel panel-default">
+
+        <ul class="nav nav-tabs nav-tabs-2" role="tablist">
+          <li class="<%= (active=='alquileres')?'active':''%>">
+            <a href="<%= (active=='alquileres')?'javascript:void(0)':'app/#alquileres' %>"><i class="fa fa-key text-warning"></i> Alquileres</a>
+          </li>
+          <li class="<%= (active=='recibos_alquileres_adeudados')?'active':''%>">
+            <a href="<%= (active=='recibos_alquileres_adeudados')?'javascript:void(0)':'app/#recibos_alquileres/0' %>"><i class="fa fa-dollar text-danger"></i> Por cobrar</a>
+          </li>
+          <li class="<%= (active=='recibos_alquileres_pagados')?'active':''%>">
+            <a href="<%= (active=='recibos_alquileres_pagados')?'javascript:void(0)':'app/#recibos_alquileres/1' %>"><i class="fa fa-check text-success"></i> Pagados</a>
+          </li>
+        </ul>
+
+        <div class="panel-heading clearfix">
+          <div class="row">
+            <div class="<% if (!seleccionar) { %>col-md-6 <% } else { %> col-xs-12 <% } %> sm-m-b">
+              <div class="input-group">
+                <input type="text" id="alquileres_buscar" placeholder="Buscar..." autocomplete="off" class="form-control">
+                <span class="input-group-btn">
+                  <button class="btn buscar btn-default"><i class="fa fa-search"></i></button>
+                </span>
+                <span class="input-group-btn">
+                  <button class="btn-advanced-search m-l advanced-search-btn"><i class="fa fa-plus-circle"></i><span><?php echo lang(array("es"=>"M&aacute;s Filtros","en"=>"More Filters")); ?></span></button>
+                </span>
+              </div>
+            </div>
+            <% if (!seleccionar) { %>
+              <div class="col-md-6 text-right">
+                <a class="btn btn-info btn-addon ml5" href="app/#alquiler">
+                  <i class="fa fa-plus"></i><span>&nbsp;&nbsp;Nuevo&nbsp;&nbsp;</span>
+                </a>
+              </div>
+            <% } %>
+          </div>
+        </div>
+        <div class="advanced-search-div bg-light dk" style="display:none">
+          <div class="wrapper clearfix">
+            <h4 class="m-t-xs"><span class="material-icons">tune</span> Filtros:</h4>
+            <div class="row pl10 pr10">
+              <div class="col-md-2 col-sm-3 col-xs-12 mh50 pr5 pl5">
+                <select class="form-control no-model" id="alquileres_buscar_estados">
+                  <option value="0">Estado</option>
+                  <option value="A">Activo</option>
+                  <option value="R">Reservado</option>
+                  <option value="C">Cancelado</option>
+                  <option value="F">Finalizado</option>
+                </select>
+              </div>
+              <div class="col-md-3 col-sm-6 col-xs-12 mh50 pr5 pl5">
+                <input type="hidden" id="alquileres_buscar_id_propiedad" value="0" />
+                <input type="text" class="form-control no-model" placeholder="Propiedad" id="alquileres_buscar_propiedades" />
+              </div>
+              <div class="col-md-2 col-sm-3 col-xs-12 mh50 pr5 pl5">
+                <button id="alquileres_buscar_avanzada_btn" class="btn btn-dark btn-block"><i class="fa fa-search m-r-xs"></i> <?php echo lang(array("es"=>"Buscar","en"=>"Search")); ?></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-body">
+          <div class="table-responsive">
+            <table id="alquileres_tabla" class="table <%= (seleccionar)?'table-small':'' %> table-striped sortable m-b-none default footable">
+              <thead>
+                <tr>
+                  <% if (!seleccionar) { %>
+                    <th style="width:20px;">
+                      <label class="i-checks m-b-none">
+                        <input class="esc sel_todos" type="checkbox"><i></i>
+                      </label>
+                    </th>
+                  <% } else { %>
+                    <th style="width:20px;"></th>
+                  <% } %>
+                  <th class="sorting" data-sort-by="cliente">Inquilino</th>
+                  <th>Propiedad</th>
+                  <th>Direcci&oacute;n</th>
+                  <th class="sorting" data-sort-by="fecha_inicio">Desde</th>
+                  <th class="sorting" data-sort-by="fecha_fin">Hasta</th>
+                  <% if (!seleccionar) { %>
+                    <th class="w50" style="width:10px;"></th>
+                  <% } %>
+                </tr>
+              </thead>
+              <tbody class="tbody"></tbody>
+              <tfoot class="pagination_container hide-if-no-paging"></tfoot>
+            </table>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+<% } %>
 </script>
 
 <script type="text/template" id="alquileres_item_resultados_template">
@@ -342,89 +360,89 @@
 
 
 <script type="text/template" id="recibos_alquileres_resultados_template">
-<div>
-  <% if (!seleccionar) { %>
-    <div class=" wrapper-md ng-scope">
-      <h1 class="m-n h3"><i class="glyphicon glyphicon-home icono_principal"></i>Alquileres
-      / <b>Cobranzas</b>
-      </h1>
-    </div>
-  <% } %>
-  <div class="<%= (seleccionar)?'':'wrapper-md' %> ng-scope">
-    <div class="panel panel-default">
+  <div>
+    <% if (!seleccionar) { %>
+      <div class=" wrapper-md ng-scope">
+        <h1 class="m-n h3"><i class="glyphicon glyphicon-home icono_principal"></i>Alquileres
+        / <b>Cobranzas</b>
+        </h1>
+      </div>
+    <% } %>
+    <div class="<%= (seleccionar)?'':'wrapper-md' %> ng-scope">
+      <div class="panel panel-default">
 
-      <?php include("alquileres_menu.php") ?>
+        <?php include("alquileres_menu.php") ?>
 
-      <div class="panel-heading clearfix">
-        <div class="row">
-          <div class="col-xs-12 sm-m-b">
-            <div class="form-inline">
-              <div class="input-group">
-                <input type="text" id="recibos_alquileres_buscar" placeholder="Buscar..." autocomplete="off" class="form-control">
+        <div class="panel-heading clearfix">
+          <div class="row">
+            <div class="col-xs-12 sm-m-b">
+              <div class="form-inline">
+                <div class="input-group">
+                  <input type="text" id="recibos_alquileres_buscar" placeholder="Buscar..." autocomplete="off" class="form-control">
+                </div>
+                <select class="form-control" style="width: 120px; display: inline-block" id="recibos_alquileres_meses">
+                  <option <?php echo(date("m")==1)?"selected":"" ?>>Enero</option>
+                  <option <?php echo(date("m")==2)?"selected":"" ?>>Febrero</option>
+                  <option <?php echo(date("m")==3)?"selected":"" ?>>Marzo</option>
+                  <option <?php echo(date("m")==4)?"selected":"" ?>>Abril</option>
+                  <option <?php echo(date("m")==5)?"selected":"" ?>>Mayo</option>
+                  <option <?php echo(date("m")==6)?"selected":"" ?>>Junio</option>
+                  <option <?php echo(date("m")==7)?"selected":"" ?>>Julio</option>
+                  <option <?php echo(date("m")==8)?"selected":"" ?>>Agosto</option>
+                  <option <?php echo(date("m")==9)?"selected":"" ?>>Septiembre</option>
+                  <option <?php echo(date("m")==10)?"selected":"" ?>>Octubre</option>
+                  <option <?php echo(date("m")==11)?"selected":"" ?>>Noviembre</option>
+                  <option <?php echo(date("m")==12)?"selected":"" ?>>Diciembre</option>
+                </select>
+                <input type="text" id="recibos_alquileres_anio" class="form-control" style="display: inline-block; width: 65px; " value="<?php echo date("Y")?>" />
+                <?php /*
+                <select class="form-control" style="width: 120px; display: inline-block" id="recibos_alquileres_estado">
+                  <option value="0">Adeudados</option>
+                  <option value="1">Pagados</option>
+                  <option value="-1">Todos</option>
+                </select>
+                */ ?>
+                <button class="btn buscar btn-default"><i class="fa fa-search"></i></button>
               </div>
-              <select class="form-control" style="width: 120px; display: inline-block" id="recibos_alquileres_meses">
-                <option <?php echo(date("m")==1)?"selected":"" ?>>Enero</option>
-                <option <?php echo(date("m")==2)?"selected":"" ?>>Febrero</option>
-                <option <?php echo(date("m")==3)?"selected":"" ?>>Marzo</option>
-                <option <?php echo(date("m")==4)?"selected":"" ?>>Abril</option>
-                <option <?php echo(date("m")==5)?"selected":"" ?>>Mayo</option>
-                <option <?php echo(date("m")==6)?"selected":"" ?>>Junio</option>
-                <option <?php echo(date("m")==7)?"selected":"" ?>>Julio</option>
-                <option <?php echo(date("m")==8)?"selected":"" ?>>Agosto</option>
-                <option <?php echo(date("m")==9)?"selected":"" ?>>Septiembre</option>
-                <option <?php echo(date("m")==10)?"selected":"" ?>>Octubre</option>
-                <option <?php echo(date("m")==11)?"selected":"" ?>>Noviembre</option>
-                <option <?php echo(date("m")==12)?"selected":"" ?>>Diciembre</option>
-              </select>
-              <input type="text" id="recibos_alquileres_anio" class="form-control" style="display: inline-block; width: 65px; " value="<?php echo date("Y")?>" />
-              <?php /*
-              <select class="form-control" style="width: 120px; display: inline-block" id="recibos_alquileres_estado">
-                <option value="0">Adeudados</option>
-                <option value="1">Pagados</option>
-                <option value="-1">Todos</option>
-              </select>
-              */ ?>
-              <button class="btn buscar btn-default"><i class="fa fa-search"></i></button>
             </div>
           </div>
         </div>
-      </div>
-      <div class="panel-body">
-        <div class="table-responsive">
-          <table id="recibos_alquileres_tabla" class="table <%= (seleccionar)?'table-small':'' %> table-striped sortable m-b-none default footable">
-            <thead>
-              <tr>
-                <% if (!seleccionar) { %>
-                  <th style="width:20px;">
-                    <label class="i-checks m-b-none">
-                      <input class="esc sel_todos" type="checkbox"><i></i>
-                    </label>
-                  </th>
-                <% } else { %>
-                  <th style="width:20px;"></th>
-                <% } %>
-                <th class="sorting" data-sort-by="cliente">Inquilino</th>
-                <th class="sorting" data-sort-by="propiedad">Propiedad</th>
-                <th class="sorting" data-sort-by="monto">Alquiler</th>
-                <?php /*
-                <th class="sorting" data-sort-by="expensa">Tasas/Serv.</th>
-                <th class="sorting" data-sort-by="total">Total</th>
-                <th class="sorting" data-sort-by="pago">Pago</th>
-                */ ?>
-                <th class="sorting" data-sort-by="vencimiento">Venc. Cuota</th>
-                <% if (!seleccionar) { %>
-                  <th></th>
-                <% } %>
-              </tr>
-            </thead>
-            <tbody class="tbody"></tbody>
-            <tfoot class="pagination_container hide-if-no-paging"></tfoot>
-          </table>
+        <div class="panel-body">
+          <div class="table-responsive">
+            <table id="recibos_alquileres_tabla" class="table <%= (seleccionar)?'table-small':'' %> table-striped sortable m-b-none default footable">
+              <thead>
+                <tr>
+                  <% if (!seleccionar) { %>
+                    <th style="width:20px;">
+                      <label class="i-checks m-b-none">
+                        <input class="esc sel_todos" type="checkbox"><i></i>
+                      </label>
+                    </th>
+                  <% } else { %>
+                    <th style="width:20px;"></th>
+                  <% } %>
+                  <th class="sorting" data-sort-by="cliente">Inquilino</th>
+                  <th class="sorting" data-sort-by="propiedad">Propiedad</th>
+                  <th class="sorting" data-sort-by="monto">Alquiler</th>
+                  <?php /*
+                  <th class="sorting" data-sort-by="expensa">Tasas/Serv.</th>
+                  <th class="sorting" data-sort-by="total">Total</th>
+                  <th class="sorting" data-sort-by="pago">Pago</th>
+                  */ ?>
+                  <th class="sorting" data-sort-by="vencimiento">Venc. Cuota</th>
+                  <% if (!seleccionar) { %>
+                    <th></th>
+                  <% } %>
+                </tr>
+              </thead>
+              <tbody class="tbody"></tbody>
+              <tfoot class="pagination_container hide-if-no-paging"></tfoot>
+            </table>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </script>
 
 <script type="text/template" id="recibos_alquileres_item_resultados_template">

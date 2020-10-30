@@ -266,9 +266,11 @@
 
     buscar: function() {
       
-      if (window.clientes_filter != this.$("#clientes_buscar").val().trim()) {
-        window.clientes_filter = this.$("#clientes_buscar").val().trim();
-        this.cambio_parametros = true;
+      if (this.$("#clientes_buscar").length > 0) {
+        if (window.clientes_filter != this.$("#clientes_buscar").val().trim()) {
+          window.clientes_filter = this.$("#clientes_buscar").val().trim();
+          this.cambio_parametros = true;
+        }
       }
       if (this.$("#clientes_codigo_propiedad").length > 0) {
         if (window.clientes_codigo_propiedad != this.$("#clientes_codigo_propiedad").val().trim()) {

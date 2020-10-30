@@ -148,6 +148,7 @@ if (file_exists("application/views/templates/inm/tipos_estado.php")) include_onc
 if (file_exists("application/views/templates/inm/propiedades.php")) include_once ("application/views/templates/inm/propiedades.php");
 if (file_exists("application/views/templates/inm/busquedas.php")) include_once ("application/views/templates/inm/busquedas.php");
 if (file_exists("application/views/templates/inm/permisos_red.php")) include_once ("application/views/templates/inm/permisos_red.php");
+if (file_exists("application/views/templates/inm/alquileres.php")) include_once ("application/views/templates/inm/alquileres.php");
 ?>
 <!-- Modulo de Permisos -->
 <script type="text/javascript">

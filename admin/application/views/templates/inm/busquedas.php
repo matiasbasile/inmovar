@@ -1,4 +1,21 @@
 <script type="text/template" id="busquedas_resultados_template">
+<% if (ID_PLAN == 1) { %>
+  <div class="centrado rform mt30 mb30">
+    <div class="panel panel-default tac">
+      <div class="panel-body">
+        <h1>Búsquedas</h1>
+        <p>Inmovar</p>
+        <div>
+          <img style="max-width:450px;" class="w100p mb30" src="resources/images/busquedas.png" />
+        </div>
+        <p style="max-width:450px;" class="mb30 mla mra fs16">Aumente las ventas mejorando el seguimiento de clientes con <span class="c-main">Inmovar CRM</span></p>
+        <a class="btn btn-lg btn-info mb30" href="app/#precios">
+          <span>&nbsp;&nbsp;Activar Búsquedas&nbsp;&nbsp;</span>
+        </a>
+      </div>    
+    </div>
+  </div>
+<% } else { %>
   <div class="centrado rform">
     <div class="header-lg">
       <div class="row">
@@ -57,7 +74,7 @@
       </div>
     </div>
   </div>
-
+<% } %>
 </script>
 
 <script type="text/template" id="busquedas_item_resultados_template">

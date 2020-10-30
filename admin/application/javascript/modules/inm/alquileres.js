@@ -140,6 +140,7 @@
     
     buscar: function() {
       var self = this;
+      if (this.$("#alquileres_buscar_estados").length == 0) return;
       this.estado = this.$("#alquileres_buscar_estados").select2("val");
       var prop = self.$("#alquileres_buscar_propiedades").val().trim();
       if (isEmpty(prop)) this.$("#alquileres_buscar_id_propiedad").val(0);

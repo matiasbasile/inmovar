@@ -25,7 +25,10 @@
 
           <?php } else { ?>
             <li>
-              <a href="app/#inicio"><i class="material-icons md-22">dashboard</i><span>Escritorio</span></a>
+              <a href="app/#inicio"><i class="material-icons md-22">equalizer</i><span>Escritorio</span></a>
+            </li>
+            <li>
+              <a href="app/#consultas" class=""><i class="material-icons md-22">directions_run</i><span>Seguimiento</span></a>
             </li>
             <li>
               <a href="app/#propiedades" class=""><i class="material-icons md-22">home</i><span>Propiedades</span></a>
@@ -37,13 +40,13 @@
               <a href="app/#permisos_red" class=""><i class="material-icons md-22">share</i><span>Red Inmovar</span></a>
             </li>
             <li>
-              <a href="app/#consultas" class=""><i class="material-icons md-22">directions_run</i><span>Seguimiento</span></a>
+              <a href="app/#alquileres" class=""><i class="material-icons md-22">vpn_key</i><span>Alquileres</span></a>
+            </li>            
+            <li>
+              <a href="app/#clientes" class=""><i class="material-icons md-22">people</i><span>Contactos</span></a>
             </li>
             <li>
               <a href="app/#menu_web" class=""><i class="material-icons md-22">laptop_windows</i><span>Sitio Web</span></a>
-            </li>
-            <li>
-              <a href="app/#clientes" class=""><i class="material-icons md-22">people</i><span>Contactos</span></a>
             </li>
             <?php /*
             <li>
