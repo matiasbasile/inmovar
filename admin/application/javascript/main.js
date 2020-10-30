@@ -59,6 +59,7 @@
         "contacto_acciones/:id": "ver_contacto_acciones",
 
         "mi_cuenta(/)": "ver_mi_cuenta",
+        "precios(/)": "ver_precios",
 
         // Funcionamiento de ABM General
         '': 'router',
@@ -167,6 +168,16 @@
         });
       },
 
+      ver_precios: function() {
+        var precio = new app.views.PreciosView({
+          model: new app.models.AbstractModel(),
+        });
+        this.mostrar({
+          "top" : precio.el,
+          "mostrar_mensaje_full":0, // Con esto deshabilitamos siempre el mensaje full por si quiere pagar
+        });                    
+      },
+
       ver_editar_template: function() {
         var self = this;
         var conf = new app.models.WebConfiguracion({
@@ -196,6 +207,7 @@
             });
             self.mostrar({
               "top": view.el,
+              "mostrar_mensaje_full":0, // Con esto deshabilitamos siempre el mensaje full por si quiere pagar
             });                    
           }
         });

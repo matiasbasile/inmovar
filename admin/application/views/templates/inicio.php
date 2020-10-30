@@ -224,53 +224,51 @@
 </script>
 
 <script type="text/template" id="precios_template">
-  <div ui-view="" class="fade-in-down ng-scope">
-    <div class=" wrapper-md hidden-print ng-scope">
-      <h1 class="m-n h3">Planes </h1>
+  <div class="centrado rform">
+    <div class="header-lg">
+      <h1>Planes</h1>
     </div>
-    <div class="wrapper-md ng-scope">
-      <div class="row no-gutter m-t">
+    <div class="row no-gutter m-t">
 
-        <% for(var i=0; i< planes.length; i++) { %>
-          <% var plan = planes[i] %>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            <% if (plan.id == ID_PLAN) { %>
-              <div class="panel b-a m-t-n-md m-b-xl">
-                <div class="wrapper bg-info text-center m-l-n-xxs m-r-n-xxs">
-                  <h4 class="text-u-c m-b-none"><%= plan.nombre %></h4>
-                  <h2 class="m-t-none">
-                    <sup class="pos-rlt" style="top:-22px">$</sup>
-                    <span class="text-2x text-lt"><%= Number(plan.precio_anual).toFixed(0) %></span>
-                    <span class="text-xs">/ mes</span>
-                  </h2>
-                </div>
-                <%= plan.observaciones %>
-                <div class="panel-footer text-center b-t m-t bg-light lter">
-                  <a href="javascript:void(0)" class="btn btn-info m">PLAN CONTRATADO</a>
-                </div>
+      <% for(var i=0; i< planes.length; i++) { %>
+        <% var plan = planes[i] %>
+        <div class="col-md-4">
+          <% if (plan.id == ID_PLAN) { %>
+            <div class="plan panel b-a m-t-n-md m-b-xl">
+              <div class="wrapper bg-info text-center m-l-n-xxs m-r-n-xxs">
+                <h4 class="text-u-c m-b-none"><%= plan.nombre %></h4>
+                <h2 class="m-t-none">
+                  <sup class="pos-rlt" style="top:-22px">$</sup>
+                  <span class="text-2x text-lt"><%= Number(plan.precio_anual).toFixed(0) %></span>
+                  <span class="text-xs">/ mes</span>
+                </h2>
               </div>
-            <% } else { %>
-              <div class="panel b-a">
-                <div class="panel-heading wrapper-xs bg-success no-border">          
-                </div>
-                <div class="wrapper text-center b-b b-light">
-                  <h4 class="text-u-c m-b-none"><%= plan.nombre %></h4>
-                  <h2 class="m-t-none">
-                    <sup class="pos-rlt" style="top:-22px">$</sup>
-                    <span class="text-2x text-lt"><%= Number(plan.precio_anual).toFixed(0) %></span>
-                    <span class="text-xs">/ mes</span>
-                  </h2>
-                </div>
-                <%= plan.observaciones %>
-                <div class="panel-footer text-center">
-                  <a data-id="<%= plan.id %>" class="contratar_plan btn btn-success m">CONTRATAR</a>
-                </div>
+              <%= plan.observaciones %>
+              <div class="panel-footer text-center b-t m-t bg-light lter">
+                <a href="javascript:void(0)" class="btn btn-info m">PLAN CONTRATADO</a>
               </div>
-            <% } %>
-          </div>
-        <% } %>
-        
-      </div>
+            </div>
+          <% } else { %>
+            <div class="panel plan b-a">
+              <div class="panel-heading wrapper-xs bg-success no-border">          
+              </div>
+              <div class="wrapper text-center b-b b-light">
+                <h4 class="text-u-c m-b-none"><%= plan.nombre %></h4>
+                <h2 class="m-t-none">
+                  <sup class="pos-rlt" style="top:-22px">$</sup>
+                  <span class="text-2x text-lt"><%= Number(plan.precio_anual).toFixed(0) %></span>
+                  <span class="text-xs">/ mes</span>
+                </h2>
+              </div>
+              <%= plan.observaciones %>
+              <div class="panel-footer text-center">
+                <a data-id="<%= plan.id %>" class="contratar_plan btn btn-success m">CONTRATAR</a>
+              </div>
+            </div>
+          <% } %>
+        </div>
+      <% } %>
+      
     </div>
   </div>  
 </script>

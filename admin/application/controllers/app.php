@@ -61,6 +61,9 @@ class App extends CI_Controller {
     // Debemos cargar el usuario con todo su perfil
     $perfil = $_SESSION["perfil"];
     // Si el perfil es -1, es porque es SUPERADMIN
+
+    $q = $this->db->query("SELECT * FROM planes ORDER BY id ASC");
+    $planes = $q->result();    
     
     if ($perfil == -1) {
       $inicio = "";
@@ -103,9 +106,6 @@ class App extends CI_Controller {
       $perfil_row->solo_usuario = 0;
       $perfil_row->principal = 1;
       $usuario->ocultar_notificaciones = 1;
-
-      $q = $this->db->query("SELECT * FROM planes ORDER BY nombre ASC");
-      $planes = $q->result();
       
     } else {
       // Obtenemos la pantalla que se debe mostrar al inicio

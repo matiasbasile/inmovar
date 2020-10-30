@@ -5266,3 +5266,6 @@ tfoot tr td { white-space: nowrap !important; }
 .story-preview.nuevo > span { color: white; line-height: 64px; font-size: 32px; }
 .story-preview:hover { box-shadow: 0px 0px 10px #ccc; }
 .story-preview > img { width: 100%; object-fit: cover; height: 100%; display: block; }
+
+.plan ul { list-style: none; padding: 20px; text-align: center; }
+.plan ul li { list-style: none; padding: 10px; color: #5a5a5a; }

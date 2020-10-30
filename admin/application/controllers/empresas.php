@@ -432,7 +432,7 @@ class Empresas extends REST_Controller {
     $obj->administrar_pagos = 1;
     $obj->estado_empresa = 1; // A contactar
     $obj->periodo_fact = "+1 month";
-    $obj->fecha_prox_venc = date("Y-m-d",strtotime("+15 days"));
+    $obj->fecha_prox_venc = date("Y-m-d",strtotime("+10 days"));
     $obj->fecha_suspension = date("Y-m-d",strtotime("+15 days"));
     $obj->costo = (isset($plan->precio_anual)) ? $plan->precio_anual : 0;
     $obj->limite = (isset($plan->limite_articulos) ? $plan->limite_articulos : 0);

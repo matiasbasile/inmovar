@@ -10,7 +10,7 @@
       nombre: "",
       razon_social: "",
       plan: "",
-      id_plan: 0,
+      id_plan: 3, // Por defecto inmobiliaria
       cuit: "",
       email: "",
       telefono_empresa: "",
@@ -44,7 +44,7 @@
       retiene_ib:0,
       retiene_ganancias:0,
       servidor_local: "",
-      administrar_pagos: 0,
+      administrar_pagos: 1,
       configuraciones_especiales: "",
       limite: 0,
       codigo: "",
@@ -379,11 +379,11 @@
       $(this.el).find("#empresas_fecha_inicio").mask("99/99/9999");
       
       var fecha_prox_venc = this.model.get("fecha_prox_venc");
-      if (isEmpty(fecha_prox_venc)) fecha_prox_venc = new Date();
+      if (isEmpty(fecha_prox_venc)) fecha_prox_venc = moment().add(10,'days').toDate();
       createdatepicker($(this.el).find("#empresas_fecha_prox_venc"),fecha_prox_venc);
 
       var fecha_suspension = this.model.get("fecha_suspension");
-      if (isEmpty(fecha_suspension)) fecha_suspension = new Date();
+      if (isEmpty(fecha_suspension)) fecha_suspension = moment().add(15,'days').toDate();
       createdatepicker($(this.el).find("#empresas_fecha_suspension"),fecha_suspension);            
       
       $(this.el).find("#empresas_cuit").mask("99-99999999-9");
