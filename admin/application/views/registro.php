@@ -41,20 +41,8 @@
         <label for="registro_nm">Nombre de tu inmobiliaria</label><br>
         <input id="registro_sit" autocomplete="off" type="text" placeholder="Ej: Inmobiliaria Perez" /><br>
 
-        <div class="row">
-          <div class="col-md-6">
-            <label for="registro_tl">Teléfono/Whatsapp</label><br>
-            <input id="registro_tl" autocomplete="off" type="text" placeholder="Sin 0 ni 15. Ej: 221 1234567" /><br>
-          </div>
-          <div class="col-md-6">
-            <label for="registro_plan">Plan</label><br>
-            <select id="registro_plan">
-              <option <?php echo (isset($id_plan) ? ($id_plan == 1 ? "selected":"") : "") ?> value="1">Colaborador</option>
-              <option <?php echo (isset($id_plan) ? ($id_plan == 2 ? "selected":"") : "") ?> value="2">Martillero</option>
-              <option <?php echo (isset($id_plan) ? ($id_plan == 3 ? "selected":"") : "") ?> value="3">Inmobiliaria</option>
-            </select>
-          </div>
-        </div>
+        <label for="registro_tl">Teléfono/Whatsapp</label><br>
+        <input id="registro_tl" autocomplete="off" type="text" placeholder="Sin 0 ni 15. Ej: 221 1234567" /><br>
 
         <label for="registro_ml">Correo electrónico</label><br>
         <input id="registro_ml" autocomplete="new-password" value="<?php echo (isset($email) ? $email : "") ?>" type="text" placeholder="Ej: juan@inmobiliariaperez.com" /><br>
@@ -91,7 +79,7 @@ function enviar_registro() {
   var email = $("#registro_ml").val();
   var telefono = $("#registro_tl").val();
   var password = $("#registro_ps").val();
-  var id_plan = $("#registro_plan").val();
+  var id_plan = 3;
   
   if (isEmpty(nombre)) {
     alert("Por favor ingrese un nombre");
