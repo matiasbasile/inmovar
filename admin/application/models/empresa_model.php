@@ -711,9 +711,9 @@ class Empresa_Model extends Abstract_Model {
     if (isset($array->id_empresa_modelo)) {
       $id_empresa_modelo = $array->id_empresa_modelo;
       unset($array->id_empresa_modelo);
-    } else {
-      $id_empresa_modelo = 270;
-    }
+    } else $id_empresa_modelo = 1;
+    if (empty($id_empresa_modelo)) $id_empresa_modelo = 1;
+
     unset($array->numero_ib);
     unset($array->fecha_inicio);
     unset($array->percibe_ib);
