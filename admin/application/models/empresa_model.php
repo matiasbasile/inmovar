@@ -1037,7 +1037,7 @@ class Empresa_Model extends Abstract_Model {
       }
     }
 
-    $array->dominio_varcreative = "www.inmovar.com/sandbox/".$id_empresa."/";
+    $array->dominio_varcreative = "app.inmovar.com/sandbox/".$id_empresa."/";
     $this->db->query("UPDATE empresas SET dominio_varcreative = '$array->dominio_varcreative', codigo = '$id_empresa' WHERE id = $id_empresa ");
     
     //$this->db->trans_complete();
