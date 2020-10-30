@@ -636,6 +636,7 @@ class App extends CI_Controller {
     $array[] = 'application/javascript/modules/crm/tareas.js';
     $array[] = 'application/javascript/modules/crm/origenes.js';
     $array[] = 'application/javascript/modules/not/entradas.js';
+    $array[] = 'application/javascript/modules/not/categorias_entradas.js';
     $array[] = 'application/javascript/modules/web/web_textos.js';
     $array[] = 'application/javascript/modules/clientes.js';
     $array[] = 'application/javascript/modules/crm/contactos.js';
