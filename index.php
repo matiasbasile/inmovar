@@ -128,6 +128,7 @@ function mklink($url) {
 
 // Primero consultamos si es por alguna pagina de prueba, al estilo inmovar.com/sandbox/dominio/
 if ( !(strpos($dominio, "app.inmovar") === FALSE) && isset($params[0]) && $params[0] == "sandbox" ) {
+  echo "ANDA";
 
   // Buscamos el dominio dentro de inmovar
   if (!empty($params[1])) {
