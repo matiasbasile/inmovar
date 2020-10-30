@@ -276,6 +276,7 @@ class Propiedad_Model {
     // propiedades/localidad/tipo_operacion/?parametros..
    
     $link_tipo_operacion = "";
+    $vc_id_tipo_operacion = 0;
     if (isset($params[1]) && $no_analizar_url == 0) {
       // Si el parametro es numero, es un numero de pagina
       if (is_numeric($params[1])) {
@@ -286,6 +287,14 @@ class Propiedad_Model {
       }
     }
     $tipo_operacion = ucwords(strtolower(str_replace("-", " ", $link_tipo_operacion)));
+    if (!empty($link_tipo_operacion)) {
+      $sql = "SELECT * FROM inm_tipos_operacion WHERE link = '$link_tipo_operacion' ";
+      $q_tipo_operacion = mysqli_query($this->conx,$sql);
+      if (mysqli_num_rows($q_tipo_operacion)>0) {
+        $top = mysqli_fetch_object($q_tipo_operacion);
+        $vc_id_tipo_operacion = $top->id;
+      }
+    }    
 
     $link_localidad = "";
     if (isset($params[2]) && $no_analizar_url == 0) {
@@ -351,6 +360,8 @@ class Propiedad_Model {
     $codigo = isset($get_params["cod"]) ? $get_params["cod"] : "";
     $filter = isset($get_params["filter"]) ? $get_params["filter"] : "";
     $offset = isset($get_params["offset"]) ? $get_params["offset"] : (isset($config["offset"]) ? $config["offset"] : 12);
+    if (!is_numeric($page)) $page = 0;
+    if (!is_numeric($offset)) $offset = 12;
 
     $vc_minimo = (isset($get_params["vc_minimo"])) ? filter_var($get_params["vc_minimo"],FILTER_SANITIZE_STRING) : 0;
     if ($vc_minimo == "undefined" || empty($vc_minimo)) $vc_minimo = 0;
@@ -452,6 +463,7 @@ class Propiedad_Model {
       "vc_id_departamento"=>$vc_id_departamento,
       "vc_link_tipo_operacion"=>$link_tipo_operacion,
       "vc_tipo_operacion"=>$tipo_operacion,
+      "vc_id_tipo_operacion"=>$vc_id_tipo_operacion,
       "vc_tiene_cochera"=>$tiene_cochera,
       "vc_tiene_balcon"=>$tiene_balcon,
       "vc_tiene_patio"=>$tiene_patio,

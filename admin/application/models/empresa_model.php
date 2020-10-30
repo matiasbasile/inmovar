@@ -690,9 +690,7 @@ class Empresa_Model extends Abstract_Model {
     $punto_venta = isset($array->punto_venta) ? $array->punto_venta : 2;
     $password = isset($array->password) ? $array->password : "";
 
-    $laplataconstruye = isset($array->laplataconstruye) ? $array->laplataconstruye : 0;
-    $tipo_empresa = ($laplataconstruye == 1) ? 4 : 0;
-    
+    $tipo_empresa = 0;
     $vendedores = (isset($array->vendedores)) ? $array->vendedores : array();
     $dominios = (isset($array->dominios)) ? explode(";;;",$array->dominios) : array();
     $password = (isset($array->password) ? ((strlen($array->password)<32) ? md5($array->password) : $array->password) : "c4ca4238a0b923820dcc509a6f75849b");
@@ -709,12 +707,6 @@ class Empresa_Model extends Abstract_Model {
     
     //$this->db->db_debug = FALSE;
     //$this->db->trans_start();
-
-    $numero_ib = isset($array->numero_ib) ? $array->numero_ib : "";
-    $fecha_inicio = isset($array->fecha_inicio) ? $array->fecha_inicio : "";
-    $percibe_ib = isset($array->percibe_ib) ? $array->percibe_ib : 0;
-    $retiene_ib = isset($array->retiene_ib) ? $array->retiene_ib : 0;
-    $retiene_ganancias = isset($array->retiene_ganancias) ? $array->retiene_ib : 0;
 
     if (isset($array->id_empresa_modelo)) {
       $id_empresa_modelo = $array->id_empresa_modelo;
@@ -757,7 +749,7 @@ class Empresa_Model extends Abstract_Model {
     
     // Puntos de Venta para la empresa
     // Se crean 2 puntos de venta, uno manual y otro electronico
-    $modelo_factura = ($array->id_proyecto == 2) ? "pedido" : "modelo1";
+    $modelo_factura = "basico";
 
     // Creamos los almacenes
     $sql = "INSERT INTO almacenes (nombre,id_empresa) VALUES ('Negocio',$id_empresa) ";
@@ -779,29 +771,14 @@ class Empresa_Model extends Abstract_Model {
     }
     $sql = "INSERT INTO almacenes_puntos_venta (id_empresa,id_almacen,id_punto_venta) VALUES ($id_empresa,$id_almacen,$id_punto_venta_1) ";
     $this->db->query($sql);
-    
-    if ($array->id_proyecto == 1) {
-      $sql = "INSERT INTO puntos_venta (id_empresa,activo,nombre,numero,tipo_impresion,enviar_email,disenio_factura,disenio_factura_color,por_default,id_sucursal,tipo_uso) VALUES(";
-      $sql.= "$id_empresa,1,'PV 2',$punto_venta,'E',0,'$modelo_factura','dark_blue',0,$id_almacen,'')";
-      $this->db->query($sql);
-      $id_punto_venta_2 = $this->db->insert_id();
-      // Creamos los numeros de comprobantes para ese punto de venta
-      foreach($comprobantes as $c) {
-        $sql = "INSERT INTO numeros_comprobantes (id_empresa,id_punto_venta,id_tipo_comprobante,ultimo,copias) VALUES (";
-        $sql.= "$id_empresa,$id_punto_venta_2,$c->id,0,1)";
-        $this->db->query($sql);
-      }
-      $sql = "INSERT INTO almacenes_puntos_venta (id_empresa,id_almacen,id_punto_venta) VALUES ($id_empresa,$id_almacen,$id_punto_venta_2) ";
-      $this->db->query($sql);
-    }
-    
+        
     // Tabla de configuracion
     $this->db->insert("fact_configuracion",array(
       "id_empresa"=>$id_empresa,
       "supervisor"=>"e10adc3949ba59abbe56e057f20f883e", // 123456
       "disenio_factura"=>$modelo_factura,
       "facturacion_template_factura"=>$modelo_factura,
-      "facturacion_tipo"=>(($array->id_proyecto == 1) ? "pv" : ""),
+      "facturacion_tipo"=>"",
       "facturacion_testing"=>1,
       "facturacion_consultar_eliminar_item"=>1,
       "facturacion_conservar_cliente_al_guardar"=>1,
@@ -827,11 +804,11 @@ class Empresa_Model extends Abstract_Model {
       "facturacion_crear_cliente"=>1,
       "facturacion_mostrar_logo_en_comprobante"=>1,
       "facturacion_ocultar_cuenta_corriente"=>1,
-      "numero_ib"=>$numero_ib,
-      "fecha_inicio"=>$fecha_inicio,
-      "percibe_ib"=>$percibe_ib,
-      "retiene_ib"=>$retiene_ib,
-      "retiene_ganancias"=>$retiene_ganancias,
+      "numero_ib"=>"",
+      "fecha_inicio"=>"",
+      "percibe_ib"=>0,
+      "retiene_ib"=>0,
+      "retiene_ganancias"=>0,
     ));
       
     // Creamos un registro de configuracion
@@ -920,8 +897,6 @@ class Empresa_Model extends Abstract_Model {
     // DUPLICACION DE DATOS DE EMPRESAS
     $tablas = array();
 
-    // INMOVAR
-    //if ($id_empresa_modelo == 0) $id_empresa_modelo = 270;
     $tablas = array(
       "inm_propiedades",
       "inm_propiedades_images",
@@ -1019,7 +994,7 @@ class Empresa_Model extends Abstract_Model {
       // USUARIO PRINCIPAL DE LA CUENTA
       if ($crear_usuario == TRUE) {
         // TODO: controlar que no haya un usuario con el mismo nombre
-        $aparece_web = ($array->id_proyecto == 14) ? 1 : 0;
+        $aparece_web = 1;
         // Aca usamos $nombre (que seria el nombre de la persona que se registro, no el nombre de la inmobiliaria)
         $sql = "INSERT INTO com_usuarios (nombre_usuario,password,id_empresa,nombre,fecha_alta,id_perfiles,activo,email,aparece_web,estado_inicial) VALUES (";
         $sql.= "'$nombre','$password',$id_empresa,'$nombre','$f_tar',$id_perfil,1,'$array->email','$aparece_web',1)";
@@ -1032,7 +1007,6 @@ class Empresa_Model extends Abstract_Model {
         $sql.= "WHERE id_empresa = 0 AND email = '$array->email' ";
       }
       $this->db->query($sql);
-
     }
 
 

@@ -23,7 +23,7 @@
   margin: 6px 0 10px 0px;
   color: #4f4f4f;
 }
-.login-page input[type="text"], .login-page input[type="password"], .login-page input[type="email"] {
+.login-page input[type="text"], .login-page input[type="password"], .login-page input[type="email"], .login-page select {
   width: 100%;
   padding: 5px;
   background-color: #fafbfb;
@@ -34,7 +34,7 @@
   font-weight: 400;
   margin-bottom: 15px;
 }
-.login-page input[type="text"]:focus, .login-page input[type="password"]:focus, .login-page input[type="email"]:focus {
+.login-page input[type="text"]:focus, .login-page input[type="password"]:focus, .login-page input[type="email"]:focus, .login-page select:focus {
   outline: solid 1px #122eb9;
 }
 

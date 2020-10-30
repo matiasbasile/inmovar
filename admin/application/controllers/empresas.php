@@ -353,10 +353,9 @@ class Empresas extends REST_Controller {
     $telefono = ($this->input->post("telefono") !== FALSE ? $this->input->post("telefono") : "");
     $email = $this->input->post("email");
     $password = ($this->input->post("password") !== FALSE ? $this->input->post("password") : "");
-    $id_plan = ($this->input->post("id_plan") !== FALSE ? $this->input->post("id_plan") : 9); // 9 = INICIAL
+    $id_plan = ($this->input->post("id_plan") !== FALSE ? $this->input->post("id_plan") : 1); // 1 = INICIAL
     $casaclick = parent::get_post("casaclick",0);
     $proyecto = 3;
-    $id_web = 270;
 
     // Si estamos usando reCAPTCHA
     $captcha = $this->input->post("g-recaptcha-response");
@@ -391,18 +390,6 @@ class Empresas extends REST_Controller {
       exit();
     }
 
-    /*
-    if (empty($_POST) || empty($nombre)) {
-      $salida = array(
-        "mensaje"=>"ERROR: datos de registro insuficientes.",
-        "error"=>1,
-      );
-      echo json_encode($salida);
-      exit();
-    }
-    */
-
-    if (!($id_plan == 9 || $id_plan == 13 || $id_plan == 14)) $id_plan = 9;
     $sql = "SELECT * FROM planes WHERE id = $id_plan AND id_proyecto = $proyecto ";
     $q_plan = $this->db->query($sql);
     $plan = $q_plan->row();

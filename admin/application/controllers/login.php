@@ -29,7 +29,11 @@ class Login extends CI_Controller {
   }
 
   public function registro() {
+    $id_plan = ($this->input->get("p") !== FALSE) ? $this->input->get("p") : 3;
+    $email = ($this->input->get("email") !== FALSE) ? $this->input->get("email") : "";
     $this->load->view('registro',array(
+      "id_plan"=>$id_plan,
+      "email"=>$email,
       "base_url"=>$this->config->item("base_url"),
     ));
   }

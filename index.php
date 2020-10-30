@@ -82,7 +82,7 @@ function get_empresa_by_dominio($dominio) {
   }
 }
 
-function get_empresa_by_dominio_varcreative($dominio) {
+function get_empresa_by_dominio_inmovar($dominio) {
   global $conx;
   $sql = "SELECT E.*, T.path AS template_path, WC.*, ";
   $sql.= " IF(L.nombre IS NULL,'',L.nombre) AS localidad ";
@@ -126,12 +126,12 @@ function mklink($url) {
   return $d.(($url !== "/")?$url:"");
 }
 
-// Primero consultamos si es por alguna pagina de prueba, al estilo varcreative.com/sandbox/dominio/
-if ( !(strpos($dominio, "varcreative") === FALSE) && isset($params[0]) && $params[0] == "sandbox" ) {
+// Primero consultamos si es por alguna pagina de prueba, al estilo inmovar.com/sandbox/dominio/
+if ( !(strpos($dominio, "inmovar") === FALSE) && isset($params[0]) && $params[0] == "sandbox" ) {
 
-  // Buscamos el dominio dentro de varcreative
+  // Buscamos el dominio dentro de inmovar
   if (!empty($params[1])) {
-    $empresa = get_empresa_by_dominio_varcreative($params[1]);
+    $empresa = get_empresa_by_dominio_inmovar($params[1]);
     if ($empresa !== FALSE) {
       $dominio = $dominio."/sandbox/".$params[1]."/";
       $base = "/sandbox/".$params[1]."/";
