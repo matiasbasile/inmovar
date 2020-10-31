@@ -201,7 +201,7 @@
       </div>
     </div>      
     <div class="row">
-      <div class="col-xs-6">
+      <div class="col-md-6">
         <div class="form-group">
           <div class="input-group">
             <input type="text" placeholder="Fecha" id="contacto_fecha" value="<%= fecha %>" class="form-control" name="fecha_ult_operacion"/>
@@ -211,12 +211,13 @@
           </div>
         </div>
       </div>  
-      <div class="col-xs-6">
+      <div class="col-md-6">
         <div class="form-group">
           <div class="btn-group">
-            <label data-id_origen="4" data-toggle="tooltip" title="Tel&eacute;fono" class="btn btn-default active btn-info id_origen"><i class="fa fa-phone"></i></label>
-            <label data-id_origen="5" data-toggle="tooltip" title="Email" class="btn btn-default id_origen"><i class="fa fa-envelope"></i></label>
+            <label data-id_origen="5" data-toggle="tooltip" title="Email" class="btn btn-default active id_origen"><i class="fa fa-envelope"></i></label>
+            <label data-id_origen="4" data-toggle="tooltip" title="Tel&eacute;fono" class="btn btn-default id_origen"><i class="fa fa-phone"></i></label>
             <label data-id_origen="26" data-toggle="tooltip" title="Facebook" class="btn btn-default id_origen"><i class="fa fa-facebook"></i></label>
+            <label data-id_origen="24" data-toggle="tooltip" title="Instagram" class="btn btn-default id_origen"><i class="fa fa-instagram"></i></label>
             <label data-id_origen="3" data-toggle="tooltip" title="Personal" class="btn btn-default id_origen"><i class="fa fa-users"></i></label>
             <label data-id_origen="27" data-toggle="tooltip" title="Whatsapp" class="btn btn-default id_origen"><i class="fa fa-whatsapp"></i></label>
           </div>

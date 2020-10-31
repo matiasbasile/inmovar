@@ -274,14 +274,9 @@
 </script>
 
 <script type="text/template" id="tutoriales_template">
-<div class="wrapper-md">
   <div class="centrado rform">
-    <div class="header-lg pt0">
-      <div class="row">
-        <div class="col-md-6">
-          <h1 style="font-size:32px !important">Tutoriales</h1>
-        </div>
-      </div>
+    <div class="header-lg">
+      <h1>Tutoriales</h1>
     </div>
     <div class="row">
       <div class="col-md-3">
@@ -302,7 +297,6 @@
       </div>
     </div>
   </div>
-</div>
 </script>
 
 <script type="text/template" id="tutoriales_detalle_view">
@@ -327,14 +321,9 @@
 
 
 <script type="text/template" id="soporte_template">
-<div class="wrapper-md">
   <div class="centrado rform">
-    <div class="header-lg pt0">
-      <div class="row">
-        <div class="col-md-6">
-          <h1 style="font-size:32px !important">Soporte</h1>
-        </div>
-      </div>
+    <div class="header-lg">
+      <h1>Soporte</h1>
     </div>
     <div class="panel panel-default">
       <div class="panel-body">
@@ -372,7 +361,6 @@
     </div>
 
   </div>
-</div>
 </script>
 
 <script type="text/template" id="tutoriales_item_template">

@@ -2,11 +2,14 @@
   <div class="centrado rform">
     <div class="header-lg">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 col-xs-8">
           <h1>Red Inmovar</h1>
         </div>
-        <div class="col-md-6 tar">
-          <a href='javascript:void(0)' class='btn btn-info invitar_colega'>Invita a tu colega</a>
+        <div class="col-md-6 col-xs-4 tar">
+          <a href='javascript:void(0)' class='btn btn-info invitar_colega'>
+            <span class="material-icons show-xs">add</span>
+            <span class="hidden-xs">&nbsp;&nbsp;Invitá a tu colega&nbsp;&nbsp;</span>
+          </a>
         </div>
       </div>
     </div>
@@ -150,7 +153,7 @@
       </div>
     </div>
     <div class="panel-footer clearfix tar">
-      <button class="enviar btn btn-success">Enviar</button>
+      <button class="enviar btn btn-info">Enviar</button>
     </div>
   </div>
 </script>

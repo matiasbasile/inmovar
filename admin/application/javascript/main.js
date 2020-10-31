@@ -605,6 +605,7 @@
       }
 
       $('.app-aside').removeClass('off-screen');
+      $(".app-aside-fixed .aside-wrap").removeClass("open");
 
       window.ajax_request = 0;
       

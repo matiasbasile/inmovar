@@ -19,12 +19,13 @@
   <div class="centrado rform">
     <div class="header-lg">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 col-xs-8">
           <h1>Búsquedas</h1>
         </div>
-        <div class="col-md-6 tar">
+        <div class="col-md-6 col-xs-4 tar">
           <a class="btn btn-info" href="app/#busquedas/0">
-            <span>&nbsp;&nbsp;Nueva Búsqueda&nbsp;&nbsp;</span>
+            <span class="material-icons show-xs">add</span>
+            <span class="hidden-xs">&nbsp;&nbsp;Nueva Búsqueda&nbsp;&nbsp;</span>
           </a>
         </div>
       </div>

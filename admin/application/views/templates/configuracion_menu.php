@@ -1,53 +1,47 @@
 <script type="text/template" id="configuracion_menu_edit_template">
-<div class="wrapper-md">
-  <div class="centrado rform">
-    <div class="header-lg pt0">
-      <div class="row">
-        <div class="col-md-6">
-          <h1 style="font-size:32px !important">Configuración</h1>
-        </div>
-      </div>
+<div class="centrado rform">
+  <div class="header-lg">
+    <h1>Configuración</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <ul class="submenu">
+        <li>
+          <a class="<%= (id_modulo == "datos")?"active":"" %>" href="app/#configuracion/datos">
+            <span class="material-icons">arrow_forward_ios</span>
+            Datos de la inmobiliaria
+          </a>
+        </li>
+        <% if (ID_PLAN > 1) { %>
+          <li>
+            <a class="<%= (id_modulo == "integraciones")?"active":"" %>" href="app/#configuracion/integraciones">
+              <span class="material-icons">arrow_forward_ios</span>
+              Portales
+            </a>
+          </li>
+        <% } %>
+        <li>
+          <a class="<%= (id_modulo == "api")?"active":"" %>" href="app/#configuracion/api">
+            <span class="material-icons">arrow_forward_ios</span>
+            API para desarrolladores
+          </a>
+        </li>
+        <li>
+          <a class="<%= (id_modulo == "notificaciones")?"active":"" %>" href="app/#configuracion/notificaciones">
+            <span class="material-icons">arrow_forward_ios</span>
+            Notificaciones
+          </a>
+        </li>
+        <li>
+          <a class="<%= (id_modulo == "usuarios" || id_modulo == "perfiles" || id_modulo == "usuarios-perfiles")?"active":"" %>" href="app/#configuracion/usuarios-perfiles">
+            <span class="material-icons">arrow_forward_ios</span>
+            Usuarios y perfiles
+          </a>
+        </li>
+      </ul>
     </div>
-    <div class="row">
-      <div class="col-md-3">
-        <ul class="submenu">
-          <li>
-            <a class="<%= (id_modulo == "datos")?"active":"" %>" href="app/#configuracion/datos">
-              <span class="material-icons">arrow_forward_ios</span>
-              Datos de la inmobiliaria
-            </a>
-          </li>
-          <% if (ID_PLAN > 1) { %>
-            <li>
-              <a class="<%= (id_modulo == "integraciones")?"active":"" %>" href="app/#configuracion/integraciones">
-                <span class="material-icons">arrow_forward_ios</span>
-                Portales
-              </a>
-            </li>
-          <% } %>
-          <li>
-            <a class="<%= (id_modulo == "api")?"active":"" %>" href="app/#configuracion/api">
-              <span class="material-icons">arrow_forward_ios</span>
-              API para desarrolladores
-            </a>
-          </li>
-          <li>
-            <a class="<%= (id_modulo == "notificaciones")?"active":"" %>" href="app/#configuracion/notificaciones">
-              <span class="material-icons">arrow_forward_ios</span>
-              Notificaciones
-            </a>
-          </li>
-          <li>
-            <a class="<%= (id_modulo == "usuarios" || id_modulo == "perfiles" || id_modulo == "usuarios-perfiles")?"active":"" %>" href="app/#configuracion/usuarios-perfiles">
-              <span class="material-icons">arrow_forward_ios</span>
-              Usuarios y perfiles
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div class="col-md-9">
-        <div id="configuracion_content"></div>
-      </div>
+    <div class="col-md-9">
+      <div id="configuracion_content"></div>
     </div>
   </div>
 </div>

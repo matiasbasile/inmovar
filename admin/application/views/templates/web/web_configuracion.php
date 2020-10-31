@@ -16,65 +16,59 @@
     </div>
   </div>
 <% } else { %>
-  <div class="wrapper-md">
-    <div class="centrado rform">
-      <div class="header-lg pt0">
-        <div class="row">
-          <div class="col-md-6">
-            <h1 style="font-size:32px !important">Sitio Web</h1>
-          </div>
-        </div>
+  <div class="centrado rform">
+    <div class="header-lg">
+      <h1>Sitio Web</h1>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <ul class="submenu">
+          <li>
+            <a class="<%= (id_modulo == "diseno")?"active":"" %>" href="app/#web/diseno">
+              <span class="material-icons">arrow_forward_ios</span>
+              Diseño
+            </a>
+          </li>
+          <li>
+            <a class="<%= (id_modulo == "contenido")?"active":"" %>" href="app/#web/contenido">
+              <span class="material-icons">arrow_forward_ios</span>
+              Contenido
+            </a>
+          </li>
+          <li>
+            <a class="<%= (id_modulo == "contacto")?"active":"" %>" href="app/#web/contacto">
+              <span class="material-icons">arrow_forward_ios</span>
+              Redes y Contactos
+            </a>
+          </li>
+          <li>
+            <a class="<%= (id_modulo == "dominio")?"active":"" %>" href="app/#web/dominio">
+              <span class="material-icons">arrow_forward_ios</span>
+              Dominio
+            </a>
+          </li>
+          <li>
+            <a class="<%= (id_modulo == "seguimiento")?"active":"" %>" href="app/#web/seguimiento">
+              <span class="material-icons">arrow_forward_ios</span>
+              Códigos de Seguimiento
+            </a>
+          </li>
+          <li>
+            <a class="<%= (id_modulo == "chat")?"active":"" %>" href="app/#web/chat">
+              <span class="material-icons">arrow_forward_ios</span>
+              Chat Whatsapp
+            </a>
+          </li>
+          <li>
+            <a class="<%= (id_modulo == "avanzada")?"active":"" %>" href="app/#web/avanzada">
+              <span class="material-icons">arrow_forward_ios</span>
+              Avanzada
+            </a>
+          </li>
+        </ul>
       </div>
-      <div class="row">
-        <div class="col-md-3">
-          <ul class="submenu">
-            <li>
-              <a class="<%= (id_modulo == "diseno")?"active":"" %>" href="app/#web/diseno">
-                <span class="material-icons">arrow_forward_ios</span>
-                Diseño
-              </a>
-            </li>
-            <li>
-              <a class="<%= (id_modulo == "contenido")?"active":"" %>" href="app/#web/contenido">
-                <span class="material-icons">arrow_forward_ios</span>
-                Contenido
-              </a>
-            </li>
-            <li>
-              <a class="<%= (id_modulo == "contacto")?"active":"" %>" href="app/#web/contacto">
-                <span class="material-icons">arrow_forward_ios</span>
-                Redes y Contactos
-              </a>
-            </li>
-            <li>
-              <a class="<%= (id_modulo == "dominio")?"active":"" %>" href="app/#web/dominio">
-                <span class="material-icons">arrow_forward_ios</span>
-                Dominio
-              </a>
-            </li>
-            <li>
-              <a class="<%= (id_modulo == "seguimiento")?"active":"" %>" href="app/#web/seguimiento">
-                <span class="material-icons">arrow_forward_ios</span>
-                Códigos de Seguimiento
-              </a>
-            </li>
-            <li>
-              <a class="<%= (id_modulo == "chat")?"active":"" %>" href="app/#web/chat">
-                <span class="material-icons">arrow_forward_ios</span>
-                Chat Whatsapp
-              </a>
-            </li>
-            <li>
-              <a class="<%= (id_modulo == "avanzada")?"active":"" %>" href="app/#web/avanzada">
-                <span class="material-icons">arrow_forward_ios</span>
-                Avanzada
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div class="col-md-9">
-          <div id="configuracion_content"></div>
-        </div>
+      <div class="col-md-9">
+        <div id="configuracion_content"></div>
       </div>
     </div>
   </div>

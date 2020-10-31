@@ -49,14 +49,13 @@
 
       <div class="header-lg">
         <div class="row">
-          <div class="col-md-6">
-            <h1>
-              <%= (!isEmpty(nombre))?"Buscando propiedades para "+nombre : "Propiedades" %>
-            </h1>
+          <div class="col-md-6 col-xs-8">
+            <h1>Propiedades</h1>
           </div>
-          <div class="col-md-6 tar">
+          <div class="col-md-6 col-xs-4 tar">
             <a class="btn btn-info" href="app/#propiedades/0">
-              <span>&nbsp;&nbsp;Nueva Propiedad&nbsp;&nbsp;</span>
+              <span class="material-icons show-xs">add</span>
+              <span class="hidden-xs">&nbsp;&nbsp;Nueva Propiedad&nbsp;&nbsp;</span>
             </a>
           </div>
         </div>

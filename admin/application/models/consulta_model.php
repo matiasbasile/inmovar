@@ -31,6 +31,7 @@ class Consulta_Model extends Abstract_Model {
     21 = ENVIO DE EMAIL AUTOMATICO
     22 = APERTURA DE LINK DE EMAIL AUTOMATICO
     23 = TURNO EN GENERAL
+    24 = INSTAGRAM
     25 = CONSULTA DESDE MERCADOLIBRE
     26 = FACEBOOK
     27 = WHATSAPP
@@ -60,7 +61,7 @@ class Consulta_Model extends Abstract_Model {
 
   // Incluye todo lo que se registra manualmente
   function get_origenes_consultas_manuales() {
-    return "3,4,5,14,15,26";
+    return "3,4,5,14,15,26,24";
   }
 
   // =====================================

@@ -19,12 +19,13 @@
   <div class="centrado rform">
     <div class="header-lg">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 col-xs-8">
           <h1>Contactos</h1>
         </div>
-        <div class="col-md-6 tar">
+        <div class="col-md-6 col-xs-4 tar">
           <a href="app/#clientes/0" class="btn btn-info">
-            <span>&nbsp;&nbsp;Nuevo Contacto&nbsp;&nbsp;</span>
+            <span class="material-icons show-xs">add</span>
+            <span class="hidden-xs">&nbsp;&nbsp;Nuevo Contacto&nbsp;&nbsp;</span>
           </a>
         </div>
       </div>
@@ -175,16 +176,15 @@
   <div class="centrado rform">
     <div class="header-lg">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 col-xs-8">
           <h1>Contactos</h1>
         </div>
       </div>
     </div>
     <?php include("cli/clientes_detalle_3.php"); ?>
     <% if (edicion) { %>
-      <div class="tar">
-        <div class="line b-b m-b-lg"></div>
-        <button class="btn guardar btn-info"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
+      <div class="tar mb30">
+        <button class="btn guardar btn-info btn-lg"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
       </div>
     <% } %>
   </div>

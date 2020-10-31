@@ -806,6 +806,7 @@ body {
   .app-aside-folded .app-footer {
     margin-left: 0px;
     width: 100%;
+    padding: 0px 10px;
   }
 }
 .app-aside-folded .app-header .navbar-brand {
@@ -4867,7 +4868,7 @@ table.mesas td.ocupado { background-color: #e06559; }
 .input-group-addon i.fa { cursor: pointer; color: #b6bbbd }
 
 @media(max-width: 600px) {
-  .modal-open .modal, .modal-dialog { width: 100% !important; padding-right: 20px !important; }
+  .modal-open .modal, .modal-dialog { width: 100% !important; padding-right: 10px !important; padding-top: 30px; }
   .panel-iframe iframe { width: 100% !important; }
 }
 
@@ -5269,3 +5270,15 @@ tfoot tr td { white-space: nowrap !important; }
 
 .plan ul { list-style: none; padding: 20px; text-align: center; }
 .plan ul li { list-style: none; padding: 10px; color: #5a5a5a; }
+
+.navbar-left { display: none; float: left; }
+@media (max-width: 768px) {
+  .navbar-nav .open .dropdown-menu { left: -200% }
+  .app-header { z-index: 9999 !important }
+  .navbar-left { display: block; }
+  .navbar-collapse.collapse { padding-left: 0px; }
+  .app-aside-fixed .aside-wrap { left: -100%; }
+  .app-aside-fixed .aside-wrap.open { left: 0px; width: 220px; }
+  .header-lg h1 { font-size: 30px !important; margin-top: 0px; }
+  .header-lg .btn { margin-top: 0px; padding: 8px 15px; }
+}

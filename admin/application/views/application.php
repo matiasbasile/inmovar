@@ -418,9 +418,15 @@ window.onload = function () {
 }  
 </script>
   <div class="app-header navbar">
-    <div class="collapse navbar-collapse box-shadow bg-white-only">
+    <div class="collapse navbar-collapse box-shadow">
       
-      <ul class="nav navbar-nav navbar-right">     
+      <ul class="nav navbar-nav navbar-left">
+        <li class="dropdown">
+          <a onclick="toggleMenu()" href="javascript:void(0)" class="clear"><span class="material-icons">menu</span></a>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
 
         <?php if ($perfil != -1) { ?>
           <li class="dropdown">
@@ -520,6 +526,12 @@ window.onload = function () {
     </div>
   <?php } ?>
 </div>
+
+<script>
+function toggleMenu() {
+  $(".app-aside-fixed .aside-wrap").toggleClass("open")
+}
+</script>
 
 </body>
 </html>

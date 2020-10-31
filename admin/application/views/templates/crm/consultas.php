@@ -19,12 +19,13 @@
   <div class="centrado rform">
     <div class="header-lg">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 col-xs-8">
           <h1>Seguimiento</h1>
         </div>
-        <div class="col-md-6 tar">
+        <div class="col-md-6 col-xs-4 tar">
           <a class="btn btn-info nuevo_cliente" href="javascript:void(0)">
-            <span>&nbsp;&nbsp;Nueva Consulta&nbsp;&nbsp;</span>
+            <span class="material-icons show-xs">add</span>
+            <span class="hidden-xs">&nbsp;&nbsp;Nueva Consulta&nbsp;&nbsp;</span>
           </a>
         </div>
       </div>
@@ -140,6 +141,9 @@
     <span style="color:#5a5a5a">
       <% if (id_origen == 27 || id_origen == 30 || id_origen == 31) { %>
         <i class="fa fa-whatsapp"></i> Whatsapp
+
+      <% } else if (id_origen == 24) { %>
+        <i class="fa fa-instagram"></i> Instagram
 
       <% } else if (id_origen == 26) { %>
         <i class="fa fa-facebook"></i> Facebook
@@ -398,7 +402,6 @@
             <input type="hidden" id="consulta_cambio_estado_id_tipo" value="<%= tipo %>" />
             <div class="btn-group dropdown w100p">
               <button id="consulta_cambio_estado_boton_tipo" class="btn btn-info btn-lg tac w100p dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= consulta_tipo %></button>
-              <span class="fs12 m-l-xs"></span>
               <ul class="dropdown-menu">
                 <% for (var i=0;i< consultas_tipos.length;i++) { %>
                   <% var t = consultas_tipos[i] %>
@@ -584,6 +587,8 @@
         <i title="Email" class="fa fa-envelope"></i>
       <% } else if (id_origen == 4) { %>
         <i title="Telefono" class="fa fa-phone"></i>
+      <% } else if (id_origen == 24) { %>
+        <i title="Instagram" class="fa fa-instagram"></i>
       <% } else if (id_origen == 26) { %>
         <i title="Facebook" class="fa fa-facebook"></i>
       <% } else if (id_origen == 27 || id_origen == 30 || id_origen == 31) { %>
@@ -606,6 +611,12 @@
               <?php echo lang(array("es"=>"se contactó","en"=>"spoke")); ?><%= (id_referencia != 0) ? " por:":":" %>
             <% } else if (id_origen == 4) { %>
               <?php echo lang(array("es"=>"llamó por teléfono","en"=>"called")); ?><%= (id_referencia != 0) ? " por:":":" %>
+            <% } else if (id_origen == 24) { %>
+              escribió por Instagram
+            <% } else if (id_origen == 26) { %>
+              escribió por Facebook
+            <% } else if (id_origen == 27) { %>
+              escribió por Whatsapp
             <% } else { %>
               <?php echo lang(array("es"=>"escribió","en"=>"wrote")); ?><%= (id_referencia != 0) ? " por:":":" %>
             <% } %>
@@ -667,7 +678,7 @@
             <% } %>
           </div>
         </div>
-      <% } else { %>
+      <% } else if (!isEmpty(texto)) { %>
         <div class="panel-body">
           <div class="consulta_timeline_texto"><%= nl2br(texto) %></div>
           <div class="dn editar_texto_container">
