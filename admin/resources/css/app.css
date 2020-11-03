@@ -4509,15 +4509,15 @@ tfoot.bg-important tr td { color:#222 !important; }
 .oh { overflow: hidden; }
 .select2_textarea .select2-choices { min-height: 86px !important; }
 
-.fila_alerta { background-color: #fffbda !important; border-top: solid 1px #fdea8e !important; }
+.fila_alerta { background-color: #f8faff !important; border-top: solid 1px #e7eefc !important; }
 .fila_roja { background-color: #f7b9b9 !important; border-top: solid 1px #da7878 !important; }
 .fila_inactiva { color: #cad2d4 !important }
 
-.table > tbody > tr td.fila_alerta { background-color: #fffbda !important; border-top: solid 1px #fdea8e !important; }
+.table > tbody > tr td.fila_alerta { background-color: #f8faff !important; border-top: solid 1px #e7eefc !important; }
 .table > tbody > tr td.fila_roja { background-color: #f7b9b9 !important; border-top: solid 1px #da7878 !important; }
 .table > tbody > tr td.fila_inactiva, .table > tbody > tr td.fila_inactiva span { color: #cad2d4 !important }
 .table > tbody > tr.no_leido td { background-color: #fffdee !important; border-top: solid 1px #fff8c4 !important; }
-.table > tbody > tr.seleccionado td { background-color: #fffbda !important; border-top: solid 1px #fdea8e !important; }
+.table > tbody > tr.seleccionado td { background-color: #f8faff !important; border-top: solid 1px #e7eefc !important; }
 .table > tbody > tr.fila_roja td { background-color: #f7b9b9 !important; border-top: solid 1px #da7878 !important; }
 
 @media (max-width:992px) {
