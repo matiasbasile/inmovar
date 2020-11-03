@@ -62,8 +62,15 @@ class Permisos_Red extends REST_Controller {
       }
       $salida[] = $row;
     }
+
+    // Contamos el total de solicitudes pendientes
+    $pendientes = $this->modelo->solicitudes_pendientes(array(
+      "id_empresa"=>$id_empresa
+    ));
+
     echo json_encode(array(
       "results"=>$salida,
+      "solicitudes_pendientes"=>$pendientes["total"],
     ));
   }
 
@@ -181,6 +188,34 @@ class Permisos_Red extends REST_Controller {
     echo json_encode(array(
       "error"=>0,
     ));
+  }
+
+  // Elimina directamente la solicitud
+  function eliminar_solicitud() {
+    $id_empresa = parent::get_empresa();
+    $id_empresa_compartida = parent::get_post("id_empresa_compartida",0);
+
+    $sql = "UPDATE inm_permisos_red SET ";
+    $sql.= " solicitud_permiso = 0, visto = 0, permiso_web = 0 ";
+    $sql.= "WHERE "; // Se pone al reves porque es el otro el que solicito el permiso
+    $sql.= " id_empresa_compartida = $id_empresa AND id_empresa = $id_empresa_compartida ";
+    $this->db->query($sql);
+
+    echo json_encode(array(
+      "error"=>0,
+    ));
+  }  
+
+  function ver_solicitudes_pendientes() {
+    $id_empresa = parent::get_empresa();
+    $salida = $this->modelo->solicitudes_pendientes(array(
+      "id_empresa"=>$id_empresa
+    ));
+
+    $participantes = $this->modelo->get_inmobiliarias_red();
+    $salida["total_red_inmovar"] = sizeof($participantes);
+
+    echo json_encode($salida);
   }
 
   function insert() {}

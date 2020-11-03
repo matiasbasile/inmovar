@@ -9,6 +9,17 @@ class Propiedades extends REST_Controller {
     $this->load->model('Propiedad_Model', 'modelo');
   }
 
+  function contar_visita() {
+    $id_empresa = parent::get_get("e",0);
+    $id_empresa_propiedad = parent::get_get("ep",0);
+    $id_propiedad = parent::get_get("p",0);
+    $id_cliente = parent::get_get("c",0);
+    $sql = "INSERT INTO inm_propiedades_visitas (id_empresa,id_propiedad,id_cliente,stamp,id_empresa_propiedad) VALUES(";
+    $sql.= " ? , ? , ? ,NOW(), ?)";
+    $this->db->query($sql, array($id_empresa,$id_propiedad,$id_cliente,$id_empresa_propiedad));
+    echo json_encode(array("error"=>0));
+  }
+
   function bloquear_en_web() {
     $id_empresa = parent::get_empresa();
     $id_propiedad = parent::get_get("id_propiedad");

@@ -217,8 +217,8 @@ if (sizeof($listado)<=0) {
 <script type="text/javascript" src="assets/js/draggable-0.1.js"></script>
 <script type="text/javascript" src="assets/js/jquery.slider.js"></script>
 <script type="text/javascript" src="assets/js/custom.js"></script>
-<script type="text/javascript" src="/admin/resources/js/common.js"></script>
-<script type="text/javascript" src="/admin/resources/js/main.js"></script>
+<script type="text/javascript" src="/sistema/resources/js/common.js"></script>
+<script type="text/javascript" src="/sistema/resources/js/main.js"></script>
 
 <!--[if gt IE 8]>
 <script type="text/javascript" src="assets/js/ie.js"></script>

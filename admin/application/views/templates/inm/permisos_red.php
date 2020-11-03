@@ -21,13 +21,13 @@
           <li id="buscar_propias_tab" class="buscar_tab active">
             <a href="javascript:void(0)">
               <i class="material-icons">store</i> Inmobiliarias
-              <span id="propiedades_total" class="counter">0</span>
+              <span id="propiedades_total" class="counter"><%= results.length %></span>
             </a>
           </li>
-          <li id="buscar_red_tab" class="buscar_tab <%= (window.propiedades_buscar_red == 1)?"active":"" %>">
-            <a href="javascript:void(0)">
+          <li>
+            <a href="app/#solicitudes_pendientes">
               <i class="material-icons">share</i> Solicitudes pendientes
-              <span id="propiedades_red_total" class="counter">0</span>
+              <span id="permisos_red_solicitudes_pendientes" class="counter"><%= solicitudes_pendientes %></span>
             </a>
           </li>
         </ul>
@@ -124,6 +124,96 @@
                             </label>
                           <% } %>                        
                         </div>
+                      </td>
+                    </tr>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</script>
+
+<script type="text/template" id="solicitudes_pendientes_template">
+  <div class="centrado rform">
+    <div class="header-lg">
+      <div class="row">
+        <div class="col-md-6 col-xs-8">
+          <h1>Red Inmovar</h1>
+        </div>
+        <div class="col-md-6 col-xs-4 tar">
+          <a href='javascript:void(0)' class='btn btn-info invitar_colega'>
+            <span class="material-icons show-xs">add</span>
+            <span class="hidden-xs">&nbsp;&nbsp;Invitá a tu colega&nbsp;&nbsp;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="tab-container mb0">
+        <ul class="nav nav-tabs nav-tabs-2" role="tablist">
+          <li>
+            <a href="app/#permisos_red">
+              <i class="material-icons">store</i> Inmobiliarias
+              <span class="counter"><%= total_red_inmovar %></span>
+            </a>
+          </li>
+          <li class="active">
+            <a href="javascript:void(0)">
+              <i class="material-icons">share</i> Solicitudes pendientes
+              <span class="counter"><%= results.length %></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="">
+            <div class='oh mb10'>
+              
+            </div>
+            <div class="">
+              <table id="solicitudes_pendientes_tabla" class="table table-striped sortable m-b-none default footable">
+                <thead>
+                  <tr>
+                    <th class="w50"></th>
+                    <th>Inmobiliaria</th>
+                    <th>Información</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody class="tbody">
+                  <% for(var i=0;i< results.length;i++) { %>
+                    <% var m = results[i] %>
+                    <tr data-id="<%= m.id %>" data-permiso_web_otra="<%= m.permiso_web_otra %>">
+                      <td class="p0">
+                        <% if (!isEmpty(m.logo)) { %>
+                          <img src="/admin/<%= m.logo %>" class="customcomplete-image"/>
+                        <% } %>
+                      </td>                      
+                      <td>
+                        <span class="text-dark bold"><%= m.razon_social %></span><br/>
+                      </td>
+                      <td>
+                        <% if (!isEmpty(m.telefono_web)) { %>
+                          <a class="enviar_whatsapp" data-telefono="<%= m.telefono_web %>"><%= m.telefono %></a><br/>
+                        <% } %>
+                        <% if (!isEmpty(m.email)) { %>
+                          <a href="mailto:<%= m.email %>"><%= m.email %></a><br/>
+                        <% } %>
+                        <% if (!isEmpty(m.direccion)) { %><%= m.localidad %><br/><% } %>
+                      </td>
+                      <td>
+                        <button class="btn mw120 btn-success aceptar_permiso_red">Aceptar</button>
+                        <button class="btn mw120 btn-info eliminar_solicitud">Descartar</button>
                       </td>
                     </tr>
                   <% } %>

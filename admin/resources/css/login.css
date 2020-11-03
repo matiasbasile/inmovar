@@ -59,6 +59,7 @@
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   margin-top: 5px;
+  float: right;
 }
 
 .login-page .header span{

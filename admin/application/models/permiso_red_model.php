@@ -4,6 +4,42 @@ require_once("abstract_model.php");
 
 class Permiso_Red_Model extends Abstract_Model {
 
+  function solicitudes_pendientes($config = array()) {
+    $id_empresa = (isset($config["id_empresa"])) ? $config["id_empresa"] : parent::get_empresa();
+    $sql = "SELECT SQL_CALC_FOUND_ROWS PR.*, ";
+    $sql.= " E.id, E.nombre, E.razon_social, WC.logo_1 AS logo, WC.email, ";
+    $sql.= " WC.telefono_web, WC.direccion_web ";
+    $sql.= "FROM inm_permisos_red PR ";
+    $sql.= "INNER JOIN empresas E ON (PR.id_empresa = E.id) ";
+    $sql.= "INNER JOIN web_configuracion WC ON (E.id = WC.id_empresa) ";
+    $sql.= "LEFT JOIN com_localidades L ON (E.id_localidad = L.id) ";
+    $sql.= "WHERE PR.id_empresa_compartida = $id_empresa ";
+    $sql.= "AND PR.solicitud_permiso = 1 ";
+    $q = $this->db->query($sql);
+    $q_total = $this->db->query("SELECT FOUND_ROWS() AS total");
+    $total = $q_total->row();      
+
+    $salida = array();
+    foreach($q->result() as $row) {
+      // Consultamos si la otra inmobiliaria tiene el permiso web
+      $sql = "SELECT * FROM inm_permisos_red ";
+      $sql.= "WHERE id_empresa = $id_empresa ";
+      $sql.= "AND id_empresa_compartida = $row->id ";
+      $qqq = $this->db->query($sql);
+      if ($qqq->num_rows()>0) {
+        $rrr = $qqq->row();
+        $row->permiso_web_otra = $rrr->permiso_web;
+      } else {
+        $row->permiso_web_otra = 0;
+      }
+      $salida[] = $row;
+    }
+    return array(
+      "results"=>$salida,
+      "total"=>$total->total,
+    );
+  }
+
   // Devuelve todas las inmobiliarias que estan compartiendo en la red
   function get_inmobiliarias_red($config = array()) {
     $id_empresa = (isset($config["id_empresa"])) ? $config["id_empresa"] : parent::get_empresa();

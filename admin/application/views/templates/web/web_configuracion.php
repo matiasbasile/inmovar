@@ -1137,7 +1137,7 @@ if (!empty($empresa->path_template)) {
   <% } else { %>
     <% dom = window.location.protocol+"//"+DOMINIO %>
   <% } %>
-  <iframe id="iframe" src="<%= dom %>" style="width: 100%; height: 100%; border:none; padding: 0px; margin: -2px; "></iframe>
+  <iframe id="iframe" src="<%= dom %>" style="width: 100%; height: 100vh; border:none; padding: 0px;"></iframe>
 </div>
 <?php
 // Error en Chrome Versión 53.0.2785.101 m

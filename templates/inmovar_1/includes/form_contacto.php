@@ -113,7 +113,7 @@ function enviar_contacto() {
   }
   enviando = 1;
   $.ajax({
-    "url":"/admin/consultas/function/enviar/",
+    "url":"/sistema/consultas/function/enviar/",
     "type":"post",
     "dataType":"json",
     "data":datos,

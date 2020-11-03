@@ -54,6 +54,7 @@
         // Permisos de la RED
         "permisos_red(/)": "ver_permisos_red",
         "permisos_red/:id(/)": "ver_permisos_red",
+        "solicitudes_pendientes(/)": "ver_solicitudes_pendientes",
 
         "alquileres(/)": "ver_alquileres",
 
@@ -225,6 +226,16 @@
           "top": edit.el,
         });
       },  
+
+      ver_solicitudes_pendientes: function() {
+        var self = this;
+        var edit = new app.views.SolicitudesPendientesView({
+          model: new app.models.AbstractModel(),
+        });
+        self.mostrar({
+          "top": edit.el,
+        });
+      },       
 
       ver_alquileres: function(id) {
         var self = this;

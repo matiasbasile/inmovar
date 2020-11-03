@@ -723,6 +723,9 @@ body {
 .navbar-md .navbar-brand {
   line-height: 60px;
 }
+a.navbar-brand {
+  cursor: default;
+}
 .navbar-brand img { max-width: 175px }
 .navbar-header > button {
   text-decoration: none;

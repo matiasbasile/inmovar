@@ -1,5 +1,5 @@
 <?php
-include_once("admin/application/helpers/fecha_helper.php");
+include_once("sistema/application/helpers/fecha_helper.php");
 include_once("models/Entrada_Model.php");
 $entrada_model = new Entrada_Model($empresa->id,$conx);
 include_once("models/Web_Model.php");
@@ -120,8 +120,8 @@ $entrada->mostrar_me_gusta = 1;
 <script type="text/javascript" src="assets/js/draggable-0.1.js"></script>
 <script type="text/javascript" src="assets/js/jquery.slider.js"></script>
 <script type="text/javascript" src="assets/js/custom.js"></script>
-<script type="text/javascript" src="/admin/resources/js/common.js"></script>
-<script type="text/javascript" src="/admin/resources/js/main.js"></script>
+<script type="text/javascript" src="/sistema/resources/js/common.js"></script>
+<script type="text/javascript" src="/sistema/resources/js/main.js"></script>
 
 <!--[if gt IE 8]>
 <script type="text/javascript" src="assets/js/ie.js"></script>

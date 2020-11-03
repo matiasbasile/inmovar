@@ -184,7 +184,7 @@ $slider = $web_model->get_slider(array(
                           <?php if (!empty($r->imagen)) { ?>
                             <img class="alto" src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre); ?>" />
                           <?php } else if (!empty($empresa->no_imagen)) { ?>
-                            <img class="alto" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->nombre); ?>" />
+                            <img class="alto" src="/sistema/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->nombre); ?>" />
                           <?php } else { ?>
                             <img class="alto" src="images/logo.png" alt="<?php echo ($r->nombre); ?>" />
                           <?php } ?>
@@ -256,7 +256,7 @@ $slider = $web_model->get_slider(array(
                         <?php if (!empty($r->imagen)) { ?>
                           <img class="alto" src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre); ?>" />
                         <?php } else if (!empty($empresa->no_imagen)) { ?>
-                          <img class="alto" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->nombre); ?>" />
+                          <img class="alto" src="/sistema/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->nombre); ?>" />
                         <?php } else { ?>
                           <img class="alto" src="images/logo.png" alt="<?php echo ($r->nombre); ?>" />
                         <?php } ?>

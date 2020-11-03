@@ -84,8 +84,8 @@ extract($propiedad_model->get_variables(array(
 <script type="text/javascript" src="assets/js/draggable-0.1.js"></script>
 <script type="text/javascript" src="assets/js/jquery.slider.js"></script>
 <script type="text/javascript" src="assets/js/custom.js"></script>
-<script type="text/javascript" src="/admin/resources/js/common.js"></script>
-<script type="text/javascript" src="/admin/resources/js/main.js"></script>
+<script type="text/javascript" src="/sistema/resources/js/common.js"></script>
+<script type="text/javascript" src="/sistema/resources/js/main.js"></script>
 
 <?php include_once("templates/comun/mapa_js.php"); ?>
 
@@ -125,7 +125,7 @@ $(document).ready(function(){
       if (!empty($p->imagen)) { 
         $path = $p->imagen;
       } else if (!empty($empresa->no_imagen)) {
-        $path = "/admin/".$empresa->no_imagen;
+        $path = "/sistema/".$empresa->no_imagen;
       } ?>
       var contentString<?php echo $i; ?> = '<div>'+
         '<div class="feature-item" style="padding: 0px;">'+

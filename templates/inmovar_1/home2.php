@@ -77,7 +77,8 @@ $slider = $web_model->get_slider(array(
   <div class="my-search-box">
     <div class="container text-center">
       <form onsubmit="return filtrar(this)" method="get" role="form" id="form_propiedades">
-        <h2>Te ayudamos a vivir mejor</h2>
+        <?php $t = $web_model->get_text("titulo-slider","Te ayudamos a vivir mejor") ?>
+        <h2 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></h2>
         <div class="col-md-3 p10">
           <?php $tipos_operaciones = $propiedad_model->get_tipos_operaciones()?>
           <select id="tipo_operacion" class="my-select">
@@ -198,7 +199,7 @@ $slider = $web_model->get_slider(array(
                           <?php if (!empty($r->imagen)) { ?>
                             <img class="alto" src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre); ?>" />
                           <?php } else if (!empty($empresa->no_imagen)) { ?>
-                            <img class="alto" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->nombre); ?>" />
+                            <img class="alto" src="/sistema/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->nombre); ?>" />
                           <?php } else { ?>
                             <img class="alto" src="images/logo.png" alt="<?php echo ($r->nombre); ?>" />
                           <?php } ?>
@@ -270,7 +271,7 @@ $slider = $web_model->get_slider(array(
                         <?php if (!empty($r->imagen)) { ?>
                           <img class="alto" src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre); ?>" />
                         <?php } else if (!empty($empresa->no_imagen)) { ?>
-                          <img class="alto" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->nombre); ?>" />
+                          <img class="alto" src="/sistema/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->nombre); ?>" />
                         <?php } else { ?>
                           <img class="alto" src="images/logo.png" alt="<?php echo ($r->nombre); ?>" />
                         <?php } ?>
@@ -367,8 +368,8 @@ $(window).load(function(){
 const slides = document.querySelectorAll('.slide');
 const next = document.querySelector('#next');
 const prev = document.querySelector('#prev');
-const auto = false; // Auto scroll
-const intervalTime = 5000;
+const auto = true; // Auto scroll
+const intervalTime = 3000;
 let slideInterval;
 
 const nextSlide = () => {

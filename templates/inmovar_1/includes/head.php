@@ -7,7 +7,7 @@
 <link rel="canonical" href="<?php echo current_url(TRUE); ?>" />
 <link rel='shortlink' href="<?php echo current_url(TRUE); ?>" />
 <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
-<link href="/admin/resources/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="/sistema/resources/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css" type="text/css">
 <link rel="stylesheet" href="assets/css/bootstrap-select.min.css" type="text/css">
 <link rel="stylesheet" href="assets/css/magnific-popup.css" type="text/css">
@@ -30,14 +30,14 @@ include_once("templates/".$empresa->template_path."/assets/css/custom.php");
 <![endif]-->
 
 <?php if (strpos(strtolower($empresa->favicon), ".png")>0) { ?>
-  <link rel="shortcut icon" type="image/png" href="/admin/<?php echo $empresa->favicon ?>"/>
+  <link rel="shortcut icon" type="image/png" href="/sistema/<?php echo $empresa->favicon ?>"/>
 <?php } else if (strpos(strtolower($empresa->favicon), ".ico")>0) { ?>
-  <link rel="shortcut icon" type="image/x-icon" href="/admin/<?php echo $empresa->favicon ?>" />
+  <link rel="shortcut icon" type="image/x-icon" href="/sistema/<?php echo $empresa->favicon ?>" />
 <?php } else { ?>
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 <?php } ?>
 
-<link href="/admin/resources/css/common.css" type="text/css" media="all" rel="stylesheet">
+<link href="/sistema/resources/css/common.css" type="text/css" media="all" rel="stylesheet">
 <script type="text/javascript">
 // Constantes que se utilizan en el sistema
 const ID_EMPRESA = "<?php echo $empresa->id ?>";

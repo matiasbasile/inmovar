@@ -108,6 +108,87 @@
 
 (function ( views, models ) {
 
+  views.SolicitudesPendientesView = app.mixins.View.extend({
+
+    template: _.template($("#solicitudes_pendientes_template").html()),
+
+    myEvents: {
+      "click .guardar": "guardar",
+      "click .invitar_colega":function() {
+        var p = new app.views.InvitarColegaView({
+          model: new app.models.AbstractModel()
+        });
+        crearLightboxHTML({
+          "html":p.el,
+          "width":450,
+          "height":140,
+        });
+      },
+
+      "click .aceptar_permiso_red":function(e){
+        var id_empresa_compartida = $(e.currentTarget).parents("tr").data("id");
+        var permiso_web_otra = $(e.currentTarget).parents("tr").data("permiso_web_otra");
+        var inversa = 0;
+        if (permiso_web_otra == 0) {
+          // Si todavia no tiene el permiso de la otra web, tenemos que preguntar si desea enviarlo
+          if (confirm("Desea también publicar sus propiedades en su sitio web?")) inversa = 1;
+        }
+        $.ajax({
+          "url":"permisos_red/function/aceptar_permiso/",
+          "dataType":"json",
+          "type":"post",
+          "data":{
+            "id_empresa_compartida":id_empresa_compartida,
+            "inversa":inversa,
+          },
+          "success":function(){
+            location.reload();
+          }
+        });
+      },
+
+      "click .eliminar_solicitud":function(e){
+        var id_empresa_compartida = $(e.currentTarget).parents("tr").data("id");
+        $.ajax({
+          "url":"permisos_red/function/eliminar_solicitud/",
+          "dataType":"json",
+          "type":"post",
+          "data":{
+            "id_empresa_compartida":id_empresa_compartida,
+          },
+          "success":function(){
+            location.reload();
+          }
+        });
+      },      
+    },
+
+    initialize: function() {
+      _.bindAll(this);
+      this.render();
+    },
+
+    render: function(options) {
+      var self = this;
+      $.ajax({
+        "url":"permisos_red/function/ver_solicitudes_pendientes/",
+        "dataType":"json",
+        "success":function(r) {
+          var model = new app.models.AbstractModel(r);
+          $(self.el).html(self.template(model.toJSON()));
+          $('[data-toggle="tooltip"]').tooltip();
+        }
+      });
+      return this;
+    },
+   
+  });
+
+})(app.views, app.models);
+
+
+(function ( views, models ) {
+
   views.InvitarColegaView = app.mixins.View.extend({
 
     template: _.template($("#invitar_colega_template").html()),

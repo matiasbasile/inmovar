@@ -102,12 +102,12 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
 
               <span class="actions">
                 <?php if (estaEnFavoritos($propiedad->id)) { ?>
-                  <a class="bookmark" data-bookmark-state="added" href="/admin/favoritos/eliminar/?id=<?php echo $propiedad->id; ?>">
+                  <a class="bookmark" data-bookmark-state="added" href="/sistema/favoritos/eliminar/?id=<?php echo $propiedad->id; ?>">
                     <span class="title-add">Guarda Tus Inmuebles Favoritos</span>
                     <span class="title-added">Guardado en Favoritos</span>
                   </a>
                 <?php } else { ?>
-                  <a class="bookmark" data-bookmark-state="empty" href="/admin/favoritos/agregar/?id=<?php echo $propiedad->id; ?>">
+                  <a class="bookmark" data-bookmark-state="empty" href="/sistema/favoritos/agregar/?id=<?php echo $propiedad->id; ?>">
                     <span class="title-add">Guarda Tus Inmuebles Favoritos</span>
                     <span class="title-added">Guardado en Favoritos</span>
                   </a>
@@ -412,7 +412,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
                                 <?php if (!empty($r->imagen)) { ?>
                                   <img class="alto" src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre); ?>" />
                                 <?php } else if (!empty($empresa->no_imagen)) { ?>
-                                  <img class="alto" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->nombre); ?>" />
+                                  <img class="alto" src="/sistema/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->nombre); ?>" />
                                 <?php } else { ?>
                                   <img class="alto" src="images/logo.png" alt="<?php echo ($r->nombre); ?>" />
                                 <?php } ?>
