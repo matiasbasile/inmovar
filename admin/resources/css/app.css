@@ -2507,7 +2507,7 @@ fieldset[disabled] .i-checks input + i:before {
 }
 .bg-light.dk,
 .bg-light .dk {
-  background-color: #e4eaec !important;
+  background-color: #f6f8f8 !important;
 }
 .bg-light.dker,
 .bg-light .dker {
@@ -3281,7 +3281,7 @@ a.text-black:hover {
   color: #99a6ad;
 }
 .text-muted-2 {
-  color: #57656e;
+  color: #5a5a5a;
 }
 .pos-rlt {
   position: relative;
@@ -5109,7 +5109,7 @@ input[type="color"]::-webkit-color-swatch {
 .propiedad_interesada .propiedad_interesada_eliminar { display: none; }
 .propiedad_interesada:hover .propiedad_interesada_eliminar { display: block; position: absolute; right: 5px; top: 5px; padding: 5px 10px; background-color: white; color: #222; }
 
-.btn-advanced-search { background: none; color: #57656e; font-weight: normal; border: none; text-transform: uppercase; }
+.btn-advanced-search { background: none; color: #5a5a5a; font-weight: normal; border: none; text-transform: uppercase; }
 .btn-advanced-search i { font-size: 16px; line-height: 16px; margin-right: 5px; position: relative; top: 1px; }
 .btn-advanced-search span { font-size: 12px; font-weight: bold; line-height: 16px; }
 
