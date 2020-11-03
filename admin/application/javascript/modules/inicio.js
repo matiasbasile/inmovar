@@ -225,7 +225,7 @@ app.views.InicioSingleView = Backbone.View.extend({
         // no se vuelve a pagar, sino que cambia directamente el plan solicitado
         // y se va a facturar el nuevo plan el proximo mes
         //if (FECHA_ULTIMO_PAGO != '0000-00-00' && moment().diff(moment(FECHA_ULTIMO_PAGO),'days') < 30) {
-          if (!confirm("Confirma cambiar al plan seleccionado? La proxima factura sera generada con el nuevo plan."));
+          if (!confirm("Confirma cambiar al plan seleccionado? La proxima factura sera generada con el nuevo plan.")) return;
           var id = $(e.currentTarget).data("id");
           $(".contratar_plan").attr("disabled","disabled");
           $.ajax({

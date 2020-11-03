@@ -50,7 +50,7 @@
         </li>
         <li>
           <a href="app/#consultastipos" class="btn-tab-large">
-            <i class="material-icons md-22 mr0">settings</i>
+            <i class="material-icons md-22 mr0 mt2 mb2">settings</i>
           </a>
         </li>
       </ul>
@@ -61,7 +61,7 @@
         <div class="mb20 mt15">
           <div class="clearfix">
             <div class="row">
-              <div class="col-md-4 sm-m-b">
+              <div class="col-xs-12 sm-m-b">
                 <div class="input-group">
                   <input type="text" id="consultas_buscar" value="<%= window.consultas_filter %>" placeholder="<?php echo lang(array("es"=>"Buscar","en"=>"Search")); ?>..." autocomplete="off" class="form-control">
                   <span class="input-group-btn">
@@ -134,7 +134,7 @@
       <span class="negro"><%= propiedad_tipo_inmueble %> en <%= propiedad_tipo_operacion %></span><br/>
       <%= propiedad_direccion %>, <%= propiedad_ciudad %>
     <% } else { %>
-      <span>Asignar interés</span>
+      <span class="btn etiqueta btn-menu-compartir">Asignar interés</span>
     <% } %>
   </td>
   <td class="data">

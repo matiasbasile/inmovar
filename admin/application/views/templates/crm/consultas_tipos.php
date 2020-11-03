@@ -5,11 +5,13 @@
         <div class="col-md-6">
           <h1>Estados</h1>
         </div>
+        <?php /*
         <div class="col-md-6 tar">
           <a class="btn btn-info nuevo" href="javascript:void(0)">
             <span>&nbsp;&nbsp;Nuevo Estado&nbsp;&nbsp;</span>
           </a>
         </div>
+        */ ?>
       </div>
     </div>  
     <div class="panel panel-default">

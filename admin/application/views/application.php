@@ -434,7 +434,7 @@ window.onload = function () {
           </li>
 
           <li class="dropdown">
-            <a href="app/#tutoriales" class="clear"><span class="material-icons">help_outline</span> <span class="fs14">Tutoriales</span></a>
+            <a <?php /*href="app/#tutoriales"*/ ?> href="javascript:void(0)" class="clear"><span class="material-icons">help_outline</span> <span class="fs14">Tutoriales</span></a>
           </li>
 
           <li class="dropdown pr">
