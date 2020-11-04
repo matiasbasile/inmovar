@@ -76,18 +76,14 @@ class Busqueda_Model extends Abstract_Model {
       $sql_where.= "AND fecha_publicacion >= '$fecha' ";
     }
 
-    if ($activo != -1) $sql_where.= "AND A.activo = $activo ";
     if (!empty($filter)) $sql_where.= "AND (A.codigo LIKE '%$filter%' OR A.nombre LIKE '%$filter%' OR A.calle LIKE '%$filter%') ";
     if (!empty($id_tipo_estado)) $sql_where.= "AND A.id_tipo_estado = $id_tipo_estado ";
     if (!empty($id_tipo_operacion)) $sql_where.= "AND A.id_tipo_operacion IN ($id_tipo_operacion) ";
     if (!empty($id_tipo_inmueble)) $sql_where.= "AND A.id_tipo_inmueble IN ($id_tipo_inmueble) ";
-    
-    if (!empty($id_propietario)) $sql_where.= "AND A.id_propietario = $id_propietario ";
     if (!empty($id_localidad)) $sql_where.= "AND A.id_localidad IN ($id_localidad) ";
     if (!empty($calle)) $sql_where.= "AND A.calle = '$calle' ";
 
     if (!empty($not_id_empresa)) $sql_where.= "AND A.id_empresa != $not_id_empresa ";
-    else if ($id_empresa != -1) $sql_where.= "AND A.id_empresa = $id_empresa ";
 
     // Si solamente debemos contar la cantidad de resultados
     if ($solo_contar == 1) {
