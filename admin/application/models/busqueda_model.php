@@ -74,8 +74,7 @@ class Busqueda_Model extends Abstract_Model {
     $sql_from.= "LEFT JOIN com_provincias PROV ON (DEP.id_provincia = PROV.id) ";
 
     $sql_where = "WHERE 1=1 ";
-    if ($buscar_red == 0) $sql_where.= "AND A.id_empresa = $id_empresa ";
-    else if ($buscar_red == 1) {
+    if ($buscar_red == 1) {
       // Si estamos buscando de la red, tienen que desaparecer a los 5 dias
       $sql_where.= "AND A.id_empresa != $id_empresa AND fecha_publicacion >= '$fecha' ";
     }
@@ -127,7 +126,7 @@ class Busqueda_Model extends Abstract_Model {
     $sql = "SELECT IF(COUNT(*) IS NULL,0,COUNT(*)) AS total ";
     $sql.= "FROM inm_busquedas A ";
     $sql.= "WHERE A.activo = 1 ";
-    $sql.= "AND A.id_empresa != $id_empresa AND fecha_publicacion >= '$fecha' ";
+    $sql.= "AND fecha_publicacion >= '$fecha' ";
     $qq = $this->db->query($sql);
     $rr = $qq->row();
     $total_red = $rr->total;
