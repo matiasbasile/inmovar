@@ -109,8 +109,7 @@
     <% } %>
   </td>
   <td>
-    <button class="btn btn-success"><i class="fa fa-whatsapp"></i></button>
-    <span class="text-info m-l-xs"><%= telefono %></span>
+    <span><i class="fa fa-whatsapp"></i> <%= telefono %></span>
   </td>
   <td><%= email %></td>
   <% if (permiso > 1) { %>
