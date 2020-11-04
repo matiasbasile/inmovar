@@ -46,6 +46,7 @@
                     <th class="w50"></th>
                     <th>Inmobiliaria</th>
                     <th>Información</th>
+                    <th>Localidad</th>
                     <th class="tac">Tu Sitio Web</th>
                     <th style="width:130px" class="tac">Red Interna</th>
                   </tr>
@@ -64,13 +65,13 @@
                       </td>
                       <td>
                         <% if (!isEmpty(m.telefono_web)) { %>
-                          <a class="enviar_whatsapp" data-telefono="<%= m.telefono_web %>"><%= m.telefono %></a><br/>
+                          <span><i class="fa fa-whatsapp"></i> <a class="enviar_whatsapp" data-telefono="<%= m.telefono_web %>"><%= m.telefono %></a><br/>
                         <% } %>
                         <% if (!isEmpty(m.email)) { %>
-                          <a href="mailto:<%= m.email %>"><%= m.email %></a><br/>
+                          <span><i class="fa fa-envelope"></i> <a href="mailto:<%= m.email %>"><%= m.email %></a>
                         <% } %>
-                        <% if (!isEmpty(m.direccion)) { %><%= m.localidad %><br/><% } %>
                       </td>
+                      <td><%= m.localidad %></td>
                       <td class="tac">
                         <% if (m.bloqueado == 0) { %>
                           <% if (m.permiso_web == 0) { %>
