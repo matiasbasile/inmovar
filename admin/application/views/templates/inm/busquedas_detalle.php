@@ -4,7 +4,11 @@
     <div class="header-lg pt0">
       <div class="row">
         <div class="col-md-6">
-          <h1 style="font-size:32px !important">Nueva Búsqueda</h1>
+          <% if (edicion) { %>
+            <h1 style="font-size:32px !important">Nueva Búsqueda</h1>
+          <% } else { %>
+            <h1 style="font-size:32px !important">Búsqueda Activa</h1>
+          <% } %>
         </div>
       </div>
     </div>    
@@ -104,10 +108,12 @@
               <div class="col-md-5">
                 <div class="form-group">
                   <div style="height:380px;" class="mb10" id="mapa"></div>
-                  <div class="help-block">
-                    Podés arrastrar el marcador del mapa para ponerlo en la direccion exacta. 
-                  </div>
-                </div>            
+                  <% if (edicion) { %>
+                    <div class="help-block">
+                      Podés arrastrar el marcador del mapa para ponerlo en la direccion exacta. 
+                    </div>
+                  <% } %>
+                </div>
               </div>
               <div class="col-md-7">
 

@@ -1060,11 +1060,11 @@
     initialize: function(options) {
       var self = this;
       _.bindAll(this);
-      var edicion = false;
+      this.edicion = false;
       this.options = options;
-      if (this.options.permiso > 1) edicion = true;
-      if (this.model.get("id_empresa") != ID_EMPRESA) edicion = false;
-      var obj = { "edicion": edicion,"id":this.model.id }
+      if (this.options.permiso > 1) this.edicion = true;
+      if (this.model.get("id_empresa") != ID_EMPRESA) this.edicion = false;
+      var obj = { "edicion": this.edicion,"id":this.model.id }
       _.extend(obj,this.model.toJSON());
       $(this.el).html(this.template(obj));
       this.render();
@@ -1111,6 +1111,7 @@
         //firstOptions: ["<option value='0'>Sin Definir</option>"],
         render: "#busqueda_departamentos",
         selected: self.model.get("id_departamento"),
+        disabled: (!self.edicion),
         onComplete:function(c) {
           crear_select2("busqueda_departamentos");
           self.$("#busqueda_departamentos").trigger("change");
@@ -1126,6 +1127,7 @@
         url: "localidades/function/get_select/?id_departamento="+id_departamento,
         //firstOptions: ["<option value='0'>Sin Definir</option>"],
         render: "#busqueda_localidades",
+        disabled: (!self.edicion),
         selected: self.model.get("id_localidad"),
         onComplete:function(c) {
           crear_select2("busqueda_localidades");
@@ -1141,6 +1143,7 @@
         url: "barrios/function/buscar_por_localidad/?id_localidad="+id_localidad,
         firstOptions: ["<option value='0'>Sin Definir</option>"],
         render: "#busqueda_barrio",
+        disabled: (!self.edicion),
         selected: self.model.get("id_barrio"),
         onComplete:function(c) {
           crear_select2("busqueda_barrio");
