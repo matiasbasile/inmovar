@@ -65,10 +65,10 @@
                       </td>
                       <td>
                         <% if (!isEmpty(m.telefono_web)) { %>
-                          <span><i class="fa fa-whatsapp"></i> <a class="enviar_whatsapp" data-telefono="<%= m.telefono_web %>"><%= m.telefono %></a><br/>
+                          <i class="fa mr5 fa-whatsapp"></i> <a class="enviar_whatsapp" data-telefono="<%= m.telefono_web %>"><%= m.telefono %></a><br/>
                         <% } %>
                         <% if (!isEmpty(m.email)) { %>
-                          <span><i class="fa fa-envelope"></i> <a href="mailto:<%= m.email %>"><%= m.email %></a>
+                          <i class="fa mr5 fa-envelope-o"></i> <a href="mailto:<%= m.email %>"><%= m.email %></a>
                         <% } %>
                       </td>
                       <td><%= m.localidad %></td>
