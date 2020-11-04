@@ -111,7 +111,9 @@
   <td>
     <span><i class="fa fa-whatsapp"></i> <%= telefono %></span>
   </td>
-  <td><%= email %></td>
+  <td>
+    <span><i class="fa fa-envelope"></i> <%= email %></span>
+  </td>
   <% if (permiso > 1) { %>
     <td class="<%= clase %> td_acciones">
       <% if (ID_EMPRESA != 341) { %> 

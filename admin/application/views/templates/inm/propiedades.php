@@ -376,6 +376,8 @@
       <td>
         <% if (permiso_web == 1) { %>
           <i data-toggle="tooltip" title="Mostrar en mi web" class="fa fa-globe iconito bloqueado_web <%= (bloqueado_web == 0)?"active":"" %>"></i>
+        <% } else { %>
+          <i data-toggle="tooltip" title="No compartida en web" class="fa fa-globe iconito bloqueado_web active"></i>
         <% } %>
       </td>
 

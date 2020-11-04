@@ -88,7 +88,7 @@
         <div class="form-group">
           <div class="input-group">
             <span class="input-group-btn">
-              <div class="btn-group dropdown ml0 mr0">
+              <div class="btn-group dropdown ml0">
                 <button class="btn btn-default dropdown-toggle btn-addon" data-toggle="dropdown">
                   <span id="propiedades_buscar_monto_moneda"><%= window.propiedades_monto_moneda %></span>
                   <span class="caret"></span>
@@ -99,7 +99,7 @@
                 </ul>
               </div>
             </span>
-            <span class="input-group-btn w40p">
+            <span class="input-group-btn w40p pr5">
               <input type="text" value="<%= window.propiedades_monto %>" placeholder="Desde" id="propiedades_buscar_monto" class="form-control no-model">
             </span>
             <input type="text" value="<%= window.propiedades_monto_2 %>" placeholder="Hasta" id="propiedades_buscar_monto_2" class="form-control no-model">

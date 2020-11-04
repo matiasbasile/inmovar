@@ -192,21 +192,19 @@
               </div>
             </div>
           </div>
+          <% if (id_empresa == ID_EMPRESA) { %>
+            <div class="panel-footer">
+              <div>
+                <!--
+                <button class="btn btn-default mr5 enviar_whatsapp btn-addon"><i class="icon text-success fa fa-whatsapp"></i>Enviar Whatsapp</button>
+                <button class="btn btn-default mr5 marcar_interes btn-addon"><i class="icon text-warning fa fa-star"></i>Marcar Inter&eacute;s</button>
+                <button class="btn btn-default mr5 enviar btn-addon"><i class="icon fa text-info fa-send"></i>Enviar Email</button>
+                -->
+                <button class="btn btn-default mr5 editar btn-addon"><i class="icon fa fa-pencil"></i>Editar</button>
+              </div>
+            </div>
+          <% } %>
         </div>
-        <div class="panel-footer">
-          <div>
-            <!--
-            <button class="btn btn-default mr5 enviar_whatsapp btn-addon"><i class="icon text-success fa fa-whatsapp"></i>Enviar Whatsapp</button>
-            <button class="btn btn-default mr5 marcar_interes btn-addon"><i class="icon text-warning fa fa-star"></i>Marcar Inter&eacute;s</button>
-            <button class="btn btn-default mr5 enviar btn-addon"><i class="icon fa text-info fa-send"></i>Enviar Email</button>
-            -->
-            <% if (id_empresa == ID_EMPRESA) { %>
-              <button class="btn btn-default mr5 editar btn-addon"><i class="icon fa fa-pencil"></i>Editar</button>
-            <% } %>
-          </div>
-        </div>
-
-
       </div>
     </div>
   </div>
