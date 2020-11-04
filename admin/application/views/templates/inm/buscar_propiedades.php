@@ -12,7 +12,7 @@
         <div class="input-group">
           <select multiple="multiple" class="form-control no-model" id="propiedades_buscar_localidades"></select>
           <span class="input-group-btn">
-            <div class="btn-group dropdown pull-right ml0">
+            <div class="btn-group dropdown pull-right">
               <button class="btn btn-default dropdown-toggle btn-addon" data-toggle="dropdown">
                 <span class="caret"></span>
               </button>

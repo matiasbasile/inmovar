@@ -75,17 +75,6 @@
         <div class="bulk_action wrapper pb0">
           <p><b class="cantidad_seleccionados"></b> elementos seleccionados</p>
           <button class="btn btn-default enviar btn-addon"><i class="icon fa fa-send"></i>Enviar fichas por email</button>
-          <% if (typeof DOMINIO != "undefined" && !isEmpty(DOMINIO)) { %>
-            <div class="btn-group dropdown">
-              <button class="btn btn-default btn-addon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="icon fa fa-share-alt"></i>MercadoLibre
-              </button>
-              <ul class="dropdown-menu">
-                <li><a href="javascript:void(0)" class="compartir_meli">Compartir</a></li>
-                <li><a href="javascript:void(0)" class="meli_pausar_multiple">Pausar</a></li>
-              </ul>
-            </div> 
-          <% } %>
           <div class="btn-group dropdown">
             <button class="btn btn-default btn-addon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="icon fa fa-share-alt"></i>Red Inmovar
