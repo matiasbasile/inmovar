@@ -51,6 +51,7 @@ class Permiso_Red_Model extends Abstract_Model {
     $sql.= "INNER JOIN web_configuracion WC ON (E.id = WC.id_empresa) ";
     $sql.= "LEFT JOIN com_localidades L ON (E.id_localidad = L.id) ";
     $sql.= "WHERE E.id_proyecto = 3 "; // Solamente los de INMOVAR
+    $sql.= "AND E.activo = 1 "; // La empresa tiene que estar activa
     $sql.= "AND E.id != $id_empresa "; // Que no sea la misma empresa
     if (!empty($id_inmobiliaria)) $sql.= "AND E.id = $id_inmobiliaria ";
     $sql.= "ORDER BY E.id DESC ";
