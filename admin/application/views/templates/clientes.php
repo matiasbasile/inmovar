@@ -62,8 +62,8 @@
                 <th style="width:20px;"></th>
                 <th class="w50 tac hidden-xs"></th>
                 <th class="sorting" data-sort-by="nombre"><?php echo lang(array("es"=>"Nombre","en"=>"Name")); ?></th>
-                <th class="col-xxs-0 sorting" data-sort-by="email">Telefono</th>
-                <th class="col-xxs-0 sorting" data-sort-by="email">Email</th>
+                <th class="col-xxs-0">Telefono</th>
+                <th class="col-xxs-0">Email</th>
                 <% if (permiso > 1) { %>
                   <th class="th_acciones w120"><?php echo lang(array("es"=>"Acciones","en"=>"Actions")); ?></th>
                 <% } %>
