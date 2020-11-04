@@ -375,9 +375,21 @@
       </td>
       <td>
         <% if (permiso_web == 1) { %>
-          <i data-toggle="tooltip" title="Mostrar en mi web" class="fa fa-globe iconito bloqueado_web <%= (bloqueado_web == 0)?"active":"" %>"></i>
+          <% if (bloqueado_web == 1) { %>
+            <div data-toggle="tooltip" title="Compartida en web" class="doble-check bloqueado_web">
+              <span class="material-icons text-danger">clear</span>
+            </div>
+          <% } else { %>
+            <div data-toggle="tooltip" title="Compartida en web" class="doble-check bloqueado_web">
+              <span class="material-icons text-success">done</span>
+              <span class="material-icons text-success">done</span>
+            </div>
+          <% } %>
         <% } else { %>
-          <i data-toggle="tooltip" title="No compartida en web" class="fa fa-globe iconito bloqueado_web active"></i>
+          <div data-toggle="tooltip" title="No compartida en web" class="doble-check">
+            <span class="material-icons text-success">done</span>
+            <span class="material-icons">done</span>
+          </div>
         <% } %>
       </td>
 
