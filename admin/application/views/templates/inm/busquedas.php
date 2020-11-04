@@ -100,7 +100,7 @@
   <td><%= texto %></td>
   <td>
     <% if (id_empresa == ID_EMPRESA && window.busquedas_buscar_red == 0) { %>
-      <% if (moment().subtract(5,'days').isBefore(moment(fecha_publicacion))) { %>
+      <% if (moment(fecha_publicacion).isBefore(moment().subtract(5,'days'))) { %>
         <button class="btn etiqueta reactivar btn-menu-compartir">
           Reactivar
         </button>

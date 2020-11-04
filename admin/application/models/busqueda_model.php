@@ -47,7 +47,6 @@ class Busqueda_Model extends Abstract_Model {
     $sql_fields.= "E.razon_social AS inmobiliaria, WC.logo_1 AS logo_inmobiliaria, E.id AS id_inmobiliaria, ";
     $sql_fields.= "E.codigo AS codigo_inmobiliaria, CONCAT(E.codigo,'-',A.codigo) AS codigo_completo, ";
     $sql_fields.= "IF(A.valido_hasta='0000-00-00','',DATE_FORMAT(A.valido_hasta,'%d/%m/%Y')) AS valido_hasta, ";
-    $sql_fields.= "IF(A.fecha_publicacion='0000-00-00','',DATE_FORMAT(A.fecha_publicacion,'%d/%m/%Y')) AS fecha_publicacion, ";
     $sql_fields.= "IF(P.nombre IS NULL,'',P.nombre) AS propietario, ";
     $sql_fields.= "IF(TE.nombre IS NULL,'',TE.nombre) AS tipo_estado, ";
     $sql_fields.= "IF(TI.nombre IS NULL,'',TI.nombre) AS tipo_inmueble, ";
