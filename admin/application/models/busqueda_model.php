@@ -33,8 +33,6 @@ class Busqueda_Model extends Abstract_Model {
     $id_localidad = (isset($conf["id_localidad"])) ? $conf["id_localidad"] : 0;
     $solo_contar = (isset($conf["solo_contar"])) ? $conf["solo_contar"] : 0;
     $calle = (isset($conf["calle"])) ? $conf["calle"] : "";
-    $apto_banco = (isset($conf["apto_banco"])) ? $conf["apto_banco"] : 0;
-    $acepta_permuta = (isset($conf["acepta_permuta"])) ? $conf["acepta_permuta"] : 0;
     $filter = (isset($conf["filter"])) ? $conf["filter"] : "";
     $limit = (isset($conf["limit"])) ? $conf["limit"] : 0;
     $offset = (isset($conf["offset"])) ? $conf["offset"] : 0;
@@ -76,7 +74,7 @@ class Busqueda_Model extends Abstract_Model {
     $sql_where = "WHERE 1=1 ";
     if ($buscar_red == 1) {
       // Si estamos buscando de la red, tienen que desaparecer a los 5 dias
-      $sql_where.= "AND A.id_empresa != $id_empresa AND fecha_publicacion >= '$fecha' ";
+      $sql_where.= "AND fecha_publicacion >= '$fecha' ";
     }
 
     if ($activo != -1) $sql_where.= "AND A.activo = $activo ";
@@ -88,16 +86,6 @@ class Busqueda_Model extends Abstract_Model {
     if (!empty($id_propietario)) $sql_where.= "AND A.id_propietario = $id_propietario ";
     if (!empty($id_localidad)) $sql_where.= "AND A.id_localidad IN ($id_localidad) ";
     if (!empty($calle)) $sql_where.= "AND A.calle = '$calle' ";
-    if ($apto_banco == 1) $sql_where.= "AND A.apto_banco = 1 ";
-    if ($acepta_permuta == 1) $sql_where.= "AND A.acepta_permuta = 1 ";
-
-    // Bloque de SQL que identifica que estamos buscando en la red
-    $sql_red = "AND A.compartida = 1 "; // En primer lugar tiene que estar compartida
-    $sql_red.= "AND A.id_empresa IN (";
-    $sql_red.= " SELECT PR.id_empresa FROM inm_permisos_red PR ";
-    $sql_red.= " WHERE PR.id_empresa_compartida = $id_empresa ";
-    $sql_red.= " AND PR.permiso_red = 1 "; // Tiene el permiso habilitado
-    $sql_red.= ") ";
 
     if (!empty($not_id_empresa)) $sql_where.= "AND A.id_empresa != $not_id_empresa ";
     else if ($id_empresa != -1) $sql_where.= "AND A.id_empresa = $id_empresa ";
