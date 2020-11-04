@@ -41,6 +41,10 @@ class Busqueda_Model extends Abstract_Model {
     $order = (isset($conf["order"])) ? $conf["order"] : "";
     $activo = (isset($conf["activo"])) ? $conf["activo"] : -1;
 
+    $f = new DateTime();
+    $f->modify("-5 days");
+    $fecha = $f->format("Y-m-d");    
+
     $sql_fields = "SQL_CALC_FOUND_ROWS A.*, ";
     $sql_fields.= "E.razon_social AS inmobiliaria, WC.logo_1 AS logo_inmobiliaria, E.id AS id_inmobiliaria, ";
     $sql_fields.= "E.codigo AS codigo_inmobiliaria, CONCAT(E.codigo,'-',A.codigo) AS codigo_completo, ";
@@ -73,9 +77,6 @@ class Busqueda_Model extends Abstract_Model {
     if ($buscar_red == 0) $sql_where.= "AND A.id_empresa = $id_empresa ";
     else if ($buscar_red == 1) {
       // Si estamos buscando de la red, tienen que desaparecer a los 5 dias
-      $f = new DateTime();
-      $f->modify("-5 days");
-      $fecha = $f->format("Y-m-d");
       $sql_where.= "AND A.id_empresa != $id_empresa AND fecha_publicacion >= '$fecha' ";
     }
 
@@ -126,7 +127,7 @@ class Busqueda_Model extends Abstract_Model {
     $sql = "SELECT IF(COUNT(*) IS NULL,0,COUNT(*)) AS total ";
     $sql.= "FROM inm_busquedas A ";
     $sql.= "WHERE A.activo = 1 ";
-    $sql.= "AND A.id_empresa != $id_empresa ";
+    $sql.= "AND A.id_empresa != $id_empresa AND fecha_publicacion >= '$fecha' ";
     $qq = $this->db->query($sql);
     $rr = $qq->row();
     $total_red = $rr->total;
