@@ -92,6 +92,11 @@
   <td class="<%= clase %> data">
     <%= tipo_inmueble %> en <%= tipo_operacion %><br/>
     <%= localidad %>
+    <% if (moment().sub(5,'days').isBefore(moment(fecha_publicacion))) { %>
+      <button class="btn etiqueta reactivar btn-menu-compartir">
+        Reactivar
+      </button>
+    <% } %>
   </td>
   <td class="<%= clase %> data">
     Desde: <%= moneda %> <%= Number(precio_desde).format(0) %><br/>

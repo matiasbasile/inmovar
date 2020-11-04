@@ -9,6 +9,14 @@ class Busquedas extends REST_Controller {
     $this->load->model('Busqueda_Model', 'modelo');
   }
 
+  function actualizar_fecha() {
+    $id_empresa = parent::get_post("id_empresa",parent::get_empresa());
+    $id = parent::get_post("id",0);
+    $sql = "UPDATE inm_busquedas SET fecha_publicacion = NOW() WHERE id = $id AND id_empresa = $id_empresa ";
+    $this->db->query($sql);
+    echo json_encode(array("error"=>0));
+  }
+
   function upload_images($id_empresa = 0) {
     $id_empresa = (empty($id_empresa)) ? $this->get_empresa() : $id_empresa;
     return parent::upload_images(array(
@@ -105,8 +113,6 @@ class Busquedas extends REST_Controller {
     // Obtenemos el listado
     if ($id == "index") {
       $sql = "SELECT A.*, ";
-      $sql.= "IF(A.fecha_publicacion='0000-00-00','',DATE_FORMAT(A.fecha_publicacion,'%d/%m/%Y')) AS fecha_publicacion, ";
-      $sql.= "IF(P.nombre IS NULL,'',P.nombre) AS propietario, ";
       $sql.= "IF(TE.nombre IS NULL,'',TE.nombre) AS tipo_estado, ";
       $sql.= "IF(TI.nombre IS NULL,'',TI.nombre) AS tipo_inmueble, ";
       $sql.= "IF(X.nombre IS NULL,'',X.nombre) AS tipo_operacion, ";
@@ -115,7 +121,6 @@ class Busquedas extends REST_Controller {
       $sql.= "LEFT JOIN inm_tipos_estado TE ON (A.id_tipo_estado = TE.id) ";
       $sql.= "LEFT JOIN inm_tipos_inmueble TI ON (A.id_tipo_inmueble = TI.id) ";
       $sql.= "LEFT JOIN inm_tipos_operacion X ON (A.id_tipo_operacion = X.id) ";
-      $sql.= "LEFT JOIN clientes P ON (A.id_propietario = P.id AND A.id_empresa = P.id_empresa) ";
       $sql.= "LEFT JOIN com_localidades L ON (A.id_localidad = L.id) ";
       $sql.= "WHERE A.activo = 1 AND A.id_empresa = '$id_empresa' ";
       $sql.= "ORDER BY A.nombre ASC ";
@@ -150,8 +155,6 @@ class Busquedas extends REST_Controller {
     $id_tipo_estado = str_replace("-",",",parent::get_get("id_tipo_estado",""));
     $id_tipo_inmueble = str_replace("-",",",parent::get_get("id_tipo_inmueble",""));
     $buscar_red = parent::get_get("buscar_red",0);
-    $buscar_red_empresa = parent::get_get("buscar_red_empresa",0);
-    $id_propietario = parent::get_get("id_propietario",0);
     $filter = $this->input->get("filter");
     $offset = $this->input->get("offset");
     $order_by = $this->input->get("order_by");
@@ -163,8 +166,6 @@ class Busquedas extends REST_Controller {
     $monto_moneda = ($this->input->get("monto_moneda") !== FALSE) ? $this->input->get("monto_moneda") : "$";
     $id_usuario = ($this->input->get("id_usuario") !== FALSE) ? $this->input->get("id_usuario") : 0;
     $id_localidad = str_replace("-",",",parent::get_get("id_localidad",""));
-    $apto_banco = ($this->input->get("apto_banco") !== FALSE) ? $this->input->get("apto_banco") : 0;
-    $acepta_permuta = ($this->input->get("acepta_permuta") !== FALSE) ? $this->input->get("acepta_permuta") : 0;
     $filtro_meli = ($this->input->get("filtro_meli") !== FALSE) ? $this->input->get("filtro_meli") : -1;
     $filtro_olx = ($this->input->get("filtro_olx") !== FALSE) ? $this->input->get("filtro_olx") : -1;
     $filtro_inmovar = ($this->input->get("filtro_inmovar") !== FALSE) ? $this->input->get("filtro_inmovar") : -1;
@@ -188,7 +189,6 @@ class Busquedas extends REST_Controller {
       
     $conf = array(
       "buscar_red"=>$buscar_red,
-      "buscar_red_empresa"=>$buscar_red_empresa,
       "limit"=>$limit,
       "offset"=>$offset,
       "filter"=>$filter,
@@ -209,11 +209,8 @@ class Busquedas extends REST_Controller {
       "monto"=>$monto,
       "monto_2"=>$monto_2,
       "monto_moneda"=>$monto_moneda,
-      "apto_banco"=>$apto_banco,
-      "acepta_permuta"=>$acepta_permuta,
       "calle"=>$calle,
       "id_usuario"=>$id_usuario,
-      "id_propietario"=>$id_propietario,
     );
     $r = $this->modelo->buscar($conf);
 

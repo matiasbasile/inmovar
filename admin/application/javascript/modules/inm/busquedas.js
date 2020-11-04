@@ -809,6 +809,21 @@
     template: _.template($("#busquedas_item_resultados_template").html()),
     tagName: "tr",
     myEvents: {
+      "click .reactivar":function() {
+        if (!confirm("Desea reactivar la busqueda?")) return;
+        var self = this;
+        $.ajax({
+          "url":"busquedas/function/actualizar_fecha/",
+          "dataType":"json",
+          "type":"post",
+          "data":{
+            "id":self.model.id,
+          },
+          "success":function() {
+            location.reload();
+          }
+        });
+      },
       "click .editar":"editar",
       "click .ver_interesados":"ver_interesados",
       "click .data":"seleccionar",
