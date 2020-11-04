@@ -1,7 +1,7 @@
 <style type="text/css">
 .propiedad_preview .modal-body { background-color: #f0f3f4 !important; }
 .propiedad_preview .modal-body .titulo { font-weight: bold; font-size: 22px; color: #2e3345; }
-.propiedad_preview .modal-body .expand { background-color: #f5f6f7; color: #393e50; font-size: 15px; }
+.propiedad_preview .modal-body .expand { background-color: white; color: #5a5a5a; font-size: 15px; }
 .propiedad_preview .modal-body .expand .subtitulo { font-size: 18px; font-weight: bold; padding: 10px 0px; border-bottom: solid 1px #dddedf; margin-bottom: 15px; color: #2e3345; }
 #propiedades_preview_slider { margin: 0px 0px 10px 0px; border: none; }
 .propiedad-preview .flex-direction-nav a { text-shadow: none; width: 46px; height: 46px; background-color: white; border-radius: 100%; text-align: center; }
@@ -143,10 +143,10 @@
                 <div class="titulo"><%= moneda %> <%= Number(precio_final).format(0) %></div>
                 <div class="oh">
                   <% if (apto_banco==1) { %>
-                    <p class="dib mr15">Apto Crédito Bancario</p>
+                    <span class="dib mr15 btn etiqueta btn-menu-compartir">Apto Crédito Bancario</span>
                   <% } %>
                   <% if (acepta_permuta==1) { %>
-                    <p class="dib mr15">Acepta Permuta</p>
+                    <span class="dib mr15 btn etiqueta btn-menu-compartir">Acepta Permuta</span>
                   <% } %>
                 </div>
               </div>
