@@ -109,10 +109,14 @@
     <% } %>
   </td>
   <td>
-    <span><i class="fa mr5 fa-whatsapp"></i> <%= telefono %></span>
+    <% if (!isEmpty(telefono)) { %>
+      <span><i class="fa mr5 fa-whatsapp"></i> <%= telefono %></span>
+    <% } %>
   </td>
   <td>
-    <span><i class="fa mr5 fa-envelope-o"></i> <%= email %></span>
+    <% if (!isEmpty(email)) { %>
+      <span><i class="fa mr5 fa-envelope-o"></i> <%= email %></span>
+    <% } %>
   </td>
   <% if (permiso > 1) { %>
     <td class="<%= clase %> td_acciones">
