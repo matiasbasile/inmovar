@@ -133,18 +133,12 @@ class Busqueda_Model extends Abstract_Model {
   }
 
   function get($id,$config=array()) {
-    $id_empresa = isset($config["id_empresa"]) ? $config["id_empresa"] : parent::get_empresa();
     // Obtenemos los datos del busqueda
     $id = (int)$id;
     $sql = "SELECT A.*, ";
     $sql.= "IF(A.valido_hasta='0000-00-00','',DATE_FORMAT(A.valido_hasta,'%d/%m/%Y')) AS valido_hasta, ";
-    $sql.= "IF(A.fecha_publicacion='0000-00-00','',DATE_FORMAT(A.fecha_publicacion,'%d/%m/%Y')) AS fecha_publicacion, ";
     $sql.= "E.nombre AS empresa, E.path AS empresa_path, E.telefono_empresa AS empresa_telefono, E.direccion_empresa AS empresa_direccion, E.email AS empresa_email, ";
     $sql.= "E.codigo AS codigo_inmobiliaria, CONCAT(E.codigo,'-',A.codigo) AS codigo_completo, ";
-    $sql.= "IF(P.nombre IS NULL,'',P.nombre) AS propietario, ";
-    $sql.= "IF(P.telefono IS NULL,'',P.telefono) AS propietario_telefono, ";
-    $sql.= "IF(P.email IS NULL,'',P.email) AS propietario_email, ";
-    $sql.= "IF(P.direccion IS NULL,'',P.direccion) AS propietario_direccion, ";
     $sql.= "IF(TE.nombre IS NULL,'',TE.nombre) AS tipo_estado, ";
     $sql.= "IF(TI.nombre IS NULL,'',TI.nombre) AS tipo_inmueble, ";
     $sql.= "IF(X.nombre IS NULL,'',X.nombre) AS tipo_operacion, ";
@@ -156,11 +150,9 @@ class Busqueda_Model extends Abstract_Model {
     $sql.= "LEFT JOIN inm_tipos_estado TE ON (A.id_tipo_estado = TE.id) ";
     $sql.= "LEFT JOIN inm_tipos_inmueble TI ON (A.id_tipo_inmueble = TI.id) ";
     $sql.= "LEFT JOIN inm_tipos_operacion X ON (A.id_tipo_operacion = X.id) ";
-    $sql.= "LEFT JOIN clientes P ON (A.id_propietario = P.id AND A.id_empresa = P.id_empresa) ";
     $sql.= "LEFT JOIN com_localidades L ON (A.id_localidad = L.id) ";
     $sql.= "LEFT JOIN com_usuarios U ON (A.id_usuario = U.id AND A.id_empresa = U.id_empresa) ";
     $sql.= "WHERE A.id = $id ";
-    $sql.= "AND A.id_empresa = $id_empresa ";
     $q = $this->db->query($sql);
     if ($q->num_rows() == 0) return array();
     $busqueda = $q->row();
