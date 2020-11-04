@@ -33,46 +33,28 @@
 
     <div class="panel panel-default">
 
-      <div class="panel-heading clearfix">
-        <div class="row">
-          <div class="col-md-8 sm-m-b">
-            <div class="input-group">
-              <input type="text" id="clientes_buscar" value="<%= window.clientes_filter %>" placeholder="<?php echo lang(array("es"=>"Buscar","en"=>"Search")); ?>..." autocomplete="off" class="form-control">
-              <span class="input-group-btn">
-                <button class="btn btn-default buscar"><i class="fa fa-search"></i></button>
-              </span>
+      <div class="panel-body">
 
-              <span class="input-group-btn">
-                <div class="btn-group dropdown ml5">
-                  <button class="btn btn-default btn-addon btn-addon-2 dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-upload"></i><span><?php echo lang(array("es"=>"Exportar","en"=>"Export")); ?></span>
-                  </button>
-                  <ul class="dropdown-menu pull-right">
-                    <li><a href="javascript:void(0)" class="exportar_excel">Excel</a></li>
-                    <li><a href="javascript:void(0)" class="exportar_csv">Archivo Texto</a></li>
-                  </ul>
+        <div class="mb20">
+          <div class="clearfix">
+            <div class="row">
+              <div class="col-xs-12 sm-m-b">
+                <div class="input-group">
+                  <input type="text" id="clientes_buscar" value="<%= window.clientes_filter %>" placeholder="<?php echo lang(array("es"=>"Buscar","en"=>"Search")); ?>..." autocomplete="off" class="form-control">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default buscar"><i class="fa fa-search"></i></button>
+                  </span>
+                  <span class="input-group-btn ml5">
+                    <button class="btn btn-default btn-addon btn-addon-2 exportar_excel">
+                      <i class="fa fa-upload"></i><span><?php echo lang(array("es"=>"Exportar","en"=>"Export")); ?></span>
+                    </button>
+                  </span>
                 </div>
-              </span>
-
-              <span class="input-group-btn">
-                <div class="btn-group dropdown ml5">
-                  <button class="btn btn-default btn-addon btn-addon-2 dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-download"></i><span><?php echo lang(array("es"=>"Importar","en"=>"Import")); ?></span>
-                  </button>
-                  <ul class="dropdown-menu pull-right">
-                    <li><a href="javascript:void(0)" class="importar_excel">Excel</a></li>
-                    <li><a href="javascript:void(0)" class="importar_csv">Archivo Texto</a></li>
-                    <% if (typeof PERCIBE_IB != "undefined" && PERCIBE_IB == 1) { %>
-                      <li class="divider"></li>
-                      <li><a href="clientes/function/actualizar_padron/" target="_blank">Actualizar padron</a></li>
-                    <% } %>
-                  </ul>
-                </div>
-              </span>
-
+              </div>
             </div>
           </div>
-      <div class="panel-body mt20">
+        </div>
+
         <div class="table-responsive">
           <table id="clientes_table" class="table table-striped sortable m-b-none default footable">
             <thead>
@@ -125,21 +107,11 @@
     <% } else { %>
       <span class="capitalize <%= (activo==1)?'text-info':'text-muted' %>"><%= nombre.ucwords() %></span>
     <% } %>
-    <% if (etiquetas.length > 0) { %>
-      <div class="clearfix">
-        <% if (etiquetas.length > 0) { %>
-          <% for(var j=0;j< etiquetas.length; j++) { %>
-            <% var etiq = etiquetas[j] %>
-            <span class="label bg-info pull-left m-t-xs m-r-xs"><%= etiq.nombre %></span>
-          <% } %>
-        <% } %>
-        <% if (!isEmpty(observaciones)) { %>
-          <i data-toggle="tooltip" title="<%= observaciones %>" class="fa fa-comments pull-left m-l-xs text-default"></i>
-        <% } %>
-      </div>
-    <% } %>
   </td>
-  <td><%= telefono %></td>
+  <td>
+    <button class="btn btn-success"><i class="fa fa-whatsapp"></i></button>
+    <span class="text-info m-l-xs"><%= telefono %></span>
+  </td>
   <td><%= email %></td>
   <% if (permiso > 1) { %>
     <td class="<%= clase %> td_acciones">

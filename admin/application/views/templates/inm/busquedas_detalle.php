@@ -59,8 +59,12 @@
                       <% } %>
                     </select>                      
                   </div>
-                  <input id="busqueda_precio_desde" value="<%= precio_desde %>" type="number" class="form-control number dib w50p" name="precio_desde"/>
-                  <input id="busqueda_precio_hasta" value="<%= precio_hasta %>" type="number" class="form-control number dib w50p" name="precio_hasta"/>
+                  <span class="dib w50p pl5">
+                    <input id="busqueda_precio_desde" value="<%= precio_desde %>" type="number" class="form-control number" name="precio_desde"/>
+                  </span>
+                  <span class="dib w50p pl5">
+                    <input id="busqueda_precio_hasta" value="<%= precio_hasta %>" type="number" class="form-control number" name="precio_hasta"/>
+                  </span>
                 </div>
               </div>
             </div>

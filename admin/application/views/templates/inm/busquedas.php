@@ -44,19 +44,22 @@
 
     <div class="panel panel-default">
 
-      <div class="panel-heading pt15 clearfix">
-        <div class="row">
+      <div class="panel-body pb0">
 
-          <div class="col-md-3 col-sm-6 col-xs-12 mh50 pr5 pl5">
-            <div class="form-group">
-              <input value="<%= window.busquedas_filter %>" type="text" id="busquedas_buscar" placeholder="Buscar..." autocomplete="off" class="form-control">
+        <div class="mb20">
+          <div class="clearfix">
+            <div class="row">
+              <div class="col-xs-12 sm-m-b">
+                <div class="input-group">
+                  <input value="<%= window.busquedas_filter %>" type="text" id="busquedas_buscar" placeholder="Buscar..." autocomplete="off" class="form-control">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default buscar"><i class="fa fa-search"></i></button>
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
-
         </div>
-      </div>
-
-      <div class="panel-body pb0">
 
         <div id="busquedas_tabla_cont" class="table-responsive">
           <table id="busquedas_tabla" class="table <%= (seleccionar)?'table-small':'' %> table-striped sortable m-b-none default footable">

@@ -1,170 +1,38 @@
 <div class="panel panel-default">
   <div class="panel-body">
     <div class="padder">
+      <div class="form-group mb0 clearfix expand-link cp">
+        <label class="control-label cp">
+          Información de contacto
+        </label>
+        <div class="panel-description">
+          Nombre, email, teléfono, dirección, y más.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body expand" style="display:block">
+    <div class="padder">
+
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
           <div class="form-group">        
             <label class="control-label">Nombre</label>
             <input type="text" <%= (!edicion)?"disabled":"" %> required name="nombre" id="clientes_nombre" value="<%= nombre %>" class="form-control"/>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
           <div class="form-group">
             <label class="control-label">Email </label>
             <input type="text" <%= (!edicion)?"disabled":"" %> name="email" class="form-control" id="clientes_email" value="<%= email %>"/>
           </div>
         </div>
-      </div>
-      <div class="form-group mb0 tar">
-        <a class="expand-link" id="expand_principal">
-          <?php echo lang(array(
-            "es"=>"+ M&aacute;s opciones",
-            "en"=>"+ More options",
-          )); ?>
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="panel-body expand">
-    <div class="padder">
-
-      <?php
-      single_upload(array(
-        "name"=>"path",
-        "label"=>"Imagen principal",
-        "url"=>"/admin/clientes/function/save_image/",
-        "width"=>(isset($empresa->config["cliente_image_width"]) ? $empresa->config["cliente_image_width"] : 256),
-        "height"=>(isset($empresa->config["cliente_image_height"]) ? $empresa->config["cliente_image_height"] : 256),
-        "quality"=>(isset($empresa->config["cliente_image_quality"]) ? $empresa->config["cliente_image_quality"] : 0.92),
-        "thumbnail_width"=>(isset($empresa->config["cliente_thumbnail_width"]) ? $empresa->config["cliente_thumbnail_width"] : 0),
-        "thumbnail_height"=>(isset($empresa->config["cliente_thumbnail_height"]) ? $empresa->config["cliente_thumbnail_height"] : 0),
-      )); ?>
-
-      <div class="form-group">
-        <label class="control-label">Etiquetas</label>
-        <select multiple id="cliente_etiquetas" style="width: 100%">
-          <% for (var i=0; i< etiquetas.length; i++) { %>
-            <% var o = etiquetas[i] %>
-            <option selected><%= o %></option>
-          <% } %>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label class="control-label">Observaciones </label>
-        <% if (edicion) { %>
-          <textarea placeholder="Escriba aqui otros datos de contacto o notas de su cliente..." style="height:100px" class="form-control" name="observaciones" id="cliente_observaciones"><%= observaciones %></textarea>
-        <% } else { %>
-          <span><%= observaciones %></span>
-        <% } %>
-      </div>
-
-      <div class="form-group">
-        <% if (edicion) { %>
-          <div class="checkbox">
-            <label class="i-checks">
-              <input type="checkbox" name="activo" class="checkbox" value="1" <%= (activo == 1)?"checked":"" %> ><i></i>
-              El cliente est&aacute; activo.
-            </label>
-          </div>
-        <% } else { %>
-          <span><%= ((activo==0) ? "Cliente inactivo" : "Cliente activo") %></span>
-        <% } %>
-      </div>
-
-      <div class="row">
-        <?php for($i=1;$i<=5;$i++) { ?>
-
-          <?php if (isset($empresa->config["cliente_custom_".$i."_file"])) { ?>
-            <div class="col-xs-12">
-              <?php single_file_upload(array(
-                "name"=>"custom_$i",
-                "label"=>$empresa->config["cliente_custom_".$i."_file"],
-                "url"=>"/admin/clientes/function/save_file/",
-              )); ?>
-            </div>
-          <?php } else if (isset($empresa->config["cliente_custom_".$i."_label"])) { ?>
-            <div class="<?php echo (isset($empresa->config['cliente_custom_'.$i.'_class'])) ? $empresa->config['cliente_custom_'.$i.'_class'] :'col-xs-12'?>">
-              <div class="form-group">
-                <label class="control-label"><?php echo $empresa->config["cliente_custom_".$i."_label"] ?></label>
-                <?php if(isset($empresa->config['cliente_custom_'.$i.'_values'])) { 
-                  $values = explode("|",$empresa->config['cliente_custom_'.$i.'_values']); ?>
-                  <select class="form-control" name="custom_<?php echo $i ?>">
-                    <?php foreach($values as $value) { ?>
-                      <option <%= (<?php echo "custom_".$i ?> == "<?php echo $value ?>")?"selected":""  %> value="<?php echo $value ?>"><?php echo $value ?></option>
-                    <?php } ?>
-                  </select>
-                <?php } else { ?>
-                  <input type="text" name="custom_<?php echo $i ?>" id="articulo_custom_<?php echo $i ?>" value="<%= custom_<?php echo $i ?> %>" class="form-control"/>
-                <?php } ?>
-              </div>
-            </div>
-          <?php } ?>
-        <?php } ?>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<div class="panel panel-default">
-  <div class="panel-body">
-    <div class="padder">
-      <div class="form-group mb0 clearfix">
-        <label class="control-label">
-          <?php echo lang(array(
-            "es"=>"Informaci&oacute;n de contacto",
-            "en"=>"Contact information",
-          )); ?>
-        </label>
-        <a class="expand-link fr">
-          <?php echo lang(array(
-            "es"=>"+ Ver opciones",
-            "en"=>"+ View options",
-          )); ?>
-        </a>
-        <div class="panel-description">
-          <?php echo lang(array(
-            "es"=>"Tel&eacute;fonos, direcciones, y dem&aacute;s datos para contactarte con tu cliente.",
-            "en"=>"Tel&eacute;fonos, direcciones, y dem&aacute;s datos para contactarte con tu cliente.",
-          )); ?>                  
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="panel-body expand">
-    <div class="padder">
-
-      <div class="row">
-        <div class="col-md-8">
-          <div class="form-group">
-            <label class="control-label">Localidad</label>
-            <input type="text" value="<%= localidad %>" id="clientes_localidad" placeholder="Escriba una ciudad y seleccionela de la lista" class="form-control"/>
-          </div>  
-        </div>
         <div class="col-md-4">
           <div class="form-group">
-            <label class="control-label">C&oacute;digo Postal</label>
-            <input type="text" name="codigo_postal" value="<%= codigo_postal %>" id="clientes_codigo_postal" class="form-control"/>
-          </div>  
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label">Direccion </label>
-        <% if (edicion) { %>
-          <input type="text" name="direccion" class="form-control" id="clientes_direccion" value="<%= direccion %>"/>
-        <% } else { %>
-          <span><%= direccion %></span>
-        <% } %>
-      </div>
-
-      <div class="row">
-        <div class="col-md-4">
-          <div class="form-group">
-            <label class="control-label">Tel&eacute;fono </label>
+            <label class="control-label">Teléfono </label>
             <div class="input-group">
-              <span class="input-group-btn">
-                <select class="form-control w120" name="fax" id="cliente_codigos_paises" <%= (!edicion)?"disabled":"" %>>
+              <span class="input-group-btn pr5">
+                <select <%= (!edicion)?"disabled":"" %> class="form-control w120" name="fax" id="cliente_codigos_paises" <%= (!edicion)?"disabled":"" %>>
                   <option <%= (fax=="376")?"selected":"" %> value="376">AD (+376)</option>
                   <option <%= (fax=="971")?"selected":"" %> value="971">AE (+971)</option>
                   <option <%= (fax=="93")?"selected":"" %> value="93">AF (+93)</option>
@@ -408,13 +276,42 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="row">
         <div class="col-md-4">
           <div class="form-group">
-            <label class="control-label">Teléfono (2) </label>
-            <input type="text" name="celular" class="form-control" id="clientes_celular" value="<%= celular %>"  <%= (!edicion)?"disabled":"" %>/>
+            <label class="control-label">Localidad</label>
+            <input type="text" <%= (!edicion)?"disabled":"" %> value="<%= localidad %>" id="clientes_localidad" placeholder="Escriba una ciudad y selecciónela de la lista" class="form-control"/>
+          </div>  
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Código Postal</label>
+            <input type="text" <%= (!edicion)?"disabled":"" %> name="codigo_postal" value="<%= codigo_postal %>" id="clientes_codigo_postal" class="form-control"/>
+          </div>  
+        </div>  
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Dirección </label>
+            <input type="text" <%= (!edicion)?"disabled":"" %> name="direccion" class="form-control" id="clientes_direccion" value="<%= direccion %>"/>
           </div>
         </div>
       </div>
+
+      <div class="form-group">
+        <label class="control-label">Observaciones </label>
+        <textarea <%= (!edicion)?"disabled":"" %> placeholder="Escriba aquí otros datos de contacto o notas de su cliente..." style="height:100px" class="form-control" name="observaciones" id="cliente_observaciones"><%= observaciones %></textarea>
+      </div>      
+
+      <?php
+      single_upload(array(
+        "name"=>"path",
+        "label"=>"Imagen principal",
+        "url"=>"/admin/clientes/function/save_image/",
+        "width"=>(isset($empresa->config["cliente_image_width"]) ? $empresa->config["cliente_image_width"] : 256),
+        "height"=>(isset($empresa->config["cliente_image_height"]) ? $empresa->config["cliente_image_height"] : 256),
+      )); ?>      
 
     </div>
   </div>

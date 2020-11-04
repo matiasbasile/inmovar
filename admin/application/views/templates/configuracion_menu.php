@@ -98,6 +98,7 @@
     </div>
   </div>
 
+  <?php /*
   <div class="panel panel-default">
     <div class="panel-body">
       <div class="padder">
@@ -116,7 +117,7 @@
         <button class="btn fr btn-info guardar"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
       </div>            
     </div>
-  </div>
+  </div>*/ ?>
 
   <div class="panel panel-default">
     <div class="panel-body">

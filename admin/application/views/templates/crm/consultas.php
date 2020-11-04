@@ -58,7 +58,7 @@
     <div class="panel panel-default">
       <div class="panel-body pb0">
 
-        <div class="mb20 mt15">
+        <div class="mb20">
           <div class="clearfix">
             <div class="row">
               <div class="col-xs-12 sm-m-b">

@@ -5232,7 +5232,7 @@ tfoot tr td { white-space: nowrap !important; }
 .submenu li { list-style: none; display: block; width: 100%; }
 .submenu li a { display: block; padding: 10px 15px; margin-bottom: 10px; color: #5a5a5a; border-radius: 5px; }
 .submenu li a:hover { background-color: white; }
-.submenu li a.active { background-color: #5a5a5a; color: white; }
+.submenu li a.active { background-color: var(--c1); color: white; }
 .submenu li a span.material-icons { font-size: 16px; margin-right: 5px; position: relative; top: 2px; }
 
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus { background-color: var(--c1); border-color: var(--c1); }
@@ -5285,3 +5285,4 @@ tfoot tr td { white-space: nowrap !important; }
   .header-lg h1 { font-size: 30px !important; margin-top: 0px; }
   .header-lg .btn { margin-top: 0px; padding: 8px 15px; }
 }
+.input-group-addon, .input-group-btn { vertical-align: top; }
