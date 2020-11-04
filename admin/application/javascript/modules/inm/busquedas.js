@@ -674,8 +674,8 @@
         }
         // Renderizamos cada elemento del array
         if (this.collection.length > 0) this.collection.each(this.addOne);
-        this.$("#busquedas_red_total").html(this.collection.meta.red_total);
-        this.$("#busquedas_propias_total").html(this.collection.meta.propias_total);
+        this.$("#busquedas_red_total").html(this.collection.meta.total_red);
+        this.$("#busquedas_propias_total").html(this.collection.meta.total_propias);
       }
     },
         

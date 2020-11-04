@@ -125,7 +125,7 @@ class Busqueda_Model extends Abstract_Model {
 
     $sql = "SELECT IF(COUNT(*) IS NULL,0,COUNT(*)) AS total ";
     $sql.= "FROM inm_busquedas A ";
-    $sql.= "WHERE A.activo = $activo ";
+    $sql.= "WHERE A.activo = 1 ";
     $sql.= "AND A.id_empresa != $id_empresa ";
     $qq = $this->db->query($sql);
     $rr = $qq->row();
@@ -133,7 +133,7 @@ class Busqueda_Model extends Abstract_Model {
     
     $sql = "SELECT IF(COUNT(*) IS NULL,0,COUNT(*)) AS total ";
     $sql.= "FROM inm_busquedas A ";
-    $sql.= "WHERE A.activo = $activo ";
+    $sql.= "WHERE A.activo = 1 ";
     $sql.= "AND A.id_empresa = $id_empresa ";
     $qq = $this->db->query($sql);
     $rr = $qq->row();
