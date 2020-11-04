@@ -1063,6 +1063,7 @@
       var edicion = false;
       this.options = options;
       if (this.options.permiso > 1) edicion = true;
+      if (this.model.get("id_empresa") != ID_EMPRESA) edicion = false;
       var obj = { "edicion": edicion,"id":this.model.id }
       _.extend(obj,this.model.toJSON());
       $(this.el).html(this.template(obj));
