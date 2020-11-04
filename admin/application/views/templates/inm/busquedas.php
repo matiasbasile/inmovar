@@ -92,11 +92,6 @@
   <td class="<%= clase %> data">
     <%= tipo_inmueble %> en <%= tipo_operacion %><br/>
     <%= localidad %>
-    <% if (moment().sub(5,'days').isBefore(moment(fecha_publicacion))) { %>
-      <button class="btn etiqueta reactivar btn-menu-compartir">
-        Reactivar
-      </button>
-    <% } %>
   </td>
   <td class="<%= clase %> data">
     Desde: <%= moneda %> <%= Number(precio_desde).format(0) %><br/>
@@ -104,19 +99,27 @@
   </td>
   <td><%= texto %></td>
   <td>
-    <div class="dt">
-      <div class="dtc">
-        <% if (isEmpty(logo_inmobiliaria)) { %>
-          <img class="w100p" src="<%= logo_inmobiliaria %>"/>
-        <% } %>
-      </div>
-      <div class="dtc">
-        <b class="text-dark"><%= inmobiliaria %></b><br/>
-        <button class="btn etiqueta btn-menu-compartir mt10">
-          Contactar
+    <% if (id_empresa == ID_EMPRESA && window.busquedas_buscar_red == 0) { %>
+      <% if (moment().sub(5,'days').isBefore(moment(fecha_publicacion))) { %>
+        <button class="btn etiqueta reactivar btn-menu-compartir">
+          Reactivar
         </button>
+      <% } %>
+    <% } else { %>
+      <div class="dt">
+        <div class="dtc">
+          <% if (isEmpty(logo_inmobiliaria)) { %>
+            <img class="w100p" src="<%= logo_inmobiliaria %>"/>
+          <% } %>
+        </div>
+        <div class="dtc">
+          <b class="text-dark"><%= inmobiliaria %></b><br/>
+          <button class="btn etiqueta btn-menu-compartir mt10">
+            Contactar
+          </button>
+        </div>
       </div>
-    </div>
+    <% } %>
   </td>
 </script>
 
