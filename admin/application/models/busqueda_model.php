@@ -25,7 +25,7 @@ class Busqueda_Model extends Abstract_Model {
     
     $id_empresa = (isset($conf["id_empresa"])) ? $conf["id_empresa"] : parent::get_empresa();
     $not_id_empresa = (isset($conf["not_id_empresa"])) ? $conf["not_id_empresa"] : 0;
-    $buscar_red = (isset($conf["buscar_red"])) ? $conf["buscar_red"] : 0;
+    $buscar_red = (isset($conf["buscar_red"])) ? $conf["buscar_red"] : 1;
     $id_propietario = (isset($conf["id_propietario"])) ? $conf["id_propietario"] : 0;
     $id_tipo_estado = (isset($conf["id_tipo_estado"])) ? $conf["id_tipo_estado"] : 0;
     $id_tipo_operacion = (isset($conf["id_tipo_operacion"])) ? $conf["id_tipo_operacion"] : 0;
@@ -70,6 +70,15 @@ class Busqueda_Model extends Abstract_Model {
     $sql_from.= "LEFT JOIN com_provincias PROV ON (DEP.id_provincia = PROV.id) ";
 
     $sql_where = "WHERE 1=1 ";
+    if ($buscar_red == 0) $sql_where.= "AND A.id_empresa = $id_empresa ";
+    else if ($buscar_red == 1) {
+      // Si estamos buscando de la red, tienen que desaparecer a los 5 dias
+      $f = new DateTime();
+      $f->modify("-5 days");
+      $fecha = $f->format("Y-m-d");
+      $sql_where.= "AND A.id_empresa != $id_empresa AND fecha_publicacion >= '$fecha' ";
+    }
+
     if ($activo != -1) $sql_where.= "AND A.activo = $activo ";
     if (!empty($filter)) $sql_where.= "AND (A.codigo LIKE '%$filter%' OR A.nombre LIKE '%$filter%' OR A.calle LIKE '%$filter%') ";
     if (!empty($id_tipo_estado)) $sql_where.= "AND A.id_tipo_estado = $id_tipo_estado ";
@@ -109,14 +118,34 @@ class Busqueda_Model extends Abstract_Model {
     if (!empty($order)) $sql.= "ORDER BY $order ";
     if ($offset != 0) $sql.= "LIMIT $limit, $offset ";
     $q = $this->db->query($sql);
-    $salida = array();
+
     $q_total = $this->db->query("SELECT FOUND_ROWS() AS total");
     $total = $q_total->row();      
     $total2 = $total->total;
-    foreach($q->result() as $r) $salida[] = $r;
+
+    $sql = "SELECT IF(COUNT(*) IS NULL,0,COUNT(*)) AS total ";
+    $sql.= "FROM inm_busquedas A ";
+    $sql.= "WHERE A.activo = $activo ";
+    $sql.= "AND A.id_empresa != $id_empresa ";
+    $qq = $this->db->query($sql);
+    $rr = $qq->row();
+    $total_red = $rr->total;
+    
+    $sql = "SELECT IF(COUNT(*) IS NULL,0,COUNT(*)) AS total ";
+    $sql.= "FROM inm_busquedas A ";
+    $sql.= "WHERE A.activo = $activo ";
+    $sql.= "AND A.id_empresa = $id_empresa ";
+    $qq = $this->db->query($sql);
+    $rr = $qq->row();
+    $total_propias = $rr->total;
+
     return array(
-      "results"=>$salida,
+      "results"=>$q->result(),
       "total"=>$total2,
+      "meta"=>array(
+        "total_red"=>$total_red,
+        "total_propias"=>$total_propias,
+      ),
     );
   }
 

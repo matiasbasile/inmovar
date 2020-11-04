@@ -46,7 +46,7 @@
       nombre: "",
       descripcion: "",
       fecha_ingreso: "",
-      fecha_publicacion: "",
+      fecha_publicacion: moment().format("YYYY-MM-DD"),
       precio_desde: 0,
       precio_hasta: 0,
       activo: 1, // SIEMPRE ACTIVA
@@ -203,25 +203,13 @@
       "click #buscar_propias_tab":function() {
         this.$(".buscar_tab").removeClass("active");
         this.$("#buscar_propias_tab").addClass("active");
-        this.$(".ocultar_en_red").show();
+        window.busquedas_buscar_red = 0;
         this.buscar();
       },
       "click #buscar_red_tab":function() {
         this.$(".buscar_tab").removeClass("active");
         this.$("#buscar_red_tab").addClass("active");
-        this.$(".ocultar_en_red").hide();
-        this.buscar();
-      },
-      "click #busquedas_ver_mapa":function() {
-        this.$("#busquedas_ver_lista").removeClass("btn-info");
-        this.$("#busquedas_ver_mapa").addClass("btn-info");
-        window.busquedas_mapa = 1;
-        this.buscar();
-      },
-      "click #busquedas_ver_lista":function() {
-        this.$("#busquedas_ver_mapa").removeClass("btn-info");
-        this.$("#busquedas_ver_lista").addClass("btn-info");
-        window.busquedas_mapa = 0;
+        window.busquedas_buscar_red = 1;
         this.buscar();
       },
 
@@ -309,8 +297,7 @@
       this.permiso = this.options.permiso;
 
       // Filtros de la busqueda
-      window.busquedas_buscar_red = (typeof window.busquedas_buscar_red != "undefined") ? window.busquedas_buscar_red : 0;
-      window.busquedas_buscar_red_empresa = (typeof window.busquedas_buscar_red_empresa != "undefined") ? window.busquedas_buscar_red_empresa : 0;
+      window.busquedas_buscar_red = (typeof window.busquedas_buscar_red != "undefined") ? window.busquedas_buscar_red : 1;
       window.busquedas_compartida_en = (typeof window.busquedas_compartida_en != "undefined") ? window.busquedas_compartida_en : "";
       window.busquedas_compartida_en_filtro = (typeof window.busquedas_compartida_en_filtro != "undefined") ? window.busquedas_compartida_en_filtro : "";
       window.busquedas_id_tipo_inmueble = (typeof window.busquedas_id_tipo_inmueble != "undefined") ? window.busquedas_id_tipo_inmueble : 0;
@@ -340,8 +327,6 @@
       window.busquedas_guardo_nueva_busqueda = (typeof window.busquedas_guardo_nueva_busqueda != "undefined") ? window.busquedas_guardo_nueva_busqueda : 0;
 
       window.busquedas_marcadas = new Array();
-
-      if (window.busquedas_buscar_red == 1) this.$(".ocultar_en_red").hide();
 
       // Nombre y email de contacto
       this.id_cliente = (typeof this.options.id_cliente != "undefined") ? this.options.id_cliente : 0;
@@ -529,12 +514,6 @@
 
       var cambio_parametros = false;
 
-      var buscar_red = (this.$("#buscar_red_tab").hasClass("active")?1:0);
-      if (window.busquedas_buscar_red != buscar_red) {
-        window.busquedas_buscar_red = buscar_red;
-        cambio_parametros = true;
-      }
-
       if (window.busquedas_id_tipo_estado != this.$("#busquedas_buscar_tipos_estado").val()) {
         window.busquedas_id_tipo_estado = (this.$("#busquedas_buscar_tipos_estado").val() == null) ? 0 : this.$("#busquedas_buscar_tipos_estado").val();  
         if ($.isArray(window.busquedas_id_tipo_estado)) window.busquedas_id_tipo_estado = window.busquedas_id_tipo_estado.join("-");
@@ -626,7 +605,6 @@
 
       var datos = {
         "buscar_red":window.busquedas_buscar_red,
-        "buscar_red_empresa":window.busquedas_buscar_red_empresa,
         "filter":window.busquedas_filter,
         "calle":window.busquedas_direccion,
         "id_localidad":window.busquedas_id_localidad,
@@ -696,7 +674,8 @@
         }
         // Renderizamos cada elemento del array
         if (this.collection.length > 0) this.collection.each(this.addOne);
-        this.$("#busquedas_propias_total").html(this.collection.totalResults);
+        this.$("#busquedas_red_total").html(this.collection.meta.red_total);
+        this.$("#busquedas_propias_total").html(this.collection.meta.propias_total);
       }
     },
         

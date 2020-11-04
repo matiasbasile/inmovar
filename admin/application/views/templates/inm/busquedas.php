@@ -33,9 +33,15 @@
 
     <div class="tab-container mb0">
       <ul class="nav nav-tabs nav-tabs-2" role="tablist">
+        <li id="buscar_red_tab" class="buscar_tab <%= (window.busquedas_buscar_red == 1)?"active":"" %>">
+          <a href="javascript:void(0)">
+            <i class="material-icons">search</i> Búsquedas Activas
+            <span id="busquedas_red_total" class="counter">0</span>
+          </a>
+        </li>
         <li id="buscar_propias_tab" class="buscar_tab <%= (window.busquedas_buscar_red == 0)?"active":"" %>">
           <a href="javascript:void(0)">
-            <i class="material-icons">store</i> Búsquedas Activas
+            <i class="material-icons">person_search</i> Mis Búsquedas
             <span id="busquedas_propias_total" class="counter">0</span>
           </a>
         </li>
