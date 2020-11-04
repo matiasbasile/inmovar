@@ -74,6 +74,8 @@ class Busqueda_Model extends Abstract_Model {
     if ($buscar_red == 1) {
       // Si estamos buscando de la red, tienen que desaparecer a los 5 dias
       $sql_where.= "AND fecha_publicacion >= '$fecha' ";
+    } else if ($buscar_red == 0) {
+      $sql_where.= "AND A.id_empresa = $id_empresa ";
     }
 
     if (!empty($filter)) $sql_where.= "AND (A.codigo LIKE '%$filter%' OR A.nombre LIKE '%$filter%' OR A.calle LIKE '%$filter%') ";
