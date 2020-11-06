@@ -8,7 +8,7 @@ $json = array(
   "url"=>current_url(TRUE,TRUE),
 );
 if (!empty($empresa->logo_1)) {
-  $json["logo"] = current_url(TRUE,TRUE)."/sistema/".$empresa->logo_1;
+  $json["logo"] = current_url(TRUE,TRUE)."/admin/".$empresa->logo_1;
 }
 if (!empty($empresa->telefono)) {
   $json["contactPoint"] = array(

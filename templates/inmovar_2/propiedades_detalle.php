@@ -12,7 +12,7 @@ if ($propiedad === FALSE) {
 if (!empty($titulo_pagina)) { $titulo_pagina = $propiedad->nombre; }
 $nombre_pagina = "detalle";
 $mostro_video = 0;
-if (!empty($propiedad->path)) $propiedad->images = array_merge(array("/sistema/".$propiedad->path),$propiedad->images);
+if (!empty($propiedad->path)) $propiedad->images = array_merge(array("/admin/".$propiedad->path),$propiedad->images);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -32,9 +32,9 @@ if (empty($propiedad->path) && !empty($propiedad->video)) {
     $imagen_ppal = "https://img.youtube.com/vi/$id_video/0.jpg";
   }
 } else {
-  $imagen_ppal = current_url(TRUE)."/sistema/".$propiedad->path;
+  $imagen_ppal = current_url(TRUE)."/admin/".$propiedad->path;
 } 
-if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/sistema/".$empresa->no_imagen;
+if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no_imagen;
 ?>
 <meta property="og:image" content="<?php echo $imagen_ppal; ?>"/>
 <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.min.css"/>
@@ -113,8 +113,8 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/sistema/".$empresa->
                       <?php } ?>
                     <?php } else if (!empty($propiedad->path)) { ?>
                       <div class="item active">
-                        <a data-fancybox="gallery" href="/sistema/<?php echo $propiedad->path ?>">
-                          <img src="/sistema/<?php echo $propiedad->path ?>" class="thumb-preview">
+                        <a data-fancybox="gallery" href="/admin/<?php echo $propiedad->path ?>">
+                          <img src="/admin/<?php echo $propiedad->path ?>" class="thumb-preview">
                         </a>
                       </div>
                     <?php } else if (empty($propiedad->path) && !empty($propiedad->video)) { ?>
@@ -445,9 +445,9 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/sistema/".$empresa->
                           <?php echo ($p->precio_final != 0 && $p->publica_precio == 1) ? $p->moneda." ".number_format($p->precio_final,0) : "Consultar"; ?>
                         </div>
                         <?php if (!empty($p->path)) { ?>
-                          <img class="img-responsive" src="/sistema/<?php echo $p->path ?>" alt="<?php echo ($p->nombre); ?>" />
+                          <img class="img-responsive" src="/admin/<?php echo $p->path ?>" alt="<?php echo ($p->nombre); ?>" />
                         <?php } else if (!empty($empresa->no_imagen)) { ?>
-                          <img class="img-responsive" src="/sistema/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre); ?>" />
+                          <img class="img-responsive" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre); ?>" />
                         <?php } else { ?>
                           <img class="img-responsive" src="images/logo.png" alt="<?php echo ($p->nombre); ?>" />
                         <?php } ?>
@@ -567,7 +567,7 @@ function enviar_contacto() {
     "id_origen": 9,
   }
   $.ajax({
-    "url":"/sistema/consultas/function/enviar/",
+    "url":"/admin/consultas/function/enviar/",
     "type":"post",
     "dataType":"json",
     "data":datos,

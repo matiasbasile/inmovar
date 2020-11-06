@@ -1,4 +1,4 @@
-<script type="text/javascript" src="/sistema/resources/js/common.js"></script>
+<script type="text/javascript" src="/admin/resources/js/common.js"></script>
 <?php if (!empty($empresa->analytics)) { echo html_entity_decode($empresa->analytics,ENT_QUOTES); } ?>
 <?php if (!empty($empresa->zopim)) { echo html_entity_decode($empresa->zopim,ENT_QUOTES); } ?>
 <?php if (!empty($empresa->google_site_verification)) { echo html_entity_decode($empresa->google_site_verification,ENT_QUOTES); } ?>

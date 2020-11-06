@@ -394,7 +394,7 @@ function finalizar_pedido() {
 
   // Guardamos el pedido finalizado
   $.ajax({
-    "url":"/sistema/pedidos_mesas/function/registrar/",
+    "url":"/admin/pedidos_mesas/function/registrar/",
     "dataType":"json",
     "data":"pedido="+JSON.stringify(pedido),
     "type":"post",
@@ -578,7 +578,7 @@ function render_pedido() {
     str+= '<div class="request-list">Pedi comida online gratis y paga en casa.</div>';
     // Guardamos el pedido en la session
     $.ajax({
-      "url":"/sistema/pedidos/function/guardar_session/",
+      "url":"/admin/pedidos/function/guardar_session/",
       "dataType":"json",
       "type":"post",
       "data":{
@@ -620,7 +620,7 @@ function render_pedido() {
     
     // Guardamos el pedido en la session
     $.ajax({
-      "url":"/sistema/pedidos/function/guardar_session/",
+      "url":"/admin/pedidos/function/guardar_session/",
       "dataType":"json",
       "type":"post",
       "data":{

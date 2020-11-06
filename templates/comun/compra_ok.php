@@ -52,7 +52,7 @@ if ($checkout_language == "en") {
       <div style="padding: 60px 30px; text-align: center;">
         <div style="font-size: 32px; padding-top: 0px; margin-bottom: 30px;" class="varcreative-titulo-compra"><?php echo $ll["titulo"] ?></div>
         <div style="">
-          <img style="width: 100%; max-width: 243px" src="/sistema/resources/images/compra_exitosa.png"/>
+          <img style="width: 100%; max-width: 243px" src="/admin/resources/images/compra_exitosa.png"/>
         </div>
       </div>
     </div>

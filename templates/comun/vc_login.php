@@ -312,7 +312,7 @@ function varcreative_open_login(cerrar) {
 function varcreative_recuperar_password() {
   var email = $("#varcreative_login_email").val();
   $.ajax({
-    "url":"/sistema/clientes/function/recuperar_pass/",
+    "url":"/admin/clientes/function/recuperar_pass/",
     "dataType":"json",
     "type":"post",
     "data":{
@@ -528,7 +528,7 @@ function varcreative_registrar(data) {
     password = hex_md5(data.password);
   }
   $.ajax({
-    "url":"/sistema/clientes/function/registrar/",
+    "url":"/admin/clientes/function/registrar/",
     "dataType":"json",
     "type":"post",
     "data":{
@@ -584,7 +584,7 @@ function varcreative_registrar(data) {
 // Esta funcion envia un email de confirmacion al cliente
 function varcreative_enviar_confirmacion(id_cliente) {
   $.ajax({
-    "url":"/sistema/clientes/function/enviar_sms_verificacion/",
+    "url":"/admin/clientes/function/enviar_sms_verificacion/",
     "dataType":"json",
     "type":"post",
     "data":{
@@ -617,7 +617,7 @@ function varcreative_consultar_email() {
   $("#varcreative_login_submit").attr("disabled","disabled");
   // Enviamos un AJAX para comprobar si el email existe en la base de datos
   $.ajax({
-    "url":"/sistema/clientes/function/check_email/",
+    "url":"/admin/clientes/function/check_email/",
     "dataType":"json",
     "type":"post",
     "data":{
@@ -671,7 +671,7 @@ function varcreative_login(data) {
   $("#varcreative_login_submit_2").attr("disabled","disabled");
   var password = hex_md5(data.password);
   $.ajax({
-    "url":"/sistema/login/check_cliente/",
+    "url":"/admin/login/check_cliente/",
     "dataType":"json",
     "type":"post",
     "data":{

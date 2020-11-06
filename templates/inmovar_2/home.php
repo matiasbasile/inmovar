@@ -131,9 +131,9 @@ $titulo_pagina = "Inicio";
                         <?php echo ($p->precio_final != 0 && $p->publica_precio == 1) ? $p->moneda." ".number_format($p->precio_final,0) : "Consultar"; ?>
                       </div>
                       <?php if (!empty($p->path)) { ?>
-                        <img class="img-responsive" src="/sistema/<?php echo $p->path ?>" alt="<?php echo ($p->nombre); ?>" />
+                        <img class="img-responsive" src="/admin/<?php echo $p->path ?>" alt="<?php echo ($p->nombre); ?>" />
                       <?php } else if (!empty($empresa->no_imagen)) { ?>
-                        <img class="img-responsive" src="/sistema/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre); ?>" />
+                        <img class="img-responsive" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre); ?>" />
                       <?php } else { ?>
                         <img class="img-responsive" src="images/logo.png" alt="<?php echo ($p->nombre); ?>" />
                       <?php } ?>
@@ -243,9 +243,9 @@ $titulo_pagina = "Inicio";
                           <?php echo ($p->precio_final != 0 && $p->publica_precio == 1) ? $p->moneda." ".number_format($p->precio_final,0) : "Consultar"; ?>
                         </div>
                         <?php if (!empty($p->path)) { ?>
-                          <img class="img-responsive" src="/sistema/<?php echo $p->path ?>" alt="<?php echo ($p->nombre); ?>" />
+                          <img class="img-responsive" src="/admin/<?php echo $p->path ?>" alt="<?php echo ($p->nombre); ?>" />
                         <?php } else if (!empty($empresa->no_imagen)) { ?>
-                          <img class="img-responsive" src="/sistema/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre); ?>" />
+                          <img class="img-responsive" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre); ?>" />
                         <?php } else { ?>
                           <img class="img-responsive" src="images/logo.png" alt="<?php echo ($p->nombre); ?>" />
                         <?php } ?>

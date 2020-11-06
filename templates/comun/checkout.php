@@ -867,7 +867,7 @@ $carrito_id_pais = ((isset($empresa->config["carrito_id_pais"])) ? $empresa->con
                     <?php if (!empty($producto->path)) { ?>
                       <a href="<?php echo mklink ($producto->link) ?>"><img src="<?php echo $producto->path ?>" alt="<?php echo ($producto->nombre);?>"></a>
                     <?php } else if (!empty($empresa->no_imagen)) { ?>
-                      <a href="<?php echo mklink ($producto->link) ?>"><img src="/sistema/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($producto->nombre);?>"></a>
+                      <a href="<?php echo mklink ($producto->link) ?>"><img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($producto->nombre);?>"></a>
                     <?php } else { ?>
                       <a href="<?php echo mklink ($producto->link) ?>"><img src="images/no-imagen.png" alt="<?php echo ($producto->nombre);?>"></a>
                     <?php } ?>

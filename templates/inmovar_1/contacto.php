@@ -135,8 +135,8 @@ if ($maximo == "undefined" || empty($maximo)) $maximo = $precio_maximo;
 
 <script type="text/javascript" src="assets/js/custom-map.js"></script>
 <script type="text/javascript" src="assets/js/custom.js"></script>
-<script type="text/javascript" src="/sistema/resources/js/common.js"></script>
-<script type="text/javascript" src="/sistema/resources/js/main.js"></script>
+<script type="text/javascript" src="/admin/resources/js/common.js"></script>
+<script type="text/javascript" src="/admin/resources/js/main.js"></script>
 <!--[if gt IE 8]>
 <script type="text/javascript" src="assets/js/ie.js"></script>
 <![endif]-->

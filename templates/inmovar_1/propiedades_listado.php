@@ -70,7 +70,7 @@ if (isset($_GET["test"])) print_r($vc_listado);
                       <?php if (!empty($r->imagen)) { ?>
                         <img src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre); ?>" />
                       <?php } else if (!empty($empresa->no_imagen)) { ?>
-                        <img src="/sistema/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->nombre); ?>" />
+                        <img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->nombre); ?>" />
                       <?php } else { ?>
                         <img src="images/logo.png" alt="<?php echo ($r->nombre); ?>" />
                       <?php } ?>
@@ -153,8 +153,8 @@ if (isset($_GET["test"])) print_r($vc_listado);
 <script type="text/javascript" src="assets/js/draggable-0.1.js"></script>
 <script type="text/javascript" src="assets/js/jquery.slider.js"></script>
 <script type="text/javascript" src="assets/js/custom.js"></script>
-<script type="text/javascript" src="/sistema/resources/js/common.js"></script>
-<script type="text/javascript" src="/sistema/resources/js/main.js"></script>
+<script type="text/javascript" src="/admin/resources/js/common.js"></script>
+<script type="text/javascript" src="/admin/resources/js/main.js"></script>
 <!--[if gt IE 8]>
 <script type="text/javascript" src="assets/js/ie.js"></script>
 <![endif]-->

@@ -11,7 +11,7 @@
           <span class="icon-bar"></span>
         </button>
         <a href="<?php echo mklink ("/") ?>" class="logo1">
-          <img src="/sistema/<?php echo $empresa->logo_1 ?>" alt="logo">
+          <img src="/admin/<?php echo $empresa->logo_1 ?>" alt="logo">
         </a>
       </div>
       <!-- Collect the nav links, forms, and other content for toggling -->

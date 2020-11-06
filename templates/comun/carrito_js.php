@@ -1,5 +1,5 @@
 <?php // EL TOASTER ESTA PARA EL AJAX DEL CARRITO ?>
-<script type="text/javascript" src="/sistema/resources/js/jquery/jquery.toaster.js"></script>
+<script type="text/javascript" src="/admin/resources/js/jquery/jquery.toaster.js"></script>
 <style type="text/css">
 .toaster .title { float: none; padding: 0px; margin: 0px; color: inherit; width: auto; border: none; position: relative; font-size: inherit; } 
 .toaster .title:after, .toaster .title:before { display: none }
@@ -45,7 +45,7 @@ if ($checkout_language == "en") {
 function cambiar_provincia(id_provincia) {
   var id_localidad_seleccionada = $(".localidad_select").data("selected");
   $.ajax({
-    url: '/sistema/localidades/function/get_by_provincia/'+id_provincia+"/",
+    url: '/admin/localidades/function/get_by_provincia/'+id_provincia+"/",
     dataType: 'json',
     success: function(datos) {
       $(".localidad_select").empty();
@@ -945,7 +945,7 @@ function varcreative_enviar_registro() {
   $("#registro_submit").attr("disabled","disabled");
   $("#registro_submit").val("Enviando datos...");
   $.ajax({
-    "url":"/sistema/clientes/function/registrar/",
+    "url":"/admin/clientes/function/registrar/",
     "dataType":"json",
     "data": {
       "email":email,
@@ -1616,7 +1616,7 @@ function ir_consultar() {
 function reset_ps() {
   var email = validate_input("login_email",IS_EMAIL,"Por favor ingrese su email. Le enviaremos una nueva clave a su casilla de correo.");
   $.ajax({
-    url: '/sistema/clientes/function/reset_ps/',
+    url: '/admin/clientes/function/reset_ps/',
     type: 'POST',
     dataType: 'json',
     data: {
@@ -1632,7 +1632,7 @@ function reset_ps() {
 
 function login(email,ps) {
   $.ajax({
-    url: '/sistema/login/check_cliente/',
+    url: '/admin/login/check_cliente/',
     type: 'POST',
     dataType: 'json',
     data: {
@@ -1794,7 +1794,7 @@ function varcreative_registro_clienapp() {
   var ps = hex_md5("1");
   clienapp_show_loading();
   $.ajax({
-    "url":"/sistema/clientes/function/registrar/",
+    "url":"/admin/clientes/function/registrar/",
     "dataType":"json",
     "data": {
       "email":email,
@@ -1832,7 +1832,7 @@ function clienapp_hide_loading() {
 
 function varcreative_login_clienapp(email,ps) {
   $.ajax({
-    url: '/sistema/login/check_cliente/',
+    url: '/admin/login/check_cliente/',
     type: 'POST',
     dataType: 'json',
     data: {
@@ -1899,7 +1899,7 @@ function varcreative_validar_clienapp(id_cliente) {
       // Cuando el carrito fue enviado
       $(".clienapp_paso_1").hide();
       $(".clienapp_paso_2").show();
-      $("#clienapp_ver_comprobante").attr("href","<?php echo mklink("sistema/facturas/function/ver_pdf/") ?>"+r.id+"/"+r.id_punto_venta+"/"+ID_EMPRESA+"/");
+      $("#clienapp_ver_comprobante").attr("href","<?php echo mklink("admin/facturas/function/ver_pdf/") ?>"+r.id+"/"+r.id_punto_venta+"/"+ID_EMPRESA+"/");
       window.recargar_despues = 1;
       clienapp_hide_loading();
 
@@ -2055,7 +2055,7 @@ if (!empty($ultima_operacion)) {
                               <?php if (!empty($art->path)) { ?>
                                 <img src="<?php echo $art->path ?>" alt="<?php echo ($nombre);?>">
                               <?php } else if (!empty($empresa->no_imagen)) { ?>
-                                <img src="/sistema/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($nombre);?>">
+                                <img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($nombre);?>">
                               <?php } else { ?>
                                 <img src="images/no-imagen.png" alt="<?php echo ($nombre);?>">
                               <?php } ?>

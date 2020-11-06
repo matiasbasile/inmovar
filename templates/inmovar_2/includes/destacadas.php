@@ -7,9 +7,9 @@
       <div class="media-left">
         <a href="<?php echo $l->link_propiedad ?>">
           <?php if (!empty($l->path)) { ?>
-            <img class="media-object" src="/sistema/<?php echo $l->path ?>" alt="<?php echo ($l->nombre); ?>" />
+            <img class="media-object" src="/admin/<?php echo $l->path ?>" alt="<?php echo ($l->nombre); ?>" />
           <?php } else if (!empty($empresa->no_imagen)) { ?>
-            <img class="media-object" src="/sistema/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($l->nombre); ?>" />
+            <img class="media-object" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($l->nombre); ?>" />
           <?php } else { ?>
             <img class="media-object" src="images/logo.png" alt="<?php echo ($l->nombre); ?>" />
           <?php } ?>

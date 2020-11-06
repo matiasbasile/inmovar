@@ -83,7 +83,7 @@
             <?php for($i=0;$i<2;$i++) { $p = $listado_full[$i] ?>      
               <div class="media">
                 <div class="media-left">
-                  <a href="<?php echo $p->link_propiedad ?>"><img class="media-object" src="/sistema/<?php echo $p->path ?>" alt="small-properties-3"></a>
+                  <a href="<?php echo $p->link_propiedad ?>"><img class="media-object" src="/admin/<?php echo $p->path ?>" alt="small-properties-3"></a>
                 </div>
                 <div class="media-body">
                   <h3 class="media-heading">
@@ -161,7 +161,7 @@
   "id_origen":2,
   }
   $.ajax({
-  "url":"/sistema/consultas/function/enviar/",
+  "url":"/admin/consultas/function/enviar/",
   "type":"post",
   "dataType":"json",
   "data":datos,

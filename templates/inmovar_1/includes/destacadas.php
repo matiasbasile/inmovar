@@ -11,7 +11,7 @@ if (sizeof($destacadas)>0) { ?>
             <?php if (!empty($r->imagen)) { ?>
               <img src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre); ?>" />
             <?php } else if (!empty($empresa->no_imagen)) { ?>
-              <img src="/sistema/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->nombre); ?>" />
+              <img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->nombre); ?>" />
             <?php } else { ?>
               <img src="images/logo.png" alt="<?php echo ($r->nombre); ?>" />
             <?php } ?>

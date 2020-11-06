@@ -127,7 +127,7 @@ if ($checkout_language == "en") {
                                     <?php if (!empty($producto->path)) { ?>
                                       <img src="<?php echo $producto->path ?>" alt="<?php echo ($producto->nombre);?>">
                                     <?php } else if (!empty($empresa->no_imagen)) { ?>
-                                      <img src="/sistema/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($producto->nombre);?>">
+                                      <img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($producto->nombre);?>">
                                     <?php } else { ?>
                                       <img src="images/no-imagen.png" alt="<?php echo ($producto->nombre);?>">
                                     <?php } ?>

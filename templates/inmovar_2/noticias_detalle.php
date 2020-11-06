@@ -14,7 +14,7 @@ $seo_keywords = (!empty($entrada->seo_keywords)) ? ($entrada->seo_keywords) : $e
 <meta property="og:type" content="article" />
 <meta property="og:title" content="<?php echo $entrada->titulo; ?>" />
 <meta property="og:description" content="<?php echo substr(strip_tags($entrada->texto),0,300).((strlen($entrada->texto) > 300) ? "..." : "");?>" />
-<meta property="og:image" content="<?php echo current_url(TRUE)."/sistema/".((!empty($entrada->path)) ? $entrada->path : $empresa->no_imagen); ?>"/>
+<meta property="og:image" content="<?php echo current_url(TRUE)."/admin/".((!empty($entrada->path)) ? $entrada->path : $empresa->no_imagen); ?>"/>
 </head>
 <body>
 <?php include "includes/header.php" ?>
@@ -80,8 +80,8 @@ $seo_keywords = (!empty($entrada->seo_keywords)) ? ($entrada->seo_keywords) : $e
                           <?php } ?>
                         <?php } else if (!empty($entrada->path)) { ?>
                           <div class="item active">
-                            <a data-fancybox="gallery" href="/sistema/<?php echo $entrada->path ?>">
-                              <img src="/sistema/<?php echo $entrada->path ?>" class="thumb-preview">
+                            <a data-fancybox="gallery" href="/admin/<?php echo $entrada->path ?>">
+                              <img src="/admin/<?php echo $entrada->path ?>" class="thumb-preview">
                             </a>
                           </div>
                         <?php } ?>
@@ -210,7 +210,7 @@ $seo_keywords = (!empty($entrada->seo_keywords)) ? ($entrada->seo_keywords) : $e
     "id_origen": ((id_origen != 0) ? id_origen : ((id_entrada != 0)?1:6)),
   }
   $.ajax({
-    "url":"/sistema/consultas/function/enviar/",
+    "url":"/admin/consultas/function/enviar/",
     "type":"post",
     "dataType":"json",
     "data":datos,

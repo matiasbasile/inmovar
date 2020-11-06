@@ -5,7 +5,7 @@
       <div style="padding: 60px 30px; text-align: center;">
         <div style="font-size: 32px; padding-top: 0px; margin-bottom: 30px;" class="varcreative-titulo-compra">Compra pendiente</div>
         <div style="">
-          <img style="width: 100%; max-width: 243px" src="/sistema/resources/images/compra_pendiente.png"/>
+          <img style="width: 100%; max-width: 243px" src="/admin/resources/images/compra_pendiente.png"/>
         </div>
       </div>
     </div>

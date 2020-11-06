@@ -36,22 +36,22 @@ $keywords = str_replace("\n", " ", $keywords);
 <?php include_once("templates/comun/ldjson/organization.php"); ?>
 
 <?php if (strpos(strtolower($empresa->favicon), ".png")>0) { ?>
-  <link rel="shortcut icon" type="image/png" href="/sistema/<?php echo $empresa->favicon ?>"/>
+  <link rel="shortcut icon" type="image/png" href="/admin/<?php echo $empresa->favicon ?>"/>
 <?php } else if (strpos(strtolower($empresa->favicon), ".ico")>0) { ?>
-  <link rel="shortcut icon" type="image/x-icon" href="/sistema/<?php echo $empresa->favicon ?>" />
+  <link rel="shortcut icon" type="image/x-icon" href="/admin/<?php echo $empresa->favicon ?>" />
 <?php } else { ?>
   <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
 <?php } ?>
 
-<link href="/sistema/resources/css/common.css" media="all" type="text/css" rel="stylesheet"/>
+<link href="/admin/resources/css/common.css" media="all" type="text/css" rel="stylesheet"/>
 
 <?php if (isset($incluir_buscador_neumaticos) && $incluir_buscador_neumaticos == 1) { ?>
   <?php include_once("templates/comun/neumaticos/buscador_css.php"); ?>
 <?php } ?>
 
 <?php if (isset($incluir_turnos) && $incluir_turnos == 1) { ?>
-  <link rel="stylesheet" type="text/css" href="/sistema/resources/js/jquery/ui/jquery-ui.min.css">
-  <link rel="stylesheet" type="text/css" href="/sistema/resources/js/jquery/ui/jquery-ui.theme.min.css">
+  <link rel="stylesheet" type="text/css" href="/admin/resources/js/jquery/ui/jquery-ui.min.css">
+  <link rel="stylesheet" type="text/css" href="/admin/resources/js/jquery/ui/jquery-ui.theme.min.css">
 <?php } ?>
 
 
