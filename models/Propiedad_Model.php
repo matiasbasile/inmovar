@@ -600,7 +600,7 @@ class Propiedad_Model {
     if (mysqli_num_rows($q) == 0) return FALSE;
     $propiedad = mysqli_fetch_object($q);
 
-		//$propiedad->path = ((strpos($propiedad->path,"http://")===FALSE)) ? "/sistema/".$propiedad->path : $propiedad->path;
+		//$propiedad->path = ((strpos($propiedad->path,"http://")===FALSE)) ? "/admin/".$propiedad->path : $propiedad->path;
 
     $propiedad->relacionados = array();
     if ($buscar_relacionados == 1) {
@@ -651,13 +651,13 @@ class Propiedad_Model {
       $q = mysqli_query($this->conx,$sql);
       while(($r=mysqli_fetch_object($q))!==NULL) {
         if (!empty($r->path)) {
-          $r->path = ((strpos($r->path,"http")===FALSE)) ? "/sistema/".$r->path : $r->path;
+          $r->path = ((strpos($r->path,"http")===FALSE)) ? "/admin/".$r->path : $r->path;
         }                
         if ($r->plano == 1) $propiedad->planos[] = $r->path;
         else $propiedad->images[] = $r->path;
       }
     }
-    $propiedad->imagen = (empty($propiedad->path)) ? "" : (((strpos($propiedad->path,"http")===FALSE)) ? "/sistema/".$propiedad->path : $propiedad->path);
+    $propiedad->imagen = (empty($propiedad->path)) ? "" : (((strpos($propiedad->path,"http")===FALSE)) ? "/admin/".$propiedad->path : $propiedad->path);
 
     // Con esto evitamos que se este mostrando el precio en algun lado
     if ($propiedad->publica_precio == 0) {
@@ -717,7 +717,7 @@ class Propiedad_Model {
     $propiedad->pertenece_red = ($this->id_empresa == $propiedad->id_empresa) ? 0 : 1;
 
     $propiedad->link_propiedad = (isset($propiedad->pertenece_red) && $propiedad->pertenece_red == 1) ? mklink($propiedad->link)."?em=".$propiedad->id_empresa : mklink($propiedad->link);
-    $propiedad->link_ficha = mklink("/")."sistema/propiedades/function/ver_ficha/".$propiedad->id_empresa."/".$propiedad->id."/".$this->id_empresa."/";
+    $propiedad->link_ficha = mklink("/")."admin/propiedades/function/ver_ficha/".$propiedad->id_empresa."/".$propiedad->id."/".$this->id_empresa."/";
 
     $propiedad->disponible = 1;
     if ($propiedad->id_tipo_operacion == 3) {
@@ -832,7 +832,7 @@ class Propiedad_Model {
     $s.='<script>';
     $s.='setTimeout(function(){';
     $s.='  $.ajax({';
-    $s.='    "url":"/sistema/visitas/function/inmovar/",';
+    $s.='    "url":"/admin/visitas/function/inmovar/",';
     $s.='    "dataType":"json",';
     $s.='    "type":"get",';
     $s.='    "data":{';
@@ -1119,9 +1119,9 @@ class Propiedad_Model {
 
     $salida = array();
     while(($r=mysqli_fetch_object($q))!==NULL) {
-      //$r->path = ((strpos($r->path,"http://")===FALSE)) ? "/sistema/".$r->path : $r->path;
-      $r->thumbnail = ((strpos($r->path,"http://")===FALSE)) ? ("/sistema/".substr($r->path,0,strrpos($r->path,"/"))."/thumb_".substr($r->path,strrpos($r->path,"/")+1)) : $r->path;
-      $r->imagen = (empty($r->path)) ? "" : (((strpos($r->path,"http")===FALSE)) ? "/sistema/".$r->path : $r->path);
+      //$r->path = ((strpos($r->path,"http://")===FALSE)) ? "/admin/".$r->path : $r->path;
+      $r->thumbnail = ((strpos($r->path,"http://")===FALSE)) ? ("/admin/".substr($r->path,0,strrpos($r->path,"/"))."/thumb_".substr($r->path,strrpos($r->path,"/")+1)) : $r->path;
+      $r->imagen = (empty($r->path)) ? "" : (((strpos($r->path,"http")===FALSE)) ? "/admin/".$r->path : $r->path);
       $r->superficie_total = $r->superficie_cubierta + $r->superficie_descubierta + $r->superficie_semicubierta;
       $r->pertenece_red = ($this->id_empresa == $r->id_empresa) ? 0 : 1;
 
