@@ -30,12 +30,16 @@ if (isset($_SESSION["favoritos"])) {
           		<li class="redes">
           			<a href="<?PHP echo mklink ("favoritos/") ?>"><i class="fa fa-heart"></i></a>
           		</li>
-          		<li class="redes fb">
-          			<a target="_blank" href="<?php echo $empresa->facebook ?>"><i class="fa fa-facebook-f"></i></a>
-          		</li>
-          		<li class="redes">
-          			<a target="_blank" href="<?php echo $empresa->facebook ?>"><i class="fa fa-instagram"></i></a>
-          		</li>
+              <?php if (!empty($empresa->facebook)) { ?>
+            		<li class="redes fb">
+            			<a target="_blank" href="<?php echo $empresa->facebook ?>"><i class="fa fa-facebook-f"></i></a>
+            		</li>
+              <?php } ?>
+              <?php if (!empty($empresa->instagram)) { ?>
+            		<li class="redes">
+            			<a target="_blank" href="<?php echo $empresa->instagram ?>"><i class="fa fa-instagram"></i></a>
+            		</li>
+              <?php } ?>
           	</ul>
           </div>
         </ul>
