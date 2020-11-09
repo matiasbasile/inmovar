@@ -295,8 +295,8 @@ class Articulo_Model {
       $barra->lista = $this->get_list($config_lista);
       $barra->nombre = $this->encod($barra->nombre);
       $barra->subtitulo = $this->encod($barra->subtitulo);
-      $barra->rubro_path = (!empty($barra->rubro_path)) ? (((strpos($barra->rubro_path,"http")===FALSE)) ? "/sistema/".$barra->rubro_path : $barra->rubro_path) : "";
-      $barra->marca_path = (!empty($barra->marca_path)) ? (((strpos($barra->marca_path,"http")===FALSE)) ? "/sistema/".$barra->marca_path : $barra->marca_path) : "";
+      $barra->rubro_path = (!empty($barra->rubro_path)) ? (((strpos($barra->rubro_path,"http")===FALSE)) ? "/admin/".$barra->rubro_path : $barra->rubro_path) : "";
+      $barra->marca_path = (!empty($barra->marca_path)) ? (((strpos($barra->marca_path,"http")===FALSE)) ? "/admin/".$barra->marca_path : $barra->marca_path) : "";
 
       $salida[] = $barra;
     }
@@ -495,7 +495,7 @@ class Articulo_Model {
     $q = mysqli_query($this->conx,$sql);
     $salida = array();
     while(($r=mysqli_fetch_object($q))!==NULL) {
-      $r->path = (!empty($r->path)) ? (((strpos($r->path,"http")===FALSE)) ? "/sistema/".$r->path : $r->path) : "";
+      $r->path = (!empty($r->path)) ? (((strpos($r->path,"http")===FALSE)) ? "/admin/".$r->path : $r->path) : "";
       $r->path = str_replace(" ","%20",$r->path);
       $salida[] = $r;
     }
@@ -512,7 +512,7 @@ class Articulo_Model {
     $q = mysqli_query($this->conx,$sql);
     $salida = array();
     while(($r=mysqli_fetch_object($q))!==NULL) {
-      $r->path = (!empty($r->path)) ? (((strpos($r->path,"http")===FALSE)) ? "/sistema/".$r->path : $r->path) : "";
+      $r->path = (!empty($r->path)) ? (((strpos($r->path,"http")===FALSE)) ? "/admin/".$r->path : $r->path) : "";
       $r->path = str_replace(" ","%20",$r->path);
       $salida[] = $r;
     }
@@ -559,7 +559,7 @@ class Articulo_Model {
     $q = mysqli_query($this->conx,$sql);
     $salida = array();
     while(($r=mysqli_fetch_object($q))!==NULL) {
-      $r->path = (!empty($r->path)) ? (((strpos($r->path,"http")===FALSE)) ? "/sistema/".$r->path : $r->path) : "";
+      $r->path = (!empty($r->path)) ? (((strpos($r->path,"http")===FALSE)) ? "/admin/".$r->path : $r->path) : "";
       $r->path = str_replace(" ","%20",$r->path);
       $salida[] = $r;
     }
@@ -597,7 +597,7 @@ class Articulo_Model {
       $q = mysqli_query($this->conx,$sql);
       $salida = array();
       while(($r=mysqli_fetch_object($q))!==NULL) {
-        $r->path = (!empty($r->path)) ? (((strpos($r->path,"http")===FALSE)) ? "/sistema/".$r->path : $r->path) : "";
+        $r->path = (!empty($r->path)) ? (((strpos($r->path,"http")===FALSE)) ? "/admin/".$r->path : $r->path) : "";
         $r->path = str_replace(" ","%20",$r->path);
         $salida[] = $r;
       }
@@ -677,11 +677,11 @@ class Articulo_Model {
     if (mysqli_num_rows($q)<=0) return FALSE;
     $producto = mysqli_fetch_object($q);
     $producto = $this->encoding($producto);
-    $producto->path = (!empty($producto->path)) ? (((strpos($producto->path,"http")===FALSE)) ? "/sistema/".$producto->path : $producto->path) : "";
+    $producto->path = (!empty($producto->path)) ? (((strpos($producto->path,"http")===FALSE)) ? "/admin/".$producto->path : $producto->path) : "";
     $producto->path = str_replace(" ","%20",$producto->path);
-    $producto->marca_path = (!empty($producto->marca_path)) ? (((strpos($producto->marca_path,"http")===FALSE)) ? "/sistema/".$producto->marca_path : $producto->marca_path) : "";
+    $producto->marca_path = (!empty($producto->marca_path)) ? (((strpos($producto->marca_path,"http")===FALSE)) ? "/admin/".$producto->marca_path : $producto->marca_path) : "";
     $producto->marca_path = str_replace(" ","%20",$producto->marca_path);
-    $producto->rubro_path = (!empty($producto->rubro_path)) ? (((strpos($producto->rubro_path,"http")===FALSE)) ? "/sistema/".$producto->rubro_path : $producto->rubro_path) : "";
+    $producto->rubro_path = (!empty($producto->rubro_path)) ? (((strpos($producto->rubro_path,"http")===FALSE)) ? "/admin/".$producto->rubro_path : $producto->rubro_path) : "";
     $producto->rubro_path = str_replace(" ","%20",$producto->rubro_path);
     $producto->images = array();
     $producto->propiedades = array();
@@ -701,7 +701,7 @@ class Articulo_Model {
       $sql = "SELECT * FROM articulos_images WHERE id_articulo = $producto->id AND id_empresa = $id_empresa ORDER BY orden ASC ";
       $q_fotos = mysqli_query($this->conx,$sql);
       while(($foto = mysqli_fetch_object($q_fotos))!==NULL) {
-        $foto->path = ((strpos($foto->path,"http")===FALSE)) ? "/sistema/".$foto->path : $foto->path;
+        $foto->path = ((strpos($foto->path,"http")===FALSE)) ? "/admin/".$foto->path : $foto->path;
         $foto->path = str_replace(" ","%20",$foto->path);
         $producto->images[] = $foto;
       }
@@ -910,7 +910,7 @@ class Articulo_Model {
           if (!empty($r->path)) {
             $o = new stdClass();
             $o->id = $r->id;
-            $o->path = ((strpos($r->path,"http")===FALSE)) ? "/sistema/".$r->path : $r->path;
+            $o->path = ((strpos($r->path,"http")===FALSE)) ? "/admin/".$r->path : $r->path;
             $o->path = str_replace(" ","%20",$o->path);
             $o->id_propiedad_1 = $r->id_propiedad_1;
             $o->id_propiedad_2 = $r->id_propiedad_2;
@@ -1073,7 +1073,7 @@ class Articulo_Model {
     $q = mysqli_query($this->conx,$sql);
     $row->images = array();
     while(($r=mysqli_fetch_object($q))!==NULL) { 
-      $row->images[] = "/sistema/".$r->path;
+      $row->images[] = "/admin/".$r->path;
     }
     return $row;
   }
@@ -1095,7 +1095,7 @@ class Articulo_Model {
     $q = mysqli_query($this->conx,$sql);
     $row->images = array();
     while(($r=mysqli_fetch_object($q))!==NULL) { 
-      $row->images[] = "/sistema/".$r->path;
+      $row->images[] = "/admin/".$r->path;
     }
     return $row;
   }
@@ -1542,9 +1542,9 @@ class Articulo_Model {
         $r->moneda = $convertir_moneda;
       }
 
-      $r->path = (!empty($r->path)) ? (((strpos($r->path,"http")===FALSE)) ? "/sistema/".$r->path : $r->path) : "";
+      $r->path = (!empty($r->path)) ? (((strpos($r->path,"http")===FALSE)) ? "/admin/".$r->path : $r->path) : "";
       $r->path = str_replace(" ","%20",$r->path);
-      $r->marca_path = (!empty($r->marca_path)) ? (((strpos($r->marca_path,"http")===FALSE)) ? "/sistema/".$r->marca_path : $r->marca_path) : "";
+      $r->marca_path = (!empty($r->marca_path)) ? (((strpos($r->marca_path,"http")===FALSE)) ? "/admin/".$r->marca_path : $r->marca_path) : "";
       $r->marca_path = str_replace(" ","%20",$r->marca_path);
       $salida[] = $r;
     }
