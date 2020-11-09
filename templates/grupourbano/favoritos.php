@@ -40,7 +40,7 @@ if ($maximo == "undefined" || empty($maximo)) $maximo = $precio_maximo;
                   <div class="item-picture">
                     <div class="block">
                       <?php if (!empty($r->path)) { ?>
-                        <img class="cover" src="/admin/<?php echo $r->path ?>" alt="<?php echo ($r->nombre) ?>" />
+                        <img class="cover" src="/sistema/<?php echo $r->path ?>" alt="<?php echo ($r->nombre) ?>" />
                       <?php } else { ?>
                         <img class="cover" src="images/no-image-1.jpg" alt="<?php echo ($r->nombre) ?>" />
                       <?php } ?>
@@ -91,9 +91,9 @@ if ($maximo == "undefined" || empty($maximo)) $maximo = $precio_maximo;
                         <?php } ?>
                       </big>
                       <?php if (estaEnFavoritos($r->id)) { ?>
-                        <a href="/admin/favoritos/eliminar/?id=<?php echo $r->id; ?>" class="favorites-properties active"><span class="tooltip">Borrar de Favoritos</span></a>
+                        <a href="/sistema/favoritos/eliminar/?id=<?php echo $r->id; ?>" class="favorites-properties active"><span class="tooltip">Borrar de Favoritos</span></a>
                       <?php } else { ?>
-                        <a href="/admin/favoritos/agregar/?id=<?php echo $r->id; ?>" class="favorites-properties"><span class="tooltip">Guarda Tus Inmuebles Favoritos</span></a>
+                        <a href="/sistema/favoritos/agregar/?id=<?php echo $r->id; ?>" class="favorites-properties"><span class="tooltip">Guarda Tus Inmuebles Favoritos</span></a>
                       <?php } ?>
                     </div>
                   </div>

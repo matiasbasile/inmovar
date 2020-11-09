@@ -39,7 +39,7 @@ if ($maximo == "undefined" || empty($maximo)) $maximo = $precio_maximo;
 <meta property="og:type" content="website" />
 <meta property="og:title" content="<?php echo ($propiedad->nombre); ?>" />
 <meta property="og:description" content="<?php echo str_replace("\n","",(strip_tags(html_entity_decode($propiedad->texto,ENT_QUOTES)))); ?>" />
-<meta property="og:image" content="<?php echo current_url(TRUE); ?>/admin/<?php echo $propiedad->path; ?>"/>
+<meta property="og:image" content="<?php echo current_url(TRUE); ?>/sistema/<?php echo $propiedad->path; ?>"/>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
@@ -97,7 +97,7 @@ if ($maximo == "undefined" || empty($maximo)) $maximo = $precio_maximo;
               <?php } ?>
               <?php if (!empty($propiedad->audio)) { ?>
                 <div class="col-md-6">
-                  <audio id="audio" style="display: none" controls><source src="/admin/<?php echo $propiedad->audio ?>" /></audio>
+                  <audio id="audio" style="display: none" controls><source src="/sistema/<?php echo $propiedad->audio ?>" /></audio>
                   <a onclick="toggleAudio()" href="javascript:void(0);" class="btn-video">
                     <span class="dt">
                       <span class="dtc vat">
@@ -138,9 +138,9 @@ if ($maximo == "undefined" || empty($maximo)) $maximo = $precio_maximo;
                     <small>Cod: <span><?php echo ($propiedad->codigo); ?></span></small>
                   <?php } ?>
                   <?php if (estaEnFavoritos($propiedad->id)) { ?>
-                    <small><a href="/admin/favoritos/eliminar/?id=<?php echo $propiedad->id; ?>" class="favorites-properties active"><span class="tooltip">Borrar de Favoritos</span></a></small>
+                    <small><a href="/sistema/favoritos/eliminar/?id=<?php echo $propiedad->id; ?>" class="favorites-properties active"><span class="tooltip">Borrar de Favoritos</span></a></small>
                   <?php } else { ?>
-                    <small><a href="/admin/favoritos/agregar/?id=<?php echo $propiedad->id; ?>" class="favorites-properties"><span class="tooltip">Guarda Tus Inmuebles Favoritos</span></a></small>
+                    <small><a href="/sistema/favoritos/agregar/?id=<?php echo $propiedad->id; ?>" class="favorites-properties"><span class="tooltip">Guarda Tus Inmuebles Favoritos</span></a></small>
                   <?php } ?>
                   <small><span class="st_sharethis_large"></span></small>
                 </div>
@@ -237,7 +237,7 @@ if ($maximo == "undefined" || empty($maximo)) $maximo = $precio_maximo;
                   <div class="item-picture">
                     <div class="block">
                       <?php if (!empty($r->path)) { ?>
-                        <img class="thumb-image" src="/admin/<?php echo $r->path ?>" alt="<?php echo ($r->nombre) ?>" />
+                        <img class="thumb-image" src="/sistema/<?php echo $r->path ?>" alt="<?php echo ($r->nombre) ?>" />
                       <?php } else { ?>
                         <img class="thumb-image" src="images/no-image-1.jpg" alt="<?php echo ($r->nombre) ?>" />
                       <?php } ?>
@@ -277,9 +277,9 @@ if ($maximo == "undefined" || empty($maximo)) $maximo = $precio_maximo;
                     <div class="property-price">
                       <?php echo ($r->precio != 0)?$r->precio : "Consultar" ?>
                       <?php if (estaEnFavoritos($r->id)) { ?>
-                        <a href="/admin/favoritos/eliminar/?id=<?php echo $r->id; ?>" class="favorites-properties active"><span class="tooltip">Borrar de Favoritos</span></a>
+                        <a href="/sistema/favoritos/eliminar/?id=<?php echo $r->id; ?>" class="favorites-properties active"><span class="tooltip">Borrar de Favoritos</span></a>
                       <?php } else { ?>
-                        <a href="/admin/favoritos/agregar/?id=<?php echo $r->id; ?>" class="favorites-properties"><span class="tooltip">Guarda Tus Inmuebles Favoritos</span></a>
+                        <a href="/sistema/favoritos/agregar/?id=<?php echo $r->id; ?>" class="favorites-properties"><span class="tooltip">Guarda Tus Inmuebles Favoritos</span></a>
                       <?php } ?>
                     </div>
                   </div>
@@ -372,7 +372,7 @@ function enviar_ficha_email() {
       "asunto":"<?php echo ($propiedad->nombre) ?>",
     };
     $.ajax({
-      "url":"/admin/emails/0",
+      "url":"/sistema/emails/0",
       "type":"PUT",
       "dataType":"json",
       "data":JSON.stringify(datos),

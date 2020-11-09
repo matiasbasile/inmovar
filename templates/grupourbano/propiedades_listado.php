@@ -81,7 +81,7 @@ function filter() {
                         <div class="item-picture">
                           <div class="block">
                             <?php if (!empty($r->path)) { ?>
-                              <img class="thumb-image" src="/admin/<?php echo $r->path ?>" alt="<?php echo ($r->nombre) ?>" />
+                              <img class="thumb-image" src="/sistema/<?php echo $r->path ?>" alt="<?php echo ($r->nombre) ?>" />
                             <?php } else { ?>
                               <img class="thumb-image" src="images/no-image-1.jpg" alt="<?php echo ($r->nombre) ?>" />
                             <?php } ?>
@@ -137,9 +137,9 @@ function filter() {
                               <?php echo $r->precio ?>
                             </big>
                             <?php if (estaEnFavoritos($r->id)) { ?>
-                              <a href="/admin/favoritos/eliminar/?id=<?php echo $r->id; ?>" class="favorites-properties active"><span class="tooltip">Borrar de Favoritos</span></a>
+                              <a href="/sistema/favoritos/eliminar/?id=<?php echo $r->id; ?>" class="favorites-properties active"><span class="tooltip">Borrar de Favoritos</span></a>
                             <?php } else { ?>
-                              <a href="/admin/favoritos/agregar/?id=<?php echo $r->id; ?>" class="favorites-properties"><span class="tooltip">Guarda Tus Inmuebles Favoritos</span></a>
+                              <a href="/sistema/favoritos/agregar/?id=<?php echo $r->id; ?>" class="favorites-properties"><span class="tooltip">Guarda Tus Inmuebles Favoritos</span></a>
                             <?php } ?>
 
                             <?php if ($r->acepta_permuta == 1) { ?>
@@ -166,7 +166,7 @@ function filter() {
                     <div class="item-picture">
                       <div class="block">
                         <?php if (!empty($r->path)) { ?>
-                          <img class="thumb-image" src="/admin/<?php echo $r->path ?>" alt="<?php echo ($r->nombre) ?>" />
+                          <img class="thumb-image" src="/sistema/<?php echo $r->path ?>" alt="<?php echo ($r->nombre) ?>" />
                         <?php } else { ?>
                           <img class="thumb-image" src="images/no-image-1.jpg" alt="<?php echo ($r->nombre) ?>" />
                         <?php } ?>
@@ -213,9 +213,9 @@ function filter() {
                           <?php echo $r->precio ?>
                         </big>
                         <?php if (estaEnFavoritos($r->id)) { ?>
-                          <a href="/admin/favoritos/eliminar/?id=<?php echo $r->id; ?>" class="favorites-properties active"><span class="tooltip">Borrar de Favoritos</span></a>
+                          <a href="/sistema/favoritos/eliminar/?id=<?php echo $r->id; ?>" class="favorites-properties active"><span class="tooltip">Borrar de Favoritos</span></a>
                         <?php } else { ?>
-                          <a href="/admin/favoritos/agregar/?id=<?php echo $r->id; ?>" class="favorites-properties"><span class="tooltip">Guarda Tus Inmuebles Favoritos</span></a>
+                          <a href="/sistema/favoritos/agregar/?id=<?php echo $r->id; ?>" class="favorites-properties"><span class="tooltip">Guarda Tus Inmuebles Favoritos</span></a>
                         <?php } ?>
                         <?php if ($r->acepta_permuta == 1) { ?>
                           <span class="apto_banco">Acepta Permuta</span>
@@ -273,7 +273,7 @@ function filter() {
                     <div class="item-picture">
                       <div class="block">
                         <?php if (!empty($r->path)) { ?>
-                          <img class="thumb-image" src="/admin/<?php echo $r->path ?>" alt="<?php echo ($r->nombre) ?>" />
+                          <img class="thumb-image" src="/sistema/<?php echo $r->path ?>" alt="<?php echo ($r->nombre) ?>" />
                         <?php } else { ?>
                           <img class="thumb-image" src="images/no-image-1.jpg" alt="<?php echo ($r->nombre) ?>" />
                         <?php } ?>
@@ -349,7 +349,7 @@ function filter() {
                       <div class="item-picture">
                         <div class="block">
                           <?php if (!empty($r->path)) { ?>
-                            <img class="thumb-image" src="/admin/<?php echo $r->path ?>" alt="<?php echo ($r->nombre) ?>" />
+                            <img class="thumb-image" src="/sistema/<?php echo $r->path ?>" alt="<?php echo ($r->nombre) ?>" />
                           <?php } else { ?>
                             <img class="thumb-image" src="images/no-image-2.jpg" alt="<?php echo ($r->nombre) ?>" />
                           <?php } ?>
