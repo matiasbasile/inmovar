@@ -47,6 +47,7 @@ class Emails extends REST_Controller {
     
 	function insert() {
 		
+    header('Access-Control-Allow-Origin: *');
 		$array = $this->parse_put();
 		if (isset($array->id_empresa)) $id_empresa = $array->id_empresa;
 		else $id_empresa = parent::get_empresa();

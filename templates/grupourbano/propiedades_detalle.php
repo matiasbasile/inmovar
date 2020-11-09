@@ -372,7 +372,7 @@ function enviar_ficha_email() {
       "asunto":"<?php echo ($propiedad->nombre) ?>",
     };
     $.ajax({
-      "url":"/admin/emails/0",
+      "url":"https://app.inmovar.com/admin/emails/0",
       "type":"PUT",
       "dataType":"json",
       "data":JSON.stringify(datos),
