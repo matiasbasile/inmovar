@@ -124,7 +124,7 @@ class Consulta_Model extends Abstract_Model {
   }
 
   function insert($data) {
-    $id_empresa = parent::get_empresa();
+    $id_empresa = (isset($data->id_empresa) ? $data->id_empresa : parent::get_empresa());
     $this->load->model("Cliente_Model");
     $this->load->helper("fecha_helper");
     if (isset($data->fecha)) {
