@@ -491,6 +491,7 @@ class Consultas extends REST_Controller {
 
       // Si no fue seteada el id de la empresa, la seteamos con el contacto buscado
       // para que mas adelante no tire error que no encuentra $id_empresa
+      print_r($contacto);
       $id_empresa = $contacto->id_empresa;      
 
       // Dependiendo de cual atributo se envio
