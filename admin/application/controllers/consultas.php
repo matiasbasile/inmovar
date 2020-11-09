@@ -438,6 +438,10 @@ class Consultas extends REST_Controller {
           "id_empresa"=>$id_empresa
         ));
       }
+
+      // Si no fue seteada el id de la empresa, la seteamos con el contacto buscado
+      // para que mas adelante no tire error que no encuentra $id_empresa
+      $id_empresa = $contacto->id_empresa;
       
       if ($contacto === FALSE) {
         // Debemos crearlo
