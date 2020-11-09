@@ -236,11 +236,11 @@ if (sizeof($destacadas)>0) { ?>
             <?php if (!empty($r->path_2)) { ?>
               <div class="item-picture">
                 <div class="block"><img src="/admin/<?php echo $r->path_2 ?>" alt="<?php echo ($r->titulo_es); ?>" /></div>
-                <div class="black-overlay"><a href="/<?php echo $r->link; ?>"></a></div>
+                <div class="black-overlay"><a href="<?php echo mklink($r->link); ?>"></a></div>
               </div>
             <?php } ?>
             <div class="service-info">
-              <div class="service-name"><a href="/<?php echo $r->link; ?>"><?php echo ($r->titulo_es); ?></a></div>
+              <div class="service-name"><a href="<?php echo mklink($r->link); ?>"><?php echo ($r->titulo_es); ?></a></div>
               <p><?php echo ($r->breve_es); ?></p>
             </div>
           </div>
