@@ -424,20 +424,18 @@ if (!empty($obras_destacadas) || !empty($obras_normales)) { ?>
                     <p><?php echo ((strlen($texto)>80) ? substr($texto,0,80)."..." : $texto); ?></p>                  
                   <?php } ?>
                 </div>
-                <?php if (!empty($r->dormitorios) || !empty($r->banios) || !empty($r->superficie_total)) { ?>
-                  <div class="facilities">
-                    <?php if (!empty($r->dormitorios)) { ?>
-                      <div class="pull-left beadroom"><?php echo $r->dormitorios ?></div>
-                    <?php } ?>
-                    <?php if (!empty($r->banios)) { ?>
-                      <div class="pull-left shower"><?php echo $r->banios ?></div>
-                    <?php } ?>
-                    <?php if (!empty($r->superficie_total)) { ?>
-                      <div class="pull-left"><?php echo $r->superficie_total ?> m<sup>2</sup></div>
-                    <?php } ?>
-                    <div class="view-more"><a href="<?php echo $r->link_propiedad; ?>"></a></div>
-                  </div>
-                <?php } ?>
+                <div class="facilities">
+                  <?php if (!empty($r->dormitorios)) { ?>
+                    <div class="pull-left beadroom"><?php echo $r->dormitorios ?></div>
+                  <?php } ?>
+                  <?php if (!empty($r->banios)) { ?>
+                    <div class="pull-left shower"><?php echo $r->banios ?></div>
+                  <?php } ?>
+                  <?php if (!empty($r->superficie_total)) { ?>
+                    <div class="pull-left"><?php echo $r->superficie_total ?> m<sup>2</sup></div>
+                  <?php } ?>
+                  <div class="view-more"><a href="<?php echo $r->link_propiedad; ?>"></a></div>
+                </div>
               </div>
             </div>
           </div>
@@ -472,20 +470,18 @@ if (!empty($obras_destacadas) || !empty($obras_normales)) { ?>
                             <p><?php echo ((strlen($texto)>80) ? substr($texto,0,80)."..." : $texto); ?></p>                            
                           <?php } ?>
                         </div>
-                        <?php if (!empty($r->dormitorios) || !empty($r->banios) || !empty($r->superficie_total)) { ?>
-                          <div class="facilities">
-                            <?php if (!empty($r->dormitorios)) { ?>
-                              <div class="pull-left beadroom"><?php echo $r->dormitorios ?></div>
-                            <?php } ?>
-                            <?php if (!empty($r->banios)) { ?>
-                              <div class="pull-left shower"><?php echo $r->banios ?></div>
-                            <?php } ?>
-                            <?php if (!empty($r->superficie_total)) { ?>
-                              <div class="pull-left"><?php echo $r->superficie_total ?> m<sup>2</sup></div>
-                            <?php } ?>
-                            <div class="view-more"><a href="<?php echo $r->link_propiedad ?>"></a></div>
-                          </div>
-                        <?php } ?>
+                        <div class="facilities">
+                          <?php if (!empty($r->dormitorios)) { ?>
+                            <div class="pull-left beadroom"><?php echo $r->dormitorios ?></div>
+                          <?php } ?>
+                          <?php if (!empty($r->banios)) { ?>
+                            <div class="pull-left shower"><?php echo $r->banios ?></div>
+                          <?php } ?>
+                          <?php if (!empty($r->superficie_total)) { ?>
+                            <div class="pull-left"><?php echo $r->superficie_total ?> m<sup>2</sup></div>
+                          <?php } ?>
+                          <div class="view-more"><a href="<?php echo $r->link_propiedad ?>"></a></div>
+                        </div>
                       </div>
                     </div>
                   </li>
