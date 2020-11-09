@@ -717,7 +717,7 @@ class Propiedad_Model {
     $propiedad->pertenece_red = ($this->id_empresa == $propiedad->id_empresa) ? 0 : 1;
 
     $propiedad->link_propiedad = (isset($propiedad->pertenece_red) && $propiedad->pertenece_red == 1) ? mklink($propiedad->link)."?em=".$propiedad->id_empresa : mklink($propiedad->link);
-    $propiedad->link_ficha = mklink("/")."admin/propiedades/function/ver_ficha/".$propiedad->id_empresa."/".$propiedad->id."/".$this->id_empresa."/";
+    $propiedad->link_ficha = "https://app.inmovar.com/admin/propiedades/function/ver_ficha/".$propiedad->id_empresa."/".$propiedad->id."/".$this->id_empresa."/";
 
     $propiedad->disponible = 1;
     if ($propiedad->id_tipo_operacion == 3) {
