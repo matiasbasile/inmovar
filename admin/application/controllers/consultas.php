@@ -505,7 +505,6 @@ class Consultas extends REST_Controller {
 
       if (!empty($id_propiedad)) {
         $this->load->model("Propiedad_Model");
-        echo "[$id_empresa]";
         $propiedad = $this->Propiedad_Model->get($id_propiedad,array(
           "id_empresa"=>$id_empresa
         ));

@@ -705,6 +705,7 @@ class Propiedad_Model extends Abstract_Model {
   
   function get($id,$config=array()) {
     $id_empresa = isset($config["id_empresa"]) ? $config["id_empresa"] : parent::get_empresa();
+    echo "[$id_empresa]";
     // Obtenemos los datos del propiedad
     $id = (int)$id;
     $sql = "SELECT A.*, ";
