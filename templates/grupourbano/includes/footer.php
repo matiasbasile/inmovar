@@ -29,7 +29,7 @@ if ($nombre_pagina != "mapa") { ?>
           <p>Preguntas frecuentes acerca del funcionamiento, comercializaci&oacute;n y construcci&oacute;n de viviendas.</p>
         </div>
         <div class="investor-status" style="width: 100%;">
-          <a target="_blank" href="/admin/<?php echo $empresa->archivo ?>" class="btn btn-black"><img src="images/pdf-icon.png" alt="PDF" /> descargar pdf</a>
+          <a target="_blank" href="/templates/grupourbano/manual.pdf" class="btn btn-black"><img src="images/pdf-icon.png" alt="PDF" /> descargar pdf</a>
         </div>
       </div>
         
@@ -114,21 +114,21 @@ if ($nombre_pagina != "mapa") { ?>
       <div class="social">
         <h5>seguinos</h5>
         <div class="block">
-            <?php if (!empty($empresa->twitter)) { ?>
-                <a target="_blank" href="<?php echo $empresa->twitter ?>"><img src="images/twitter.png" alt="Twitter" /></a>
-            <?php } ?>
-            <?php if (!empty($empresa->facebook)) { ?>
-                <a target="_blank" href="<?php echo $empresa->facebook ?>"><img src="images/facebook.png" alt="Facebook" /></a>
-            <?php } ?>
-            <?php if (!empty($empresa->youtube)) { ?>
-                <a target="_blank" href="<?php echo $empresa->youtube ?>"><img src="images/youtube.png" alt="Youtube" /></a>
-            <?php } ?>
-            <?php if (!empty($empresa->instagram)) { ?>
-                <a target="_blank" href="<?php echo $empresa->instagram ?>"><img src="images/instagram-icon.png" alt="Instagram" /></a>
-            <?php } ?>            
-            <?php if (!empty($empresa->google_plus)) { ?>
-                <a target="_blank" href="<?php echo $empresa->google_plus ?>"><img src="images/google-plus.png" alt="Google Plus" /></a>
-            <?php } ?>
+          <?php if (!empty($empresa->twitter)) { ?>
+            <a target="_blank" href="<?php echo $empresa->twitter ?>"><img src="images/twitter.png" alt="Twitter" /></a>
+          <?php } ?>
+          <?php if (!empty($empresa->facebook)) { ?>
+            <a target="_blank" href="<?php echo $empresa->facebook ?>"><img src="images/facebook.png" alt="Facebook" /></a>
+          <?php } ?>
+          <?php if (!empty($empresa->youtube)) { ?>
+            <a target="_blank" href="<?php echo $empresa->youtube ?>"><img src="images/youtube.png" alt="Youtube" /></a>
+          <?php } ?>
+          <?php if (!empty($empresa->instagram)) { ?>
+            <a target="_blank" href="<?php echo $empresa->instagram ?>"><img src="images/instagram-icon.png" alt="Instagram" /></a>
+          <?php } ?>            
+          <?php if (!empty($empresa->google_plus)) { ?>
+            <a target="_blank" href="<?php echo $empresa->google_plus ?>"><img src="images/google-plus.png" alt="Google Plus" /></a>
+          <?php } ?>
         </div>
       </div>
         <!-- <div class="contact-info" style="padding-top: 20px;">       
@@ -156,7 +156,7 @@ if ($nombre_pagina != "mapa") { ?>
       <div class="go-top"><a href="javascript:void(0);"></a></div>
       <div class="col-md-6">&copy; Grupo-Urbano Brokers Inmobiliarios - Todos Los Derechos Reservados</div>
       <div class="col-md-6">
-        <div class="site-by"><a href="http://www.misticastudio.com/" target="_blank">Diseño Web Inmobiliarias <img src="/admin/resources/images/misticastudio.png" alt="Mistica Studio" /></a></div>
+        <div class="site-by"><a href="https://www.misticastudio.com/" target="_blank">Diseño Web Inmobiliarias <img src="/admin/resources/images/misticastudio.png" alt="Mistica Studio" /></a></div>
       </div>
     </div>
   </div>

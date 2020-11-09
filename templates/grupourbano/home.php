@@ -114,10 +114,10 @@ if (sizeof($ultimas)>0) { ?>
       <div class="load-more">
         <div class="load-container">
           <div class="load-link">
-            <a href="/propiedades/">m&aacute;s propiedades</a>
-            <a href="/propiedades/">ver todas</a>
+            <a href="<?php echo mklink("propiedades/") ?>">m&aacute;s propiedades</a>
+            <a href="<?php echo mklink("propiedades/") ?>">ver todas</a>
           </div>
-          <a href="/propiedades/" class="arrow-link"></a>
+          <a href="<?php echo mklink("propiedades/") ?>" class="arrow-link"></a>
         </div>
       </div>
     </div>
@@ -494,10 +494,10 @@ if (!empty($obras_destacadas) || !empty($obras_normales)) { ?>
       <div class="load-more">
         <div class="load-container">
           <div class="load-link">
-            <a href="/propiedades/obras/">m&aacute;s propiedades</a>
-            <a href="/propiedades/obras/">ver todas</a>
+            <a href="<?php echo mklink("propiedades/obras/") ?>">m&aacute;s propiedades</a>
+            <a href="<?php echo mklink("propiedades/obras/") ?>">ver todas</a>
           </div>
-          <a href="/propiedades/obras/" class="arrow-link"></a> </div>
+          <a href="<?php echo mklink("propiedades/obras/") ?>" class="arrow-link"></a> </div>
       </div>
     </div>
   </section>
