@@ -29,7 +29,7 @@ $breadcrumb = array(
             <div class="col-md-6">
               <div class="member-list">
                 <div class="item-picture">
-                  <div class="block"><img src="/sistema/<?php echo $r->path; ?>" alt="<?php echo ($r->nombre." ".$r->apellido); ?>" /></div>
+                  <div class="block"><img src="/admin/<?php echo $r->path; ?>" alt="<?php echo ($r->nombre." ".$r->apellido); ?>" /></div>
                 </div>
                 <input type="hidden" id="password_<?php echo $r->id ?>" value="<?php echo $r->password ?>"/>
                 <input type="hidden" id="archivo_<?php echo $r->id ?>" value="<?php echo $r->archivo ?>"/>
@@ -53,7 +53,7 @@ $breadcrumb = array(
                     <?php } ?>
                   </ul>
                   <div class="two-button">
-                    <a href="http://www.grupo-urbano.com.ar/sistema/" target="_blank" class="btn btn-blue-border">entrar</a>
+                    <a href="http://www.grupo-urbano.com.ar/admin/" target="_blank" class="btn btn-blue-border">entrar</a>
                     <a href="javascript:void(0)" onclick="comunicate(<?php echo $r->id ?>)" class="btn btn-black-border">comunicate</a>
                   </div>
                 </div>
@@ -90,7 +90,7 @@ function login_usuario(id) {
   var clave = hex_md5(clave);
   if (clave == pass) {
     var archivo = $("#archivo_"+id).val();
-    if (!isEmpty(archivo)) window.open("/sistema/"+archivo,"_blank");
+    if (!isEmpty(archivo)) window.open("/admin/"+archivo,"_blank");
   } else {
     alert("Clave incorrecta");
   }

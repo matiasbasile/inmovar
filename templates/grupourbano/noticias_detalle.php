@@ -24,7 +24,7 @@ $breadcrumb = array(
 <meta property="og:type" content="website" />
 <meta property="og:title" content="<?php echo ($entrada->titulo); ?>" />
 <meta property="og:description" content="<?php echo str_replace("\n","",(strip_tags(html_entity_decode($entrada->texto,ENT_QUOTES)))); ?>" />
-<meta property="og:image" content="<?php echo current_url(TRUE); ?>/sistema/<?php echo $entrada->path; ?>"/>
+<meta property="og:image" content="<?php echo current_url(TRUE); ?>/admin/<?php echo $entrada->path; ?>"/>
 </head>
 <body>
 

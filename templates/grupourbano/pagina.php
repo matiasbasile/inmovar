@@ -39,7 +39,7 @@ if (!empty($pagina->seo_description)) $seo_description = $pagina->seo_descriptio
       <div class="col-md-9 primary">
         <div class="section-title left"><big><?php echo ($pagina->titulo_es); ?></big></div>
         <?php if (!empty($pagina->path)) { ?>
-          <div class="block-picture"><img src="/sistema/<?php echo $pagina->path ?>" alt="<?php echo ($pagina->titulo_es); ?>" /></div>
+          <div class="block-picture"><img src="/admin/<?php echo $pagina->path ?>" alt="<?php echo ($pagina->titulo_es); ?>" /></div>
         <?php } ?>
         <?php if (!empty($pagina->subtitulo_es)) { ?>
           <div class="border-title"><?php echo ($pagina->subtitulo_es); ?></div>

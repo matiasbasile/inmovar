@@ -29,7 +29,7 @@ if ($nombre_pagina != "mapa") { ?>
           <p>Preguntas frecuentes acerca del funcionamiento, comercializaci&oacute;n y construcci&oacute;n de viviendas.</p>
         </div>
         <div class="investor-status" style="width: 100%;">
-          <a target="_blank" href="/sistema/<?php echo $empresa->archivo ?>" class="btn btn-black"><img src="images/pdf-icon.png" alt="PDF" /> descargar pdf</a>
+          <a target="_blank" href="/admin/<?php echo $empresa->archivo ?>" class="btn btn-black"><img src="images/pdf-icon.png" alt="PDF" /> descargar pdf</a>
         </div>
       </div>
         
@@ -156,7 +156,7 @@ if ($nombre_pagina != "mapa") { ?>
       <div class="go-top"><a href="javascript:void(0);"></a></div>
       <div class="col-md-6">&copy; Grupo-Urbano Brokers Inmobiliarios - Todos Los Derechos Reservados</div>
       <div class="col-md-6">
-        <div class="site-by"><a href="http://www.misticastudio.com/" target="_blank">Diseño Web Inmobiliarias <img src="/sistema/resources/images/misticastudio.png" alt="Mistica Studio" /></a></div>
+        <div class="site-by"><a href="http://www.misticastudio.com/" target="_blank">Diseño Web Inmobiliarias <img src="/admin/resources/images/misticastudio.png" alt="Mistica Studio" /></a></div>
       </div>
     </div>
   </div>
@@ -347,7 +347,7 @@ function enviar_newsletter() {
       "id_origen":2,
   }
   $.ajax({
-      "url":"/sistema/consultas/function/enviar/",
+      "url":"/admin/consultas/function/enviar/",
       "type":"post",
       "dataType":"json",
       "data":datos,
