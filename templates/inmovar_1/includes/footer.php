@@ -125,3 +125,5 @@
 <![endif]-->
 <script type="text/javascript" src="/admin/resources/js/common.js"></script>
 <script type="text/javascript" src="/admin/resources/js/main.js"></script>
+
+<?php include("templates/comun/clienapp.php") ?>

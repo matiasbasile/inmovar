@@ -88,7 +88,7 @@ String.prototype.chat_replaceAll = function(search, replacement) {
         if (config.formulario == 1) {
           // Mandamos directamente
           jQuery.ajax({
-            "url":"https://www.varcreative.com/admin/whatsapp/count/",
+            "url":"https://app.inmovar.com/admin/whatsapp/count/",
             "dataType":"json",
             "data":{
               "id_empresa":id_empresa,
@@ -276,7 +276,7 @@ String.prototype.chat_replaceAll = function(search, replacement) {
 
       // Registramos la consulta
       jQuery.ajax({
-        "url":"https://www.varcreative.com/admin/consultas/function/enviar/",
+        "url":"https://app.inmovar.com/admin/consultas/function/enviar/",
         "type":"post",
         "dataType":"json",
         "data":d,
@@ -300,7 +300,7 @@ String.prototype.chat_replaceAll = function(search, replacement) {
       // Contamos uno mas a la estadistica de whatsapp
       if (en_linea == 1) {
         jQuery.ajax({
-          "url":"https://www.varcreative.com/admin/whatsapp/count/",
+          "url":"https://app.inmovar.com/admin/whatsapp/count/",
           "dataType":"json",
           "data":{
             "id_empresa":id_empresa,
@@ -326,7 +326,7 @@ String.prototype.chat_replaceAll = function(search, replacement) {
     jQuery(chat).find(".converse-menu-icon").click(function(){
       jQuery(chat).find("#converse-chat-cont").hide();
       clienapp_atras();
-      var img = jQuery('<img src="https://www.varcreative.com/admin/whatsapp/set/?abierto=0" style="display:none;"/>');
+      var img = jQuery('<img src="https://app.inmovar.com/admin/whatsapp/set/?abierto=0" style="display:none;"/>');
       jQuery("body").append(img);
     });
 
@@ -335,7 +335,7 @@ String.prototype.chat_replaceAll = function(search, replacement) {
       var conv = jQuery(chat).find("#converse-chat-cont");
       jQuery(conv).toggle();
       var visible = jQuery(conv).is(":visible") ? 1 : 0;
-      var img = jQuery('<img src="https://www.varcreative.com/admin/whatsapp/set/?abierto='+visible+'" style="display:none;"/>');
+      var img = jQuery('<img src="https://app.inmovar.com/admin/whatsapp/set/?abierto='+visible+'" style="display:none;"/>');
       jQuery("body").append(img);
     })
 

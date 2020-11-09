@@ -35,8 +35,8 @@ class Whatsapp extends CI_Controller {
 
   /*
   // INSTALACION
-<script type="text/javascript" src="https://www.varcreative.com/admin/resources/js/loader.js"></script>
-<script type="text/javascript">loadScript("https://www.varcreative.com/admin/whatsapp/get/"+window.location.hostname+"/");</script>
+<script type="text/javascript" src="https://app.inmovar.com/admin/resources/js/loader.js"></script>
+<script type="text/javascript">loadScript("https://app.inmovar.com/admin/whatsapp/get/"+window.location.hostname+"/");</script>
   */
   function get($dominio = 0) {
     @session_start();
@@ -83,7 +83,7 @@ class Whatsapp extends CI_Controller {
       $u->nombre_usuario = $user->nombre;
       $u->email = (empty($user->email) ? $empresa->email : $user->email);
       $u->bcc = (isset($empresa->config["bcc_email"]) ? $empresa->config["bcc_email"] : "");
-      $u->path = (empty($user->path)) ? "https://www.varcreative.com/admin/resources/images/a0.jpg" : "https://www.varcreative.com/admin/".$user->path;
+      $u->path = (empty($user->path)) ? "https://app.inmovar.com/admin/resources/images/a0.jpg" : "https://app.inmovar.com/admin/".$user->path;
       $u->cargo = $user->cargo;
       $u->celular = preg_replace("/[^0-9]/", "", $user->celular);
       if (sizeof($user->horarios) == 0) {

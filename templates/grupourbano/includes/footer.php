@@ -384,3 +384,5 @@ $(document).ready(function(){
   }
 })
 </script>
+
+<?php include("templates/comun/clienapp.php") ?>
