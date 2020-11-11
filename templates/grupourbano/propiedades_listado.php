@@ -228,8 +228,8 @@ function filter() {
                   </div>
                 <?php } ?>
               </div>
+              <?php filter(); ?>
             </div>
-            <?php filter(); ?>
           <?php } else if ($id_tipo_operacion == 4) { ?>
             <div class="tabs">
               <div class="filter">
@@ -304,6 +304,7 @@ function filter() {
                   </div>
                 </div>
               <?php } ?>
+              <?php filter(); ?>
             </div>
           <?php } else if ($id_tipo_operacion == 5) { ?>
             <div class="tabs">
@@ -372,6 +373,7 @@ function filter() {
                   </div>
                 <?php } ?>
               </div>
+              <?php filter(); ?>
             </div>
           <?php } ?>
         <?php } else { ?>
