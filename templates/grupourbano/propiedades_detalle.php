@@ -118,7 +118,7 @@ if ($maximo == "undefined" || empty($maximo)) $maximo = $precio_maximo;
               <div class="property-name"><?php echo ($propiedad->nombre); ?></div>
               <div class="property-price">
                 <big>
-                  <?php echo ($propiedad->precio != 0)?$propiedad->precio : "Consultar" ?>
+                  <?php echo $propiedad->precio ?>
                 </big>
               </div>
               <br>
@@ -275,7 +275,7 @@ if ($maximo == "undefined" || empty($maximo)) $maximo = $precio_maximo;
                       <p><?php echo ((strlen($r->descripcion)>80) ? substr($r->descripcion,0,80)."..." : $r->descripcion); ?></p>
                     <?php } ?>
                     <div class="property-price">
-                      <?php echo ($r->precio != 0)?$r->precio : "Consultar" ?>
+                      <?php echo $propiedad->precio ?>
                       <?php if (estaEnFavoritos($r->id)) { ?>
                         <a href="/admin/favoritos/eliminar/?id=<?php echo $r->id; ?>" class="favorites-properties active"><span class="tooltip">Borrar de Favoritos</span></a>
                       <?php } else { ?>

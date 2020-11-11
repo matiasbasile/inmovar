@@ -297,7 +297,7 @@ function filter() {
                           <div class="pull-left"><?php echo $r->superficie_total ?> m<sup>2</sup></div>
                         <?php } ?>
                         <div class="price">
-                          <?php echo ($r->precio != 0)?$r->precio : "Consultar" ?>
+                          <?php echo $r->precio ?>
                         </div>
                       </div>
                     </div>
