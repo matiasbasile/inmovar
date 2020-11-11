@@ -49,7 +49,7 @@ $breadcrumb = array(
                   <img src="<?php echo $f ?>" alt="" />
                 <?php } ?>
               </div>
-              <?php if (sizeof($entrada->images)>0) { ?>
+              <?php if (sizeof($entrada->images)>1) { ?>
                 <div class="thumbnails">
                   <a href="javascript:void(0);" id="gallery-nav" class="prev-button"></a>
                   <a href="javascript:void(0);" id="gallery-nav" class="next-button"></a>

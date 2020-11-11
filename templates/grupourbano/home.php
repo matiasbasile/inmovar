@@ -254,7 +254,7 @@ if (sizeof($destacadas)>0) { ?>
               <?php $t = $web_model->get_text("service-1-img-","images/firma.jpg")?>
               <img class="editable editable-img cover-avisos" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" src="<?php echo $t->plain_text ?>" alt="Nuestros avisos" />
             </div>
-            <div class="black-overlay"><a href="<?php echo $t->link ?>"></a></div>
+            <div class="black-overlay"><a href="<?php echo mklink("entrada/requisitos-para-alquilar-32729") ?>"></a></div>
           </div>
           <div class="service-info" style="align-self: center;">
             <div class="service-name">
@@ -273,7 +273,7 @@ if (sizeof($destacadas)>0) { ?>
               <?php $t = $web_model->get_text("service-2-img-","images/avisos.jpg")?>
               <img class="editable editable-img cover-avisos" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" src="<?php echo $t->plain_text ?>" alt="Nuestros avisos" />
             </div>
-            <div class="black-overlay"><a href="<?php echo $t->link ?>"></a></div>
+            <div class="black-overlay"><a href="<?php echo mklink("entradas/avisos/") ?>"></a></div>
           </div>
           <div class="service-info" style="align-self: center;">
             <div class="service-name">
@@ -292,7 +292,7 @@ if (sizeof($destacadas)>0) { ?>
               <?php $t = $web_model->get_text("service-3-img-","images/novedades.jpg")?>
               <img class="editable editable-img cover-avisos" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" src="<?php echo $t->plain_text ?>" alt="Nuestros avisos" />
             </div>
-            <div class="black-overlay"><a href="<?php echo $t->link ?>"></a></div>
+            <div class="black-overlay"><a href="<?php echo mklink("entradas/novedades/") ?>"></a></div>
           </div>
           <div class="service-info" style="align-self: center;">
             <div class="service-name">
