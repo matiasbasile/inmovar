@@ -260,7 +260,7 @@ if (sizeof($destacadas)>0) { ?>
             <div class="service-name">
               <div class="property-title">
                 <?php $t = $web_model->get_text("service-1-txt","REQUISITOS<br> PARA ALQUILAR")?>
-                <a class="editable" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" href="<?php echo $t->link ?>"><?php echo $t->plain_text ?></a>
+                <a class="editable" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" href="<?php echo mklink("entrada/requisitos-para-alquilar-32729") ?>"><?php echo $t->plain_text ?></a>
               </div>
             </div>
           </div>
@@ -279,7 +279,7 @@ if (sizeof($destacadas)>0) { ?>
             <div class="service-name">
               <div class="property-title">
                 <?php $t = $web_model->get_text("service-2-txt","NUESTROS AVISOS")?>
-                <a class="editable" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" href="<?php echo $t->link ?>"><?php echo $t->plain_text ?></a>
+                <a class="editable" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" href="<?php echo mklink("entradas/avisos/") ?>"><?php echo $t->plain_text ?></a>
               </div>
             </div>
           </div>
@@ -298,7 +298,7 @@ if (sizeof($destacadas)>0) { ?>
             <div class="service-name">
               <div class="property-title">
                 <?php $t = $web_model->get_text("service-3-txt","ÚLTIMAS<br>NOVEDADES")?>
-                <a class="editable" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" href="<?php echo $t->link ?>"><?php echo $t->plain_text ?></a>
+                <a class="editable" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" href="<?php echo mklink("entradas/novedades/") ?>"><?php echo $t->plain_text ?></a>
               </div>
             </div>
           </div>
