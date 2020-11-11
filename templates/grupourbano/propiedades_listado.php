@@ -229,6 +229,7 @@ function filter() {
                 <?php } ?>
               </div>
             </div>
+            <?php filter(); ?>
           <?php } else if ($id_tipo_operacion == 4) { ?>
             <div class="tabs">
               <div class="filter">
