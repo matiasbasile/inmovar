@@ -86,9 +86,9 @@ $vc_page_active = $vc_vc_link_tipo_operacion;
                     <div class="property-list">
                       <div class="image-block">
                         <?php if (!empty($l->path)) { ?>
-                          <img src="/sistema/<?php echo $l->path ?>" alt="<?php echo ($l->nombre);?>">
+                          <img src="/admin/<?php echo $l->path ?>" alt="<?php echo ($l->nombre);?>">
                         <?php } else if (!empty($empresa->no_imagen)) { ?>
-                          <img src="/sistema/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($l->nombre);?>">
+                          <img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($l->nombre);?>">
                         <?php } else { ?>
                           <img src="images/no-imagen.png" alt="<?php echo ($l->nombre);?>">
                         <?php } ?>
@@ -179,9 +179,9 @@ $vc_page_active = $vc_vc_link_tipo_operacion;
                       <div class="property-list">
                         <div class="image-block">
                           <?php if (!empty($l->path)) { ?>
-                            <img  style="height: 260px" src="/sistema/<?php echo $l->path ?>" alt="<?php echo ($l->nombre);?>">
+                            <img  style="height: 260px" src="/admin/<?php echo $l->path ?>" alt="<?php echo ($l->nombre);?>">
                           <?php } else if (!empty($empresa->no_imagen)) { ?>
-                            <img style="height: 260px"  src="/sistema/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($l->nombre);?>">
+                            <img style="height: 260px"  src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($l->nombre);?>">
                           <?php } else { ?>
                             <img  style="height: 260px" src="images/no-imagen.png" alt="<?php echo ($l->nombre);?>">
                           <?php } ?>

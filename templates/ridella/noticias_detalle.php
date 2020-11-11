@@ -111,7 +111,7 @@ $entrada = $entrada_model->get($id,array(
     "id_origen": ((id_origen != 0) ? id_origen : "Contacto"),
   }
   $.ajax({
-    "url":"/sistema/consultas/function/enviar/",
+    "url":"/admin/consultas/function/enviar/",
     "type":"post",
     "dataType":"json",
     "data":datos,

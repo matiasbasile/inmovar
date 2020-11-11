@@ -1,6 +1,6 @@
 <footer>
   <div class="container">
-    <div class="logo"><a href="#0"><img src="/sistema/<?php echo $empresa->logo_1 ?>"></a></div>
+    <div class="logo"><a href="#0"><img src="/admin/<?php echo $empresa->logo_1 ?>"></a></div>
     <div class="contact-info">
       <ul>
         <?php if (!empty($empresa->direccion)) { ?><li><span>Dirección:</span> <a href="javascript:void(0)"><?php echo ($empresa->direccion).". ".$empresa->ciudad ?></a></li><?php } ?>

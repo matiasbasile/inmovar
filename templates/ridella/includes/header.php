@@ -33,7 +33,7 @@ $tipos_propiedades = $propiedad_model->get_tipos_propiedades();
 <header>
   <div class="container">
     <div class="logo">
-      <a href="<?php echo mklink ("/") ?>"><img src="/sistema/<?php echo $empresa->logo_1 ?>"></a>
+      <a href="<?php echo mklink ("/") ?>"><img src="/admin/<?php echo $empresa->logo_1 ?>"></a>
     </div>
     <a href="javascript:void(0);" onClick="$('header nav').slideToggle();" class="toggle-menu"><span></span> <span></span> <span></span></a>
     <nav>

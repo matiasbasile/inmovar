@@ -41,7 +41,7 @@
     <nav id="ts-primary-navigation" class="navbar navbar-expand-md navbar-light">
       <div class="container">
         <a class="navbar-brand" href="<?php echo mklink("/");?>">
-          <img src="<?php echo "/sistema/".$empresa->logo_1;?>" class="logo" alt="">
+          <img src="<?php echo "/admin/".$empresa->logo_1;?>" class="logo" alt="">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarPrimary" aria-controls="navbarPrimary" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>

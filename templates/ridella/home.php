@@ -130,9 +130,9 @@
                 <div class="property-list">
                   <div class="image-block">
                     <?php if (!empty($p->path)) { ?>
-                      <img src="/sistema/<?php echo $p->path ?>" alt="<?php echo ($p->nombre);?>">
+                      <img src="/admin/<?php echo $p->path ?>" alt="<?php echo ($p->nombre);?>">
                     <?php } else if (!empty($empresa->no_imagen)) { ?>
-                      <img src="/sistema/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre);?>">
+                      <img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre);?>">
                     <?php } else { ?>
                       <img src="images/no-imagen.png" alt="<?php echo ($p->nombre);?>">
                     <?php } ?>
@@ -165,9 +165,9 @@
                 <div class="property-list">
                   <div class="image-block">
                     <?php if (!empty($p->path)) { ?>
-                    <img src="/sistema/<?php echo $p->path ?>" alt="<?php echo ($p->nombre);?>">
+                    <img src="/admin/<?php echo $p->path ?>" alt="<?php echo ($p->nombre);?>">
                     <?php } else if (!empty($empresa->no_imagen)) { ?>
-                      <img src="/sistema/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre);?>">
+                      <img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre);?>">
                     <?php } else { ?>
                       <img src="images/no-imagen.png" alt="<?php echo ($p->nombre);?>">
                     <?php } ?>
@@ -200,9 +200,9 @@
                 <div class="property-list">
                   <div class="image-block">
                     <?php if (!empty($p->path)) { ?>
-                    <img src="/sistema/<?php echo $p->path ?>" alt="<?php echo ($p->nombre);?>">
+                    <img src="/admin/<?php echo $p->path ?>" alt="<?php echo ($p->nombre);?>">
                     <?php } else if (!empty($empresa->no_imagen)) { ?>
-                      <img src="/sistema/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre);?>">
+                      <img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre);?>">
                     <?php } else { ?>
                       <img src="images/no-imagen.png" alt="<?php echo ($p->nombre);?>">
                     <?php } ?>
@@ -334,7 +334,7 @@ function enviar_contacto() {
     "id_origen": ((id_origen != 0) ? id_origen : "Contacto"),
   }
   $.ajax({
-    "url":"/sistema/consultas/function/enviar/",
+    "url":"/admin/consultas/function/enviar/",
     "type":"post",
     "dataType":"json",
     "data":datos,

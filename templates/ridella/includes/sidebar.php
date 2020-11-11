@@ -117,7 +117,7 @@ function cambiar_moneda_precio_maximo() {
 function cambiar_departamentos() {
   var id_departamento = $("#departamento").val();
   $.ajax({
-    "url":"/sistema/localidades/function/get_by_departamento/"+id_departamento,
+    "url":"/admin/localidades/function/get_by_departamento/"+id_departamento,
     "dataType":"json",
     "success":function(r){
       $("#localidad").empty();

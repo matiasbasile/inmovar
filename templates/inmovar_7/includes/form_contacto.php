@@ -72,7 +72,7 @@ function enviar_contacto() {
     "bcc":"<?php echo $empresa->bcc_email ?>",
   }
   $.ajax({
-    "url":"/sistema/consultas/function/enviar/",
+    "url":"/admin/consultas/function/enviar/",
     "type":"post",
     "dataType":"json",
     "data":datos,

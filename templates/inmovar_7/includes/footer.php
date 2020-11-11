@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <a class="brand" href="<?php echo mklink("/")?>">
-                        <img src="<?php echo "/sistema/".$empresa->logo_1;?>" class="logo" alt="">
+                        <img src="<?php echo "/admin/".$empresa->logo_1;?>" class="logo" alt="">
                     </a>
                     <?php $t = $web_model->get_text("inmovar_7_p_footer_adsada","Find a Nice Place To Live");?>
                     <p class="mb-4 editable" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" >

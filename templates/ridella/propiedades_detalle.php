@@ -38,8 +38,8 @@ $maximo = isset($_SESSION["maximo"]) ? $_SESSION["maximo"] : $precio_maximo;
 if ($maximo == "undefined" || empty($maximo)) $maximo = $precio_maximo;
 
 $imagen_ppal = "";
-if (!empty($propiedad->path)) $imagen_ppal = current_url(TRUE)."/sistema/".$propiedad->path;
-else if (!empty($empresa->no_imagen)) $imagen_ppal = current_url(TRUE)."/sistema/".$empresa->no_imagen;
+if (!empty($propiedad->path)) $imagen_ppal = current_url(TRUE)."/admin/".$propiedad->path;
+else if (!empty($empresa->no_imagen)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no_imagen;
 else $imagen_ppal = current_url(TRUE)."/templates/".$empresa->template_path."/images/no-imagen-png"; 
 
 array_unshift($propiedad->images, $imagen_ppal);
@@ -126,9 +126,9 @@ if (!isset($_COOKIE[$propiedad->id])) {
               <?php } else { ?>
                 <div class="mb30">
                   <?php if (!empty($propiedad->path)) { ?>
-                    <img  style="width: 100%" src="/sistema/<?php echo $propiedad->path ?>" alt="<?php echo ($propiedad->nombre);?>">
+                    <img  style="width: 100%" src="/admin/<?php echo $propiedad->path ?>" alt="<?php echo ($propiedad->nombre);?>">
                   <?php } else if (!empty($empresa->no_imagen)) { ?>
-                    <img style="width: 100%"  src="/sistema/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($propiedad->nombre);?>">
+                    <img style="width: 100%"  src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($propiedad->nombre);?>">
                   <?php } else { ?>
                     <img  style="width: 100%" src="images/no-imagen.png" alt="<?php echo ($propiedad->nombre);?>">
                   <?php } ?>
@@ -237,9 +237,9 @@ if (!isset($_COOKIE[$propiedad->id])) {
                   <?php } else { ?>
                     <div class="mb30">
                       <?php if (!empty($propiedad->path)) { ?>
-                        <img  style="width: 100%" src="/sistema/<?php echo $propiedad->path ?>" alt="<?php echo ($propiedad->nombre);?>">
+                        <img  style="width: 100%" src="/admin/<?php echo $propiedad->path ?>" alt="<?php echo ($propiedad->nombre);?>">
                       <?php } else if (!empty($empresa->no_imagen)) { ?>
-                        <img style="width: 100%"  src="/sistema/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($propiedad->nombre);?>">
+                        <img style="width: 100%"  src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($propiedad->nombre);?>">
                       <?php } else { ?>
                         <img  style="width: 100%" src="images/no-imagen.png" alt="<?php echo ($propiedad->nombre);?>">
                       <?php } ?>
@@ -315,7 +315,7 @@ if (!isset($_COOKIE[$propiedad->id])) {
                     <div class="col-md-6">
                       <div class="property-list">
                         <div class="image-block">
-                          <img src="/sistema/<?php echo $p->path ?>">
+                          <img src="/admin/<?php echo $p->path ?>">
                           <div class="overlay">
                             <div class="table-container">
                               <div class="align-container">
@@ -463,7 +463,7 @@ function enviar_contacto() {
   }
   enviando = 1;
   $.ajax({
-    "url":"/sistema/consultas/function/enviar/",
+    "url":"/admin/consultas/function/enviar/",
     "type":"post",
     "dataType":"json",
     "data":datos,
