@@ -75,3 +75,5 @@
 <script src="assets/js/leaflet.js"></script>
 <script src="assets/js/custom.js"></script>
 <script src="assets/js/map-leaflet.js"></script>
+
+<?php include("templates/comun/clienapp.php") ?>
