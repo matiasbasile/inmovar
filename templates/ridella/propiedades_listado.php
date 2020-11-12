@@ -2,7 +2,7 @@
 include("includes/init.php");
 $get_params["offset"] = 10;
 extract($propiedad_model->get_variables());
-$vc_page_active = $vc_vc_link_tipo_operacion;
+$vc_page_active = $vc_link_tipo_operacion;
 ?><!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
