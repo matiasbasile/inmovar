@@ -12,9 +12,8 @@ class Consultas extends REST_Controller {
   // Esta funcion llena el campo id_usuario de la tabla clientes
   // con el id_usuario de la ultima consulta
   function pasar_usuarios($id_empresa) {
-    $sql = "SELECT id_contacto, id_usuario FROM crm_consultas ";
-    $sql.= "WHERE id_empresa = $id_empresa ";
-    $sql.= "GROUP BY id_contacto ";
+    $sql = "SELECT DISTINCT id_contacto, id_usuario FROM crm_consultas ";
+    $sql.= "WHERE id_empresa = $id_empresa AND id_usuario != 0 ";
     $sql.= "ORDER BY fecha DESC ";
     $q = $this->db->query($sql);
     foreach($q->result() as $r) {
