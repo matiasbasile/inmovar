@@ -798,7 +798,10 @@ class Propiedad_Model {
     $p->direccion_completa = $p->direccion.(!empty($p->entre_calles) ? " e/ ".$p->entre_calles : "");
 
     $p->plain_text = (!empty($p->descripcion)) ? $this->encod($p->descripcion) : $this->encod(strip_tags($p->texto,"<a><i><b><br>"));
+
+    $p->nombre = $p->tipo_inmueble." en ".$p->tipo_operacion." en ".$p->localidad;
     $p->nombre = $this->encod($p->nombre);
+    
     $p->subtitulo = $this->encod($p->subtitulo);
     if (isset($p->tipo_inmueble)) $p->tipo_inmueble = $this->encod($p->tipo_inmueble);
     if (isset($p->tipo_operacion)) $p->tipo_operacion = $this->encod($p->tipo_operacion);
