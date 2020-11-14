@@ -38,13 +38,13 @@
     <div class="row">
       <div class="col-md-4">
         <select id="form_home_tipo_operacion" class="form-control">
-          <option value="ventas">Venta</option>
+          <option selected="" value="ventas">Venta</option>
           <option value="alquileres">Alquiler</option>
         </select>
       </div>
       <div class="col-md-4">
         <select id="form_home_localidad" class="form-control">
-          <option value="todos">Localidad</option>
+          <option selected="" value="todos">Localidad</option>
           <?php 
           $link_localidad = "";
           $localidades = $propiedad_model->get_localidades(array(
@@ -57,7 +57,7 @@
       </div>
       <div class="col-md-4">
         <select id="form_home_tipo_propiedad" name="tp" class="form-control">
-          <option value="0">Tipo de Propiedad</option>
+          <option selected="" value="0">Tipo de Propiedad</option>
           <?php 
           $tipos_propiedades = $propiedad_model->get_tipos_propiedades();
           foreach ($tipos_propiedades as $tipos) { ?>
