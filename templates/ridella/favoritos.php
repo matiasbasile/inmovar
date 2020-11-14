@@ -25,7 +25,6 @@ $vc_page_active = "Favoritos";
   </div>
 </div>
 
-<!-- Properties Listing Block -->
 <div class="properties-listing-block">
   <div class="container">
     <div class="row">
@@ -33,6 +32,7 @@ $vc_page_active = "Favoritos";
       <?php include "includes/sidebar.php" ?>
 
       <div class="col-md-9 col-md-pull-3">
+        <?php if (sizeof($vc_listado)>0) { ?>
         <div class="listings">
           <div class="tab-content">
            <div id="grid" class="tab-pane fade in active">
@@ -137,110 +137,9 @@ $vc_page_active = "Favoritos";
               <?php } ?>            
             </div>
            </div>
-           <div id="list" class="tab-pane fade in">
-            <div class="row">
-              <?php foreach ($vc_listado as $l) { ?>
-                <div class="col-md-12 mb40">
-                  <div class="full-list">
-                    <div class="property-list">
-                      <div class="image-block">
-                        <?php if (!empty($l->path)) { ?>
-                          <img  style="height: 260px" src="/admin/<?php echo $l->path ?>" alt="<?php echo ($l->nombre);?>">
-                        <?php } else if (!empty($empresa->no_imagen)) { ?>
-                          <img style="height: 260px"  src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($l->nombre);?>">
-                        <?php } else { ?>
-                          <img  style="height: 260px" src="images/no-imagen.png" alt="<?php echo ($l->nombre);?>">
-                        <?php } ?>
-                        <div class="overlay">
-                          <div class="table-container">
-                            <div class="align-container">
-                              <div class="user-action">
-                                <a href="<?php echo $l->link_propiedad ?>"><i class="fas fa-plus"></i></a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <?php if (!empty($l->tipo_operacion)) {  ?>
-                          <div class="on-sale">
-                            <?php if (strtolower($l->tipo_operacion) == "ventas") echo "venta";
-                            else if (strtolower($l->tipo_operacion) == "alquileres") echo "alquiler";
-                            else echo $l->tipo_operacion; ?>
-                          </div>
-                        <?php } ?>
-                      </div>
-                      <div class="property-description" style="height: 260px">
-                        <a href="<?php echo $l->link_propiedad ?>"><h5><?php echo $l->nombre ?></h5></a>
-                        <div class="block">
-                          <div class="pull-left">
-                            <span><?php echo ($l->localidad).". ".$l->direccion_completa ?></span>
-                          </div>
-                          <div class="pull-right">
-                            <span>Cod:</span>
-                            <small><?php echo $l->codigo ?></small>
-                          </div>
-                        </div>
-                        <div class="faclities-block height-list">
-                          <ul>
-                             <li><img src="images/hab.png"><?php echo (empty($l->dormitorios)) ? "-" : $l->dormitorios ?> Hab</li>
-                             <li><img src="images/bathrooms.png" title="Baño"><?php echo (empty($l->banios)) ? "-" : $l->banios ?> Bañ.</li>
-                             <li><img src="images/garage.png" title="Cochera/s"><?php echo (empty($l->cocheras)) ? "-" : $l->cocheras ?> Coch.</li>
-                             <?php if (!empty($l->superficie_total)) { ?> <li><img src="images/grid.png"><?php echo $l->superficie_total ?> m2</li><?php } ?>
-                          </ul>
-                        </div>
-                        <div class="height-texto">
-                          <?php 
-                          $l->texto = strip_tags($l->texto);
-                          echo substr($l->texto,0,60); echo (strlen($l->texto) > 60) ? "..." : "" ?>
-                        </div>                       
-                        <div class="price-block">
-                          <div class="pull-left">
-                            <span><?php echo $l->precio ?></span>
-                          </div>
-                          <div class="pull-right">
-                            <div class="wishlist">
-                              <?php if (!empty($l->pint)) { ?>
-                                <a href="javascript:void(0);"><img src="images/360.png">
-                                  <div class="tooltip-info">
-                                    Recorrido 360°
-                                  </div>
-                                </a>
-                              <?php } ?>
-                              <?php if ($l->apto_banco == 1) {  ?>
-                                <a href="javascript:void(0);"><img src="images/icon.png">
-                                  <div class="tooltip-info">
-                                    Apta Crédito Bancario
-                                  </div>
-                                </a>
-                              <?php } ?>
-
-                              <?php if (estaEnFavoritos($l->id)) { ?>
-                                <a class="active" href="/admin/favoritos/eliminar/?id=<?php echo $l->id; ?>">
-                                  <img src="images/wish-list.png">
-                                  <div class="tooltip-info">
-                                    Borrar de Favoritos
-                                  </div>
-                                </a>
-                              <?php } else { ?>
-                                <a href="/admin/favoritos/agregar/?id=<?php echo $l->id; ?>">
-                                  <img src="images/wish-list.png">
-                                  <div class="tooltip-info">
-                                    Guarda Tus Inmuebles Favoritos
-                                  </div>
-                                </a>
-                              <?php } ?>
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              <?php } ?>
-            </div>
-           </div>
+           
          </div>
-      </div>
+        </div>
       <?php } else { ?>
         <div class="filter-block">
           <h3>No hay propiedades guardadas en favoritos.</h3>
