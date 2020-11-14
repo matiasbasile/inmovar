@@ -53,10 +53,10 @@ i.bullet { background-color: <?php echo $empresa->color_principal ?>; display: i
           <h1><?php echo strtoupper($empresa->nombre) ?></h1>
         <?php } ?>
       </div>
-      <?php if (!empty($propiedad->codigo)) { ?>
+      <?php if (!empty($propiedad->codigo_completo)) { ?>
         <div class="cb tal" style="padding: 15px 25px; color: #222">
           <span class="bold">C&Oacute;DIGO: </span>
-          <?php echo $propiedad->id_empresa."-".$propiedad->codigo; ?>
+          <?php echo $propiedad->codigo_completo; ?>
         </div>
       <?php } ?>
       <table>

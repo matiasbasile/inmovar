@@ -560,6 +560,7 @@ class Propiedad_Model {
     $id = (int)$id;
     $sql = "SELECT A.*, ";
     $sql.= "IF(A.valido_hasta = '0000-00-00','',DATE_FORMAT(A.valido_hasta,'%d/%m/%Y')) AS valido_hasta, ";
+    $sql.= " CONCAT(E.codigo,'-',P.codigo) AS codigo_completo, ";
     $sql.= "IF(P.nombre IS NULL,'',P.nombre) AS propietario, ";
     $sql.= "IF(TE.nombre IS NULL,'',TE.nombre) AS tipo_estado, ";
     $sql.= "IF(TI.nombre IS NULL,'',TI.nombre) AS tipo_inmueble, ";
@@ -576,6 +577,7 @@ class Propiedad_Model {
     $sql.= "IF(L.nombre IS NULL,'',L.nombre) AS localidad, ";
     $sql.= "IF(L.link IS NULL,'',L.link) AS localidad_link ";
     $sql.= "FROM inm_propiedades A ";
+    $sql.= "INNER JOIN empresas E ON (A.id_empresa = E.id) ";
     $sql.= "LEFT JOIN inm_tipos_estado TE ON (A.id_tipo_estado = TE.id) ";
     $sql.= "LEFT JOIN inm_tipos_inmueble TI ON (A.id_tipo_inmueble = TI.id) ";
     $sql.= "LEFT JOIN inm_tipos_operacion X ON (A.id_tipo_operacion = X.id) ";
@@ -801,7 +803,7 @@ class Propiedad_Model {
 
     $p->nombre = $p->tipo_inmueble." en ".$p->tipo_operacion." en ".$p->localidad;
     $p->nombre = $this->encod($p->nombre);
-    $p->codigo = $p->id_empresa."-".$p->codigo;
+    if (isset($p->codigo_completo)) $p->codigo = $p->codigo_completo;
     
     $p->subtitulo = $this->encod($p->subtitulo);
     if (isset($p->tipo_inmueble)) $p->tipo_inmueble = $this->encod($p->tipo_inmueble);
@@ -958,6 +960,7 @@ class Propiedad_Model {
     $cotizacion = $r_cot->valor;
 
     $sql = "SELECT SQL_CALC_FOUND_ROWS A.*, ";
+    $sql.= " CONCAT(E.codigo,'-',P.codigo) AS codigo_completo, ";
     $sql.= "IF(A.fecha_publicacion='0000-00-00','',DATE_FORMAT(A.fecha_publicacion,'%d/%m/%Y')) AS fecha_publicacion, ";
     $sql.= "IF(P.nombre IS NULL,'',P.nombre) AS propietario, ";
     $sql.= "IF(TE.nombre IS NULL,'',TE.nombre) AS tipo_estado, ";
@@ -967,6 +970,7 @@ class Propiedad_Model {
     $sql.= "IF(L.nombre IS NULL,'',L.nombre) AS localidad, ";
     $sql.= "IF(L.link IS NULL,'',L.link) AS localidad_link ";
     $sql.= "FROM inm_propiedades A ";
+    $sql.= "INNER JOIN empresas E ON (A.id_empresa = E.id) ";
     $sql.= "LEFT JOIN inm_tipos_estado TE ON (A.id_tipo_estado = TE.id) ";
     $sql.= "LEFT JOIN inm_tipos_inmueble TI ON (A.id_tipo_inmueble = TI.id) ";
     $sql.= "LEFT JOIN inm_tipos_operacion X ON (A.id_tipo_operacion = X.id) ";

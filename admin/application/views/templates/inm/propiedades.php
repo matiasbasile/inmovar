@@ -647,7 +647,7 @@
 <script type="text/template" id="propiedad_estadistica_detalle_template">
 <div class="panel panel-default">
   <div class="panel-heading clearfix">
-    <b class="pull-left mt5"><%= nombre %> <%= (!isEmpty(codigo)) ? "("+codigo+")" : "" %></b>
+    <b class="pull-left mt5"><%= nombre %> <%= (!isEmpty(codigo_completo)) ? "("+codigo_completo+")" : "" %></b>
     <button class="pull-right btn btn-default btn-small cerrar"><i class="fa fa-times"></i></button>
   </div>
   <div class="panel-body">  
