@@ -9,6 +9,23 @@ class Consultas extends REST_Controller {
     $this->load->model('Consulta_Model', 'modelo');
   }
 
+  // Esta funcion llena el campo id_usuario de la tabla clientes
+  // con el id_usuario de la ultima consulta
+  function pasar_usuarios($id_empresa) {
+    $sql = "SELECT id_contacto, id_usuario FROM crm_consultas ";
+    $sql.= "WHERE id_empresa = $id_empresa ";
+    $sql.= "GROUP BY id_contacto ";
+    $sql.= "ORDER BY fecha DESC ";
+    $q = $this->db->query($sql);
+    foreach($q->result() as $r) {
+      $sql = "UPDATE clientes SET id_usuario = $r->id_usuario ";
+      $sql.= "WHERE id_empresa = $id_empresa ";
+      $sql.= "AND id = $r->id_contacto ";
+      $this->db->query($sql);
+    }
+    echo "TERMINO";
+  }
+
   // Este proceso se ejecuta cada tantos minutos:
   // - Analiza el correo de "respuestas.varcreative@gmail.com"
   // - Procesa todos los correos no leidos y los transforma a consultas
