@@ -801,6 +801,7 @@ class Propiedad_Model {
 
     $p->nombre = $p->tipo_inmueble." en ".$p->tipo_operacion." en ".$p->localidad;
     $p->nombre = $this->encod($p->nombre);
+    $p->codigo = $p->id_empresa."-".$p->codigo;
     
     $p->subtitulo = $this->encod($p->subtitulo);
     if (isset($p->tipo_inmueble)) $p->tipo_inmueble = $this->encod($p->tipo_inmueble);

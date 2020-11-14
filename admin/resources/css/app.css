@@ -2211,6 +2211,7 @@ fieldset[disabled] .btn-black.active {
 .i-checks {
   padding-left: 20px;
   cursor: pointer;
+  color: #5a5a5a;
 }
 .i-checks input {
   opacity: 0;
