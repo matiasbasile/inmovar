@@ -451,6 +451,7 @@ class Consultas extends REST_Controller {
         $contacto->direccion = $direccion;
         $contacto->localidad = $ciudad;
         $contacto->id_localidad = $id_localidad;
+        $contacto->id_usuario = $id_usuario;
         $contacto->fecha_inicial = date("Y-m-d");
         $contacto->fecha_ult_operacion = date("Y-m-d H:i:s");
         // Por defecto le ponemos contreña 1 a los que consultan para no tener problemas al momento de comprar
@@ -474,6 +475,7 @@ class Consultas extends REST_Controller {
         if (!empty($nombre) && $nombre != $contacto->nombre) $updates[] = array("key"=>"nombre","value"=>$nombre);
         if (!empty($telefono) && $telefono != $contacto->telefono) $updates[] = array("key"=>"telefono","value"=>$telefono);
         if (!empty($prefijo) && $prefijo != $contacto->fax) $updates[] = array("key"=>"fax","value"=>$prefijo);
+        if (!empty($id_usuario) && $id_usuario != $contacto->id_usuario) $updates[] = array("key"=>"id_usuario","value"=>$id_usuario);
         if (!empty($direccion) && $direccion != $contacto->direccion) $updates[] = array("key"=>"direccion","value"=>$direccion);
         if (!empty($localidad) && $localidad != $contacto->localidad) $updates[] = array("key"=>"localidad","value"=>$localidad);
         if (!empty($celular) && $celular != $contacto->celular) $updates[] = array("key"=>"celular","value"=>$celular);
