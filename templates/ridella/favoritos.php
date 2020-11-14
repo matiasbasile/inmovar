@@ -1,8 +1,8 @@
 <?php 
 include("includes/init.php");
 $get_params["offset"] = 10;
-extract($propiedad_model->get_variables());
-$vc_page_active = $vc_link_tipo_operacion;
+$vc_listado = $propiedad_model->favoritos();
+$vc_page_active = "Favoritos";
 ?><!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
@@ -14,12 +14,12 @@ $vc_page_active = $vc_link_tipo_operacion;
 <div class="page-title">
   <div class="container">
     <div class="pull-left">
-      <h2><?php echo (!empty($vc_link_tipo_operacion)) ? $vc_link_tipo_operacion : "propiedades" ?></h2>
+      <h2>Propiedades Favoritas</h2>
     </div>
     <div class="breadcrumb">
       <ul>
         <li><a href="<?php echo mklink ("/") ?>">Inicio</a><span>|</span></li>
-        <li><?php echo (!empty($vc_link_tipo_operacion)) ? $vc_link_tipo_operacion : "propiedades" ?></li>
+        <li>Propiedades favoritas</li>
       </ul>
     </div>
   </div>

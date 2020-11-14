@@ -1390,7 +1390,7 @@ body .swiper-container-horizontal > .swiper-pagination-bullets .swiper-paginatio
 	margin: 0 0 0 5px;
 	position: relative;
 }
-.wishlist a:hover, .wishlist a:focus {
+.wishlist a:hover, .wishlist a:focus, .wishlist a.active {
 	background: #ca000c;
 }
 .tooltip-info {

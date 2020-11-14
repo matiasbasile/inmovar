@@ -151,18 +151,29 @@ if (!isset($_COOKIE[$propiedad->id])) {
                 <div class="pull-right">
                   <small>Cod: <span><?php echo $propiedad->codigo ?></span></small>
                   <div class="wishlist">
-                  <?php if ($propiedad->apto_banco == 1) {  ?>
-                  <a href="javascript:void(0);"><img src="images/icon.png">
-                    <div class="tooltip-info">
-                      Apta Crédito Bancario
-                    </div>
-                  </a>
-                  <?php } ?>
-                    <a href="javascript:void(0)"><img src="images/wish-list.png">
-                      <div class="tooltip-info">
-                        Guarda Tus Inmuebles Favoritos
-                      </div>
-                    </a>
+                    <?php if ($propiedad->apto_banco == 1) {  ?>
+                      <a href="javascript:void(0);"><img src="images/icon.png">
+                        <div class="tooltip-info">
+                          Apta Crédito Bancario
+                        </div>
+                      </a>
+                    <?php } ?>
+                    <?php if (estaEnFavoritos($propiedad->id)) { ?>
+                      <a class="active" href="/admin/favoritos/eliminar/?id=<?php echo $propiedad->id; ?>">
+                        <img src="images/wish-list.png">
+                        <div class="tooltip-info">
+                          Borrar de Favoritos
+                        </div>
+                      </a>
+                    <?php } else { ?>
+                      <a href="/admin/favoritos/agregar/?id=<?php echo $propiedad->id; ?>">
+                        <img src="images/wish-list.png">
+                        <div class="tooltip-info">
+                          Guarda Tus Inmuebles Favoritos
+                        </div>
+                      </a>
+                    <?php } ?>
+
                   </div>
                 </div>
               </div>
