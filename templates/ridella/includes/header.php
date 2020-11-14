@@ -19,7 +19,7 @@ $tipos_propiedades = $propiedad_model->get_tipos_propiedades();
         <ul>
           <?php if (!empty($empresa->facebook)) {  ?><li><a target="_BLANK" href="<?php echo $empresa->facebook ?>"><i class="fab fa-facebook-f"></i></a></li><?php } ?>
           <?php if (!empty($empresa->instagram)) {  ?><li><a target="_BLANK" href="<?php echo $empresa->instagram ?>"><i class="fab fa-instagram"></i></a></li><?php } ?>
-         <li><a href="javascript:void(0);"><i class="fa fa-heart"></i></a></li>
+         <li><a href="<?php echo mklink("favoritos/") ?>"><i class="fa fa-heart"></i></a></li>
         </ul>
       </div>
       <div class="btn-right">
