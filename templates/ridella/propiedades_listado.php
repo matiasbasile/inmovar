@@ -43,12 +43,12 @@ $vc_page_active = $vc_link_tipo_operacion;
             <div class="select-filter sort-by">
               <form action="<?php echo mklink ("propiedades/".(empty($vc_link_tipo_operacion)?"todas":$vc_link_tipo_operacion)."/".(empty($link_localidad)?"todas":$link_localidad)."/?".(empty($link_tipo_inmueble)?"":$link_tipo_inmueble)."/$vc_page/") ?>" method="GET" id="orden_form">
                 <label>Ordenar por:</label>
-                  <select onchange="enviar_orden()" name="orden">
-                    <option <?php echo ($vc_orden == -1 ) ? "selected" : "" ?> value="nuevo">Ver los más nuevos</option>
-                    <option <?php echo ($vc_orden == 2 ) ? "selected" : "" ?> value="barato">Precio menor a mayor</option>
-                    <option <?php echo ($vc_orden == 1 ) ? "selected" : "" ?> value="caro">Precio mayor a menor</option>
-                    <option <?php echo ($vc_orden == 4 ) ? "selected" : "" ?> value="destacados">Destacados</option>
-                  </select>
+                <select onchange="enviar_orden()" name="orden">
+                  <option <?php echo ($vc_orden == -1 ) ? "selected" : "" ?> value="nuevo">Ver los más nuevos</option>
+                  <option <?php echo ($vc_orden == 2 ) ? "selected" : "" ?> value="barato">Precio menor a mayor</option>
+                  <option <?php echo ($vc_orden == 1 ) ? "selected" : "" ?> value="caro">Precio mayor a menor</option>
+                  <option <?php echo ($vc_orden == 4 ) ? "selected" : "" ?> value="destacados">Destacados</option>
+                </select>
               </form>
             </div>
             <?php if (sizeof($vc_listado) > 0 ) { ?>
@@ -265,42 +265,43 @@ $vc_page_active = $vc_link_tipo_operacion;
              </div>
            </div>
        </div>
-       <div class="filter-block">
-        <ul class="nav nav-tabs">
-          <li class="active"><a data-toggle="tab" href="#grid"><i class="fas fa-th"></i></a></li>
-          <li><a data-toggle="tab" href="#list"><i class="fas fa-list"></i></a></li>
-        </ul>
-        <div class="select-filter sort-by">
-          <form action="<?php echo mklink ("propiedades/".(empty($link_localidad)?"todas":$link_localidad)."/".(empty($vc_link_tipo_operacion)?"todas":$vc_link_tipo_operacion)."/".(empty($link_tipo_inmueble)?"todas":$link_tipo_inmueble)."/") ?>" method="GET" id="orden_form">
-            <label>Ordenar por:</label>
+        <div class="filter-block">
+          <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#grid"><i class="fas fa-th"></i></a></li>
+            <li><a data-toggle="tab" href="#list"><i class="fas fa-list"></i></a></li>
+            <li><a href="<?php echo mklink ("mapa/".(empty($vc_link_tipo_operacion)?"todas":$vc_link_tipo_operacion)."/".(empty($link_localidad)?"todas":$link_localidad)."/?".(empty($link_tipo_inmueble)?"":$link_tipo_inmueble)) ?>"><i class="fas fa-map-marker"></i></a></li>
+          </ul>
+          <div class="select-filter sort-by">
+            <form action="<?php echo mklink ("propiedades/".(empty($vc_link_tipo_operacion)?"todas":$vc_link_tipo_operacion)."/".(empty($link_localidad)?"todas":$link_localidad)."/?".(empty($link_tipo_inmueble)?"":$link_tipo_inmueble)."/$vc_page/") ?>" method="GET" id="orden_form">
+              <label>Ordenar por:</label>
               <select onchange="enviar_orden()" name="orden">
                 <option <?php echo ($vc_orden == -1 ) ? "selected" : "" ?> value="nuevo">Ver los más nuevos</option>
                 <option <?php echo ($vc_orden == 2 ) ? "selected" : "" ?> value="barato">Precio menor a mayor</option>
                 <option <?php echo ($vc_orden == 1 ) ? "selected" : "" ?> value="caro">Precio mayor a menor</option>
-                <option <?php echo ($vc_orden == 3 ) ? "selected" : "" ?> value="destacados">Destacados</option>
+                <option <?php echo ($vc_orden == 4 ) ? "selected" : "" ?> value="destacados">Destacados</option>
               </select>
-          </form>
-        </div>
-         <?php if (sizeof($vc_listado) > 0 ) { ?>
+            </form>
+          </div>
+          <?php if (sizeof($vc_listado) > 0 ) { ?>
             <div class="paginastion-block">
-              <ul>
+              <ul >
                 <?php if ($vc_page > 0) { ?>
                   <li class="arrow">
-                    <a href="<?php echo mklink ($vc_link.($vc_page-1)."/").$vc_params ?>" aria-label="Previous">
-                      <i class="fas fa-angle-left"></i>
-                    </a>
+                      <a href="<?php echo mklink ($vc_link.($vc_page-1)."/").$vc_params ?>" aria-label="Previous">
+                          <i class="fas fa-angle-left"></i>
+                      </a>
                   </li>
                 <?php } ?>
-                <?php for($i=0;$i<$vc_total_paginas;$i++) { ?>
-                 <?php if (abs($vc_page-$i)<3) { ?>
-                   <?php if ($i == $vc_page) { ?>
-                    <li class="active"><a><?php echo $i+1 ?></a></li>
-                   <?php } else { ?>
-                   <li ><a href="<?php echo mklink ($vc_link.$i."/").$vc_params ?>"><?php echo $i+1 ?></a></li>
+                  <?php for($i=0;$i<$vc_total_paginas;$i++) { ?>
+                   <?php if (abs($vc_page-$i)<3) { ?>
+                     <?php if ($i == $vc_page) { ?>
+                      <li class="active"><a><?php echo $i+1 ?></a></li>
+                     <?php } else { ?>
+                     <li ><a href="<?php echo mklink ($vc_link.($i)."/").$vc_params ?>"><?php echo $i+1 ?></a></li>
+                     <?php } ?>
                    <?php } ?>
-                 <?php } ?>
-                <?php } ?>
-                <?php if ($vc_page < $vc_total_paginas-1) { ?>
+                  <?php } ?>
+                 <?php if ($vc_page < $vc_total_paginas-1) { ?>
                   <li class="arrow"><a href="<?php echo mklink ($vc_link.($vc_page+1)."/").$vc_params ?>"><i class="fas fa-angle-right"></i></a></li>
                 <?php } ?>
               </ul>

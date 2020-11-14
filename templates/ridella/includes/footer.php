@@ -1,6 +1,6 @@
 <footer>
   <div class="container">
-    <div class="logo"><a href="#0"><img src="/admin/<?php echo $empresa->logo_1 ?>"></a></div>
+    <div class="logo"><a href="<?php echo mklink("/") ?>"><img src="/admin/<?php echo $empresa->logo_1 ?>"></a></div>
     <div class="contact-info">
       <ul>
         <?php if (!empty($empresa->direccion)) { ?><li><span>Dirección:</span> <a href="javascript:void(0)"><?php echo ($empresa->direccion).". ".$empresa->ciudad ?></a></li><?php } ?>
@@ -19,7 +19,7 @@
         <span>Ridella Propiedades. <small>Todos Los Derechos Reservados</small></span>
       </div>
       <div class="pull-right">
-        <span>Diseño Web Inmobiliarias <a href="www.misticastudio.com">MisticaStudio.com</a> <img src="images/mistica-logo.png"></span>
+        <span>Diseño Web Inmobiliarias <a href="https://www.misticastudio.com">MisticaStudio.com</a> <img src="images/mistica-logo.png"></span>
       </div>
     </div>
   </div>
