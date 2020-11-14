@@ -272,9 +272,9 @@ $vc_page_active = $vc_link_tipo_operacion;
             <li><a href="<?php echo mklink ("mapa/".(empty($vc_link_tipo_operacion)?"todas":$vc_link_tipo_operacion)."/".(empty($link_localidad)?"todas":$link_localidad)."/?".(empty($link_tipo_inmueble)?"":$link_tipo_inmueble)) ?>"><i class="fas fa-map-marker"></i></a></li>
           </ul>
           <div class="select-filter sort-by">
-            <form action="<?php echo mklink ("propiedades/".(empty($vc_link_tipo_operacion)?"todas":$vc_link_tipo_operacion)."/".(empty($link_localidad)?"todas":$link_localidad)."/?".(empty($link_tipo_inmueble)?"":$link_tipo_inmueble)."/$vc_page/") ?>" method="GET" id="orden_form">
+            <form action="<?php echo mklink ("propiedades/".(empty($vc_link_tipo_operacion)?"todas":$vc_link_tipo_operacion)."/".(empty($link_localidad)?"todas":$link_localidad)."/?".(empty($link_tipo_inmueble)?"":$link_tipo_inmueble)."/$vc_page/") ?>" method="GET" id="orden_form_abajo">
               <label>Ordenar por:</label>
-              <select onchange="enviar_orden()" name="orden">
+              <select onchange="enviar_orden_abajo()" name="orden">
                 <option <?php echo ($vc_orden == -1 ) ? "selected" : "" ?> value="nuevo">Ver los más nuevos</option>
                 <option <?php echo ($vc_orden == 2 ) ? "selected" : "" ?> value="barato">Precio menor a mayor</option>
                 <option <?php echo ($vc_orden == 1 ) ? "selected" : "" ?> value="caro">Precio mayor a menor</option>
@@ -350,6 +350,9 @@ $(window).load(function(){
 <script type="text/javascript">
 function enviar_orden() { 
   $("#orden_form").submit();
+}
+function enviar_orden_abajo() { 
+  $("#orden_form_abajo").submit();
 }
 function enviar_buscador_propiedades() {
   var link = "<?php echo mklink("propiedades/")?>";
