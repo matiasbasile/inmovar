@@ -137,9 +137,7 @@ $vc_page_active = $vc_link_tipo_operacion;
                         </div>
                         <div class="price-block">
                           <div class="pull-left">
-                            <?php if ($l->precio_final > 1) { ?><span><?php echo $l->moneda." ".number_format($l->precio_final,0,",",".") ?> </span><?php } else { ?>
-                              <span>Consultar</span>
-                            <?php } ?>
+                            <span><?php echo $l->precio ?></span>
                           </div>
                           <div class="pull-right">
                             <div class="wishlist">
@@ -228,9 +226,7 @@ $vc_page_active = $vc_link_tipo_operacion;
                           </div>                       
                           <div class="price-block">
                             <div class="pull-left">
-                              <?php if ($l->precio_final > 1) { ?><span><?php echo $l->moneda." ".number_format($l->precio_final,0,",",".") ?> </span><?php } else { ?>
-                                <span>Consultar</span>
-                              <?php } ?>
+                              <span><?php echo $l->precio ?></span>
                             </div>
                             <div class="pull-right">
                               <div class="wishlist">

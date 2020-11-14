@@ -140,9 +140,7 @@ if (!isset($_COOKIE[$propiedad->id])) {
           <div class="property-name"><?php echo (!empty($propiedad->nombre))?$propiedad->nombre : "" ?></div>
           <div class="property-price">
             <big>
-              <?php if ($propiedad->precio_final > 1) { ?><span><?php echo $propiedad->moneda." ".number_format($propiedad->precio_final,0,",",".") ?> </span><?php } else { ?>
-                <span>Consultar</span>
-              <?php } ?>
+              <span><?php echo $propiedad->precio ?></span>
             </big>
           </div>
 
@@ -361,9 +359,7 @@ if (!isset($_COOKIE[$propiedad->id])) {
                           </div>
                           <div class="price-block">
                             <div class="pull-left">
-                            <?php if ($p->precio_final > 1) { ?><span><?php echo $p->moneda." ".number_format($p->precio_final,0,",",".") ?> </span><?php } else { ?>
-                              <span>Consultar</span>
-                            <?php } ?>
+                              <span><?php echo $p->precio ?></span>
                             </div>
                             <div class="pull-right">
                               <div class="wishlist">

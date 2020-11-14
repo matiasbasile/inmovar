@@ -149,7 +149,7 @@
                   </div>
                   <div class="property-description">
                     <h4><?php echo $p->nombre ?></h4>
-                    <h5><?php echo (!empty($p->precio_final)) ? $p->moneda." ".number_format($p->precio_final,0,",",".") : "CONSULTAR" ?></h5>
+                    <h5><?php echo $p->precio ?></h5>
                     <p><?php echo ($p->localidad).". ".$p->direccion_completa ?></p>
                   </div>
                 </div>
@@ -184,7 +184,7 @@
                   </div>
                   <div class="property-description">
                     <h4><?php echo $p->nombre ?></h4>
-                    <h5><?php echo (!empty($p->precio_final)) ? $p->moneda." ".number_format($p->precio_final,0,",",".") : "CONSULTAR" ?></h5>
+                    <h5><?php echo $p->precio ?></h5>
                     <p><?php echo ($p->localidad).". ".$p->direccion_completa ?></p>
                   </div>
                 </div>
@@ -219,7 +219,7 @@
                   </div>
                   <div class="property-description">
                     <h4><?php echo $p->nombre ?></h4>
-                    <h5><?php echo (!empty($p->precio_final)) ? $p->moneda." ".number_format($p->precio_final,0,",",".") : "CONSULTAR" ?></h5>
+                    <h5><?php echo $p->precio ?></h5>
                     <p><?php echo ($p->localidad).". ".$p->direccion_completa ?></p>
                   </div>
                 </div>
