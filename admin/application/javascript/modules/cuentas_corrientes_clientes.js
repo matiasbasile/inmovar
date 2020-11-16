@@ -93,7 +93,7 @@
             "dataType":"json",
             "type":"get",
             "success":function(r) {
-              var cliente = new app.models.Cliente(r);
+              var cliente = new app.models.Clientes(r);
               self.seleccionar_cliente(cliente);
             }
           });
@@ -153,7 +153,7 @@
               self.$("#cuentas_corrientes_clientes_codigo").select();
               return;
             }
-            var cliente = new app.models.Cliente(r);
+            var cliente = new app.models.Clientes(r);
             self.seleccionar_cliente(cliente);
           }
         });
@@ -162,7 +162,7 @@
     
     buscar_cliente_por_id: function(id) {
       var self = this;
-      var cliente = new app.models.Cliente({"id":id});
+      var cliente = new app.models.Clientes({"id":id});
       cliente.fetch({
         "success":function() {
           self.seleccionar_cliente(cliente);    
