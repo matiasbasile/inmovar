@@ -39,6 +39,7 @@ class App extends CI_Controller {
     $consultas_tipos = array();
     $templates = array();
     $puntos_venta = array();
+    $comprobantes = array();
     $total_notificaciones = 0;
 
     $q = $this->db->query("SELECT * FROM com_idiomas ORDER BY id ASC");
@@ -169,6 +170,9 @@ class App extends CI_Controller {
       $sql.= "WHERE PV.id_empresa = $empresa->id AND PV.activo = 1 ";
       $q = $this->db->query($sql);
       $puntos_venta = $q->result();
+
+      $q = $this->db->query("SELECT * FROM tipos_comprobante ORDER BY id ASC");
+      $comprobantes = $q->result();      
 
       if (file_exists("application/models/categoria_entrada_model.php")) {
         $this->load->Model("Categoria_Entrada_Model");
@@ -337,6 +341,7 @@ class App extends CI_Controller {
       "templates" => $templates,
       "puntos_venta" => $puntos_venta,
       "alicuotas_iva" => $alicuotas_iva,
+      "comprobantes" => $comprobantes,
       
       "tipos_estado" => $tipos_estado,
       "tipos_inmueble" => $tipos_inmueble,

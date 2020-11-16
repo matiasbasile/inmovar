@@ -293,6 +293,7 @@ var categorias_videos = <?php echo json_encode($categorias_videos); ?>;
 var asuntos = <?php echo json_encode($asuntos); ?>;
 var templates = <?php echo json_encode($templates); ?>;
 var alicuotas_iva = <?php echo json_encode($alicuotas_iva); ?>;
+var comprobantes = <?php echo json_encode($comprobantes); ?>;
 
 // Usuarios del sistema
 var usuarios = new app.collections.Usuarios(<?php echo json_encode($usuarios); ?>);
