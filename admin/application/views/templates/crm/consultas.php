@@ -44,7 +44,7 @@
         <% } %>
         <li id="consultas_vencidas_tab" class="<%= (window.consultas_vencidas == 1)?"active":"" %>">
           <a href="javascript:void(0)">
-            Vencidas
+            Vencidos
             <span id="consultas_vencidas_counter" class="counter">0</span>
           </a>
         </li>
