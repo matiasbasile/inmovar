@@ -284,11 +284,12 @@ a.list-group-item:focus {
 }
 .nav-tabs-2 {
   overflow-x: auto;
-  overflow-y: none;
+  overflow-y: hidden;
   white-space: nowrap;
 }
 .nav-tabs-2::-webkit-scrollbar {
-  display: none;
+  width: 0px;
+  background: transparent;
 }
 .nav-tabs-2 {
   -ms-overflow-style: none;
