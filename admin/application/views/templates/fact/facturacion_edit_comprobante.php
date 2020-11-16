@@ -84,7 +84,7 @@
                   <div class="input-group">
                     <input <%= (edicion)?"":"disabled" %> type="text" title="Fecha de emision de comprobante" id="facturacion_fecha" name="fecha" autocomplete="off" class="form-control action pr0">
                     <span class="input-group-btn">
-                      <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="glyphicon glyphicon-calendar"></i></button>
+                      <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="fa fa-calendar"></i></button>
                     </span>
                   </div>
                 </div>
@@ -93,7 +93,7 @@
                   <div class="input-group">
                     <input <%= (edicion)?"":"disabled" %> type="text" title="Fecha de vencimiento de pago" id="facturacion_fecha_vto" name="fecha_vto" autocomplete="off" class="form-control action pr0">
                     <span class="input-group-btn">
-                      <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="glyphicon glyphicon-calendar"></i></button>
+                      <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="fa fa-calendar"></i></button>
                     </span>
                   </div>
                 </div>
@@ -116,7 +116,7 @@
                 </span>
                 <input <%= (!edicion)?"disabled":"" %> type="text" id="facturacion_fecha_reparto" name="fecha_reparto" class="form-control action">
                 <span class="input-group-btn">
-                  <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="glyphicon glyphicon-calendar"></i></button>
+                  <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="fa fa-calendar"></i></button>
                 </span>
               </div>
             </div>
@@ -532,7 +532,7 @@
 
   <div class="oh tar pull-in">
     <% if (id != undefined && id != 0 && pendiente != 1) { %>
-      <button class="btn btn-primary imprimir btn-addon pull-left m-r"><i class="icon glyphicon glyphicon-print"></i>Imprimir</button>
+      <button class="btn btn-primary imprimir btn-addon pull-left m-r"><i class="icon fa fa-print"></i>Imprimir</button>
       <button class="btn btn-info enviar btn-addon pull-left"><i class="icon fa fa-send"></i>Enviar</button>
     <% } %>
     <button class="btn btn-success btn-lg aceptar btn-addon"><i class="icon fa fa-plus"></i>Guardar</button>
