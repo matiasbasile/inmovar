@@ -598,6 +598,14 @@ class Empresa_Model extends Abstract_Model {
     $q = $this->db->query($sql);
     return ($q->num_rows() > 0 ? $q->row() : FALSE);
   }
+
+  function get_empresa_by_hash($hash) {
+    $sql = "SELECT E.* ";
+    $sql.= "FROM empresas E ";
+    $sql.= "WHERE MD5(E.id) = '$hash' ";
+    $q = $this->db->query($sql);
+    return ($q->num_rows() > 0 ? $q->row() : FALSE);
+  }
   
   function get_empresa_by_dominio($dominio) {
     $dominio_con_www = (strpos("www.", $dominio) === FALSE) ? "www.".$dominio : $dominio;

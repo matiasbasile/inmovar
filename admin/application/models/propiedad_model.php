@@ -279,22 +279,6 @@ class Propiedad_Model extends Abstract_Model {
     }
   }
 
-  function save_tag($tag) {
-    $this->load->helper("file_helper");
-    // Primero controlamos si existe la etiqueta
-    $q = $this->db->query("SELECT * FROM inm_etiquetas WHERE nombre = '$tag->nombre' AND id_empresa = $tag->id_empresa LIMIT 0,1");
-    if ($q->num_rows()<=0) {
-      // Si no existe, la guardamos
-      $link = filename($tag->nombre,"-",0);
-      $this->db->query("INSERT INTO inm_etiquetas (nombre,link,id_empresa) VALUES ('$tag->nombre','$link',$tag->id_empresa)");
-      $id_etiqueta = $this->db->insert_id();
-    } else {
-      $row = $q->row();
-      $id_etiqueta = $row->id;
-    }
-    $this->db->query("INSERT INTO inm_propiedades_etiquetas (id_empresa,id_propiedad,id_etiqueta) VALUES ($tag->id_empresa,$tag->id_propiedad,$id_etiqueta) ");
-  }
-
   function get_propiedad_meli($id,$config=array()) {
     $id_empresa = isset($config["id_empresa"]) ? $config["id_empresa"] : parent::get_empresa();
     $sql = "SELECT * FROM inm_propiedades_meli ";
@@ -407,8 +391,8 @@ class Propiedad_Model extends Abstract_Model {
   }
     
   // Controlamos si existe el codigo
-  function existe_codigo($codigo,$id = 0) {
-    $id_empresa = parent::get_empresa();
+  function existe_codigo($codigo,$id = 0,$id_empresa = 0) {
+    $id_empresa = (empty($id_empresa)) ? parent::get_empresa() : $id_empresa;
     if (empty($codigo)) return FALSE;
     $sql = "SELECT * FROM inm_propiedades WHERE codigo = '$codigo' AND id_empresa = '$id_empresa' ";
     if ($id != 0) $sql.= "AND id != $id ";
@@ -685,16 +669,251 @@ class Propiedad_Model extends Abstract_Model {
     );
   }
 
+  function save($data) {
+
+    $this->load->helper("file_helper");
+    $this->load->helper("fecha_helper");    
+
+    // Guardamos lo que no se persiste
+    $id_empresa = $data->id_empresa;
+    $images = (isset($data->images)) ? $data->images : array();
+    $images_meli = (isset($data->images_meli)) ? $data->images_meli : array();
+    $planos = (isset($data->planos)) ? $data->planos : array();
+    $departamentos = (isset($data->departamentos)) ? $data->departamentos : array();
+    $productos_relacionados = (isset($data->relacionados)) ? $data->relacionados : array();
+    $temporada = (isset($data->temporada)) ? $data->temporada : array();
+    $impuestos = (isset($data->impuestos)) ? $data->impuestos : array();
+    $id_meli = isset($data->id_meli) ? $data->id_meli : "";
+    $permalink = isset($data->permalink) ? $data->permalink : "";
+    $fecha_publicacion = isset($data->fecha_publicacion) ? $data->fecha_publicacion : "";
+    $activo_meli = isset($data->activo_meli) ? $data->activo_meli : 0;
+    $titulo_meli = isset($data->titulo_meli) ? $data->titulo_meli : "";
+    $texto_meli = isset($data->texto_meli) ? $data->texto_meli : "";
+    $categoria_meli = isset($data->categoria_meli) ? $data->categoria_meli : "";
+    $precio_meli = isset($data->precio_final) ? $data->precio_final : 0;
+    $list_type_id = isset($data->list_type_id) ? $data->list_type_id : "";
+    $ciudad_meli = isset($data->ciudad_meli) ? $data->ciudad_meli : "";
+    $status = isset($data->status) ? $data->status : "";    
+
+    if (isset($data->valido_hasta)) $data->valido_hasta = fecha_mysql($data->valido_hasta);
+    $data->fecha_ingreso = date("Y-m-d");
+    $data->fecha_publicacion = (!empty($data->fecha_publicacion)) ? fecha_mysql($data->fecha_publicacion) : date("Y-m-d");
+    $data->codigo = isset($data->codigo) ? $data->codigo : "";
+    $data->codigo = trim($data->codigo);
+
+    // La primera foto del array es la imagen principal
+    if (sizeof($images)>0) $data->path = $images[0];
+
+    // Si no tiene propietario asignado
+    if (!isset($data->id_propietario) || is_null($data->id_propietario)) $data->id_propietario = 0;
+
+    $tipo_inmueble = "";
+    $q = $this->db->query("SELECT * FROM inm_tipos_inmueble WHERE id = $data->id_tipo_inmueble");
+    if ($q->num_rows() > 0) {
+      $ti = $q->row();  
+      $tipo_inmueble = $ti->nombre;
+    }
+    
+    $tipo_operacion = "";
+    $q = $this->db->query("SELECT * FROM inm_tipos_operacion WHERE id = $data->id_tipo_operacion");
+    if ($q->num_rows() > 0) {
+      $ti = $q->row();  
+      $tipo_operacion = $ti->nombre;
+    }
+
+    $localidad = "";
+    $q = $this->db->query("SELECT * FROM com_localidades WHERE id = $data->id_localidad");
+    if ($q->num_rows() > 0) {
+      $ti = $q->row();  
+      $localidad = $ti->nombre;
+    }
+
+    $data->nombre = $tipo_inmueble." en ".$tipo_operacion.((!empty($localidad)) ? " en ".$localidad : "");
+    
+    try {
+
+      // Evaluamos si es un insert o un update
+      $id = isset($data->id) ? $data->id : null;
+      if ( (is_null($id)) || ($id == 0)) {
+        // Insertamos los datos, removiendo el id para que no haya problemas
+        if (isset($data->id)) unset($data->id);
+        $id = $this->insert($data);
+      } else {
+        // Si tiene algun valor, debemos actualizarlo
+        $this->update($id,$data);
+      }
+
+      // POST SAVE
+      // =================
+
+      // CONTROLAMOS SI ESTA PUBLICADO EN MERCADOLIBRE
+      $data->categoria_meli = $categoria_meli;
+      $data->id_meli = $id_meli;
+      $data->permalink = $permalink;
+      $data->fecha_publicacion = $fecha_publicacion;
+      $data->activo_meli = $activo_meli;
+      $data->titulo_meli = $titulo_meli;
+      $data->texto_meli = $texto_meli;
+      $data->categoria_meli = $categoria_meli;
+      $data->precio_meli = $precio_meli;
+      $data->list_type_id = $list_type_id;
+      $data->ciudad_meli = $ciudad_meli;
+      $data->status = $status;
+      $publicado = $this->update_meli($data);
+      if ($publicado) $this->update_publicacion_mercadolibre($id);
+      
+      // Propiedades relacionadas
+      $this->db->query("DELETE FROM inm_propiedades_relacionados WHERE id_propiedad = $id AND id_empresa = $id_empresa");
+      $i=1;
+      foreach($productos_relacionados as $p) {
+        $this->db->insert("inm_propiedades_relacionados",array(
+          "id_propiedad"=>$id,
+          "id_relacion"=>$p->id,
+          "id_rubro"=>0,
+          "destacado"=>$p->destacado,
+          "orden"=>$i,
+        ));
+        $i++;
+      }
+
+      // Actualizamos los departamentos
+      $this->db->query("DELETE FROM inm_departamentos WHERE id_propiedad = $id AND id_empresa = $id_empresa");
+      $this->db->query("DELETE FROM inm_departamentos_images WHERE id_propiedad = $id AND id_empresa = $id_empresa");
+      $i=1;
+      foreach($departamentos as $p) {
+        $this->db->insert("inm_departamentos",array(
+          "id_propiedad"=>$id,
+          "nombre"=>$p->nombre,
+          "texto"=>$p->texto,
+          "piso"=>$p->piso,
+          "id_empresa"=>$p->id_empresa,
+          "disponible"=>$p->disponible,
+          "orden"=>$p->orden,
+        ));
+        $id_departamento = $this->db->insert_id();
+        // Insertamos las fotos del departamento
+        $j=0;
+        foreach($p->images_dptos as $f) {
+          $this->db->insert("inm_departamentos_images",array(
+            "id_propiedad"=>$id,
+            "id_departamento"=>$id_departamento,
+            "path"=>$f,
+            "id_empresa"=>$p->id_empresa,
+            "orden"=>$j,
+          ));
+          $j++;
+        }
+        $i++;
+      }
+          
+      // Guardamos las imagenes
+      $this->db->query("DELETE FROM inm_propiedades_images WHERE plano = 0 AND id_propiedad = $id AND id_empresa = $id_empresa");
+      $k=0;
+      foreach($images as $im) {
+        $this->db->query("INSERT INTO inm_propiedades_images (plano,id_empresa,id_propiedad,path,orden) VALUES(0,$id_empresa,$id,'$im',$k)");
+        $k++;
+      }
+      $this->db->query("DELETE FROM inm_propiedades_images_meli WHERE id_propiedad = $id AND id_empresa = $id_empresa");
+      $k=0;
+      foreach($images_meli as $im) {
+        $sql = "INSERT INTO inm_propiedades_images_meli (id_empresa,id_propiedad,path,orden";
+        $sql.= ") VALUES( ";
+        $sql.= "$id_empresa,$id,'$im',$k)";
+        $this->db->query($sql);
+        $k++;
+      }  
+      
+      // Guardamos los planos
+      $this->db->query("DELETE FROM inm_propiedades_images WHERE plano = 1 AND id_propiedad = $id AND id_empresa = $id_empresa");
+      $k=0;
+      foreach($planos as $im) {
+        $this->db->query("INSERT INTO inm_propiedades_images (plano,id_empresa,id_propiedad,path,orden) VALUES(1,$id_empresa,$id,'$im',$k)");
+        $k++;
+      }
+
+      // Guardamos los precios
+      $this->db->query("DELETE FROM inm_propiedades_precios WHERE id_propiedad = $id AND id_empresa = $data->id_empresa");
+      foreach($temporada as $im) {
+        $desde = fecha_mysql($im->fecha_desde);
+        $hasta = fecha_mysql($im->fecha_hasta);
+        $this->db->query("INSERT INTO inm_propiedades_precios (id_empresa,id_propiedad,promocion,fecha_desde,fecha_hasta,precio_finde,precio_semana,precio_mes,nombre,minimo_dias_reserva,precio) VALUES($data->id_empresa,$id,0,'$desde','$hasta',$im->precio_finde,$im->precio_semana,$im->precio_mes,'$im->nombre',$im->minimo_dias_reserva,$im->precio)");
+      }
+
+      // Guardamos los impuestos
+      $this->db->query("DELETE FROM inm_propiedades_impuestos WHERE id_propiedad = $id AND id_empresa = $data->id_empresa");
+      $k=0;
+      foreach($impuestos as $im) {
+        $this->db->query("INSERT INTO inm_propiedades_impuestos (id_empresa,id_propiedad,nombre,tipo,monto,orden) VALUES($data->id_empresa,$id,'$im->nombre','$im->tipo','$im->monto',$k)");
+        $k++;
+      }
+
+      // Si se inserta una nueva propiedad, buscamos si choca con alguna otra en la red
+      $this->buscar_similitudes(array(
+        "id_empresa"=>$data->id_empresa,
+        "id_tipo_inmueble"=>$data->id_tipo_inmueble,
+        "calle"=>$data->calle,
+        "altura"=>$data->altura,
+        "piso"=>$data->piso,
+        "numero"=>$data->numero,
+        "id_localidad"=>$data->id_localidad,
+        "id_propiedad"=>$id,
+      ));    
+
+      return $id;
+
+    } catch(Exception $e) {
+      // Si capturamos alguna excepcion, la volvemos a mandar
+      throw $e;
+    }
+  }
+
+  // ACTUALIZAR UNA PROPIEDAD
+  function update($id,$data) {
+
+    // Controlamos que no se este editando por un codigo de otra propiedad
+    if (!empty($data->codigo)) {
+      if ($this->existe_codigo($data->codigo,$id,$data->id_empresa)) {
+        throw new Exception("El codigo '$data->codigo' ya existe en otra propiedad.");
+      }      
+    }
+    return parent::update($id,$data);
+  }
+
+  // INSERTAR UNA PROPIEDAD
   function insert($data) {
+
+    // Controlamos el plan elegido, si se llego al maximo
+    $control_plan = $this->controlar_plan($data->id_empresa);
+    if ($control_plan !== TRUE) {
+      throw new Exception($controlar_plan["mensaje"]);
+    }    
+
+    // Controlamos si el codigo ya existe con otra propiedad
+    if (!empty($data->codigo)) {
+      if ($this->existe_codigo($data->codigo,0,$data->id_empresa)) {
+        throw new Exception("El codigo '$data->codigo' ya existe.");
+      }      
+    }
+
     // Si no tiene codigo, le creamos uno
     if (!isset($data->codigo) || empty($data->codigo)) {
       $data->codigo = $this->next(array(
         "id_empresa"=>$data->id_empresa,
       ));
     }
-    return parent::insert($data);
+      
+    // Insertamos la propiedad
+    $id = parent::insert($data);
+
+    // Actualizamos el link
+    $data->hash = md5($id);
+    $data->link = "propiedad/".filename($data->nombre,"-",0)."-".$id."/";
+    $this->db->query("UPDATE inm_propiedades SET link = '$data->link', hash='$data->hash' WHERE id = $id AND id_empresa = $data->id_empresa");
+
+    return $id;
   }
   
+  // Obtenemos el proximo codigo automatico
   function next($config = array()) {
     $id_empresa = (isset($config["id_empresa"]) ? $config["id_empresa"] : parent::get_empresa());
     $q = $this->db->query("SELECT IF(MAX(codigo) IS NULL,0,MAX(codigo)) AS codigo FROM inm_propiedades WHERE id_empresa = $id_empresa");
@@ -750,16 +969,6 @@ class Propiedad_Model extends Abstract_Model {
       $obj->path = $r->path;
       $obj->destacado = $r->destacado;
       $propiedad->relacionados[] = $obj;
-    }
-
-    // Obtenemos las etiquetas
-    $sql = "SELECT E.nombre ";
-    $sql.= " FROM inm_propiedades_etiquetas EE INNER JOIN inm_etiquetas E ON (EE.id_etiqueta = E.id AND EE.id_empresa = E.id_empresa) ";
-    $sql.= "WHERE EE.id_propiedad = $id AND EE.id_empresa = $id_empresa ORDER BY EE.orden ASC";
-    $q = $this->db->query($sql);
-    $propiedad->etiquetas = array();
-    foreach($q->result() as $r) {
-      $propiedad->etiquetas[] = (html_entity_decode($r->nombre));
     }
 
     // Obtenemos los departamentos

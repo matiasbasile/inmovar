@@ -10,6 +10,15 @@ class Usuario_Model extends Abstract_Model {
 		parent::__construct("com_usuarios","id");
 	}
 
+  function get_usuario_principal($id_empresa) {
+    $sql = "SELECT U.* ";
+    $sql.= "FROM com_usuarios U INNER JOIN com_perfiles P ON (U.id_empresa = P.id_empresa AND U.id_perfiles = P.id) ";
+    $sql.= "WHERE U.id_empresa = $id_empresa AND P.principal = 1 ";
+    $sql.= "ORDER BY U.id ASC ";
+    $q = $this->db->query($sql);
+    return ($q->num_rows() > 0 ? $q->row() : FALSE);    
+  }
+
   function delete($id) {
     $id_empresa = parent::get_empresa();
     if ($this->db->table_exists('toque_categorias_usuarios')) {

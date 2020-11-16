@@ -5,6 +5,9 @@ require APPPATH.'libraries/REST_Controller.php';
 class Propiedades extends REST_Controller {
 
   function __construct() {
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
     parent::__construct();
     $this->load->model('Propiedad_Model', 'modelo');
   }
@@ -206,28 +209,6 @@ class Propiedades extends REST_Controller {
     }
   }
 
-  function actualizar_parametros() {
-    $sql = "SELECT * FROM com_localidades ";
-    $q = $this->db->query($sql);
-    foreach($q->result() as $r) {
-      $nombre = ucwords(strtolower($r->nombre));
-      $this->db->query("UPDATE com_localidades SET nombre = \"$nombre\" WHERE id = $r->id ");
-    }
-    $sql = "SELECT * FROM com_departamentos ";
-    $q = $this->db->query($sql);
-    foreach($q->result() as $r) {
-      $nombre = ucwords(strtolower($r->nombre));
-      $this->db->query("UPDATE com_departamentos SET nombre = \"$nombre\" WHERE id = $r->id ");
-    }
-    $sql = "SELECT * FROM com_provincias ";
-    $q = $this->db->query($sql);
-    foreach($q->result() as $r) {
-      $nombre = ucwords(strtolower($r->nombre));
-      $this->db->query("UPDATE com_provincias SET nombre = \"$nombre\" WHERE id = $r->id ");
-    }
-    echo "TERMINO";
-  }
-
   function obtenerCiudad($lat,$lon) {
     return 'https://nominatim.openstreetmap.org/reverse?format=json&lat='.$lat.'&lon='.$lon;
     /*
@@ -242,34 +223,6 @@ class Propiedades extends REST_Controller {
     return $archivo->address->city;
     */
   }
-
-  function revisar_localidades() {
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
-    $propiedades = $this->modelo->buscar(array(
-      "id_empresa"=>108, // YACOUB
-      "id_tipo_estado"=>1, // Estado Activo
-      "activo"=>1,
-      "filtro_inmobusquedas"=>3, // Todas (activas y pendientes)
-      "buscar_imagenes"=>1,
-      "offset"=>999999,
-    ));
-    echo "<table border=1>";
-    foreach($propiedades["results"] as $row) {
-      $ciudad = $this->obtenerCiudad($row->latitud,$row->longitud);
-      echo "<tr>";
-      echo "<td>".$row->codigo."</td>";
-      echo "<td>".$row->nombre."</td>";
-      echo "<td>".$row->latitud."</td>";
-      echo "<td>".$row->longitud."</td>";
-      echo "<td>CIUDAD CARGADA: ".$row->localidad."</td>";
-      echo "<td>".$ciudad."</td>";
-      echo "</tr>";
-    }
-    echo "</table>";
-  }
-
 
   function compartir_red_multiple() {
     $id_empresa = parent::get_empresa();
@@ -520,7 +473,6 @@ class Propiedades extends REST_Controller {
     $temporada = (isset($array->temporada)) ? $array->temporada : array();
     $impuestos = (isset($array->impuestos)) ? $array->impuestos : array();
 
-    $this->remove_properties($propiedad);
     $propiedad->fecha_publicacion = (!empty($propiedad->fecha_publicacion)) ? fecha_mysql($propiedad->fecha_publicacion) : date("Y-m-d");
     
     $propiedad->id = 0;
@@ -617,416 +569,91 @@ class Propiedades extends REST_Controller {
       "id"=>$insert_id
     ));
   }
-    
-  private function remove_properties($array) {
-    unset($array->tipo_operacion);
-    unset($array->tipo_estado);
-    unset($array->tipo_inmueble);
-    unset($array->localidad);
-    unset($array->provincia);
-    unset($array->propietario);
-    unset($array->images);        
-    unset($array->images_meli);
-    unset($array->planos);  
-    unset($array->departamentos);  
-    unset($array->relacionados);
-    unset($array->usuario);
-    unset($array->usuario_email);
-    unset($array->etiquetas);
-    //unset($array->rubros_relacionados);        
-  }
+
+  // INSERT O UPDATE USANDO LA API
+  function upsert() {
+    try {
+      $array = $this->parse_put();      
+
+      // Campos obligatorios
+      $obligatorios = array("api_key","id_tipo_operacion","codigo","id_tipo_inmueble","id_tipo_estado","id_pais","id_provincia","id_departamento","id_localidad");
+      foreach($obligatorios as $campo) {
+        if (!isset($array->{$campo})) {
+          throw new Exception("$campo no encontrado.");
+        }
+      }
+
+      // El API KEY es un hash MD5 del id_empresa      
+      $array->id_empresa = md5($array->api_key);
+
+      // Controlamos que la empresa existe
+      $this->load->model("Empresa_Model");
+      $empresa = $this->Empresa_Model->get_empresa_by_hash($array->api_key);
+      if (empty($empresa)) {
+        throw new Exception("API_KEY invalida.");
+      }
+
+      // Si no tiene cargado un usuario, ponemos el por defecto de la cuenta
+      if (!isset($array->id_usuario)) {
+        $this->load->model("Usuario_Model");
+        $usuario = $this->Usuario_Model->get_usuario_principal($empresa->id);
+        if (empty($usuario)) {
+          throw new Exception("Usuario no valido.");
+        }
+        $array->id_usuario = $usuario->id;
+      }
+
+      // En el doc lo llamamos distinto
+      if (isset($array->departamento)) $array->numero = $array->departamento;
+      if (isset($array->precio)) $array->precio_final = $array->precio;
+      if (isset($array->imagenes)) $array->images = $array->imagenes;
+
+      // Valores por defecto
+      if (!isset($array->publica_precio)) $array->publica_precio = 1;
+      if (!isset($array->publica_altura)) $array->publica_altura = 1;
+      if (!isset($array->activo)) $array->activo = 1;
+      if (!isset($array->moneda)) $array->moneda = 'U$S';
+  
+      $id = $this->modelo->save($array);
+
+      echo json_encode(array(
+        "id"=>$id,
+        "error"=>0,
+      ));
+      
+    } catch(Exception $e) {
+      $this->send_error($e->getMessage());
+    }
+  }  
     
   function update($id) {
-      
-    if ($id == 0) { $this->insert(); return; }
-    $this->load->helper("file_helper");
-    $this->load->helper("fecha_helper");
-    $array = $this->parse_put();
-    
-    // Ponemos excepciones para el control de session
-    if (isset($array->id_empresa) && $array->id_empresa == 263) {
-      $id_empresa = 263;
-    } else {
-      $id_empresa = parent::get_empresa();  
-    }
-    $array->id_empresa = $id_empresa;
-    
-    // Eliminamos todo lo que no se persiste
-    $images = (isset($array->images)) ? $array->images : array();
-    $images_meli = (isset($array->images_meli)) ? $array->images_meli : array();
-    $planos = (isset($array->planos)) ? $array->planos : array();
-    $departamentos = (isset($array->departamentos)) ? $array->departamentos : array();
-    $productos_relacionados = (isset($array->relacionados)) ? $array->relacionados : array();
-    $etiquetas = (isset($array->etiquetas)) ? $array->etiquetas : array();
-    $array->valido_hasta = fecha_mysql($array->valido_hasta);
-    $temporada = (isset($array->temporada)) ? $array->temporada : array();
-    $impuestos = (isset($array->impuestos)) ? $array->impuestos : array();
-
-    $id_meli = isset($array->id_meli) ? $array->id_meli : "";
-    $permalink = isset($array->permalink) ? $array->permalink : "";
-    $fecha_publicacion = isset($array->fecha_publicacion) ? $array->fecha_publicacion : "";
-    $activo_meli = isset($array->activo_meli) ? $array->activo_meli : 0;
-    $titulo_meli = isset($array->titulo_meli) ? $array->titulo_meli : "";
-    $texto_meli = isset($array->texto_meli) ? $array->texto_meli : "";
-    $categoria_meli = isset($array->categoria_meli) ? $array->categoria_meli : "";
-    $precio_meli = isset($array->precio_final) ? $array->precio_final : 0;
-    $list_type_id = isset($array->list_type_id) ? $array->list_type_id : "";
-    $ciudad_meli = isset($array->ciudad_meli) ? $array->ciudad_meli : "";
-    $status = isset($array->status) ? $array->status : "";    
-
-    $this->remove_properties($array);
-    $array->fecha_publicacion = (!empty($array->fecha_publicacion)) ? fecha_mysql($array->fecha_publicacion) : date("Y-m-d");
-    
-    $array->codigo = trim($array->codigo);
-    if (!empty($array->codigo)) {
-      if ($this->modelo->existe_codigo($array->codigo,$id)) {
-        $salida = array(
-          "error"=>1,
-          "mensaje"=>"El codigo '$array->codigo' ya existe."
-        );
-        echo json_encode($salida);
-        return;
-      }      
-    }
-
-    // La primera foto del array es la imagen principal
-    if (sizeof($images)>0) $array->path = $images[0];
-
-    if (is_null($array->id_propietario)) $array->id_propietario = 0;
-        
-    // Actualizamos los datos del propiedad
-    $this->modelo->save($array);
-
-    // Actualizamos el link
-    $array->hash = md5($id);
-    $array->link = "propiedad/".filename($array->nombre,"-",0)."-".$id."/";
-    $this->db->query("UPDATE inm_propiedades SET link = '$array->link', hash='$array->hash' WHERE id = $id AND id_empresa = $id_empresa");
-
-    // CONTROLAMOS SI ESTA PUBLICADO EN MERCADOLIBRE
-    $array->categoria_meli = $categoria_meli;
-    $array->id_meli = $id_meli;
-    $array->permalink = $permalink;
-    $array->fecha_publicacion = $fecha_publicacion;
-    $array->activo_meli = $activo_meli;
-    $array->titulo_meli = $titulo_meli;
-    $array->texto_meli = $texto_meli;
-    $array->categoria_meli = $categoria_meli;
-    $array->precio_meli = $precio_meli;
-    $array->list_type_id = $list_type_id;
-    $array->ciudad_meli = $ciudad_meli;
-    $array->status = $status;
-    $publicado = $this->modelo->update_meli($array);
-    if ($publicado) $this->modelo->update_publicacion_mercadolibre($id);
-    
-    // Eliminamos las relaciones entre propiedades
-    $this->db->query("DELETE FROM inm_propiedades_relacionados WHERE id_propiedad = $id ");
-    
-    // Actualizamos los productos relacionados
-    $i=1;
-    foreach($productos_relacionados as $p) {
-      $this->db->insert("inm_propiedades_relacionados",array(
-        "id_propiedad"=>$id,
-        "id_relacion"=>$p->id,
-        "id_rubro"=>0,
-        "destacado"=>$p->destacado,
-        "orden"=>$i,
+    try {
+      $array = $this->parse_put();
+      $array->id = $id;  
+      $array->id_empresa = parent::get_empresa();
+      $id = $this->modelo->save($array);
+      echo json_encode(array(
+        "id"=>$id,
+        "error"=>0,
       ));
-      $i++;
+    } catch(Exception $e) {
+      $this->send_error($e->getMessage());
     }
-
-    // Guardamos las relaciones con las etiquetas (Y se crean en caso de que no exitan)
-    $this->db->query("DELETE FROM inm_propiedades_etiquetas WHERE id_propiedad = $id AND id_empresa = $id_empresa");
-    foreach($etiquetas as $e) {
-      $tag = new stdClass();
-      $tag->id_empresa = $id_empresa;
-      $tag->id_propiedad = $id;
-      $tag->nombre = $e;
-      $this->modelo->save_tag($tag);
-    }    
-
-    // Actualizamos los departamentos
-    $this->db->query("DELETE FROM inm_departamentos WHERE id_propiedad = $id AND id_empresa = $id_empresa");
-    $this->db->query("DELETE FROM inm_departamentos_images WHERE id_propiedad = $id AND id_empresa = $id_empresa");
-    $i=1;
-    foreach($departamentos as $p) {
-      $this->db->insert("inm_departamentos",array(
-        "id_propiedad"=>$id,
-        "nombre"=>$p->nombre,
-        "texto"=>$p->texto,
-        "piso"=>$p->piso,
-        "id_empresa"=>$p->id_empresa,
-        "disponible"=>$p->disponible,
-        "orden"=>$p->orden,
-      ));
-      $id_departamento = $this->db->insert_id();
-      // Insertamos las fotos del departamento
-      $j=0;
-      foreach($p->images_dptos as $f) {
-        $this->db->insert("inm_departamentos_images",array(
-          "id_propiedad"=>$id,
-          "id_departamento"=>$id_departamento,
-          "path"=>$f,
-          "id_empresa"=>$p->id_empresa,
-          "orden"=>$j,
-        ));
-        $j++;
-      }
-      $i++;
-    }
-        
-    // Guardamos las imagenes
-    $this->db->query("DELETE FROM inm_propiedades_images WHERE plano = 0 AND id_propiedad = $id AND id_empresa = $id_empresa");
-    $k=0;
-    foreach($images as $im) {
-      $this->db->query("INSERT INTO inm_propiedades_images (plano,id_empresa,id_propiedad,path,orden) VALUES(0,$id_empresa,$id,'$im',$k)");
-      $k++;
-    }
-    $this->db->query("DELETE FROM inm_propiedades_images_meli WHERE id_propiedad = $id AND id_empresa = $id_empresa");
-    $k=0;
-    foreach($images_meli as $im) {
-      $sql = "INSERT INTO inm_propiedades_images_meli (id_empresa,id_propiedad,path,orden";
-      $sql.= ") VALUES( ";
-      $sql.= "$id_empresa,$id,'$im',$k)";
-      $this->db->query($sql);
-      $k++;
-    }  
-    
-    // Guardamos los planos
-    $this->db->query("DELETE FROM inm_propiedades_images WHERE plano = 1 AND id_propiedad = $id AND id_empresa = $id_empresa");
-    $k=0;
-    foreach($planos as $im) {
-      $this->db->query("INSERT INTO inm_propiedades_images (plano,id_empresa,id_propiedad,path,orden) VALUES(1,$id_empresa,$id,'$im',$k)");
-      $k++;
-    }
-
-    // Guardamos los precios
-    $this->db->query("DELETE FROM inm_propiedades_precios WHERE id_propiedad = $id AND id_empresa = $array->id_empresa");
-    foreach($temporada as $im) {
-      $desde = fecha_mysql($im->fecha_desde);
-      $hasta = fecha_mysql($im->fecha_hasta);
-      $this->db->query("INSERT INTO inm_propiedades_precios (id_empresa,id_propiedad,promocion,fecha_desde,fecha_hasta,precio_finde,precio_semana,precio_mes,nombre,minimo_dias_reserva,precio) VALUES($array->id_empresa,$id,0,'$desde','$hasta',$im->precio_finde,$im->precio_semana,$im->precio_mes,'$im->nombre',$im->minimo_dias_reserva,$im->precio)");
-    }
-
-    // Guardamos los impuestos
-    $this->db->query("DELETE FROM inm_propiedades_impuestos WHERE id_propiedad = $id AND id_empresa = $array->id_empresa");
-    $k=0;
-    foreach($impuestos as $im) {
-      $this->db->query("INSERT INTO inm_propiedades_impuestos (id_empresa,id_propiedad,nombre,tipo,monto,orden) VALUES($array->id_empresa,$id,'$im->nombre','$im->tipo','$im->monto',$k)");
-      $k++;
-    }
-
-    // Si se inserta una nueva propiedad, buscamos si choca con alguna otra en la red
-    $this->modelo->buscar_similitudes(array(
-      "id_empresa"=>$array->id_empresa,
-      "id_tipo_inmueble"=>$array->id_tipo_inmueble,
-      "calle"=>$array->calle,
-      "altura"=>$array->altura,
-      "piso"=>$array->piso,
-      "numero"=>$array->numero,
-      "id_localidad"=>$array->id_localidad,
-      "id_propiedad"=>$id,
-    ));    
-
-    $salida = array(
-      "id"=>$id,
-      "error"=>0,
-    );
-    echo json_encode($salida);        
   }
     
-    
+  // INSERT
   function insert() {
-      
-    $this->load->helper("file_helper");
-    $this->load->helper("fecha_helper");
-  	$array = $this->parse_put();
-    
-    // Ponemos excepciones para el control de session
-    if (isset($array->id_empresa) && $array->id_empresa == 263) {
-      $id_empresa = 263;
-    } else {
-      $id_empresa = parent::get_empresa();  
-    }
-    $array->id_empresa = $id_empresa;
-
-    $control_plan = $this->modelo->controlar_plan($id_empresa);
-    if ($control_plan !== TRUE) {
-      echo json_encode($control_plan);
-      exit();
-    }
-    
-    // Eliminamos todo lo que no se persiste
-    $images = (isset($array->images)) ? $array->images : array();
-    $images_meli = (isset($array->images_meli)) ? $array->images_meli : array();
-    $planos = (isset($array->planos)) ? $array->planos : array();
-    $departamentos = (isset($array->departamentos)) ? $array->departamentos : array();
-    $productos_relacionados = (isset($array->relacionados)) ? $array->relacionados : array();
-    $etiquetas = (isset($array->etiquetas)) ? $array->etiquetas : array();
-    $temporada = (isset($array->temporada)) ? $array->temporada : array();
-    $impuestos = (isset($array->impuestos)) ? $array->impuestos : array();
-
-    if ($id_empresa == 263) {
-      // Utilizamos la fecha de ingreso como fecha de vencimiento
-      $this->load->model("Web_Configuracion_Model");
-      $web_conf = $this->Web_Configuracion_Model->get($id_empresa);
-      $cant_dias = (empty($web_conf->texto_quienes_somos)) ? 30 : ((int)$web_conf->texto_quienes_somos);
-      $array->valido_hasta = date("Y-m-d",strtotime("+".$cant_dias." days"));
-    } else {
-      $array->valido_hasta = fecha_mysql($array->valido_hasta);
-    }
-    
-    $this->remove_properties($array);
-      
-    $array->fecha_ingreso = date("Y-m-d");
-    $array->fecha_publicacion = (!empty($array->fecha_publicacion)) ? fecha_mysql($array->fecha_publicacion) : date("Y-m-d");
-
-    $array->codigo = isset($array->codigo) ? $array->codigo : "";
-    $array->codigo = trim($array->codigo);
-    if (!empty($array->codigo)) {
-      if ($this->modelo->existe_codigo($array->codigo)) {
-        $salida = array(
-          "error"=>1,
-          "mensaje"=>"El codigo '$array->codigo' ya existe."
-        );
-        echo json_encode($salida);
-        return;
-      }      
-    }
-
-    // La primera foto del array es la imagen principal
-    if (sizeof($images)>0) $array->path = $images[0];
-
-    if (is_null($array->id_propietario)) $array->id_propietario = 0;
-      
-    // Insertamos la propiedad
-    $insert_id = $this->modelo->save($array);
-	  $hash = md5($insert_id);
-      
-    // Actualizamos el link
-    $array->link = "propiedad/".filename($array->nombre,"-",0)."-".$insert_id."/";
-    $this->db->query("UPDATE inm_propiedades SET link = '$array->link', hash='$hash' WHERE id = $insert_id AND id_empresa = $id_empresa");
-    
-    // Actualizamos los productos relacionados
-    $i=1;
-    foreach($productos_relacionados as $p) {
-      $this->db->insert("inm_propiedades_relacionados",array(
-        "id_propiedad"=>$insert_id,
-        "id_relacion"=>$p->id,
-        "id_rubro"=>0,
-        "destacado"=>$p->destacado,
-        "orden"=>$i,
+    try {
+      $array = $this->parse_put();      
+      $array->id_empresa = parent::get_empresa();
+      $insert_id = $this->modelo->save($array);
+      echo json_encode(array(
+        "id"=>$insert_id,
+        "error"=>0,
       ));
-      $i++;
+    } catch(Exception $e) {
+      $this->send_error($e->getMessage());
     }
-
-    // Guardamos las relaciones con las etiquetas (Y se crean en caso de que no exitan)
-    $i=1;
-    $this->db->query("DELETE FROM inm_propiedades_etiquetas WHERE id_propiedad = $insert_id AND id_empresa = $id_empresa");
-    foreach($etiquetas as $e) {
-      $tag = new stdClass();
-      $tag->id_empresa = $id_empresa;
-      $tag->id_propiedad = $insert_id;
-      $tag->nombre = $e;
-      $this->modelo->save_tag($tag);
-    }   
-
-    /*
-    // Actualizamos las categorias relacionadas
-    $i=1;
-    foreach($rubros_relacionados as $p) {
-      $this->db->insert("inm_propiedades_relacionados",array(
-        "id_propiedad"=>$insert_id,
-        "id_relacion"=>0,
-        "id_rubro"=>$p->id,
-        "orden"=>$i,
-      ));
-      $i++;
-    }
-    */
-
-    // Actualizamos los departamentos
-    $i=1;
-    foreach($departamentos as $p) {
-      $this->db->insert("inm_departamentos",array(
-        "id_propiedad"=>$insert_id,
-        "nombre"=>$p->nombre,
-        "texto"=>$p->texto,
-        "piso"=>$p->piso,
-        "id_empresa"=>$p->id_empresa,
-        "disponible"=>$p->disponible,
-        "orden"=>$p->orden,
-      ));
-      $id_departamento = $this->db->insert_id();
-      // Insertamos las fotos del departamento
-      $j=0;
-      foreach($p->images_dptos as $f) {
-        $this->db->insert("inm_departamentos_images",array(
-          "id_propiedad"=>$insert_id,
-          "id_departamento"=>$id_departamento,
-          "path"=>$f,
-          "id_empresa"=>$p->id_empresa,
-          "orden"=>$j,
-        ));
-        $j++;
-      }
-      $i++;
-    }
-    
-    // Guardamos las imagenes
-    $k=0;
-    foreach($images as $im) {
-      $this->db->query("INSERT INTO inm_propiedades_images (id_empresa,id_propiedad,path,orden,plano) VALUES($id_empresa,$insert_id,'$im',$k,0)");
-      $k++;
-    }
-    $k=0;
-    foreach($images_meli as $im) {
-      $sql = "INSERT INTO inm_propiedades_images_meli (id_empresa,id_propiedad,path,orden";
-      $sql.= ") VALUES( ";
-      $sql.= "$id_empresa,$insert_id,'$im',$k)";
-      $this->db->query($sql);
-      $k++;
-    }
-
-    // Guardamos los planos
-    $k=0;
-    foreach($planos as $im) {
-      $this->db->query("INSERT INTO inm_propiedades_images (id_empresa,id_propiedad,path,orden,plano) VALUES($id_empresa,$insert_id,'$im',$k,1)");
-      $k++;
-    }
-
-    // Guardamos los precios
-    $this->db->query("DELETE FROM inm_propiedades_precios WHERE id_propiedad = $insert_id AND id_empresa = $array->id_empresa");
-    foreach($temporada as $im) {
-      $desde = fecha_mysql($im->fecha_desde);
-      $hasta = fecha_mysql($im->fecha_hasta);
-      $this->db->query("INSERT INTO inm_propiedades_precios (id_empresa,id_propiedad,promocion,fecha_desde,fecha_hasta,precio_finde,precio_semana,precio_mes,nombre,minimo_dias_reserva,precio) VALUES($array->id_empresa,$insert_id,0,'$desde','$hasta',$im->precio_finde,$im->precio_semana,$im->precio_mes,'$im->nombre',$im->minimo_dias_reserva,$im->precio)");
-    }
-
-    // Guardamos los impuestos
-    $this->db->query("DELETE FROM inm_propiedades_impuestos WHERE id_propiedad = $insert_id AND id_empresa = $array->id_empresa");
-    $k=0;
-    foreach($impuestos as $im) {
-      $this->db->query("INSERT INTO inm_propiedades_impuestos (id_empresa,id_propiedad,monto,tipo,nombre,orden) VALUES($array->id_empresa,$insert_id,'$im->monto','$im->tipo','$im->nombre',$k)");
-      $k++;
-    }
-
-    // Si se inserta una nueva propiedad, buscamos si choca con alguna otra en la red
-    $this->modelo->buscar_similitudes(array(
-      "id_empresa"=>$array->id_empresa,
-      "id_tipo_inmueble"=>$array->id_tipo_inmueble,
-      "calle"=>$array->calle,
-      "altura"=>$array->altura,
-      "piso"=>$array->piso,
-      "numero"=>$array->numero,
-      "id_localidad"=>$array->id_localidad,
-      "id_propiedad"=>$insert_id,
-    ));
-    
-    $salida = array(
-      "id"=>$insert_id,
-      "error"=>0,
-    );
-    echo json_encode($salida);        
   }
     
     

@@ -10,7 +10,7 @@ class Localidad_Model extends Abstract_Model {
 
   function get_select($config = array()) {
     $id_departamento = (isset($config["id_departamento"])) ? $config["id_departamento"] : 0;
-    $sql = "SELECT P.* FROM com_localidades P WHERE P.id_departamento = $id_departamento ORDER BY P.prioridad ASC, P.nombre ASC";
+    $sql = "SELECT P.id, P.nombre, P.codigo_postal, P.id_departamento, P.link, P.latitud, P.longitud FROM com_localidades P WHERE P.id_departamento = $id_departamento ORDER BY P.prioridad ASC, P.nombre ASC";
     $q = $this->db->query($sql);
     $result = array();
     foreach($q->result() as $row) {

@@ -22,4 +22,9 @@ class Barrios extends REST_Controller {
     ));
   }  
 
+  // Wrapper de la otra funcion
+  function get_select() {
+    return $this->buscar_por_localidad();
+  }
+
 }
