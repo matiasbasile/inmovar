@@ -77,12 +77,10 @@
             <li><a onclick="workspace.cambiar_estado()" href="javascript:void(0)">Modo supervisor</a></li>
           </ul>
         </div>
-        <% if (control.check("cuentas_corrientes_clientes")>1) { %>
-          <a class="btn btn-info btn-addon ml5 agregar_recibo" href="javascript:void(0)">
-            <i class="fa fa-plus"></i>
-            <span class="hidden-xs">Agregar Pago</span>
-          </a>
-        <% } %>
+        <a class="btn btn-info btn-addon ml5 agregar_recibo" href="javascript:void(0)">
+          <i class="fa fa-plus"></i>
+          <span class="hidden-xs">Agregar Pago</span>
+        </a>
       </div>
       </div>
       </div>
@@ -174,7 +172,7 @@
       <% } %>
   </td>
   <td>
-    <% if (fecha != "Saldo Inicial" && control.check("cuentas_corrientes_clientes")>2) { %>
+    <% if (fecha != "Saldo Inicial") { %>
       <% if (tipo == "P") { %>
         <i title="Eliminar comprobante" class="glyphicon glyphicon-trash delete" />
       <% } else { %>
