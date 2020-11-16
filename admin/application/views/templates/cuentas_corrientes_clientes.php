@@ -1,7 +1,17 @@
 <script type="text/template" id="cuentas_corrientes_clientes_resultados_template">
 <div class="centrado rform">
   <div class="header-lg">
-    <h1>Pagos</h1>
+    <div class="row">
+      <div class="col-md-6 col-xs-8">
+        <h1>Pagos</h1>
+      </div>
+      <div class="col-md-6 col-xs-4 tar">
+        <a href="app/#facturacion" class="btn btn-info">
+          <span class="material-icons show-xs">add</span>
+          <span class="hidden-xs">&nbsp;&nbsp;Nuevo Comprobante&nbsp;&nbsp;</span>
+        </a>
+      </div>
+    </div>
   </div>
   <div class="panel panel-default">
     <input type="hidden" id="cuentas_corrientes_clientes_datos_id_sucursal" value="0" />

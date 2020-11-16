@@ -68,6 +68,9 @@
         "cuentas_corrientes_clientes": "ver_cuentas_corrientes_clientes",
         "cuentas_corrientes_clientes/:id": "ver_cuentas_corrientes_clientes",        
 
+        "facturacion": "ver_facturacion",
+        "facturacion/:id": "ver_facturacion",
+
         // Funcionamiento de ABM General
         '': 'router',
         ':mod(/)': 'router',
@@ -189,7 +192,56 @@
           });
           $("#cuentas_corrientes_clientes_codigo").select();
         }
-      },      
+      },  
+
+      ver_facturacion: function(id) {
+        if (ID_EMPRESA == 1) {
+          var self = this;
+          // Estamos viendo una factura
+          if (id != undefined) {
+            var modelo = new app.models.Factura({
+              "id": id,
+            });
+            modelo.fetch({
+              "success":function() {
+                app.views.facturaEditView = new app.views.FacturaEditView({
+                  model: modelo,
+                  permiso: 3,
+                  id_modulo: "facturas"
+                });
+                var conf = {
+                  "top" : app.views.facturaEditView.el,
+                };
+                self.mostrar(conf);
+              }
+            });
+            
+          // Facturacion nueva
+          } else {
+            var factura = new app.models.Factura({
+              "items":[],
+              "tarjetas":[],
+              "cheques":[],
+              "cotizacion_dolar":(typeof COTIZACION_DOLAR != "undefined" ? COTIZACION_DOLAR : 0),
+            });
+            if (typeof window.factura_nueva != "undefined") {
+              factura = window.factura_nueva;
+              delete window.factura_nueva;
+            }
+            
+            app.views.facturaEditView = new app.views.FacturaEditView({
+              model: factura,
+              permiso: 3,
+              id_modulo: "facturas"
+            });
+            var conf = {
+              "top" : app.views.facturaEditView.el,
+            };
+            self.mostrar(conf);
+            $("#facturacion_codigo_cliente").select();  
+          }
+        }
+      },
 
       ver_precios: function() {
         var precio = new app.views.PreciosView({

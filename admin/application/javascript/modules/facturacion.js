@@ -550,7 +550,7 @@
       "callback":function() {
         if (window.codigo_cliente_seleccionado != undefined && window.codigo_cliente_seleccionado != -1) {
           var that = self;
-          var cliente = new app.models.Cliente({"id":window.cliente_seleccionado.id});
+          var cliente = new app.models.Clientes({"id":window.cliente_seleccionado.id});
           cliente.fetch({
             "success":function(){
               that.seleccionar_cliente(cliente);
@@ -566,7 +566,7 @@
   nuevo_cliente: function() {
     var self = this;
     var c = new app.views.ClienteEditViewMini({
-      model: new app.models.Cliente({
+      model: new app.models.Clientes({
         id_tipo_documento: (ID_EMPRESA == 1354 ? 99 : 80),
         id_tipo_iva: (ID_EMPRESA == 1354 ? 4 : 1),
         id_sucursal: ID_SUCURSAL,
@@ -637,7 +637,7 @@
         var that = self;
 
         if (factura.get("id_cliente") != 0) {
-          var cliente = new app.models.Cliente({"id":factura.get("id_cliente")});
+          var cliente = new app.models.Clientes({"id":factura.get("id_cliente")});
           cliente.fetch({
             "success":function() {
               self.seleccionar_cliente(cliente);
@@ -706,7 +706,7 @@
 
         var that = self;
         if (factura.get("id_cliente") != 0) {
-          var cliente = new app.models.Cliente({"id":presupuesto.get("id_cliente")});
+          var cliente = new app.models.Clientes({"id":presupuesto.get("id_cliente")});
           cliente.fetch({
             "success":function() {
               cliente.set({"descuento":presupuesto.get("porc_descuento")});
@@ -789,7 +789,7 @@
               self.$("#facturacion_codigo_cliente").focus();
               return;
             }
-            var cliente = new app.models.Cliente(r);
+            var cliente = new app.models.Clientes(r);
             self.seleccionar_cliente(cliente);
           }
         });
@@ -799,7 +799,7 @@
   },
     
   setear_consumidor_final: function() {
-    var cf = new app.models.Cliente({
+    var cf = new app.models.Clientes({
       "id_tipo_iva":4,
       "nombre":"Consumidor Final",
       "cuit":"",
@@ -2529,7 +2529,7 @@
         if (id_cliente == 0) {
           this.setear_consumidor_final();
         } else {
-          var cliente = new app.models.Cliente({"id":id_cliente});
+          var cliente = new app.models.Clientes({"id":id_cliente});
           cliente.fetch({
             "success":function() {
               self.seleccionar_cliente(cliente);
@@ -2607,7 +2607,7 @@
       var input = this.$("#facturacion_codigo_cliente");
       if (typeof FACTURACION_CREAR_CLIENTE != "undefined" && FACTURACION_CREAR_CLIENTE == 1) { 
         var form = new app.views.ClienteEditViewMini({
-          "model": new app.models.Cliente(),
+          "model": new app.models.Clientes(),
           "input": input,
           "onSave": self.seleccionar_cliente,
         });      
@@ -2619,7 +2619,7 @@
         "form":form,
         "width":"300px",
         "onSelect":function(item){
-          var cliente = new app.models.Cliente({"id":item.id});
+          var cliente = new app.models.Clientes({"id":item.id});
           cliente.fetch({
             "success":function(){
               self.seleccionar_cliente(cliente);
