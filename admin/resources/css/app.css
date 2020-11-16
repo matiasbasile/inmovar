@@ -288,8 +288,7 @@ a.list-group-item:focus {
   white-space: nowrap;
 }
 .nav-tabs-2::-webkit-scrollbar {
-  width: 0px;
-  background: transparent;
+  display: none;
 }
 .nav-tabs-2 {
   -ms-overflow-style: none;
