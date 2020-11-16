@@ -467,7 +467,7 @@
 
   nuevo_cliente: function() {
     var self = this;
-    var c = new app.views.ClienteEditViewMini({
+    var c = new app.views.ClientesEditViewMini({
       model: new app.models.Clientes({
         id_tipo_documento: (ID_EMPRESA == 1354 ? 99 : 80),
         id_tipo_iva: (ID_EMPRESA == 1354 ? 4 : 1),
@@ -1726,7 +1726,7 @@
       // AUTOCOMPLETE DE CLIENTES
       // ------------------------
       var input = this.$("#facturacion_codigo_cliente");
-      var form = new app.views.ClienteEditViewMini({
+      var form = new app.views.ClientesEditViewMini({
         "model": new app.models.Clientes(),
         "input": input,
         "onSave": self.seleccionar_cliente,
