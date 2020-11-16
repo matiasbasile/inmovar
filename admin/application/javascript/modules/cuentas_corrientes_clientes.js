@@ -499,7 +499,7 @@
       });
       
       var reciboCliente = new app.models.ReciboCliente({
-        "cotizacion_dolar":COTIZACION_DOLAR,
+        "cotizacion_dolar":1,
         "id_empresa":ID_EMPRESA,
         "id_sucursal":ID_SUCURSAL,
 				"id_cliente":id_cliente,
