@@ -7,8 +7,8 @@
     <div class="panel panel-default">
 
       <ul class="nav nav-tabs nav-tabs-2" role="tablist">
-        <li class="<?php echo ($active=="cajas")?"active":""?>">
-          <a href="<?php echo ($active=="cajas")?"javascript:void(0)":"app/#cajas" ?>"><i class="fa fa-list text-info"></i> <?php echo lang(array("es"=>"Cajas","en"=>"Cajas")); ?></a>
+        <li class="active">
+          <a href="javascript:void(0)"><i class="fa fa-list text-info"></i> Cajas</a>
         </li>
       </ul>
 
