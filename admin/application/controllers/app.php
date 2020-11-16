@@ -239,7 +239,7 @@ class App extends CI_Controller {
       $id_empresa_facturacion = $empresa->config["id_empresa_facturacion"];
       unset($empresa->config["id_empresa_facturacion"]);
     } else {
-      $id_empresa_facturacion = 936;
+      $id_empresa_facturacion = 1;
     }
 
     $categorias_videos = array(
@@ -654,6 +654,10 @@ class App extends CI_Controller {
     $array[] = 'application/javascript/modules/inm/tipos_estado.js';
     $array[] = 'application/javascript/modules/clientes.js';
     $array[] = 'application/javascript/modules/configuracion_menu.js';
+
+    $array[] = 'application/javascript/modules/facturacion.js';
+    $array[] = 'application/javascript/modules/cuentas_corrientes_clientes.js';
+    $array[] = 'application/javascript/modules/recibos_clientes.js';
 
     if ($id_proyecto == 0) {
       

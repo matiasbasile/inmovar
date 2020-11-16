@@ -150,6 +150,12 @@ if (file_exists("application/views/templates/inm/propiedades.php")) include_once
 if (file_exists("application/views/templates/inm/busquedas.php")) include_once ("application/views/templates/inm/busquedas.php");
 if (file_exists("application/views/templates/inm/permisos_red.php")) include_once ("application/views/templates/inm/permisos_red.php");
 if (file_exists("application/views/templates/inm/alquileres.php")) include_once ("application/views/templates/inm/alquileres.php");
+
+if ($empresa->id == 1) {
+  include_once ("application/views/templates/facturacion.php");
+  include_once ("application/views/templates/recibos_clientes.php");
+  include_once ("application/views/templates/cuentas_corrientes_clientes.php");
+}
 ?>
 <!-- Modulo de Permisos -->
 <script type="text/javascript">

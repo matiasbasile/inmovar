@@ -9,7 +9,9 @@
     
       <nav class="navi">
         <ul class="nav">
-          <?php if ($perfil == -1) { ?>
+          <?php 
+          // SUPERADMIN
+          if ($perfil == -1) { ?>
             <li>
               <a href='app/#ver_proyecto/3'>
                 <i class='material-icons'>group</i>
@@ -23,7 +25,25 @@
               </a>
             </li>
 
-          <?php } else { ?>
+          <?php 
+          // CUENTA ESPECIAL DE INMOVAR
+          } else if ($empresa->id == 1) { ?>
+            <li>
+              <a href="app/#consultas" class=""><i class="material-icons md-22">directions_run</i><span>Seguimiento</span></a>
+            </li>
+            <li>
+              <a href="app/#cuentas_corrientes_clientes" class=""><i class="material-icons md-22">dolar</i><span>Pagos</span></a>
+            </li>
+            <li>
+              <a href="app/#clientes" class=""><i class="material-icons md-22">people</i><span>Contactos</span></a>
+            </li>
+            <li>
+              <a href="app/#configuracion_menu" class=""><i class="material-icons md-22">settings</i><span>Configuración</span></a>
+            </li>
+
+          <?php 
+          // USUARIO NORMAL
+          } else { ?>
             <li>
               <a href="app/#inicio"><i class="material-icons md-22">equalizer</i><span>Escritorio</span></a>
             </li>
