@@ -573,7 +573,12 @@ class Propiedades extends REST_Controller {
   // INSERT O UPDATE USANDO LA API
   function upsert() {
     try {
-      $array = $this->parse_put();      
+
+      // Ponemos todo en la variable array
+      $array = new stdClass();
+      foreach($_POST as $key => $value) {
+        $array->{$key} = $value;
+      }
 
       // Campos obligatorios
       $obligatorios = array("api_key","id_tipo_operacion","codigo","id_tipo_inmueble","id_pais","id_provincia","id_departamento","id_localidad");
