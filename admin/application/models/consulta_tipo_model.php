@@ -46,7 +46,7 @@ class Consulta_Tipo_Model extends Abstract_Model {
 
     // Contactado
     $sql = "INSERT INTO crm_consultas_tipos (id,id_empresa,nombre,color,orden,activo,tiempo_vencimiento,tiempo_abandonado) VALUES(";
-    $sql.= "2,'$id_empresa','Contactado','info',2,1,7,30)";
+    $sql.= "2,'$id_empresa','Contactados','info',2,1,7,30)";
     if ($imprimir == 1) $salida.= $sql.";\n";
     else $this->db->query($sql);
     $asuntos = array(
@@ -67,7 +67,7 @@ class Consulta_Tipo_Model extends Abstract_Model {
 
     // Actividad Programada
     $sql = "INSERT INTO crm_consultas_tipos (id,id_empresa,nombre,color,orden,activo,tiempo_vencimiento,tiempo_abandonado) VALUES(";
-    $sql.= "3,'$id_empresa','Actividad programada','info',3,1,7,30)";
+    $sql.= "3,'$id_empresa','Con actividad','info',3,1,7,30)";
     if ($imprimir == 1) $salida.= $sql.";\n";
     else $this->db->query($sql);
     $asuntos = array(
@@ -105,7 +105,7 @@ class Consulta_Tipo_Model extends Abstract_Model {
 
     // Finalizado
     $sql = "INSERT INTO crm_consultas_tipos (id,id_empresa,nombre,color,orden,activo,tiempo_vencimiento,tiempo_abandonado) VALUES(";
-    $sql.= "98,'$id_empresa','Finalizado','success',98,1,0,0)";
+    $sql.= "98,'$id_empresa','Finalizados','success',98,1,0,0)";
     if ($imprimir == 1) $salida.= $sql.";\n";
     else $this->db->query($sql);
     $asuntos = array(
@@ -122,7 +122,7 @@ class Consulta_Tipo_Model extends Abstract_Model {
 
     // Archivada
     $sql = "INSERT INTO crm_consultas_tipos (id,id_empresa,nombre,color,orden,activo,tiempo_vencimiento,tiempo_abandonado) VALUES(";
-    $sql.= "99,'$id_empresa','Archivada','danger',99,1,0,0)";
+    $sql.= "99,'$id_empresa','Archivados','danger',99,1,0,0)";
     if ($imprimir == 1) $salida.= $sql.";\n";
     else $this->db->query($sql);
     $asuntos = array(
