@@ -5,7 +5,13 @@
   </div>
   <div class="wrapper-md ng-scope">
     <div class="panel panel-default">
-      <?php $active = "cajas"; include("caja/caja_menu.php"); ?>
+
+      <ul class="nav nav-tabs nav-tabs-2" role="tablist">
+        <li class="<?php echo ($active=="cajas")?"active":""?>">
+          <a href="<?php echo ($active=="cajas")?"javascript:void(0)":"app/#cajas" ?>"><i class="fa fa-list text-info"></i> <?php echo lang(array("es"=>"Cajas","en"=>"Cajas")); ?></a>
+        </li>
+      </ul>
+
       <div class="panel-heading clearfix">
         <div class="row">
           <div class="col-md-12">

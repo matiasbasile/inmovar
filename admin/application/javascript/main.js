@@ -70,6 +70,7 @@
 
         "facturacion": "ver_facturacion",
         "facturacion/:id": "ver_facturacion",
+        "comprobante/:id/:id_punto_venta": "ver_comprobante",
 
         "cajas": "ver_cajas",
         "cajas/:todas": "ver_cajas",
@@ -248,6 +249,27 @@
           }
         }
       },
+
+      ver_comprobante: function(id,id_punto_venta) {
+        var perm = 3;
+        var self = this;
+        $.ajax({
+          "url":"facturas/function/ver_comprobante/"+id+"/"+id_punto_venta+"/",
+          "dataType":"json",
+          "success":function(r){
+            var modelo = new app.models.Factura(r);
+            var view = null;
+            view = new app.views.FacturaEditView({
+              model: modelo,
+              permiso: perm,
+              id_modulo: "facturas"
+            });            
+            self.mostrar({
+              "top" : view.el,
+            });
+          },
+        });
+      },      
 
       ver_cajas: function(todas) {
         var cajas = new app.collections.Cajas();

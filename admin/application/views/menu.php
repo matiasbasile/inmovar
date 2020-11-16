@@ -35,7 +35,7 @@
               <a href="app/#cuentas_corrientes_clientes" class=""><i class="material-icons md-22">payment</i><span>Pagos</span></a>
             </li>
             <li>
-              <a href="app/#cuentas_corrientes_clientes" class=""><i class="material-icons md-22">attach_money</i><span>Cajas</span></a>
+              <a href="app/#cajas" class=""><i class="material-icons md-22">attach_money</i><span>Cajas</span></a>
             </li>
             <li>
               <a href="app/#clientes" class=""><i class="material-icons md-22">people</i><span>Contactos</span></a>
