@@ -627,6 +627,10 @@ class Propiedades extends REST_Controller {
       if (!isset($array->publica_precio)) $array->publica_precio = 1;
       if (!isset($array->publica_altura)) $array->publica_altura = 1;
       if (!isset($array->activo)) $array->activo = 1;
+      if (!isset($array->calle)) $array->calle = "";
+      if (!isset($array->altura)) $array->altura = "";
+      if (!isset($array->piso)) $array->piso = "";
+      if (!isset($array->numero)) $array->numero = "";
       if (!isset($array->moneda)) $array->moneda = 'U$S';
   
       $id = $this->modelo->save($array);
