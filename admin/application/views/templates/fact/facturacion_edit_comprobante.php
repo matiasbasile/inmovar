@@ -40,7 +40,7 @@
         </div>
         <div class="col-md-2 col-sm-6 pl10 pr10">
           <label>Forma de Pago</label>
-          <select <%= ((id == undefined || id == 0) && edicion)?"":"disabled" %> title="Forma de Pago" class="form-control action no-model" name="tipo_pago" id="facturacion_tipo_pago">
+          <select disabled title="Forma de Pago" class="form-control action no-model" name="tipo_pago" id="facturacion_tipo_pago">
             <option <%= (tipo_pago == "C")?"selected":"" %> value="C">Cuenta Corriente</option>
             <option <%= (tipo_pago == "E")?"selected":"" %> value="E">Efectivo</option>
             <option <%= (tipo_pago == "H")?"selected":"" %> value="H">Cheque</option>
