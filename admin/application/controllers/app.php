@@ -33,6 +33,7 @@ class App extends CI_Controller {
     $usuarios = array();
     $asuntos = array();
     $localidades = array();
+    $alicuotas_iva = array();
     $paises = array();
     $provincias = array();
     $consultas_tipos = array();
@@ -160,6 +161,9 @@ class App extends CI_Controller {
 
       // Esto se cachea para ahorrar consultas ajax:
       // -------------------------------------------
+
+      $q = $this->db->query("SELECT * FROM tipos_alicuotas_iva WHERE id_empresa = 0 ORDER BY orden ASC");
+      $alicuotas_iva = $q->result();      
 
       $sql = "SELECT PV.*, IF(ALM.nombre IS NULL,'',ALM.nombre) AS sucursal FROM puntos_venta PV LEFT JOIN almacenes ALM ON (PV.id_empresa = ALM.id_empresa AND PV.id_sucursal = ALM.id) ";
       $sql.= "WHERE PV.id_empresa = $empresa->id AND PV.activo = 1 ";
@@ -332,6 +336,7 @@ class App extends CI_Controller {
       "categorias_videos" => $categorias_videos,
       "templates" => $templates,
       "puntos_venta" => $puntos_venta,
+      "alicuotas_iva" => $alicuotas_iva,
       
       "tipos_estado" => $tipos_estado,
       "tipos_inmueble" => $tipos_inmueble,
