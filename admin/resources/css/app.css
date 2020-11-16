@@ -282,7 +282,22 @@ a.list-group-item:focus {
 .nav-tabs {
   border-color: #dee5e7;
 }
+.nav-tabs-2 {
+  overflow-x: auto;
+  overflow-y: none;
+  white-space: nowrap;
+}
+.nav-tabs-2::-webkit-scrollbar {
+  display: none;
+}
+.nav-tabs-2 {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 .nav-tabs > li {
+  float: none;
+  display: inline-block;
+  vertical-align: middle;
   margin-bottom: -1px;
 }
 .nav-tabs > li > a {
