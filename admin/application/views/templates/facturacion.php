@@ -19,13 +19,7 @@
   <% if (edicion) { %>
     <td class="w25 p5">
       <% if (id_factura == 0) { %>
-        <% if (controlador_fiscal != "") { %>
-          <label class="i-checks m-b-none">
-            <input class="radio check-row esc eliminar no-model" name="radio" type="radio"><i></i>
-          </label>
-        <% } else { %>
-          <i title="Eliminar" class="glyphicon glyphicon-remove do_eliminar text-danger" />
-        <% } %>
+        <i title="Eliminar" class="glyphicon glyphicon-remove do_eliminar text-danger" />
       <% } %>
     </td>
   <% } %>
