@@ -572,9 +572,6 @@ class Propiedades extends REST_Controller {
 
   // INSERT O UPDATE USANDO LA API
   function upsert() {
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
     try {
 
       // Ponemos todo en la variable array
@@ -592,15 +589,13 @@ class Propiedades extends REST_Controller {
         }
       }
 
-      // El API KEY es un hash MD5 del id_empresa      
-      $array->id_empresa = md5($array->api_key);
-
       // Controlamos que la empresa existe
       $this->load->model("Empresa_Model");
       $empresa = $this->Empresa_Model->get_empresa_by_hash($array->api_key);
       if (empty($empresa)) {
         throw new Exception("API_KEY invalida.");
       }
+      $array->id_empresa = $empresa->id;
 
       // Buscamos la propiedad por codigo
       $p = $this->modelo->get_by_codigo($array->codigo,array(
