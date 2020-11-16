@@ -302,7 +302,7 @@
       if (e.which == 13)  { this.buscar_articulo(); }
     },
     "keyup #facturacion_codigo_articulo": function(e) {
-      if (e.which == 107 && controlador_fiscal != "") {
+      if (e.which == 107) {
         this.aceptar(); this.$("#facturacion_codigo_articulo").val("");
       }
     },
@@ -2167,33 +2167,17 @@
 
     imprimir_ticket: function(id) {
       var self = this;
-      if (controlador_fiscal != "") {
-        if (!self.check_etiqueta_remito()) {
-          $.ajaxq("cola_items",{
-            "url":"impresor_fiscal/imprimir/"+id,
-            "dataType":"json",
-            "success":function(r) {
-              if (r.result == 0) {
-                alert("Hubo un error al imprimir el comprobante.");
-              }
-              self.guardando = 0;
-              $('.modal:last').modal('hide');
-            }
-          });
-        } else {
-          $.ajaxq("cola_items",{
-            "url":"impresor_fiscal/imprimir_remito/"+self.model.id,
-            "dataType":"json",
-            "success":function(r) {
-              if (r.result == 0) {
-                alert("Hubo un error al imprimir el comprobante.");
-              }
-              self.guardando = 0;
-              $('.modal:last').modal('hide');
-            }
-          });
+      $.ajaxq("cola_items",{
+        "url":"impresor_fiscal/imprimir_remito/"+self.model.id,
+        "dataType":"json",
+        "success":function(r) {
+          if (r.result == 0) {
+            alert("Hubo un error al imprimir el comprobante.");
+          }
+          self.guardando = 0;
+          $('.modal:last').modal('hide');
         }
-      }
+      });
     },
   
   });
