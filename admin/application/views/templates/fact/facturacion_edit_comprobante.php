@@ -19,7 +19,7 @@
       </div>
     </div>
   </div>
-  <div class="panel panel-default pull-in">
+  <div class="panel panel-default ">
     <div class="panel-heading font-bold">
       Datos de Comprobante       
     </div>
@@ -240,7 +240,7 @@
     </div>
   </div>
 
-  <div class="panel panel-info pull-in">
+  <div class="panel panel-info ">
     <div class="panel-heading font-bold">Previsualizaci&oacute;n</div>
     <div class="panel-body preview-container">
       <div class="preview">
@@ -251,7 +251,7 @@
             <div class="letter">B</div>
           </div>
           <div class="invoice-block">
-            <div class="col-md-6 pull-in">
+            <div class="col-md-6 ">
               <div>
                 <span class="bold">Fecha de Emisi&oacute;n: </span>
                 <span id="facturacion_fecha_factura"></span>
@@ -269,7 +269,7 @@
           <div class="line line-dashed b-b line-lg"></div>
 
           <div class="invoice-block">
-            <div class="col-xs-6 pull-in">
+            <div class="col-xs-6 ">
               <div>
                 <span class="bold">Cliente: </span>
                 <span id="facturacion_cliente_factura"></span>
@@ -283,7 +283,7 @@
                 <span id="facturacion_cliente_localidad"></span>
               </div>
             </div>
-            <div class="col-xs-6 pull-in">
+            <div class="col-xs-6 ">
               <div>
                 <span class="bold">Tipo Contribuyente: </span>
                 <span id="facturacion_cliente_iva"></span>
@@ -419,7 +419,7 @@
 
         <div class="oh m-t">
           <div class="col-md-6">
-            <div class="form-horizontal pull-in totales">
+            <div class="form-horizontal  totales">
 
               <div class="b-a iva_container" style="overflow: auto; margin-right: 30px;">
                 <table id="tabla_impuestos" class="table sortable m-b-none default footable">
@@ -437,7 +437,7 @@
             </div>
           </div>
           <div class="col-md-6">
-            <div class="form-horizontal pull-in totales">
+            <div class="form-horizontal  totales">
               <div id="facturacion_subtotal_sin_dto_div" class="form-group">
                 <label class="control-label col-xs-8">Subtotal:</label>
                 <div class="col-xs-4">
@@ -530,7 +530,7 @@
     </div>
   </div>
 
-  <div class="oh tar pull-in">
+  <div class="oh tar ">
     <% if (id != undefined && id != 0 && pendiente != 1) { %>
       <button class="btn btn-primary imprimir btn-addon pull-left m-r"><i class="icon fa fa-print"></i>Imprimir</button>
       <button class="btn btn-info enviar btn-addon pull-left"><i class="icon fa fa-send"></i>Enviar</button>
