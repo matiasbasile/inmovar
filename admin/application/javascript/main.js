@@ -71,6 +71,12 @@
         "facturacion": "ver_facturacion",
         "facturacion/:id": "ver_facturacion",
 
+        "cajas": "ver_cajas",
+        "cajas/:todas": "ver_cajas",
+        "caja": "ver_caja",
+        "caja/:id": "ver_caja",
+        "ver_cajas_movimientos/:id_caja": "ver_cajas_movimientos",
+
         // Funcionamiento de ABM General
         '': 'router',
         ':mod(/)': 'router',
@@ -241,6 +247,55 @@
             $("#facturacion_codigo_cliente").select();  
           }
         }
+      },
+
+      ver_cajas: function(todas) {
+        var cajas = new app.collections.Cajas();
+        if (todas == undefined) window.cajas_ver_todas = 1;
+        else window.cajas_ver_todas = -1;
+        app.views.cajasTableView = new app.views.CajasTableView({
+          collection: cajas,
+          permiso: 3,
+        });    
+        this.mostrar({
+          "top" : app.views.cajasTableView.el,
+        });
+      },
+      ver_caja: function(id) {
+        var self = this;
+        if (id == undefined) {
+          app.views.cajaEditView = new app.views.CajaEditView({
+            model: new app.models.Caja(),
+            permiso: 3
+          });
+          this.mostrar({
+            "top" : app.views.cajaEditView.el,
+          });
+        } else {
+          var caja = new app.models.Caja({ "id": id });
+          caja.fetch({
+            "success":function() {
+              app.views.cajaEditView = new app.views.CajaEditView({
+                model: caja,
+                permiso: 3
+              });
+              self.mostrar({
+                "top" : app.views.cajaEditView.el,
+              });
+            }
+          });
+        }
+      },      
+
+      ver_cajas_movimientos: function(id_caja) {
+        var view = new app.views.ListadoCajasMovimientosView({
+          ver_saldos: 1,
+          id_caja: id_caja,
+          permiso: 3
+        });
+        this.mostrar({
+          "top" : view.el,
+        });
       },
 
       ver_precios: function() {

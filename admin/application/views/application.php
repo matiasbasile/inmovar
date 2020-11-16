@@ -152,6 +152,8 @@ if (file_exists("application/views/templates/inm/permisos_red.php")) include_onc
 if (file_exists("application/views/templates/inm/alquileres.php")) include_once ("application/views/templates/inm/alquileres.php");
 
 if ($empresa->id == 1) {
+  include_once ("application/views/templates/cajas.php");
+  include_once ("application/views/templates/cajas_movimientos.php");
   include_once ("application/views/templates/facturacion.php");
   include_once ("application/views/templates/recibos_clientes.php");
   include_once ("application/views/templates/cuentas_corrientes_clientes.php");
@@ -294,6 +296,7 @@ var asuntos = <?php echo json_encode($asuntos); ?>;
 var templates = <?php echo json_encode($templates); ?>;
 var alicuotas_iva = <?php echo json_encode($alicuotas_iva); ?>;
 var comprobantes = <?php echo json_encode($comprobantes); ?>;
+var cajas = <?php echo json_encode($cajas); ?>;
 
 // Usuarios del sistema
 var usuarios = new app.collections.Usuarios(<?php echo json_encode($usuarios); ?>);

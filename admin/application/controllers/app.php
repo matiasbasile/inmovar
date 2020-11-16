@@ -40,6 +40,7 @@ class App extends CI_Controller {
     $templates = array();
     $puntos_venta = array();
     $comprobantes = array();
+    $cajas = array();
     $total_notificaciones = 0;
 
     $q = $this->db->query("SELECT * FROM com_idiomas ORDER BY id ASC");
@@ -92,7 +93,7 @@ class App extends CI_Controller {
       $css_files = array();
       if ($configuracion->debug == 1) {
         $css_files = $this->css_files();
-        $js_files = $this->js_files($empresa->id_proyecto);
+        $js_files = $this->js_files($empresa->id_proyecto,$empresa->id);
       }
       
       $proyectos = $this->Proyecto_Model->activos();
@@ -152,7 +153,7 @@ class App extends CI_Controller {
       $css_files = array();
       if ($configuracion->debug == 1) {
         $css_files = $this->css_files();
-        $js_files = $this->js_files($empresa->id_proyecto);
+        $js_files = $this->js_files($empresa->id_proyecto,$empresa->id);
       }
 
       if (!empty($_SESSION["id"])) {
@@ -181,6 +182,9 @@ class App extends CI_Controller {
         
       $q = $this->db->query("SELECT * FROM inm_tipos_inmueble ORDER BY orden ASC");
       $tipos_inmueble = $q->result();
+
+      $q = $this->db->query("SELECT * FROM cajas WHERE id_empresa = $id_empresa ORDER BY nombre ASC");
+      $cajas = $q->result();
 
       // Obtenemos los templates publicos correspondientes a este proyecto
       // o bien el template diseñado a medida para la empresa
@@ -342,6 +346,7 @@ class App extends CI_Controller {
       "puntos_venta" => $puntos_venta,
       "alicuotas_iva" => $alicuotas_iva,
       "comprobantes" => $comprobantes,
+      "cajas" => $cajas,
       
       "tipos_estado" => $tipos_estado,
       "tipos_inmueble" => $tipos_inmueble,
@@ -569,7 +574,7 @@ class App extends CI_Controller {
     return $datos;
   }
 
-  private function js_files($id_proyecto = 0) {
+  private function js_files($id_proyecto = 0, $id_empresa = 0) {
     
     // Librerias comunes a todos los proyectos
     $array = array(    
@@ -672,9 +677,13 @@ class App extends CI_Controller {
     $array[] = 'application/javascript/modules/clientes.js';
     $array[] = 'application/javascript/modules/configuracion_menu.js';
 
-    $array[] = 'application/javascript/modules/facturacion.js';
-    $array[] = 'application/javascript/modules/cuentas_corrientes_clientes.js';
-    $array[] = 'application/javascript/modules/recibos_clientes.js';
+    if ($id_empresa == 1) {
+      $array[] = 'application/javascript/modules/facturacion.js';
+      $array[] = 'application/javascript/modules/cuentas_corrientes_clientes.js';
+      $array[] = 'application/javascript/modules/recibos_clientes.js';
+      $array[] = 'application/javascript/modules/cajas.js';
+      $array[] = 'application/javascript/modules/cajas_movimientos.js';
+    }
 
     if ($id_proyecto == 0) {
       
