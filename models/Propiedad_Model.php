@@ -34,6 +34,9 @@ class Propiedad_Model {
     if ($propiedad->moneda == 'U$S' && $moneda == "ARS") {
       $cotizacion = $this->get_dolar();
       $propiedad->moneda = $moneda;
+    } else if ($propiedad->moneda == 'R$' && $moneda == "ARS") {
+      $cotizacion = $this->get_real();
+      $propiedad->moneda = $moneda;
     }
     $precio_total = 0;
 
@@ -500,6 +503,21 @@ class Propiedad_Model {
     $r_cot = mysqli_fetch_object($q_cot);
     return $r_cot->valor;
   }
+
+  // Obtiene la cotizacion del real
+  function get_real() {
+    // Primero consultamos si tiene una cotizacion especial la empresa
+    $sql_cot = 'SELECT * FROM cotizaciones WHERE moneda = "BRL" AND id_empresa = '.$this->id_empresa.' ORDER BY fecha DESC LIMIT 0,1 ';
+    $q_cot = mysqli_query($this->conx,$sql_cot);
+    if (mysqli_num_rows($q_cot)>0) {
+      $r_cot = mysqli_fetch_object($q_cot);  
+      return $r_cot->valor;
+    }
+    $sql_cot = 'SELECT * FROM cotizaciones WHERE moneda = "BRL" ORDER BY fecha DESC LIMIT 0,1 ';
+    $q_cot = mysqli_query($this->conx,$sql_cot);
+    $r_cot = mysqli_fetch_object($q_cot);
+    return $r_cot->valor;
+  }   
 
   function get_precio_maximo($config=array()) {
 

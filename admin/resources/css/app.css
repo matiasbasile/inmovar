@@ -257,6 +257,7 @@ a.list-group-item:focus {
   /*background-color: #19a9d5;*/
   background-color: white !important;
 }
+.nav > li > a { padding-left: 12px; padding-right: 12px; }
 .nav > li > a:hover,
 .nav > li > a:focus {
   background-color: #f6f8f8;
