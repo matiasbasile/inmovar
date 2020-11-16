@@ -64,6 +64,10 @@
         "mi_cuenta(/)": "ver_mi_cuenta",
         "precios(/)": "ver_precios",
 
+        // Cuentas corrientes de clientes
+        "cuentas_corrientes_clientes": "ver_cuentas_corrientes_clientes",
+        "cuentas_corrientes_clientes/:id": "ver_cuentas_corrientes_clientes",        
+
         // Funcionamiento de ABM General
         '': 'router',
         ':mod(/)': 'router',
@@ -170,6 +174,22 @@
           },
         });
       },
+
+      ver_cuentas_corrientes_clientes : function(id) {
+        var permiso = 3;
+        if (ID_EMPRESA == 1) {
+          var modelo = new app.models.CuentasCorrientesClientes();
+          if (typeof id !== "undefined" && id != null) modelo.set({ "id_cliente":id });
+          app.views.cuentas_corrientes_clientesResultados = new app.views.CuentasCorrientesClientesResultados({
+            permiso: permiso,
+            model: modelo,
+          });
+          this.mostrar({
+            "top" : app.views.cuentas_corrientes_clientesResultados.el,
+          });
+          $("#cuentas_corrientes_clientes_codigo").select();
+        }
+      },      
 
       ver_precios: function() {
         var precio = new app.views.PreciosView({
