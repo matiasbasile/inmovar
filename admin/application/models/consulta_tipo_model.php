@@ -39,16 +39,24 @@ class Consulta_Tipo_Model extends Abstract_Model {
     $id_asunto = 0;
 
     // A Contactar
-    $sql = "INSERT INTO crm_consultas_tipos (id,id_empresa,nombre,color,orden,activo,tiempo_vencimiento,tiempo_abandonado) VALUES(";
-    $sql.= "1,'$id_empresa','A contactar','warning',1,1,7,30)";
-    if ($imprimir == 1) $salida.= $sql.";\n";
-    else $this->db->query($sql);
+    $sql = "SELECT * FROM crm_consultas_tipos WHERE id_empresa = $id_empresa AND id = 1";
+    $q = $this->db->query($sql);
+    if ($q->num_rows() == 0) {
+      $sql = "INSERT INTO crm_consultas_tipos (id,id_empresa,nombre,color,orden,activo,tiempo_vencimiento,tiempo_abandonado) VALUES(";
+      $sql.= "1,'$id_empresa','A contactar','warning',1,1,7,30)";
+      if ($imprimir == 1) $salida.= $sql.";\n";
+      else $this->db->query($sql);
+    }
 
     // Contactado
-    $sql = "INSERT INTO crm_consultas_tipos (id,id_empresa,nombre,color,orden,activo,tiempo_vencimiento,tiempo_abandonado) VALUES(";
-    $sql.= "2,'$id_empresa','Contactados','info',2,1,7,30)";
-    if ($imprimir == 1) $salida.= $sql.";\n";
-    else $this->db->query($sql);
+    $sql = "SELECT * FROM crm_consultas_tipos WHERE id_empresa = $id_empresa AND id = 2";
+    $q = $this->db->query($sql);
+    if ($q->num_rows() == 0) {
+      $sql = "INSERT INTO crm_consultas_tipos (id,id_empresa,nombre,color,orden,activo,tiempo_vencimiento,tiempo_abandonado) VALUES(";
+      $sql.= "2,'$id_empresa','Contactados','info',2,1,7,30)";
+      if ($imprimir == 1) $salida.= $sql.";\n";
+      else $this->db->query($sql);
+    }
     $asuntos = array(
       "Respondido por email",
       "Respondido por redes sociales",
@@ -59,17 +67,25 @@ class Consulta_Tipo_Model extends Abstract_Model {
     for($i=0;$i<sizeof($asuntos);$i++) {
       $asunto = $asuntos[$i];
       $id_asunto++;
-      $sql = "INSERT INTO crm_asuntos (id,id_empresa,nombre,orden,activo,id_tipo) VALUES(";
-      $sql.= "$id_asunto,'$id_empresa','".$asunto."',$id_asunto,1,2)";
-      if ($imprimir == 1) $salida.= $sql.";\n";
-      else $this->db->query($sql);
+      $sql = "SELECT * FROM crm_asuntos WHERE id_empresa = $id_empresa AND id = $id_asunto";
+      $q1 = $this->db->query($sql);
+      if ($q1->num_rows() == 0) {
+        $sql = "INSERT INTO crm_asuntos (id,id_empresa,nombre,orden,activo,id_tipo) VALUES(";
+        $sql.= "$id_asunto,'$id_empresa','".$asunto."',$id_asunto,1,2)";
+        if ($imprimir == 1) $salida.= $sql.";\n";
+        else $this->db->query($sql);
+      }
     }
 
     // Actividad Programada
-    $sql = "INSERT INTO crm_consultas_tipos (id,id_empresa,nombre,color,orden,activo,tiempo_vencimiento,tiempo_abandonado) VALUES(";
-    $sql.= "3,'$id_empresa','Con actividad','info',3,1,7,30)";
-    if ($imprimir == 1) $salida.= $sql.";\n";
-    else $this->db->query($sql);
+    $sql = "SELECT * FROM crm_consultas_tipos WHERE id_empresa = $id_empresa AND id = 3";
+    $q = $this->db->query($sql);
+    if ($q->num_rows() == 0) {    
+      $sql = "INSERT INTO crm_consultas_tipos (id,id_empresa,nombre,color,orden,activo,tiempo_vencimiento,tiempo_abandonado) VALUES(";
+      $sql.= "3,'$id_empresa','Con actividad','info',3,1,7,30)";
+      if ($imprimir == 1) $salida.= $sql.";\n";
+      else $this->db->query($sql);
+    }
     $asuntos = array(
       "Teléfono",
       "Reunión",
@@ -79,17 +95,25 @@ class Consulta_Tipo_Model extends Abstract_Model {
     for($i=0;$i<sizeof($asuntos);$i++) {
       $asunto = $asuntos[$i];
       $id_asunto++;
-      $sql = "INSERT INTO crm_asuntos (id,id_empresa,nombre,orden,activo,id_tipo) VALUES(";
-      $sql.= "$id_asunto,'$id_empresa','".$asunto."',$id_asunto,1,3)";
-      if ($imprimir == 1) $salida.= $sql.";\n";
-      else $this->db->query($sql);
+      $sql = "SELECT * FROM crm_asuntos WHERE id_empresa = $id_empresa AND id = $id_asunto";
+      $q1 = $this->db->query($sql);
+      if ($q1->num_rows() == 0) {      
+        $sql = "INSERT INTO crm_asuntos (id,id_empresa,nombre,orden,activo,id_tipo) VALUES(";
+        $sql.= "$id_asunto,'$id_empresa','".$asunto."',$id_asunto,1,3)";
+        if ($imprimir == 1) $salida.= $sql.";\n";
+        else $this->db->query($sql);
+      }
     }
 
     // En negociacion
-    $sql = "INSERT INTO crm_consultas_tipos (id,id_empresa,nombre,color,orden,activo,tiempo_vencimiento,tiempo_abandonado) VALUES(";
-    $sql.= "4,'$id_empresa','En negociación','success',4,1,7,30)";
-    if ($imprimir == 1) $salida.= $sql.";\n";
-    else $this->db->query($sql);
+    $sql = "SELECT * FROM crm_consultas_tipos WHERE id_empresa = $id_empresa AND id = 4";
+    $q = $this->db->query($sql);
+    if ($q->num_rows() == 0) {
+      $sql = "INSERT INTO crm_consultas_tipos (id,id_empresa,nombre,color,orden,activo,tiempo_vencimiento,tiempo_abandonado) VALUES(";
+      $sql.= "4,'$id_empresa','En negociación','success',4,1,7,30)";
+      if ($imprimir == 1) $salida.= $sql.";\n";
+      else $this->db->query($sql);
+    }
     $asuntos = array(
       "Listo para firmar",
       "Esperando entrega y/o reserva",
@@ -97,34 +121,50 @@ class Consulta_Tipo_Model extends Abstract_Model {
     for($i=0;$i<sizeof($asuntos);$i++) {
       $asunto = $asuntos[$i];
       $id_asunto++;
-      $sql = "INSERT INTO crm_asuntos (id,id_empresa,nombre,orden,activo,id_tipo) VALUES(";
-      $sql.= "$id_asunto,'$id_empresa','".$asunto."',$id_asunto,1,4)";
-      if ($imprimir == 1) $salida.= $sql.";\n";
-      else $this->db->query($sql);
+      $sql = "SELECT * FROM crm_asuntos WHERE id_empresa = $id_empresa AND id = $id_asunto";
+      $q1 = $this->db->query($sql);
+      if ($q1->num_rows() == 0) {      
+        $sql = "INSERT INTO crm_asuntos (id,id_empresa,nombre,orden,activo,id_tipo) VALUES(";
+        $sql.= "$id_asunto,'$id_empresa','".$asunto."',$id_asunto,1,4)";
+        if ($imprimir == 1) $salida.= $sql.";\n";
+        else $this->db->query($sql);
+      }
     }
 
     // Finalizado
-    $sql = "INSERT INTO crm_consultas_tipos (id,id_empresa,nombre,color,orden,activo,tiempo_vencimiento,tiempo_abandonado) VALUES(";
-    $sql.= "98,'$id_empresa','Finalizados','success',98,1,0,0)";
-    if ($imprimir == 1) $salida.= $sql.";\n";
-    else $this->db->query($sql);
+    $sql = "SELECT * FROM crm_consultas_tipos WHERE id_empresa = $id_empresa AND id = 98";
+    $q = $this->db->query($sql);
+    if ($q->num_rows() == 0) {    
+      $sql = "INSERT INTO crm_consultas_tipos (id,id_empresa,nombre,color,orden,activo,tiempo_vencimiento,tiempo_abandonado) VALUES(";
+      $sql.= "98,'$id_empresa','Finalizados','success',98,1,0,0)";
+      if ($imprimir == 1) $salida.= $sql.";\n";
+      else $this->db->query($sql);
+    }
     $asuntos = array(
       "Se concretó la operación correctamente",
     );
     for($i=0;$i<sizeof($asuntos);$i++) {
       $asunto = $asuntos[$i];
       $id_asunto++;
-      $sql = "INSERT INTO crm_asuntos (id,id_empresa,nombre,orden,activo,id_tipo) VALUES(";
-      $sql.= "$id_asunto,'$id_empresa','".$asunto."',$id_asunto,1,98)";
-      if ($imprimir == 1) $salida.= $sql.";\n";
-      else $this->db->query($sql);
+      $sql = "SELECT * FROM crm_asuntos WHERE id_empresa = $id_empresa AND id = $id_asunto";
+      $q1 = $this->db->query($sql);
+      if ($q1->num_rows() == 0) {      
+        $sql = "INSERT INTO crm_asuntos (id,id_empresa,nombre,orden,activo,id_tipo) VALUES(";
+        $sql.= "$id_asunto,'$id_empresa','".$asunto."',$id_asunto,1,98)";
+        if ($imprimir == 1) $salida.= $sql.";\n";
+        else $this->db->query($sql);
+      }
     }    
 
     // Archivada
-    $sql = "INSERT INTO crm_consultas_tipos (id,id_empresa,nombre,color,orden,activo,tiempo_vencimiento,tiempo_abandonado) VALUES(";
-    $sql.= "99,'$id_empresa','Archivados','danger',99,1,0,0)";
-    if ($imprimir == 1) $salida.= $sql.";\n";
-    else $this->db->query($sql);
+    $sql = "SELECT * FROM crm_consultas_tipos WHERE id_empresa = $id_empresa AND id = 99";
+    $q = $this->db->query($sql);
+    if ($q->num_rows() == 0) {    
+      $sql = "INSERT INTO crm_consultas_tipos (id,id_empresa,nombre,color,orden,activo,tiempo_vencimiento,tiempo_abandonado) VALUES(";
+      $sql.= "99,'$id_empresa','Archivados','danger',99,1,0,0)";
+      if ($imprimir == 1) $salida.= $sql.";\n";
+      else $this->db->query($sql);
+    }
     $asuntos = array(
       "No respondió el cliente",
       "El cliente no está interesado",
@@ -133,10 +173,14 @@ class Consulta_Tipo_Model extends Abstract_Model {
     for($i=0;$i<sizeof($asuntos);$i++) {
       $asunto = $asuntos[$i];
       $id_asunto++;
-      $sql = "INSERT INTO crm_asuntos (id,id_empresa,nombre,orden,activo,id_tipo) VALUES(";
-      $sql.= "$id_asunto,'$id_empresa','".$asunto."',$id_asunto,1,99)";
-      if ($imprimir == 1) $salida.= $sql.";\n";
-      else $this->db->query($sql);
+      $sql = "SELECT * FROM crm_asuntos WHERE id_empresa = $id_empresa AND id = $id_asunto";
+      $q1 = $this->db->query($sql);
+      if ($q1->num_rows() == 0) {      
+        $sql = "INSERT INTO crm_asuntos (id,id_empresa,nombre,orden,activo,id_tipo) VALUES(";
+        $sql.= "$id_asunto,'$id_empresa','".$asunto."',$id_asunto,1,99)";
+        if ($imprimir == 1) $salida.= $sql.";\n";
+        else $this->db->query($sql);
+      }
     }
 
     return $salida;
