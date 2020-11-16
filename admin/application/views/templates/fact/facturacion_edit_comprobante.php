@@ -516,17 +516,11 @@
             <li class="active">
               <a href="#tab_observaciones_1" role="tab" data-toggle="tab">Observaciones <i title="Click para ayuda" class="observaciones_ayuda fs14 ml5 cp text-muted fa fa-question-circle"></i></a>
             </li>
-            <li class="">
-              <a href="#tab_observaciones_2" role="tab" data-toggle="tab">Comentarios Internos</a>
-            </li>
           </ul>
           <div class="tab-content">
             <div id="tab_observaciones_1" class="tab-pane active">
-              <textarea style="height: 100px" id="facturacion_observaciones" name="observaciones" placeholder="Puede escribir una nota u observacion que aparecer&aacute; al pie de p&aacute;gina del comprobante..." class="form-control"><%= ((id != undefined)?observaciones:OBSERVACIONES).replaceAll("<br />","\n").replaceAll("<br/>","\n").replaceAll("<br>","\n") %></textarea>
+              <textarea style="height: 100px" id="facturacion_observaciones" name="observaciones" placeholder="Puede escribir una nota u observacion que aparecer&aacute; al pie de p&aacute;gina del comprobante..." class="form-control"><%= observaciones %></textarea>
             </div>                  
-            <div id="tab_observaciones_2" class="tab-pane">
-              <textarea style="height: 100px" id="facturacion_custom_5" name="custom_5" placeholder="Puede escribir aqui un comentario privado que no se mostrar&aacute; al cliente..." class="form-control"><%= (typeof custom_5 != "undefined") ? (custom_5.replaceAll("<br />","\n").replaceAll("<br/>","\n").replaceAll("<br>","\n")) : "" %></textarea>
-            </div>
           </div>
         </div>
 
