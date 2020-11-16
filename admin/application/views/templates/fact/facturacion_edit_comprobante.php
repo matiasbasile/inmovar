@@ -476,7 +476,7 @@
               </div>
               */ ?>
 
-              <div class="form-group <%= (PERCIBE_IB == 0) ? 'dn' : '' %>" id="facturacion_percepcion_ib_row">
+              <div class="form-group dn" id="facturacion_percepcion_ib_row">
                 <label class="control-label col-xs-8">
                   Percep. Ingr. Brutos
                   <input type="number" disabled class="form-control w-xs pull-right action text-right no-model" id="facturacion_porc_percepcion_ib"/>
