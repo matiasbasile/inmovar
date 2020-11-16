@@ -1,20 +1,11 @@
 <script type="text/template" id="cuentas_corrientes_clientes_resultados_template">
-<div class="bg-light lter b-b wrapper-md ng-scope">
-  <div class="row clearfix padder">
-    <h1 class="m-n font-thin h3 pull-left"><i class="fa fa-user icono_principal"></i>Clientes</h1>
+<div class="centrado rform">
+  <div class="header-lg">
+    <h1>Pagos</h1>
   </div>
-</div>
-<div class="wrapper-md ng-scope">
   <div class="panel panel-default">
     <input type="hidden" id="cuentas_corrientes_clientes_datos_id_sucursal" value="0" />
 
-    <?php 
-    if ($empresa->id_proyecto == 3) { 
-      $active = "cuentas_corrientes_clientes"; include("inm/alquileres_menu.php"); 
-    } else {
-      $active = "cuentas_corrientes_clientes"; include("cli/clientes_menu.php"); 
-    } ?>
-  
     <div class="panel-heading clearfix">
       <div class="row">
         <div class="col-md-8 sm-m-b">
@@ -26,19 +17,19 @@
             </span>
           </div>
         </div>
-        <div style="display: inline-block" <%= (ID_EMPRESA == 70)?'hidden-xs':'' %>>
+        <div style="display: inline-block">
           <div class="input-group" style="width: 150px;">
             <input type="text" class="form-control" id="cuentas_corrientes_clientes_desde" autocomplete="off" placeholder="Desde">
             <span class="input-group-btn">
-              <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="glyphicon glyphicon-calendar"></i></button>
+              <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="fa fa-calendar"></i></button>
             </span>              
           </div>
         </div>
-        <div style="display: inline-block" <%= (ID_EMPRESA == 70)?'hidden-xs':'' %>>
+        <div style="display: inline-block">
           <div class="input-group" style="width: 150px;">
             <input type="text" class="form-control" id="cuentas_corrientes_clientes_hasta" autocomplete="off" placeholder="Hasta">
             <span class="input-group-btn">
-              <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="glyphicon glyphicon-calendar"></i></button>
+              <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="fa fa-calendar"></i></button>
             </span>              
           </div>
         </div>
@@ -246,7 +237,7 @@
                 <div class="input-group">
                   <input type="text" placeholder="Desde" autocomplete="off" id="recibos_clientes_desde" class="form-control">
                   <span class="input-group-btn">
-                    <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="glyphicon glyphicon-calendar"></i></button>
+                    <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="fa fa-calendar"></i></button>
                   </span>              
                 </div>
               </div>
@@ -256,7 +247,7 @@
                 <div class="input-group">
                   <input type="text" placeholder="Hasta" autocomplete="off" id="recibos_clientes_hasta" class="form-control">
                   <span class="input-group-btn">
-                    <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="glyphicon glyphicon-calendar"></i></button>
+                    <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="fa fa-calendar"></i></button>
                   </span>              
                 </div>
               </div>
