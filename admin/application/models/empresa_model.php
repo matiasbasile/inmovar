@@ -80,7 +80,7 @@ class Empresa_Model extends Abstract_Model {
     $fecha = isset($config["fecha"]) ? $config["fecha"] : date("Y-m-d");
     $clave_template = isset($config["clave_template"]) ? $config["clave_template"] : "cuenta-por-vencer";
 
-    $id_empresa_varcreative = 936;
+    $id_empresa_varcreative = 1;
     $this->load->model("Email_Template_Model");
     $this->load->model("Factura_Model");
     $this->load->model("Log_Model");
@@ -557,7 +557,7 @@ class Empresa_Model extends Abstract_Model {
     $sql.= " direccion = '$data->direccion', ";
     $sql.= " telefono = '$data->telefono', ";
     $sql.= " cuit = '$data->cuit' ";
-    $sql.= "WHERE id_empresa = 99 AND id = $id";
+    $sql.= "WHERE id_empresa = 1 AND id = $id";
     $this->db->query($sql);
 
     return parent::update($id,$data);
@@ -827,7 +827,7 @@ class Empresa_Model extends Abstract_Model {
     $this->db->query($sql);
 
     // Crea un nuevo cliente de la cuenta 936. VARCREATIVE, utilizada para facturar
-    $id_empresa_varcreative = 936;
+    $id_empresa_varcreative = 1;
     $celular = (isset($array->telefono) ? $array->telefono : (isset($array->telefono_empresa) ? $array->telefono_empresa : ""));
     $celular = preg_replace("/[^0-9]/", "", $celular );
     $array->direccion = (isset($array->direccion) ? $array->direccion : "");
@@ -838,38 +838,27 @@ class Empresa_Model extends Abstract_Model {
     $sql.= " id, id_empresa, tipo, nombre, email, codigo, activo, fecha_inicial, forma_pago, ";
     $sql.= " id_tipo_iva, cuit, id_tipo_documento, direccion, id_localidad, celular, fecha_ult_operacion ";
     $sql.= ") VALUES (";
-    $sql.= " '$id_empresa', $id_empresa_varcreative, 0, '$array->razon_social', '$array->email', '$id_empresa', 1, NOW(), 'C', ";
+    $sql.= " '$id_empresa', $id_empresa_varcreative, 1, '$array->razon_social', '$array->email', '$id_empresa', 1, NOW(), 'C', ";
     $sql.= " '$array->id_tipo_contribuyente', '$cuit', '80', '$array->direccion', '$array->id_localidad', '$celular', NOW() ";
     $sql.= ")";
     $this->db->query($sql);
     $id_cliente = $this->db->insert_id();
 
-    // Dependiendo del tipo de proyecto, creamos la factura periodica o no
-    /*
-    $crear_factura = FALSE;
-    if ($array->id_proyecto == 17) {
-      // TurnoClick
-      $id_articulo = 10265126;
-    }
-
-    // Tenemos que crear una factura periodica para dentro de un mes, con los datos de ese nuevo cliente
-    if ($crear_factura) {
-      $this->load->model("Factura_Model");
-      $this->Factura_Model->crear(array(
-        "id_empresa"=>$id_empresa_varcreative,
-        "es_periodica"=>1,
-        // Por una cuestion de que la facturacion periodica necesita empezar a copiar a partir de una factura ya hecha,
-        // creamos una anulada con la fecha de hoy. Dentro de un mes la factura sale bien
-        "anulada"=>1, 
-        "fecha"=>date("Y-m-d"),
-        // Cliente que terminamos de insertar recien
-        "id_cliente"=>$id_cliente,
-        // El id_articulo coincide con el plan elegido
-        // De esta manera, cuando nosotros cambiemos el precio ya en las proximas facturas se cambia solo
-        "id_articulo"=>$id_articulo,
-      ));      
-    }
-    */
+    $id_articulo = 1;
+    $this->load->model("Factura_Model");
+    $this->Factura_Model->crear(array(
+      "id_empresa"=>$id_empresa_varcreative,
+      "es_periodica"=>1,
+      // Por una cuestion de que la facturacion periodica necesita empezar a copiar a partir de una factura ya hecha,
+      // creamos una anulada con la fecha de hoy. Dentro de un mes la factura sale bien
+      "anulada"=>1, 
+      "fecha"=>date("Y-m-d"),
+      // Cliente que terminamos de insertar recien
+      "id_cliente"=>$id_cliente,
+      // El id_articulo coincide con el plan elegido
+      // De esta manera, cuando nosotros cambiemos el precio ya en las proximas facturas se cambia solo
+      "id_articulo"=>$id_articulo,
+    ));      
 
     $marcelo = new stdClass();
     $marcelo->id_usuario = 920;

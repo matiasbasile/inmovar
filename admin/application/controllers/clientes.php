@@ -231,7 +231,7 @@ class Clientes extends REST_Controller {
   }
 
   function convertir_empresas() {
-    $id_empresa = 936;
+    $id_empresa = 1;
     $sql = "SELECT * FROM empresas";
     $q = $this->db->query($sql);
     foreach($q->result() as $row) {
@@ -243,7 +243,7 @@ class Clientes extends REST_Controller {
       $sql.= " id_empresa, id, codigo, tipo, nombre, id_tipo_documento, cuit, direccion, ";
       $sql.= " id_localidad, id_provincia, id_tipo_iva, activo, email, celular, fecha_inicial, path, forma_pago ";
       $sql.= ") VALUES (";
-      $sql.= " '$id_empresa', '$row->id', '$row->id', 0, '$row->razon_social', '80', '$cuit', '$row->direccion_empresa', ";
+      $sql.= " '$id_empresa', '$row->id', '$row->id', 1, '$row->razon_social', '80', '$cuit', '$row->direccion_empresa', ";
       $sql.= " '$row->id_localidad', '$row->id_provincia', '$row->id_tipo_contribuyente', 1, '$row->email', '$celular', '$row->fecha_alta', '$row->path', 'C' ";
       $sql.= ")";
       $this->db->query($sql);
