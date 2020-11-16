@@ -37,6 +37,7 @@ class App extends CI_Controller {
     $provincias = array();
     $consultas_tipos = array();
     $templates = array();
+    $puntos_venta = array();
     $total_notificaciones = 0;
 
     $q = $this->db->query("SELECT * FROM com_idiomas ORDER BY id ASC");
@@ -159,7 +160,12 @@ class App extends CI_Controller {
 
       // Esto se cachea para ahorrar consultas ajax:
       // -------------------------------------------
-      
+
+      $sql = "SELECT PV.*, IF(ALM.nombre IS NULL,'',ALM.nombre) AS sucursal FROM puntos_venta PV LEFT JOIN almacenes ALM ON (PV.id_empresa = ALM.id_empresa AND PV.id_sucursal = ALM.id) ";
+      $sql.= "WHERE PV.id_empresa = $empresa->id AND PV.activo = 1 ";
+      $q = $this->db->query($sql);
+      $puntos_venta = $q->result();
+
       if (file_exists("application/models/categoria_entrada_model.php")) {
         $this->load->Model("Categoria_Entrada_Model");
         $categorias_noticias = $this->Categoria_Entrada_Model->get_arbol();
@@ -325,6 +331,7 @@ class App extends CI_Controller {
       "longitud" => $longitud,
       "categorias_videos" => $categorias_videos,
       "templates" => $templates,
+      "puntos_venta" => $puntos_venta,
       
       "tipos_estado" => $tipos_estado,
       "tipos_inmueble" => $tipos_inmueble,
