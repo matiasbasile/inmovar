@@ -576,9 +576,10 @@ class Propiedades extends REST_Controller {
       $array = $this->parse_put();      
 
       // Campos obligatorios
-      $obligatorios = array("api_key","id_tipo_operacion","codigo","id_tipo_inmueble","id_tipo_estado","id_pais","id_provincia","id_departamento","id_localidad");
+      $obligatorios = array("api_key","id_tipo_operacion","codigo","id_tipo_inmueble","id_pais","id_provincia","id_departamento","id_localidad");
       foreach($obligatorios as $campo) {
-        if (!isset($array->{$campo})) {
+        // Si no esta definido, o vino vacio
+        if (!isset($array->{$campo}) || (isset($array->{$campo}) && empty($array->{$campo}))) {
           throw new Exception("$campo no encontrado.");
         }
       }
@@ -616,6 +617,10 @@ class Propiedades extends REST_Controller {
       if (isset($array->imagenes)) $array->images = $array->imagenes;
 
       // Valores por defecto
+      if (!isset($array->id_tipo_estado)) $array->id_tipo_estado = 1;
+      if (!isset($array->compartida)) $array->compartida = 1;
+      if (!isset($array->id_pais)) $array->id_pais = 1;
+      if (!isset($array->id_provincia)) $array->id_provincia = 1;
       if (!isset($array->publica_precio)) $array->publica_precio = 1;
       if (!isset($array->publica_altura)) $array->publica_altura = 1;
       if (!isset($array->activo)) $array->activo = 1;
