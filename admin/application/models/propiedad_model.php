@@ -1196,8 +1196,8 @@ class Propiedad_Model extends Abstract_Model {
     return $propiedad;
   }
   
-  function get_by_codigo($codigo) {
-    $id_empresa = parent::get_empresa();
+  function get_by_codigo($codigo,$config = array()) {
+    $id_empresa = (isset($config["id_empresa"])) ? $config["id_empresa"] : parent::get_empresa();
     // Obtenemos los datos del propiedad
     $codigo = (int)$codigo;
     $sql = "SELECT A.*, ";

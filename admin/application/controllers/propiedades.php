@@ -593,6 +593,13 @@ class Propiedades extends REST_Controller {
         throw new Exception("API_KEY invalida.");
       }
 
+      // Buscamos la propiedad por codigo
+      $p = $this->modelo->get_by_codigo($array->codigo,array(
+        "id_empresa"=>$empresa->id
+      ));
+      if (empty($p)) $array->id = 0;
+      else $array->id = $p->id;
+
       // Si no tiene cargado un usuario, ponemos el por defecto de la cuenta
       if (!isset($array->id_usuario)) {
         $this->load->model("Usuario_Model");
