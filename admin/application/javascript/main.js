@@ -545,6 +545,23 @@
       // ==========================
       // FUNCIONES COMUNES:
 
+      imprimir_factura: function(id,id_punto_venta,tipo_impresion,callback) {
+        $('.modal:last').modal('hide'); // Cerramos si hay otro lightbox abierto
+        var iframe = "<iframe style='width:100%; border:none; height:600px;' src='facturas/function/ver_pdf/"+id+"/"+id_punto_venta+"'></iframe>";
+        iframe+='<div class="text-right wrapper">';
+        iframe+='<button onclick="workspace.enviar_factura('+id+','+id_punto_venta+')" class="btn btn-info btn-addon m-r">';
+        iframe+='<i class="fa fa-send"></i><span>Enviar</span>';
+        iframe+='</button>';
+        iframe+='<button class="btn btn-default" onclick="workspace.cerrar_impresion()">Cerrar</button>';
+        iframe+='</div>';
+        crearLightboxHTML({
+          "html":iframe,
+          "width":920,
+          "height":600,
+          "callback":callback
+        });
+      },      
+
       nuevo_email: function(consulta,callback) {
 
         // Si no se manda un modelo
