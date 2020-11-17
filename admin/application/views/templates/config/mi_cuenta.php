@@ -20,7 +20,7 @@
 
     <div class="panel panel-default">
       <div class="table-responsive">
-        <table id="mi_cuenta_table" class="table table-striped tabla-2 sortable m-b-none default footable">
+        <table id="mi_cuenta_table" class="table table-striped sortable footable">
           <thead>
             <tr>
               <th>Comprobante</th>

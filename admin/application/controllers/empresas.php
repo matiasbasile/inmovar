@@ -275,7 +275,7 @@ class Empresas extends REST_Controller {
       // Si utilizo otra cuenta que no sea Varcreative para llevar la contabilidad
       $id_empresa_varcreative = $empresa->config["id_empresa_cuenta_corriente"];
     } else {
-      $id_empresa_varcreative = 936;
+      $id_empresa_varcreative = 1;
     }
 
     // El saldo de la cuenta es el saldo del cliente en la empresa VARCREATIVE
