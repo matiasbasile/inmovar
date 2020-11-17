@@ -181,7 +181,7 @@ $piezas_items = (sizeof($factura->items) > 0) ? array_chunk($factura->items, 27)
               <?php } else if(!empty($empresa->logo) && $empresa->id != 249 && $empresa->id != 228) { ?>
                 <div class="fl w40p p20">
                   <div style="margin-bottom: 15px; margin-right: 20px; ">
-                    <img style="width:95%" src="/sistema/<?php echo $empresa->logo ?>"/>
+                    <img style="width:95%" src="/admin/<?php echo $empresa->logo ?>"/>
                   </div>
                 </div>
                 <div class="fl w50p" style="border-left: solid 1px <?php echo $cborde; ?>; margin-bottom: 0px; padding-bottom: 0px; font-size: 12px;">
@@ -319,7 +319,7 @@ $piezas_items = (sizeof($factura->items) > 0) ? array_chunk($factura->items, 27)
                 </p>
               <?php } ?>
             </div>
-            <div class="tabla" style="<?php echo ($factura->id_empresa == 1046)?"background-image:url(https://www.varcreative.com/sistema/uploads/1046/weg.jpg);background-position: center center; background-repeat: no-repeat":""; ?>">
+            <div class="tabla">
               <table>
                 <thead>
                   <tr>
@@ -468,16 +468,16 @@ $piezas_items = (sizeof($factura->items) > 0) ? array_chunk($factura->items, 27)
                 <?php if (isset($preference) && $preference !== FALSE) { ?>
                   <a style="background-color: #009ee3;
                     float: left;
-    border: none;
-    text-decoration: none;
-    color: white;
-    margin: 10px 0px;
-    padding: 8px 20px;
-    font-size: 16px;
-    line-height: 34px;
-    border-radius: 4px;
-    text-shadow: 1px 1px 1px #969696;
-    cursor: pointer;"
+                    border: none;
+                    text-decoration: none;
+                    color: white;
+                    margin: 10px 0px;
+                    padding: 8px 20px;
+                    font-size: 16px;
+                    line-height: 34px;
+                    border-radius: 4px;
+                    text-shadow: 1px 1px 1px #969696;
+                    cursor: pointer;"
                     target="_blank"
                     href="<?php echo $preference["response"]["init_point"]; ?>" 
                     mp-mode="modal" 
@@ -485,7 +485,7 @@ $piezas_items = (sizeof($factura->items) > 0) ? array_chunk($factura->items, 27)
                     class="pago-mercadopago">Pagar con MercadoPago</a>
                 <?php } ?>
                 <div class="barcode fr">
-                  <div><img src="/sistema/application/helpers/barcode.php?text=<?php echo $barcode; ?>" /></div>
+                  <div><img src="/admin/application/helpers/barcode.php?text=<?php echo $barcode; ?>" /></div>
                   <div><?php echo $barcode ?></div>
                 </div>
               </div>
