@@ -88,8 +88,8 @@ function getCanvas(page){
 </script>
 <div id="header_pymvar">
     <div class="centrado">
-        <a id="header_pymvar_logo" href="https://www.shopvar.com/" target="_blank">
-          <img src="https://www.varcreative.com/sistema/resources/images/shopvar-logo-full.png"/>
+        <a id="header_pymvar_logo" href="https://www.inmovar.com/" target="_blank">
+          <img src="/admin/resources/images/inmovar-grande.png"/>
         </a>
         <div class="header_pymvar_botones">
             <button class="btn btn-default" onclick="imprimir()">Imprimir</button>
