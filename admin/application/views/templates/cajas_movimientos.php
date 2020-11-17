@@ -160,6 +160,7 @@
     <%= (tipo==0)?"Ingreso":"" %>
     <%= (tipo==1)?"Egreso":"" %>
     <%= (tipo==2)?"Ajuste":"" %>
+    <i class="pull-right fs20 cerrar_lightbox fa fa-times cp"></i>
   </div>
   <div class="panel-body">
     <div class="row">
@@ -303,7 +304,10 @@
 
 <script type="text/template" id="caja_transferencia_template">
 <div class="panel panel-default">
-  <div class="panel-heading">Transferencia entre cajas</div>
+  <div class="panel-heading">
+    Transferencia entre cajas
+    <i class="pull-right fs20 cerrar_lightbox fa fa-times cp"></i>
+  </div>
   <div class="panel-body">
     <div class="row">
       <div class="col-md-6">

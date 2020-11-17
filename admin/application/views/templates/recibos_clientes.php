@@ -1,8 +1,8 @@
 <script type="text/template" id="recibo_clientes_template">
 <div class="panel panel-default mb0">
   <div class="panel-heading font-bold">
-  Recibo de Pago
-  <i class="pull-right cerrar_lightbox glyphicon glyphicon-remove cp"></i>
+    Recibo de Pago
+    <i class="pull-right fs20 cerrar_lightbox fa fa-times cp"></i>
   </div>
   <div class="panel-body pb0">
 
