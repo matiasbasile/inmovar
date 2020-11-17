@@ -102,7 +102,7 @@
                   <select id="propiedad_monedas" class="form-control w80">
                     <% for(var i=0;i< window.monedas.length;i++) { %>
                       <% var o = monedas[i]; %>
-                      <option><%= o.signo %></option>
+                      <option <%= (o.signo == moneda)?"selected":"" %> value="<%= o.signo %>"><%= o.signo %></option>
                     <% } %>
                   </select>                      
                 </div>
