@@ -1,16 +1,8 @@
 <script type="text/template" id="listado_cajas_movimientos_panel_template">
 <div class="centrado rform">
   <div class="header-lg">
-    <div class="row">
-      <div class="col-md-6 col-xs-8">
-        <h1>Cajas</h1>
-      </div>
-      <div class="col-md-6 col-xs-4 tar">
-        <a class="btn btn-info btn-addon" href="app/#caja"><i class="fa fa-plus"></i>&nbsp;&nbsp;Nueva Caja&nbsp;&nbsp;</a>
-      </div>
-    </div>
+    <h1>Cajas</h1>
   </div>
-
   <div class="panel panel-default">
 
     <div class="panel-heading clearfix">
@@ -20,13 +12,13 @@
             <div class="input-group" style="width: 140px;">
               <input type="text" placeholder="Desde" id="cajas_movimientos_desde" class="form-control">
               <span class="input-group-btn">
-                <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="glyphicon glyphicon-calendar"></i></button>
+                <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="fa fa-calendar"></i></button>
               </span>              
             </div>
             <div class="input-group" style="width: 140px;">
               <input type="text" placeholder="Hasta" id="cajas_movimientos_hasta" class="form-control">
               <span class="input-group-btn">
-                <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="glyphicon glyphicon-calendar"></i></button>
+                <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="fa fa-calendar"></i></button>
               </span>              
             </div>
             <?php /*
@@ -177,7 +169,7 @@
           <div class="input-group">
             <input <%= (editar==0)?"disabled":"" %> type="text" value="<%= fecha %>" name="fecha" class="form-control esc" id="cajas_movimientos_fecha"/>
             <span class="input-group-btn">
-              <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="glyphicon glyphicon-calendar"></i></button>
+              <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="fa fa-calendar"></i></button>
             </span>              
           </div>
         </div>
@@ -320,7 +312,7 @@
           <div class="input-group">
             <input type="text" class="form-control no-model esc" id="caja_transferencia_fecha"/>
             <span class="input-group-btn">
-              <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="glyphicon glyphicon-calendar"></i></button>
+              <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="fa fa-calendar"></i></button>
             </span>              
           </div>
         </div>
