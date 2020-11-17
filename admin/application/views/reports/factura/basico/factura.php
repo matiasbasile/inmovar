@@ -148,7 +148,7 @@ $piezas_items = (sizeof($factura->items) > 0) ? array_chunk($factura->items, 27)
   <!-- FACTURA/BASICO/FACTURA.PHP -->
   <div id="printable">
     <?php
-    $copias = $empresa->config["facturacion_cantidad_copias"];
+    $copias = 1;
     for($copia=0;$copia < $copias; $copia++) { 
 
       $nro_pieza = 1;
@@ -205,14 +205,6 @@ $piezas_items = (sizeof($factura->items) > 0) ? array_chunk($factura->items, 27)
                         <p><b>Domicilio: </b><?php echo $empresa->direccion ?></p>
                       <?php } ?>
                     <?php } ?>
-                    <?php if (!empty($empresa->config["numero_ib"])) { ?>
-                      <p><b>Ingresos Brutos: </b><?php echo $empresa->config["numero_ib"]; ?></p>
-                    <?php } ?>
-                    <?php
-                    $fecha_inicio = fecha_es($empresa->config["fecha_inicio"]);
-                    if ($fecha_inicio != "0000-00-00" && $fecha_inicio != "00/00/0000") { ?>
-                      <p><b>Inicio de Actividades: </b> <?php echo $fecha_inicio ?></p>
-                    <?php } ?>
                     <p>
                       <b>
                       <?php
@@ -243,14 +235,6 @@ $piezas_items = (sizeof($factura->items) > 0) ? array_chunk($factura->items, 27)
                   <?php } ?>
 
                   <p><b>CUIT: </b><?php echo $empresa->cuit; ?></p>
-                  <?php if (!empty($empresa->config["numero_ib"])) { ?>
-                    <p><b>Ingresos Brutos: </b><?php echo $empresa->config["numero_ib"]; ?></p>
-                  <?php } ?>
-                  <?php
-                  $fecha_inicio = $empresa->config["fecha_inicio"];
-                  if ($fecha_inicio != "0000-00-00" && $fecha_inicio != "00/00/0000") { ?>
-                    <p><b>Inicio de Actividades: </b> <?php echo $fecha_inicio ?></p>
-                  <?php } ?>
                   <p><b>
                   <?php
                   switch($empresa->id_tipo_contribuyente) {

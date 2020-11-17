@@ -1223,16 +1223,6 @@ class Facturas extends REST_Controller {
     $this->load->model("Punto_Venta_Model");
     $id_empresa = (empty($id_empresa)) ? parent::get_empresa() : $id_empresa;
 
-    // SUPERUSUARIO DONYEYO
-    if ($id_empresa == 980) {
-      $sql = "SELECT id_empresa FROM facturas WHERE id = $id_factura AND id_punto_venta = $id_punto_venta";
-      $q = $this->db->query($sql);
-      if ($q->result() > 0) {
-        $r = $q->row();
-        $id_empresa = $r->id_empresa;
-      }
-    }
-
     $mostrar_header = parent::get_get("header",1);
     $visto = parent::get_get("v",0);
 
@@ -1240,20 +1230,10 @@ class Facturas extends REST_Controller {
       $punto_venta = $this->Punto_Venta_Model->get($id_punto_venta,array(
         "id_empresa"=>$id_empresa
       ));
-
-      // ESPACIO VIRTUAL, PROBLEMA CON LOS CLIENTES DE DISTINTAS SUCURSALES
-      if ($punto_venta->id_empresa == 287) {
-        $factura = $this->modelo->get($id_factura,$id_punto_venta,array(
-          "id_sucursal"=>$punto_venta->id_sucursal,
-          "buscar_etiquetas"=>1,
-          "id_empresa"=>$id_empresa
-        ));        
-      } else {
-        $factura = $this->modelo->get($id_factura,$id_punto_venta,array(
-          "buscar_etiquetas"=>1,
-          "id_empresa"=>$id_empresa
-        ));
-      }
+      $factura = $this->modelo->get($id_factura,$id_punto_venta,array(
+        "buscar_etiquetas"=>1,
+        "id_empresa"=>$id_empresa
+      ));
     } else {
       // NO ESTA DEFINIDO EL PUNTO DE VENTA
       $factura = $this->modelo->get($id_factura,$id_punto_venta,array(
@@ -1287,17 +1267,7 @@ class Facturas extends REST_Controller {
     if (isset($punto_venta->direccion) && isset($punto_venta->localidad) && !empty($punto_venta->direccion)) $empresa->direccion = $punto_venta->direccion." ".$punto_venta->localidad;
         
     $header = ($mostrar_header == 1) ? $this->load->view("reports/factura/header",null,true) : "";
-
-    // Excepciones
-    if ($id_punto_venta == 1705 && $id_empresa == 228) {
-      $empresa->razon_social = "MASSI MARIA FERNANDA";
-      $empresa->cuit = "27-24999238-6";
-    } else if ($id_punto_venta == 2003 && $id_empresa == 228) {
-      $empresa->razon_social = "CABAN MASSI SRL";
-      $empresa->cuit = "30-71656564-1";
-    }
     
-    $tpl = ($factura->id_empresa == 1394) ? "termica_1394" : $punto_venta->disenio_factura;
     if (empty($tpl)) $tpl = "basico";
     $folder = "/sistema/application/views/reports/factura/$tpl";
     if (!empty($punto_venta->disenio_factura_color)) $folder.= "/$punto_venta->disenio_factura_color";
