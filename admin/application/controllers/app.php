@@ -23,6 +23,7 @@ class App extends CI_Controller {
     $this->load->helper("fecha_helper");
     
     $tipos_estado = array();
+    $tipos_gastos = array();
     $almacenes = array();
     $bancos = array();
     $tipos_inmueble = array();
@@ -194,6 +195,11 @@ class App extends CI_Controller {
       $q = $this->db->query("SELECT * FROM bancos ORDER BY nombre ASC");
       $bancos = $q->result();      
 
+      if (file_exists("application/models/tipo_gasto_model.php")) {
+        $this->load->Model("Tipo_Gasto_Model");
+        $tipos_gastos = $this->Tipo_Gasto_Model->get_arbol();
+      }      
+
       // Obtenemos los templates publicos correspondientes a este proyecto
       // o bien el template diseñado a medida para la empresa
       $q = $this->db->query("SELECT * FROM web_templates WHERE (id_proyecto = $empresa->id_proyecto AND publico = 1) OR (id_empresa = $id_empresa) ORDER BY id DESC");
@@ -357,6 +363,7 @@ class App extends CI_Controller {
       "cajas" => $cajas,
       "bancos" => $bancos,
       "almacenes" => $almacenes,
+      "tipos_gastos" => $tipos_gastos,
       
       "tipos_estado" => $tipos_estado,
       "tipos_inmueble" => $tipos_inmueble,
