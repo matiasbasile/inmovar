@@ -51,6 +51,9 @@ $direccion = ($propiedad->calle.(($empresa->mostrar_numeros_direccion_listado)?"
 
 if (sizeof($propiedad->images)==0 && !empty($propiedad->imagen)) $propiedad->images = array_merge(array($propiedad->imagen),$propiedad->images);
 $nombre_pagina = $propiedad->tipo_operacion_link;
+
+if ($propiedad->id_tipo_operacion == 1) $vc_moneda = "USD";
+else $vc_moneda = "$";
 ?>
 <!DOCTYPE html>
 <html lang="en-US">

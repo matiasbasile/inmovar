@@ -6,6 +6,9 @@ $propiedad = $propiedad_model->get($id,array(
   "id_empresa"=>$id_empresa,
   "id_empresa_original"=>$empresa->id,
 ));
+
+if ($propiedad->id_tipo_operacion == 1) $vc_moneda = "USD";
+else $vc_moneda = "$";
 ?>
 <!DOCTYPE html>
 <html>

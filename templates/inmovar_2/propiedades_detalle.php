@@ -13,6 +13,9 @@ if (!empty($titulo_pagina)) { $titulo_pagina = $propiedad->nombre; }
 $nombre_pagina = "detalle";
 $mostro_video = 0;
 if (!empty($propiedad->path)) $propiedad->images = array_merge(array("/admin/".$propiedad->path),$propiedad->images);
+
+if ($propiedad->id_tipo_operacion == 1) $vc_moneda = "USD";
+else $vc_moneda = "$";
 ?>
 <!DOCTYPE html>
 <html lang="es">

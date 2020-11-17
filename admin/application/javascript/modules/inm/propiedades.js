@@ -56,7 +56,7 @@
       id_tipo_inmueble:0,
       id_tipo_operacion:0,
       id_tipo_estado:0,
-      moneda: "",
+      moneda: "U$S",
       codigo: "",
       codigo_completo: "", // Tiene el codigo de la empresa + codigo de la propiedad
       nombre: "",

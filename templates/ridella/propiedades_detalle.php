@@ -56,6 +56,9 @@ if (!isset($_COOKIE[$propiedad->id])) {
   $propiedad_model->add_visit($propiedad->id,$cookie_id_cliente);
   setcookie($propiedad->id,"1",time()+60*60*24*30,"/");
 }
+
+if ($propiedad->id_tipo_operacion == 1) $vc_moneda = "USD";
+else $vc_moneda = "$";
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">

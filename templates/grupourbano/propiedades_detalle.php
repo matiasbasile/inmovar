@@ -31,6 +31,9 @@ if ($minimo == "undefined" || empty($minimo)) $minimo = 0;
 // Maximo
 $maximo = isset($_SESSION["maximo"]) ? $_SESSION["maximo"] : $precio_maximo;
 if ($maximo == "undefined" || empty($maximo)) $maximo = $precio_maximo;
+
+if ($propiedad->id_tipo_operacion == 1) $vc_moneda = "USD";
+else $vc_moneda = "$";
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
