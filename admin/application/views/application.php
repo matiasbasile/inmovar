@@ -298,6 +298,7 @@ var alicuotas_iva = <?php echo json_encode($alicuotas_iva); ?>;
 var comprobantes = <?php echo json_encode($comprobantes); ?>;
 var cajas = <?php echo json_encode($cajas); ?>;
 var bancos = <?php echo json_encode($bancos); ?>;
+var almacenes = <?php echo json_encode($almacenes); ?>;
 
 // Usuarios del sistema
 var usuarios = new app.collections.Usuarios(<?php echo json_encode($usuarios); ?>);

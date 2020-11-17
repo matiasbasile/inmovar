@@ -23,6 +23,7 @@ class App extends CI_Controller {
     $this->load->helper("fecha_helper");
     
     $tipos_estado = array();
+    $almacenes = array();
     $bancos = array();
     $tipos_inmueble = array();
     $tipos_operacion = array();
@@ -183,6 +184,9 @@ class App extends CI_Controller {
         
       $q = $this->db->query("SELECT * FROM inm_tipos_inmueble ORDER BY orden ASC");
       $tipos_inmueble = $q->result();
+
+      $q = $this->db->query("SELECT * FROM almacenes WHERE id_empresa = $empresa->id ORDER BY nombre ASC");
+      $almacenes = $q->result();      
 
       $q = $this->db->query("SELECT * FROM cajas WHERE id_empresa = $id_empresa ORDER BY nombre ASC");
       $cajas = $q->result();
@@ -352,6 +356,7 @@ class App extends CI_Controller {
       "comprobantes" => $comprobantes,
       "cajas" => $cajas,
       "bancos" => $bancos,
+      "almacenes" => $almacenes,
       
       "tipos_estado" => $tipos_estado,
       "tipos_inmueble" => $tipos_inmueble,
