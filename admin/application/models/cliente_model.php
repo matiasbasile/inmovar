@@ -323,7 +323,22 @@ class Cliente_Model extends Abstract_Model {
   }
 
   function update($id,$data) {
+    $this->load->helper("fecha_helper");
     $this->remove_attributes($data);
+
+    // Si estamos editando la fecha de vencimiento de la cuenta principal
+    // entonces tenemos que cambiar tambien la fecha de venc de la empresa con el mismo id
+    if ($data->id_empresa == 1 && isset($data->fecha_vencimiento)) {
+      $data->fecha_vencimiento = fecha_mysql($data->fecha_vencimiento);
+      $f = new DateTime($data->fecha_vencimiento);
+      $f->add(new DateInterval('P10D'));
+      $sql = "UPDATE empresas SET ";
+      $sql.= " fecha_prox_venc = '".$data->fecha_vencimiento."', ";
+      $sql.= " fecha_suspension = '".$f->format("Y-m-d")."' ";
+      $sql.= "WHERE id = $data->id_empresa ";
+      $this->db->query($sql);
+    }
+
     return parent::update($id,$data);
   }
 

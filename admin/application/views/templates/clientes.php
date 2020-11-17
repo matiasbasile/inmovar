@@ -62,6 +62,9 @@
                 <th style="width:20px;"></th>
                 <th class="w50 tac hidden-xs"></th>
                 <th class="sorting" data-sort-by="nombre"><?php echo lang(array("es"=>"Nombre","en"=>"Name")); ?></th>
+                <% if (ID_EMPRESA == 1) { %>
+                  <th>Venc.</th>
+                <% } %>
                 <th class="col-xxs-0">Telefono</th>
                 <th class="col-xxs-0">Email</th>
                 <% if (permiso > 1) { %>
@@ -108,6 +111,9 @@
       <span class="capitalize <%= (activo==1)?'text-info':'text-muted' %>"><%= nombre.ucwords() %></span>
     <% } %>
   </td>
+  <% if (ID_EMPRESA == 1) { %>
+    <td><%= fecha_vencimiento %></td>
+  <% } %>
   <td>
     <% if (!isEmpty(telefono)) { %>
       <span><i class="fa mr5 fa-whatsapp"></i> <%= telefono %></span>

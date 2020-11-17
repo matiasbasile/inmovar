@@ -299,6 +299,22 @@
         </div>
       </div>
 
+      <% if (ID_EMPRESA == 1) { %>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">Vencimiento</label>
+              <div class="input-group">
+                <input type="text" <%= (!edicion)?"disabled":"" %> name="fecha_vencimiento" class="form-control" id="clientes_fecha_vencimiento" value="<%= fecha_vencimiento %>"/>
+                <span class="input-group-btn">
+                  <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="fa fa-calendar"></i></button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% } %>
+
       <div class="form-group">
         <label class="control-label">Observaciones </label>
         <textarea <%= (!edicion)?"disabled":"" %> placeholder="Escriba aquí otros datos de contacto o notas de su cliente..." style="height:100px" class="form-control" name="observaciones" id="cliente_observaciones"><%= observaciones %></textarea>
