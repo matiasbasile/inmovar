@@ -78,60 +78,46 @@
 </script>
 
 <script type="text/template" id="cajas_edit_panel_template">
-<% var modulo = control.get("cajas") %>
-<% console.log(modulo) %>
-<div class="bg-light lter b-b wrapper-md clearfix">
-  <h1 class="m-n font-thin h3 pull-left"><i class="<%= modulo.clase %> icono_principal"></i><%= modulo.nombre_es %>
-    / <b><%= (id == undefined) ? 'Nueva' : nombre %></b>
-  </h1>
-</div>
-<div class="wrapper-md ng-scope">
-  <div class="centrado rform">
-    <div class="row">
-      <div class="col-md-10 col-md-offset-1">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <div class="padder">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="control-label">Nombre</label>
-                    <input type="text" name="nombre" class="form-control" id="cajas_nombre" value="<%= nombre %>" <%= (!edicion)?"disabled":"" %> />
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="control-label">Tipo de Cuenta</label>
-                    <select class="form-control" name="tipo" id="cajas_tipo">
-                      <option <%= (tipo==0)?"selected":"" %> value="0">Efectivo</option>
-                      <option <%= (tipo==1)?"selected":"" %> value="1">Cuenta Bancaria</option>
-                      <option <%= (tipo==2)?"selected":"" %> value="2">MercadoPago</option>
-                      <option <%= (tipo==3)?"selected":"" %> value="3">Paypal</option>
-                      <option <%= (tipo==4)?"selected":"" %> value="4">TodoPago</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <% if (control.check("almacenes")>0) { %>
-                <div class="form-group">
-                  <label class="control-label">Sucursal</label>
-                  <select class="form-control" id="cajas_sucursales" name="id_sucursal">
-                    <option value="0">-</option>
-                    <% for(var i=0;i< window.almacenes.length;i++) { %>
-                      <% var o = almacenes[i]; %>
-                      <option <%= (id_sucursal == o.id)?"selected":"" %> value="<%= o.id %>"><%= o.nombre %></option>
-                    <% } %>
-                  </select>
-                </div>
-              <% } %>
+<div class="centrado rform">
+  <div class="header-lg">
+    <h1>Cajas</h1>
+  </div>  
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="padder">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Nombre</label>
+              <input type="text" name="nombre" class="form-control" id="cajas_nombre" value="<%= nombre %>" <%= (!edicion)?"disabled":"" %> />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Tipo de Cuenta</label>
+              <select class="form-control" name="tipo" id="cajas_tipo">
+                <option <%= (tipo==0)?"selected":"" %> value="0">Efectivo</option>
+                <option <%= (tipo==1)?"selected":"" %> value="1">Cuenta Bancaria</option>
+                <option <%= (tipo==2)?"selected":"" %> value="2">MercadoPago</option>
+                <option <%= (tipo==3)?"selected":"" %> value="3">Paypal</option>
+                <option <%= (tipo==4)?"selected":"" %> value="4">TodoPago</option>
+              </select>
             </div>
           </div>
         </div>
-        <% if (edicion) { %>
-          <button class="btn guardar btn-success">Guardar</button>
-        <% } %>
+        <div class="form-group">
+          <label class="control-label">Sucursal</label>
+          <select class="form-control" id="cajas_sucursales" name="id_sucursal">
+            <option value="0">-</option>
+            <% for(var i=0;i< window.almacenes.length;i++) { %>
+              <% var o = almacenes[i]; %>
+              <option <%= (id_sucursal == o.id)?"selected":"" %> value="<%= o.id %>"><%= o.nombre %></option>
+            <% } %>
+          </select>
+        </div>
       </div>
     </div>
+    <button class="btn guardar btn-success">Guardar</button>
   </div>
 </div>
 
