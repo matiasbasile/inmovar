@@ -195,10 +195,8 @@ class App extends CI_Controller {
       $q = $this->db->query("SELECT * FROM bancos ORDER BY nombre ASC");
       $bancos = $q->result();      
 
-      if (file_exists("application/models/tipo_gasto_model.php")) {
-        $this->load->Model("Tipo_Gasto_Model");
-        $tipos_gastos = $this->Tipo_Gasto_Model->get_arbol();
-      }      
+      $this->load->Model("Tipo_Gasto_Model");
+      $tipos_gastos = $this->Tipo_Gasto_Model->get_arbol();
 
       // Obtenemos los templates publicos correspondientes a este proyecto
       // o bien el template diseñado a medida para la empresa
