@@ -834,23 +834,13 @@
             });
           }
         }
-        if (MILLING == 1 || ID_EMPRESA == 70) {
-          self.model.set({
-            "observaciones":CKEDITOR.instances['cliente_observaciones'].getData(),
-          });
-        }
-        if (MILLING == 1) {
-          self.model.set({
-            "codigo_postal":self.$("#clientes_codigo_postal").val(),
-          })
-        }
 
-        var fax = ((MILLING == 0) ? ((self.$("#cliente_codigos_paises").length > 0) ? (self.$("#cliente_codigos_paises").val()) : 549) : self.$("#clientes_fax").val());
+        var fax = 549;
         this.model.save({
           "path": ((self.$("#hidden_path").length > 0) ? self.$("#hidden_path").val() : ""),
           "path_2": ((self.$("#hidden_path_2").length > 0) ? self.$("#hidden_path_2").val() : ""),
           "codigo":((self.$("#clientes_codigo").length > 0) ? self.$("#clientes_codigo").val() : ""),
-          "lista": ((MILLING == 1) ? ((self.$("#cliente_lista").is(":checked"))?1:0) : ((self.$("#clientes_lista").length > 0) ? self.$("#clientes_lista").val() : 0)),
+          "lista": ((self.$("#clientes_lista").length > 0) ? self.$("#clientes_lista").val() : 0),
           "fecha_inicial": ((self.$("#clientes_fecha_inicial").length > 0) ? self.$("#clientes_fecha_inicial").val() : ""),
           "forma_pago": ((self.$("#clientes_forma_pago").length > 0) ? self.$("#clientes_forma_pago").val() : "E"),
           "id_tipo_iva": ((self.$("#clientes_tipo_iva").length > 0) ? self.$("#clientes_tipo_iva").val() : 0),
@@ -862,18 +852,7 @@
             if (response.error == 1) {
               show(response.mensaje);
             } else {
-              if (self.guardar_directo == 1) window.history.back();
-              else if (self.guardar_directo == 0 && MILLING) window.open("clientes/function/generar_qr/"+self.model.id,"_blank");
-              else if (self.guardar_directo == 2 && MILLING) {
-                var that = self;
-                $.ajax({
-                  "url":"clientes/function/generar_qr_link/"+that.model.id,
-                  "dataType":"json",
-                  "success":function(r) {
-                    alert(r.link);
-                  }
-                });
-              }
+              window.history.back();
             }
             self.guardando = 0;
           },
@@ -1129,23 +1108,21 @@
       // Cuando entramos a la consulta, marcamos al cliente como leido
       this.marcar_leido();
 
-      if (MILLING == 0) {
-        var modelo = new app.models.Consulta({
-          "id_contacto":self.model.id,
-          "fecha":moment().format("DD/MM/YYYY"),
-          "hora":moment().format("HH:mm:ss"),
-        });
-        modelo.on("remove",this.actualizar_consultas,this);
-        this.editor = new app.views.CrearConsultaTimeline({
-          "model":modelo,
-          "view":self,
-          "mostrar_tarea": (control.check("tareas")>0),
-          "alerta_celular":(isEmpty(self.model.get("telefono"))),
-          "alerta_email":(isEmpty(self.model.get("email"))),
-          "nota": self.model.get("observaciones"),
-        });
-        this.$("#cliente_crear_consultas").html(this.editor.el);        
-      }
+      var modelo = new app.models.Consulta({
+        "id_contacto":self.model.id,
+        "fecha":moment().format("DD/MM/YYYY"),
+        "hora":moment().format("HH:mm:ss"),
+      });
+      modelo.on("remove",this.actualizar_consultas,this);
+      this.editor = new app.views.CrearConsultaTimeline({
+        "model":modelo,
+        "view":self,
+        "mostrar_tarea": (control.check("tareas")>0),
+        "alerta_celular":(isEmpty(self.model.get("telefono"))),
+        "alerta_email":(isEmpty(self.model.get("email"))),
+        "nota": self.model.get("observaciones"),
+      });
+      this.$("#cliente_crear_consultas").html(this.editor.el);        
       this.render_consultas();
 
       var calif = new app.views.RatingView({

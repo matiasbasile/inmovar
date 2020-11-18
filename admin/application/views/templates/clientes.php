@@ -253,34 +253,32 @@
               <label class="control-label"><?php echo lang(array("es"=>"Teléfono","en"=>"Phone")); ?></label>
               <span class="control-info">+<%= fax %> <%= telefono %></span>
             </div>
-            <% if (MILLING == 0) { %>
-              <div class="form-group">
-                <div class="btn-group dropdown">
-                  <% if (tipo == 0) { %>
-                    <button class="btn btn-sm btn-success btn-addon btn-addon2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-thumbs-up"></i><?php echo lang(array("es"=>"Con venta","en"=>"With sales")); ?></button>
-                  <% } else if (tipo == 1) { %>
-                    <button class="btn btn-sm btn-warning btn-addon btn-addon2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-clock-o"></i><?php echo lang(array("es"=>"A contactar","en"=>"To contact")); ?></button>
-                  <% } else if (tipo == 2) { %>
-                    <button class="btn btn-sm btn-info btn-addon btn-addon2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-check"></i><?php echo lang(array("es"=>"En progreso","en"=>"In progress")); ?></button>
-                  <% } else if (tipo == 3) { %>
-                    <button class="btn btn-sm btn-danger btn-addon btn-addon2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-thumbs-down"></i><?php echo lang(array("es"=>"Sin venta","en"=>"Without sales")); ?></button>
-                  <% } %>
-                  <span class="fs12 m-l-xs"><i class="fa fa-caret-down"></i></span>
-                  <ul class="dropdown-menu">
-                    <li><a href="javascript:void(0)" class="editar_tipo" data-tipo="1"><?php echo lang(array("es"=>"A contactar","en"=>"To contact")); ?></a></li>
-                    <li><a href="javascript:void(0)" class="editar_tipo" data-tipo="2"><?php echo lang(array("es"=>"En progreso","en"=>"In progress")); ?></a></li>
-                    <li><a href="javascript:void(0)" class="editar_tipo" data-tipo="0"><?php echo lang(array("es"=>"Con venta","en"=>"With sales")); ?></a></li>
-                    <li><a href="javascript:void(0)" class="editar_tipo" data-tipo="3"><?php echo lang(array("es"=>"Sin venta","en"=>"Without sales")); ?></a></li>
-                  </ul>
-                </div>  
-              </div>
-              <div class="form-group mb0 tar">
-                <a class="btn btn-white" href="app/#<%= tipo_cliente %>/<%= id %>">
-                <i class="fa fa-pencil m-r-xs"></i>
-                Editar
-                </a>
-              </div>
-            <% } %>
+            <div class="form-group">
+              <div class="btn-group dropdown">
+                <% if (tipo == 0) { %>
+                  <button class="btn btn-sm btn-success btn-addon btn-addon2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-thumbs-up"></i><?php echo lang(array("es"=>"Con venta","en"=>"With sales")); ?></button>
+                <% } else if (tipo == 1) { %>
+                  <button class="btn btn-sm btn-warning btn-addon btn-addon2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-clock-o"></i><?php echo lang(array("es"=>"A contactar","en"=>"To contact")); ?></button>
+                <% } else if (tipo == 2) { %>
+                  <button class="btn btn-sm btn-info btn-addon btn-addon2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-check"></i><?php echo lang(array("es"=>"En progreso","en"=>"In progress")); ?></button>
+                <% } else if (tipo == 3) { %>
+                  <button class="btn btn-sm btn-danger btn-addon btn-addon2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-thumbs-down"></i><?php echo lang(array("es"=>"Sin venta","en"=>"Without sales")); ?></button>
+                <% } %>
+                <span class="fs12 m-l-xs"><i class="fa fa-caret-down"></i></span>
+                <ul class="dropdown-menu">
+                  <li><a href="javascript:void(0)" class="editar_tipo" data-tipo="1"><?php echo lang(array("es"=>"A contactar","en"=>"To contact")); ?></a></li>
+                  <li><a href="javascript:void(0)" class="editar_tipo" data-tipo="2"><?php echo lang(array("es"=>"En progreso","en"=>"In progress")); ?></a></li>
+                  <li><a href="javascript:void(0)" class="editar_tipo" data-tipo="0"><?php echo lang(array("es"=>"Con venta","en"=>"With sales")); ?></a></li>
+                  <li><a href="javascript:void(0)" class="editar_tipo" data-tipo="3"><?php echo lang(array("es"=>"Sin venta","en"=>"Without sales")); ?></a></li>
+                </ul>
+              </div>  
+            </div>
+            <div class="form-group mb0 tar">
+              <a class="btn btn-white" href="app/#<%= tipo_cliente %>/<%= id %>">
+              <i class="fa fa-pencil m-r-xs"></i>
+              Editar
+              </a>
+            </div>
           </div>
         </div>
       </div>
