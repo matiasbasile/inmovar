@@ -1716,30 +1716,6 @@ class Facturas extends REST_Controller {
       $array->pagada = (abs($array->pago) == abs($array->total)) ? 1 : 0;
     }
 
-    // Si se aplico un codigo de descuento (ART: 2222 MEGASHOP)
-    if (isset($array->aplico_codigo_descuento) && $array->aplico_codigo_descuento == 1) {
-      $descuento_aplicado = $array->descuento;
-      $array->subtotal = $array->subtotal - $array->descuento;
-      $array->porc_descuento = 0;
-      $array->descuento = 0;
-      foreach($items as $item) {
-        if (($item->id_articulo == 10213586 || $item->id_articulo == 10216830) && $item->anulado == 0) {
-          $item->cantidad = 1;
-          $item->neto = -$descuento_aplicado;
-          $item->precio = -$descuento_aplicado;
-          $item->total_sin_iva = -$descuento_aplicado;
-          $item->total_con_iva = -$descuento_aplicado;
-          $item->costo_final = 0; // La bonificacion no tiene costo final
-          break; // Se aplica una sola vez por las dudas
-        }
-      }
-    }
-
-    //if ($array->descuento > 0) {
-    //  $array->total = $array->total - $array->descuento;
-    //}
-
-
     $id_factura = $this->modelo->save($array);
 
     // Si el punto de venta tiene una caja asignada, tenemos que hacer el movimiento en dicha caja

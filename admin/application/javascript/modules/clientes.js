@@ -42,9 +42,9 @@
       no_leido: 0, // Marcador cuando hay una nueva consulta o evento
       custom_1: "",
       custom_2: "",
-      custom_3: "", // INMOVAR: Consulta normal = 1 | TOQUE = PISO
-      custom_4: "", // INMOVAR: Inquilino = 1 | TOQUE = DEPTO
-      custom_5: "", // INMOVAR: Propietario = 1 | TOQUE lo usa como ID_USUARIO
+      custom_3: "", // INMOVAR: Consulta normal = 1
+      custom_4: "", // INMOVAR: Inquilino = 1
+      custom_5: "", // INMOVAR: Propietario = 1
       path: "",
 
       // DEPRECATED: ESTO QUEDO SIN USO PORQUE UN CLIENTE PUEDE SER UN INQUILINO Y CONSULTA A LA VEZ

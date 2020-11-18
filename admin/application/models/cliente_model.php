@@ -693,7 +693,7 @@ class Cliente_Model extends Abstract_Model {
     // INMOVAR: Filtro de inquilino
     if (!empty($custom_4)) $sql.= "AND C.custom_4 = '$custom_4' ";
 
-    // INMOVAR: Filtro de propietario | TOQUE lo usa como ID_USUARIO
+    // INMOVAR: Filtro de propietario
     if (!empty($custom_5)) $sql.= "AND C.custom_5 = '$custom_5' ";
 
     if ($id_usuario != 0 && $id_empresa != 571) {

@@ -97,7 +97,7 @@
           </div>
         <% } %>
 
-        <% if (IDIOMA != "en" && typeof DOMINIO != "undefined" && !isEmpty(DOMINIO) && ID_PROYECTO != 14 && MILLING == 0) { %>
+        <% if (IDIOMA != "en" && typeof DOMINIO != "undefined" && !isEmpty(DOMINIO) && ID_PROYECTO != 14) { %>
           <div class="panel panel-default <%= (PERFIL == 862)?"dn":"" %>">
             <div class="panel-body">
               <div class="padder">
@@ -947,12 +947,10 @@
                   <label class="control-label"><?php echo lang(array("es"=>"Codigo de Seguimiento de Contacto","en"=>"Contact Tracker Code")); ?></label>
                   <textarea placeholder="<?php echo lang(array("es"=>"Pegue aqu&iacute; los codigos que se ejecutarán luego de que el cliente envia un contacto.","en"=>"Insert here the code to track when the user submit a contact form.")); ?>" name="js_post_contacto" class="form-control"><%= js_post_contacto %></textarea>
                 </div>
-                <% if (MILLING == 0) { %>
-                  <div class="form-group">
-                    <label class="control-label">Link de AFIP</label>
-                    <textarea placeholder="Pegue aqu&iacute; el c&oacute;digo QR generado desde la p&aacute;gina de la AFIP." name="codigo_afip" class="form-control"><%= codigo_afip %></textarea>
-                  </div>
-                <% } %>
+                <div class="form-group">
+                  <label class="control-label">Link de AFIP</label>
+                  <textarea placeholder="Pegue aqu&iacute; el c&oacute;digo QR generado desde la p&aacute;gina de la AFIP." name="codigo_afip" class="form-control"><%= codigo_afip %></textarea>
+                </div>
               </div>
             </div>
           </div>
@@ -1046,268 +1044,58 @@
               </div>
             </div>
           </div>
-        <% } else if (MILLING == 1) { %>
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <div class="padder">
-                <div class="form-group mb0 clearfix">
-                  <label class="control-label">
-                    <?php echo lang(array(
-                      "es"=>"Par&aacute;metros",
-                      "en"=>"Parameters",
-                    )); ?>
-                  </label>
-                  <a class="expand-link fr">
-                    <?php echo lang(array(
-                      "es"=>"+ Ver opciones",
-                      "en"=>"+ View options",
-                    )); ?>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="panel-body expand">
-              <div class="padder">
-                <div class="form-group">
-                  <label class="control-label">Online Magazine</label>
-                  <textarea name="texto_quienes_somos" class="form-control h150"><%= texto_quienes_somos %></textarea>
-                </div>
-                <div class="form-group">
-                  <label class="control-label">Factor (%)</label>
-                  <input type="text" class="form-control" value="<%= estadisticas_factor %>" name="estadisticas_factor"/>
-                </div>
-                <div class="form-group">
-                  <label class="control-label">Enviar como copia oculta las notificaciones del sistema a las siguientes direcciones (separadas por coma)</label>
-                  <input type="text" class="form-control" value="<%= bcc_email %>" name="bcc_email"/>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% } else if (TOQUE == 1) { %>
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <div class="padder">
-                <div class="form-group mb0 clearfix">
-                  <label class="control-label">
-                    <?php echo lang(array(
-                      "es"=>"Par&aacute;metros",
-                      "en"=>"Parameters",
-                    )); ?>
-                  </label>
-                  <a class="expand-link fr">
-                    <?php echo lang(array(
-                      "es"=>"+ Ver opciones",
-                      "en"=>"+ View options",
-                    )); ?>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="panel-body expand" style="<%= (PERFIL == 862)?"display:block":"" %>">
-              <div class="padder">
-                <div class="form-group">
-                  <label class="control-label">Asignacion de pedidos</label>
-                  <select name="mostrar_numeros_direccion_listado" class="form-control">
-                    <option <%= (mostrar_numeros_direccion_listado == 0)?"selected":"" %> value="0">Asignacion Manual</option>
-                    <option <%= (mostrar_numeros_direccion_listado == 1)?"selected":"" %> value="1">Asignacion Automatica</option>
-                  </select>
-                </div>        
-
-                <div class="form-group">
-                  <label class="control-label">Cartel Arriba</label>
-                  <input type="text" name="tripadvisor" class="form-control" value="<%= tripadvisor %>"/>
-                </div>
-                <div class="form-group">
-                  <label class="control-label">Cartel Checkout</label>
-                  <input type="text" name="pago_pending" class="form-control" value="<%= pago_pending %>"/>
-                </div>
-
-
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="control-label">Limite de compra en efectivo</label>
-                      <input type="text" name="toque_compra_maxima_efectivo" class="form-control" value="<%= toque_compra_maxima_efectivo %>"/>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="control-label">Limite de efectivo en primera compra</label>
-                      <input type="text" name="toque_compra_maxima_efectivo_primer_cliente" class="form-control" value="<%= toque_compra_maxima_efectivo_primer_cliente %>"/>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-md-2">
-                    <div class="form-group">
-                      <label class="control-label">Hora Inicio 1</label>
-                      <input type="text" id="toque_hora_inicio_1" name="emails_alquileres" class="form-control" value="<%= emails_alquileres %>"/>
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <div class="form-group">
-                      <label class="control-label">Hora Fin 1</label>
-                      <input type="text" id="toque_hora_fin_1" name="emails_emprendimientos" class="form-control" value="<%= emails_emprendimientos %>"/>
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <div class="form-group">
-                      <label class="control-label">Hora Inicio 2</label>
-                      <input type="text" id="toque_hora_inicio_2" name="emails_tasaciones" class="form-control" value="<%= emails_tasaciones %>"/>
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <div class="form-group">
-                      <label class="control-label">Hora Fin 2</label>
-                      <input type="text" id="toque_hora_fin_2" name="emails_ventas" class="form-control" value="<%= emails_ventas %>"/>
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <div class="form-group">
-                      <label class="control-label">Hora Inicio 3</label>
-                      <input type="text" id="toque_hora_inicio_3" name="emails_contacto" class="form-control" value="<%= emails_contacto %>"/>
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <div class="form-group">
-                      <label class="control-label">Hora Fin 3</label>
-                      <input type="text" id="toque_hora_fin_3" name="emails_registro" class="form-control" value="<%= emails_registro %>"/>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="control-label">Valor de Envio Minimo Toque</label>
-                  <input type="text" name="texto_quienes_somos" class="form-control" value="<%= texto_quienes_somos %>"/>
-                </div>
-                <div class="form-group">
-                  <label class="control-label">Distancia Minima de Envio (mts)</label>
-                  <input type="text" name="texto_newsletter" class="form-control" value="<%= texto_newsletter %>"/>
-                </div>
-                <div class="form-group">
-                  <label class="control-label">Valor de Envio Variable ($/mt)</label>
-                  <input type="text" name="texto_contacto" class="form-control" value="<%= texto_contacto %>"/>
-                </div>
-                <div class="form-group">
-                  <label class="control-label">Velocidad promedio repartidor (Metros por minuto)</label>
-                  <input type="text" name="texto_staff" class="form-control" value="<%= texto_staff %>"/>
-                </div>
-                <div class="form-group">
-                  <label class="control-label">Coeficiente de Seguridad</label>
-                  <input type="text" name="texto_registro_gracias" class="form-control" value="<%= texto_registro_gracias %>"/>
-                </div>
-
-                <div class="form-group">
-                  <label class="control-label">Tiempo de Servicio (min)</label>
-                  <input type="text" name="texto_registro" class="form-control" value="<%= texto_registro %>"/>
-                </div>
-                <div class="form-group">
-                  <label class="control-label">Tiempo Promedio de Entrega (Si es CERO, se usa el tiempo de servicio manual) </label>
-                  <input type="text" name="booking" class="form-control" value="<%= booking %>"/>
-                </div>
-
-                <% if (PERFIL == 660) { %>
-                  <div class="form-group">
-                    <div class="checkbox">
-                      <label class="i-checks">
-                        <input type="checkbox" id="toque_cobro_efectivo" name="mostrar_numeros_direccion_detalle" <%= (mostrar_numeros_direccion_detalle == 1) ? 'checked' : '' %>><i></i>
-                        Habilitar pago en efectivo
-                      </label>
-                    </div>                    
-                  </div>
-                <% } %>
-
-              </div>
-            </div>
-          </div>
-
-        <% } else if (ID_EMPRESA == 259) { %>
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <div class="padder">
-                <div class="form-group mb0 clearfix">
-                  <label class="control-label">
-                    <?php echo lang(array(
-                      "es"=>"Par&aacute;metros",
-                      "en"=>"Parameters",
-                    )); ?>
-                  </label>
-                  <a class="expand-link fr">
-                    <?php echo lang(array(
-                      "es"=>"+ Ver opciones",
-                      "en"=>"+ View options",
-                    )); ?>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="panel-body expand" style="<%= (PERFIL == 862)?"display:block":"" %>">
-              <div class="padder">
-                <div class="form-group">
-                  <label class="control-label">Conferecias</label>
-                  <select name="emails_alquileres" class="form-control">
-                    <option <%= (emails_alquileres == "")?"selected":"" %> value="">Habilitado</option>
-                    <option <%= (emails_alquileres == "1")?"selected":"" %> value="1">Deshabilitado</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
-
         <% } %>
 
-        <% if (MILLING == 0) { %>
-          <div class="panel panel-default <%= (PERFIL == 862)?"dn":"" %>">
-            <div class="panel-body">
-              <div class="padder">
-                <div class="form-group mb0 clearfix">
-                  <label class="control-label">
-                    <?php echo lang(array(
-                      "es"=>"Configuracion Avanzada",
-                      "en"=>"Advanced Configuration",
-                    )); ?>
-                  </label>
-                  <a class="expand-link fr">
-                    <?php echo lang(array(
-                      "es"=>"+ Ver opciones",
-                      "en"=>"+ View options",
-                    )); ?>
-                  </a>
-                  <div class="panel-description">
-                    <?php echo lang(array(
-                      "es"=>"Edite contenido CSS y Javascript.",
-                      "en"=>"You can edit CSS and Javascript content.",
-                    )); ?>                  
-                  </div>
+        <div class="panel panel-default <%= (PERFIL == 862)?"dn":"" %>">
+          <div class="panel-body">
+            <div class="padder">
+              <div class="form-group mb0 clearfix">
+                <label class="control-label">
+                  <?php echo lang(array(
+                    "es"=>"Configuracion Avanzada",
+                    "en"=>"Advanced Configuration",
+                  )); ?>
+                </label>
+                <a class="expand-link fr">
+                  <?php echo lang(array(
+                    "es"=>"+ Ver opciones",
+                    "en"=>"+ View options",
+                  )); ?>
+                </a>
+                <div class="panel-description">
+                  <?php echo lang(array(
+                    "es"=>"Edite contenido CSS y Javascript.",
+                    "en"=>"You can edit CSS and Javascript content.",
+                  )); ?>                  
                 </div>
               </div>
             </div>
-            <div class="panel-body expand">
-              <div class="padder">
-                <div class="tab-container">
-                  <ul class="nav nav-tabs" role="tablist">
-                    <li class="active">
-                      <a href="#tab1" role="tab" data-toggle="tab"><i class="fa fa-info"></i>CSS</a>
-                    </li>
-                    <li>
-                      <a href="#tab2" role="tab" data-toggle="tab"><i class="fa fa-info"></i>Javascript</a>
-                    </li>
-                  </ul>
-                  <div class="tab-content">
-                    <div id="tab1" class="tab-pane active panel-body">
-                      <textarea class="form-control" style="height:400px" id="web_editor_texto_css" name="texto_css"><%= texto_css %></textarea>
-                    </div>
-                    <div id="tab2" class="tab-pane panel-body">
-                      <textarea class="form-control" style="height:400px" id="web_editor_texto_js" name="texto_js"><%= texto_js %></textarea>
-                    </div>
+          </div>
+          <div class="panel-body expand">
+            <div class="padder">
+              <div class="tab-container">
+                <ul class="nav nav-tabs" role="tablist">
+                  <li class="active">
+                    <a href="#tab1" role="tab" data-toggle="tab"><i class="fa fa-info"></i>CSS</a>
+                  </li>
+                  <li>
+                    <a href="#tab2" role="tab" data-toggle="tab"><i class="fa fa-info"></i>Javascript</a>
+                  </li>
+                </ul>
+                <div class="tab-content">
+                  <div id="tab1" class="tab-pane active panel-body">
+                    <textarea class="form-control" style="height:400px" id="web_editor_texto_css" name="texto_css"><%= texto_css %></textarea>
+                  </div>
+                  <div id="tab2" class="tab-pane panel-body">
+                    <textarea class="form-control" style="height:400px" id="web_editor_texto_js" name="texto_js"><%= texto_js %></textarea>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="line b-b m-b-lg"></div>
-        <% } %>
+        <div class="line b-b m-b-lg"></div>
 
       </div>
     </div>

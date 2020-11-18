@@ -360,26 +360,6 @@ class Clientes extends REST_Controller {
       $this->load->helper("sms_helper");
       $celular = trim($cliente->telefono);
       $celular.= trim($cliente->celular);
-      if ($id_empresa == 571) {
-        // SOLO TOQUE
-        $p = array(
-          "nombre"=>"Toque",
-          "numero"=>$celular,
-          "texto"=>"Codigo de verificacion de Toque: ".$this->codigo_validacion_toque,
-        );
-        $r = send_sms_smart($p);
-      } else if ($id_empresa == 1234) {
-        $celular = trim($cliente->fax); // 549
-        $celular.= trim($cliente->telefono); // caracteristica
-        $celular.= trim($cliente->celular); // numero
-        require_once APPPATH.'libraries/Whatsapp.php';
-        $whatsapp = new Whatsapp();
-        $cc = array(
-          "numbers"=>$celular,
-          "body"=>"Hola $cliente->nombre! somos Pedi en Chacabuco! Si todavia no tenes este numero, agendalo para recibir todas las notificaciones. Te enviamos el codigo de verificacion para que puedas terminar de registrarte: *".$this->codigo_validacion_pedienchacabuco."*",
-        );
-        $s = $whatsapp->send($cc);
-      }
 
       // Tambien por las dudas enviamos un email
       $this->load->model("Email_Template_Model");
@@ -403,40 +383,6 @@ class Clientes extends REST_Controller {
 
       echo json_encode(array(
         "error"=>0,
-      ));
-
-    } else if (!empty($cliente) && $id_empresa == 256) {
-
-      // EMAIL VERIFICACION DE MILLING
-
-      $this->load->model("Email_Template_Model");
-      $template = $this->Email_Template_Model->get_by_key("email-verificacion",$id_empresa);
-      if ($template !== FALSE) {
-        $bcc_array = array("basile.matias99@gmail.com");
-        require APPPATH.'libraries/Mandrill/Mandrill.php';
-        $body = $template->texto;
-
-        // Reemplazamos con el link de verificacion
-        $pars = http_build_query(array(
-          "c"=>$id_cliente,
-          "e"=>256,
-          "u"=>$url,
-        ));
-        $body = str_replace("{{link}}", "https://millingandgrain.com/admin/clientes/function/registro_valido/?".$pars, $body);
-
-        mandrill_send(array(
-          "to"=>$cliente->email,
-          "from"=>"no-reply@varcreative.com",
-          "from_name"=>"Perendale Publishers",
-          "subject"=>$template->nombre,
-          "body"=>$body,
-          "bcc"=>$bcc_array,
-        ));
-      }
-
-      echo json_encode(array(
-        "error"=>0,
-        "mensaje"=>"We have sent an email to confirm the registration. If you do not received it, please check your SPAM folder.",
       ));
 
     } else {
@@ -771,7 +717,6 @@ class Clientes extends REST_Controller {
     $cliente = $this->modelo->get_by_email($email,$id_empresa);
     if (
       $cliente === FALSE || // SI NO ENCONTRO AL CLIENTE
-      ($tipo == 8 && $this->Empresa_Model->es_milling($id_empresa)) // SI ES UN REGISTRO DE MILLING 
     ) {
       $fecha = date("Y-m-d H:i:s");
       // Debemos guardar el cliente
@@ -1215,11 +1160,6 @@ class Clientes extends REST_Controller {
     $this->load->model("Configuracion_Model");
     $array->uploaded = ($this->Configuracion_Model->es_local()==1)?0:1;
 
-    // Si es MILLING, el link esta en el nombre_fantasia
-    if (($id_empresa == 256 || $id_empresa == 257 || $id_empresa == 403 || $id_empresa == 448 || $id_empresa == 493 || $id_empresa == 520 || $id_empresa == 521 || $id_empresa == 522 || $id_empresa == 523 || $id_empresa == 598)) {
-      $array->nombre_fantasia = filename($array->nombre,"-",0);
-    }    
-    
     $id = $this->modelo->insert($array);
 
     // Guardamos las relaciones con las etiquetas (Y se crean en caso de que no exitan)
@@ -1282,11 +1222,6 @@ class Clientes extends REST_Controller {
           ));
         return;
       }
-    }
-
-    // Si es MILLING, el link esta en el nombre_fantasia
-    if (($id_empresa == 256 || $id_empresa == 257 || $id_empresa == 403 || $id_empresa == 448 || $id_empresa == 493 || $id_empresa == 520 || $id_empresa == 521 || $id_empresa == 522 || $id_empresa == 523 || $id_empresa == 598)) {
-      $array->nombre_fantasia = filename($array->nombre,"-",0);
     }
 
     $this->modelo->save($array);

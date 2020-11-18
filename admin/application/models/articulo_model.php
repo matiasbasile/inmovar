@@ -278,20 +278,6 @@ class Articulo_Model extends Abstract_Model {
         $sql.= " APC.fecha_mov = '$fecha_mov', APC.last_update = '$last_update', ";
         $sql.= " APC.costo_neto_inicial = '$costo_neto_inicial', ";
 
-        // En MEGASHOP, poner los descuentos de los proveedores como string en el custom_1
-        if ($id_empresa == 249 || $id_empresa == 868) {
-          $dto_array = array();
-          if (isset($dto_prov) && $dto_prov > 0) $dto_array[] = $dto_prov."%";
-          if (isset($dto_prov_2) && $dto_prov_2 > 0) $dto_array[] = $dto_prov_2."%";
-          if (isset($dto_prov_3) && $dto_prov_3 > 0) $dto_array[] = $dto_prov_3."%";
-          if (isset($dto_prov_4) && $dto_prov_4 > 0) $dto_array[] = $dto_prov_4."%";
-          if (isset($dto_prov_5) && $dto_prov_5 > 0) $dto_array[] = $dto_prov_5."%";
-          if (sizeof($dto_array)>0) {
-            $dto_string = implode(" + ", $dto_array);
-            $sql.=" APC.custom_1 = '$dto_string', "; // Se usa para el globito de los distintos descuentos del producto  
-          }
-        }
-
         // Juntamos todos los descuentos
         $dto_prov = (isset($costo_neto_inicial) && $costo_neto_inicial != 0) ? ((1 - ($costo_neto / $costo_neto_inicial)) * 100) : 0;
 
@@ -1234,73 +1220,28 @@ class Articulo_Model extends Abstract_Model {
     $filter = trim($filter);
     if (!empty($filter)) {
 
-      if ($id_empresa == 249 || $id_empresa == 868) {
+      // Si tenemos q seleccionar varios
+      if (strpos($filter,",") !== FALSE) {
+        $sql.= "AND A.codigo IN ($filter) ";
+      } else {
+        if ($tipo_busqueda == 0) {
+          $sql.= "AND (A.codigo_barra LIKE '%$filter%' ";
 
-        // Arreglo para MEGASHOP
-        // El sistema anterior cortaba los codigos de barra en 12 digitos
-        $sql.= "AND (";
-        if (is_numeric($filter)) {
-          if (strlen($filter) == 13 && ($id_empresa == 249 || $id_empresa == 868)) {
-            $filter_12 = substr($filter, 0, 12);
-            $sql.= "(A.codigo_barra LIKE '%$filter%' OR A.codigo_barra LIKE '%$filter_12%') ";
-          } else if (strlen($filter)>7) {
-            $filter = (double) $filter;
-            $sql.= "(A.codigo_barra LIKE '%$filter%') ";
-          } else if (strlen($filter) == 7) {
-            $filter_6 = substr($filter, 0, 6);
-            $filter_0 = "0".$filter;
-            $sql.= "(A.codigo_barra = '$filter_0' OR A.codigo = '$filter' OR A.codigo = '$filter_6' OR A.codigo_barra LIKE '%$filter%' OR A.codigo_barra LIKE '$filter_6%') ";
-          } else {
-            $sql.= "(A.codigo = '$filter') ";
-          }
-        } else {
           $filter3 = "";
           $filter2 = preg_split('/\s+/', $filter);
           foreach($filter2 as $fil) {
             $filter3 .= "+(*".$fil."*) ";
           }
-          $sql.= "( MATCH(A.nombre) AGAINST ('$filter3' IN BOOLEAN MODE)  ) ";
-        }
-        if ($id_proveedor != 0) {
-          $sql.= "OR (AP.codigo LIKE '%$filter%') ";
-        }
-        $sql.= ") ";
+          $sql.= "OR ( MATCH(A.nombre) AGAINST ('$filter3' IN BOOLEAN MODE) ) ";
+          $sql.= "OR A.nombre LIKE '%$filter%' ";
 
-      // TODO: Hacer esto configurable, para poder parametrizar por ejemplo buscar por multiples codigos
-      } else if ($id_empresa == 229 || $id_empresa == 230 || $id_empresa == 1355) {
-        // VICTOR
-        if (strpos($filter,",") !== FALSE) {
-          $sql.= "AND A.codigo IN ($filter) ";
-        } else if (is_numeric($filter)) {
-          $sql.= "AND A.codigo = '$filter' ";
-        } else {
-          $sql.= "AND (( MATCH(A.nombre) AGAINST ('$filter3' IN BOOLEAN MODE) ) ";
-          $sql.= "OR A.nombre LIKE '%$filter%' ) ";
-        }
-      } else {
-        // Si tenemos q seleccionar varios
-        if (strpos($filter,",") !== FALSE) {
-          $sql.= "AND A.codigo IN ($filter) ";
-        } else {
-          if ($tipo_busqueda == 0) {
-            $sql.= "AND (A.codigo_barra LIKE '%$filter%' ";
-
-            $filter3 = "";
-            $filter2 = preg_split('/\s+/', $filter);
-            foreach($filter2 as $fil) {
-              $filter3 .= "+(*".$fil."*) ";
-            }
-            $sql.= "OR ( MATCH(A.nombre) AGAINST ('$filter3' IN BOOLEAN MODE) ) ";
-            $sql.= "OR A.nombre LIKE '%$filter%' ";
-
-            if ($id_proveedor != 0) {
-              $sql.= "OR AP.codigo LIKE '%$filter%' ";
-            }
-            $sql.= "OR A.codigo LIKE '$filter%') ";
-          } elseif ($tipo_busqueda == 1) {
-            $filter = (int)$filter;
-            $sql.= "AND A.codigo >= $filter ";
+          if ($id_proveedor != 0) {
+            $sql.= "OR AP.codigo LIKE '%$filter%' ";
           }
+          $sql.= "OR A.codigo LIKE '$filter%') ";
+        } elseif ($tipo_busqueda == 1) {
+          $filter = (int)$filter;
+          $sql.= "AND A.codigo >= $filter ";
         }
       }
     }

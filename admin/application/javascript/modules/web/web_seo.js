@@ -110,16 +110,6 @@
         this.render_tabla_fotos();            
         $(this.el).find("#images_meli_tabla").sortable();
       }
-
-      if (TOQUE == 1) {
-        this.$("#toque_hora_inicio_1").mask("99:99");
-        this.$("#toque_hora_fin_1").mask("99:99");
-        this.$("#toque_hora_inicio_2").mask("99:99");
-        this.$("#toque_hora_fin_2").mask("99:99");
-        this.$("#toque_hora_inicio_3").mask("99:99");
-        this.$("#toque_hora_fin_3").mask("99:99");
-      }
-
       return this;
     },
         

@@ -184,14 +184,14 @@
           <div>
             <div class="checkbox">
               <label class="i-checks">
-                <input <%= (MEGASHOP == 1)?"checked":"" %> type="checkbox" id="importacion_ignorar_primera_fila"><i></i> Ignorar la primera fila del archivo.
+                <input type="checkbox" id="importacion_ignorar_primera_fila"><i></i> Ignorar la primera fila del archivo.
               </label>
             </div>          
           </div>
           <div>
             <div class="checkbox">
               <label class="i-checks">
-                <input <%= (MEGASHOP == 1)?"checked":"" %> type="checkbox" id="importacion_solo_actualizar"><i></i> Solo actualizar productos ya cargados, no agrega productos nuevos.
+                <input type="checkbox" id="importacion_solo_actualizar"><i></i> Solo actualizar productos ya cargados, no agrega productos nuevos.
               </label>
             </div>          
           </div>

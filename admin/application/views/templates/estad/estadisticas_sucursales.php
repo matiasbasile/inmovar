@@ -91,25 +91,9 @@
                 <div class="col-sm-3 col-lg-2 pr5 pl5 mb10">
                   <div class="block tac panel padder-v b-a item bg-default mb0" style="height: 80px">
                     <span id="estadisticas_sucursales_ventas_efectivo" class="font-thin h3 block">0</span>
-                    <span class="text-muted text-md pt5 db">Efectivo <%= (MEGASHOP == 1)?"Sistema":"" %> <span id="estadisticas_sucursales_ventas_efectivo_porc"></span></span>
+                    <span class="text-muted text-md pt5 db">Efectivo <span id="estadisticas_sucursales_ventas_efectivo_porc"></span></span>
                   </div>
                 </div>
-
-                <% if (MEGASHOP == 1) { %>
-                  <div class="col-sm-3 col-lg-2 pr5 pl5 mb10">
-                    <div class="block tac panel padder-v b-a item bg-default mb0" style="height: 80px">
-                      <span id="estadisticas_sucursales_ventas_efectivo_caja" class="font-thin h3 block">0</span>
-                      <span class="text-muted text-md pt5 db">Efectivo Caja</span>
-                    </div>
-                  </div>
-                  <div class="col-sm-3 col-lg-2 pr5 pl5 mb10">
-                    <div class="block tac panel padder-v b-a item bg-default mb0" style="height: 80px">
-                      <span id="estadisticas_sucursales_ventas_efectivo_diferencia" class="font-thin h3 block">0</span>
-                      <span class="text-muted text-md pt5 db">Diferencia Caja</span>
-                    </div>
-                  </div>
-                <% } %>
-
                 <div class="col-sm-3 col-lg-2 pr5 pl5 mb10">
                   <div class="block tac panel padder-v b-a item bg-default mb0" style="height: 80px">
                     <span id="estadisticas_sucursales_ventas_tarjetas" class="font-thin h3 block">0</span>

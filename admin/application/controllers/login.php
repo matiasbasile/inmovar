@@ -425,16 +425,6 @@ class Login extends CI_Controller {
 				// ES UN USUARIO REGULAR
 				} else {
 
-          // MEGASHOP
-          if ($usuario->id_empresa == 249 || $usuario->id_empresa == 868 || $usuario->id_empresa == 1021) {
-            // Los cajeros no pueden entrar al servidor
-            $this->load->model("Configuracion_Model");
-            if ($this->Configuracion_Model->es_local()==0 && ($usuario->id_perfiles == 319 || $usuario->id_perfiles == 1195)) {
-              echo json_encode(array("error"=>true,"mensaje"=>"ERROR: Esta entrando con el perfil CAJERO al SERVIDOR."));
-              exit();
-            }
-          }
-					
 					// Si hay que controlar el acceso por horarios
 					if ($usuario->hora_desde != "00:00:00" && $usuario->hora_hasta != "00:00:00") {
 						$ahora = date("H:i:s");

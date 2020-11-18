@@ -2676,33 +2676,10 @@ class Articulos extends REST_Controller {
     $sql = "SELECT A.* ";
     $sql.= "FROM articulos A ";
     $sql.= "WHERE A.lista_precios >= 1 ";
-    if ($id_empresa == 249 || $id_empresa == 868) {
-      // Arreglo para MEGASHOP
-      // El sistema anterior cortaba los codigos de barra en 12 digitos
-      if (strlen($codigo) == 13) {
-        $codigo_12 = substr($codigo, 0, 12);
-        $sql.= "AND (A.codigo_barra LIKE '%$codigo%' OR A.codigo_barra LIKE '%$codigo_12%') ";
-      } else if (strlen($codigo)>7) {
-        $sql.= "AND A.codigo_barra LIKE '%$codigo%' ";
-      } else if (strlen($codigo) == 7) {
-        $codigo_6 = substr($codigo, 0, 6);
-        $codigo_0 = "0".$codigo;
-        $sql.= "AND (A.codigo_barra = '$codigo_0' OR A.codigo = '$codigo' OR A.codigo = '$codigo_6' OR A.codigo_barra LIKE '%$codigo%' OR A.codigo_barra LIKE '$codigo_6%') ";
-      } else {
-        $sql.= "AND A.codigo = '$codigo' ";
-      }
-    } else if ($id_empresa == 465) {
-      if (is_numeric($codigo) && strlen($codigo) >= 7) {
-        $sql.= "AND A.codigo_barra LIKE '%$codigo%' ";
-      } else {
-        $sql.= "AND A.codigo = '$codigo' "; 
-      }
+    if (is_numeric($codigo) && strlen($codigo) >= 8) {
+      $sql.= "AND A.codigo_barra LIKE '%$codigo%' ";
     } else {
-      if (is_numeric($codigo) && strlen($codigo) >= 8) {
-        $sql.= "AND A.codigo_barra LIKE '%$codigo%' ";
-      } else {
-        $sql.= "AND A.codigo = '$codigo' "; 
-      }
+      $sql.= "AND A.codigo = '$codigo' "; 
     }
     $sql.= "AND id_empresa = $id_empresa ";
     $sql.= "LIMIT 0,1 ";
@@ -2733,81 +2710,33 @@ class Articulos extends REST_Controller {
     $consultar_stock = parent::get_post("consultar_stock",0);
 
     $articulo = null;
-    // SI ES MEGASHOP
-    if ($id_empresa == 249 || $id_empresa == 868) {
+    // Otro que no sea el MEGA
 
-      // Primero buscamos si existe con 13 digitos
-      if (strlen($codigo) == 13) {
-        $sql = "SELECT A.* ";
-        $sql.= "FROM articulos A ";
-        $sql.= "WHERE A.lista_precios >= 1 ";
-        $sql.= "AND A.codigo_barra LIKE '%$codigo%' ";
-        $sql.= "AND id_empresa = $id_empresa ";
-        $sql.= "LIMIT 0,1 ";
-        $q = $this->db->query($sql);
-        if ($q->num_rows()>0) {
-          $row = $q->row();
-          $articulo = $this->modelo->get($row->id);        
-        }
-      }
+    // Primero intentamos con el codigo exacto
+    $sql = "SELECT A.* ";
+    $sql.= "FROM articulos A ";
+    $sql.= "WHERE A.lista_precios >= 1 ";
+    $sql.= "AND A.codigo = '$codigo' "; 
+    $sql.= "AND id_empresa = $id_empresa ";
+    $sql.= "LIMIT 0,1 ";
+    $q = $this->db->query($sql);
+    if ($q->num_rows()>0) {
+      $row = $q->row();
+      $articulo = $this->modelo->get($row->id);
+    }
 
-      // Si no existe con 13, probamos con 12
-      if ($articulo == null) {
-        $sql = "SELECT A.* ";
-        $sql.= "FROM articulos A ";
-        $sql.= "WHERE A.lista_precios >= 1 ";
-        // Arreglo para MEGASHOP
-        // El sistema anterior cortaba los codigos de barra en 12 digitos
-        if (strlen($codigo) == 13) {
-          $codigo_12 = substr($codigo, 0, 12);
-          $sql.= "AND (A.codigo_barra LIKE '%$codigo%' OR A.codigo_barra LIKE '%$codigo_12%') ";
-        } else if (strlen($codigo)>7) {
-          $sql.= "AND A.codigo_barra LIKE '%$codigo%' ";
-        } else if (strlen($codigo) == 7) {
-          $codigo_6 = substr($codigo, 0, 6);
-          $codigo_0 = "0".$codigo;
-          $sql.= "AND (A.codigo_barra = '$codigo_0' OR A.codigo = '$codigo' OR A.codigo = '$codigo_6' OR A.codigo_barra LIKE '%$codigo%' OR A.codigo_barra LIKE '$codigo_6%') ";
-        } else {
-          $sql.= "AND A.codigo = '$codigo' ";
-        }
-        $sql.= "AND id_empresa = $id_empresa ";
-        $sql.= "LIMIT 0,1 ";
-        $q = $this->db->query($sql);
-        if ($q->num_rows()>0) {
-          $row = $q->row();
-          $articulo = $this->modelo->get($row->id);
-        }
-      }
-
-    } else {
-      // Otro que no sea el MEGA
-
-      // Primero intentamos con el codigo exacto
+    // Si no lo encontramos con el codigo exacto, intentamos con el codigo de barra
+    if ($articulo == null) {
       $sql = "SELECT A.* ";
       $sql.= "FROM articulos A ";
       $sql.= "WHERE A.lista_precios >= 1 ";
-      $sql.= "AND A.codigo = '$codigo' "; 
+      $sql.= "AND A.codigo_barra LIKE '%$codigo%' ";
       $sql.= "AND id_empresa = $id_empresa ";
       $sql.= "LIMIT 0,1 ";
       $q = $this->db->query($sql);
       if ($q->num_rows()>0) {
         $row = $q->row();
         $articulo = $this->modelo->get($row->id);
-      }
-
-      // Si no lo encontramos con el codigo exacto, intentamos con el codigo de barra
-      if ($articulo == null) {
-        $sql = "SELECT A.* ";
-        $sql.= "FROM articulos A ";
-        $sql.= "WHERE A.lista_precios >= 1 ";
-        $sql.= "AND A.codigo_barra LIKE '%$codigo%' ";
-        $sql.= "AND id_empresa = $id_empresa ";
-        $sql.= "LIMIT 0,1 ";
-        $q = $this->db->query($sql);
-        if ($q->num_rows()>0) {
-          $row = $q->row();
-          $articulo = $this->modelo->get($row->id);
-        }
       }
     }
 

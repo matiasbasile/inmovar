@@ -211,11 +211,6 @@ class Venta_Model extends Abstract_Model {
         $tipos = implode(",", $nuevo_array);
         $sql_where.= "AND F.tipo IN ($tipos) ";
       }
-      if ($this->Empresa_Model->es_toque($id_empresa) && $in_tipos_estados != "M1" && $con_anulados != 2) {
-        // TOQUE tenemos que filtrar los pedidos en id_tipo_estado = 0, porque todavia estan en proceso
-        // y los comercios no lo tendrian que ver
-        $sql_where.= "AND F.id_tipo_estado >= 0 ";
-      }
 
     } else {
 
@@ -331,18 +326,7 @@ class Venta_Model extends Abstract_Model {
     if ($custom_orden == "pedidos_listos") $sql_where.= "AND F.codigo_postal != '' ";
 
     $sql = $sql.$sql_where;
-
-    // ORDENES ESPECIALES
-    if ($custom_orden == "mas_retrasados") {
-      // Orden especial para TOQUE
-      $sql.= "ORDER BY F.vencimiento ASC ";
-    } else if ($custom_orden == "pedidos_listos") {
-      // Orden especial para TOQUE
-      $sql.= "ORDER BY F.codigo_postal DESC ";
-    } else if (!empty($order)) {
-      $sql.= "ORDER BY $order ";
-    }
-
+    if (!empty($order)) $sql.= "ORDER BY $order ";
     if ($limit !== FALSE) $sql.= "LIMIT $limit,$offset ";
     $sql_2 = $sql;
     $q = $this->db->query($sql);

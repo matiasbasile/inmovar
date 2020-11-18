@@ -2927,7 +2927,6 @@ function ventas() {
     $sql.= "FROM facturas F ";
     $sql.= "LEFT JOIN almacenes ALM ON (F.id_empresa = ALM.id_empresa AND F.id_sucursal = ALM.id) ";
     $sql.= "WHERE F.id_empresa IN ($id_empresa) ";
-    $sql.= "AND F.id_sucursal != 531 "; // NO TOMAR CENTRAL DE MEGASHOP 868
     $sql.= "AND F.anulada = 0 ";
     $sql.= "AND F.tipo != 'C' ";
     $sql.= "AND F.fecha >= '$desde' AND F.fecha <= '$hasta' ";

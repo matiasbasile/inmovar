@@ -59,9 +59,6 @@
       <div class="btn-group dropdown">
         <i title="Opciones" class="iconito fa fa-caret-down dropdown-toggle" data-toggle="dropdown"></i>
         <ul class="dropdown-menu pull-right">
-          <% if (MILLING == 1) { %>
-            <li><a href="javascript:void(0)" class="notificar" data-id="<%= id %>"><?php echo lang(array("es"=>"Notificar","en"=>"Send Notification")); ?></a></li>
-          <% } %>
           <li><a href="javascript:void(0)" class="delete" data-id="<%= id %>"><?php echo lang(array("es"=>"Eliminar","en"=>"Delete")); ?></a></li>
         </ul>
       </div>

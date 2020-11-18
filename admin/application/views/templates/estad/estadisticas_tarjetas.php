@@ -42,18 +42,6 @@
               </select>
             <% } %>
 
-            <% if (control.check("puntos_venta")>0 || MEGASHOP == 1 || ID_EMPRESA == 421) { %>
-              <select class="form-control pull-left m-l-xs" style="display: inline-block; width: 160px;" id="estadisticas_tarjetas_puntos_venta">
-                <option <%= (id_punto_venta==-1)?"selected":"" %> value="-1">Punto de Venta</option>
-                <% for(var i=0;i< puntos_venta.length;i++) { %>
-                  <% var pv = puntos_venta[i] %>
-                  <% if (ID_SUCURSAL == 0 || ID_SUCURSAL == pv.id_sucursal) { %>
-                    <option <%= (id_punto_venta==pv.id)?"selected":"" %> value="<%= pv.id %>"><%= pv.nombre %></option>
-                  <% } %>  
-                <% } %>
-              </select>
-            <% } %>
-
             <button class="btn btn-default buscar pull-left m-l-xs"><i class="fa fa-search"></i> Buscar</button>
             <button class="btn btn-default imprimir pull-left m-l-xs"><i class="fa fa-print"></i></button>
           </div>

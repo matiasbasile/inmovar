@@ -85,12 +85,6 @@
           self.$("#estadisticas_publicidades_resultado").html(view.el);
         },
       });
-
-      // En MILLING traemos ademas otros datos
-      if (MILLING == 1) {
-        var id_cliente = this.$("#estadisticas_publicidades_campanias option:selected").data("id_cliente");
-        console.log(id_cliente);
-      }
     },
         
     render: function() {

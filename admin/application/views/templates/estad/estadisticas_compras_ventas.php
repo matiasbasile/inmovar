@@ -192,7 +192,7 @@
   <% if (id_articulo == -1) { %>
     <td colspan="15"><%= codigo %></td>
   <% } else { %>
-    <% var decimal = (MEGASHOP == 1 || ID_EMPRESA == 421)?0:2 %>
+    <% var decimal = 2 %>
     <td><%= codigo %></td>
     <td><%= codigo_barra.replaceAll("###","<br/>") %></td>
     <td><%= codigo_prov %></td>

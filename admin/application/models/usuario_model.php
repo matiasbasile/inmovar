@@ -223,22 +223,7 @@ class Usuario_Model extends Abstract_Model {
       "custom_8"=>$custom_8,
       "custom_9"=>$custom_9,
       "custom_10"=>$custom_10,
-    ));    
-
-    // Si es TOQUE, tambien duplicamos los articulos
-    $this->load->model("Empresa_Model");
-    if ($this->Empresa_Model->es_toque($usuario->id_empresa) == 1) {
-      $sql = "SELECT * FROM articulos WHERE id_empresa = $usuario->id_empresa AND id_usuario = $id ";
-      $q = $this->db->query($sql);
-      $articulos = $q->result();
-      $this->load->model("Articulo_Model");
-      foreach($articulos as $r) {
-        $ar = $this->Articulo_Model->duplicar($r->id);
-        $id_nuevo = $ar["id"];
-        $sql = "UPDATE articulos SET id_usuario = $insert_id WHERE id_empresa = $usuario->id_empresa AND id = $id_nuevo";
-        $this->db->query($sql);
-      }
-    }
+    ));
     
     return array(
       "id"=>$insert_id

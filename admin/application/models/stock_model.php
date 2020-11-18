@@ -801,42 +801,7 @@ class Stock_Model extends Abstract_Model {
     if (!empty($id_desde)) $sql_base.= "AND A.id >= $id_desde ";
     
     if (!empty($filter)) {
-
-      if ($id_empresa == 249 || $id_empresa == 868) {
-
-        // Arreglo para MEGASHOP
-        // El sistema anterior cortaba los codigos de barra en 12 digitos
-        $sql_base.= "AND (";
-        if (is_numeric($filter)) {
-          if (strlen($filter) == 13 && ($id_empresa == 249 || $id_empresa == 868)) {
-            $filter_12 = substr($filter, 0, 12);
-            $sql_base.= "(A.codigo_barra LIKE '%$filter%' OR A.codigo_barra LIKE '%$filter_12%') ";
-          } else if (strlen($filter)>7) {
-            $filter = (double) $filter;
-            $sql_base.= "(A.codigo_barra LIKE '%$filter%') ";
-          } else if (strlen($filter) == 7) {
-            $filter_6 = substr($filter, 0, 6);
-            $filter_0 = "0".$filter;
-            $sql_base.= "(A.codigo_barra = '$filter_0' OR A.codigo = '$filter' OR A.codigo = '$filter_6' OR A.codigo_barra LIKE '%$filter%' OR A.codigo_barra LIKE '$filter_6%') ";
-          } else {
-            $sql_base.= "(A.codigo = '$filter') ";
-          }
-        } else {
-          $filter3 = "";
-          $filter2 = preg_split('/\s+/', $filter);
-          foreach($filter2 as $fil) {
-            $filter3 .= "+(*".$fil."*) ";
-          }
-          $sql_base.= "( MATCH(A.nombre) AGAINST ('$filter3' IN BOOLEAN MODE)  ) ";
-        }
-        if ($id_proveedor != 0) {
-          $sql_base.= "OR (AP.codigo LIKE '%$filter%') ";
-        }
-        $sql_base.= ") ";
-
-      } else {
-        $sql_base.= "AND (A.nombre LIKE '%$filter%' OR A.codigo LIKE '%$filter%' OR A.codigo_barra LIKE '%$filter%') ";
-      }
+      $sql_base.= "AND (A.nombre LIKE '%$filter%' OR A.codigo LIKE '%$filter%' OR A.codigo_barra LIKE '%$filter%') ";
     }
       
     if (!empty($id_rubro)) $sql_base.= "AND A.id_rubro = $id_rubro ";

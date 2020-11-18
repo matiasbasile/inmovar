@@ -345,12 +345,6 @@ class Empresa_Model extends Abstract_Model {
       $fact_configuracion = $q->result_array();
       $row->config = array_merge($row->config,$fact_configuracion[0]);
 
-      // Hardcodeamos el codigo de supervisor de MEGASHOP, ya que es con mayusculas y minusculas
-      // y cuando tienen Block Mayus activo tira error y no pasa. Entonces lo ponemos todo a mayusculas y listo
-      if ($id == 249 || $id == 868 || $id == 421) {
-        $row->config["supervisor"] = "cfca4cbdc07582ea8c733ea979535f84";  
-      }
-
       // Si la cotizacion del dolar esta en cero, la tomamos de otra tabla
       // La cotizacion la tomamos de otra tabla, no del campo 
       if ($row->config["cotizacion_dolar"] == 0) {

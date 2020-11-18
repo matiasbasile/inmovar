@@ -113,20 +113,6 @@
                   </div>
                 <% } %>
 
-                <% if (control.check("puntos_venta")>0 || MEGASHOP == 1 || ID_EMPRESA == 421) { %>
-                  <div class="form-group">
-                    <select class="form-control" id="articulos_comparacion_puntos_venta">
-                      <option value="0">Punto de Venta</option>
-                      <% for(var i=0;i< puntos_venta.length;i++) { %>
-                        <% var pv = puntos_venta[i] %>
-                        <% if (ID_SUCURSAL == 0 || ID_SUCURSAL == pv.id_sucursal) { %>
-                          <option value="<%= pv.id %>"><%= pv.nombre %></option>
-                        <% } %>  
-                      <% } %>
-                    </select>
-                  </div>
-                <% } %>
-
                 <% if (control.check("rubros")>0) { %>
                   <div class="form-group">
                     <select id="articulos_comparacion_rubros" class="w100p no-model"></select>
