@@ -1049,6 +1049,7 @@ class Empresa_Model extends Abstract_Model {
   function activar_empresa($id_empresa) {
 
     $empresa = $this->get_min($id_empresa);
+    if ($empresa->activo == 1) return;
     $sql = "UPDATE empresas SET activo = 1, estado_empresa = 10 WHERE id = $id_empresa ";
     $this->db->query($sql);
 
