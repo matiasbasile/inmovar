@@ -439,7 +439,7 @@
   <td class="tar"><%= Number(monto).toFixed(2) %></td>
   <td>
     <% if (!solo_lectura) { %>
-    <i class="glyphicon glyphicon-remove eliminar delete text-danger" data-id="<%= id %>" />
+    <i class="fa fa-times eliminar delete text-danger" data-id="<%= id %>" />
     <% } %>
   </td>
 </script>

@@ -392,7 +392,7 @@ app.views.ReciboClientes = app.mixins.View.extend({
       tr+="<td>"+d.caja+"</td>";
       tr+="<td class='tar'>$ "+d.monto+"</td>";
       tr+="<td>";
-      if (self.model.id == undefined) tr+="<i class='glyphicon glyphicon-remove eliminar_deposito text-danger' />";
+      if (self.model.id == undefined) tr+="<i class='fa fa-times eliminar_deposito text-danger' />";
       tr+="</td>";
       tr+="</tr>";
       this.$("#recibo_depositos_table").append(tr);
@@ -456,7 +456,7 @@ app.views.ReciboClientes = app.mixins.View.extend({
       tr+="<td>"+d.caja+"</td>";
       tr+="<td class='tar'>$ "+d.monto+"</td>";
       tr+="<td>";
-      if (self.model.id == undefined) tr+="<i class='glyphicon glyphicon-remove eliminar_efectivo text-danger' />";
+      if (self.model.id == undefined) tr+="<i class='fa fa-times eliminar_efectivo text-danger' />";
       tr+="</td>";
       tr+="</tr>";
       this.$("#recibo_movimientos_efectivo_table").append(tr);
@@ -545,7 +545,7 @@ app.views.ReciboClientes = app.mixins.View.extend({
       tr+="<td>"+d.cuotas+"</td>";
       tr+="<td>$ "+d.importe+"</td>";
       tr+="<td>";
-      if (self.model.id == undefined) tr+="<i class='glyphicon glyphicon-remove eliminar_tarjeta text-danger' />";
+      if (self.model.id == undefined) tr+="<i class='fa fa-times eliminar_tarjeta text-danger' />";
       tr+="</td>";
       tr+="</tr>";
       this.$("#recibo_tarjetas_table").append(tr);

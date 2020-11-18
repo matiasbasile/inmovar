@@ -174,9 +174,9 @@
   <td>
     <% if (fecha != "Saldo Inicial") { %>
       <% if (tipo == "P") { %>
-        <i title="Eliminar comprobante" class="glyphicon glyphicon-trash delete" />
+        <i title="Eliminar comprobante" class="fa fa-times delete" />
       <% } else { %>
-        <i title="Eliminar comprobante" class="glyphicon glyphicon-trash delete" />
+        <i title="Eliminar comprobante" class="fa fa-times delete" />
       <% } %>
     <% } %>
   </td>
