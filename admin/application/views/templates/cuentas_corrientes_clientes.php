@@ -176,13 +176,7 @@
       <% if (tipo == "P") { %>
         <i title="Eliminar comprobante" class="glyphicon glyphicon-trash delete" />
       <% } else { %>
-        <% if (tipo_punto_venta != "E") { %>
-          <% if (anulada == 0) { %>
-            <i title="Anular comprobante" class="glyphicon glyphicon-remove anular text-danger" />
-          <% } else if (anulada == 1) { %>
-            <i title="Eliminar comprobante" class="glyphicon glyphicon-trash delete" />
-          <% } %>    
-        <% } %>
+        <i title="Eliminar comprobante" class="glyphicon glyphicon-trash delete" />
       <% } %>
     <% } %>
   </td>
