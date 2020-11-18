@@ -501,7 +501,6 @@ class Alquileres extends REST_Controller {
     $corresponde_a = $this->input->post("corresponde_a");
     $id_alquiler = $this->input->post("id_alquiler");
     $this->db->query("UPDATE cheques SET fecha_recibido = '0000-00-00', id_recibo = 0 WHERE id_empresa = $id_empresa AND id_recibo = $id");
-    $this->db->query("DELETE FROM depositos WHERE id_recibo = $id AND id_empresa = $id_empresa");
     $this->db->query("DELETE FROM facturas_pagos WHERE id_pago = $id AND id_empresa = $id_empresa");
     $this->db->query("DELETE FROM cupones_tarjetas WHERE id_factura = $id AND id_empresa = $id_empresa");
     $this->db->query("UPDATE facturas SET pagada = 0, pago = 0 WHERE id = $id AND id_empresa = $id_empresa ");
