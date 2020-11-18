@@ -91,7 +91,7 @@
         <ul class="dropdown-menu pull-right">
           <% if (ID_USUARIO == 0) { %>
             <% if (activo == 0) { %>
-              <li><span class="activar_empresa">Activar</span></li>
+              <li><a href="javascript:void(0)" class="activar_empresa">Activar</a></li>
             <% } %>
             <li><a target="_blank" href="empresas/function/exportar/<%= id %>/0/">Exportar Base</a></li>
             <li><a target="_blank" href="empresas/function/exportar/<%= id %>/1/">Exportar Datos</a></li>
