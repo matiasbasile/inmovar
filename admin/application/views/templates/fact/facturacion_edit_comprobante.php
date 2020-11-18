@@ -41,12 +41,7 @@
         <div class="col-md-2 col-sm-6 pl10 pr10">
           <label>Forma de Pago</label>
           <select disabled title="Forma de Pago" class="form-control action no-model" name="tipo_pago" id="facturacion_tipo_pago">
-            <option <%= (tipo_pago == "C")?"selected":"" %> value="C">Cuenta Corriente</option>
-            <option <%= (tipo_pago == "E")?"selected":"" %> value="E">Efectivo</option>
-            <option <%= (tipo_pago == "H")?"selected":"" %> value="H">Cheque</option>
-            <option <%= (tipo_pago == "T")?"selected":"" %> value="T">Tarjeta</option>
-            <option <%= (tipo_pago == "B")?"selected":"" %> value="B">Banco</option>
-            <option <%= (tipo_pago == "O")?"selected":"" %> value="O">Otro</option>
+            <option selected value="C">Cuenta Corriente</option>
           </select>        
         </div>
         <div class="col-md-7">
