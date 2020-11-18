@@ -28,7 +28,6 @@
       telefono: "",
       fax: "549", // Se usa como codigo de pais
       celular: "",
-      forma_pago: "E",
       contacto_nombre: "",
       contacto_email: "",
       contacto_telefono: "",
@@ -842,7 +841,6 @@
           "codigo":((self.$("#clientes_codigo").length > 0) ? self.$("#clientes_codigo").val() : ""),
           "lista": ((self.$("#clientes_lista").length > 0) ? self.$("#clientes_lista").val() : 0),
           "fecha_inicial": ((self.$("#clientes_fecha_inicial").length > 0) ? self.$("#clientes_fecha_inicial").val() : ""),
-          "forma_pago": ((self.$("#clientes_forma_pago").length > 0) ? self.$("#clientes_forma_pago").val() : "E"),
           "id_tipo_iva": ((self.$("#clientes_tipo_iva").length > 0) ? self.$("#clientes_tipo_iva").val() : 0),
           "id_tipo_documento": ((self.$("#clientes_tipo_documento").length > 0) ? self.$("#clientes_tipo_documento").val() : 80),
           "id_plan":(self.$("#clientes_planes").length > 0) ? (self.$("#clientes_planes").val()) : 0,

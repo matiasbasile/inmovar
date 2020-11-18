@@ -556,6 +556,7 @@ class Empresa_Model extends Abstract_Model {
     $sql.= " email = '$data->email', ";
     $sql.= " direccion = '$data->direccion', ";
     $sql.= " telefono = '$data->telefono', ";
+    $sql.= " forma_pago = 'C', ";
     $sql.= " cuit = '$data->cuit' ";
     $sql.= "WHERE id_empresa = 1 AND id = $id";
     $this->db->query($sql);

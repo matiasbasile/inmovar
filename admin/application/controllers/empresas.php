@@ -578,7 +578,7 @@ class Empresas extends REST_Controller {
         }
 
         // Eliminamos el cliente dentro de la cuenta de VARCREATIVE
-        $this->db->query("DELETE FROM clientes WHERE id_empresa = 936 AND id = $id ");
+        $this->db->query("DELETE FROM clientes WHERE id_empresa = 1 AND id = $id ");
       }
     }
     echo json_encode(array("error"=>0));
