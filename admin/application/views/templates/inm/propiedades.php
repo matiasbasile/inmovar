@@ -105,7 +105,7 @@
                 <th class="w150 sorting" data-sort-by="precio_final">Operación</th>
                 <th class="w150">Caract.</th>
                 <th></th>
-                <th class="th_acciones w80">Acciones</th>
+                <th class="th_acciones w150">Acciones</th>
               </tr>
             </thead>
             <tbody class="tbody"></tbody>
