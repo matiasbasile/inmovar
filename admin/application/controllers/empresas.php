@@ -187,6 +187,15 @@ class Empresas extends REST_Controller {
     ));
   }
 
+  function activar() {
+    $id_perfil = $_SESSION["perfil"];
+    if ($id_perfil == -1) {    
+      $this->input->post("id_empresa");
+      $this->modelo->activar_empresa($id_empresa);
+    }
+    echo json_encode(array("error"=>1));
+  }  
+
   function arreglar_editores() {
     $this->load->helper("file_helper");
     $sql = "SELECT * FROM empresas ";

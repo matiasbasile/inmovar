@@ -87,6 +87,21 @@
       "click .ver": "editar",
       "click .user": "login",
       "click .delete": "borrar",
+      "click .activar_empresa": function() {
+        var self = this;
+        e.stopPropagation();
+        $.ajax({
+          "url":"empresas/function/activar/",
+          "data":{
+            "id_empresa": self.model.id,
+          },
+          "type":"post",
+          "dataType":"json",
+          "success":function(r){
+            location.reload();
+          }
+        });
+      },
       "click .enviar_whatsapp":function(){
         var mensaje = "Hola "+this.model.get("nombre")+"\n";
         if (this.model.get("tipo_empresa") == 4) mensaje += "Gracias por registrarte en La Plata Construye.\n";

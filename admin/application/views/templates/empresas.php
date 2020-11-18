@@ -35,6 +35,7 @@
                 <th>Plan</th>
                 <th>Login</th>
                 <th>Estado</th>
+                <th class="w25">Tel.</th>
                 <% if (permiso > 1) { %>
                   <th class="th_acciones w80"></th>
                 <% } %>
@@ -75,6 +76,11 @@
     <% if (estado_empresa == 10) { %><span class="label bg-success">Cliente</span><% } %>
     <% if (estado_empresa == 20) { %><span class="label bg-danger">Baja</span><% } %>
   </td>
+  <td>
+    <% if (!isEmpty(telefono_empresa)) { %>
+      <a data-toggle="tooltip" title="<%= telefono_empresa %>" class="enviar_whatsapp" href="javascript:void(0)"><i class="fa fa-whatsapp iconito active success"></i></a>
+    <% } %>
+  </td>
   <% if (permiso > 1) { %>
     <td class="p5 td_acciones">
       <i class="icon-user user text-dark" title="Login" data-id="<%= id %>" />
@@ -83,10 +89,10 @@
           <i class="fa fa-plus"></i>
         </button>
         <ul class="dropdown-menu pull-right">
-          <% if (!isEmpty(telefono_empresa)) { %>
-            <li><a data-toggle="tooltip" title="<%= telefono_empresa %>" class="enviar_whatsapp" href="javascript:void(0)"><i class="fa fa-whatsapp iconito active success"></i></a></li>
-          <% } %>
           <% if (ID_USUARIO == 0) { %>
+            <% if (activo == 0) { %>
+              <li><span class="activar_empresa">Activar</span></li>
+            <% } %>
             <li><a target="_blank" href="empresas/function/exportar/<%= id %>/0/">Exportar Base</a></li>
             <li><a target="_blank" href="empresas/function/exportar/<%= id %>/1/">Exportar Datos</a></li>
             <li><a target="_blank" href="empresas/function/exportar_configuracion/<%= id %>/">Exportar Configuracion</a></li>

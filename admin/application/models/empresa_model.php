@@ -724,6 +724,7 @@ class Empresa_Model extends Abstract_Model {
     unset($array->retiene_ib);
     unset($array->retiene_ganancias);
 
+    $array->activo = 0; // Por defecto la empresa esta inactiva
     $array->id_web_template = 33; // Por defecto el template 1
     $id_empresa = parent::insert($array);
     if (empty($id_empresa)) {
@@ -901,9 +902,6 @@ class Empresa_Model extends Abstract_Model {
         "email"=>(isset($array->email) ? $array->email : ""),
       ));
 
-      // Limpiamos el logo
-      $this->db->query("UPDATE web_configuracion SET logo_1 = '' WHERE id_empresa = $id_empresa");
-
       // Si cuando creamos la empresa, elegimos duplicar, y no le configuramos un template, tomamos el de la empresa original
       $sql = "SELECT E.id_web_template FROM empresas E WHERE E.id = $id_empresa_modelo";
       $q_emp = $this->db->query($sql);
@@ -1007,15 +1005,6 @@ class Empresa_Model extends Abstract_Model {
       $sql = "INSERT INTO inm_permisos_red (id_empresa, id_empresa_compartida, permiso_red) VALUES (";
       $sql.= " $r->id, $id_empresa, 1 )";
       $this->db->query($sql);
-
-      // Y tambien le creamos una notificacion al resto de las empresas
-      $this->Notificacion_Model->insertar(array(
-        "id_empresa"=>$r->id,
-        "titulo"=>"$array->nombre",
-        "texto"=>"Dale la bienvenida a un nuevo colega",
-        "importancia"=>"B",
-        "link"=>$id_empresa,
-      ));
     }
     
     // Relacionamos los dominios
@@ -1053,6 +1042,30 @@ class Empresa_Model extends Abstract_Model {
     } else {*/
       return array("id"=>$id_empresa,"error"=>FALSE);
     //}
+  }
+
+
+  // Esta funcion activa la empresa y manda las notificaciones
+  function activar_empresa($id_empresa) {
+
+    $empresa = $this->get_min($id_empresa);
+    $sql = "UPDATE empresas SET activo = 1, estado_empresa = 10 WHERE id = $id_empresa ";
+    $this->db->query($sql);
+
+    // PERMISOS DE LA RED
+    $this->load->model("Notificacion_Model");
+    $sql = "SELECT * FROM empresas WHERE id != $id_empresa ";
+    $q = $this->db->query($sql);
+    foreach($q->result() as $r) {
+      // Notificacion al resto de las empresas
+      $this->Notificacion_Model->insertar(array(
+        "id_empresa"=>$r->id,
+        "titulo"=>"$empresa->nombre",
+        "texto"=>"Dale la bienvenida a un nuevo colega",
+        "importancia"=>"B",
+        "link"=>$id_empresa,
+      ));
+    }
   }
 
 
