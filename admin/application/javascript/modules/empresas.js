@@ -87,7 +87,7 @@
       "click .ver": "editar",
       "click .user": "login",
       "click .delete": "borrar",
-      "click .activar_empresa": function() {
+      "click .activar_empresa": function(e) {
         var self = this;
         e.stopPropagation();
         $.ajax({
