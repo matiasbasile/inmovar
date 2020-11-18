@@ -715,9 +715,8 @@ class Clientes extends REST_Controller {
     $mensaje = "";
 
     $cliente = $this->modelo->get_by_email($email,$id_empresa);
-    if (
-      $cliente === FALSE || // SI NO ENCONTRO AL CLIENTE
-    ) {
+    // SI NO ENCONTRO AL CLIENTE
+    if ($cliente === FALSE) {
       $fecha = date("Y-m-d H:i:s");
       // Debemos guardar el cliente
       $cliente = new stdClass();
