@@ -3433,3 +3433,8 @@ footer .socials ul li a:hover, footer .socials ul li a:focus {
 .map_content .featured-detail h5 a { font-size: 16px; color: #ca000c; font-weight: bold; }
 .map_content .featured-detail h5 { padding-bottom: 0px; margin-bottom: 5px; }
 .description iframe { width: 100% !important; }
+.video-container iframe { width: 100% !important; height: 400px !important }
+@media (max-width: 500px) {
+	.description iframe { width: 100% !important; }
+	.video-container iframe { width: 100% !important; height: 250px !important }
+}
