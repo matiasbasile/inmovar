@@ -822,6 +822,15 @@ class Propiedad_Model {
     $p->nombre = $p->tipo_inmueble." en ".$p->tipo_operacion." en ".$p->localidad;
     $p->nombre = $this->encod($p->nombre);
     if (isset($p->codigo_completo)) $p->codigo = $p->codigo_completo;
+
+    if (!empty($p->video)) {
+      if (strpos($p->video, "iframe") === FALSE) {
+        // Si no se adjunto un iframe, tenemos que crearlo
+        $p->video = str_replace("https://www.youtube.com/watch?v=", "", $p->video);
+        $p->video = str_replace("https://youtu.be/", "", $p->video);
+        $p->video = '<iframe width="100%" height="400" src="https://www.youtube.com/embed/'.$p->video.'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+      }
+    }
     
     $p->subtitulo = $this->encod($p->subtitulo);
     if (isset($p->tipo_inmueble)) $p->tipo_inmueble = $this->encod($p->tipo_inmueble);

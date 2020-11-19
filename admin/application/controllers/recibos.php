@@ -293,7 +293,6 @@ class Recibos extends REST_Controller {
       $this->db->query("UPDATE cheques SET fecha_recibido = '0000-00-00', id_recibo = 0 WHERE id_empresa = $id_empresa AND id_recibo = $id AND id_punto_venta = $id_punto_venta");  
     }		
     $this->db->query("DELETE FROM cajas_movimientos WHERE id_factura = $id AND id_empresa = $id_empresa AND id_punto_venta = $id_punto_venta");
-		$this->db->query("DELETE FROM depositos WHERE id_recibo = $id AND id_empresa = $id_empresa AND id_punto_venta = $id_punto_venta");
     $this->db->query("DELETE FROM facturas_pagos WHERE id_pago = $id AND id_empresa = $id_empresa AND id_punto_venta = $id_punto_venta");
     $this->db->query("DELETE FROM cupones_tarjetas WHERE id_factura = $id AND id_empresa = $id_empresa AND id_punto_venta = $id_punto_venta");
 		$this->db->query("DELETE FROM facturas WHERE id = $id AND id_empresa = $id_empresa AND id_punto_venta = $id_punto_venta");
