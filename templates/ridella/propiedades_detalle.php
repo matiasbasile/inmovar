@@ -261,7 +261,6 @@ else $vc_moneda = "$";
               </div>
             <?php } ?>
 
-            <?php echo "[$propiedad->video]" ?>
             <?php if (!empty($propiedad->video)) {  ?>
               <div class="info-title">Video</div>
               <div class="box-space">
