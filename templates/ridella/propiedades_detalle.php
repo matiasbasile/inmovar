@@ -261,6 +261,13 @@ else $vc_moneda = "$";
               </div>
             <?php } ?>
 
+            <?php if (!empty($propiedad->video)) {  ?>
+              <div class="info-title">Video</div>
+              <div class="box-space">
+                <?php echo $propiedad->video ?>
+              </div>
+            <?php } ?>
+
             <?php if (!empty($propiedad->localidad)) {  ?>
               <div class="info-title">Ubicación en mapa</div>
               <?php if (($propiedad->latitud != 0) && ($propiedad->longitud != 0)) { ?>
