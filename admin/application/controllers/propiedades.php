@@ -12,6 +12,39 @@ class Propiedades extends REST_Controller {
     $this->load->model('Propiedad_Model', 'modelo');
   }
 
+  function arreglar_nombres() {
+    $sql = "SELECT * FROM inm_propiedades ";
+    $q = $this->db->query($sql);
+    foreach($q->result() as $data) {
+      $tipo_inmueble = "";
+      $q = $this->db->query("SELECT * FROM inm_tipos_inmueble WHERE id = $data->id_tipo_inmueble");
+      if ($q->num_rows() > 0) {
+        $ti = $q->row();  
+        $tipo_inmueble = $ti->nombre;
+      }
+      
+      $tipo_operacion = "";
+      $q = $this->db->query("SELECT * FROM inm_tipos_operacion WHERE id = $data->id_tipo_operacion");
+      if ($q->num_rows() > 0) {
+        $ti = $q->row();  
+        $tipo_operacion = $ti->nombre;
+      }
+
+      $localidad = "";
+      $q = $this->db->query("SELECT * FROM com_localidades WHERE id = $data->id_localidad");
+      if ($q->num_rows() > 0) {
+        $ti = $q->row();  
+        $localidad = $ti->nombre;
+      }
+
+      $data->nombre = $tipo_inmueble." en ".$tipo_operacion.((!empty($localidad)) ? " en ".$localidad : "");    
+
+      $sql = "UPDATE inm_propiedades SET nombre = '$data->nombre' WHERE id_empresa = $data->id_empresa AND id = $data->id ";
+      $this->db->query($sql);
+    }
+    echo "TERMINO";
+  }
+
   function contar_visita() {
     $id_empresa = parent::get_get("e",0);
     $id_empresa_propiedad = parent::get_get("ep",0);
