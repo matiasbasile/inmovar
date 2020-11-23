@@ -5141,9 +5141,9 @@ input[type=number].no-spinner::-webkit-outer-spin-button {
 
 #propiedades_tabla .customcomplete-image, #permisos_red_tabla .customcomplete-image { 
   margin-right: 0px;
-  border-radius: 0px;
-  -moz-border-radius: 0px;
-  -webkit-border-radius: 0px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
   width: 75px;
   height: 75px;
   object-fit: cover;

@@ -57,6 +57,8 @@
         "solicitudes_pendientes(/)": "ver_solicitudes_pendientes",
 
         "alquileres(/)": "ver_alquileres",
+        "recibos_alquileres": function() { this.ver_recibos_alquileres(0); },
+        "recibos_alquileres/:estado": "ver_recibos_alquileres",
 
         // 
         "contacto_acciones/:id": "ver_contacto_acciones",
@@ -395,7 +397,49 @@
           "top": edit.el,
         });
       },  
-
+      ver_recibos_alquileres: function(estado) {
+        var estado = ((typeof estado != "undefined") ? estado : 0);
+        var permiso = 3; //control.check("alquileres");
+        if (permiso > 0) {
+          app.views.recibos_alquileresTableView = new app.views.RecibosAlquileresTableView({
+            collection: new app.collections.RecibosAlquileres(),
+            permiso: permiso,
+            estado: estado,
+          });    
+          this.mostrar({
+            "top" : app.views.recibos_alquileresTableView.el,
+          });
+        }
+      },
+      ver_alquiler: function(id) {
+        var self = this;
+        var permiso = 3; //control.check("alquileres");
+        if (permiso > 0) {
+          if (id == undefined) {
+            var alquilerEditView = new app.views.AlquileresEditView({
+              model: new app.models.Alquileres(),
+              permiso: permiso
+            });
+            this.mostrar({
+              "top" : alquilerEditView.el,
+            });
+          } else {
+            var alquiler = new app.models.Alquiler({ "id": id });
+            alquiler.fetch({
+              "success":function() {
+                var alquilerEditView = new app.views.AlquileresEditView({
+                  model: alquiler,
+                  permiso: permiso
+                });
+                self.mostrar({
+                  "top" : alquilerEditView.el,
+                });
+              }
+            });
+          }
+        }                
+      },  
+      
       // Tabla especial que muestra las consultas vencidas
       ver_consultas_vencidas: function() {
         var self = this;

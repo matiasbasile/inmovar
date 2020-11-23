@@ -142,7 +142,6 @@ if (file_exists("application/views/templates/web/web_configuracion.php")) includ
 if (file_exists("application/views/templates/configuracion_menu.php")) include_once ("application/views/templates/configuracion_menu.php");
 if (file_exists("application/views/templates/config/mi_cuenta.php")) include_once ("application/views/templates/config/mi_cuenta.php");
 if (file_exists("application/views/templates/inm/dashboard.php")) include_once ("application/views/templates/inm/dashboard.php");
-if (file_exists("application/views/templates/clientes.php")) include_once ("application/views/templates/clientes.php");
 if (file_exists("application/views/templates/inm/tipos_inmueble.php")) include_once ("application/views/templates/inm/tipos_inmueble.php");
 if (file_exists("application/views/templates/inm/tipos_operacion.php")) include_once ("application/views/templates/inm/tipos_operacion.php");
 if (file_exists("application/views/templates/inm/tipos_estado.php")) include_once ("application/views/templates/inm/tipos_estado.php");
@@ -150,14 +149,11 @@ if (file_exists("application/views/templates/inm/propiedades.php")) include_once
 if (file_exists("application/views/templates/inm/busquedas.php")) include_once ("application/views/templates/inm/busquedas.php");
 if (file_exists("application/views/templates/inm/permisos_red.php")) include_once ("application/views/templates/inm/permisos_red.php");
 if (file_exists("application/views/templates/inm/alquileres.php")) include_once ("application/views/templates/inm/alquileres.php");
-
-if ($empresa->id == 1) {
-  include_once ("application/views/templates/cajas.php");
-  include_once ("application/views/templates/cajas_movimientos.php");
-  include_once ("application/views/templates/facturacion.php");
-  include_once ("application/views/templates/recibos_clientes.php");
-  include_once ("application/views/templates/cuentas_corrientes_clientes.php");
-}
+include_once ("application/views/templates/cajas.php");
+include_once ("application/views/templates/cajas_movimientos.php");
+include_once ("application/views/templates/facturacion.php");
+include_once ("application/views/templates/recibos_clientes.php");
+include_once ("application/views/templates/cuentas_corrientes_clientes.php");
 ?>
 <!-- Modulo de Permisos -->
 <script type="text/javascript">

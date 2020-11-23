@@ -403,7 +403,7 @@
       <div class="col-md-3 col-sm-6 tar">
         <label class="control-label">&nbsp;&nbsp;</label>
         <div>
-          <button class="btn btn-success guardar">Guardar</button>
+          <button class="btn btn-info guardar">Guardar</button>
         </div>
       </div>
     <% } else { %>

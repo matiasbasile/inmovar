@@ -4,7 +4,7 @@
 
 (function ( models ) {
 
-  models.Alquiler = Backbone.Model.extend({
+  models.Alquileres = Backbone.Model.extend({
     urlRoot: "alquileres",
     defaults: {
       id_empresa: ID_EMPRESA,
@@ -60,7 +60,7 @@
 	  
   });
 
-})( app.collections, app.models.Alquiler, Backbone.Paginator);
+})( app.collections, app.models.Alquileres, Backbone.Paginator);
 
 
 
@@ -242,7 +242,7 @@
         e.stopPropagation();
         e.preventDefault();
         if (confirm("Desea rescindir el contrato con "+this.model.get("cliente")+"?")) {
-          var alquiler = new app.models.Alquiler({ "id": self.model.id });
+          var alquiler = new app.models.Alquileres({ "id": self.model.id });
           alquiler.fetch({
             "success":function() {
               var rescindirAlquilerView = new app.views.RescindirAlquilerView({
@@ -291,7 +291,7 @@
 // -----------------------------------------
 (function ( app ) {
 
-  app.views.AlquilerEditView = app.mixins.View.extend({
+  app.views.AlquileresEditView = app.mixins.View.extend({
 
     template: _.template($("#alquiler_template").html()),
       
@@ -376,8 +376,8 @@
 
       // AUTOCOMPLETE DE CLIENTES
       var input = this.$("#alquiler_clientes");
-      var form = new app.views.ClienteEditViewMini({
-        "model": new app.models.Cliente(),
+      var form = new app.views.ClientesEditViewMini({
+        "model": new app.models.Clientes(),
         "input": input,
         "onSave": self.seleccionar_cliente,
       });      
@@ -386,7 +386,7 @@
         "form":form,
         "width":"300px",
         "onSelect":function(item){
-          var cliente = new app.models.Cliente({"id":item.id});
+          var cliente = new app.models.Clientes({"id":item.id});
           cliente.fetch({
             "success":function(){
               self.seleccionar_cliente(cliente);
@@ -1066,7 +1066,7 @@
 
       // AUTOCOMPLETE DE CLIENTES
       var input = this.$("#recibo_alquiler_clientes");
-      var form = new app.views.ClienteEditViewMini({
+      var form = new app.views.ClientesEditViewMini({
         "model": new app.models.Cliente(),
         "input": input,
         "onSave": self.seleccionar_cliente,
