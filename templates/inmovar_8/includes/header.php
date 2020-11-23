@@ -1,0 +1,84 @@
+<?php
+$cant_favoritos = 0;
+if (isset($_SESSION["favoritos"])) {
+  $arr = explode(",",$_SESSION["favoritos"]);
+  $cant_favoritos = sizeof($arr)-1;
+}
+?>
+<header class="menacho_header">
+  <div class="container-fluid">
+    <div class="main-header">
+      <div class="row">
+        <div class="col-lg-3 col-7">
+          <div class="menacho_logo">
+            <a href="<?php echo mklink ("/") ?>"><img style="max-width: 220px" src="<?php echo '/sistema/'.$empresa->logo_1 ?>" alt="logo"></a>
+          </div>
+        </div>
+        <div class="col-lg-9">
+          <div class="menacho_navbar">
+            <div class="main_nav">
+              <nav class="navbar navbar-expand-lg"> 
+                <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menachonavbars" aria-controls="menachonavbars" aria-expanded="false" aria-label="Toggle navigation"> <i class="fa fa-bars" aria-hidden="true"></i> </button>
+                <div class="collapse navbar-collapse" id="menachonavbars">
+                  <div class="logo_closebtn">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menachonavbars" aria-controls="menachonavbars" aria-expanded="false" aria-label="Toggle navigation"> <i class="fa fa-times" aria-hidden="true"></i> </button>
+                    <div class="inner_mobile_logo">
+                      <a href="<?php echo mklink ("/") ?>"><img src="<?php echo '/sistema/'.$empresa->logo_1 ?>" alt="logo"></a>
+                    </div>
+                  </div>
+                  <ul class="navbar-nav">
+                    <li class="nav-item"><a class="<?php echo $titulo_pagina == "inicio"?"active":"" ?>" href="<?php echo mklink ("/") ?>"> INICIO <span class="sr-only"><?php echo $titulo_pagina == "inicio"?"(current)":"" ?></span></a> </li>
+                    <li class="nav-item dropdown"> <a class=" dropdown-toggle <?php echo ($titulo_pagina == "informacion")?"active":"" ?>" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Informacion</a>
+                      <div class="dropdown-menu" aria-labelledby="dropdown09">
+                        <ul class="sub-menu-ul">
+                          <?php $categorias_informacion = $entrada_model->get_subcategorias(186)?>
+                          <?php foreach ($categorias_informacion as $cat) {  ?>
+                            <li class="dropdown-submenu">
+                              <a href="<?php echo mklink ("entradas/$cat->link/") ?>"><?php echo utf8_encode($cat->nombre) ?></a>
+                              <?php /*$listado_catsmenu = $entrada_model->get_list(array("offset"=>3,"from_id_categoria"=>$cat->id ))?>
+                                <ul class="dropdown-menu">
+                                  <?php foreach ($listado_catsmenu as $l) {  ?><li><a href="<?php echo mklink ($l->link) ?>"><?php echo $l->titulo ?></a></li><?php } ?>
+                                </ul>
+                                */ ?>
+                            </li>
+                          <?php } ?>
+                        </ul>
+                      </div>
+                    </li>
+                    <li class="nav-item"> <a class="<?php echo $titulo_pagina == "ventas"?"active":"" ?>" href="<?php echo mklink ("propiedades/ventas/") ?>"> VENTAS </a> </li>
+                    <li class="nav-item"> <a class="<?php echo $titulo_pagina == "alquileres"?"active":"" ?>" href="<?php echo mklink ("propiedades/alquileres/") ?>"> ALQUILERES</a> </li>
+                    <li class="nav-item"> <a class="<?php echo $titulo_pagina == "emprendimientos"?"active":"" ?>" href="<?php echo mklink ("propiedades/emprendimientos/") ?>"> EMPRENDIMIENTOS</a> </li>
+                    <li class="nav-item"> <a class="<?php echo $titulo_pagina == "contacto"?"active":"" ?>" href="<?php echo mklink ("contacto/") ?>"> contacto</a> </li>
+                  </ul>
+                </div>
+              </nav>
+            </div>
+            <div class="social_header">
+              <ul>
+                <?php if (!empty($empresa->facebook)) { ?>
+                  <li> 
+                    <a target="_blank" href="<?php echo $empresa->facebook ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                  </li>
+                <?php } ?>
+                <?php if (!empty($empresa->instagram)) { ?>
+                  <li>
+                    <a target="_blank" href="<?php echo $empresa->instagram ?>"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                  </li>
+                <?php } ?>
+                <li> 
+                  <a href="<?php echo mklink("favoritos/"); ?>" class="<?php echo ($cant_favoritos > 0)?"active":"" ?>">
+                    <i class="fa fa-heart" aria-hidden="true"></i>
+                    <?php if ($cant_favoritos > 0) { ?>
+                      <span class="count"><?php echo $cant_favoritos; ?></span>
+                    <?php } ?>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
