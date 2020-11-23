@@ -325,7 +325,7 @@
       <% } %>
 
       <% if (mostrar_tarea) { %>
-        <div id="tab_tarea" class="tab-pane panel-body <%= (active_tab=='tab_tarea')?'active':'' %>">
+        <div id="tab_tarea" class="tab-pane mt-1 panel-body <%= (active_tab=='tab_tarea')?'active':'' %>">
           <div class="row">
             <div class="col-md-5">
               <div class="form-group">
@@ -362,7 +362,7 @@
           </div>
         </div>
       <% } %>
-      <div id="tab_nota" class="tab-pane panel-body <%= (active_tab=='tab_nota')?'active':'' %>">
+      <div id="tab_nota" class="tab-pane mt-1 panel-body <%= (active_tab=='tab_nota')?'active':'' %>">
         <div class="form-group">
           <textarea id="consulta_nota" placeholder="Escribe aquí alguna nota u observación..." class="form-control no-model h100"></textarea>
         </div>
@@ -370,7 +370,7 @@
           <button class="btn btn-pd btn-info guardar_nota fr">Guardar</button>
         </div>
       </div>
-      <div id="tab_observacion" class="tab-pane panel-body <%= (active_tab=='tab_observacion')?'active':'' %>">
+      <div id="tab_observacion" class="tab-pane mt-1 panel-body <%= (active_tab=='tab_observacion')?'active':'' %>">
         <div class="form-group">
           <textarea id="consulta_observacion" placeholder="Escribe aquí alguna nota u observación..." class="form-control no-model h100"><%= nota %></textarea>
         </div>
@@ -688,7 +688,7 @@
               <% } %>
             </div>
             <% if (id_origen != 27) { %>
-              <a href="javascript:void(0)" class="btn responder_email btn-white fr">
+              <a href="javascript:void(0)" class="btn responder_email mt10 btn-white fr">
                 <i class="fa fa-mail-forward"></i>
                 Responder Email
               </a>

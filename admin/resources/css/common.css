@@ -77,6 +77,7 @@ a img { border: none; }
 .mmw150 { min-width: 150px !important }
 .mmw200 { min-width: 200px !important }
 
+.mt-1 { margin-top: -1px !important; }
 .mt0 { margin-top: 0px !important; }
 .mt1 { margin-top: 1px !important; }
 .mt2 { margin-top: 2px !important; }
