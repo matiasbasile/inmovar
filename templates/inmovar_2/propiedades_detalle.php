@@ -78,7 +78,7 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no
               <div class="pull-right">
                 <h3 class="mt10">
                   <span>
-                    <?php echo ($propiedad->precio_final != 0 && $propiedad->publica_precio == 1) ? $propiedad->moneda." ".number_format($propiedad->precio_final,0) : "Consultar"; ?>
+                    <?php echo $propiedad->precio ?>
                   </span>
                 </h3>
               </div>
@@ -450,7 +450,7 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no
                         <?php } ?>
                         <div class="property-tag button sale"><?php echo $p->tipo_inmueble ?></div>
                         <div class="property-price">
-                          <?php echo ($p->precio_final != 0 && $p->publica_precio == 1) ? $p->moneda." ".number_format($p->precio_final,0) : "Consultar"; ?>
+                          <?php echo $propiedad->precio ?>
                         </div>
                         <?php if (!empty($p->path)) { ?>
                           <img class="img-responsive" src="/admin/<?php echo $p->path ?>" alt="<?php echo ($p->nombre); ?>" />

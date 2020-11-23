@@ -70,7 +70,7 @@ $page_active = $vc_link_tipo_operacion;
                         <?php } ?>
                         <div class="property-tag button sale"><?php echo $p->tipo_inmueble ?></div>
                         <div class="property-price">
-                          <?php echo ($p->precio_final != 0 && $p->publica_precio == 1) ? $p->moneda." ".number_format($p->precio_final,0) : "Consultar"; ?>
+                          <?php echo $p->precio ?>
                         </div>
                         <?php if (!empty($p->path)) { ?>
                           <img class="img-responsive" src="/admin/<?php echo $p->path ?>" alt="<?php echo ($p->nombre); ?>" />
@@ -126,7 +126,7 @@ $page_active = $vc_link_tipo_operacion;
                           <?php } ?>
                           <div class="property-tag button sale"><?php echo $p->tipo_inmueble ?></div>
                           <div class="property-price">
-                            <?php echo ($p->precio_final != 0 && $p->publica_precio == 1) ? $p->moneda." ".number_format($p->precio_final,0) : "Consultar"; ?>
+                            <?php echo $p->precio ?>
                           </div>
                           <div class="property-main-image">
                             <?php if (!empty($p->path)) { ?>
