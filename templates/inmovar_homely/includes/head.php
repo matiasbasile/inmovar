@@ -9,10 +9,10 @@
 <!-- Permite RESPONSIVE -->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 <!-- CSS  aplica a todos los proyectos -->
-<link href="/sistema/resources/css/common.css" rel="stylesheet" media="screen">
+<link href="/admin/resources/css/common.css" rel="stylesheet" media="screen">
 <!-- JScript aplica a todos los proyectos -->
-<script type="text/javascript" src="/sistema/resources/js/common.js"></script>
-<script type="text/javascript" src="/sistema/resources/js/main.js"></script>
+<script type="text/javascript" src="/admin/resources/js/common.js"></script>
+<script type="text/javascript" src="/admin/resources/js/main.js"></script>
 
 <?php if (!empty($empresa->analytics)) { echo html_entity_decode($empresa->analytics,ENT_QUOTES); } ?>
 <?php if (!empty($empresa->zopim)) { echo html_entity_decode($empresa->zopim,ENT_QUOTES); } ?>
@@ -26,9 +26,9 @@ const CURRENT_URL = "<?php echo current_url(); ?>";
 </script>
 
 <?php if (strpos(strtolower($empresa->favicon), ".png")>0) { ?>
-  <link rel="shortcut icon" type="image/png" href="/sistema/<?php echo $empresa->favicon ?>"/>
+  <link rel="shortcut icon" type="image/png" href="/admin/<?php echo $empresa->favicon ?>"/>
 <?php } else if (strpos(strtolower($empresa->favicon), ".ico")>0) { ?>
-  <link rel="shortcut icon" type="image/x-icon" href="/sistema/<?php echo $empresa->favicon ?>" />
+  <link rel="shortcut icon" type="image/x-icon" href="/admin/<?php echo $empresa->favicon ?>" />
 <?php } else { ?>
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 <?php } ?>
@@ -86,7 +86,7 @@ const CURRENT_URL = "<?php echo current_url(); ?>";
 <?php if (!empty($empresa->marca_agua)) { ?>
 <style type="text/css">
 .marca_agua, .fancybox-content { position: relative; }
-.marca_agua:after, .fancybox-content:after { content:" ";z-index:1;width:100%; height:100%; position:absolute;top:0;left:0;right:0;bottom:0;background-image: url("/sistema/<?php echo $empresa->marca_agua ?>");background-repeat: no-repeat; background-size: 35%; }
+.marca_agua:after, .fancybox-content:after { content:" ";z-index:1;width:100%; height:100%; position:absolute;top:0;left:0;right:0;bottom:0;background-image: url("/admin/<?php echo $empresa->marca_agua ?>");background-repeat: no-repeat; background-size: 35%; }
 <?php if ($empresa->marca_agua_posicion == 1) { ?>
   .marca_agua:after, .fancybox-content:after { background-position: bottom left; }
 <?php } else if ($empresa->marca_agua_posicion == 2) { ?>

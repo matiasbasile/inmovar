@@ -110,7 +110,7 @@
 
 <!-- JavaScript
   ================================================== -->
-  <script type="text/javascript" src="/sistema/resources/js/jquery.min.js"></script> 
+  <script type="text/javascript" src="/admin/resources/js/jquery.min.js"></script> 
 
   <!-- <script src="js/jquery-3.2.1.slim.min.js"></script>  -->
   <script src="js/bootstrap.js"></script> 
@@ -169,7 +169,7 @@
     "bcc":"basile.matias99@gmail.com",
   }
   $.ajax({
-    "url":"/sistema/consultas/function/enviar/",
+    "url":"/admin/consultas/function/enviar/",
     "type":"post",
     "dataType":"json",
     "data":datos,

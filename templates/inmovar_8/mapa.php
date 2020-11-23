@@ -90,7 +90,7 @@ $(document).ready(function(){
       if (!empty($p->imagen)) { 
         $path = $p->imagen;
       } else if (!empty($empresa->no_imagen)) {
-        $path = "/sistema/".$empresa->no_imagen;
+        $path = "/admin/".$empresa->no_imagen;
       } ?>
       var contentString<?php echo $i; ?> = '<div id="content">'+
         '<div class="feature-item" style="padding: 0px;">'+

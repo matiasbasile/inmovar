@@ -15,7 +15,7 @@
 <?php if (!empty($empresa->marca_agua)) { ?>
 <style type="text/css">
 .marca_agua, .fancybox-content { position: relative; }
-.marca_agua:after, .fancybox-content:after { content:" ";z-index:1;width:100%; height:100%; position:absolute;top:0;left:0;right:0;bottom:0;background-image: url("/sistema/<?php echo $empresa->marca_agua ?>");background-repeat: no-repeat; background-size: 50%; }
+.marca_agua:after, .fancybox-content:after { content:" ";z-index:1;width:100%; height:100%; position:absolute;top:0;left:0;right:0;bottom:0;background-image: url("/admin/<?php echo $empresa->marca_agua ?>");background-repeat: no-repeat; background-size: 50%; }
 <?php if ($empresa->marca_agua_posicion == 1) { ?>
   .marca_agua:after, .fancybox-content:after { background-position: bottom left; }
 <?php } else if ($empresa->marca_agua_posicion == 2) { ?>

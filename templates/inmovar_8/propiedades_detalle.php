@@ -327,7 +327,7 @@ iframe { width: 100% !important }
                             <?php if (!empty($l->imagen)) { ?>
                               <img src="<?php echo $l->imagen ?>" alt="<?php echo ($l->nombre);?>">
                             <?php } else if (!empty($empresa->no_imagen)) { ?>
-                              <img src="/sistema/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($l->nombre);?>">
+                              <img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($l->nombre);?>">
                             <?php } else { ?>
                               <img src="images/no-imagen.png" alt="<?php echo ($l->nombre);?>">
                             <?php } ?>
@@ -340,11 +340,11 @@ iframe { width: 100% !important }
                                 </a>
 
                                 <?php if (estaEnFavoritos($l->id)) { ?>
-                                  <a class="likes_icon active" rel="nofollow" href="/sistema/favoritos/eliminar/?id=<?php echo $l->id; ?>">
+                                  <a class="likes_icon active" rel="nofollow" href="/admin/favoritos/eliminar/?id=<?php echo $l->id; ?>">
                                     <i class="fa fa-heart-o" aria-hidden="true"></i>
                                   </a>
                                 <?php } else { ?>
-                                  <a class="likes_icon" rel="nofollow" href="/sistema/favoritos/agregar/?id=<?php echo $l->id; ?>">
+                                  <a class="likes_icon" rel="nofollow" href="/admin/favoritos/agregar/?id=<?php echo $l->id; ?>">
                                     <i class="fa fa-heart" aria-hidden="true"></i>
                                   </a>
                                 <?php } ?>
@@ -363,11 +363,11 @@ iframe { width: 100% !important }
                             <h4 class="dollar_rs"> <?php echo $l->precio ?></h4>
                             <span class="text-right apto_like"> 
                               <?php if (estaEnFavoritos($l->id)) { ?>
-                                <a class="like_btn active" rel="nofollow" href="/sistema/favoritos/eliminar/?id=<?php echo $l->id; ?>">
+                                <a class="like_btn active" rel="nofollow" href="/admin/favoritos/eliminar/?id=<?php echo $l->id; ?>">
                                   <i class="fa fa-heart" aria-hidden="true"></i>
                                 </a>
                               <?php } else { ?>
-                                <a class="like_btn" rel="nofollow" href="/sistema/favoritos/agregar/?id=<?php echo $l->id; ?>">
+                                <a class="like_btn" rel="nofollow" href="/admin/favoritos/agregar/?id=<?php echo $l->id; ?>">
                                   <i class="fa fa-heart" aria-hidden="true"></i>
                                 </a>
                               <?php } ?>
@@ -446,7 +446,7 @@ iframe { width: 100% !important }
 
 <!-- JavaScript
 ================================================== --> 
-<script src="/sistema/resources/js/jquery.js"></script> 
+<script src="/admin/resources/js/jquery.js"></script> 
 
 <!-- <script src="js/jquery-3.2.1.slim.min.js"></script>  -->
 <script src="js/bootstrap.js"></script> 
@@ -454,7 +454,7 @@ iframe { width: 100% !important }
 <script type="text/javascript" src="js/jquery.fancybox.min.js"></script>
 <script type="text/javascript" src="js/price-range.js"></script>
 <script src="js/owl.carousel.js"></script> 
-<script src="/sistema/resources/js/moment.min.js"></script> 
+<script src="/admin/resources/js/moment.min.js"></script> 
 <script type="text/javascript">
   $('.owl-carousel').owlCarousel({
     loop:false,
@@ -592,7 +592,7 @@ function enviar_contacto() {
     "id_origen":<?php echo(isset($id_origen) ? $id_origen : 1); ?>,
   }
   $.ajax({
-    "url":"/sistema/consultas/function/enviar/",
+    "url":"/admin/consultas/function/enviar/",
     "type":"post",
     "dataType":"json",
     "data":datos,
@@ -660,7 +660,7 @@ function enviar_contacto_modal() {
     "bcc":"basile.matias99@gmail.com",
   }
   $.ajax({
-    "url":"/sistema/consultas/function/enviar/",
+    "url":"/admin/consultas/function/enviar/",
     "type":"post",
     "dataType":"json",
     "data":datos,
@@ -716,10 +716,10 @@ function enviar_ficha_email() {
       "id_origen":<?php echo(isset($id_origen) ? $id_origen : 1); ?>,
       "bcc":"basile.matias99@gmail.com",
       "template":"ficha-propiedad",
-      "link_ficha_propiedad":"<?php echo mklink("sistema/propiedades/function/ficha/".$propiedad->hash) ?>",
+      "link_ficha_propiedad":"<?php echo mklink("admin/propiedades/function/ficha/".$propiedad->hash) ?>",
     }
     $.ajax({
-      "url":"/sistema/consultas/function/enviar/",
+      "url":"/admin/consultas/function/enviar/",
       "type":"post",
       "dataType":"json",
       "data":datos,

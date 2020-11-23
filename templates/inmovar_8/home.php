@@ -248,7 +248,7 @@ if (sizeof($slides)>0) { ?>
                         if (!empty($l->imagen)) { 
                           $path = $l->imagen;
                         } else if (!empty($empresa->no_imagen)) {
-                          $path = "/sistema/".$empresa->no_imagen;
+                          $path = "/admin/".$empresa->no_imagen;
                         } ?>
                         <div class="tab_list_box_img gallery_box_img_second">
                           <img src="<?php echo $path ?>" alt="<?php echo ($l->nombre);?>">
@@ -259,11 +259,11 @@ if (sizeof($slides)>0) { ?>
                               <a class="pluss_icon" href="<?php echo mklink ($l->link) ?>"><i class="fa fa-plus" aria-hidden="true"></i></a> 
 
                               <?php if (estaEnFavoritos($l->id)) { ?>
-                                <a class="likes_icon active" rel="nofollow" href="/sistema/favoritos/eliminar/?id=<?php echo $l->id; ?>">
+                                <a class="likes_icon active" rel="nofollow" href="/admin/favoritos/eliminar/?id=<?php echo $l->id; ?>">
                                   <i class="fa fa-heart-o" aria-hidden="true"></i>
                                 </a>
                               <?php } else { ?>
-                                <a class="likes_icon" rel="nofollow" href="/sistema/favoritos/agregar/?id=<?php echo $l->id; ?>">
+                                <a class="likes_icon" rel="nofollow" href="/admin/favoritos/agregar/?id=<?php echo $l->id; ?>">
                                   <i class="fa fa-heart" aria-hidden="true"></i>
                                 </a>
                               <?php } ?>
@@ -318,7 +318,7 @@ if (sizeof($slides)>0) { ?>
                         if (!empty($l->imagen)) { 
                           $path = $l->imagen;
                         } else if (!empty($empresa->no_imagen)) {
-                          $path = "/sistema/".$empresa->no_imagen;
+                          $path = "/admin/".$empresa->no_imagen;
                         } ?>
                         <div class="tab_list_box_img gallery_box_img_second">
                           <img src="<?php echo $path ?>" alt="<?php echo ($l->nombre);?>">
@@ -328,11 +328,11 @@ if (sizeof($slides)>0) { ?>
                             <div class="display-table-cell"> 
                               <a class="pluss_icon" href="<?php echo mklink ($l->link) ?>"><i class="fa fa-plus" aria-hidden="true"></i></a> 
                               <?php if (estaEnFavoritos($l->id)) { ?>
-                                <a class="likes_icon active" rel="nofollow" href="/sistema/favoritos/eliminar/?id=<?php echo $l->id; ?>">
+                                <a class="likes_icon active" rel="nofollow" href="/admin/favoritos/eliminar/?id=<?php echo $l->id; ?>">
                                   <i class="fa fa-heart-o" aria-hidden="true"></i>
                                 </a>
                               <?php } else { ?>
-                                <a class="likes_icon" rel="nofollow" href="/sistema/favoritos/agregar/?id=<?php echo $l->id; ?>">
+                                <a class="likes_icon" rel="nofollow" href="/admin/favoritos/agregar/?id=<?php echo $l->id; ?>">
                                   <i class="fa fa-heart" aria-hidden="true"></i>
                                 </a>
                               <?php } ?>
@@ -388,7 +388,7 @@ if (sizeof($slides)>0) { ?>
                           if (!empty($l->imagen)) { 
                             $path = $l->imagen;
                           } else if (!empty($empresa->no_imagen)) {
-                            $path = "/sistema/".$empresa->no_imagen;
+                            $path = "/admin/".$empresa->no_imagen;
                           } ?>
                           <div class="tab_list_box_img gallery_box_img_second">
                             <img src="<?php echo $path ?>" alt="<?php echo ($l->nombre);?>">
@@ -398,11 +398,11 @@ if (sizeof($slides)>0) { ?>
                               <div class="display-table-cell"> 
                                 <a class="pluss_icon" href="<?php echo mklink ($l->link) ?>"><i class="fa fa-plus" aria-hidden="true"></i></a> 
                                 <?php if (estaEnFavoritos($l->id)) { ?>
-                                  <a class="likes_icon active" rel="nofollow" href="/sistema/favoritos/eliminar/?id=<?php echo $l->id; ?>">
+                                  <a class="likes_icon active" rel="nofollow" href="/admin/favoritos/eliminar/?id=<?php echo $l->id; ?>">
                                     <i class="fa fa-heart-o" aria-hidden="true"></i>
                                   </a>
                                 <?php } else { ?>
-                                  <a class="likes_icon" rel="nofollow" href="/sistema/favoritos/agregar/?id=<?php echo $l->id; ?>">
+                                  <a class="likes_icon" rel="nofollow" href="/admin/favoritos/agregar/?id=<?php echo $l->id; ?>">
                                     <i class="fa fa-heart" aria-hidden="true"></i>
                                   </a>
                                 <?php } ?>
@@ -466,7 +466,7 @@ if (sizeof($emprendimientos)>0) { ?>
                   <?php if (!empty($l->imagen)) { ?>
                     <img src="<?php echo $l->imagen ?>" alt="<?php echo ($l->nombre);?>">
                   <?php } else if (!empty($empresa->no_imagen)) { ?>
-                    <img src="/sistema/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($l->nombre);?>">
+                    <img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($l->nombre);?>">
                   <?php } else { ?>
                     <img src="images/no-imagen.png" alt="<?php echo ($l->nombre);?>">
                   <?php } ?>
@@ -485,7 +485,7 @@ if (sizeof($emprendimientos)>0) { ?>
                   <?php if (!empty($l->imagen)) { ?>
                     <img src="<?php echo $l->imagen ?>" alt="<?php echo ($l->nombre);?>">
                   <?php } else if (!empty($empresa->no_imagen)) { ?>
-                    <img src="/sistema/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($l->nombre);?>">
+                    <img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($l->nombre);?>">
                   <?php } else { ?>
                     <img src="images/no-imagen.png" alt="<?php echo ($l->nombre);?>">
                   <?php } ?>
@@ -515,7 +515,7 @@ if (sizeof($emprendimientos)>0) { ?>
           <?php $x=1;foreach ($categorias_informacion as $c) { if ($x<=6) {   ?>
             <div class="col-lg-4 col-md-6">
               <div class="info_img_box"> <a href="<?php echo mklink ("entradas/$c->link/") ?>">
-                <div class="info_img_wrap"> <img src="/sistema/<?php echo $c->path ?>"> </div>
+                <div class="info_img_wrap"> <img src="/admin/<?php echo $c->path ?>"> </div>
                 <div class="info_content_wrap">
                   <p>información</p>
                   <h5><?php echo utf8_encode($c->nombre)?></h5>

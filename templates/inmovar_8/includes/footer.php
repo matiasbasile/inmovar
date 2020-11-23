@@ -5,7 +5,7 @@
         <div class="col-lg-7 col-md-12 footer_logo">
           <?php if (!empty($empresa->logo)) {  ?>
             <a href="<?php echo mklink ("/") ?>">
-              <img src="/sistema/<?php echo $empresa->logo ?>" alt="footer_logo">
+              <img src="/admin/<?php echo $empresa->logo ?>" alt="footer_logo">
             </a>
           <?php } ?>
           <p>¿Tenés alguna consulta?</p>

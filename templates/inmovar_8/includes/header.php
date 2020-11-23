@@ -11,7 +11,7 @@ if (isset($_SESSION["favoritos"])) {
       <div class="row">
         <div class="col-lg-3 col-7">
           <div class="menacho_logo">
-            <a href="<?php echo mklink ("/") ?>"><img style="max-width: 220px" src="<?php echo '/sistema/'.$empresa->logo_1 ?>" alt="logo"></a>
+            <a href="<?php echo mklink ("/") ?>"><img style="max-width: 220px" src="<?php echo '/admin/'.$empresa->logo_1 ?>" alt="logo"></a>
           </div>
         </div>
         <div class="col-lg-9">
@@ -24,7 +24,7 @@ if (isset($_SESSION["favoritos"])) {
                   <div class="logo_closebtn">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menachonavbars" aria-controls="menachonavbars" aria-expanded="false" aria-label="Toggle navigation"> <i class="fa fa-times" aria-hidden="true"></i> </button>
                     <div class="inner_mobile_logo">
-                      <a href="<?php echo mklink ("/") ?>"><img src="<?php echo '/sistema/'.$empresa->logo_1 ?>" alt="logo"></a>
+                      <a href="<?php echo mklink ("/") ?>"><img src="<?php echo '/admin/'.$empresa->logo_1 ?>" alt="logo"></a>
                     </div>
                   </div>
                   <ul class="navbar-nav">

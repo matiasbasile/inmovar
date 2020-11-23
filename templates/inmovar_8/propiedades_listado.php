@@ -118,7 +118,7 @@ $list_view = ($vc_apto_banco == 1);
                                   if (!empty($l->imagen)) { 
                                     $path = $l->imagen;
                                   } else if (!empty($empresa->no_imagen)) {
-                                    $path = "/sistema/".$empresa->no_imagen;
+                                    $path = "/admin/".$empresa->no_imagen;
                                   } ?>
                                   <div class="tab_list_box_img gallery_box_img_second ">
                                     <img src="<?php echo $path ?>" alt="<?php echo ($l->nombre);?>">
@@ -130,11 +130,11 @@ $list_view = ($vc_apto_banco == 1);
                                           <i class="fa fa-plus"></i>
                                         </a>
                                         <?php if (estaEnFavoritos($l->id)) { ?>
-                                          <a class="likes_icon active" rel="nofollow" href="/sistema/favoritos/eliminar/?id=<?php echo $l->id; ?>">
+                                          <a class="likes_icon active" rel="nofollow" href="/admin/favoritos/eliminar/?id=<?php echo $l->id; ?>">
                                             <i class="fa fa-heart-o" aria-hidden="true"></i>
                                           </a>
                                         <?php } else { ?>
-                                          <a class="likes_icon" rel="nofollow" href="/sistema/favoritos/agregar/?id=<?php echo $l->id; ?>">
+                                          <a class="likes_icon" rel="nofollow" href="/admin/favoritos/agregar/?id=<?php echo $l->id; ?>">
                                             <i class="fa fa-heart" aria-hidden="true"></i>
                                           </a>
                                         <?php } ?>
@@ -153,11 +153,11 @@ $list_view = ($vc_apto_banco == 1);
                                   <h4 class="dollar_rs"> <?php echo $l->precio ?></h4>
                                   <span class="text-right apto_like"> 
                                     <?php if (estaEnFavoritos($l->id)) { ?>
-                                      <a class="like_btn active" rel="nofollow" href="/sistema/favoritos/eliminar/?id=<?php echo $l->id; ?>">
+                                      <a class="like_btn active" rel="nofollow" href="/admin/favoritos/eliminar/?id=<?php echo $l->id; ?>">
                                         <i class="fa fa-heart" aria-hidden="true"></i>
                                       </a>
                                     <?php } else { ?>
-                                      <a class="like_btn" rel="nofollow" href="/sistema/favoritos/agregar/?id=<?php echo $l->id; ?>">
+                                      <a class="like_btn" rel="nofollow" href="/admin/favoritos/agregar/?id=<?php echo $l->id; ?>">
                                         <i class="fa fa-heart" aria-hidden="true"></i>
                                       </a>
                                     <?php } ?>
@@ -200,7 +200,7 @@ $list_view = ($vc_apto_banco == 1);
                                   <?php if (!empty($l->imagen)) { ?>
                                     <img src="<?php echo $l->imagen ?>" alt="<?php echo ($l->nombre);?>">
                                   <?php } else if (!empty($empresa->no_imagen)) { ?>
-                                    <img src="/sistema/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($l->nombre);?>">
+                                    <img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($l->nombre);?>">
                                   <?php } else { ?>
                                     <img src="images/no-imagen.png" alt="<?php echo ($l->nombre);?>">
                                   <?php } ?>
@@ -239,11 +239,11 @@ $list_view = ($vc_apto_banco == 1);
                               <span class="text-right apto_like">
                                 <?php if ($l->apto_banco == 1) {  ?><a class="apto_home" href="javascript:void(0)"><img src="images/home_apto_icon.png" alt="home_apto_icon"> Apto cr&eacute;dito</a><?php } ?>
                                 <?php if (estaEnFavoritos($l->id)) { ?>
-                                  <a class="like_btn active" rel="nofollow" href="/sistema/favoritos/eliminar/?id=<?php echo $l->id; ?>">
+                                  <a class="like_btn active" rel="nofollow" href="/admin/favoritos/eliminar/?id=<?php echo $l->id; ?>">
                                     <i class="fa fa-heart" aria-hidden="true"></i>
                                   </a>
                                 <?php } else { ?>
-                                  <a class="like_btn" rel="nofollow" href="/sistema/favoritos/agregar/?id=<?php echo $l->id; ?>">
+                                  <a class="like_btn" rel="nofollow" href="/admin/favoritos/agregar/?id=<?php echo $l->id; ?>">
                                     <i class="fa fa-heart" aria-hidden="true"></i>
                                   </a>
                                 <?php } ?>

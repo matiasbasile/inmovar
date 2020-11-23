@@ -18,7 +18,7 @@
     <div class="navbar-header">
       <div class="header-details">
         <div class="right clear">
-          <a target="_blank" rel="nofollow" href="https://www.varcreative.com/sistema/"><i class="fa fa-lock"></i> Entrar</a>
+          <a target="_blank" rel="nofollow" href="https://www.varcreative.com/admin/"><i class="fa fa-lock"></i> Entrar</a>
         </div>
         <div class="oh clear">
           <?php if (!empty($empresa->telefono)) { ?>
@@ -67,7 +67,7 @@
         </div>
       </div>
 
-      <a class="navbar-brand" href="<?php echo mklink ("/") ?>"><img src="/sistema/<?php echo $empresa->logo_1 ?>" width=250 alt="Homely" /></a>
+      <a class="navbar-brand" href="<?php echo mklink ("/") ?>"><img src="/admin/<?php echo $empresa->logo_1 ?>" width=250 alt="Homely" /></a>
 
       <!-- nav toggle -->
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">

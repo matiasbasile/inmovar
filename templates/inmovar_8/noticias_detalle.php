@@ -100,7 +100,7 @@
 
 <!-- JavaScript
   ================================================== --> 
-<script src="/sistema/resources/js/jquery.min.js"></script> 
+<script src="/admin/resources/js/jquery.min.js"></script> 
 <!-- <script src="js/jquery-3.2.1.slim.min.js"></script>  -->
 <script src="js/bootstrap.js"></script> 
 <script src="js/popper.min.js"></script> 
@@ -170,7 +170,7 @@ $(document).ready(function(){
     "id_empresa":ID_EMPRESA,
   }
   $.ajax({
-    "url":"/sistema/consultas/function/enviar/",
+    "url":"/admin/consultas/function/enviar/",
     "type":"post",
     "dataType":"json",
     "data":datos,

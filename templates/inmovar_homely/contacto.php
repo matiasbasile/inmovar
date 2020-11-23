@@ -235,7 +235,7 @@ function enviar_contacto() {
     "id_empresa":ID_EMPRESA,
   }
   $.ajax({
-    "url":"/sistema/consultas/function/enviar/",
+    "url":"/admin/consultas/function/enviar/",
     "type":"post",
     "dataType":"json",
     "data":datos,

@@ -14,19 +14,19 @@
     <a class="yellow_btn" href="javascript:abrir_contacto_modal()">Solicita una visita</a>
 
     <?php if (estaEnFavoritos($propiedad->id)) { ?>
-      <a class="btn_emp2 active" rel="nofollow" href="/sistema/favoritos/eliminar/?id=<?php echo $propiedad->id; ?>">
+      <a class="btn_emp2 active" rel="nofollow" href="/admin/favoritos/eliminar/?id=<?php echo $propiedad->id; ?>">
         <i class="fa fa-heart" aria-hidden="true"></i>
         Guardado en favoritos
       </a>
     <?php } else { ?>
-      <a class="btn_emp2" rel="nofollow" href="/sistema/favoritos/agregar/?id=<?php echo $propiedad->id; ?>">
+      <a class="btn_emp2" rel="nofollow" href="/admin/favoritos/agregar/?id=<?php echo $propiedad->id; ?>">
         <i class="fa fa-heart" aria-hidden="true"></i>
         Guardar en lista de favoritos
       </a>
     <?php } ?>
 
     <ul class="box_footer_btm">
-      <li><a href="<?php echo mklink("sistema/propiedades/function/ficha/".$propiedad->hash) ?>" rel="nofollow" target="_blank"><i class="fa fa-file-text-o" aria-hidden="true"></i> Imprimir Ficha</a></li>
+      <li><a href="<?php echo mklink("admin/propiedades/function/ficha/".$propiedad->hash) ?>" rel="nofollow" target="_blank"><i class="fa fa-file-text-o" aria-hidden="true"></i> Imprimir Ficha</a></li>
       <li><a href="javascript:void(0)" onclick="enviar_ficha_email()" rel="nofollow"><i class="fa fa-envelope-o" aria-hidden="true"></i> Ficha por Email</a></li>
       
     </ul>

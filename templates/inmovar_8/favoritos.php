@@ -64,7 +64,7 @@ if ($maximo == "undefined" || empty($maximo)) $maximo = $precio_maximo;
                               <?php if (!empty($l->imagen)) { ?>
                                 <img src="<?php echo $l->imagen ?>" alt="<?php echo ($l->nombre);?>">
                               <?php } else if (!empty($empresa->no_imagen)) { ?>
-                                <img src="/sistema/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($l->nombre);?>">
+                                <img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($l->nombre);?>">
                               <?php } else { ?>
                                 <img src="images/no-imagen.png" alt="<?php echo ($l->nombre);?>">
                               <?php } ?>
