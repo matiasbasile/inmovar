@@ -68,7 +68,7 @@
                       <% var im2 = images[i] %>
                       <% var im = (isEmpty(im2)) ? "" : ((im2.indexOf("http")==0) ? im2 : '/admin/'+im2) %>
                       <li>
-                        <div style="overflow: hidden; width: 100%; height: 100px; background-image: url(<%= im %>); background-repeat: no-repeat; background-position: center center; background-size: contain"></div>
+                        <div style="overflow: hidden; width: 100%; height: 100px; background-image: url(<%= im %>); background-repeat: no-repeat; background-position: center center; background-size: cover"></div>
                       </li>
                     <% } %>
                   </ul>
