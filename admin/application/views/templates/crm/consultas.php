@@ -207,7 +207,7 @@
 </script>
 
 <script type="text/template" id="crear_consulta_timeline_template">
-  <div class="panel panel-default mb0">
+  <div class="panel panel-default mt-1 mb0">
     <ul class="nav nav-tabs nav-tabs-3" role="tablist">
       <% var active_tab = "tab1" %>
       <li class="active">

@@ -20,13 +20,13 @@
                   <h3 class="m-t-sm m-b-xs">
                     <%= nombre.ucwords() %> 
                   </h3>
-                  <a class="text-azul db fs14"><%= email.toLowerCase() %></a>
+                  <a class="text-azul db fs15"><%= email.toLowerCase() %></a>
                   <% if (!isEmpty(telefono)) { %>
-                    <a class="fs14 db"><i class="fa fa-whatsapp"></i> <%= telefono.toLowerCase() %></a>
+                    <a class="fs15 db"><i class="fa fa-whatsapp"></i> <%= telefono.toLowerCase() %></a>
                   <% } %>
                 </div>
                 <div class="col-xs-12">
-                  <a class="text-link fs12" href="app/#clientes/<%= id %>">
+                  <a class="text-link fs14" href="app/#clientes/<%= id %>">
                     Editar información
                   </a>
                 </div>
@@ -82,7 +82,7 @@
 
           <div id="tab_grande_1" class="tab-pane tab_grande">
 
-            <div class="panel panel-default">
+            <div class="panel panel-default mt-1">
               <div class="panel-body">
                 <div id="contacto_busquedas_guardadas_vacio" style="display:block">
                   <div class="h3 tac" style="padding: 83px 0px;">No existen b&uacute;squedas guardadas</div>
@@ -113,7 +113,7 @@
 
           <div id="tab_grande_3" class="tab-pane tab_grande">
 
-            <div class="panel panel-default">
+            <div class="panel panel-default mt-1">
               <div class="panel-body">
                 <div class="tar">
                   <button class="btn btn-info buscar_propiedades">Buscar propiedades</button>
