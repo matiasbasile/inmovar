@@ -22,7 +22,7 @@
                   </h3>
                   <a class="text-azul db fs14"><%= email.toLowerCase() %></a>
                   <% if (!isEmpty(telefono)) { %>
-                    <a class="fs14 db"><%= telefono.toLowerCase() %></a>
+                    <a class="fs14 db"><i class="fa fa-whatsapp"></i> <%= telefono.toLowerCase() %></a>
                   <% } %>
                 </div>
                 <div class="col-xs-12">
@@ -45,7 +45,10 @@
               <div class="acerca_de m-t text-muted">
                 <label class="fs14">Estado:</label>
                 <div class="form-group">
-                  <button class="btn btn-block btn-info mostrar_estado"><%= consulta_tipo %></button>
+                  <button class="btn btn-block btn-info mostrar_estado">
+                    <%= consulta_tipo %>
+                    <span class="material-icons fs18 fr">expand_more</span>
+                  </button>
                 </div>
               </div>
 
@@ -152,8 +155,8 @@
 
 <script type="text/template" id="contacto_edit_template">
   <div class="modal-header">
-    Nueva Consulta
-    <i class="pull-right fs20 cerrar_lightbox fa fa-times cp"></i>
+    <b>Nueva Consulta</b>
+    <i class="pull-right cerrar_lightbox fs16 fa fa-times cp"></i>
   </div>
   <form class="modal-body" autocomplete="off">
     <div class="row">
@@ -229,7 +232,6 @@
     </div>
   </form>
   <div class="modal-footer clearfix">
-    <button class="cerrar_lightbox btn btn-default">Cerrar</button>
     <button class="btn guardar pull-right btn-info">Guardar</button>
   </div>
 </div>

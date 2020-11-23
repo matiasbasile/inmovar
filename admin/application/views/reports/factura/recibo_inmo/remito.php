@@ -1,3 +1,6 @@
+<?php ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);?>
 <!DOCTYPE>
 <html>
 <head>
@@ -7,8 +10,6 @@
 <?php $cborde = "#a1a1a1"; ?>
 .a4 {
   width: 210mm;
-  height: 291mm;
-  overflow: hidden;
   margin: 0 auto;
   background-color: white;
 }
@@ -83,95 +84,106 @@ table td { font-size: 14px; }
     <?php foreach($facturas as $factura) { ?>
     <div class="a4">
       <div class="a4inner">
-        <div class="inner">
-          <table class="tabla_borde" style="width: 100%">
-            <tr>
-              <td rowspan="2" style="width: 50%">
-                <?php if(!empty($empresa->logo)) { ?>
-                  <img style="width: 100%" src="/sistema/<?php echo $empresa->logo ?>"/>
+        <?php 
+        $copias = 1;
+        if ($empresa->id == 1392) $copias = 3; 
+        for($ii=0;$ii<$copias;$ii++) { ?>
+          <div class="inner">
+            <table class="tabla_borde" style="width: 100%">
+              <tr>
+                <td rowspan="2" style="width: 35%">
+                  <?php if(!empty($empresa->logo)) { ?>
+                    <img style="width: 100%" src="/sistema/<?php echo $empresa->logo ?>"/>
+                  <?php } ?>
+                </td>
+                <td><div style="font-size: 28px; font-weight: bold; text-align: center;">X</div></td>
+                <td><div style="font-size: 22px; font-weight: bold; text-align: center;">Recibo</div></td>
+                <td>
+                  <div style="font-size: 10px">
+                    <?php if (isset($empresa->cuit) && !empty($empresa->cuit)) { ?>
+                      <div>
+                        CUIT: <span class="fr"><?php echo $empresa->cuit ?></span>
+                      </div>
+                    <?php } ?>
+                    <?php if (isset($empresa->numero_ib) && !empty($empresa->numero_ib)) { ?>
+                      <div>
+                        II. BB.: <span class="fr"><?php echo $empresa->numero_ib ?></span>
+                      </div>
+                    <?php } ?>
+                    <?php if (isset($empresa->fecha_inicio) && !empty($empresa->fecha_inicio)) { ?>
+                      <div>
+                        INICIO ACT.: <span class="fr"><?php echo $empresa->fecha_inicio ?></span>
+                      </div>
+                    <?php } ?>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="text-align: center; font-size: 10px;">
+                  Doc. no v&aacute;lido<br/>
+                  como factura
+                  </div>
+                </td>
+                <td>
+                  <div style="text-align: center; font-size: 16px; font-weight: bold">
+                    Nro.<br/>
+                    <?php echo $factura->comprobante ?>
+                  </div>
+                </td>
+                <td>
+                  <div style="text-align: center; font-size: 16px; font-weight: bold">
+                    Fecha<br/>
+                    <?php echo date("d/m/Y") ?>
+                  </div>
+                </td>
+              </tr>
+            </table>
+            <div style="padding: 15px 40px; border-bottom: solid 2px black; overflow: hidden;">
+              <div style="font-size: 15px; line-height: 20px; ">
+                Recib&iacute; de <?php echo $factura->cliente ?>,
+                con DNI/CUIT <?php echo $factura->cuit ?>,
+                la cantidad de pesos <?php echo $letras->ValorEnLetras($factura->total) ?>
+                por el alquiler de <?php echo $factura->propiedad ?>
+                ubicado en <?php echo $factura->direccion ?>
+                correspondiente al mes de <?php echo $factura->corresponde_a ?>
+                que vence el <?php echo $factura->vencimiento ?>.<br/>
+                <?php if (!empty($factura->propietario)) { ?>
+                  Importe para entregar a: <?php echo $factura->propietario ?>
                 <?php } ?>
-              </td>
-              <td><div style="font-size: 36px; font-weight: bold; text-align: center;">X</div></td>
-              <td><div style="font-size: 28px; font-weight: bold; text-align: center;">Recibo</div></td>
-              <td>
-                <div style="font-size: 10px">
-                  <div>
-                    CUIT: <span class="fr">20-16415694-0</span>
-                  </div>
-                  <div>
-                    II. BB.: <span class="fr">20-16415694-0</span>
-                  </div>
-                  <div>
-                    INICIO ACT.: <span class="fr">01/06/2015</span>
-                  </div>
+              </div>
+              <?php 
+              $total_items = 0;
+              if (sizeof($factura->items)>0) { ?>
+                <div style="float: left; width: 60%; margin-top: 20px;">
+                  <table class="tabla_borde b1">
+                    <tr>
+                      <td><b>Tasas / Servicios / Expensas</b></td>
+                      <td><b>Monto</b></td>
+                    </tr>
+                    <?php foreach($factura->items as $i) { ?>
+                      <?php $total_items += $i->monto; ?>
+                      <tr>
+                        <td><?php echo $i->nombre; ?></td>
+                        <td>$ <?php echo number_format($i->monto,2); ?></td>
+                      </tr>
+                    <?php } ?>        
+                  </table>
                 </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div style="text-align: center; font-size: 10px;">
-                Doc. no v&aacute;lido<br/>
-                como factura
-                </div>
-              </td>
-              <td>
-                <div style="text-align: center; font-size: 16px; font-weight: bold">
-                  Nro.<br/>
-                  <?php echo $factura->comprobante ?>
-                </div>
-              </td>
-              <td>
-                <div style="text-align: center; font-size: 16px; font-weight: bold">
-                  Fecha<br/>
-                  <?php echo date("d/m/Y") ?>
-                </div>
-              </td>
-            </tr>
-          </table>
-          <div style="padding: 20px 40px; border-bottom: solid 2px black; overflow: hidden;">
-            <div style="font-size: 16px; line-height: 24px; ">
-              Recib&iacute; de <?php echo $factura->cliente ?>,
-              con DNI/CUIT <?php echo $factura->cuit ?>,
-              la cantidad de pesos <?php echo $letras->ValorEnLetras($factura->total) ?>
-              por el alquiler de <?php echo $factura->propiedad ?>
-              ubicado en <?php echo $factura->direccion ?>
-              correspondiente al mes de <?php echo $factura->corresponde_a ?>
-              que vence el <?php echo $factura->vencimiento ?>.<br/>
-              <?php if (!empty($factura->propietario)) { ?>
-                Importe para entregar a: <?php echo $factura->propietario ?>
               <?php } ?>
             </div>
-            <?php 
-            $total_items = 0;
-            if (sizeof($factura->items)>0) { ?>
-              <div style="float: left; width: 60%; margin-top: 20px;">
-                <table class="tabla_borde b1">
-                  <tr>
-                    <td><b>Tasas / Servicios / Expensas</b></td>
-                    <td><b>Monto</b></td>
-                  </tr>
-                  <?php foreach($factura->items as $i) { ?>
-                    <?php $total_items += $i->monto; ?>
-                    <tr>
-                      <td><?php echo $i->nombre; ?></td>
-                      <td>$ <?php echo number_format($i->monto,2); ?></td>
-                    </tr>
-                  <?php } ?>        
-                </table>
+            
+            <div style="overflow:hidden; padding: 15px 40px; border-bottom: solid 2px black; ">
+              <div style="font-size: 20px; font-weight: bold; float: left;">
+                TOTAL: $ <?php echo ($factura->total + $total_items) ?>
               </div>
-            <?php } ?>
-          </div>
-          
-          <div style="overflow:hidden; padding: 20px 40px; border-bottom: solid 2px black; ">
-            <div style="font-size: 24px; font-weight: bold; float: left;">
-              TOTAL: $ <?php echo ($factura->total + $total_items) ?>
-            </div>
-            <div style="font-size: 18px; font-weight: bold; float: right; width: 50%;">
-              FIRMA: <br/><br/>
-              ACLARACI&Oacute;N:
+              <div style="font-size: 16px; font-weight: bold; float: right; width: 50%;">
+                FIRMA: <br/><br/>
+                ACLARACI&Oacute;N:
+              </div>
             </div>
           </div>
-        </div>
+        <?php } ?>
       </div>
     </div>
     <?php } ?>

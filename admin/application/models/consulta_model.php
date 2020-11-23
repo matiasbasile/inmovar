@@ -664,7 +664,7 @@ class Consulta_Model extends Abstract_Model {
     if ($tipo != -1) $sql.= "AND C.tipo = $tipo ";
     if (!empty($not_ids_origen)) $sql.= "AND C.id_origen NOT IN ($not_ids_origen) ";
     $sql.= "AND C.id_contacto = $id_contacto ";
-    $sql.= "ORDER BY C.fecha DESC ";
+    $sql.= "ORDER BY C.fecha DESC, C.id DESC ";
     $sql.= "LIMIT $limit,$offset ";
     $qq = $this->db->query($sql);
 

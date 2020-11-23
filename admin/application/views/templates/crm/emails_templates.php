@@ -1,18 +1,21 @@
 <script type="text/template" id="emails_templates_panel_template">
 <% if (seleccion) { %>
-  <div class="panel-body">
+  <div class="modal-header">
+    <b>Seleccionar una plantilla</b>
+    <i class="pull-right cerrar_lightbox fs16 fa fa-times cp"></i>
+  </div>
+  <div class="modal-body">
     <div class="form-group">
       <div class="search_container"></div>
     </div>
     <div class="table-responsive" style="overflow: auto; max-height: 400px">
-      <table id="emails_templates_table" data-ordenable-table="email_template" data-ordenable-where="" class="table table-striped ordenable m-b-none default footable">
+      <table id="emails_templates_table" data-ordenable-table="email_template" data-ordenable-where="" class="table table-small table-striped ordenable m-b-none default footable">
         <thead>
-          <tr>
-            <th><?php echo lang(array("es"=>"Seleccione una plantilla","en"=>"Select a template")); ?></th>
+          <tr colspan="2">
+            <th><?php echo lang(array("es"=>"Nombre","en"=>"Name")); ?></th>
           </tr>
         </thead>
         <tbody></tbody>
-        <tfoot class="pagination_container hide-if-no-paging"></tfoot>
       </table>
     </div>
   </div>

@@ -381,6 +381,12 @@ class Alquileres extends REST_Controller {
     $this->load->model("Empresa_Model");
     $empresa = $this->Empresa_Model->get($id_empresa);
     
+    $sql = "SELECT * FROM fact_configuracion WHERE id_empresa = $id_empresa ";
+    $q = $this->db->query($sql);
+    $fact_configuracion = $q->row();
+    $empresa->numero_ib = $fact_configuracion->numero_ib;
+    $empresa->fecha_inicio = fecha_es($fact_configuracion->fecha_inicio);
+
     $header = $this->load->view("reports/factura/header",null,true);
     
     $datos = array(

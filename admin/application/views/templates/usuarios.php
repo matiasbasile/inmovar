@@ -1,15 +1,13 @@
 <script type="text/template" id="usuarios_panel_template">
-  <div class="row mb20">
-    <div class="row pl10 pr10">
-      <div class="col-md-3 col-xs-12 pr5 pl5">
-        <input type="text" id="usuarios_buscar" value="<%= window.usuarios_filter %>" placeholder="<?php echo lang(array("es"=>"Buscar","en"=>"Search")); ?>..." autocomplete="off" class="form-control">
-      </div>          
-      <div class="col-md-3 col-xs-12 pr5 pl5">
-        <select id="usuarios_perfiles" class="w100p form-control no-model"></select>
-      </div>
-      <div class="col-md-6 col-xs-12 pr5 pl5 tar">
+  <div class="mb20">
+    <div class="input-group">
+      <input type="text" id="usuarios_buscar" value="<%= window.usuarios_filter %>" placeholder="<?php echo lang(array("es"=>"Buscar","en"=>"Search")); ?>..." autocomplete="off" class="form-control">
+      <span class="input-group-btn pl5 pr5">
+        <select id="usuarios_perfiles" class="w250 form-control no-model"></select>
+      </span>
+      <span class="input-group-btn">
         <a class="btn btn-info nuevo" href="javascript:void(0)">&nbsp;&nbsp;<?php echo lang(array("es"=>"Nuevo Usuario","en"=>"Add User")); ?>&nbsp;&nbsp;</a>
-      </div>
+      </span>
     </div>
   </div>
   <div class="table-responsive">
@@ -50,7 +48,7 @@
 <script type="text/template" id="usuarios_edit_panel_template">
   <div class="modal-header">
     <b>Editar usuario</b>
-    <i class="pull-right cerrar_lightbox fs20 fa fa-times cp"></i>
+    <i class="pull-right cerrar_lightbox fs16 fa fa-times cp"></i>
   </div>
   <div class="modal-body">
     <div class="tab-container">

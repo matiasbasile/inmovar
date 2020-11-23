@@ -16,104 +16,114 @@
     </div>
   </div>
 <% } else { %>  
-  <div class="seccion_llena">
+  <div class="centrado rform">
+
     <% if (!seleccionar) { %>
-      <div class=" wrapper-md ng-scope">
-        <h1 class="m-n h3"><i class="glyphicon glyphicon-home icono_principal"></i>Alquileres
-        / <b>Contratos</b>
-        </h1>
+      <div class="header-lg">
+        <div class="row">
+          <div class="col-md-6 col-xs-8">
+            <h1>Alquileres</h1>
+          </div>
+          <div class="col-md-6 col-xs-4 tar">
+            <a class="btn btn-info" href="app/#propiedades/0">
+              <span class="material-icons show-xs">add</span>
+              <span class="hidden-xs">&nbsp;&nbsp;Nuevo Alquiler&nbsp;&nbsp;</span>
+            </a>
+          </div>
+        </div>
       </div>
     <% } %>
 
-    <div class="<%= (seleccionar)?'':'wrapper-md' %> ng-scope">
-      <div class="panel panel-default">
-
-        <ul class="nav nav-tabs nav-tabs-2" role="tablist">
-          <li class="<%= (active=='alquileres')?'active':''%>">
-            <a href="<%= (active=='alquileres')?'javascript:void(0)':'app/#alquileres' %>"><i class="fa fa-key text-warning"></i> Alquileres</a>
-          </li>
-          <li class="<%= (active=='recibos_alquileres_adeudados')?'active':''%>">
-            <a href="<%= (active=='recibos_alquileres_adeudados')?'javascript:void(0)':'app/#recibos_alquileres/0' %>"><i class="fa fa-dollar text-danger"></i> Por cobrar</a>
-          </li>
-          <li class="<%= (active=='recibos_alquileres_pagados')?'active':''%>">
-            <a href="<%= (active=='recibos_alquileres_pagados')?'javascript:void(0)':'app/#recibos_alquileres/1' %>"><i class="fa fa-check text-success"></i> Pagados</a>
-          </li>
-        </ul>
-
-        <div class="panel-heading clearfix">
-          <div class="row">
-            <div class="<% if (!seleccionar) { %>col-md-6 <% } else { %> col-xs-12 <% } %> sm-m-b">
-              <div class="input-group">
-                <input type="text" id="alquileres_buscar" placeholder="Buscar..." autocomplete="off" class="form-control">
-                <span class="input-group-btn">
-                  <button class="btn buscar btn-default"><i class="fa fa-search"></i></button>
-                </span>
-                <span class="input-group-btn">
-                  <button class="btn-advanced-search m-l advanced-search-btn"><i class="fa fa-plus-circle"></i><span><?php echo lang(array("es"=>"M&aacute;s Filtros","en"=>"More Filters")); ?></span></button>
-                </span>
-              </div>
-            </div>
-            <% if (!seleccionar) { %>
-              <div class="col-md-6 text-right">
-                <a class="btn btn-info btn-addon ml5" href="app/#alquiler">
-                  <i class="fa fa-plus"></i><span>&nbsp;&nbsp;Nuevo&nbsp;&nbsp;</span>
-                </a>
-              </div>
-            <% } %>
-          </div>
-        </div>
-        <div class="advanced-search-div bg-light dk" style="display:none">
-          <div class="wrapper clearfix">
-            <h4 class="m-t-xs"><span class="material-icons">tune</span> Filtros:</h4>
-            <div class="row pl10 pr10">
-              <div class="col-md-2 col-sm-3 col-xs-12 mh50 pr5 pl5">
-                <select class="form-control no-model" id="alquileres_buscar_estados">
-                  <option value="0">Estado</option>
-                  <option value="A">Activo</option>
-                  <option value="R">Reservado</option>
-                  <option value="C">Cancelado</option>
-                  <option value="F">Finalizado</option>
-                </select>
-              </div>
-              <div class="col-md-3 col-sm-6 col-xs-12 mh50 pr5 pl5">
-                <input type="hidden" id="alquileres_buscar_id_propiedad" value="0" />
-                <input type="text" class="form-control no-model" placeholder="Propiedad" id="alquileres_buscar_propiedades" />
-              </div>
-              <div class="col-md-2 col-sm-3 col-xs-12 mh50 pr5 pl5">
-                <button id="alquileres_buscar_avanzada_btn" class="btn btn-dark btn-block"><i class="fa fa-search m-r-xs"></i> <?php echo lang(array("es"=>"Buscar","en"=>"Search")); ?></button>
-              </div>
+    <div class="tab-container mb0">
+      <ul class="nav nav-tabs nav-tabs-2" role="tablist">
+        <li class="<%= (active=='alquileres')?'active':''%>">
+          <a href="<%= (active=='alquileres')?'javascript:void(0)':'app/#alquileres' %>">
+            <i class="material-icons md-22">vpn_key</i>
+            Alquileres
+          </a>
+        </li>
+        <li class="<%= (active=='recibos_alquileres_adeudados')?'active':''%>">
+          <a href="<%= (active=='recibos_alquileres_adeudados')?'javascript:void(0)':'app/#recibos_alquileres/0' %>"><i class="fa fa-dollar text-danger"></i> Por cobrar</a>
+        </li>
+        <li class="<%= (active=='recibos_alquileres_pagados')?'active':''%>">
+          <a href="<%= (active=='recibos_alquileres_pagados')?'javascript:void(0)':'app/#recibos_alquileres/1' %>"><i class="fa fa-check text-success"></i> Pagados</a>
+        </li>
+      </ul>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading clearfix">
+        <div class="row">
+          <div class="<% if (!seleccionar) { %>col-md-6 <% } else { %> col-xs-12 <% } %> sm-m-b">
+            <div class="input-group">
+              <input type="text" id="alquileres_buscar" placeholder="Buscar..." autocomplete="off" class="form-control">
+              <span class="input-group-btn">
+                <button class="btn buscar btn-default"><i class="fa fa-search"></i></button>
+              </span>
+              <span class="input-group-btn">
+                <button class="btn-advanced-search m-l advanced-search-btn"><i class="fa fa-plus-circle"></i><span><?php echo lang(array("es"=>"M&aacute;s Filtros","en"=>"More Filters")); ?></span></button>
+              </span>
             </div>
           </div>
+          <% if (!seleccionar) { %>
+            <div class="col-md-6 text-right">
+              <a class="btn btn-info btn-addon ml5" href="app/#alquiler">
+                <i class="fa fa-plus"></i><span>&nbsp;&nbsp;Nuevo&nbsp;&nbsp;</span>
+              </a>
+            </div>
+          <% } %>
         </div>
-
-        <div class="panel-body">
-          <div class="table-responsive">
-            <table id="alquileres_tabla" class="table <%= (seleccionar)?'table-small':'' %> table-striped sortable m-b-none default footable">
-              <thead>
-                <tr>
-                  <% if (!seleccionar) { %>
-                    <th style="width:20px;">
-                      <label class="i-checks m-b-none">
-                        <input class="esc sel_todos" type="checkbox"><i></i>
-                      </label>
-                    </th>
-                  <% } else { %>
-                    <th style="width:20px;"></th>
-                  <% } %>
-                  <th class="sorting" data-sort-by="cliente">Inquilino</th>
-                  <th>Propiedad</th>
-                  <th>Direcci&oacute;n</th>
-                  <th class="sorting" data-sort-by="fecha_inicio">Desde</th>
-                  <th class="sorting" data-sort-by="fecha_fin">Hasta</th>
-                  <% if (!seleccionar) { %>
-                    <th class="w50" style="width:10px;"></th>
-                  <% } %>
-                </tr>
-              </thead>
-              <tbody class="tbody"></tbody>
-              <tfoot class="pagination_container hide-if-no-paging"></tfoot>
-            </table>
+      </div>
+      <div class="advanced-search-div bg-light dk" style="display:none">
+        <div class="wrapper clearfix">
+          <h4 class="m-t-xs"><span class="material-icons">tune</span> Filtros:</h4>
+          <div class="row pl10 pr10">
+            <div class="col-md-2 col-sm-3 col-xs-12 mh50 pr5 pl5">
+              <select class="form-control no-model" id="alquileres_buscar_estados">
+                <option value="0">Estado</option>
+                <option value="A">Activo</option>
+                <option value="R">Reservado</option>
+                <option value="C">Cancelado</option>
+                <option value="F">Finalizado</option>
+              </select>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12 mh50 pr5 pl5">
+              <input type="hidden" id="alquileres_buscar_id_propiedad" value="0" />
+              <input type="text" class="form-control no-model" placeholder="Propiedad" id="alquileres_buscar_propiedades" />
+            </div>
+            <div class="col-md-2 col-sm-3 col-xs-12 mh50 pr5 pl5">
+              <button id="alquileres_buscar_avanzada_btn" class="btn btn-dark btn-block"><i class="fa fa-search m-r-xs"></i> <?php echo lang(array("es"=>"Buscar","en"=>"Search")); ?></button>
+            </div>
           </div>
+        </div>
+      </div>
+
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table id="alquileres_tabla" class="table <%= (seleccionar)?'table-small':'' %> table-striped sortable m-b-none default footable">
+            <thead>
+              <tr>
+                <% if (!seleccionar) { %>
+                  <th style="width:20px;">
+                    <label class="i-checks m-b-none">
+                      <input class="esc sel_todos" type="checkbox"><i></i>
+                    </label>
+                  </th>
+                <% } else { %>
+                  <th style="width:20px;"></th>
+                <% } %>
+                <th class="sorting" data-sort-by="cliente">Inquilino</th>
+                <th>Propiedad</th>
+                <th>Direcci&oacute;n</th>
+                <th class="sorting" data-sort-by="fecha_inicio">Desde</th>
+                <th class="sorting" data-sort-by="fecha_fin">Hasta</th>
+                <% if (!seleccionar) { %>
+                  <th class="w50" style="width:10px;"></th>
+                <% } %>
+              </tr>
+            </thead>
+            <tbody class="tbody"></tbody>
+            <tfoot class="pagination_container hide-if-no-paging"></tfoot>
+          </table>
         </div>
       </div>
     </div>
@@ -346,7 +356,7 @@
       <div class="form-group">
         <div class="col-xs-12">
           <label>Motivo: </label>
-          <textarea name="motivo_cancelacion_contrato" id="rescindir_alquiler_motivo_cancelacion_contrato" placeholder="Escribe aqui alguna observacion..." class="h100 form-control"><%= motivo_cancelacion_contrato %></textarea>
+          <textarea name="motivo_cancelacion_contrato" id="rescindir_alquiler_motivo_cancelacion_contrato" placeholder="Escribe aquí alguna observación..." class="h100 form-control"><%= motivo_cancelacion_contrato %></textarea>
         </div>
       </div>
     </div>

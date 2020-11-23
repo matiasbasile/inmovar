@@ -383,7 +383,7 @@
         </div>
       </div>
     </div>
-    <div class="panel-body expand">
+    <div class="panel-body expand" style="display:block">
       <div id="usuarios_container">
       </div>
     </div>

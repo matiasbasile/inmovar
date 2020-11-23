@@ -42,7 +42,7 @@
                 <div class="input-group">
                   <input type="text" id="clientes_buscar" value="<%= window.clientes_filter %>" placeholder="<?php echo lang(array("es"=>"Buscar","en"=>"Search")); ?>..." autocomplete="off" class="form-control">
                   <span class="input-group-btn">
-                    <button class="btn btn-default buscar"><i class="fa fa-search"></i></button>
+                    <button class="btn btn-default buscar ml5"><i class="fa fa-search"></i></button>
                   </span>
                   <span class="input-group-btn ml5">
                     <button class="btn btn-default btn-addon btn-addon-2 exportar_excel">
@@ -99,7 +99,7 @@
       <img src="/admin/<%= path %>" class="customcomplete-image"/>
     <% } %>
   <% } else { %>
-    <span class="avatar xs avatar-texto <%= (activo==1)?'bg-info':'bg-light dker' %> pull-left">
+    <span class="avatar xs avatar-texto pull-left">
       <%= isEmpty(nombre) ? email.substr(0,1).toUpperCase() : nombre.substr(0,1).toUpperCase() %>
     </span>
   <% } %>
@@ -242,7 +242,7 @@
 
         <div class="panel panel-default">
           <div class="panel-heading">
-            <span class="bold negro"><?php echo lang(array("es"=>"Acerca de","en"=>"About ")); ?> <%= nombre.ucwords() %> </span>
+            <span class="bold"><?php echo lang(array("es"=>"Acerca de","en"=>"About ")); ?> <%= nombre.ucwords() %> </span>
           </div>
           <div class="panel-body acerca_de">
             <div class="form-group">

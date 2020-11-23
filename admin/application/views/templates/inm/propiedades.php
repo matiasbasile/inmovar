@@ -2,7 +2,7 @@
 <% if (vista_busqueda) { %>
   <div class="modal-header">
     <b>Buscar propiedades</b>
-    <i class="pull-right cerrar_lightbox fs20 fa fa-times cp"></i>
+    <i class="pull-right cerrar_lightbox fs16 fa fa-times cp"></i>
   </div>
   <div class="modal-body">
     
@@ -133,7 +133,7 @@
   <td class="<%= clase %> p0 data">
     <% if (!isEmpty(path)) { %>
       <% var prefix = (path.indexOf("http") == 0) ? "" : "/admin/" %>
-      <img src="<%= prefix + path %>?t=<%= Math.ceil(Math.random()*10000) %>" class="customcomplete-image"/>
+      <img src="<%= prefix + path %>?t=<%= Math.ceil(Math.random()*10000) %>" class="customcomplete-image br5"/>
     <% } %>
   </td>
   <td class="<%= clase %> data">
@@ -606,81 +606,91 @@
 
 
 <script type="text/template" id="propiedad_buscar_interesados_template">
-<div class="panel panel-default">
-  <div class="panel-heading fs16 bold">
-    Interesados en la propiedad
+  <div class="modal-header">
+    <b>Interesados en la propiedad</b>
     <i class="fa fa-times cerrar cp fr"></i>
   </div>
-  <div class="panel-body">
+  <div class="modal-body">
     <div class="table-responsive" style="height:250px; overflow:auto">
       <table id="propiedad_buscar_interesados_tabla" class="table table-striped sortable m-b-none default footable">
         <thead>
-          <th>Nombre</th>
-          <th>Fecha Interes</th>
-          <th>Email</th>
-          <th>Tel&eacute;fono</th>
+          <tr>
+            <th style="width:20px"></th>
+            <th>Nombre</th>
+            <th>Fecha Interes</th>
+            <th>Email</th>
+            <th>Tel&eacute;fono</th>
+          </tr>
         </thead>
         <tbody></tbody>
       </table>
     </div>
-    <div class="tar">
-      <button class="btn btn-info enviar_emails btn-addon"><i class="icon fa fa-send"></i>Enviar email</button>
-    </div>
+  </div>
+  <div class="modal-footer tar">
+    <button class="btn btn-info enviar_emails btn-addon"><i class="icon fa fa-send"></i>Enviar email</button>
   </div>
 </div>
 </script>
 
 <script type="text/template" id="propiedad_buscar_interesados_item_template">
 <% var link_completo = 'https://' + DOMINIO + ((DOMINIO.substr(DOMINIO.length - 1) == "/") ? "" : "/") + link %>
-<td><a href="app/#contacto_acciones/<%= id_contacto %>" class="text-info"><%= nombre %></a></td>
-<td><%= fecha %></td>
-<td>
+<td class="p0">
   <label class="i-checks">
     <input data-id="<%= id_contacto %>" class="propiedad_buscar_interesados_checkbox" type="checkbox" checked value="1">
     <i></i>
   </label>
-  <span class="text-info m-l-xs"><%= email %></span>
 </td>
+<td><a href="app/#contacto_acciones/<%= id_contacto %>" class="bold"><%= nombre %></a>
+<td><%= fecha %></td>
+<td><%= email %></td>
 <td>
-  <button data-link_completo="<%= link_completo %>" class="btn btn-success enviar_whatsapp_interesado"><i class="fa fa-whatsapp"></i></button>
-  <span class="text-info m-l-xs"><%= telefono %></span>
+  <% if (!isEmpty(telefono)) { %>
+    <span data-link_completo="<%= link_completo %>" class="enviar_whatsapp_interesado"><i class="fa mr5 fa-whatsapp"></i> <%= telefono %></span>
+  <% } %>
 </td>
 </script>
 
 <script type="text/template" id="propiedad_estadistica_detalle_template">
-<div class="panel panel-default">
-  <div class="panel-heading clearfix">
-    <b class="pull-left mt5"><%= nombre %> <%= (!isEmpty(codigo_completo)) ? "("+codigo_completo+")" : "" %></b>
-    <button class="pull-right btn btn-default btn-small cerrar"><i class="fa fa-times"></i></button>
+  <div class="modal-header clearfix">
+    <b class="pull-left mt5"><%= nombre %> <%= (!isEmpty(codigo)) ? "("+codigo+")" : "" %></b>
+    <i class="fa fa-times fr cp cerrar fs16"></i>
   </div>
-  <div class="panel-body">  
-    <ul class="nav nav-tabs nav-tabs-2" role="tablist">
-      <li class="render_tabla <%= (tab_default == "tabla")?"active":"" %>">
-        <a href="#tab_propiedad_estadistica1" role="tab" data-toggle="tab"><i class="fa fa-list-ul text-info mr5"></i> Lista</a>
-      </li>
-      <li class="render_grafico <%= (tab_default == "grafico")?"active":"" %>">
-        <a href="#tab_propiedad_estadistica2" role="tab" data-toggle="tab"><i class="fa fa-signal text-warning mr5"></i> Grafico</a>
-      </li>
-      <div class="pull-right mr5">
-        <div class="input-group pull-left" style="width: 140px;">
-          <input type="text" id="propiedad_estadistica_fecha_desde" class="form-control">
-          <span class="input-group-btn">
-            <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="fa fa-calendar"></i></button>
-          </span>              
+  <div class="modal-body">  
+    <div class="tab-container mb0">
+      <ul class="nav nav-tabs nav-tabs-2" role="tablist">
+        <li class="render_tabla <%= (tab_default == "tabla")?"active":"" %>">
+          <a href="#tab_propiedad_estadistica1" role="tab" data-toggle="tab">
+            <i class="material-icons mr5">people</i>
+            Contactos
+          </a>
+        </li>
+        <li class="render_grafico <%= (tab_default == "grafico")?"active":"" %>">
+          <a href="#tab_propiedad_estadistica2" role="tab" data-toggle="tab">
+            <i class="material-icons mr5">equalizer</i>
+            Grafico
+          </a>
+        </li>
+        <div class="pull-right mr5">
+          <div class="input-group pull-left mr5" style="width: 140px;">
+            <input type="text" id="propiedad_estadistica_fecha_desde" class="form-control">
+            <span class="input-group-btn">
+              <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="fa fa-calendar"></i></button>
+            </span>              
+          </div>
+          <div class="input-group pull-left mr5" style="width: 140px;">
+            <input type="text" id="propiedad_estadistica_fecha_hasta" class="form-control">
+            <span class="input-group-btn">
+              <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="fa fa-calendar"></i></button>
+            </span>
+          </div>
+          <button class="btn buscar btn-default pull-left"><i class="fa fa-search"></i></button>
         </div>
-        <div class="input-group pull-left" style="width: 140px;">
-          <input type="text" id="propiedad_estadistica_fecha_hasta" class="form-control">
-          <span class="input-group-btn">
-            <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="fa fa-calendar"></i></button>
-          </span>
-        </div>
-        <button class="btn buscar btn-default pull-left"><i class="fa fa-search"></i></button>
-      </div>
-    </ul>
-    <div class="tab-content">
-      <div id="tab_propiedad_estadistica1" class="tab-pane pr0 pl0 panel-body <%= (tab_default == "tabla")?"active":"" %>">
-        <div class="b-a" style="height:250px; overflow: auto;">
-          <table id="propiedad_estadistica_tabla" class="table table-small table-striped sortable m-b-none default footable">
+      </ul>
+    </div>
+    <div class="tab-content panel panel-default">
+      <div id="tab_propiedad_estadistica1" class="tab-pane pr0 pl0 <%= (tab_default == "tabla")?"active":"" %>">
+        <div style="height:250px; overflow: auto;">
+          <table id="propiedad_estadistica_tabla" class="table table-striped sortable m-b-none default footable">
             <thead>
               <tr>
                 <th style="width:150px">Fecha</th>
@@ -691,12 +701,11 @@
           </table>
         </div>
       </div>
-      <div id="tab_propiedad_estadistica2" class="tab-pane pr0 pl0 panel-body <%= (tab_default == "grafico")?"active":"" %>">
+      <div id="tab_propiedad_estadistica2" class="tab-pane pr0 pl0 <%= (tab_default == "grafico")?"active":"" %>">
         <div id="propiedad_estadistica_grafico" style="height:250px;"></div>
       </div>
     </div>
   </div>
-</div>
 </script>
 
 <script type="text/template" id="propiedad_preview_template">

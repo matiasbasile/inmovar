@@ -928,10 +928,6 @@
                   <textarea placeholder="<?php echo lang(array("es"=>"Pegue aqu&iacute; el c&oacute;digo de Remarketing provisto por Google.","en"=>"Insert here the Google Remarketing code.")); ?>" name="remarketing" class="form-control"><%= remarketing %></textarea>
                 </div>
                 <div class="form-group">
-                  <label class="control-label">Google Adsense</label>
-                  <textarea placeholder="<?php echo lang(array("es"=>"Pegue aqu&iacute; el c&oacute;digo provisto por Google Adsense.","en"=>"Insert here the Google Adwords code.")); ?>" name="adsense" class="form-control"><%= adsense %></textarea>
-                </div>
-                <div class="form-group">
                   <label class="control-label">View ID</label>
                   <textarea placeholder="<?php echo lang(array("es"=>"C&oacute;digo de View ID para enlazar estad&iacute;sticas de Google Analytics.","en"=>"Insert here the View ID Code to bind web statics.")); ?>" name="view_id" class="form-control"><%= view_id %></textarea>
                 </div>

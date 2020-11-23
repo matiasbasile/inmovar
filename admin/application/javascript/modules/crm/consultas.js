@@ -1036,7 +1036,7 @@
     editar_tipo: function(tipo_id,tipo_nombre) {
       var self = this;
       this.$("#consulta_cambio_estado_id_tipo").val(tipo_id);
-      this.$("#consulta_cambio_estado_boton_tipo").html(tipo_nombre);
+      this.$("#consulta_cambio_estado_boton_tipo").html(tipo_nombre+'<span class="material-icons fr">expand_more</span>');
 
       // Mostramos el postergar solamente si no cambiamos de estado
       if (tipo_id == this.model.get("tipo")) this.$(".postergar").show();

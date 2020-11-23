@@ -89,7 +89,7 @@
         </div>
       </div>
     </div>
-    <div class="panel-body expand">
+    <div class="panel-body expand" style="display:block">
       <div class="row">
         <% for(var i=0;i<templates.length;i++) { %>
           <% var opcion = templates[i]; %>
@@ -192,7 +192,7 @@
         </div>
       </div>
     </div>
-    <div class="panel-body expand">
+    <div class="panel-body expand" style="display:block">
       <div id="entradas_container"></div>
     </div>
   </div>
@@ -231,7 +231,7 @@
         </div>
       </div>
     </div>
-    <div class="panel-body expand">
+    <div class="panel-body expand" style="display:block">
       <div class="padder">
         <div class="form-group">
           <div class="input-group w100p">
@@ -554,10 +554,6 @@
         <div class="form-group">
           <label class="control-label"><?php echo lang(array("es"=>"Remarketing de Google","en"=>"Google Remarketing Code")); ?></label>
           <textarea placeholder="<?php echo lang(array("es"=>"Pegue aqu&iacute; el c&oacute;digo de Remarketing provisto por Google.","en"=>"Insert here the Google Remarketing code.")); ?>" name="remarketing" class="form-control"><%= remarketing %></textarea>
-        </div>
-        <div class="form-group">
-          <label class="control-label">Google Adsense</label>
-          <textarea placeholder="<?php echo lang(array("es"=>"Pegue aqu&iacute; el c&oacute;digo provisto por Google Adsense.","en"=>"Insert here the Google Adwords code.")); ?>" name="adsense" class="form-control"><%= adsense %></textarea>
         </div>
         <div class="form-group">
           <label class="control-label">View ID</label>

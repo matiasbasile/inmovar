@@ -231,20 +231,21 @@
 </script>
 
 <script type="text/template" id="invitar_colega_template">
-  <div class="panel panel-default">
-    <div class="panel-heading bold">Invitar a un colega</div>
-    <div class="panel-body">
-      <div class="form-group">
-        <label>Nombre del colega / inmobiliaria</label>
-        <input type="text" id="invitar_colega_inmobiliaria" class="form-control no-model">
-      </div>
-      <div class="form-group">
-        <label>Email</label>
-        <input type="text" id="invitar_colega_email" class="form-control no-model">
-      </div>
+  <div class="modal-header">
+    <b>Invitar a un colega</b>
+    <i class="pull-right cerrar_lightbox fs16 fa fa-times cp"></i>
+  </div>  
+  <div class="modal-body">
+    <div class="form-group">
+      <label class="control-label">Nombre del colega / inmobiliaria</label>
+      <input type="text" id="invitar_colega_inmobiliaria" class="form-control no-model">
     </div>
-    <div class="panel-footer clearfix tar">
-      <button class="enviar btn btn-info">Enviar</button>
+    <div class="form-group">
+      <label class="control-label">Email</label>
+      <input type="text" id="invitar_colega_email" class="form-control no-model">
     </div>
+  </div>
+  <div class="modal-footer clearfix tar">
+    <button class="enviar btn btn-info">Enviar</button>
   </div>
 </script>

@@ -101,7 +101,7 @@
         
         <div id="tab7" class="tab-pane">
           <div class="form-group">
-            <textarea class="form-control h80" <%= (id!=undefined)?"disabled":""%> placeholder="Escriba aqui algun comentario u observacion..." name="observaciones" id="recibo_observaciones"><%= observaciones %></textarea>
+            <textarea class="form-control h80" <%= (id!=undefined)?"disabled":""%> placeholder="Escribe aquí algun comentario u observación..." name="observaciones" id="recibo_observaciones"><%= observaciones %></textarea>
           </div>
         </div>
 

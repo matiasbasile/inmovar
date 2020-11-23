@@ -136,11 +136,11 @@
                 <% for(var i=0;i< mas_visitadas.length;i++) { %>
                   <% var p = mas_visitadas[i] %>
                   <tr>
-                    <td class="p0">
+                    <td class="p0 w25">
                       <% if (!isEmpty(p.path)) { %>
                         <a href="app/#propiedades/<%= p.id %>">
                           <% var prefix = (p.path.indexOf("http") == 0) ? "" : "/admin/" %>
-                          <img src="<%= prefix + p.path %>?t=<%= Math.ceil(Math.random()*10000) %>" class="customcomplete-image"/>
+                          <img src="<%= prefix + p.path %>?t=<%= Math.ceil(Math.random()*10000) %>" class="customcomplete-image mr0"/>
                         </a>
                       <% } %>
                     </td>
@@ -177,13 +177,13 @@
                 <% for(var i=0;i< consultas.length;i++) { %>
                   <% var p = consultas[i] %>
                   <tr>
-                    <td class="p0">
+                    <td class="p0 w25">
                       <a href="app/#contacto_acciones/<%= p.id %>">
                         <% if (!isEmpty(p.path)) { %>
                           <% if (p.path.indexOf("http") == 0) { %>
-                            <img src="<%= p.path %>" class="customcomplete-image"/>
+                            <img src="<%= p.path %>" class="customcomplete-image mr0"/>
                           <% } else { %>
-                            <img src="/admin/<%= p.path %>" class="customcomplete-image"/>
+                            <img src="/admin/<%= p.path %>" class="customcomplete-image mr0"/>
                           <% } %>
                         <% } else { %>
                           <span class="avatar xs avatar-texto pull-left">

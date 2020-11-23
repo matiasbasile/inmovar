@@ -136,7 +136,7 @@
           </div>            
         </div>          
 
-        <label class="control-label control-label-sub mt20">Forma de Venta</label>
+        <label class="control-label control-label-sub mt10 mb10">Forma de Venta</label>
         <div class="row">       
           <div class="col-md-2">
             <div class="form-group">

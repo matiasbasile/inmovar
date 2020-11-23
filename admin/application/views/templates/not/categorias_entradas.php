@@ -80,7 +80,7 @@
 <div class="panel rform panel-default">
 	<div class="panel-heading">
 		<b>Editar categoría</b>
-    <i class="pull-right cerrar_lightbox fs20 fa fa-times cp"></i>
+    <i class="pull-right cerrar_lightbox fs16 fa fa-times cp"></i>
 	</div>
 	<div class="panel-body">
     <div class="form-group lang-control">

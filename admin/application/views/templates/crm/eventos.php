@@ -27,7 +27,7 @@
             </div>
             <div class="form-group">
                 <div class="col-xs-12">
-                    <texevento name="observaciones" placeholder="Observaciones o comentarios sobre esta evento" id="evento_observaciones"><%= observaciones %></texevento>
+                    <texevento name="observaciones" placeholder="Observaciones o comentarios sobre este evento" id="evento_observaciones"><%= observaciones %></texevento>
                 </div>
             </div>            
         </div>

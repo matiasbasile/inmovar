@@ -1,6 +1,6 @@
 <div class="modal-header">
   <b>Editar página</b>
-  <i class="pull-right cerrar_lightbox fs20 fa fa-times cp"></i>
+  <i class="pull-right cerrar_lightbox fs16 fa fa-times cp"></i>
 </div>
 <div class="modal-body">
   <div class="tab-container">

@@ -37,7 +37,7 @@
 <script type="text/template" id="perfiles_edit_panel_template">
 <div class="modal-header">
   <b>Editar perfil</b>
-  <i class="pull-right cerrar_lightbox fs20 fa fa-times cp"></i>
+  <i class="pull-right cerrar_lightbox fs16 fa fa-times cp"></i>
 </div>
 <div class="modal-body">
   <div class="form-group">
@@ -73,7 +73,8 @@
       </table>
     </div>
   </div>
-  <div class="modal-footer">
-    <button class="btn btn-info guardar"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
-  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-info guardar"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
+</div>
 </script>

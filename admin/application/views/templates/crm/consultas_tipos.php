@@ -5,13 +5,11 @@
         <div class="col-md-6">
           <h1>Estados</h1>
         </div>
-        <?php /*
         <div class="col-md-6 tar">
           <a class="btn btn-info nuevo" href="javascript:void(0)">
             <span>&nbsp;&nbsp;Nuevo Estado&nbsp;&nbsp;</span>
           </a>
         </div>
-        */ ?>
       </div>
     </div>  
     <div class="panel panel-default">
@@ -38,41 +36,36 @@
 </script>
 
 <script type="text/template" id="consultas_tipos_edit_panel_template">
-<div class="panel panel-default rform">
-  <div class="panel-heading">
-    <b><%= (id == undefined) ? "Nueva Categoria" : nombre+" ("+id+")" %></b>
-    <i class="fa fa-times cerrar fr cp"></i>
+<div class="modal-header">
+  <b><%= (id == undefined) ? "Nueva Categoria" : nombre+" ("+id+")" %></b>
+  <i class="pull-right cerrar fs16 fa fa-times cp"></i>
+</div>  
+<div class="modal-body">
+  <div class="form-group">
+    <label class="control-label">Nombre</label>
+    <input <%= (!edicion)?"disabled":"" %> placeholder="Ej: En proceso, pendiente, en espera de confirmación, etc." type="text" name="nombre" class="form-control" id="consultas_tipos_nombre" value="<%= nombre %>"/>
   </div>
-  <div class="panel-body">
-    <div class="form-group">
-      <label class="control-label">Nombre</label>
-      <input <%= (!edicion)?"disabled":"" %> placeholder="Ej: En proceso, pendiente, en espera de confirmación, etc." type="text" name="nombre" class="form-control" id="consultas_tipos_nombre" value="<%= nombre %>"/>
-    </div>
-
-    <h4 class="bold">Automatización:</h4>
-
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label class="control-label">Aviso de vencimiento luego de (días):</label>
-          <input <%= (!edicion)?"disabled":"" %> placeholder="Días" type="text" name="tiempo_vencimiento" class="form-control" id="consultas_tipos_tiempo_vencimiento" value="<%= tiempo_vencimiento %>"/>
-        </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label class="control-label">Aviso de vencimiento luego de (días):</label>
+        <input <%= (!edicion)?"disabled":"" %> placeholder="Días" type="text" name="tiempo_vencimiento" class="form-control" id="consultas_tipos_tiempo_vencimiento" value="<%= tiempo_vencimiento %>"/>
       </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <label class="control-label">Mover a Archivados despues de (días):</label>
-          <input <%= (!edicion)?"disabled":"" %> placeholder="Días" type="text" name="tiempo_abandonado" class="form-control" id="consultas_tipos_tiempo_abandonado" value="<%= tiempo_abandonado %>"/>
-        </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label class="control-label">Mover a Archivados despues de (días):</label>
+        <input <%= (!edicion)?"disabled":"" %> placeholder="Días" type="text" name="tiempo_abandonado" class="form-control" id="consultas_tipos_tiempo_abandonado" value="<%= tiempo_abandonado %>"/>
       </div>
     </div>
   </div>
-  <?php //<% if (control.check("consultas")>1) { %>?>
-    <div class="panel-footer clearfix tar" style="border-top: none">
-      <% if (id != undefined && control.check("consultas")>2) { %>
-        <button class="btn btn-danger eliminar fl">Eliminar</button>
-      <% } %>
-      <button class="btn guardar btn-info">Guardar</button>
-    </div>
-  <?php //<% } %>?>
 </div>
+<?php //<% if (control.check("consultas")>1) { %>?>
+  <div class="modal-footer clearfix tar">
+    <% if (id != undefined && control.check("consultas")>2) { %>
+      <button class="btn btn-danger eliminar fl">Eliminar</button>
+    <% } %>
+    <button class="btn guardar btn-info">Guardar</button>
+  </div>
+<?php //<% } %>?>
 </script>

@@ -273,7 +273,7 @@
         </div>
         <div class="form-group">
           <label class="control-label">Notas </label>
-          <textarea name="comentario" id="propiedad_reserva_comentario" placeholder="Escriba aqui observaciones o comentarios..." class="h100 form-control"><%= comentario %></textarea>
+          <textarea name="comentario" id="propiedad_reserva_comentario" placeholder="Escribe aquí observaciones o comentarios..." class="h100 form-control"><%= comentario %></textarea>
         </div>
       </div>
 

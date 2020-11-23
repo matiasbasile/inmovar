@@ -82,6 +82,7 @@
             <thead>
               <tr>
                 <th style="width:20px;"></th>
+                <th style="width:20px;"></th>
                 <th style="min-width:250px"><?php echo lang(array("es"=>"Nombre","en"=>"Name")); ?></th>
                 <th class="pl0" colspan="2">Interesado en</th>
                 <th>Origen</th>
@@ -100,11 +101,24 @@
 </script>
 
 <script type="text/template" id="consultas_item">
-  <td class="pr0">
+  <td class="p0">
     <label class="i-checks m-b-none">
       <input class="esc check-row" value="<%= id %>" type="checkbox"><i></i>
     </label>
   </td>
+  <td class="p0 w25">
+    <% if (!isEmpty(path)) { %>
+      <% if (path.indexOf("http") == 0) { %>
+        <img src="<%= path %>" class="customcomplete-image mr0"/>
+      <% } else { %>
+        <img src="/admin/<%= path %>" class="customcomplete-image mr0"/>
+      <% } %>
+    <% } else { %>
+      <span class="avatar xs avatar-texto pull-left">
+        <%= isEmpty(nombre) ? email.substr(0,1).toUpperCase() : nombre.substr(0,1).toUpperCase() %>
+      </span>
+    <% } %>
+  </td>  
   <td>
     <div>
       <% if (isEmpty(nombre)) { %>
@@ -131,10 +145,10 @@
   </td>
   <td class="data">
     <% if (propiedad_id != 0) { %>
-      <span class="negro"><%= propiedad_tipo_inmueble %> en <%= propiedad_tipo_operacion %></span><br/>
+      <span class="bold"><%= propiedad_tipo_inmueble %> en <%= propiedad_tipo_operacion %></span><br/>
       <%= propiedad_direccion %>, <%= propiedad_ciudad %>
     <% } else { %>
-      <span class="btn etiqueta btn-menu-compartir">Asignar interés</span>
+      <span class="btn etiqueta desactivo btn-menu-compartir">Asignar interés</span>
     <% } %>
   </td>
   <td class="data">
@@ -350,7 +364,7 @@
       <% } %>
       <div id="tab_nota" class="tab-pane panel-body <%= (active_tab=='tab_nota')?'active':'' %>">
         <div class="form-group">
-          <textarea id="consulta_nota" placeholder="Escribe aqui alguna nota u observacion..." class="form-control no-model h100"></textarea>
+          <textarea id="consulta_nota" placeholder="Escribe aquí alguna nota u observación..." class="form-control no-model h100"></textarea>
         </div>
         <div class="form-group tar">
           <button class="btn btn-pd btn-info guardar_nota fr">Guardar</button>
@@ -358,7 +372,7 @@
       </div>
       <div id="tab_observacion" class="tab-pane panel-body <%= (active_tab=='tab_observacion')?'active':'' %>">
         <div class="form-group">
-          <textarea id="consulta_observacion" placeholder="Escribe aqui alguna nota u observacion..." class="form-control no-model h100"><%= nota %></textarea>
+          <textarea id="consulta_observacion" placeholder="Escribe aquí alguna nota u observación..." class="form-control no-model h100"><%= nota %></textarea>
         </div>
         <div class="form-group tar">
           <button class="btn btn-pd btn-info guardar_observacion fr">Guardar</button>
@@ -371,9 +385,11 @@
 
 
 <script type="text/template" id="cambiar_estado_consulta_template">
-<div class="panel panel-default mb0">
-  <div class="panel-body">
-
+  <div class="modal-header">
+    <b>Cambiar estado de consulta</b>
+    <i class="pull-right cerrar_lightbox fs16 fa fa-times cp"></i>    
+  </div>
+  <div class="modal-body">
     <div class="row">
       <div class="col-md-7">
 
@@ -390,7 +406,7 @@
           <div class="col-xs-9 tal mb20">
             <h3 class="m-t-sm m-b-xs"><%= nombre.ucwords() %> </h3>
             <div><a class="text-link"><%= email %></a></div>
-            <div><%= telefono %></div>
+            <div><i class="fa fa-whatsapp"></i> <%= telefono %></div>
           </div>
         </div>
 
@@ -401,7 +417,10 @@
           <div>
             <input type="hidden" id="consulta_cambio_estado_id_tipo" value="<%= tipo %>" />
             <div class="btn-group dropdown w100p">
-              <button id="consulta_cambio_estado_boton_tipo" class="btn btn-info btn-lg tac w100p dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= consulta_tipo %></button>
+              <button id="consulta_cambio_estado_boton_tipo" class="btn btn-info btn-lg tac w100p dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= consulta_tipo %>
+                <span class="material-icons fr">expand_more</span>
+              </button>
               <ul class="dropdown-menu">
                 <% for (var i=0;i< consultas_tipos.length;i++) { %>
                   <% var t = consultas_tipos[i] %>
@@ -420,7 +439,7 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <label>Seleccione un motivo</label>
+          <label class="control-label">Seleccione un motivo</label>
           <select id="cambiar_estado_consulta_asuntos" class="form-control"></select>
         </div>
       </div>
@@ -437,17 +456,15 @@
       </div>
     </div>
     <div class="form-group">
-      <textarea id="consulta_nota" placeholder="Escribe aqui alguna nota u observacion..." class="form-control no-model h100"></textarea>
+      <textarea id="consulta_nota" placeholder="Escribe aquí alguna nota u observación..." class="form-control no-model h100"></textarea>
     </div>
 
   </div>
-  <div class="panel-footer">
-    <div class="form-group tar">
-      <% if (moment(fecha_vencimiento,"DD/MM/YYYY").isSameOrBefore(moment())) { %>
-        <button data-toggle="tooltip" title="Posterga la fecha vencimiento de la consulta" class="btn btn-pd btn-white postergar">Postergar</button>
-      <% } %>
-      <button class="btn btn-pd btn-info guardar">Guardar</button>
-    </div>
+  <div class="modal-footer tar">
+    <% if (moment(fecha_vencimiento,"DD/MM/YYYY").isSameOrBefore(moment())) { %>
+      <button data-toggle="tooltip" title="Posterga la fecha vencimiento de la consulta" class="btn btn-pd btn-white postergar">Postergar</button>
+    <% } %>
+    <button class="btn btn-pd btn-info guardar">Guardar</button>
   </div>
 </div>
 </script>

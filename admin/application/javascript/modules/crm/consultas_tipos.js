@@ -9,8 +9,8 @@
       id_empresa: ID_EMPRESA,
       activo: 1,
       id_email_template: 0,
-      tiempo_abandonado: 0,
-      tiempo_vencimiento: 0,
+      tiempo_abandonado: 30,
+      tiempo_vencimiento: 7,
       id_proximo_estado: -1,
     }
   });

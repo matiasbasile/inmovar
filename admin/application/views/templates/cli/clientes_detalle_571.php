@@ -55,7 +55,7 @@
           <div class="form-group">
             <label class="control-label">Observaciones </label>
             <% if (edicion) { %>
-              <textarea placeholder="Escriba aqui otros datos de contacto o notas de su cliente..." style="height:100px" class="form-control" name="observaciones" id="cliente_observaciones"><%= observaciones %></textarea>
+              <textarea placeholder="Escribe aquí otros datos de contacto o notas de su cliente..." style="height:100px" class="form-control" name="observaciones" id="cliente_observaciones"><%= observaciones %></textarea>
             <% } else { %>
               <span><%= observaciones %></span>
             <% } %>
