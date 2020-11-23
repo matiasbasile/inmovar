@@ -94,7 +94,7 @@
         <% for(var i=0;i<templates.length;i++) { %>
           <% var opcion = templates[i]; %>
           <div class="col-md-4 col-sm-6 col-xs-12">
-            <div class="template-item <%= (ID_WEB_TEMPLATE == opcion.id) ? "selected":"" %>">
+            <div class="template-item mb20 <%= (ID_WEB_TEMPLATE == opcion.id) ? "selected":"" %>">
               <img style="height:280px" src="<%= opcion.thumbnail %>"/>
               <div class="template-item-footer">
                 <span class="bold white"><%= opcion.nombre %></span>
