@@ -17,6 +17,10 @@ if (!empty($propiedad->path)) $propiedad->images = array_merge(array("/admin/".$
 if ($propiedad->id_tipo_operacion == 1) $vc_moneda = "USD";
 else $vc_moneda = "$";
 $vc_tipo_operacion = $propiedad->tipo_operacion_link;
+
+$vc_precio_maximo = $propiedad_model->get_precio_maximo(array(
+  "id_tipo_operacion"=>$propiedad->id_tipo_operacion,
+));
 ?>
 <!DOCTYPE html>
 <html lang="es">
