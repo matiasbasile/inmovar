@@ -100,9 +100,11 @@ function modulo_habilitado($permisos,$modulo) {
               <a href="app/#estadisticas" class=""><i class="material-icons md-22">equalizer</i><span>Estadísticas</span></a>
             </li>
             */ ?>
-            <li>
-              <a href="app/#configuracion_menu" class=""><i class="material-icons md-22">settings</i><span>Configuración</span></a>
-            </li>
+            <?php if (modulo_habilitado($permisos,"configuracion_menu")>0) { ?>
+              <li>
+                <a href="app/#configuracion_menu" class=""><i class="material-icons md-22">settings</i><span>Configuración</span></a>
+              </li>
+            <?php } ?>
 
           <?php } ?>
         </ul>

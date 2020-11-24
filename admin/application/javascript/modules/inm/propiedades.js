@@ -414,7 +414,7 @@
       });
       
       $(this.el).html(this.template({
-        "permiso":this.permiso,
+        "permiso":control.check("propiedades"),
         "vista_busqueda":this.vista_busqueda,
         "email":this.email,
         "nombre":this.nombre,
@@ -1125,6 +1125,7 @@
         var self = this;
         e.stopPropagation();
         e.preventDefault();
+        if($(e.currentTarget).attr("disabled") == "disabled") return;
         var apto_banco = this.model.get("apto_banco");
         apto_banco = (apto_banco == 1)?0:1;
         self.model.set({"apto_banco":apto_banco});
@@ -1144,6 +1145,7 @@
         var self = this;
         e.stopPropagation();
         e.preventDefault();
+        if($(e.currentTarget).attr("disabled") == "disabled") return;
         var acepta_permuta = this.model.get("acepta_permuta");
         acepta_permuta = (acepta_permuta == 1)?0:1;
         self.model.set({"acepta_permuta":acepta_permuta});
@@ -1163,6 +1165,7 @@
         var self = this;
         e.stopPropagation();
         e.preventDefault();
+        if($(e.currentTarget).attr("disabled") == "disabled") return;
         var destacado = this.model.get("destacado");
         destacado = (destacado == 1)?0:1;
         self.model.set({"destacado":destacado});
@@ -1182,6 +1185,7 @@
         var self = this;
         e.stopPropagation();
         e.preventDefault();
+        if($(e.currentTarget).attr("disabled") == "disabled") return;
         var compartida = this.model.get("compartida");
         compartida = (compartida == 1)?0:1;
         self.model.set({"compartida":compartida});
@@ -1201,6 +1205,7 @@
         var self = this;
         e.stopPropagation();
         e.preventDefault();
+        if($(e.currentTarget).attr("disabled") == "disabled") return;
         var inmobusquedas_habilitado = this.model.get("inmobusquedas_habilitado");
         if (inmobusquedas_habilitado == 0) {
           // Estamos queriendo compartir en inmobusquedas, controlamos que la propiedad tenga precio y barrio
@@ -1236,6 +1241,7 @@
         var self = this;
         e.stopPropagation();
         e.preventDefault();
+        if($(e.currentTarget).attr("disabled") == "disabled") return;
         if (!isEmpty(self.model.get("argenprop_url"))) return;
         $.ajax({
           "url":"propiedades/function/compartir_argenprop/",
@@ -1259,6 +1265,7 @@
         var self = this;
         e.stopPropagation();
         e.preventDefault();
+        if($(e.currentTarget).attr("disabled") == "disabled") return;
         $.ajax({
           "url":"propiedades/function/suspender_argenprop/",
           "data":{
@@ -1277,6 +1284,7 @@
         var self = this;
         e.stopPropagation();
         e.preventDefault();
+        if($(e.currentTarget).attr("disabled") == "disabled") return;
         $.ajax({
           "url":"propiedades/function/activar_argenprop/",
           "data":{
@@ -1295,6 +1303,7 @@
         var self = this;
         e.stopPropagation();
         e.preventDefault();
+        if($(e.currentTarget).attr("disabled") == "disabled") return;
         $.ajax({
           "url":"propiedades/function/eliminar_argenprop/",
           "data":{
@@ -1313,6 +1322,7 @@
         var self = this;
         e.stopPropagation();
         e.preventDefault();
+        if($(e.currentTarget).attr("disabled") == "disabled") return;
         var eldia_habilitado = this.model.get("eldia_habilitado");
         eldia_habilitado = (eldia_habilitado == 1)?0:1;
         self.model.set({"eldia_habilitado":eldia_habilitado});
@@ -1332,6 +1342,7 @@
         var self = this;
         e.stopPropagation();
         e.preventDefault();
+        if($(e.currentTarget).attr("disabled") == "disabled") return;
         var nuevo = this.model.get("nuevo");
         nuevo = (nuevo == 1)?0:1;
         self.model.set({"nuevo":nuevo});
@@ -1351,6 +1362,7 @@
         var self = this;
         e.stopPropagation();
         e.preventDefault();
+        if($(e.currentTarget).attr("disabled") == "disabled") return;
         var activo = this.model.get("activo");
         activo = (activo == 1)?0:1;
         self.model.set({"activo":activo});
@@ -1377,6 +1389,7 @@
         var self = this;
         e.stopPropagation();
         e.preventDefault();
+        if($(e.currentTarget).attr("disabled") == "disabled") return;
         var bloqueado_web = this.model.get("bloqueado_web");
         bloqueado_web = (bloqueado_web == 1)?0:1;
         self.model.set({"bloqueado_web":bloqueado_web});
@@ -1426,6 +1439,7 @@
         var self = this;
         e.stopPropagation();
         e.preventDefault();
+        if($(e.currentTarget).attr("disabled") == "disabled") return;
         self.model.set({"compartida_facebook":1});
         this.change_property({
           "table":"inm_propiedades",
@@ -1444,6 +1458,7 @@
         var self = this;
         e.stopPropagation();
         e.preventDefault();
+        if($(e.currentTarget).attr("disabled") == "disabled") return;
         window.open("propiedades/function/ver_ficha/"+ID_EMPRESA+"/"+this.model.id+"/","_blank");
         return false;
       },
@@ -1451,6 +1466,7 @@
         var self = this;
         e.stopPropagation();
         e.preventDefault();
+        if($(e.currentTarget).attr("disabled") == "disabled") return;
         var olx_habilitado = this.model.get("olx_habilitado");
         olx_habilitado = (olx_habilitado == 1)?0:1;
         self.model.set({"olx_habilitado":olx_habilitado});
@@ -1471,6 +1487,7 @@
       var self = this;
       e.stopPropagation();
       e.preventDefault();
+      if($(e.currentTarget).attr("disabled") == "disabled") return;
 
       var el = e.currentTarget;
       if ($(el).is(":checked")) {
@@ -1524,6 +1541,7 @@
         seleccionar: this.habilitar_seleccion, 
         vista_busqueda: this.vista_busqueda,
         link_completo: this.link_completo,
+        edicion: (control.check("propiedades")>1),
       };
       $.extend(obj,this.model.toJSON());
       $(this.el).html(this.template(obj));
@@ -1910,7 +1928,7 @@
       _.bindAll(this);
       
       var edicion = false;
-      this.options = options;
+      this.options = control.check("propiedades");
       if (this.options.permiso > 1) edicion = true;
       var obj = { "edicion": edicion,"id":this.model.id }
       _.extend(obj,this.model.toJSON());

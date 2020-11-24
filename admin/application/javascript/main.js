@@ -369,7 +369,10 @@
 
       ver_permisos_red: function(id) {
         var self = this;
+        var permiso = control.check("permisos_red");
+        if (permiso == 0) return;
         var edit = new app.views.PermisosRedView({
+          permiso: permiso,
           model: new app.models.AbstractModel(),
           id_inmobiliaria: ((typeof id == "undefined")?0:id),
         });
@@ -390,8 +393,11 @@
 
       ver_alquileres: function(id) {
         var self = this;
+        var permiso = control.check("alquileres");
+        if (permiso == 0) return;
         var edit = new app.views.AlquileresTableView({
           collection: new app.collections.Alquileres(),
+          permiso: permiso,
         });
         self.mostrar({
           "top": edit.el,
@@ -399,45 +405,43 @@
       },  
       ver_recibos_alquileres: function(estado) {
         var estado = ((typeof estado != "undefined") ? estado : 0);
-        var permiso = 3; //control.check("alquileres");
-        if (permiso > 0) {
-          app.views.recibos_alquileresTableView = new app.views.RecibosAlquileresTableView({
-            collection: new app.collections.RecibosAlquileres(),
-            permiso: permiso,
-            estado: estado,
-          });    
-          this.mostrar({
-            "top" : app.views.recibos_alquileresTableView.el,
-          });
-        }
+        var permiso = control.check("alquileres");
+        if (permiso == 0) return;
+        app.views.recibos_alquileresTableView = new app.views.RecibosAlquileresTableView({
+          collection: new app.collections.RecibosAlquileres(),
+          permiso: permiso,
+          estado: estado,
+        });    
+        this.mostrar({
+          "top" : app.views.recibos_alquileresTableView.el,
+        });
       },
       ver_alquiler: function(id) {
         var self = this;
-        var permiso = 3; //control.check("alquileres");
-        if (permiso > 0) {
-          if (id == undefined) {
-            var alquilerEditView = new app.views.AlquileresEditView({
-              model: new app.models.Alquileres(),
-              permiso: permiso
-            });
-            this.mostrar({
-              "top" : alquilerEditView.el,
-            });
-          } else {
-            var alquiler = new app.models.Alquiler({ "id": id });
-            alquiler.fetch({
-              "success":function() {
-                var alquilerEditView = new app.views.AlquileresEditView({
-                  model: alquiler,
-                  permiso: permiso
-                });
-                self.mostrar({
-                  "top" : alquilerEditView.el,
-                });
-              }
-            });
-          }
-        }                
+        var permiso = control.check("alquileres");
+        if (permiso == 0) return;
+        if (id == undefined) {
+          var alquilerEditView = new app.views.AlquileresEditView({
+            model: new app.models.Alquileres(),
+            permiso: permiso
+          });
+          this.mostrar({
+            "top" : alquilerEditView.el,
+          });
+        } else {
+          var alquiler = new app.models.Alquiler({ "id": id });
+          alquiler.fetch({
+            "success":function() {
+              var alquilerEditView = new app.views.AlquileresEditView({
+                model: alquiler,
+                permiso: permiso
+              });
+              self.mostrar({
+                "top" : alquilerEditView.el,
+              });
+            }
+          });
+        }
       },  
       
       // Tabla especial que muestra las consultas vencidas
@@ -468,10 +472,13 @@
 
       ver_configuracion: function(id) {
         var self = this;
+        var permiso = control.check("configuracion_menu");
+        if (permiso == 0) return;
         if (id == undefined) id = "datos";
         var edit = new app.views.Configuracion_menuSingleView({
           model: new app.models.AbstractModel({
             "id_modulo":id,
+            "permiso":permiso,
           }),
         });
         self.mostrar({
@@ -528,10 +535,7 @@
 
       ver_contacto_acciones: function(id) {
         var self = this;
-        var permiso = control.check("contactos");
-        if (control.check("consultas")>0) {
-          var permiso = control.check("consultas");
-        }
+        var permiso = control.check("consultas");
         if (permiso > 0) {
           var contacto = new app.models.Contacto({"id":id});
           contacto.fetch({

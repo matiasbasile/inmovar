@@ -53,10 +53,12 @@
             <h1>Propiedades</h1>
           </div>
           <div class="col-md-6 col-xs-4 tar">
-            <a class="btn btn-info" href="app/#propiedades/0">
-              <span class="material-icons show-xs">add</span>
-              <span class="hidden-xs">&nbsp;&nbsp;Nueva Propiedad&nbsp;&nbsp;</span>
-            </a>
+            <% if (permiso > 1) { %>
+              <a class="btn btn-info" href="app/#propiedades/0">
+                <span class="material-icons show-xs">add</span>
+                <span class="hidden-xs">&nbsp;&nbsp;Nueva Propiedad&nbsp;&nbsp;</span>
+              </a>
+            <% } %>
           </div>
         </div>
       </div>
@@ -341,10 +343,10 @@
 
       <td class="tar td_acciones">
         
-        <i data-toggle="tooltip" title="Activa en Web" class="fa-check iconito fa activo <%= (activo == 1)?"active":"" %>"></i>
-        <i data-toggle="tooltip" title="Destacado" class="fa fa-star iconito warning destacado <%= (destacado == 1)?"active":"" %>"></i>
+        <i <%= (!edicion)?"disabled":"" %> data-toggle="tooltip" title="Activa en Web" class="fa-check iconito fa activo <%= (activo == 1)?"active":"" %>"></i>
+        <i <%= (!edicion)?"disabled":"" %> data-toggle="tooltip" title="Destacado" class="fa fa-star iconito warning destacado <%= (destacado == 1)?"active":"" %>"></i>
 
-        <i data-toggle="tooltip" title="Compartida en Red Inmovar" class="fa fa-share-alt iconito compartida <%= (compartida == 1)?"active":"" %>"></i>
+        <i <%= (!edicion)?"disabled":"" %> data-toggle="tooltip" title="Compartida en Red Inmovar" class="fa fa-share-alt iconito compartida <%= (compartida == 1)?"active":"" %>"></i>
         <div class="fr btn-group dropdown ml10">
           <i title="Opciones" class="iconito text-muted-2 fa fa-caret-down dropdown-toggle" data-toggle="dropdown"></i>
           <ul class="dropdown-menu pull-right">
@@ -355,9 +357,12 @@
             <li class="divider"></li>
             <li><a href="<%= link_completo %>" target="_blank"><i class="text-muted-2 fa fa-globe w25"></i> Ver web</a></li>
             <li><a href="javascript:void(0)" class="ver_ficha" data-id="<%= id %>"><i class="text-muted-2 fa fa-file w25"></i> Ver ficha</a></li>
-            <li class="divider"></li>
-            <li><a href="javascript:void(0)" class="duplicar" data-id="<%= id %>"><i class="text-muted-2 fa fa-files-o w25"></i> Duplicar</a></li>
-            <li><a href="javascript:void(0)" class="eliminar" data-id="<%= id %>"><i class="text-muted-2 fa fa-times w25"></i> Eliminar</a></li>
+
+            <% if (control.check("propiedades") == 3) { %>
+              <li class="divider"></li>
+              <li><a href="javascript:void(0)" class="duplicar" data-id="<%= id %>"><i class="text-muted-2 fa fa-files-o w25"></i> Duplicar</a></li>
+              <li><a href="javascript:void(0)" class="eliminar" data-id="<%= id %>"><i class="text-muted-2 fa fa-times w25"></i> Eliminar</a></li>
+            <% } %>
           </ul>
         </div>
       </td>

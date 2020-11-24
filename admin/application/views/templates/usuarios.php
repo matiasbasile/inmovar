@@ -305,7 +305,7 @@
     </div>
   </div>
 
-  <% if (cambiar_password) { %>
+  <% if (cambiar_password || control.check("configuracion_menu") == 3) { %>
     <div class="modal-footer">
       <button class="btn btn-info guardar"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
     </div>

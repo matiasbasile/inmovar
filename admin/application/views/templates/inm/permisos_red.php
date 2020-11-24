@@ -79,7 +79,7 @@
                               <button data-toggle="tooltip" title="Debes activar la red para compartir en tu sitio" class="btn etiqueta desactivo">Desactivado</button>
                             <% } else { %>
                               <% if (m.solicitud_permiso == 0) { %>
-                                <button data-id="<%= m.id %>" data-toggle="tooltip" title="Solicita permiso para publicar sus propiedades en tu web" class="btn etiqueta solicitar_permiso">Solicitar permiso</button>
+                                <button <%= (!edicion)?"disabled":"" %> data-id="<%= m.id %>" data-toggle="tooltip" title="Solicita permiso para publicar sus propiedades en tu web" class="btn etiqueta solicitar_permiso">Solicitar permiso</button>
                               <% } else if (m.solicitud_permiso == 1) { %>
                                 <% if (m.permiso_web_otra == 1) { %>
                                   <div data-toggle="tooltip" title="Esperando permiso pero compartiendo mis propiedades en su web" class="doble-check">
@@ -108,19 +108,19 @@
                             <% } %>
                           <% } %>
                         <% } else { %>
-                          <button data-toggle="tooltip" title="Comunicate con la otra inmobiliaria para poder compartir" class="btn etiqueta desactivo">Desactivado</button>
+                          <button <%= (!edicion)?"disabled":"" %> data-toggle="tooltip" title="Comunicate con la otra inmobiliaria para poder compartir" class="btn etiqueta desactivo">Desactivado</button>
                         <% } %>
                       </td>
                       <td class="">
                         <div style="margin: 0 auto">
                           <% if (m.bloqueado == 0) { %>
                             <label data-toggle="tooltip" title="Activo en Red Inmovar" class="i-switch fl m-l-lg">
-                              <input type="checkbox" class="permiso_red" data-id="<%= m.id %>" <%= (m.permiso_red == 1)?"checked":"" %>>
+                              <input <%= (!edicion)?"disabled":"" %> type="checkbox" class="permiso_red" data-id="<%= m.id %>" <%= (m.permiso_red == 1)?"checked":"" %>>
                               <i></i>
                             </label>
                           <% } else { %>
                             <label data-toggle="tooltip" title="Comunicate con la otra inmobiliaria para poder compartir" class="i-switch disabled fl m-l-lg">
-                              <input type="checkbox" disabled <%= (m.permiso_red == 1)?"checked":"" %>>
+                              <input <%= (!edicion)?"disabled":"" %> type="checkbox" disabled <%= (m.permiso_red == 1)?"checked":"" %>>
                               <i></i>
                             </label>
                           <% } %>                        
@@ -213,8 +213,8 @@
                         <% if (!isEmpty(m.direccion)) { %><%= m.localidad %><br/><% } %>
                       </td>
                       <td>
-                        <button class="btn mw120 btn-success aceptar_permiso_red">Aceptar</button>
-                        <button class="btn mw120 btn-info eliminar_solicitud">Descartar</button>
+                        <button <%= (!edicion)?"disabled":"" %> class="btn mw120 btn-success aceptar_permiso_red">Aceptar</button>
+                        <button <%= (!edicion)?"disabled":"" %> class="btn mw120 btn-info eliminar_solicitud">Descartar</button>
                       </td>
                     </tr>
                   <% } %>

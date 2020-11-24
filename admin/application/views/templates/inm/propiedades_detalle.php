@@ -32,14 +32,14 @@
               <label class="control-label">C&oacute;digo</label>
               <div class="input-group">
                 <span class="input-group-addon"><%= CODIGO %>-</span>
-                <input type="text" name="codigo" id="propiedad_codigo" value="<%= codigo %>" class="form-control"/>
+                <input <%= (!edicion)?"disabled":"" %> type="text" name="codigo" id="propiedad_codigo" value="<%= codigo %>" class="form-control"/>
               </div>
             </div>
           </div>
           <div class="col-md-3">
             <div class="form-group">
               <label class="control-label">Tipo Operacion</label>
-              <select id="propiedad_tipos_operacion" class="w100p">
+              <select <%= (!edicion)?"disabled":"" %> id="propiedad_tipos_operacion" class="w100p">
                 <% for(var i=0;i< window.tipos_operacion.length;i++) { %>
                   <% var o = tipos_operacion[i]; %>
                   <option value="<%= o.id %>" <%= (o.id == id_tipo_operacion)?"selected":"" %>><%= o.nombre %></option>
@@ -50,7 +50,7 @@
           <div class="col-md-3">
             <div class="form-group">
               <label class="control-label">Tipo Inmueble</label>
-              <select id="propiedad_tipos_inmueble" class="w100p">
+              <select <%= (!edicion)?"disabled":"" %> id="propiedad_tipos_inmueble" class="w100p">
                 <% for(var i=0;i< window.tipos_inmueble.length;i++) { %>
                   <% var o = tipos_inmueble[i]; %>
                   <option value="<%= o.id %>" <%= (o.id == id_tipo_inmueble)?"selected":"" %>><%= o.nombre %></option>
@@ -61,7 +61,7 @@
           <div class="col-md-3">
             <div class="form-group">
               <label class="control-label">Estado</label>
-              <select id="propiedad_tipos_estado" class="form-control">
+              <select <%= (!edicion)?"disabled":"" %> id="propiedad_tipos_estado" class="form-control">
                 <% for(var i=0;i< window.tipos_estado.length;i++) { %>
                   <% var o = tipos_estado[i]; %>
                   <option value="<%= o.id %>" <%= (o.id == id_tipo_estado)?"selected":"" %>><%= o.nombre %></option>
@@ -99,14 +99,14 @@
               <label class="control-label">Valor</label>
               <div class="input-group">
                 <div class="input-group-btn">
-                  <select id="propiedad_monedas" class="form-control w80">
+                  <select <%= (!edicion)?"disabled":"" %> id="propiedad_monedas" class="form-control w80">
                     <% for(var i=0;i< window.monedas.length;i++) { %>
                       <% var o = monedas[i]; %>
                       <option <%= (o.signo == moneda)?"selected":"" %> value="<%= o.signo %>"><%= o.signo %></option>
                     <% } %>
                   </select>                      
                 </div>
-                <input id="propiedad_precio_final" value="<%= precio_final %>" type="number" class="form-control number" name="precio_final"/>
+                <input <%= (!edicion)?"disabled":"" %> id="propiedad_precio_final" value="<%= precio_final %>" type="number" class="form-control number" name="precio_final"/>
               </div>
             </div>
           </div>
@@ -115,14 +115,14 @@
               <label class="control-label">Expensas</label>
               <div class="input-group">
                 <span class="input-group-addon">$</span>
-                <input id="propiedad_valor_expensas" value="<%= valor_expensas %>" type="number" class="form-control number" name="valor_expensas"/>
+                <input <%= (!edicion)?"disabled":"" %> id="propiedad_valor_expensas" value="<%= valor_expensas %>" type="number" class="form-control number" name="valor_expensas"/>
               </div>
             </div>
           </div>
           <div class="col-md-3">
             <div class="form-group">
               <label class="control-label">Mostrar</label>
-              <select id="propiedad_publica_precio" class="form-control" name="publica_precio">
+              <select <%= (!edicion)?"disabled":"" %> id="propiedad_publica_precio" class="form-control" name="publica_precio">
                 <option <%= (publica_precio == 1) ? "selected" : "" %> value="1">Mostrar precio en la web</option>
                 <option <%= (publica_precio == 0) ? "selected" : "" %> value="0">Ocultar precio</option>
               </select>
@@ -131,7 +131,7 @@
           <div class="col-md-3">
             <div class="form-group">
               <label class="control-label">Últ. actualización</label>
-              <input type="date" name="fecha_publicacion" id="propiedad_fecha_publicacion" value="<%= fecha_publicacion %>" class="form-control"/>
+              <input <%= (!edicion)?"disabled":"" %> type="date" name="fecha_publicacion" id="propiedad_fecha_publicacion" value="<%= fecha_publicacion %>" class="form-control"/>
             </div>
           </div>            
         </div>          
@@ -141,7 +141,7 @@
           <div class="col-md-2">
             <div class="form-group">
               <label class="i-checks">
-                <input type="checkbox" id="propiedad_acepta_permuta" name="acepta_permuta" class="checkbox" value="1" <%= (acepta_permuta == 1)?"checked":"" %> >
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_acepta_permuta" name="acepta_permuta" class="checkbox" value="1" <%= (acepta_permuta == 1)?"checked":"" %> >
                 <i></i> Acepta permuta
               </label>
             </div>
@@ -150,7 +150,7 @@
           <div class="col-md-2">
             <div class="form-group">
               <label class="i-checks">
-                <input type="checkbox" id="propiedad_apto_banco" name="apto_banco" class="checkbox" value="1" <%= (apto_banco == 1)?"checked":"" %> >
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_apto_banco" name="apto_banco" class="checkbox" value="1" <%= (apto_banco == 1)?"checked":"" %> >
                 <i></i> Apto crédito
               </label>
             </div>
@@ -159,7 +159,7 @@
           <div class="col-md-2">
             <div class="form-group">
               <label class="i-checks">
-                <input type="checkbox" id="propiedad_acepta_financiacion" name="acepta_financiacion" class="checkbox" value="1" <%= (acepta_financiacion == 1)?"checked":"" %> >
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_acepta_financiacion" name="acepta_financiacion" class="checkbox" value="1" <%= (acepta_financiacion == 1)?"checked":"" %> >
                 <i></i> Acepta financiación
               </label>
             </div>
@@ -207,7 +207,7 @@
 
               <div class="form-group">
                 <label class="control-label">Pais</label>
-                <select id="propiedad_paises" name="id_pais" class="form-control">
+                <select <%= (!edicion)?"disabled":"" %> id="propiedad_paises" name="id_pais" class="form-control">
                   <% for(var i=0;i< paises.length;i++) { %>
                     <% var p = paises[i] %>
                     <option <%= (id_pais == p.id)?"selected":"" %> value="<%= p.id %>"><%= p.nombre %></option>
@@ -219,7 +219,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="control-label">Provincia</label>
-                    <select id="propiedad_provincias" name="id_provincia" class="form-control">
+                    <select <%= (!edicion)?"disabled":"" %> id="propiedad_provincias" name="id_provincia" class="form-control">
                       <% for(var i=0;i< provincias.length;i++) { %>
                         <% var p = provincias[i] %>
                         <option data-id_pais="<%= p.id_pais %>" <%= (id_provincia == p.id)?"selected":"" %> value="<%= p.id %>"><%= p.nombre %></option>
@@ -230,7 +230,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="control-label">Departamento / Partido</label>
-                    <select id="propiedad_departamentos" name="id_departamento" class="form-control"></select>
+                    <select <%= (!edicion)?"disabled":"" %> id="propiedad_departamentos" name="id_departamento" class="form-control"></select>
                   </div>
                 </div>
               </div>
@@ -239,13 +239,13 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="control-label">Localidad</label>
-                    <select id="propiedad_localidades" name="id_localidad" class="form-control"></select>
+                    <select <%= (!edicion)?"disabled":"" %> id="propiedad_localidades" name="id_localidad" class="form-control"></select>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="control-label">Barrio</label>
-                    <select class="form-control" name="id_barrio" id="propiedad_barrio"></select>
+                    <select <%= (!edicion)?"disabled":"" %> class="form-control" name="id_barrio" id="propiedad_barrio"></select>
                   </div>
                 </div>
               </div>
@@ -254,7 +254,7 @@
                 <div class="col-md-3">
                   <div class="form-group">
                     <label class="control-label">Ubicación</label>
-                    <select name="tipo_ubicacion" id="propiedad_tipo_ubicacion" class="form-control">
+                    <select <%= (!edicion)?"disabled":"" %> name="tipo_ubicacion" id="propiedad_tipo_ubicacion" class="form-control">
                       <option <%= (tipo_ubicacion == 0)?"selected":"" %> value="0">Calle</option>
                       <option <%= (tipo_ubicacion == 1)?"selected":"" %> value="1">Esquina</option>
                       <option <%= (tipo_ubicacion == 2)?"selected":"" %> value="2">Ruta</option>
@@ -264,7 +264,7 @@
                 <div class="col-md-9">
                   <div class="form-group">
                     <label class="control-label">Calle</label>
-                    <input type="text" name="calle" id="propiedad_calle" value="<%= calle %>" class="form-control"/>
+                    <input <%= (!edicion)?"disabled":"" %> type="text" name="calle" id="propiedad_calle" value="<%= calle %>" class="form-control"/>
                   </div>
                 </div>
               </div>
@@ -273,19 +273,19 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label class="control-label">Altura</label>
-                    <input type="text" name="altura" id="propiedad_altura" value="<%= altura %>" class="form-control"/>
+                    <input <%= (!edicion)?"disabled":"" %> type="text" name="altura" id="propiedad_altura" value="<%= altura %>" class="form-control"/>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label class="control-label">Piso</label>
-                    <input type="text" name="piso" id="propiedad_piso" value="<%= piso %>" class="form-control"/>
+                    <input <%= (!edicion)?"disabled":"" %> type="text" name="piso" id="propiedad_piso" value="<%= piso %>" class="form-control"/>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label class="control-label">Dpto.</label>
-                    <input type="text" name="numero" id="propiedad_numero" value="<%= numero %>" class="form-control"/>
+                    <input <%= (!edicion)?"disabled":"" %> type="text" name="numero" id="propiedad_numero" value="<%= numero %>" class="form-control"/>
                   </div>
                 </div>
               </div>
@@ -295,16 +295,16 @@
                   <div class="form-group">
                     <label class="control-label">Entre las calles</label>
                     <div class="input-group">
-                      <input type="text" name="entre_calles" id="propiedad_entre_calles" value="<%= entre_calles %>" class="form-control"/>
+                      <input <%= (!edicion)?"disabled":"" %> type="text" name="entre_calles" id="propiedad_entre_calles" value="<%= entre_calles %>" class="form-control"/>
                       <span class="input-group-addon">y</span>
-                      <input type="text" name="entre_calles_2" id="propiedad_entre_calles_2" value="<%= entre_calles_2 %>" class="form-control"/>
+                      <input <%= (!edicion)?"disabled":"" %> type="text" name="entre_calles_2" id="propiedad_entre_calles_2" value="<%= entre_calles_2 %>" class="form-control"/>
                     </div>  
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label class="control-label">Mostrar</label>
-                    <select id="propiedad_publica_altura" name="publica_altura" class="form-control">
+                    <select <%= (!edicion)?"disabled":"" %> id="propiedad_publica_altura" name="publica_altura" class="form-control">
                       <option <%= (publica_altura == 1)?"selected":"" %> value="1">Dirección exacta</option>
                       <option <%= (publica_altura == 2)?"selected":"" %> value="2">Dirección aproximada</option>
                       <option <%= (publica_altura == 0)?"selected":"" %> value="0">Ocultar dirección</option>
@@ -349,32 +349,32 @@
           <div class="col-md-2">
             <div class="form-group">
               <label class="control-label"><%= (ID_EMPRESA == 685)?"Camas":"Ambientes" %></label>
-              <input type="number" min="0" id="propiedad_ambientes" value="<%= ambientes %>" name="ambientes" class="form-control"/>
+              <input <%= (!edicion)?"disabled":"" %> type="number" min="0" id="propiedad_ambientes" value="<%= ambientes %>" name="ambientes" class="form-control"/>
             </div>
           </div>
           <div class="col-md-2">
             <div class="form-group">
               <label class="control-label">Dormitorios</label>
-              <input type="number" min="0" id="propiedad_dormitorios" value="<%= dormitorios %>" name="dormitorios" class="form-control"/>
+              <input <%= (!edicion)?"disabled":"" %> type="number" min="0" id="propiedad_dormitorios" value="<%= dormitorios %>" name="dormitorios" class="form-control"/>
             </div>
           </div>
           <div class="col-md-2">
             <div class="form-group">
               <label class="control-label">Cocheras</label>
-              <input type="number" min="0" id="propiedad_cocheras" value="<%= cocheras %>" name="cocheras" class="form-control"/>
+              <input <%= (!edicion)?"disabled":"" %> type="number" min="0" id="propiedad_cocheras" value="<%= cocheras %>" name="cocheras" class="form-control"/>
             </div>
           </div>
           <div class="col-md-2">
             <div class="form-group">
               <label class="control-label">Ba&ntilde;os</label>
-              <input type="number" min="0" id="propiedad_banios" value="<%= banios %>" name="banios" class="form-control"/>
+              <input <%= (!edicion)?"disabled":"" %> type="number" min="0" id="propiedad_banios" value="<%= banios %>" name="banios" class="form-control"/>
             </div>
           </div>
 
           <div class="col-md-2">
             <div class="form-group">
               <label class="control-label">Antigüedad</label>
-              <select name="nuevo" id="propiedad_antiguedad" class="form-control">
+              <select <%= (!edicion)?"disabled":"" %> name="nuevo" id="propiedad_antiguedad" class="form-control">
                 <option value="0" <%= (nuevo == 0)?"selected":"" %>>-</option>
                 <option value="1" <%= (nuevo == 1)?"selected":"" %>>A estrenar</option>
                 <option value="2" <%= (nuevo == 2)?"selected":"" %>>Aprox. 2 a&ntilde;os</option>
@@ -397,7 +397,7 @@
           <div class="col-md-2">
             <div class="form-group">
               <label class="control-label">Orientaci&oacute;n Depto.</label>
-              <select class="form-control" id="propiedad_ubicacion_departamento" name="ubicacion_departamento">
+              <select <%= (!edicion)?"disabled":"" %> class="form-control" id="propiedad_ubicacion_departamento" name="ubicacion_departamento">
                 <option value="" <%= (ubicacion_departamento=="")?"selected":"" %>>-</option>
                 <option value="F" <%= (ubicacion_departamento=="F")?"selected":"" %>>Frente</option>
                 <option value="C" <%= (ubicacion_departamento=="C")?"selected":"" %>>Contrafrente</option>
@@ -415,7 +415,7 @@
             <div class="form-group">
               <label class="control-label">Cubierta</label>
               <div class="input-group">                  
-                <input type="text" id="propiedad_superficie_cubierta" name="superficie_cubierta" value="<%= superficie_cubierta %>" class="form-control superficie"/>
+                <input <%= (!edicion)?"disabled":"" %> type="text" id="propiedad_superficie_cubierta" name="superficie_cubierta" value="<%= superficie_cubierta %>" class="form-control superficie"/>
                 <span class="input-group-addon">m<sup>2</sup></span>
               </div>
             </div>
@@ -424,7 +424,7 @@
             <div class="form-group">
               <label class="control-label">Descubierta</label>
               <div class="input-group">                  
-                <input type="text" id="propiedad_superficie_descubierta" name="superficie_descubierta" value="<%= superficie_descubierta %>" class="form-control superficie"/>
+                <input <%= (!edicion)?"disabled":"" %> type="text" id="propiedad_superficie_descubierta" name="superficie_descubierta" value="<%= superficie_descubierta %>" class="form-control superficie"/>
                 <span class="input-group-addon">m<sup>2</sup></span>
               </div>
             </div>
@@ -433,7 +433,7 @@
             <div class="form-group">
               <label class="control-label">Semicubierta</label>
               <div class="input-group">                  
-                <input type="text" id="propiedad_superficie_semicubierta" name="superficie_semicubierta" value="<%= superficie_semicubierta %>" class="form-control superficie"/>
+                <input <%= (!edicion)?"disabled":"" %> type="text" id="propiedad_superficie_semicubierta" name="superficie_semicubierta" value="<%= superficie_semicubierta %>" class="form-control superficie"/>
                 <span class="input-group-addon">m<sup>2</sup></span>
               </div>
             </div>
@@ -442,7 +442,7 @@
             <div class="form-group">
               <label class="control-label">Total</label>
               <div class="input-group">                  
-                <input type="text" id="propiedad_superficie_total" name="superficie_total" value="<%= superficie_total %>" class="form-control"/>
+                <input <%= (!edicion)?"disabled":"" %> type="text" id="propiedad_superficie_total" name="superficie_total" value="<%= superficie_total %>" class="form-control"/>
                 <span class="input-group-addon">m<sup>2</sup></span>
               </div>                
             </div>
@@ -451,7 +451,7 @@
             <div class="form-group">
               <label class="control-label">Frente</label>
               <div class="input-group">                  
-                <input type="text" id="propiedad_mts_frente" name="mts_frente" value="<%= mts_frente %>" class="form-control"/>
+                <input <%= (!edicion)?"disabled":"" %> type="text" id="propiedad_mts_frente" name="mts_frente" value="<%= mts_frente %>" class="form-control"/>
                 <span class="input-group-addon">mts.</span>
               </div>
             </div>
@@ -460,7 +460,7 @@
             <div class="form-group">
               <label class="control-label">Fondo</label>
               <div class="input-group">                  
-                <input type="text" id="propiedad_mts_fondo" name="mts_fondo" value="<%= mts_fondo %>" class="form-control"/>
+                <input <%= (!edicion)?"disabled":"" %> type="text" id="propiedad_mts_fondo" name="mts_fondo" value="<%= mts_fondo %>" class="form-control"/>
                 <span class="input-group-addon">mts.</span>
               </div>
             </div>
@@ -473,7 +473,7 @@
           <div class="col-md-2">
             <div class="form-group">
               <label class="i-checks">
-                <input type="checkbox" id="propiedad_servicios_cloacas" name="servicios_cloacas" class="checkbox" value="1" <%= (servicios_cloacas == 1)?"checked":"" %> >
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_servicios_cloacas" name="servicios_cloacas" class="checkbox" value="1" <%= (servicios_cloacas == 1)?"checked":"" %> >
                 <i></i> Cloacas
               </label>
             </div>
@@ -481,7 +481,7 @@
           <div class="col-md-2">
             <div class="form-group">
               <label class="i-checks">
-                <input type="checkbox" id="propiedad_servicios_agua_corriente" name="servicios_agua_corriente" class="checkbox" value="1" <%= (servicios_agua_corriente == 1)?"checked":"" %> >
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_servicios_agua_corriente" name="servicios_agua_corriente" class="checkbox" value="1" <%= (servicios_agua_corriente == 1)?"checked":"" %> >
                 <i></i> Agua Corriente
               </label>
             </div>
@@ -489,7 +489,7 @@
           <div class="col-md-2">
             <div class="form-group">
               <label class="i-checks">
-                <input type="checkbox" id="propiedad_servicios_electricidad" name="servicios_electricidad" class="checkbox" value="1" <%= (servicios_electricidad == 1)?"checked":"" %> >
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_servicios_electricidad" name="servicios_electricidad" class="checkbox" value="1" <%= (servicios_electricidad == 1)?"checked":"" %> >
                 <i></i> Electricidad
               </label>
             </div>
@@ -497,7 +497,7 @@
           <div class="col-md-2">
             <div class="form-group">            
               <label class="i-checks">
-                <input type="checkbox" id="propiedad_servicios_asfalto" name="servicios_asfalto" class="checkbox" value="1" <%= (servicios_asfalto == 1)?"checked":"" %> >
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_servicios_asfalto" name="servicios_asfalto" class="checkbox" value="1" <%= (servicios_asfalto == 1)?"checked":"" %> >
                 <i></i> Asfalto
               </label>
             </div>
@@ -505,7 +505,7 @@
           <div class="col-md-2">
             <div class="form-group">
               <label class="i-checks">
-                <input type="checkbox" id="propiedad_servicios_gas" name="servicios_gas" class="checkbox" value="1" <%= (servicios_gas == 1)?"checked":"" %> >
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_servicios_gas" name="servicios_gas" class="checkbox" value="1" <%= (servicios_gas == 1)?"checked":"" %> >
                 <i></i> Gas Natural
               </label>
             </div>
@@ -513,7 +513,7 @@
           <div class="col-md-2">
             <div class="form-group">
               <label class="i-checks">
-                <input type="checkbox" id="propiedad_servicios_aire_acondicionado" name="servicios_aire_acondicionado" class="checkbox" value="1" <%= (servicios_aire_acondicionado == 1)?"checked":"" %> >
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_servicios_aire_acondicionado" name="servicios_aire_acondicionado" class="checkbox" value="1" <%= (servicios_aire_acondicionado == 1)?"checked":"" %> >
                 <i></i> Aire Acondicionado
               </label>
             </div>
@@ -521,7 +521,7 @@
           <div class="col-md-2">
             <div class="form-group">
               <label class="i-checks">
-                <input type="checkbox" id="propiedad_servicios_telefono" name="servicios_telefono" class="checkbox" value="1" <%= (servicios_telefono == 1)?"checked":"" %> >
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_servicios_telefono" name="servicios_telefono" class="checkbox" value="1" <%= (servicios_telefono == 1)?"checked":"" %> >
                 <i></i> Tel&eacute;fono
               </label>
             </div>
@@ -529,7 +529,7 @@
           <div class="col-md-2">
             <div class="form-group">
               <label class="i-checks">
-                <input type="checkbox" id="propiedad_servicios_cable" name="servicios_cable" class="checkbox" value="1" <%= (servicios_cable == 1)?"checked":"" %> >
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_servicios_cable" name="servicios_cable" class="checkbox" value="1" <%= (servicios_cable == 1)?"checked":"" %> >
                 <i></i> TV Cable
               </label>
             </div>
@@ -537,7 +537,7 @@
           <div class="col-md-2">
             <div class="form-group">
               <label class="i-checks">
-                <input type="checkbox" id="propiedad_servicios_internet" name="servicios_internet" class="checkbox" value="1" <%= (servicios_internet == 1)?"checked":"" %> >
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_servicios_internet" name="servicios_internet" class="checkbox" value="1" <%= (servicios_internet == 1)?"checked":"" %> >
                 <i></i> WiFi
               </label>
             </div>
@@ -545,7 +545,7 @@
           <div class="col-md-2">
             <div class="form-group">
               <label class="i-checks">
-                <input type="checkbox" id="propiedad_servicios_uso_comercial" name="servicios_uso_comercial" class="checkbox" value="1" <%= (servicios_uso_comercial == 1)?"checked":"" %> >
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_servicios_uso_comercial" name="servicios_uso_comercial" class="checkbox" value="1" <%= (servicios_uso_comercial == 1)?"checked":"" %> >
                 <i></i> Uso Comercial
               </label>
             </div>
@@ -559,7 +559,7 @@
           <div class="col-md-2">
             <div class="form-group">
               <label class="i-checks">
-                <input type="checkbox" id="propiedad_patio" name="patio" class="checkbox" value="1" <%= (patio == 1)?"checked":"" %> >
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_patio" name="patio" class="checkbox" value="1" <%= (patio == 1)?"checked":"" %> >
                 <i></i> Patio
               </label>
             </div>
@@ -568,7 +568,7 @@
           <div class="col-md-2">
             <div class="form-group">
               <label class="i-checks">
-                <input type="checkbox" id="propiedad_balcon" name="balcon" class="checkbox" value="1" <%= (balcon == 1)?"checked":"" %> >
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_balcon" name="balcon" class="checkbox" value="1" <%= (balcon == 1)?"checked":"" %> >
                 <i></i> Balcón
               </label>
             </div>
@@ -577,7 +577,7 @@
           <div class="col-md-2">
             <div class="form-group">
               <label class="i-checks">
-                <input type="checkbox" id="propiedad_terraza" name="terraza" class="checkbox" value="1" <%= (terraza == 1)?"checked":"" %> >
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_terraza" name="terraza" class="checkbox" value="1" <%= (terraza == 1)?"checked":"" %> >
                 <i></i> Terraza
               </label>
             </div>
@@ -586,7 +586,7 @@
           <div class="col-md-2">
             <div class="form-group">
               <label class="i-checks">
-                <input type="checkbox" id="propiedad_accesible" name="accesible" class="checkbox" value="1" <%= (accesible == 1)?"checked":"" %> >
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_accesible" name="accesible" class="checkbox" value="1" <%= (accesible == 1)?"checked":"" %> >
                 <i></i> Baño accesible
               </label>
             </div>
@@ -595,7 +595,7 @@
           <div class="col-md-2">
             <div class="form-group">
               <label class="i-checks">
-                <input type="checkbox" id="propiedad_parrilla" name="parrilla" class="checkbox" value="1" <%= (parrilla == 1)?"checked":"" %> >
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_parrilla" name="parrilla" class="checkbox" value="1" <%= (parrilla == 1)?"checked":"" %> >
                 <i></i> Parrilla
               </label>
             </div>
@@ -604,7 +604,7 @@
           <div class="col-md-2">
             <div class="form-group">
               <label class="i-checks">
-                <input type="checkbox" id="propiedad_piscina" name="piscina" class="checkbox" value="1" <%= (piscina == 1)?"checked":"" %> >
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_piscina" name="piscina" class="checkbox" value="1" <%= (piscina == 1)?"checked":"" %> >
                 <i></i> Piscina
               </label>
             </div>
@@ -613,7 +613,7 @@
           <div class="col-md-2">
             <div class="form-group">
               <label class="i-checks">
-                <input type="checkbox" id="propiedad_gimnasio" name="gimnasio" class="checkbox" value="1" <%= (gimnasio == 1)?"checked":"" %> >
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_gimnasio" name="gimnasio" class="checkbox" value="1" <%= (gimnasio == 1)?"checked":"" %> >
                 <i></i> Gimnasio
               </label>
             </div>
@@ -622,7 +622,7 @@
           <div class="col-md-2">
             <div class="form-group">
               <label class="i-checks">
-                <input type="checkbox" id="propiedad_vigilancia" name="vigilancia" class="checkbox" value="1" <%= (vigilancia == 1)?"checked":"" %> >
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_vigilancia" name="vigilancia" class="checkbox" value="1" <%= (vigilancia == 1)?"checked":"" %> >
                 <i></i> Vigilancia
               </label>
             </div>
@@ -631,7 +631,7 @@
           <div class="col-md-2">
             <div class="form-group">
               <label class="i-checks">
-                <input type="checkbox" id="propiedad_sala_juegos" name="sala_juegos" class="checkbox" value="1" <%= (sala_juegos == 1)?"checked":"" %> >
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_sala_juegos" name="sala_juegos" class="checkbox" value="1" <%= (sala_juegos == 1)?"checked":"" %> >
                 <i></i> Sala de juegos
               </label>
             </div>
@@ -640,7 +640,7 @@
           <div class="col-md-2">
             <div class="form-group">
               <label class="i-checks">
-                <input type="checkbox" id="propiedad_ascensor" name="ascensor" class="checkbox" value="1" <%= (ascensor == 1)?"checked":"" %> >
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_ascensor" name="ascensor" class="checkbox" value="1" <%= (ascensor == 1)?"checked":"" %> >
                 <i></i> Ascensor
               </label>
             </div>
@@ -649,7 +649,7 @@
           <div class="col-md-2">
             <div class="form-group">
               <label class="i-checks">
-                <input type="checkbox" id="propiedad_lavadero" name="lavadero" class="checkbox" value="1" <%= (lavadero == 1)?"checked":"" %> >
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_lavadero" name="lavadero" class="checkbox" value="1" <%= (lavadero == 1)?"checked":"" %> >
                 <i></i> Lavadero
               </label>
             </div>
@@ -658,7 +658,7 @@
           <div class="col-md-2">
             <div class="form-group">
               <label class="i-checks">
-                <input type="checkbox" id="propiedad_living_comedor" name="living_comedor" class="checkbox" value="1" <%= (living_comedor == 1)?"checked":"" %> >
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_living_comedor" name="living_comedor" class="checkbox" value="1" <%= (living_comedor == 1)?"checked":"" %> >
                 <i></i> Living comedor
               </label>
             </div>
@@ -667,7 +667,7 @@
           <div class="col-md-2">
             <div class="form-group">
               <label class="i-checks">
-                <input type="checkbox" id="propiedad_permite_mascotas" name="permite_mascotas" class="checkbox" value="1" <%= (permite_mascotas == 1)?"checked":"" %> >
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_permite_mascotas" name="permite_mascotas" class="checkbox" value="1" <%= (permite_mascotas == 1)?"checked":"" %> >
                 <i></i> Permite mascotas
               </label>
             </div>
@@ -677,7 +677,7 @@
 
         <label class="control-label control-label-sub">Descripci&oacute;n</label>
         <div class="form-group">
-          <textarea name="texto" name="propiedad_texto" data-ckeditor="basic" id="propiedad_texto"><%= texto %></textarea>
+          <textarea <%= (!edicion)?"disabled":"" %> name="texto" name="propiedad_texto" data-ckeditor="basic" id="propiedad_texto"><%= texto %></textarea>
         </div>          
 
       </div>
@@ -720,7 +720,7 @@
 
         <div class="form-group">
           <label class="control-label">Video</label>
-          <textarea id="propiedad_video" style="height:80px;" placeholder="Pegue aqui el codigo del video que desea insertar" class="form-control" name="video"><%= video %></textarea>
+          <textarea <%= (!edicion)?"disabled":"" %> id="propiedad_video" style="height:80px;" placeholder="Pegue aqui el codigo del video que desea insertar" class="form-control" name="video"><%= video %></textarea>
         </div>
 
         <?php
@@ -739,7 +739,7 @@
 
         <div class="form-group">
           <label class="control-label">Recorrido 3D</label>
-          <textarea id="propiedad_pint" style="height:80px;" placeholder="Pegue aqui el codigo que desea insertar" class="form-control" name="pint"><%= pint %></textarea>
+          <textarea <%= (!edicion)?"disabled":"" %> id="propiedad_pint" style="height:80px;" placeholder="Pegue aqui el codigo que desea insertar" class="form-control" name="pint"><%= pint %></textarea>
         </div>
 
       </div>
@@ -768,7 +768,7 @@
       <div class="panel-body expand" style="<%= (departamentos.length>0) ? 'display:block':'' %>">
         <div class="padder">
           <div class="clearfix tar">
-            <button class="btn btn-info nuevo_departamento">+ Agregar</button>
+            <button <%= (!edicion)?"disabled":"" %> class="btn btn-info nuevo_departamento">+ Agregar</button>
           </div>
           <div id="propiedad_departamentos" class="mt10"></div>
         </div>
@@ -776,8 +776,10 @@
     </div>
   <% } %>
 
-  <div class="tar mb30">
-    <button class="btn guardar btn-info btn-lg">Guardar</button>
-  </div>
+  <% if (edicion) { %>
+    <div class="tar mb30">
+      <button class="btn guardar btn-info btn-lg">Guardar</button>
+    </div>
+  <% } %>
 
 </div>

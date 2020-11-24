@@ -18,6 +18,7 @@
       },
       "change .permiso_red":function(e) {
         var self = this;
+        if($(e.currentTarget).attr("disabled") == "disabled") return;
         var id_empresa_compartida = $(e.currentTarget).data("id");
         var permiso_red = ($(e.currentTarget).is(":checked")?1:0);
         $.ajax({
@@ -36,6 +37,7 @@
       },
       "click .solicitar_permiso":function(e){
         var self = this;
+        if($(e.currentTarget).attr("disabled") == "disabled") return;
         var id_empresa_compartida = $(e.currentTarget).data("id");
         $.ajax({
           "url":"permisos_red/function/solicitar_permiso/",
@@ -55,6 +57,7 @@
     initialize: function(options) {
       _.bindAll(this);
       this.id_inmobiliaria = options.id_inmobiliaria;
+      this.permiso = options.permiso;
       this.render();
     },
 
@@ -69,6 +72,7 @@
         "dataType":"json",
         "success":function(r) {
           var model = new app.models.AbstractModel(r);
+          model.set({"edicion":(self.permiso > 1)});
           $(self.el).html(self.template(model.toJSON()));
           $('[data-toggle="tooltip"]').tooltip();
         }
@@ -165,6 +169,7 @@
 
     initialize: function() {
       _.bindAll(this);
+      this.permiso = control.check("permisos_red");
       this.render();
     },
 
@@ -175,6 +180,7 @@
         "dataType":"json",
         "success":function(r) {
           var model = new app.models.AbstractModel(r);
+          model.set({"edicion":(self.permiso > 1)});
           $(self.el).html(self.template(model.toJSON()));
           $('[data-toggle="tooltip"]').tooltip();
         }

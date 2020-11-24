@@ -23,10 +23,12 @@
           <h1>Contactos</h1>
         </div>
         <div class="col-md-6 col-xs-4 tar">
-          <a href="app/#clientes/0" class="btn btn-info">
-            <span class="material-icons show-xs">add</span>
-            <span class="hidden-xs">&nbsp;&nbsp;Nuevo Contacto&nbsp;&nbsp;</span>
-          </a>
+          <% if (permiso > 1) { %>
+            <a href="app/#clientes/0" class="btn btn-info">
+              <span class="material-icons show-xs">add</span>
+              <span class="hidden-xs">&nbsp;&nbsp;Nuevo Contacto&nbsp;&nbsp;</span>
+            </a>
+          <% } %>
         </div>
       </div>
     </div>
@@ -44,11 +46,13 @@
                   <span class="input-group-btn">
                     <button class="btn btn-default buscar ml5"><i class="fa fa-search"></i></button>
                   </span>
-                  <span class="input-group-btn ml5">
-                    <button class="btn btn-default btn-addon btn-addon-2 exportar_excel">
-                      <i class="fa fa-upload"></i><span><?php echo lang(array("es"=>"Exportar","en"=>"Export")); ?></span>
-                    </button>
-                  </span>
+                  <% if (permiso > 2) { %>
+                    <span class="input-group-btn ml5">
+                      <button class="btn btn-default btn-addon btn-addon-2 exportar_excel">
+                        <i class="fa fa-upload"></i><span><?php echo lang(array("es"=>"Exportar","en"=>"Export")); ?></span>
+                      </button>
+                    </span>
+                  <% } %>
                 </div>
               </div>
             </div>
@@ -126,14 +130,7 @@
   </td>
   <% if (permiso > 1) { %>
     <td class="<%= clase %> td_acciones">
-      <% if (ID_EMPRESA != 341) { %> 
-        <i title="Activo" data-toggle="tooltip" class="fa-check iconito fa activo <%= (activo == 1)?"active":"" %>"></i>
-      <% } %>
-
-      <% if (typeof CANASTA_BASICA != "undefined" && CANASTA_BASICA == 1) { %>
-        <i data-toggle="tooltip" title="Canasta Basica" class="fa fa-shopping-basket iconito canasta_basica <%= (custom_5 == 1)?"active":"" %>"></i>
-      <% } %>
-      
+      <i title="Activo" data-toggle="tooltip" class="fa-check iconito fa activo <%= (activo == 1)?"active":"" %>"></i>
       <div class="btn-group dropdown ml10">
         <button class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fa fa-plus"></i>

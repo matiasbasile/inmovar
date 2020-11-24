@@ -245,7 +245,7 @@
       this.options = options;
       this.habilitar_seleccion = (this.options.habilitar_seleccion == undefined || this.options.habilitar_seleccion == false) ? false : true;
       this.vista_contactos = (this.options.vista_contactos == undefined || this.options.vista_contactos == false) ? false : true;
-      this.permiso = this.options.permiso;
+      this.permiso = control.check("contactos");
       this.modulo = this.options.modulo;
       window.clientes_custom_3 = (typeof window.clientes_custom_3 != "undefined") ? window.clientes_custom_3 : "";
       window.clientes_custom_4 = (typeof window.clientes_custom_4 != "undefined") ? window.clientes_custom_4 : "";
@@ -453,7 +453,7 @@
       // Creamos un objeto para agregarle las otras propiedades que no son el modelo
       var self = this;
       var edicion = false;
-      if (this.options.permiso > 1) edicion = true;
+      if (control.check("contactos") > 1) edicion = true;
       var obj = {
         "edicion": edicion, 
         "id":self.model.id,
