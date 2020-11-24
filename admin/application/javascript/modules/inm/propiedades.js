@@ -1929,7 +1929,7 @@
       
       var edicion = false;
       this.options = control.check("propiedades");
-      if (this.options.permiso > 1) edicion = true;
+      if (control.check("propiedades") > 1) edicion = true;
       var obj = { "edicion": edicion,"id":this.model.id }
       _.extend(obj,this.model.toJSON());
       $(this.el).html(this.template(obj));
