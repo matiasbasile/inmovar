@@ -1,6 +1,5 @@
 <?php 
-function modulo_habilitado($modulo) {
-  global $permisos;
+function modulo_habilitado($permisos,$modulo) {
   foreach($permisos as $p) {
     if ($p->nombre == $modulo) return TRUE;
   }
@@ -56,17 +55,17 @@ function modulo_habilitado($modulo) {
           <?php 
           // USUARIO NORMAL
           } else { ?>
-            <?php if (modulo_habilitado("inicio")) { ?>
+            <?php if (modulo_habilitado($permisos,"inicio")) { ?>
               <li>
                 <a href="app/#inicio"><i class="material-icons md-22">equalizer</i><span>Escritorio</span></a>
               </li>
             <?php } ?>
-            <?php if (modulo_habilitado("consultas")) { ?>
+            <?php if (modulo_habilitado($permisos,"consultas")) { ?>
               <li>
                 <a href="app/#consultas" class=""><i class="material-icons md-22">directions_run</i><span>Seguimiento</span></a>
               </li>
             <?php } ?>
-            <?php if (modulo_habilitado("propiedades")) { ?>
+            <?php if (modulo_habilitado($permisos,"propiedades")) { ?>
               <li>
                 <a href="app/#propiedades" class=""><i class="material-icons md-22">home</i><span>Propiedades</span></a>
               </li>
@@ -76,22 +75,22 @@ function modulo_habilitado($modulo) {
               <a href="app/#busquedas" class=""><i class="material-icons md-22">search</i><span>Búsquedas</span></a>
             </li>
             -->
-            <?php if (modulo_habilitado("permisos_red")) { ?>
+            <?php if (modulo_habilitado($permisos,"permisos_red")) { ?>
               <li>
                 <a href="app/#permisos_red" class=""><i class="material-icons md-22">share</i><span>Red Inmovar</span></a>
               </li>
             <?php } ?>
-            <?php if (modulo_habilitado("alquileres")) { ?>
+            <?php if (modulo_habilitado($permisos,"alquileres")) { ?>
               <li>
                 <a href="app/#alquileres" class=""><i class="material-icons md-22">vpn_key</i><span>Alquileres</span></a>
               </li>
             <?php } ?>
-            <?php if (modulo_habilitado("contactos")) { ?>
+            <?php if (modulo_habilitado($permisos,"contactos")) { ?>
               <li>
                 <a href="app/#clientes" class=""><i class="material-icons md-22">people</i><span>Contactos</span></a>
               </li>
             <?php } ?>
-            <?php if (modulo_habilitado("menu_web")) { ?>
+            <?php if (modulo_habilitado($permisos,"menu_web")) { ?>
               <li>
                 <a href="app/#menu_web" class=""><i class="material-icons md-22">laptop_windows</i><span>Sitio Web</span></a>
               </li>
