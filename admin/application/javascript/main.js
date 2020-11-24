@@ -665,7 +665,7 @@
         config.contentsCss = ['/admin/resources/css/font-awesome.min.css','/admin/resources/js/libs/ckeditor_4.6/contents.css'];
         config.toolbar = [
           { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'] },
-          { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', 'FontSize', 'Image', 'PasteFromWord', 'Link', 'Unlink', 'TextColor','BGColor' ] },
+          { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', 'FontSize', 'Image', 'PasteFromWord', 'Link', 'Unlink', 'TextColor','BGColor', 'Youtube' ] },
         ];
         config.forcePasteAsPlainText = true;
         config.scayt_autoStartup = true;
