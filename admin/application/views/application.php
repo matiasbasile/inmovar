@@ -301,61 +301,6 @@ var tipos_gastos = <?php echo json_encode($tipos_gastos); ?>;
 var usuarios = new app.collections.Usuarios(<?php echo json_encode($usuarios); ?>);
 var usuarios_array = <?php echo json_encode($usuarios); ?>;
 
-// Activamos las notificaciones
-<?php if ($empresa->id_proyecto > 0) { ?>
-
-var socket;
-$(document).ready(function(){
-  //if (OCULTAR_NOTIFICACIONES == 0) init();
-  if (ID_PROYECTO == 10) init();
-});
-function init() {
-  var host = "ws://<?php echo str_replace("http://","",current_url(TRUE)); ?>:9000/?id_empresa="+ID_EMPRESA;
-  try {
-    socket = new WebSocket(host);
-    console.log('WebSocket - status '+socket.readyState);
-    socket.onopen = function(msg) { 
-      console.log("Welcome - status "+this.readyState); 
-    };
-    socket.onmessage = function(msg) { 
-      var data = msg.data;
-      // Si enviamos un comando especifico para ejecutar
-      if (data.indexOf("COMANDO:") != -1) {
-        var comando = data.replace("COMANDO:","");
-        eval(comando);
-      } else {
-        // Es un mensaje comun
-        $.toaster({
-          "message":data,
-          "title":"Atenci&oacute;n",
-          "settings": {
-            'timeout':0, // Que no desaparezcan solas
-          }
-        });
-      }
-    };
-    socket.onclose = function(msg) { 
-      console.log("Disconnected - status "+this.readyState); 
-    };
-  }
-  catch(ex){ 
-    console.log(ex); 
-  }
-}
-function quit(){
-  if (socket != null) {
-    socket.close();
-    socket=null;
-  }
-}
-
-// PUSH NOTIFICATION
-const applicationServerPublicKey = 'BG4hDy_0netdNoxxKir3Z6hGS-5HY5EZgRfXbIpsvfWM78Bc-cZzwyW5UqnNAWnSdF8tcYalaBcHRiYaqByWjnA';
-let isSubscribed = false;
-let swRegistration = null;
-
-<?php } // Fin Proyecto > 0 ?>
-
 window.onload = function () {  
   document.onkeydown = function (e) {  
     return (e.which || e.keyCode) != 116;  
