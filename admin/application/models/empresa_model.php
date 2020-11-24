@@ -815,10 +815,12 @@ class Empresa_Model extends Abstract_Model {
     // Creamos un registro de configuracion
     $sql = "INSERT INTO web_configuracion (id_empresa,id_proyecto,email,entradas_por_pagina,tipo_empresa,primer_login,seo_title,";
     $sql.= " template_header,template_footer,template_home,template_contacto,template_productos_detalle,template_productos_listado,template_noticias_detalle,template_noticias_listado,template_pagina,color_fondo_imagenes_defecto, ";
-    $sql.= " clienapp_abierto, clienapp_posicion, clienapp_sonido, tienda_registro_direccion, tienda_registro_telefono, crm_notificar_asignaciones_usuarios, crm_notificar_tareas, tienda_registro_ciudad ";
+    $sql.= " clienapp_abierto, clienapp_posicion, clienapp_sonido, tienda_registro_direccion, tienda_registro_telefono, crm_notificar_asignaciones_usuarios, crm_notificar_tareas, tienda_registro_ciudad, ";
+    $sql.= " color_principal, color_secundario, color_terciario, color_4, color_5, color_6 ";
     $sql.= ") VALUES ('$id_empresa','$array->id_proyecto','$array->email',16,'$tipo_empresa',1,'$array->nombre',";
     $sql.= "'header','footer','home','contacto','productos_detalle','productos_listado','noticias_detalle','noticias_listado','pagina','rgba(255,255,255,1)', ";
-    $sql.= " 1, 'D', 1, 1, 1, 1, 1, 1 ";
+    $sql.= " 1, 'D', 1, 1, 1, 1, 1, 1, ";
+    $sql.= " 'rgb(13,211,132)', 'rgb(29,54,194)', 'rgb(32,33,38)', 'rgb(0,0,0)', 'rgb(0,0,0)', 'rgb(0,0,0)' ";
     $sql.= ")";
     $this->db->query($sql);
 
