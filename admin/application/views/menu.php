@@ -47,32 +47,46 @@
           <?php 
           // USUARIO NORMAL
           } else { ?>
-            <li>
-              <a href="app/#inicio"><i class="material-icons md-22">equalizer</i><span>Escritorio</span></a>
-            </li>
-            <li>
-              <a href="app/#consultas" class=""><i class="material-icons md-22">directions_run</i><span>Seguimiento</span></a>
-            </li>
-            <li>
-              <a href="app/#propiedades" class=""><i class="material-icons md-22">home</i><span>Propiedades</span></a>
-            </li>
+            <% if (control.check("inicio") > 0) { %>
+              <li>
+                <a href="app/#inicio"><i class="material-icons md-22">equalizer</i><span>Escritorio</span></a>
+              </li>
+            <% } %>
+            <% if (control.check("consultas") > 0) { %>
+              <li>
+                <a href="app/#consultas" class=""><i class="material-icons md-22">directions_run</i><span>Seguimiento</span></a>
+              </li>
+            <% } %>
+            <% if (control.check("propiedades") > 0) { %>
+              <li>
+                <a href="app/#propiedades" class=""><i class="material-icons md-22">home</i><span>Propiedades</span></a>
+              </li>
+            <% } %>
             <!--
             <li>
               <a href="app/#busquedas" class=""><i class="material-icons md-22">search</i><span>Búsquedas</span></a>
             </li>
             -->
-            <li>
-              <a href="app/#permisos_red" class=""><i class="material-icons md-22">share</i><span>Red Inmovar</span></a>
-            </li>
-            <li>
-              <a href="app/#alquileres" class=""><i class="material-icons md-22">vpn_key</i><span>Alquileres</span></a>
-            </li>            
-            <li>
-              <a href="app/#clientes" class=""><i class="material-icons md-22">people</i><span>Contactos</span></a>
-            </li>
-            <li>
-              <a href="app/#menu_web" class=""><i class="material-icons md-22">laptop_windows</i><span>Sitio Web</span></a>
-            </li>
+            <% if (control.check("permisos_red") > 0) { %>
+              <li>
+                <a href="app/#permisos_red" class=""><i class="material-icons md-22">share</i><span>Red Inmovar</span></a>
+              </li>
+            <% } %>
+            <% if (control.check("alquileres") > 0) { %>
+              <li>
+                <a href="app/#alquileres" class=""><i class="material-icons md-22">vpn_key</i><span>Alquileres</span></a>
+              </li>
+            <% } %>
+            <% if (control.check("contactos") > 0) { %>
+              <li>
+                <a href="app/#clientes" class=""><i class="material-icons md-22">people</i><span>Contactos</span></a>
+              </li>
+            <% } %>
+            <% if (control.check("menu_web") > 0) { %>
+              <li>
+                <a href="app/#menu_web" class=""><i class="material-icons md-22">laptop_windows</i><span>Sitio Web</span></a>
+              </li>
+            <% } %>
             <?php /*
             <li>
               <a href="app/#estadisticas" class=""><i class="material-icons md-22">equalizer</i><span>Estadísticas</span></a>

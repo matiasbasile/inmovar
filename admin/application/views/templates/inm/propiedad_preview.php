@@ -10,6 +10,7 @@
 .propiedad-preview .flex-direction-nav a.flex-next:before { text-indent: 3px; }
 #propiedades_preview_carousel { margin: 0px; border: none; }
 #propiedades_preview_carousel .slides img { padding: 5px; cursor: pointer; }
+.propiedad_preview_texto iframe { width: 100%; }
 </style>
 <div class='modal-content propiedad-preview'>
   <div class='modal-body'>
@@ -156,7 +157,7 @@
           <div class="panel-body expand db">
             <div class="padder">
               <div class="subtitulo">Informaci&oacute;n B&aacute;sica</div>
-              <div><%= texto %></div>
+              <div class="propiedad_preview_texto"><%= texto %></div>
               <div class="subtitulo">Caracter&iacute;sticas</div>
               <div class="row pl10 pr10">
                 <div class="col-sm-4 col-xs-6 mb15 pl5 pr5">
