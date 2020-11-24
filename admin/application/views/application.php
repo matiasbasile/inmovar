@@ -364,10 +364,12 @@ window.onload = function () {
               <li>
                 <a href="javascript:void(0)" onclick="workspace.volver_superadmin()">Volver al Superadmin</a>
               </li>
+            <?php } ?>          
+            <?php if ($perfil == -1) { ?>
               <li>
                 <a href="https://app.inmovar.com/admin/application/cronjobs/update_version_js.php" target="_blank">Actualizar cache</a>
               </li>
-            <?php } ?>          
+            <?php } ?>
             <?php
             if (!empty($dominio)) { ?>
               <li>
