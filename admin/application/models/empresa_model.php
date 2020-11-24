@@ -1013,14 +1013,6 @@ class Empresa_Model extends Abstract_Model {
 
     $array->dominio_varcreative = "app.inmovar.com/sandbox/".$id_empresa."/";
     $this->db->query("UPDATE empresas SET dominio_varcreative = '$array->dominio_varcreative', codigo = '$id_empresa' WHERE id = $id_empresa ");
-
-    // Creamos un registro de configuracion
-    $sql = "UPDATE web_configuracion SET ";
-    $sql.= " color_principal = 'rgb(13,211,132)', ";
-    $sql.= " color_secundario = 'rgb(29,54,194)', ";
-    $sql.= " color_terciario = 'rgb(32,33,38)' ";
-    $sql.= "WHERE id_empresa = $id_empresa ";
-    $this->db->query($sql);    
     
     //$this->db->trans_complete();
     
