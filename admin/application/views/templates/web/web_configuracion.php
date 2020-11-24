@@ -128,6 +128,52 @@
       <div class="padder">
         <div class="form-group mb0 clearfix expand-link cp">
           <label class="control-label cp">
+            Colores
+          </label>
+          <div class="panel-description">
+            Elegí los colores de tu plantilla.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body expand">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <div class="input-group color_principal colorpicker-component">
+              <span class="input-group-addon"><i></i></span>
+              <input type="text" class="form-control" value="<%= color_principal %>" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <div class="input-group color_secundario colorpicker-component">
+              <span class="input-group-addon"><i></i></span>
+              <input type="text" class="form-control" value="<%= color_secundario %>" />              
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <div class="input-group color_terciario colorpicker-component">
+              <span class="input-group-addon"><i></i></span>
+              <input type="text" class="form-control" value="<%= color_terciario %>" />              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix">
+        <button class="btn fr btn-info guardar"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
+      </div>
+    </div>
+  </div>  
+
+  <div class="panel panel-default db cp">
+    <div class="panel-body">
+      <div class="padder">
+        <div class="form-group mb0 clearfix expand-link cp">
+          <label class="control-label cp">
             Logo
           </label>
           <div class="panel-description">
