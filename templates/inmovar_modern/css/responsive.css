@@ -1,0 +1,53 @@
+@media screen and (max-width: 1199px) {
+
+}
+
+@media screen and (min-width: 767px) and (max-width: 990px) {
+
+}
+
+@media screen and (max-width: 990px) {
+
+}
+
+@media only screen and (max-width: 767px) {
+  .specialbtn  { margin: 20px 0; }
+  #mapa_propiedades { position: relative;margin-top: 0; z-index: 999 ; width: 100%}
+  .supra-details .button-top button { margin-left: 0px;}
+  .border-right{ border:none ; border-right: none !important}
+  .icon-home { padding: 40px 0 20px 0; margin: 0 20px }
+  .icon-home.border-right{ border-bottom: 1px solid #bebebe; }
+  .form-inputs { width: 100%; margin: 0 }
+  .form-inputs .col-xs-12 { padding: 0; margin: 0 }
+  .sec-title h2 { margin-bottom: 20px }
+  .sec-title p { margin-bottom: 50px }
+  .myfooter .box { padding: 30px }
+  .sidebar { padding: 0 ; margin: 0}
+  .supra-details .box-icon { width: 100% ; margin: 5px 0}
+  .supra-details .price { width: 100% }
+  .supra-details .box-full { display: block; }
+  .supra-details .button-top { width: 100% }
+  .padding-movil { margin: 0 20px }
+  .char-font .list-title { width: 50%; }
+  .char-font .negritas-low { width: 50%; }
+  .video iframe { max-height: 250px }
+  .contact-right { padding: 0 15px; margin-top: 100px }
+  .inline { display: block }
+  .inline-icons-search { display: block; text-align: center; }
+  .mr10 { margin-right:  0 !important; }
+  .input-listado { width: 100% }
+  .mylabel { padding-top: 20px; }
+  .wautom { width: 100% }
+  .home-styled { padding: 0 !important; margin:  0 0 10px  }
+  .flexed-property .row { padding: 0 !important; margin: 0 !important }
+  .flexed-property .col-md-9, .fixed-property .col-md-3 { padding-left:  0 !important; padding-right: 0 !important;  margin: 0 !important }
+}
+
+
+@media only screen and (max-width: 589px) {
+ 
+}
+
+@media only screen and (max-width: 480px) {
+ 
+}
