@@ -736,5 +736,13 @@ function enviar_ficha_email() {
   }
 }
 </script>
+<?php 
+// Creamos el codigo de seguimiento para registrar la visita
+echo $propiedad_model->tracking_code(array(
+  "id_propiedad"=>$propiedad->id,
+  "id_empresa_compartida"=>$id_empresa,
+  "id_empresa"=>$empresa->id,
+));
+?>
 </body>
 </html>

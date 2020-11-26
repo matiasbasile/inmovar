@@ -102,3 +102,4 @@ function enviar_newsletter() {
   return false;
 }  
 </script>
+<?php include("templates/comun/clienapp.php") ?>
