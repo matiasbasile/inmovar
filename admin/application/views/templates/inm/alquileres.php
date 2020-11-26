@@ -9,7 +9,7 @@
           <img style="max-width:450px;" class="w100p mb30" src="resources/images/alquileres.png" />
         </div>
         <p style="max-width:450px;" class="mb30 mla mra fs16">
-          Mejora el tiempo de pago notificado a los inquilinos de manera automática.<br/>
+          Mejora el tiempo de pago notificado a los inquilinos de manera automática.
           Activa pagos online a través de <span class="c-main">Mercado Pago</span>.
         </p>
         <a class="btn btn-lg btn-info mb30" href="app/#precios">
