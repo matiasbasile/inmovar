@@ -104,6 +104,7 @@ if ($empresa->id_proyecto > 0) {
   if (file_exists("application/views/templates/versiones_db.php")) include_once ("application/views/templates/versiones_db.php");
   if (file_exists("application/views/templates/web/web_templates.php")) include_once ("application/views/templates/web/web_templates.php");
   if (file_exists("application/views/templates/web/web_textos.php")) include_once ("application/views/templates/web/web_textos.php");
+  if (file_exists("application/views/templates/config/videos.php")) include_once ("application/views/templates/config/videos.php");
 }
 
 // Estos modulos se cargan siempre

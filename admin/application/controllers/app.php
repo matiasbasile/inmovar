@@ -697,7 +697,7 @@ class App extends CI_Controller {
     $array[] = 'application/javascript/modules/cajas_movimientos.js';
 
     if ($id_proyecto == 0) {
-      
+      $array[] = 'application/javascript/modules/config/videos.js';
       $array[] = 'application/javascript/modules/monedas.js';
       $array[] = 'application/javascript/modules/planes.js';
       $array[] = 'application/javascript/modules/proyectos.js';
