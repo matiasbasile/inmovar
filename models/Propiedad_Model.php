@@ -865,7 +865,7 @@ class Propiedad_Model {
     $s.='<script>';
     $s.='setTimeout(function(){';
     $s.='  $.ajax({';
-    $s.='    "url":"/admin/visitas/function/inmovar/",';
+    $s.='    "url":"https://app.inmovar.com/admin/visitas/function/inmovar/",';
     $s.='    "dataType":"json",';
     $s.='    "type":"get",';
     $s.='    "data":{';
