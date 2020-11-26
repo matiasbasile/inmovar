@@ -46,6 +46,12 @@ class Consulta_Tipo_Model extends Abstract_Model {
       $sql.= "1,'$id_empresa','A contactar','warning',1,1,7,30)";
       if ($imprimir == 1) $salida.= $sql.";\n";
       else $this->db->query($sql);
+    } else {
+      $sql = "UPDATE crm_consultas_tipos ";
+      $sql.= "SET nombre = 'A contactar', orden = 1, activo = 1, tiempo_vencimiento = 7, tiempo_abandonado = 30 ";
+      $sql.= "WHERE id_empresa = $id_empresa AND id = 1 ";
+      if ($imprimir == 1) $salida.= $sql.";\n";
+      else $this->db->query($sql);
     }
 
     // Contactado
@@ -54,6 +60,12 @@ class Consulta_Tipo_Model extends Abstract_Model {
     if ($q->num_rows() == 0) {
       $sql = "INSERT INTO crm_consultas_tipos (id,id_empresa,nombre,color,orden,activo,tiempo_vencimiento,tiempo_abandonado) VALUES(";
       $sql.= "2,'$id_empresa','Contactados','info',2,1,7,30)";
+      if ($imprimir == 1) $salida.= $sql.";\n";
+      else $this->db->query($sql);
+    } else {
+      $sql = "UPDATE crm_consultas_tipos ";
+      $sql.= "SET nombre = 'Contactados', orden = 2, activo = 1, tiempo_vencimiento = 7, tiempo_abandonado = 30 ";
+      $sql.= "WHERE id_empresa = $id_empresa AND id = 2 ";
       if ($imprimir == 1) $salida.= $sql.";\n";
       else $this->db->query($sql);
     }
@@ -85,6 +97,12 @@ class Consulta_Tipo_Model extends Abstract_Model {
       $sql.= "3,'$id_empresa','Con actividad','info',3,1,7,30)";
       if ($imprimir == 1) $salida.= $sql.";\n";
       else $this->db->query($sql);
+    } else {
+      $sql = "UPDATE crm_consultas_tipos ";
+      $sql.= "SET nombre = 'Con actividad', orden = 3, activo = 1, tiempo_vencimiento = 7, tiempo_abandonado = 30 ";
+      $sql.= "WHERE id_empresa = $id_empresa AND id = 3";
+      if ($imprimir == 1) $salida.= $sql.";\n";
+      else $this->db->query($sql);
     }
     $asuntos = array(
       "Teléfono",
@@ -113,6 +131,12 @@ class Consulta_Tipo_Model extends Abstract_Model {
       $sql.= "4,'$id_empresa','En negociación','success',4,1,7,30)";
       if ($imprimir == 1) $salida.= $sql.";\n";
       else $this->db->query($sql);
+    } else {
+      $sql = "UPDATE crm_consultas_tipos ";
+      $sql.= "SET nombre = 'En negociación', orden = 4, activo = 1, tiempo_vencimiento = 7, tiempo_abandonado = 30 ";
+      $sql.= "WHERE id_empresa = $id_empresa AND id = 4";
+      if ($imprimir == 1) $salida.= $sql.";\n";
+      else $this->db->query($sql);
     }
     $asuntos = array(
       "Listo para firmar",
@@ -139,6 +163,12 @@ class Consulta_Tipo_Model extends Abstract_Model {
       $sql.= "98,'$id_empresa','Finalizados','success',98,1,0,0)";
       if ($imprimir == 1) $salida.= $sql.";\n";
       else $this->db->query($sql);
+    } else {
+      $sql = "UPDATE crm_consultas_tipos ";
+      $sql.= "SET nombre = 'Finalizados', orden = 98, activo = 1, tiempo_vencimiento = 7, tiempo_abandonado = 30 ";
+      $sql.= "WHERE id_empresa = $id_empresa AND id = 98";
+      if ($imprimir == 1) $salida.= $sql.";\n";
+      else $this->db->query($sql);
     }
     $asuntos = array(
       "Se concretó la operación correctamente",
@@ -162,6 +192,12 @@ class Consulta_Tipo_Model extends Abstract_Model {
     if ($q->num_rows() == 0) {    
       $sql = "INSERT INTO crm_consultas_tipos (id,id_empresa,nombre,color,orden,activo,tiempo_vencimiento,tiempo_abandonado) VALUES(";
       $sql.= "99,'$id_empresa','Archivados','danger',99,1,0,0)";
+      if ($imprimir == 1) $salida.= $sql.";\n";
+      else $this->db->query($sql);
+    } else {
+      $sql = "UPDATE crm_consultas_tipos ";
+      $sql.= "SET nombre = 'Archivados', orden = 99, activo = 1, tiempo_vencimiento = 7, tiempo_abandonado = 30 ";
+      $sql.= "WHERE id_empresa = $id_empresa AND id = 99";
       if ($imprimir == 1) $salida.= $sql.";\n";
       else $this->db->query($sql);
     }

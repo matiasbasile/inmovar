@@ -9,17 +9,17 @@ class Consultas_Tipos extends REST_Controller {
     $this->load->model('Consulta_Tipo_Model', 'modelo');
   }
 
-  function calcular() {
+  function calcular($id_empresa = 0) {
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
-    $sql = "SELECT * FROM empresas";
+    $sql = "SELECT * FROM empresas ";
+    if ($id_empresa != 0) $sql.= "WHERE id = $id_empresa ";
     $q = $this->db->query($sql);
     $salida = "";
     foreach($q->result() as $r) {
       $salida.= $this->modelo->crear_por_defecto(array(
         "id_empresa"=>$r->id,
-        "imprimir"=>1,
       ));
     }
     echo $salida;
