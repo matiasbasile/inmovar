@@ -80,6 +80,10 @@
         "caja/:id": "ver_caja",
         "ver_cajas_movimientos/:id_caja": "ver_cajas_movimientos",
 
+        "videos": "ver_videos",
+        "video": "ver_video",
+        "video/:id": "ver_video",        
+
         // Funcionamiento de ABM General
         '': 'router',
         ':mod(/)': 'router',
@@ -588,6 +592,43 @@
           self.crear_editor($(e).attr("id"));
         });
 
+      },
+
+      ver_videos: function() {
+        if (PERFIL != -1) return;
+        app.views.videosTableView = new app.views.VideosTableView({
+          collection: new app.collections.Videos(),
+          permiso: 3
+        });    
+        this.mostrar({
+          "top" : app.views.videosTableView.el,
+        });
+      },
+      ver_video: function(id) {
+        var self = this;
+        if (PERFIL != -1) return;
+        if (id == undefined) {
+          app.views.videoEditView = new app.views.VideoEditView({
+            model: new app.models.Video(),
+            permiso: 3
+          });
+          this.mostrar({
+            "top" : app.views.videoEditView.el,
+          });
+        } else {
+          var video = new app.models.Video({ "id": id });
+          video.fetch({
+            "success":function() {
+              app.views.videoEditView = new app.views.VideoEditView({
+                model: video,
+                permiso: 3
+              });
+              self.mostrar({
+                "top" : app.views.videoEditView.el,
+              });
+            }
+          });
+        }
       },
 
       // ==========================
