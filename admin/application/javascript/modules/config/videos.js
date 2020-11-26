@@ -50,7 +50,7 @@
         tagName: "tr",
         template: _.template($('#videos_item').html()),
       	events: {
-    		"click": "editar",
+    		"click .data": "editar",
     		"click .ver": "editar",
     		"click .delete": "borrar",
     		"click .duplicar": "duplicar"

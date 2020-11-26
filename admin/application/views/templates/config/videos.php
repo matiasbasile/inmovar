@@ -42,12 +42,12 @@
 
 
 <script type="text/template" id="videos_item">
-    <td>
+    <td class="data">
         <label class="i-checks m-b-none">
             <input class="esc check-row" value="<%= id %>" type="checkbox"><i></i>
         </label>
     </td>
-	<td><span class='ver'><%= clave %></span></td>
+	<td class="data"><span class='ver'><%= clave %></span></td>
 	<% if (permiso > 1) { %>
         <td class="p5 td_acciones">
             <div class="btn-group dropdown ml10">
