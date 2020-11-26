@@ -4,11 +4,14 @@
     <div class="panel panel-default tac">
       <div class="panel-body">
         <h1>Alquileres</h1>
-        <p>Inmovar</p>
+        <p>Gestiona tus alquileres manera simple y rápida</p>
         <div>
           <img style="max-width:450px;" class="w100p mb30" src="resources/images/alquileres.png" />
         </div>
-        <p style="max-width:450px;" class="mb30 mla mra fs16">Aumente las ventas mejorando el seguimiento de clientes con <span class="c-main">Inmovar CRM</span></p>
+        <p style="max-width:450px;" class="mb30 mla mra fs16">
+          Mejora el tiempo de pago notificado a los inquilinos de manera automática.<br/>
+          Activa pagos online a través de <span class="c-main">Mercado Pago</span>.
+        </p>
         <a class="btn btn-lg btn-info mb30" href="app/#precios">
           <span>&nbsp;&nbsp;Activar Alquileres&nbsp;&nbsp;</span>
         </a>
