@@ -137,3 +137,4 @@ function enviar_newsletter() {
     </a>
   </div>
 </div>
+<?php include("templates/comun/clienapp.php") ?>
