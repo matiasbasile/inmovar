@@ -27,9 +27,9 @@ function modulo_habilitado($permisos,$modulo) {
               </a>
             </li>
             <li>
-              <a href='app/#configuracion'>
+              <a href='app/#videos'>
                 <i class='material-icons'>settings</i>
-                Configuración
+                Videos
               </a>
             </li>
 
