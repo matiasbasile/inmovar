@@ -875,7 +875,7 @@ class Propiedad_Model {
     $s.='      "ec":"'.$id_empresa_compartida.'",';
     $s.='    }';
     $s.='  });';
-    $s.='},10000);'; // Registramos la visita despues de 10 segundos
+    $s.='},3000);'; // Registramos la visita despues de 3 segundos
     $s.='</script>';
     return $s;
   }
