@@ -131,7 +131,6 @@ class Propiedad_Model extends Abstract_Model {
     $sql.= "FROM inm_propiedades A ";
     $sql.= "WHERE A.activo = 1 ";
     $sql.= "AND A.compartida = 1 ";
-    $sql.= "AND A.id_empresa != $id_empresa ";
     $sql.= "AND (A.id_empresa IN (";
     $sql.= " SELECT PR.id_empresa FROM inm_permisos_red PR ";
     $sql.= " WHERE PR.id_empresa_compartida = $id_empresa ";
