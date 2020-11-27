@@ -22,9 +22,11 @@ class Permisos_Red extends REST_Controller {
   function get_by_empresa() {
     $id_empresa = parent::get_empresa();
     $id = parent::get_post("id",0);
+    $filter = parent::get_post("filter","");
     $s = $this->modelo->get_inmobiliarias_red(array(
       "id_empresa"=>$id_empresa,
       "id_inmobiliaria"=>$id,
+      "filter"=>$filter,
     ));
     $salida = array();
     foreach($s as $row) {

@@ -43,6 +43,7 @@ class Permiso_Red_Model extends Abstract_Model {
   // Devuelve todas las inmobiliarias que estan compartiendo en la red
   function get_inmobiliarias_red($config = array()) {
     $id_empresa = (isset($config["id_empresa"])) ? $config["id_empresa"] : parent::get_empresa();
+    $filter = (isset($config["filter"])) ? $config["filter"] : "";
     $id_inmobiliaria = (isset($config["id_inmobiliaria"])) ? $config["id_inmobiliaria"] : 0;
     $sql = "SELECT E.id, E.nombre, E.razon_social, WC.logo_1 AS logo, WC.email, ";
     $sql.= " WC.telefono_web, WC.direccion_web, ";
@@ -52,9 +53,10 @@ class Permiso_Red_Model extends Abstract_Model {
     $sql.= "LEFT JOIN com_localidades L ON (E.id_localidad = L.id) ";
     $sql.= "WHERE E.id_proyecto = 3 "; // Solamente los de INMOVAR
     $sql.= "AND E.activo = 1 "; // La empresa tiene que estar activa
+    if (!empty($filter)) $sql.= "AND E.nombre LIKE '%$filter%' ";
     $sql.= "AND E.id != $id_empresa "; // Que no sea la misma empresa
     if (!empty($id_inmobiliaria)) $sql.= "AND E.id = $id_inmobiliaria ";
-    $sql.= "ORDER BY E.id DESC ";
+    $sql.= "ORDER BY E.nombre ASC ";
     $salida = array();
     $q = $this->db->query($sql);
     foreach($q->result() as $row) {
