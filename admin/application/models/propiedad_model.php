@@ -522,12 +522,15 @@ class Propiedad_Model extends Abstract_Model {
     if (!empty($buscar_red_empresa)) $sql_red.= " AND PR.id_empresa = $buscar_red_empresa ";
     $sql_red.= ") ";
 
+    $sql_final = "";
+
     if ($buscar_red == 1) {
 
       // ARMAMOS LA CONSULTA PARA LA RED
       $sql = "SELECT ".$sql_fields.$sql_from.$sql_where.$sql_red;
       if (!empty($order)) $sql.= "ORDER BY $order ";
       if ($offset != 0) $sql.= "LIMIT $limit, $offset ";
+      $sql_final = $sql;
       $q = $this->db->query($sql);
 
       $q_total = $this->db->query("SELECT FOUND_ROWS() AS total");
@@ -574,6 +577,7 @@ class Propiedad_Model extends Abstract_Model {
       $sql = "SELECT ".$sql_fields.$sql_from.$sql_where.$sql_where_2;
       if (!empty($order)) $sql.= "ORDER BY $order ";
       if ($offset != 0) $sql.= "LIMIT $limit, $offset ";
+      $sql_final = $sql;
       $q = $this->db->query($sql);
 
       $q_total = $this->db->query("SELECT FOUND_ROWS() AS total");
@@ -661,6 +665,7 @@ class Propiedad_Model extends Abstract_Model {
     return array(
       "results"=>$salida,
       "total"=>$total2,
+      "sql"=>$sql_final,
       "meta"=>array(
         "total_red"=>$total_red,
         "total_propias"=>$total_propias,
