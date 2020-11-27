@@ -132,11 +132,11 @@ class Propiedad_Model extends Abstract_Model {
     $sql.= "WHERE A.activo = 1 ";
     $sql.= "AND A.compartida = 1 ";
     $sql.= "AND A.id_empresa != $id_empresa ";
-    $sql.= "AND A.id_empresa IN (";
+    $sql.= "AND (A.id_empresa IN (";
     $sql.= " SELECT PR.id_empresa FROM inm_permisos_red PR ";
     $sql.= " WHERE PR.id_empresa_compartida = $id_empresa ";
     $sql.= " AND PR.permiso_red = 1 "; // Tiene el permiso habilitado
-    $sql.= ") ";
+    $sql.= ") OR A.id_empresa = $id_empresa) ";
     $q = $this->db->query($sql);
     $r = $q->row();
     return $r->cantidad;
