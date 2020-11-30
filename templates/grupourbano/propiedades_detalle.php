@@ -85,7 +85,7 @@ else $vc_moneda = "$";
             <div class="row">
               <?php if (!empty($propiedad->video)) { ?>
                 <div class="col-md-6">
-                  <a data-fancybox="gallery" href="<?php echo $propiedad->video ?>" class="btn-video">
+                  <a data-fancybox="gallery" href="<?php echo $propiedad->video_original ?>" class="btn-video">
                     <span class="dt">
                       <span class="dtc vat">
                         <img class="img" src="images/video.png" alt="Video"/>
