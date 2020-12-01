@@ -60,4 +60,5 @@ function ver_caracteristicas($p) { ?>
       </a>
     </h3>
   <?php } ?>
+  <h4><?php echo $p->codigo_completo ?></h4>
 <?php } ?>
