@@ -1015,9 +1015,19 @@ class Propiedad_Model {
       $empresas_compartida = $this->get_empresas_red();
       if (sizeof($empresas_compartida)>0) {
         $emp_comp = implode(",", $empresas_compartida);
-        // O esta compartida con la red
+        
+        // Que pertenezca a alguna de las inmobiliarias que esta compartiendo
         $sql.= "OR (A.id_empresa IN ($emp_comp) ";
+        // Que no este bloqueada para que no aparezca
+        $sql.= "AND NOT EXISTS (";
+        $sql.= " SELECT 1 FROM inm_propiedades_bloqueadas BL ";
+        $sql.= " WHERE BL.id_empresa = $this->id_empresa ";
+        $sql.= " AND BL.id_propiedad = A.id ";
+        $sql.= " AND BL.id_empresa_propiedad = A.id_empresa ";
+        $sql.= ") ";
+        // Que este compartida
         $sql.= " AND A.compartida = 1 ";
+        // Que este activa
         $sql.= " AND A.id_tipo_estado NOT IN (2,3,4,6) ";
         $sql.= " AND A.activo = 1 ) ";
       }
