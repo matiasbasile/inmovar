@@ -655,6 +655,7 @@ class Propiedad_Model extends Abstract_Model {
       }
 
       $r->titulo = $this->generar_titulo($r);
+      $r->direccion_completa = $r->direccion.(!empty($r->entre_calles) ? " e/ ".$r->entre_calles.(!empty($r->entre_calles_2) ? " y ".$r->entre_calles_2) : "");
       /*
       if ($filtro_meli == 1 && $r->status != "active") $ingresar_row = 0;
       else if ($filtro_meli == 2 && $r->status != "paused") $ingresar_row = 0;
@@ -1103,6 +1104,7 @@ class Propiedad_Model extends Abstract_Model {
     }
 
     $propiedad->titulo = $this->generar_titulo($propiedad);
+    $propiedad->direccion_completa = $propiedad->direccion.(!empty($propiedad->entre_calles) ? " e/ ".$propiedad->entre_calles.(!empty($propiedad->entre_calles_2) ? " y ".$propiedad->entre_calles_2) : "");
 
     return $propiedad;
   }
