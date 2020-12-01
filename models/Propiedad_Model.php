@@ -896,19 +896,15 @@ class Propiedad_Model {
   function get_empresas_red() {
     $salida = array();
 
-    // Primero controlamos que la empresa tenga configurada la Red Inmovar
-    $sql = "SELECT red_inmovar FROM web_configuracion WHERE id_empresa = $this->id_empresa ";
-    $q = mysqli_query($this->conx,$sql);
-    $r = $r=mysqli_fetch_object($q);
-    if ($r->red_inmovar == 0) return $salida;
+    // DEPRECATED: Primero controlamos que la empresa tenga configurada la Red Inmovar
+    //$sql = "SELECT red_inmovar FROM web_configuracion WHERE id_empresa = $this->id_empresa ";
+    //$q = mysqli_query($this->conx,$sql);
+    //$r = $r=mysqli_fetch_object($q);
+    //if ($r->red_inmovar == 0) return $salida;
 
-    // Despues buscamos todas las empresas que tengan compartida con la empresa
-    $sql = "SELECT PR.id_empresa_compartida ";
-    $sql.= "FROM inm_permisos_red PR ";
-    $sql.= "INNER JOIN web_configuracion WC ON (PR.id_empresa_compartida = WC.id_empresa) ";
-    $sql.= "WHERE PR.id_empresa = $this->id_empresa ";
-    $sql.= "AND WC.red_inmovar = 1 "; // Esta habilitada para la RED
-    $sql.= "AND PR.estado = 2 "; // El estado 2 significa que comparte en la web
+    $sql = " SELECT PR.id_empresa FROM inm_permisos_red PR ";
+    $sql.= " WHERE PR.id_empresa_compartida = $this->id_empresa ";
+    $sql.= " AND PR.permiso_red = 2 "; // El estado 2 significa que comparte en la web
     $q = mysqli_query($this->conx,$sql);
     while(($r=mysqli_fetch_object($q))!==NULL) {
       $salida[] = $r->id_empresa_compartida;
@@ -1021,7 +1017,8 @@ class Propiedad_Model {
         $emp_comp = implode(",", $empresas_compartida);
         // O esta compartida con la red
         $sql.= "OR (A.id_empresa IN ($emp_comp) ";
-        $sql.= " AND A.compartida = 1 ) ";
+        $sql.= " AND A.compartida = 1 ";
+        $sql.= " AND A.activo = 1 ) ";
       }
     }
     $sql.= ") ";
