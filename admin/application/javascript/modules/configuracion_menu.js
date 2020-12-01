@@ -402,6 +402,8 @@
       var self = this;
       try {
         this.model.set({
+          "logo":$("#hidden_logo").val(),
+          "path":$("#hidden_path").val(),
           "id_tipo_contribuyente":self.$("#empresas_tipo_contribuyente").val(),
         })
         return true;

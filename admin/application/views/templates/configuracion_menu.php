@@ -303,6 +303,28 @@
           </div>
         </div>
 
+        <div class="form-group">
+          <?php
+          single_upload(array(
+           "name"=>"logo",
+           "label"=>"Encabezado de informes",
+           "url"=>"empresas/function/save_image/",
+           "resizable"=>1,
+           "description"=>"Utilizado en los comprobantes, remitos, presupuestos, etc. Tama&ntilde;o recomendado: 450 x 280 p&iacute;xeles"
+           )); ?>
+        </div>
+        <div class="form-group">
+          <?php
+          single_upload(array(
+           "name"=>"path",
+           "label"=>"Foto de perfil del sistema",
+           "url"=>"empresas/function/save_image/",
+           "width"=>400,
+           "height"=>400,
+           "description"=>"Utilizado como imagen de perfil del sistema. Tama&ntilde;o recomendado: 200 x 200 p&iacute;xeles"
+           )); ?>
+        </div>        
+
         <div class="clearfix">
           <button class="btn fr btn-info guardar"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
         </div>        
