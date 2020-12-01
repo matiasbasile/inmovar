@@ -1961,6 +1961,8 @@
           });
         }                
       //}      
+
+      if (this.model.isNew()) this.model.set({"images":[]});
       
       // Cuando cambian las imagens, renderizamos la tabla
       this.listenTo(this.model, 'change_table', self.render_tabla_fotos);
