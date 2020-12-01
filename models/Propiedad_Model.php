@@ -814,7 +814,7 @@ class Propiedad_Model {
       $p->precio = "Consultar";
     }
 
-    $p->direccion = $this->encod($p->calle. (($p->publica_altura == 1)?" ".$p->altura:"") . (!empty($p->piso) ? " Piso ".$p->piso : "") . (!empty($p->numero) ? " Depto ".$p->numero : ""));
+    $p->direccion = $this->encod($p->calle. (($p->publica_altura == 1)?" ".$p->altura:"") . (!empty($p->piso) ? " Piso ".$p->piso : "") . (!empty($p->numero) ? " Depto. ".$p->numero : ""));
     $p->direccion_completa = $p->direccion.(!empty($p->entre_calles) ? " e/ ".$p->entre_calles.(!empty($p->entre_calles_2) ? " y ".$p->entre_calles_2) : "");
 
     $p->plain_text = (!empty($p->descripcion)) ? $this->encod($p->descripcion) : $this->encod(strip_tags($p->texto,"<a><i><b><br>"));

@@ -134,8 +134,8 @@
               <div class="titulo mt5 mb10"><%= tipo_inmueble %> en <%= tipo_operacion %></div>
 
               <div class="clearfix mb15">
-                <% if (!isEmpty(calle)) { %>
-                  <span><%= calle %> <%= altura %> <%= (!isEmpty(piso)) ? "Piso: "+piso:"" %> <%= (!isEmpty(numero)) ? "Dpto: "+numero:"" %></span> | 
+                <% if (!isEmpty(direccion_completa)) { %>
+                  <span><%= direccion_completa %></span> | 
                 <% } %>
                 <span><%= localidad %></span>
               </div>
