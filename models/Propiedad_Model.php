@@ -902,8 +902,8 @@ class Propiedad_Model {
     //$r = $r=mysqli_fetch_object($q);
     //if ($r->red_inmovar == 0) return $salida;
 
-    $sql = " SELECT PR.id_empresa FROM inm_permisos_red PR ";
-    $sql.= " WHERE PR.id_empresa_compartida = $this->id_empresa ";
+    $sql = " SELECT PR.id_empresa_compartida FROM inm_permisos_red PR ";
+    $sql.= " WHERE PR.id_empresa = $this->id_empresa ";
     $sql.= " AND PR.permiso_red = 2 "; // El estado 2 significa que comparte en la web
     $q = mysqli_query($this->conx,$sql);
     while(($r=mysqli_fetch_object($q))!==NULL) {
