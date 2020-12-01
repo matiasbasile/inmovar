@@ -103,6 +103,7 @@ class Notificacion_Model extends Abstract_Model {
     }
 
     // Buscamos si hay alguna alertas de similitud
+    /*
     $sql = "SELECT * FROM com_log WHERE id_empresa = $id_empresa AND importancia = 'W' AND leida = 0 ";
     $sql.= "ORDER BY fecha DESC ";
     $q = $this->db->query($sql);
@@ -113,6 +114,7 @@ class Notificacion_Model extends Abstract_Model {
       $r->visto = $r->leida;
       $lista[] = $r;
     }
+    */
 
     // Buscamos si hay alguna notificacion normal
     $sql = "SELECT * FROM com_log WHERE id_empresa = $id_empresa AND importancia = 'N' AND leida = 0 ";
