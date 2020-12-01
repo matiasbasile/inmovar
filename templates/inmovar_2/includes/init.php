@@ -60,5 +60,9 @@ function ver_caracteristicas($p) { ?>
       </a>
     </h3>
   <?php } ?>
-  <h4><?php echo (isset($p->codigo_completo) && !empty($p->codigo_completo)) ? $p->codigo_completo : $p->codigo ?></h4>
+  <h4 class="property-address">
+    <a href="<?php echo mklink($p->link) ?>">
+      Código: <?php echo (isset($p->codigo_completo) && !empty($p->codigo_completo)) ? $p->codigo_completo : $p->codigo ?>
+    </a>
+  </h4>
 <?php } ?>
