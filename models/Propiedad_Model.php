@@ -1018,6 +1018,7 @@ class Propiedad_Model {
         // O esta compartida con la red
         $sql.= "OR (A.id_empresa IN ($emp_comp) ";
         $sql.= " AND A.compartida = 1 ";
+        $sql.= " AND A.id_tipo_estado NOT IN (2,3,4,6) ";
         $sql.= " AND A.activo = 1 ) ";
       }
     }

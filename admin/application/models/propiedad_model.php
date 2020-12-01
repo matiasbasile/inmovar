@@ -515,6 +515,7 @@ class Propiedad_Model extends Abstract_Model {
     // Bloque de SQL que identifica que estamos buscando en la red
     $sql_red = "AND A.compartida = 1 "; // En primer lugar tiene que estar compartida
     $sql_red.= "AND A.activo = 1 "; // SIEMPRE BUSCA LAS ACTIVAS
+    $sql_red.= "AND A.id_tipo_estado NOT IN (2,3,4,6) "; // Tampoco tiene sentido buscar las vendidas o alquiladas
     $sql_red.= "AND A.id_empresa IN (";
     $sql_red.= " SELECT PR.id_empresa FROM inm_permisos_red PR ";
     $sql_red.= " WHERE PR.id_empresa_compartida = $id_empresa ";
