@@ -143,7 +143,7 @@ extract($propiedad_model->get_variables(array(
 												<a href="<?php echo mklink ($p->link) ?>">
 													<h5 class="title"><?php echo $p->nombre ?></h5>
 												</a>
-												<?php if (!empty($p->calle)) {  ?><div class="address"><?php echo $p->calle." ".$p->altura.". ".$p->localidad?></div><?php } ?>
+												<?php if (!empty($p->direccion_completa)) {  ?><div class="address"><?php echo $p->direccion_completa.". ".$p->localidad?></div><?php } ?>
 												<?php if (!empty($p->superficie_total)) {  ?><div class="property-data"><i class="fa fa-home"></i> <?php echo $p->superficie_total ?>m2 Sup. Total.</div><?php } ?>
 											</div>
 										</div>	
@@ -273,7 +273,7 @@ foreach($vc_listado as $p) {
 		'<div class="tab_list_box_content">'+
 		'<h6 class="title-map"><a href=\"<?php echo mklink($p->link) ?>\"><?php echo ($p->nombre) ?></a></h6>'+
 		'<p>'+
-		'<?php echo $p->calle." ".$p->altura." ".$p->localidad ?>' +
+		'<?php echo $p->direccion_completa.". ".$p->localidad ?>' +
 		'</p>'+
 		'</div>'+
 		'</div>'+

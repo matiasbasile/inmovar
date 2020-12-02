@@ -275,7 +275,7 @@ if (sizeof($slides)>0) { ?>
                       <div class="tab_list_box_content">
                         <h6><a href="<?php echo mklink($l->link) ?>"><?php echo $l->nombre ?></a></h6>
                         <p>
-                          <img src="images/locate_icon.png" alt="locate_icon"> <?php echo $l->calle." ".$l->entre_calles ?>
+                          <img src="images/locate_icon.png" alt="locate_icon"> <?php echo $l->direccion_completa ?>
                           <br/><span class="color_span"><?php echo $l->localidad ?></span>
                         </p>
                         <h6 class="price_dollar"><?php echo $l->precio ?></h6>
@@ -344,7 +344,7 @@ if (sizeof($slides)>0) { ?>
                         <h6><a href="<?php echo mklink($l->link) ?>"><?php echo $l->nombre ?></a></h6>
                         <?php if(!empty($l->localidad)) {  ?>
                           <p>
-                            <img src="images/locate_icon.png" alt="locate_icon"> <?php echo $l->calle." ".$l->entre_calles ?>
+                            <img src="images/locate_icon.png" alt="locate_icon"> <?php echo $l->direccion_completa ?>
                             <br/><span class="color_span"><?php echo $l->localidad ?></span>
                           </p>
                         <?php } ?>
@@ -413,7 +413,7 @@ if (sizeof($slides)>0) { ?>
                         <div class="tab_list_box_content">
                           <h6><a href="<?php echo mklink($l->link) ?>"><?php echo $l->nombre ?></a></h6>
                           <p>
-                            <img src="images/locate_icon.png" alt="locate_icon"><?php echo $l->calle." ".$l->entre_calles ?>
+                            <img src="images/locate_icon.png" alt="locate_icon"><?php echo $l->direccion_completa ?>
                             <br/><span class="color_span"><?php echo $l->localidad ?></span>
                           </p>
                           <h6 class="price_dollar">$<?php echo $l->precio ?></h6>

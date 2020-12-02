@@ -39,7 +39,7 @@
                       <a href="<?php echo $r->link_propiedad ?>">
                         <h4><?php echo $r->nombre ?></h4>
                       </a>
-                      <figure><?php echo ($r->calle.(($empresa->mostrar_numeros_direccion_listado)?" N&deg; ".$r->altura:"")); ?></figure>
+                      <figure><?php echo $r->direccion_completa ?></figure>
                       <div class="tag price"><?php echo ($r->precio_final != 0 && $r->publica_precio == 1) ? $r->moneda." ".number_format($r->precio_final,0) : "Consultar"; ?></div>
                     </div>
                   </div>

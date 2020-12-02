@@ -36,9 +36,7 @@ if (!isset($_COOKIE[$propiedad->id])) {
 $propiedad_model->add_visit($propiedad->id,$cookie_id_cliente);
 setcookie($propiedad->id,"1",time()+60*60*24*30,"/");
 }
-$direccion = ($propiedad->calle.(($empresa->mostrar_numeros_direccion_listado)?" N&deg; ".$propiedad->altura:" ".$propiedad->entre_calles));
 if (!empty($propiedad->imagen)) $propiedad->images = array_merge(array($propiedad->imagen),$propiedad->images);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,7 +63,7 @@ if (!empty($propiedad->imagen)) $propiedad->images = array_merge(array($propieda
             <div class="property-title">
               <h4><?php echo $propiedad->nombre ?></h4>
               <div class="property-price-single right"><?php echo $propiedad->precio ?><!-- <span>Per Month</span> --></div>
-              <p class="property-address">Código: <?php echo $propiedad->codigo ?><br><i class="fa fa-map-marker icon"></i><?php echo $propiedad->calle." ".$propiedad->altura." - ".$propiedad->localidad?></p>
+              <p class="property-address">Código: <?php echo $propiedad->codigo ?><br><i class="fa fa-map-marker icon"></i><?php echo $propiedad->direccion_completa." - ".$propiedad->localidad?></p>
               <div class="clear"></div>
             </div>
             <div class="property-single-tags">

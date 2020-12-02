@@ -87,7 +87,7 @@ if (sizeof($ultimas)>0) { ?>
                         <?php } ?>
                       </div>
                     <?php } ?>
-                    <div class="property-address"><?php echo ($r->calle); ?></div>
+                    <div class="property-address"><?php echo ($r->direccion_completa); ?></div>
                     <?php if (!empty($r->descripcion)) { ?>
                       <p><?php echo ((strlen($r->descripcion)>50) ? substr($r->descripcion,0,50)."..." : $r->descripcion); ?></p>
                     <?php } else {
@@ -191,7 +191,7 @@ if (sizeof($destacadas)>0) { ?>
                       <p class="property-subtitle"><?php echo $r->subtitulo ?></p>
                     <?php } ?>
                     <div class="property-address">
-                      <?php echo ($r->calle." ".$r->localidad); ?>
+                      <?php echo ($r->direccion_completa." | ".$r->localidad); ?>
                     </div>
                     <?php if (!empty($r->descripcion)) { ?>
                       <p><?php echo ((strlen($r->descripcion)>80) ? substr($r->descripcion,0,80)."..." : $r->descripcion); ?></p>
@@ -416,7 +416,7 @@ if (!empty($obras_destacadas) || !empty($obras_normales)) { ?>
                     <?php echo ($r->precio == 0)?"Consultar":$r->precio ?>
                   </div>                
                   <div class="property-title"><a href="<?php echo $r->link_propiedad ?>"><?php echo ($r->nombre); ?></a></div>
-                  <div class="property-address"><?php echo ($r->calle); ?></div>
+                  <div class="property-address"><?php echo ($r->direccion_completa); ?></div>
                   <?php if (!empty($r->descripcion)) { ?>
                     <p><?php echo ((strlen($r->descripcion)>80) ? (substr($r->descripcion,0,80))."..." : ($r->descripcion)); ?></p>
                   <?php } else {
@@ -462,7 +462,7 @@ if (!empty($obras_destacadas) || !empty($obras_normales)) { ?>
                         </div>
                         <div class="info-inner">
                           <div class="property-title"><a href="<?php echo $r->link_propiedad ?>"><?php echo ($r->nombre); ?></a></div>
-                          <div class="property-address"><?php echo ($r->calle); ?></div>
+                          <div class="property-address"><?php echo ($r->direccion_completa); ?></div>
                           <?php if (!empty($r->descripcion)) { ?>
                             <p><?php echo ((strlen($r->descripcion)>80) ? substr($r->descripcion,0,80)."..." : $r->descripcion); ?></p>
                           <?php } else {

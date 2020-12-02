@@ -69,9 +69,9 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no
             <h1 class="h3"><?php echo $propiedad->nombre ?></h1>
             <div class="oh pt5">
               <div class="pull-left">
-                <?php if (!empty($propiedad->calle) || !empty($propiedad->localidad)) { ?>
+                <?php if (!empty($propiedad->direccion_completa) || !empty($propiedad->localidad)) { ?>
                   <p>
-                    <i class="fa fa-map-marker"></i><?php echo ((!empty($propiedad->calle)) ? $propiedad->calle." ".$propiedad->altura.", " : "").(!empty($propiedad->localidad) ? " ".$propiedad->localidad : "")?>
+                    <i class="fa fa-map-marker"></i><?php echo ((!empty($propiedad->direccion_completa)) ? $propiedad->direccion_completa.", " : "").(!empty($propiedad->localidad) ? " ".$propiedad->localidad : "")?>
                   </p>
                 <?php } ?>
               </div>
@@ -352,7 +352,7 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no
                 </div>
                 <div class="heading-properties mb20">
                   <p>
-                    <i class="fa fa-map-marker"></i><?php echo $propiedad->calle." ".$propiedad->altura.", ".$propiedad->localidad?>
+                    <i class="fa fa-map-marker"></i><?php echo $propiedad->direccion_completa.", ".$propiedad->localidad?>
                   </p>
                 </div>
                 <div id="googleMap" style="width:100%;height:320px;"></div>

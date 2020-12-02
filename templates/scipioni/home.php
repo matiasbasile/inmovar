@@ -122,7 +122,7 @@ $titulo_pagina = "Inicio";
                     </h3>
                     <h4 class="property-address">
                       <a href="<?php echo mklink ("/") ?>">
-                        <i class="fa fa-map-marker"></i><?php echo $p->calle." ".$p->altura ?>, <?php echo $p->localidad ?>
+                        <i class="fa fa-map-marker"></i><?php echo $p->direccion_completa ?>, <?php echo $p->localidad ?>
                       </a>
                     </h4>
                     <div class="precio_final">
@@ -254,7 +254,7 @@ $titulo_pagina = "Inicio";
                           </h3>
                           <h4 class="property-address">
                             <a href="<?php echo $p->link_propiedad ?>">
-                              <i class="fa fa-map-marker"></i><?php echo $p->calle." ".$p->altura ?>, <?php echo $p->localidad ?>
+                              <i class="fa fa-map-marker"></i><?php echo $p->direccion_completa ?>, <?php echo $p->localidad ?>
                             </a>
                           </h4>
                           <div class="precio_final">

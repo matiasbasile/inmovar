@@ -146,7 +146,7 @@ $list_view = ($vc_apto_banco == 1);
                               <div class="tab_list_box_content">
                                 <h6><a href="<?php echo mklink($l->link) ?>"><?php echo $l->nombre ?></a></h6>
                                 <p>
-                                  <img src="images/locate_icon.png" alt="locate_icon"> <?php echo $l->calle." ".$l->entre_calles ?>
+                                  <img src="images/locate_icon.png" alt="locate_icon"> <?php echo $l->direccion_completa ?>
                                   <br/><span class="color_span"><?php echo $l->localidad ?></span>
                                 </p>
                                 <div class="cod_apto">
@@ -229,7 +229,7 @@ $list_view = ($vc_apto_banco == 1);
                             <h3><a href="<?php echo mklink($l->link) ?>"><?php echo $l->nombre ?></a></h3>
                             <div class="address_detail1">
                               <p>
-                                <img src="images/locate_icon.png" alt="locate_icon"> <?php echo $l->calle." ".$l->entre_calles ?>
+                                <img src="images/locate_icon.png" alt="locate_icon"> <?php echo $l->direccion_completa ?>
                                 <br/><span class="color_span"> <?php echo $l->localidad ?> </span>
                               </p>
                               <h4 class="dollar_rs"> <?php echo $l->precio ?></h4>

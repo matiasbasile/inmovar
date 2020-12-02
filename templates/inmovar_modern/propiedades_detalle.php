@@ -66,7 +66,7 @@
 					<div class="row big-title">
 						<div class="nombre pull-left">
 							<h2><?php echo $propiedad->nombre ?></h2>
-							<h5><?php echo $propiedad->calle." ".$propiedad->altura.", ".$propiedad->localidad ?></h5>
+							<h5><?php echo $propiedad->direccion_completa.", ".$propiedad->localidad ?></h5>
 						</div>
 						<div class="pull-right-reserve">
 							<span class="labeled"><?php echo $propiedad->tipo_estado ?></span>
@@ -281,7 +281,7 @@
 										<a href="<?php echo mklink ($p->link) ?>">
 											<h5 class="title"><?php echo $p->nombre ?></h5>
 										</a>
-										<?php if (!empty($p->calle)) {  ?><div class="address"><?php echo $p->calle." ".$p->altura.". ".$p->localidad?></div><?php } ?>
+										<?php if (!empty($p->direccion_completa)) {  ?><div class="address"><?php echo $p->direccion_completa.". ".$p->localidad?></div><?php } ?>
 										<?php if (!empty($p->superficie_total)) {  ?><div class="property-data"><i class="fa fa-home"></i> <?php echo $p->superficie_total ?>m2 Sup. Total.</div><?php } ?>
 									</div>
 								</div>

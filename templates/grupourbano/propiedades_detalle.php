@@ -135,7 +135,7 @@ else $vc_moneda = "$";
           <div class="border-box">
             <div class="box-space" style="border-bottom:1px solid #e6e6e6; padding-bottom: 15px; margin-bottom: 15px">
               <div class="property-location">
-                <div class="pull-left"><?php echo ($propiedad->calle." | ".$propiedad->localidad); ?></div>
+                <div class="pull-left"><?php echo ($propiedad->direccion_completa." | ".$propiedad->localidad); ?></div>
                 <div class="pull-right">
                   <?php if (!empty($propiedad->codigo)) { ?>
                     <small>Cod: <span><?php echo ($propiedad->codigo); ?></span></small>
@@ -249,7 +249,7 @@ else $vc_moneda = "$";
                     <div class="ribbon"><?php echo ($r->tipo_operacion) ?></div>
                   </div>
                   <div class="property-detail">
-                    <div class="property-name"><?php echo ($r->calle) ?></div>
+                    <div class="property-name"><?php echo ($r->direccion_completa) ?></div>
                     <div class="property-location">
                       <div class="pull-left"><?php echo ($r->localidad) ?></div>
                       <?php if (!empty($r->codigo)) { ?>

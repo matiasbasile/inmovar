@@ -66,7 +66,7 @@ if (sizeof($slider)>0) { ?>
                   <h4><?php echo $p->nombre;?></h4>
                   <aside>
                     <i class="fa fa-map-marker mr-2"></i>
-                      <?php echo ($p->calle." ".$p->altura) ?>
+                      <?php echo ($p->direccion_completa) ?>
                   </aside>
                 </figure>
               </a>
@@ -224,7 +224,7 @@ if (sizeof($slider)>0) { ?>
                     <h4><?php echo $p->nombre;?></h4>
                     <aside>
                       <i class="fa fa-map-marker mr-2"></i>
-                      <?php echo ($p->calle." ".$p->altura) ?>
+                      <?php echo ($p->direccion_completa) ?>
                     </aside>
                   </figure>
                 </a>

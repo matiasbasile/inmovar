@@ -103,7 +103,7 @@ $(document).ready(function(){
             '<h6><a href=\"<?php echo mklink($p->link) ?>\"><?php echo ($p->nombre) ?></a></h6>'+
             '<p>'+
               '<img src="images/locate_icon.png" alt="locate_icon">'+
-              '<?php echo $p->calle." ".$p->entre_calles ?>'+
+              '<?php echo $p->direccion_completa ?>'+
               '<br><span class="color_span"><?php echo $p->localidad ?></span>'+
             '</p>'+
             '<h6 class="price_dollar"><?php echo $p->precio ?></h6>'+

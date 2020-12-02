@@ -59,7 +59,7 @@ else $vc_moneda = "$";
           <h1><?php echo $propiedad->nombre;?></h1>
           <h5 class="ts-opacity__90">
             <i class="fa fa-map-marker text-primary"></i>
-              <?php echo ($propiedad->calle." ".$propiedad->altura) ?><?php echo (!empty($propiedad->localidad))?". ".$propiedad->localidad:"" ?>
+              <?php echo ($propiedad->direccion_completa) ?><?php echo (!empty($propiedad->localidad))?". ".$propiedad->localidad:"" ?>
           </h5>
         </div>
 
@@ -98,7 +98,7 @@ else $vc_moneda = "$";
                  data-ts-map-controls="0"></div>
               <div class="p-3 ts-text-color-light">
                 <i class="fa fa-map-marker mr-2"></i>
-                  <?php echo ($propiedad->calle." ".$propiedad->altura) ?><?php echo (!empty($propiedad->localidad))?". ".$propiedad->localidad:"" ?>
+                  <?php echo ($propiedad->direccion_completa) ?><?php echo (!empty($propiedad->localidad))?". ".$propiedad->localidad:"" ?>
               </div>
             </div>
 
@@ -254,7 +254,7 @@ else $vc_moneda = "$";
                   <h4><?php echo $p->nombre;?></h4>
                   <aside>
                     <i class="fa fa-map-marker mr-2"></i>
-                  <?php echo ($p->calle." ".$p->altura) ?><?php echo (!empty($p->localidad))?". ".$p->localidad:"" ?>
+                  <?php echo ($p->direccion_completa) ?><?php echo (!empty($p->localidad))?". ".$p->localidad:"" ?>
                   </aside>
                 </figure>
               </a>

@@ -245,7 +245,7 @@ $page_active = $vc_link_tipo_operacion;
                             </h3>
                             <h4 class="property-address">
                               <a href="<?php echo mklink ("/") ?>">
-                                <i class="fa fa-map-marker"></i><?php echo $p->calle." ".$p->altura ?>, <?php echo $p->localidad ?>
+                                <i class="fa fa-map-marker"></i><?php echo $p->direccion_completa ?>, <?php echo $p->localidad ?>
                               </a>
                             </h4>
                             <div class="precio_final">

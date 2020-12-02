@@ -147,7 +147,7 @@ $titulo_pagina = "Inicio";
                       <!-- Property address -->
                       <h3 class="property-address">
                         <a href="<?php echo mklink ("/") ?>">
-                          <i class="fa fa-map-marker"></i><?php echo $p->calle." ".$p->altura ?>, <?php echo $p->localidad ?>
+                          <i class="fa fa-map-marker"></i><?php echo $p->direccion_completa ?>, <?php echo $p->localidad ?>
                         </a>
                       </h3>
                       <?php echo ver_caracteristicas($p); ?>
@@ -259,7 +259,7 @@ $titulo_pagina = "Inicio";
                           <!-- Property address -->
                           <h3 class="property-address">
                             <a href="<?php echo $p->link_propiedad ?>">
-                              <i class="fa fa-map-marker"></i><?php echo $p->calle." ".$p->altura ?>, <?php echo $p->localidad ?>
+                              <i class="fa fa-map-marker"></i><?php echo $p->direccion_completa ?>, <?php echo $p->localidad ?>
                             </a>
                           </h3>
                           <?php echo ver_caracteristicas($p); ?>

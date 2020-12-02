@@ -62,7 +62,7 @@ $(document).ready(function(){
           '<div class="list-view-detail" style="width: 200px; float:none; vertical-align:top; display:table-cell">'+
             '<div class="featured-detail">'+
               '<h5><a href=\"<?php echo $p->link_propiedad ?>\"><?php echo ($p->nombre) ?></a></h5>'+
-              '<p><img width="10" alt="44" src="/templates/yacoub/images/location.png"> <?php echo $p->calle ?> <a href="<?php echo $p->link_propiedad ?>"><?php echo $p->localidad ?></a></p>'+
+              '<p><img width="10" alt="44" src="/templates/yacoub/images/location.png"> <?php echo $p->direccion_completa ?> <a href="<?php echo $p->link_propiedad ?>"><?php echo $p->localidad ?></a></p>'+
             '</div>'+
           '</div>'+
         '</div>'+

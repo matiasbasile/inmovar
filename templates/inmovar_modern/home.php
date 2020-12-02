@@ -108,7 +108,7 @@
 														</a>
 														<span class="price"><?php echo ($p->precio_final != 0)?$p->precio:"Consultar"?></span>
 														<span class="label"><?php echo $p->tipo_operacion ?></span>
-														<span class="id"><?php echo $p->tipo_inmueble ?><br><?php echo $p->calle." ".$p->altura." ".$p->localidad?></span>
+														<span class="id"><?php echo $p->tipo_inmueble ?><br><?php echo $p->direccion_completa." ".$p->localidad?></span>
 													</div>
 												</div>	
 											</div>
@@ -129,7 +129,7 @@
 														</a>
 														<span class="price"><?php echo ($p->precio_final != 0)?$p->precio:"Consultar"?></span>
 														<span class="label"><?php echo $p->tipo_operacion ?></span>
-														<span class="id"><?php echo $p->tipo_inmueble ?><br><?php echo $p->calle." ".$p->altura." ".$p->localidad?></span>
+														<span class="id"><?php echo $p->tipo_inmueble ?><br><?php echo $p->direccion_completa." ".$p->localidad?></span>
 													</div>
 												</div>	
 											</div>
@@ -225,7 +225,7 @@
 									<a href="<?php echo mklink ($p->link) ?>">
 										<h5 class="title"><?php echo $p->nombre ?></h5>
 									</a>
-									<?php if (!empty($p->calle)) {  ?><div class="address"><?php echo $p->calle." ".$p->altura.". ".$p->localidad?></div><?php } ?>
+									<?php if (!empty($p->direccion_completa)) {  ?><div class="address"><?php echo $p->direccion_completa.". ".$p->localidad?></div><?php } ?>
 									<?php if (!empty($p->superficie_total)) {  ?><div class="property-data"><i class="fa fa-home"></i> <?php echo $p->superficie_total ?>m2 Sup. Total.</div><?php } ?>
 								</div>
 							</div>

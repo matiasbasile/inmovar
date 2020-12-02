@@ -137,7 +137,7 @@ $(document).ready(function(){
           '<div class="tab_list_box_content">'+
             '<h6><a href=\"<?php echo $p->link_propiedad ?>\"><?php echo ($p->nombre) ?></a></h6>'+
             '<p>'+
-              '<?php echo $p->calle." ".$p->entre_calles ?>'+
+              '<?php echo $p->direccion_completa ?>'+
               '<br><span class="color_span"><?php echo $p->localidad ?></span>'+
             '</p>'+
             '<h6 class="price_dollar"><?php echo $p->precio ?></h6>'+

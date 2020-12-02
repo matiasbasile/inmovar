@@ -33,7 +33,6 @@ if (!isset($_COOKIE[$propiedad->id])) {
   $propiedad_model->add_visit($propiedad->id,$cookie_id_cliente);
   setcookie($propiedad->id,"1",time()+60*60*24*30,"/");
 }
-$direccion = ($propiedad->calle.(($empresa->mostrar_numeros_direccion_listado)?" N&deg; ".$propiedad->altura:" ".$propiedad->entre_calles));
 if (!empty($propiedad->imagen)) $propiedad->images = array_merge(array($propiedad->imagen),$propiedad->images);
 ?>
 <!doctype html>
@@ -43,7 +42,7 @@ if (!empty($propiedad->imagen)) $propiedad->images = array_merge(array($propieda
 <meta property="og:url" content="<?php echo current_url(); ?>" />
 <meta property="og:type" content="article" />
 <meta property="og:title" content="<?php echo $propiedad->nombre; ?>" />
-<meta property="og:description" content="<?php echo $direccion; ?>" />
+<meta property="og:description" content="<?php echo $propiedad->direccion_completa; ?>" />
 <meta property="og:image" content="<?php echo $propiedad->imagen ?>"/>
 <style type="text/css">
 iframe { width: 100% !important }
@@ -83,7 +82,7 @@ iframe { width: 100% !important }
                   </div>
                 </div>
                 <div class="address_details">
-                  <p><img src="images/locate_icon.png" alt="locate"> <?php echo $direccion ?> | <span class="color_span"> <?php echo $propiedad->localidad ?></span></p>
+                  <p><img src="images/locate_icon.png" alt="locate"> <?php echo $propiedad->direccion_completa ?> | <span class="color_span"> <?php echo $propiedad->localidad ?></span></p>
                 </div>
                 <div class="border_btm">
                   <div class="row tab_list_bx">
@@ -256,7 +255,7 @@ iframe { width: 100% !important }
                         </div>
                         <div class="col-lg-9 cara_ul">
                           <ul>
-                            <li><?php echo $propiedad->calle." ".$propiedad->entre_calles ?></li>
+                            <li><?php echo $propiedad->direccion_completa ?></li>
                           </ul>
                         </div>
                       </div>
@@ -356,7 +355,7 @@ iframe { width: 100% !important }
                         <div class="tab_list_box_content">
                           <h6><a href="<?php echo mklink($l->link) ?>"><?php echo $l->nombre ?></a></h6>
                           <p>
-                            <img src="images/locate_icon.png" alt="locate_icon"> <?php echo $l->calle." ".$l->entre_calles ?>
+                            <img src="images/locate_icon.png" alt="locate_icon"> <?php echo $l->direccion_completa ?>
                             <br/><span class="color_span"><?php echo $l->localidad ?></span>
                           </p>
                           <div class="cod_apto">

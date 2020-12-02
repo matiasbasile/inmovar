@@ -53,10 +53,10 @@ function ver_caracteristicas($p) { ?>
 <?php } ?>
 
 <?php function ver_direccion($p) { ?>
-  <?php if (!empty($p->calle) || !empty($p->localidad)) { ?>
+  <?php if (!empty($p->direccion_completa) || !empty($p->localidad)) { ?>
     <h3 class="property-address">
       <a href="<?php echo mklink($p->link) ?>">
-        <i class="fa fa-map-marker"></i><?php echo ((!empty($p->calle)) ? $p->calle." ".$p->altura.", " : "")." ".$p->localidad ?>
+        <i class="fa fa-map-marker"></i><?php echo ((!empty($p->direccion_completa)) ? $p->direccion_completa.", " : "")." ".$p->localidad ?>
       </a>
     </h3>
   <?php } ?>

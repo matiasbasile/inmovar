@@ -56,7 +56,7 @@ $page_act = $vc_link_tipo_operacion;?>
                       <h4><?php echo $r->nombre; ?></h4>
                       <aside>
                         <i class="fa fa-map-marker mr-2"></i>
-                        <?php echo ($r->calle." ".$r->altura) ?>
+                        <?php echo ($r->direccion_completa) ?>
                       </aside>
                     </figure>
                   </a>

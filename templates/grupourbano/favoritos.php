@@ -55,7 +55,7 @@ if ($maximo == "undefined" || empty($maximo)) $maximo = $precio_maximo;
                   <div class="property-detail">
                     <div class="property-name"><a href="/<?php echo $r->link ?>"><?php echo ($r->nombre); ?></a></div>
                     <div class="property-location">
-                      <div class="pull-left"><?php echo ($r->calle); ?>&nbsp;&nbsp;|&nbsp;&nbsp;<?php echo ($r->localidad); ?></div>
+                      <div class="pull-left"><?php echo ($r->direccion_completa); ?>&nbsp;&nbsp;|&nbsp;&nbsp;<?php echo ($r->localidad); ?></div>
                       <?php if (!empty($r->codigo)) { ?>
                         <div class="pull-right">Cod: <span><?php echo $r->codigo ?></span></div>
                       <?php } ?>

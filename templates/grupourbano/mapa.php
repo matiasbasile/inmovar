@@ -71,7 +71,7 @@ mymap.fitBounds([
         '<div style="padding: 0px;">'+
             <?php if(!empty($p->link)) { ?>'<a href=\"/<?php echo $p->link ?>\">'+<?php } ?>
             '<h4 style="font-size:20px;margin:5px 0px"><?php echo ($p->nombre) ?></h4>'+
-            '<p style="font-size:16px;color:#222;margin:0px;"><?php echo ($p->calle." | ".$p->localidad) ?></p>'+
+            '<p style="font-size:16px;color:#222;margin:0px;"><?php echo ($p->direccion_completa." | ".$p->localidad) ?></p>'+
             <?php if(!empty($p->link)) { ?>'</a>'+<?php } ?>
             <?php if(!empty($p->link)) { ?>'<a href=\"/<?php echo $p->link ?>\">'+<?php } ?>
             '<img width=\"200\" src=\"/admin/<?php echo $p->path ?>\"/>'+

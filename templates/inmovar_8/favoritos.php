@@ -80,7 +80,7 @@ if ($maximo == "undefined" || empty($maximo)) $maximo = $precio_maximo;
                           <div class="tab_list_box_content">
                             <h6><a href="<?php echo mklink($l->link) ?>"><?php echo $l->nombre ?></a></h6>
                             <p>
-                              <img src="images/locate_icon.png" alt="locate_icon"> <?php echo $l->calle." ".$l->altura ?>
+                              <img src="images/locate_icon.png" alt="locate_icon"> <?php echo $l->direccion_completa ?>
                               <br/><span class="color_span"><?php echo $l->localidad ?></span>
                             </p>
                             <div class="cod_apto">
