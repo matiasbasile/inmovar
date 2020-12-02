@@ -12,6 +12,27 @@ class Propiedades extends REST_Controller {
     $this->load->model('Propiedad_Model', 'modelo');
   }
 
+  function arreglar_calle() {
+    $sql = "select * from inm_propiedades where calle like '%entre%'";
+    $q = $this->db->query($sql);
+    foreach($q->result() as $r) {
+      
+      $calle = substr($r->calle, 0, strpos($r->calle, "entre")-1);
+      $entre_calles = substr($r->calle, strpos($r->calle, "entre"));
+      $entre_calles = substr($entre_calles,0, strpos($entre_calles, " y ")-1);
+      $entre_calles_2 = substr($r->calle, strpos($r->calle, " y "));
+      $calle = trim($calle);
+      $entre_calles = trim($entre_calles);
+      $entre_calles_2 = trim($entre_calles_2);
+
+      $sql = "UPDATE inm_propiedades SET entre_calles = '$entre_calles', entre_calles_2 = '$entre_calles_2', calle = '$calle' ";
+      $sql.= "WHERE id_empresa = $r->id_empresa AND id = $r->id ";
+      echo $sql."<br/>";
+      exit();
+      //$this->db->query($sql);
+    }
+  }
+
   function arreglar_nombres() {
     $sql = "SELECT * FROM inm_propiedades ";
     $q = $this->db->query($sql);
