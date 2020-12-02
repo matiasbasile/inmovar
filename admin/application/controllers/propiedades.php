@@ -25,19 +25,16 @@ class Propiedades extends REST_Controller {
       $entre_calles = trim($entre_calles);
       $entre_calles_2 = trim($entre_calles_2);
 
+      /*
       echo $r->calle."<br/>";
       echo $calle."<br/>";
       echo $entre_calles."<br/>";
       echo $entre_calles_2."<br/>";
       echo "<br/>";
-      /*
-      exit();
+      */
       $sql = "UPDATE inm_propiedades SET entre_calles = '$entre_calles', entre_calles_2 = '$entre_calles_2', calle = '$calle' ";
       $sql.= "WHERE id_empresa = $r->id_empresa AND id = $r->id ";
-      echo $sql."<br/>";
-      exit();
-      //$this->db->query($sql);
-      */
+      $this->db->query($sql);
     }
   }
 
