@@ -13,10 +13,15 @@ class Propiedades extends REST_Controller {
   }
 
   function arreglar_calle() {
-    $sql = "select * from inm_propiedades where calle like '%entre%'";
+    $sql = "select * from inm_propiedades where calle like '% y %'";
     $q = $this->db->query($sql);
     foreach($q->result() as $r) {
+
+      $e = explode(" y ", $r->entre_calles);
+      $entre_calles = trim($e[0]);
+      $entre_calles_2 = trim($e[1]);
       
+      /*
       $calle = substr($r->calle, 0, strpos($r->calle, "entre"));
       $entre_calles = substr($r->calle, strpos($r->calle, "entre")+5);
       $entre_calles = substr($entre_calles,0, strpos($entre_calles, " y "));
@@ -24,17 +29,16 @@ class Propiedades extends REST_Controller {
       $calle = trim($calle);
       $entre_calles = trim($entre_calles);
       $entre_calles_2 = trim($entre_calles_2);
-
-      /*
-      echo $r->calle."<br/>";
-      echo $calle."<br/>";
+      */
+      echo $r->entre_calles."<br/>";
       echo $entre_calles."<br/>";
       echo $entre_calles_2."<br/>";
       echo "<br/>";
-      */
-      $sql = "UPDATE inm_propiedades SET entre_calles = '$entre_calles', entre_calles_2 = '$entre_calles_2', calle = '$calle' ";
+      /*
+      $sql = "UPDATE inm_propiedades SET entre_calles = '$entre_calles', entre_calles_2 = '$entre_calles_2' ";
       $sql.= "WHERE id_empresa = $r->id_empresa AND id = $r->id ";
       $this->db->query($sql);
+      */
     }
   }
 
