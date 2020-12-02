@@ -13,11 +13,11 @@ class Propiedades extends REST_Controller {
   }
 
   function arreglar_calle() {
-    $sql = "select * from inm_propiedades where calle like '% y %'";
+    $sql = "select * from inm_propiedades where calle like '%y%'";
     $q = $this->db->query($sql);
     foreach($q->result() as $r) {
 
-      $e = explode(" y ", $r->entre_calles);
+      $e = explode("y", $r->entre_calles);
       $entre_calles = trim($e[0]);
       $entre_calles_2 = trim($e[1]);
       
