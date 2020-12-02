@@ -814,7 +814,7 @@ class Propiedad_Model {
       $p->precio = "Consultar";
     }
 
-    $p->direccion_completa = (!empty($p->entre_calles) ? " e/ ".$p->entre_calles.(!empty($p->entre_calles_2) ? " y ".$p->entre_calles_2 : "") : "");
+    $p->direccion_completa = $p->calle.(!empty($p->entre_calles) ? " e/ ".$p->entre_calles.(!empty($p->entre_calles_2) ? " y ".$p->entre_calles_2 : "") : "");
     $p->direccion_completa.= (($p->publica_altura == 1)?" N° ".$p->altura:"") . (!empty($p->piso) ? " Piso ".$p->piso : "") . (!empty($p->numero) ? " Depto. ".$p->numero : "");
     $p->direccion_completa = $this->encod($p->direccion_completa);
 
