@@ -193,7 +193,7 @@ $slider = $web_model->get_slider(array(
                           <div class="info">
                             <div class="tag price"><?php echo ($r->precio_final != 0 && $r->publica_precio == 1) ? $r->moneda." ".number_format($r->precio_final,0) : "Consultar"; ?></div>
                             <h3><?php echo $r->nombre ?></h3>
-                            <figure><?php echo ($r->calle.(($empresa->mostrar_numeros_direccion_listado)?" N&deg; ".$r->altura:"")).", ".$r->localidad; ?></figure>
+                            <figure><?php echo $r->direccion_completa.", ".$r->localidad; ?></figure>
                           </div>
                           <ul class="additional-info">
                             <?php if (!empty($r->superficie_total)) { ?>
@@ -265,7 +265,7 @@ $slider = $web_model->get_slider(array(
                         <div class="info">
                           <div class="tag price"><?php echo ($r->precio_final != 0 && $r->publica_precio == 1) ? $r->moneda." ".number_format($r->precio_final,0) : "Consultar"; ?></div>
                           <h3><?php echo $r->nombre ?></h3>
-                          <figure><?php echo ($r->calle.(($empresa->mostrar_numeros_direccion_listado)?" N&deg; ".$r->altura:"")).", ".$r->localidad; ?></figure>
+                          <figure><?php echo $r->direccion_completa.", ".$r->localidad; ?></figure>
                         </div>
                         <ul class="additional-info">
                           <?php if (!empty($r->superficie_total)) { ?>

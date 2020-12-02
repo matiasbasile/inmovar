@@ -47,8 +47,6 @@ $cookie_id_cliente = (isset($_COOKIE['idc'])) ? $_COOKIE['idc'] : 0;
 // Seteamos la cookie para indicar que el cliente ya entro a esta propiedad
 $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
 
-$direccion = ($propiedad->calle.(($empresa->mostrar_numeros_direccion_listado)?" N&deg; ".$propiedad->altura:""));
-
 if (sizeof($propiedad->images)==0 && !empty($propiedad->imagen)) $propiedad->images = array_merge(array($propiedad->imagen),$propiedad->images);
 $nombre_pagina = $propiedad->tipo_operacion_link;
 
@@ -96,7 +94,7 @@ else $vc_moneda = "$";
                 <?php if (!empty($propiedad->codigo)) { ?>
                   C&oacute;digo: <?php echo $propiedad->codigo. " | " ?>
                 <?php } ?>
-                <?php echo ($propiedad->calle.(($empresa->mostrar_numeros_direccion_listado)?" N&deg; ".$propiedad->altura:"")).(!empty($propiedad->calle) ? ", " : "").$propiedad->localidad; ?>
+                <?php echo $propiedad->direccion_completa." | ".$propiedad->localidad; ?>
               </figure>
 
               <?php if (isset($propiedad->pertenece_red) && $propiedad->pertenece_red == 1) { ?>
@@ -160,7 +158,7 @@ else $vc_moneda = "$";
                       <dd><?php echo $propiedad->codigo ?></dd>
                     <?php } ?>
                     <dt>Direcci&oacute;n</dt>
-                    <dd><?php echo (empty($propiedad->calle)) ? "-" : ($propiedad->calle.(($empresa->mostrar_numeros_direccion_listado)?" N&deg; ".$propiedad->altura:"")).". "; ?></dd>
+                    <dd><?php echo $propiedad->direccion_completa; ?></dd>
                     <?php if (!empty($propiedad->localidad)) { ?>
                       <dt>Localidad</dt>
                       <dd><?php echo $propiedad->localidad ?></dd>

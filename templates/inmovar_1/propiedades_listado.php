@@ -80,8 +80,8 @@ if (isset($_GET["test"])) print_r($vc_listado);
                     <header>
                       <a href="<?php echo $r->link_propiedad; ?>"><h3><?php echo $r->nombre ?></h3></a>
                       <figure>
-                        <?php echo ($r->calle.(($empresa->mostrar_numeros_direccion_listado)?" N&deg; ".$r->altura:"")).", "; ?>
-                        <?php echo $r->localidad ?>
+                        <?php echo $r->direccion_completa; ?>
+                        <?php echo (!empty($r->localidad)) ? ", ".$r->localidad : "" ?>
                       </figure>
                     </header>
                     <div class="tag price"><?php echo ($r->precio_final != 0 && $r->publica_precio == 1) ? $r->moneda." ".number_format($r->precio_final,0) : "Consultar"; ?></div>

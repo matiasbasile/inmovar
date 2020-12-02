@@ -80,7 +80,7 @@ $productos = $propiedad_model->favoritos();
                     <header>
                       <a href="<?php echo $r->link_propiedad ?>"><h3><?php echo $r->nombre ?></h3></a>
                       <figure>
-                        <?php echo ($r->calle.(($empresa->mostrar_numeros_direccion_listado)?" N&deg; ".$r->altura:"")).", "; ?>
+                        <?php echo $r->direccion_completa.", "; ?>
                         <?php echo $r->localidad ?>
                       </figure>
                     </header>
