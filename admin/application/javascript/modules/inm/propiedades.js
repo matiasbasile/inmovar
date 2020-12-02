@@ -715,7 +715,7 @@
         "filtro_argenprop":window.propiedades_filtro_argenprop,
         "activo":window.propiedades_filtro_web,
       };
-      if (SOLO_USUARIO == 1) datos.id_usuario = ID_USUARIO; // Buscamos solo los productos de ese usuario
+      //if (SOLO_USUARIO == 1) datos.id_usuario = ID_USUARIO; // Buscamos solo los productos de ese usuario
       this.collection.server_api = datos;
       if (window.propiedades_mapa == 1) {
         this.collection.server_api.offset = 9999;
