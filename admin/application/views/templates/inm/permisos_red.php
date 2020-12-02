@@ -57,7 +57,7 @@
                     <tr data-id="<%= m.id %>">
                       <td class="p0">
                         <% if (!isEmpty(m.logo)) { %>
-                          <img src="/admin/<%= m.logo %>" class="customcomplete-image"/>
+                          <img src="/admin/<%= m.logo %>" class="customcomplete-image mt5 mb5"/>
                         <% } %>
                       </td>                      
                       <td>
