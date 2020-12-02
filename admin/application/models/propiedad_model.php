@@ -117,10 +117,12 @@ class Propiedad_Model extends Abstract_Model {
   // Devuelve el total de propiedades compartidas en la red completa
   function total_propiedades_red_completa() {
     $sql = "SELECT IF(COUNT(*) IS NULL,0,COUNT(*)) AS cantidad ";
-    $sql.= "FROM inm_propiedades ";
-    $sql.= "WHERE activo = 1 ";
-    $sql.= "AND id_tipo_estado NOT IN (2,3,4,6) ";
-    $sql.= "AND compartida = 1 ";
+    $sql.= "FROM inm_propiedades A ";
+    $sql.= "INNER JOIN empresas E ON (A.id_empresa = E.id) ";
+    $sql.= "WHERE A.activo = 1 "; // La propiedad tiene que estar activa
+    $sql.= "AND E.activo = 1 ";   // y la empresa tambien
+    $sql.= "AND A.id_tipo_estado NOT IN (2,3,4,6) ";
+    $sql.= "AND A.compartida = 1 ";
     $q = $this->db->query($sql);
     $r = $q->row();
     return $r->cantidad;
@@ -130,7 +132,9 @@ class Propiedad_Model extends Abstract_Model {
     $id_empresa = isset($config["id_empresa"]) ? $config["id_empresa"] : parent::get_empresa();
     $sql = "SELECT IF(COUNT(*) IS NULL,0,COUNT(*)) AS cantidad ";
     $sql.= "FROM inm_propiedades A ";
-    $sql.= "WHERE A.activo = 1 ";
+    $sql.= "INNER JOIN empresas E ON (A.id_empresa = E.id) ";
+    $sql.= "WHERE A.activo = 1 "; // La propiedad tiene que estar activa
+    $sql.= "AND E.activo = 1 ";   // y la empresa tambien
     $sql.= "AND A.compartida = 1 ";
     $sql.= "AND A.id_tipo_estado NOT IN (2,3,4,6) ";
     $sql.= "AND (A.id_empresa IN (";
@@ -517,6 +521,7 @@ class Propiedad_Model extends Abstract_Model {
     // Bloque de SQL que identifica que estamos buscando en la red
     $sql_red = "AND A.compartida = 1 "; // En primer lugar tiene que estar compartida
     $sql_red.= "AND A.activo = 1 "; // SIEMPRE BUSCA LAS ACTIVAS
+    $sql_red.= "AND E.activo = 1 "; // LA EMPRESA TIENE QUE ESTAR ACTIVA
     $sql_red.= "AND A.id_tipo_estado NOT IN (2,3,4,6) "; // Tampoco tiene sentido buscar las vendidas o alquiladas
     $sql_red.= "AND A.id_empresa IN (";
     $sql_red.= " SELECT PR.id_empresa FROM inm_permisos_red PR ";
