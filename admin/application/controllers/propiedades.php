@@ -17,10 +17,10 @@ class Propiedades extends REST_Controller {
     $q = $this->db->query($sql);
     foreach($q->result() as $r) {
       
-      $calle = substr($r->calle, 0, strpos($r->calle, "entre")-1);
-      $entre_calles = substr($r->calle, strpos($r->calle, "entre"));
-      $entre_calles = substr($entre_calles,0, strpos($entre_calles, " y ")-1);
-      $entre_calles_2 = substr($r->calle, strpos($r->calle, " y "));
+      $calle = substr($r->calle, 0, strpos($r->calle, "entre"));
+      $entre_calles = substr($r->calle, strpos($r->calle, "entre")+5);
+      $entre_calles = substr($entre_calles,0, strpos($entre_calles, " y "));
+      $entre_calles_2 = substr($r->calle, strpos($r->calle, " y ")+3);
       $calle = trim($calle);
       $entre_calles = trim($entre_calles);
       $entre_calles_2 = trim($entre_calles_2);
