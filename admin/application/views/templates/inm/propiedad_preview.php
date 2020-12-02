@@ -135,7 +135,7 @@
 
               <div class="clearfix mb15">
                 <% if (!isEmpty(direccion_completa)) { %>
-                  <span><%= direccion_completa %></span> | 
+                  <span><%= (id_empresa == ID_EMPRESA) ? direccion_completa : direccion_completa_red %></span> | 
                 <% } %>
                 <span><%= localidad %></span>
               </div>
