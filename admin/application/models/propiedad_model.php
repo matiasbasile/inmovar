@@ -119,7 +119,7 @@ class Propiedad_Model extends Abstract_Model {
     $sql = "SELECT IF(COUNT(*) IS NULL,0,COUNT(*)) AS cantidad ";
     $sql.= "FROM inm_propiedades ";
     $sql.= "WHERE activo = 1 ";
-    $sql.= "AND A.id_tipo_estado NOT IN (2,3,4,6) ";
+    $sql.= "AND id_tipo_estado NOT IN (2,3,4,6) ";
     $sql.= "AND compartida = 1 ";
     $q = $this->db->query($sql);
     $r = $q->row();
