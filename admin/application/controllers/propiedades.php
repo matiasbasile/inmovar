@@ -21,6 +21,8 @@ class Propiedades extends REST_Controller {
       $e = explode("y", $r->entre_calles);
       $entre_calles = trim($e[0]);
       $entre_calles_2 = trim($e[1]);
+      $entre_calles = ucwords($entre_calles);
+      $entre_calles_2 = ucwords($entre_calles_2);
       
       /*
       $calle = substr($r->calle, 0, strpos($r->calle, "entre"));
@@ -31,15 +33,9 @@ class Propiedades extends REST_Controller {
       $entre_calles = trim($entre_calles);
       $entre_calles_2 = trim($entre_calles_2);
       */
-      echo $r->entre_calles."<br/>";
-      echo $entre_calles."<br/>";
-      echo $entre_calles_2."<br/>";
-      echo "<br/>";
-      /*
       $sql = "UPDATE inm_propiedades SET entre_calles = '$entre_calles', entre_calles_2 = '$entre_calles_2' ";
       $sql.= "WHERE id_empresa = $r->id_empresa AND id = $r->id ";
       $this->db->query($sql);
-      */
     }
   }
 
