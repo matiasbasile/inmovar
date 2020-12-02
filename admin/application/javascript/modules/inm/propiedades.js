@@ -18,6 +18,7 @@
       tipo_estado: "",
       tipo_ubicacion: 0, // 0 = Calle, 1 = Esquina, 2 = Ruta
       direccion_completa: "",
+      direccion_completa_red: "",
       localidad: "",
       archivo: "",
       audio: "",

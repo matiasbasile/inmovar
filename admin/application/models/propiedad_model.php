@@ -657,6 +657,8 @@ class Propiedad_Model extends Abstract_Model {
       $r->titulo = $this->generar_titulo($r);
       $r->direccion_completa = $r->calle.(!empty($r->entre_calles) ? " e/ ".$r->entre_calles.(!empty($r->entre_calles_2) ? " y ".$r->entre_calles_2 : "") : "");
       $r->direccion_completa.= (($r->publica_altura == 1)?" N° ".$r->altura:"") . (!empty($r->piso) ? " Piso ".$r->piso : "") . (!empty($r->numero) ? " Depto. ".$r->numero : "");
+
+      $r->direccion_completa_red = $r->calle.(!empty($r->entre_calles) ? " e/ ".$r->entre_calles.(!empty($r->entre_calles_2) ? " y ".$r->entre_calles_2 : "") : "");
       /*
       if ($filtro_meli == 1 && $r->status != "active") $ingresar_row = 0;
       else if ($filtro_meli == 2 && $r->status != "paused") $ingresar_row = 0;
@@ -1108,6 +1110,8 @@ class Propiedad_Model extends Abstract_Model {
 
     $propiedad->direccion_completa = $propiedad->calle.(!empty($propiedad->entre_calles) ? " e/ ".$propiedad->entre_calles.(!empty($propiedad->entre_calles_2) ? " y ".$propiedad->entre_calles_2 : "") : "");
     $propiedad->direccion_completa.= (($propiedad->publica_altura == 1)?" N° ".$propiedad->altura:"") . (!empty($propiedad->piso) ? " Piso ".$propiedad->piso : "") . (!empty($propiedad->numero) ? " Depto. ".$propiedad->numero : "");
+
+    $propiedad->direccion_completa_red = $propiedad->calle.(!empty($propiedad->entre_calles) ? " e/ ".$propiedad->entre_calles.(!empty($propiedad->entre_calles_2) ? " y ".$propiedad->entre_calles_2 : "") : "");
 
     return $propiedad;
   }

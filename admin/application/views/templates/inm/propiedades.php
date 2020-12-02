@@ -140,7 +140,7 @@
   </td>
   <td class="<%= clase %> data">
     <%= tipo_inmueble %> en <%= tipo_operacion %><br/>
-    <span class="bold"><%= direccion_completa %></span><br/>
+    <span class="bold"><%= (id_empresa == ID_EMPRESA) ? direccion_completa : direccion_completa_red %></span><br/>
     <%= localidad %>
   </td>
   <td class="<%= clase %> data">
