@@ -17,6 +17,7 @@ class Propiedades extends REST_Controller {
     $q = $this->db->query($sql);
     foreach($q->result() as $r) {
 
+      $r->entre_calles = strtolower($r->entre_calles);
       $e = explode("y", $r->entre_calles);
       $entre_calles = trim($e[0]);
       $entre_calles_2 = trim($e[1]);
