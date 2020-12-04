@@ -371,12 +371,12 @@
       <?php // PROPIEDADES DE LA RED ?>
       <td>
         <div class="dt">
-          <div class="dtc">
+          <div class="dtc vam">
             <% if (!isEmpty(logo_inmobiliaria)) { %>
-              <img src="<%= logo_inmobiliaria %>" class="customcomplete-image" style="border-radius:100%"/>
+              <img src="<%= logo_inmobiliaria %>" class="customcomplete-image" style="border-radius:100%; width: 64px; height:64px"/>
             <% } %>
           </div>
-          <div class="dtc">
+          <div class="dtc vam pl10">
             <b class="text-dark"><%= inmobiliaria %></b>
           </div>
         </div>
