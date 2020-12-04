@@ -7,7 +7,7 @@ class Permiso_Red_Model extends Abstract_Model {
   function solicitudes_pendientes($config = array()) {
     $id_empresa = (isset($config["id_empresa"])) ? $config["id_empresa"] : parent::get_empresa();
     $sql = "SELECT SQL_CALC_FOUND_ROWS PR.*, ";
-    $sql.= " E.id, E.nombre, E.razon_social, WC.logo_1 AS logo, WC.email, ";
+    $sql.= " E.id, E.nombre, E.razon_social, E.path AS logo, WC.email, ";
     $sql.= " WC.telefono_web, WC.direccion_web ";
     $sql.= "FROM inm_permisos_red PR ";
     $sql.= "INNER JOIN empresas E ON (PR.id_empresa = E.id) ";

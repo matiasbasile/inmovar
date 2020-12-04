@@ -99,7 +99,7 @@ class Notificacion_Model extends Abstract_Model {
     }    
 
     // Solicitudes Pendientes
-    $sql = "SELECT E.*, WC.logo_1 AS path FROM inm_permisos_red PR INNER JOIN empresas E ON (PR.id_empresa = E.id) ";
+    $sql = "SELECT E.*, E.path AS path FROM inm_permisos_red PR INNER JOIN empresas E ON (PR.id_empresa = E.id) ";
     $sql.= " INNER JOIN web_configuracion WC ON (E.id = WC.id_empresa) ";
     $sql.= "WHERE PR.id_empresa_compartida = $id_empresa "; // Es al reves, la empresa compartida viene a ser la empresa que se esta consultado
     $sql.= "AND PR.solicitud_permiso = 1 "; // Si se envio la solicitud de permiso para publicar las propiedades
