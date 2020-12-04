@@ -924,7 +924,7 @@ class Propiedad_Model {
     $mostrar_home = isset($config["mostrar_home"]) ? intval($config["mostrar_home"]) : -1;
     $destacado = isset($config["destacado"]) ? intval($config["destacado"]) : -1; // -1 = No se tiene en cuenta el parametro
     $filter = isset($config["filter"]) ? $config["filter"] : "";
-    $codigo = isset($config["codigo"]) ? intval($config["codigo"]) : 0;
+    $codigo = isset($config["codigo"]) ? ($config["codigo"]) : 0;
     $id_usuario = isset($config["id_usuario"]) ? intval($config["id_usuario"]) : 0;
     $id_localidad = isset($config["id_localidad"]) ? intval($config["id_localidad"]) : 0;
     $id_departamento = isset($config["id_departamento"]) ? intval($config["id_departamento"]) : 0;
