@@ -5,6 +5,7 @@ error_reporting(E_ALL);
 include_once("includes/init.php");
 include_once("includes/funciones.php");
 $propiedades = extract($propiedad_model->get_variables(array()));
+if (isset($get_params["test"])) echo $propiedad_model->get_sql(); 
 $nombre_pagina = $vc_link_tipo_operacion;
 $tipos_op = $propiedad_model->get_tipos_operaciones();
 $id_tipo_operacion = $vc_id_tipo_operacion;
