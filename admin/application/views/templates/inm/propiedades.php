@@ -373,7 +373,7 @@
         <div class="dt">
           <div class="dtc">
             <% if (!isEmpty(logo_inmobiliaria)) { %>
-              <img src="<%= logo_inmobiliaria %>" class="customcomplete-image" style="border-radius:100%/>
+              <img src="<%= logo_inmobiliaria %>" class="customcomplete-image" style="border-radius:100%"/>
             <% } %>
           </div>
           <div class="dtc">
