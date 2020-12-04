@@ -40,6 +40,11 @@ if (isset($_SESSION["favoritos"])) {
             			<a target="_blank" href="<?php echo $empresa->instagram ?>"><i class="fa fa-instagram"></i></a>
             		</li>
               <?php } ?>
+              <?php if (!empty($empresa->youtube)) { ?>
+                <li class="redes">
+                  <a target="_blank" href="<?php echo $empresa->youtube ?>"><i class="fa fa-youtube"></i></a>
+                </li>
+              <?php } ?>
           	</ul>
           </div>
         </ul>
