@@ -1058,9 +1058,9 @@ class Propiedad_Model {
     if ($antiguedad != 0) $sql.= "AND A.nuevo = $antiguedad ";
     if (!empty($id_usuario)) $sql.= "AND A.id_usuario = $id_usuario ";
     if (!empty($codigo)) {
-      $sql.= "AND A.codigo = '$codigo' ";
+      $sql.= "AND (A.codigo = '$codigo' OR CONCAT(E.codigo,'-',A.codigo) = '$codigo') ";
     } else if (!empty($filter)) {
-      $sql.= "AND (A.nombre LIKE '%$filter%' OR A.codigo LIKE '$filter' OR L.nombre LIKE '%$filter%' OR TI.nombre LIKE '%$filter%') ";
+      $sql.= "AND (A.nombre LIKE '%$filter%' OR CONCAT(E.codigo,'-',A.codigo) = '$filter' OR A.codigo LIKE '$filter' OR L.nombre LIKE '%$filter%' OR TI.nombre LIKE '%$filter%') ";
     }
     if (!empty($link_localidad)) $sql.= "AND L.link = '$link_localidad' ";
     if (!empty($id_localidad)) $sql.= "AND A.id_localidad = $id_localidad ";

@@ -484,7 +484,7 @@ class Propiedad_Model extends Abstract_Model {
     $sql_where = "WHERE 1=1 ";
     if ($activo != -1) $sql_where.= "AND A.activo = $activo ";
     if ($olx_habilitado != -1) $sql_where.= "AND A.olx_habilitado = $olx_habilitado ";
-    if (!empty($filter)) $sql_where.= "AND (A.codigo LIKE '%$filter%' OR A.nombre LIKE '%$filter%' OR A.calle LIKE '%$filter%') ";
+    if (!empty($filter)) $sql_where.= "AND (A.codigo LIKE '%$filter%' OR CONCAT(E.codigo,'-',A.codigo) = '$filter' OR A.nombre LIKE '%$filter%' OR A.calle LIKE '%$filter%') ";
     if (!empty($id_tipo_estado)) $sql_where.= "AND A.id_tipo_estado = $id_tipo_estado ";
     if (!empty($id_tipo_operacion)) $sql_where.= "AND A.id_tipo_operacion IN ($id_tipo_operacion) ";
     if (!empty($id_tipo_inmueble)) $sql_where.= "AND A.id_tipo_inmueble IN ($id_tipo_inmueble) ";
