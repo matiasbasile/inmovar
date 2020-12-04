@@ -86,6 +86,18 @@ class Notificacion_Model extends Abstract_Model {
 
 		$lista = array();
 
+    // Buscamos si hay alguna notificacion de tareas vencidas
+    $sql = "SELECT * FROM com_log WHERE id_empresa = $id_empresa AND importancia = 'V' AND leida = 0 ";
+    $sql.= "ORDER BY fecha DESC ";
+    $q = $this->db->query($sql);
+    foreach($q->result() as $r) {
+      $r->titulo = $r->texto;
+      $r->texto = $r->texto_2;
+      $r->tipo = "V"; // Notificacion de consultas vencidas
+      $r->visto = $r->leida;
+      $lista[] = $r;
+    }    
+
     // Solicitudes Pendientes
     $sql = "SELECT E.*, WC.logo_1 AS path FROM inm_permisos_red PR INNER JOIN empresas E ON (PR.id_empresa = E.id) ";
     $sql.= " INNER JOIN web_configuracion WC ON (E.id = WC.id_empresa) ";
@@ -139,18 +151,6 @@ class Notificacion_Model extends Abstract_Model {
       $r->visto = $r->leida;
       $lista[] = $r;
     }    
-
-    // Buscamos si hay alguna notificacion de tareas vencidas
-    $sql = "SELECT * FROM com_log WHERE id_empresa = $id_empresa AND importancia = 'V' AND leida = 0 ";
-    $sql.= "ORDER BY fecha DESC ";
-    $q = $this->db->query($sql);
-    foreach($q->result() as $r) {
-      $r->titulo = $r->texto;
-      $r->texto = $r->texto_2;
-      $r->tipo = "V"; // Notificacion de consultas vencidas
-      $r->visto = $r->leida;
-      $lista[] = $r;
-    }
 
     // Aviso de nueva inmobiliaria
     $sql = "SELECT * FROM com_log WHERE id_empresa = $id_empresa AND importancia = 'B' AND leida = 0 ";
