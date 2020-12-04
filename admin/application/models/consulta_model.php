@@ -530,6 +530,7 @@ class Consulta_Model extends Abstract_Model {
     $sql.= "LEFT JOIN com_usuarios U ON (C.id_usuario = U.id AND C.id_empresa = U.id_empresa) ";
     $sql.= "LEFT JOIN crm_consultas_tipos TIP ON (C.tipo = TIP.id AND C.id_empresa = TIP.id_empresa) ";
     $sql.= "WHERE C.id_empresa = $id_empresa ";
+    $sql.= "AND C.tipo != 0 "; // Para que no tome del sistema anterior
     if ($tipo != -1) $sql.= "AND C.tipo = $tipo "; // Filtro por estado
     if (!empty($filter)) $sql.= "AND C.nombre LIKE '%".$filter."%' ";
     if (!empty($id_contacto)) $sql.= "AND C.id = $id_contacto ";

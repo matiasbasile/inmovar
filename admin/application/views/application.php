@@ -331,7 +331,7 @@ window.onload = function () {
           <li class="dropdown pr">
             <a onclick="workspace.mostrar_notificaciones()" href="javascript:void(0)" class="clear">
               <span id="notification_news" class="material-icons">notifications_none</span>
-              <span class="fs14">Novedades</span>
+              <span class="fs14">Notificaciones</span>
             </a>
             <?php if ($total_notificaciones > 0) { ?>
               <span class="notification_quantity"><?php echo $total_notificaciones ?></span>
