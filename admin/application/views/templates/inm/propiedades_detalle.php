@@ -60,7 +60,7 @@
           </div>
           <div class="col-md-3">
             <div class="form-group">
-              <label class="control-label">Estado</label>
+              <label class="control-label">Disponibilidad</label>
               <select <%= (!edicion)?"disabled":"" %> id="propiedad_tipos_estado" class="form-control">
                 <% for(var i=0;i< window.tipos_estado.length;i++) { %>
                   <% var o = tipos_estado[i]; %>

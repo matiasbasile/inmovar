@@ -83,7 +83,7 @@
       pitch: 0,
       publica_precio: 1,
       usuario: "",
-      id_usuario: ID_USUARIO,
+      id_usuario: 0,
       descripcion_ubicacion: "",
       codigo_seguimiento: "",
       apto_banco: 0,
