@@ -141,18 +141,21 @@
           <option <%= (window.propiedades_banios == "7") ? "selected":"" %> value="7">M&aacute;s</option>
         </select>
       </div>
-      <div class="col-sm-3 col-xs-12 h50 pr5 pl5">
-        <div class="form-group">
-          <input type="text" class="form-control no-model" value="<%= window.propiedades_direccion %>" id="propiedades_buscar_direccion" placeholder="Nombre de calle" />
-        </div>
-      </div>
-
-      <div class="col-sm-3 col-xs-12 h50 pr5 pl5">
-        <div class="form-group">
-          <div class="input-group">
-            <input type="text" id="propiedades_entre_calles" value="<%= window.propiedades_entre_calles %>" class="form-control no-model"/>
-            <span class="input-group-addon">y</span>
-            <input type="text" id="propiedades_entre_calles_2" value="<%= window.propiedades_entre_calles_2 %>" class="form-control no-model"/>
+      <div class="col-sm-4 col-xs-12 h50 pr5 pl5">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" class="form-control no-model" value="<%= window.propiedades_direccion %>" id="propiedades_buscar_direccion" placeholder="Calle" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <div class="input-group">
+                <input type="text" id="propiedades_entre_calles" placeholder="Entre calle" value="<%= window.propiedades_entre_calles %>" class="form-control no-model"/>
+                <span class="input-group-addon">y</span>
+                <input type="text" id="propiedades_entre_calles_2" placeholder="calle" value="<%= window.propiedades_entre_calles_2 %>" class="form-control no-model"/>
+              </div>
+            </div>
           </div>
         </div>
       </div>
