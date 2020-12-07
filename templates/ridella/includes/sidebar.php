@@ -52,24 +52,6 @@
         </select>
         <div class="textbox-title">Baños</div>
         <?php $banios_list = $propiedad_model->get_banios()?>
-        <div class="dropdown checkboxes">
-          <div class="select">
-            <span>Baños</span>
-          </div>
-          <ul class="dropdown-menu checkboxes">
-            <?php foreach ($banios_list as $b) {  ?>
-              <li>
-                <label>
-                  <div class="custom-control custom-checkbox buscador">
-                    <input <?php echo (in_array($b->banios, $vc_banios))?"checked":"" ?> value="<?php echo $b->banios ?>" type="checkbox" class="banio custom-control-input" id="banio_<?php echo $b->banios ?>">
-                    <label class="custom-control-label" for="tipo_paciente_<?php echo $b->banios ?>"><?php echo $b->banios ?></label>
-                  </div>
-                </label>
-              </li>
-            <?php } ?>
-          </ul>
-        </div>   
-        <?php /*     
         <select name="bn">
           <option value="">Todos</option>
           <?php foreach ($banios_list as $b) {  ?>
@@ -78,7 +60,6 @@
             <?php } ?>
           <?php }?>
         </select>
-        */ ?>
       </div>
       <div class="box-space banking-credit">
         <input <?php echo (!empty($vc_apto_banco)) ? "checked" : "" ?> type="checkbox" name="banco" id="ab" />
