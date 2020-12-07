@@ -44,6 +44,7 @@ if (!empty($propiedad->imagen)) $propiedad->images = array_merge(array($propieda
 <meta property="og:title" content="<?php echo $propiedad->nombre; ?>" />
 <meta property="og:description" content="<?php echo $propiedad->direccion_completa; ?>" />
 <meta property="og:image" content="<?php echo $propiedad->imagen ?>"/>
+<script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
 <style type="text/css">
 iframe { width: 100% !important }
 </style>

@@ -45,6 +45,7 @@ setcookie($propiedad->id,"1",time()+60*60*24*30,"/");
 <head>
   <?php include "includes/head.php" ?>
   <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.min.css">
+  <script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
 </head>
 <body>
   <?php include "includes/header.php" ?>

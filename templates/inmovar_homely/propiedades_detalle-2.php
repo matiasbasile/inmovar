@@ -42,7 +42,7 @@ if (!empty($propiedad->imagen)) $propiedad->images = array_merge(array($propieda
 <html lang="en">
 <head>
 <?php include "includes/head.php" ?>
-
+<script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
 </head>
 <body>
 <?php include "includes/header.php" ?>

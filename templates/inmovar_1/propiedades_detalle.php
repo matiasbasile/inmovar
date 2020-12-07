@@ -65,6 +65,7 @@ else $vc_moneda = "$";
 <meta property="og:image:width" content="800"/>
 <meta property="og:image:height" content="600"/>
 <?php include("includes/head.php"); ?>
+<script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
 </head>
 <body class="page-sub-page page-property-detail" id="page-top">
 <!-- Wrapper -->

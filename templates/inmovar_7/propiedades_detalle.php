@@ -22,6 +22,7 @@ else $vc_moneda = "$";
 <meta property="og:image" content="<?php echo ((!empty($propiedad->imagen)) ? $propiedad->imagen : $empresa->no_imagen); ?>"/>
 <meta property="og:image:width" content="800"/>
 <meta property="og:image:height" content="600"/>
+<script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
 </head>
 <body>
 

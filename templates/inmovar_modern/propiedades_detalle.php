@@ -14,6 +14,7 @@
 	<meta property="og:title" content="<?php echo $propiedad->nombre; ?>" />
 	<meta property="og:description" content="<?php echo $direccion; ?>" />
 	<meta property="og:image" content="<?php echo $propiedad->imagen ?>"/>
+	<script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
 </head>
 <body>
 	<?php include "includes/header.php" ?>
