@@ -74,15 +74,18 @@
               <div class="col-md-3">
                 <div class="form-group">
                   <label class="control-label">Asignado a</label>
-                  <select <%= (!edicion)?"disabled":"" %> id="propiedad_usuarios" class="form-control">
-                    <option value="0">Seleccione</option>
-                    <% for(var i=0;i< window.usuarios.models.length;i++) { %>
-                      <% var o = window.usuarios.models[i]; %>
-                      <% if (SOLO_USUARIO == 0 || (SOLO_USUARIO == 1 && o.id == ID_USUARIO)) { %>
-                        <option value="<%= o.id %>" <%= (o.id == id_usuario)?"selected":"" %>><%= o.get("nombre") %></option>
+                  <div class="input-group">
+                    <select <%= (!edicion)?"disabled":"" %> id="propiedad_usuarios" class="form-control">
+                      <option value="0">Seleccione</option>
+                      <% for(var i=0;i< window.usuarios.models.length;i++) { %>
+                        <% var o = window.usuarios.models[i]; %>
+                        <% if (SOLO_USUARIO == 0 || (SOLO_USUARIO == 1 && o.id == ID_USUARIO)) { %>
+                          <option value="<%= o.id %>" <%= (o.id == id_usuario)?"selected":"" %>><%= o.get("nombre") %></option>
+                        <% } %>
                       <% } %>
-                    <% } %>
-                  </select>
+                    </select>
+                    <span class="input-group-addon"><a href="app/#configuracion/usuarios-perfiles" target="_blank"><i class="material-icons fs16">group</i></a></span>
+                  </div>
                 </div>
               </div>
             </div>
