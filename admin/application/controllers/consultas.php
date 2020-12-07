@@ -651,10 +651,11 @@ class Consultas extends REST_Controller {
           if (!empty($ciudad)) $body.= "<b>Ciudad:</b> $ciudad <br/>";
 
           $link_propiedad = "";
+          /*
           if (isset($empresa->dominios) && sizeof($empresa->dominios)>0 && isset($propiedad) && isset($propiedad->link)) {
             $link_propiedad = "https://".$empresa->dominios[0]."/".$propiedad->link;
             $link_propiedad = "<a href='".$link_propiedad."' target='_blank'>Ver propiedad</a>";
-          }
+          }*/
           if (!empty($asunto)) $body.= "<b>Interesado en:</b> $asunto ".($link_propiedad)."<br/>";
           if (!empty($mensaje)) $body.= "<b>Comentarios:</b><br/> ".nl2br($mensaje)." <br/>";
 
