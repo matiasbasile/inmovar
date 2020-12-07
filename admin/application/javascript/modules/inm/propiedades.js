@@ -376,7 +376,7 @@
       window.propiedades_monto = (typeof window.propiedades_monto != "undefined") ? window.propiedades_monto : "";
       window.propiedades_monto_2 = (typeof window.propiedades_monto_2 != "undefined") ? window.propiedades_monto_2 : "";
       window.propiedades_monto_tipo = (typeof window.propiedades_monto_tipo != "undefined") ? window.propiedades_monto_tipo : "";
-      window.propiedades_monto_moneda = (typeof window.propiedades_monto_moneda != "undefined") ? window.propiedades_monto_moneda : "$";
+      window.propiedades_monto_moneda = (typeof window.propiedades_monto_moneda != "undefined") ? window.propiedades_monto_moneda : "U$D";
       window.propiedades_apto_banco = (typeof window.propiedades_apto_banco != "undefined") ? window.propiedades_apto_banco : 0;
       window.propiedades_acepta_permuta = (typeof window.propiedades_acepta_permuta != "undefined") ? window.propiedades_acepta_permuta : 0;
       window.propiedades_page = (typeof window.propiedades_page != "undefined") ? window.propiedades_page : 1;
