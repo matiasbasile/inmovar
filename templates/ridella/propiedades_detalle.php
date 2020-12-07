@@ -42,8 +42,6 @@ if (!empty($propiedad->path)) $imagen_ppal = current_url(TRUE)."/admin/".$propie
 else if (!empty($empresa->no_imagen)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no_imagen;
 else $imagen_ppal = current_url(TRUE)."/templates/".$empresa->template_path."/images/no-imagen-png"; 
 
-array_unshift($propiedad->images, $imagen_ppal);
-
 // Tomamos los datos de SEO
 $seo_title = (!empty($propiedad->seo_title)) ? $propiedad->seo_title : $empresa->seo_title;
 $seo_description = (!empty($propiedad->seo_description)) ? $propiedad->seo_description : $empresa->seo_description;
