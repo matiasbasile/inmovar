@@ -204,11 +204,6 @@
           </select>
         </div>
       </div>
-      <div class="col-sm-3 col-xs-12 h50 pr5 pl5">
-        <div class="form-group">
-          <select class="form-control" disabled="disabled" id="propiedades_buscar_compartida_en_filtros"></select>
-        </div>
-      </div>
       <div class="col-md-2 col-sm-3 col-xs-12 h50 pr5 pl5">
         <button data-toggle="tooltip" title="Ver como lista" id="propiedades_ver_lista" class="btn btn-default <%= (window.propiedades_mapa == 0)?'btn-info':'' %>">
           <i class="fa fa-list"></i>
