@@ -253,50 +253,11 @@
       "change #propiedades_buscar_dormitorios":"buscar",
       "change #propiedades_buscar_banios":"buscar",
       "change #propiedades_buscar_cocheras":"buscar",
+      "change #propiedades_buscar_compartida_en":"buscar",
 
       "keydown #propiedades_tabla tbody tr .radio:first":function(e) {
         // Si estamos en el primer elemento y apretamos la flechita de arriba
         if (e.which == 38) { e.preventDefault(); $("#propiedades_texto").focus(); }
-      },
-
-      "change #propiedades_buscar_compartida_en_filtros":function() {
-        var f = this.$("#propiedades_buscar_compartida_en_filtros").val();
-        if (f == "filtrar_todos") {
-          window.propiedades_filtro_web = -1;
-          window.propiedades_filtro_meli = -1;
-          window.propiedades_filtro_olx = -1;
-          window.propiedades_filtro_inmovar = -1;
-          window.propiedades_filtro_inmobusquedas = -1;
-          this.buscar();          
-        } else if (f == "filtrar_web_activas") {
-          window.propiedades_filtro_web = 1; this.buscar();
-        } else if (f == "filtrar_web_inactivas") {
-          window.propiedades_filtro_web = 0; this.buscar();
-        } else if (f == "filtrar_meli_activos") {
-          window.propiedades_filtro_meli = 1; this.buscar();
-        } else if (f == "filtrar_meli_pausados") {
-          window.propiedades_filtro_meli = 2; this.buscar();
-        } else if (f == "filtrar_meli_finalizados") {
-          window.propiedades_filtro_meli = 3; this.buscar();
-        } else if (f == "filtrar_meli_sin_compartir") {
-          window.propiedades_filtro_meli = 0; this.buscar();
-        } else if (f == "filtrar_olx_activos") {
-          window.propiedades_filtro_olx = 1; this.buscar();
-        } else if (f == "filtrar_olx_pendientes") {
-          window.propiedades_filtro_olx = 2; this.buscar();
-        } else if (f == "filtrar_olx_sin_compartir") {
-          window.propiedades_filtro_olx = 0; this.buscar();
-        } else if (f == "filtrar_inmovar_compartidos") {
-          window.propiedades_filtro_inmovar = 1; this.buscar();
-        } else if (f == "filtrar_inmovar_no_compartidos") {
-          window.propiedades_filtro_inmovar = 0; this.buscar();
-        } else if (f == "filtrar_inmobusquedas_compartidos") {
-          window.propiedades_filtro_inmobusquedas = 1; this.buscar();
-        } else if (f == "filtrar_inmobusquedas_pendientes") {
-          window.propiedades_filtro_inmobusquedas = 2; this.buscar();
-        } else if (f == "filtrar_inmobusquedas_no_compartidos") {
-          window.propiedades_filtro_inmobusquedas = 0; this.buscar();
-        }
       },
 
       "click #propiedades_buscar_apto_banco":function() {
@@ -513,60 +474,6 @@
         self.$("#propiedades_buscar_tipos_operacion").parent().find(".select2-search__field").css("width","100%");
       });
 
-      this.$("#propiedades_buscar_compartida_en").select2({
-        language: "es",
-        placeholder: {
-          id: 0,
-          text: "Compartida",
-        }
-      });
-      if (isEmpty(window.propiedades_compartida_en)) this.$("#propiedades_buscar_compartida_en").val(null).trigger("change");
-      this.$("#propiedades_buscar_compartida_en").parent().find(".select2-search__field").attr("placeholder","Compartida");
-      this.$("#propiedades_buscar_compartida_en").parent().find(".select2-search__field").css("width","100%");
-      this.$("#propiedades_buscar_compartida_en").on("change.select2",function(e){
-        var compartida_en = self.$("#propiedades_buscar_compartida_en").val();
-        self.$("#propiedades_buscar_compartida_en_filtros").removeAttr("disabled");
-        self.$("#propiedades_buscar_compartida_en_filtros").empty();
-        var o = "";
-        if (compartida_en == "red") {
-          o+="<option value='filtrar_todos'>Todas</option>";
-          o+="<option value='filtrar_inmovar_compartidos'>Compartidas</option>";
-          o+="<option value='filtrar_inmovar_no_compartidos'>Sin Compartir</option>";
-          self.$("#propiedades_buscar_compartida_en_filtros").append(o)
-        } else if (compartida_en == "web") {
-          o+="<option value='filtrar_todos'>Todas</option>";
-          o+="<option value='filtrar_web_activas'>Activas</option>";
-          o+="<option value='filtrar_web_inactivas'>Inactivas</option>";
-          self.$("#propiedades_buscar_compartida_en_filtros").append(o)
-        } else if (compartida_en == "meli") {
-          o+="<option value='filtrar_todos'>Todas</option>";
-          o+="<option value='filtrar_meli_activos'>Activas</option>";
-          o+="<option value='filtrar_meli_pausados'>Pausadas</option>";
-          o+="<option value='filtrar_meli_finalizados'>Finalizadas</option>";
-          o+="<option value='filtrar_meli_sin_compartir'>Sin Compartir</option>";
-          self.$("#propiedades_buscar_compartida_en_filtros").append(o)
-        } else if (compartida_en == "olx") {
-          o+="<option value='filtrar_todos'>Todas</option>";
-          o+="<option value='filtrar_olx_activos'>Activas</option>";
-          o+="<option value='filtrar_olx_pendientes'>Pendientes</option>";
-          o+="<option value='filtrar_olx_sin_compartir'>Sin Compartir</option>";
-          self.$("#propiedades_buscar_compartida_en_filtros").append(o)
-        } else if (compartida_en == "inmobusquedas") {
-          o+="<option value='filtrar_todos'>Todas</option>";
-          o+="<option value='filtrar_inmobusquedas_compartidos'>Compartidas</option>";
-          o+="<option value='filtrar_inmobusquedas_pendientes'>Pendientes</option>";
-          o+="<option value='filtrar_inmobusquedas_no_compartidos'>Sin Compartir</option>";
-          self.$("#propiedades_buscar_compartida_en_filtros").append(o)          
-        } else if (compartida_en == "") {
-          o+="<option value='filtrar_todos'>Todas</option>";
-          self.$("#propiedades_buscar_compartida_en_filtros").append(o)          
-        } else {
-          self.$("#propiedades_buscar_compartida_en_filtros").attr("disabled","disabled");
-        }
-        self.buscar();
-        self.$("#propiedades_buscar_compartida_en").parent().find(".select2-search__field").css("width","100%");
-      });
-
       // Si se guardo una nueva propiedad
       if (window.propiedades_guardo_nueva_propiedad != 0) {
         var modelo = new app.models.Propiedades({
@@ -685,25 +592,26 @@
       }
       */
 
-      if (this.$("#propiedades_buscar_compartida_en").length > 0 && this.$("#propiedades_buscar_compartida_en").val() != null) {
-        var compatida_en = this.$("#propiedades_buscar_compartida_en").val();
-        for(var j=0;j<compatida_en.length;j++) {
-          var cp = compatida_en[j];
-          if (cp == "olx") { window.propiedades_filtro_olx = 1; cambio_parametros = true; }
-          else if (cp == "web") { window.propiedades_filtro_web = 1; cambio_parametros = true; }
-          else if (cp == "meli") { window.propiedades_filtro_meli = 1; cambio_parametros = true; }
-          else if (cp == "red") { window.propiedades_filtro_inmovar = 1; cambio_parametros = true; }
-          else if (cp == "inmobusquedas") { window.propiedades_filtro_inmobusquedas = 1; cambio_parametros = true; }
-          else if (cp == "argenprop") { window.propiedades_filtro_argenprop = 1; cambio_parametros = true; }
-        }
-      } else {
+      if (this.$("#propiedades_buscar_compartida_en").length > 0) {
+        var cp = this.$("#propiedades_buscar_compartida_en").val();
         window.propiedades_filtro_olx = -1;
         window.propiedades_filtro_meli = -1;
         window.propiedades_filtro_inmovar = -1;
         window.propiedades_filtro_inmobusquedas = -1;
         window.propiedades_filtro_argenprop = -1;
         window.propiedades_filtro_web = -1;
-        cambio_parametros = true;
+        if (cp == "olx") { window.propiedades_filtro_olx = 1; cambio_parametros = true; }
+        else if (cp == "no_olx") { window.propiedades_filtro_olx = 0; cambio_parametros = true; }
+        else if (cp == "web") { window.propiedades_filtro_web = 1; cambio_parametros = true; }
+        else if (cp == "no_web") { window.propiedades_filtro_web = 0; cambio_parametros = true; }
+        else if (cp == "meli") { window.propiedades_filtro_meli = 1; cambio_parametros = true; }
+        else if (cp == "no_meli") { window.propiedades_filtro_meli = 0; cambio_parametros = true; }
+        else if (cp == "red") { window.propiedades_filtro_inmovar = 1; cambio_parametros = true; }
+        else if (cp == "no_red") { window.propiedades_filtro_inmovar = 0; cambio_parametros = true; }
+        else if (cp == "inmobusquedas") { window.propiedades_filtro_inmobusquedas = 1; cambio_parametros = true; }
+        else if (cp == "no_inmobusquedas") { window.propiedades_filtro_inmobusquedas = 0; cambio_parametros = true; }
+        else if (cp == "argenprop") { window.propiedades_filtro_argenprop = 1; cambio_parametros = true; }
+        else if (cp == "no_argenprop") { window.propiedades_filtro_argenprop = 0; cambio_parametros = true; }
       }
 
       // Si se cambiaron los parametros, debemos volver a pagina 1

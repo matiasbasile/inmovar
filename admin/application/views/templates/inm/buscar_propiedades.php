@@ -175,14 +175,32 @@
 
       <div class="col-sm-3 col-xs-12 h50 pr5 pl5">
         <div class="form-group">
-          <select style="width: 100%" id="propiedades_buscar_compartida_en">
-            <option <%= (window.propiedades_compartida_en == "")?"selected":"" %> value="">Todas</option>
-            <option <%= (window.propiedades_compartida_en == "web")?"selected":"" %> value="web">Web</option>
-            <option <%= (window.propiedades_compartida_en == "red")?"selected":"" %> value="red">Red Inmovar</option>
-            <option <%= (window.propiedades_compartida_en == "meli")?"selected":"" %> value="meli">MercadoLibre</option>
-            <option <%= (window.propiedades_compartida_en == "olx")?"selected":"" %> value="olx">OLX</option>
-            <option <%= (window.propiedades_compartida_en == "inmobusquedas")?"selected":"" %> value="inmobusquedas">Inmobusqueda</option>
-            <option <%= (window.propiedades_compartida_en == "argenprop")?"selected":"" %> value="argenprop">Argenprop</option>
+          <select class="form-control" id="propiedades_buscar_compartida_en">
+            <option <%= (window.propiedades_compartida_en == "")?"selected":"" %> value="">Compartida en</option>
+            <optgroup label="Red Inmovar">
+              <option <%= (window.propiedades_compartida_en == "red")?"selected":"" %> value="red">Compartidas en Red Inmovar</option>
+              <option <%= (window.propiedades_compartida_en == "no_red")?"selected":"" %> value="no_red">No compartidas en Red Inmovar</option>
+            </optgroup>
+            <optgroup label="Web">
+              <option <%= (window.propiedades_compartida_en == "web")?"selected":"" %> value="web">Compartidas en web</option>
+              <option <%= (window.propiedades_compartida_en == "no_web")?"selected":"" %> value="no_web">No compartidas en web</option>
+            </optgroup>
+            <optgroup label="MercadoLibre">
+              <option <%= (window.propiedades_compartida_en == "meli")?"selected":"" %> value="meli">Compartidas en MercadoLibre</option>
+              <option <%= (window.propiedades_compartida_en == "no_meli")?"selected":"" %> value="no_meli">No compartidas en MercadoLibre</option>
+            </optgroup>
+            <optgroup label="OLX">
+              <option <%= (window.propiedades_compartida_en == "olx")?"selected":"" %> value="olx">Compartidas en OLX</option>
+              <option <%= (window.propiedades_compartida_en == "no_olx")?"selected":"" %> value="no_olx">No compartidas en OLX</option>
+            </optgroup>
+            <optgroup label="Inmobusqueda">
+              <option <%= (window.propiedades_compartida_en == "inmobusquedas")?"selected":"" %> value="inmobusquedas">Compartidas en Inmobusqueda</option>
+              <option <%= (window.propiedades_compartida_en == "no_inmobusquedas")?"selected":"" %> value="no_inmobusquedas">No compartidas en Inmobusqueda</option>
+            </optgroup>
+            <optgroup label="Argenprop">
+              <option <%= (window.propiedades_compartida_en == "argenprop")?"selected":"" %> value="argenprop">Compartidas en Argenprop</option>
+              <option <%= (window.propiedades_compartida_en == "no_argenprop")?"selected":"" %> value="no_argenprop">No compartidas en Argenprop</option>
+            </optgroup>
           </select>
         </div>
       </div>
