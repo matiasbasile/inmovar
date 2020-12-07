@@ -366,7 +366,7 @@
       var self = this;
       var obj = { 
         id:this.model.id,
-        cambiar_password: (this.model.isNew() || ID_USUARIO == this.model.id),
+        cambiar_password: (this.model.isNew() || ID_USUARIO == this.model.id || USUARIO_PPAL == 1),
       };
       $.extend(obj,this.model.toJSON());
 
