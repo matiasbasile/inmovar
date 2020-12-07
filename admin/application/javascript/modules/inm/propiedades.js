@@ -355,6 +355,8 @@
       this.permiso = this.options.permiso;
 
       // Filtros de la propiedad
+      window.propiedades_entre_calles = (typeof window.propiedades_entre_calles != "undefined") ? window.propiedades_entre_calles : "";
+      window.propiedades_entre_calles_2 = (typeof window.propiedades_entre_calles_2 != "undefined") ? window.propiedades_entre_calles_2 : "";
       window.propiedades_buscar_red = (typeof window.propiedades_buscar_red != "undefined") ? window.propiedades_buscar_red : 0;
       window.propiedades_buscar_red_empresa = (typeof window.propiedades_buscar_red_empresa != "undefined") ? window.propiedades_buscar_red_empresa : 0;
       window.propiedades_compartida_en = (typeof window.propiedades_compartida_en != "undefined") ? window.propiedades_compartida_en : "";
@@ -403,6 +405,7 @@
       this.collection.off('sync');
       this.collection.on('sync', this.addAll, this);
       this.buscar();
+      this.$('[data-toggle="tooltip"]').tooltip();
     },
 
     render: function() {
@@ -588,7 +591,6 @@
         }
         $(".menu-compartir").hide();
       });
-
       return this;
     },
         
@@ -654,6 +656,14 @@
         window.propiedades_banios = this.$("#propiedades_buscar_banios").val();  
         cambio_parametros = true;
       }
+      if (window.propiedades_entre_calles != this.$("#propiedades_entre_calles").val()) {
+        window.propiedades_entre_calles = this.$("#propiedades_entre_calles").val();  
+        cambio_parametros = true;
+      }
+      if (window.propiedades_entre_calles_2 != this.$("#propiedades_entre_calles_2").val()) {
+        window.propiedades_entre_calles_2 = this.$("#propiedades_entre_calles_2").val();  
+        cambio_parametros = true;
+      }
       /*
       var apto_banco = (this.$("#propiedades_buscar_apto_banco").hasClass("btn-info")?1:0);
       if (window.propiedades_apto_banco != apto_banco) {
@@ -696,6 +706,8 @@
         "buscar_red_empresa":window.propiedades_buscar_red_empresa,
         "filter":window.propiedades_filter,
         "calle":window.propiedades_direccion,
+        "entre_calles":window.propiedades_entre_calles,
+        "entre_calles_2":window.propiedades_entre_calles_2,
         "id_localidad":window.propiedades_id_localidad,
         "id_tipo_estado":window.propiedades_id_tipo_estado,
         "id_tipo_inmueble":window.propiedades_id_tipo_inmueble,

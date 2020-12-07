@@ -879,6 +879,8 @@ class Propiedades extends REST_Controller {
     $dormitorios = ($this->input->get("dormitorios") !== FALSE) ? $this->input->get("dormitorios") : "";
     $banios = ($this->input->get("banios") !== FALSE) ? $this->input->get("banios") : "";
     $calle = ($this->input->get("calle") !== FALSE) ? $this->input->get("calle") : "";
+    $entre_calles = ($this->input->get("entre_calles") !== FALSE) ? $this->input->get("entre_calles") : "";
+    $entre_calles_2 = ($this->input->get("entre_calles_2") !== FALSE) ? $this->input->get("entre_calles_2") : "";
     $id_empresa = ($this->input->get("id_empresa") !== FALSE) ? $this->input->get("id_empresa") : parent::get_empresa();
     if (!empty($order_by) && !empty($order)) $order = $order_by." ".$order;
     else $order = "";
@@ -917,6 +919,8 @@ class Propiedades extends REST_Controller {
       "apto_banco"=>$apto_banco,
       "acepta_permuta"=>$acepta_permuta,
       "calle"=>$calle,
+      "entre_calles"=>$entre_calles,
+      "entre_calles_2"=>$entre_calles_2,
       "id_usuario"=>$id_usuario,
       "id_propietario"=>$id_propietario,
     );

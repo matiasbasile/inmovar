@@ -64,6 +64,19 @@
               <div class="col-xs-12 sm-m-b">
                 <div class="input-group">
                   <input type="text" id="consultas_buscar" value="<%= window.consultas_filter %>" placeholder="<?php echo lang(array("es"=>"Buscar","en"=>"Search")); ?>..." autocomplete="off" class="form-control">
+
+                  <% if (SOLO_USUARIO == 0) { %>
+                    <span class="input-group-btn">
+                      <select id="consultas_usuarios" class="form-control w250">
+                        <option value="0">Usuario asignado</option>
+                        <% for(var i=0;i< window.usuarios.models.length;i++) { %>
+                          <% var o = window.usuarios.models[i]; %>
+                          <option value="<%= o.id %>" <%= (o.id == window.consultas_usuario)?"selected":"" %>><%= o.get("nombre") %></option>
+                        <% } %>
+                      </select>
+                    </span>
+                  <% } %>
+
                   <span class="input-group-btn">
                     <button class="btn btn-default buscar"><i class="fa fa-search"></i></button>
                   </span>

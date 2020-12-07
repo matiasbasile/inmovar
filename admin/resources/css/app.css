@@ -1651,6 +1651,9 @@ fieldset[disabled] .btn-success.active {
 }
 .btn-info:hover {
   box-shadow: 0 1px 7px 1px var(--c1);
+  color: #fff !important;
+  border-color: var(--c1);
+  background-color: var(--c1);  
 }
 .btn-info:active,
 .btn-info.active,

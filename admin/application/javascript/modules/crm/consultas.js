@@ -112,6 +112,7 @@
       "click .exportar_csv":"exportar_csv",
       "click .importar_csv":"importar_csv",
       "change #consultas_buscar":"buscar",
+      "change #consultas_usuarios":"buscar",
       "click .buscar":"buscar",
       "click .cambiar_tab":function(e) {
         var self = this;
@@ -167,6 +168,7 @@
       window.consultas_page = (typeof window.consultas_page != "undefined") ? window.consultas_page : 1;
       window.consultas_tipo = (typeof window.consultas_tipo != "undefined") ? window.consultas_tipo : 1;
       window.consultas_vencidas = (typeof window.consultas_vencidas != "undefined") ? window.consultas_vencidas : 0;
+      window.consultas_usuario = (typeof window.consultas_usuario != "undefined") ? window.consultas_usuario : 0;
 
       this.cambio_parametros = false;
       this.render();
@@ -182,6 +184,14 @@
           this.cambio_parametros = true;
         }
       }
+
+      if (this.$("#consultas_usuarios").length > 0) {
+        if (window.consultas_usuario != this.$("#consultas_usuarios").val().trim()) {
+          window.consultas_usuario = this.$("#consultas_usuarios").val().trim();
+          this.cambio_parametros = true;
+        }
+      }
+
       if (this.$("#consultas_codigo_propiedad").length > 0) {
         if (window.consultas_codigo_propiedad != this.$("#consultas_codigo_propiedad").val().trim()) {
           window.consultas_codigo_propiedad = this.$("#consultas_codigo_propiedad").val().trim();
@@ -215,6 +225,7 @@
         "custom_5":window.consultas_custom_5,
         "desde":window.consultas_fecha_desde,
         "hasta":window.consultas_fecha_hasta,
+        "id_usuario":window.consultas_usuario,
         "id_proyecto":ID_PROYECTO,
       };
       if (typeof SOLO_USUARIO != "undefined" && SOLO_USUARIO == 1 && ID_EMPRESA != 224) datos.id_usuario = ID_USUARIO;
