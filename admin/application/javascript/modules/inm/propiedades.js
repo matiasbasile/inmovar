@@ -248,8 +248,11 @@
       "change #propiedades_buscar_monto":"buscar",
       "change #propiedades_buscar_monto_2":"buscar",
       "change #propiedades_buscar_direccion":"buscar",
+      "change #propiedades_entre_calles":"buscar",
+      "change #propiedades_entre_calles_2":"buscar",
       "change #propiedades_buscar_dormitorios":"buscar",
       "change #propiedades_buscar_banios":"buscar",
+      "change #propiedades_buscar_cocheras":"buscar",
 
       "keydown #propiedades_tabla tbody tr .radio:first":function(e) {
         // Si estamos en el primer elemento y apretamos la flechita de arriba
@@ -367,6 +370,7 @@
       window.propiedades_id_localidad = (typeof window.propiedades_id_localidad != "undefined") ? window.propiedades_id_localidad : 0;
       window.propiedades_dormitorios = (typeof window.propiedades_dormitorios != "undefined") ? window.propiedades_dormitorios : "";
       window.propiedades_banios = (typeof window.propiedades_banios != "undefined") ? window.propiedades_banios : "";
+      window.propiedades_cocheras = (typeof window.propiedades_cocheras != "undefined") ? window.propiedades_cocheras : "";
       window.propiedades_filter = (typeof window.propiedades_filter != "undefined") ? window.propiedades_filter : "";
       window.propiedades_direccion = (typeof window.propiedades_direccion != "undefined") ? window.propiedades_direccion : "";
       window.propiedades_monto = (typeof window.propiedades_monto != "undefined") ? window.propiedades_monto : "";
@@ -656,6 +660,10 @@
         window.propiedades_banios = this.$("#propiedades_buscar_banios").val();  
         cambio_parametros = true;
       }
+      if (window.propiedades_cocheras != this.$("#propiedades_buscar_cocheras").val()) {
+        window.propiedades_cocheras = this.$("#propiedades_buscar_cocheras").val();  
+        cambio_parametros = true;
+      }
       if (window.propiedades_entre_calles != this.$("#propiedades_entre_calles").val()) {
         window.propiedades_entre_calles = this.$("#propiedades_entre_calles").val();  
         cambio_parametros = true;
@@ -720,6 +728,7 @@
         //"acepta_permuta":window.propiedades_acepta_permuta,
         "dormitorios":window.propiedades_dormitorios,
         "banios":window.propiedades_banios,
+        "cocheras":window.propiedades_cocheras,
         "filtro_meli":window.propiedades_filtro_meli,
         "filtro_olx":window.propiedades_filtro_olx,
         "filtro_inmovar":window.propiedades_filtro_inmovar,

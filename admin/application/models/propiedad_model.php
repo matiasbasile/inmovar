@@ -439,6 +439,7 @@ class Propiedad_Model extends Abstract_Model {
     $monto_moneda = (isset($conf["monto_moneda"])) ? $conf["monto_moneda"] : "$";
     $dormitorios = (isset($conf["dormitorios"])) ? $conf["dormitorios"] : "";
     $banios = (isset($conf["banios"])) ? $conf["banios"] : "";
+    $cocheras = (isset($conf["cocheras"])) ? $conf["cocheras"] : "";
     $olx_habilitado = (isset($conf["olx_habilitado"])) ? $conf["olx_habilitado"] : -1;
     $buscar_imagenes = (isset($conf["buscar_imagenes"])) ? $conf["buscar_imagenes"] : 0;
 
@@ -508,6 +509,10 @@ class Propiedad_Model extends Abstract_Model {
     if (!empty($banios)) {
       if ($banios == "7") $sql_where.= "AND A.banios > 6 ";
       else $sql_where.= "AND A.banios = $banios ";
+    }
+    if (!empty($cocheras)) {
+      if ($cocheras == "4") $sql_where.= "AND A.cocheras > 3 ";
+      else $sql_where.= "AND A.cocheras = $cocheras ";
     }
 
     if ($monto_moneda == 'U$D') {

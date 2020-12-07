@@ -878,6 +878,7 @@ class Propiedades extends REST_Controller {
     $activo = parent::get_get("activo",-1);
     $dormitorios = ($this->input->get("dormitorios") !== FALSE) ? $this->input->get("dormitorios") : "";
     $banios = ($this->input->get("banios") !== FALSE) ? $this->input->get("banios") : "";
+    $cocheras = ($this->input->get("cocheras") !== FALSE) ? $this->input->get("cocheras") : "";
     $calle = ($this->input->get("calle") !== FALSE) ? $this->input->get("calle") : "";
     $entre_calles = ($this->input->get("entre_calles") !== FALSE) ? $this->input->get("entre_calles") : "";
     $entre_calles_2 = ($this->input->get("entre_calles_2") !== FALSE) ? $this->input->get("entre_calles_2") : "";
@@ -907,6 +908,7 @@ class Propiedades extends REST_Controller {
       "id_localidad"=>$id_localidad,
       "dormitorios"=>$dormitorios,
       "banios"=>$banios,
+      "cocheras"=>$cocheras,
       "filtro_meli"=>$filtro_meli,
       "filtro_olx"=>$filtro_olx,
       "filtro_inmovar"=>$filtro_inmovar,
