@@ -36,52 +36,54 @@
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-3">
-              <div class="form-group">
-                <label class="control-label">Tipo Operacion</label>
-                <select <%= (!edicion)?"disabled":"" %> id="propiedad_tipos_operacion" class="w100p">
-                  <% for(var i=0;i< window.tipos_operacion.length;i++) { %>
-                    <% var o = tipos_operacion[i]; %>
-                    <option value="<%= o.id %>" <%= (o.id == id_tipo_operacion)?"selected":"" %>><%= o.nombre %></option>
-                  <% } %>
-                </select>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="form-group">
-                <label class="control-label">Tipo Inmueble</label>
-                <select <%= (!edicion)?"disabled":"" %> id="propiedad_tipos_inmueble" class="w100p">
-                  <% for(var i=0;i< window.tipos_inmueble.length;i++) { %>
-                    <% var o = tipos_inmueble[i]; %>
-                    <option value="<%= o.id %>" <%= (o.id == id_tipo_inmueble)?"selected":"" %>><%= o.nombre %></option>
-                  <% } %>
-                </select>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="form-group">
-                <label class="control-label">Disponibilidad</label>
-                <select <%= (!edicion)?"disabled":"" %> id="propiedad_tipos_estado" class="form-control">
-                  <% for(var i=0;i< window.tipos_estado.length;i++) { %>
-                    <% var o = tipos_estado[i]; %>
-                    <option value="<%= o.id %>" <%= (o.id == id_tipo_estado)?"selected":"" %>><%= o.nombre %></option>
-                  <% } %>
-                </select>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="form-group">
-                <label class="control-label">Asignado a</label>
-                <select <%= (!edicion)?"disabled":"" %> id="propiedad_usuarios" class="form-control">
-                  <option value="0">Seleccione</option>
-                  <% for(var i=0;i< window.usuarios.models.length;i++) { %>
-                    <% var o = window.usuarios.models[i]; %>
-                    <% if (SOLO_USUARIO == 0 || (SOLO_USUARIO == 1 && o.id == ID_USUARIO)) { %>
-                      <option value="<%= o.id %>" <%= (o.id == id_usuario)?"selected":"" %>><%= o.nombre %></option>
+          <div class="col-md-10">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="control-label">Tipo Operacion</label>
+                  <select <%= (!edicion)?"disabled":"" %> id="propiedad_tipos_operacion" class="w100p">
+                    <% for(var i=0;i< window.tipos_operacion.length;i++) { %>
+                      <% var o = tipos_operacion[i]; %>
+                      <option value="<%= o.id %>" <%= (o.id == id_tipo_operacion)?"selected":"" %>><%= o.nombre %></option>
                     <% } %>
-                  <% } %>
-                </select>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="control-label">Tipo Inmueble</label>
+                  <select <%= (!edicion)?"disabled":"" %> id="propiedad_tipos_inmueble" class="w100p">
+                    <% for(var i=0;i< window.tipos_inmueble.length;i++) { %>
+                      <% var o = tipos_inmueble[i]; %>
+                      <option value="<%= o.id %>" <%= (o.id == id_tipo_inmueble)?"selected":"" %>><%= o.nombre %></option>
+                    <% } %>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="control-label">Disponibilidad</label>
+                  <select <%= (!edicion)?"disabled":"" %> id="propiedad_tipos_estado" class="form-control">
+                    <% for(var i=0;i< window.tipos_estado.length;i++) { %>
+                      <% var o = tipos_estado[i]; %>
+                      <option value="<%= o.id %>" <%= (o.id == id_tipo_estado)?"selected":"" %>><%= o.nombre %></option>
+                    <% } %>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="control-label">Asignado a</label>
+                  <select <%= (!edicion)?"disabled":"" %> id="propiedad_usuarios" class="form-control">
+                    <option value="0">Seleccione</option>
+                    <% for(var i=0;i< window.usuarios.models.length;i++) { %>
+                      <% var o = window.usuarios.models[i]; %>
+                      <% if (SOLO_USUARIO == 0 || (SOLO_USUARIO == 1 && o.id == ID_USUARIO)) { %>
+                        <option value="<%= o.id %>" <%= (o.id == id_usuario)?"selected":"" %>><%= o.get("nombre") %></option>
+                      <% } %>
+                    <% } %>
+                  </select>
+                </div>
               </div>
             </div>
           </div>

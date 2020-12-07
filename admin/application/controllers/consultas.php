@@ -454,6 +454,15 @@ class Consultas extends REST_Controller {
           "id_empresa"=>$id_empresa
         ));
       }
+
+      if (!empty($id_propiedad)) {
+        $this->load->model("Propiedad_Model");
+        $propiedad = $this->Propiedad_Model->get($id_propiedad,array(
+          "id_empresa"=>$id_empresa
+        ));
+        // Si no estamos definiendo un usuario desde la web, tenemos que poner el asignado en la propiedad
+        if (empty($id_usuario)) $id_usuario = $propiedad->id_usuario;
+      }       
       
       if ($contacto === FALSE) {
         // Debemos crearlo
@@ -519,16 +528,7 @@ class Consultas extends REST_Controller {
       else if ($id_auto != 0) $id_referencia = $id_auto;
 
       // En el caso de estar consultando por una propiedad de la red
-      $id_empresa_relacion = parent::get_post("id_empresa_relacion",$id_empresa);
-
-      if (!empty($id_propiedad)) {
-        $this->load->model("Propiedad_Model");
-        $propiedad = $this->Propiedad_Model->get($id_propiedad,array(
-          "id_empresa"=>$id_empresa
-        ));
-        // Si no estamos definiendo un usuario desde la web, tenemos que poner el asignado en la propiedad
-        if (empty($id_usuario)) $id_usuario = $propiedad->id_usuario;
-      }      
+      $id_empresa_relacion = parent::get_post("id_empresa_relacion",$id_empresa);     
       
       $fecha = date("Y-m-d H:i:s");
       $consulta = new stdClass();
@@ -658,17 +658,7 @@ class Consultas extends REST_Controller {
             $body_ant = $body;
             $body = $temp->texto;
             $body = str_replace("{{cuerpo}}", $body_ant, $body);
-
-            // Si es ESTEBAN ECHEVERRIA, mandamos el nombre del comercio
-            if ($id_empresa == 1284 && !empty($id_usuario)) {
-              $this->load->model("Usuario_Model");
-              $comercio = $this->Usuario_Model->get($id_usuario,array(
-                "id_empresa"=>$id_empresa,
-              ));
-              $empresa_nombre = $comercio->nombre;
-            } else {
-              $empresa_nombre = htmlentities($empresa->nombre,ENT_QUOTES);
-            }
+            $empresa_nombre = htmlentities($empresa->nombre,ENT_QUOTES);
             $empresa_nombre = ucwords(strtolower($empresa_nombre));
             $body = str_replace("{{nombre}}", $empresa_nombre, $body);
           }
