@@ -653,7 +653,7 @@ class Consultas extends REST_Controller {
           if (!empty($mensaje)) $body.= "<b>Comentarios:</b><br/> ".nl2br($mensaje)." <br/>";
 
           // Si existe el template asignado
-          $temp = $this->Email_Template_Model->get_by_key("consulta",936);
+          $temp = $this->Email_Template_Model->get_by_key("consulta",1);
           if ($temp !== FALSE) {
             $body_ant = $body;
             $body = $temp->texto;
