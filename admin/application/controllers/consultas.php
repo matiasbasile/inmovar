@@ -646,10 +646,16 @@ class Consultas extends REST_Controller {
             if (is_array($para)) $para = implode(", ", $para);
             $body.= "<b>Para:</b> $para <br/>";
           }
-          if (!empty($email)) $body.= "<b>Email:</b> $email <br/>";
-          if (!empty($telefono)) $body.= "<b>Telefono:</b> ".$prefijo.$telefono."<br/>";
+          if (!empty($email)) $body.= "<b>Email:</b> <a href='mailto:$email'>$email</a> <br/>";
+          if (!empty($telefono)) $body.= "<b>Telefono:</b> <a href='tel:".$prefijo.$telefono."'>".$prefijo.$telefono."</a><br/>";
           if (!empty($ciudad)) $body.= "<b>Ciudad:</b> $ciudad <br/>";
-          if (!empty($asunto)) $body.= "<b>Interesado en:</b> $asunto <br/>";
+
+          $link_propiedad = "";
+          if (isset($empresa->dominios) && sizeof($empresa->dominios)>0 && isset($propiedad) && isset($propiedad->link)) {
+            $link_propiedad = "https://".$empresa->dominios[0]."/".$propiedad->link;
+            $link_propiedad = "<a href='".$link_propiedad."' target='_blank'>Ver propiedad</a>";
+          }
+          if (!empty($asunto)) $body.= "<b>Interesado en:</b> $asunto ".($link_propiedad)."<br/>";
           if (!empty($mensaje)) $body.= "<b>Comentarios:</b><br/> ".nl2br($mensaje)." <br/>";
 
           // Si existe el template asignado
