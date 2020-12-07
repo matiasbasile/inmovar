@@ -870,6 +870,7 @@ class Propiedades extends REST_Controller {
     $id_localidad = str_replace("-",",",parent::get_get("id_localidad",""));
     $apto_banco = ($this->input->get("apto_banco") !== FALSE) ? $this->input->get("apto_banco") : 0;
     $acepta_permuta = ($this->input->get("acepta_permuta") !== FALSE) ? $this->input->get("acepta_permuta") : 0;
+    $id_inmobiliaria = ($this->input->get("id_inmobiliaria") !== FALSE) ? $this->input->get("id_inmobiliaria") : 0;
     $filtro_meli = ($this->input->get("filtro_meli") !== FALSE) ? $this->input->get("filtro_meli") : -1;
     $filtro_olx = ($this->input->get("filtro_olx") !== FALSE) ? $this->input->get("filtro_olx") : -1;
     $filtro_inmovar = ($this->input->get("filtro_inmovar") !== FALSE) ? $this->input->get("filtro_inmovar") : -1;

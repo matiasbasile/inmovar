@@ -224,12 +224,14 @@
         this.$(".buscar_tab").removeClass("active");
         this.$("#buscar_propias_tab").addClass("active");
         this.$(".ocultar_en_red").show();
+        this.$(".mostrar_en_red").hide();
         this.buscar();
       },
       "click #buscar_red_tab":function() {
         this.$(".buscar_tab").removeClass("active");
         this.$("#buscar_red_tab").addClass("active");
         this.$(".ocultar_en_red").hide();
+        this.$(".mostrar_en_red").show();
         this.buscar();
       },
       "click #propiedades_ver_mapa":function() {
@@ -254,6 +256,7 @@
       "change #propiedades_buscar_banios":"buscar",
       "change #propiedades_buscar_cocheras":"buscar",
       "change #propiedades_buscar_compartida_en":"buscar",
+      "change #propiedades_buscar_inmobiliarias":"buscar",
 
       "keydown #propiedades_tabla tbody tr .radio:first":function(e) {
         // Si estamos en el primer elemento y apretamos la flechita de arriba
@@ -425,6 +428,8 @@
 
       // Cargamos el paginador
       this.$(".pagination_container").html(this.pagination.el);
+
+      this.$("#propiedades_buscar_inmobiliarias").select2();
       
       this.$("#propiedades_buscar_tipos_estado").select2({
         multiple: true,
@@ -513,6 +518,16 @@
       if (window.propiedades_buscar_red != buscar_red) {
         window.propiedades_buscar_red = buscar_red;
         cambio_parametros = true;
+      }
+
+      if (window.propiedades_buscar_red == 1) {
+        if (window.propiedades_buscar_red_empresa != this.$("#propiedades_buscar_inmobiliarias").val()) {
+          window.propiedades_buscar_red_empresa = this.$("#propiedades_buscar_inmobiliarias").val();
+          cambio_parametros = true;
+        }
+      } else {
+        cambio_parametros = true;
+        window.propiedades_buscar_red_empresa = 0;
       }
 
       if (window.propiedades_id_tipo_estado != this.$("#propiedades_buscar_tipos_estado").val()) {

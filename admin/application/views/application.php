@@ -297,6 +297,7 @@ var cajas = <?php echo json_encode($cajas); ?>;
 var bancos = <?php echo json_encode($bancos); ?>;
 var almacenes = <?php echo json_encode($almacenes); ?>;
 var tipos_gastos = <?php echo json_encode($tipos_gastos); ?>;
+var empresas = <?php echo json_encode($empresas); ?>;
 
 // Usuarios del sistema
 var usuarios = new app.collections.Usuarios(<?php echo json_encode($usuarios); ?>);

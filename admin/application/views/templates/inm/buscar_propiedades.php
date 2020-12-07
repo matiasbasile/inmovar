@@ -182,8 +182,8 @@
               <option <%= (window.propiedades_compartida_en == "no_red")?"selected":"" %> value="no_red">No compartidas en Red Inmovar</option>
             </optgroup>
             <optgroup label="Web">
-              <option <%= (window.propiedades_compartida_en == "web")?"selected":"" %> value="web">Compartidas en web</option>
-              <option <%= (window.propiedades_compartida_en == "no_web")?"selected":"" %> value="no_web">No compartidas en web</option>
+              <option <%= (window.propiedades_compartida_en == "web")?"selected":"" %> value="web">Activas en web</option>
+              <option <%= (window.propiedades_compartida_en == "no_web")?"selected":"" %> value="no_web">No activas en web</option>
             </optgroup>
             <optgroup label="MercadoLibre">
               <option <%= (window.propiedades_compartida_en == "meli")?"selected":"" %> value="meli">Compartidas en MercadoLibre</option>
@@ -203,6 +203,15 @@
             </optgroup>
           </select>
         </div>
+      </div>
+      <div class="col-md-2 col-sm-3 col-xs-12 h50 pr5 pl5 mostrar_en_red" style="<%= (window.propiedades_buscar_red == 1)?'display:block':'display:none' %>">
+        <select style="width: 100%" id="propiedades_buscar_inmobiliarias">
+          <option value="0">Inmobiliaria</option>
+          <% for(var i=0;i< window.empresas.length;i++) { %>
+            <% var o = empresas[i] %>
+            <option <%= (window.propiedades_buscar_red_empresa == o.id)?"selected":"" %> value="<%= o.id %>"><%= o.nombre %></option>
+          <% } %>
+        </select>        
       </div>
       <div class="col-md-2 col-sm-3 col-xs-12 h50 pr5 pl5">
         <button data-toggle="tooltip" title="Ver como lista" id="propiedades_ver_lista" class="btn btn-default <%= (window.propiedades_mapa == 0)?'btn-info':'' %>">

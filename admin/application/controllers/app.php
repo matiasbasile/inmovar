@@ -44,6 +44,7 @@ class App extends CI_Controller {
     $puntos_venta = array();
     $comprobantes = array();
     $cajas = array();
+    $empresas = array();
     $total_notificaciones = 0;
 
     $q = $this->db->query("SELECT * FROM com_idiomas ORDER BY id ASC");
@@ -239,6 +240,9 @@ class App extends CI_Controller {
         "id_proyecto"=>$empresa->id_proyecto,
       ));
 
+      $this->load->model("Permiso_Red_Model");
+      $empresas = $this->Permiso_Red_Model->get_inmobiliarias_red();
+
       // Perfil de usuario
       if (file_exists("application/models/perfil_model.php")) {
         $this->load->model("Perfil_Model");
@@ -362,6 +366,7 @@ class App extends CI_Controller {
       "bancos" => $bancos,
       "almacenes" => $almacenes,
       "tipos_gastos" => $tipos_gastos,
+      "empresas" => $empresas,
       
       "tipos_estado" => $tipos_estado,
       "tipos_inmueble" => $tipos_inmueble,
