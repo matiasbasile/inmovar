@@ -373,7 +373,7 @@
         <div class="dt">
           <div class="dtc vam">
             <% if (!isEmpty(logo_inmobiliaria)) { %>
-              <img src="<%= logo_inmobiliaria %>" class="customcomplete-image" style="border-radius:100%; width: 64px; height:64px"/>
+              <img src="<%= logo_inmobiliaria %>" class="customcomplete-image" style="border-radius:100%; width: 64px; height:64px;border:1px solid #eaeff0"/>
             <% } %>
           </div>
           <div class="dtc vam pl10">

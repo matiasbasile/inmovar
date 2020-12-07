@@ -2319,6 +2319,12 @@
           "apto_profesional":((self.$("#propiedad_apto_profesional").length>0) ? (self.$("#propiedad_apto_profesional").is(":checked")?1:0) : 0),
         });
 
+        if (this.$("#propiedad_usuarios").length > 0) {
+          this.model.set({
+            "id_usuario":self.$("#propiedad_usuarios").val(),
+          })
+        }
+
         if (id_tipo_operacion == 3) {
           // Es un alquiler temporario, tenemos que guardar ademas otras cosas
           this.model.set({
