@@ -88,6 +88,7 @@ class App extends CI_Controller {
       $empresa->id_web_template = 0;
       $empresa->servidor_local = "";
       $empresa->administrar_pagos = 0;
+      $empresa->activo = 1;
 
       // Si tenemos DEBUG = 1, entonces tomamos los archivos directamente
       // Sino, usamos su version comprimida y compilada

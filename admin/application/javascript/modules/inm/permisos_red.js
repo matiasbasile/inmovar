@@ -72,7 +72,7 @@
         "dataType":"json",
         "success":function(r) {
           var model = new app.models.AbstractModel(r);
-          model.set({"edicion":(self.permiso > 1)});
+          model.set({"edicion":(ACTIVO == 1 && self.permiso > 1)});
           $(self.el).html(self.template(model.toJSON()));
           $('[data-toggle="tooltip"]').tooltip();
         }
