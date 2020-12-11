@@ -1172,10 +1172,8 @@ if (!empty($empresa->path_template)) {
 </div>
 <div style="margin-left: 256px; height: 100%; width: calc(100% - 256px); ">
   <% var dom = ""; %>
-  <% if (window.location.origin.indexOf("varcreative")>=0) { %>
-    <% dom = window.location.protocol+"//www.varcreative.com/sandbox/"+ID_EMPRESA+"/" %>
-  <% } else if (window.location.origin.indexOf("navaprostudio")>=0) { %>
-    <% dom = window.location.protocol+"//www.navaprostudio.com/sandbox/"+ID_EMPRESA+"/" %>
+  <% if (window.location.origin.indexOf("inmovar")>=0) { %>
+    <% dom = window.location.protocol+"//app.inmovar.com/sandbox/"+ID_EMPRESA+"/" %>
   <% } else { %>
     <% dom = window.location.protocol+"//"+DOMINIO %>
   <% } %>
