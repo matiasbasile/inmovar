@@ -110,11 +110,17 @@
           </div>				
         <% } %>
         <div class="form-group">
+          <label class="col-lg-2 control-label">Precio s/dto</label>
+          <div class="col-lg-10">
+            <input type="text" name="precio_sin_dto" class="form-control" value="<%= precio_sin_dto %>"/>
+          </div>
+        </div>				
+        <div class="form-group">
           <label class="col-lg-2 control-label">Precio</label>
           <div class="col-lg-10">
             <input type="text" name="precio_anual" class="form-control" value="<%= precio_anual %>"/>
           </div>
-        </div>				
+        </div>        
         <div class="form-group">
           <label class="col-lg-2 control-label">Texto</label>
           <div class="col-lg-10">

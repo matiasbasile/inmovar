@@ -111,6 +111,7 @@
         var tel = this.model.get("telefono_empresa");
         tel = tel.replace(/[^\d.-]/g, '');
         tel = tel.replace(/\-/g, "");
+        if (tel.length == 10) tel = "549"+tel;
         var link_ws = "https://wa.me/"+tel+"?text="+encodeURIComponent(mensaje);
         window.open(link_ws,"_blank");
       }

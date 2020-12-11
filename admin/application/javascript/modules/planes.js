@@ -14,6 +14,7 @@
       limite_compras:0,
       limite_articulos:0,
       precio_anual:0,
+      precio_sin_dto:0,
       observaciones: "",
       forma_generacion: 'F',
       dia_generacion: 1,

@@ -242,6 +242,7 @@
                   <span class="text-2x text-lt"><%= Number(plan.precio_anual).toFixed(0) %></span>
                   <span class="text-xs">/ mes</span>
                 </h2>
+                <strike><%= Number(plan.precio_anual).toFixed(0) %></strike>
               </div>
               <%= plan.observaciones %>
               <div class="panel-footer text-center b-t m-t bg-light lter">
