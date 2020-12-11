@@ -239,11 +239,11 @@
                 <h4 class="text-u-c m-b-none"><%= plan.nombre %></h4>
                 <h2 class="m-t-none">
                   <sup class="pos-rlt" style="top:-22px">$</sup>
-                  <span class="text-2x text-lt"><%= Number(plan.precio_anual).toFixed(0) %></span>
+                  <span class="text-2x text-lt"><%= Number(plan.precio_anual).format(0) %></span>
                   <span class="text-xs">/ mes</span>
                 </h2>
                 <div class="tac fs18">
-                  <span>40% OFF!</span> <strike><%= Number(plan.precio_anual).toFixed(0) %></strike>
+                  <span>40% OFF!</span> $<strike><%= Number(plan.precio_anual).format(0) %></strike>
                 </div>
               </div>
               <%= plan.observaciones %>
@@ -259,11 +259,11 @@
                 <h4 class="text-u-c m-b-none"><%= plan.nombre %></h4>
                 <h2 class="m-t-none">
                   <sup class="pos-rlt" style="top:-22px">$</sup>
-                  <span class="text-2x text-lt"><%= Number(plan.precio_anual).toFixed(0) %></span>
+                  <span class="text-2x text-lt"><%= Number(plan.precio_anual).format(0) %></span>
                   <span class="text-xs">/ mes</span>
                 </h2>
                 <div class="tac fs18">
-                  <span>40% OFF!</span> <strike><%= Number(plan.precio_anual).toFixed(0) %></strike>
+                  <span>40% OFF!</span> $<strike><%= Number(plan.precio_anual).format(0) %></strike>
                 </div>
               </div>
               <%= plan.observaciones %>
