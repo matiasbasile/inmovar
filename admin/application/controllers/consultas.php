@@ -59,7 +59,7 @@ class Consultas extends REST_Controller {
       //$messageExcerpt = substr($message, 0, 300); Por si se quiere mostrar X caracteres
 
       // Datos de los usuarios
-      $text = trim(quoted_printable_decode($message)); 
+      $text = $message;//trim(quoted_printable_decode($message)); 
       $fecha = date("Y-m-d H:i:s", strtotime($overview[$i]->date));
       $titulo = $overview[$i]->subject;
       $from = $overview[$i]->from;
