@@ -67,6 +67,7 @@ class Consultas extends REST_Controller {
 
       // Datos de los usuarios
       $text = $message;//trim(quoted_printable_decode($message)); 
+      $to = $overview[$i]->to;
       $fecha = date("Y-m-d H:i:s", strtotime($overview[$i]->date));
       $titulo = $overview[$i]->subject;
       $from = $overview[$i]->from;
@@ -77,17 +78,14 @@ class Consultas extends REST_Controller {
         $from=str_replace(">", "", $from);
       }
       if ($from != "noresponder@eldia.com") continue;
-      $to = $overview[$i]->to;
-      echo $text."<br/>";
 
-      /*
-      echo "FROM: $from \n";
-      echo "FECHA: $fecha \n";
-      echo "TO: $to \n";
-      echo "TITULO: $titulo \n";
-      //echo "TEXT: $text \n";
-      echo "--------\n";
-      */
+      // ANALISIS DE VIVIENDAS EL DIA
+      $this->load->model("Consulta_Model");
+      $this->load->model("Diario_El_Dia_Model");
+      $consulta = $this->Diario_El_Dia_Model->parse_email($text);
+      if (isset($consulta->id_propiedad)) {
+        print_r($consulta)."<br/><br/>";
+      }
     }
   }
 
