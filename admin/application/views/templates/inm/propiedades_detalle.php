@@ -312,7 +312,7 @@
               </div>
 
               <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-6">
                   <div class="form-group">
                     <label class="control-label">Entre las calles</label>
                     <div class="input-group">
@@ -322,7 +322,19 @@
                     </div>  
                   </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label class="control-label">Tipo de Acceso</label>
+                    <select class="form-control" name="tipo_calle" id="propiedad_tipo_calle">
+                      <option <%= (tipo_calle == 0)?"selected":"" %> value="0">Sin especificar</option>
+                      <option <%= (tipo_calle == 1)?"selected":"" %> value="1">Asfalto</option>
+                      <option <%= (tipo_calle == 2)?"selected":"" %> value="2">Tierra</option>
+                      <option <%= (tipo_calle == 3)?"selected":"" %> value="3">Arena</option>
+                      <option <%= (tipo_calle == 4)?"selected":"" %> value="4">Ripio</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-3">
                   <div class="form-group">
                     <label class="control-label">Mostrar</label>
                     <select <%= (!edicion)?"disabled":"" %> id="propiedad_publica_altura" name="publica_altura" class="form-control">
