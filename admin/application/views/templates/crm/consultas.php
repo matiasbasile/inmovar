@@ -175,6 +175,9 @@
       <% } else if (id_origen == 26) { %>
         <i class="fa fa-facebook"></i> Facebook
 
+      <% } else if (id_origen == 40) { %>
+        <i class="fa fa-globe"></i> Diario El Dia
+
       <% } else if (id_origen == 28 || id_origen == 5 || id_origen == 21 || id_origen == 22 || id_origen == 28) { %>
         <i class="fa fa-envelope"></i> Email
 
@@ -617,6 +620,8 @@
         <i title="Email" class="fa fa-envelope"></i>
       <% } else if (id_origen == 4) { %>
         <i title="Telefono" class="fa fa-phone"></i>
+      <% } else if (id_origen == 40) { %>
+        <i title="Diario El Dia" class="fa fa-globe"></i>
       <% } else if (id_origen == 24) { %>
         <i title="Instagram" class="fa fa-instagram"></i>
       <% } else if (id_origen == 26) { %>

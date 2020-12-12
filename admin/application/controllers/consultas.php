@@ -56,7 +56,6 @@ class Consultas extends REST_Controller {
     foreach ($emailData as $emailIdent) { //Leer emails
       $i=0;
       $overview = imap_fetch_overview($connection, $emailIdent, 0);
-      print_r($overview); exit();
       $structure = imap_fetchstructure($connection, $emailIdent);
       $message = imap_fetchbody($connection, $emailIdent, '1');
       if($structure->encoding == 3) {
