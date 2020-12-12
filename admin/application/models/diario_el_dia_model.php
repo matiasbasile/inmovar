@@ -26,6 +26,7 @@ XML;
 		  if (get_class($dif) == "Text_Diff_Op_change") {
 		    $original = implode(" ", $dif->orig);
 		    $original = str_replace("'", "", $original);
+		    $original = strip_tags($original);
 		    $original = trim($original);
 		    $final = implode(" ", $dif->final);
 		    file_put_contents("log_diario_el_dia.txt", date("Y-m-d H:i:s")." - ORIG: ".$original." || FINAL: ".$final."\n", FILE_APPEND);
@@ -37,7 +38,7 @@ XML;
 		    else if ($original == "{{link}}") $consulta->link = $final;
 		    else if ($original == "{{email}}") $consulta->email = $final;
 		    else if ($original == "{{nombre}}") $consulta->nombre = $final;
-		    else if ($original == "{{mensaje}}") $consulta->mensaje = $final;
+		    else if ($original == "{{mensaje}}") $consulta->mensaje = strip_tags($final);
 		  }
 		}
 		return $consulta;
