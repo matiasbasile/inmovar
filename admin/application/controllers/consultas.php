@@ -92,6 +92,7 @@ class Consultas extends REST_Controller {
           "id_empresa"=>$id_empresa
         ));
         $consulta->tipo = 0; // Recibido
+        $consulta->id_contacto = 0;
         $consulta->message_id = $overview[$i]->message_id;
         $consulta->id_empresa = $id_empresa;
         $consulta->asunto = "Contacto desde Diario El Dia";
