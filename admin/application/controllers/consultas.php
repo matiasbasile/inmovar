@@ -47,6 +47,7 @@ class Consultas extends REST_Controller {
     }
     */
 
+    $id_empresa = 45;
     $connection = imap_open('{c1040339.ferozo.com:993/imap/ssl}INBOX', 'info@grupo-urbano.com.ar', 'Leonel235') or die('Cannot connect to Gmail: ' . imap_last_error());
     $emailData = imap_search($connection, 'ALL');
     //$emailData = imap_search($connection, 'ALL'); //Toma emails no leidos !!!!CAMBIAR ALL POR UNSEEN
@@ -82,15 +83,27 @@ class Consultas extends REST_Controller {
       // ANALISIS DE VIVIENDAS EL DIA
       $this->load->model("Consulta_Model");
       $this->load->model("Diario_El_Dia_Model");
+      $this->load->model("Propiedad_Model");
+
       $consulta = @$this->Diario_El_Dia_Model->parse_email($text);
-      if (isset($consulta->id_referencia)) {
+      if (isset($consulta->codigo_propiedad)) {
+
+        // Buscamos la propiedad por el codigo
+        $propiedad = $this->Propiedad_Model->get_by_codigo($consulta->codigo_propiedad,array(
+          "id_empresa"=>$id_empresa
+        ));
+        $consulta->id_referencia = $propiedad->id;
+        $consulta->id_usuario = $propiedad->id_usuario;
         $consulta->tipo = 0; // Recibido
-        $consulta->id_empresa = 45; // Grupo Urbano
+        $consulta->message_id = $overview[$i]->message_id;
+        $consulta->id_empresa = $id_empresa;
+        $consulta->asunto = "Contacto desde Diario El Dia";
         $consulta->id_origen = 40; // Diario El DIA
         $consulta->fecha = $fecha;
-        print_r($consulta)."<br/><br/>";
+        $this->Consulta_Model->insert($consulta);
       }
     }
+    echo "TERMINO";
   }
 
 

@@ -128,6 +128,16 @@ class Consulta_Model extends Abstract_Model {
     $id_empresa = (isset($data->id_empresa) ? $data->id_empresa : parent::get_empresa());
     $this->load->model("Cliente_Model");
     $this->load->helper("fecha_helper");
+
+    // Si existe el message_id y no es vacio
+    if (isset($data->message_id) && !empty($data->message_id)) {
+      // Controlamos que no este guardada la misma consulta
+      $sql = "SELECT * FROM crm_consultas WHERE id_empresa = $id_empresa AND message_id = '$data->message_id' ";
+      $q = $this->db->query($sql);
+      if ($q->num_rows() > 0) return;
+    }
+
+
     if (isset($data->fecha)) {
       if (!isset($data->hora) || empty($data->hora) || strlen($data->fecha)>10) {
         $data->hora = substr($data->fecha, strpos($data->fecha, " ")+1);
@@ -178,7 +188,7 @@ class Consulta_Model extends Abstract_Model {
     //$id = parent::insert($data);
     $sql = "INSERT INTO crm_consultas (";
     $sql.= "id_contacto,id_empresa_relacion,id_empresa,id_entrada,id_paciente,fecha,asunto,";
-    $sql.= "texto,id_email_respuesta,id_origen,id_usuario,subtitulo,tipo,id_referencia,id_relacion,id_asunto,estado";
+    $sql.= "texto,id_email_respuesta,id_origen,id_usuario,subtitulo,tipo,id_referencia,id_relacion,id_asunto,estado,message_id";
     $sql.= ") VALUES (";
     $sql.= (isset($data->id_contacto)) ? "'$data->id_contacto'," : "0,";
     $sql.= (isset($data->id_empresa_relacion)) ? "'$data->id_empresa_relacion'," : ((isset($data->id_empresa)) ? "'$data->id_empresa'," : "0,");
@@ -197,6 +207,7 @@ class Consulta_Model extends Abstract_Model {
     $sql.= (isset($data->id_relacion)) ? "'$data->id_relacion'," : "0,";
     $sql.= (isset($data->id_asunto)) ? "'$data->id_asunto'," : "0,";
     $sql.= (isset($data->estado)) ? "'$data->estado'" : "0";
+    $sql.= (isset($data->message_id)) ? "'$data->message_id'" : "";
     $sql.= ")";
     file_put_contents("consulta_insertar.txt", date("Y-m-d H:i:s")." - ".$sql."\n", FILE_APPEND);
     $this->db->query($sql);
