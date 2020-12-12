@@ -32,6 +32,8 @@ XML;
 		    // Vamos llenando el objeto
 		    if ($original == "{{codigo}}") $consulta->codigo_propiedad = $final;
 		    else if ($original == "{{telefono}}") $consulta->telefono = $final;
+		    else if ($original == "{{direccion}}") $consulta->direccion_propiedad = $final;
+		    else if ($original == "{{link}}") $consulta->link = $final;
 		    else if ($original == "{{email}}") $consulta->email = $final;
 		    else if ($original == "{{nombre}}") $consulta->nombre = $final;
 		    else if ($original == "{{mensaje}}") $consulta->mensaje = strip_tags($final);

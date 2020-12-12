@@ -91,21 +91,28 @@ class Consultas extends REST_Controller {
         $propiedad = $this->Propiedad_Model->get_by_codigo($consulta->codigo_propiedad,array(
           "id_empresa"=>$id_empresa
         ));
+        $consulta->id_usuario = $propiedad->id_usuario;
+        $consulta->tipo = 0; // Recibido
+        $consulta->message_id = $overview[$i]->message_id;
+        $consulta->id_empresa = $id_empresa;
+        $consulta->asunto = "Contacto desde Diario El Dia";
+        $consulta->id_origen = 40; // Diario El DIA
+        $consulta->fecha = $fecha;
+
+        $msg = "Nombre: $consulta->nombre\n";
+        $msg.= "Email: $consulta->email\n";
+        $msg.= "Telefono: $consulta->telefono\n";
+        $msg.= "Código Propiedad: $consulta->codigo_propiedad\n";
+        $msg.= "Dirección: $consulta->direccion_propiedad\n";
+        $consulta->texto = $msg."Mensaje: ".$consulta->mensaje;
+
         if (!empty($propiedad)) {
           $consulta->id_referencia = $propiedad->id;
-          $consulta->id_usuario = $propiedad->id_usuario;
-          $consulta->tipo = 0; // Recibido
-          $consulta->message_id = $overview[$i]->message_id;
-          $consulta->id_empresa = $id_empresa;
-          $consulta->asunto = "Contacto desde Diario El Dia";
-          $consulta->id_origen = 40; // Diario El DIA
-          $consulta->fecha = $fecha;
-          print_r($consulta)."<br/><br/>";
-          $this->Consulta_Model->insert($consulta);
         } else {
           echo "No se encuentra propiedad con codigo: $consulta->codigo_propiedad <br/>";
-          print_r($consulta)."<br/><br/>";
         }
+        print_r($consulta)."<br/><br/>";
+        $this->Consulta_Model->insert($consulta);
       }
     }
     echo "TERMINO";
