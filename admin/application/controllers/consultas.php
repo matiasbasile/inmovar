@@ -104,6 +104,7 @@ class Consultas extends REST_Controller {
           $this->Consulta_Model->insert($consulta);
         } else {
           echo "No se encuentra propiedad con codigo: $consulta->codigo_propiedad <br/>";
+          print_r($consulta)."<br/><br/>";
         }
       }
     }
