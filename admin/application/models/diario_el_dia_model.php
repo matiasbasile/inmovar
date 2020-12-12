@@ -30,7 +30,7 @@ XML;
 		    $final = implode(" ", $dif->final);
 
 		    // Vamos llenando el objeto
-		    if ($original == "{{id}}") $consulta->codigo_propiedad = $final;
+		    if ($original == "{{codigo}}") $consulta->codigo_propiedad = $final;
 		    else if ($original == "{{telefono}}") $consulta->telefono = $final;
 		    else if ($original == "{{email}}") $consulta->email = $final;
 		    else if ($original == "{{nombre}}") $consulta->nombre = $final;
