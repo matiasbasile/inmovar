@@ -28,6 +28,7 @@ XML;
 		    $original = str_replace("'", "", $original);
 		    $original = trim($original);
 		    $final = implode(" ", $dif->final);
+		    file_put_contents("log_diario_el_dia.txt", "ORIG: ".$original." || FINAL: ".$final, FILE_APPEND);
 
 		    // Vamos llenando el objeto
 		    if ($original == "{{codigo}}") $consulta->codigo_propiedad = $final;
@@ -36,11 +37,7 @@ XML;
 		    else if ($original == "{{link}}") $consulta->link = $final;
 		    else if ($original == "{{email}}") $consulta->email = $final;
 		    else if ($original == "{{nombre}}") $consulta->nombre = $final;
-		    else if ($original == "{{mensaje}}") {
-		    	echo "FINAL: ";
-		    	echo $final;
-		    	$consulta->mensaje = $final;
-		    }
+		    else if ($original == "{{mensaje}}") $consulta->mensaje = $final;
 		  }
 		}
 		return $consulta;
