@@ -144,6 +144,7 @@
         <select style="background-color:transparent;border:none;padding:0px;font-size:13px;margin-top:2px" class="no-model usuario_asignado fl">
           <% for (var i=0; i< usuarios.length; i++) { %>
             <% var u = usuarios.models[i] %>
+            <option value="0">Sin asignar</option>
             <option <%= (u.id == id_usuario)?"selected":"" %> value="<%= u.id %>"><%= u.get("nombre") %></option>
           <% } %>
         </select>

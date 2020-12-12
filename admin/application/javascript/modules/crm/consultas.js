@@ -375,6 +375,7 @@
         e.stopPropagation();
         var self = this;
         var id_usuario_asignado = $(e.currentTarget).val();
+        if (id_usuario_asignado == 0) return;
         $.ajax({
           "url":"consultas/function/editar_usuario_asignado/",
           "dataType":"json",
