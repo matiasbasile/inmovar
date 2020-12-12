@@ -28,7 +28,7 @@ XML;
 		    $original = str_replace("'", "", $original);
 		    $original = trim($original);
 		    $final = implode(" ", $dif->final);
-		    file_put_contents("log_diario_el_dia.txt", "ORIG: ".$original." || FINAL: ".$final, FILE_APPEND);
+		    file_put_contents("log_diario_el_dia.txt", date("Y-m-d H:i:s")." - ORIG: ".$original." || FINAL: ".$final."\n", FILE_APPEND);
 
 		    // Vamos llenando el objeto
 		    if ($original == "{{codigo}}") $consulta->codigo_propiedad = $final;
