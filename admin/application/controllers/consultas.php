@@ -55,10 +55,14 @@ class Consultas extends REST_Controller {
     foreach ($emailData as $emailIdent) { //Leer emails
       $i=0;
       $overview = imap_fetch_overview($connection, $emailIdent, 0);
+      $structure = imap_fetchstructure($connection, $emailIdent);
       $message = imap_fetchbody($connection, $emailIdent, '1');
-      if (preg_match('/^([a-zA-Z0-9]{76} )+[a-zA-Z0-9]{76}$/', $message)) {
-        $message = base64_decode($message);
-      }      
+      print_r($structure);
+      if($structure->encoding == 3) {
+          $message = imap_base64($message);
+      } else if($structure->encoding == 4) {
+          $message = imap_qprint($message);
+      }
       //$messageExcerpt = substr($message, 0, 300); Por si se quiere mostrar X caracteres
 
       // Datos de los usuarios
