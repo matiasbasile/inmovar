@@ -6,7 +6,7 @@ class Diario_El_Dia_Model extends CI_Model {
 	function parse_email($texto_email) {
 
 		// Cargamos las librerias
-		include_once '/home/ubuntu/admin/application/libraries/Text/inline_function.php';
+		include_once '/home/ubuntu/inmovar/admin/application/libraries/Text/inline_function.php';
 
 		// Este es el template utilizado que tiene los placeholders donde se va a extraer informacion
 		$template = <<<XML
