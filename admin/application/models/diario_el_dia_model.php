@@ -36,7 +36,7 @@ XML;
 		    else if ($original == "{{link}}") $consulta->link = $final;
 		    else if ($original == "{{email}}") $consulta->email = $final;
 		    else if ($original == "{{nombre}}") $consulta->nombre = $final;
-		    else if ($original == "{{mensaje}}") $consulta->mensaje = strip_tags($final);
+		    else if ($original == "{{mensaje}}") $consulta->mensaje = $final;
 		  }
 		}
 		return $consulta;

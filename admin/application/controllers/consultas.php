@@ -91,7 +91,6 @@ class Consultas extends REST_Controller {
         $propiedad = $this->Propiedad_Model->get_by_codigo($consulta->codigo_propiedad,array(
           "id_empresa"=>$id_empresa
         ));
-        $consulta->id_usuario = $propiedad->id_usuario;
         $consulta->tipo = 0; // Recibido
         $consulta->message_id = $overview[$i]->message_id;
         $consulta->id_empresa = $id_empresa;
@@ -107,6 +106,7 @@ class Consultas extends REST_Controller {
         $consulta->texto = $msg."Mensaje: ".$consulta->mensaje;
 
         if (!empty($propiedad)) {
+          $consulta->id_usuario = $propiedad->id_usuario;
           $consulta->id_referencia = $propiedad->id;
         } else {
           echo "No se encuentra propiedad con codigo: $consulta->codigo_propiedad <br/>";
