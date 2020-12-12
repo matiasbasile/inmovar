@@ -81,7 +81,7 @@ class Consultas extends REST_Controller {
       // ANALISIS DE VIVIENDAS EL DIA
       $this->load->model("Consulta_Model");
       $this->load->model("Diario_El_Dia_Model");
-      $consulta = $this->Diario_El_Dia_Model->parse_email($text);
+      $consulta = @$this->Diario_El_Dia_Model->parse_email($text);
       if (isset($consulta->id_propiedad)) {
         print_r($consulta)."<br/><br/>";
       }
