@@ -6,8 +6,8 @@ class Diario_El_Dia_Model extends CI_Model {
 	function parse_email($texto_email) {
 
 		// Cargamos las librerias
-		$this->load->library("diff_match_patch");
-		$this->load->library("Text/inline_function");
+		include_once BASEPATH.'libraries/diff_match_patch.php';
+		include_once BASEPATH.'libraries/Text/inline_function.php';
 
 		// Este es el template utilizado que tiene los placeholders donde se va a extraer informacion
 		$template = <<<XML
