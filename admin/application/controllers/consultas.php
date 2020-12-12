@@ -69,14 +69,18 @@ class Consultas extends REST_Controller {
         $from=str_replace("<", "", $from);
         $from=str_replace(">", "", $from);
       }
+      if ($from != "noresponder@eldia.com") continue;
       $to = $overview[$i]->to;
+      echo $text."<br/>";
 
+      /*
       echo "FROM: $from \n";
       echo "FECHA: $fecha \n";
       echo "TO: $to \n";
       echo "TITULO: $titulo \n";
       //echo "TEXT: $text \n";
       echo "--------\n";
+      */
     }
   }
 
