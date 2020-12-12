@@ -30,13 +30,10 @@ XML;
 		    $final = implode(" ", $dif->final);
 
 		    // Vamos llenando el objeto
-		    if ($original == "{{id}}") $consulta->id_propiedad = $final;
+		    if ($original == "{{id}}") $consulta->id_referencia = $final;
 		    else if ($original == "{{telefono}}") $consulta->telefono = $final;
 		    else if ($original == "{{email}}") $consulta->email = $final;
 		    else if ($original == "{{nombre}}") $consulta->nombre = $final;
-		    else if ($original == "{{direccion}}") $consulta->direccion = $final;
-		    else if ($original == "{{operacion}}") $consulta->operacion = $final;
-		    else if ($original == "{{link}}") $consulta->link = $final;
 		    else if ($original == "{{mensaje}}") $consulta->mensaje = strip_tags($final);
 		  }
 		}

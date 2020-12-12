@@ -55,6 +55,7 @@ class Consultas extends REST_Controller {
     foreach ($emailData as $emailIdent) { //Leer emails
       $i=0;
       $overview = imap_fetch_overview($connection, $emailIdent, 0);
+      print_r($overview); exit();
       $structure = imap_fetchstructure($connection, $emailIdent);
       $message = imap_fetchbody($connection, $emailIdent, '1');
       if($structure->encoding == 3) {
@@ -82,7 +83,11 @@ class Consultas extends REST_Controller {
       $this->load->model("Consulta_Model");
       $this->load->model("Diario_El_Dia_Model");
       $consulta = @$this->Diario_El_Dia_Model->parse_email($text);
-      if (isset($consulta->id_propiedad)) {
+      if (isset($consulta->id_referencia)) {
+        $consulta->tipo = 0; // Recibido
+        $consulta->id_empresa = 45; // Grupo Urbano
+        $consulta->id_origen = 40; // Diario El DIA
+        $consulta->fecha = $fecha;
         print_r($consulta)."<br/><br/>";
       }
     }
