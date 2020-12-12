@@ -57,11 +57,10 @@ class Consultas extends REST_Controller {
       $overview = imap_fetch_overview($connection, $emailIdent, 0);
       $structure = imap_fetchstructure($connection, $emailIdent);
       $message = imap_fetchbody($connection, $emailIdent, '1');
-      print_r($structure);
       if($structure->encoding == 3) {
-          $message = imap_base64($message);
+        $message = imap_base64($message);
       } else if($structure->encoding == 4) {
-          $message = imap_qprint($message);
+        $message = imap_qprint($message);
       }
       //$messageExcerpt = substr($message, 0, 300); Por si se quiere mostrar X caracteres
 

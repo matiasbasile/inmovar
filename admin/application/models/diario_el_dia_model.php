@@ -2,7 +2,7 @@
 
 require_once("abstract_model.php");
 
-class Diario_El_Dia_Model extends Abstract_Model {
+class Diario_El_Dia_Model extends CI_Model {
 	
 	// Parsea el email
 	function parse_email($texto_email) {
@@ -14,7 +14,7 @@ class Diario_El_Dia_Model extends Abstract_Model {
 		// Este es el template utilizado que tiene los placeholders donde se va a extraer informacion
 		$template = <<<XML
 ID Viviendas.ElDia.com.ar de la Propiedad sobre la que se consulta: {{id}}<br><br>Codigo de la Propiedad en la Inmobiliaria: Codigo de la Propiedad Inmobiliaria: {{codigo}}<br><br>La propiedad puede ser consultada {{link}}<br><br>Operacion: '{{operacion}}'<br><br>Direccion: {{direccion}}<br><br>Quien Realiza la Consulta: <br><br>Apellido y Nombre: {{nombre}}<br><br>Telefono: {{telefono}}<br><br>Mail: {{email}}<br><br>La consulta realizada es: <br><p>{{mensaje}}</p><br/>      
-		XML;
+XML;
 		$template = str_replace("<br>", " ", $template);
 		$texto_email = str_replace("<br>", " ", $texto_email);
 		$hlines1 = explode(" ",$template);
