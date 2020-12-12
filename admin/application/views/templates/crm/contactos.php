@@ -35,6 +35,7 @@
               <div class="cb oh mt15 mb15 text-muted">
                 <label class="fs14">Asignado a:</label>
                 <select id="contacto_ficha_usuarios" class="form-control no-model usuario_asignado">
+                  <option value="0">Sin Asignar</option>
                   <% for (var i=0; i< usuarios.length; i++) { %>
                     <% var u = usuarios.models[i] %>
                     <option <%= (u.id == id_usuario)?"selected":"" %> value="<%= u.id %>"><%= u.get("nombre") %></option>
