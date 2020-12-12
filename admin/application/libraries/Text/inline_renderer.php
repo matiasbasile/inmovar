@@ -19,7 +19,7 @@
 	var $del_prefix = '<del>';
 	var $del_suffix = '</del>';
 	
-	function Text_Diff_Renderer_inline($context_lines = 10000, $ins_prefix = '<ins>', $ins_suffix = '</ins>', $del_prefix = '<del>', $del_suffix = '</del>')
+	function __construct($context_lines = 10000, $ins_prefix = '<ins>', $ins_suffix = '</ins>', $del_prefix = '<del>', $del_suffix = '</del>')
     {
 		$this->$ins_prefix = $ins_prefix;
 		$this->$ins_suffix = $ins_suffix;

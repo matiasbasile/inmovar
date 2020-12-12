@@ -1,7 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-require_once("abstract_model.php");
-
 class Diario_El_Dia_Model extends CI_Model {
 	
 	// Parsea el email
