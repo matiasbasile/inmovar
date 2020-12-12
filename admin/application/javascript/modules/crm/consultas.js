@@ -41,6 +41,7 @@
       estado: 0,
       id_referencia: 0,
       children: [],
+      message_id: "",
 
       // Datos de la respuesta del usuario
       email_fecha: "",

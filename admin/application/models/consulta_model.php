@@ -206,10 +206,10 @@ class Consulta_Model extends Abstract_Model {
     $sql.= (isset($data->id_referencia)) ? "'$data->id_referencia'," : "0,";
     $sql.= (isset($data->id_relacion)) ? "'$data->id_relacion'," : "0,";
     $sql.= (isset($data->id_asunto)) ? "'$data->id_asunto'," : "0,";
-    $sql.= (isset($data->estado)) ? "'$data->estado'" : "0";
+    $sql.= (isset($data->estado)) ? "'$data->estado'," : "0,";
     $sql.= (isset($data->message_id)) ? "'$data->message_id'" : "";
     $sql.= ")";
-    file_put_contents("consulta_insertar.txt", date("Y-m-d H:i:s")." - ".$sql."\n", FILE_APPEND);
+    @file_put_contents("consulta_insertar.txt", date("Y-m-d H:i:s")." - ".$sql."\n", FILE_APPEND);
     $this->db->query($sql);
     $id = $this->db->insert_id();
 
