@@ -104,7 +104,8 @@ class Consultas extends REST_Controller {
         $msg.= "Telefono: $consulta->telefono\n";
         $msg.= "Código Propiedad: $consulta->codigo_propiedad\n";
         $msg.= "Dirección: $consulta->direccion_propiedad\n";
-        $consulta->texto = $msg."Mensaje: ".$consulta->mensaje;
+        $consulta->texto = $msg;
+        if (isset($consulta->mensaje)) $consulta->texto .= "Mensaje: ".$consulta->mensaje;
 
         if (!empty($propiedad)) {
           $consulta->id_usuario = $propiedad->id_usuario;

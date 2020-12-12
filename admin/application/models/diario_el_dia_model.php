@@ -36,7 +36,11 @@ XML;
 		    else if ($original == "{{link}}") $consulta->link = $final;
 		    else if ($original == "{{email}}") $consulta->email = $final;
 		    else if ($original == "{{nombre}}") $consulta->nombre = $final;
-		    else if ($original == "{{mensaje}}") $consulta->mensaje = $final;
+		    else if ($original == "{{mensaje}}") {
+		    	echo "FINAL: ";
+		    	echo $final;
+		    	$consulta->mensaje = $final;
+		    }
 		  }
 		}
 		return $consulta;
