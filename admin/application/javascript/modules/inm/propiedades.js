@@ -1579,6 +1579,12 @@
             return;
           }
 
+          // Si es Galpon, tiene que tener una superficie si o si
+          if (propiedad.get("id_tipo_inmueble") == 8 && propiedad.get("superficie_cubierta") == 0) {
+            alert("Error: debe ingresar una superficie cubierta para poder compartir.");
+            return;            
+          }
+
           // Si es un terreno, tenemos que tener cargado el tipo de calle
           if (propiedad.get("id_tipo_inmueble") == 7 && propiedad.get("tipo_calle") == 0) {
             alert("Error: ingrese el tipo de acceso (asfalto, tierra, etc.) al terreno.");
