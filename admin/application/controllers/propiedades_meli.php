@@ -334,6 +334,7 @@ class Propiedades_Meli extends REST_Controller {
     $response = $this->meli->get('/sites/MLA/category_predictor/predict?title='.urlencode($titulo), $params);
     if (isset($response["body"])) {
       $body = $response["body"];
+      print_r($body);
       $salida = $this->armar_categorias($body->id);
       echo json_encode($salida);
       return;
