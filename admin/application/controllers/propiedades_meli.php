@@ -331,11 +331,10 @@ class Propiedades_Meli extends REST_Controller {
     $this->connect();
     $params = array('access_token' => $this->configuracion->ml_access_token);
     // Predecimos la categoria en la cual vamos a poner el producto
-    $response = $this->meli->get('/sites/MLA/category_predictor/predict?title='.urlencode($titulo), $params);
+    $response = $this->meli->get('/sites/MLA/domain_discovery/search?q='.urlencode($titulo), $params);
     if (isset($response["body"])) {
       $body = $response["body"];
-      print_r($body);
-      $salida = $this->armar_categorias($body->id);
+      $salida = $this->armar_categorias($body->category_id);
       echo json_encode($salida);
       return;
     }
