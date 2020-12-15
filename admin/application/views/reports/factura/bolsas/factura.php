@@ -151,7 +151,7 @@ th { text-align: left; }
                     <div class="fl p20" style="width: 53%; border-right: solid 1px <?php echo $cborde; ?>;">
                         <?php if(!empty($empresa->path)) { ?>
                             <div style="margin-bottom: 30px; margin-right: 30px; float: left ">
-                                <img style="width:90px" src="/sistema/<?php echo $empresa->path ?>"/>
+                                <img style="width:90px" src="/admin/<?php echo $empresa->path ?>"/>
                             </div>
                         <?php } ?>
                         <div class="fl">
@@ -330,7 +330,7 @@ th { text-align: left; }
                 </div>
                 <div class="oh" style="clear: both;">
                     <div class="barcode">
-                        <div><img src="/sistema/application/helpers/barcode.php?text=<?php echo $barcode; ?>" /></div>
+                        <div><img src="/admin/application/helpers/barcode.php?text=<?php echo $barcode; ?>" /></div>
                         <div><?php echo $barcode ?></div>
                     </div>
                 </div>

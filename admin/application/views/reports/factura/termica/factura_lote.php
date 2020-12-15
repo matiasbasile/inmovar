@@ -65,7 +65,7 @@ function mostrar_iva($id) {
 <html>
 <head>
 <title>Impresion de comprobantes</title>
-<script type="text/javascript" src="/sistema/resources/js/jquery.js"></script>
+<script type="text/javascript" src="/admin/resources/js/jquery.js"></script>
 <style type="text/css">
 #barra {}
 <?php $cborde = "#a1a1a1"; ?>
@@ -287,7 +287,7 @@ p { margin-top: 3px; margin-bottom: 5px; }
             </p>
           <?php } else { ?>
             <div class="barcode">
-              <div><img src="/sistema/application/helpers/barcode.php?text=<?php echo $barcode; ?>" /></div>
+              <div><img src="/admin/application/helpers/barcode.php?text=<?php echo $barcode; ?>" /></div>
               <div><?php echo $barcode ?></div>
             </div>
           <?php } ?>

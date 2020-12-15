@@ -15,7 +15,7 @@ class Articulo_Model extends Abstract_Model {
     $empresa = $this->Empresa_Model->get_min($id_empresa);
     if (strpos($empresa->configuraciones_especiales, "sincronizado_pedi_en_chacabuco") !== FALSE) {
       $ch = curl_init();
-      curl_setopt($ch,CURLOPT_URL, "https://www.varcreative.com/sistema/app_pedidos/function/sincronizar_productos/?id_empresa=".$id_empresa);
+      curl_setopt($ch,CURLOPT_URL, "https://www.varcreative.com/admin/app_pedidos/function/sincronizar_productos/?id_empresa=".$id_empresa);
       curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
       curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, false);
       $result = curl_exec($ch);
@@ -691,7 +691,7 @@ class Articulo_Model extends Abstract_Model {
 
   private function check_path($img) {
     if (strpos($img, "http:") !== FALSE || strpos($img, "https:") !== FALSE) return $img;
-    else return "https://www.varcreative.com/sistema/".$img;
+    else return "https://www.varcreative.com/admin/".$img;
   }
 
   function update_publicacion_mercadolibre($id,$conf = array()) {

@@ -9,8 +9,8 @@ error_reporting(E_ALL);
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width" />
-<link rel="stylesheet" type="text/css" href="/sistema/resources/css/report.css" />
-<link rel="stylesheet" type="text/css" href="/sistema/resources/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/admin/resources/css/report.css" />
+<link rel="stylesheet" type="text/css" href="/admin/resources/css/common.css" />
 <title>Cupon de Pago</title>
 <link rel="stylesheet" type="text/css" href="<?php echo $folder ?>/reset.css" media="all" />
 <link rel="stylesheet" type="text/css" href="<?php echo $folder ?>/style.css" media="all" />
@@ -51,7 +51,7 @@ td h1, .invoice-items thead th.col-1 { text-align: left; padding-left: 15px; }
 					<header id="header"><!-- HEADER -->
 						<div style="float: left; font-size: 36px; width: auto" class="this-is">
 							<?php if (!empty($empresa->logo)) { ?>
-								<img style="max-width: 280px; max-height: 120px" src="/sistema/<?php echo $empresa->logo ?>"/>
+								<img style="max-width: 280px; max-height: 120px" src="/admin/<?php echo $empresa->logo ?>"/>
 							<?php } else { ?>
 								<?php echo $empresa->razon_social ?>
 							<?php } ?>

@@ -299,7 +299,7 @@ $piezas_items = (sizeof($factura->items) > 0) ? array_chunk($factura->items, 27)
                 </p>
               <?php } else { ?>
                 <div class="barcode">
-                  <div><img src="/sistema/application/helpers/barcode.php?text=<?php echo $barcode; ?>" /></div>
+                  <div><img src="/admin/application/helpers/barcode.php?text=<?php echo $barcode; ?>" /></div>
                   <div><?php echo $barcode ?></div>
                 </div>
               <?php } ?>

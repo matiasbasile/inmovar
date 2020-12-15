@@ -143,7 +143,7 @@ table td { font-size: 12px; }
                     <h2 style="margin-top: 0px; padding-top: 0px;"><?php echo $comprobante; ?></h2>
                     <?php if(!empty($empresa->logo) && $empresa->id != 249) { ?>
                       <div style="position: relative; top: -10px; left: -10px;">
-                        <img src="/sistema/<?php echo $empresa->logo ?>"/>
+                        <img src="/admin/<?php echo $empresa->logo ?>"/>
                       </div>
                     <?php } ?>
                     <div>

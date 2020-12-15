@@ -21,8 +21,8 @@ function mostrar_iva($id) {
 <head>
 <title><?php echo $comprobante." ".$factura->comprobante ?></title>
 <link href="https://fonts.googleapis.com/css?family=Raleway:200,400,600,900" rel="stylesheet">
-<link href="/sistema/resources/css/common.css" rel="stylesheet"/>
-<link href="/sistema/resources/css/bootstrap.css" rel="stylesheet"/>
+<link href="/admin/resources/css/common.css" rel="stylesheet"/>
+<link href="/admin/resources/css/bootstrap.css" rel="stylesheet"/>
 <style type="text/css">
 body { font-family: 'Raleway', sans-serif; font-size: 14px; background-color: #EEE; }
 .a4 { width: 210mm; height: 291mm; overflow: hidden; margin: 0 auto; background-color: white; }
@@ -79,7 +79,7 @@ b { font-weight: 600; }
                 </div>
                 <div class="row">
                     <div class="col-sm-5">
-                        <img style="width: 100%" src="/sistema/application/views/reports/factura/quepensas/logo.png"/>
+                        <img style="width: 100%" src="/admin/application/views/reports/factura/quepensas/logo.png"/>
                     </div>
                     <div class="col-sm-1 pl0 pr0">
                         <div class="letra">

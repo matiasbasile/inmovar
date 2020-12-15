@@ -120,7 +120,7 @@ table td { font-size: 11px; }
                           <!--
                           <?php if(!empty($empresa->logo)) { ?>
                             <div style="position: relative; top: -10px; left: -10px;">
-                              <img src="/sistema/<?php echo $empresa->logo ?>"/>
+                              <img src="/admin/<?php echo $empresa->logo ?>"/>
                             </div>
                           <?php } ?>
                           -->

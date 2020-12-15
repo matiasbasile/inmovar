@@ -97,7 +97,7 @@ class Facturas extends REST_Controller {
         );
         $fields_string = http_build_query($fields);
         $ch = curl_init();
-        curl_setopt($ch,CURLOPT_URL, "https://www.varcreative.com/sistema/facturas/function/actualizar_cae_servidor/");
+        curl_setopt($ch,CURLOPT_URL, "https://www.varcreative.com/admin/facturas/function/actualizar_cae_servidor/");
         curl_setopt($ch,CURLOPT_POST, true);
         curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
         curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
@@ -1144,7 +1144,7 @@ class Facturas extends REST_Controller {
       $this->db->query($sql);
     }
     $tpl = ($factura->id_empresa == 1394) ? "termica_1394" : "distribuidora";
-    $folder = "/sistema/application/views/reports/factura/$tpl";
+    $folder = "/admin/application/views/reports/factura/$tpl";
     $datos = array(
       "facturas"=>$facturas,
       "empresa"=>$empresa,
@@ -1203,7 +1203,7 @@ class Facturas extends REST_Controller {
     $mpdf = new \Mpdf\Mpdf([
       'tempDir' => $cache_dir
     ]);
-    $url = "https://www.varcreative.com/sistema/facturas/function/ver_pdf/".$id_factura."/".$id_punto_venta."/".$id_empresa."?header=0";
+    $url = "https://www.varcreative.com/admin/facturas/function/ver_pdf/".$id_factura."/".$id_punto_venta."/".$id_empresa."?header=0";
     $html = file_get_contents($url);
     $mpdf->CSSselectMedia='mpdf';
     $mpdf->setBasePath($url);
@@ -1269,7 +1269,7 @@ class Facturas extends REST_Controller {
     $header = ($mostrar_header == 1) ? $this->load->view("reports/factura/header",null,true) : "";
     
     if (empty($tpl)) $tpl = "basico";
-    $folder = "/sistema/application/views/reports/factura/$tpl";
+    $folder = "/admin/application/views/reports/factura/$tpl";
     if (!empty($punto_venta->disenio_factura_color)) $folder.= "/$punto_venta->disenio_factura_color";
     
     $barcode = $this->modelo->get_barcode($factura);
@@ -1408,7 +1408,7 @@ class Facturas extends REST_Controller {
     
     $tpl = $punto_venta->disenio_factura;
     if (empty($tpl)) $tpl = "basico";
-    $folder = "/sistema/application/views/reports/factura/$tpl";
+    $folder = "/admin/application/views/reports/factura/$tpl";
     if (!empty($punto_venta->disenio_factura_color)) $folder.= "/$punto_venta->disenio_factura_color";
 
     // Indicamos que el cliente vio la factura
@@ -1457,7 +1457,7 @@ class Facturas extends REST_Controller {
               "unit_price"=>$it->precio + 0,
             );            
           }
-          $current_url = "https://www.varcreative.com/sistema/facturas/function/ver/".$hash;
+          $current_url = "https://www.varcreative.com/admin/facturas/function/ver/".$hash;
           $preference_data = array(
             "items" => $items,
             "payer" => array(
@@ -2941,7 +2941,7 @@ class Facturas extends REST_Controller {
         );
         $fields_string = http_build_query($fields);
         $ch = curl_init();
-        curl_setopt($ch,CURLOPT_URL, "https://www.varcreative.com/sistema/facturas/function/actualizar_cae_servidor/");
+        curl_setopt($ch,CURLOPT_URL, "https://www.varcreative.com/admin/facturas/function/actualizar_cae_servidor/");
         curl_setopt($ch,CURLOPT_POST, true);
         curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
         curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);

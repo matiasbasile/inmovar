@@ -228,7 +228,7 @@
     single_file_upload(array(
       "name"=>"path",
       "label"=>lang(array("es"=>"Archivo adjunto","en"=>"Atacchment file")),
-      "url"=>"/sistema/cajas_movimientos/function/save_file/",
+      "url"=>"/admin/cajas_movimientos/function/save_file/",
     )); ?>
 
     <% if (id == undefined) { %>
@@ -277,7 +277,7 @@
   <td class='ver exportable'><span class="text-info"><%= concepto %></span></td>
   <td class='exportable'><span class="ver"><%= (tipo == 2) ? "AJUSTE CAJA" : observaciones %></span>
     <% if (!isEmpty(path)) { %>
-      <a class="fr text-info fs16" href="/sistema/<%= path %>" target="_blank"><i class="fa fa-file-o"></i></a>
+      <a class="fr text-info fs16" href="/admin/<%= path %>" target="_blank"><i class="fa fa-file-o"></i></a>
     <% } %>
   </td>
   <td class="ver exportable tar number">$ <%= (ver_saldos==1 && tipo==1)?"-":"" %><%= Number(monto).format(2) %></td>

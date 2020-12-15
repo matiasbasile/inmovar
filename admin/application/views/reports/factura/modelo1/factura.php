@@ -7,8 +7,8 @@ $codigo_comprobante = str_pad($factura->id_tipo_comprobante,2,"0",STR_PAD_LEFT);
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width" />
-<link rel="stylesheet" type="text/css" href="/sistema/resources/css/report.css" />
-<link rel="stylesheet" type="text/css" href="/sistema/resources/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/admin/resources/css/report.css" />
+<link rel="stylesheet" type="text/css" href="/admin/resources/css/common.css" />
 
 <title><?php echo $comprobante." ".$factura->comprobante ?></title>
 
@@ -160,7 +160,7 @@ for($copia=0;$copia < $copias; $copia++) { ?>
 						<?php } ?>
 					</div><!-- TERMS&PAYMENT INFO -->
 					<div class="barcode">
-						<div><img src="/sistema/application/helpers/barcode.php?text=<?php echo $barcode; ?>" /></div>
+						<div><img src="/admin/application/helpers/barcode.php?text=<?php echo $barcode; ?>" /></div>
 						<div><?php echo $barcode ?></div>
 					</div>					
 				</section><!-- FINANCIALS SECTION -->

@@ -391,7 +391,7 @@ class Articulos extends REST_Controller {
   function notificar() {
     $id_empresa = parent::get_empresa();
     $mensaje = "Hay nuevas modificaciones de precios.";
-    $url = "https://www.varcreative.com/sistema/application/cronjobs/push_notification.php?id_empresa=$id_empresa&texto=".urlencode($mensaje);
+    $url = "https://www.varcreative.com/admin/application/cronjobs/push_notification.php?id_empresa=$id_empresa&texto=".urlencode($mensaje);
     $c = curl_init($url);
     curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
@@ -568,7 +568,7 @@ class Articulos extends REST_Controller {
     $head = ($head === FALSE) ? "Desconocido" : $head;
 
     // Obtenemos las sentencias SQL
-    $url = "$url_server/sistema/articulos/function/export/$id_empresa/$id_sucursal/$conf->articulos_last_update/$id_punto_venta/$head/$configuracion->version_db/";
+    $url = "$url_server/admin/articulos/function/export/$id_empresa/$id_sucursal/$conf->articulos_last_update/$id_punto_venta/$head/$configuracion->version_db/";
     $c = curl_init($url);
     curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
@@ -3266,7 +3266,7 @@ class Articulos extends REST_Controller {
     $id_empresa = parent::get_empresa();
     $this->load->helper("file_helper");
     $this->load->helper("imagen_helper");
-    $base = "/home/ubuntu/data/sistema/uploads/$id_empresa/articulos/";
+    $base = "/home/ubuntu/data/admin/uploads/$id_empresa/articulos/";
 
     // En Esteban Echeverria, cargar las imagenes dentro de las carpetas segun el ID_USUARIO
     if ($id_empresa == 1284) {
@@ -3280,7 +3280,7 @@ class Articulos extends REST_Controller {
     $r = move_uploaded_file($_FILES["file"]["tmp_name"],$file);
     if ($r === FALSE) {
       // Deberiamos agregar algun parametro de error
-      header("Location: /sistema/app/#articulos");
+      header("Location: /admin/app/#articulos");
     }
     $archivos = array();
     $zip = new ZipArchive;
@@ -3307,7 +3307,7 @@ class Articulos extends REST_Controller {
       }
     }
     @unlink($file);
-    header("Location: /sistema/app/#articulos");
+    header("Location: /admin/app/#articulos");
   }
 
   function importar_excel() {
@@ -3321,15 +3321,15 @@ class Articulos extends REST_Controller {
         "tabla"=>$tabla
       ));
     } catch(Exception $e) {
-      header("Location: /sistema/app/#$tabla");
+      header("Location: /admin/app/#$tabla");
     }
-    header("Location: /sistema/app/#importacion/$tabla/$id");  
+    header("Location: /admin/app/#importacion/$tabla/$id");  
   }
 
   function importar() {
     $tabla = "articulos";
     parent::import($tabla,1);
-    header("Location: /sistema/app/#$tabla");
+    header("Location: /admin/app/#$tabla");
   }
 
   function importar_csv() {
@@ -3765,7 +3765,7 @@ class Articulos extends REST_Controller {
     error_reporting(E_ALL);
     set_time_limit(0);
     $id_empresa = 1277;
-    $file = "/home/ubuntu/data/sistema/uploads/1277/Ecommerce.csv";
+    $file = "/home/ubuntu/data/admin/uploads/1277/Ecommerce.csv";
     //Codigo Interno;Nombre del producto;Categoria;Subcategoria;Descripcion;Codigo Sucursal;Marca;Precio;Stock;Fotos
     $f = fopen($file,"r+");
     $i = 0;
@@ -3993,7 +3993,7 @@ class Articulos extends REST_Controller {
         $i++;
       }
     }
-    //if ($es_web) header("Location: /sistema/app/#articulos");
+    //if ($es_web) header("Location: /admin/app/#articulos");
     //else 
     echo "Cantidad de productos actualizados: $i";
   }
@@ -4363,7 +4363,7 @@ class Articulos extends REST_Controller {
         $this->db->query($sql);
       }
     }
-    if ($es_web) header("Location: /sistema/app/#articulos");
+    if ($es_web) header("Location: /admin/app/#articulos");
     else echo "Cantidad de productos actualizados: $i";
   }
 

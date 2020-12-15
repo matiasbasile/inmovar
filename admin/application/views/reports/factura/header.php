@@ -24,9 +24,9 @@
     body { padding: 0px; }    
 }
 </style>
-<script type="text/javascript" src="/sistema/resources/js/jquery.1.11.0.min.js"></script>
-<script type="text/javascript" src="/sistema/resources/js/jspdf.min.js"></script>
-<script type="text/javascript" src="/sistema/resources/js/html2canvas.min.js"></script>
+<script type="text/javascript" src="/admin/resources/js/jquery.1.11.0.min.js"></script>
+<script type="text/javascript" src="/admin/resources/js/jspdf.min.js"></script>
+<script type="text/javascript" src="/admin/resources/js/html2canvas.min.js"></script>
 <script type="text/javascript">
 function imprimir() {
   window.print();

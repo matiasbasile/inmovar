@@ -120,7 +120,7 @@ table td { font-size: 12px; }
                   <div class="p10 pt0">
                     <?php if(!empty($empresa->logo) && $empresa->id != 249) { ?>
                       <div style="position: relative; top: -10px; left: -10px;">
-                        <img src="/sistema/<?php echo $empresa->logo ?>"/>
+                        <img src="/admin/<?php echo $empresa->logo ?>"/>
                       </div>
                     <?php } ?>
                     <div>
