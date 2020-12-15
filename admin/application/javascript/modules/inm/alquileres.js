@@ -265,7 +265,7 @@
         window.alquiler_seleccionado = this.model;
         $('.modal:last').modal('hide');
       } else {
-        location.href="app/#alquiler/"+this.model.id;
+        location.href="app/#alquileres/"+this.model.id;
       }
     },
     initialize: function(options) {
@@ -975,7 +975,7 @@
       });
     },
     ver_contrato: function() {
-      location.href="app/#alquiler/"+this.model.get("id_alquiler");
+      location.href="app/#alquileres/"+this.model.get("id_alquiler");
     },
     initialize: function(options) {
       var self = this;
