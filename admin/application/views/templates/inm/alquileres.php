@@ -462,10 +462,12 @@
   <% } %>
   <td class="<%= clase %> data">
     <b><%= cliente %></b><br/>
-    <a href="javascript:void(0)" class="enviar_whatsapp"><i class="fa fa-whatsapp"></i> <%= telefono %></a>
+    <% if (!isEmpty(telefono)) { %>
+      <a href="javascript:void(0)" class="enviar_whatsapp"><i class="fa fa-whatsapp"></i> <%= telefono %></a>
+    <% } %>
   </td>
   <td class="<%= clase %> data"><%= propiedad %><br/><%= direccion %></td>
-  <td class="<%= clase %> data">$ <%= monto %></td>
+  <td class="<%= clase %> data">$ <%= Number(monto).format(0) %></td>
   <td class="<%= clase %> data"><%= vencimiento %></td>
   <% if (!seleccionar) { %>
     <td class="tar <%= clase %>">
