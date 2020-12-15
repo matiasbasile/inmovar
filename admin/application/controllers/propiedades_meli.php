@@ -626,7 +626,7 @@ class Propiedades_Meli extends REST_Controller {
     }
 
     // Imagenes
-    $base_url = "https://www.varcreative.com/sistema/";
+    $base_url = "https://app.inmovar.com/admin/";
     $body["pictures"] = array();
     // Imagen principal
     $body["pictures"][] = array(

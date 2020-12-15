@@ -1428,7 +1428,7 @@ class Propiedades extends REST_Controller {
           $imagenes = $aviso->addChild("IMAGENES");
           foreach($p->images as $img) {
             $image = $imagenes->addChild("IMAGEN_URL");
-            $img = ((strpos($img, "http://") === 0 || strpos($img, "https://") === 0) ? $img : "https://www.varcreative.com/sistema/".$img);
+            $img = ((strpos($img, "http://") === 0 || strpos($img, "https://") === 0) ? $img : "https://app.inmovar.com/admin/".$img);
             $image->addCDATA($img);
           }
         }
