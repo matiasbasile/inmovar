@@ -36,7 +36,7 @@ table tr td:last-child { padding-left: 10px; }
 .caracteristicas li:nth-child(even) { background-color: #f5f5f6; }
 i.bullet { background-color: <?php echo $empresa->color_principal ?>; display: inline-block; width: 11px; height: 11px; overflow: hidden; border-radius: 300px; -moz-border-radius: 300px; -webkit-border-radius: 300px; margin-right: 5px; }
 </style>
-<title><?php echo utf8_encode($propiedad->nombre) ?></title>  
+<title><?php echo $propiedad->titulo ?></title>  
 </head>
 <body>
 <?php echo $header; ?>
@@ -64,7 +64,7 @@ i.bullet { background-color: <?php echo $empresa->color_principal ?>; display: i
           <td class="gris" style="width: 40%; color: #222">
             <ul class="info_propiedad">
               <li style="font-size: 16px">
-                <?php echo $propiedad->calle.(($propiedad->publica_altura == 1)?" ".$propiedad->altura:""); ?><br/>
+                <?php echo $propiedad->direccion_completa ?><br/>
                 <span class="bold"><?php echo $propiedad->localidad; ?></span>
               </li>
               <li>
@@ -129,11 +129,7 @@ i.bullet { background-color: <?php echo $empresa->color_principal ?>; display: i
             <div class="precio">
               PRECIO<br/>
               <span class="precio_numero">
-                <?php if ($propiedad->precio_final == 0 || $propiedad->publica_precio == 0) { ?>
-                  A CONSULTAR
-                <?php } else { ?>
-                  <?php echo $propiedad->moneda." ".number_format($propiedad->precio_final,0); ?>
-                <?php } ?>
+                <?php echo $propiedad->precio ?>
               </span>
             </div>
             <?php if (!empty($propiedad->breve) || !empty($propiedad->texto)) { ?>
