@@ -147,13 +147,13 @@
                     <td class="">
                       <a href="app/#propiedades/<%= p.id %>">
                         <span class="bold c1"><%= p.tipo_inmueble %> en <%= p.tipo_operacion %></span><br/>
-                        <%= p.calle %> <%= p.altura %> <%= p.piso %> <%= p.numero %>
+                        <%= p.direccion_completa %>
                         / 
                         <%= p.localidad %>
                       </a>
                     </td>
                     <td>
-                      <button class="btn etiqueta">0 visitas</button>
+                      <button class="btn etiqueta"><%= p.visitas %> visitas</button>
                     </td>
                   </tr>
                 <% } %>
