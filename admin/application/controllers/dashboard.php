@@ -25,9 +25,12 @@ class Dashboard extends REST_Controller {
     
     $this->load->model("Propiedad_Model");
     $datos["total_propiedades"] = $this->Propiedad_Model->count_all();
-    $datos["mas_visitadas"] = $this->Propiedad_Model->buscar(array(
-      "offset"=>3
-    ))["results"];
+    $datos["mas_visitadas"] = $this->Propiedad_Model->mas_visitadas(array(
+      "id_empresa"=>$id_empresa,
+      "offset"=>3,
+      "desde"=>$desde." 00:00:00",
+      "hasta"=>$hasta." 23:59:59",
+    ));
 
     // Cantidad de propiedades que tiene la red en total
     $datos["total_propiedades_red"] = $this->Propiedad_Model->total_propiedades_red_completa();

@@ -404,6 +404,31 @@ class Propiedad_Model extends Abstract_Model {
     $q = $this->db->query($sql);
     return ($q->num_rows()>0);
   }
+
+  function mas_visitadas($config = array()) {
+    $id_empresa = (isset($conf["id_empresa"])) ? $conf["id_empresa"] : parent::get_empresa();
+    $offset = (isset($conf["offset"])) ? $conf["offset"] : 6;
+    $desde = (isset($conf["desde"])) ? $conf["desde"] : "";
+    $hasta = (isset($conf["hasta"])) ? $conf["hasta"] : "";
+    $sql = "SELECT id_propiedad, COUNT(*) AS cantidad ";
+    $sql.= "FROM inm_propiedades_visitas ";
+    $sql.= "WHERE id_empresa = $id_empresa ";
+    if (!empty($desde)) $sql.= "stamp >= '$desde' ";
+    if (!empty($hasta)) $sql.= "stamp <= '$hasta' ";
+    $sql.= "GROUP BY id_propiedad ";
+    $sql.= "ORDER BY cantidad DESC ";
+    $sql.= "LIMIT 0, $offset ";
+    $q = $this->db->query($sql);
+    $salida = array();
+    foreach($q->result() as $r) {
+      $rr->visitas = (is_null($r->cantidad) ? 0 : $r->cantidad);
+      $rr = $this->get($r->id_propiedad,array(
+        "id_empresa"=>$id_empresa
+      ));
+      $salida[] = $rr;
+    }
+    return $salida;
+  }
     
   /**
    * Obtiene los propiedades a partir de diferentes parametros
