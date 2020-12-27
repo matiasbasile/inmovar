@@ -367,7 +367,7 @@ window.onload = function () {
                 <a href="javascript:void(0)" onclick="workspace.volver_superadmin()">Volver al Superadmin</a>
               </li>
             <?php } ?>          
-            <?php if ($perfil == -1) { ?>
+            <?php if ($perfil == -1 || (isset($volver_superadmin) && $volver_superadmin == 1)) { ?>
               <li>
                 <a href="https://app.inmovar.com/admin/application/cronjobs/update_version_js.php" target="_blank">Actualizar cache</a>
               </li>
