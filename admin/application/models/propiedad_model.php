@@ -421,10 +421,10 @@ class Propiedad_Model extends Abstract_Model {
     $q = $this->db->query($sql);
     $salida = array();
     foreach($q->result() as $r) {
-      $rr->visitas = (is_null($r->cantidad) ? 0 : $r->cantidad);
       $rr = $this->get($r->id_propiedad,array(
         "id_empresa"=>$id_empresa
       ));
+      $rr->visitas = (is_null($r->cantidad) ? 0 : $r->cantidad);
       $salida[] = $rr;
     }
     return $salida;
