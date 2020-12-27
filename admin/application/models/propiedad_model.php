@@ -427,9 +427,12 @@ class Propiedad_Model extends Abstract_Model {
       if (!empty($rr)) {
         $obj = new stdClass();
         $obj->titulo = $rr->titulo;
+        $obj->direccion_completa = $rr->direccion_completa;
+        $obj->codigo = $rr->codigo;
+        $obj->localidad = $rr->localidad;
         $obj->visitas = (is_null($r->cantidad) ? 0 : $r->cantidad);
         $obj->path = $rr->path;
-        $salida[] = $rr;
+        $salida[] = $obj;
       }
     }
     return $salida;
