@@ -3294,6 +3294,14 @@
       },
       "click .enviar":"enviar",
       "click .enviar_whatsapp":"enviar_whatsapp",
+      "click .ver_ficha":function(e) {
+        var self = this;
+        e.stopPropagation();
+        e.preventDefault();
+        if($(e.currentTarget).attr("disabled") == "disabled") return;
+        window.open("propiedades/function/ver_ficha/"+ID_EMPRESA+"/"+this.model.id+"/","_blank");
+        return false;
+      },
       "click .marcar_interes":"marcar_interes",
       "click #propiedad_preview_2_link":function() {
         var self = this;
