@@ -424,10 +424,11 @@ class Propiedad_Model extends Abstract_Model {
       $rr = $this->get($r->id_propiedad,array(
         "id_empresa"=>$id_empresa
       ));
-      if ($rr !== FALSE) {
-        $rr->visitas = (is_null($r->cantidad) ? 0 : $r->cantidad);
-        $salida[] = $rr;
-      }
+      $obj = new stdClass();
+      $obj->titulo = $rr->titulo;
+      $obj->visitas = (is_null($r->cantidad) ? 0 : $r->cantidad);
+      $obj->path = $rr->path;
+      $salida[] = $rr;
     }
     return $salida;
   }

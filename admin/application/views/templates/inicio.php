@@ -146,7 +146,7 @@
                     </td>
                     <td class="">
                       <a href="app/#propiedades/<%= p.id %>">
-                        <span class="bold c1"><%= p.tipo_inmueble %> en <%= p.tipo_operacion %></span><br/>
+                        <span class="bold c1"><%= p.titulo %></span><br/>
                         <%= p.direccion_completa %>
                         / 
                         <%= p.localidad %>
