@@ -23,7 +23,7 @@ class Propiedades extends REST_Controller {
         // No existe la imagen, entonces tenemos que agregarla como primer lugar
         $sql = "UPDATE inm_propiedades_images SET orden = orden + 1 WHERE id_propiedad = $r->id AND id_empresa = $r->id_empresa";
         $this->db->query($sql);
-        $sql = "INSERT INTO inm_propiedades_images (id_empresa,id_propiedad,path,orden,plano) VALUES ($r->id_empresa,$r->id,$r->path,0,0) ";
+        $sql = "INSERT INTO inm_propiedades_images (id_empresa,id_propiedad,path,orden,plano) VALUES ($r->id_empresa,$r->id,'$r->path',0,0) ";
         $this->db->query($sql);
         $cantidad++;
       }
