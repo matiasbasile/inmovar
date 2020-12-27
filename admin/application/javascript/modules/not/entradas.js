@@ -909,7 +909,7 @@
         "label":"titulo",
         "info":"subtitulo",
         "image_field":"path",
-        "image_path":"/sistema",
+        "image_path":"/admin",
         "onSelect":function(item){
           var tr = "";
           tr+="<li class='list-group-item'>";

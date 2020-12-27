@@ -12,6 +12,25 @@ class Propiedades extends REST_Controller {
     $this->load->model('Propiedad_Model', 'modelo');
   }
 
+  function arreglar_imagenes() {
+    $cantidad = 0;
+    $sql = "SELECT * FROM inm_propiedades WHERE path != '' ";
+    $q = $this->db->query($sql);
+    foreach($q->result() as $r) {
+      $sql = "SELECT * FROM inm_propiedades_images WHERE id_propiedad = $r->id AND id_empresa = $r->id_empresa AND path = '$r->path' ";
+      $qq = $this->db->query($sql);
+      if ($qq->num_rows() == 0) {
+        // No existe la imagen, entonces tenemos que agregarla como primer lugar
+        $sql = "UPDATE inm_propiedades_images SET orden = orden + 1 WHERE id_propiedad = $r->id AND id_empresa = $r->id_empresa";
+        $this->db->query($sql);
+        $sql = "INSERT INTO inm_propiedades_images (id_empresa,id_propiedad,path,orden,plano) VALUES ($r->id_empresa,$r->id,$r->path,0,0) ";
+        $this->db->query($sql);
+        $cantidad++;
+      }
+    }
+    echo "TERMINO $cantidad";
+  }
+
   function arreglar_calle() {
     $sql = "select * from inm_propiedades where entre_calles like '%y%'";
     $q = $this->db->query($sql);

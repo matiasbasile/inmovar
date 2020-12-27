@@ -128,7 +128,7 @@
         "info":"localidad",
         "width":400,
         "image_field":"path",
-        "image_path":"/sistema",
+        "image_path":"/admin",
         "onSelect":function(item){
           self.$("#alquileres_buscar_propiedades").val(item.label);
           self.$("#alquileres_buscar_id_propiedad").val(item.id);
@@ -366,7 +366,7 @@
         "info":"localidad",
         "width":400,
         "image_field":"path",
-        "image_path":"/sistema",
+        "image_path":"/admin",
         "onSelect":function(item){
           self.$("#alquiler_propiedades").val(item.label);
           self.model.set({"id_propiedad":item.id});
@@ -1056,7 +1056,7 @@
         "info":"localidad",
         "width":400,
         "image_field":"path",
-        "image_path":"/sistema",
+        "image_path":"/admin",
         "onSelect":function(item){
           self.$("#recibo_alquiler_propiedades").val(item.label);
           self.model.set({"id_propiedad":item.id});

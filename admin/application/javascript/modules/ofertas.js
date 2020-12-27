@@ -189,7 +189,7 @@
         "form":null, // No quiero que se creen nuevos productos
         "width":400,
         "image_field":"path",
-        "image_path":"/sistema",
+        "image_path":"/admin",
         "onSelect":function(item){
           self.$("#oferta_articulo_id").val(item.id);
           self.$("#oferta_articulo_nombre").val(item.label);
