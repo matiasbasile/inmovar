@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="/admin/resources/css/font-awesome.min.css" />
 <style type="text/css">
 body { font-family: "LatoRegular"; font-size: 14px; color: #818181; }
+.a4 { height: auto; overflow: auto; } 
 .pt10 { padding-top: 10px; }
 .bold { font-weight: bold; font-family: "LatoBold"; }
 .gris { background-color: #f5f5f6; }
@@ -68,11 +69,11 @@ i.bullet { background-color: <?php echo $empresa->color_principal ?>; display: i
                 <span class="bold"><?php echo $propiedad->localidad; ?></span>
               </li>
               <li>
-                METROS 2
+                METROS <sup>2</sup>
                 <span class="fr"><?php echo $propiedad->superficie_total ?></span>
               </li>
               <li>
-                HABITACIONES
+                DORMITORIOS
                 <span class="fr"><?php echo $propiedad->dormitorios ?></span>
               </li>
               <li>
@@ -95,8 +96,8 @@ i.bullet { background-color: <?php echo $empresa->color_principal ?>; display: i
         </tr>
         <tr>
           <td class="pt10" style="width: 40%">
-            <?php if (sizeof($propiedad->images)>0) { ?>
-              <?php $imagen = $propiedad->images[0]; ?>
+            <?php if (sizeof($propiedad->images)>1) { ?>
+              <?php $imagen = $propiedad->images[1]; ?>
               <?php if (strpos($imagen, "http") === FALSE) { ?>
                 <img style="width: 100%" src="/admin/<?php echo $imagen ?>"/>
               <?php } else if (!empty($imagen)) { ?>
@@ -137,7 +138,7 @@ i.bullet { background-color: <?php echo $empresa->color_principal ?>; display: i
                 <div class="gris">
                   <div class="texto">
                     <?php
-                    $maximo_texto = 300;
+                    $maximo_texto = 450;
                     if (!empty($propiedad->breve)) {
                       echo $propiedad->breve;
                     } else if (strlen($propiedad->texto)>$maximo_texto) {
