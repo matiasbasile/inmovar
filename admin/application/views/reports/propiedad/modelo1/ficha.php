@@ -88,9 +88,9 @@ i.bullet { background-color: <?php echo $empresa->color_principal ?>; display: i
           </td>
           <td style="width: 60%">
             <?php if (strpos($propiedad->path, "http") === FALSE) { ?>
-              <img style="width: 100%" src="/admin/<?php echo $propiedad->path ?>"/>
+              <img style="width: 100%; max-height: 300px; object-fit: contain;" src="/admin/<?php echo $propiedad->path ?>"/>
             <?php } else if (!empty($propiedad->path)) { ?>
-              <img style="width: 100%" src="<?php echo $propiedad->path ?>"/>
+              <img style="width: 100%; max-height: 300px; object-fit: contain;" src="<?php echo $propiedad->path ?>"/>
             <?php } ?>
           </td>
         </tr>
