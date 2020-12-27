@@ -420,6 +420,7 @@ class Propiedad_Model extends Abstract_Model {
     $sql.= "LIMIT 0, $offset ";
     $q = $this->db->query($sql);
     $salida = array();
+    print_r($q->result()); exit();
     foreach($q->result() as $r) {
       $rr = $this->get($r->id_propiedad,array(
         "id_empresa"=>$id_empresa
