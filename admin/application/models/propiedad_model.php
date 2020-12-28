@@ -413,8 +413,8 @@ class Propiedad_Model extends Abstract_Model {
     $sql = "SELECT id_propiedad, COUNT(*) AS cantidad ";
     $sql.= "FROM inm_propiedades_visitas ";
     $sql.= "WHERE id_empresa = $id_empresa ";
-    if (!empty($desde)) $sql.= "stamp >= '$desde' ";
-    if (!empty($hasta)) $sql.= "stamp <= '$hasta' ";
+    if (!empty($desde)) $sql.= "AND stamp >= '$desde' ";
+    if (!empty($hasta)) $sql.= "AND stamp <= '$hasta' ";
     $sql.= "GROUP BY id_propiedad ";
     $sql.= "ORDER BY cantidad DESC ";
     $sql.= "LIMIT 0, $offset ";
