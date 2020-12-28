@@ -480,7 +480,7 @@ class Consulta_Model extends Abstract_Model {
     else $sql.= "IF(COUNT(*) IS NULL,0,COUNT(*)) AS cantidad ";
     $sql.= "FROM crm_consultas C ";
     $sql.= "LEFT JOIN clientes CLI ON (C.id_empresa = CLI.id_empresa AND C.id_contacto = CLI.id) ";
-    $sql.= "WHERE C.id_empresa_relacion = $id_empresa ";
+    $sql.= "WHERE C.id_empresa_relacion = $id_empresa AND C.id_empresa != $id_empresa ";
     if (!empty($in_origenes)) $sql.= "AND id_origen IN ($in_origenes) ";
     if (!empty($not_in_origenes)) $sql.= "AND id_origen NOT IN ($not_in_origenes) ";
     if ($tipo != -1) $sql.= "AND C.tipo = '$tipo' ";
