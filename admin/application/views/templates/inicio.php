@@ -81,7 +81,7 @@
               <div class="col-md-7">
                 <table class="table w100p sin-borde">
                   <tr>
-                    <td class="c-main"><span class="material-icons fs12 mr5">stop_circle</span> Tu Sitio Web</td>
+                    <td class="c-main"><span class="material-icons fs12 mr5">stop_circle</span> En Tu Sitio Web</td>
                     <td class="vam"><h3 class="c-main p0 m0"><%= visitas_sitio_web %></h3></td>
                   </tr>
                   <tr>
@@ -101,14 +101,14 @@
       <div class="col-md-6">
         <div class="panel panel-default">
           <div class="panel-heading wrapper b-b b-light">
-            <h4 class="m-t-none m-b-none"><span class="material-icons fs20 pr t2 mr10">local_offer</span> Consultas</h4>
+            <h4 class="m-t-none m-b-none"><span class="material-icons fs20 pr t2 mr10">local_offer</span> Consultas a tus Propiedades</h4>
           </div>
           <div class="panel-body">
             <div class="row">
-              <div class="col-md-5">
+              <div class="col-md-7">
                 <table class="table w100p sin-borde">
                   <tr>
-                    <td class="c-main"><span class="material-icons fs12 mr5">stop_circle</span> Tu Sitio Web</td>
+                    <td class="c-main"><span class="material-icons fs12 mr5">stop_circle</span> En Tu Sitio Web</td>
                     <td class="vam"><h3 class="c-main p0 m0"><%= consultas_sitio_web %></h3></td>
                   </tr>
                   <tr>
@@ -117,7 +117,7 @@
                   </tr>
                 </table>
               </div>
-              <div class="col-md-7">
+              <div class="col-md-5">
                 <div id="consultas_bar" style="height: 150px;"></div>
               </div>
             </div>
