@@ -63,7 +63,7 @@ app.views.InicioSingleView = Backbone.View.extend({
     return this;
   },
   
-  render_graficos: function(fecha_desde,a) {
+  render_graficos: function() {
     var self = this;
     var visitas_sitio_web = self.model.get("visitas_sitio_web");
     var visitas_red = self.model.get("visitas_red");
