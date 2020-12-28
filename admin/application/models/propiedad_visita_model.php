@@ -21,7 +21,7 @@ class Propiedad_Visita_Model extends Abstract_Model {
     if (empty($id_empresa_relacionada)) $sql.= "AND R.id_empresa = $id_empresa ";
     if (!empty($desde)) $sql.= "AND R.stamp >= '$desde' ";
     if (!empty($hasta)) $sql.= "AND R.stamp <= '$hasta' ";
-    if (!empty($id_empresa_relacionada)) $sql.= "AND R.id_empresa_relacionada = $id_empresa_relacionada ";
+    if (!empty($id_empresa_relacionada)) $sql.= "AND R.id_empresa_propiedad = $id_empresa_propiedad ";
     if (!empty($id_propiedad)) $sql.= "AND R.id_propiedad = $id_propiedad ";
     $q = $this->db->query($sql);
     $r = $q->row();
