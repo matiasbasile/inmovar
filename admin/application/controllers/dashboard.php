@@ -50,9 +50,13 @@ class Dashboard extends REST_Controller {
     $this->load->model("Propiedad_Visita_Model");
     $datos["visitas_sitio_web"] = $this->Propiedad_Visita_Model->contar(array(
       "id_empresa"=>$id_empresa,
+      "desde"=>$desde." 00:00:00",
+      "hasta"=>$hasta." 23:59:59",
     ));
     $datos["visitas_red"] = $this->Propiedad_Visita_Model->contar(array(
       "id_empresa_relacionada"=>$id_empresa, // Las visitas en la red se cuentan al reves
+      "desde"=>$desde." 00:00:00",
+      "hasta"=>$hasta." 23:59:59",
     ));
     $datos["total_visitas"] = $datos["visitas_sitio_web"] + $datos["visitas_red"];
 

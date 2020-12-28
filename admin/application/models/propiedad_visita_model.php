@@ -17,9 +17,10 @@ class Propiedad_Visita_Model extends Abstract_Model {
 
     $sql = "SELECT IF(COUNT(*) IS NULL,0,COUNT(*)) AS total ";
     $sql.= "FROM inm_propiedades_visitas R ";
-    $sql.= "WHERE R.id_empresa = $id_empresa ";
-    if (!empty($desde)) $sql.= "AND R.stamp >= $desde ";
-    if (!empty($hasta)) $sql.= "AND R.stamp <= $hasta ";
+    $sql.= "WHERE 1=1 ";
+    if (empty($id_empresa_relacionada)) $sql.= "AND R.id_empresa = $id_empresa ";
+    if (!empty($desde)) $sql.= "AND R.stamp >= '$desde' ";
+    if (!empty($hasta)) $sql.= "AND R.stamp <= '$hasta' ";
     if (!empty($id_empresa_relacionada)) $sql.= "AND R.id_empresa_relacionada = $id_empresa_relacionada ";
     if (!empty($id_propiedad)) $sql.= "AND R.id_propiedad = $id_propiedad ";
     $q = $this->db->query($sql);
