@@ -426,7 +426,8 @@ class Propiedad_Model extends Abstract_Model {
       ));
       if (!empty($rr)) {
         $obj = new stdClass();
-        $obj->titulo = $rr->titulo;
+        $obj->id = $rr->id;
+        $obj->titulo = $rr->tipo_inmueble." en ".$rr->tipo_operacion;
         $obj->direccion_completa = $rr->direccion_completa;
         $obj->codigo = $rr->codigo;
         $obj->localidad = $rr->localidad;
