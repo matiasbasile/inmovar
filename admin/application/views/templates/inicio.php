@@ -74,7 +74,7 @@
       <div class="col-md-6">
         <div class="panel panel-default">
           <div class="panel-heading wrapper b-b b-light">
-            <h4 class="m-t-none m-b-none"><span class="material-icons fs20 pr t2 mr10">local_offer</span> Visitas a Propiedades</h4>
+            <h4 class="m-t-none m-b-none"><span class="material-icons fs20 pr t2 mr10">local_offer</span> Visitas a tus Propiedades</h4>
           </div>
           <div class="panel-body">
             <div class="row">

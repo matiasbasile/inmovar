@@ -67,7 +67,7 @@ app.views.InicioSingleView = Backbone.View.extend({
     var self = this;
     var visitas_sitio_web = parseInt(self.model.get("visitas_sitio_web"));
     var visitas_red = parseInt(self.model.get("visitas_red"));
-    if (visitas_sitio_web > 0 && visitas_red > 0) {
+    if (visitas_sitio_web > 0 || visitas_red > 0) {
       this.$('#visitas_bar').highcharts({
         chart: {
           plotBackgroundColor: null,
@@ -97,7 +97,7 @@ app.views.InicioSingleView = Backbone.View.extend({
 
     var consultas_sitio_web = parseInt(self.model.get("consultas_sitio_web"));
     var consultas_red = parseInt(self.model.get("consultas_red"));
-    if (consultas_sitio_web > 0 && consultas_red > 0) {
+    if (consultas_sitio_web > 0 || consultas_red > 0) {
       this.$('#consultas_bar').highcharts({
         chart: {
           plotBackgroundColor: null,
