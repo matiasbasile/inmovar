@@ -146,10 +146,9 @@
                     </td>
                     <td class="">
                       <a href="app/#propiedades/<%= p.id %>">
-                        <span class="bold c1"><%= p.titulo %></span><br/>
-                        <%= p.direccion_completa %>
-                        / 
-                        <%= p.localidad %>
+                        <span class="c1"><%= p.titulo %></span><br/>
+                        <span class="bold c1"><%= p.direccion_completa %></span><br/>
+                        <span class="c1"><%= p.localidad %></span>
                       </a>
                     </td>
                     <td>
