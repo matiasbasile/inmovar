@@ -78,19 +78,19 @@
           </div>
           <div class="panel-body">
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-7">
                 <table class="table w100p sin-borde">
                   <tr>
-                    <td class="c-main"><span class="material-icons fs12 mr5">stop_circle</span> Sitio Web</td>
+                    <td class="c-main"><span class="material-icons fs12 mr5">stop_circle</span> Tu Sitio Web</td>
                     <td class="vam"><h3 class="c-main p0 m0"><%= visitas_sitio_web %></h3></td>
                   </tr>
                   <tr>
-                    <td class="c-sec vam"><span class="material-icons fs12 mr5">stop_circle</span> Red Inmovar</td>
+                    <td class="c-sec vam"><span class="material-icons fs12 mr5">stop_circle</span> Sitios Web de Red Inmovar</td>
                     <td class="vam"><h3 class="c-sec p0 m0"><%= visitas_red %></h3></td>
                   </tr>
                 </table>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-5">
                 <div id="visitas_bar" style="height: 150px;"></div>
               </div>
             </div>
@@ -105,19 +105,19 @@
           </div>
           <div class="panel-body">
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-5">
                 <table class="table w100p sin-borde">
                   <tr>
-                    <td class="c-main"><span class="material-icons fs12 mr5">stop_circle</span> Sitio Web</td>
+                    <td class="c-main"><span class="material-icons fs12 mr5">stop_circle</span> Tu Sitio Web</td>
                     <td class="vam"><h3 class="c-main p0 m0"><%= consultas_sitio_web %></h3></td>
                   </tr>
                   <tr>
-                    <td class="c-sec vam"><span class="material-icons fs12 mr5">stop_circle</span> Red Inmovar</td>
+                    <td class="c-sec vam"><span class="material-icons fs12 mr5">stop_circle</span> Sitios Web de Red Inmovar</td>
                     <td class="vam"><h3 class="c-sec p0 m0"><%= consultas_red %></h3></td>
                   </tr>
                 </table>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-7">
                 <div id="consultas_bar" style="height: 150px;"></div>
               </div>
             </div>
@@ -128,7 +128,7 @@
       <div class="col-md-6">
         <div class="panel panel-default mb20">
           <div class="panel-heading wrapper b-b b-light">
-            <h4 class="m-t-none m-b-none"><span class="material-icons fs20 pr t2 mr10">local_offer</span> Propiedades Más Visitadas</h4>
+            <h4 class="m-t-none m-b-none"><span class="material-icons fs20 pr t2 mr10">local_offer</span> Tus Propiedades Más Visitadas</h4>
           </div>
           <div class="panel-body">
             <div class="mh250">
