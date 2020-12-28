@@ -406,10 +406,10 @@ class Propiedad_Model extends Abstract_Model {
   }
 
   function mas_visitadas($config = array()) {
-    $id_empresa = (isset($conf["id_empresa"])) ? $conf["id_empresa"] : parent::get_empresa();
-    $offset = (isset($conf["offset"])) ? $conf["offset"] : 6;
-    $desde = (isset($conf["desde"])) ? $conf["desde"] : "";
-    $hasta = (isset($conf["hasta"])) ? $conf["hasta"] : "";
+    $id_empresa = (isset($config["id_empresa"])) ? $config["id_empresa"] : parent::get_empresa();
+    $offset = (isset($config["offset"])) ? $config["offset"] : 6;
+    $desde = (isset($config["desde"])) ? $config["desde"] : "";
+    $hasta = (isset($config["hasta"])) ? $config["hasta"] : "";
     $sql = "SELECT id_propiedad, COUNT(*) AS cantidad ";
     $sql.= "FROM inm_propiedades_visitas ";
     $sql.= "WHERE id_empresa = $id_empresa ";
