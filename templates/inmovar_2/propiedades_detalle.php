@@ -18,6 +18,9 @@ if ($propiedad->id_tipo_operacion == 1) $vc_moneda = "USD";
 else $vc_moneda = "$";
 $vc_tipo_operacion = $propiedad->tipo_operacion_link;
 
+// Seteamos la cookie para indicar que el cliente ya entro a esta propiedad
+$propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
+
 $vc_precio_maximo = $propiedad_model->get_precio_maximo(array(
   "id_tipo_operacion"=>$propiedad->id_tipo_operacion,
 ));

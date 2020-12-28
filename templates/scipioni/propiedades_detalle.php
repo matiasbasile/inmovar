@@ -13,6 +13,10 @@ if (!empty($titulo_pagina)) { $titulo_pagina = $propiedad->nombre; }
 $nombre_pagina = "detalle";
 $mostro_video = 0;
 if (!empty($propiedad->path)) $propiedad->images = array_merge(array("/admin/".$propiedad->path),$propiedad->images);
+
+// Seteamos la cookie para indicar que el cliente ya entro a esta propiedad
+$propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
+
 ?>
 <!DOCTYPE html>
 <html lang="es">

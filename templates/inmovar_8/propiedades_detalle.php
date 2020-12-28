@@ -28,11 +28,9 @@ $seo_keywords = (!empty($propiedad->seo_keywords)) ? $propiedad->seo_keywords : 
 $cookie_id_cliente = (isset($_COOKIE['idc'])) ? $_COOKIE['idc'] : 0;
 $cookie_hide_lightbox = (isset($_COOKIE['hide_lightbox'])) ? $_COOKIE['hide_lightbox'] : 0;
 
-if (!isset($_COOKIE[$propiedad->id])) {
-  // Sumamos la visita a la propiedad
-  $propiedad_model->add_visit($propiedad->id,$cookie_id_cliente);
-  setcookie($propiedad->id,"1",time()+60*60*24*30,"/");
-}
+// Seteamos la cookie para indicar que el cliente ya entro a esta propiedad
+$propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
+
 if (!empty($propiedad->imagen)) $propiedad->images = array_merge(array($propiedad->imagen),$propiedad->images);
 ?>
 <!doctype html>

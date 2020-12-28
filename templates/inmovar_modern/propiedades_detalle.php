@@ -4,7 +4,11 @@
 	"buscar_relacionados_offset"=>3,
 	"id_empresa"=>$id_empresa,
 	"id_empresa_original"=>$empresa->id,
-)); ?> 
+)); 
+
+// Seteamos la cookie para indicar que el cliente ya entro a esta propiedad
+$propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
+?> 
 <!DOCTYPE html>
 <html>
 <head>

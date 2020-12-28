@@ -24,6 +24,9 @@ $precio_maximo = $propiedad_model->get_precio_maximo(array(
   "id_tipo_operacion"=>($propiedad->id_tipo_operacion != 5) ? $propiedad->id_tipo_operacion : 0
 ));
 
+// Seteamos la cookie para indicar que el cliente ya entro a esta propiedad
+$propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
+
 // Minimo
 $minimo = isset($_SESSION["minimo"]) ? $_SESSION["minimo"] : 0;
 if ($minimo == "undefined" || empty($minimo)) $minimo = 0;
