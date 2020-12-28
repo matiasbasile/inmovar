@@ -60,9 +60,16 @@ class Dashboard extends REST_Controller {
     ));
     $datos["total_visitas"] = $datos["visitas_sitio_web"] + $datos["visitas_red"];
 
-    // TODO: TERMINAR ESTO
-    $datos["consultas_sitio_web"] = 0;
-    $datos["consultas_red"] = 0;
+    $datos["consultas_sitio_web"] = $this->Consulta_Model->contar(array(
+      "id_empresa"=>$id_empresa,
+      "tipo"=>0,
+      "desde"=>$desde,
+      "hasta"=>$hasta,
+    ));
+    $datos["consultas_red"] = $this->Consulta_Model->contar_consultas_red(array(
+      "desde"=>$desde,
+      "hasta"=>$hasta,
+    ));
 
     echo json_encode($datos);
   }  
