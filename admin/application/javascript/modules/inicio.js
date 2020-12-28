@@ -67,8 +67,7 @@ app.views.InicioSingleView = Backbone.View.extend({
     var self = this;
     var visitas_sitio_web = parseInt(self.model.get("visitas_sitio_web"));
     var visitas_red = parseInt(self.model.get("visitas_red"));
-    console.log(visitas_sitio_web);
-    console.log(visitas_red);
+    console.log(self.model);
     if (visitas_sitio_web > 0 && visitas_red > 0) {
       this.$('#visitas_bar').highcharts({
         chart: {
