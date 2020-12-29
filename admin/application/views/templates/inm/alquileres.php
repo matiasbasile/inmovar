@@ -1,5 +1,5 @@
 <script type="text/template" id="alquileres_resultados_template">
-<% if (control.check("alquileres") == 0 || ID_EMPRESA != 1392) { %>
+<% if (control.check("alquileres") == 0 || ID_EMPRESA != 1392 || ID_EMPRESA != 1486) { %>
   <div class="centrado rform mt30 mb30">
     <div class="panel panel-default tac">
       <div class="panel-body">
