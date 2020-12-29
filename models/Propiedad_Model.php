@@ -818,7 +818,7 @@ class Propiedad_Model {
     $p->direccion_completa.= (($p->publica_altura == 1)?" N° ".$p->altura:"") . (!empty($p->piso) ? " Piso ".$p->piso : "") . (!empty($p->numero) ? " Depto. ".$p->numero : "");
     $p->direccion_completa = $this->encod($p->direccion_completa);
 
-    $p->plain_text = (!empty($p->descripcion)) ? $this->encod($p->descripcion) : $this->encod(strip_tags($p->texto,"<a><i><b><br>"));
+    $p->plain_text = (!empty($p->descripcion)) ? $this->encod($p->descripcion) : $this->encod(strip_tags($p->texto,"<br>"));
 
     $p->nombre = $p->tipo_inmueble." en ".$p->tipo_operacion." en ".$p->localidad;
     $p->nombre = $this->encod($p->nombre);
