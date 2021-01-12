@@ -822,6 +822,7 @@
       },
       "click .data":"seleccionar",
       "click .agregar_pago":"agregar_pago",
+      "click .modificar_pagos":"modificar_pagos",
       "click .imprimir":"imprimir",
       "click .imprimir_cupon_pago":"imprimir_cupon_pago",
       "click .ver_contrato":"ver_contrato",
@@ -892,6 +893,29 @@
         window.recibo_alquiler_seleccionado = this.model;
         $('.modal:last').modal('hide');
       }
+    },
+    modificar_pagos : function (){
+      var self = this;
+      var reciboCliente = new app.models.ReciboCliente({
+        "id_empresa":ID_EMPRESA,
+        "id_cliente":self.model.get("id_cliente"),
+        "cheques": [],
+        "depositos": [],
+        "tarjetas": [],
+        "comprobantes": comprobantes,
+      });
+      app.views.ModificarPagos = new app.views.ModificarPagos({
+        model: reciboCliente
+      });
+
+      window.id_recibo = 0;
+      
+      // Abrimos el lightbox de pagos
+      crearLightboxHTML({
+        "html":app.views.ModificarPagos.el,
+        "width":900,
+        "height":500,
+      });
     },
     agregar_pago : function() {
       var self = this;
@@ -1233,3 +1257,82 @@
   });
 })(app);
 */
+// -------------------------------
+//   Mensaje View
+// -------------------------------
+(function ( app ) {
+
+  app.views.ModificarPagos = app.mixins.View.extend({
+
+    template: _.template($("#modificar_pagos_view_template").html()),
+  
+    myEvents: {
+      "click #expensa_agregar":"agregar_expensa",
+      "click .editar_expensa":"editar_expensa",
+      "click .eliminar_expensa":function(e){
+        var tr = $(e.currentTarget).parents("tr");
+        $(tr).remove();
+      },
+    },
+
+    initialize: function(options) 
+    {
+      // Si el modelo cambia, debemos renderizar devuelta el elemento
+      //this.model.bind("change",this.render,this);
+      this.model.bind("destroy",this.render,this);
+      this.options = options;
+      this.bind("ver",this.ver,this); // Mostramos el objeto
+      this.bind("limpiar",this.limpiar,this);
+      _.bindAll(this);
+
+      this.render();
+    },
+
+    render: function() {
+    
+      var self = this;
+      $(this.el).html(this.template(this.model.toJSON()));
+      return this;
+    },
+
+    agregar_expensa: function() {
+      // Controlamos los valores
+      var nombre = $("#expensa_nombre").val();
+      if (isEmpty(nombre)) {
+        alert("Por favor ingrese un nombre");
+        $("#expensa_nombre").focus();
+        return;
+      }
+      var monto = $("#expensa_monto").val();
+      if (isNaN(monto) || monto < 0) {
+        alert("Por favor ingrese un valor");
+        $("#expensa_monto").focus();
+        return;
+      }
+      var tr = "<tr>";
+      tr+="<td>"+nombre+"</td>";
+      tr+="<td>"+Number(monto).toFixed(2)+"</td>";
+      tr+="<td><i class='fa fa-pencil cp editar_expensa'></i></td>";
+      tr+="<td><i class='fa fa-times eliminar_expensa text-danger cp'></i></td>";
+      tr+="</tr>";
+
+      if (this.item == null) {
+        $("#expensas_tabla tbody").append(tr);
+      } else {
+        $(this.item).replaceWith(tr);
+        this.item = null;
+      }
+
+      $("#expensa_nombre").val("");
+      $("#expensa_monto").val("");
+    },
+
+    editar_expensa: function(e) {
+      this.item = $(e.currentTarget).parents("tr");
+      $("#expensa_nombre").val($(this.item).find("td:eq(0)").text());
+      $("#expensa_monto").val($(this.item).find("td:eq(1)").text());
+    },
+  
+  });
+
+})(app);

@@ -481,6 +481,7 @@
         <i title="Opciones" class="iconito fa ml15 mt5 fa-caret-down dropdown-toggle" data-toggle="dropdown"></i>
         <ul class="dropdown-menu pull-right">
           <li><a href="javascript:void(0)" class="ver_contrato" data-id="<%= id %>">Ver contrato</a></li>
+          <li><a href="javascript:void(0)" class="modificar_pagos" data-id="<%= id %>">Modificar pagos</a></li>
           <% if (pagada == 1) { %>
             <li><a href="javascript:void(0)" class="eliminar" data-id="<%= id %>">Eliminar</a></li>
           <% } %>
@@ -699,3 +700,58 @@
 </script>
 
 */ ?>
+<script type="text/template" id="modificar_pagos_view_template">
+  <div class="panel">
+    <div class="panel-body">
+     <div class="padder">
+        <div class="row clearfix">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label">Nombre</label>
+              <input type="text" class="form-control" id="expensa_nombre" />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label">Monto ($)</label>
+              <div class="input-group">
+                <input id="expensa_monto" value="0" type="number" class="form-control"/>
+                <span class="input-group-btn">
+                  <a id="expensa_agregar" class="btn btn-info"><i class="fa ico fa-plus"></i></a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="">
+          <table id="expensas_tabla" class="table m-b-none default footable">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Monto</th>
+                <th class="w25"></th>
+                <th class="w25"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php /*
+              <% for(var i=0;i< expensas.length;i++) { %>
+                <% var p = expensas[i] %>
+                <tr data-id="<%= p.id %>">
+                  <td><%= p.nombre %></td>
+                  <td><%= p.monto %></td>
+                  <td><i class='fa fa-pencil cp editar_expensa'></i></td>
+                  <td><i class='fa fa-times eliminar_expensa text-danger cp'></i></td>
+                </tr>
+              <% } %>
+              */?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer tar">
+      <button class="btn guardar btn-success">Guardar</button>
+    </div>
+  </div>
+</script>
