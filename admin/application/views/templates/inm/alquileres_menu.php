@@ -18,5 +18,11 @@
         Pagados
       </a>
     </li>
+    <li class="<%= (active=='cuentas_corrientes_clientes')?'active':''%>">
+      <a href="<%= (active=='cuentas_corrientes_clientes')?'javascript:void(0)':'app/#cuentas_corrientes_clientes' %>">
+        <i class="material-icons">user</i>
+        Cuenta Corriente
+      </a>
+    </li>
   </ul>
 </div>

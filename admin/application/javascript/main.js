@@ -193,7 +193,7 @@
 
       ver_cuentas_corrientes_clientes : function(id) {
         var permiso = 3;
-        if (ID_EMPRESA == 1) {
+        //if (ID_EMPRESA == 1) {
           var modelo = new app.models.CuentasCorrientesClientes();
           if (typeof id !== "undefined" && id != null) modelo.set({ "id_cliente":id });
           app.views.cuentas_corrientes_clientesResultados = new app.views.CuentasCorrientesClientesResultados({
@@ -204,7 +204,7 @@
             "top" : app.views.cuentas_corrientes_clientesResultados.el,
           });
           $("#cuentas_corrientes_clientes_codigo").select();
-        }
+        //}
       },  
 
       ver_facturacion: function(id) {
