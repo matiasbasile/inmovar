@@ -20,7 +20,7 @@
     </li>
     <li class="<%= (active=='cuentas_corrientes_clientes')?'active':''%>">
       <a href="<%= (active=='cuentas_corrientes_clientes')?'javascript:void(0)':'app/#cuentas_corrientes_clientes' %>">
-        <i class="material-icons">user</i>
+        <i class="material-icons">people</i>
         Cuenta Corriente
       </a>
     </li>
