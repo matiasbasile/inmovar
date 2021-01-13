@@ -627,6 +627,7 @@ class Propiedades_Meli extends REST_Controller {
 
     // Imagenes
     $limite = 30;
+    $i=0;
     $base_url = "https://app.inmovar.com/admin/";
     $body["pictures"] = array();
     // Imagen principal
