@@ -627,13 +627,13 @@ class Propiedades_Meli extends REST_Controller {
 
     // Imagenes
     $limite = 30;
-    $i=0;
     $base_url = "https://app.inmovar.com/admin/";
     $body["pictures"] = array();
     // Imagen principal
     $body["pictures"][] = array(
       "source"=>(strpos($propiedad->path, "https://") === 0 || strpos($propiedad->path, "http://") === 0) ? $propiedad->path : $base_url.$propiedad->path,
     );
+    $i=1;
 
     foreach($propiedad->images as $img) {
       if ($i > $limite) break;
