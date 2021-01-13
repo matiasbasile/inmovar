@@ -626,6 +626,7 @@ class Propiedades_Meli extends REST_Controller {
     }
 
     // Imagenes
+    $limite = 30;
     $base_url = "https://app.inmovar.com/admin/";
     $body["pictures"] = array();
     // Imagen principal
@@ -634,14 +635,18 @@ class Propiedades_Meli extends REST_Controller {
     );
 
     foreach($propiedad->images as $img) {
+      if ($i > $limite) break;
       $body["pictures"][] = array(
         "source"=>(strpos($img, "https://") === 0 || strpos($img, "http://") === 0) ? $img : $base_url.$img,
       );
+      $i++;
     }
     foreach($propiedad->images_meli as $img) {
+      if ($i > $limite) break;
       $body["pictures"][] = array(
         "source"=>(strpos($img, "https://") === 0 || strpos($img, "http://") === 0) ? $img : $base_url.$img,
       );
+      $i++;
     }
     if (empty($body["pictures"])) {
       return array(
