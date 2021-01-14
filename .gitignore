@@ -15,3 +15,4 @@ admin/params.php
 *.gz
 *.rar
 *.bat
+.bash_history
