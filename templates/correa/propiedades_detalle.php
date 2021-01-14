@@ -144,7 +144,7 @@
             </div>
             <div class="col-md-3">
               <span>Apto Crédito:</span>
-              <strong><?php echo ($propiedad->apto_credito == 1)?"Sí":"No" ?></strong>
+              <strong><?php echo ($propiedad->apto_banco == 1)?"Sí":"No" ?></strong>
             </div>
             <div class="col-md-3">
               <span>Acepta Permuta:</span>

@@ -15,8 +15,8 @@ foreach($tipos_propiedades as $l) {
  	$vc_nombre_tipo_propiedad = $l->nombre;
  }
 }
-$vc_banios = $get_params["bn"];
-$vc_dormitorios= $get_params["dm"];
+$vc_banios = isset($get_params["bn"]) ? $get_params["bn"] : 0;
+$vc_dormitorios= isset($get_params["dm"]) ? $get_params["dm"] : 0;
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
