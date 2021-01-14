@@ -708,23 +708,25 @@
           <div class="col-sm-6">
             <div class="form-group">
               <label class="control-label">Nombre</label>
-              <input type="text" class="form-control" id="expensa_nombre" />
+              <input type="text" class="form-control" id="extras_nombre" />
             </div>
           </div>
+          <input type="hidden" value="<%= id_cuota %>" id="extras_id_cuota">
+          <input type="hidden" value="<%= id_alquiler %>" id="extras_id_alquiler">
           <div class="col-sm-6">
             <div class="form-group">
               <label class="control-label">Monto ($)</label>
               <div class="input-group">
-                <input id="expensa_monto" value="0" type="number" class="form-control"/>
+                <input id="extras_monto" value="0" type="number" class="form-control"/>
                 <span class="input-group-btn">
-                  <a id="expensa_agregar" class="btn btn-info"><i class="fa ico fa-plus"></i></a>
+                  <a id="extras_agregar" class="btn btn-info"><i class="fa ico fa-plus"></i></a>
                 </span>
               </div>
             </div>
           </div>
         </div>
         <div class="">
-          <table id="expensas_tabla" class="table m-b-none default footable">
+          <table id="extras_tabla" class="table m-b-none default footable">
             <thead>
               <tr>
                 <th>Nombre</th>
@@ -734,17 +736,15 @@
               </tr>
             </thead>
             <tbody>
-              <?php /*
-              <% for(var i=0;i< expensas.length;i++) { %>
-                <% var p = expensas[i] %>
-                <tr data-id="<%= p.id %>">
-                  <td><%= p.nombre %></td>
-                  <td><%= p.monto %></td>
-                  <td><i class='fa fa-pencil cp editar_expensa'></i></td>
-                  <td><i class='fa fa-times eliminar_expensa text-danger cp'></i></td>
+              <% for(var i=0;i< extras.length;i++) { %>
+                <% var p = extras[i] %>
+                <tr>
+                  <td class='nombre'><%= p.nombre %></td>
+                  <td class='monto'><%= p.monto %></td>
+                  <td><i class='fa fa-pencil cp editar_extras'></i></td>
+                  <td><i class='fa fa-times eliminar_extras text-danger cp'></i></td>
                 </tr>
               <% } %>
-              */?>
             </tbody>
           </table>
         </div>

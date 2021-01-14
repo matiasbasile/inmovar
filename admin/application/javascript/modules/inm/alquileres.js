@@ -896,23 +896,21 @@
     },
     modificar_pagos : function (){
       var self = this;
-      var reciboCliente = new app.models.ReciboCliente({
+      var cuotasExtras = new app.models.CuotasExtras({
         "id_empresa":ID_EMPRESA,
-        "id_cliente":self.model.get("id_cliente"),
-        "cheques": [],
-        "depositos": [],
-        "tarjetas": [],
-        "comprobantes": comprobantes,
+        "id_alquiler":self.model.get("id_alquiler"),
+        "id_cuota": self.model.get("id"),
       });
-      app.views.ModificarPagos = new app.views.ModificarPagos({
-        model: reciboCliente
+      v = new app.views.ModificarPagos({
+        model: cuotasExtras
+        //collection: self.collection,
       });
 
       window.id_recibo = 0;
       
       // Abrimos el lightbox de pagos
       crearLightboxHTML({
-        "html":app.views.ModificarPagos.el,
+        "html":v.el,
         "width":900,
         "height":500,
       });
@@ -1267,25 +1265,40 @@
     template: _.template($("#modificar_pagos_view_template").html()),
   
     myEvents: {
-      "click #expensa_agregar":"agregar_expensa",
-      "click .editar_expensa":"editar_expensa",
-      "click .eliminar_expensa":function(e){
+      "click #extras_agregar":"agregar_extras",
+      "click .editar_extras":"editar_extras",
+      "click .eliminar_extras":function(e){
         var tr = $(e.currentTarget).parents("tr");
         $(tr).remove();
       },
+      "click .guardar": "guardar",
     },
 
     initialize: function(options) 
     {
       // Si el modelo cambia, debemos renderizar devuelta el elemento
       //this.model.bind("change",this.render,this);
+      var self = this;
       this.model.bind("destroy",this.render,this);
       this.options = options;
       this.bind("ver",this.ver,this); // Mostramos el objeto
       this.bind("limpiar",this.limpiar,this);
       _.bindAll(this);
-
-      this.render();
+      $.ajax({
+        "url":"alquileres_cuotas_extras/function/get_extras_by_cuotas/",
+        "dataType":"json",
+        "type":"post",
+        "data":{
+          "id_cuota":self.model.get("id_cuota"),
+          "id_empresa": ID_EMPRESA,
+        },
+        "success":function(r) {
+          self.model.set({
+            "extras": r.results,
+          });
+          self.render();
+        },
+      });
     },
 
     render: function() {
@@ -1295,44 +1308,80 @@
       return this;
     },
 
-    agregar_expensa: function() {
+    agregar_extras: function() {
       // Controlamos los valores
-      var nombre = $("#expensa_nombre").val();
+      var nombre = $("#extras_nombre").val();
       if (isEmpty(nombre)) {
         alert("Por favor ingrese un nombre");
-        $("#expensa_nombre").focus();
+        $("#extras_nombre").focus();
         return;
       }
-      var monto = $("#expensa_monto").val();
+      var monto = $("#extras_monto").val();
       if (isNaN(monto) || monto < 0) {
         alert("Por favor ingrese un valor");
-        $("#expensa_monto").focus();
+        $("#extras_monto").focus();
         return;
       }
       var tr = "<tr>";
-      tr+="<td>"+nombre+"</td>";
-      tr+="<td>"+Number(monto).toFixed(2)+"</td>";
-      tr+="<td><i class='fa fa-pencil cp editar_expensa'></i></td>";
-      tr+="<td><i class='fa fa-times eliminar_expensa text-danger cp'></i></td>";
+      tr+="<td class='nombre'>"+nombre+"</td>";
+      tr+="<td class='monto'>"+Number(monto).toFixed(2)+"</td>";
+      tr+="<td><i class='fa fa-pencil cp editar_extras'></i></td>";
+      tr+="<td><i class='fa fa-times eliminar_extras text-danger cp'></i></td>";
       tr+="</tr>";
 
       if (this.item == null) {
-        $("#expensas_tabla tbody").append(tr);
+        $("#extras_tabla tbody").append(tr);
       } else {
         $(this.item).replaceWith(tr);
         this.item = null;
       }
 
-      $("#expensa_nombre").val("");
-      $("#expensa_monto").val("");
+      $("#extras_nombre").val("");
+      $("#extras_monto").val("");
     },
 
-    editar_expensa: function(e) {
+    editar_extras: function(e) {
       this.item = $(e.currentTarget).parents("tr");
-      $("#expensa_nombre").val($(this.item).find("td:eq(0)").text());
-      $("#expensa_monto").val($(this.item).find("td:eq(1)").text());
+      $("#extras_nombre").val($(this.item).find("td:eq(0)").text());
+      $("#extras_monto").val($(this.item).find("td:eq(1)").text());
+    },
+
+    guardar: function () {
+      var self = this;
+      var extras = new Array();
+      $("#extras_tabla tbody tr").each(function(i, e){
+        extras.push({
+          "nombre":$(e).find(".nombre").html(),
+          "monto":$(e).find(".monto").html(),
+        });
+      }); 
+      this.model.save({
+        "extras": extras,
+        "id_empresa": ID_EMPRESA,
+        "id_cuota": $("#extras_id_cuota").val(),
+        "id_alquiler": $("#extras_id_alquiler").val(),
+      },{
+      success: function(model,response) {
+        $('.modal:last').modal('hide');
+      }
+    }); 
     },
   
   });
 
 })(app);
+
+(function ( models ) {
+
+  models.CuotasExtras = Backbone.Model.extend({
+    urlRoot: "alquileres_cuotas_extras/",
+    defaults: {
+      id_empresa: ID_EMPRESA,
+      id_alquiler: 0,
+      id_cuota: 0,
+      monto: 0,
+      nombre: "",
+    },
+  });
+    
+})( app.models );
