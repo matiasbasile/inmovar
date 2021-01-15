@@ -49,3 +49,5 @@
     </div>
   </div>
 </footer>
+
+<?php include("templates/comun/clienapp.php") ?>
