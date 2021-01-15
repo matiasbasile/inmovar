@@ -91,6 +91,7 @@
     </div>
     <div class="panel-body expand" style="display:block">
       <div class="row">
+        <% var encontro = false %>
         <% for(var i=0;i<templates.length;i++) { %>
           <% var opcion = templates[i]; %>
           <div class="col-md-4 col-sm-6 col-xs-12">
@@ -107,6 +108,7 @@
                   </div>
                 <% } %>
                 <% if (ID_WEB_TEMPLATE == opcion.id) { %>
+                  <% encontro = true %>
                   <div class="btn-item">
                     <a href="app/#editar_template" class="btn">Editar plantilla</a>
                   </div>
@@ -119,6 +121,24 @@
             </div>
           </div>
         <% } %>  
+
+        <% if (!encontro && ID_WEB_TEMPLATE != 0) { %>
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="template-item mb20 selected">
+              <img style="height:280px" src=""/>
+              <div class="template-item-footer">
+                <span class="bold white">Diseño a medida</span>
+              </div>
+              <div class="template-item-over">
+                <div class="template-item-over-nombre">Diseño a medida</div>
+                <div class="btn-item">
+                  <a href="app/#editar_template" class="btn">Editar plantilla</a>
+                </div>
+              </div>    
+            </div>
+          </div>
+        <% } %>
+
       </div>
     </div>
   </div>
