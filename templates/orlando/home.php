@@ -255,7 +255,7 @@
 								<div class="rollover">
 									<?php $t = $web_model->get_text("img-1-texto-1","La Plata")?>
 									<a href="<?php echo $t->link ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="editable stretched-link"><?php echo $t->plain_text ?></a>
-									<span><b>Ver</b> Propiedades</span>
+									<span>Ver <b>Propiedades</b></span>
 								</div>
 							</div>
 						</div>
@@ -266,7 +266,7 @@
 								<div class="rollover">
 									<?php $t = $web_model->get_text("img-2-texto-2","City Bell")?>
 									<a href="<?php echo $t->link ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="editable stretched-link"><?php echo $t->plain_text ?></a>
-									<span><b>Ver</b> Propiedades</span>
+									<span>Ver <b>Propiedades</b></span>
 								</div>
 							</div>
 						</div>
@@ -277,7 +277,7 @@
 								<div class="rollover">
 									<?php $t = $web_model->get_text("img-3-texto-3","Villa Elisa")?>
 									<a href="<?php echo $t->link ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="editable stretched-link"><?php echo $t->plain_text ?></a>
-									<span><b>Ver</b> Propiedades</span>
+									<span>Ver <b>Propiedades</b></span>
 								</div>
 							</div>
 						</div>
@@ -288,7 +288,7 @@
 								<div class="rollover">
 									<?php $t = $web_model->get_text("img-4-texto-4","Pinamar")?>
 									<a href="<?php echo $t->link ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="editable stretched-link"><?php echo $t->plain_text ?></a>
-									<span><b>Ver</b> Propiedades</span>
+									<span>Ver <b>Propiedades</b></span>
 								</div>
 							</div>
 						</div>
@@ -299,7 +299,7 @@
 								<div class="rollover">
 									<?php $t = $web_model->get_text("img-5-texto-5","Hudson")?>
 									<a href="<?php echo $t->link ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="editable stretched-link"><?php echo $t->plain_text ?></a>
-									<span><b>Ver</b> Propiedades</span>
+									<span>Ver <b>Propiedades</b></span>
 								</div>
 							</div>
 						</div>
@@ -310,7 +310,7 @@
 								<div class="rollover">
 									<?php $t = $web_model->get_text("img-6-texto-6","Mar Del Plata")?>
 									<a href="<?php echo $t->link ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="editable stretched-link"><?php echo $t->plain_text ?></a>
-									<span><b>Ver</b> Propiedades</span>
+									<span>Ver <b>Propiedades</b></span>
 								</div>
 							</div>
 						</div>
