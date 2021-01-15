@@ -1,12 +1,27 @@
-<?php include "includes/init.php" ?>
-<?php $propiedad = $propiedad_model->get($id) ?>
+<?php 
+include "includes/init.php";
+$propiedad = $propiedad_model->get($id); 
+
+// Tomamos los datos de SEO
+$seo_title = (!empty($propiedad->seo_title)) ? ($propiedad->seo_title) : $empresa->seo_title;
+$seo_description = (!empty($propiedad->seo_description)) ? ($propiedad->seo_description) : $empresa->seo_description;
+$seo_keywords = (!empty($propiedad->seo_keywords)) ? ($propiedad->seo_keywords) : $empresa->seo_keywords;
+
+// Seteamos la cookie para indicar que el cliente ya entro a esta propiedad
+$propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
+
+?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
-	<?php include "includes/head.php" ?>
+<?php include "includes/head.php" ?>
+<meta property="og:type" content="website" />
+<meta property="og:title" content="<?php echo ($propiedad->nombre); ?>" />
+<meta property="og:description" content="<?php echo str_replace("\n","",(strip_tags(html_entity_decode($propiedad->texto,ENT_QUOTES)))); ?>" />
+<meta property="og:image" content="<?php echo current_url(TRUE); ?>/admin/<?php echo $propiedad->path; ?>"/>
+<script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
 </head>
 <body>
-
 
 <?php include "includes/header.php" ?>
 
@@ -406,5 +421,13 @@ function mostrar_mapa() {
     focusOnSelect: true
   });
 </script>
+<?php 
+// Creamos el codigo de seguimiento para registrar la visita
+echo $propiedad_model->tracking_code(array(
+  "id_propiedad"=>$propiedad->id,
+  "id_empresa_compartida"=>$id_empresa,
+  "id_empresa"=>$empresa->id,
+));
+?>
 </body>
 </html>
