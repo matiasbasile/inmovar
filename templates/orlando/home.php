@@ -254,7 +254,9 @@
 								<img src="<?php echo $t->plain_text ?>" alt="Property Img">
 								<div class="rollover">
 									<?php $t = $web_model->get_text("img-1-texto-1","La Plata")?>
-									<a href="<?php echo $t->link ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="editable stretched-link"><?php echo $t->plain_text ?></a>
+									<a href="<?php echo $t->link ?>" class="stretched-link">
+										<span data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="editable"><?php echo $t->plain_text ?></span>
+									</a>
 									<?php $t = $web_model->get_text("img-1-cantidad-1","250")?>
 									<span class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
 										<b><?php echo $t->plain_text ?></b> Propiedades
