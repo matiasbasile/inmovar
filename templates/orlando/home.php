@@ -263,47 +263,72 @@
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-6">
-							<div class="featured-list-item">
-								<img src="assets/images/property-img8.png" alt="Property Img">
+							<?php $t = $web_model->get_text("img-1-path","assets/images/property-img8.png")?>
+							<div class="featured-list-item editable editable-img" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+								<img src="<?php echo $t->plain_text ?>" alt="Property Img">
 								<div class="rollover">
-									<a href="#0" class="stretched-link">City Bell</a>
-									<span><b>25</b> Propiedades</span>
+									<?php $t = $web_model->get_text("img-1-texto-1","City Bell")?>
+									<a href="<?php echo $t->link ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="editable stretched-link"><?php echo $t->plain_text ?></a>
+									<?php $t = $web_model->get_text("img-1-cantidad-1","25")?>
+									<span class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+										<b><?php echo $t->plain_text ?></b> Propiedades
+									</span>
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-6">
-							<div class="featured-list-item">
-								<img src="assets/images/property-img9.png" alt="Property Img">
+							<?php $t = $web_model->get_text("img-1-path","assets/images/property-img9.png")?>
+							<div class="featured-list-item editable editable-img" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+								<img src="<?php echo $t->plain_text ?>" alt="Property Img">
 								<div class="rollover">
-									<a href="#0" class="stretched-link">Villa Elisa</a>
-									<span><b>12</b> Propiedades</span>
+									<?php $t = $web_model->get_text("img-1-texto-1","Villa Elisa")?>
+									<a href="<?php echo $t->link ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="editable stretched-link"><?php echo $t->plain_text ?></a>
+									<?php $t = $web_model->get_text("img-1-cantidad-1","12")?>
+									<span class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+										<b><?php echo $t->plain_text ?></b> Propiedades
+									</span>
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-6">
-							<div class="featured-list-item">
-								<img src="assets/images/property-img10.png" alt="Property Img">
+							<?php $t = $web_model->get_text("img-1-path","assets/images/property-img10.png")?>
+							<div class="featured-list-item editable editable-img" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+								<img src="<?php echo $t->plain_text ?>" alt="Property Img">
 								<div class="rollover">
-									<a href="#0" class="stretched-link">Pinamar</a>
-									<span><b>250</b> Propiedades</span>
+									<?php $t = $web_model->get_text("img-1-texto-1","Pinamar")?>
+									<a href="<?php echo $t->link ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="editable stretched-link"><?php echo $t->plain_text ?></a>
+									<?php $t = $web_model->get_text("img-1-cantidad-1","250")?>
+									<span class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+										<b><?php echo $t->plain_text ?></b> Propiedades
+									</span>
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-6">
-							<div class="featured-list-item">
-								<img src="assets/images/property-img11.png" alt="Property Img">
+							<?php $t = $web_model->get_text("img-1-path","assets/images/property-img11.png")?>
+							<div class="featured-list-item editable editable-img" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+								<img src="<?php echo $t->plain_text ?>" alt="Property Img">
 								<div class="rollover">
-									<a href="#0" class="stretched-link">Hudson</a>
-									<span><b>25</b> Propiedades</span>
+									<?php $t = $web_model->get_text("img-1-texto-1","Hudson")?>
+									<a href="<?php echo $t->link ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="editable stretched-link"><?php echo $t->plain_text ?></a>
+									<?php $t = $web_model->get_text("img-1-cantidad-1","25")?>
+									<span class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+										<b><?php echo $t->plain_text ?></b> Propiedades
+									</span>
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-6">
-							<div class="featured-list-item">
-								<img src="assets/images/property-img12.png" alt="Property Img">
+							<?php $t = $web_model->get_text("img-1-path","assets/images/property-img12.png")?>
+							<div class="featured-list-item editable editable-img" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+								<img src="<?php echo $t->plain_text ?>" alt="Property Img">
 								<div class="rollover">
-									<a href="#0" class="stretched-link">Mar Del Plata</a>
-									<span><b>12</b> Propiedades</span>
+									<?php $t = $web_model->get_text("img-1-texto-1","Mar Del Plata")?>
+									<a href="<?php echo $t->link ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="editable stretched-link"><?php echo $t->plain_text ?></a>
+									<?php $t = $web_model->get_text("img-1-cantidad-1","12")?>
+									<span class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+										<b><?php echo $t->plain_text ?></b> Propiedades
+									</span>
 								</div>
 							</div>
 						</div>
