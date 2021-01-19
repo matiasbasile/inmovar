@@ -4,7 +4,7 @@
 
 (function ( models ) {
 
-    models.WebTemplate = Backbone.Model.extend({
+    models.Web_templates = Backbone.Model.extend({
         urlRoot: "web_templates/",
         defaults: {
             nombre: "",
@@ -28,7 +28,7 @@
 
 (function (collections, model, paginator) {
 
-	collections.WebTemplates = paginator.requestPager.extend({
+	collections.Web_templates = paginator.requestPager.extend({
 
 		model: model,
 
@@ -44,7 +44,7 @@
 		
 	});
 
-})( app.collections, app.models.WebTemplate, Backbone.Paginator);
+})( app.collections, app.models.Web_templates, Backbone.Paginator);
 
 
 
@@ -54,7 +54,7 @@
 
 (function ( app ) {
 
-    app.views.WebTemplateItem = Backbone.View.extend({
+    app.views.Web_templatesItem = Backbone.View.extend({
         tagName: "tr",
         attributes: function() {
             return {
@@ -117,7 +117,7 @@
 
 (function ( app ) {
 
-    app.views.WebTemplatesTableView = app.mixins.View.extend({
+    app.views.Web_templatesTableView = app.mixins.View.extend({
 
     	template: _.template($("#web_templates_panel_template").html()),
 
@@ -162,7 +162,7 @@
 		},
 
 		addOne : function ( item ) {
-			var view = new app.views.WebTemplateItem({
+			var view = new app.views.Web_templatesItem({
 				model: item,
 				permiso: this.permiso,
 			});
@@ -179,7 +179,7 @@
 // -------------------------------
 (function ( views, models ) {
 
-	views.WebTemplateEditView = app.mixins.View.extend({
+	views.Web_templatesEditView = app.mixins.View.extend({
 
 		template: _.template($("#web_templates_edit_panel_template").html()),
 
@@ -262,7 +262,7 @@
 		},
         
         limpiar : function() {
-            this.model = new app.models.WebTemplate()
+            this.model = new app.models.Web_templates();
             this.render();
         },
 		

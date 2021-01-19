@@ -1067,14 +1067,26 @@ class Propiedad_Model {
     if (!empty($id_departamento)) $sql.= "AND L.id_departamento = $id_departamento ";
     if (!empty($id_tipo_operacion)) $sql.= "AND A.id_tipo_operacion = $id_tipo_operacion ";
     if (!empty($link_tipo_operacion)) $sql.= "AND X.link = '$link_tipo_operacion' ";
-    if (!empty($link_tipo_inmueble)) $sql.= "AND TI.link = '$link_tipo_inmueble' ";
     if (!empty($tipo_operacion)) $sql.= "AND X.link = '$tipo_operacion' ";
     if (!empty($ids_tipo_operacion)) {
       if (is_array($ids_tipo_operacion)) $ids_tipo_operacion = implode(",",$ids_tipo_operacion);
       $sql.= "AND A.id_tipo_operacion IN ($ids_tipo_operacion) ";
     }
-    if (!empty($id_tipo_inmueble)) $sql.= "AND A.id_tipo_inmueble = $id_tipo_inmueble ";
+    if ($id_tipo_inmueble == 14 || $link_tipo_inmueble == "monoambiente") {
+      // SI ES UN MONOAMBIENTE, TAMBIEN BUSCA DEPARTAMENTOS CON 0 DORMITORIOS
+      if (!empty($id_tipo_inmueble)) $sql.= "AND (A.id_tipo_inmueble = $id_tipo_inmueble OR (A.id_tipo_inmueble = 2 AND dormitorios = 0)) ";
+      if (!empty($link_tipo_inmueble))  $sql.= "AND (A.id_tipo_inmueble = 14 OR (A.id_tipo_inmueble = 2 AND dormitorios = 0)) ";
+    } else if (($id_tipo_inmueble == 2 || $link_tipo_inmueble == "departamento") && empty($dormitorios)) {
+      // SI ES UN DEPARTAMENTO, Y ESTA BUSCANDO SIN DORMITORIOS, TAMBIEN TOMAMOS LOS MONOAMBIENTES
+      if (!empty($id_tipo_inmueble)) $sql.= "AND (A.id_tipo_inmueble = $id_tipo_inmueble OR A.id_tipo_inmueble = 14) ";
+      if (!empty($link_tipo_inmueble))  $sql.= "AND (A.id_tipo_inmueble = 14 OR (A.id_tipo_inmueble = 2 AND dormitorios = 0)) ";
+    } else {
+      if (!empty($id_tipo_inmueble)) $sql.= "AND A.id_tipo_inmueble = $id_tipo_inmueble ";
+      if (!empty($link_tipo_inmueble)) $sql.= "AND TI.link = '$link_tipo_inmueble' ";
+    }
+    
     if (!empty($in_ids_tipo_inmueble)) $sql.= "AND A.id_tipo_inmueble IN ($in_ids_tipo_inmueble) ";
+
     if (!empty($id_tipo_estado)) $sql.= "AND A.id_tipo_estado = $id_tipo_estado ";
     if (!empty($id_propietario)) $sql.= "AND A.id_propietario = $id_propietario ";
     if ($dormitorios != "") {

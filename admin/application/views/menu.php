@@ -32,6 +32,18 @@ function modulo_habilitado($permisos,$modulo) {
                 Videos
               </a>
             </li>
+            <li>
+              <a href='app/#web_templates'>
+                <i class='material-icons'>settings</i>
+                Templates
+              </a>
+            </li>
+            <li>
+              <a href='app/#proyectos'>
+                <i class='material-icons'>settings</i>
+                Modulos
+              </a>
+            </li>
 
           <?php 
           // CUENTA ESPECIAL DE INMOVAR
