@@ -1090,7 +1090,7 @@ class Propiedad_Model {
     if (!empty($id_tipo_estado)) $sql.= "AND A.id_tipo_estado = $id_tipo_estado ";
     if (!empty($id_propietario)) $sql.= "AND A.id_propietario = $id_propietario ";
     if ($dormitorios != "") {
-      if ($dormitorios == -99) $sql.= "AND A.dormitorios = 0 AND A.ambientes = 1 ";
+      if ($dormitorios == -99 || $dormitorios == 99) $sql.= "AND A.dormitorios = 0 AND A.ambientes = 1 ";
       else $sql.= "AND A.dormitorios = $dormitorios ";
     }
     if ($banios != "") $sql.= "AND A.banios = $banios ";
