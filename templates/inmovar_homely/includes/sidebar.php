@@ -74,7 +74,7 @@
               <select  name="dm" class="border">
                 <?php $dormitorios = $propiedad_model->get_dormitorios() ?>
                 <option value="">Todos</option>
-                <option <?php echo ($vc_dormitorios == 0)?"selected":"" ?> value="0">Monoambiente</option>
+                <option <?php echo ($vc_dormitorios == 99)?"selected":"" ?> value="99">Monoambiente</option>
                 <?php foreach ($dormitorios as $dm) { ?>
                   <?php if ($dm->dormitorios != 0) {  ?>
                     <option value="<?php echo $dm->dormitorios ?>" <?php echo ($vc_dormitorios == $dm->dormitorios)?"selected":"" ?> ><?php echo $dm->dormitorios ?></option>
