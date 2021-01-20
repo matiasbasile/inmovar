@@ -489,11 +489,15 @@ iframe { width: 100% !important }
 <?php if ($propiedad->latitud != 0 && $propiedad->longitud != 0) { ?>
 <script type="text/javascript">
   var mymap = L.map('mapid').setView([<?php echo $propiedad->latitud ?>,<?php echo $propiedad->longitud ?>], <?php echo $propiedad->zoom ?>);
-  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-    maxZoom: 18,
-    id: 'mapbox.streets',
-    accessToken: 'pk.eyJ1IjoiaGVuaWRlZXBhayIsImEiOiJjajIwNmUyMWEwMmh0MzJxbXk1eXA5a3VkIn0.aTDa_ljZ8zNilegJ0T2zkA'
-  }).addTo(mymap);
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+      attribution: '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
+      tileSize: 512,
+      maxZoom: 18,
+      zoomOffset: -1,
+      id: 'mapbox/streets-v11',
+      accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
+    }).addTo(mymap);
+
   var greenIcon = L.icon({
     iconUrl: 'images/map-marker.png',
     iconSize:     [44, 50], // size of the icon
