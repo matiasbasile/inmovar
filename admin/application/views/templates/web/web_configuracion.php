@@ -125,7 +125,7 @@
         <% if (!encontro && ID_WEB_TEMPLATE != 0) { %>
           <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="template-item mb20 selected">
-              <img style="height:280px" src=""/>
+              <img style="height:280px" src="/admin/resources/images/amedida.jpg"/>
               <div class="template-item-footer">
                 <span class="bold white">Diseño a medida</span>
               </div>
