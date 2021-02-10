@@ -828,3 +828,179 @@
   </div>
 </div>
 </script>
+
+<script type="text/template" id="propietarios_panel_template">
+  <div class="bg-light lter b-b wrapper-md ng-scope">
+   <h1 class="m-n font-thin h3"><i class="fa fa-users icono_principal"></i>Propietarios</h1>
+  </div>
+  <div class="wrapper-md ng-scope">
+  <div class="panel panel-default">
+    <div class="panel-heading clearfix">
+      <div class="row">
+        <div class="col-md-6 col-lg-3 sm-m-b">
+          <div class="search_container"></div>
+        </div>
+        <div class="col-md-6 col-lg-offset-3 col-lg-6 text-right">
+          <a class="btn btn-info btn-addon" href="app/#propietario"><i class="fa fa-plus"></i>&nbsp;&nbsp;Nuevo&nbsp;&nbsp;</a>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="b-a table-responsive">
+        <table id="propietarios_table" class="table table-striped sortable m-b-none default footable">
+          <thead>
+            <tr>
+              <th class="sorting" data-sort-by="nombre">Nombre</th>
+              <th class="sorting" data-sort-by="email">Email</th>
+              <th class="sorting" data-sort-by="telefono">Telefono</th>
+              <th class="sorting" data-sort-by="celular">Celular</th>
+              <% if (permiso > 1) { %>
+                <th class="w100 th_acciones">Acciones</th>
+              <% } %>
+            </tr>
+          </thead>
+          <tbody></tbody>
+          <tfoot class="pagination_container hide-if-no-paging"></tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+  </div>  
+</script>
+
+
+<script type="text/template" id="propietarios_item">
+  <td class='ver'><span class="text-info"><%= nombre %></span></td>
+  <td class='ver'><span class=''><%= email %></span></td>
+  <td class='ver'><span class=''><%= telefono %></span></td>
+  <td class='ver'><span class=''><%= celular %></span></td>
+  <% if (permiso > 1) { %>
+    <div class="btn-group dropdown">
+      <i title="Opciones" class="iconito fa fa-caret-down dropdown-toggle" data-toggle="dropdown"></i>
+      <ul class="dropdown-menu pull-right">
+      <li><a href="javascript:void(0)" class="delete" data-id="<%= id %>">Eliminar</a></li>
+      </ul>
+    </div>
+  <% } %>
+</script>
+
+<script type="text/template" id="propietarios_edit_panel_template">
+
+<div class="bg-light lter b-b wrapper-md ng-scope">
+  <h1 class="m-n font-thin h3"><i class="fa fa-users icono_principal"></i>Propietarios / 
+  <b><%= (id == undefined)?"Nuevo":nombre %></b>
+  </h1>
+</div>
+<div class="wrapper-md">
+  <div class="centrado rform">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="padder">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="control-label">Nombre</label>
+                    <% if (edicion) { %>
+                      <input type="text" name="nombre" class="form-control" id="propietarios_nombre" value="<%= nombre %>"/>
+                    <% } else { %>
+                      <span><%= nombre %></span>
+                    <% } %>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="control-label">Email</label>
+                    <% if (edicion) { %>
+                      <input type="text" name="email" class="form-control" id="propietarios_email" value="<%= email %>"/>
+                    <% } else { %>
+                      <span><%= email %></span>
+                    <% } %>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="control-label">Telefono</label>
+                    <% if (edicion) { %>
+                      <input type="text" name="telefono" class="form-control" id="propietarios_telefono" value="<%= telefono %>"/>
+                    <% } else { %>
+                      <span><%= telefono %></span>
+                    <% } %>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="control-label">Celular</label>
+                    <% if (edicion) { %>
+                      <input type="text" name="celular" class="form-control" id="propietarios_celular" value="<%= celular %>"/>
+                    <% } else { %>
+                      <span><%= celular %></span>
+                    <% } %>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label">Direccion</label>
+                <% if (edicion) { %>
+                  <input type="text" name="direccion" class="form-control" id="propietarios_direccion" value="<%= direccion %>"/>
+                <% } else { %>
+                  <span><%= direccion %></span>
+                <% } %>
+              </div>
+              <div class="form-group">
+                <label class="control-label">Observaciones</label>
+                <% if (edicion) { %>
+                  <textarea class="form-control" name="observaciones"><%= observaciones %></textarea>
+                <% } else { %>
+                  <span><%= observaciones %></span>
+                <% } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1 clearfix">
+        <button class="btn guardar fr btn-success">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+</script>
+
+
+<script type="text/template" id="propietarios_edit_mini_panel_template">
+<div class="panel pb0 mb0">
+  <div class="panel-body">
+    <div class="oh m-b">
+      <h4 class="h4 pull-left">Nuevo Propietario</h4>
+      <span class="pull-right cp material-icons cerrar">close</span>
+    </div>
+    <div class="form-group">
+      <input type="text" autocomplete="off" placeholder="Nombre" name="nombre" class="tab form-control" id="propietarios_mini_nombre"/>
+    </div>
+    <div class="form-group">
+      <input type="text" autocomplete="off" placeholder="Email" name="email" class="tab form-control" id="propietarios_mini_email"/>
+    </div>
+    <div class="form-group">
+      <input type="text" autocomplete="off" placeholder="Telefono" name="telefono" class="tab form-control" id="propietarios_mini_telefono"/>
+    </div>
+    <div class="form-group">
+      <input type="text" autocomplete="off" placeholder="Celular" name="celular" class="tab form-control" id="propietarios_mini_celular"/>
+    </div>
+    <div class="form-group">
+      <input type="text" autocomplete="off" placeholder="Direccion" name="direccion" class="tab form-control" id="propietarios_mini_direccion"/>
+    </div>
+    <div class="form-group">
+      <textarea autocomplete="off" placeholder="Observaciones o notas..." name="observaciones" class="tab form-control h80" id="propietarios_mini_observaciones"></textarea>
+    </div>
+    <div class="text-right">
+      <button class="btn guardar btn-info tab">Guardar</button>
+    </div>
+  </div>
+</div>
+</script>

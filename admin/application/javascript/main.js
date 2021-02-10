@@ -84,6 +84,10 @@
         "video": "ver_video",
         "video/:id": "ver_video",        
 
+        "clientes": "ver_clientes",
+        "inquilinos": "ver_inquilinos",
+        "propietarios": "ver_propietarios",
+
         // Funcionamiento de ABM General
         '': 'router',
         ':mod(/)': 'router',
@@ -276,6 +280,57 @@
           },
         });
       },      
+
+      ver_clientes: function() {
+        var clientes = new app.collections.Clientes();
+        window.clientes_custom_3 = 1;
+        window.clientes_custom_4 = 0;
+        window.clientes_custom_5 = 0;
+        var permiso = control.check("contactos");
+        if (permiso > 0) {
+          var view = new app.views.ClientesTableView({
+            collection: clientes,
+            permiso: permiso,
+          });    
+          this.mostrar({
+            "top" : view.el,
+          });
+        }
+      },
+
+      ver_inquilinos: function() {
+        var clientes = new app.collections.Clientes();
+        window.clientes_custom_3 = 0;
+        window.clientes_custom_4 = 1;
+        window.clientes_custom_5 = 0;
+        var permiso = control.check("contactos");
+        if (permiso > 0) {
+          var view = new app.views.ClientesTableView({
+            collection: clientes,
+            permiso: permiso,
+          });    
+          this.mostrar({
+            "top" : view.el,
+          });
+        }
+      },
+
+      ver_propietarios: function() {
+        var clientes = new app.collections.Clientes();
+        window.clientes_custom_3 = 0;
+        window.clientes_custom_4 = 0;
+        window.clientes_custom_5 = 1;
+        var permiso = control.check("contactos");
+        if (permiso > 0) {
+          var view = new app.views.ClientesTableView({
+            collection: clientes,
+            permiso: permiso,
+          });    
+          this.mostrar({
+            "top" : view.el,
+          });
+        }
+      },
 
       ver_cajas: function(todas) {
         var cajas = new app.collections.Cajas();

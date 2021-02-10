@@ -36,6 +36,7 @@
       entre_calles: "",
       entre_calles_2: "",
       valor_expensas: 0,
+      id_propietario: 0,
 
       permiso_web: 0,
       bloqueado_web: 0,
@@ -1868,6 +1869,29 @@
 
       "change #propiedad_calle":"get_coords_by_address",
       "change #propiedad_altura":"get_coords_by_address",
+
+      "click .nuevo_propietario":function(e){
+        var self = this;
+        if ($(".propietario_edit_mini").length > 0) return;
+        var form = new app.views.PropietarioEditViewMini({
+          "model": new app.models.Propietario(),
+          "callback":self.cargar_propietarios,
+        });
+        var width = 350;
+        var position = $(e.currentTarget).offset();
+        var top = position.top + $(e.currentTarget).outerHeight();
+        var container = $("<div class='customcomplete propietario_edit_mini'/>");
+        $(container).css({
+          "top":top+"px",
+          "left":(position.left - width + $(e.currentTarget).outerWidth())+"px",
+          "display":"block",
+          "width":width+"px",
+        });
+        $(container).append("<div class='new-container'></div>");
+        $(container).find(".new-container").append(form.el);
+        $("body").append(container);
+        $("#propietarios_mini_nombre").focus();
+      },      
       
       // TODO: MODIFICAR ESTO
       /*"click .eliminar_imagen":function(e) {
@@ -1900,6 +1924,8 @@
       }
       this.$("#propiedad_paises").select2({});
       this.$("#propiedad_provincias").select2({});
+
+      this.cargar_propietarios();
 
       //if (CONFIGURACION_AUTOGENERAR_CODIGOS == 1) {
         // Estamos creando un cliente nuevo
@@ -1937,6 +1963,25 @@
         collection: self.departamentos
       });
       this.$("#propiedad_departamentos").html(this.departamentosTable.el);
+    },
+
+    cargar_propietarios: function(id_propietario) {
+      var self = this;
+      // Si se manda por parametro un ID, hay que poner ese nuevo en el modelo
+      if (id_propietario != undefined) {
+        this.model.set({ "id_propietario": id_propietario });
+      }      
+      // Creamos el select
+      new app.mixins.Select({
+        modelClass: app.models.Propietario,
+        url: "propietarios/",
+        firstOptions: ["<option value='0'>Sin Definir</option>"],
+        render: "#propiedad_propietarios",
+        selected: self.model.get("id_propietario"),
+        onComplete:function(c) {
+          crear_select2("propiedad_propietarios");
+        }                    
+      });
     },
 
     sincronizar_calendario: function() {
@@ -2253,6 +2298,7 @@
           "audio": (self.$("#hidden_audio").length > 0) ? $(self.el).find("#hidden_audio").val() : "",
           "id_barrio": (self.$("#propiedad_barrio").length > 0) ? $(self.el).find("#propiedad_barrio").val() : 0,
           "tipo_calle": (self.$("#propiedad_tipo_calle").length > 0) ? $(self.el).find("#propiedad_tipo_calle").val() : 0,
+          "id_propietario":self.$("#propiedad_propietarios").val(),
 
           "id_localidad": (self.$("#propiedad_localidades").length > 0) ? ($(self.el).find("#propiedad_localidades").val() == null ? 0 : $(self.el).find("#propiedad_localidades").val()) : 0,
           "id_departamento": (self.$("#propiedad_departamentos").length > 0) ? ($(self.el).find("#propiedad_departamentos").val() == null ? 0 : $(self.el).find("#propiedad_departamentos").val()) : 0,
@@ -3292,6 +3338,9 @@
         $('.modal:last').modal('hide');
         location.href="app/#propiedades/"+this.model.id;
       },
+      "click #cerrar_preview":function(){
+        $('.modal:last').modal('hide');
+      },
       "click .enviar":"enviar",
       "click .enviar_whatsapp":"enviar_whatsapp",
       "click .ver_ficha":function(e) {
@@ -3540,3 +3589,349 @@
           
   });
 })(app);
+
+
+// -----------
+//   MODELO
+// -----------
+
+(function ( models ) {
+
+  models.Propietario = Backbone.Model.extend({
+    urlRoot: "propietarios/",
+    defaults: {
+      nombre: "",
+      email: "",
+      telefono: "",
+      celular: "",
+      direccion: "",
+      observaciones: "",
+      custom_5: "1", // Indica que el cliente es un propietario
+      id_tipo_iva: 4,
+      forma_pago: "C",
+      id_tipo_documento: 96,
+      activo: 1,
+    }
+  });
+    
+})( app.models );
+
+
+// ----------------------
+//   COLECCION PAGINADA
+// ----------------------
+
+(function (collections, model, paginator) {
+
+  collections.Propietarios = paginator.requestPager.extend({
+
+    model: model,
+
+    paginator_core: {
+      url: "propietarios/"
+    }
+    
+  });
+
+})( app.collections, app.models.Propietario, Backbone.Paginator);
+
+
+
+// ------------------------------
+//   VISTA DE ITEM DE LA TABLA
+// ------------------------------
+
+(function ( app ) {
+
+  app.views.PropietarioItem = Backbone.View.extend({
+    tagName: "tr",
+    template: _.template($('#propietarios_item').html()),
+      events: {
+      "click": "editar",
+      "click .ver": "editar",
+      "click .delete": "borrar",
+      "click .duplicar": "duplicar"
+    },
+    initialize: function(options) {
+      this.model.bind("change",this.render,this);
+      this.model.bind("destroy",this.render,this);
+      this.options = options;
+      this.permiso = this.options.permiso;
+      _.bindAll(this);
+    },
+    render: function()
+    {
+      // Creamos un objeto para agregarle las otras propiedades que no son el modelo
+      var obj = { permiso: this.permiso };
+      // Extendemos el objeto creado con el modelo de datos
+      $.extend(obj,this.model.toJSON());
+
+      $(this.el).html(this.template(obj));
+      return this;
+    },
+    editar: function() {
+      // Cuando editamos un elemento, indicamos a la vista que lo cargue en los campos
+      location.href="app/#propietario/"+this.model.id;
+    },
+    borrar: function(e) {
+      if (confirmar("Realmente desea eliminar este elemento?")) {
+        this.model.destroy(); // Eliminamos el modelo
+        $(this.el).remove();  // Lo eliminamos de la vista
+      }
+      e.stopPropagation();
+    },
+    duplicar: function(e) {
+      var clonado = this.model.clone();
+      clonado.set({id:null}); // Ponemos el ID como NULL para que se cree un nuevo elemento
+      clonado.save({},{
+        success: function(model,response) {
+          model.set({id:response.id});
+        }
+      });
+      this.model.collection.add(clonado);
+      e.stopPropagation();
+    }
+  });
+
+})( app );
+
+
+
+// ----------------------
+//   VISTA DE LA TABLA
+// ----------------------
+
+(function ( app ) {
+
+  app.views.PropietariosTableView = app.mixins.View.extend({
+
+    template: _.template($("#propietarios_panel_template").html()),
+
+    initialize : function (options) {
+
+      _.bindAll(this); // Para que this pueda ser utilizado en las funciones
+
+      var lista = this.collection;
+      this.options = options;
+      this.permiso = this.options.permiso;
+
+      // Creamos la lista de paginacion
+      var pagination = new app.mixins.PaginationView({
+        collection: lista
+      });
+
+      // Creamos el buscador
+      var search = new app.mixins.SearchView({
+        collection: lista
+      });
+
+      lista.on('add', this.addOne, this);
+      lista.on('all', this.addAll, this);
+      
+      // Renderizamos por primera vez la tabla:
+      // ----------------------------------------
+      var obj = { permiso: this.permiso };
+      
+      // Cargamos el template
+      $(this.el).html(this.template(obj));
+      // Cargamos el paginador
+      $(this.el).find(".pagination_container").html(pagination.el);
+      // Cargamos el buscador
+      $(this.el).find(".search_container").html(search.el);
+
+      // Vamos a buscar los elementos y lo paginamos
+      lista.pager();
+    },
+
+    addAll : function () {
+      $(this.el).find("tbody").empty();
+      this.collection.each(this.addOne);
+    },
+
+    addOne : function ( item ) {
+      var view = new app.views.PropietarioItem({
+        model: item,
+        permiso: this.permiso,
+      });
+      $(this.el).find("tbody").append(view.render().el);
+    }
+
+  });
+})(app);
+
+
+
+// -------------------------------
+//   VISTA DEL PANEL DE EDICION
+// -------------------------------
+(function ( views, models ) {
+
+  views.PropietarioEditView = app.mixins.View.extend({
+
+    template: _.template($("#propietarios_edit_panel_template").html()),
+
+    myEvents: {
+      "click .guardar": "guardar",
+      "click .nuevo": "limpiar",
+    },
+
+    initialize: function(options) {
+      this.model.bind("destroy",this.render,this);
+      _.bindAll(this);
+      this.options = options;
+      this.render();
+    },
+
+    render: function()
+    {
+      // Creamos un objeto para agregarle las otras propiedades que no son el modelo
+      var edicion = false;
+      if (this.options.permiso > 1) edicion = true;
+      var obj = { edicion: edicion, id:this.model.id };
+      // Extendemos el objeto creado con el modelo de datos
+      $.extend(obj,this.model.toJSON());
+
+      $(this.el).html(this.template(obj));
+
+      return this;
+    },
+
+    validar: function() {
+      try {
+        // Validamos los campos que sean necesarios
+        validate_input("propietarios_nombre",IS_EMPTY,"Por favor, ingrese un nombre.");
+        // No hay ningun error
+        $(".error").removeClass("error");
+        return true;
+      } catch(e) {
+        return false;
+      }
+    },
+    
+
+    guardar: function() 
+    {
+      var self = this;
+      if (this.validar()) {
+        if (this.model.id == null) {
+          this.model.set({id:0});
+        }
+        this.model.save({
+            "id_empresa":ID_EMPRESA,
+          },{
+          success: function(model,response) {
+            window.history.back();
+          }
+        });
+      }
+    },
+    
+    limpiar : function() {
+      this.model = new app.models.Propietario()
+      this.render();
+    },
+    
+  });
+
+})(app.views, app.models);
+
+
+
+
+(function ( views, models ) {
+
+  views.PropietarioEditViewMini = app.mixins.View.extend({
+
+    template: _.template($("#propietarios_edit_mini_panel_template").html()),
+
+    myEvents: {
+      "click .guardar": "guardar",
+      "click .cerrar": "cerrar",
+      "keyup #clientes_mini_nombre":function() {
+        // Tenemos enlazada la referencia, por lo que cada vez que escribimos algo, debemos cambiar el input original
+        if (this.input != undefined) {
+          $(this.input).val($(this.el).find("#clientes_mini_nombre").val());
+        }
+      },
+      "keypress .tab":function(e) {
+        if (e.keyCode == 13) {
+          $(e.currentTarget).parent().next().find(".tab").focus();
+        }
+      },
+      "keyup .tab":function(e) {
+        if (e.which == 27) this.cerrar();
+      }
+    },
+
+    initialize: function(options) {
+      this.model.bind("destroy",this.render,this);
+      _.bindAll(this);
+      this.options = options;
+      this.input = this.options.input;
+      this.render();
+    },
+
+    render: function() {
+      var self = this;
+      $(this.el).html(this.template(this.model.toJSON()));
+      if (this.input != undefined) {
+        // Seteamos lo que tiene el input de referencia
+        $(this.el).find("#clientes_mini_nombre").val($(this.input).val().trim());
+      }
+      return this;
+    },
+    
+    focus: function() {
+      $(this.el).find("#clientes_mini_nombre").focus();
+    },
+
+    validar: function() {
+      try {
+        validate_input("propietarios_mini_nombre",IS_EMPTY,"Por favor, ingrese un nombre.");
+        $(".error").removeClass("error");
+        return true;
+      } catch(e) {
+        return false;
+      }
+    },
+
+    guardar: function() 
+    {
+      var self = this;
+      if (this.validar()) {
+        if (this.model.id == null) {
+          this.model.set({id:0});
+        }
+        this.model.save({
+            "nombre":$("#propietarios_mini_nombre").val(),
+            "telefono":$("#propietarios_mini_telefono").val(),
+            "celular":$("#propietarios_mini_celular").val(),
+            "email":$("#propietarios_mini_email").val(),
+            "direccion":$("#propietarios_mini_direccion").val(),
+            "observaciones":$("#propietarios_mini_observaciones").val(),
+            "id_empresa":ID_EMPRESA,
+          },{
+          success: function(model,response) {
+            if (response.error == 1) {
+              show(response.mensaje);
+            } else {
+              self.cerrar();
+              if (self.options.callback != undefined) self.options.callback(self.model.id);
+            }
+          }
+        });
+      }
+    },
+    
+    cerrar: function() {
+      $(this.el).parents(".customcomplete").remove();
+    },
+    
+    limpiar : function() {
+      this.model = new app.models.Propietario()
+      this.render();
+    },    
+    
+  });
+
+})(app.views, app.models);

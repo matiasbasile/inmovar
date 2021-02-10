@@ -37,6 +37,7 @@ label {
 }
 .radio label, .checkbox label { font-size: 14px; }
 .show-xs { display: none !important; }
+.show-xs-dib { display: none !important; }
 small,
 .small {
   font-size: 13px;
@@ -4134,6 +4135,7 @@ a.text-black:hover {
   .show-xs {
     display: inherit !important;
   }
+  .show-xs-dib { display: inline-block !important; }
   .hidden-xs.show {
     display: inherit !important;
   }

@@ -376,6 +376,9 @@
       window.clientes_page = this.pagination.getPage();
       this.$("#clientes_table tbody").empty();
       if (this.collection.length > 0) this.collection.each(this.addOne);
+      this.$("#clientes_counter").html(this.collection._meta.total_custom_3);
+      this.$("#inquilinos_counter").html(this.collection._meta.total_custom_4);
+      this.$("#propietarios_counter").html(this.collection._meta.total_custom_5);
     },
 
     addOne : function ( item ) {

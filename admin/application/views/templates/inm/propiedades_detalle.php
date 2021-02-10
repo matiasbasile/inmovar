@@ -15,12 +15,7 @@
           <label class="control-label cp">
             Tipo y operación
           </label>
-          <div class="panel-description">
-            <?php echo lang(array(
-              "es"=>"Indique la direcci&oacute;n de la propiedad.",
-              "en"=>"Agregar variantes a productos como talle, color, etc.",
-            )); ?>                  
-          </div>
+          <div class="panel-description">Datos sobre la operación del inmueble.</div>
         </div>
       </div>
     </div>
@@ -84,13 +79,25 @@
                         <% } %>
                       <% } %>
                     </select>
-                    <span class="input-group-addon"><a href="app/#configuracion/usuarios-perfiles" target="_blank"><i class="material-icons fs16">group</i></a></span>
+                    <span class="input-group-addon"><a href="app/#configuracion/usuarios-perfiles" target="_blank"><i class="material-icons fs16">north_east</i></a></span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div> 
+
+        <div class="form-group">
+          <label class="control-label">Propietario</label>
+          <div class="input-group">
+            <select id="propiedad_propietarios" style="width: 100%" class="form-control"></select>
+            <span class="input-group-addon"><a href="app/#propietarios" target="_blank"><i class="material-icons fs16">north_east</i></a></span>
+            <div class="input-group-btn">
+              <button type="button" class="btn btn-info nuevo_propietario">+ Agregar</button>
+            </div>
+          </div>
         </div>        
+
       </div>
 
     </div>
@@ -103,12 +110,7 @@
           <label class="control-label cp">
             Precio
           </label>
-          <div class="panel-description">
-            <?php echo lang(array(
-              "es"=>"Indique la direcci&oacute;n de la propiedad.",
-              "en"=>"Agregar variantes a productos como talle, color, etc.",
-            )); ?>                  
-          </div>
+          <div class="panel-description">Información sobre el valor y formas de venta.</div>
         </div>
       </div>
     </div>
@@ -777,7 +779,7 @@
 
       </div>
     </div>
-  </div>
+  </div>  
 
   <% if (ID_EMPRESA == 202 || ID_EMPRESA == 208 || ID_EMPRESA == 476 || ID_EMPRESA == 538) { %>
     <div class="panel panel-default">

@@ -33,6 +33,31 @@
       </div>
     </div>
 
+    <div class="tab-container mb0">
+      <ul class="nav nav-tabs nav-tabs-2" role="tablist">
+        <li id="clientes_tab" class="<%= (window.clientes_custom_3 == 1)?"active":"" %>">
+          <a href="app/#clientes">
+            <i class="material-icons">directions_run</i>
+            Contactos
+            <span id="clientes_counter" class="counter">0</span>
+          </a>
+        </li>
+        <li id="inquilinos_tab" class="<%= (window.clientes_custom_4 == 1)?"active":"" %>">
+          <a href="app/#inquilinos">
+            <i class="material-icons">vpn_key</i>
+            Inquilinos
+            <span id="inquilinos_counter" class="counter">0</span>
+          </a>
+        </li>
+        <li id="propietarios_tab" class="<%= (window.clientes_custom_5 == 1)?"active":"" %>">
+          <a href="app/#propietarios">
+            <i class="material-icons">home</i>
+            Propietarios
+            <span id="propietarios_counter" class="counter">0</span>
+          </a>
+        </li>
+      </ul>
+    </div>
     <div class="panel panel-default">
 
       <div class="panel-body">

@@ -678,6 +678,9 @@ class Cliente_Model extends Abstract_Model {
     // INMOVAR: Filtro de inquilino
     if (!empty($custom_4)) $sql.= "AND C.custom_4 = '$custom_4' ";
 
+    // INMOVAR: Filtro de propietario
+    if (!empty($custom_5)) $sql.= "AND C.custom_5 = '$custom_5' ";
+
     if ($id_usuario != 0 && $id_empresa != 571) {
       $sql.= "AND EXISTS (SELECT 1 FROM crm_consultas CON WHERE CON.id_empresa = C.id_empresa AND CON.id_contacto = C.id AND CON.id_usuario = $id_usuario) ";
     }
@@ -705,6 +708,7 @@ class Cliente_Model extends Abstract_Model {
 
 		$sql.= "ORDER BY $order ";
 		if (!empty($offset)) $sql.= "LIMIT $limit, $offset ";
+    $sql2 = $sql;
     $q = $this->db->query($sql);
     $q_total = $this->db->query("SELECT FOUND_ROWS() AS total");
     $total = $q_total->row();
@@ -802,7 +806,7 @@ class Cliente_Model extends Abstract_Model {
     $ss = array(
       "results"=>$salida,
       "total"=>$total->total,
-      "sql"=>$sql,
+      "sql"=>$sql2,
     );      
 
     // El parametro buscar_respuesta indica que estamos buscando las consultas
@@ -818,6 +822,19 @@ class Cliente_Model extends Abstract_Model {
       $sql.= "GROUP BY C.tipo ";
       $q = $this->db->query($sql);
       $ss["meta"] = array("estados"=>$q->result());
+    }
+
+    // Totales por tipo de contacto (clientes, inquilinos y propietarios)
+    $customs = array(3,4,5);
+    foreach($customs as $custom) {
+      $sql = "SELECT IF(COUNT(*) IS NULL,0,COUNT(*)) AS total ";
+      $sql.= "FROM clientes ";
+      $sql.= "WHERE id_empresa = $id_empresa ";
+      $sql.= "AND custom_$custom = '1' ";
+      $q = $this->db->query($sql);
+      $r = $q->row();
+      if (!isset($ss["meta"])) $ss["meta"] = array();
+      $ss["meta"]["total_custom_$custom"] = $r->total;
     }
 
 		return $ss;

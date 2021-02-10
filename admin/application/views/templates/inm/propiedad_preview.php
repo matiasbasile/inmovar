@@ -20,34 +20,40 @@
           <div class="tab-container mb0">
             <ul class="nav nav-tabs nav-tabs-2" role="tablist">
               <li class="active">
-                <a id="propiedad_preview_1_link" href="#propiedad_preview_tab1" class="buscar_todos" role="tab" data-toggle="tab">
-                  <i class="material-icons m-r-xs">image</i>
-                  Im&aacute;genes
+                <a id="propiedad_preview_1_link" href="#propiedad_preview_tab1" class="oh buscar_todos" role="tab" data-toggle="tab">
+                  <i class="material-icons">image</i>
+                  <span class="hidden-xs m-l-xs">Im&aacute;genes</span>
                 </a>
               </li>
               <li>
-                <a id="propiedad_preview_2_link" href="#propiedad_preview_tab2" role="tab" data-toggle="tab">
-                  <i class="material-icons m-r-xs">room</i>
-                  Ubicaci&oacute;n
+                <a id="propiedad_preview_2_link" class="oh" href="#propiedad_preview_tab2" role="tab" data-toggle="tab">
+                  <i class="material-icons">room</i>
+                  <span class="hidden-xs m-l-xs">Ubicaci&oacute;n</span>
                 </a>
               </li>
               <% if(!isEmpty(nota_publica) || !isEmpty(nota_privada)) { %>
                 <li>
-                  <a id="propiedad_preview_4_link" href="#propiedad_preview_tab4" role="tab" data-toggle="tab">
-                    <i class="material-icons m-r-xs">event_note</i>
-                    Notas
+                  <a id="propiedad_preview_4_link" class="oh" href="#propiedad_preview_tab4" role="tab" data-toggle="tab">
+                    <i class="material-icons">event_note</i>
+                    <span class="hidden-xs m-l-xs">Notas</span>
                   </a>
                 </li>
               <% } %>
 
               <% if (id_empresa != ID_EMPRESA) { %>
                 <li>
-                  <a id="propiedad_preview_3_link" href="#propiedad_preview_tab3" role="tab" data-toggle="tab">
-                    <i class="material-icons m-r-xs">share</i>
-                    Datos de la Red
+                  <a id="propiedad_preview_3_link" class="oh" href="#propiedad_preview_tab3" role="tab" data-toggle="tab">
+                    <i class="material-icons">share</i>
+                    <span class="hidden-xs m-l-xs">Datos de la Red</span>
                   </a>
                 </li>
               <% } %>
+
+              <li class="show-xs-dib fr" id="cerrar_preview" style="float: right !important;">
+                <a href="javascript:void" class="oh" style="background-color: transparent !important; border-color: transparent !important; padding-right: 0px !important">
+                  <i class="material-icons mr0">close</i>
+                </a>
+              </li>
             </ul>
             <div class="tab-content">
 
