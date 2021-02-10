@@ -740,7 +740,7 @@ class Propiedad_Model extends Abstract_Model {
   function save($data) {
 
     if ($data->id != 0) { //Si ya tiene ID
-      $sql = "SELECT precio_final FROM inm_propiedades where id = $data->id ";
+      $sql = "SELECT precio_final FROM inm_propiedades where id = $data->id AND id_empresa = $data->id_empresa ";
       $q = $this->db->query($sql);
       $q = $q->row();
       if ($q->precio_final != $data->precio_final){
