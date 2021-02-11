@@ -494,9 +494,10 @@
         <i title="Opciones" class="iconito fa ml15 mt5 fa-caret-down dropdown-toggle" data-toggle="dropdown"></i>
         <ul class="dropdown-menu pull-right">
           <li><a href="javascript:void(0)" class="ver_contrato" data-id="<%= id %>">Ver contrato</a></li>
-          <li><a href="javascript:void(0)" class="modificar_pagos" data-id="<%= id %>">Editar Adicionales / Descuentos</a></li>
           <% if (pagada == 1) { %>
             <li><a href="javascript:void(0)" class="eliminar" data-id="<%= id %>">Eliminar</a></li>
+          <% } else { %>
+            <li><a href="javascript:void(0)" class="modificar_pagos" data-id="<%= id %>">Editar Adicionales / Descuentos</a></li>
           <% } %>
         </ul>
       </div>
