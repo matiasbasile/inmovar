@@ -913,6 +913,9 @@
         "html":v.el,
         "width":900,
         "height":500,
+        "callback":function() {
+          self.collection.pager();
+        }
       });
     },
     agregar_pago : function() {
