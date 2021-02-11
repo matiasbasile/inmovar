@@ -1,6 +1,17 @@
 <?php ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);?>
+error_reporting(E_ALL);
+
+$total_items = 0;
+foreach($factura->items as $i) { 
+  $total_items += $i->monto;
+}
+$total_extras = 0;
+foreach($factura->extras as $i) { 
+  $total_extras += $i->monto; 
+}
+$factura->total += $total_items + $total_extras;
+?>
 <!DOCTYPE>
 <html>
 <head>
@@ -152,9 +163,7 @@ table td { font-size: 14px; }
                   Importe para entregar a: <?php echo $factura->propietario ?>
                 <?php } ?>
               </div>
-              <?php 
-              $total_items = 0;
-              if (sizeof($factura->items)>0) { ?>
+              <?php if (sizeof($factura->items)>0) { ?>
                 <div style="float: left; width: 60%; margin-top: 20px;">
                   <table class="tabla_borde b1">
                     <tr>
@@ -162,7 +171,6 @@ table td { font-size: 14px; }
                       <td><b>Monto</b></td>
                     </tr>
                     <?php foreach($factura->items as $i) { ?>
-                      <?php $total_items += $i->monto; ?>
                       <tr>
                         <td><?php echo $i->nombre; ?></td>
                         <td>$ <?php echo number_format($i->monto,2); ?></td>
@@ -172,9 +180,7 @@ table td { font-size: 14px; }
                 </div>
               <?php } ?>
 
-              <?php 
-              $total_extras = 0;
-              if (sizeof($factura->extras)>0) { ?>
+              <?php if (sizeof($factura->extras)>0) { ?>
                 <div style="float: left; width: 60%; margin-top: 20px;">
                   <table class="tabla_borde b1">
                     <tr>
@@ -182,7 +188,6 @@ table td { font-size: 14px; }
                       <td><b>Monto</b></td>
                     </tr>
                     <?php foreach($factura->extras as $i) { ?>
-                      <?php $total_extras += $i->monto; ?>
                       <tr>
                         <td><?php echo $i->nombre; ?></td>
                         <td>$ <?php echo number_format($i->monto,2); ?></td>
@@ -196,7 +201,7 @@ table td { font-size: 14px; }
             
             <div style="overflow:hidden; padding: 15px 40px; border-bottom: solid 2px black; ">
               <div style="font-size: 20px; font-weight: bold; float: left;">
-                TOTAL: $ <?php echo ($factura->total + $total_items) ?>
+                TOTAL: $ <?php echo ($factura->total) ?>
               </div>
               <div style="font-size: 16px; font-weight: bold; float: right; width: 50%;">
                 FIRMA: <br/><br/>
