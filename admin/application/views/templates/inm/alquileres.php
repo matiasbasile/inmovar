@@ -472,7 +472,7 @@
     <% if (expensa != 0) { %>
       Alquiler: $ <%= Number(expensa).format(0) %><br/>
     <% } %>
-    <% if (expensa != 0) { %>
+    <% if (total_extras != 0) { %>
       Adicional: $ <%= Number(total_extras).format(0) %><br/>
     <% } %>
     Total: $ <%= Number(total).format(0) %>
