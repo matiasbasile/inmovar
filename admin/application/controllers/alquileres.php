@@ -353,6 +353,7 @@ class Alquileres extends REST_Controller {
       $r->total_extras = $this->modelo->calcular_total_extras($r->id_cuota);
       $r->total += $r->total_extras;
       $r->extras = $this->modelo->get_extras($r->id_cuota);
+      $salida[] = $r;
     }
 
     echo json_encode(array(
