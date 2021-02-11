@@ -7,6 +7,25 @@ class Alquiler_Model extends Abstract_Model {
 	function __construct() {
 		parent::__construct("inm_alquileres","id","id DESC");
 	}
+
+	function calcular_total_extras($id_cuota) {
+		//$id_empresa = parent::get_empresa();
+		$sql = "SELECT IF(SUM(CE.monto) IS NULL,0,SUM(CE.monto)) AS total ";
+		$sql.= "FROM inm_alquileres_cuotas_extras CE ";
+		$sql.= "WHERE CE.id_cuota = $id_cuota ";
+		$q = $this->db->query($sql);
+		$r = $q->row();
+		return $r->total;
+	}
+
+	function get_extras($id_cuota) {
+		//$id_empresa = parent::get_empresa();
+		$sql = "SELECT * ";
+		$sql.= "FROM inm_alquileres_cuotas_extras CE ";
+		$sql.= "WHERE CE.id_cuota = $id_cuota ";
+		$q = $this->db->query($sql);
+		return $q->result();
+	}
 	
 	function buscar($conf = array()) {
 		
@@ -85,6 +104,7 @@ class Alquiler_Model extends Abstract_Model {
 		$q = $this->db->query($sql);
 		$alquiler->cuotas = array();
 		foreach($q->result() as $r) {
+			$r->extras = $this->calcular_extras($r->id);
 			$alquiler->cuotas[] = $r;
 		}
 

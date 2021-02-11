@@ -171,6 +171,27 @@ table td { font-size: 14px; }
                   </table>
                 </div>
               <?php } ?>
+
+              <?php 
+              $total_extras = 0;
+              if (sizeof($factura->extras)>0) { ?>
+                <div style="float: left; width: 60%; margin-top: 20px;">
+                  <table class="tabla_borde b1">
+                    <tr>
+                      <td><b>Adicionales/Descuentos</b></td>
+                      <td><b>Monto</b></td>
+                    </tr>
+                    <?php foreach($factura->extras as $i) { ?>
+                      <?php $total_extras += $i->monto; ?>
+                      <tr>
+                        <td><?php echo $i->nombre; ?></td>
+                        <td>$ <?php echo number_format($i->monto,2); ?></td>
+                      </tr>
+                    <?php } ?>        
+                  </table>
+                </div>
+              <?php } ?>
+
             </div>
             
             <div style="overflow:hidden; padding: 15px 40px; border-bottom: solid 2px black; ">

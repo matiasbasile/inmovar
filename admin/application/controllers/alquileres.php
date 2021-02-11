@@ -32,7 +32,7 @@ class Alquileres extends REST_Controller {
 
     $sql = "SELECT F.id_empresa, C.nombre AS cliente, F.id, F.pago, C.telefono, C.celular, F.hash, C.email, ";
     $sql.= " F.comprobante, C.id AS id_cliente, DATE_FORMAT(F.fecha,'%d/%m/%Y') AS fecha, ";
-    $sql.= " AC.pagada, AC.corresponde_a, A.id AS id_alquiler, ";
+    $sql.= " AC.pagada, AC.corresponde_a, A.id AS id_alquiler, AC.id AS id_cuota, ";
     $sql.= " DATE_FORMAT(AC.vencimiento,'%d/%m/%Y') AS vencimiento, AC.monto, AC.expensa, (AC.monto+AC.expensa) AS total, ";
     $sql.= " P.nombre AS propiedad, CONCAT(P.calle,' ',P.altura,' ',P.piso,' ',P.numero) AS direccion ";
     $sql.= "FROM facturas F ";
@@ -47,6 +47,11 @@ class Alquileres extends REST_Controller {
     echo $sql."<br/>";
     $q = $this->db->query($sql);
     foreach($q->result() as $r) {
+
+      // TODO: despues cambiar esto y unificar
+      $r->total_extras = $this->modelo->calcular_total_extras($r->id_cuota);
+      $r->total += $r->total_extras;
+      $r->extras = $this->modelo->get_extras($r->id_cuota);
 
       // Obtenemos la empresa
       $empresa = $this->Empresa_Model->get($r->id_empresa);
@@ -322,7 +327,7 @@ class Alquileres extends REST_Controller {
 
     $sql = "SELECT SQL_CALC_FOUND_ROWS C.nombre AS cliente, F.id, F.pago, C.telefono, C.celular, F.hash, F.id_punto_venta, ";
     $sql.= " F.comprobante, C.id AS id_cliente, DATE_FORMAT(F.fecha,'%d/%m/%Y') AS fecha, ";
-    $sql.= " AC.pagada, AC.corresponde_a, A.id AS id_alquiler, ";
+    $sql.= " AC.pagada, AC.corresponde_a, A.id AS id_alquiler, AC.id AS id_cuota, ";
     $sql.= " DATE_FORMAT(AC.vencimiento,'%d/%m/%Y') AS vencimiento, AC.monto, AC.expensa, (AC.monto+AC.expensa) AS total, ";
     $sql.= " P.nombre AS propiedad, CONCAT(P.calle,' ',P.altura,' ',P.piso,' ',P.numero) AS direccion ";
     $sql.= "FROM facturas F ";
@@ -342,8 +347,16 @@ class Alquileres extends REST_Controller {
     $q_total = $this->db->query("SELECT FOUND_ROWS() AS total");
     $total = $q_total->row();
 
+    $salida = array();
+    foreach($q->result() as $r) {
+      // TODO: despues cambiar esto y unificar
+      $r->total_extras = $this->modelo->calcular_total_extras($r->id_cuota);
+      $r->total += $r->total_extras;
+      $r->extras = $this->modelo->get_extras($r->id_cuota);
+    }
+
     echo json_encode(array(
-      "results"=>$q->result(),
+      "results"=>$salida,
       "total"=>$total->total,
     ));
   }
@@ -356,7 +369,7 @@ class Alquileres extends REST_Controller {
 
     $sql = "SELECT C.nombre AS cliente, F.id, F.pago, C.cuit AS cuit, F.id_referencia AS id_alquiler, ";
     $sql.= " F.comprobante, C.id AS id_cliente, DATE_FORMAT(F.fecha,'%d/%m/%Y') AS fecha, ";
-    $sql.= " AC.pagada, AC.corresponde_a, ";
+    $sql.= " AC.pagada, AC.corresponde_a, AC.id AS id_cuota, ";
     $sql.= " DATE_FORMAT(AC.vencimiento,'%d/%m/%Y') AS vencimiento, AC.monto, AC.expensa, (AC.monto+AC.expensa) AS total, ";
     $sql.= " P.nombre AS propiedad, CONCAT(P.calle,' ',P.altura,' ',P.piso,' ',P.numero) AS direccion, ";
     $sql.= " IF(PRO.nombre IS NULL,'',PRO.nombre) AS propietario ";
@@ -370,6 +383,11 @@ class Alquileres extends REST_Controller {
     $sql.= "AND F.id_empresa = $id_empresa ";
     $q = $this->db->query($sql);
     $factura = $q->row();
+
+    // TODO: despues cambiar esto y unificar
+    $factura->total_extras = $this->modelo->calcular_total_extras($factura->id_cuota);
+    $factura->total += $r->total_extras;
+    $factura->extras = $this->modelo->get_extras($factura->id_cuota);
 
     $sql = "SELECT * FROM inm_alquileres_expensas ";
     $sql.= "WHERE id_alquiler = $factura->id_alquiler ";
@@ -408,7 +426,7 @@ class Alquileres extends REST_Controller {
     $sql = "SELECT C.nombre AS cliente, C.email, C.telefono AS cliente_telefono, F.id_cliente, F.id_empresa, ";
     $sql.= " F.id, F.pago, F.numero, C.cuit AS cuit, F.id_referencia AS id_alquiler, ";
     $sql.= " F.comprobante, C.id AS id_cliente, DATE_FORMAT(F.fecha,'%d/%m/%Y') AS fecha, ";
-    $sql.= " AC.pagada, AC.corresponde_a, ";
+    $sql.= " AC.pagada, AC.corresponde_a, AC.id AS id_cuota, ";
     $sql.= " DATE_FORMAT(AC.vencimiento,'%d/%m/%Y') AS vencimiento, AC.monto, AC.expensa, (AC.monto+AC.expensa) AS total, ";
     $sql.= " P.nombre AS propiedad, CONCAT(P.calle,' ',P.altura,' ',P.piso,' ',P.numero) AS direccion, ";
     $sql.= " IF(PRO.nombre IS NULL,'',PRO.nombre) AS propietario ";
@@ -427,6 +445,11 @@ class Alquileres extends REST_Controller {
       echo "El comprobante no es valido.";
       exit();
     }
+
+    // TODO: despues cambiar esto y unificar
+    $factura->total_extras = $this->modelo->calcular_total_extras($factura->id_cuota);
+    $factura->total += $r->total_extras;
+    $factura->extras = $this->modelo->get_extras($factura->id_cuota);
 
     $sql = "SELECT * FROM inm_alquileres_expensas ";
     $sql.= "WHERE id_alquiler = $factura->id_alquiler ";
