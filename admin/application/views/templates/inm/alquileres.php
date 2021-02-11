@@ -714,57 +714,59 @@
 
 */ ?>
 <script type="text/template" id="modificar_pagos_view_template">
-  <div class="panel">
-    <div class="panel-body">
-     <div class="padder">
-        <div class="row clearfix">
-          <div class="col-sm-6">
-            <div class="form-group">
-              <label class="control-label">Nombre</label>
-              <input type="text" class="form-control" id="extras_nombre" />
-            </div>
-          </div>
-          <input type="hidden" value="<%= id_cuota %>" id="extras_id_cuota">
-          <input type="hidden" value="<%= id_alquiler %>" id="extras_id_alquiler">
-          <div class="col-sm-6">
-            <div class="form-group">
-              <label class="control-label">Monto ($)</label>
-              <div class="input-group">
-                <input id="extras_monto" value="0" type="number" class="form-control"/>
-                <span class="input-group-btn">
-                  <a id="extras_agregar" class="btn btn-info"><i class="fa ico fa-plus"></i></a>
-                </span>
-              </div>
-            </div>
+  <div class="modal-header">
+    <b>Editar Adicionales / Descuentos</b>
+    <i class="pull-right cerrar fs16 fa fa-times cp"></i>
+  </div>
+  <div class="modal-body">
+   <div class="padder">
+      <div class="row clearfix">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="control-label">Nombre</label>
+            <input type="text" class="form-control" id="extras_nombre" />
           </div>
         </div>
-        <div class="">
-          <table id="extras_tabla" class="table m-b-none default footable">
-            <thead>
-              <tr>
-                <th>Nombre</th>
-                <th>Monto</th>
-                <th class="w25"></th>
-                <th class="w25"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <% for(var i=0;i< extras.length;i++) { %>
-                <% var p = extras[i] %>
-                <tr>
-                  <td class='nombre'><%= p.nombre %></td>
-                  <td class='monto'><%= p.monto %></td>
-                  <td><i class='fa fa-pencil cp editar_extras'></i></td>
-                  <td><i class='fa fa-times eliminar_extras text-danger cp'></i></td>
-                </tr>
-              <% } %>
-            </tbody>
-          </table>
+        <input type="hidden" value="<%= id_cuota %>" id="extras_id_cuota">
+        <input type="hidden" value="<%= id_alquiler %>" id="extras_id_alquiler">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="control-label">Monto ($)</label>
+            <div class="input-group">
+              <input id="extras_monto" value="0" type="number" class="form-control"/>
+              <span class="input-group-btn">
+                <a id="extras_agregar" class="btn btn-info"><i class="fa ico fa-plus"></i></a>
+              </span>
+            </div>
+          </div>
         </div>
       </div>
+      <div class="">
+        <table id="extras_tabla" class="table m-b-none default footable">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Monto</th>
+              <th class="w25"></th>
+              <th class="w25"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(var i=0;i< extras.length;i++) { %>
+              <% var p = extras[i] %>
+              <tr>
+                <td class='nombre'><%= p.nombre %></td>
+                <td class='monto'><%= p.monto %></td>
+                <td><i class='fa fa-pencil cp editar_extras'></i></td>
+                <td><i class='fa fa-times eliminar_extras text-danger cp'></i></td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <div class="panel-footer tar">
-      <button class="btn guardar btn-success">Guardar</button>
-    </div>
+  </div>
+  <div class="modal-footer tar">
+    <button class="btn guardar btn-info">Guardar</button>
   </div>
 </script>
