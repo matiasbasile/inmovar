@@ -425,6 +425,9 @@
                 <th class="sorting" data-sort-by="cliente">Inquilino</th>
                 <th class="sorting" data-sort-by="propiedad">Propiedad</th>
                 <th class="sorting" data-sort-by="monto">Alquiler</th>
+                <th class="sorting" data-sort-by="monto">Expensas</th>
+                <th class="sorting" data-sort-by="monto">Extras</th>
+                <th class="sorting" data-sort-by="monto">Total</th>
                 <?php /*
                 <th class="sorting" data-sort-by="expensa">Tasas/Serv.</th>
                 <th class="sorting" data-sort-by="total">Total</th>
@@ -468,6 +471,9 @@
   </td>
   <td class="<%= clase %> data"><%= propiedad %><br/><%= direccion %></td>
   <td class="<%= clase %> data">$ <%= Number(monto).format(0) %></td>
+  <td class="<%= clase %> data">$ <%= Number(expensa).format(0) %></td>
+  <td class="<%= clase %> data">$ <%= Number(total_extras).format(0) %></td>
+  <td class="<%= clase %> data">$ <%= Number(total).format(0) %></td>
   <td class="<%= clase %> data"><%= vencimiento %></td>
   <% if (!seleccionar) { %>
     <td class="tar <%= clase %>">
