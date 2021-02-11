@@ -1,16 +1,6 @@
 <?php ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
-$total_items = 0;
-foreach($factura->items as $i) { 
-  $total_items += $i->monto;
-}
-$total_extras = 0;
-foreach($factura->extras as $i) { 
-  $total_extras += $i->monto; 
-}
-$factura->total += $total_items + $total_extras;
 ?>
 <!DOCTYPE>
 <html>
@@ -92,7 +82,18 @@ table td { font-size: 14px; }
 <body>
   <?php echo $header; ?>
   <div id="printable">
-    <?php foreach($facturas as $factura) { ?>
+    <?php foreach($facturas as $factura) { 
+
+      $total_items = 0;
+      foreach($factura->items as $i) { 
+        $total_items += $i->monto;
+      }
+      $total_extras = 0;
+      foreach($factura->extras as $i) { 
+        $total_extras += $i->monto; 
+      }
+      $factura->total += $total_items + $total_extras;
+      ?>
     <div class="a4">
       <div class="a4inner">
         <?php 
