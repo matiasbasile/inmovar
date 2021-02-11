@@ -899,7 +899,7 @@
       var cuotasExtras = new app.models.CuotasExtras({
         "id_empresa":ID_EMPRESA,
         "id_alquiler":self.model.get("id_alquiler"),
-        "id_cuota": self.model.get("id"),
+        "id_cuota": self.model.get("id_cuota"),
       });
       v = new app.views.ModificarPagos({
         model: cuotasExtras
