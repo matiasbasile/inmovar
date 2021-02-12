@@ -486,7 +486,7 @@
         return;
       }
       var monto = $("#expensa_monto").val();
-      if (isNaN(monto) || monto < 0) {
+      if (isNaN(monto)) {
         alert("Por favor ingrese un valor");
         $("#expensa_monto").focus();
         return;
@@ -1320,7 +1320,7 @@
         return;
       }
       var monto = $("#extras_monto").val();
-      if (isNaN(monto) || monto < 0) {
+      if (isNaN(monto)) {
         alert("Por favor ingrese un valor");
         $("#extras_monto").focus();
         return;
