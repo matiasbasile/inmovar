@@ -603,6 +603,7 @@ class Empresa_Model extends Abstract_Model {
   }
   
   function get_empresa_by_dominio($dominio) {
+    $dominio = str_replace("/", "", $dominio);
     $dominio_con_www = (strpos("www.", $dominio) === FALSE) ? "www.".$dominio : $dominio;
     $sql = "SELECT E.*, T.path AS template_path, WC.*, ";
     $sql.= " IF(L.nombre IS NULL,'',L.nombre) AS localidad, ";
