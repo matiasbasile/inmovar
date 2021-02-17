@@ -49,9 +49,9 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
 	        <div class="banner">
 	          <div class="slider">
 	            <?php foreach ($propiedad->images as $i) { ?>
-	              <div class="item">
+	              <a href="<?php echo $i ?>" class="item" data-fancybox="gallery">
 	                <img class="contain-detail" src="<?php echo $i ?>" alt="slide1">
-	              </div>
+	              </a>
 	            <?php } ?>
 	          </div>
 	          <div class="slider-nav">
@@ -408,6 +408,8 @@ function mostrar_mapa() {
   <?php } ?>
 }
 </script>
+<link rel="stylesheet" type="text/css" href="assets/css/jquery.fancybox.min.css">
+<script type="text/javascript" src="assets/js/jquery.fancybox.min.js"></script>
 <?php } ?>
 <script type="text/javascript">
 	 $('.slider').slick({
