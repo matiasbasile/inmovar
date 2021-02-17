@@ -358,6 +358,19 @@
 
     myEvents: {
       "click .guardar": "guardar",
+      "click .mostrar_ubicacion":function(){
+        var self = this;
+        var webConfiguracionMapaEditView = new app.views.WebConfiguracionMapaEditView({
+          model:self.model,
+          lightbox: true,
+        });
+        var d = $("<div/>").append(webConfiguracionMapaEditView.el);
+        crearLightboxHTML({
+          "html":d,
+          "width":800,
+          "height":500,
+        });
+      },
     },
 
     initialize: function(options) {
@@ -1324,19 +1337,6 @@
 
     myEvents: {
       "click .guardar": "guardar",
-      "click .mostrar_ubicacion":function(){
-        var self = this;
-        var webConfiguracionMapaEditView = new app.views.WebConfiguracionMapaEditView({
-          model:self.model,
-          lightbox: true,
-        });
-        var d = $("<div/>").append(webConfiguracionMapaEditView.el);
-        crearLightboxHTML({
-          "html":d,
-          "width":800,
-          "height":500,
-        });
-      },
       "click .conf_structure":"render_style",
 
       "click .color_combination":function(e) {

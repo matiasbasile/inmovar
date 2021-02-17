@@ -403,6 +403,9 @@
             <% } %>
           </select>
         </div>
+        <div class="form-group oh cb">
+          <button class="btn btn-info mostrar_ubicacion btn-block">Ubicar en el Mapa</button>
+        </div>
         <div class="clearfix">
           <button class="btn fr btn-info guardar"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
         </div>
@@ -1052,16 +1055,6 @@ if (!empty($empresa->path_template)) {
       </div>      
     </div>    
   <% } %>
-
-  <div class="form-group oh">
-    <label class="i-switch fl i-switch-xs bg-info mr10">
-      <input type="checkbox" <%= (comp_mapa==1)?"checked":"" %> id="web_configuracion_mapa" name="comp_mapa" class="conf_structure checkbox" value="1">
-      <i></i>
-    </label>
-    <label class="fl fs14 cp" for="web_configuracion_mapa">
-      Mapa
-    </label>
-  </div>
 
   <?php if (isset($empresa->config["slider_2_home_image_width"])) { ?>
     <div class="header-accordion bg-light lter">
