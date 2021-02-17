@@ -1,7 +1,7 @@
 <?php include "templates/comun/pre_head.php" ?>
 <meta charset="UTF-8">
 <meta name="author" content="Correa">
-<link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-png">
+<link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-png">
 <!-- External CSS -->
 <link href="assets/css/owl.carousel.min.css" rel="stylesheet" type="text/css" media="all">
 <link href="assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">

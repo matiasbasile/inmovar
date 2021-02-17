@@ -32,43 +32,58 @@
           <h2>envía una consulta</h2>
         </div>
         <form onsubmit="return enviar_contacto()">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <input type="text" name="Nombre *" class="form-control" id="contacto_nombre" placeholder="Nombre *">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="text" name="Nombre *" class="form-control" id="contacto_nombre" placeholder="Nombre *">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="email" name="Email  *" class="form-control" id="contacto_email" placeholder="Email  *">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="text" name="Whatsapp (Cod. área sin 0 ni 15)" class="form-control" id="contacto_telefono" placeholder="Whatsapp (Cod. área sin 0 ni 15)">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <select id="contacto_asunto" name="asunto" class="form-control">
+                    <option value="Contacto desde web">Asunto</option>
+                    <?php $asuntos = explode(";;;",$empresa->asuntos_contacto);
+                    foreach($asuntos as $a) { ?>
+                      <option><?php echo $a ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <select id="contacto_encontro" name="encontro" class="form-control">
+                    <option value="No respondió.">¿Cómo nos encontró?</option>
+                    <option value="Ya soy cliente">Ya soy cliente</option>
+                    <option value="Por un amigo o conocido">Por un amigo o conocido</option>
+                    <option value="Por una red social">Por una red social</option>
+                    <option value="Por portales inmobiliarios (mercadolibre, zonaprop, etc.)">Por portales inmobiliarios (mercadolibre, zonaprop, etc.)</option>
+                    <option value="Por una búsqueda en internet ">Por una búsqueda en internet  </option>
+                    <option value="Por un cartel en la calle">Por un cartel en la calle</option>
+                    <option value="Por publicación en el diario">Por publicación en el diario</option>
+                    <option value="Otros">Otros</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <textarea class="form-control" id="contacto_mensaje" placeholder="Escriba aquí su mensaje"></textarea>
+                </div>
+              </div>
+              <div class="col-md-12 text-center">
+                <button type="submit" class="btn btn-secoundry" id="contacto_submit">Enviar ahora</button>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <input type="email" name="Email  *" class="form-control" id="contacto_email" placeholder="Email  *">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <input type="text" name="Whatsapp (Cod. área sin 0 ni 15)" class="form-control" id="contacto_telefono" placeholder="Whatsapp (Cod. área sin 0 ni 15)">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <select id="contacto_asunto" name="asunto" class="form-control">
-                  <option value="Contacto desde Vender">Escoja Asunto</option>
-                   <?php $asuntos = explode(";;;",$empresa->asuntos_contacto);
-                      foreach($asuntos as $a) { ?>
-                        <option><?php echo $a ?></option>
-                   <?php } ?>
-                </select>
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="form-group">
-                <textarea class="form-control" id="contacto_mensaje" placeholder="Escriba aquí su mensaje"></textarea>
-              </div>
-            </div>
-            <div class="col-md-12 text-center">
-              <button type="submit" class="btn btn-secoundry" id="contacto_submit">Enviar ahora</button>
-            </div>
-          </div>
-        </form>
+          </form>
       </div>
     </div>
   </div>
@@ -117,63 +132,64 @@ function mostrar_mapa() {
 <?php } ?>
 <script type="text/javascript">
   function enviar_contacto() {
-    
-  var nombre = $("#contacto_nombre").val();
-  var email = $("#contacto_email").val();
-  var mensaje = $("#contacto_mensaje").val();
-  var asunto = $("#contacto_asunto").val();
-  var telefono = $("#contacto_telefono").val();
-  
-  if (isEmpty(nombre) || nombre == "Nombre") {
+
+    var nombre = $("#contacto_nombre").val();
+    var email = $("#contacto_email").val();
+    var mensaje = $("#contacto_mensaje").val();
+    var asunto = $("#contacto_asunto").val();
+    var telefono = $("#contacto_telefono").val();
+    var encontro = $("#contacto_encontro").val();
+
+    if (isEmpty(nombre) || nombre == "Nombre") {
       alert("Por favor ingrese un nombre");
       $("#contacto_nombre").focus();
       return false;          
-  }
+    }
 
-  if (isEmpty(telefono) || telefono == "telefono") {
+    if (isEmpty(telefono) || telefono == "telefono") {
       alert("Por favor ingrese un telefono");
       $("#contacto_telefono").focus();
       return false;          
-  }
+    }
 
-  if (!validateEmail(email)) {
+    if (!validateEmail(email)) {
       alert("Por favor ingrese un email valido");
       $("#contacto_email").focus();
       return false;          
-  }
-  if (isEmpty(mensaje) || mensaje == "Mensaje") {
+    }
+    if (isEmpty(mensaje) || mensaje == "Mensaje") {
       alert("Por favor ingrese un mensaje");
       $("#contacto_mensaje").focus();
       return false;              
-  }    
+    }    
 
-  $("#contacto_submit").attr('disabled', 'disabled');
-  var datos = {
-    "para":"<?php echo $empresa->email ?>",
-    "nombre":nombre,
-    "telefono":telefono,
-    "email":email,
-    "mensaje":mensaje,
-    "asunto":asunto,
-    "id_empresa":ID_EMPRESA,
-  }
-  $.ajax({
-    "url":"/admin/consultas/function/enviar/",
-    "type":"post",
-    "dataType":"json",
-    "data":datos,
-    "success":function(r){
-      if (r.error == 0) {
-        alert("Muchas gracias por contactarse con nosotros. Le responderemos a la mayor brevedad!");
-        location.reload();
-      } else {
-        alert("Ocurrio un error al enviar su email. Disculpe las molestias");
-        $("#contacto_submit").removeAttr('disabled');
-      }
+    $("#contacto_submit").attr('disabled', 'disabled');
+    var datos = {
+      "para":"<?php echo $empresa->email ?>",
+      "nombre":nombre,
+      "telefono":telefono,
+      "email":email,
+      "mensaje":"Nos encontró: "+ encontro + ". "+ mensaje,
+      "asunto":asunto,
+      "id_empresa":ID_EMPRESA,
     }
-  });
-  return false;
-}
+    $.ajax({
+      "url":"/admin/consultas/function/enviar/",
+      "type":"post",
+      "dataType":"json",
+      "data":datos,
+      "success":function(r){
+        if (r.error == 0) {
+          alert("Muchas gracias por contactarse con nosotros. Le responderemos a la mayor brevedad!");
+          location.reload();
+        } else {
+          alert("Ocurrio un error al enviar su email. Disculpe las molestias");
+          $("#contacto_submit").removeAttr('disabled');
+        }
+      }
+    });
+    return false;
+  }
 </script>
 </body>
 </html>

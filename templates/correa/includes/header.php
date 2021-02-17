@@ -12,7 +12,7 @@
 				<?php } ?>
 				<?php if (!empty($empresa->telefono)) {  ?>
 					<li>
-						<img src="assets/images/whatsapp-icon.png" alt="Whatsapp">
+						<img src="assets/images/call.png" alt="Whatsapp">
 						<span>
 							<a href="tel:<?php echo $empresa->telefono ?>"><?php echo $empresa->telefono ?></a>
 						</span>
@@ -20,7 +20,7 @@
 				<?php } ?>
 				<?php if (!empty($empresa->telefono_2)) {  ?>
 					<li>
-						<img src="assets/images/call.png" alt="Call Us">
+						<img src="assets/images/whatsapp-icon.png" alt="Call Us">
 						<span>
 							<a href="tel:<?php echo $empresa->telefono_2 ?>"><?php echo $empresa->telefono_2 ?></a>
 						</span>

@@ -397,6 +397,11 @@
 }
 
 @media screen and (max-width: 767px) {
+	.copyright span .logo {
+	  padding-right: 0px !important;
+	  margin: 0px auto !important;
+	}
+	.contain-detail{ height: 220px }
 	.btn {
 		padding: 10px 25px;
 		min-width: 170px;

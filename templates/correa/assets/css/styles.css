@@ -1348,14 +1348,14 @@ iframe {
 .product-category .navbar-nav .nav-item > .nav-link {
   min-width: 108px;
   height: auto;
-  padding: 8px 50px 8px 20px;
+  padding: 8px 40px 8px 20px;
   line-height: normal;
   color: #222222;
   border: 2px solid #dfdfdf;
   background-color: #fff;
   border-radius: 8px;
   text-align: center;
-  font-size: 18px;
+  font-size: 15px;
   text-transform: none;
   background-image: url(../images/select-arrow.png);
   background-position: 90% 50%;
@@ -1520,7 +1520,7 @@ form .row [class*="col-"] {
   margin-bottom: 20px;
 }
 select.form-control {
-  padding-right: 65px;
+  padding-right: 25px;
   background-image: url("../images/select-arrow.png");
   background-repeat: no-repeat;
   background-position: right 27px center;

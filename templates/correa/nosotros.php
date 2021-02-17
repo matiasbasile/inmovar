@@ -14,7 +14,7 @@
 <!-- Page Title -->
 <section class="page-title">
   <div class="container">
-    <h1><?php echo $entrada->titulo ?></h1>
+    <h1>Nosotros</h1>
   </div>
 </section>
 
@@ -27,7 +27,7 @@
         <h2><?php echo $entrada->titulo ?></h2>
         <p><?php echo $entrada->texto ?></p>
       </div>
-      <div class="form-wrap">
+      <!-- <div class="form-wrap">
         <div class="section-title">
           <h2>envía una consulta</h2>
         </div>
@@ -69,7 +69,7 @@
             </div>
           </div>
         </form>
-      </div>
+      </div> -->
     </div>
   </div>
 </section>
