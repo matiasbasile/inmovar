@@ -616,6 +616,7 @@ class Empresa_Model extends Abstract_Model {
     $sql.= "WHERE ED.dominio = '$dominio' ";
     if ($dominio_con_www != $dominio) $sql.= "OR ED.dominio = 'www.".$dominio."' ";
     $q = $this->db->query($sql);
+    if ($q->num_rows() == 0) echo $sql;
     return $q->row();
   }
   
