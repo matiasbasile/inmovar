@@ -117,3 +117,5 @@
   return false;
 }  
 </script>
+
+<?php include("templates/comun/clienapp.php") ?>
