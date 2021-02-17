@@ -558,13 +558,15 @@ class Empresa_Model extends Abstract_Model {
     return parent::update($id,$data);
   }
 
-  function get_id_empresa_by_dominio($dominio = "") {
+  function get_id_empresa_by_dominio($dominio = "",$config = array()) {
+    $test = isset($config["test"]) ? $config["test"] : 0;
     $dominio = str_replace("/", "", $dominio);
     $dominio = str_replace("www.", "", $dominio);
     if (empty($dominio)) return 0;
     $sql = "SELECT id_empresa ";
     $sql.= "FROM empresas_dominios ";
     $sql.= "WHERE dominio = '$dominio' ";
+    if ($test == 1) echo $sql;
     $q = $this->db->query($sql);
     if ($q->num_rows()>0) {
       $row = $q->row();
