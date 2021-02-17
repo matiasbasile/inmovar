@@ -1053,6 +1053,16 @@ if (!empty($empresa->path_template)) {
     </div>    
   <% } %>
 
+  <div class="form-group oh">
+    <label class="i-switch fl i-switch-xs bg-info mr10">
+      <input type="checkbox" <%= (comp_mapa==1)?"checked":"" %> id="web_configuracion_mapa" name="comp_mapa" class="conf_structure checkbox" value="1">
+      <i></i>
+    </label>
+    <label class="fl fs14 cp" for="web_configuracion_mapa">
+      Mapa
+    </label>
+  </div>
+
   <?php if (isset($empresa->config["slider_2_home_image_width"])) { ?>
     <div class="header-accordion bg-light lter">
       <?php echo (isset($empresa->config["slider_2_titulo"]) ? $empresa->config["slider_2_titulo"] : lang(array("es"=>"Carrusel secundario","en"=>"Secondary carrusel"))); ?>
