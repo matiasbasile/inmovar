@@ -613,7 +613,7 @@ class Empresa_Model extends Abstract_Model {
     $sql.= " LEFT JOIN web_templates T ON (E.id_web_template = T.id) ";
     $sql.= " LEFT JOIN com_localidades L ON (E.id_localidad = L.id) ";
     $sql.= "WHERE ED.dominio = '$dominio' ";
-    if ($dominio_con_www != $dominio) $sql.= "OR ED.dominio = '$dominio_con_www' ";
+    if ($dominio_con_www != $dominio) $sql.= "OR ED.dominio = 'www.".$dominio."' ";
     $q = $this->db->query($sql);
     return $q->row();
   }
