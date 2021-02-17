@@ -357,7 +357,12 @@
         </div>        
         <div class="form-group">
           <label class="control-label"><?php echo lang(array("es"=>"Dirección","en"=>"Address")) ?></label>
-          <input type="text" name="direccion_web" class="form-control" value="<%= direccion_web %>"/>
+          <div class="input-group">
+            <input type="text" name="direccion_web" class="form-control" value="<%= direccion_web %>"/>
+            <span class="input-group-btn">
+              <button class="btn btn-default mostrar_ubicacion">Ubicar en el Mapa</button>
+            </span>
+          </div>
         </div>
         <div class="row">
           <div class="col-md-6">
@@ -402,9 +407,6 @@
               <% } %>
             <% } %>
           </select>
-        </div>
-        <div class="form-group oh cb">
-          <button class="btn btn-info mostrar_ubicacion btn-block">Ubicar en el Mapa</button>
         </div>
         <div class="clearfix">
           <button class="btn fr btn-info guardar"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
