@@ -48,7 +48,9 @@ class Whatsapp extends CI_Controller {
 
     $dominio = str_replace("www.", "", $dominio);
     $this->load->model("Empresa_Model");
-    $id_empresa = $this->Empresa_Model->get_id_empresa_by_dominio($dominio);
+    $id_empresa = $this->Empresa_Model->get_id_empresa_by_dominio($dominio,array(
+      "test"=>1
+    ));
     if ($id_empresa == 0) {
       // No existe la empresa seleccionada, no devolvemos nada
       exit();

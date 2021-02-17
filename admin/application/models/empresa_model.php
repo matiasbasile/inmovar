@@ -602,7 +602,8 @@ class Empresa_Model extends Abstract_Model {
     return ($q->num_rows() > 0 ? $q->row() : FALSE);
   }
   
-  function get_empresa_by_dominio($dominio) {
+  function get_empresa_by_dominio($dominio,$config = array()) {
+    $test = isset($config["test"]) ? $config["test"] : 0;
     $dominio = str_replace("/", "", $dominio);
     $dominio_con_www = (strpos("www.", $dominio) === FALSE) ? "www.".$dominio : $dominio;
     $sql = "SELECT E.*, T.path AS template_path, WC.*, ";
@@ -616,7 +617,7 @@ class Empresa_Model extends Abstract_Model {
     $sql.= "WHERE ED.dominio = '$dominio' ";
     if ($dominio_con_www != $dominio) $sql.= "OR ED.dominio = 'www.".$dominio."' ";
     $q = $this->db->query($sql);
-    if ($q->num_rows() == 0) echo $sql;
+    if ($test == 1) echo $sql;
     return $q->row();
   }
   
