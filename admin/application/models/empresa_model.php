@@ -565,8 +565,7 @@ class Empresa_Model extends Abstract_Model {
     if (empty($dominio)) return 0;
     $sql = "SELECT id_empresa ";
     $sql.= "FROM empresas_dominios ";
-    $sql.= "WHERE dominio = '$dominio' ";
-    if ($test == 1) echo $sql;
+    $sql.= "WHERE dominio = '$dominio' OR dominio = 'www.$dominio' ";
     $q = $this->db->query($sql);
     if ($q->num_rows()>0) {
       $row = $q->row();
