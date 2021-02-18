@@ -414,7 +414,12 @@ class Alquileres extends REST_Controller {
       "header"=>$header,
       "letras"=> new EnLetras(),
     );
-    $this->load->view("reports/factura/recibo_inmo/remito.php",$datos);
+    //TODO: SACARLE EL HARDCODEO
+    if ($id_empresa == 1392) {
+      $this->load->view("reports/factura/recibo_inmo_oficio/remito.php",$datos);
+    } else {
+      $this->load->view("reports/factura/recibo_inmo/remito.php",$datos);
+    }
   }
 
   function cupon_pago($id_empresa,$id_factura,$id_punto_venta) {
