@@ -162,6 +162,7 @@ function mostrar_mapa() {
       $("#contacto_mensaje").focus();
       return false;              
     }    
+    var mensaje = "Nos encontró: "+ encontro + ". "+ mensaje;
 
     $("#contacto_submit").attr('disabled', 'disabled');
     var datos = {
@@ -169,7 +170,7 @@ function mostrar_mapa() {
       "nombre":nombre,
       "telefono":telefono,
       "email":email,
-      "mensaje":"Nos encontró: "+ encontro + ". "+ mensaje,
+      "mensaje":mensaje,
       "asunto":asunto,
       "id_empresa":ID_EMPRESA,
     }

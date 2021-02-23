@@ -81,7 +81,7 @@ $vc_dormitorios= isset($get_params["dm"]) ? $get_params["dm"] : 0;
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown" style="max-width: 150px">
               <a class="nav-link dropdown-toggle" href="#" id="dropdownlocalidades" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               	<?php echo (!empty($vc_nombre_localidad))?$vc_nombre_localidad:"Localidades" ?> 
               </a>
@@ -141,7 +141,7 @@ $vc_dormitorios= isset($get_params["dm"]) ? $get_params["dm"] : 0;
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Rango de Precios
+                Precios
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item <?php echo ($vc_maximo == "25000" && $vc_minimo == "0")?"active":"" ?>" href="javascript:void(0)" onclick="change_price('0','25000')">Hasta 25.000</a>
