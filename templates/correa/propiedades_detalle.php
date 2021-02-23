@@ -242,9 +242,9 @@ else $vc_moneda = "$";
       </div>
       <div class="social">
         <span>Compartir:</span>
-        <a href="#0"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-        <a href="#0"><i class="fa fa-whatsapp"></i></a>
-        <a href="#0"><i class="fa fa-link"></i></a>
+        <a onclick="window.open(this.href, 'mywin','left=50,top=50,width=600,height=350,toolbar=0'); return false;" href="https://www.facebook.com/sharer.php?u=<?php echo urlencode(current_url()) ?>" target="_blank" ><i class="fa fa-facebook" aria-hidden="true"></i></a>
+        <a target="_blank" href="https://api.whatsapp.com/send?text=<?php echo urlencode(current_url()) ?>"><i class="fa fa-whatsapp"></i></a>
+        <a href="javascript:void(0)"><i class="fa fa-link"></i></a>
       </div>
     </div>
   </div>

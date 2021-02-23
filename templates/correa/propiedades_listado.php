@@ -81,7 +81,7 @@ $vc_dormitorios= isset($get_params["dm"]) ? $get_params["dm"] : 0;
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
-            <li class="nav-item dropdown" style="max-width: 150px">
+            <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="dropdownlocalidades" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               	<?php echo (!empty($vc_nombre_localidad))?$vc_nombre_localidad:"Localidades" ?> 
               </a>
