@@ -270,7 +270,7 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
 						</div>
 					<?php } ?>
 					<div class="clearfix"></div>
-					<div class="row ptb35">
+					<div class="row ptb35" id="relacionados">
 						<?php if (isset($propiedad->relacionados) && sizeof($propiedad->relacionados)>0) { ?>
 							<?php foreach ($propiedad->relacionados as $p) {  ?>
 								<div class="col-md-3 col-xs-12 item-grid">
