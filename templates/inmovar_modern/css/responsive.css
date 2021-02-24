@@ -11,11 +11,21 @@
 }
 
 @media only screen and (max-width: 767px) {
+  .pull-right-reserve { position: relative; }
+  .paral h1 { font-size: 40px }
+  #list .columna-uno { width: 100% }
+  #list .columna-dos { width: 100% } 
+  .precios-range { margin: 20px 0 0 0 }
+  .bordered-right { border: none; }
+  .bath { margin: 0; width: 100% }
+  .mb40md { margin-bottom: 0px }
+  .mt20bath { margin-top: 20px }
+  #list .item-grid .image img { height: 300px }
   .specialbtn  { margin: 20px 0; }
   #mapa_propiedades { position: relative;margin-top: 0; z-index: 999 ; width: 100%}
   .supra-details .button-top button { margin-left: 0px;}
   .border-right{ border:none ; border-right: none !important}
-  .icon-home { padding: 40px 0 20px 0; margin: 0 20px }
+  .icon-home { padding: 40px 0 20px 0;  }
   .icon-home.border-right{ border-bottom: 1px solid #bebebe; }
   .form-inputs { width: 100%; margin: 0 }
   .form-inputs .col-xs-12 { padding: 0; margin: 0 }

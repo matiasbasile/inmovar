@@ -531,13 +531,5 @@ body { font-family: 'Hind', sans-serif; }
     .tab_list_box_content { padding: 10px  }
     .leaflet-popup-content p { padding: 0!important; font-family: 'Hind',sans-serif;line-height: 1.8em; font-size: 13px;  color: #5b5a5a}
     .leaflet-top { bottom: 0!important; top: unset !important }
-    @media screen and (max-width: 768px) {
-      #list .columna-uno { width: 100% }
-      #list .columna-dos { width: 100% } 
-      .precios-range { margin: 20px 0 0 0 }
-      .bordered-right { border: none; }
-      .bath { margin: 0; width: 100% }
-      .mb40md { margin-bottom: 0px }
-      .mt20bath { margin-top: 20px }
-      #list .item-grid .image img { height: 300px }
-    }
+    .listing_pagination ul li a { color: #a7a7a7 }
+    .listing_pagination ul li.active a { color: white }
