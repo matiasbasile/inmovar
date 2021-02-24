@@ -231,7 +231,7 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
 							</div>
 						</div>
 					</div>
-					<?php $caracteristicas = explode(";;;",$propiedad->caracteristicas);?>
+					<!-- <?php $caracteristicas = explode(";;;",$propiedad->caracteristicas);?>
 					<?php if (!empty($caracteristicas)) { ?>
 						<div class="clearfix"></div>
 						<div class="row ptb35 border-bottom-services">
@@ -251,7 +251,7 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
 								</div>
 							</div>
 						</div>
-					<?php } ?>
+					<?php } ?> -->
 					<?php if ($propiedad->latitud != 0 && $propiedad->longitud != 0) { ?>
 						<div class="clearfix"></div>
 						<div class="row ptb35 border-bottom-services">
