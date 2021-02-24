@@ -7,16 +7,16 @@ extract($propiedad_model->get_variables(array(
 <head>
 	<?php include "includes/head.php" ?>
 </head>
-<body>
+<body id="list">
 	<?php include "includes/header.php" ?>
 	<section class="listado">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-7">
+				<div class="columna-uno">
 					<div class="clearfix"></div>
 					<form  id="form_propiedades" onsubmit="enviar_buscador_propiedades()">
-						<div class="row mt40 mb80">
-							<div class="col-md-3 select-bordered pl15">
+						<div class="row mt40 mb40md">
+							<div class="col-md-6 pl15">
 								<label style="font-size: 14px">Tipo de Propiedad</label>
 								<select class="my-select" name="tp">
 									<?php $tipos_propiedades = $propiedad_model->get_tipos_propiedades()?>
@@ -26,8 +26,17 @@ extract($propiedad_model->get_variables(array(
 									<?php } ?>
 								</select>
 							</div>
-							<?php  ?>
-							<div class="col-md-9 inline-icons-search">
+							<div class="col-md-6">
+								<label class="mylabel">Localización</label>
+								<select class="my-select" id="localidad">
+									<?php $localidades = $propiedad_model->get_localidades()?>
+									<option value="todas">Todas</option>
+									<?php foreach ($localidades as $t) {  ?>
+										<option value="<?php echo $t->link ?>" <?php echo (isset($vc_link_localidad) && $vc_link_localidad == $t->link) ? "selected" : "" ?>><?php echo $t->nombre ?></option>
+									<?php } ?>
+								</select>
+							</div>
+							<!-- <div class="col-md-9 inline-icons-search"> -->
 								<!-- <div class="my-custom-input-label-box box-one">
 									<input <?php echo ($vc_id_tipo_inmueble == "11")?"checked ":"" ?> style="display: none" id="myInput" type="radio" value="11" class="MyCheck" name="tp"/>
 									<label for="myInput">Oficina</label>
@@ -36,7 +45,7 @@ extract($propiedad_model->get_variables(array(
 									<input <?php echo ($vc_id_tipo_inmueble == "9")?"checked ":"" ?> style="display: none" id="myInput2" type="radio" value="9" class="MyCheck" name="tp"/>
 									<label for="myInput2">Local Comercial</label>
 								</div> -->
-								<div class="my-custom-input-label-box box-three">
+								<!-- <div class="my-custom-input-label-box box-three">
 									<input <?php echo ($vc_link_tipo_operacion == "ventas")?"checked ":"" ?> style="display: none" id="myInput3" type="radio" value="ventas" class="MyCheck" id="tipo_operacion"/>
 									<label for="myInput3">Venta</label>
 								</div>
@@ -47,46 +56,14 @@ extract($propiedad_model->get_variables(array(
 								<div class="my-custom-input-label-box box-five">
 									<input <?php echo ($vc_link_tipo_operacion == "emprendimientos")?"checked ":"" ?> style="display: none" id="myInput5" type="radio" value="emprendimientos" class="MyCheck" id="tipo_operacion"/>
 									<label for="myInput5">Emprendimientos</label>
-								</div>
+								</div> -->
 								<!-- <div class="my-custom-input-label-box box-six">
 									<input <?php echo ($vc_id_tipo_inmueble == "1")?"checked ":"" ?> style="display: none" id="myInput6" type="radio" value="1" class="MyCheck" name="tp"/>
 									<label for="myInput6">Casa</label>
 								</div> -->
-							</div>
-						</div>
-						<div class="row mb80">
-							<div class="col-md-3 bordered-right">
-								<label class="mylabel">Localización</label>
-								<select class="my-select" id="localidad">
-									<?php $localidades = $propiedad_model->get_localidades()?>
-									<option value="todas">Todas</option>
-									<?php foreach ($localidades as $t) {  ?>
-										<option value="<?php echo $t->link ?>" <?php echo (isset($vc_link_localidad) && $vc_link_localidad == $t->link) ? "selected" : "" ?>><?php echo $t->nombre ?></option>
-									<?php } ?>
-								</select>
-							</div>
-							<div class="col-md-9">
-								<div class="inline">
-									<!-- <div class="wautom mr10 ">
-										<label class="mylabel">Moneda</label><br>
-										<select name="m" class="my-select moneda">
-											<option <?php echo (isset($vc_moneda) && $vc_moneda == "ARS")?"selected":"" ?> value="ARS">$</option>
-											<option <?php echo (isset($vc_moneda) && $vc_moneda == "USD")?"selected":"" ?> value="USD">U$D</option>
-										</select>
-									</div> -->
-									<div class="wautom mr10">
-										<label class="mylabel">Rango de Precios</label><br>
-										<input  name="vc_minimo" type="" placeholder="min" value="<?php echo (isset($vc_minimo) ? (($vc_minimo == 0)?"":$vc_minimo) : "") ?>" name="" class="input-listado">
-									</div>
-									<div class="wautom">
-										<label class="mylabel"><br></label><br>
-										<input  name="vc_maximo" type="" placeholder="max" value="<?php echo (isset($vc_maximo) ? (($vc_maximo == 0)?"":$vc_maximo) : "") ?>" name="" class="input-listado">
-									</div>															
-								</div>
-							</div>
-						</div>
-						
-					<div class="row mb80">
+							<!-- </div> -->
+						</div>				
+						<div class="row">
 							<div class="col-md-3 bordered-right">
 								<label class="mylabel">Dormitorios</label>
 								<select name="dm" class="my-select">
@@ -99,15 +76,32 @@ extract($propiedad_model->get_variables(array(
 
 							</div>
 							<div class="col-md-9 inline">
-								<div class="wautom">
+								<div class="wautom bordered-right mt20bath">
 									<label class="mylabel">Baños</label><br>
-									<select name="bn" class="my-select wautom">
+									<select name="bn" class="my-select bath">
 										<?php $banios = $propiedad_model->get_banios()?>
 										<option value="">Todos</option>
 										<?php foreach ($banios as $t) {  ?>
 											<option value="<?php echo $t->banios ?>" <?php echo (isset($vc_banios) && $vc_banios == $t->banios) ? "selected" : "" ?>><?php echo $t->banios ?></option>
 										<?php } ?>
 									</select>
+								</div>
+								<div class="inline">
+									<!-- <div class="wautom mr10 ">
+										<label class="mylabel">Moneda</label><br>
+										<select name="m" class="my-select moneda">
+											<option <?php echo (isset($vc_moneda) && $vc_moneda == "ARS")?"selected":"" ?> value="ARS">$</option>
+											<option <?php echo (isset($vc_moneda) && $vc_moneda == "USD")?"selected":"" ?> value="USD">U$D</option>
+										</select>
+									</div> -->
+									<div class="wautom precios-range">
+										<label class="mylabel">Rango de Precios</label><br>
+										<input  name="vc_minimo" type="" placeholder="min" value="<?php echo (isset($vc_minimo) ? (($vc_minimo == 0)?"":$vc_minimo) : "") ?>" name="" class="input-listado">
+									</div>
+									<div class="wautom">
+										<label class="mylabel"><br></label><br>
+										<input  name="vc_maximo" type="" placeholder="max" value="<?php echo (isset($vc_maximo) ? (($vc_maximo == 0)?"":$vc_maximo) : "") ?>" name="" class="input-listado">
+									</div>															
 								</div>
 							<!-- 	<div class="mt40 ml20">
 									<input <?php echo (isset($vc_apto_banco) && $vc_apto_banco == "1")?"checked":"" ?> type="checkbox" value="1" name="banco">
@@ -124,10 +118,10 @@ extract($propiedad_model->get_variables(array(
 							</div>
 						</div>
 						<div class="clearfix"></div>
-						<div class="row mb40">
+						<div class="row mb40md">
 							<?php if (sizeof($vc_listado) > 0) {  ?>
 								<?php foreach ($vc_listado as $p) {  ?>
-									<div class="col-md-4">
+									<div class="col-md-3 p08">
 										<div class="item-grid">
 											<div class="image">
 												<a href="<?php echo mklink ($p->link) ?>">
@@ -180,7 +174,7 @@ extract($propiedad_model->get_variables(array(
 					<?php } ?>
 
 				</div>
-				<div class="col-md-5 p0">
+				<div class="columna-dos">
 					<div id="mapa_propiedades" style="height: 100%; min-height: 300px;"></div>
 				</div>
 			</div>
@@ -230,14 +224,14 @@ scrollTop : 0                       // Scroll to top of body
 
 		var mymap = L.map('mapa_propiedades').setView([<?php echo $empresa->latitud ?>,<?php echo $empresa->longitud ?>], 15);
 
-    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-      attribution: '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
-      tileSize: 512,
-      maxZoom: 18,
-      zoomOffset: -1,
-      id: 'mapbox/streets-v11',
-      accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
-    }).addTo(mymap);
+		L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+			attribution: '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
+			tileSize: 512,
+			maxZoom: 18,
+			zoomOffset: -1,
+			id: 'mapbox/streets-v11',
+			accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
+		}).addTo(mymap);
 
 
 /*

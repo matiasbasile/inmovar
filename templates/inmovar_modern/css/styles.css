@@ -78,7 +78,7 @@ body { font-family: 'Hind Sans', sans-serif; }
   .wn-footer a {
     color: yellow;
   }
-
+  .mb40md { margin-bottom: 40px }
   .icon-home.border-right{ border-right: 1px solid rgba(255,255,255,0.4) !important }
   .icon-home img { width: 60px; vertical-align: super }
   .icon-text { font-size: 10px; color: white }
@@ -201,13 +201,15 @@ body { font-family: 'Hind Sans', sans-serif; }
 
 
 
-
+  #list .columna-uno { padding: 0 15px; width: 62% }
+  #list .columna-dos { padding: 0; width: 38% }
   .hello {display: none}
   .choose h5 { font-size: 18px; font-weight: 600; line-height: 1.33em; margin: 15px }
   .sec-title h2 { font-size: 35px;font-weight: 700; font-family: 'Josefin Sans' ,sans-serif }
   .sec-title p { color: #6f6e6e; margin-top: 10px;font-size: 18px }
   .back-grey { background: #f9f7f6 }
   .item-grid .image { position: relative; }
+  .precios-range { margin: 0 20px }
   .item-grid .price { color: #000;
     position: absolute;
     right: 10px;
@@ -220,7 +222,7 @@ body { font-family: 'Hind Sans', sans-serif; }
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 600 }
     .item-grid .label { color: #fff;
      text-transform: uppercase; 
@@ -242,16 +244,17 @@ body { font-family: 'Hind Sans', sans-serif; }
      .item-grid .id { 
        color: #fff;
        font-weight: 600; 
-       font-size: 15px;
+       font-size: 12px;
        font-family: 'Josefin Sans', sans-serif;
        position: absolute;
-       bottom: 15px; left: 10px
+       bottom: 20px; left: 10px
      }
      .item-grid { margin: 30px 0; }
      .item-grid .image { background: black }     
-     .item-grid .image img { width: 100%; height: 250px; object-fit: cover; opacity: 0.7}
+     .item-grid .image img { width: 100%; height: 290px; object-fit: cover; opacity: 0.7}
+     #list .item-grid .image img { height: 170px }
      .item-grid .info { margin-top: 15px  }
-     .item-grid .info .address { color: #bebebe; margin: 5px 0 }
+     .item-grid .info .address {  font-weight: 400; font-family: 'Hind,sans-serif'; font-size: 14px; line-height: 23px; color: #bebebe;margin: 5px 0 }
      .black { color: black !important }
      .title-footer { font-family: 'Josefin Sans', sans-serif;color: white; font-size: 18px }
      .logo-section .text-footer-logo { color: #bebebe; margin-top: 20px; font-weight: 400;font-size: 14px }
@@ -446,7 +449,7 @@ body { font-family: 'Hind Sans', sans-serif; }
     .w200 { width: 200px !important }
     .border-div { border-bottom: 1px solid #e1e1e1;  margin-top: 38px;  margin-bottom: 40px; }
     .listado .my-select { color: black ; border: 1px solid #e1e1e1 }
-    .input-listado { border: 1px solid #e1e1e1; height: 40px; line-height: 40px ; width: 150px; border: 1px solid #e1e1e1; padding: 11px 13px 9px;}
+    .input-listado { border: 1px solid #e1e1e1; height: 40px; line-height: 40px ; width: 100px; border: 1px solid #e1e1e1; padding: 11px 13px 9px;}
     .input-listado:focus, .input-listado:hover { border: 1px solid black !important; outline: none !important;  }
     #mapa_propiedades { position: fixed; z-index: 1; margin-top: -60px; width: 41.666667% }
     .my-custom-input-label-box input + label {
@@ -462,7 +465,7 @@ body { font-family: 'Hind Sans', sans-serif; }
       background-position-y:15px; 
       background-position-x:12px; 
     }
-    .specialbtn  { margin: 30px; }
+    .specialbtn  { margin: 30px 20px; }
     .my-custom-input-label-box.box-one input + label {  background-image: url(../img/type-1-img.png);  } 
     .my-custom-input-label-box.box-two input + label {  background-image: url(../img/type-2-img.png);  } 
     .my-custom-input-label-box.box-three input + label {  background-image: url(../img/type-3-img.png);  } 
@@ -486,7 +489,7 @@ body { font-family: 'Hind Sans', sans-serif; }
     .select-bordered { border-right: 1px solid #e1e1e1; padding: 20px 15px 0 0 }
     .inline-icons-search { display: inline-flex; padding: 10px 20px }
     .mb80 { margin-bottom: 80px !important }
-    .bordered-right { border-right: 1px solid #e1e1e1; }
+    .bordered-right { border-right: 1px solid #e1e1e1; height: 72px }
     .mylabel { font-size: 14px }
     .myselect.moneda { min-height: 40px; border: 1px solid #e1e1e1 }
     .wautom{ width:auto; }
@@ -501,7 +504,9 @@ body { font-family: 'Hind Sans', sans-serif; }
     }
     .leyenda-copyright { padding: 25px 0; font-size: 14px }
     .pull-right-reserve { position: absolute; right: 0; text-transform: uppercase; }
-    h5.title { color: var(--c2) }
+    .property-data {     font-weight: 600;    color: #000;     font-size: 14px;
+    line-height: 23px;}
+    h5.title { color: black;font-size: 18px; line-height: 1.33em; font-family: "Josefin Sans",sans-serif;font-weight: 600 }
     h5.title:hover { text-decoration: none }
     .info a:hover { text-decoration: none }
     .background-c2 { background: var(--c2) }
@@ -513,6 +518,8 @@ body { font-family: 'Hind Sans', sans-serif; }
       color: white;
       margin: 0 5px; 
     }
+    .bath { width: 150px; margin-right: 20px }
+    .p08 { padding: 0 8px !important }
     .listing_pagination ul li a:hover { text-decoration: none }
     .title-map { font-family: 'Josefin Sans', sans-serif; font-size: 18px; font-weight: 800; }
     .leaflet-popup-content { width: 430px !important;  margin: 13px 0}
@@ -523,3 +530,13 @@ body { font-family: 'Hind Sans', sans-serif; }
     .tab_list_box_content { padding: 10px  }
     .leaflet-popup-content p { padding: 0!important; font-family: 'Hind',sans-serif;line-height: 1.8em; font-size: 13px;  color: #5b5a5a}
     .leaflet-top { bottom: 0!important; top: unset !important }
+    @media screen and (max-width: 768px) {
+      #list .columna-uno { width: 100% }
+      #list .columna-dos { width: 100% } 
+      .precios-range { margin: 20px 0 0 0 }
+      .bordered-right { border: none; }
+      .bath { margin: 0; width: 100% }
+      .mb40md { margin-bottom: 0px }
+      .mt20bath { margin-top: 20px }
+      #list .item-grid .image img { height: 300px }
+    }

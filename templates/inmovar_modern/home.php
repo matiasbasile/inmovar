@@ -90,17 +90,15 @@
 						<?php echo $t->plain_text?>
 					</p>
 				</div>
-				<?php $propiedades = $propiedad_model->get_list(array("offset"=>5,"destacado"=>1))?>
+				<?php $propiedades = $propiedad_model->get_list(array("offset"=>6,"destacado"=>1))?>
 				<?php if (!empty($propiedades)) {  ?>
 					<div class="clearfix" id="overlay">
 						<div class="row">
-							<div class="col-md-9">
 								<div class="clearfix">
 									<div class="row">
 										<?php $x=1; foreach ($propiedades as $p) {  ?>
 											<?php if ($x < 5) {  ?>
-												<div class="home-styled col-md-<?php echo ($x==1)?"8":"" ?><?php echo ($x==2)?"4":"" ?><?php echo ($x==3)?"4":"" ?><?php echo ($x==4)?"8":"" ?>
-												col-xs-12">
+												<div class="home-styled col-md-4 col-xs-12">
 												<div class="item-grid m0">
 													<div class="image">
 														<a href="<?php echo mklink ($p->link) ?>">
@@ -114,27 +112,6 @@
 											</div>
 										<?php } ?>
 										<?php $x++; } ?>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-3 p0">
-								<div class="clearfix">
-									<?php $x=1; foreach ($propiedades as $p) {  ?>
-										<?php if ($x==5) {   ?>
-											<div class="home-styled col-md-12 col-xs-12">
-												<div class="item-grid m0">
-													<div class="image">
-														<a href="<?php echo mklink ($p->link) ?>">
-															<img class="cover" style="height: 510px" src="/admin/<?php echo $p->path ?>">
-														</a>
-														<span class="price"><?php echo ($p->precio_final != 0)?$p->precio:"Consultar"?></span>
-														<span class="label"><?php echo $p->tipo_operacion ?></span>
-														<span class="id"><?php echo $p->tipo_inmueble ?><br><?php echo $p->direccion_completa." ".$p->localidad?></span>
-													</div>
-												</div>	
-											</div>
-										<?php } ?>
-										<?php $x++; } ?>		
 									</div>
 								</div>
 							</div>
