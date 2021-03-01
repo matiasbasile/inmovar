@@ -321,6 +321,7 @@ class Propiedad_Model {
       }
     }
     if (isset($get_params["dep"])) $vc_id_departamento = $get_params["dep"];
+    if ($vc_id_departamento == "todos" || $vc_id_departamento == "todas") $vc_id_departamento = 0;
 
     // Si el ultimo parametro es un numero de pagina
     if (isset($params[3]) && is_numeric($params[3]) && $no_analizar_url == 0) {
