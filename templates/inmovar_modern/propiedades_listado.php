@@ -124,7 +124,7 @@ extract($propiedad_model->get_variables(array(
 									<div class="col-md-3 p08">
 										<div class="item-grid">
 											<div class="image">
-												<a href="<?php echo mklink ($p->link_propiedad) ?>">
+												<a href="<?php echo ($p->link_propiedad) ?>">
 													<img class="cover" src="/admin/<?php echo $p->path ?>">
 												</a>
 												<span class="price"><?php echo ($p->precio_final != 0)?$p->precio:"Consultar"?></span>
@@ -134,7 +134,7 @@ extract($propiedad_model->get_variables(array(
 												<?php } ?>
 											</div>
 											<div class="info">
-												<a href="<?php echo mklink ($p->link_propiedad) ?>">
+												<a href="<?php echo ($p->link_propiedad) ?>">
 													<h5 class="title"><?php echo $p->nombre ?></h5>
 												</a>
 												<?php if (!empty($p->direccion_completa)) {  ?><div class="address"><?php echo $p->direccion_completa.". ".$p->localidad?></div><?php } ?>
@@ -262,12 +262,12 @@ foreach($vc_listado as $p) {
 		var contentString<?php echo $i; ?> = '<div>'+
 		'<div class="feature-item" style="padding: 0px;">'+
 		'<div class="feature-image">'+
-		'<a href=\"<?php echo mklink($p->link_propiedad) ?>\">'+
+		'<a href=\"<?php echo ($p->link_propiedad) ?>\">'+
 		'<img style="" src=\"<?php echo $path ?>\"/>'+
 		'</a>'+
 		'</div>'+
 		'<div class="tab_list_box_content">'+
-		'<h6 class="title-map"><a href=\"<?php echo mklink($p->link_propiedad) ?>\"><?php echo ($p->nombre) ?></a></h6>'+
+		'<h6 class="title-map"><a href=\"<?php echo ($p->link_propiedad) ?>\"><?php echo ($p->nombre) ?></a></h6>'+
 		'<p>'+
 		'<?php echo $p->direccion_completa.". ".$p->localidad ?>' +
 		'</p>'+

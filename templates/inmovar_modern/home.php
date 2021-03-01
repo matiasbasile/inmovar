@@ -101,7 +101,7 @@
 												<div class="home-styled col-md-4 col-xs-12">
 												<div class="item-grid m0">
 													<div class="image">
-														<a href="<?php echo mklink ($p->link_propiedad) ?>">
+														<a href="<?php echo ($p->link_propiedad) ?>">
 															<img class="cover" src="/admin/<?php echo $p->path ?>">
 														</a>
 														<span class="price"><?php echo ($p->precio_final != 0)?$p->precio:"Consultar"?></span>
@@ -191,7 +191,7 @@
 						<?php foreach ($propiedades as $p) {  ?>
 							<div class="col-md-3 col-xs-12 item-grid">
 								<div class="image">
-									<a href="<?php echo mklink ($p->link_propiedad) ?>">
+									<a href="<?php echo ($p->link_propiedad) ?>">
 										<img class="cover" src="/admin/<?php echo $p->path ?>">
 									</a>
 									<span class="price"><?php echo ($p->precio_final != 0)?$p->precio:"Consultar"?></span>
@@ -199,7 +199,7 @@
 									<span class="id">COD <?php echo $p->codigo ?></span>
 								</div>
 								<div class="info">
-									<a href="<?php echo mklink ($p->link_propiedad) ?>">
+									<a href="<?php echo ($p->link_propiedad) ?>">
 										<h5 class="title"><?php echo $p->nombre ?></h5>
 									</a>
 									<?php if (!empty($p->direccion_completa)) {  ?><div class="address"><?php echo $p->direccion_completa.". ".$p->localidad?></div><?php } ?>
