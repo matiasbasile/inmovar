@@ -1279,6 +1279,7 @@ class Propiedad_Model {
     if ($offset != 0) $sql.= "LIMIT $limit,$offset ";
     $salida = array();
     $q = mysqli_query($this->conx,$sql);
+    if (mysqli_num_rows($q) == 0) return $salida;
     while(($r=mysqli_fetch_object($q))!==NULL) {
       $salida[] = $r;
     }
