@@ -3,7 +3,7 @@ include("includes/init.php");
 extract($propiedad_model->get_variables(array(
   "offset"=>9999999
 )));
-$vc_page_active = $vc_vc_link_tipo_operacion;
+$vc_page_active = $vc_link_tipo_operacion;
 ?><!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
