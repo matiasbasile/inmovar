@@ -3,7 +3,7 @@ include("includes/init.php");
 extract($propiedad_model->get_variables(array(
   "offset"=>9999999
 )));
-$vc_page_active = $vc_vc_link_tipo_operacion;
+$vc_page_active = $vc_link_tipo_operacion;
 ?><!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
@@ -64,7 +64,7 @@ $(document).ready(function(){
           '<div class="list-view-detail" style="width: 200px; float:none; vertical-align:top; display:table-cell">'+
             '<div class="featured-detail">'+
               '<h5><a href=\"<?php echo $p->link_propiedad ?>\"><?php echo ($p->nombre) ?></a></h5>'+
-              '<p><img width="10" alt="44" src="/templates/yacoub/images/location.png"> <?php echo $p->direccion_completa ?> <a href="<?php echo $p->link_propiedad ?>"><?php echo $p->localidad ?></a></p>'+
+              '<p><?php echo $p->direccion_completa ?> <a href="<?php echo $p->link_propiedad ?>"><?php echo $p->localidad ?></a></p>'+
             '</div>'+
           '</div>'+
         '</div>'+

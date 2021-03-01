@@ -368,8 +368,8 @@ class Alquileres extends REST_Controller {
     $this->load->helper("fecha_helper");
     $this->load->helper("numero_letra_helper");
 
-    $sql = "SELECT C.nombre AS cliente, F.id, F.pago, C.cuit AS cuit, F.id_referencia AS id_alquiler, ";
-    $sql.= " F.comprobante, C.id AS id_cliente, DATE_FORMAT(F.fecha,'%d/%m/%Y') AS fecha, ";
+    $sql = "SELECT F.id_cliente, C.nombre AS cliente, F.id, F.pago, C.cuit AS cuit, F.id_referencia AS id_alquiler, ";
+    $sql.= " F.comprobante, F.numero, C.id AS id_cliente, DATE_FORMAT(F.fecha,'%d/%m/%Y') AS fecha, ";
     $sql.= " AC.pagada, AC.corresponde_a, AC.id AS id_cuota, ";
     $sql.= " DATE_FORMAT(AC.vencimiento,'%d/%m/%Y') AS vencimiento, AC.monto, AC.expensa, (AC.monto+AC.expensa) AS total, ";
     $sql.= " P.nombre AS propiedad, CONCAT(P.calle,' ',P.altura,' ',P.piso,' ',P.numero) AS direccion, ";
@@ -407,12 +407,16 @@ class Alquileres extends REST_Controller {
     $empresa->fecha_inicio = fecha_es($fact_configuracion->fecha_inicio);
 
     $header = $this->load->view("reports/factura/header",null,true);
-    
+
+    $this->load->model("Cliente_Model");
+    $cliente = $this->Cliente_Model->get($factura->id_cliente, $id_empresa);
+
     $datos = array(
       "facturas"=>array($factura),
       "empresa"=>$empresa,
       "header"=>$header,
       "letras"=> new EnLetras(),
+      "cliente"=>$cliente,
     );
     //TODO: SACARLE EL HARDCODEO
     if ($id_empresa == 1392) {

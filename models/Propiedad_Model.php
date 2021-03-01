@@ -321,6 +321,7 @@ class Propiedad_Model {
       }
     }
     if (isset($get_params["dep"])) $vc_id_departamento = $get_params["dep"];
+    if ($vc_id_departamento == "todos" || $vc_id_departamento == "todas") $vc_id_departamento = 0;
 
     // Si el ultimo parametro es un numero de pagina
     if (isset($params[3]) && is_numeric($params[3]) && $no_analizar_url == 0) {
@@ -1272,13 +1273,14 @@ class Propiedad_Model {
     $sql = "SELECT DISTINCT L.id, L.nombre, L.link ";
     $sql.= "FROM inm_propiedades P ";
     $sql.= "INNER JOIN com_localidades L ON (P.id_localidad = L.id) ";
-    $sql.= "WHERE P.id_empresa IN ($emp_comp) ";
-    $sql.= "AND P.activo = 1 ";
+    $sql.= "WHERE P.activo = 1 ";
+    if (!empty($emp_comp)) $sql.= "AND P.id_empresa IN ($emp_comp) ";
     if ($id_departamento) $sql.= "AND L.id_departamento = $id_departamento ";
     $sql.= "ORDER BY L.nombre ASC ";
     if ($offset != 0) $sql.= "LIMIT $limit,$offset ";
     $salida = array();
     $q = mysqli_query($this->conx,$sql);
+    if (mysqli_num_rows($q) == 0) return $salida;
     while(($r=mysqli_fetch_object($q))!==NULL) {
       $salida[] = $r;
     }

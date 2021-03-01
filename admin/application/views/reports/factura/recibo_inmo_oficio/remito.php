@@ -19,11 +19,13 @@ error_reporting(E_ALL);
   font-size: 12px;
 }
 hr{
-  margin: 1px;
-  border: 2px solid black;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 2px solid black; 
 }
 table{
   margin-top: 20px;
+  width: 100%;
 }
 .separador{
   width: 100%;
@@ -36,19 +38,27 @@ table{
 }
 th{
   margin: 10px 0;
-  width: 100%;
   padding: 3px;
   background-color: grey;
   color: black;
   text-align: center;
 }
+tbody tr{
+  border-bottom: 1px solid #b2acac;
+}
+.total{ border-right: 1px solid #b2acac; }
+.bodyprint{ border: 1px solid #b2acac !important; padding: 0px;}
 @media print {
-  body { -webkit-print-color-adjust: exact; } 
+  body { -webkit-print-color-adjust: exact; font-size: 13px;} 
   .inner.second { margin-top: 45px; }
   .inner { padding: 0px 0px 0px 0px; }
   .a4inner { padding: 0px; }
   .a4 { page-break-after: always; padding: 20px; }
   .a4:last-child { page-break-after: avoid; }
+  .separador { background-color: #b2acac !important; -webkit-print-color-adjust: exact; }
+  hr { border: 1px solid #b2acac !important; -webkit-print-color-adjust: exact; }
+  th {  background-color: #b2acac !important; -webkit-print-color-adjust: exact; }
+  .bodyprint{ border: 1px solid #b2acac !important; -webkit-print-color-adjust: exact;  }
 }
 @page {
   size: auto;
@@ -76,107 +86,139 @@ th{
             }
             $factura->total += $total_items + $total_extras;
           ?>
-            <div class="col-xs-6">
+          <div class="col-xs-12 bodyprint">
+            <div class="col-xs-9 mt10" style="position: relative; top: 10px;">
               <span class="titulo">RECIBO <?php echo $factura->comprobante?></span><br>
               <span class="subtitulo">Documento no <br> valido como factura</span>
             </div>
-            <div class="col-xs-6">
+            <div class="col-xs-3 mt30">
               <?php if(!empty($empresa->logo)) { ?>
                 <img style="width: 100%; height: 60px;" src="/admin/<?php echo $empresa->logo ?>"/>
               <?php } ?>
             </div>
-            <div class="col-xs-12">
+            <div class="col-xs-12 p0">
               <p class="separador">DATOS INMOBILIARIA</p>
             </div>
             <div class="datos">
-              <div class="col-xs-6">
-                <?php if (isset($empresa->direccion_empresa) && !empty($empresa->direccion_empresa)) { ?>
-                  <?php echo $empresa->direccion_empresa ?><br>
-                <?php } ?>
-                <?php if (isset($empresa->telefono_empresa) && !empty($empresa->telefono_empresa)) { ?>
-                  <?php echo $empresa->telefono_empresa ?><br>
-                <?php } ?>
-                <?php if (isset($empresa->razon_social) && !empty($empresa->razon_social)) { ?>
-                  <?php echo $empresa->razon_social?><br>
-                <?php } ?>
-                <i>Responsable monotributo</i>
-              </div>
-              <div class="col-xs-6">
-                <span>Número:</span><br> <span>Fecha: <?php echo date("d/m/Y") ?></span><br>
-                <?php if (isset($empresa->cuit) && !empty($empresa->cuit)) { ?>
-                  <span>CUIT: <?php echo $empresa->cuit?></span><br>
-                <?php } ?>
-                <?php if (isset($empresa->numero_ib) && !empty($empresa->numero_ib)) { ?>
-                  <span>INGRESOS BRUTOS: <?php echo $empresa->numero_ib?></span>
-                <?php } ?>
-                <?php if (isset($empresa->fecha_inicio) && !empty($empresa->fecha_inicio)) { ?>
-                  <div>
-                    INICIO ACT.: <span><?php echo $empresa->fecha_inicio ?></span>
+              <div class="col-xs-12">
+                <div class="row">
+                  <div class="col-xs-6">
+                  <?php if (isset($empresa->direccion_empresa) && !empty($empresa->direccion_empresa)) { ?>
+                    <?php echo $empresa->direccion_empresa ?><br>
+                  <?php } ?>
+                  <?php if (isset($empresa->telefono_empresa) && !empty($empresa->telefono_empresa)) { ?>
+                    <?php echo "Tel | ".$empresa->telefono_empresa ?><br>
+                  <?php } ?>
                   </div>
-                <?php } ?>
+                  <div class="col-xs-3 tac">
+                    <span>Número: <br> <b><?php echo $factura->numero?></b> </span>
+                  </div>
+                  <div class="col-xs-3 tac">
+                    <span>Fecha: <br> <?php echo date("d/m/Y") ?></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 mt10">
+                <div class="row">
+                  <div class="col-xs-5">
+                    <?php if (isset($empresa->razon_social) && !empty($empresa->razon_social)) { ?>
+                      <?php echo $empresa->razon_social?><br>
+                    <?php } ?>
+                    <i>Responsable monotributo</i>
+                  </div>
+                  <div class="col-xs-7">
+                    <?php if (isset($empresa->cuit) && !empty($empresa->cuit)) { ?>
+                      <span>CUIT: <?php echo $empresa->cuit?></span><br>
+                    <?php } ?>
+                    <?php if (isset($empresa->numero_ib) && !empty($empresa->numero_ib)) { ?>
+                      <span>Ing. Brutos: <?php echo $empresa->numero_ib?></span>
+                    <?php } ?>
+                    <?php if (isset($empresa->fecha_inicio) && !empty($empresa->fecha_inicio)) { ?>
+                      <div>
+                        Inicio de Act: <span><?php echo $empresa->fecha_inicio ?></span>
+                      </div>
+                    <?php } ?>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="col-xs-12">
+            <div class="col-xs-12 p0">
               <p class="separador">DATOS DEL LOCADOR/A Y LOCATARIO/A</p>
             </div>
             <div class="col-xs-12">
-              Locatario/a: <?php echo $factura->cliente ?> <br>
-              Domicilio: <?php echo $factura->direccion ?><br>
-              Tel: <br>
-              Localidad<br>
+              <?php if (isset($factura->cliente) && !empty($factura->cliente)) { ?>
+                Locatario/a: <?php echo $factura->cliente ?> <br>
+              <?php } ?>
+              <?php if (isset($cliente->direccion) && !empty($cliente->direccion)) { ?>
+                Domicilio: <?php echo $cliente->direccion ?><br>
+              <?php } ?>
+              <?php if (isset($cliente->celular) && !empty($cliente->celular)) { ?>
+                Tel: <?php echo $cliente->celular ?><br>
+              <?php } ?>
+              <?php if (isset($cliente->localidad) && !empty($cliente->localidad)) { ?>
+                Localidad <?php echo $cliente->localidad?><br>
+              <?php } ?>
+            </div>
+            <div class="col-xs-12 p0">
               <hr>
-              <div style="font-size: 15px; line-height: 20px; ">
-                POR EL MANDATO DEL LOCADOR RECIBI
-                LA SUMA DE PESOS <?php echo $letras->ValorEnLetras($factura->total) ?>
-                POR EL ALQUILER DE <?php echo $factura->propiedad ?>
-                QUE OCUPA EN <?php echo $factura->direccion ?>
-                QUE VENCE EL <?php echo $factura->vencimiento ?>.<br/>
-              </div>
             </div>
             <div class="col-xs-12">
+              <div style="font-size: 15px; line-height: 20px; ">
+                POR EL MANDATO DEL LOCADOR RECIBI
+                LA SUMA DE PESOS <?php echo strtoupper($letras->ValorEnLetras($factura->total)) ?>
+                POR EL ALQUILER DE <?php echo strtoupper($factura->propiedad) ?>
+                QUE OCUPA EN <?php echo strtoupper($factura->direccion) ?>
+                QUE VENCE EL <?php echo strtoupper($factura->vencimiento) ?>.<br/>
+              </div>
+            </div>
+            <div class="col-xs-12 p0">
               <table>
                 <tr>
                   <th>CONCEPTOS ABONADOS</th>
-                  <th></th>
-                  <th>IMPORTE</th>
+                  <th class="w90">IMPORTE</th>
                 </tr>
                 <tbody>
                   <?php if (sizeof($factura->items)>0) { ?>
                     <?php foreach($factura->items as $i) { ?>
                       <tr>
-                        <td><?php echo $i->nombre; ?></td>
-                        <td></td>
-                        <td>$ <?php echo number_format($i->monto,2); ?></td>
+                        <td class="pl5"><?php echo $i->nombre; ?></td>
+                        <td class="tar pr5">$ <?php echo number_format($i->monto,2); ?></td>
                       </tr>
                     <?php } ?>  
                   <?php } ?>
                   <?php if (sizeof($factura->extras)>0) { ?>
                     <?php foreach($factura->extras as $i) { ?>
                       <tr>
-                        <td><?php echo $i->nombre; ?></td>
-                        <td></td>
-                        <td>$ <?php echo number_format($i->monto,2); ?></td>
+                        <td class="pl5"><?php echo $i->nombre; ?></td>
+                        <td class="tar pr5">$ <?php echo number_format($i->monto,2); ?></td>
                       </tr>
                     <?php } ?>  
                   <?php } ?>
                   <tr>
-                    <td></td>
-                    <td>TOTAL</td>
-                    <td><?php echo ($factura->total) ?></td>
+                    <td class="total tar pr5"><b>TOTAL</b></td>
+                    <td class="tar pr5">$ <?php echo ($factura->total) ?></td>
                   </tr>
                 </tbody>
               </table>
             </div>
-            <div class="col-xs-12">
+            <div class="col-xs-12 p0">
               <p class="separador">FIRMA DE LOS CONTRATANTES</p>
             </div>
             <div class="col-xs-12">
-              <div style="">
-                RECIBÍ CONFORME:<br><br>
-                FIRMA INMOBILIARIA: <br/><br/>
-                ACLARACI&Oacute;N INMOBILIARIA:
+              <div class="row tac">
+                <div class="col-xs-12">
+                  RECIBÍ CONFORME ..............................<br>
+                  <span style="¨margin-left: 10px">Locador/a</span>
+                </div>
+                <div class="col-xs-6">
+                  ..............................<br/>FIRMA INMOBILIARIA
+                </div>
+                <div class="col-xs-6">
+                  ..............................<br/>ACLARACI&Oacute;N INMOBILIARIA
+                </div>
               </div>
             </div>
+          </div>
           <?php } ?>
         </div>
       <?php } ?>
