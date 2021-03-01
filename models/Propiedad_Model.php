@@ -1277,6 +1277,7 @@ class Propiedad_Model {
     if ($id_departamento) $sql.= "AND L.id_departamento = $id_departamento ";
     $sql.= "ORDER BY L.nombre ASC ";
     if ($offset != 0) $sql.= "LIMIT $limit,$offset ";
+    echo $sql;
     $salida = array();
     $q = mysqli_query($this->conx,$sql);
     if (mysqli_num_rows($q) == 0) return $salida;
