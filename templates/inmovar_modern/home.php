@@ -186,7 +186,7 @@
 							</p>
 						</div>
 					</div>
-					<div class="row mt30">
+					<div class="row mt30" id="ultimas">
 						<?php $propiedades = $propiedad_model->get_list(array("offset"=>8))?>
 						<?php foreach ($propiedades as $p) {  ?>
 							<div class="col-md-3 col-xs-12 item-grid">
