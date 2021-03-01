@@ -6,7 +6,7 @@ $propiedad = $propiedad_model->get($id,array(
 	"id_empresa"=>$id_empresa,
 	"id_empresa_original"=>$empresa->id,
 )); 
-
+$page_act = $propiedad->tipo_operacion_link;
 // Seteamos la cookie para indicar que el cliente ya entro a esta propiedad
 $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
 ?> 

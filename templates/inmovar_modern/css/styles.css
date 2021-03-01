@@ -25,6 +25,7 @@ body { font-family: 'Hind', sans-serif; }
   letter-spacing: .1em; }
 
   .nav-pages  > li > a:hover { text-decoration: none; color: var(--c1) }
+  .nav-pages  > li > a.active { text-decoration: none; color: var(--c1) }
   .btn-border-yellow { border: 1px solid var(--c1);
    padding: 10px 20px;
    border-radius: 3px;

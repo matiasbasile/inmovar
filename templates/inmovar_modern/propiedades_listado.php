@@ -1,7 +1,25 @@
-<?php include "includes/init.php";
-extract($propiedad_model->get_variables(array(
-	"offset"=>9,
-))); ?>
+<?php 
+include("includes/init.php");
+$get_params["offset"] = 12;
+extract($propiedad_model->get_variables());
+$page_act = $vc_link_tipo_operacion;
+$localidades = $propiedad_model->get_localidades();
+foreach($localidades as $l) { 
+	if ($l->link == $vc_link_localidad) { 
+		$vc_nombre_localidad = $l->nombre;
+		$vc_link_localidad = $l->link;
+	}
+}
+$tipos_propiedades = $propiedad_model->get_tipos_propiedades();
+foreach($tipos_propiedades as $l) { 
+	if ($l->id == $vc_id_tipo_inmueble) { 
+		$vc_nombre_tipo_propiedad = $l->nombre;
+	}
+}
+$vc_banios = isset($get_params["bn"]) ? $get_params["bn"] : 0;
+$vc_dormitorios= isset($get_params["dm"]) ? $get_params["dm"] : 0;
+$page_act = $vc_link_tipo_operacion;
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +54,7 @@ extract($propiedad_model->get_variables(array(
 									<?php } ?>
 								</select>
 							</div>
-							<!-- <div class="col-md-9 inline-icons-search"> -->
+							<div class="col-md-9 inline-icons-search d-none">
 								<!-- <div class="my-custom-input-label-box box-one">
 									<input <?php echo ($vc_id_tipo_inmueble == "11")?"checked ":"" ?> style="display: none" id="myInput" type="radio" value="11" class="MyCheck" name="tp"/>
 									<label for="myInput">Oficina</label>
@@ -45,7 +63,7 @@ extract($propiedad_model->get_variables(array(
 									<input <?php echo ($vc_id_tipo_inmueble == "9")?"checked ":"" ?> style="display: none" id="myInput2" type="radio" value="9" class="MyCheck" name="tp"/>
 									<label for="myInput2">Local Comercial</label>
 								</div> -->
-								<!-- <div class="my-custom-input-label-box box-three">
+								<div class="my-custom-input-label-box box-three">
 									<input <?php echo ($vc_link_tipo_operacion == "ventas")?"checked ":"" ?> style="display: none" id="myInput3" type="radio" value="ventas" class="MyCheck" id="tipo_operacion"/>
 									<label for="myInput3">Venta</label>
 								</div>
@@ -56,12 +74,12 @@ extract($propiedad_model->get_variables(array(
 								<div class="my-custom-input-label-box box-five">
 									<input <?php echo ($vc_link_tipo_operacion == "emprendimientos")?"checked ":"" ?> style="display: none" id="myInput5" type="radio" value="emprendimientos" class="MyCheck" id="tipo_operacion"/>
 									<label for="myInput5">Emprendimientos</label>
-								</div> -->
+								</div>
 								<!-- <div class="my-custom-input-label-box box-six">
 									<input <?php echo ($vc_id_tipo_inmueble == "1")?"checked ":"" ?> style="display: none" id="myInput6" type="radio" value="1" class="MyCheck" name="tp"/>
 									<label for="myInput6">Casa</label>
-								</div> -->
-							<!-- </div> -->
+								</div> --> 
+							</div>
 						</div>				
 						<div class="row">
 							<div class="col-md-3 bordered-right">

@@ -6,12 +6,12 @@
 					<a href="<?php echo mklink ("/") ?>"><img src="/admin/<?php echo $empresa->logo_1 ?>"></a>
 				<?php } ?>
 				<ul class="nav-pages">
-					<li><a href="<?php echo mklink ("/") ?>">Home</a></li>
-					<li><a href="<?php echo mklink ("propiedades/ventas/") ?>">Ventas</a></li>
-					<li><a href="<?php echo mklink ("propiedades/alquileres/") ?>">Alquileres</a></li>
-					<li><a href="<?php echo mklink ("propiedades/emprendimientos/") ?>">Emprendimientos</a></li>
-					<li><a href="<?php echo mklink ("propiedades/obras/") ?>">Obras</a></li>
-					<li><a href="<?php echo mklink ("contacto/") ?>">Contacto</a></li>
+					<li><a class="<?php echo ($page_act == "home")?"active":"" ?>" href="<?php echo mklink ("/") ?>">Home</a></li>
+					<li><a class="<?php echo ($page_act == "ventas")?"active":"" ?>" href="<?php echo mklink ("propiedades/ventas/") ?>">Ventas</a></li>
+					<li><a class="<?php echo ($page_act == "alquileres")?"active":"" ?>" href="<?php echo mklink ("propiedades/alquileres/") ?>">Alquileres</a></li>
+					<li><a class="<?php echo ($page_act == "emprendimientos")?"active":"" ?>" href="<?php echo mklink ("propiedades/emprendimientos/") ?>">Emprendimientos</a></li>
+					<li><a class="<?php echo ($page_act == "obras")?"active":"" ?>" href="<?php echo mklink ("propiedades/obras/") ?>">Obras</a></li>
+					<li><a class="<?php echo ($page_act == "contacto")?"active":"" ?>" href="<?php echo mklink ("contacto/") ?>">Contacto</a></li>
 				</ul>
 			</div>
 			<div class="pull-right me1">
