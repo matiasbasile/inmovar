@@ -98,7 +98,6 @@
 								<div class="clearfix">
 									<div class="row">
 										<?php $x=1; foreach ($propiedades as $p) {  ?>
-											<?php if ($x < 5) {  ?>
 												<div class="home-styled col-md-4 col-xs-12">
 												<div class="item-grid m0">
 													<div class="image">
@@ -111,7 +110,6 @@
 													</div>
 												</div>	
 											</div>
-										<?php } ?>
 										<?php $x++; } ?>
 									</div>
 								</div>
@@ -143,7 +141,7 @@
 							<h5 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
 								<?php echo $t->plain_text ?>
 							</h5>
-							<?php $t = $web_model->get_text("choose-1","Feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent")?>
+							<?php $t = $web_model->get_text("choose-1-txt","Feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent")?>
 							<div class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
 								<?php echo $t->plain_text ?>
 							</div>
@@ -154,7 +152,7 @@
 							<h5 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
 								<?php echo $t->plain_text ?>
 							</h5>
-							<?php $t = $web_model->get_text("choose-2","Feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent")?>
+							<?php $t = $web_model->get_text("choose-2-txt","Feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent")?>
 							<div class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
 								<?php echo $t->plain_text ?>
 							</div>
@@ -165,7 +163,7 @@
 							<h5 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
 								<?php echo $t->plain_text ?>
 							</h5>
-							<?php $t = $web_model->get_text("choose-3","Feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent")?>
+							<?php $t = $web_model->get_text("choose-3-txt","Feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent")?>
 							<div class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
 								<?php echo $t->plain_text ?>
 							</div>

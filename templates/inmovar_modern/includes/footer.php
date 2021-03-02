@@ -28,7 +28,7 @@
 					<div class="title-footer">Newsletter</div>
 					<span class="inputs">
 						<input class="newsletter" id="newsletter_email" type="" placeholder="Escriba tu correo" name="">
-						<input class="submit" id="newsletter_submit" type="submit" value="ENVIAR">
+						<input class="submit btn-yellow" id="newsletter_submit" type="submit" value="ENVIAR">
 					</span>	
 				</form>
 					<?php if (!empty($empresa->facebook)) {  ?>

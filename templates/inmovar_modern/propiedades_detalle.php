@@ -2,7 +2,7 @@
 $id_empresa = isset($get_params["em"]) ? $get_params["em"] : $empresa->id;
 $propiedad = $propiedad_model->get($id,array(
 	"buscar_total_visitas"=>1,
-	"buscar_relacionados_offset"=>3,
+	"buscar_relacionados_offset"=>8,
 	"id_empresa"=>$id_empresa,
 	"id_empresa_original"=>$empresa->id,
 )); 

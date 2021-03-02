@@ -85,12 +85,11 @@ body { font-family: 'Hind', sans-serif; }
   .icon-text { font-size: 10px; color: white }
   .my-select { padding: 8px 12px;  background: transparent;min-height: 40px; color: white;border:1px solid white; border-radius: 3px; font-size: 16px;width: 100% }
   .my-select option  { color: black; padding:8px 12px; min-height: 15px}
-  .btn-yellow  {     font-weight: 600;letter-spacing: .15em; background: var(--c1);height: 40px; color: black;border:1px solid var(--c1); border-radius: 3px; font-size:12px;width: 100% }
-  .btn-yellow:hover {  background: white; 
-    transition: color .2s ease-in-out,background-color .2s ease-in-out,border-color .2s ease-in-out;
+  .btn-yellow  {     font-weight: 600;letter-spacing: .15em; background: var(--c1);height: 40px; color: white;border:1px solid var(--c1); border-radius: 3px; font-size:12px;width: 100% }
+  .btn-yellow:hover {  background: white; color: black; transition: color .2s ease-in-out,background-color .2s ease-in-out,border-color .2s ease-in-out;
    }
   .home-form { width: 100% }
-  .home-form label { color: white; position: absolute;top: 20px; font-size: 12px }
+  .home-form label { color: white; position: absolute;top: 8px; font-size: 15px }
   .sec-pad { padding: 80px 0 }
   .img-response { object-fit: cover; width: 100%; height: 250px }
 
@@ -223,7 +222,7 @@ body { font-family: 'Hind', sans-serif; }
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600 }
     .item-grid .label { color: #fff;
      text-transform: uppercase; 
@@ -239,20 +238,20 @@ body { font-family: 'Hind', sans-serif; }
      align-self: center;
      z-index: 99;
      display: inline-block;
-     font-size: 13px;
+     font-size: 18px;
      font-weight: 600;
      letter-spacing: -.07em; }
      .item-grid .id { 
        color: #fff;
        font-weight: 600; 
-       font-size: 12px;
+       font-size: 15px;
        font-family: 'Josefin Sans', sans-serif;
        position: absolute;
        bottom: 20px; left: 10px
      }
      .item-grid { margin: 30px 0; }
      .item-grid .image { background: black }     
-     .item-grid .image img { width: 100%; height: 390px; object-fit: cover; opacity: 0.7}
+     .item-grid .image img { width: 100%; height: 390px; object-fit: cover; opacity: 0.85}
      #ultimas .item-grid .image img { height: 255px }
      #relacionados .item-grid .image img { height: 180px }
      #list .item-grid .image img { height: 250px }
@@ -260,7 +259,7 @@ body { font-family: 'Hind', sans-serif; }
      .item-grid .info .address {  font-weight: 400; font-family: 'Hind',sans-serif; font-size: 14px; line-height: 23px; color: #bebebe;margin: 5px 0 }
      .black { color: black !important }
      .title-footer { font-family: 'Josefin Sans', sans-serif;color: white; font-size: 18px }
-     .logo-section .text-footer-logo { color: #bebebe; margin-top: 20px; font-weight: 400;font-size: 14px }
+     .logo-section .text-footer-logo { color: #bebebe; margin-top: 20px; font-weight: 400;font-size: 18px }
      .btn-footer-link  { color: white; text-decoration: none; }
      .btn-footer-link:hover  { transition: color 0.2s linear 0.2s; color: var(--c1) ; text-decoration: none}
 
@@ -270,7 +269,7 @@ body { font-family: 'Hind', sans-serif; }
      .myfooter .logo-section a i { font-size: 12px }
      .myfooter .socials-footer { list-style: none; padding: 0; margin-top: 20px; }
      .myfooter .socials-footer i { color: white ; padding-right: 12px}
-     .myfooter .socials-footer a{ color: #bebebe; font-size: 12px; }
+     .myfooter .socials-footer a{ color: #bebebe; font-size: 18px; }
      .myfooter .socials-footer a:hover{ text-decoration: none }
      .myfooter .socials-footer a:hover i { transition: color 0.8s linear 0.2s;; color: var(--c1) }
      .myfooter .inputs .newsletter { margin-top: 20px }
@@ -282,7 +281,7 @@ body { font-family: 'Hind', sans-serif; }
       width: calc(100% - 140px);
       padding: 0 12px;
       border: 1px solid #e1e1e1;
-      height: 36px;
+      height: 40px;
       outline: 0;
       border-radius: 2px
       line-height: 36px;
@@ -298,10 +297,10 @@ body { font-family: 'Hind', sans-serif; }
       background: var(--c1);  
     }
 
-    .myfooter .text { margin-top: 20px; color: #bebebe; font-size: 12px }
+    .myfooter .text { margin-top: 20px; color: #bebebe; font-size: 18px }
     .myfooter .socials-icons { list-style: none; padding: 0; display: inline-flex; margin-top: 20px  }
     .myfooter .socials-icons a  { padding-right: 5px; color: #bebebe }
-    .myfooter .socials-icons  li a i { margin-right: 15px }
+    .myfooter .socials-icons  li a i { margin-right: 15px; font-size: 22px }
     .myfooter .socials-icons  li a:hover i {  transition: color 0.2s linear 0.2s; color: var(--c1) }
     .br1 { border-right: 1px solid black }
     .testimonials .item img { width: 120px !important; padding: 25px 0;margin: 0 auto }
@@ -468,7 +467,7 @@ body { font-family: 'Hind', sans-serif; }
       background-position-y:15px; 
       background-position-x:12px; 
     }
-    .specialbtn  { margin: 30px 20px; }
+    .specialbtn  { margin: 30px 40px; }
     .my-custom-input-label-box.box-one input + label {  background-image: url(../img/type-1-img.png);  } 
     .my-custom-input-label-box.box-two input + label {  background-image: url(../img/type-2-img.png);  } 
     .my-custom-input-label-box.box-three input + label {  background-image: url(../img/type-3-img.png);  } 

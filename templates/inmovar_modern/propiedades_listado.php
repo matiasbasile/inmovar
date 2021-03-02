@@ -130,7 +130,7 @@ $page_act = $vc_link_tipo_operacion;
 									<label>Acepta Permuta</label>
 								</div> -->
 								<div class="wautom">
-									<button class="btn-yellow specialbtn" type="submit">BUSCAR</button>
+									<button class="btn-yellow specialbtn btn-yellow" type="submit">BUSCAR</button>
 								</div>
 
 							</div>
