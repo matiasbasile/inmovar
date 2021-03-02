@@ -15,6 +15,7 @@
 		<div class="container">
 			<div class="footer-middle">
 				<div class="row">
+					<div class="col-xl-3 col-lg-3"></div>
 					<div class="col-xl-3 col-lg-3">
 						<?php $t = $web_model->get_text("tit1","LA PLATA")?>
 						<h6 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave?>">
@@ -35,7 +36,7 @@
 							</li>
 						</ul>
 					</div>
-					<div class="col-xl-3 col-lg-3">
+					<!-- <div class="col-xl-3 col-lg-3">
 						<?php $t = $web_model->get_text("box2-tit1","BUENOS AIRES")?>
 						<h6 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave?>">
 							<?php echo $t->plain_text ?>
@@ -54,8 +55,8 @@
 								</a>
 							</li>
 						</ul>
-					</div>
-					<div class="col-xl-3 col-lg-3">
+					</div> -->
+					<!-- <div class="col-xl-3 col-lg-3">
 						<?php $t = $web_model->get_text("box3tit1","MAR DEL PLATA")?>
 						<h6 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave?>">
 							<?php echo $t->plain_text ?>
@@ -74,7 +75,7 @@
 								</a>
 							</li>
 						</ul>
-					</div>
+					</div> -->
 					<div class="col-xl-3 col-lg-3">
 						<?php $t = $web_model->get_text("box4tit1","VIAS DE COMUNICACIÓN")?>
 						<h6 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave?>">
@@ -95,6 +96,8 @@
 							</li>
 						</ul>
 					</div>
+					<div class="col-xl-3 col-lg-3"></div>
+					
 				</div>
 			</div>
 		</div>
@@ -104,7 +107,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="property-full-info">
-					<div class="box-space">
+					<div class="box-space mb50">
 						<h2 class="section-title text-center">Enviar consulta</h2>
 						<div class="form">
 							<form onsubmit="return enviar_contacto()">

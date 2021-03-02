@@ -48,9 +48,8 @@ $page_act = $vc_link_tipo_operacion;
 						<div class="select-box">
 							<span>Mostrar:</span>
 							<select class="form-control small" onchange="submit_buscador_propiedades()" id="ordenador_offset" name="offset">
-								<option <?php echo ($vc_offset == "6")?"selected":"" ?> value="6">6</option>
-								<option <?php echo ($vc_offset == "12")?"selected":"" ?> value="12">12</option>
 								<option <?php echo ($vc_offset == "24")?"selected":"" ?> value="24">24</option>
+								<option <?php echo ($vc_offset == "36")?"selected":"" ?> value="36">36</option>
 							</select>
 						</div>
 						<?php if ($vc_total_paginas > 1) {  ?>
@@ -86,7 +85,8 @@ $page_act = $vc_link_tipo_operacion;
 													<div class="owl-carousel" data-items="1" data-margin="0" data-items-lg="1" data-loop="true" data-nav="false" data-dots="true">
 														<?php $prop = $propiedad_model->get($p->id)?>
 														<?php if (!empty($prop->images)) {  ?>
-															<?php foreach ($prop->images as $i) {  ?>
+															<?php $x=0;foreach ($prop->images as $i) { 
+																if ($x<5) {   ?>
 																<div class="item">
 																	<img class="cover-recientes" src="<?php echo $i ?>" alt="Property Img">
 																	<div class="rollover">
@@ -100,7 +100,8 @@ $page_act = $vc_link_tipo_operacion;
 																		<?php } ?>
 																	</div>
 																</div>
-															<?php } ?>
+															<?php $x++;} ?>
+															<?php }  ?>
 														<?php } else { ?>
 															<div class="item">
 																<img class="cover-recientes" src="/admin/<?php echo $p->path ?>" alt="Property Img">

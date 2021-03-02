@@ -1,3 +1,4 @@
+<?php echo "hola" ?>
 <?php include "includes/init.php" ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
@@ -137,7 +138,7 @@
 						<div class="col-lg-4">
 							<div class="service-item">
 								<span class="icon-box"></span>
-								<?php $t = $web_model->get_text("ventas-tit","Ventas")?>
+								<?php $t = $web_model->get_text("ventasssss-tit","Ventas")?>
 								<h4 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
 									<?php echo $t->plain_text ?>
 								</h4>
