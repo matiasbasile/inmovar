@@ -2502,3 +2502,21 @@ padding-bottom: 5px;
     border-bottom: none;
   }
 }
+.onclick { 
+    background: none !important;
+    font-size: 28px;
+    color: #ffffff;
+    font-weight: 500;
+    width: auto;
+    height: auto; 
+    z-index: 999999;
+    cursor: pointer;
+  }
+
+.onclick-span { 
+  cursor: pointer;
+  z-index: 999999;
+ }
+
+ .pointer { cursor: pointer; }
+ .pointer-rel { cursor: pointer; position: relative;}

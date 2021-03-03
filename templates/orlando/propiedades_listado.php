@@ -90,7 +90,7 @@ $page_act = $vc_link_tipo_operacion;
 																<div class="item">
 																	<img class="cover-recientes" src="<?php echo $i ?>" alt="Property Img">
 																	<div class="rollover">
-																		<a href="<?php echo mklink ($prop->link) ?>" class="add"></a>
+																		<a href="<?php echo ($prop->link_propiedad) ?>" class="add"></a>
 																		<?php if (estaEnFavoritos($prop->id)) { ?>
 																			<a class="heart" data-bookmark-state="added" href="/admin/favoritos/eliminar/?id=<?php echo $prop->id; ?>">
 																			</a>
@@ -106,7 +106,7 @@ $page_act = $vc_link_tipo_operacion;
 															<div class="item">
 																<img class="cover-recientes" src="/admin/<?php echo $p->path ?>" alt="Property Img">
 																<div class="rollover">
-																	<a href="<?php echo mklink ($p->link) ?>" class="add"></a>
+																	<a href="<?php echo ($p->link_propiedad) ?>" class="add"></a>
 																	<?php if (estaEnFavoritos($p->id)) { ?>
 																		<a class="heart" data-bookmark-state="added" href="/admin/favoritos/eliminar/?id=<?php echo $p->id; ?>">
 																		</a>
@@ -138,7 +138,7 @@ $page_act = $vc_link_tipo_operacion;
 													</div>
 													<div class="property-bottom">
 														<span><?php echo $p->precio ?></span>
-														<a class="btn btn-red" href="<?php echo mklink ($p->link) ?>">ver más</a>
+														<a class="btn btn-red" href="<?php echo ($p->link_propiedad) ?>">ver más</a>
 													</div>
 												</div>
 											</div>
@@ -160,7 +160,7 @@ $page_act = $vc_link_tipo_operacion;
 												<div class="property-img" style="min-height: 202px">
 													<img class="cover-list" src="/admin/<?php echo $p->path ?>" alt="Property Img">
 													<div class="rollover">
-														<a href="<?php echo mklink ($p->link) ?>" class="add"></a>
+														<a href="<?php echo ($p->link_propiedad) ?>" class="add"></a>
 														<?php if (estaEnFavoritos($p->id)) { ?>
 															<a class="heart" data-bookmark-state="added" href="/admin/favoritos/eliminar/?id=<?php echo $p->id; ?>">
 															</a>

@@ -277,7 +277,7 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
 		          <div class="property-img">
 		            <img class="cover-recientes" src="/admin/<?php echo $p->path ?>" alt="Property Img">
 		            <div class="rollover">
-		              <a href="<?php echo mklink ($p->link) ?>" class="add"></a>
+		              <a href="<?php echo ($p->link_propiedad) ?>" class="add"></a>
 		               <?php if (estaEnFavoritos($p->id)) { ?>
                     <a class="heart" data-bookmark-state="added" href="/admin/favoritos/eliminar/?id=<?php echo $p->id; ?>">
                     </a>
@@ -306,7 +306,7 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
 		            </div>
 		            <div class="property-bottom">
 		              <span><?php echo $p->precio ?></span>
-		              <a class="btn btn-red" href="<?php echo mklink ($p->link) ?>">ver más</a>
+		              <a class="btn btn-red" href="<?php echo ($p->link_propiedad) ?>">ver más</a>
 		            </div>
 		          </div>
 		        </div>
