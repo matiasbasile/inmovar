@@ -163,7 +163,7 @@ tbody tr{
               <hr>
             </div>
             <div class="col-xs-12">
-              <div style="font-size: 15px; line-height: 20px; ">
+              <div style="font-size: 13px; line-height: 17px; ">
                 POR EL MANDATO DEL LOCADOR RECIBI
                 LA SUMA DE PESOS <?php echo strtoupper($letras->ValorEnLetras($factura->total)) ?>
                 POR EL ALQUILER DE <?php echo strtoupper($factura->propiedad) ?>
@@ -178,6 +178,18 @@ tbody tr{
                   <th class="w90">IMPORTE</th>
                 </tr>
                 <tbody>
+                  <?php if ($factura->monto != 0) { ?>
+                    <tr>
+                      <td class="pl5">ALQUILER</td>
+                      <td class="tar pr5">$ <?php echo number_format($factura->monto,2); ?></td>
+                    </tr>
+                  <?php } ?>
+                  <?php if ($factura->expensa != 0) { ?>
+                    <tr>
+                      <td class="pl5">EXPENSA</td>
+                      <td class="tar pr5">$ <?php echo number_format($factura->expensa,2); ?></td>
+                    </tr>
+                  <?php } ?>
                   <?php if (sizeof($factura->items)>0) { ?>
                     <?php foreach($factura->items as $i) { ?>
                       <tr>
