@@ -891,6 +891,7 @@ header { background:white; width:100%; position:relative; z-index:1000; }
 }
 
 .property-tag.featured { right:10px; margin-top:10px; }
+.property-tag.featured.left { left:10px; margin-top:10px;max-width: 100px; text-align: center; }
 .property-tag.status { right:10px; bottom:10px; }
 .property-tag.status-left { left:10px;  bottom:10px; }
 

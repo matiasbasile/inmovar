@@ -56,6 +56,7 @@ $page_active = $vc_link_tipo_operacion;
               <a href="<?php echo $p->link_propiedad ?>" class="property-img">
                 <div class="img-fade"></div>
                 <div class="property-tag button alt featured"><?php echo $p->tipo_operacion?></div>
+                <div class="property-tag button alt featured left"><?php echo $p->tipo_estado ?></div>  
                 <div class="property-tag button status"><?php echo $p->tipo_inmueble ?></div>
                 <div class="property-price"><?php echo $p->precio ?></div>
                 <div class="property-color-bar"></div>

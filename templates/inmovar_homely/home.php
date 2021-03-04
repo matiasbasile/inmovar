@@ -177,6 +177,7 @@ if (sizeof($destacados)>0) { ?>
             <a href="<?php echo $d->link_propiedad ?>" class="property-img">
               <div class="img-fade"></div>
               <div class="property-tag button alt featured"><?php echo $d->tipo_operacion ?></div>
+              <div class="property-tag button alt featured left"><?php echo $d->tipo_estado ?></div>
               <div class="property-tag button status"><?php echo $d->tipo_inmueble ?></div>
               <div class="property-price"><?php echo $d->precio ?></div>
               <div class="property-color-bar"></div>
@@ -257,6 +258,7 @@ if (sizeof($destacados)>0) { ?>
                 <a href="<?php echo $p->link_propiedad ?>" class="property-img">
                   <div class="img-fade"></div>
                   <div class="property-tag button alt featured"><?php echo $p->tipo_inmueble?></div>
+                  <div class="property-tag button alt featured left"><?php echo $p->tipo_estado ?></div>    
                   <div class="property-tag button status">
                     <?php echo ($p->tipo_operacion_link == "alquileres")?"Alquilamos":"" ?>
                     <?php echo ($p->tipo_operacion_link == "ventas")?"Vendemos":"" ?>
@@ -366,7 +368,7 @@ $(window).trigger('resize');
 $(document).ready(function(){
   if (screen.width >= 768) {
     var maximo = 0;
-    $(".destacados .property-content").each(function(i,e){
+    $(".services .service-item").each(function(i,e){
       if ($(e).height() > maximo) maximo = $(e).height();
     });
     $(".destacados .property-content").height(maximo);
@@ -378,6 +380,18 @@ $(document).ready(function(){
     $(".ultimas .property-content").height(maximo);
   }
 });
+
+$(document).ready(function(){
+  if (screen.width >= 768) {
+    var maximo = 0;
+    $(".services .service-item").each(function(i,e){
+      if ($(e).height() > maximo) maximo = $(e).height();
+    });
+    $(".services .service-item").height(maximo);
+  }
+});
+
+
 
 function enviar_buscador_propiedades() { 
   var link = "<?php echo mklink("propiedades/")?>";

@@ -292,6 +292,7 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
                     <a href="<?php echo $d->link_propiedad ?>" class="property-img">
                       <div class="img-fade"></div>
                       <div class="property-tag button alt featured"><?php echo $d->tipo_operacion ?></div>
+                      <div class="property-tag button alt featured left"><?php echo $d->tipo_estado ?></div>  
                       <div class="property-tag button status"><?php echo $d->tipo_inmueble ?></div>
                       <div class="property-price"><?php echo $d->precio ?></div>
                       <div class="property-color-bar"></div>
