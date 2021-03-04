@@ -1197,7 +1197,9 @@ if (!empty($empresa->path_template)) {
 </div>
 <div style="margin-left: 256px; height: 100%; width: calc(100% - 256px); ">
   <% var dom = ""; %>
-  <% if (window.location.origin.indexOf("inmovar")>=0) { %>
+  <% if (window.location.origin.indexOf("sandbox.inmovar")>=0) { %>
+    <% dom = window.location.protocol+"//sandbox.inmovar.com/sandbox/"+ID_EMPRESA+"/" %>
+  <% } else if (window.location.origin.indexOf("inmovar")>=0) { %>
     <% dom = window.location.protocol+"//app.inmovar.com/sandbox/"+ID_EMPRESA+"/" %>
   <% } else { %>
     <% dom = window.location.protocol+"//"+DOMINIO %>
