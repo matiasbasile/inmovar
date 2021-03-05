@@ -213,7 +213,7 @@ body { font-family: 'Hind', sans-serif; }
   .item-grid .price { color: #000;
     position: absolute;
     right: 10px;
-    bottom: 20px;
+    top: 15px;
     align-self: center;
     background-color: #fff;
     padding: 4px 6px 1px;
@@ -222,7 +222,7 @@ body { font-family: 'Hind', sans-serif; }
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 600 }
     #index .item-grid .price { font-size: 20px }
     .item-grid .label { color: #fff;

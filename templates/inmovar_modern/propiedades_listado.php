@@ -146,7 +146,7 @@ $page_act = $vc_link_tipo_operacion;
 													<img class="cover" src="/admin/<?php echo $p->path ?>">
 												</a>
 												<span class="price"><?php echo ($p->precio_final != 0)?$p->precio:"Consultar"?></span>
-												<span class="label"><?php echo $p->tipo_operacion?></span>
+												<!-- <span class="label"><?php echo $p->tipo_operacion?></span> -->
 												<?php if ($p->codigo != 0) { ?>
 													<span class="id">COD <?php echo $p->codigo ?></span>
 												<?php } ?>

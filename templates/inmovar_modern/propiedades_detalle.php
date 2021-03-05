@@ -280,7 +280,7 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
 											<img class="cover" src="/admin/<?php echo $p->path ?>">
 										</a>
 										<span class="price"><?php echo ($p->precio_final != 0)?$p->precio:"Consultar"?></span>
-										<span class="label"><?php echo $p->tipo_operacion?></span>
+										<!-- <span class="label"><?php echo $p->tipo_operacion?></span> -->
 										<span class="id">COD <?php echo $p->codigo ?></span>
 									</div>
 									<div class="info">
