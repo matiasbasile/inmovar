@@ -21,7 +21,9 @@ body { font-family: "Calibri", Helvetica, Arial, sans-serif }
 hr{
   margin-top: 5px;
   margin-bottom: 5px;
-  border: 2px solid black; 
+  height: 0px;
+  width: 100%;
+  border-top: 1px solid black; 
 }
 table{
   margin-top: 20px;
@@ -43,6 +45,7 @@ th{
   color: black;
   text-align: center;
 }
+td { padding: 3px; }
 tbody tr{
   border-bottom: 1px solid #b2acac;
 }
@@ -87,11 +90,11 @@ tbody tr{
             $factura->total += $total_items + $total_extras;
           ?>
           <div class="col-xs-12 bodyprint">
-            <div class="col-xs-7 mt10 pl5 pr5" style="position: relative; top: 10px;">
+            <div class="col-xs-6 mt10 mb10 pl5 pr5">
               <span class="titulo">RECIBO X</span><br>
               <span class="subtitulo">Documento no <br> valido como factura</span>
             </div>
-            <div class="col-xs-5 mt30 pl5 pr5">
+            <div class="col-xs-6 pl5 pr5">
               <?php if(!empty($empresa->logo)) { ?>
                 <img style="width: 100%; height: 60px; object-fit: contain;" src="/admin/<?php echo $empresa->logo ?>"/>
               <?php } ?>
