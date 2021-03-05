@@ -104,7 +104,7 @@ class Alquiler_Model extends Abstract_Model {
 		$q = $this->db->query($sql);
 		$alquiler->cuotas = array();
 		foreach($q->result() as $r) {
-			$r->extras = $this->calcular_extras($r->id);
+			$r->extras = $this->get_extras($r->id);
 			$alquiler->cuotas[] = $r;
 		}
 
