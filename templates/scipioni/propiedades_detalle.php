@@ -416,7 +416,14 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no
               <div class="main-title-2">
                 <h2><span>Video</span></h2>
               </div>
-              <?php echo $propiedad->video ?>
+              <?php 
+              if (strpos($propiedad->video, "iframe")>0) echo $propiedad->video;
+              else {
+                $pars_video = parse_url($propiedad->video, PHP_URL_QUERY);
+                if (isset($pars_video["v"])) {
+                  echo '<iframe width="560" height="315" src="https://www.youtube.com/embed/'.$pars_video["v"].'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                }
+              } ?>
             </div>
           <?php } ?>
         </div>
