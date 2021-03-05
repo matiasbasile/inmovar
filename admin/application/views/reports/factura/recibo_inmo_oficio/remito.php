@@ -93,7 +93,7 @@ tbody tr{
             </div>
             <div class="col-xs-5 mt30 pl5 pr5">
               <?php if(!empty($empresa->logo)) { ?>
-                <img style="width: 100%; height: 60px;" src="/admin/<?php echo $empresa->logo ?>"/>
+                <img style="width: 100%; height: 60px; object-fit: contain;" src="/admin/<?php echo $empresa->logo ?>"/>
               <?php } ?>
             </div>
             <div class="col-xs-12 p0">
