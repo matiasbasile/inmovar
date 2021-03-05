@@ -11,12 +11,12 @@ error_reporting(E_ALL);
 <style type="text/css">
 #barra {}
 <?php $cborde = "#a1a1a1"; ?>
-
+body { font-family: "Calibri", Helvetica, Arial, sans-serif }
 .titulo{
-  font-size: 18px;
+  font-size: 16px;
 }
 .subtitulo{
-  font-size: 12px;
+  font-size: 10px;
 }
 hr{
   margin-top: 5px;
@@ -30,7 +30,7 @@ table{
 .separador{
   width: 100%;
   padding: 3px;
-  background-color: grey;
+  background-color: #c7c7c7;
   color: black;
   text-align: center;
   margin-top: 10px;
@@ -39,7 +39,7 @@ table{
 th{
   margin: 10px 0;
   padding: 3px;
-  background-color: grey;
+  background-color: #c7c7c7;
   color: black;
   text-align: center;
 }
@@ -87,11 +87,11 @@ tbody tr{
             $factura->total += $total_items + $total_extras;
           ?>
           <div class="col-xs-12 bodyprint">
-            <div class="col-xs-9 mt10" style="position: relative; top: 10px;">
-              <span class="titulo">RECIBO <?php echo $factura->comprobante?></span><br>
+            <div class="col-xs-7 mt10 pl5 pr5" style="position: relative; top: 10px;">
+              <span class="titulo">RECIBO X</span><br>
               <span class="subtitulo">Documento no <br> valido como factura</span>
             </div>
-            <div class="col-xs-3 mt30">
+            <div class="col-xs-5 mt30 pl5 pr5">
               <?php if(!empty($empresa->logo)) { ?>
                 <img style="width: 100%; height: 60px;" src="/admin/<?php echo $empresa->logo ?>"/>
               <?php } ?>
@@ -181,20 +181,20 @@ tbody tr{
                   <?php if ($factura->monto != 0) { ?>
                     <tr>
                       <td class="pl5">ALQUILER</td>
-                      <td class="tar pr5">$ <?php echo number_format($factura->monto,2); ?></td>
+                      <td class="tar pr5">$ <?php echo number_format($factura->monto,2,",","."); ?></td>
                     </tr>
                   <?php } ?>
                   <?php if ($factura->expensa != 0) { ?>
                     <tr>
                       <td class="pl5">EXPENSA</td>
-                      <td class="tar pr5">$ <?php echo number_format($factura->expensa,2); ?></td>
+                      <td class="tar pr5">$ <?php echo number_format($factura->expensa,2,",","."); ?></td>
                     </tr>
                   <?php } ?>
                   <?php if (sizeof($factura->items)>0) { ?>
                     <?php foreach($factura->items as $i) { ?>
                       <tr>
                         <td class="pl5"><?php echo $i->nombre; ?></td>
-                        <td class="tar pr5">$ <?php echo number_format($i->monto,2); ?></td>
+                        <td class="tar pr5">$ <?php echo number_format($i->monto,2,",","."); ?></td>
                       </tr>
                     <?php } ?>  
                   <?php } ?>
@@ -202,13 +202,13 @@ tbody tr{
                     <?php foreach($factura->extras as $i) { ?>
                       <tr>
                         <td class="pl5"><?php echo $i->nombre; ?></td>
-                        <td class="tar pr5">$ <?php echo number_format($i->monto,2); ?></td>
+                        <td class="tar pr5">$ <?php echo number_format($i->monto,2,",","."); ?></td>
                       </tr>
                     <?php } ?>  
                   <?php } ?>
                   <tr>
                     <td class="total tar pr5"><b>TOTAL</b></td>
-                    <td class="tar pr5">$ <?php echo ($factura->total) ?></td>
+                    <td class="tar pr5"><b>$ <?php echo number_format($factura->total,2,",",".") ?></b></td>
                   </tr>
                 </tbody>
               </table>
