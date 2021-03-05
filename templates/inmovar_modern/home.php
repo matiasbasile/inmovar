@@ -5,7 +5,7 @@
 <head>
 	<?php include "includes/head.php" ?>
 </head>
-<body>
+<body id="index">
 	<?php include "includes/header.php" ?>
 	<?php $slides = $web_model->get_slider() ?>
 	<?php foreach ($slides as $s) {  ?>
