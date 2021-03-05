@@ -170,8 +170,8 @@ tbody tr{
                   POR EL MANDATO DEL LOCADOR RECIBÍ
                   LA SUMA DE PESOS <?php echo strtoupper($letras->ValorEnLetras($total)) ?>
                   POR EL ALQUILER DE <?php echo strtoupper($factura->propiedad) ?>
-                  EN EL PERÍODO <?php echo strtoupper($factura->corresponde_a) ?>
                   QUE OCUPA EN <?php echo strtoupper($factura->direccion) ?>
+                  EN EL PERÍODO <?php echo strtoupper($factura->corresponde_a) ?>
                   QUE VENCE EL <?php echo strtoupper($factura->vencimiento) ?>.<br/>
                 </div>
               </div>
