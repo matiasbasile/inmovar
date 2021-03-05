@@ -88,7 +88,7 @@ tbody tr{
             }
             $total = $factura->total + $total_items + $total_extras; ?>
             <div class="col-xs-12 bodyprint">
-              <div class="col-xs-6 mt10 mb10 pl5 pr5">
+              <div class="col-xs-6 mt10 mb10">
                 <span class="titulo">RECIBO X</span><br>
                 <span class="subtitulo">Documento no <br> valido como factura</span>
               </div>
@@ -108,7 +108,7 @@ tbody tr{
                       <?php echo $empresa->direccion_empresa ?><br>
                     <?php } ?>
                     <?php if (isset($empresa->telefono_empresa) && !empty($empresa->telefono_empresa)) { ?>
-                      <?php echo "Tel | ".$empresa->telefono_empresa ?><br>
+                      <?php echo "Tel: ".($empresa->id == 1392) ? "4216000" : $empresa->telefono_empresa ?><br>
                     <?php } ?>
                     </div>
                     <div class="col-xs-3 tac">
@@ -125,7 +125,9 @@ tbody tr{
                       <?php if (isset($empresa->razon_social) && !empty($empresa->razon_social)) { ?>
                         <?php echo $empresa->razon_social?><br>
                       <?php } ?>
-                      <i>Responsable monotributo</i>
+                      <?php if ($empresa->id == 1392) { ?>
+                        <i>Responsable monotributo</i>
+                      <?php } ?>
                     </div>
                     <div class="col-xs-7">
                       <?php if (isset($empresa->cuit) && !empty($empresa->cuit)) { ?>
@@ -165,7 +167,7 @@ tbody tr{
               </div>
               <div class="col-xs-12">
                 <div style="font-size: 13px; line-height: 17px; ">
-                  POR EL MANDATO DEL LOCADOR RECIBI
+                  POR EL MANDATO DEL LOCADOR RECIBÍ
                   LA SUMA DE PESOS <?php echo strtoupper($letras->ValorEnLetras($total)) ?>
                   POR EL ALQUILER DE <?php echo strtoupper($factura->propiedad) ?>
                   QUE OCUPA EN <?php echo strtoupper($factura->direccion) ?>
@@ -181,7 +183,7 @@ tbody tr{
                   <tbody>
                     <?php if ($factura->monto != 0) { ?>
                       <tr>
-                        <td class="pl5">ALQUILER</td>
+                        <td class="pl5">ALQUILER <?php echo $factura->corresponde_a ?></td>
                         <td class="tar pr5">$ <?php echo number_format($factura->monto,2,",","."); ?></td>
                       </tr>
                     <?php } ?>
