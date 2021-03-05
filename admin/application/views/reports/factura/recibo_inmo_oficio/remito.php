@@ -65,7 +65,7 @@ tbody tr{
 }
 @page {
   size: auto;
-  margin: 0px;
+  margin: 10px;
 }
 </style>
 </head>
