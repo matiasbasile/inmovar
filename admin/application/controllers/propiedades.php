@@ -1014,13 +1014,13 @@ class Propiedades extends REST_Controller {
       $inmuebles[] = $linea_s;
 
       // Foto de portada
-      $fotos[] = $r->id.","."http://www.grupo-urbano.com.ar/admin/".$r->path.",S";
+      $fotos[] = $r->id.","."https://app.inmovar.com/admin/".$r->path.",S";
       // Mas fotos
       $sql = "SELECT AI.* FROM inm_propiedades_images AI ";
       $sql.= "WHERE AI.id_propiedad = $r->id AND AI.id_empresa = $id_empresa ORDER BY AI.orden ASC";
       $q_img = $this->db->query($sql);
       foreach($q_img->result() as $img) {
-        if ($img->plano == 1) $fotos[] = $r->id.","."http://www.grupo-urbano.com.ar/admin/".$img->path.",N";
+        if ($img->plano == 1) $fotos[] = $r->id.","."https://app.inmovar.com/admin/".$img->path.",N";
       }
 
       // Atributos
