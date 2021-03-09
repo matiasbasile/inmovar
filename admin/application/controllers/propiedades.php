@@ -997,11 +997,11 @@ class Propiedades extends REST_Controller {
       $linea[] = $r->tipo_inmueble;
       $linea[] = $r->ambientes;
       $linea[] = $r->tipo_operacion;
-      $linea[] = $r->calle." ".$r->altura;
+      $linea[] = $r->direccion_completa;
       $linea[] = $r->calle;
       $linea[] = $r->altura;
-      $linea[] = "";
-      $linea[] = "";
+      $linea[] = $r->entre_calles;
+      $linea[] = $r->entre_calles_2;
       $linea[] = $r->piso;
       $linea[] = $r->numero;
       $linea[] = $r->localidad;
