@@ -468,7 +468,7 @@ function onsubmit_buscador_propiedades() {
   var tipo_operacion = $("#tipo_operacion").val();
   var localidad = $("#localidad").val();
   var tipo_propiedad = $("#tp").val();
-  link = link + tipo_operacion + "/" + localidad + "/<?php echo $vc_params?>";
+  link = link + tipo_operacion + "/" + localidad + "/";
 
   $("#form_propiedades").attr("action",link);
   return true;
