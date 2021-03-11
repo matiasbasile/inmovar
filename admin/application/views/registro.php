@@ -53,7 +53,7 @@
         <input type="submit" id="submit_registro" class="button-submit" value="Enviar Registro"><br>
 
         <input type="checkbox" id="aceptar_terminos" />
-        <label for="aceptar_terminos">Acepto los <a href="">términos y condiciones</a></label>
+        <label for="aceptar_terminos">Acepto los <a target="_blank" href="https://www.inmovar.com/entrada/terminos-y-condiciones-41238">términos y condiciones</a></label>
 
         <div class="g-recaptcha" data-sitekey="6LeHSTQUAAAAAA5FV121v-M7rnhqdkXZIGmP9N8E"></div>
 
