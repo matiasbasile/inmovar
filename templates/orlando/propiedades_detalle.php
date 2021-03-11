@@ -1,5 +1,6 @@
-<?php include "includes/init.php" ?>
-<?php $propiedad = $propiedad_model->get($id,array(
+<?php include "includes/init.php" ;
+$id_empresa = isset($get_params["em"]) ? $get_params["em"] : $empresa->id;
+$propiedad = $propiedad_model->get($id,array(
 	"buscar_total_visitas"=>1,
 	"buscar_relacionados_offset"=>3,
 	"id_empresa"=>$id_empresa,
