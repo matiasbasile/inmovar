@@ -13,6 +13,8 @@ class Importacion_Xintel_Model extends Abstract_Model {
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
+    set_time_limit(0);
+
     $id_empresa = 1503;
     $c = curl_init($url);
     curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
