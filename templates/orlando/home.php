@@ -96,18 +96,10 @@
 											</div>
 											<div class="property-middle">
 												<ul>
-													<?php if ($d->superficie_total != 0) {  ?>
-														<li><img src="assets/images/home.png" alt="Home"> <?php echo $d->superficie_total ?> mts2</li>
-													<?php } ?>
-													<?php if (!empty($d->dormitorios)) {  ?>
-														<li><img src="assets/images/beds.png" alt="Beds"> <?php echo $d->dormitorios ?></li>
-													<?php } ?>
-													<?php if (!empty($d->banios)) {  ?>
-														<li><img src="assets/images/washroom.png" alt="Washroom"> <?php echo $d->banios ?></li>
-													<?php } ?>
-													<?php if (!empty($d->cocheras)) {  ?>
-														<li><img src="assets/images/parking.png" alt="Parking"> <?php echo $d->cocheras ?></li>
-													<?php } ?>
+													<li><img src="assets/images/home.png" alt="Home"> <?php echo (!empty($d->superficie_total))?$d->superficie_total." mts2":"-" ?> </li>
+													<li><img src="assets/images/beds.png" alt="Beds"> <?php echo (!empty($d->dormitorios))?$d->dormitorios:"-" ?></li>
+													<li><img src="assets/images/washroom.png" alt="Washroom"> <?php echo (!empty($d->banios))?$d->banios:"-" ?></li>
+													<li><img src="assets/images/parking.png" alt="Parking"> <?php echo (!empty($d->cocheras))?$d->cocheras:"-" ?></li>
 												</ul>
 											</div>
 											<div class="property-bottom">

@@ -290,6 +290,7 @@ header {
   justify-content: space-between;
 }
 
+header .logo { max-width: 240px }
 .logo {
   display: inline-block;
 }
