@@ -92,7 +92,7 @@
 										<div class="property-details" style="min-height: 402px">
 											<div class="property-top">
 												<h3><?php echo $d->nombre ?></h3>
-												<p><?php echo substr(strip_tags($d->texto),0,250);echo (strlen($d->texto)>250)?"...":"" ?>	</p>
+												<p><?php echo substr(strip_tags($d->texto),0,180);echo (strlen($d->texto)>180)?"...":"" ?>	</p>
 											</div>
 											<div class="property-middle">
 												<ul>
