@@ -92,7 +92,7 @@
 										<div class="property-details" style="min-height: 402px">
 											<div class="property-top">
 												<h3><?php echo $d->nombre ?></h3>
-												<p><?php echo substr(strip_tags($d->texto),0,180);echo (strlen($d->texto)>180)?"...":"" ?>	</p>
+												<p><?php echo substr(strip_tags($d->texto),0,200);echo (strlen($d->texto)>200)?"...":"" ?>	</p>
 											</div>
 											<div class="property-middle">
 												<ul>
@@ -104,7 +104,7 @@
 											</div>
 											<div class="property-bottom">
 												<span><?php echo $d->precio ?></span>
-												<a class="btn btn-red" href="<?php echo mklink ($d->link) ?>">ver más <img src="assets/images/play.png" alt="Play"></a>
+												<a class="btn btn-red" href="<?php echo ($d->link_propiedad) ?>">ver más <img src="assets/images/play.png" alt="Play"></a>
 											</div>
 										</div>
 									</div>

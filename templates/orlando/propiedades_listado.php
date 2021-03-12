@@ -184,7 +184,7 @@ $page_act = $vc_link_tipo_operacion;
 													</div>
 													<div class="property-bottom">
 														<span><?php echo $p->precio ?></span>
-														<a class="btn btn-red" href="<?php echo mklink ($p->link) ?>">ver más</a>
+														<a class="btn btn-red" href="<?php echo ($p->link_propiedad) ?>">ver más</a>
 													</div>
 												</div>
 											</div>
