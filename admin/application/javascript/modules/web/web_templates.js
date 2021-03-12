@@ -85,7 +85,7 @@
         },
         editar: function() {
         	// Cuando editamos un elemento, indicamos a la vista que lo cargue en los campos
-        	location.href="app/#web_template/"+this.model.id;
+        	location.href="app/#web_templates/"+this.model.id;
         },
         borrar: function(e) {
             if (confirmar("Realmente desea eliminar este elemento?")) {
