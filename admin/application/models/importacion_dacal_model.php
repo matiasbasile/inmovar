@@ -38,9 +38,9 @@ class Importacion_Dacal_Model extends Abstract_Model {
         $valor = $p->ope[0]->v;
 
         if ($p->pt == 1){
-          $tipo_inmueble = 7; //Terreno
+          $tipo_inmueble = 7; 
         } elseif ($p->pt == 2) {
-          $tipo_inmueble = 2; //Departamento
+          $tipo_inmueble = 2; 
         } elseif ($p->pt == 3) {
           $tipo_inmueble = 1;
         } elseif ($p->pt == 4) {
@@ -68,7 +68,7 @@ class Importacion_Dacal_Model extends Abstract_Model {
         $sql = "INSERT INTO inm_propiedades (";
         $sql.= "codigo_tokko, id_empresa, id_tipo_inmueble, id_tipo_operacion, id_tipo_estado, moneda, precio_final, path, latitud, longitud, ";
         $sql.= "link, dormitorios, cocheras, superficie_cubierta, superficie_total, calle, activo, compartida) ";
-        $sql.= "VALUES ('$p->id', $id_empresa, $tipo_inmueble, $tipo, 1,  '$moneda', '$valor', '$path', '$p->lat', '$p->lon', ";
+        $sql.= "VALUES ('$p->id', $id_empresa, $tipo_inmueble, $tipo, 1, '$moneda', '$valor', '$path', '$p->lat', '$p->lon', ";
         $sql.= "'$p->url', '$p->dm', '$p->co', '$p->sc', '$p->s', '$p->dir', 1, 1) ";
 
         $this->db->query($sql);
