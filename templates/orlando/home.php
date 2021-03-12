@@ -75,7 +75,7 @@
 
 
 		<!-- Featured Properties -->
-		<?php $destacados = $propiedad_model->get_list(array("destacado"=>1))?>
+		<?php $destacados = $propiedad_model->get_list(array("destacado"=>1,"solo_propias"=>1))?>
 		<?php if (!empty($destacados)) {  ?>
 			<div class="featured-properties">
 				<div class="container">
@@ -92,7 +92,7 @@
 										<div class="property-details" style="min-height: 402px">
 											<div class="property-top">
 												<h3><?php echo $d->nombre ?></h3>
-												<p><?php echo $d->descripcion ?></p>
+												<p><?php echo substr(strip_tags($d->texto),0,250);echo (strlen($d->texto)>250)?"...":"" ?>	</p>
 											</div>
 											<div class="property-middle">
 												<ul>
@@ -131,7 +131,8 @@
 			<?php }   ?>
 
 			<!-- Our Services -->
-			<div class="our-services">
+			<?php $t = $web_model->get_text("slider_dos!","assets/images/services-bg.jpg")?>
+			<div class="our-services editable editable-img" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" style="background: url(<?php echo $t->plain_text?>) no-repeat  0 0;background-size: cover" data-width="1600" data-height="480">
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-4">

@@ -1,9 +1,7 @@
 <footer>
   <div class="container">
     <div class="footer-top">
-      <?php if (!empty($empresa->logo)) {   ?>
-        <a href="<?php echo mklink ("/") ?>" class="logo"><img src="/admin/<?php echo $empresa->logo?>" alt="Logo"></a>
-      <?php } ?>
+        <a href="<?php echo mklink ("/") ?>" class="logo"><img src="assets/images/logo3.png" alt="Logo"></a>
       <div class="socials">
         <ul>
           <?php if (!empty($empresa->facebook)) {  ?><li><a target="_blank" href="<?php echo $empresa->facebook ?>"><i class="fab fa-facebook-f"></i></a></li><?php } ?>

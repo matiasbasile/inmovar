@@ -125,15 +125,9 @@ $page_act = $vc_link_tipo_operacion;
 													</div>
 													<div class="property-middle">
 														<ul>
-															<?php if ($p->superficie_total != 0) {  ?>
-																<li><img src="assets/images/home.png" alt="Home"> <?php echo $p->superficie_total ?> mts2</li>
-															<?php } ?>
-															<?php if (!empty($p->dormitorios)) {  ?>
-																<li><img src="assets/images/beds.png" alt="Beds"> <?php echo $p->dormitorios ?></li>
-															<?php } ?>
-															<?php if (!empty($p->cocheras)) {  ?>
-																<li><img src="assets/images/parking.png" alt="Parking"> <?php echo $p->cocheras ?></li>
-															<?php } ?>
+																<li><img src="assets/images/home.png" alt="Home"> <?php echo (!empty($p->superficie_total))?$p->superficie_total:"-" ?> mts2</li>
+																<li><img src="assets/images/beds.png" alt="Beds"> <?php echo (!empty($p->dormitorios))?$p->dormitorios:"-" ?></li>
+																<li><img src="assets/images/parking.png" alt="Parking"> <?php echo (!empty($p->cocheras))?$p->cocheras:"-" ?></li>
 														</ul>
 													</div>
 													<div class="property-bottom">

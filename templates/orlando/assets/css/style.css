@@ -292,7 +292,6 @@ header {
 
 .logo {
   display: inline-block;
-  max-width: 215px;
 }
 
 .navbar {
@@ -958,7 +957,7 @@ header {
 
 /* Featured Cities Css */
 .featured-cities {
-  padding: 0 0 50px;
+  padding: 60px 0;
 }
 
 .featured-cities .section-title {
