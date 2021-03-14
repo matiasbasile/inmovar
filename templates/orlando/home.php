@@ -75,7 +75,7 @@
 
 
 		<!-- Featured Properties -->
-		<?php $destacados = $propiedad_model->get_list(array("destacado"=>1))?>
+		<?php $destacados = $propiedad_model->get_list(array("destacado"=>1,"solo_propias"=>1))?>
 		<?php if (!empty($destacados)) {  ?>
 			<div class="featured-properties">
 				<div class="container">
@@ -92,27 +92,19 @@
 										<div class="property-details" style="min-height: 402px">
 											<div class="property-top">
 												<h3><?php echo $d->nombre ?></h3>
-												<p><?php echo $d->descripcion ?></p>
+												<p><?php echo substr(strip_tags($d->texto),0,200);echo (strlen($d->texto)>200)?"...":"" ?>	</p>
 											</div>
 											<div class="property-middle">
 												<ul>
-													<?php if ($d->superficie_total != 0) {  ?>
-														<li><img src="assets/images/home.png" alt="Home"> <?php echo $d->superficie_total ?> mts2</li>
-													<?php } ?>
-													<?php if (!empty($d->dormitorios)) {  ?>
-														<li><img src="assets/images/beds.png" alt="Beds"> <?php echo $d->dormitorios ?></li>
-													<?php } ?>
-													<?php if (!empty($d->banios)) {  ?>
-														<li><img src="assets/images/washroom.png" alt="Washroom"> <?php echo $d->banios ?></li>
-													<?php } ?>
-													<?php if (!empty($d->cocheras)) {  ?>
-														<li><img src="assets/images/parking.png" alt="Parking"> <?php echo $d->cocheras ?></li>
-													<?php } ?>
+													<li><img src="assets/images/home.png" alt="Home"> <?php echo (!empty($d->superficie_total))?$d->superficie_total." mts2":"-" ?> </li>
+													<li><img src="assets/images/beds.png" alt="Beds"> <?php echo (!empty($d->dormitorios))?$d->dormitorios:"-" ?></li>
+													<li><img src="assets/images/washroom.png" alt="Washroom"> <?php echo (!empty($d->banios))?$d->banios:"-" ?></li>
+													<li><img src="assets/images/parking.png" alt="Parking"> <?php echo (!empty($d->cocheras))?$d->cocheras:"-" ?></li>
 												</ul>
 											</div>
 											<div class="property-bottom">
 												<span><?php echo $d->precio ?></span>
-												<a class="btn btn-red" href="<?php echo mklink ($d->link) ?>">ver más <img src="assets/images/play.png" alt="Play"></a>
+												<a class="btn btn-red" href="<?php echo ($d->link_propiedad) ?>">ver más <img src="assets/images/play.png" alt="Play"></a>
 											</div>
 										</div>
 									</div>
@@ -131,7 +123,8 @@
 			<?php }   ?>
 
 			<!-- Our Services -->
-			<div class="our-services">
+			<?php $t = $web_model->get_text("slider_dos!","assets/images/services-bg.jpg")?>
+			<div class="our-services editable editable-img" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" style="background: url(<?php echo $t->plain_text?>) no-repeat  0 0;background-size: cover" data-width="1600" data-height="480">
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-4">

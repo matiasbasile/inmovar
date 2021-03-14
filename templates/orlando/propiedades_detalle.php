@@ -71,18 +71,10 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
               </div>
               <div class="property-middle">
                 <ul>
-                  <?php if ($propiedad->superficie_total != 0) {  ?>
-                    <li><img src="assets/images/home.png" alt="Home"> <?php echo $propiedad->superficie_total ?> mts2</li>
-                  <?php } ?>
-                  <?php if (!empty($propiedad->dormitorios)) {  ?>
-                    <li><img src="assets/images/beds.png" alt="Beds"> <?php echo $propiedad->dormitorios ?></li>
-                  <?php } ?>
-                  <?php if (!empty($propiedad->banios)) {  ?>
-                    <li><img src="assets/images/washroom.png" alt="Washroom"> <?php echo $propiedad->banios ?></li>
-                  <?php } ?>
-                  <?php if (!empty($propiedad->cocheras)) {  ?>
-                    <li><img src="assets/images/parking.png" alt="Parking"> <?php echo $propiedad->cocheras ?></li>
-                  <?php } ?>
+                    <li><img src="assets/images/home.png" alt="Home"> <?php echo (!empty($propiedad->superficie_total))?$propiedad->superficie_total:"-" ?> mts2</li>
+                    <li><img src="assets/images/beds.png" alt="Beds"> <?php echo (!empty($propiedad->dormitorios))?$propiedad->dormitorios:"-" ?></li>
+                    <li><img src="assets/images/washroom.png" alt="Washroom"> <?php echo (!empty($propiedad->banios))?$propiedad->banios:"-" ?></li>
+                    <li><img src="assets/images/parking.png" alt="Parking"> <?php echo (!empty($propiedad->cocheras))?$propiedad->cocheras:"-" ?></li>
                 </ul>
                 <?php if ($propiedad->apto_banco == 1)  {  ?><span><img src="assets/images/home-price.png" alt="Home Price"> Apto crédito</span><?php } ?>
               </div>
@@ -95,7 +87,7 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
                       <div class="col-lg-4 col-md-6 col-6 <?php echo ($x>6)?"d-none":"" ?>">
                         <div class="gallery-item">
                           <div class="rincon-image">
-                            <img class="cover-detail" src="<?php echo $i ?>" alt="Gallery">
+                            <div class="rincon-popup"><a href="<?php echo $i ?>"><img class="cover-detail" src="<?php echo $i ?>" alt="Gallery"></a></div>
                               <?php if ($x==6){?>
                                 <div class="gallery-info">
                               <?php } ?>
