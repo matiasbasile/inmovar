@@ -323,7 +323,7 @@
         var id_proyecto = self.model.get("id_proyecto");
 
         new app.mixins.Select({
-          modelClass: app.models.WebTemplate,
+          modelClass: app.models.Web_templates,
           url: "web_templates/",
           render: "#empresas_templates",
           name : "id_web_template",
