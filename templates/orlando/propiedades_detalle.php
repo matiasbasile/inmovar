@@ -113,8 +113,10 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
                     </div>
                   <?php } ?>
                 </div>
-                <div class="info-title">Información general</div>
-                <div><?php echo $propiedad->texto ?></div>
+                <?php if (!empty($propiedad->texto)) { ?>
+                  <div class="info-title">Información general</div>
+                  <div><?php echo $propiedad->texto ?></div>
+                <?php } ?>
               </div>
               <?php if (!empty($propiedad->caracteristicas)) {  ?>
                 <?php $caracteristicas = explode(";;;",$propiedad->caracteristicas);?>
