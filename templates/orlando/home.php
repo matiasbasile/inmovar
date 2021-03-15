@@ -87,13 +87,16 @@
 									<div class="property-box">
 										<div class="property-img">
 											<span><img src="assets/images/logo2.png" alt="Logo"> <?php echo $d->tipo_operacion ?></span>
-											<img class="cover-destacado" src="/admin/<?php echo $d->path ?>" alt="Property Img">
+											<img class="cover-destacado" src="<?php echo $d->imagen ?>" alt="Property Img">
 										</div>
 										<div class="property-details" style="min-height: 402px">
 											<div class="property-top">
 												<h3><?php echo $d->nombre ?></h3>
 												<p><?php echo substr(strip_tags($d->texto),0,200);echo (strlen($d->texto)>200)?"...":"" ?>	</p>
 											</div>
+											<div class="property-middle">
+												<h3 class="direccion-completa"><?php echo $d->direccion_completa ?></h3>
+												</div>
 											<div class="property-middle">
 												<ul>
 													<li><img src="assets/images/home.png" alt="Home"> <?php echo (!empty($d->superficie_total))?$d->superficie_total." mts2":"-" ?> </li>
@@ -184,7 +187,7 @@
 								<div class="item">
 									<div class="property-box">
 										<div class="property-img">
-											<img class="cover-recientes" src="/admin/<?php echo $p->path ?>" alt="Property Img">
+											<img class="cover-recientes" src="<?php echo $p->imagen ?>" alt="Property Img">
 											<div class="rollover">
 												<a href="<?php echo ($p->link_propiedad) ?>" class="add"></a>
 												<?php if (estaEnFavoritos($p->id)) { ?>
@@ -199,6 +202,9 @@
 										<div class="property-details">
 											<div class="property-top">
 												<h3><?php echo $p->nombre ?></h3>
+											</div>
+											<div class="property-middle">
+												<h3 class="direccion-completa"><?php echo $p->direccion_completa ?></h3>
 											</div>
 											<div class="property-middle">
 												<ul>

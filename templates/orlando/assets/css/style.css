@@ -793,7 +793,7 @@ header .logo { max-width: 240px }
 
 .list-wise .property-middle ul li {
   padding: 10px 20px;
-  font-size: 14px;
+  font-size: 12px;
   min-width: 128px;
 }
 
@@ -1884,6 +1884,11 @@ footer .container {
 
 
 
+ .pointer { cursor: pointer; }
+ .pointer-rel { cursor: pointer; position: relative;}
+ .direccion-completa { padding: 10px 20px; margin: 0; font-weight: 400 !important; font-size: 18px !important }
+ #carouselExampleControls1 .direccion-completa { padding-left: 40px }
+
 /* Responsive Css */
 
 @media screen and (min-width: 2500px) {
@@ -2158,6 +2163,8 @@ footer .container {
 }
 
 @media screen and (max-width: 767px) {
+  #carouselExampleControls1 .direccion-completa { padding-left: 20px }
+
   .container {
     max-width: 90%;
   }
@@ -2517,6 +2524,3 @@ padding-bottom: 5px;
   cursor: pointer;
   z-index: 999999;
  }
-
- .pointer { cursor: pointer; }
- .pointer-rel { cursor: pointer; position: relative;}

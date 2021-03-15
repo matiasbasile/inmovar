@@ -31,7 +31,7 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
 <meta property="og:type" content="website" />
 <meta property="og:title" content="<?php echo ($propiedad->nombre); ?>" />
 <meta property="og:description" content="<?php echo str_replace("\n","",$propiedad->plain_text); ?>" />
-<meta property="og:image" content="<?php echo current_url(TRUE); ?>/admin/<?php echo $propiedad->path; ?>"/>
+<meta property="og:image" content="<?php echo current_url(TRUE); ?><?php echo $propiedad->imagen ?>"/>
 <script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
 </head>
 <body>
@@ -107,7 +107,7 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
                     <div class="col-lg-12">
                       <div class="gallery-item">
                         <div class="rincon-image">
-                          <img class="contain-detail" src="/admin/<?php echo $propiedad->path?>">
+                          <img class="contain-detail" src="<?php echo $propiedad->imagen ?>">
                         </div>
                       </div>
                     </div>
@@ -270,7 +270,7 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
 		      <div class="item">
 		        <div class="property-box">
 		          <div class="property-img">
-		            <img class="cover-recientes" src="/admin/<?php echo $p->path ?>" alt="Property Img">
+		            <img class="cover-recientes" src="<?php echo $p->imagen ?>" alt="Property Img">
 		            <div class="rollover">
 		              <a href="<?php echo ($p->link_propiedad) ?>" class="add"></a>
 		               <?php if (estaEnFavoritos($p->id)) { ?>
@@ -286,6 +286,9 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
 		            <div class="property-top">
 		              <h3><?php echo $p->nombre ?></h3>
 		            </div>
+                <div class="property-middle">
+                  <h3><?php echo $p->direccion_completa ?></h3>
+                </div>
 		            <div class="property-middle">
 		              <ul>
 	                  <?php if ($p->superficie_total != 0) {  ?>
