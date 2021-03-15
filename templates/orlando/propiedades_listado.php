@@ -123,12 +123,12 @@ $page_act = $vc_link_tipo_operacion;
 														<div class="property-top">
 															<h3 class="equal"><?php echo $p->nombre ?></h3>
 														</div>
-														<div class="property-middle">
+														<div class="property-middle-top">
 															<h3 class="direccion-completa"><?php echo (!empty($p->direccion_completa))?$p->direccion_completa:"Consultar dirección" ?></h3>
 														</div>
 														<div class="property-middle">
 															<ul>
-																<li><img src="assets/images/home.png" alt="Home"> <?php echo (!empty($p->superficie_total))?$p->superficie_total:"-" ?> mts2</li>
+																<li><img src="assets/images/home.png" alt="Home"> <?php echo (!empty($p->superficie_total))?$p->superficie_total:"-" ?> </li>
 																<li><img src="assets/images/beds.png" alt="Beds"> <?php echo (!empty($p->dormitorios))?$p->dormitorios:"-" ?></li>
 																<li><img src="assets/images/parking.png" alt="Parking"> <?php echo (!empty($p->cocheras))?$p->cocheras:"-" ?></li>
 															</ul>
@@ -173,13 +173,13 @@ $page_act = $vc_link_tipo_operacion;
 
 															<p><?php echo substr($p->plain_text,0,150); echo (strlen($p->plain_text) > 150)?"...":"" ?></p>
 														</div>
-														<div class="property-middle">
+														<div class="property-middle-top">
 															<h3 class="direccion-completa"><?php echo (!empty($p->direccion_completa))?$p->direccion_completa:"Consultar dirección" ?></h3>
 														</div>
 														<div class="property-middle">
 															<ul>
 																<?php if ($p->superficie_total != 0) {  ?>
-																	<li><img src="assets/images/home.png" alt="Home"> <?php echo $p->superficie_total ?> mts2</li>
+																	<li><img src="assets/images/home.png" alt="Home"> <?php echo $p->superficie_total ?> </li>
 																<?php } ?>
 																<?php if (!empty($p->dormitorios)) {  ?>
 																	<li><img src="assets/images/beds.png" alt="Beds"> <?php echo $p->dormitorios ?></li>
