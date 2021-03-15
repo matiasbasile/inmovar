@@ -103,7 +103,7 @@ class Importacion_Dacal_Model extends Abstract_Model {
         $sql.= "WHERE id_empresa = $id_empresa AND id = $data->id ";
         $this->db->query($sql);
 
-        $sql = "DELETE FROM inm_propiedades_imagenes WHERE id_propiedad = $data->id AND id_empresa = $id_empresa ";
+        $sql = "DELETE FROM inm_propiedades_images WHERE id_propiedad = $data->id AND id_empresa = $id_empresa ";
         $this->db->query($sql);
         $x = 1;
 
