@@ -17,7 +17,7 @@ $page_act = $vc_link_tipo_operacion;
 	<div class="page-title">
 		<div class="container">
 			<div class="page">
-				<div class="breadcrumb"> <a href="javascript:void(0)"><?php echo (!empty($vc_tipo_operacion))?$vc_tipo_operacion:"Propiedades" ?></a> <span><?php echo sizeof($vc_listado) ?> Resultados de búsqueda encontrados</span></div>
+				<div class="breadcrumb"> <a href="javascript:void(0)"><?php echo (!empty($vc_tipo_operacion))?$vc_tipo_operacion:"Propiedades" ?></a> <span><?php echo $vc_total_resultados ?> Resultados de búsqueda encontrados</span></div>
 				<div class="float-right">
 					<big>Tus favoritas</big> 
 					<a href="<?php echo mklink ("favoritos/")?>"><i class="fas fa-heart"></i> <span><?php echo $cant_favoritos ?></span></a>

@@ -19,7 +19,7 @@
             <li><a href="<?php echo mklink ("propiedades/ventas/") ?>">Ventas</a></li>
             <li><a href="<?php echo mklink ("propiedades/alquileres/") ?>">Alquileres</a></li>
             <li><a href="<?php echo mklink ("propiedades/emprendimientos/") ?>">Emprendimientos</a></li>
-            <li><a href="<?php echo mklink ("/") ?>">Contacto</a></li>           
+            <li><a href="<?php echo mklink ("contacto/") ?>">Contacto</a></li>           
           </ul>
         </div>
         <div class="col-xl-6 col-lg-4">
