@@ -94,12 +94,12 @@
 												<h3><?php echo $d->nombre ?></h3>
 												<p><?php echo substr(strip_tags($d->texto),0,200);echo (strlen($d->texto)>200)?"...":"" ?>	</p>
 											</div>
-											<div class="property-middle">
+											<div class="property-middle-top">
 												<h3 class="direccion-completa"><?php echo $d->direccion_completa ?></h3>
 												</div>
 											<div class="property-middle">
 												<ul>
-													<li><img src="assets/images/home.png" alt="Home"> <?php echo (!empty($d->superficie_total))?$d->superficie_total." mts2":"-" ?> </li>
+													<li><img src="assets/images/home.png" alt="Home"> <?php echo (!empty($d->superficie_total))?$d->superficie_total." ":"-" ?> </li>
 													<li><img src="assets/images/beds.png" alt="Beds"> <?php echo (!empty($d->dormitorios))?$d->dormitorios:"-" ?></li>
 													<li><img src="assets/images/washroom.png" alt="Washroom"> <?php echo (!empty($d->banios))?$d->banios:"-" ?></li>
 													<li><img src="assets/images/parking.png" alt="Parking"> <?php echo (!empty($d->cocheras))?$d->cocheras:"-" ?></li>
@@ -203,13 +203,13 @@
 											<div class="property-top">
 												<h3><?php echo $p->nombre ?></h3>
 											</div>
-											<div class="property-middle">
+											<div class="property-middle-top">
 												<h3 class="direccion-completa"><?php echo $p->direccion_completa ?></h3>
 											</div>
 											<div class="property-middle">
 												<ul>
 													<?php if ($p->superficie_total != 0) {  ?>
-														<li><img src="assets/images/home.png" alt="Home"> <?php echo $p->superficie_total ?> mts2</li>
+														<li><img src="assets/images/home.png" alt="Home"> <?php echo $p->superficie_total ?> </li>
 													<?php } ?>
 													<?php if (!empty($p->dormitorios)) {  ?>
 														<li><img src="assets/images/beds.png" alt="Beds"> <?php echo $p->dormitorios ?></li>

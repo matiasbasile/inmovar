@@ -123,13 +123,13 @@ $vc_listado = $propiedad_model->favoritos();
 													<div class="property-top">
 														<h3><?php echo $p->nombre ?></h3>
 													</div>
-													<div class="property-middle">
+													<div class="property-middle-top">
 														<h3 class="direccion-completa"><?php echo $p->direccion_completa ?></h3>
 													</div>
 													<div class="property-middle">
 														<ul>
 															<?php if ($p->superficie_total != 0) {  ?>
-																<li><img src="assets/images/home.png" alt="Home"> <?php echo $p->superficie_total ?> mts2</li>
+																<li><img src="assets/images/home.png" alt="Home"> <?php echo $p->superficie_total ?></li>
 															<?php } ?>
 															<?php if (!empty($p->dormitorios)) {  ?>
 																<li><img src="assets/images/beds.png" alt="Beds"> <?php echo $p->dormitorios ?></li>
@@ -178,10 +178,13 @@ $vc_listado = $propiedad_model->favoritos();
 														<h3><?php echo $p->nombre ?></h3>
 														<p><?php echo substr($p->descripcion,0,140); echo (strlen($p->descripcion) > 140)?"...":"" ?></p>
 													</div>
+													<div class="property-middle-top">
+														<h3 class="direccion-completa"><?php echo $p->direccion_completa ?></h3>
+													</div>
 													<div class="property-middle">
 														<ul>
 															<?php if ($p->superficie_total != 0) {  ?>
-																<li><img src="assets/images/home.png" alt="Home"> <?php echo $p->superficie_total ?> mts2</li>
+																<li><img src="assets/images/home.png" alt="Home"> <?php echo $p->superficie_total ?></li>
 															<?php } ?>
 															<?php if (!empty($p->dormitorios)) {  ?>
 																<li><img src="assets/images/beds.png" alt="Beds"> <?php echo $p->dormitorios ?></li>
