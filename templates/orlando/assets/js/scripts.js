@@ -73,36 +73,37 @@ jQuery(document).ready(function() {
   });
 
 //UI SLIDER SCRIPT
-$('.slider-snap').noUiSlider({
-  start: [ 30, 70 ],
-  snap: true,
-  connect: true,
-  range: {
-    'min': 0,
-    '5%': 5,
-    '10%': 10,
-    '15%': 15,
-    '20%': 20,
-    '25%': 25,
-    '30%': 30,
-    '35%': 35,
-    '40%': 40,
-    '45%': 45,    
-    '50%': 50,    
-    '55%': 55,    
-    '60%': 60,
-    '65%': 65,
-    '70%': 70,
-    '75%': 75,
-    '80%': 80,
-    '85%': 85,
-    '90%': 90,
-    '95%': 95,
-    'max': 100
-  }
-});
-$('.slider-snap').Link('lower').to($('.slider-snap-value-lower'));
-$('.slider-snap').Link('upper').to($('.slider-snap-value-upper'));
-
+if ($('.slider-snap').length > 0) {
+  $('.slider-snap').noUiSlider({
+    start: [ 30, 70 ],
+    snap: true,
+    connect: true,
+    range: {
+      'min': 0,
+      '5%': 5,
+      '10%': 10,
+      '15%': 15,
+      '20%': 20,
+      '25%': 25,
+      '30%': 30,
+      '35%': 35,
+      '40%': 40,
+      '45%': 45,    
+      '50%': 50,    
+      '55%': 55,    
+      '60%': 60,
+      '65%': 65,
+      '70%': 70,
+      '75%': 75,
+      '80%': 80,
+      '85%': 85,
+      '90%': 90,
+      '95%': 95,
+      'max': 100
+    }
+  });
+  $('.slider-snap').Link('lower').to($('.slider-snap-value-lower'));
+  $('.slider-snap').Link('upper').to($('.slider-snap-value-upper'));
+}
 
 });
