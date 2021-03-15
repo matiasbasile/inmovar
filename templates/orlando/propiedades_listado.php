@@ -88,7 +88,7 @@ $page_act = $vc_link_tipo_operacion;
 															<?php $x=0;foreach ($prop->images as $i) { 
 																if ($x<5) {   ?>
 																<div class="item">
-																	<img class="cover-recientes" src="<?php echo $i ?>" alt="Property Img">
+																	<img class="cover-recientes" src="<?php echo $i ?>" alt="<?php echo $prop->nombre ?>">
 																	<div class="rollover">
 																		<a href="<?php echo ($prop->link_propiedad) ?>" class="add"></a>
 																		<?php if (estaEnFavoritos($prop->id)) { ?>
@@ -104,7 +104,7 @@ $page_act = $vc_link_tipo_operacion;
 															<?php }  ?>
 														<?php } else { ?>
 															<div class="item">
-																<img class="cover-recientes" src="/admin/<?php echo $p->path ?>" alt="Property Img">
+																<img class="cover-recientes" src="<?php echo $p->imagen ?>" alt="<?php echo $p->nombre ?>">
 																<div class="rollover">
 																	<a href="<?php echo ($p->link_propiedad) ?>" class="add"></a>
 																	<?php if (estaEnFavoritos($p->id)) { ?>
@@ -152,7 +152,7 @@ $page_act = $vc_link_tipo_operacion;
 										<div class="col-md-12">
 											<div class="property-box">
 												<div class="property-img" style="min-height: 202px">
-													<img class="cover-list" src="/admin/<?php echo $p->path ?>" alt="Property Img">
+													<img class="cover-list" src="<?php echo $p->imagen ?>" alt="<?php echo $p->nombre ?>">
 													<div class="rollover">
 														<a href="<?php echo ($p->link_propiedad) ?>" class="add"></a>
 														<?php if (estaEnFavoritos($p->id)) { ?>
