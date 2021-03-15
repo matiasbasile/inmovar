@@ -167,7 +167,7 @@ $page_act = $vc_link_tipo_operacion;
 												<div class="property-details">
 													<div class="property-top" style="min-height: 202px">
 														<h3><?php echo $p->nombre ?></h3>
-														<p><?php echo substr($p->texto,0,150); echo (strlen($p->texto) > 150)?"...":"" ?></p>
+														<p><?php echo substr($p->plain_text,0,150); echo (strlen($p->plain_text) > 150)?"...":"" ?></p>
 													</div>
 													<div class="property-middle">
 														<ul>
