@@ -617,15 +617,17 @@ header .logo { max-width: 240px }
 }
 
 .property-bottom {
-  position: absolute;
-  bottom: 0;
-  min-width: 800px;
 	padding: 0 0 0 40px;
 	background: #f5f5f5;
 	font-size: 32px;
 	color: #000000;
 	font-weight: bold;
 }
+#destacados .property-bottom { 
+  position: absolute;
+  bottom: 0;
+  min-width: 800px;
+   }
 
 .property-bottom span {
 	display: inline-block;
@@ -2241,10 +2243,13 @@ footer .container {
 	.property-middle ul li:nth-child(2n) {
 		border-right: none;
 	}
-	.property-bottom {
+	#destacados .property-bottom { 
 		position: unset;
-  	bottom: 0;
-  	min-width: 200px;
+	  	bottom: 0;
+	  	min-width: 200px;
+	 }
+	.property-bottom {
+		
 		padding: 0 0 0 20px;
 	}
 	.property-bottom {

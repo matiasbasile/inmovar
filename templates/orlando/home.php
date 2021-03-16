@@ -77,7 +77,7 @@
 		<!-- Featured Properties -->
 		<?php $destacados = $propiedad_model->get_list(array("destacado"=>1,"solo_propias"=>1))?>
 		<?php if (!empty($destacados)) {  ?>
-			<div class="featured-properties">
+			<div class="featured-properties" id="destacados">
 				<div class="container">
 					<h2 class="section-title">propiedades destacadas</h2>
 					<div id="carouselExampleControls1" class="carousel slide" data-ride="carousel">
