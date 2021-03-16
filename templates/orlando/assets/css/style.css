@@ -628,6 +628,17 @@ header .logo { max-width: 240px }
   bottom: 0;
   min-width: 800px;
    }
+#destacados .property-middle {
+	position: absolute;
+	bottom: 76px;
+	width: 100%;
+}
+
+#destacados .property-middle-top {
+	position: absolute;
+	bottom: 150px;
+	width: 100%;
+}
 
 .property-bottom span {
 	display: inline-block;
@@ -2248,6 +2259,17 @@ footer .container {
 	  	bottom: 0;
 	  	min-width: 200px;
 	 }
+	 #destacados .property-middle {
+		position: unset;
+		bottom: 76px;
+		width: 100%;
+	}
+
+	#destacados .property-middle-top {
+		position: unset;
+		bottom: 150px;
+		width: 100%;
+	}
 	.property-bottom {
 		
 		padding: 0 0 0 20px;
