@@ -1688,7 +1688,7 @@ class Propiedades extends REST_Controller {
     // Si hay errores, nos lo mandamos por email
     if (sizeof($errores)>0) {
       $body = implode("<br/>", $errores);
-      require APPPATH.'libraries/Mandrill/Mandrill.php';
+      require_once APPPATH.'libraries/Mandrill/Mandrill.php';
       mandrill_send(array(
         "to"=>"basile.matias99@gmail.com",
         "subject"=>"ERROR IMPORTACION TOKKO",
