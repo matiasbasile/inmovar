@@ -1463,11 +1463,12 @@ class Propiedades extends REST_Controller {
 
   // IMPORTACION DE PROPIEDADES DE TOKKO BROKERS
   // Esta funcion se ejecuta en un cronjob
-  function importar_tokko() {
+  function importar_tokko($id_empresa = 0) {
     include_once APPPATH.'libraries/tokko/api.php';
     // Buscamos todas las empresas que tengan la importacion automatica de TOKKO
     $sql = "SELECT id_empresa, tokko_apikey FROM web_configuracion ";
     $sql.= "WHERE tokko_apikey != '' AND tokko_importacion = 1 ";
+    if (!empty($id_empresa)) $sql.= "AND id_empresa = $id_empresa ";
     $q = $this->db->query($sql);
     $this->load->model("Propiedad_Model");
     $this->load->helper("file_helper");
@@ -2255,7 +2256,8 @@ class Propiedades extends REST_Controller {
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
-    $id_empresa = 1392;
+    $id_empresa = 1507;
+    $errores = array();
     $cant_insert = 0;
     $this->load->helper("file_helper");
     $this->load->helper("fecha_helper");    
@@ -2304,7 +2306,7 @@ class Propiedades extends REST_Controller {
         $imagen = $node->getAttribute("href");
         $cc = explode("/", $imagen);
         $filename = end($cc);
-        grab_image($imagen,"../importar/inmobusqueda/cache/$filename");
+        //grab_image($imagen,"../importar/inmobusqueda/cache/$filename");
         $imagenes[] = "uploads/$id_empresa/propiedades/".$filename;
       }
 
@@ -2316,7 +2318,7 @@ class Propiedades extends REST_Controller {
       $propiedad->ciudad = "";
 
       // Buscamos el nombre
-      $nodes = $finder->query("//div[@class='nombresobreslide']");
+      $nodes = $finder->query("//div[contains(@class, 'nombresobreslide')]");
       foreach ($nodes as $node) {
         $i=0;
         foreach($node->childNodes as $c) {
@@ -2503,6 +2505,39 @@ class Propiedades extends REST_Controller {
       } else if (strpos($propiedad->ciudad, "Hornos") !== FALSE) {
         $propiedad->id_localidad = 5504;
         $propiedad->id_departamento = 9;
+      } else if (strpos($propiedad->ciudad, "City Bell") !== FALSE) {
+        $propiedad->id_localidad = 205;
+        $propiedad->id_departamento = 9;
+      } else if (strpos($propiedad->ciudad, "Brandsen") !== FALSE) {
+        $propiedad->id_localidad = 231;
+        $propiedad->id_departamento = 32;
+      } else if (strpos($propiedad->ciudad, "San Vicente") !== FALSE) {
+        $propiedad->id_localidad = 840;
+        $propiedad->id_departamento = 26;
+      } else if (strpos($propiedad->ciudad, "San Vicente") !== FALSE) {
+        $propiedad->id_localidad = 840;
+        $propiedad->id_departamento = 26;
+      } else if (strpos($propiedad->ciudad, "Chascomus") !== FALSE) {
+        $propiedad->id_localidad = 197;
+        $propiedad->id_departamento = 15;
+      } else if (strpos($propiedad->ciudad, "Quilmes") !== FALSE) {
+        $propiedad->id_localidad = 759;
+        $propiedad->id_departamento = 74;
+      } else if (strpos($propiedad->ciudad, "Quilmes") !== FALSE) {
+        $propiedad->id_localidad = 759;
+        $propiedad->id_departamento = 74;
+      } else if (strpos($propiedad->ciudad, "Balvanera") !== FALSE) {
+        $propiedad->id_localidad = 5473;
+        $propiedad->id_departamento = 605;
+      } else if (strpos($propiedad->ciudad, "Chapadmalal") !== FALSE) {
+        $propiedad->id_localidad = 194;
+        $propiedad->id_departamento = 84;
+      } else if (strpos($propiedad->ciudad, "Alvear") !== FALSE) {
+        $propiedad->id_localidad = 358;
+        $propiedad->id_departamento = 116;
+      } else if (strpos($propiedad->ciudad, "El Retiro") !== FALSE) {
+        $propiedad->id_localidad = 1624;
+        $propiedad->id_departamento = 207;
       } else if (strpos($propiedad->ciudad, "Hermosura") !== FALSE) {
         $propiedad->id_localidad = 5506;
         $propiedad->id_departamento = 9;
@@ -2544,7 +2579,19 @@ class Propiedades extends REST_Controller {
           $propiedad->ambientes = (($atributo["valor"] == "-") ? 0 : $atributo["valor"]);
         }
       }
-    
+
+      if (!empty($propiedad->id_localidad)) {
+        $sql = "SELECT * FROM com_localidades WHERE id = $propiedad->id_localidad ";
+        $q_loc = $this->db->query($sql);
+        if ($q_loc->num_rows() > 0) {
+          $localidad = $q_loc->row();
+          $localidad->nombre = ucwords(mb_strtolower($localidad->nombre));
+          $propiedad->nombre = $propiedad->nombre." en ".$localidad->nombre;
+        }
+      } else {
+        $errores[] = "COD: [$link] : No existe localidad $propiedad->ciudad.";
+      }
+
       // INSERTAMOS EL OBJETO
       $insert_id = $this->modelo->save($propiedad);
       $hash = md5($insert_id);
@@ -2560,6 +2607,9 @@ class Propiedades extends REST_Controller {
         $k++;
       }
       $cant_insert++;
+    }
+    foreach($errores as $error) {
+      echo $error."<br/>";
     }
     echo "TERMINO $cant_insert";
   }
