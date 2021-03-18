@@ -1652,6 +1652,13 @@ class Propiedades extends REST_Controller {
             $p->id_empresa = $id_empresa;
             // Si se inserta la primera vez, si es venta ya va compartida a la red
             if ($p->id_tipo_operacion == 1) $p->compartida = 1;
+
+            // Problema: El codigo de tokko es alfanumerico, y al convertirse en int da 0
+            $p->codigo_tokko = $p->codigo;
+            $p->codigo = $this->Propiedad_Model->next(array(
+              "id_empresa"=>$id_empresa,
+            ));
+
             $p->id = $this->Propiedad_Model->insert($p);
             $cant_insert++;
           }
