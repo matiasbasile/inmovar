@@ -1650,6 +1650,8 @@ class Propiedades extends REST_Controller {
             $p->fecha_ingreso = date("Y-m-d");
             $p->fecha_publicacion = date("Y-m-d");
             $p->id_empresa = $id_empresa;
+            // Si se inserta la primera vez, si es venta ya va compartida a la red
+            if ($p->id_tipo_operacion == 1) $p->compartida = 1;
             $p->id = $this->Propiedad_Model->insert($p);
             $cant_insert++;
           }
