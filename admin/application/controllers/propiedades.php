@@ -1639,35 +1639,41 @@ class Propiedades extends REST_Controller {
         // Consultamos si la propiedad ya esta subida
         $sql = "SELECT * FROM inm_propiedades WHERE tokko_id = '".$property->get_field("id")."' AND id_empresa = $id_empresa ";
         $q = $this->db->query($sql);
-        if ($q->num_rows()>0) {
-          $r = $q->row();
-          $p->id = $r->id;
-          $p->id_empresa = $id_empresa;
-          $this->Propiedad_Model->update($p->id,$p);
-          $cant_update++;
-        } else {
-          $p->fecha_ingreso = date("Y-m-d");
-          $p->fecha_publicacion = date("Y-m-d");
-          $p->id_empresa = $id_empresa;
-          $p->id = $this->Propiedad_Model->insert($p);
-          $cant_insert++;
-        }
-
-        // Creamos el link
-        $hash = md5($p->id);
-        $link = "propiedad/".filename($p->nombre,"-",0)."-".$p->id."/";
-        $this->db->query("UPDATE inm_propiedades SET link = '$link', hash = '$hash' WHERE id = $p->id AND id_empresa = $id_empresa");
-
-        // IMAGENES
-        if (sizeof($images)>0) {
-          $this->db->query("DELETE FROM inm_propiedades_images WHERE id_empresa = $id_empresa AND id_propiedad = $p->id ");
-          $k=0;
-          foreach($images as $im) {
-            if (empty($im->image)) continue;
-            $this->db->query("INSERT INTO inm_propiedades_images (id_empresa,id_propiedad,path,orden) VALUES ($id_empresa,$p->id,'$im->image',$k) ");
-            $k++;
+        try {
+          if ($q->num_rows()>0) {
+            $r = $q->row();
+            $p->id = $r->id;
+            $p->id_empresa = $id_empresa;
+            $this->Propiedad_Model->update($p->id,$p);
+            $cant_update++;
+          } else {
+            $p->fecha_ingreso = date("Y-m-d");
+            $p->fecha_publicacion = date("Y-m-d");
+            $p->id_empresa = $id_empresa;
+            $p->id = $this->Propiedad_Model->insert($p);
+            $cant_insert++;
           }
+
+          // Creamos el link
+          $hash = md5($p->id);
+          $link = "propiedad/".filename($p->nombre,"-",0)."-".$p->id."/";
+          $this->db->query("UPDATE inm_propiedades SET link = '$link', hash = '$hash' WHERE id = $p->id AND id_empresa = $id_empresa");
+
+          // IMAGENES
+          if (sizeof($images)>0) {
+            $this->db->query("DELETE FROM inm_propiedades_images WHERE id_empresa = $id_empresa AND id_propiedad = $p->id ");
+            $k=0;
+            foreach($images as $im) {
+              if (empty($im->image)) continue;
+              $this->db->query("INSERT INTO inm_propiedades_images (id_empresa,id_propiedad,path,orden) VALUES ($id_empresa,$p->id,'$im->image',$k) ");
+              $k++;
+            }
+          }
+
+        } catch(Exception $e) {
+          $errores[] = $e->getMessage();
         }
+
       }
     }
     // Si hay errores, nos lo mandamos por email
