@@ -87,163 +87,170 @@ $page_act = $vc_link_tipo_operacion;
 														<?php if (!empty($prop->images)) {  ?>
 															<?php $x=0;foreach ($prop->images as $i) { 
 																if ($x<5) {   ?>
+																	<div class="item">
+																		<img class="cover-recientes" src="<?php echo $i ?>" alt="<?php echo $prop->nombre ?>">
+																		<div class="rollover">
+																			<a href="<?php echo ($prop->link_propiedad) ?>" class="add"></a>
+																			<?php if (estaEnFavoritos($prop->id)) { ?>
+																				<a class="heart" data-bookmark-state="added" href="/admin/favoritos/eliminar/?id=<?php echo $prop->id; ?>">
+																				</a>
+																			<?php } else { ?>
+																				<a class="heart" data-bookmark-state="empty" href="/admin/favoritos/agregar/?id=<?php echo $prop->id; ?>">
+																				</a>
+																			<?php } ?>
+																		</div>
+																	</div>
+																	<?php $x++;} ?>
+																<?php }  ?>
+															<?php } else { ?>
 																<div class="item">
-																	<img class="cover-recientes" src="<?php echo $i ?>" alt="<?php echo $prop->nombre ?>">
+																	<img class="cover-recientes" src="<?php echo $p->imagen ?>" alt="<?php echo $p->nombre ?>">
 																	<div class="rollover">
-																		<a href="<?php echo ($prop->link_propiedad) ?>" class="add"></a>
-																		<?php if (estaEnFavoritos($prop->id)) { ?>
-																			<a class="heart" data-bookmark-state="added" href="/admin/favoritos/eliminar/?id=<?php echo $prop->id; ?>">
+																		<a href="<?php echo ($p->link_propiedad) ?>" class="add"></a>
+																		<?php if (estaEnFavoritos($p->id)) { ?>
+																			<a class="heart" data-bookmark-state="added" href="/admin/favoritos/eliminar/?id=<?php echo $p->id; ?>">
 																			</a>
 																		<?php } else { ?>
-																			<a class="heart" data-bookmark-state="empty" href="/admin/favoritos/agregar/?id=<?php echo $prop->id; ?>">
+																			<a class="heart" data-bookmark-state="empty" href="/admin/favoritos/agregar/?id=<?php echo $p->id; ?>">
 																			</a>
 																		<?php } ?>
 																	</div>
 																</div>
-															<?php $x++;} ?>
-															<?php }  ?>
-														<?php } else { ?>
-															<div class="item">
-																<img class="cover-recientes" src="<?php echo $p->imagen ?>" alt="<?php echo $p->nombre ?>">
-																<div class="rollover">
-																	<a href="<?php echo ($p->link_propiedad) ?>" class="add"></a>
-																	<?php if (estaEnFavoritos($p->id)) { ?>
-																		<a class="heart" data-bookmark-state="added" href="/admin/favoritos/eliminar/?id=<?php echo $p->id; ?>">
-																		</a>
-																	<?php } else { ?>
-																		<a class="heart" data-bookmark-state="empty" href="/admin/favoritos/agregar/?id=<?php echo $p->id; ?>">
-																		</a>
-																	<?php } ?>
-																</div>
-															</div>
-														<?php }?>
+															<?php }?>
+														</div>
 													</div>
-												</div>
-												<div class="property-details">
-													<div class="property-top">
-														<h3><?php echo $p->nombre ?></h3>
-													</div>
-													<div class="property-middle">
-														<ul>
-																<li><img src="assets/images/home.png" alt="Home"> <?php echo (!empty($p->superficie_total))?$p->superficie_total:"-" ?> mts2</li>
+													<div class="property-details">
+														<div class="property-top">
+															<h3 class="equal"><?php echo $p->nombre ?></h3>
+														</div>
+														<div class="property-middle-top">
+															<h3 class="direccion-completa"><?php echo (!empty($p->direccion_completa))?$p->direccion_completa:"Consultar dirección" ?></h3>
+														</div>
+														<div class="property-middle">
+															<ul>
+																<li><img src="assets/images/home.png" alt="Home"> <?php echo (!empty($p->superficie_total))?$p->superficie_total:"-" ?> </li>
 																<li><img src="assets/images/beds.png" alt="Beds"> <?php echo (!empty($p->dormitorios))?$p->dormitorios:"-" ?></li>
 																<li><img src="assets/images/parking.png" alt="Parking"> <?php echo (!empty($p->cocheras))?$p->cocheras:"-" ?></li>
-														</ul>
-													</div>
-													<div class="property-bottom">
-														<span><?php echo $p->precio ?></span>
-														<a class="btn btn-red" href="<?php echo ($p->link_propiedad) ?>">ver más</a>
-													</div>
-												</div>
-											</div>
-										</div>
-									<?php } ?>
-								<?php } else {  ?>
-									<div class="col-lg-12">
-										<h3>No se encontraron resultados para su búsqueda.</h3>
-									</div>
-								<?php } ?>
-							</div>
-						</div>
-						<div id="list" class="tab-pane fade in list-wise">
-							<div class="row">
-								<?php if (!empty($vc_listado)) {  ?>
-									<?php foreach ($vc_listado as $p) {  ?>     
-										<div class="col-md-12">
-											<div class="property-box">
-												<div class="property-img" style="min-height: 202px">
-													<img class="cover-list" src="<?php echo $p->imagen ?>" alt="<?php echo $p->nombre ?>">
-													<div class="rollover">
-														<a href="<?php echo ($p->link_propiedad) ?>" class="add"></a>
-														<?php if (estaEnFavoritos($p->id)) { ?>
-															<a class="heart" data-bookmark-state="added" href="/admin/favoritos/eliminar/?id=<?php echo $p->id; ?>">
-															</a>
-														<?php } else { ?>
-															<a class="heart" data-bookmark-state="empty" href="/admin/favoritos/agregar/?id=<?php echo $p->id; ?>">
-															</a>
-														<?php } ?>
-													</div>
-												</div>
-												<div class="property-details">
-													<div class="property-top" style="min-height: 202px">
-														<h3><?php echo $p->nombre ?></h3>
-														<p><?php echo substr($p->plain_text,0,150); echo (strlen($p->plain_text) > 150)?"...":"" ?></p>
-													</div>
-													<div class="property-middle">
-														<ul>
-															<?php if ($p->superficie_total != 0) {  ?>
-																<li><img src="assets/images/home.png" alt="Home"> <?php echo $p->superficie_total ?> mts2</li>
-															<?php } ?>
-															<?php if (!empty($p->dormitorios)) {  ?>
-																<li><img src="assets/images/beds.png" alt="Beds"> <?php echo $p->dormitorios ?></li>
-															<?php } ?>
-															<?php if (!empty($p->cocheras)) {  ?>
-																<li><img src="assets/images/parking.png" alt="Parking"> <?php echo $p->cocheras ?></li>
-															<?php } ?>
-														</ul>
-													</div>
-													<div class="property-bottom">
-														<span><?php echo $p->precio ?></span>
-														<a class="btn btn-red" href="<?php echo ($p->link_propiedad) ?>">ver más</a>
+															</ul>
+														</div>
+														<div class="property-bottom">
+															<span><?php echo $p->precio ?></span>
+															<a class="btn btn-red" href="<?php echo ($p->link_propiedad) ?>">ver más</a>
+														</div>
 													</div>
 												</div>
 											</div>
+										<?php } ?>
+									<?php } else {  ?>
+										<div class="col-lg-12">
+											<h3>No se encontraron resultados para su búsqueda.</h3>
 										</div>
 									<?php } ?>
-								<?php } ?>
+								</div>
 							</div>
-						</div>
-					</div>
-					<?php if ($vc_total_paginas > 1) {  ?>
-						<nav aria-label="Page navigation">
-							<ul class="pagination">
-								<?php if ($vc_page > 0) { ?>
-									<li class="page-item"><a class="page-link" href="<?php echo mklink ($vc_link.($vc_page-1)."/".$vc_params ) ?>"><i class="fas fa-chevron-left"></i></a></li>
-								<?php } ?>
-								<?php for($i=0;$i<$vc_total_paginas;$i++) { ?>
-									<?php if (abs($vc_page-$i)<2) { ?>
-										<?php if ($i == $vc_page) { ?>
-											<li class="page-item"><a class="page-link active" href="javascript:void(0)"><?php echo $i+1 ?></a></li>
-										<?php } else { ?>
-											<li class="page-item"><a class="page-link" href="<?php echo mklink ($vc_link.$i."/".$vc_params ) ?>"><?php echo $i+1 ?></a></li>
+							<div id="list" class="tab-pane fade in list-wise">
+								<div class="row">
+									<?php if (!empty($vc_listado)) {  ?>
+										<?php foreach ($vc_listado as $p) {  ?>     
+											<div class="col-md-12">
+												<div class="property-box">
+													<div class="property-img" style="min-height: 202px">
+														<img class="cover-list" src="<?php echo $p->imagen ?>" alt="<?php echo $p->nombre ?>">
+														<div class="rollover">
+															<a href="<?php echo ($p->link_propiedad) ?>" class="add"></a>
+															<?php if (estaEnFavoritos($p->id)) { ?>
+																<a class="heart" data-bookmark-state="added" href="/admin/favoritos/eliminar/?id=<?php echo $p->id; ?>">
+																</a>
+															<?php } else { ?>
+																<a class="heart" data-bookmark-state="empty" href="/admin/favoritos/agregar/?id=<?php echo $p->id; ?>">
+																</a>
+															<?php } ?>
+														</div>
+													</div>
+													<div class="property-details">
+														<div class="property-top" style="min-height: 202px">
+															<h3 class="equal-2"><?php echo $p->nombre ?></h3>
+
+															<p><?php echo substr($p->plain_text,0,150); echo (strlen($p->plain_text) > 150)?"...":"" ?></p>
+														</div>
+														<div class="property-middle-top">
+															<h3 class="direccion-completa"><?php echo (!empty($p->direccion_completa))?$p->direccion_completa:"Consultar dirección" ?></h3>
+														</div>
+														<div class="property-middle">
+															<ul>
+																<?php if ($p->superficie_total != 0) {  ?>
+																	<li><img src="assets/images/home.png" alt="Home"> <?php echo $p->superficie_total ?> </li>
+																<?php } ?>
+																<?php if (!empty($p->dormitorios)) {  ?>
+																	<li><img src="assets/images/beds.png" alt="Beds"> <?php echo $p->dormitorios ?></li>
+																<?php } ?>
+																<?php if (!empty($p->cocheras)) {  ?>
+																	<li><img src="assets/images/parking.png" alt="Parking"> <?php echo $p->cocheras ?></li>
+																<?php } ?>
+															</ul>
+														</div>
+														<div class="property-bottom">
+															<span><?php echo $p->precio ?></span>
+															<a class="btn btn-red" href="<?php echo ($p->link_propiedad) ?>">ver más</a>
+														</div>
+													</div>
+												</div>
+											</div>
 										<?php } ?>
 									<?php } ?>
-								<?php } ?>
-								<?php if ($vc_page < $vc_total_paginas-1) { ?>
-									<li class="page-item"><a class="page-link" href="<?php echo mklink ($vc_link.($vc_page+1)."/".$vc_params ) ?>"><i class="fas fa-chevron-right"></i></a></li>
-								<?php } ?>
-							</ul>
-						</nav>
-					<?php } ?>
-				</div>
-				<div class="col-xl-4">
-					<div class="border-box">
-						<?php include "includes/search-filter.php" ?>
+								</div>
+							</div>
+						</div>
+						<?php if ($vc_total_paginas > 1) {  ?>
+							<nav aria-label="Page navigation">
+								<ul class="pagination">
+									<?php if ($vc_page > 0) { ?>
+										<li class="page-item"><a class="page-link" href="<?php echo mklink ($vc_link.($vc_page-1)."/".$vc_params ) ?>"><i class="fas fa-chevron-left"></i></a></li>
+									<?php } ?>
+									<?php for($i=0;$i<$vc_total_paginas;$i++) { ?>
+										<?php if (abs($vc_page-$i)<2) { ?>
+											<?php if ($i == $vc_page) { ?>
+												<li class="page-item"><a class="page-link active" href="javascript:void(0)"><?php echo $i+1 ?></a></li>
+											<?php } else { ?>
+												<li class="page-item"><a class="page-link" href="<?php echo mklink ($vc_link.$i."/".$vc_params ) ?>"><?php echo $i+1 ?></a></li>
+											<?php } ?>
+										<?php } ?>
+									<?php } ?>
+									<?php if ($vc_page < $vc_total_paginas-1) { ?>
+										<li class="page-item"><a class="page-link" href="<?php echo mklink ($vc_link.($vc_page+1)."/".$vc_params ) ?>"><i class="fas fa-chevron-right"></i></a></li>
+									<?php } ?>
+								</ul>
+							</nav>
+						<?php } ?>
+					</div>
+					<div class="col-xl-4">
+						<div class="border-box">
+							<?php include "includes/search-filter.php" ?>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<!-- Call To Action -->
-	<?php include "includes/comunicate.php" ?>
+		<!-- Call To Action -->
+		<?php include "includes/comunicate.php" ?>
 
-	<!-- Footer -->
-	<?php include "includes/footer.php" ?>
+		<!-- Footer -->
+		<?php include "includes/footer.php" ?>
 
-	<!-- Back To Top -->
-	<div class="back-to-top"><a href="javascript:void(0);" aria-label="Back to Top">&nbsp;</a></div>
+		<!-- Back To Top -->
+		<div class="back-to-top"><a href="javascript:void(0);" aria-label="Back to Top">&nbsp;</a></div>
 
-	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/bootstrap.bundle.min.js"></script>
-	<script src="assets/js/html5.min.js"></script>
-	<script src="assets/js/owl.carousel.min.js"></script>
-	<script src="assets/js/nouislider.js"></script>
-	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-	<script src="assets/js/scripts.js"></script>
-	<script type="text/javascript">
-		function submit_buscador_propiedades() {
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/bootstrap.bundle.min.js"></script>
+		<script src="assets/js/html5.min.js"></script>
+		<script src="assets/js/owl.carousel.min.js"></script>
+		<script src="assets/js/nouislider.js"></script>
+		<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+		<script src="assets/js/scripts.js"></script>
+		<script type="text/javascript">
+			function submit_buscador_propiedades() {
   // Cargamos el offset y el orden en este formulario
   $("#sidebar_orden").val($("#ordenador_orden").val());
   $("#sidebar_offset").val($("#ordenador_offset").val());
@@ -264,11 +271,11 @@ function onsubmit_buscador_propiedades() {
 	if (jQuery(window).width()>767) { 
 		$(document).ready(function(){
 			var maximo = 0;
-			$(".list-wise .property-details h3").each(function(i,e){
+			$(".list-wise .property-details h3.equal").each(function(i,e){
 				if ($(e).height() > maximo) maximo = $(e).height();
 			});
 			maximo = Math.ceil(maximo);
-			$(".list-wise .property-details h3").height(maximo);
+			$(".list-wise .property-details h3.equal").height(maximo);
 		});
 	}
 

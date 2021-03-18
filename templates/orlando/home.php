@@ -77,7 +77,7 @@
 		<!-- Featured Properties -->
 		<?php $destacados = $propiedad_model->get_list(array("destacado"=>1,"solo_propias"=>1))?>
 		<?php if (!empty($destacados)) {  ?>
-			<div class="featured-properties">
+			<div class="featured-properties" id="destacados">
 				<div class="container">
 					<h2 class="section-title">propiedades destacadas</h2>
 					<div id="carouselExampleControls1" class="carousel slide" data-ride="carousel">
@@ -87,16 +87,19 @@
 									<div class="property-box">
 										<div class="property-img">
 											<span><img src="assets/images/logo2.png" alt="Logo"> <?php echo $d->tipo_operacion ?></span>
-											<img class="cover-destacado" src="/admin/<?php echo $d->path ?>" alt="Property Img">
+											<img class="cover-destacado" src="<?php echo $d->imagen ?>" alt="Property Img">
 										</div>
 										<div class="property-details" style="min-height: 402px">
 											<div class="property-top">
 												<h3><?php echo $d->nombre ?></h3>
 												<p><?php echo substr(strip_tags($d->texto),0,200);echo (strlen($d->texto)>200)?"...":"" ?>	</p>
 											</div>
+											<div class="property-middle-top">
+												<h3 class="direccion-completa"><?php echo $d->direccion_completa ?></h3>
+												</div>
 											<div class="property-middle">
 												<ul>
-													<li><img src="assets/images/home.png" alt="Home"> <?php echo (!empty($d->superficie_total))?$d->superficie_total." mts2":"-" ?> </li>
+													<li><img src="assets/images/home.png" alt="Home"> <?php echo (!empty($d->superficie_total))?$d->superficie_total." ":"-" ?> </li>
 													<li><img src="assets/images/beds.png" alt="Beds"> <?php echo (!empty($d->dormitorios))?$d->dormitorios:"-" ?></li>
 													<li><img src="assets/images/washroom.png" alt="Washroom"> <?php echo (!empty($d->banios))?$d->banios:"-" ?></li>
 													<li><img src="assets/images/parking.png" alt="Parking"> <?php echo (!empty($d->cocheras))?$d->cocheras:"-" ?></li>
@@ -184,7 +187,7 @@
 								<div class="item">
 									<div class="property-box">
 										<div class="property-img">
-											<img class="cover-recientes" src="/admin/<?php echo $p->path ?>" alt="Property Img">
+											<img class="cover-recientes" src="<?php echo $p->imagen ?>" alt="Property Img">
 											<div class="rollover">
 												<a href="<?php echo ($p->link_propiedad) ?>" class="add"></a>
 												<?php if (estaEnFavoritos($p->id)) { ?>
@@ -200,10 +203,13 @@
 											<div class="property-top">
 												<h3><?php echo $p->nombre ?></h3>
 											</div>
+											<div class="property-middle-top">
+												<h3 class="direccion-completa"><?php echo $p->direccion_completa ?></h3>
+											</div>
 											<div class="property-middle">
 												<ul>
 													<?php if ($p->superficie_total != 0) {  ?>
-														<li><img src="assets/images/home.png" alt="Home"> <?php echo $p->superficie_total ?> mts2</li>
+														<li><img src="assets/images/home.png" alt="Home"> <?php echo $p->superficie_total ?> </li>
 													<?php } ?>
 													<?php if (!empty($p->dormitorios)) {  ?>
 														<li><img src="assets/images/beds.png" alt="Beds"> <?php echo $p->dormitorios ?></li>

@@ -31,7 +31,7 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
 <meta property="og:type" content="website" />
 <meta property="og:title" content="<?php echo ($propiedad->nombre); ?>" />
 <meta property="og:description" content="<?php echo str_replace("\n","",$propiedad->plain_text); ?>" />
-<meta property="og:image" content="<?php echo current_url(TRUE); ?>/admin/<?php echo $propiedad->path; ?>"/>
+<meta property="og:image" content="<?php echo current_url(TRUE); ?><?php echo $propiedad->imagen ?>"/>
 <script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
 </head>
 <body>
@@ -71,7 +71,7 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
               </div>
               <div class="property-middle">
                 <ul>
-                    <li><img src="assets/images/home.png" alt="Home"> <?php echo (!empty($propiedad->superficie_total))?$propiedad->superficie_total:"-" ?> mts2</li>
+                    <li><img src="assets/images/home.png" alt="Home"> <?php echo (!empty($propiedad->superficie_total))?$propiedad->superficie_total:"-" ?></li>
                     <li><img src="assets/images/beds.png" alt="Beds"> <?php echo (!empty($propiedad->dormitorios))?$propiedad->dormitorios:"-" ?></li>
                     <li><img src="assets/images/washroom.png" alt="Washroom"> <?php echo (!empty($propiedad->banios))?$propiedad->banios:"-" ?></li>
                     <li><img src="assets/images/parking.png" alt="Parking"> <?php echo (!empty($propiedad->cocheras))?$propiedad->cocheras:"-" ?></li>
@@ -107,7 +107,7 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
                     <div class="col-lg-12">
                       <div class="gallery-item">
                         <div class="rincon-image">
-                          <img class="contain-detail" src="/admin/<?php echo $propiedad->path?>">
+                          <img class="contain-detail" src="<?php echo $propiedad->imagen ?>">
                         </div>
                       </div>
                     </div>
@@ -270,7 +270,7 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
 		      <div class="item">
 		        <div class="property-box">
 		          <div class="property-img">
-		            <img class="cover-recientes" src="/admin/<?php echo $p->path ?>" alt="Property Img">
+		            <img class="cover-recientes" src="<?php echo $p->imagen ?>" alt="Property Img">
 		            <div class="rollover">
 		              <a href="<?php echo ($p->link_propiedad) ?>" class="add"></a>
 		               <?php if (estaEnFavoritos($p->id)) { ?>
@@ -286,10 +286,13 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
 		            <div class="property-top">
 		              <h3><?php echo $p->nombre ?></h3>
 		            </div>
+                <div class="property-middle-top">
+                  <h3><?php echo $p->direccion_completa ?></h3>
+                </div>
 		            <div class="property-middle">
 		              <ul>
 	                  <?php if ($p->superficie_total != 0) {  ?>
-	                  	<li><img src="assets/images/home.png" alt="Home"> <?php echo $p->superficie_total ?> mts2</li>
+	                  	<li><img src="assets/images/home.png" alt="Home"> <?php echo $p->superficie_total ?></li>
 	                  <?php } ?>
 	                  <?php if (!empty($p->dormitorios)) {  ?>
 	                  	<li><img src="assets/images/beds.png" alt="Beds"> <?php echo $p->dormitorios ?></li>

@@ -92,28 +92,28 @@ $vc_listado = $propiedad_model->favoritos();
 																	<img class="cover-recientes" src="<?php echo $i ?>" alt="<?php echo $p->nombre ?>">
 																	<div class="rollover">
 																		<a href="<?php echo ($prop->link_propiedad) ?>" class="add"></a>
-																	  <?php if (estaEnFavoritos($prop->id)) { ?>
-										                  <a class="heart" data-bookmark-state="added" href="/admin/favoritos/eliminar/?id=<?php echo $prop->id; ?>">
-										                  </a>
-										                <?php } else { ?>
-										                  <a class="heart" data-bookmark-state="empty" href="/admin/favoritos/agregar/?id=<?php echo $prop->id; ?>">
-										                  </a>
-										                <?php } ?>
+																		<?php if (estaEnFavoritos($prop->id)) { ?>
+																			<a class="heart" data-bookmark-state="added" href="/admin/favoritos/eliminar/?id=<?php echo $prop->id; ?>">
+																			</a>
+																		<?php } else { ?>
+																			<a class="heart" data-bookmark-state="empty" href="/admin/favoritos/agregar/?id=<?php echo $prop->id; ?>">
+																			</a>
+																		<?php } ?>
 																	</div>
 																</div>
 															<?php } ?>
 														<?php } else { ?>
 															<div class="item">
-																<img class="cover-recientes" src="/admin/<?php echo $p->path ?>" alt="<?php echo $p->nombre ?>">
+																<img class="cover-recientes" src="<?php echo $p->imagen ?>" alt="<?php echo $p->nombre ?>">
 																<div class="rollover">
 																	<a href="<?php echo ($p->link_propiedad) ?>" class="add"></a>
 																	<?php if (estaEnFavoritos($p->id)) { ?>
-									                  <a class="heart" data-bookmark-state="added" href="/admin/favoritos/eliminar/?id=<?php echo $p->id; ?>">
-									                  </a>
-									                <?php } else { ?>
-									                  <a class="heart" data-bookmark-state="empty" href="/admin/favoritos/agregar/?id=<?php echo $p->id; ?>">
-									                  </a>
-									                <?php } ?>
+																		<a class="heart" data-bookmark-state="added" href="/admin/favoritos/eliminar/?id=<?php echo $p->id; ?>">
+																		</a>
+																	<?php } else { ?>
+																		<a class="heart" data-bookmark-state="empty" href="/admin/favoritos/agregar/?id=<?php echo $p->id; ?>">
+																		</a>
+																	<?php } ?>
 																</div>
 															</div>
 														<?php }?>
@@ -123,10 +123,13 @@ $vc_listado = $propiedad_model->favoritos();
 													<div class="property-top">
 														<h3><?php echo $p->nombre ?></h3>
 													</div>
+													<div class="property-middle-top">
+														<h3 class="direccion-completa"><?php echo $p->direccion_completa ?></h3>
+													</div>
 													<div class="property-middle">
 														<ul>
 															<?php if ($p->superficie_total != 0) {  ?>
-																<li><img src="assets/images/home.png" alt="Home"> <?php echo $p->superficie_total ?> mts2</li>
+																<li><img src="assets/images/home.png" alt="Home"> <?php echo $p->superficie_total ?></li>
 															<?php } ?>
 															<?php if (!empty($p->dormitorios)) {  ?>
 																<li><img src="assets/images/beds.png" alt="Beds"> <?php echo $p->dormitorios ?></li>
@@ -158,16 +161,16 @@ $vc_listado = $propiedad_model->favoritos();
 										<div class="col-md-12">
 											<div class="property-box">
 												<div class="property-img">
-													<img class="cover-list" src="/admin/<?php echo $p->path ?>" alt="<?php echo $p->nombre ?>">
+													<img class="cover-list" src="<?php echo $p->imagen ?>" alt="<?php echo $p->nombre ?>">
 													<div class="rollover">
 														<a href="<?php echo ($p->link_propiedad) ?>" class="add"></a>
 														<?php if (estaEnFavoritos($p->id)) { ?>
-						                  <a class="heart" data-bookmark-state="added" href="/admin/favoritos/eliminar/?id=<?php echo $p->id; ?>">
-						                  </a>
-						                <?php } else { ?>
-						                  <a class="heart" data-bookmark-state="empty" href="/admin/favoritos/agregar/?id=<?php echo $p->id; ?>">
-						                  </a>
-						                <?php } ?>
+															<a class="heart" data-bookmark-state="added" href="/admin/favoritos/eliminar/?id=<?php echo $p->id; ?>">
+															</a>
+														<?php } else { ?>
+															<a class="heart" data-bookmark-state="empty" href="/admin/favoritos/agregar/?id=<?php echo $p->id; ?>">
+															</a>
+														<?php } ?>
 													</div>
 												</div>
 												<div class="property-details">
@@ -175,10 +178,13 @@ $vc_listado = $propiedad_model->favoritos();
 														<h3><?php echo $p->nombre ?></h3>
 														<p><?php echo substr($p->descripcion,0,140); echo (strlen($p->descripcion) > 140)?"...":"" ?></p>
 													</div>
+													<div class="property-middle-top">
+														<h3 class="direccion-completa"><?php echo $p->direccion_completa ?></h3>
+													</div>
 													<div class="property-middle">
 														<ul>
 															<?php if ($p->superficie_total != 0) {  ?>
-																<li><img src="assets/images/home.png" alt="Home"> <?php echo $p->superficie_total ?> mts2</li>
+																<li><img src="assets/images/home.png" alt="Home"> <?php echo $p->superficie_total ?></li>
 															<?php } ?>
 															<?php if (!empty($p->dormitorios)) {  ?>
 																<li><img src="assets/images/beds.png" alt="Beds"> <?php echo $p->dormitorios ?></li>
@@ -268,16 +274,16 @@ function onsubmit_buscador_propiedades() {
 }
 </script>
 <script type="text/javascript">
-if (jQuery(window).width()>767) { 
-  $(document).ready(function(){
-    var maximo = 0;
-    $(".list-wise .property-details h3").each(function(i,e){
-      if ($(e).height() > maximo) maximo = $(e).height();
-    });
-    maximo = Math.ceil(maximo);
-    $(".list-wise .property-details h3").height(maximo);
-  });
-}
+	if (jQuery(window).width()>767) { 
+		$(document).ready(function(){
+			var maximo = 0;
+			$(".list-wise .property-details h3").each(function(i,e){
+				if ($(e).height() > maximo) maximo = $(e).height();
+			});
+			maximo = Math.ceil(maximo);
+			$(".list-wise .property-details h3").height(maximo);
+		});
+	}
 </script>
 </body>
 </html>
