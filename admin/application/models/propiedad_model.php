@@ -97,7 +97,7 @@ class Propiedad_Model extends Abstract_Model {
         $bcc_array = array("basile.matias99@gmail.com","misticastudio@gmail.com");
         $texto = $temp->texto;
         $texto = str_replace("{{nombre}}", $empresa->nombre, $texto);
-        require APPPATH.'libraries/Mandrill/Mandrill.php';
+        require_once APPPATH.'libraries/Mandrill/Mandrill.php';
         mandrill_send(array(
           "to"=>$empresa->email,
           "subject"=>$temp->nombre,
