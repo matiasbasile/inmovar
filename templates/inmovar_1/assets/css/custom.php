@@ -3206,12 +3206,12 @@ ul.list-links li a:hover {
 }
 
 #slider {
-  height: 700px;
+  height: 800px;
   position: relative;
   overflow: hidden;
 }
 #slider .carousel .item {
-  height: 750px;
+  height: 800px;
   position: relative;
   overflow: hidden;
 }
@@ -5462,6 +5462,7 @@ body, html {
   #footer-copyright span {
     float: none !important;
   }
+  
 
   .leaflet-control-attribution {
     display: none;
@@ -5980,7 +5981,7 @@ body, html {
 .blog-title { margin-top: 0px !important; }
 #brand img { max-height: 80px; }
 @media (max-width: 600px) {
-  #brand img { max-height: none; width: 80%; }
+  #brand img { max-height: 60px; width:auto;}
 }
 
 /* SHARE BLOCK CSS */
@@ -6072,9 +6073,10 @@ body, html {
 .img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img { background-color: #f3f3f3; }
 
 .inmovar-logo { float: right; }
-.inmovar-logo-img { margin-right: 5px; margin-left: 5px; width: 28px; display: inline-block; }
+.inmovar-logo-img { margin-right: 5px; margin-left: 5px; max-height: 30px; display: inline-block; }
 .inmovar-letra { display: inline-block; color: white; font-size: 16px; font-family: 'Patua One'; }
-.inmovar-frase { display: inline-block; color: white; }
+.inmovar-frase { display: inline-block; color: white; position:relative; bottom:-5px; }
+#footer-copyright .copyright { position:relative; top:8px; }
 @media (max-width: 768px) {
   .my-search-box .container  { padding: 0 50px } 
     .inmovar-logo { float: none; display: inline-block; margin: 15px auto 0px auto; }

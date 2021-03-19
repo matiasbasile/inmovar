@@ -155,7 +155,7 @@ $slider = $web_model->get_slider(array(
     <?php if ($empresa->comp_destacados == 1) { 
       $ids_destacadas = array();
       $destacadas = $propiedad_model->destacadas(array(
-        "offset"=>4,
+        "offset"=>8,
         "solo_propias"=>1,
       ));
       if (sizeof($destacadas)>0) { ?>
@@ -170,7 +170,7 @@ $slider = $web_model->get_slider(array(
               if (sizeof($destacadas)>0) { ?>
                 <?php foreach($destacadas as $r) { 
                   $ids_destacadas[] = $r->id; ?>
-                  <div class="col-md-3 col-sm-6">
+                  <div class="col-md-3 col-sm-6 mb30">
                     <div class="property">
                       <a href="<?php echo $r->link_propiedad ?>">
                         <div class="property-image">
@@ -230,7 +230,7 @@ $slider = $web_model->get_slider(array(
         <?php if ($empresa->comp_ultimos == 1) { ?>
 
         <?php $ultimas = $propiedad_model->ultimas(array(
-          "offset"=>4,
+          "offset"=>8,
       //"not_in"=>$ids_destacadas,
           ));
           if (sizeof($ultimas)>0) { ?>
@@ -242,7 +242,7 @@ $slider = $web_model->get_slider(array(
               </header>
               <div class="row">
                 <?php foreach($ultimas as $r) { ?>
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-3 col-sm-6 mb30">
                   <div class="property">
                     <a href="<?php echo $r->link_propiedad ?>">
                       <div class="property-image">

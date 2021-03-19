@@ -91,12 +91,11 @@
     <aside id="footer-thumbnails" class="footer-thumbnails"></aside><!-- /#footer-thumbnails -->
     <aside id="footer-copyright">
       <div class="container">
-        <span>Copyright © <?php echo date("Y")?>. Todos los derechos reservados.</span>
+        <span class="copyright">Copyright © <?php echo date("Y")?>. Todos los derechos reservados.</span>
         <span class="pull-right">
           <a class="inmovar-logo" href="https://www.inmovar.com" target="_blank">
-            <span class="inmovar-frase">Tu Inmobiliaria Online!</span>
-            <img class="inmovar-logo-img" src="/templates/inmovarweb/images/varcreative-logo.png">  
-            <span class="inmovar-letra">inmovar</span>
+            <img class="inmovar-logo-img" src="assets/img/inmovar-despega.png">  
+            <span class="inmovar-frase">¡Hacé despegar tu inmobiliaria!</span>
           </a>
         </span>
       </div>
