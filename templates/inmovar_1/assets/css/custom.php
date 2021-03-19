@@ -2518,6 +2518,8 @@ ul.list-links li a:hover {
   width: 100%;
   position: relative;
   top: 0;
+  height: 195px;
+  object-fit : cover;
 }
 .property .overlay {
   -moz-transition: 0.4s;
