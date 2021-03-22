@@ -1851,6 +1851,8 @@ footer .divider { background:rgba(255, 255, 255, 0.1); }
 	position:relative;
 	z-index:10;
 }
+
+.bottom-bar .slogan { position: absolute; top: 10px; color: white }
 .socials-icon-circle li a.td-social-sharing {  color: white; border: none; border-radius: none }
 .divisorline { height: 3px; width: 50px;background-color: var(--c1); border-top: none }
 .divisorcenter { height: 3px; width: 8%; margin-left: 46%;margin-right: 46%;  background-color: var(--c1); }
@@ -1960,9 +1962,9 @@ object-fit: contain !important; height: 400px !important; width: 100% !important
 #form_propiedades .chosen-container { margin-bottom: 10px; }
 
 .inmovar-logo { float: right; color:#adadad; }
-.inmovar-logo-img { margin-right: 5px; margin-left: 5px; width: 28px; display: inline-block; }
+.inmovar-logo-img { margin-right: 5px; margin-left: 5px; max-height: 30px; display: inline-block; }
 .inmovar-letra { display: inline-block; color: white; font-size: 16px; font-family: 'Patua One'; }
-.inmovar-frase { display: inline-block; }
+.inmovar-frase { display: inline-block;  top: 4px ; position: relative; color: white }
 @media (max-width: 768px) {
   .inmovar-logo { float: none; display: inline-block; margin: 15px auto 0px auto; }
 }

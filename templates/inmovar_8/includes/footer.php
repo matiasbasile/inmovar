@@ -34,7 +34,9 @@
         </div>
         <div class="col-lg-5 col-md-2 text-right copyright_para1"> 
           <!-- <p>Diseno Web inmobiliarias</p> --> 
-          Tu Inmobiliaria Online! <a target="_blank" href="http://www.inmovar.com"><img src="images/varcreative-logo.png" alt="Mistica Studio"></a> INMOVAR</div>
+           <a target="_blank" href="http://www.inmovar.com">
+            <img class="despegar" src="images/inmovar-despega.png" alt="Mistica Studio"></a>
+          ¡Hacé despegar tu inmobiliaria!</div>
       </div>
     </div>
   </div>

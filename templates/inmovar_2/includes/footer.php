@@ -113,9 +113,8 @@
       </div>
       <div class="col-sm-6">
         <a class="inmovar-logo" href="https://www.inmovar.com" target="_blank">
-          <span class="inmovar-frase">Tu Inmobiliaria Online!</span>
-          <img class="inmovar-logo-img" src="/templates/inmovarweb/images/varcreative-logo.png"/>  
-          <span class="inmovar-letra">inmovar</span>
+          <img class="inmovar-logo-img" src="images/inmovar-despega.png"/>  
+          <span class="inmovar-letra">¡Hacé despegar tu inmobilaria!</span>
         </a>
       </div>
     </div>

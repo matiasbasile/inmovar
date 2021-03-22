@@ -1493,6 +1493,12 @@ footer ul {
     color: #7f7f80;
     font-size: 12px
 }
+.copyright-texto { margin: 0 5px;
+    display: inline-block;
+    color: white;
+    font-size: 16px;
+    position: relative;
+    top: 7px; }
 .section-4 {
     padding-top: 150px
 }
@@ -4611,8 +4617,14 @@ all and (min-width: 992px) and (-webkit-transform-3d) {
 }
 
 .inmovar-logo { float: right; }
-.inmovar-logo-img { margin-right: 5px; margin-left: 5px; width: 28px; display: inline-block; }
-.inmovar-letra { display: inline-block; color: white; font-size: 16px; font-family: 'Patua One'; }
+.inmovar-logo-img { margin-right: 5px; margin-left: 5px; max-height: 30px; display: inline-block; }
+.inmovar-letra {  
+    margin: 0 5px;
+    display: inline-block;
+    color: white;
+    font-size: 16px;
+    position: relative;
+    top: 5px; }
 .inmovar-frase { display: inline-block; color: #4a4747; }
 @media (max-width: 768px) {
     .inmovar-logo { float: none; display: inline-block; margin: 15px auto 0px auto; }

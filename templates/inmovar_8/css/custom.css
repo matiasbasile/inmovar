@@ -337,6 +337,8 @@ width: 265px;
   padding-top: 130px;
 }
 .carousel-caption-table-cell.vat { padding-top: 150px; }
+.despegar { max-height: 30px; margin: 0 10px; position: relative; top: -4px }
+
 @media (max-width: 1200px) {
   .carousel-caption-table-cell.vat { padding-top: 50px; }
 }
@@ -2622,6 +2624,7 @@ filter: grayscale(100%); }
 /** @meida query for mobile device Start here **/
 
 @media screen and (max-width: 767px) {
+.despegar { margin: 20px auto; width: 100%; object-fit: contain; }
 
 /** slider banner responsive css start here **/
 .listing_wraps2 .list_view_img img { height: auto !important;} 
@@ -2705,7 +2708,6 @@ h1{ font-size: 26px; }
 .copyright_para1 {margin: 7px 0 0;text-align: center !important;}
 /** footer responsive css end here **/
 .social_header li{ display:none; }
-
 
 .box_wrap_content h5{ font-size: 20px; }
 .box_wrap_content p{ font-size: 13px; }
