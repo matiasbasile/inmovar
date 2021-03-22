@@ -22,18 +22,18 @@
               Inicio
             </a>
           </li>
-          <li class="dropdown <?php echo ($titulo_pagina == "Ventas") ? "active" : "" ?>">
+          <li class="dropdown <?php echo ($titulo_pagina == "ventas") ? "active" : "" ?>">
             <a href="<?php echo mklink ("propiedades/ventas/")?>">
               Ventas
             </a>
           </li>
-          <li class="dropdown <?php echo ($titulo_pagina == "Alquileres") ? "active" : "" ?>">
+          <li class="dropdown <?php echo ($titulo_pagina == "alquileres") ? "active" : "" ?>">
             <a href="<?php echo mklink ("propiedades/alquileres/")?>">
               Alquileres
             </a>
           </li>
           <?php if ($empresa->id == 612) { ?>
-            <li class="dropdown <?php echo ($titulo_pagina == "Alquileres Temporarios") ? "active" : "" ?>">
+            <li class="dropdown <?php echo ($titulo_pagina == "alquileres-temporarios") ? "active" : "" ?>">
               <a href="<?php echo mklink ("propiedades/alquileres-temporarios/")?>">
                 Alquileres Temporarios
               </a>

@@ -3,13 +3,25 @@
     <h1>Búsqueda <span>avanzada</span></h1>
   </div>
   <form id="form_propiedades" onsubmit="return enviar_buscador_propiedades()" method="GET">
-    <input type="hidden" id="view_hidden" value="<?php echo (isset($view) ? $view : 0) ?>" name="view"/>
+    <input type="hidden" id="view_hidden" value="<?php echo (isset($vc_view) ? $vc_view : "") ?>" name="view"/>
+    <div class="checkbox checkbox-theme checkbox-circle">
+      <input id="checkboxList" type="checkbox" class="MyCheck" <?php echo ($vc_view == 0) ? "checked" : "" ?> >
+      <label for="checkboxList">
+        Listado
+      </label>
+    </div>
+    <div class="checkbox checkbox-theme checkbox-circle">
+      <input id="checkboxMap" type="checkbox" class="MyCheck" <?php echo ($vc_view == 2) ? "checked" : "" ?>>
+      <label for="checkboxMap">
+        Mapa
+      </label>
+    </div>
     <div class="form-group">
       <label>Tipo de operación</label>
       <select id="buscador_tipo_operacion" class="selectpicker search-fields" data-live-search="true" data-live-search-placeholder="Buscar">
         <option value="todos">Todos</option>
         <?php foreach ($tipos_operaciones as $tipos) {  ?>
-          <option <?php echo (isset($vc_tipo_operacion) && $vc_tipo_operacion == $tipos->link)?"selected":"" ?>   value="<?php echo $tipos->link ?>"><?php echo $tipos->nombre ?></option>
+          <option <?php echo (isset($vc_link_tipo_operacion) && $vc_link_tipo_operacion == $tipos->link)?"selected":"" ?>   value="<?php echo $tipos->link ?>"><?php echo $tipos->nombre ?></option>
         <?php } ?>
       </select>
     </div>
@@ -27,7 +39,7 @@
       <select id="buscador_tipo_propiedad" class="selectpicker search-fields" name="tp" data-live-search="true" data-live-search-placeholder="Buscar" >
         <option value="0">Todos</option>
         <?php foreach ($tipos_propiedades as $tipos) { ?>
-          <option <?php echo (isset($vc_tipo_inmueble) && $vc_tipo_inmueble == $tipos->id) ? "selected":"" ?>  value="<?php echo $tipos->id ?>"><?php echo $tipos->nombre ?></option>
+          <option <?php echo (isset($vc_id_tipo_inmueble) && $vc_id_tipo_inmueble == $tipos->id) ? "selected":"" ?>  value="<?php echo $tipos->id ?>"><?php echo $tipos->nombre ?></option>
         <?php } ?>
       </select>
     </div>
@@ -121,9 +133,14 @@
     </div>
   </form>
 </div>
+
 <script type="text/javascript">
 function enviar_buscador_propiedades() {
   var link = "<?php echo mklink("propiedades/")?>";
+  if ($("#checkboxMap").is(":checked")) {
+    link = "<?php echo mklink("mapa/")?>";
+    document.getElementById("view_hidden").value = "2";
+  }
   var tipo_operacion = $("#buscador_tipo_operacion").val();
   var localidad = $("#buscador_localidad").val();
   link = link + tipo_operacion + "/" + localidad + "/";

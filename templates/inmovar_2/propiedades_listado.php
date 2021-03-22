@@ -1,8 +1,9 @@
 <?php
 include "includes/init.php" ;
-$nombre_pagina = "listado";
 $get_params["offset"] = 12;
 extract($propiedad_model->get_variables());
+$nombre_pagina = "listado";
+$titulo_pagina = $vc_link_tipo_operacion;
 $page_active = $vc_link_tipo_operacion;
 ?>
 <!DOCTYPE html>
@@ -37,6 +38,7 @@ $page_active = $vc_link_tipo_operacion;
                     <div class="top-view">
                       <a href="javascript:void(0);" data-view="lista" onclick="grid_or_list(this);" class="change-view-btn <?php echo ($vc_view==0)?"active-view-btn":"" ?>"><i class="fa fa-th-list"></i></a>
                       <a href="javascript:void(0);" data-view="grid"  onclick="grid_or_list(this);" class="change-view-btn <?php echo ($vc_view==1)?"active-view-btn":"" ?>"><i class="fa fa-th-large"></i></a>
+                      <a href="<?php echo mklink ("mapa/".(empty($vc_link_tipo_operacion)?"todas":$vc_link_tipo_operacion)."/".(empty($link_localidad)?"todas":$link_localidad)."/?".(empty($link_tipo_inmueble)?"":$link_tipo_inmueble)."view=2") ?>"class="change-view-btn"><i class="fa fa-map-marker"></i></a>
                     </div>
                   </h4>
                 </div>
@@ -229,6 +231,11 @@ function grid_or_list(d) {
     $("#view_hidden").val("0");
   }
 }
+</script>
+<script type="text/javascript">
+  $('.MyCheck').on('change', function() {
+    $('.MyCheck').not(this).prop('checked', false);
+  });
 </script>
 </body>
 </html>
