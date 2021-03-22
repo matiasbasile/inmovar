@@ -1,5 +1,6 @@
 <?php 
 include "includes/init.php";
+$vc_view = 0;
 $id_empresa = isset($get_params["em"]) ? $get_params["em"] : $empresa->id;
 $propiedad = $propiedad_model->get($id,array(
   "buscar_total_visitas"=>1,
