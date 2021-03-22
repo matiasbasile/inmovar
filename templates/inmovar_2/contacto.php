@@ -75,28 +75,34 @@ $titulo_pagina = "Contacto"; ?>
             <div class="main-title-2">
               <h1><span>Contáctanos</span></h1>
             </div>
-            <div class="media">
-              <div class="media-left">
-                <i class="fa fa-map-marker"></i>
+            <?php if (!empty($empresa->direccion)) {  ?>
+              <div class="media">
+                <div class="media-left">
+                  <i class="fa fa-map-marker"></i>
+                </div>
+                <div class="media-body">
+                  <h4>Dirección</h4>
+                  <p><?php echo $empresa->direccion ?></p>
+                </div>
               </div>
-              <div class="media-body">
-                <h4>Dirección</h4>
-                <p><?php echo $empresa->direccion ?></p>
-              </div>
-            </div>
+            <?php } ?>
             <div class="media">
               <div class="media-left">
                 <i class="fa fa-phone"></i>
               </div>
-              <div class="media-body">
-                <h4>Teléfonos</h4>
-                <p>
-                  <a href="tel:0477-0477-8556-552"><?php echo $empresa->telefono ?></a>
-                </p>
-                <p>
-                  <a href="tel:+55-417-634-7071"><?php echo $empresa->telefono_2 ?></a>
-                </p>
-              </div>
+              <?php if (!empty($empresa->telefono)) {  ?>
+                <div class="media-body">
+                  <h4>Teléfonos</h4>
+                  <p>
+                    <a href="tel:<?php echo $empresa->telefono ?>"><?php echo $empresa->telefono ?></a>
+                  </p>
+                  <?php if (!empty($empresa->telefono_2)) {  ?>
+                    <p>
+                      <a href="tel:<?php echo $empresa->telefono_2 ?>"><?php echo $empresa->telefono_2 ?></a>
+                    </p>
+                  <?php } ?>
+                </div>
+              <?php } ?>
             </div>
             <div class="media mrg-btm-0">
               <div class="media-left">
@@ -145,31 +151,32 @@ $titulo_pagina = "Contacto"; ?>
 
 <?php include "includes/footer.php" ?>
 <?php include_once("templates/comun/mapa_js.php"); ?>
-  
-<script type="text/javascript">
-$(document).ready(function(){
-  <?php if (!empty($empresa->posiciones) && !empty($empresa->latitud && !empty($empresa->longitud))) { ?>
-
-    var mymap = L.map('googleMap').setView([<?php echo $empresa->latitud ?>,<?php echo $empresa->longitud ?>], 16);
-
-    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+<?php if (!empty($empresa->posiciones) && !empty($empresa->latitud && !empty($empresa->longitud))) { ?>
+  <script type="text/javascript">
+   $(document).ready(function(){
+    var mymap = L.map('googleMap').setView([<?php echo $empresa->latitud ?>,<?php echo $empresa->longitud ?>], 15);
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+      attribution: '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
+      tileSize: 512,
       maxZoom: 18,
-      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-        '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-      id: 'mapbox.streets'
+      zoomOffset: -1,
+      id: 'mapbox/streets-v11',
+      accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
     }).addTo(mymap);
 
-    <?php
-    $posiciones = explode("/",$empresa->posiciones);
-    for($i=0;$i<sizeof($posiciones);$i++) { 
-      $pos = explode(";",$posiciones[$i]); ?>
-      L.marker([<?php echo $pos[0] ?>,<?php echo $pos[1] ?>]).addTo(mymap);
-    <?php } ?>
 
-  <?php } ?>
-});
-</script>
+    var icono = L.icon({
+     iconUrl: 'images/map-marker.png',
+      iconSize:     [44, 50], // size of the icon
+      iconAnchor:   [22, 50], // point of the icon which will correspond to marker's location
+    });
+
+    L.marker([<?php echo $empresa->latitud ?>,<?php echo $empresa->longitud ?>],{
+     icon: icono
+   }).addTo(mymap);
+  });
+  </script>
+<?php } ?>
 <script type="text/javascript"> function enviar_contacto() {
   var nombre = $("#contacto_nombre").val();
   var email = $("#contacto_email").val();
