@@ -67,7 +67,7 @@ else $vc_moneda = "$";
 <?php include("includes/head.php"); ?>
 <script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
 <style type="text/css">
-  .fluid-width-video-wrapper { padding-top: 100% }
+  .fluid-width-video-wrapper { padding-top: 100% !important }
 </style>
 </head>
 <body class="page-sub-page page-property-detail" id="page-top">
