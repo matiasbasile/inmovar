@@ -40,7 +40,7 @@ $keywords = str_replace("\n", " ", $keywords);
 <?php } else if (strpos(strtolower($empresa->favicon), ".ico")>0) { ?>
   <link rel="shortcut icon" type="image/x-icon" href="/admin/<?php echo $empresa->favicon ?>" />
 <?php } else { ?>
-  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 <?php } ?>
 
 <link href="/admin/resources/css/common.css" media="all" type="text/css" rel="stylesheet"/>
