@@ -83,9 +83,8 @@
 						</h6>
 						<ul>
 							<li>
-								<?php $t = $web_model->get_text("box4text-1","info@orlando.com")?>
-								<a href="mailto:<?php echo $t->plain_text ?>" class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave?>">
-									<?php echo $t->plain_text ?>
+								<a href="mailto:<?php echo $empresa->email ?>">
+									<?php echo $empresa->email ?>
 								</a>
 							</li>
 							<li>
