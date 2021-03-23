@@ -34,7 +34,7 @@ include_once("templates/".$empresa->template_path."/assets/css/custom.php");
 <?php } else if (strpos(strtolower($empresa->favicon), ".ico")>0) { ?>
   <link rel="shortcut icon" type="image/x-icon" href="/admin/<?php echo $empresa->favicon ?>" />
 <?php } else { ?>
-  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
 <?php } ?>
 
 <link href="/admin/resources/css/common.css" type="text/css" media="all" rel="stylesheet">

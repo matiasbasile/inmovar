@@ -326,14 +326,14 @@ else $vc_moneda = "$";
                     </div>
                   </section>
                 <?php } ?>
-                <?php if ($propiedad->heading != 0 && $propiedad->pitch != 0) { ?>
+               <!--  <?php if ($propiedad->heading != 0 && $propiedad->pitch != 0) { ?>
                   <section>
                     <header><h2>Vista de calle</h2></header>
                     <div class="property-detail-map-wrapper">
                       <div style="height: 300px; width: 100%" id="street-view"></div>
                     </div>
                   </section>
-                <?php } ?>
+                <?php } ?> -->
                 <?php if (!empty($propiedad->video)) { ?>
                   <section id="video-presentation">
                     <header><h2>Video</h2></header>
@@ -493,9 +493,9 @@ else $vc_moneda = "$";
 //MAP SCRIPT
 $(document).ready(function(){
   mostrar_mapa(); 
-  <?php if ($propiedad->heading != 0 && $propiedad->pitch != 0) { ?>
-    mostrar_streetview();
-  <?php } ?> 
+  // <?php if ($propiedad->heading != 0 && $propiedad->pitch != 0) { ?>
+  //   mostrar_streetview();
+  // <?php } ?> 
 });
 function mostrar_mapa() {
 
