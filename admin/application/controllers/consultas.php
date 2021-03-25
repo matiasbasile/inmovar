@@ -462,6 +462,9 @@ class Consultas extends REST_Controller {
       */ 
       $asunto = (empty($asunto)) ? "Contacto" : $asunto;
     }
+
+    // En el caso de estar consultando por una propiedad de la red
+    $id_empresa_relacion = parent::get_post("id_empresa_relacion",$id_empresa);
    
     // Si la empresa no esta definida, es porque es para el Administrador
     if (empty($id_empresa) || $id_empresa == 0) {
@@ -498,7 +501,7 @@ class Consultas extends REST_Controller {
       if (!empty($id_propiedad)) {
         $this->load->model("Propiedad_Model");
         $propiedad = $this->Propiedad_Model->get($id_propiedad,array(
-          "id_empresa"=>$id_empresa
+          "id_empresa"=>$id_empresa_relacion
         ));
         // Si no estamos definiendo un usuario desde la web, tenemos que poner el asignado en la propiedad
         if (empty($id_usuario)) $id_usuario = $propiedad->id_usuario;
@@ -566,9 +569,6 @@ class Consultas extends REST_Controller {
       else if ($id_articulo != 0) $id_referencia = $id_articulo;
       else if ($id_viaje != 0) $id_referencia = $id_viaje;
       else if ($id_auto != 0) $id_referencia = $id_auto;
-
-      // En el caso de estar consultando por una propiedad de la red
-      $id_empresa_relacion = parent::get_post("id_empresa_relacion",$id_empresa);     
       
       $fecha = date("Y-m-d H:i:s");
       $consulta = new stdClass();
@@ -651,17 +651,7 @@ class Consultas extends REST_Controller {
       if ($solo_mensaje == 1) {
         $body = nl2br($mensaje);
       } else {
-        // TODO: Configurar esto segun el idioma de la empresa
-        if ($id_empresa == 256 || $id_empresa == 257) {
-          if (!empty($nombre)) $body.= "Name: $nombre <br/>";
-          if (!empty($asunto)) $body.= "Subject: $asunto <br/>";
-          if (!empty($email)) $body.= "Email: $email <br/>";
-          if (!empty($telefono)) $body.= "Phone: $telefono <br/>";
-          if (!empty($ciudad)) $body.= "City: $ciudad <br/>";
-          if (isset($para) && !empty($para)) $body.= "To: $para <br/>";
-          if (!empty($mensaje)) $body.= "Message: $mensaje <br/>";
-
-        } else if ($id_origen == 30 || $id_origen == 31) {
+        if ($id_origen == 30 || $id_origen == 31) {
           
           // Contacto de Clienapp (sea directo o fuera de linea)
           $clave_template = (($id_origen == 31) ? "contacto-clienapp-fuera-linea" : "contacto-clienapp");

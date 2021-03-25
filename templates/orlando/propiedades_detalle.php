@@ -31,7 +31,7 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
 <meta property="og:type" content="website" />
 <meta property="og:title" content="<?php echo ($propiedad->nombre); ?>" />
 <meta property="og:description" content="<?php echo str_replace("\n","",$propiedad->plain_text); ?>" />
-<meta property="og:image" content="<?php echo current_url(TRUE); ?><?php echo $propiedad->imagen ?>"/>
+<meta property="og:image" content="<?php echo $propiedad->imagen_full ?>"/>
 <script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
 </head>
 <body>
