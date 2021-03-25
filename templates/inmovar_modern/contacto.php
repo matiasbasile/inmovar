@@ -187,7 +187,7 @@ scrollTop : 0                       // Scroll to top of body
     "id_empresa":ID_EMPRESA,
   }
   $.ajax({
-    "url":"/admin/consultas/function/enviar/",
+    "url":"https://app.inmovar.com/admin/consultas/function/enviar/",
     "type":"post",
     "dataType":"json",
     "data":datos,

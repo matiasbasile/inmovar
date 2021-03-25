@@ -72,7 +72,7 @@ function enviar_contacto() {
     "bcc":"<?php echo $empresa->bcc_email ?>",
   }
   $.ajax({
-    "url":"/admin/consultas/function/enviar/",
+    "url":"https://app.inmovar.com/admin/consultas/function/enviar/",
     "type":"post",
     "dataType":"json",
     "data":datos,

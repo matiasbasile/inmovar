@@ -149,7 +149,7 @@ $(document).ready(function(){
     "id_origen": ((id_origen != 0) ? id_origen : ((id_articulo != 0)?1:6)),
   }
   $.ajax({
-    "url":"/admin/consultas/function/enviar/",
+    "url":"https://app.inmovar.com/admin/consultas/function/enviar/",
     "type":"post",
     "dataType":"json",
     "data":datos,

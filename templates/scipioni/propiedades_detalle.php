@@ -582,7 +582,7 @@ function enviar_contacto() {
     "id_origen": 9,
   }
   $.ajax({
-    "url":"/admin/consultas/function/enviar/",
+    "url":"https://app.inmovar.com/admin/consultas/function/enviar/",
     "type":"post",
     "dataType":"json",
     "data":datos,
