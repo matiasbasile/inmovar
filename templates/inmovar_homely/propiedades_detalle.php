@@ -13,7 +13,9 @@ $propiedad = $propiedad_model->get($id,array(
   "buscar_relacionados"=>1,
   "buscar_relacionados_offset"=>6,
 ));
-if ($propiedad === FALSE || !isset($propiedad->nombre)) header("Location:404.php");
+if ($propiedad === FALSE) {
+  header("Location:".mklink("/"));
+}
 $page_active = $propiedad->tipo_operacion_link;
 $titulo_pagina = $propiedad->tipo_operacion_link;
 

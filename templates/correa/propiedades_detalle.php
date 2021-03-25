@@ -37,6 +37,7 @@ if ($maximo == "undefined" || empty($maximo)) $maximo = $precio_maximo;
 
 if ($propiedad->id_tipo_operacion == 1) $vc_moneda = "USD";
 else $vc_moneda = "$";
+if ($propiedad === FALSE || !isset($propiedad->nombre)) header("Location:".mklink("/"));
 ?>  
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">

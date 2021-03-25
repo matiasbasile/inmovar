@@ -15,7 +15,9 @@ $seo_keywords = (!empty($propiedad->seo_keywords)) ? ($propiedad->seo_keywords) 
 
 // Seteamos la cookie para indicar que el cliente ya entro a esta propiedad
 $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
-
+if ($propiedad === FALSE) {
+  header("Location:".mklink("/"));
+}
 ?> 
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
