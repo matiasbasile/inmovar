@@ -651,7 +651,7 @@ class Consultas extends REST_Controller {
       if ($solo_mensaje == 1) {
         $body = nl2br($mensaje);
       } else {
-        if ($id_origen == 30 || $id_origen == 31) {
+        if ($id_origen == 30 || $id_origen == 31) { 
           
           // Contacto de Clienapp (sea directo o fuera de linea)
           $clave_template = (($id_origen == 31) ? "contacto-clienapp-fuera-linea" : "contacto-clienapp");
