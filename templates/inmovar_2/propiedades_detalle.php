@@ -7,9 +7,7 @@ $propiedad = $propiedad_model->get($id,array(
   "buscar_relacionados_offset"=>4,
   "id_empresa"=>$id_empresa,
 ));
-if ($propiedad === FALSE) {
-  header("Location: /404.php");
-}
+if ($propiedad === FALSE || !isset($propiedad->nombre)) header("Location:".mklink("/"));
 if (!empty($titulo_pagina)) { $titulo_pagina = $propiedad->nombre; }
 $nombre_pagina = "detalle";
 $mostro_video = 0;

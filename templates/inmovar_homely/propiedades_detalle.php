@@ -13,7 +13,9 @@ $propiedad = $propiedad_model->get($id,array(
   "buscar_relacionados"=>1,
   "buscar_relacionados_offset"=>6,
 ));
-if ($propiedad === FALSE || !isset($propiedad->nombre)) header("Location:404.php");
+if ($propiedad === FALSE) {
+  header("Location:".mklink("/"));
+}
 $page_active = $propiedad->tipo_operacion_link;
 $titulo_pagina = $propiedad->tipo_operacion_link;
 
@@ -36,9 +38,6 @@ $cookie_hide_lightbox = (isset($_COOKIE['hide_lightbox'])) ? $_COOKIE['hide_ligh
 
 // Seteamos la cookie para indicar que el cliente ya entro a esta propiedad
 $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
-if ($propiedad === FALSE) {
-  header("Location: 404.php");
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">

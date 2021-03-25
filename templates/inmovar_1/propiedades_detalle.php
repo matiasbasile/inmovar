@@ -17,9 +17,7 @@ $propiedad = $propiedad_model->get($id,array(
   "id_empresa"=>$id_empresa,
   "id_empresa_original"=>$empresa->id,
 ));
-if ($propiedad === FALSE) {
-  header("Location: 404.php");
-}
+if ($propiedad === FALSE || !isset($propiedad->nombre)) header("Location:".mklink("/"));
 
 $dolar = $web_model->get_cotizacion_dolar();
 
