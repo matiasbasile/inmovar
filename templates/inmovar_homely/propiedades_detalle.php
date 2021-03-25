@@ -36,6 +36,9 @@ $cookie_hide_lightbox = (isset($_COOKIE['hide_lightbox'])) ? $_COOKIE['hide_ligh
 
 // Seteamos la cookie para indicar que el cliente ya entro a esta propiedad
 $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
+if ($propiedad === FALSE) {
+  header("Location: 404.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
