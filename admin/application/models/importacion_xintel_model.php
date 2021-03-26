@@ -42,7 +42,6 @@ class Importacion_Xintel_Model extends Abstract_Model {
       $q = $this->db->query($sql);
       
       if ($q->num_rows()==0) {
-
         
         $sql = "SELECT * FROM com_localidades WHERE nombre = '$p->in_loc' ";
         $l = $this->db->query($sql);
@@ -117,6 +116,7 @@ class Importacion_Xintel_Model extends Abstract_Model {
         curl_setopt($c,CURLOPT_USERAGENT,'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
         $re = curl_exec($c);
         $re = json_decode($re);
+        $images = array();
         foreach ($re->resultado->img as $path){
           $images[] = $path;
         }
