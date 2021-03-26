@@ -594,7 +594,7 @@ function enviar_contacto() {
     "id_origen":<?php echo(isset($id_origen) ? $id_origen : 1); ?>,
   }
   $.ajax({
-    "url":"/admin/consultas/function/enviar/",
+    "url":"https://app.inmovar.com/admin/consultas/function/enviar/",
     "type":"post",
     "dataType":"json",
     "data":datos,
@@ -662,7 +662,7 @@ function enviar_contacto_modal() {
     "bcc":"basile.matias99@gmail.com",
   }
   $.ajax({
-    "url":"/admin/consultas/function/enviar/",
+    "url":"https://app.inmovar.com/admin/consultas/function/enviar/",
     "type":"post",
     "dataType":"json",
     "data":datos,
@@ -721,7 +721,7 @@ function enviar_ficha_email() {
       "link_ficha_propiedad":"<?php echo mklink("admin/propiedades/function/ficha/".$propiedad->hash) ?>",
     }
     $.ajax({
-      "url":"/admin/consultas/function/enviar/",
+      "url":"https://app.inmovar.com/admin/consultas/function/enviar/",
       "type":"post",
       "dataType":"json",
       "data":datos,

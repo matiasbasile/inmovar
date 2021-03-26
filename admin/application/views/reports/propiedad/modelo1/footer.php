@@ -319,7 +319,7 @@ function enviar_comentario() {
   datos[tipo] = id_consulta;
 
   $.ajax({
-   "url":"/admin/consultas/function/enviar/",
+   "url":"https://app.inmovar.com/admin/consultas/function/enviar/",
    "data": datos,
    "dataType":"json",
    "type":"post",

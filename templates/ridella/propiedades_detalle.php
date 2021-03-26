@@ -38,7 +38,7 @@ $maximo = isset($_SESSION["maximo"]) ? $_SESSION["maximo"] : $precio_maximo;
 if ($maximo == "undefined" || empty($maximo)) $maximo = $precio_maximo;
 
 $imagen_ppal = "";
-if (!empty($propiedad->path)) $imagen_ppal = current_url(TRUE)."/admin/".$propiedad->path;
+if (!empty($propiedad->path)) $imagen_ppal = $propiedad->imagen_full;
 else if (!empty($empresa->no_imagen)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no_imagen;
 else $imagen_ppal = current_url(TRUE)."/templates/".$empresa->template_path."/images/no-imagen-png"; 
 
@@ -479,7 +479,7 @@ function enviar_contacto() {
   }
   enviando = 1;
   $.ajax({
-    "url":"/admin/consultas/function/enviar/",
+    "url":"https://app.inmovar.com/admin/consultas/function/enviar/",
     "type":"post",
     "dataType":"json",
     "data":datos,

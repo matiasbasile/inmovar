@@ -33,7 +33,7 @@ if ($propiedad === FALSE) {
 <meta property="og:type" content="website" />
 <meta property="og:title" content="<?php echo ($propiedad->nombre); ?>" />
 <meta property="og:description" content="<?php echo str_replace("\n","",$propiedad->plain_text); ?>" />
-<meta property="og:image" content="<?php echo current_url(TRUE); ?><?php echo $propiedad->imagen ?>"/>
+<meta property="og:image" content="<?php echo $propiedad->imagen_full ?>"/>
 <script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
 </head>
 <body>
@@ -437,7 +437,7 @@ if ($propiedad === FALSE) {
 		}
 		enviando = 1;
 		$.ajax({
-			"url":"/admin/consultas/function/enviar/",
+			"url":"https://app.inmovar.com/admin/consultas/function/enviar/",
 			"type":"post",
 			"dataType":"json",
 			"data":datos,
@@ -595,7 +595,7 @@ function enviar_ficha_email() {
     }
     enviando = 1;
     $.ajax({
-      "url":"/admin/consultas/function/enviar/",
+      "url":"https://app.inmovar.com/admin/consultas/function/enviar/",
       "type":"post",
       "dataType":"json",
       "data":datos,

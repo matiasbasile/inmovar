@@ -12,7 +12,7 @@ if ($propiedad === FALSE) {
 if (!empty($titulo_pagina)) { $titulo_pagina = $propiedad->nombre; }
 $nombre_pagina = "detalle";
 $mostro_video = 0;
-if (!empty($propiedad->path)) $propiedad->images = array_merge(array("/admin/".$propiedad->path),$propiedad->images);
+if (!empty($propiedad->imagen)) $propiedad->images = array_merge(array($propiedad->imagen),$propiedad->images);
 
 // Seteamos la cookie para indicar que el cliente ya entro a esta propiedad
 $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
@@ -28,7 +28,7 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
 <meta property="og:description" content="<?php echo str_replace("\n", "", substr(strip_tags($propiedad->texto),0,300).((strlen($propiedad->texto) > 300) ? "..." : ""));?>" />
 <?php 
 $imagen_ppal = "";
-if (empty($propiedad->path) && !empty($propiedad->video)) { 
+if (empty($propiedad->imagen) && !empty($propiedad->video)) { 
   preg_match('/src="([^"]+)"/', $propiedad->video, $match);
   if (sizeof($match)>0) {
     $src_iframe = $match[1];
@@ -36,7 +36,7 @@ if (empty($propiedad->path) && !empty($propiedad->video)) {
     $imagen_ppal = "https://img.youtube.com/vi/$id_video/0.jpg";
   }
 } else {
-  $imagen_ppal = current_url(TRUE)."/admin/".$propiedad->path;
+  $imagen_ppal = current_url(TRUE).$propiedad->imagen;
 } 
 if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no_imagen;
 ?>
@@ -133,13 +133,13 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no
                           <span class="sr-only">Anterior</span>
                         </a>
                       <?php } ?>
-                    <?php } else if (!empty($propiedad->path)) { ?>
+                    <?php } else if (!empty($propiedad->imagen)) { ?>
                       <div class="item active">
-                        <a data-fancybox="gallery" href="/admin/<?php echo $propiedad->path ?>">
-                          <img src="/admin/<?php echo $propiedad->path ?>" class="thumb-preview">
+                        <a data-fancybox="gallery" href="<?php echo $propiedad->imagen ?>">
+                          <img src="<?php echo $propiedad->imagen ?>" class="thumb-preview">
                         </a>
                       </div>
-                    <?php } else if (empty($propiedad->path) && !empty($propiedad->video)) { ?>
+                    <?php } else if (empty($propiedad->imagen) && !empty($propiedad->video)) { ?>
                       <?php $mostro_video = 1; echo $propiedad->video ?>
                     <?php } ?>
                   </div>
@@ -468,8 +468,8 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no
                         <?php } else { ?>
                           <div class="property-tag button alt featured"><?php echo $p->tipo_operacion ?></div>
                         <?php }*/ ?>
-                        <?php if (!empty($p->path)) { ?>
-                          <img class="img-responsive" src="/admin/<?php echo $p->path ?>" alt="<?php echo ($p->nombre); ?>" />
+                        <?php if (!empty($p->imagen)) { ?>
+                          <img class="img-responsive" src="<?php echo $p->imagen ?>" alt="<?php echo ($p->nombre); ?>" />
                         <?php } else if (!empty($empresa->no_imagen)) { ?>
                           <img class="img-responsive" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre); ?>" />
                         <?php } else { ?>
@@ -582,7 +582,7 @@ function enviar_contacto() {
     "id_origen": 9,
   }
   $.ajax({
-    "url":"/admin/consultas/function/enviar/",
+    "url":"https://app.inmovar.com/admin/consultas/function/enviar/",
     "type":"post",
     "dataType":"json",
     "data":datos,

@@ -435,7 +435,7 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
 		}
 		enviando = 1;
 		$.ajax({
-			"url":"/admin/consultas/function/enviar/",
+			"url":"https://app.inmovar.com/admin/consultas/function/enviar/",
 			"type":"post",
 			"dataType":"json",
 			"data":datos,
@@ -593,7 +593,7 @@ function enviar_ficha_email() {
     }
     enviando = 1;
     $.ajax({
-      "url":"/admin/consultas/function/enviar/",
+      "url":"https://app.inmovar.com/admin/consultas/function/enviar/",
       "type":"post",
       "dataType":"json",
       "data":datos,

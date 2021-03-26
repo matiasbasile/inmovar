@@ -679,6 +679,7 @@ class Propiedad_Model {
       }
     }
     $propiedad->imagen = (empty($propiedad->path)) ? "" : (((strpos($propiedad->path,"http")===FALSE)) ? "/admin/".$propiedad->path : $propiedad->path);
+    $propiedad->imagen_full = (strpos($propiedad->path,"http")===FALSE) ? mklink($propiedad->imagen) : $propiedad->imagen;
 
     // Con esto evitamos que se este mostrando el precio en algun lado
     if ($propiedad->publica_precio == 0) {

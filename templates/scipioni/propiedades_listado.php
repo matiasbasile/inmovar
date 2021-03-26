@@ -73,8 +73,8 @@ $page_active = $vc_link_tipo_operacion;
                         <?php if ($p->id_tipo_estado >= 2) { ?>
                           <div class="property-tag button vendido alt featured"><?php echo $p->tipo_estado ?></div>
                         <?php } ?>
-                        <?php if (!empty($p->path)) { ?>
-                          <img class="img-responsive" src="/admin/<?php echo $p->path ?>" alt="<?php echo ($p->nombre); ?>" />
+                        <?php if (!empty($p->imagen)) { ?>
+                          <img class="img-responsive" src="<?php echo $p->imagen ?>" alt="<?php echo ($p->nombre); ?>" />
                         <?php } else if (!empty($empresa->no_imagen)) { ?>
                           <img class="img-responsive" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre); ?>" />
                         <?php } else { ?>
@@ -82,7 +82,7 @@ $page_active = $vc_link_tipo_operacion;
                         <?php } ?>
                         <div class="hover">
                           <a href="<?php echo $p->link_propiedad ?>"><i class="fa fa-plus"></i></a>
-                          <a href="/admin/favoritos/agregar/?id=<?php echo $p->id; ?>"><i class="fa fa-heart"></i></a>
+                          <a rel="nofollow" href="/admin/favoritos/agregar/?id=<?php echo $p->id; ?>"><i class="fa fa-heart"></i></a>
                         </div>
                       </div>
                     </div>
@@ -117,8 +117,8 @@ $page_active = $vc_link_tipo_operacion;
                           <div class="property-tag button vendido alt featured"><?php echo $p->tipo_estado ?></div>
                         <?php } ?>                        
                         <div class="property-main-image">
-                          <?php if (!empty($p->path)) { ?>
-                            <img class="img-responsive" src="/admin/<?php echo $p->path ?>" alt="<?php echo ($p->nombre); ?>" />
+                          <?php if (!empty($p->imagen)) { ?>
+                            <img class="img-responsive" src="<?php echo $p->imagen ?>" alt="<?php echo ($p->nombre); ?>" />
                           <?php } else if (!empty($empresa->no_imagen)) { ?>
                             <img class="img-responsive" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre); ?>" />
                           <?php } else { ?>
@@ -126,7 +126,7 @@ $page_active = $vc_link_tipo_operacion;
                           <?php } ?>
                           <div class="hover">
                             <a href="<?php echo $p->link_propiedad ?>"><i class="fa fa-plus"></i></a>
-                            <a href="/admin/favoritos/agregar/?id=<?php echo $p->id; ?>"><i class="fa fa-heart"></i></a>
+                            <a rel="nofollow" href="/admin/favoritos/agregar/?id=<?php echo $p->id; ?>"><i class="fa fa-heart"></i></a>
                           </div>                          
                         </div>
                       </div>
@@ -226,8 +226,8 @@ $page_active = $vc_link_tipo_operacion;
                       <div class="item">
                         <div class="property">
                           <div class="property-img">
-                            <?php if (!empty($p->path)) { ?>
-                              <img class="img-responsive" src="/admin/<?php echo $p->path ?>" alt="<?php echo ($p->nombre); ?>" />
+                            <?php if (!empty($p->imagen)) { ?>
+                              <img class="img-responsive" src="<?php echo $p->imagen ?>" alt="<?php echo ($p->nombre); ?>" />
                             <?php } else if (!empty($empresa->no_imagen)) { ?>
                               <img class="img-responsive" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre); ?>" />
                             <?php } else { ?>
@@ -235,7 +235,7 @@ $page_active = $vc_link_tipo_operacion;
                             <?php } ?>
                             <div class="hover">
                               <a href="<?php echo $p->link_propiedad ?>"><i class="fa fa-plus"></i></a>
-                              <a href="/admin/favoritos/agregar/?id=<?php echo $p->id; ?>"><i class="fa fa-heart"></i></a>
+                              <a rel="nofollow" href="/admin/favoritos/agregar/?id=<?php echo $p->id; ?>"><i class="fa fa-heart"></i></a>
                             </div>
                           </div>
                           <!-- Property content -->

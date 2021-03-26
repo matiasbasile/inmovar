@@ -240,7 +240,7 @@
 							"id_empresa":ID_EMPRESA,
 						}
 						jQuery.ajax({
-							"url":"/admin/consultas/function/enviar/",
+							"url":"https://app.inmovar.com/admin/consultas/function/enviar/",
 							"type":"post",
 							"dataType":"json",
 							"data":datos,

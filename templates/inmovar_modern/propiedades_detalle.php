@@ -409,7 +409,7 @@ iconAnchor:   [22, 60], // point of the icon which will correspond to marker's l
 		}
 		enviando = 1;
 		$.ajax({
-			"url":"/admin/consultas/function/enviar/",
+			"url":"https://app.inmovar.com/admin/consultas/function/enviar/",
 			"type":"post",
 			"dataType":"json",
 			"data":datos,
