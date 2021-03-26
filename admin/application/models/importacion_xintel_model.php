@@ -11,7 +11,7 @@ class Importacion_Xintel_Model extends Abstract_Model {
   private $array = [];
   private $errors = [];
     
-  function importar_xintel($url =  "http://xintel.com.ar/api/?json=resultados.fichas&suc=JYB&apiK=4m17zq256jvsm24wOnqbev43y&page=0") {
+  function importar_xintel($id_empresa = 1515, $url =  "http://xintel.com.ar/api/?json=resultados.fichas&suc=JYB&apiK=4m17zq256jvsm24wOnqbev43y&page=0") {
     
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
@@ -19,7 +19,6 @@ class Importacion_Xintel_Model extends Abstract_Model {
 
     set_time_limit(0);
     $this->load->model("Propiedad_Model");
-    $id_empresa = 1503;
     $c = curl_init($url);
     curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
@@ -90,8 +89,10 @@ class Importacion_Xintel_Model extends Abstract_Model {
           $tipo_inmueble = 2; 
         }
 
+        $compartida = 0;
         if ($p->operacion == "Venta"){
           $tipo = 1;
+          $compartida = 1;
         } elseif ($p->operacion == "Alquiler"){
           $tipo = 2;
         } else {
@@ -145,7 +146,7 @@ class Importacion_Xintel_Model extends Abstract_Model {
         $pr->calle = $p->in_cal;
         $pr->numero = $p->in_nro;
         $pr->activo = 1;
-        $pr->compartida = 1;
+        $pr->compartida = $compartida;
         $pr->altura = $p->in_nro;
         $pr->piso = $p->in_pis;
         $pr->id_localidad = $id_localidad;
@@ -225,11 +226,10 @@ class Importacion_Xintel_Model extends Abstract_Model {
       $x++;
     }
     //Recursividad para que traiga todas las imagenes
-    /*
     if ($pagina < $total_paginas){
       $url = "http://xintel.com.ar/api/?json=resultados.fichas&suc=JYB&apiK=4m17zq256jvsm24wOnqbev43y&page=".($pagina+1);
-      $this->importar_xintel($url);
-    }*/
+      $this->importar_xintel($id_empresa,$url);
+    }
   }
 
 }

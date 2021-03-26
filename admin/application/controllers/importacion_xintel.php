@@ -9,8 +9,9 @@ class Importacion_Xintel extends REST_Controller {
     $this->load->model('Importacion_Xintel_Model', 'modelo',"id");
   }
 
-  function importacion_xintel() {
-    $this->modelo->importar_xintel();
+  // 1515 = Yacoub
+  function importar($id_empresa = 1515) {
+    $this->modelo->importar_xintel($id_empresa);
   }  
     
 }
