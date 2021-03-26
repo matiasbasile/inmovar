@@ -23,9 +23,8 @@
 						</h6>
 						<ul>
 							<li>
-								<?php $t = $web_model->get_text("text-1","Avenida 13 y 43 / La Plata")?>
-								<a href="javascript:void(0)" class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave?>">
-									<?php echo $t->plain_text ?>
+								<a href="javascript:void(0)">
+									<?php echo $empresa->direccion ?>
 								</a>
 							</li>
 							<li>
