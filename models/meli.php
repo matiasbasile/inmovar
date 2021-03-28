@@ -56,6 +56,7 @@ class Meli {
         $this->client_secret = $client_secret;
         $this->access_token = $access_token;
         $this->refresh_token = $refresh_token;
+        $this->authorization = "Authorization: Bearer ".$this->access_token;
     }
     /**
      * Return an string with a complete Meli login url.
@@ -90,7 +91,8 @@ class Meli {
         );
         $opts = array(
             CURLOPT_POST => true,
-            CURLOPT_POSTFIELDS => $body
+            CURLOPT_POSTFIELDS => $body,
+            CURLOPT_HTTPHEADER => array($this->authorization),
         );
     
         $request = $this->execute(self::$OAUTH_URL, $opts);
@@ -118,7 +120,8 @@ class Meli {
             );
             $opts = array(
                 CURLOPT_POST => true, 
-                CURLOPT_POSTFIELDS => $body
+                CURLOPT_POSTFIELDS => $body,
+                CURLOPT_HTTPHEADER => array($this->authorization),
             );
         
             $request = $this->execute(self::$OAUTH_URL, $opts);
@@ -147,7 +150,9 @@ class Meli {
      * @return mixed
      */
     public function get($path, $params = null, $assoc = false) {
-        $exec = $this->execute($path, null, $params, $assoc);
+        $exec = $this->execute($path, array(
+            CURLOPT_HTTPHEADER => array($this->authorization),
+        ), $params, $assoc);
         return $exec;
     }
     /**
@@ -160,7 +165,7 @@ class Meli {
     public function post($path, $body = null, $params = array()) {
         $body = json_encode($body);
         $opts = array(
-            CURLOPT_HTTPHEADER => array('Content-Type: application/json'),
+            CURLOPT_HTTPHEADER => array('Content-Type: application/json',$this->authorization),
             CURLOPT_POST => true, 
             CURLOPT_POSTFIELDS => $body
         );
@@ -179,7 +184,7 @@ class Meli {
     public function put($path, $body = null, $params) {
         $body = json_encode($body);
         $opts = array(
-            CURLOPT_HTTPHEADER => array('Content-Type: application/json'),
+            CURLOPT_HTTPHEADER => array('Content-Type: application/json',$this->authorization),
             CURLOPT_CUSTOMREQUEST => "PUT",
             CURLOPT_POSTFIELDS => $body
         );
@@ -196,7 +201,8 @@ class Meli {
      */
     public function delete($path, $params) {
         $opts = array(
-            CURLOPT_CUSTOMREQUEST => "DELETE"
+            CURLOPT_CUSTOMREQUEST => "DELETE",
+            CURLOPT_HTTPHEADER => array($this->authorization),
         );
         
         $exec = $this->execute($path, $opts, $params);

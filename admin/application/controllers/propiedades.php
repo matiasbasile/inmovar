@@ -2391,6 +2391,7 @@ class Propiedades extends REST_Controller {
 
       // Si el titulo tiene la palabra Venta
       if (strpos($propiedad->nombre, "Venta")>0) {
+        $propiedad->compartida = 1;
         $propiedad->id_tipo_operacion = 1;
       } else $propiedad->id_tipo_operacion = 2;
 
@@ -2555,6 +2556,21 @@ class Propiedades extends REST_Controller {
         $propiedad->id_departamento = 207;
       } else if (strpos($propiedad->ciudad, "Hermosura") !== FALSE) {
         $propiedad->id_localidad = 5506;
+        $propiedad->id_departamento = 9;
+      } else if (strpos($propiedad->ciudad, "Pinamar") !== FALSE) {
+        $propiedad->id_localidad = 725;
+        $propiedad->id_departamento = 712;
+      } else if (strpos($propiedad->ciudad, "Mar Azul") !== FALSE) {
+        $propiedad->id_localidad = 951;
+        $propiedad->id_departamento = 713;
+      } else if (strpos(strtolower($propiedad->ciudad), "mar del plata") !== FALSE) {
+        $propiedad->id_localidad = 600;
+        $propiedad->id_departamento = 84;
+      } else if (strpos(strtolower($propiedad->ciudad), "magdalena") !== FALSE) {
+        $propiedad->id_localidad = 591;
+        $propiedad->id_departamento = 36;
+      } else if (strpos(strtolower($propiedad->ciudad), "haras del sur") !== FALSE) {
+        $propiedad->id_localidad = 513;
         $propiedad->id_departamento = 9;
       }
 
