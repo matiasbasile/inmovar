@@ -40,7 +40,7 @@ if (isset($_GET["code"])) {
 
   // Obtenemos el usuario
   $user = $meli->authorize($_GET['code'], "https://app.inmovar.com/connect_meli.php");
-  print_r($user);
+  //print_r($user);
   $empresa->ml_access_token = $user['body']->access_token;
   $empresa->expires_in = time() + $user['body']->expires_in;
   $empresa->refresh_token = $user['body']->refresh_token;
