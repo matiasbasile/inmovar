@@ -1,15 +1,11 @@
 <?php
-if (!defined("ML_APP_ID")) { DEFINE ("ML_APP_ID","5263352928211539"); }
-if (!defined("ML_APP_SECRET")) { DEFINE ("ML_APP_SECRET","nvjBcMJIxRtSJAMy73g9kWqT7WqbL4ot"); }
+// CREDENCIALES CREADAS CON LA CUENTA matias.basile@varcreative.com
+if (!defined("ML_APP_ID")) { DEFINE ("ML_APP_ID","7558847180055518"); }
+if (!defined("ML_APP_SECRET")) { DEFINE ("ML_APP_SECRET","4k7Hyg8ZxnqHJaeYmbT3HkxtMvLNRhGz"); }
 
 function get_ml_credentials($id_empresa = 0) {
     $ml_app_id = ML_APP_ID;
     $ml_app_secret = ML_APP_SECRET;
-    if ($id_empresa == 1453 || $id_empresa == 342 || $id_empresa == 1317 || $id_empresa == 224 || $id_empresa == 410) {
-      // APP CREADA EN LA CUENTA: basile.matias99@gmail.com
-      $ml_app_id = "2693978642246786";
-      $ml_app_secret = "tdL6ltA8lNF0BK8zFii2aOCwnLsT9GMX";
-    }
     return array($ml_app_id,$ml_app_secret);
 }
 
