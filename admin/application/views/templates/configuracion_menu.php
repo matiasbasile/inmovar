@@ -64,7 +64,7 @@
     <div class="panel-body expand">
       <div class="padder">
         <% if (isEmpty(ML_ACCESS_TOKEN)) { %>
-          <a class="btn btn-default" href="https://www.varcreative.com/connect_meli.php?id_empresa=<%= ID_EMPRESA %>" target="_blank">Habilitar la sincronizacion</a>
+          <a class="btn btn-default" href="https://app.inmovar.com/connect_meli.php?id_empresa=<%= ID_EMPRESA %>" target="_blank">Habilitar la sincronizacion</a>
         <% } else { %>
 
           <div class="form-group">
