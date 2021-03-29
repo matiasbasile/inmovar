@@ -49,6 +49,7 @@ if (isset($_GET["code"])) {
     "refresh_token"=>$empresa->refresh_token,
     "id_empresa"=>$id_empresa,
   ));
+  exit();
 
 }
 
