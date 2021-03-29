@@ -50,7 +50,7 @@ if (isset($_GET["code"])) {
     "refresh_token"=>$empresa->refresh_token,
     "id_empresa"=>$id_empresa,
   ));
-  echo "Su cuenta de MercadoLibre esta sincronizada. Puede cerrar esta ventana.";
+  echo "Su cuenta de MercadoLibre esta sincronizada. Puede cerrar esta ventana y volver a recargar el sistema.";
   exit();
 
 }
@@ -88,7 +88,7 @@ if (!empty($empresa->ml_access_token) && !empty($empresa->ml_expires_in)) {
       "ml_user_id"=>$body->id,
       "id_empresa"=>$id_empresa,
     ));
-    echo "Su cuenta de MercadoLibre esta sincronizada. Puede cerrar esta ventana.";
+    echo "Su cuenta de MercadoLibre esta sincronizada. Puede cerrar esta ventana y volver a recargar el sistema.";
   }
   exit();
 
