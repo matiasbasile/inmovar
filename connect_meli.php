@@ -1,4 +1,5 @@
 <?php
+@session_start();
 require_once 'models/meli.php';
 require_once 'admin/params.php';
 
@@ -17,7 +18,12 @@ function guardar_tokens($array=array()) {
 }
 
 // Si estamos enviando los datos del articulo que queremos compartir
-if (isset($_GET["id_empresa"])) $id_empresa = filter_var($_GET["id_empresa"]);
+if (isset($_GET["id_empresa"])) {
+  $id_empresa = filter_var($_GET["id_empresa"]);
+  $_SESSION["id_empresa"] = $id_empresa;
+} else {
+  $id_empresa = isset($_SESSION["id_empresa"]) ? $_SESSION["id_empresa"] : 0;
+}
 
 $sql = "SELECT * FROM web_configuracion WHERE id_empresa = $id_empresa ";
 $q = mysqli_query($conx,$sql);
@@ -87,10 +93,9 @@ if (!empty($empresa->ml_access_token) && !empty($empresa->ml_expires_in)) {
 
   // Redireccionamos automaticamente para que el usuario acepte los permisos de la aplicacion
   $url = $meli->getAuthUrl(
-    "https://app.inmovar.com/connect_meli.php?id_empresa=$id_empresa", 
+    "https://app.inmovar.com/connect_meli.php", 
     Meli::$AUTH_URL['MLA']
   );
-  echo $url; exit();
   header("Location: $url");
 
 }
