@@ -90,6 +90,7 @@ if (!empty($empresa->ml_access_token) && !empty($empresa->ml_expires_in)) {
     "https://app.inmovar.com/connect_meli.php?id_empresa=$id_empresa", 
     Meli::$AUTH_URL['MLA']
   );
+  echo $url; exit();
   header("Location: $url");
 
 }
