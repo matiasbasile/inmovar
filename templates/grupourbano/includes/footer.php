@@ -23,7 +23,7 @@ if ($nombre_pagina != "mapa") { ?>
   </div> -->
   <div class="col-md-12 investors">
     <div class="row text-center">
-      <div class="col-md-12 col-lg-12 col-xs-12">
+      <div class="col-md-10 col-xs-12">
         <h4><a target="_blank" href="manual.pdf">Manual del inversor</a></h4>
         <div class="investor-info">
           <p>Preguntas frecuentes acerca del funcionamiento, comercializaci&oacute;n y construcci&oacute;n de viviendas.</p>
@@ -32,7 +32,9 @@ if ($nombre_pagina != "mapa") { ?>
           <a target="_blank" href="/templates/grupourbano/manual.pdf" class="btn btn-black"><img src="images/pdf-icon.png" alt="PDF" /> descargar pdf</a>
         </div>
       </div>
-        
+      <div class="col-md-2 col-xs-12">
+        <img class="mt20 w100p" src="/admin/uploads/45/marcas/cdu.jpg" alt="Camara Empresaria de Desarrolladores Urbanos">
+      </div>
     </div>
   </div>
 </section>
