@@ -22,18 +22,20 @@ if ($nombre_pagina != "mapa") { ?>
     <div class="project-status"><span>proyectos y direcci&oacute;n</span> <small>Punt <img src="images/circle1.png" alt="Cricle" /> dos</small> <big><img src="images/circle2.png" alt="Circle" />2</big></div>
   </div> -->
   <div class="col-md-12 investors">
-    <div class="row text-center">
-      <div class="col-md-10 col-xs-12">
-        <h4><a target="_blank" href="manual.pdf">Manual del inversor</a></h4>
-        <div class="investor-info">
-          <p>Preguntas frecuentes acerca del funcionamiento, comercializaci&oacute;n y construcci&oacute;n de viviendas.</p>
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-10 col-xs-12">
+          <h4><a target="_blank" href="manual.pdf">Manual del inversor</a></h4>
+          <div class="investor-info">
+            <p>Preguntas frecuentes acerca del funcionamiento, comercializaci&oacute;n y construcci&oacute;n de viviendas.</p>
+          </div>
+          <div class="investor-status" style="width: 100%;">
+            <a target="_blank" href="/templates/grupourbano/manual.pdf" class="btn btn-black"><img src="images/pdf-icon.png" alt="PDF" /> descargar pdf</a>
+          </div>
         </div>
-        <div class="investor-status" style="width: 100%;">
-          <a target="_blank" href="/templates/grupourbano/manual.pdf" class="btn btn-black"><img src="images/pdf-icon.png" alt="PDF" /> descargar pdf</a>
+        <div class="col-md-2 col-xs-12">
+          <img class="mt20 w100p" src="/admin/uploads/45/marcas/cdu.jpg" alt="Camara Empresaria de Desarrolladores Urbanos">
         </div>
-      </div>
-      <div class="col-md-2 col-xs-12">
-        <img class="mt20 w100p" src="/admin/uploads/45/marcas/cdu.jpg" alt="Camara Empresaria de Desarrolladores Urbanos">
       </div>
     </div>
   </div>
