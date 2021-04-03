@@ -874,7 +874,7 @@ h4{font-size:18px;}
 
 @media screen and (max-width:479px){
 /* NORMAL CSS */
-.brand{width:300px; margin: 20px}
+.brand{width:300px; margin: 20px;max-width: 100%}
 .toggle-button{width:45px; padding:6px 10px; z-index: 999999}
 nav{width:100%;}
 .section-title big{font-size:20px;}
