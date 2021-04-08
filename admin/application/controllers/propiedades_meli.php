@@ -319,9 +319,10 @@ class Propiedades_Meli extends REST_Controller {
     $expires_in = $array["expires_in"];
     $id_empresa = $array["id_empresa"];
     $sql = "UPDATE web_configuracion SET ";
-    $sql.= " ml_access_token = '$access_token', ";
-    $sql.= " ml_refresh_token = '$refresh_token', ";
-    $sql.= " ml_expires_in = '$expires_in' ";
+    if (!empty($access_token)) $sql.= " ml_access_token = '$access_token', ";
+    if (!empty($refresh_token)) $sql.= " ml_refresh_token = '$refresh_token', ";
+    if (!empty($expires_in)) $sql.= " ml_expires_in = '$expires_in', ";
+    $sql.= " id_empresa = $id_empresa ";
     $sql.= "WHERE id_empresa = $id_empresa ";
     $this->db->query($sql);
   }

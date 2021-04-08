@@ -8,10 +8,10 @@ function guardar_tokens($array=array()) {
   global $conx;
   $id_empresa = $array["id_empresa"];
   $sql = "UPDATE web_configuracion SET ";
-  if (isset($array["access_token"])) $sql.= " ml_access_token = '".$array["access_token"]."', ";
-  if (isset($array["refresh_token"])) $sql.= " ml_refresh_token = '".$array["refresh_token"]."', ";
-  if (isset($array["expires_in"])) $sql.= " ml_expires_in = '".$array["expires_in"]."', ";
-  if (isset($array["ml_user_id"])) $sql.= " ml_user_id = '".$array["ml_user_id"]."', ";
+  if (isset($array["access_token"]) && !empty($array["access_token"])) $sql.= " ml_access_token = '".$array["access_token"]."', ";
+  if (isset($array["refresh_token"]) && !empty($array["refresh_token"])) $sql.= " ml_refresh_token = '".$array["refresh_token"]."', ";
+  if (isset($array["expires_in"]) && !empty($array["expires_in"])) $sql.= " ml_expires_in = '".$array["expires_in"]."', ";
+  if (isset($array["ml_user_id"]) && !empty($array["ml_user_id"])) $sql.= " ml_user_id = '".$array["ml_user_id"]."', ";
   $sql.= " id_empresa = $id_empresa ";
   $sql.= "WHERE id_empresa = $id_empresa ";
   mysqli_query($conx,$sql);
