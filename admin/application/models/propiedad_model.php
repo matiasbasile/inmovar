@@ -1331,4 +1331,12 @@ class Propiedad_Model extends Abstract_Model {
     }
   }
 
+  function get_dolar(){
+    $sql_cot = 'SELECT * FROM cotizaciones WHERE moneda = "U$D" ORDER BY fecha DESC LIMIT 0,1 ';
+    $q = $this->db->query($sql_cot);
+    $q = $q->row();
+    
+    return $q->valor;
+  }
+
 }
