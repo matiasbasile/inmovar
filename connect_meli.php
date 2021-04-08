@@ -84,6 +84,7 @@ if (!empty($empresa->ml_access_token) && !empty($empresa->ml_expires_in)) {
   // Guardamos el usuario de ML
   if ($response["httpCode"] == 200) {
     $body = $response["body"];
+    print_r($body);
     guardar_tokens(array(
       "ml_user_id"=>$body->id,
       "id_empresa"=>$id_empresa,
