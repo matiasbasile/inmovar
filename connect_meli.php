@@ -40,7 +40,6 @@ if (isset($_GET["code"])) {
 
   // Obtenemos el usuario
   $user = $meli->authorize($_GET['code'], "https://app.inmovar.com/connect_meli.php");
-  print_r($user);
   $empresa->ml_access_token = $user['body']->access_token;
   $empresa->expires_in = time() + $user['body']->expires_in;
   $empresa->refresh_token = $user['body']->refresh_token;
@@ -48,6 +47,7 @@ if (isset($_GET["code"])) {
     "access_token"=>$empresa->ml_access_token,
     "expires_in"=>$empresa->expires_in,
     "refresh_token"=>$empresa->refresh_token,
+    "ml_user_id"=>$user['body']->user_id,
     "id_empresa"=>$id_empresa,
   ));
   echo "Su cuenta de MercadoLibre esta sincronizada. Puede cerrar esta ventana y volver a recargar el sistema.";
@@ -84,7 +84,6 @@ if (!empty($empresa->ml_access_token) && !empty($empresa->ml_expires_in)) {
   // Guardamos el usuario de ML
   if ($response["httpCode"] == 200) {
     $body = $response["body"];
-    print_r($body);
     guardar_tokens(array(
       "ml_user_id"=>$body->id,
       "id_empresa"=>$id_empresa,
