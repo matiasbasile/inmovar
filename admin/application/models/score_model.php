@@ -59,7 +59,7 @@ class Score_Model extends Abstract_Model {
   private $tipo_log = 1;
 
   function log($linea,$config = array()) {
-    if ($tipo_log == 1) echo $linea." <br/>\n";
+    if ($this->tipo_log == 1) echo $linea." <br/>\n";
   }
 
   function calcular_score_propiedad($propiedad,$config = array()) {
