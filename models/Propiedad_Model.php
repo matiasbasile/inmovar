@@ -1155,6 +1155,8 @@ class Propiedad_Model {
         $sql.= "ORDER BY $order_by_empresa A.id ASC ";
       } else if ($order == 7) {
         $sql.= "ORDER BY $order_by_empresa A.fecha_publicacion DESC ";
+      } else if ($order == 9) {
+        $sql.= "ORDER BY A.score DESC ";
       } else {
         $sql.= "ORDER BY $order_by_empresa A.id DESC ";
       }

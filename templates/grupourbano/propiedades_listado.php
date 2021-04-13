@@ -26,6 +26,7 @@ function filter() {
         <option <?php echo($vc_orden == 0)?"selected":"" ?> value="0">Recientes</option>
         <option <?php echo($vc_orden == 1)?"selected":"" ?> value="1">Precio Mayor a Menor</option>
         <option <?php echo($vc_orden == 2)?"selected":"" ?> value="2">Precio Menor a Mayor</option>
+        <option <?php echo($vc_orden == 9)?"selected":"" ?> value="9">Relevancia</option>
       </select>
     </div>
     <?php
