@@ -70,8 +70,8 @@
         $resultado2=json_decode($resultado2);
         $token=$resultado2->access_token;
         $refreshToken=$resultado2->refresh_token;
-        $sql="UPDATE web_configuracion SET ml_access_token = '$token', ml_refresh_token = '$refreshToken' WHERE id_empresa = '$this->id_empresa' ";
-        mysqli_query($this->con, $sql);
+        //$sql="UPDATE web_configuracion SET ml_access_token = '$token', ml_refresh_token = '$refreshToken' WHERE id_empresa = '$this->id_empresa' ";
+        //mysqli_query($this->con, $sql);
         $this->ejecuciondos($token, $fields);
 
       }

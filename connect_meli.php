@@ -62,15 +62,17 @@ if (!empty($empresa->ml_access_token) && !empty($empresa->ml_expires_in)) {
     try {
       // Refrescamos el access token
       $refresh = $meli->refreshAccessToken();
-      $empresa->ml_access_token = $refresh['body']->access_token;
-      $empresa->expires_in = time() + $refresh['body']->expires_in;
-      $empresa->refresh_token = $refresh['body']->refresh_token;
-      guardar_tokens(array(
-        "access_token"=>$empresa->ml_access_token,
-        "expires_in"=>$empresa->expires_in,
-        "refresh_token"=>$empresa->refresh_token,
-        "id_empresa"=>$id_empresa,
-      ));
+      if (isset($refresh['body']->access_token) && !empty($refresh['body']->access_token)) {
+        $empresa->ml_access_token = $refresh['body']->access_token;
+        $empresa->expires_in = time() + $refresh['body']->expires_in;
+        $empresa->refresh_token = $refresh['body']->refresh_token;
+        guardar_tokens(array(
+          "access_token"=>$empresa->ml_access_token,
+          "expires_in"=>$empresa->expires_in,
+          "refresh_token"=>$empresa->refresh_token,
+          "id_empresa"=>$id_empresa,
+        ));
+      }
 
     } catch (Exception $e) {
       echo $e->getMessage();

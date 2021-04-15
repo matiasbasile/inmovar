@@ -729,11 +729,13 @@ class Articulo_Model extends Abstract_Model {
         try {
           // Refrescamos el access token
           $refresh = $meli->refreshAccessToken();
-          $web_conf->ml_access_token = $refresh['body']->access_token;
-          $web_conf->ml_expires_in = time() + $refresh['body']->expires_in;
-          $web_conf->ml_refresh_token = $refresh['body']->refresh_token;
-          $this->db->where("id_empresa",$web_conf->id_empresa);
-          $this->db->update("web_configuracion",$web_conf);
+          if (isset($refresh['body']->access_token) && !empty($refresh['body']->access_token)) {
+            $web_conf->ml_access_token = $refresh['body']->access_token;
+            $web_conf->ml_expires_in = time() + $refresh['body']->expires_in;
+            $web_conf->ml_refresh_token = $refresh['body']->refresh_token;
+            $this->db->where("id_empresa",$web_conf->id_empresa);
+            $this->db->update("web_configuracion",$web_conf);
+          }
         } catch (Exception $e) {
           echo $e->getMessage();
           return FALSE;
