@@ -1,285 +1,385 @@
-<?php 
+<?php
 include("includes/init.php");
 extract($propiedad_model->get_variables());
-$page_act = $vc_link_tipo_operacion;
-?>
+$nombre_pagina = $vc_link_tipo_operacion;
+function filter() {
+  global $vc_offset, $vc_view, $vc_total_paginas, $vc_link, $vc_page, $vc_tipo_operacion, $vc_orden, $vc_params, $vc_dormitorios, $vc_id_tipo_inmueble, $vc_banios, $vc_apto_banco, $vc_acepta_permuta, $vc_minimo, $vc_maximo; ?>
+  <div class="filter">
+    <ul class="tab-button">
+      <li><a class="grid-view <?php echo(($vc_view != "0")?"active":"") ?>" onclick="change_view(this)" href="javascript:void(0)"></a></li>
+      <li><a class="list-view <?php echo(($vc_view == "0")?"active":"") ?>" onclick="change_view(this)" href="javascript:void(0)"></a></li>
+    </ul>
+    <div class="sort-by">
+      <label for="sort-by">Ordenar por:</label>
+      <form  style="display: inline" id="orden_form" action="<?php echo mklink ("propiedades/".(empty($vc_link_tipo_operacion)?"todas":$vc_link_tipo_operacion)."/".(empty($vc_link_localidad)?"todas":$vc_link_localidad)."/$vc_params") ?>" method="GET">
+        <input type="hidden" id="tp" value="<?php echo (!empty($vc_id_tipo_inmueble))?$vc_id_tipo_inmueble:"todas" ?>" name="tp">
+        <input type="hidden" id="dm" value="<?php echo (!empty($vc_dormitorios))?"$vc_dormitorios":"" ?>" name="dm">
+        <input type="hidden" id="bn" value="<?php echo (!empty($vc_banios))?"$vc_banios":"" ?>" name="bn">
+        <input type="hidden" id="moneda" value="<?PHP echo (!empty($vc_moneda))?$vc_moneda:"ars" ?>" name="m">
+        <input type="hidden" id="banco" value="<?php echo (!empty($vc_apto_banco) == 1)?"1":"" ?>" name="banco">
+        <input type="hidden" id="per" value="<?php echo (!empty($vc_acepta_permuta) == 1)?"1":"" ?>" name="per">
+        <input type="hidden" id="vc_minimo" value="<?php echo (!empty($vc_minimo))?"$vc_minimo":"" ?>" name="vc_minimo">
+        <input type="hidden" id="vc_maximo" value="<?php echo (!empty($vc_maximo))?"$vc_maximo":"" ?>" name="vc_maximo">
+        <input type="hidden" id="vc_offset" value="<?php echo (!empty($vc_offset))?"$vc_offset":"" ?>" name="offset">
+        <select id="sort-by" onchange="enviar_orden()" name="orden">
+          <option <?php echo ($vc_orden == -1 ) ? "selected" : "" ?> value="nuevo">Ver los más nuevos</option>
+          <option <?php echo ($vc_orden == 2 ) ? "selected" : "" ?> value="barato">Precio menor a mayor</option>
+          <option <?php echo ($vc_orden == 1 ) ? "selected" : "" ?> value="caro">Precio mayor a menor</option>
+          <option <?php echo ($vc_orden == 4 ) ? "selected" : "" ?> value="destacados">Destacados</option>
+        </select>  
+      </form>
+    </div>
+    <?php if ($vc_total_paginas > 1) { ?>
+      <div class="pagination">
+        <?php if ($vc_page > 0) { ?>
+            <a class="prev" href="<?php echo mklink ($vc_link.($vc_page-1)."/".$vc_params); ?>"></a>
+        <?php } ?>
+        <?php for($i=0;$i<$vc_total_paginas;$i++) { ?>
+            <?php if (abs($vc_page-$i)<2) { ?>
+              <a class="<?php echo ($i==$vc_page) ? "active" : ""?>" href="<?php echo mklink ($vc_link.$i."/".$vc_params); ?>"><?php echo ($i+1); ?></a>
+            <?php } ?>
+        <?php } ?>
+        <?php if ($vc_page < ($vc_total_paginas-1)) { ?>
+            <a class="next" href="<?php echo mklink ($vc_link.($vc_page+1)."/".$vc_params); ?>"></a>
+        <?php } ?>
+      </div>
+    <?php } ?>
+    <div class="present">
+      <form style="display: inline;" id="offset_form" method="GET" action="<?php echo mklink ("propiedades/".(empty($vc_link_tipo_operacion)?"todas":$vc_link_tipo_operacion)."/".(empty($vc_link_localidad)?"todas":$vc_link_localidad)."/$vc_params") ?>">
+        <input type="hidden" id="tp" value="<?php echo (!empty($vc_id_tipo_inmueble))?$vc_id_tipo_inmueble:"todas" ?>" name="tp">
+        <input type="hidden" id="dm" value="<?php echo (!empty($vc_dormitorios))?"$vc_dormitorios":"" ?>" name="dm">
+        <input type="hidden" id="bn" value="<?php echo (!empty($vc_banios))?"$vc_banios":"" ?>" name="bn">
+        <input type="hidden" id="moneda" value="<?PHP echo (!empty($vc_moneda))?$vc_moneda:"ars" ?>" name="m">
+        <input type="hidden" id="banco" value="<?php echo (!empty($vc_apto_banco) == 1)?"1":"" ?>" name="banco">
+        <input type="hidden" id="per" value="<?php echo (!empty($vc_acepta_permuta) == 1)?"1":"" ?>" name="per">
+        <input type="hidden" id="vc_minimo" value="<?php echo (!empty($vc_minimo))?"$vc_minimo":"" ?>" name="vc_minimo">
+        <input type="hidden" id="vc_maximo" value="<?php echo (!empty($vc_maximo))?"$vc_maximo":"" ?>" name="vc_maximo">
+        <input type="hidden" id="vc_orden" value="<?php echo (!empty($vc_orden))?"$vc_orden":"" ?>" name="orden">
+        <label for="show">Mostrar:</label>
+        <select id="show" onchange="enviar_offset()" name="offset">
+          <option <?php echo($vc_offset==5)?"selected":"" ?> value="5">5</option>
+          <option <?php echo($vc_offset==10)?"selected":"" ?> value="10">10</option>
+          <option <?php echo($vc_offset==20)?"selected":"" ?> value="20">20</option>
+          <option <?php echo($vc_offset==50)?"selected":"" ?> value="50">50</option>
+        </select>
+      </form>
+    </div>    
+  </div>
+<?php } ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
-	<?php include "includes/head.php" ?>
+<?php include("includes/head.php"); ?>
 </head>
 <body>
 
-	<!-- Header -->
-	<?php include "includes/header.php" ?>
+<!-- TOP WRAPPER -->
+<div class="top-wrapper">
+  <?php include("includes/header.php"); ?>
+  <div class="page-title">
+    <div class="page">
+      <div class="breadcrumb">
+        <a href="<?php echo mklink("/") ?>"><img src="images/home-icon3.png" alt="Home" /> Home</a>
+        <?php if (!empty($vc_tipo_operacion)) { ?>
+          <a href="<?php echo mklink("propiedades/".($vc_tipo_operacion)) ?>"></a>
+          <?php if (!empty($localidad)) { ?>
+            <a href="<?php echo mklink("propiedades/".$vc_tipo_operacion->link."/".$localidad->link."/") ?>"><?php echo ($localidad->nombre) ?></span>
+          <?php } ?>
+        <?php } ?>
+      </div>
+      <big><?php echo (!empty($vc_tipo_operacion)) ? ($vc_tipo_operacion) : "Propiedades"; ?></big>
+    </div>
+  </div>
+</div>
 
-	<!-- Page Title -->
-	<div class="page-title">
-		<div class="container">
-			<div class="page">
-				<div class="breadcrumb"> <a href="javascript:void(0)"><?php echo (!empty($vc_tipo_operacion))?$vc_tipo_operacion:"Propiedades" ?></a> <span><?php echo $vc_total_resultados ?> Resultados de búsqueda encontrados</span></div>
-				<div class="float-right">
-					<big>Tus favoritas</big> 
-					<a href="<?php echo mklink ("favoritos/")?>"><i class="fas fa-heart"></i> <span><?php echo $cant_favoritos ?></span></a>
-				</div>
-			</div>
-		</div>
-	</div>
+<!-- MAIN WRAPPER -->
+<div class="main-wrapper">
+  <div class="page">
+    <div class="row">
+      <div class="col-md-9 primary">
+        <?php if (!empty($vc_listado)) { ?>
+          <div class="tabs">
+            <?php filter(); ?>
+            <div class="tab-content grid-view <?php echo(($vc_view == 0)?"dn":"") ?>" id="grid-view">
+              <div class="row">
+                <?php foreach($vc_listado as $r) { ?>
+                  <div class="col-md-4">
+                    <div class="property-item <?php echo ($r->id_tipo_estado==1)?"sold":"" ?>">
+                      <div class="item-picture">
+                        <div class="block">
+                          <?php if (!empty($r->imagen)) { ?>
+                            <img src="<?php echo $r->imagen ?>" alt="<?php echo $r->nombre; ?>" />
+                          <?php } else if (!empty($empresa->no_imagen)) { ?>
+                            <img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo $r->nombre; ?>" />
+                          <?php } else { ?>
+                            <img src="images/logo.png" alt="<?php echo $r->nombre; ?>" />
+                          <?php } ?>
+                        </div>
+                        <div class="view-more"><a href="<?php echo $r->link_propiedad ?>"></a></div>
+                        <div class="property-status">
+                          <?php if ($r->id_tipo_estado != 1) { ?>
+                            <span><?php echo ($r->tipo_estado) ?></span>
+                          <?php } else { ?>
+                            <span><?php echo ($r->tipo_operacion) ?></span>
+                          <?php } ?>
+                        </div>
+                      </div>
+                      <div class="property-detail">
+                        <div class="property-name"><?php echo $r->direccion_completa ?></div>
+                        <div class="property-location">
+                          <div class="pull-left"><?php echo ($r->localidad); ?></div>
+                          <?php if (!empty($r->codigo)) { ?>
+                            <div class="pull-right">Cod: <span><?php echo ($r->codigo); ?></span></div>
+                          <?php } ?>
+                        </div>
+                        <div class="property-facilities">
+                          <?php if (!empty($r->dormitorios)) { ?>
+                            <div class="facilitie"><img src="images/room-icon.png" alt="Room" /> <?php echo $r->dormitorios ?> Hab</div>
+                          <?php } ?>
+                          <?php if (!empty($r->banios)) { ?>
+                            <div class="facilitie"><img src="images/bathroom-icon.png" alt="Bathroom" /> <?php echo $r->banios ?> Ba&ntilde;os</div>
+                          <?php } ?>
+                          <?php if (!empty($r->cocheras)) { ?>
+                            <div class="facilitie"><img src="images/garage-icon.png" alt="Garage" /> Cochera</div>
+                          <?php } ?>
+                          <?php if (!empty($r->superficie_total)) { ?>
+                            <div class="facilitie"><img src="images/grid-icon.png" alt="Grid" /> <?php echo $r->superficie_total ?></div>
+                          <?php } ?>
+                        </div>
+                        <?php if (!empty($r->plain_text)) { ?>
+                          <p class="property-description"><?php echo (strlen($r->plain_text)>120) ? (substr($r->plain_text,0,120))."..." : ($r->plain_text) ?></p>
+                        <?php } ?>
+                        <div class="property-price">
+                          <big><?php echo $r->precio ?></big>
+                          <?php if (estaEnFavoritos($r->id)) { ?>
+                            <a href="/admin/favoritos/eliminar/?id=<?php echo $r->id; ?>" class="favorites-properties active"><span class="tooltip">Borrar de Favoritos</span></a>
+                          <?php } else { ?>
+                            <a href="/admin/favoritos/agregar/?id=<?php echo $r->id; ?>" class="favorites-properties"><span class="tooltip">Guarda Tus Inmuebles Favoritos</span></a>
+                          <?php } ?>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <?php } ?>
+              </div>
+            </div>
+            <div class="tab-content <?php echo(($vc_view != 0)?"dn":"") ?>" id="list-view">
+              <?php foreach($vc_listado as $r) { ?>
+                <div class="property-item">
+                  <div class="item-picture">
+                    <div class="block">
+                      <?php if (!empty($r->imagen)) { ?>
+                        <img src="<?php echo $r->imagen ?>" alt="<?php echo $r->nombre; ?>" />
+                      <?php } else if (!empty($empresa->no_imagen)) { ?>
+                        <img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo $r->nombre; ?>" />
+                      <?php } else { ?>
+                        <img src="images/logo.png" alt="<?php echo $r->nombre; ?>" />
+                      <?php } ?>
+                    </div>
+                    <div class="view-more"><a href="<?php echo $r->link_propiedad ?>"></a></div>
+                    <div class="property-status">
+                      <?php if ($r->id_tipo_estado != 1) { ?>
+                        <span><?php echo ($r->tipo_estado) ?></span>
+                      <?php } else { ?>
+                        <span><?php echo ($r->tipo_operacion) ?></span>
+                      <?php } ?>
+                    </div>
+                  </div>
+                  <div class="property-detail">
+                    <div class="property-name"><?php echo $r->direccion_completa ?></div>
+                    <div class="property-location">
+                      <div class="pull-left"><?php echo ($r->localidad); ?></div>
+                      <?php if (!empty($r->codigo)) { ?>
+                        <div class="pull-right">Cod: <span><?php echo ($r->codigo); ?></span></div>
+                      <?php } ?>
+                    </div>
+                    <div class="property-facilities">
+                      <?php if (!empty($r->dormitorios)) { ?>
+                        <div class="facilitie"><img src="images/room-icon.png" alt="Room" /> <?php echo $r->dormitorios ?> Hab</div>
+                      <?php } ?>
+                      <?php if (!empty($r->banios)) { ?>
+                        <div class="facilitie"><img src="images/bathroom-icon.png" alt="Bathroom" /> <?php echo $r->banios ?> Ba&ntilde;os</div>
+                      <?php } ?>
+                      <?php if (!empty($r->cocheras)) { ?>
+                        <div class="facilitie"><img src="images/garage-icon.png" alt="Garage" /> Cochera</div>
+                      <?php } ?>
+                      <?php if (!empty($r->superficie_total)) { ?>
+                        <div class="facilitie"><img src="images/grid-icon.png" alt="Grid" /> <?php echo $r->superficie_total ?></div>
+                      <?php } ?>
+                    </div>
+                    <?php if (!empty($r->plain_text)) { ?>
+                      <p class="property-description"><?php echo (strlen($r->plain_text)>120) ? (substr($r->plain_text,0,120))."..." : ($r->plain_text) ?></p>
+                    <?php } ?>
+                    <div class="property-price">
+                      <big><?php echo $r->precio ?></big>
+                      <?php if (estaEnFavoritos($r->id)) { ?>
+                        <a href="/admin/favoritos/eliminar/?id=<?php echo $r->id; ?>" class="favorites-properties active"><span class="tooltip">Borrar de Favoritos</span></a>
+                      <?php } else { ?>
+                        <a href="/admin/favoritos/agregar/?id=<?php echo $r->id; ?>" class="favorites-properties"><span class="tooltip">Guarda Tus Inmuebles Favoritos</span></a>
+                      <?php } ?>
+                    </div>
+                  </div>
+                </div>
+              <?php } ?>
+            </div>
+          </div>
+        <?php } else { ?>
+          No se encontraron resultados.
+        <?php } ?>
+      </div>
+      <div class="col-md-3 secondary">
+        <?php include("includes/sidebar.php"); ?>
+      </div>
+    </div>
+  </div>
+</div>
 
-	<!-- Products Listing -->
-	<div class="products-listing">
-		<div class="container">
-			<div class="row">
-				<div class="col-xl-8">
-					<div class="filter-box">
-						<ul class="nav nav-tabs">
-							<li><a class="active" data-toggle="tab" href="#grid"><i class="fas fa-th"></i></a></li>
-							<li><a data-toggle="tab" href="#list"><i class="fas fa-list"></i></a></li>
-						</ul>
-						<div class="select-box">
-							<span>Ordenar por:</span>
-							<select class="form-control" onchange="submit_buscador_propiedades()" id="ordenador_orden" name="orden">
-								<option <?php echo ($vc_orden == 4 ) ? "selected" : "" ?> value="destacados">Destacados</option>
-								<option <?php echo ($vc_orden == -1 ) ? "selected" : "" ?> value="nuevo">Ver los más nuevos</option>
-								<option <?php echo ($vc_orden == 2 ) ? "selected" : "" ?> value="barato">Precio menor a mayor</option>
-								<option <?php echo ($vc_orden == 1 ) ? "selected" : "" ?> value="caro">Precio mayor a menor</option>
-							</select>
-						</div>
-						<div class="select-box">
-							<span>Mostrar:</span>
-							<select class="form-control small" onchange="submit_buscador_propiedades()" id="ordenador_offset" name="offset">
-								<option <?php echo ($vc_offset == "24")?"selected":"" ?> value="24">24</option>
-								<option <?php echo ($vc_offset == "36")?"selected":"" ?> value="36">36</option>
-							</select>
-						</div>
-						<?php if ($vc_total_paginas > 1) {  ?>
-							<nav aria-label="Page navigation">
-								<ul class="pagination">
-									<?php if ($vc_page > 0) { ?>
-										<li class="page-item"><a class="page-link" href="<?php echo mklink ($vc_link.($vc_page-1)."/".$vc_params ) ?>"><i class="fas fa-chevron-left"></i></a></li>
-									<?php } ?>
-									<?php for($i=0;$i<$vc_total_paginas;$i++) { ?>
-										<?php if (abs($vc_page-$i)<2) { ?>
-											<?php if ($i == $vc_page) { ?>
-												<li class="page-item"><a class="page-link active" href="javascript:void(0)"><?php echo $i+1 ?></a></li>
-											<?php } else { ?>
-												<li class="page-item"><a class="page-link" href="<?php echo mklink ($vc_link.$i."/".$vc_params ) ?>"><?php echo $i+1 ?></a></li>
-											<?php } ?>
-										<?php } ?>
-									<?php } ?>
-									<?php if ($vc_page < $vc_total_paginas-1) { ?>
-										<li class="page-item"><a class="page-link" href="<?php echo mklink ($vc_link.($vc_page+1)."/".$vc_params ) ?>"><i class="fas fa-chevron-right"></i></a></li>
-									<?php } ?>
-								</ul>
-							</nav>
-						<?php } ?>
-					</div>
-					<div class="tab-content">
-						<div id="grid" class="tab-pane fade in active list-wise">
-							<div class="row">
-								<?php if (!empty($vc_listado)) {  ?>
-									<?php foreach ($vc_listado as $p) {  ?>
-										<div class="col-lg-6">
-											<div class="property-box">
-												<div class="property-img">
-													<div class="owl-carousel" data-items="1" data-margin="0" data-items-lg="1" data-loop="true" data-nav="false" data-dots="true">
-														<?php $prop = $propiedad_model->get($p->id)?>
-														<?php if (!empty($prop->images)) {  ?>
-															<?php $x=0;foreach ($prop->images as $i) { 
-																if ($x<5) {   ?>
-																	<div class="item">
-																		<img class="cover-recientes" src="<?php echo $i ?>" alt="<?php echo $prop->nombre ?>">
-																		<div class="rollover">
-																			<a href="<?php echo ($prop->link_propiedad) ?>" class="add"></a>
-																			<?php if (estaEnFavoritos($prop->id)) { ?>
-																				<a class="heart" data-bookmark-state="added" href="/admin/favoritos/eliminar/?id=<?php echo $prop->id; ?>">
-																				</a>
-																			<?php } else { ?>
-																				<a class="heart" data-bookmark-state="empty" href="/admin/favoritos/agregar/?id=<?php echo $prop->id; ?>">
-																				</a>
-																			<?php } ?>
-																		</div>
-																	</div>
-																	<?php $x++;} ?>
-																<?php }  ?>
-															<?php } else { ?>
-																<div class="item">
-																	<img class="cover-recientes" src="<?php echo $p->imagen ?>" alt="<?php echo $p->nombre ?>">
-																	<div class="rollover">
-																		<a href="<?php echo ($p->link_propiedad) ?>" class="add"></a>
-																		<?php if (estaEnFavoritos($p->id)) { ?>
-																			<a class="heart" data-bookmark-state="added" href="/admin/favoritos/eliminar/?id=<?php echo $p->id; ?>">
-																			</a>
-																		<?php } else { ?>
-																			<a class="heart" data-bookmark-state="empty" href="/admin/favoritos/agregar/?id=<?php echo $p->id; ?>">
-																			</a>
-																		<?php } ?>
-																	</div>
-																</div>
-															<?php }?>
-														</div>
-													</div>
-													<div class="property-details">
-														<div class="property-top">
-															<h3 class="equal"><?php echo $p->nombre ?></h3>
-														</div>
-														<div class="property-middle-top">
-															<h3 class="direccion-completa"><?php echo (!empty($p->direccion_completa))?$p->direccion_completa:"Consultar dirección" ?></h3>
-														</div>
-														<div class="property-middle">
-															<ul>
-																<li><img src="assets/images/home.png" alt="Home"> <?php echo (!empty($p->superficie_total))?$p->superficie_total:"-" ?> </li>
-																<li><img src="assets/images/beds.png" alt="Beds"> <?php echo (!empty($p->dormitorios))?$p->dormitorios:"-" ?></li>
-																<li><img src="assets/images/parking.png" alt="Parking"> <?php echo (!empty($p->cocheras))?$p->cocheras:"-" ?></li>
-															</ul>
-														</div>
-														<div class="property-bottom">
-															<span><?php echo $p->precio ?></span>
-															<a class="btn btn-red" href="<?php echo ($p->link_propiedad) ?>">ver más</a>
-														</div>
-													</div>
-												</div>
-											</div>
-										<?php } ?>
-									<?php } else {  ?>
-										<div class="col-lg-12">
-											<h3>No se encontraron resultados para su búsqueda.</h3>
-										</div>
-									<?php } ?>
-								</div>
-							</div>
-							<div id="list" class="tab-pane fade in list-wise">
-								<div class="row">
-									<?php if (!empty($vc_listado)) {  ?>
-										<?php foreach ($vc_listado as $p) {  ?>     
-											<div class="col-md-12">
-												<div class="property-box">
-													<div class="property-img" style="min-height: 202px">
-														<img class="cover-list" src="<?php echo $p->imagen ?>" alt="<?php echo $p->nombre ?>">
-														<div class="rollover">
-															<a href="<?php echo ($p->link_propiedad) ?>" class="add"></a>
-															<?php if (estaEnFavoritos($p->id)) { ?>
-																<a class="heart" data-bookmark-state="added" href="/admin/favoritos/eliminar/?id=<?php echo $p->id; ?>">
-																</a>
-															<?php } else { ?>
-																<a class="heart" data-bookmark-state="empty" href="/admin/favoritos/agregar/?id=<?php echo $p->id; ?>">
-																</a>
-															<?php } ?>
-														</div>
-													</div>
-													<div class="property-details">
-														<div class="property-top" style="min-height: 202px">
-															<h3 class="equal-2"><?php echo $p->nombre ?></h3>
+<?php include("includes/consulta_rapida.php"); ?>
 
-															<p><?php echo substr($p->plain_text,0,150); echo (strlen($p->plain_text) > 150)?"...":"" ?></p>
-														</div>
-														<div class="property-middle-top">
-															<h3 class="direccion-completa"><?php echo (!empty($p->direccion_completa))?$p->direccion_completa:"Consultar dirección" ?></h3>
-														</div>
-														<div class="property-middle">
-															<ul>
-																<?php if ($p->superficie_total != 0) {  ?>
-																	<li><img src="assets/images/home.png" alt="Home"> <?php echo $p->superficie_total ?> </li>
-																<?php } ?>
-																<?php if (!empty($p->dormitorios)) {  ?>
-																	<li><img src="assets/images/beds.png" alt="Beds"> <?php echo $p->dormitorios ?></li>
-																<?php } ?>
-																<?php if (!empty($p->cocheras)) {  ?>
-																	<li><img src="assets/images/parking.png" alt="Parking"> <?php echo $p->cocheras ?></li>
-																<?php } ?>
-															</ul>
-														</div>
-														<div class="property-bottom">
-															<span><?php echo $p->precio ?></span>
-															<a class="btn btn-red" href="<?php echo ($p->link_propiedad) ?>">ver más</a>
-														</div>
-													</div>
-												</div>
-											</div>
-										<?php } ?>
-									<?php } ?>
-								</div>
-							</div>
-						</div>
-						<?php if ($vc_total_paginas > 1) {  ?>
-							<nav aria-label="Page navigation">
-								<ul class="pagination">
-									<?php if ($vc_page > 0) { ?>
-										<li class="page-item"><a class="page-link" href="<?php echo mklink ($vc_link.($vc_page-1)."/".$vc_params ) ?>"><i class="fas fa-chevron-left"></i></a></li>
-									<?php } ?>
-									<?php for($i=0;$i<$vc_total_paginas;$i++) { ?>
-										<?php if (abs($vc_page-$i)<2) { ?>
-											<?php if ($i == $vc_page) { ?>
-												<li class="page-item"><a class="page-link active" href="javascript:void(0)"><?php echo $i+1 ?></a></li>
-											<?php } else { ?>
-												<li class="page-item"><a class="page-link" href="<?php echo mklink ($vc_link.$i."/".$vc_params ) ?>"><?php echo $i+1 ?></a></li>
-											<?php } ?>
-										<?php } ?>
-									<?php } ?>
-									<?php if ($vc_page < $vc_total_paginas-1) { ?>
-										<li class="page-item"><a class="page-link" href="<?php echo mklink ($vc_link.($vc_page+1)."/".$vc_params ) ?>"><i class="fas fa-chevron-right"></i></a></li>
-									<?php } ?>
-								</ul>
-							</nav>
-						<?php } ?>
-					</div>
-					<div class="col-xl-4">
-						<div class="border-box">
-							<?php include "includes/search-filter.php" ?>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+<?php include("includes/footer.php"); ?>
 
-		<!-- Call To Action -->
-		<?php include "includes/comunicate.php" ?>
+<!-- SCRIPT'S --> 
+<script type="text/javascript" src="js/jquery.min.js"></script> 
+<?php include_once("templates/comun/mapa_js.php"); ?>
+<script type="text/javascript" src="js/wNumb.js"></script> 
+<script type="text/javascript" src="js/nouislider.js"></script> 
+<script type="text/javascript" src="js/custom.js"></script> 
+<script type="text/javascript">
+//TABS SCRIPT
+ $('.tabs_search ul').each(function(){
+    var $active, $content, $links = $(this).find('a');
+    $active = $($links.filter('[href="'+location.hash+'"]')[0] || $links[0]);
+    $active.addClass('active');
+    $content = $($active[0].hash);
+    $links.not($active).each(function () {
+      $(this.hash).hide();
+    });
+    $(this).on('click', 'a', function(e){
+      $active.removeClass('active');
+      $content.hide();
+      $active = $(this);
+      $content = $(this.hash);
+      $active.addClass('active');
+      $content.show();
+      e.preventDefault();
+    });
+ });
+</script> 
+<script type="text/javascript">
+//UI SLIDER SCRIPT
+$('.slider-snap').noUiSlider({
+	start: [ <?php echo $vc_minimo ?>, <?php echo $vc_maximo ?> ],
+	step: 10,
+	connect: true,
+	range: {
+		'min': 0,
+		'max': <?php echo $vc_precio_maximo ?>,
+	},
+	format: wNumb({
+		decimals: 0,
+		thousand: '.',
+	})  
+});
+$('.slider-snap').Link('lower').to($('.slider-snap-value-lower'));
+$('.slider-snap').Link('upper').to($('.slider-snap-value-upper'));
 
-		<!-- Footer -->
-		<?php include "includes/footer.php" ?>
-
-		<!-- Back To Top -->
-		<div class="back-to-top"><a href="javascript:void(0);" aria-label="Back to Top">&nbsp;</a></div>
-
-		<!-- Scripts -->
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/bootstrap.bundle.min.js"></script>
-		<script src="assets/js/html5.min.js"></script>
-		<script src="assets/js/owl.carousel.min.js"></script>
-		<script src="assets/js/nouislider.js"></script>
-		<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-		<script src="assets/js/scripts.js"></script>
-		<script type="text/javascript">
-			function submit_buscador_propiedades() {
-  // Cargamos el offset y el orden en este formulario
-  $("#sidebar_orden").val($("#ordenador_orden").val());
-  $("#sidebar_offset").val($("#ordenador_offset").val());
-  $("#form_propiedades").submit();
+function change_view(e) {
+  $(".list-view").removeClass("active");
+  $(".grid-view").removeClass("active");
+  $(e).addClass("active");
+  filtrar2();
 }
-function onsubmit_buscador_propiedades() { 
-	var link = (($("input[name='tipo_busqueda']:checked").val() == "mapa") ? "<?php echo mklink("mapa/")?>" : "<?php echo mklink("propiedades/")?>");
-	var tipo_operacion = $("#tipo_operacion").val();
-	var localidad = $("#localidad").val();
-	var tipo_propiedad = $("#tp").val();
-	link = link + tipo_operacion + "/" + localidad + "/<?php echo $vc_params?>";
 
-	$("#form_propiedades").attr("action",link);
-	return true;
-}
+$(document).ready(function(){
+  $(".pagination a").click(function(e){
+    e.preventDefault();
+    var url = $(e.currentTarget).attr("href");
+    
+    var f = document.createElement("form");
+    f.setAttribute('method',"post");
+    f.setAttribute('action',url);
+    $(f).css("display","none");
+    
+    var i = document.createElement("input");
+    i.setAttribute('type',"hidden");
+    i.setAttribute('name',"id_tipo_inmueble");
+    i.setAttribute('value',$(".filter_tipo_propiedad").first().val());
+    f.appendChild(i);
+    
+    var i = document.createElement("input");
+    i.setAttribute('type',"hidden");
+    i.setAttribute('name',"banios");
+    i.setAttribute('value',$(".filter_banios").first().val());
+    f.appendChild(i);  
+    
+    var i = document.createElement("input");
+    i.setAttribute('type',"hidden");
+    i.setAttribute('name',"dormitorios");
+    i.setAttribute('value',$(".filter_dormitorios").first().val());
+    f.appendChild(i);
+    document.body.appendChild(f);
+    f.submit();    
+  });
+});
+
+$(document).ready(function(){
+
+  var maximo = 0;
+  $(".property-item").each(function(i,e){
+    if ($(e).height()>maximo) maximo = $(e).height();
+  });
+  $(".property-item").height(maximo);
+
+  <?php for($i=0;$i<5;$i++) { ?>
+	  $("#show-in-list-<?php echo $i ?>").click(function(){
+	    var v = $("#show-in-list-<?php echo $i ?>").prop("checked");
+	    $("#show-in-map-<?php echo $i ?>").prop("checked",!v);
+	  });
+	  $("#show-in-map-<?php echo $i ?>").click(function(){
+	    var v = $("#show-in-map-<?php echo $i ?>").prop("checked");
+	    $("#show-in-list-<?php echo $i ?>").prop("checked",!v);
+	  });
+  <?php } ?>
+});
+
 </script>
 <script type="text/javascript">
-	if (jQuery(window).width()>767) { 
-		$(document).ready(function(){
-			var maximo = 0;
-			$(".list-wise .property-details h3.equal").each(function(i,e){
-				if ($(e).height() > maximo) maximo = $(e).height();
-			});
-			maximo = Math.ceil(maximo);
-			$(".list-wise .property-details h3.equal").height(maximo);
-		});
-	}
+  <?php if (!empty($empresa->latitud && !empty($empresa->longitud))) { ?>
 
+    var mymap = L.map('map').setView([<?php echo $empresa->latitud ?>,<?php echo $empresa->longitud ?>], 15);
+
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+      maxZoom: 18,
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+        '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      id: 'mapbox.streets'
+    }).addTo(mymap);
+
+    var icono = L.icon({
+      iconUrl: 'images/map-place.png',
+      iconSize:     [60, 60], // size of the icon
+      iconAnchor:   [30, 30], // point of the icon which will correspond to marker's location
+    });
+
+    <?php
+    $posiciones = explode("/",$empresa->posiciones);
+    for($i=0;$i<sizeof($posiciones);$i++) { 
+      $pos = explode(";",$posiciones[$i]); ?>
+      L.marker([<?php echo $pos[0] ?>,<?php echo $pos[1] ?>],{
+        icon: icono
+      }).addTo(mymap);
+    <?php } ?>
+
+  <?php } ?>
 </script>
-
+<script type="text/javascript">
+  function enviar_orden() { 
+    $("#orden_form").submit();
+  }
+  function enviar_offset() { 
+    $("#offset_form").submit();
+  }
+</script>
 </body>
 </html>

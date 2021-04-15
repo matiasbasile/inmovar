@@ -1,478 +1,392 @@
-<?php include "includes/init.php" ;
+<?php
+include_once("includes/init.php");
+$nombre_pagina = "detalle";
+$id_origen = 1;
 $id_empresa = isset($get_params["em"]) ? $get_params["em"] : $empresa->id;
+
 $propiedad = $propiedad_model->get($id,array(
-	"buscar_total_visitas"=>1,
-	"buscar_relacionados_offset"=>3,
-	"id_empresa"=>$id_empresa,
-	"id_empresa_original"=>$empresa->id,
-)); 
-$page_act = $propiedad->tipo_operacion_link;
+  "buscar_total_visitas"=>1,
+  "buscar_relacionados_offset"=>3,
+  "id_empresa"=>$id_empresa,
+  "id_empresa_original"=>$empresa->id,
+));
+
+if ($propiedad->activo == 0 && !isset($get_params["preview"])) {
+  header("Location: ".mklink("/"));
+  exit();
+}
+
+$precio_maximo = $propiedad_model->get_precio_maximo(array(
+  "id_tipo_operacion"=>$propiedad->id_tipo_operacion,
+));
+
+// Minimo
+if (isset($_POST["minimo"])) { $_SESSION["minimo"] = filter_var($_POST["minimo"],FILTER_SANITIZE_STRING); }
+$minimo = isset($_SESSION["minimo"]) ? $_SESSION["minimo"] : 0;
+if ($minimo == "undefined" || empty($minimo)) $minimo = 0;
+
+// Maximo
+if (isset($_POST["maximo"])) { $_SESSION["maximo"] = filter_var($_POST["maximo"],FILTER_SANITIZE_STRING); }
+$maximo = isset($_SESSION["maximo"]) ? $_SESSION["maximo"] : $precio_maximo;
+if ($maximo == "undefined" || empty($maximo)) $maximo = $precio_maximo;
 
 // Tomamos los datos de SEO
-$seo_title = (!empty($propiedad->seo_title)) ? ($propiedad->seo_title) : $empresa->seo_title;
-$seo_description = (!empty($propiedad->seo_description)) ? ($propiedad->seo_description) : $empresa->seo_description;
-$seo_keywords = (!empty($propiedad->seo_keywords)) ? ($propiedad->seo_keywords) : $empresa->seo_keywords;
+$seo_title = (!empty($propiedad->seo_title)) ? $propiedad->seo_title : $empresa->seo_title;
+$seo_description = (!empty($propiedad->seo_description)) ? $propiedad->seo_description : $empresa->seo_description;
+$seo_keywords = (!empty($propiedad->seo_keywords)) ? $propiedad->seo_keywords : $empresa->seo_keywords;
+
+$cookie_id_cliente = (isset($_COOKIE['idc'])) ? $_COOKIE['idc'] : 0;
 
 // Seteamos la cookie para indicar que el cliente ya entro a esta propiedad
 $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
-if ($propiedad === FALSE) {
-  header("Location:".mklink("/"));
-}
-?> 
+
+if (sizeof($propiedad->images)==0 && !empty($propiedad->imagen)) $propiedad->images = array_merge(array($propiedad->imagen),$propiedad->images);
+$nombre_pagina = $propiedad->tipo_operacion_link;
+
+if ($propiedad->id_tipo_operacion == 1) $vc_moneda = "USD";
+else $vc_moneda = "$";
+?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
-<?php include "includes/head.php" ?>
-<style type="text/css">
-.cover-detail { height: 230px !important; object-fit: cover }
-.contain-detail { height: 500px !important; object-fit: contain }
-.w100p { width: 100% !important }
-.youtube iframe { width: 100%; height: 600px }
-@media screen and (max-width: 1449px) { .youtube iframe { width: 100%; height: 300px } }
-</style>
+<?php include("includes/head.php"); ?>
 <meta property="og:type" content="website" />
-<meta property="og:title" content="<?php echo ($propiedad->nombre); ?>" />
-<meta property="og:description" content="<?php echo str_replace("\n","",$propiedad->plain_text); ?>" />
-<meta property="og:image" content="<?php echo $propiedad->imagen_full ?>"/>
-<script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
+<meta property="og:title" content="<?php echo $propiedad->nombre; ?>" />
+<meta property="og:description" content="<?php echo str_replace("\n","",(strip_tags(html_entity_decode($propiedad->texto,ENT_QUOTES)))); ?>" />
+<meta property="og:image" content="<?php echo $propiedad->imagen ?>"/>
 </head>
 <body>
 
-  <!-- Header -->
-  <?php include "includes/header.php" ?>
-
-  <!-- Page Title -->
+<!-- TOP WRAPPER -->
+<div class="top-wrapper">
+  <?php include("includes/header.php"); ?>
   <div class="page-title">
-    <div class="container">
-      <div class="page">
-        <div class="breadcrumb"> <a href="<?php echo mklink ("propiedades/$propiedad->tipo_operacion_link/") ?>"><?php echo $propiedad->tipo_operacion ?></a></div>
-        <div class="float-right">
-          <big>Tus favoritas</big> 
-          <a href="<?php echo mklink ("favoritos/")?>"><i class="fas fa-heart"></i> <span><?php echo $cant_favoritos ?></span></a>
-        </div>
+    <div class="page">
+      <div class="breadcrumb">
+        <a href="<?php echo mklink("/") ?>"><img src="images/home-icon3.png" alt="Home" /> Home</a>
+        <?php if (!empty($propiedad->id_tipo_operacion)) { ?>
+          <a href="<?php echo mklink("propiedades/".$propiedad->tipo_operacion_link."/") ?>"><?php echo $propiedad->tipo_operacion ?></a>
+          <?php if (!empty($propiedad->id_localidad)) { ?>
+            <a href="<?php echo mklink("propiedades/".$propiedad->tipo_operacion_link."/".$propiedad->localidad_link."/") ?>"><?php echo ($propiedad->localidad) ?></a>
+          <?php } ?>
+        <?php } ?>
       </div>
+      <big><?php echo ($propiedad->tipo_operacion); ?></big>
     </div>
   </div>
+</div>
 
-  <!-- Products Listing -->
-  <div class="products-listing">
-    <div class="container">
-      <div class="row">
-        <div class="col-xl-8">
-          <div class="property-full-info">
-            <div class="top-detail">
-              <div class="code">
-                <b>Cod:</b><?php echo $propiedad->codigo ?>
+<!-- MAIN WRAPPER -->
+<div class="main-wrapper">
+  <div class="page">
+    <div class="row">
+      <div class="col-md-9 primary">
+        <div class="property-full-info">
+          <?php if (!empty($propiedad->images)) { ?>
+            <?php $foto = $propiedad->images[0]; ?>
+            <div id="gallery-slider">
+              <div id="gallery-picture">
+                <img src="<?php echo $foto ?>" alt="" />
               </div>
-              <h2><?php echo $propiedad->nombre ?></h2>
-              <div class="price-info">
-                <b><?php echo $propiedad->precio ?></b>
-              </div>
-              <div class="location-box">
-                <span><img src="assets/images/location-icon2.png" alt="Location"> <?php echo $propiedad->direccion_completa ?> | <strong><?php echo $propiedad->localidad ?></strong></span>
-              </div>
-              <div class="property-middle">
-                <ul>
-                    <li><img src="assets/images/home.png" alt="Home"> <?php echo (!empty($propiedad->superficie_total))?$propiedad->superficie_total:"-" ?></li>
-                    <li><img src="assets/images/beds.png" alt="Beds"> <?php echo (!empty($propiedad->dormitorios))?$propiedad->dormitorios:"-" ?></li>
-                    <li><img src="assets/images/washroom.png" alt="Washroom"> <?php echo (!empty($propiedad->banios))?$propiedad->banios:"-" ?></li>
-                    <li><img src="assets/images/parking.png" alt="Parking"> <?php echo (!empty($propiedad->cocheras))?$propiedad->cocheras:"-" ?></li>
-                </ul>
-                <?php if ($propiedad->apto_banco == 1)  {  ?><span><img src="assets/images/home-price.png" alt="Home Price"> Apto crédito</span><?php } ?>
-              </div>
-            </div>
-            <div class="border-box ">
-              <div class="box-space rincon-gallery">
-                <div class="row">
-                  <?php if (!empty($propiedad->images)) {  ?>
-                    <?php $x=1; foreach ($propiedad->images as $i) {  ?>
-                      <div class="col-lg-4 col-md-6 col-6 <?php echo ($x>6)?"d-none":"" ?>">
-                        <div class="gallery-item">
-                          <div class="rincon-image">
-                            <div class="rincon-popup"><a href="<?php echo $i ?>"><img class="cover-detail" src="<?php echo $i ?>" alt="Gallery"></a></div>
-                              <?php if ($x==6){?>
-                                <div class="gallery-info">
-                              <?php } ?>
-                                  <div class="rincon-popup <?php echo ($x!=6)?"d-none":""?>">
-                                    <a href="<?php echo $i ?>">
-                                      Ver <?php echo ((sizeof($propiedad->images) == 6))?"todas":(sizeof($propiedad->images)-6)." fotos más"?>
-                                    </a>
-                                  </div>
-                              <?php if ($x==6){?>
-                                </div>
-                              <?php } ?>
-                          </div>
-                        </div>
-                      </div>
-                    <?php $x++; } ?>
-                  <?php } else { ?>
-                    <div class="col-lg-12">
-                      <div class="gallery-item">
-                        <div class="rincon-image">
-                          <img class="contain-detail" src="<?php echo $propiedad->imagen ?>">
-                        </div>
-                      </div>
-                    </div>
-                  <?php } ?>
-                </div>
-                <?php if (!empty($propiedad->texto)) { ?>
-                  <div class="info-title">Información general</div>
-                  <div><?php echo $propiedad->texto ?></div>
+              <div id="hidden-thumbs">
+                <?php foreach($propiedad->images as $f) { ?>
+                  <img src="<?php echo $f ?>" alt="" />
                 <?php } ?>
               </div>
-              <?php if (!empty($propiedad->caracteristicas)) {  ?>
-                <?php $caracteristicas = explode(";;;",$propiedad->caracteristicas);?>
-                <div class="box-space">
+              <div class="thumbnails">
+                <a href="javascript:void(0);" id="gallery-nav" class="prev-button"></a>
+                <a href="javascript:void(0);" id="gallery-nav" class="next-button"></a>
+                <div id="thumbcon"></div>
+              </div>
+            </div>
+          <?php } else if (!empty($propiedad->imagen)) { ?>
+            <div>
+              <img style="width: 100%; margin-bottom: 30px; " src="<?php echo $propiedad->imagen ?>" alt="" />
+            </div>
+          <?php } ?>
+          <div class="property-name">
+            <div class="property-price">
+              <big>
+                <?php echo $propiedad->precio ?>
+              </big>
+            </div>
+            <?php echo $propiedad->nombre; ?>
+          </div>
+          <div class="border-box">
+            <div class="box-space">
+              <div class="property-location">
+                <div class="pull-left"><?php echo $propiedad->direccion_completa." | ".$propiedad->localidad ?></div>
+                <?php if ($propiedad->activo == 1) { ?>
+                  <div class="pull-right">
+                    <?php if (!empty($propiedad->codigo)) { ?>
+                      <small>Cod: <span><?php echo $propiedad->codigo ?></span></small>
+                    <?php } ?>
+                    <small>
+                      <?php if (estaEnFavoritos($propiedad->id)) { ?>
+                        <a href="/admin/favoritos/eliminar/?id=<?php echo $propiedad->id; ?>" class="favorites-properties active"><span class="tooltip">Borrar de Favoritos</span></a>
+                      <?php } else { ?>
+                        <a href="/admin/favoritos/agregar/?id=<?php echo $propiedad->id; ?>" class="favorites-properties"><span class="tooltip">Guarda Tus Inmuebles Favoritos</span></a>
+                      <?php } ?>
+                    </small>
+                    <small><span class="st_sharethis_large"></span></small>
+                  </div>
+                <?php } ?>
+              </div>
+            </div>
+            <div class="property-facilities">
+              <?php if (!empty($propiedad->dormitorios)) { ?>
+                <div class="facilitie"><img src="images/room-icon.png" alt="Room" /> <?php echo $propiedad->dormitorios ?> Hab</div>
+              <?php } ?>
+              <?php if (!empty($propiedad->banios)) { ?>
+                <div class="facilitie"><img src="images/bathroom-icon.png" alt="Bathroom" /> <?php echo $propiedad->banios ?> Ba&ntilde;os</div>
+              <?php } ?>
+              <?php if (!empty($propiedad->cocheras)) { ?>
+                <div class="facilitie"><img src="images/garage-icon.png" alt="Garage" /> Cochera</div>
+              <?php } ?>
+              <?php if (!empty($propiedad->superficie_total)) { ?>
+                <div class="facilitie"><img src="images/grid-icon.png" alt="Grid" /> <?php echo $propiedad->superficie_total ?></div>
+              <?php } ?>
+            </div>
+            <?php if (!empty($propiedad->texto)) { ?>
+              <div class="box-space">
+                <?php echo nl2br(html_entity_decode($propiedad->texto,ENT_QUOTES)); ?>
+              </div>
+            <?php } ?>
+            <?php $caracteristicas = explode(";;;",$propiedad->caracteristicas);
+            if (sizeof($caracteristicas)>0 && !empty($caracteristicas[0])) { ?>
+              <div class="info-title">Caracter&iacute;sticas Generales</div>
+              <div class="box-space">
+                <div class="available-facilities">
+                  <ul>
+                    <?php foreach($caracteristicas as $c) { ?>
+                      <li><?php echo ($c); ?></li>
+                    <?php } ?>
+                  </ul>
+                </div>
+              </div>
+            <?php } ?>
+            <?php if (!empty($propiedad->video)) { ?>
+              <div class="info-title">Video</div>
+              <div class="box-space video">
+                <?php echo $propiedad->video; ?>
+              </div>
+            <?php } ?>
+            <?php if ($propiedad->latitud != 0 && $propiedad->longitud != 0) { ?>
+              <div class="info-title">Ubicaci&oacute;n en mapa</div>
+              <div class="box-space">
+                <div id="map"></div>
+              </div>
+            <?php } ?>
+            <?php if ($propiedad->activo == 0) { ?>
+              <div class="info-title">la propiedad ya no se encuentra disponible</div>
+            <?php } else { ?>
+              <div class="info-title">formulario de consulta</div>
+              <div class="box-space">
+                <div class="form">
                   <div class="row">
-                    <div class="col-md-3">
-                      <div class="info-title">Características</div>                    
+                    <?php include("includes/form_contacto.php"); ?>
+                  </div>
+                </div>
+              </div>
+              <div class="info-title">ficha de propiedad</div>
+              <div class="box-space">
+                <div class="helpful-links">
+                  <a target="_blank" href="/admin/propiedades/function/ficha/<?php echo $propiedad->hash ?>"><img src="images/pdf-icon.png" alt="Download PDF" /> descargar pdf</a> 
+                  <a href="javascript:void(0)" onclick="enviar_ficha_email()"><img src="images/email-icon2.png" alt="Send by Email" /> enviar por email</a> 
+                  <a target="_blank" href="/admin/propiedades/function/ficha/<?php echo $propiedad->hash ?>"><img src="images/printer-icon.png" alt="Print Property" /> imprimir propiedad</a> 
+                </div>
+              </div>
+            <?php } ?>
+          </div>
+        </div>
+        <?php
+        // Propiedades relacionadas o similares
+        
+        // A las propiedades relacionadas especificamente a mano, las debemos juntar por las
+        // similares que coinciden en ciudad, tipo de operacion y tipo de inmueble
+        
+        if (!empty($propiedad->relacionados)) { ?>
+          <div class="grid-view">
+            <div class="row">
+              <?php foreach($propiedad->relacionados as $r) { ?>
+                <div class="col-md-4">
+                  <div class="property-item">
+                    <div class="item-picture">
+                      <div class="block">
+                        <?php if (!empty($r->imagen)) { ?>
+                          <img src="<?php echo $r->imagen ?>" alt="<?php echo $r->nombre; ?>" />
+                        <?php } else if (!empty($empresa->no_imagen)) { ?>
+                          <img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo $r->nombre; ?>" />
+                        <?php } else { ?>
+                          <img src="images/logo.png" alt="<?php echo $r->nombre; ?>" />
+                        <?php } ?>
+                      </div>
+                      <div class="view-more"><a href="<?php echo $r->link_propiedad ?>"></a></div>
+                      <div class="property-status">
+                        <?php if ($r->id_tipo_estado != 1) { ?>
+                          <span><?php echo ($r->tipo_estado) ?></span>
+                        <?php } else { ?>
+                          <span><?php echo ($r->tipo_operacion) ?></span>
+                        <?php } ?>
+                      </div>
                     </div>
-                    <div class="col-md-9">
-                      <div class="available-facilities">
-                        <ul>
-                          <?php foreach ($caracteristicas as $c) {  ?>
-                            <li><?php echo $c ?></li>
-                          <?php } ?>
-                        	<?php if ($propiedad->servicios_gas == 1) {  ?>
-                          	<li>Gas</li>
-                          <?php } ?>
-                        	<?php if ($propiedad->servicios_cloacas == 1) {  ?>
-                          	<li>Cloacas</li>
-                          <?php } ?>
-                          <?php if ($propiedad->servicios_agua_corriente == 1) {  ?>
-                          	<li>Agua Corriente</li>
-                          <?php } ?>
-                          <?php if ($propiedad->servicios_asfalto == 1) {  ?>
-                          	<li>Asfalto</li>
-                          <?php } ?>
-                          <?php if ($propiedad->servicios_electricidad == 1) {  ?>
-                          	<li>Electricidad</li>
-                          <?php } ?>
-                          <?php if ($propiedad->servicios_cable == 1) {  ?>
-                          	<li>Cable</li>
-                          <?php } ?>
-                          <?php if ($propiedad->servicios_telefono == 1) {  ?>
-                          	<li>Teléfono</li>
-                          <?php } ?>
-                        </ul>
+                    <div class="property-detail">
+                      <div class="property-name">
+                        <a href="<?php echo $r->link_propiedad ?>"><?php echo $r->direccion_completa ?></a>
+                      </div>
+                      <div class="property-location">
+                        <div class="pull-left"><?php echo ($r->localidad) ?></div>
+                        <?php if (!empty($r->codigo)) { ?>
+                          <div class="pull-right">Cod: <span><?php echo ($r->codigo)?></span></div>
+                        <?php } ?>
+                      </div>
+                      <div class="property-facilities">
+                        <?php if (!empty($r->dormitorios)) { ?>
+                          <div class="facilitie"><img src="images/room-icon.png" alt="Room" /> <?php echo $r->dormitorios ?> Hab</div>
+                        <?php } ?>
+                        <?php if (!empty($r->banios)) { ?>
+                          <div class="facilitie"><img src="images/bathroom-icon.png" alt="Bathroom" /> <?php echo $r->banios ?> Ba&ntilde;os</div>
+                        <?php } ?>
+                        <?php if (!empty($r->cocheras)) { ?>
+                          <div class="facilitie"><img src="images/garage-icon.png" alt="Garage" /> Cochera</div>
+                        <?php } ?>
+                        <?php if (!empty($r->superficie_total)) { ?>
+                          <div class="facilitie"><img src="images/grid-icon.png" alt="Grid" /> <?php echo $r->superficie_total ?></div>
+                        <?php } ?>
+                      </div>
+                      <?php if (!empty($r->descripcion)) { ?>
+                        <p class="property-description"><?php echo (strlen($r->descripcion)>50) ? substr(($r->descripcion),0,50)."..." : ($r->descripcion) ?></p>
+                      <?php } ?>
+                      <div class="property-price">
+                        <big><?php echo ($r->precio_final != 0) ? $r->moneda." ".number_format($r->precio_final,0) : "A consultar"; ?></big>
+                        <?php if (estaEnFavoritos($r->id)) { ?>
+                          <a href="/admin/favoritos/eliminar/?id=<?php echo $r->id; ?>" class="favorites-properties active"><span class="tooltip">Borrar de Favoritos</span></a>
+                        <?php } else { ?>
+                          <a href="/admin/favoritos/agregar/?id=<?php echo $r->id; ?>" class="favorites-properties"><span class="tooltip">Guarda Tus Inmuebles Favoritos</span></a>
+                        <?php } ?>
                       </div>
                     </div>
                   </div>
-                </div>
-              <?php } ?>            
-              <div class="box-space">
-                <div class="row">
-                  <div class="col-md-3">
-                    <div class="info-title">Ubicación</div>                    
-                  </div>
-                  <div class="col-md-9">
-                    <div class="available-facilities">
-                      <ul>
-                        <li><?php echo $propiedad->direccion_completa ?></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div id="map1"></div>
-              </div>
-              <?php if (!empty($propiedad->video)) {  ?>
-                <div class="box-space">
-                  <div class="info-title">Video</div>
-                  <div class="youtube"><?php echo $propiedad->video ?></div>
                 </div>
               <?php } ?>
-              <div class="box-space">
-                <div class="info-title">Consulta por esta propiedad</div>
-                <div class="form">
-                  <form onsubmit="return enviar_contacto()">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <input class="form-control" id="contacto_nombre" type="text" placeholder="Nombre *" />
-                      </div>
-                      <div class="col-md-6">
-                        <input class="form-control" id="contacto_telefono" type="tel" placeholder="Teléfono *" />
-                      </div>
-                      <div class="col-md-12">
-                        <input class="form-control" id="contacto_email" type="email" placeholder="Email *" />
-                      </div>
-                      <div class="col-md-12">
-                        <textarea class="form-control" id="contacto_mensaje" placeholder="Estoy interesado en esta propiedad *"></textarea>
-                      </div>
-                      <div class="col-md-12">
-                        <div class="pull-right">
-                          <input type="submit" id="contacto_submit" value="consultar" class="btn btn-red" />
-                        </div>
-                      </div>
-                    </div>                
-                  </form>
-                </div>
-              </div>
             </div>
           </div>
-        </div>
-        <div class="col-xl-4">
-        <div class="border-box visit border-bottom-0">
-          <div class="search-filter">
-            <div class="form-title">Solicitar visita</div>
-            <div class="box-space">
-              <form>
-                <div class="row">
-                  <div class="col-md-6">
-                    <input class="form-control date" id="visita_dia" type="date" placeholder="22/04/2016">
-                  </div>
-                  <div class="col-md-6">
-                    <select class="form-control" id="visita_hora">
-                      <option class="mañana">Mañana</option>
-                      <option class="tarde">Tarde</option>
-                    </select>
-                  </div>
-                  <div class="col-md-12">
-                    <input data-toggle="modal" data-target="#exampleModal" class="btn btn-red w100p"  value="Solicita una visita">
-                  </div>
-                </div>
-              </form>
-              <div class="heart-btn">
-                <?php if (estaEnFavoritos($propiedad->id)) { ?>
-                  <a data-bookmark-state="added" href="/admin/favoritos/eliminar/?id=<?php echo $propiedad->id; ?>">
-                    Eliminar de lista de favoritos
-                  </a>
-                <?php } else { ?>
-                  <a data-bookmark-state="empty" href="/admin/favoritos/agregar/?id=<?php echo $propiedad->id; ?>">
-                    Guardar en lista de favoritos
-                  </a>
-                <?php } ?>
-              </div>
-            </div>
-          </div>
-        </div>        
-        <!-- <div class="box-bottom-links mb-4">
-          <ul>
-            <li><a href="javascript:void(0)" onclick="enviar_ficha_email()"><img src="assets/images/email-icon.png" alt="Email"> Email</a></li>
-            <li><a href="<?php echo $propiedad->link_ficha ?>"><img src="assets/images/pdf.png" alt="PDF"> Ficha PDF</a></li>
-            <li><a target="_blank" href="<?php echo $propiedad->link_ficha ?>"><img src="assets/images/doc.png" alt="Doc"> Imprimir</a></li>
-          </ul>
-        </div> -->
-        <div class="border-box">
-          <?php include "includes/search-filter.php" ?>
-        </div>
+        <?php } ?>
       </div>
+      <div class="col-md-3 secondary">
+        <?php include("includes/sidebar.php"); ?>
       </div>
     </div>
   </div>
+</div>
 
+<?php include("includes/footer.php"); ?>
 
-
-<!-- Featured Properties -->
-<?php if (isset($propiedad->relacionados) && sizeof($propiedad->relacionados)>0) { ?>
-	<div class="featured-properties list-wise pt-0">
-	  <div class="container">
-	    <h2 class="section-title">propiedades similares</h2>
-	    <div class="owl-carousel" data-items="3" data-margin="32" data-loop="true" data-nav="true" data-dots="false">
-				<?php foreach ($propiedad->relacionados as $p) {  ?>
-		      <div class="item">
-		        <div class="property-box">
-		          <div class="property-img">
-		            <img class="cover-recientes" src="<?php echo $p->imagen ?>" alt="Property Img">
-		            <div class="rollover">
-		              <a href="<?php echo ($p->link_propiedad) ?>" class="add"></a>
-		               <?php if (estaEnFavoritos($p->id)) { ?>
-                    <a class="heart" data-bookmark-state="added" href="/admin/favoritos/eliminar/?id=<?php echo $p->id; ?>">
-                    </a>
-                   <?php } else { ?>
-                    <a class="heart" data-bookmark-state="empty" href="/admin/favoritos/agregar/?id=<?php echo $p->id; ?>">
-                    </a>
-                  <?php } ?>
-		            </div>
-		          </div>
-		          <div class="property-details">
-		            <div class="property-top">
-		              <h3><?php echo $p->nombre ?></h3>
-		            </div>
-                <div class="property-middle-top">
-                  <h3><?php echo $p->direccion_completa ?></h3>
-                </div>
-		            <div class="property-middle">
-		              <ul>
-	                  <?php if ($p->superficie_total != 0) {  ?>
-	                  	<li><img src="assets/images/home.png" alt="Home"> <?php echo $p->superficie_total ?></li>
-	                  <?php } ?>
-	                  <?php if (!empty($p->dormitorios)) {  ?>
-	                  	<li><img src="assets/images/beds.png" alt="Beds"> <?php echo $p->dormitorios ?></li>
-	                  <?php } ?>
-	                  <?php if (!empty($p->cocheras)) {  ?>
-	                  	<li><img src="assets/images/parking.png" alt="Parking"> <?php echo $p->cocheras ?></li>
-	                  <?php } ?>
-	                </ul>
-		            </div>
-		            <div class="property-bottom">
-		              <span><?php echo $p->precio ?></span>
-		              <a class="btn btn-red" href="<?php echo ($p->link_propiedad) ?>">ver más</a>
-		            </div>
-		          </div>
-		        </div>
-		      </div>
-		    <?php } ?>
-	    </div>
-	  </div>
-	</div>
+<!-- SCRIPT'S --> 
+<script type="text/javascript" src="js/jquery.min.js"></script> 
+<?php include_once("templates/comun/mapa_js.php"); ?>
+<script type="text/javascript" src="js/wNumb.js"></script> 
+<script type="text/javascript" src="js/nouislider.js"></script> 
+<?php if (sizeof($propiedad->images)>0) { ?>
+  <script type="text/javascript" src="js/galleryslider.js"></script> 
 <?php } ?>
+<script type="text/javascript" src="js/custom.js"></script>
+<?php if ($propiedad->latitud != 0 && $propiedad->longitud != 0) { ?>
+<script type="text/javascript">
+
+  var mymap = L.map('map').setView([<?php echo $propiedad->latitud ?>,<?php echo $propiedad->longitud ?>], <?php echo $propiedad->zoom ?>);
+
+  L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+    attribution: '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
+    tileSize: 512,
+    maxZoom: 18,
+    zoomOffset: -1,
+    id: 'mapbox/streets-v11',
+    accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
+  }).addTo(mymap);
 
 
-  <!-- Call To Action -->
-  <?php include "includes/comunicate.php" ?>
-  
-
-  <!-- Footer -->
-  <?php include "includes/footer.php" ?>
-
-  <!-- Back To Top -->
-  <div class="back-to-top"><a href="javascript:void(0);" aria-label="Back to Top">&nbsp;</a></div>
-
-  <!-- Scripts -->
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/js/html5.min.js"></script>
-  <script src="assets/js/owl.carousel.min.js"></script>
-  <script src="assets/js/nouislider.js"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"></script>
-  <?php if ($propiedad->latitud != 0 && $propiedad->longitud != 0) { ?>
-    <script type="text/javascript">
-     <?php if (!empty($propiedad->latitud && !empty($propiedad->longitud))) { ?>
-    var mymap = L.map('map1').setView([<?php echo $propiedad->latitud ?>,<?php echo $propiedad->longitud ?>], <?php echo $propiedad->zoom ?>);
-
-    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-      attribution: '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
-      tileSize: 512,
-      maxZoom: 18,
-      zoomOffset: -1,
-      id: 'mapbox/streets-v11',
-      accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
-    }).addTo(mymap);
-
-
-    var icono = L.icon({
-    iconUrl: 'assets/images/map-logo.png',
-    iconSize:     [101, 112], // size of the icon
-    shadowSize:   [151, 142], // size of the shadow
-    iconAnchor:   [50, 12], // point of the icon which will correspond to marker's location
-    });
-
-    L.marker([<?php echo $propiedad->latitud ?>,<?php echo $propiedad->longitud ?>]).addTo(mymap);
-
-  <?php } ?>
-    </script>
-  <?php } ?>
-  <script src="assets/js/magnific-popup-min.js"></script>
-  <script src="assets/js/scripts.js"></script>
-  <script type="text/javascript">
-  //Magnific Popup Script
-  $('.rincon-popup').magnificPopup ({
-    delegate: 'a',
-    type: 'image',
-    closeOnContentClick: false,
-    closeBtnInside: false,
-    removalDelay: 100,
-    mainClass: 'mfp-fade mfp-img-mobile',
-    closeMarkup:'<div class="mfp-close" title="%title%"></div>',
-    image: {
-      verticalFit: true,
-      titleSrc: function(item) {
-        return item.el.attr('title') + ' &middot; <a class="image-source-link" href="'+item.el.attr('data-source')+'" target="_blank">image source</a>';
-      }
-    },
-    gallery: {
-      enabled: true,
-      arrowMarkup:'<div title="%title%" class="mfp-arrow mfp-arrow-%dir%"></div>',
-    },
+  var icono = L.icon({
+    iconUrl: 'images/map-place.png',
+    iconSize:     [60, 60], // size of the icon
+    iconAnchor:   [30, 30], // point of the icon which will correspond to marker's location
   });
+
+  L.marker([<?php echo $propiedad->latitud ?>,<?php echo $propiedad->longitud ?>],{
+    icon: icono
+  }).addTo(mymap);
+
 </script>
+<?php } ?>
 <script type="text/javascript">
-	var enviando = 0;
-	function enviar_contacto() {
-		if (enviando == 1) return;
-		var nombre = $("#contacto_nombre").val();
-		var email = $("#contacto_email").val();
-		var telefono = $("#contacto_telefono").val();
-		var mensaje = $("#contacto_mensaje").val();
-		var id_propiedad = <?php echo $propiedad->id ?>;
-		var id_origen = <?php echo (isset($id_origen) ? $id_origen : 0) ?>;
+$(document).ready(function(){
 
-		if (isEmpty(nombre) || nombre == "Nombre") {
-			alert("Por favor ingrese un nombre");
-			$("#contacto_nombre").focus();
-			return false;      
-		}
-		if (!validateEmail(email)) {
-			alert("Por favor ingrese un email valido");
-			$("#contacto_email").focus();
-			return false;      
-		}
-		if (isEmpty(telefono) || telefono == "Telefono") {
-			alert("Por favor ingrese un telefono");
-			$("#contacto_telefono").focus();
-			return false;      
-		}
-		if (isEmpty(mensaje) || mensaje == "Mensaje") {
-			alert("Por favor ingrese un mensaje");
-			$("#contacto_mensaje").focus();
-			return false;        
-		}  
+  var maximo = 0;
+  $(".property-item").each(function(i,e){
+    if ($(e).height()>maximo) maximo = $(e).height();
+  });
+  $(".property-item").height(maximo);
 
-		$("#contacto_submit").attr('disabled', 'disabled');
-		var datos = {
-			"para":"<?php echo $empresa->email ?>",
-			"nombre":nombre,
-			"email":email,
-			"mensaje":mensaje,
-			"telefono":telefono,
-			"asunto":"Contacto para <?php echo $propiedad->nombre ?> (Cod: <?php echo $propiedad->codigo ?>)",
-			"id_propiedad":id_propiedad,
-			"id_empresa":ID_EMPRESA,
-			<?php if (isset($propiedad) && $propiedad->id_empresa != $empresa->id) { ?>
-				"id_empresa_relacion":"<?php echo $propiedad->id_empresa ?>",
-			<?php } ?>
-			"id_origen": ((id_origen != 0) ? id_origen : ((id_propiedad != 0)?1:6)),
-		}
-		enviando = 1;
-		$.ajax({
-			"url":"https://app.inmovar.com/admin/consultas/function/enviar/",
-			"type":"post",
-			"dataType":"json",
-			"data":datos,
-			"success":function(r){
-				if (r.error == 0) {
-					alert("Muchas gracias por contactarse con nosotros. Le responderemos a la mayor brevedad!");
-					location.reload();
-				} else {
-					alert("Ocurrio un error al enviar su email. Disculpe las molestias");
-					$("#contacto_submit").removeAttr('disabled');
-					enviando = 0;
-				}
-			}
-		});
-		return false;
-	}  
-</script>
-<script type="text/javascript">
-    function submit_buscador_propiedades() {
-  // Cargamos el offset y el orden en este formulario
-  $("#sidebar_orden").val($("#ordenador_orden").val());
-  $("#sidebar_offset").val($("#ordenador_offset").val());
-  $("#form_propiedades").submit();
-}
-function onsubmit_buscador_propiedades() { 
-  var link = (($("input[name='tipo_busqueda']:checked").val() == "mapa") ? "<?php echo mklink("mapa/")?>" : "<?php echo mklink("propiedades/")?>");
-  var tipo_operacion = $("#tipo_operacion").val();
-  var localidad = $("#localidad").val();
-  var tipo_propiedad = $("#tp").val();
-  link = link + tipo_operacion + "/" + localidad + "/";
+  $(".pagination a").click(function(e){
+    e.preventDefault();
+    var url = $(e.currentTarget).attr("href");
+    
+    var f = document.createElement("form");
+    f.setAttribute('method',"post");
+    f.setAttribute('action',url);
+    
+    var i = document.createElement("input");
+    i.setAttribute('type',"hidden");
+    i.setAttribute('name',"id_tipo_inmueble");
+    i.setAttribute('value',$(".filter_tipo_propiedad").first().val());
+    f.appendChild(i);
+    
+    var i = document.createElement("input");
+    i.setAttribute('type',"hidden");
+    i.setAttribute('name',"banios");
+    i.setAttribute('value',$(".filter_banios").first().val());
+    f.appendChild(i);  
+    
+    var i = document.createElement("input");
+    i.setAttribute('type',"hidden");
+    i.setAttribute('name',"dormitorios");
+    i.setAttribute('value',$(".filter_dormitorios").first().val());
+    f.appendChild(i);
+    
+    f.submit();    
+  });
+});
 
-  $("#form_propiedades").attr("action",link);
-  return true;
-}
+$(document).ready(function(){
+  <?php for($i=0;$i<5;$i++) { ?>
+	  $("#show-in-list-<?php echo $i ?>").click(function(){
+	    var v = $("#show-in-list-<?php echo $i ?>").prop("checked");
+	    $("#show-in-map-<?php echo $i ?>").prop("checked",!v);
+	  });
+	  $("#show-in-map-<?php echo $i ?>").click(function(){
+	    var v = $("#show-in-map-<?php echo $i ?>").prop("checked");
+	    $("#show-in-list-<?php echo $i ?>").prop("checked",!v);
+	  });
+  <?php } ?>
+});
 
+
+//UI SLIDER SCRIPT
+$('.slider-snap').noUiSlider({
+	start: [ <?php echo $minimo ?>, <?php echo $maximo ?> ],
+	step: 10,
+	connect: true,
+	range: {
+		'min': 0,
+		'max': <?php echo $precio_maximo ?>,
+	},
+  format: wNumb({
+		decimals: 0,
+		thousand: '.',
+	})
+});
+$('.slider-snap').Link('lower').to($('.slider-snap-value-lower'));
+$('.slider-snap').Link('upper').to($('.slider-snap-value-upper'));
 
 function enviar_ficha_email() {
   var email = prompt("Escriba su email: ");
@@ -486,10 +400,10 @@ function enviar_ficha_email() {
       "id_empresa":ID_EMPRESA,
       "adjuntos":[{
         "id_objeto":"<?php echo $propiedad->id ?>",
-        "nombre":"<?php echo ($propiedad->nombre) ?>",
+        "nombre":"<?php echo $propiedad->nombre ?>",
         "tipo":3
       }],
-      "asunto":"<?php echo ($propiedad->nombre) ?>",
+      "asunto":"<?php echo $propiedad->nombre ?>",
     };
     $.ajax({
       "url":"/admin/emails/0",
@@ -506,113 +420,10 @@ function enviar_ficha_email() {
     });
   }
 }
-</script> 
-<script type="text/javascript">
-  $('#exampleModal').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) // Button that triggered the modal
-  var recipient = button.data('whatever') // Extract info from data-* attributes
-  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-  var modal = $(this)
-  modal.find('.modal-title').text('New message to ' + recipient)
-  modal.find('.modal-body input').val(recipient)
-})
 </script>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Solicitar una visita</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="visita_nombre"  class="col-form-label">Nombre:</label>
-              <input type="text" id="visita_nombre" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="visita_telefono" class="col-form-label">Teléfono:</label>
-              <input type="text" id="visita_telefono"  class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="visita_email"  class="col-form-label">Email:</label>
-              <input type="text" id="visita_email" class="form-control">
-            </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn" data-dismiss="modal">Cerrar</button>
-          <button type="button" onclick="return enviar_contacto_visita()" class="btn btn-red" id="visita_submit">Solicitar visita</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-<script type="text/javascript">
-  var enviando = 0;
-  function enviar_contacto_visita() {
-    if (enviando == 1) return;
-    var nombre = $("#visita_nombre").val();
-    var email = $("#visita_email").val();
-    var telefono = $("#visita_telefono").val();
-    var dia = $("#visita_dia").val();
-    var hora = $("#visita_hora").val();
-    var id_propiedad = <?php echo $propiedad->id ?>;
-    var id_origen = <?php echo (isset($id_origen) ? $id_origen : 0) ?>;
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "94d2174e-398d-4a49-b5ce-0b6a19a58759", onhover: false, doNotHash: true, doNotCopy: false, hashAddressBar: false});</script>
 
-    if (isEmpty(nombre) || nombre == "Nombre") {
-      alert("Por favor ingrese un nombre");
-      $("#visita_nombre").focus();
-      return false;      
-    }
-    if (!validateEmail(email)) {
-      alert("Por favor ingrese un email valido");
-      $("#visita_email").focus();
-      return false;      
-    }
-    if (isEmpty(telefono) || telefono == "Telefono") {
-      alert("Por favor ingrese un telefono");
-      $("#visita_telefono").focus();
-      return false;      
-    }
-
-    $("#visita_submit").attr('disabled', 'disabled');
-    var datos = {
-      "para":"<?php echo $empresa->email ?>",
-      "nombre":nombre,
-      "email":email,
-      "telefono":telefono,
-      "mensaje":dia + " por la " + hora,
-      "asunto":"Visita para <?php echo $propiedad->nombre ?> (Cod: <?php echo $propiedad->codigo ?>)",
-      "id_propiedad":id_propiedad,
-      "id_empresa":ID_EMPRESA,
-      <?php if (isset($propiedad) && $propiedad->id_empresa != $empresa->id) { ?>
-        "id_empresa_relacion":"<?php echo $propiedad->id_empresa ?>",
-      <?php } ?>
-      "id_origen": ((id_origen != 0) ? id_origen : ((id_propiedad != 0)?1:6)),
-    }
-    enviando = 1;
-    $.ajax({
-      "url":"https://app.inmovar.com/admin/consultas/function/enviar/",
-      "type":"post",
-      "dataType":"json",
-      "data":datos,
-      "success":function(r){
-        if (r.error == 0) {
-          alert("Muchas gracias por contactarse con nosotros. Le responderemos a la mayor brevedad!");
-          location.reload();
-        } else {
-          alert("Ocurrio un error al enviar su email. Disculpe las molestias");
-          $("#visita_submit").removeAttr('disabled');
-          enviando = 0;
-        }
-      }
-    });
-    return false;
-  }  
-</script>
 <?php 
 // Creamos el codigo de seguimiento para registrar la visita
 echo $propiedad_model->tracking_code(array(

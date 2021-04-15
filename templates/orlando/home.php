@@ -1,422 +1,320 @@
-<?php include "includes/init.php" ?>
+<?php
+include_once("includes/init.php");
+$nombre_pagina = "home";
+$tipo_operacion = new stdClass();
+$vc_id_tipo_operacion = 2;
+?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
-	<?php include "includes/head.php" ?>
+  <?php include("includes/head.php"); ?>
 </head>
-<body>
+<body class="loading home">
 
-	<!-- Header -->
-	<?php include "includes/header.php" ?>
-
-	<!-- Top Banner -->
-	<?php $slide = $web_model->get_slider()?>
-	<div class="top-banner">
-		<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-			<div class="carousel-inner">
-				<?php $x=1; foreach ($slide as $s) { ?>
-					<div class="carousel-item <?php echo ($x==1)?"active":""?>">
-						<img class="d-block w-100" src="<?php echo $s->path ?>" alt="First slide">
-						<div class="slider-caption">
-							<div class="container">
-								<h1><?php echo $s->linea_1 ?> <br><?php echo $s->linea_2?> </h1>
-								<ul class="nav nav-tabs">
-									<li><a class="ventas active" data-toggle="tab" href="#ventas">Ventas</a></li>
-									<li><a class="alquileres" data-toggle="tab" href="#alquiler">Alquiler</a></li>
-									<li><a class="emprendimientos" data-toggle="tab" href="#emprendimientos">Emprendimientos</a></li>
-								</ul>
-								<div class="tab-content">
-									<div id="ventas" class="tab-pane fade in active">
-										<form id="form_propiedades" onsubmit="enviar_buscador_propiedades()">
-											<input type="hidden" id="tipo_operacion" value="ventas" name="">
-											<div class="row">
-												<div class="col-md-4 bg-white">
-													<?php $localidades = $propiedad_model->get_localidades(); ?>
-													<select class="form-control" id="localidad">
-														<option value="todas">Localidades</option>
-														<?php foreach ($localidades as $t) {  ?>
-															<option value="<?php echo $t->link ?>"><?php echo $t->nombre ?></option>
-														<?php } ?>
-													</select>
-												</div>
-												<div class="col-md-5 bg-white">
-													<?php $tipos_propiedades = $propiedad_model->get_tipos_propiedades(); ?>
-													<select class="form-control" name="tp">
-														<option value="0">Tipos propiedades</option>
-														<?php foreach ($tipos_propiedades as $t) {  ?>
-															<option value="<?php echo $t->id ?>"><?php echo $t->nombre ?></option>
-														<?php } ?>
-													</select>
-												</div>
-												<div class="col-md-3">
-													<button type="submit" class="btn btn-red">Buscar</button>
-												</div>
-											</div>
-											<div class="radiobuttons">
-												<div class="rdio rdio-primary radio-inline"> 
-													<input name="tipo_busqueda"checked value="lista" id="radio1" type="radio">
-													<label for="radio1">Vista en lista</label>
-												</div>
-												<div class="rdio rdio-primary radio-inline">
-													<input name="tipo_busqueda" value="mapa" id="radio2" type="radio">
-													<label for="radio2">Vista en mapa</label>
-												</div>
-											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<?php $x++; } ?>
-				</div>
-			</div>  
-		</div>
-
-
-		<!-- Featured Properties -->
-		<?php $destacados = $propiedad_model->get_list(array("destacado"=>1,"solo_propias"=>1))?>
-		<?php if (!empty($destacados)) {  ?>
-			<div class="featured-properties" id="destacados">
-				<div class="container">
-					<h2 class="section-title">propiedades destacadas</h2>
-					<div id="carouselExampleControls1" class="carousel slide" data-ride="carousel">
-						<div class="carousel-inner">
-							<?php $x=1;foreach ($destacados as $d) {  ?>
-								<div class="carousel-item <?php echo ($x==1)?"active":"" ?>">
-									<div class="property-box">
-										<div class="property-img">
-											<span><img src="assets/images/logo2.png" alt="Logo"> <?php echo $d->tipo_operacion ?></span>
-											<img class="cover-destacado" src="<?php echo $d->imagen ?>" alt="Property Img">
-										</div>
-										<div class="property-details" style="min-height: 402px">
-											<div class="property-top">
-												<h3><?php echo $d->nombre ?></h3>
-												<p><?php echo substr(strip_tags($d->texto),0,200);echo (strlen($d->texto)>200)?"...":"" ?>	</p>
-											</div>
-											<div class="property-middle-top">
-												<h3 class="direccion-completa"><?php echo $d->direccion_completa ?></h3>
-												</div>
-											<div class="property-middle">
-												<ul>
-													<li><img src="assets/images/home.png" alt="Home"> <?php echo (!empty($d->superficie_total))?$d->superficie_total." ":"-" ?> </li>
-													<li><img src="assets/images/beds.png" alt="Beds"> <?php echo (!empty($d->dormitorios))?$d->dormitorios:"-" ?></li>
-													<li><img src="assets/images/washroom.png" alt="Washroom"> <?php echo (!empty($d->banios))?$d->banios:"-" ?></li>
-													<li><img src="assets/images/parking.png" alt="Parking"> <?php echo (!empty($d->cocheras))?$d->cocheras:"-" ?></li>
-												</ul>
-											</div>
-											<div class="property-bottom">
-												<span><?php echo $d->precio ?></span>
-												<a class="btn btn-red" href="<?php echo ($d->link_propiedad) ?>">ver más <img src="assets/images/play.png" alt="Play"></a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<?php $x++; } ?>
-							</div>  
-							<div class="owl-nav">
-								<a class="carousel-control-prev owl-next" href="#carouselExampleControls1" role="button" data-slide="prev">
-								</a>
-								<a class="carousel-control-next owl-prev" href="#carouselExampleControls1" role="button" data-slide="next">
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			<?php }   ?>
-
-			<!-- Our Services -->
-			<?php $t = $web_model->get_text("slider_dos!","assets/images/services-bg.jpg")?>
-			<div class="our-services editable editable-img" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" style="background: url(<?php echo $t->plain_text?>) no-repeat  0 0;background-size: cover" data-width="1600" data-height="480">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-4">
-							<div class="service-item">
-								<span class="icon-box"></span>
-								<?php $tit = $web_model->get_text("ventasssss-tit","Ventas")?>
-								<h4 onclick="window.location.href='<?php echo $tit->link ?>'"  class="editable pointer" data-id="<?php echo $tit->id ?>" data-clave="<?php echo $tit->clave ?>">
-									<?php echo $tit->plain_text ?>
-								</h4>
-								<?php $t = $web_model->get_text("ventas-text","Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's")?>
-								<p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
-									<?php echo $t->plain_text ?>
-								</p>
-								<div onclick="window.location.href='<?php echo $tit->link ?>'" class="stretched-link play-icon pointer-rel"></div>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="service-item alquileres">
-								<span class="icon-box"></span>
-								<?php $tit = $web_model->get_text("alqui-tit","Alquileres")?>
-								<h4 onclick="window.location.href='<?php echo $tit->link ?>'" class="editable pointer" data-id="<?php echo $tit->id ?>" data-clave="<?php echo $tit->clave ?>">
-									<?php echo $tit->plain_text ?>
-								</h4>
-								<?php $t = $web_model->get_text("alqui-text","Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's")?>
-								<p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
-									<?php echo $t->plain_text ?>
-								</p>
-								<div onclick="window.location.href='<?php echo $tit->link ?>'" class="stretched-link play-icon pointer-rel"></div>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="service-item emprendimientos">
-								<span class="icon-box"></span>
-								<?php $tit = $web_model->get_text("empre-tit","Emprendimientos")?>
-								<h4 class="editable pointer" onclick="window.location.href='<?php echo $tit->link ?>'"  data-id="<?php echo $tit->id ?>" data-clave="<?php echo $tit->clave ?>">
-									<?php echo $tit->plain_text ?>
-								</h4>
-								<?php $t = $web_model->get_text("empr-text","Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's")?>
-								<p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
-									<?php echo $t->plain_text ?>
-								</p>
-								<div onclick="window.location.href='<?php echo $tit->link ?>'" class="stretched-link play-icon pointer-rel	"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Featured Properties -->
-			<?php $propiedades = $propiedad_model->get_list(array("offset"=>6))?>
-			<?php if (!empty($propiedades)) {  ?>
-				<div class="featured-properties list-wise">
-					<div class="container">
-						<h2 class="section-title">agregadas recientemente</h2>
-						<div class="owl-carousel" data-items="3" data-margin="32" data-loop="true" data-nav="true" data-dots="false">
-							<?php foreach ($propiedades as $p) {  ?>
-								<div class="item">
-									<div class="property-box">
-										<div class="property-img">
-											<img class="cover-recientes" src="<?php echo $p->imagen ?>" alt="Property Img">
-											<div class="rollover">
-												<a href="<?php echo ($p->link_propiedad) ?>" class="add"></a>
-												<?php if (estaEnFavoritos($p->id)) { ?>
-													<a class="heart" data-bookmark-state="added" href="/admin/favoritos/eliminar/?id=<?php echo $p->id; ?>">
-													</a>
-												<?php } else { ?>
-													<a class="heart" data-bookmark-state="empty" href="/admin/favoritos/agregar/?id=<?php echo $p->id; ?>">
-													</a>
-												<?php } ?>
-											</div>
-										</div>
-										<div class="property-details">
-											<div class="property-top">
-												<h3><?php echo $p->nombre ?></h3>
-											</div>
-											<div class="property-middle-top">
-												<h3 class="direccion-completa"><?php echo $p->direccion_completa ?></h3>
-											</div>
-											<div class="property-middle">
-												<ul>
-													<?php if ($p->superficie_total != 0) {  ?>
-														<li><img src="assets/images/home.png" alt="Home"> <?php echo $p->superficie_total ?> </li>
-													<?php } ?>
-													<?php if (!empty($p->dormitorios)) {  ?>
-														<li><img src="assets/images/beds.png" alt="Beds"> <?php echo $p->dormitorios ?></li>
-													<?php } ?>
-													<?php if (!empty($p->cocheras)) {  ?>
-														<li><img src="assets/images/parking.png" alt="Parking"> <?php echo $p->cocheras ?></li>
-													<?php } ?>
-												</ul>
-											</div>
-											<div class="property-bottom">
-												<span><?php echo $p->precio ?></span>
-												<a class="btn btn-red" href="<?php echo ($p->link_propiedad) ?>">ver más</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							<?php } ?>
-						</div>
-					</div>
-				</div>
-			<?php } ?>
-
-			<!-- Call To Action -->
-			<?php include "includes/comunicate.php" ?>
-
-			<!-- Featured Cities -->
-			<div class="featured-cities text-center">
-				<div class="container">
-					<?php $t = $web_model->get_text("ciudades-titt","Ciudades Destacadas")?>
-					<h2 class="section-title" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
-						<?php echo $t->plain_text ?>
-					</h2>
-					<?php $t = $web_model->get_text("ciudades-text","Conocé las propiedades de cada ciudad que tenemos para ofrecerte")?>
-					<p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
-						<?php echo $t->plain_text ?>
-					</p>
-					<div class="row">
-						<div class="col-lg-4 col-md-6">
-							<?php $t = $web_model->get_text("img-1-path","assets/images/property-img7.png")?>
-							<div class="featured-list-item editable editable-img" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
-								<img src="<?php echo $t->plain_text ?>" alt="Property Img">
-								<div class="rollover">
-									<?php $t = $web_model->get_text("img-1-texto-1","La Plata")?>
-									<div onclick="window.location.href='<?php echo $t->link ?>'" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="editable stretched-link onclick"><?php echo $t->plain_text ?></div>
-									<span onclick="window.location.href='<?php echo $t->link ?>'" class="onclick-span">Ver Más</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6">
-							<?php $t = $web_model->get_text("img-2-path","assets/images/property-img8.png")?>
-							<div class="featured-list-item editable editable-img" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
-								<img src="<?php echo $t->plain_text ?>" alt="Property Img">
-								<div class="rollover">
-									<?php $t = $web_model->get_text("img-2-texto-2","City Bell")?>
-									<div onclick="window.location.href='<?php echo $t->link ?>'" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="editable stretched-link onclick"><?php echo $t->plain_text ?></div>
-									<span onclick="window.location.href='<?php echo $t->link ?>'" class="onclick-span">Ver Más</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6">
-							<?php $t = $web_model->get_text("img-3-path","assets/images/property-img9.png")?>
-							<div class="featured-list-item editable editable-img" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
-								<img src="<?php echo $t->plain_text ?>" alt="Property Img">
-								<div class="rollover">
-									<?php $t = $web_model->get_text("img-3-texto-3","Villa Elisa")?>
-									<div onclick="window.location.href='<?php echo $t->link ?>'" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="editable stretched-link onclick"><?php echo $t->plain_text ?></div>
-									<span onclick="window.location.href='<?php echo $t->link ?>'" class="onclick-span">Ver Más</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6">
-							<?php $t = $web_model->get_text("img-4-path","assets/images/property-img10.png")?>
-							<div class="featured-list-item editable editable-img" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
-								<img src="<?php echo $t->plain_text ?>" alt="Property Img">
-								<div class="rollover">
-									<?php $t = $web_model->get_text("img-4-texto-4","Pinamar")?>
-									<div onclick="window.location.href='<?php echo $t->link ?>'" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="editable stretched-link onclick"><?php echo $t->plain_text ?></div>
-									<span class="onclick-span" onclick="window.location.href='<?php echo $t->link ?>'">Ver Más</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6">
-							<?php $t = $web_model->get_text("img-5-path","assets/images/property-img11.png")?>
-							<div class="featured-list-item editable editable-img" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
-								<img src="<?php echo $t->plain_text ?>" alt="Property Img">
-								<div class="rollover">
-									<?php $t = $web_model->get_text("img-5-texto-5","Hudson")?>
-									<div onclick="window.location.href='<?php echo $t->link ?>'" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="editable stretched-link onclick"><?php echo $t->plain_text ?></div>
-									<span onclick="window.location.href='<?php echo $t->link ?>'" class="onclick-span">Ver Más</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6">
-							<?php $t = $web_model->get_text("img-6-path","assets/images/property-img12.png")?>
-							<div class="featured-list-item editable editable-img" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
-								<img src="<?php echo $t->plain_text ?>" alt="Property Img">
-								<div class="rollover">
-									<?php $t = $web_model->get_text("img-6-texto-6","Mar Del Plata")?>
-									<div onclick="window.location.href='<?php echo $t->link ?>'" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="editable stretched-link onclick"><?php echo $t->plain_text ?></div>
-									<span class="onclick-span" onclick="window.location.href='<?php echo $t->link ?>'">Ver Más</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Latest News -->
-<!-- <div class="latest-news list-wise">
-  <div class="container">
-    <h2 class="section-title">últimas noticias</h2>
-    <div class="owl-carousel" data-items="3"  data-margin="32" data-loop="true" data-nav="true" data-dots="false">
-      <div class="item">
-        <div class="property-box">
-            <div class="property-img">
-              <img src="assets/images/property-img4.png" alt="Property Img">
+  <?php
+  $sql = "SELECT * FROM web_slider WHERE id_empresa = $empresa->id ORDER BY orden ASC";
+  $q = mysqli_query($conx,$sql);
+  if (mysqli_num_rows($q)>0) { ?>
+    <div class="revolution-container">
+      <div class="revolution">
+        <ul class="list-unstyled">
+          <?php while(($r=mysqli_fetch_object($q))!==NULL) { ?>
+            <li data-transition="fade" data-slotamount="7" data-masterspeed="1500" >
+              <img src="/admin/<?php echo $r->path ?>" alt="slidebg1" data-bgfit="cover" data-bgposition="center center" />
+              <div class="tp-caption skewfromrightshort customout"
+              data-x="20"
+              data-y="220"
+              data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+              data-speed="500"
+              data-start="300"
+              data-easing="Power4.easeOut"
+              data-endspeed="500"
+              data-endeasing="Power4.easeIn"
+              data-captionhidden="on"
+              style="z-index:4">
+              <h3><?php echo ($r->linea_1) ?></h3>
             </div>
-            <div class="property-details">
-              <div class="property-top">
-                <h3>Título de Noticia 1</h3>
-              </div>
-              <div class="property-middle">
-                <ul>
-                  <li><img src="assets/images/calendar-icon.png" alt="Calendar"> 10/10/2018</li>
-                  <li><img src="assets/images/clock-icon.png" alt="Clock"> 20:45 Hs.</li>
-                </ul>
-              </div>
-              <div class="property-bottom">
-                <a class="btn btn-red" href="#0"><img src="assets/images/btn-arrow.png" alt="Arrow"></a>
-              </div>
-            </div>
+            <div class="tp-caption skewfromrightshort customout"
+            data-x="20"
+            data-y="260"
+            data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+            data-speed="600"
+            data-start="500"
+            data-easing="Power4.easeOut"
+            data-endspeed="500"
+            data-endeasing="Power4.easeIn"
+            data-captionhidden="on"
+            style="z-index:4">
+            <h1><?php echo ($r->linea_2) ?></h1>
           </div>
+          <div class="tp-caption skewfromrightshort customout"
+          data-x="20"
+          data-y="320"
+          data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+          data-speed="550"
+          data-start="700"
+          data-easing="Power4.easeOut"
+          data-endspeed="500"
+          data-endeasing="Power4.easeIn"
+          data-captionhidden="on"
+          style="z-index:4">
+          <h4>
+            <?php echo ($r->linea_3) ?>
+            <?php if (!empty($r->linea_4)) { ?><br/><?php echo ($r->linea_4) ?><?php } ?>
+          </h4>
+        </div>
+        <div class="tp-caption skewfromrightshort customout"
+        data-x="20"
+        data-y="410"
+        data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+        data-speed="550"
+        data-start="700"
+        data-easing="Power4.easeOut"
+        data-endspeed="500"
+        data-endeasing="Power4.easeIn"
+        data-captionhidden="on"
+        style="z-index:4">
+        <div class="block">
+          <?php if (!empty($r->texto_link_1)) { ?>
+            <a href="<?php echo $r->link_1 ?>" class="btn btn-orange-border"><?php echo ($r->texto_link_1) ?></a>
+          <?php } ?>
+          <?php if (!empty($r->texto_link_2)) { ?>
+            <a href="<?php echo $r->link_2 ?>" class="btn btn-white-border"><?php echo ($r->texto_link_2) ?></a>
+          <?php } ?>
+        </div>
       </div>
-      <div class="item">
-        <div class="property-box">
-            <div class="property-img">
-              <img src="assets/images/property-img5.png" alt="Property Img">
-            </div>
-            <div class="property-details">
-              <div class="property-top">
-                <h3>Título de Noticia 1</h3>
-              </div>
-              <div class="property-middle">
-                <ul>
-                  <li><img src="assets/images/calendar-icon.png" alt="Calendar"> 10/10/2018</li>
-                  <li><img src="assets/images/clock-icon.png" alt="Clock"> 20:45 Hs.</li>
-                </ul>
-              </div>
-              <div class="property-bottom">
-                <a class="btn btn-red" href="#0"><img src="assets/images/btn-arrow.png" alt="Arrow"></a>
-              </div>
-            </div>
+    </li>
+  <?php } ?>
+</ul>
+</div>
+</div>
+<?php } ?>
+
+<!-- TOP WRAPPER -->
+<div class="top-wrapper">
+  <?php include("includes/header.php"); ?>
+</div>
+
+<?php include("includes/searchbar.php"); ?>
+
+<?php
+// PROPIEDADES DESTACADAS
+$destacadas = $propiedad_model->destacadas(array(
+  "offset"=>6,
+  "solo_propias"=>1,
+));
+
+// ULTIMAS PROPIEDADES
+$ultimas = $propiedad_model->ultimas(array(
+  "offset"=>(empty($destacadas)) ? 8 : 4,
+  "solo_propias"=>1,
+));
+?>
+<!-- LATEST PROPERTIES -->
+<div class="latest-properties">
+  <div class="page">
+    <div class="row">
+      <?php if (!empty($destacadas)) { ?>
+        <div class="col-md-6">
+          <div class="flexslider">
+            <ul class="slides">
+              <?php foreach($destacadas as $r) { ?>
+                <li>
+                  <div class="propertie-list">
+                    <div class="block">
+                      <?php if (!empty($r->imagen)) { ?>
+                        <img src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre); ?>" />
+                      <?php } else if (!empty($empresa->no_imagen)) { ?>
+                        <img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->nombre); ?>" />
+                      <?php } else { ?>
+                        <img src="images/logo.png" alt="<?php echo ($r->nombre); ?>" />
+                      <?php } ?>
+                    </div>
+                    <div class="property-info">
+                      <div class="info-row">
+                        <div class="info-container">
+                          <div class="property-status">
+                            <span><?php echo $r->tipo_operacion ?></span>
+                            <span>propiedad destacada</span>
+                          </div>
+                          <p>
+                            <i><a href="<?php echo $r->link_propiedad ?>"><img src="images/plus-icon.png" alt="Read More" /></a></i>
+                            <?php echo ($r->nombre); ?>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              <?php } ?>
+            </ul>
           </div>
+        </div>
+      <?php } ?>
+      <div class="<?php echo (empty($destacadas)) ? "col-md-12" : "col-md-6"; ?>">
+        <div class="row">
+          <?php foreach($ultimas as $r) { ?>
+            <div class="col-md-6">
+              <div class="propertie-list ultimas">
+                <div class="block">
+                  <?php if (!empty($r->imagen)) { ?>
+                    <img src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre); ?>" />
+                  <?php } else if (!empty($empresa->no_imagen)) { ?>
+                    <img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->nombre); ?>" />
+                  <?php } else { ?>
+                    <img src="images/logo.png" alt="<?php echo ($r->nombre); ?>" />
+                  <?php } ?>
+                </div>
+                <div class="property-info">
+                  <div class="info-row">
+                    <div class="info-container">
+                      <div class="property-status">
+                        <span><?php echo $r->tipo_operacion ?></span>
+                      </div>
+                      <p>
+                        <i><a href="<?php echo $r->link_propiedad ?>"><img src="images/plus-icon.png" alt="Read More" /></a></i>
+                        <?php echo ($r->nombre); ?>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <?php } ?>
+        </div>
       </div>
     </div>
+    <div class="double-border"></div>
   </div>
-</div> -->
+</div>
 
-<!-- Footer -->
-<?php include "includes/footer.php" ?>
+<!-- OUR REAL ESTATE -->
+<div class="our-real-estate">
+  <div class="page">
+    <div class="title">sobre nuestra inmobiliaria</div>
+    <?php
+    $texto = $web_model->get_text("sobre_nosotros");
+    echo html_entity_decode($texto->texto,ENT_QUOTES); ?>
+    <div class="real-estates"> <a href="<?php echo mklink("propiedades/ventas/") ?>"> <i><img src="images/home-icon.png" alt="Sale" /></i> <big>venta</big> <small>Propiedades en Venta en <br>
+    La Plata</small> </a> <a href="<?php echo mklink("propiedades/alquileres/") ?>"> <i><img src="images/key-icon.png" alt="Rental" /></i> <big>alquiler</big> <small>Alquiler de inmuebles <br>
+    en La Plata</small> </a> <a href="<?php echo mklink("propiedades/emprendimientos/") ?>"> <i><img src="images/home-icon2.png" alt="Sale" /></i> <big>emprendimientos</big> <small>Emprendimientos <br>
+    en La Plata</small> </a> </div>
+  </div>
+</div>
 
-<!-- Back To Top -->
-<div class="back-to-top"><a href="javascript:void(0);" aria-label="Back to Top">&nbsp;</a></div>
+<?php include("includes/consulta_rapida.php"); ?>
 
-<!-- Scripts -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/bootstrap.bundle.min.js"></script>
-<script src="assets/js/html5.min.js"></script>
-<script src="assets/js/owl.carousel.min.js"></script>
-<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-<script src="assets/js/scripts.js"></script>
+<?php include("includes/footer.php"); ?>
+
+<!-- SCRIPT'S --> 
+<script type="text/javascript" src="js/jquery.min.js"></script> 
+<script type="text/javascript" src="js/revolution.js"></script> 
+<script type="text/javascript" src="js/tap.js"></script> 
+<script type="text/javascript" src="js/flexslider.js"></script> 
+<script type="text/javascript" src="js/custom.js"></script> 
 <script type="text/javascript">
-	if (jQuery(window).width()>767) { 
-		$(document).ready(function(){
-			var maximo = 0;
-			$(".list-wise .property-details h3").each(function(i,e){
-				if ($(e).height() > maximo) maximo = $(e).height();
-			});
-			maximo = Math.ceil(maximo);
-			$(".list-wise .property-details h3").height(maximo);
-		});
-	}
-</script>
+//REVOLUTION SLIDER SCRIPT
+jQuery('.revolution').revolution({
+	delay: 9000,
+	startwidth: 1170,
+	startheight: 650,
+	hideThumbs: 10,
+	fullWidth: "on",
+	fullScreen: "on",
+	navigationType: "bullet",
+	navigationArrows: "solo",
+	navigationStyle: "round",
+	navigationHAlign: "center",
+	navigationVAlign: "bottom",
+	navigationHOffset: 30,
+	navigationVOffset: 30,
+	soloArrowLeftHalign: "left",
+	soloArrowLeftValign: "center",
+	soloArrowLeftHOffset: 20,
+	soloArrowLeftVOffset: 0,
+	soloArrowRightHalign: "right",
+	soloArrowRightValign: "center",
+	soloArrowRightHOffset: 20,
+	soloArrowRightVOffset: 0,
+	touchenabled: "on"
+});
+</script> 
 <script type="text/javascript">
-	function enviar_buscador_propiedades() { 
-		if ($(".emprendimientos").hasClass('active'))  {
-			filtro = "emprendimientos";
-		}
-		if ($(".ventas").hasClass('active'))  {
-			filtro = "ventas";
-		}
-		if ($(".alquileres").hasClass('active'))  {
-			filtro = "alquileres";
-		}
+//FLEXSLIDE SCRIPT
+$(window).load(function(){
+  $('.flexslider').flexslider({
+    animation: "fade",
+    start: function(slider){
+      $('body').removeClass('loading');
+    }
+  });
+});
+</script> 
+<script type="text/javascript">
+//TABS SCRIPT
+$('.tabs_search ul').each(function(){
+  var $active, $content, $links = $(this).find('a');
+  $active = $($links.filter('[href="'+location.hash+'"]')[0] || $links[0]);
+  $active.addClass('active');
+  $content = $($active[0].hash);
+  $links.not($active).each(function () {
+    $(this.hash).hide();
+  });
+  $(this).on('click', 'a', function(e){
+    $active.removeClass('active');
+    $content.hide();
+    $active = $(this);
+    $content = $(this.hash);
+    $active.addClass('active');
+    $content.show();
+    e.preventDefault();
+  });
+});
 
-
-		var link = "";
-		if ($("input[type=radio]:checked").val() == "lista") {
-			link = "<?php echo mklink("propiedades/")?>";
-		} else {
-			link = "<?php echo mklink("mapa/")?>";
-		}
-		var localidad = $("#localidad").val();
-		link = link + filtro + "/" + localidad + "/";
-		$("#form_propiedades").attr("action",link);
-		return true;
-	}
+$(document).ready(function(){
+  <?php for($i=0;$i<5;$i++) { ?>
+   $("#show-in-list-<?php echo $i ?>").click(function(){
+     var v = $("#show-in-list-<?php echo $i ?>").prop("checked");
+     $("#show-in-map-<?php echo $i ?>").prop("checked",!v);
+   });
+   $("#show-in-map-<?php echo $i ?>").click(function(){
+     var v = $("#show-in-map-<?php echo $i ?>").prop("checked");
+     $("#show-in-list-<?php echo $i ?>").prop("checked",!v);
+   });
+ <?php } ?>
+});
 </script>
+<?php include_once("templates/comun/mapa_js.php"); ?>
+<script type="text/javascript">
+  <?php if (!empty($empresa->latitud && !empty($empresa->longitud))) { ?>
+
+    var mymap = L.map('map').setView([<?php echo $empresa->latitud ?>,<?php echo $empresa->longitud ?>], 15);
+
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+      maxZoom: 18,
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+      '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+      'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      id: 'mapbox.streets'
+    }).addTo(mymap);
+
+    var icono = L.icon({
+      iconUrl: 'images/map-place.png',
+      iconSize:     [60, 60], // size of the icon
+      iconAnchor:   [30, 30], // point of the icon which will correspond to marker's location
+    });
+
+    <?php
+    $posiciones = explode("/",$empresa->posiciones);
+    for($i=0;$i<sizeof($posiciones);$i++) { 
+      $pos = explode(";",$posiciones[$i]); ?>
+      L.marker([<?php echo $pos[0] ?>,<?php echo $pos[1] ?>],{
+        icon: icono
+      }).addTo(mymap);
+    <?php } ?>
+
+  <?php } ?>
+</script>
+
 </body>
 </html>

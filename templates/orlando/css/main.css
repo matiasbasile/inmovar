@@ -277,7 +277,7 @@ html[xmlns] .slides{display:block;}
 .filter .tab-button li a.list-view{background-position:0 -80px;}
 .filter .tab-button li a.list-view.active, .filter .tab-button li a.list-view:hover{background-position:0 -120px;}
 .sort-by{float:left;}
-.sort-by select{width:245px;}
+.sort-by select{width:210px;}
 .present{float:left; padding-left:15px;}
 .present select{width:80px;}
 

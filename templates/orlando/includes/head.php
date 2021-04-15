@@ -1,11 +1,26 @@
-<?php include "templates/comun/pre_head.php" ?>
-<meta charset="UTF-8">
-<meta name="author" content="Orlando">
-<link href="assets/images/favicon.png" rel="shortcut icon" type="image/png">
-<!-- External CSS -->
-<link href="assets/css/bootstrap-min.css" rel="stylesheet" type="text/css" media="all">
-<link href="assets/css/owl.carousel.min.css" rel="stylesheet" type="text/css" media="all">
-<link href="assets/css/magnific-popup.min.css" rel="stylesheet" type="text/css" media="all">
-<link href="assets/css/style.css" rel="stylesheet" type="text/css" media="all">
-<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet"> 
-<?php include "templates/comun/post_head.php" ?>
+<base href="/templates/<?php echo $empresa->template_path ?>/"/>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title><?php echo (isset($seo_title)) ? (html_entity_decode($seo_title,ENT_QUOTES)) : (html_entity_decode($empresa->seo_title,ENT_QUOTES)); ?></title>
+<meta name="description" content="<?php echo (isset($seo_description)) ? (html_entity_decode($seo_description,ENT_QUOTES)) : (html_entity_decode($empresa->seo_description,ENT_QUOTES)); ?>">
+<meta name="keywords" content="<?php echo (isset($seo_keywords)) ? (html_entity_decode($seo_keywords,ENT_QUOTES)) : (html_entity_decode($empresa->seo_keywords,ENT_QUOTES)); ?>">
+<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
+<link href="css/main.css" type="text/css" media="all" rel="stylesheet" />
+<!-- TODO: unificar los JS -->
+<!-- TODO: Poner los JS en la carpeta del sistema, para que pueda ser compartido por varios proyectos -->
+<script type="text/javascript" src="/admin/resources/js/common.js"></script>
+<script type="text/javascript" src="/admin/resources/js/main.js"></script>
+
+<?php if (!empty($empresa->analytics)) { echo html_entity_decode($empresa->analytics,ENT_QUOTES); } ?>
+<?php if (!empty($empresa->zopim)) { echo html_entity_decode($empresa->zopim,ENT_QUOTES); } ?>
+<?php if (!empty($empresa->google_site_verification)) { echo html_entity_decode($empresa->google_site_verification,ENT_QUOTES); } ?>
+<?php if (!empty($empresa->adsense)) { echo html_entity_decode($empresa->adsense,ENT_QUOTES); } ?>
+<?php if (!empty($empresa->pixel_fb)) { echo html_entity_decode($empresa->pixel_fb,ENT_QUOTES); } ?>
+<script type="text/javascript">
+// Constantes que se utilizan en el sistema
+const ID_EMPRESA = "<?php echo $empresa->id ?>";
+const CURRENT_URL = "<?php echo current_url(); ?>";
+</script>
+<?php if (!empty($empresa->texto_css)) { ?>
+<style type="text/css"><?php echo $empresa->texto_css ?></style>
+<?php } ?>

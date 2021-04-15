@@ -6,9 +6,9 @@
     <form id="form_propiedades" onsubmit="return enviar_buscador_propiedades()" method="GET">
 
       <div class="box-space">
-        <input checked type="radio" name="tipo_vista" id="list-view3" />
+        <input checked type="checkbox" name="tipo_vista" id="list-view3" class="MyCheck" />
         <label for="list-view3">Listado <img src="images/list-view-icon.png" alt="List View" /></label>
-        <input type="radio" name="tipo_vista" id="map-view" />
+        <input type="checkbox" name="tipo_vista" id="map-view" class="MyCheck" />
         <label for="map-view">Mapa <img src="images/location-icon.png" alt="Map View" /></label>
       </div>
 
@@ -17,20 +17,24 @@
         <select id="tipo_operacion" class="filter_tipo_operacion">
           <?php $tipos_operaciones = $propiedad_model->get_tipos_operaciones()?>
           <option value="todas">Todas</option>
-          <?php foreach ($tipos_operaciones as $t) {  ?>
-            <option value="<?php echo $t->link ?>" <?php echo (isset($vc_link_tipo_operacion) && $vc_link_tipo_operacion == $t->link) ? "selected" : "" ?>><?php echo $t->nombre ?></option>
+          <?php foreach ($tipos_operaciones as $t) { 
+            if($t->id == 1 || $t->id == 2 || $t->id == 4) {  ?>
+              <option value="<?php echo $t->link ?>" <?php echo (isset($vc_link_tipo_operacion) && $vc_link_tipo_operacion == $t->link) ? "selected" : "" ?>><?php echo $t->nombre ?></option>
+            <?php } ?>
           <?php } ?>
         </select>
         <div class="textbox-title">Localidad</div>
         <select id="localidad" class="filter_localidad">
           <option value="todas">Localidad</option>
-          <?php foreach ($departamentos as $l) {  ?>
-            <option value="<?php echo $l->id ?>" <?php echo (isset($vc_id_departamento) && $vc_id_departamento == $l->id) ? "selected" : "" ?>><?php echo $l->nombre ?></option>
+          <?php $localidades = $propiedad_model->get_localidades()?>
+          <?php foreach ($localidades as $l) {  ?>
+            <option value="<?php echo $l->link ?>" <?php echo (isset($vc_link_localidad) && $vc_link_localidad == $l->link) ? "selected" : "" ?>><?php echo $l->nombre ?></option>
           <?php } ?>
         </select>
         <div class="textbox-title">Tipo de Propiedad</div>
         <select name="tp">
           <option value="">Tipo de Propiedad</option>
+          <?php $tipos_propiedades = $propiedad_model->get_tipos_propiedades()?>
           <?php foreach ($tipos_propiedades as $tp) {  ?>
           <option value="<?php echo $tp->id ?>" <?php echo (isset($vc_id_tipo_inmueble) && $vc_id_tipo_inmueble == $tp->id) ? "selected" : "" ?>><?php echo $tp->nombre ?></option>
           <?php } ?>
@@ -48,6 +52,7 @@
         <div class="textbox-title">Ba&ntilde;os</div>
         <select name="bn">
           <option value="">Todos</option>
+          <?php $banios_list = $propiedad_model->get_banios()?>
           <?php foreach ($banios_list as $b) {  ?>
             <?php if ($b->banios != 0) {  ?>          
               <option <?php echo (isset($vc_banios) && $vc_banios == $b->banios) ? "selected" : "" ?> value="<?php echo $b->banios ?>"><?php echo $b->banios ?></option>
@@ -135,4 +140,10 @@ function enviar_buscador_propiedades() {
   $("#form_propiedades").attr("action",link);
   return true;
 }
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript">
+  $('.MyCheck').on('change', function() {
+    $('.MyCheck').not(this).prop('checked', false);
+  });
 </script>
