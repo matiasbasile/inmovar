@@ -1,59 +1,49 @@
-<?php
+<?php 
 $cant_favoritos = 0;
 if (isset($_SESSION["favoritos"])) {
   $arr = explode(",",$_SESSION["favoritos"]);
   $cant_favoritos = sizeof($arr)-1;
 }
 ?>
-<div class="header">
-  <div class="page">
-    <div class="logo"><a href="<?php echo mklink("/") ?>"><img src="images/logo.png" alt="Diego Berrueta" /></a></div>
-    <a href="javascript:void(0);" onClick="$('.menu').slideToggle();" class="toggle-button"><span></span> <span></span> <span></span></a>
-    <div class="header-content">
-      <div class="social">
-        <?php if (!empty($empresa->twitter)) { ?><a href="<?php echo $empresa->twitter; ?>"><img src="images/twitter.png" alt="Twitter" /></a><?php } ?>
-        <?php if (!empty($empresa->facebook)) { ?><a href="<?php echo $empresa->facebook; ?>"><img src="images/facebook.png" alt="Facebook" /></a><?php } ?>
-        <a href="<?php echo mklink("favoritos/"); ?>" class="favorite <?php echo ($cant_favoritos > 0)?"active":"" ?>">
-          <?php if ($cant_favoritos > 0) { ?>
-            <span><?php echo $cant_favoritos; ?></span>
-          <?php } ?>
-        </a>
-      </div>
-      <div class="menu">
-        <ul>
-          <li><a href="<?php echo mklink("/") ?>">Inicio</a></li>
-          <li><a href="<?php echo mklink("propiedades/ventas/") ?>">Ventas</a></li>
-          <li><a href="<?php echo mklink("propiedades/alquileres/") ?>">Alquileres</a></li>
-          <li><a href="<?php echo mklink("propiedades/emprendimientos/") ?>">Emprendimientos</a></li>
-          <li><a href="<?php echo mklink("contacto/") ?>">Contacto</a></li>
-        </ul>
-        <div class="account-link">
-            <?php
-            $q = mysqli_query($conx,"SELECT * FROM web_paginas WHERE id_empresa = $empresa->id AND UPPER(titulo_es) = 'TASACIONES' LIMIT 0,1 ");
-            if (mysqli_num_rows($q)>0) {
-              $r = mysqli_fetch_object($q); ?>
-              <a href="<?php echo mklink($r->link); ?>" class="btn btn-white"><?php echo ($r->titulo_es); ?></a>
-            <?php } ?>
-            <?php
-            if (!isset($_SESSION["id_propietario"])) { ?>
-              <a href="<?php echo mklink("login/")?>" class="btn btn-orange">SUB&Iacute; TU PROPIEDAD</a>
-            <?php } else { ?>
-              <div class="user-name" id="user-dropdown">
-                <a href="javascript:void(0);" id="toggle-dropdown">
-                  <img src="images/user-icon.png" alt="User" /> <?php echo (isset($_SESSION["nombre"]) ? $_SESSION["nombre"] : "Usuario"); ?>
-                </a>
-                <div class="profile-menu" id="profile-menu">
-                  <ul>
-                    <li><a href="<?php echo mklink("subi-tu-propiedad/") ?>">sub&iacute; tu propiedad <img src="images/home-icon4.png" alt="My Properties" /></a></li>
-                    <li><a href="<?php echo mklink("mis-propiedades/") ?>">mis propiedades <img src="images/home-icon4.png" alt="My Properties" /></a></li>
-                    <li><a href="<?php echo mklink("perfil/") ?>">mis datos <img src="images/location-icon3.png" alt="My Data" /></a></li>
-                    <li><a href="/logout/">cerrar sesi&oacute;n</a></li>
-                  </ul>
-                </div>
-              </div>
-            <?php } ?>
-        </div>
-      </div>
+<header>
+  <?php if (!empty($empresa->logo_1)) {  ?>
+    <a href="<?php echo mklink ("/") ?>" class="logo">
+      <img src="/admin/<?php echo $empresa->logo_1 ?>" alt="Logo">
+    </a>
+  <?php } ?>
+  <nav class="navbar navbar-expand-xl">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item <?php echo ($page_act=="ventas")?"active":"" ?>">
+          <a class="nav-link" href="<?php echo mklink ("propiedades/ventas/") ?>">VENTAS</a>
+        </li>
+        <li class="nav-item <?php echo ($page_act=="alquileres")?"active":"" ?>">
+          <a class="nav-link" href="<?php echo mklink ("propiedades/alquileres/") ?>">ALQUILERES</a>
+        </li>
+        <li class="nav-item <?php echo ($page_act=="emprendimientos")?"active":"" ?>">
+          <a class="nav-link" href="<?php echo mklink ("propiedades/emprendimientos/") ?>">EMPRENDIMIENTOS</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="<?php echo mklink ("propiedades/ventas/") ?>">informacion</a>
+        </li> -->
+        <?php if (!empty($empresa->telefono)) {  ?>
+          <li class="nav-item call-us">
+            <a class="nav-link" href="tel:<?php echo $empresa->telefono ?>">
+              <img src="assets/images/call-us.png" alt="Call">
+              <span class="right-block">
+                <big>Teléfono:</big>
+                <small><?php echo $empresa->telefono ?></small>
+              </span>
+            </a>
+          </li>
+        <?php } ?>
+        <li class="nav-item">
+          <a class="nav-link btn btn-red" href="<?php echo mklink ("contacto/") ?>">Contacto <img src="assets/images/right-arrow.png" alt="Arrow"></a>
+        </li>
+      </ul>
     </div>
-  </div>
-</div>
+  </nav>
+</header>
