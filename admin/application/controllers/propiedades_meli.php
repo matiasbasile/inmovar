@@ -296,7 +296,10 @@ class Propiedades_Meli extends REST_Controller {
           parent::send_error($refresh["error"]);
           return;
         }
-        print_r($refresh);
+        if (isset($refresh['body']->error)) {
+          parent::send_error($refresh["body"]->message);
+          return;          
+        }
         $this->configuracion->ml_access_token = $refresh['body']->access_token;
         $this->configuracion->expires_in = time() + $refresh['body']->expires_in;
         $this->configuracion->refresh_token = $refresh['body']->refresh_token;
