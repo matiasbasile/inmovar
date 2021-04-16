@@ -346,11 +346,6 @@ $(document).ready(function(){
   });
   $(".property-item").height(maximo);
 
-  var maximo = 0;
-  $(".property-detail").each(function(i,e){
-    if ($(e).height()>maximo) maximo = $(e).height();
-  });
-  $(".property-detail").height(maximo);
 
   <?php for($i=0;$i<5;$i++) { ?>
 	  $("#show-in-list-<?php echo $i ?>").click(function(){
@@ -364,6 +359,17 @@ $(document).ready(function(){
   <?php } ?>
 });
 
+</script>
+<script type="text/javascript">
+
+  $(document).ready(function(){
+    var maximo = 0;
+    $(".property-item").each(function(i,e){
+      if ($(e).height() > maximo) maximo = $(e).height();
+    });
+    maximo = Math.ceil(maximo);
+    $(".property-item").height(maximo);
+  });
 </script>
 <?php include_once("templates/comun/mapa_js.php"); ?>
 <script type="text/javascript">
