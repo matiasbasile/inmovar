@@ -105,7 +105,7 @@ function filter() {
               <div class="row">
                 <?php foreach($vc_listado as $r) { ?>
                   <div class="col-md-4">
-                    <div class="property-item <?php echo ($r->id_tipo_estado==1)?"sold":"" ?>">
+                    <div class="property-item grid <?php echo ($r->id_tipo_estado==1)?"sold":"" ?>">
                       <div class="item-picture">
                         <div class="block">
                           <?php if (!empty($r->imagen)) { ?>
@@ -125,7 +125,7 @@ function filter() {
                           <?php } ?>
                         </div>
                       </div>
-                      <div class="property-detail">
+                      <div class="property-detail grid">
                         <div class="property-name"><?php echo $r->direccion_completa ?></div>
                         <div class="property-location">
                           <div class="pull-left"><?php echo ($r->localidad); ?></div>
@@ -364,11 +364,20 @@ $(document).ready(function(){
 
   $(document).ready(function(){
     var maximo = 0;
-    $(".property-item").each(function(i,e){
+    $(".property-item.grid").each(function(i,e){
       if ($(e).height() > maximo) maximo = $(e).height();
     });
     maximo = Math.ceil(maximo);
-    $(".property-item").height(maximo);
+    $(".property-item.grid").height(maximo);
+  });
+
+   $(document).ready(function(){
+    var maximo = 0;
+    $(".property-detail.grid").each(function(i,e){
+      if ($(e).height() > maximo) maximo = $(e).height();
+    });
+    maximo = Math.ceil(maximo);
+    $(".property-detail.grid").height(maximo);
   });
 </script>
 <?php include_once("templates/comun/mapa_js.php"); ?>
