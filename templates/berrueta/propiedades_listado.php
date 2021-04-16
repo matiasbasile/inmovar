@@ -1,13 +1,14 @@
 <?php
 include("includes/init.php");
 extract($propiedad_model->get_variables());
+isset($get_params["offset"])?$vc_offset = $get_params["offset"]:$vc_offset = 10;
 $nombre_pagina = $vc_link_tipo_operacion;
 function filter() {
   global $vc_offset, $vc_view, $vc_total_paginas, $vc_link, $vc_page, $vc_tipo_operacion, $vc_orden, $vc_params, $vc_dormitorios, $vc_id_tipo_inmueble, $vc_banios, $vc_apto_banco, $vc_acepta_permuta, $vc_minimo, $vc_maximo; ?>
   <div class="filter">
     <ul class="tab-button">
-      <li><a class="grid-view <?php echo(($vc_view != "0")?"active":"") ?>" onclick="change_view(this)" href="javascript:void(0)"></a></li>
-      <li><a class="list-view <?php echo(($vc_view == "0")?"active":"") ?>" onclick="change_view(this)" href="javascript:void(0)"></a></li>
+      <li><a class="grid-view <?php echo(($vc_view != "0")?"active":"") ?>" onclick="change_view(this,'grid')" href="javascript:void(0)"></a></li>
+      <li><a class="list-view <?php echo(($vc_view == "0")?"active":"") ?>" onclick="change_view(this,'list')" href="javascript:void(0)"></a></li>
     </ul>
     <div class="sort-by">
       <label for="sort-by">Ordenar por:</label>
@@ -102,7 +103,8 @@ function filter() {
             <?php filter(); ?>
             <div class="tab-content grid-view <?php echo(($vc_view == 0)?"dn":"") ?>" id="grid-view">
               <div class="row">
-                <?php foreach($vc_listado as $r) { ?>
+                <?php foreach($vc_listado as $r) { 
+                  $link_propiedad = (isset($r->pertenece_red) && $r->pertenece_red == 1) ? mklink($r->link)."&em=".$r->id_empresa : mklink($r->link); ?>
                   <div class="col-md-4">
                     <div class="property-item <?php echo ($r->id_tipo_estado==1)?"sold":"" ?>">
                       <div class="item-picture">
@@ -164,7 +166,8 @@ function filter() {
               </div>
             </div>
             <div class="tab-content <?php echo(($vc_view != 0)?"dn":"") ?>" id="list-view">
-              <?php foreach($vc_listado as $r) { ?>
+              <?php foreach($vc_listado as $r) { 
+                $link_propiedad = (isset($r->pertenece_red) && $r->pertenece_red == 1) ? mklink($r->link)."&em=".$r->id_empresa : mklink($r->link); ?>
                 <div class="property-item">
                   <div class="item-picture">
                     <div class="block">
@@ -222,6 +225,21 @@ function filter() {
                 </div>
               <?php } ?>
             </div>
+             <?php if ($vc_total_paginas > 1) { ?>
+              <div class="pagination">
+                <?php if ($vc_page > 0) { ?>
+                    <a class="prev" href="<?php echo mklink ($vc_link.($vc_page-1)."/".$vc_params); ?>"></a>
+                <?php } ?>
+                <?php for($i=0;$i<$vc_total_paginas;$i++) { ?>
+                    <?php if (abs($vc_page-$i)<2) { ?>
+                      <a class="<?php echo ($i==$vc_page) ? "active" : ""?>" href="<?php echo mklink ($vc_link.$i."/".$vc_params); ?>"><?php echo ($i+1); ?></a>
+                    <?php } ?>
+                <?php } ?>
+                <?php if ($vc_page < ($vc_total_paginas-1)) { ?>
+                    <a class="next" href="<?php echo mklink ($vc_link.($vc_page+1)."/".$vc_params); ?>"></a>
+                <?php } ?>
+              </div>
+            <?php } ?>
           </div>
         <?php } else { ?>
           No se encontraron resultados.
@@ -283,12 +301,19 @@ $('.slider-snap').noUiSlider({
 $('.slider-snap').Link('lower').to($('.slider-snap-value-lower'));
 $('.slider-snap').Link('upper').to($('.slider-snap-value-upper'));
 
-function change_view(e) {
+function change_view(e,view) {
+  var vista = view;
   $(".list-view").removeClass("active");
   $(".grid-view").removeClass("active");
-  $(e).addClass("active");
-  filtrar2();
-}
+  if (vista == "list") { 
+    $("#grid-view").addClass("dn");
+    $("#list-view").removeClass("dn");
+  }
+  if (vista == "grid") { 
+    $("#list-view").addClass("dn");
+    $("#grid-view").removeClass("dn");
+  }
+  }
 
 $(document).ready(function(){
   $(".pagination a").click(function(e){

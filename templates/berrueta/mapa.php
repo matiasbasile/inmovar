@@ -12,20 +12,19 @@ $vc_page_active = $vc_link_tipo_operacion;
 <?php include("includes/head.php"); ?>
 <style type="text/css">
 .search-filter input[type="checkbox"] + label { color: #030303; }
+.m0 { margin: 0  }
 </style>
 </head>
 <body id="mapa_page">
 <?php include("includes/header.php"); ?>
 
-<div id="mapa" style="width:100%; height:700px"></div>
+<div id="mapa" style="width:100%; height:700px; z-index: -1"></div>
 <!-- MAIN WRAPPER -->
 <section id="searchbar" class="our-clients">
   <div class="container">
-    <div class="row">
+    <div class="row m0">
       <div class="col-md-12 primary">
-        <div class="row">
 		      <?php include_once("includes/searchbar.php"); ?>
-        </div>
       </div>
     </div>
   </div>
@@ -34,38 +33,54 @@ $vc_page_active = $vc_link_tipo_operacion;
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/tap.js"></script> 
 <script type="text/javascript" src="js/custom.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script> 
+
 <?php include_once("templates/comun/mapa_js.php"); ?>
 <script type="text/javascript">
 $(document).ready(function(){
 
   var mymap = L.map('mapa').setView([<?php echo $empresa->latitud ?>,<?php echo $empresa->longitud ?>], 15);
 
-  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-    maxZoom: 18,
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-      '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-      'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    id: 'mapbox.streets'
-  }).addTo(mymap);
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+      attribution: '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
+      tileSize: 512,
+      maxZoom: 18,
+      zoomOffset: -1,
+      id: 'mapbox/streets-v11',
+      accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
+    }).addTo(mymap);
+
 
   var icono = L.icon({
     iconUrl: 'images/map-place.png',
     iconSize:     [60, 60], // size of the icon
     iconAnchor:   [30, 30], // point of the icon which will correspond to marker's location
   });
+  mymap.fitBounds([
+  <?php foreach($vc_listado as $p) {
+    if (isset($p->latitud) && isset($p->longitud) && !empty($p->latitud) && !empty($p->longitud)) {  ?>
+      [<?php echo $p->latitud ?>,<?php echo $p->longitud ?>],
+    <?php } ?>
+  <?php } ?>
+  ]);
 
   <?php $i=0;
   foreach($vc_listado as $p) {
+    $link_propiedad = (isset($p->pertenece_red) && $p->pertenece_red == 1) ? mklink($p->link)."&em=".$p->id_empresa : mklink($p->link); ?>
     if (isset($p->latitud) && isset($p->longitud) && !empty($p->latitud) && !empty($p->longitud)) { ?>
-      var contentString<?php echo $i; ?> = '<div id="content">'+
-        '<div style="padding: 0px;">'+
-            <?php if(!empty($p->link)) { ?>'<a href=\"<?php echo mklink($p->link) ?>\">'+<?php } ?>
-            '<h4 style="font-size:20px;font-weight:bold;color:#e15616"><?php echo ($p->nombre) ?></h4>'+
-            '<p style="margin:0px;font-size:16px;color:#999"><?php echo ($p->calle." | ".$p->localidad) ?></p>'+
-            <?php if(!empty($p->link)) { ?>'</a>'+<?php } ?>
-            <?php if(!empty($p->link)) { ?>'<a href=\"<?php echo mklink($p->link) ?>\">'+<?php } ?>
-            '<img width=\"200\" src=\"/admin/<?php echo $p->path ?>\"/>'+
-            <?php if(!empty($p->link)) { ?>'</a>'+<?php } ?>
+      var contentString<?php echo $i; ?> = '<div class="map_content">'+
+        '<div class="feature-item" style="padding: 0px; display:table">'+
+          '<div class="feature-image" style="width: 200px; display: table-cell; float:none">'+
+            '<a href=\"<?php echo $p->link_propiedad ?>\">'+
+              '<img style="max-width:100%" src=\"/admin/<?php echo ((!empty($p->path)) ? $p->path : $empresa->no_imagen) ?>\"/>'+
+            '</a>'+
+          '</div>'+
+          '<div class="list-view-detail" style="width: 200px; float:none; vertical-align:top; display:table-cell">'+
+            '<div class="featured-detail">'+
+              '<h5><a href=\"<?php echo $p->link_propiedad ?>\"><?php echo ($p->nombre) ?></a></h5>'+
+              '<p><?php echo $p->direccion_completa ?> <a href="<?php echo $p->link_propiedad ?>"><?php echo $p->localidad ?></a></p>'+
+            '</div>'+
+          '</div>'+
         '</div>'+
       '</div>';
 
@@ -80,7 +95,8 @@ $(document).ready(function(){
   <?php $i++; } ?>
 
 });
-
+</script>
+<script type="text/javascript">
 $('.tabs ul').each(function(){
   var $active, $content, $links = $(this).find('a');
   $active = $($links.filter('[href="'+location.hash+'"]')[0] || $links[0]);

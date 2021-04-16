@@ -208,7 +208,8 @@ else $vc_moneda = "$";
         if (!empty($propiedad->relacionados)) { ?>
           <div class="grid-view">
             <div class="row">
-              <?php foreach($propiedad->relacionados as $r) { ?>
+              <?php foreach($propiedad->relacionados as $r) { 
+                $link_propiedad = (isset($r->pertenece_red) && $r->pertenece_red == 1) ? mklink($r->link)."&em=".$r->id_empresa : mklink($r->link); ?>
                 <div class="col-md-4">
                   <div class="property-item">
                     <div class="item-picture">

@@ -118,7 +118,8 @@ $ultimas = $propiedad_model->ultimas(array(
         <div class="col-md-6">
           <div class="flexslider">
             <ul class="slides">
-              <?php foreach($destacadas as $r) { ?>
+              <?php foreach($destacadas as $r) { 
+              $link_propiedad = (isset($r->pertenece_red) && $r->pertenece_red == 1) ? mklink($r->link)."&em=".$r->id_empresa : mklink($r->link); ?>
                 <li>
                   <div class="propertie-list">
                     <div class="block">
@@ -153,7 +154,8 @@ $ultimas = $propiedad_model->ultimas(array(
       <?php } ?>
       <div class="<?php echo (empty($destacadas)) ? "col-md-12" : "col-md-6"; ?>">
         <div class="row">
-          <?php foreach($ultimas as $r) { ?>
+          <?php foreach($ultimas as $r) { 
+            $link_propiedad = (isset($r->pertenece_red) && $r->pertenece_red == 1) ? mklink($r->link)."&em=".$r->id_empresa : mklink($r->link); ?>
             <div class="col-md-6">
               <div class="propertie-list ultimas">
                 <div class="block">

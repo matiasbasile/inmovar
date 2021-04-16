@@ -20,9 +20,9 @@
               ?>
               <input type="hidden" class="filter_tipo_operacion" id="tipo_operacion_<?php echo $i?>" name="tipo_operacion" value="<?php echo $tipo_operacion_l ?>"/>
               <div class="pull-left">
-                <input name="radio" type="checkbox" value="lista" <?php echo ($nombre_pagina != "mapa") ? 'checked="checked"' : '' ?> id="show-in-list-<?php echo $i ?>" />
+                <input name="radio<?php echo $i ?>" type="checkbox" value="lista" <?php echo ($nombre_pagina != "mapa") ? 'checked="checked"' : '' ?> id="show-in-list-<?php echo $i ?>" />
                 <label for="show-in-list-<?php echo $i ?>"><img src="images/list-view-icon.png" alt="List View" /> Listado</label>
-                <input name="radio" type="checkbox" value="mapa" <?php echo ($nombre_pagina == "mapa") ? 'checked="checked"' : '' ?> id="show-in-map-<?php echo $i ?>" />
+                <input name="radio<?php echo $i ?>" type="checkbox" value="mapa" <?php echo ($nombre_pagina == "mapa") ? 'checked="checked"' : '' ?> id="show-in-map-<?php echo $i ?>" />
                 <label for="show-in-map-<?php echo $i ?>"><img src="images/location-icon.png" alt="Map View" /> Mapa</label>
               </div>
               <select class="filter_localidad" id="localidad_<?php echo $i?>">
@@ -65,7 +65,7 @@
 <script type="text/javascript">
   function filtrar_1() { 
     var link = "";
-    if ($("input[name=radio]:checked").val() == "lista") {
+    if ($("input[name=radio1]:checked").val() == "lista") {
       link = "<?php echo mklink("propiedades/")?>";
     } else {
       link = "<?php echo mklink("mapa/")?>";
@@ -81,7 +81,7 @@
 
    function filtrar_2() { 
     var link = "";
-    if ($("input[name=radio]:checked").val() == "lista") {
+    if ($("input[name=radio2]:checked").val() == "lista") {
       link = "<?php echo mklink("propiedades/")?>";
     } else {
       link = "<?php echo mklink("mapa/")?>";
@@ -98,7 +98,7 @@
 
    function filtrar_3() { 
     var link = "";
-    if ($("input[name=radio]:checked").val() == "lista") {
+    if ($("input[name=radio3]:checked").val() == "lista") {
       link = "<?php echo mklink("propiedades/")?>";
     } else {
       link = "<?php echo mklink("mapa/")?>";
