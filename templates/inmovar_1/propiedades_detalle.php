@@ -422,7 +422,7 @@ else $vc_moneda = "$";
                               </div>
                               <div class="overlay">
                                 <div class="info">
-                                  <div class="tag price"><?php echo ($r->precio_final != 0 && $r->publica_precio == 1) ? $r->moneda." ".number_format($r->precio_final,0) : "Consultar"; ?></div>
+                                  <div class="tag price"><?php echo $r->precio ?></div>
                                   <h3><?php echo $r->nombre ?></h3>
                                   <figure><?php echo $r->localidad ?></figure>
                                 </div>

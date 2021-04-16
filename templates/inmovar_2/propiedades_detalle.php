@@ -453,7 +453,7 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no
                         <?php } ?>
                         <div class="property-tag button sale"><?php echo $p->tipo_inmueble ?></div>
                         <div class="property-price">
-                          <?php echo $propiedad->precio ?>
+                          <?php echo $p->precio ?>
                         </div>
                         <?php if (!empty($p->path)) { ?>
                           <img class="img-responsive" src="/admin/<?php echo $p->path ?>" alt="<?php echo ($p->nombre); ?>" />

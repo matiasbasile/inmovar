@@ -279,7 +279,7 @@ else $vc_moneda = "$";
                       <p><?php echo ((strlen($r->descripcion)>80) ? substr($r->descripcion,0,80)."..." : $r->descripcion); ?></p>
                     <?php } ?>
                     <div class="property-price">
-                      <?php echo $propiedad->precio ?>
+                      <?php echo $r->precio ?>
                       <?php if (estaEnFavoritos($r->id)) { ?>
                         <a href="/admin/favoritos/eliminar/?id=<?php echo $r->id; ?>" class="favorites-properties active"><span class="tooltip">Borrar de Favoritos</span></a>
                       <?php } else { ?>

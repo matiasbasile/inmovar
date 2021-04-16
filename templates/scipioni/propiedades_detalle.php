@@ -487,7 +487,7 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no
                             <a href="<?php echo $p->link_propiedad ?>"><?php echo $p->nombre ?></a>
                           </h5>
                           <div class="precio_final">
-                            <?php echo ($p->precio_final != 0 && $p->publica_precio == 1) ? $p->moneda." ".number_format($p->precio_final,0) : "Consultar"; ?>
+                            <?php echo $p->precio ?>
                           </div>                          
                           <?php echo ver_direccion($p); ?>
                           <?php echo ver_caracteristicas($p); ?>
