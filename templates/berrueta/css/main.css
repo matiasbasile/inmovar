@@ -326,7 +326,7 @@ html[xmlns] .slides{display:block;}
 /* GRID VIEW CSS */
 .grid-view .row{margin:0 -8px;}
 .grid-view .col-md-4{padding:0 8px 16px;}
-.grid-view .property-item{margin:0; min-height:520px;}
+.grid-view .property-item{margin:0; min-height:600px;}
 .grid-view .item-picture{width:100%;}
 .grid-view .property-detail{width:100%; padding:15px;}
 .grid-view .property-location .pull-left, .grid-view .property-location .pull-right{width:100%;}

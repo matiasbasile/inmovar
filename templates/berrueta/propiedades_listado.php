@@ -105,7 +105,7 @@ function filter() {
               <div class="row">
                 <?php foreach($vc_listado as $r) { ?>
                   <div class="col-md-4">
-                    <div class="property-item grid <?php echo ($r->id_tipo_estado==1)?"sold":"" ?>">
+                    <div class="property-item <?php echo ($r->id_tipo_estado==1)?"sold":"" ?>">
                       <div class="item-picture">
                         <div class="block">
                           <?php if (!empty($r->imagen)) { ?>
@@ -125,7 +125,7 @@ function filter() {
                           <?php } ?>
                         </div>
                       </div>
-                      <div class="property-detail grid">
+                      <div class="property-detail">
                         <div class="property-name"><?php echo $r->direccion_completa ?></div>
                         <div class="property-location">
                           <div class="pull-left"><?php echo ($r->localidad); ?></div>
@@ -275,17 +275,17 @@ function filter() {
 <script type="text/javascript">
 //UI SLIDER SCRIPT
 $('.slider-snap').noUiSlider({
-	start: [ <?php echo $vc_minimo ?>, <?php echo $vc_maximo ?> ],
-	step: 10,
-	connect: true,
-	range: {
-		'min': 0,
-		'max': <?php echo $vc_precio_maximo ?>,
-	},
-	format: wNumb({
-		decimals: 0,
-		thousand: '.',
-	})  
+  start: [ <?php echo $vc_minimo ?>, <?php echo $vc_maximo ?> ],
+  step: 10,
+  connect: true,
+  range: {
+    'min': 0,
+    'max': <?php echo $vc_precio_maximo ?>,
+  },
+  format: wNumb({
+    decimals: 0,
+    thousand: '.',
+  })  
 });
 $('.slider-snap').Link('lower').to($('.slider-snap-value-lower'));
 $('.slider-snap').Link('upper').to($('.slider-snap-value-upper'));
@@ -339,46 +339,18 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
-
-  var maximo = 0;
-  $(".property-item").each(function(i,e){
-    if ($(e).height()>maximo) maximo = $(e).height();
-  });
-  $(".property-item").height(maximo);
-
-
   <?php for($i=0;$i<5;$i++) { ?>
-	  $("#show-in-list-<?php echo $i ?>").click(function(){
-	    var v = $("#show-in-list-<?php echo $i ?>").prop("checked");
-	    $("#show-in-map-<?php echo $i ?>").prop("checked",!v);
-	  });
-	  $("#show-in-map-<?php echo $i ?>").click(function(){
-	    var v = $("#show-in-map-<?php echo $i ?>").prop("checked");
-	    $("#show-in-list-<?php echo $i ?>").prop("checked",!v);
-	  });
+    $("#show-in-list-<?php echo $i ?>").click(function(){
+      var v = $("#show-in-list-<?php echo $i ?>").prop("checked");
+      $("#show-in-map-<?php echo $i ?>").prop("checked",!v);
+    });
+    $("#show-in-map-<?php echo $i ?>").click(function(){
+      var v = $("#show-in-map-<?php echo $i ?>").prop("checked");
+      $("#show-in-list-<?php echo $i ?>").prop("checked",!v);
+    });
   <?php } ?>
 });
 
-</script>
-<script type="text/javascript">
-
-  $(document).ready(function(){
-    var maximo = 0;
-    $(".property-item.grid").each(function(i,e){
-      if ($(e).height() > maximo) maximo = $(e).height();
-    });
-    maximo = Math.ceil(maximo);
-    $(".property-item.grid").height(maximo);
-  });
-
-   $(document).ready(function(){
-    var maximo = 0;
-    $(".property-detail.grid").each(function(i,e){
-      if ($(e).height() > maximo) maximo = $(e).height();
-    });
-    maximo = Math.ceil(maximo);
-    $(".property-detail.grid").height(maximo);
-  });
 </script>
 <?php include_once("templates/comun/mapa_js.php"); ?>
 <script type="text/javascript">
