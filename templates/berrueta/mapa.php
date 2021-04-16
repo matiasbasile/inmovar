@@ -18,7 +18,18 @@ $vc_page_active = $vc_link_tipo_operacion;
 <body id="mapa_page">
 <?php include("includes/header.php"); ?>
 
-<div id="mapa" style="width:100%; height:700px; z-index: -1"></div>
+<?php if (!empty($vc_listado)) {  ?>
+<div id="mapa" style="width:100%; height:700px; z-index: 0"></div>
+<?php } else { ?>
+  <div class="main-wrapper">
+    <div class="page">
+      <div class="col-md-12" style="min-height: 300px;padding: 30px 0;">
+        No se encontraron resultados.   
+      </div>
+    </div>
+  </div>
+</div>
+<?php }?>
 <!-- MAIN WRAPPER -->
 <section id="searchbar" class="our-clients">
   <div class="container">
