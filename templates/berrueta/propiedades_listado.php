@@ -134,18 +134,10 @@ function filter() {
                           <?php } ?>
                         </div>
                         <div class="property-facilities">
-                          <?php if (!empty($r->dormitorios)) { ?>
-                            <div class="facilitie"><img src="images/room-icon.png" alt="Room" /> <?php echo $r->dormitorios ?> Hab</div>
-                          <?php } ?>
-                          <?php if (!empty($r->banios)) { ?>
-                            <div class="facilitie"><img src="images/bathroom-icon.png" alt="Bathroom" /> <?php echo $r->banios ?> Ba&ntilde;os</div>
-                          <?php } ?>
-                          <?php if (!empty($r->cocheras)) { ?>
+                            <div class="facilitie"><img src="images/room-icon.png" alt="Room" /> <?php echo (!empty($r->dormitorios))?$r->dormitorios:"-" ?> Hab</div>
+                            <div class="facilitie"><img src="images/bathroom-icon.png" alt="Bathroom" /> <?php echo (!empty($r->banios))?$r->banios:"-" ?> Ba&ntilde;o<?php echo ($r->banios > 1)?"s":"" ?></div>
                             <div class="facilitie"><img src="images/garage-icon.png" alt="Garage" /> Cochera</div>
-                          <?php } ?>
-                          <?php if (!empty($r->superficie_total)) { ?>
-                            <div class="facilitie"><img src="images/grid-icon.png" alt="Grid" /> <?php echo $r->superficie_total ?></div>
-                          <?php } ?>
+                            <div class="facilitie"><img src="images/grid-icon.png" alt="Grid" /> <?php echo (($r->superficie_total != 0))?$r->superficie_total:"-" ?> m2</div>
                         </div>
                         <?php if (!empty($r->plain_text)) { ?>
                           <p class="property-description"><?php echo (strlen($r->plain_text)>120) ? (substr($r->plain_text,0,120))."..." : ($r->plain_text) ?></p>
@@ -199,7 +191,7 @@ function filter() {
                         <div class="facilitie"><img src="images/room-icon.png" alt="Room" /> <?php echo $r->dormitorios ?> Hab</div>
                       <?php } ?>
                       <?php if (!empty($r->banios)) { ?>
-                        <div class="facilitie"><img src="images/bathroom-icon.png" alt="Bathroom" /> <?php echo $r->banios ?> Ba&ntilde;os</div>
+                        <div class="facilitie"><img src="images/bathroom-icon.png" alt="Bathroom" /> <?php echo $r->banios ?> Ba&ntilde;o<?php echo ($r->banios > 1)?"s":"" ?></div>
                       <?php } ?>
                       <?php if (!empty($r->cocheras)) { ?>
                         <div class="facilitie"><img src="images/garage-icon.png" alt="Garage" /> Cochera</div>
@@ -300,13 +292,15 @@ $('.slider-snap').Link('upper').to($('.slider-snap-value-upper'));
 
 function change_view(e,view) {
   var vista = view;
-  $(".list-view").removeClass("active");
-  $(".grid-view").removeClass("active");
   if (vista == "list") { 
+    $(".grid-view").removeClass("active");
+    $(".list-view").addClass("active");
     $("#grid-view").addClass("dn");
     $("#list-view").removeClass("dn");
   }
   if (vista == "grid") { 
+    $(".grid-view").addClass("active");
+    $(".list-view").removeClass("active");
     $("#list-view").addClass("dn");
     $("#grid-view").removeClass("dn");
   }
@@ -351,6 +345,12 @@ $(document).ready(function(){
     if ($(e).height()>maximo) maximo = $(e).height();
   });
   $(".property-item").height(maximo);
+
+  var maximo = 0;
+  $(".property-detail").each(function(i,e){
+    if ($(e).height()>maximo) maximo = $(e).height();
+  });
+  $(".property-detail").height(maximo);
 
   <?php for($i=0;$i<5;$i++) { ?>
 	  $("#show-in-list-<?php echo $i ?>").click(function(){
