@@ -66,7 +66,6 @@ $(document).ready(function(){
 
   <?php $i=0;
   foreach($vc_listado as $p) {
-    $link_propiedad = (isset($p->pertenece_red) && $p->pertenece_red == 1) ? mklink($p->link)."&em=".$p->id_empresa : mklink($p->link); ?>
     if (isset($p->latitud) && isset($p->longitud) && !empty($p->latitud) && !empty($p->longitud)) { ?>
       var contentString<?php echo $i; ?> = '<div class="map_content">'+
         '<div class="feature-item" style="padding: 0px; display:table">'+

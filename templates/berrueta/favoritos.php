@@ -36,8 +36,7 @@ $vc_page_active = "Favoritos";
                   <?php if (empty($vc_listado)) { ?>
                     A&uacute;n no tienes propiedades agregadas a favoritos.
                   <?php } else { ?>
-                    <?php foreach($vc_listado as $r) { 
-                      $link_propiedad = (isset($r->pertenece_red) && $r->pertenece_red == 1) ? mklink($r->link)."&em=".$r->id_empresa : mklink($r->link); ?>
+                    <?php foreach($vc_listado as $r) { ?>
                       <div class="col-md-4">
                         <div class="property-item <?php echo ($r->id_tipo_estado==1)?"sold":"" ?>">
                           <div class="item-picture">

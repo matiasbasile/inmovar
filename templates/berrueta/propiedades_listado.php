@@ -103,8 +103,7 @@ function filter() {
             <?php filter(); ?>
             <div class="tab-content grid-view <?php echo(($vc_view == 0)?"dn":"") ?>" id="grid-view">
               <div class="row">
-                <?php foreach($vc_listado as $r) { 
-                  $link_propiedad = (isset($r->pertenece_red) && $r->pertenece_red == 1) ? mklink($r->link)."&em=".$r->id_empresa : mklink($r->link); ?>
+                <?php foreach($vc_listado as $r) { ?>
                   <div class="col-md-4">
                     <div class="property-item <?php echo ($r->id_tipo_estado==1)?"sold":"" ?>">
                       <div class="item-picture">
@@ -166,8 +165,7 @@ function filter() {
               </div>
             </div>
             <div class="tab-content <?php echo(($vc_view != 0)?"dn":"") ?>" id="list-view">
-              <?php foreach($vc_listado as $r) { 
-                $link_propiedad = (isset($r->pertenece_red) && $r->pertenece_red == 1) ? mklink($r->link)."&em=".$r->id_empresa : mklink($r->link); ?>
+              <?php foreach($vc_listado as $r) {  ?>
                 <div class="property-item">
                   <div class="item-picture">
                     <div class="block">
