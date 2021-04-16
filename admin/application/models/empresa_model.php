@@ -434,7 +434,6 @@ class Empresa_Model extends Abstract_Model {
       $row->direccion = $web_configuracion->direccion_web;
       $row->direccion_web = $web_configuracion->direccion_web;
       $row->ciudad = $web_configuracion->ciudad;
-      $row->telefono_2 = $web_configuracion->telefono_2;
       $row->telefono_web = $web_configuracion->telefono_web;
       $row->codigo_postal = $web_configuracion->codigo_postal;
       $row->config["favicon"] = $web_configuracion->favicon;
