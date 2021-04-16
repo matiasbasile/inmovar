@@ -432,6 +432,11 @@ class Empresa_Model extends Abstract_Model {
       $web_configuracion = $q->row();
       $row->telefono = $web_configuracion->telefono_web;
       $row->direccion = $web_configuracion->direccion_web;
+      $row->direccion_web = $web_configuracion->direccion_web;
+      $row->ciudad = $web_configuracion->ciudad;
+      $row->telefono_2 = $web_configuracion->telefono_2;
+      $row->telefono_web = $web_configuracion->telefono_web;
+      $row->codigo_postal = $web_configuracion->codigo_postal;
       $row->config["favicon"] = $web_configuracion->favicon;
       $row->config["telefono_2"] = $web_configuracion->telefono_2;
       $row->config["no_imagen"] = $web_configuracion->no_imagen;
@@ -542,6 +547,17 @@ class Empresa_Model extends Abstract_Model {
         }
       }
     }
+
+    // Actualizamos los campos que pertenecen a la otra tabla
+    $sql = "UPDATE web_configuracion SET ";
+    if (isset($data->direccion_web)) $sql.= " direccion_web = '$data->direccion_web', ";
+    if (isset($data->codigo_postal)) $sql.= " codigo_postal = '$data->codigo_postal', ";
+    if (isset($data->ciudad)) $sql.= " ciudad = '$data->ciudad', ";
+    if (isset($data->telefono_web)) $sql.= " telefono_web = '$data->telefono_web', ";
+    if (isset($data->telefono_2)) $sql.= " telefono_2 = '$data->telefono_2', ";
+    $sql.= " id_empresa = $id ";
+    $sql.= "WHERE id_empresa = $id ";
+    $this->db->query($sql);
 
     // Actualizamos el cliente
     $sql = "UPDATE clientes SET ";

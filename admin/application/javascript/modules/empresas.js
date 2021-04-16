@@ -48,6 +48,13 @@
       configuraciones_especiales: "",
       limite: 0,
       codigo: "",
+
+      // Estos datos son de web_configuracion
+      direccion_web: "",
+      ciudad: "",
+      codigo_postal: "",
+      telefono_web: "",
+      telefono_2: "",
     }
   });
       
