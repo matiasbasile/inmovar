@@ -298,6 +298,7 @@ html[xmlns] .slides{display:block;}
 .property-item:hover{background:#f8f8f8;}
 .property-item:hover .view-more{display:block;}
 .property-item p{color:#868686; line-height:24px;}
+.grid-view .property-item p { min-height: 133px }
 .property-item .property-status{position:absolute; bottom:15px; right:15px; padding:0; z-index:1;}
 .property-item .property-status span{padding:7px 25px;}
 .property-item.sold .property-status span{color:#fff; background:rgba(255, 86, 22, 0.8);}
