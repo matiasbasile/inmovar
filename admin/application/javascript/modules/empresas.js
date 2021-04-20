@@ -333,6 +333,7 @@
           modelClass: app.models.Web_templates,
           url: "web_templates/",
           render: "#empresas_templates",
+          firstOptions: ["<option value='0'>-</option>"],
           name : "id_web_template",
           selected: self.model.get("id_web_template"),
         });

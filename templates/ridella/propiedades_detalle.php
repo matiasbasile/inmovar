@@ -127,8 +127,8 @@ if ($propiedad === FALSE) {
                 </div>
               <?php } else { ?>
                 <div class="mb30">
-                  <?php if (!empty($propiedad->path)) { ?>
-                    <img  style="width: 100%" src="/admin/<?php echo $propiedad->path ?>" alt="<?php echo ($propiedad->nombre);?>">
+                  <?php if (!empty($propiedad->imagen)) { ?>
+                    <img  style="width: 100%" src="<?php echo $propiedad->imagen ?>" alt="<?php echo ($propiedad->nombre);?>">
                   <?php } else if (!empty($empresa->no_imagen)) { ?>
                     <img style="width: 100%"  src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($propiedad->nombre);?>">
                   <?php } else { ?>
@@ -247,8 +247,8 @@ if ($propiedad === FALSE) {
                     </div>
                   <?php } else { ?>
                     <div class="mb30">
-                      <?php if (!empty($propiedad->path)) { ?>
-                        <img  style="width: 100%" src="/admin/<?php echo $propiedad->path ?>" alt="<?php echo ($propiedad->nombre);?>">
+                      <?php if (!empty($propiedad->imagen)) { ?>
+                        <img  style="width: 100%" src="<?php echo $propiedad->imagen ?>" alt="<?php echo ($propiedad->nombre);?>">
                       <?php } else if (!empty($empresa->no_imagen)) { ?>
                         <img style="width: 100%"  src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($propiedad->nombre);?>">
                       <?php } else { ?>
@@ -333,7 +333,7 @@ if ($propiedad === FALSE) {
                     <div class="col-md-6">
                       <div class="property-list">
                         <div class="image-block">
-                          <img src="/admin/<?php echo $p->path ?>">
+                          <img src="<?php echo $p->imagen ?>">
                           <div class="overlay">
                             <div class="table-container">
                               <div class="align-container">

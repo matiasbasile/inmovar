@@ -41,8 +41,8 @@ $vc_page_active = "Favoritos";
                 <div class="col-md-6 mb30">
                   <div class="property-list">
                     <div class="image-block">
-                      <?php if (!empty($l->path)) { ?>
-                        <img src="/admin/<?php echo $l->path ?>" alt="<?php echo ($l->nombre);?>">
+                      <?php if (!empty($l->imagen)) { ?>
+                        <img src="<?php echo $l->imagen ?>" alt="<?php echo ($l->nombre);?>">
                       <?php } else if (!empty($empresa->no_imagen)) { ?>
                         <img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($l->nombre);?>">
                       <?php } else { ?>
