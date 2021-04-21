@@ -82,7 +82,7 @@ $(document).ready(function(){
         '<div class="feature-item" style="padding: 0px; display:table">'+
           '<div class="feature-image" style="width: 200px; display: table-cell; float:none">'+
             '<a href=\"<?php echo $p->link_propiedad ?>\">'+
-              '<img style="max-width:100%" src=\"/admin/<?php echo ((!empty($p->path)) ? $p->path : $empresa->no_imagen) ?>\"/>'+
+              '<img style="max-width:100%" src=\"<?php echo ((!empty($p->imagen)) ? $p->imagen : $empresa->no_imagen) ?>\"/>'+
             '</a>'+
           '</div>'+
           '<div class="list-view-detail" style="width: 200px; float:none; vertical-align:top; display:table-cell">'+

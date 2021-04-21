@@ -41,8 +41,8 @@ $titulo_pagina = "Favoritos";
                           <div class="property-tag button vendido alt featured"><?php echo $p->tipo_estado ?></div>
                         <?php } ?>                        
                         <div class="property-main-image">
-                          <?php if (!empty($p->path)) { ?>
-                            <img class="img-responsive" src="/admin/<?php echo $p->path ?>" alt="<?php echo ($p->nombre); ?>" />
+                          <?php if (!empty($p->imagen)) { ?>
+                            <img class="img-responsive" src="<?php echo $p->imagen ?>" alt="<?php echo ($p->nombre); ?>" />
                           <?php } else if (!empty($empresa->no_imagen)) { ?>
                             <img class="img-responsive" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre); ?>" />
                           <?php } else { ?>

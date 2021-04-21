@@ -129,8 +129,8 @@
               <div class="col-md-4">
                 <div class="property-list">
                   <div class="image-block">
-                    <?php if (!empty($p->path)) { ?>
-                      <img src="/admin/<?php echo $p->path ?>" alt="<?php echo ($p->nombre);?>">
+                    <?php if (!empty($p->imagen)) { ?>
+                      <img src="<?php echo $p->imagen ?>" alt="<?php echo ($p->nombre);?>">
                     <?php } else if (!empty($empresa->no_imagen)) { ?>
                       <img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre);?>">
                     <?php } else { ?>
@@ -164,8 +164,8 @@
               <div class="col-md-4">
                 <div class="property-list">
                   <div class="image-block">
-                    <?php if (!empty($p->path)) { ?>
-                    <img src="/admin/<?php echo $p->path ?>" alt="<?php echo ($p->nombre);?>">
+                    <?php if (!empty($p->imagen)) { ?>
+                    <img src="<?php echo $p->imagen ?>" alt="<?php echo ($p->nombre);?>">
                     <?php } else if (!empty($empresa->no_imagen)) { ?>
                       <img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre);?>">
                     <?php } else { ?>
@@ -199,8 +199,8 @@
               <div class="col-md-4">
                 <div class="property-list">
                   <div class="image-block">
-                    <?php if (!empty($p->path)) { ?>
-                    <img src="/admin/<?php echo $p->path ?>" alt="<?php echo ($p->nombre);?>">
+                    <?php if (!empty($p->imagen)) { ?>
+                    <img src="<?php echo $p->imagen ?>" alt="<?php echo ($p->nombre);?>">
                     <?php } else if (!empty($empresa->no_imagen)) { ?>
                       <img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre);?>">
                     <?php } else { ?>

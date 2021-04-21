@@ -75,7 +75,7 @@
 							<div class="col-xl-4 col-lg-6 col-md-6">
 								<div class="product-list-item">
 									<div class="product-img">
-										<a href="<?php echo ($p->link_propiedad) ?>"><img class="cover-home" src="/admin/<?php echo $p->path ?>" alt="Product"></a>
+										<a href="<?php echo ($p->link_propiedad) ?>"><img class="cover-home" src="<?php echo $p->imagen ?>" alt="Product"></a>
 									</div>
 									<div class="product-details">
 										<h4><?php echo $p->nombre ?></h4>

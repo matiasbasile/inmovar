@@ -182,7 +182,7 @@ if (sizeof($destacados)>0) { ?>
               <div class="property-price"><?php echo $d->precio ?></div>
               <div class="property-color-bar"></div>
               <div class="">
-                <img src="/admin/<?php echo $d->path ?>" class="mi-img-responsive" />
+                <img src="<?php echo $d->imagen ?>" class="mi-img-responsive" />
               </div>
             </a>
             <a href="<?php echo $d->link_propiedad ?>" class="property-content">
@@ -267,7 +267,7 @@ if (sizeof($destacados)>0) { ?>
                   <div class="property-price"><?php echo $p->precio ?></div>
                   <div class="property-color-bar"></div>
                   <div class="">
-                    <img class="mi-img-responsive" src="/admin/<?php echo $p->path ?>" alt="" />
+                    <img class="mi-img-responsive" src="<?php echo $p->imagen ?>" alt="" />
                   </div>
                 </a>
                 <div class="property-content">

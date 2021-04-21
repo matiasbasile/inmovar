@@ -130,8 +130,8 @@ $titulo_pagina = "Inicio";
                       <div class="property-price">
                         <?php echo $p->precio ?>
                       </div>
-                      <?php if (!empty($p->path)) { ?>
-                        <img class="img-responsive" src="/admin/<?php echo $p->path ?>" alt="<?php echo ($p->nombre); ?>" />
+                      <?php if (!empty($p->imagen)) { ?>
+                        <img class="img-responsive" src="<?php echo $p->imagen ?>" alt="<?php echo ($p->nombre); ?>" />
                       <?php } else if (!empty($empresa->no_imagen)) { ?>
                         <img class="img-responsive" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre); ?>" />
                       <?php } else { ?>
@@ -242,8 +242,8 @@ $titulo_pagina = "Inicio";
                         <div class="property-price">
                           <?php echo $p->precio ?>
                         </div>
-                        <?php if (!empty($p->path)) { ?>
-                          <img class="img-responsive" src="/admin/<?php echo $p->path ?>" alt="<?php echo ($p->nombre); ?>" />
+                        <?php if (!empty($p->imagen)) { ?>
+                          <img class="img-responsive" src="<?php echo $p->imagen ?>" alt="<?php echo ($p->nombre); ?>" />
                         <?php } else if (!empty($empresa->no_imagen)) { ?>
                           <img class="img-responsive" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre); ?>" />
                         <?php } else { ?>

@@ -281,7 +281,7 @@ if ($propiedad === FALSE) {
 								<div class="col-md-3 col-xs-12 item-grid">
 									<div class="image">
 										<a href="<?php echo ($p->link_propiedad) ?>">
-											<img class="cover" src="/admin/<?php echo $p->path ?>">
+											<img class="cover" src="<?php echo $p->imagen ?>">
 										</a>
 										<span class="price"><?php echo ($p->precio_final != 0)?$p->precio:"Consultar"?></span>
 										<!-- <span class="label"><?php echo $p->tipo_operacion?></span> -->

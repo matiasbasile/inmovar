@@ -58,8 +58,8 @@ if (sizeof($ultimas)>0) { ?>
               <div class="property-list <?php echo $clase; ?>">
                 <div class="item-picture">
                   <div class="block">
-                    <?php if (!empty($r->path)) { ?>
-                      <img src="/admin/<?php echo $r->path ?>" alt="<?php echo ($r->nombre) ?>" />
+                    <?php if (!empty($r->imagen)) { ?>
+                      <img src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre) ?>" />
                     <?php } else { ?>
                       <img src="images/no-image-1.jpg" alt="<?php echo ($r->nombre) ?>" />
                     <?php } ?>
@@ -168,8 +168,8 @@ if (sizeof($destacadas)>0) { ?>
               <div class="property-list <?php echo $clase; ?>">
                 <div class="item-picture">
                   <div class="block">
-                    <?php if (!empty($r->path)) { ?>
-                      <img src="/admin/<?php echo $r->path ?>" alt="<?php echo ($r->nombre) ?>" />
+                    <?php if (!empty($r->imagen)) { ?>
+                      <img src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre) ?>" />
                     <?php } else { ?>
                       <img src="images/no-image-1.jpg" alt="<?php echo ($r->nombre) ?>" />
                     <?php } ?>
@@ -403,8 +403,8 @@ if (!empty($obras_destacadas) || !empty($obras_normales)) { ?>
             <div class="property-list">
               <div class="item-picture">
                 <div class="block">
-                  <?php if (!empty($r->path)) { ?>
-                    <img style="object-fit:cover; height: 280px; width: 100% " src="/admin/<?php echo $r->path ?>" alt="<?php echo ($r->nombre) ?>" />
+                  <?php if (!empty($r->imagen)) { ?>
+                    <img style="object-fit:cover; height: 280px; width: 100% " src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre) ?>" />
                   <?php } else { ?>
                     <img style="object-fit:cover; height: 280px; width: 100% " src="images/no-image-2.jpg" alt="<?php echo ($r->nombre) ?>" />
                   <?php } ?>
@@ -449,8 +449,8 @@ if (!empty($obras_destacadas) || !empty($obras_normales)) { ?>
                     <div class="property-list half-list">
                       <div class="item-picture">
                         <div class="block">
-                          <?php if (!empty($r->path)) { ?>
-                            <img src="/admin/<?php echo $r->path ?>" alt="<?php echo ($r->nombre) ?>" />
+                          <?php if (!empty($r->imagen)) { ?>
+                            <img src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre) ?>" />
                           <?php } else { ?>
                             <img src="images/no-image-1.jpg" alt="<?php echo ($r->nombre) ?>" />
                           <?php } ?>

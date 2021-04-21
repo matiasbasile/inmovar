@@ -88,7 +88,7 @@ if ($propiedad === FALSE || !isset($propiedad->nombre)) header("Location:".mklin
          </div>
        <?php } else { ?>
         <div class="banner">
-         <img src="/admin/<?php echo $propiedad->path ?>" class="contain-detail">
+         <img src="<?php echo $propiedad->imagen ?>" class="contain-detail">
        </div>
      <?php } ?>
      <div class="detail-top">
@@ -266,7 +266,7 @@ if ($propiedad === FALSE || !isset($propiedad->nombre)) header("Location:".mklin
         <div class="item">
          <div class="product-list-item">
            <div class="product-img">
-             <a href="<?php echo ($p->link_propiedad) ?>"><img class="cover-home" src="/admin/<?php echo $p->path ?>" alt="Product"></a>
+             <a href="<?php echo ($p->link_propiedad) ?>"><img class="cover-home" src="<?php echo $p->imagen ?>" alt="Product"></a>
            </div>
            <div class="product-details">
              <h4><?php echo $p->nombre ?></h4>

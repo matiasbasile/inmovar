@@ -11,7 +11,7 @@ if ($propiedad === FALSE || !isset($propiedad->nombre)) header("Location:".mklin
 if (!empty($titulo_pagina)) { $titulo_pagina = $propiedad->nombre; }
 $nombre_pagina = "detalle";
 $mostro_video = 0;
-if (!empty($propiedad->path)) $propiedad->images = array_merge(array("/admin/".$propiedad->path),$propiedad->images);
+if (!empty($propiedad->path)) $propiedad->images = array_merge(array($propiedad->imagen),$propiedad->images);
 
 if ($propiedad->id_tipo_operacion == 1) $vc_moneda = "USD";
 else $vc_moneda = "$";
@@ -122,13 +122,13 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no
                           <span class="sr-only">Anterior</span>
                         </a>
                       <?php } ?>
-                    <?php } else if (!empty($propiedad->path)) { ?>
+                    <?php } else if (!empty($propiedad->imagen)) { ?>
                       <div class="item active">
-                        <a data-fancybox="gallery" href="/admin/<?php echo $propiedad->path ?>">
-                          <img src="/admin/<?php echo $propiedad->path ?>" class="thumb-preview">
+                        <a data-fancybox="gallery" href="<?php echo $propiedad->imagen ?>">
+                          <img src="<?php echo $propiedad->imagen ?>" class="thumb-preview">
                         </a>
                       </div>
-                    <?php } else if (empty($propiedad->path) && !empty($propiedad->video)) { ?>
+                    <?php } else if (empty($propiedad->imagen) && !empty($propiedad->video)) { ?>
                       <?php $mostro_video = 1; echo $propiedad->video ?>
                     <?php } ?>
                   </div>
@@ -455,8 +455,8 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no
                         <div class="property-price">
                           <?php echo $p->precio ?>
                         </div>
-                        <?php if (!empty($p->path)) { ?>
-                          <img class="img-responsive" src="/admin/<?php echo $p->path ?>" alt="<?php echo ($p->nombre); ?>" />
+                        <?php if (!empty($p->imagen)) { ?>
+                          <img class="img-responsive" src="<?php echo $p->imagen ?>" alt="<?php echo ($p->nombre); ?>" />
                         <?php } else if (!empty($empresa->no_imagen)) { ?>
                           <img class="img-responsive" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre); ?>" />
                         <?php } else { ?>

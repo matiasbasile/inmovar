@@ -108,7 +108,7 @@ if (!empty($propiedad->imagen)) $propiedad->images = array_merge(array($propieda
           <?php } else {  ?>
             <a class="blog-post-img">
               <div class="img-fade"></div>
-              <img src="/admin/<?php echo $propiedad->path ?>" alt="" />
+              <img src="<?php echo $propiedad->imagen ?>" alt="" />
             </a>
           <?php } ?>
 

@@ -45,9 +45,9 @@ $productos = $propiedad_model->mis_propiedades(
                 <?php if (sizeof($productos)>0) { ?>
                   <?php foreach($productos as $r) { ?>
                     <div class="property-item <?php echo ($r->id_tipo_estado==1)?"sold":"" ?>">
-                      <?php if (!empty($r->path)) { ?>
+                      <?php if (!empty($r->imagen)) { ?>
                         <div class="item-picture">
-                          <div class="block"><img src="/admin/<?php echo $r->path ?>" alt="<?php echo ($r->calle." ".$r->altura." ".$r->piso." ".$r->numero); ?>" /></div>
+                          <div class="block"><img src="<?php echo $r->imagen ?>" alt="<?php echo ($r->calle." ".$r->altura." ".$r->piso." ".$r->numero); ?>" /></div>
                           <div class="view-more"><a href="<?php echo mklink($r->link)?>"></a></div>
                           <div class="property-status">
                             <span>vendido</span>
