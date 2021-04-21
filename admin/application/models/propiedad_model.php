@@ -1208,6 +1208,7 @@ class Propiedad_Model extends Abstract_Model {
     
     // Obtenemos los datos del propiedad
     $sql = "SELECT A.* ";
+    $sql.= "FROM inm_propiedades A ";
     $sql.= "WHERE A.hash = '$hash' ";
     $q = $this->db->query($sql);
     if ($q->num_rows() == 0) return array();
