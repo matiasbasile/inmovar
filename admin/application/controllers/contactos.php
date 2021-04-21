@@ -87,7 +87,7 @@ class Contactos extends REST_Controller {
       } else if (strpos($propiedad->path, "http") === 0) {
         $body = str_replace("{{propiedad_foto}}",$propiedad->path,$body);
       } else {
-        $body = str_replace("{{propiedad_foto}}","https://app.inmovar.com/admin/uploads/".$propiedad->path,$body);
+        $body = str_replace("{{propiedad_foto}}","https://app.inmovar.com/admin/".$propiedad->path,$body);
       }
       $body = str_replace("{{propiedad_direccion}}",$propiedad->calle,$body);
       if ($propiedad->publica_precio == 0) {
