@@ -1207,59 +1207,14 @@ class Propiedad_Model extends Abstract_Model {
   function get_by_hash($hash) {
     
     // Obtenemos los datos del propiedad
-    $sql = "SELECT A.*, ";
-    $sql.= "IF(P.nombre IS NULL,'',P.nombre) AS propietario, ";
-    $sql.= "IF(TE.nombre IS NULL,'',TE.nombre) AS tipo_estado, ";
-    $sql.= "IF(TI.nombre IS NULL,'',TI.nombre) AS tipo_inmueble, ";
-    $sql.= "IF(X.nombre IS NULL,'',X.nombre) AS tipo_operacion, ";
-    $sql.= "IF(L.nombre IS NULL,'',L.nombre) AS localidad ";
-    $sql.= "FROM inm_propiedades A ";
-    $sql.= "LEFT JOIN inm_tipos_estado TE ON (A.id_tipo_estado = TE.id) ";
-    $sql.= "LEFT JOIN inm_tipos_inmueble TI ON (A.id_tipo_inmueble = TI.id) ";
-    $sql.= "LEFT JOIN inm_tipos_operacion X ON (A.id_tipo_operacion = X.id) ";
-    $sql.= "LEFT JOIN clientes P ON (A.id_propietario = P.id AND A.id_empresa = P.id_empresa) ";
-    $sql.= "LEFT JOIN com_localidades L ON (A.id_localidad = L.id) ";
+    $sql = "SELECT A.* ";
     $sql.= "WHERE A.hash = '$hash' ";
     $q = $this->db->query($sql);
     if ($q->num_rows() == 0) return array();
-    $propiedad = $q->row();
-    
-    // Obtenemos los propiedades relacionados con ese producto
-    $sql = "SELECT A.id, A.nombre, A.path, AR.destacado ";
-    $sql.= "FROM inm_propiedades A INNER JOIN inm_propiedades_relacionados AR ON (A.id = AR.id_relacion) ";
-    $sql.= "WHERE AR.id_propiedad = $propiedad->id ";
-    $sql.= "ORDER BY AR.orden ASC ";
-    $q = $this->db->query($sql);
-    $propiedad->relacionados = array();
-    foreach($q->result() as $r) {
-      $obj = new stdClass();
-      $obj->id = $r->id;
-      $obj->nombre = $r->nombre;
-      $obj->path = $r->path;
-      $obj->destacado = $r->destacado;
-      $propiedad->relacionados[] = $obj;
-    }
-
-    // Obtenemos los departamentos
-    $sql = "SELECT * ";
-    $sql.= "FROM inm_departamentos ";
-    $sql.= "WHERE id_propiedad = $propiedad->id AND id_empresa = $propiedad->id_empresa ";
-    $sql.= "ORDER BY orden ASC ";
-    $q = $this->db->query($sql);
-    $propiedad->departamentos = array();
-    foreach($q->result() as $r) {
-      $propiedad->departamentos[] = $r;
-    }
-    
-    // Obtenemos las imagenes de ese propiedad
-    $sql = "SELECT AI.* FROM inm_propiedades_images AI WHERE AI.id_propiedad = $propiedad->id AND AI.id_empresa = $propiedad->id_empresa ORDER BY AI.orden ASC";
-    $q = $this->db->query($sql);
-    $propiedad->images = array();
-    $propiedad->planos = array();
-    foreach($q->result() as $r) {
-      if ($r->plano == 1) $propiedad->planos[] = $r->path;
-      else $propiedad->images[] = $r->path;
-    }
+    $p = $q->row();
+    $propiedad = $this->get($p->id,array(
+      "id_empresa"=>$p->id_empresa
+    ));
     return $propiedad;
   }
   
