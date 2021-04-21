@@ -200,7 +200,7 @@ class Facturas_Periodicas extends REST_Controller {
       $body = str_replace("{{id_empresa}}", $factura->id_empresa, $body);
       $body = str_replace("{{total}}", $factura->total, $body);
       // Nuevo link para ver la factura
-      $body = str_replace("{{link_factura}}", "https://www.varcreative.com/admin/facturas/function/ver_pdf/".$id_factura."/".$factura->id_punto_venta."/".$factura->id_empresa."/", $body);
+      $body = str_replace("{{link_factura}}", "https://app.inmovar.com/admin/facturas/function/ver_pdf/".$id_factura."/".$factura->id_punto_venta."/".$factura->id_empresa."/", $body);
 
       // Si el template tiene el placeholder de {{preference}}
       // Creamos el preference_data y se lo agregamos al mismo email tambien
@@ -481,8 +481,8 @@ class Facturas_Periodicas extends REST_Controller {
         $body = str_replace("{{total}}", $factura_anterior->total, $body);
 
         // Nuevo link para ver la factura
-        $body = str_replace("{{link_factura}}", "https://www.varcreative.com/admin/facturas/function/ver_pdf/".$id_factura."/".$factura_anterior->id_punto_venta."/".$factura_anterior->id_empresa."/", $body);
-        //$body = str_replace("{{link_factura}}", "https://www.varcreative.com/admin/facturas/function/ver/".$hash, $body);
+        $body = str_replace("{{link_factura}}", "https://app.inmovar.com/admin/facturas/function/ver_pdf/".$id_factura."/".$factura_anterior->id_punto_venta."/".$factura_anterior->id_empresa."/", $body);
+        //$body = str_replace("{{link_factura}}", "https://app.inmovar.com/admin/facturas/function/ver/".$hash, $body);
 
         // Si el template tiene el placeholder de {{preference}}
         // Creamos el preference_data y se lo agregamos al mismo email tambien

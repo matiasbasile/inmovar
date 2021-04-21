@@ -30,7 +30,7 @@ class Facturas extends REST_Controller {
     $factura = $this->modelo->get($id_factura,$id_punto_venta);
 
     // Primero traemos todos los precios maximos
-    $result = file_get_contents("http://www.varcreative.com/products.json");
+    $result = file_get_contents("http://app.inmovar.com/products.json");
     $r = json_decode($result,true);
     $articulos = array();
     for($i=0;$i<sizeof($r["result"]);$i++) {
@@ -97,7 +97,7 @@ class Facturas extends REST_Controller {
         );
         $fields_string = http_build_query($fields);
         $ch = curl_init();
-        curl_setopt($ch,CURLOPT_URL, "https://www.varcreative.com/admin/facturas/function/actualizar_cae_servidor/");
+        curl_setopt($ch,CURLOPT_URL, "https://app.inmovar.com/admin/facturas/function/actualizar_cae_servidor/");
         curl_setopt($ch,CURLOPT_POST, true);
         curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
         curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
@@ -1203,7 +1203,7 @@ class Facturas extends REST_Controller {
     $mpdf = new \Mpdf\Mpdf([
       'tempDir' => $cache_dir
     ]);
-    $url = "https://www.varcreative.com/admin/facturas/function/ver_pdf/".$id_factura."/".$id_punto_venta."/".$id_empresa."?header=0";
+    $url = "https://app.inmovar.com/admin/facturas/function/ver_pdf/".$id_factura."/".$id_punto_venta."/".$id_empresa."?header=0";
     $html = file_get_contents($url);
     $mpdf->CSSselectMedia='mpdf';
     $mpdf->setBasePath($url);
@@ -1457,7 +1457,7 @@ class Facturas extends REST_Controller {
               "unit_price"=>$it->precio + 0,
             );            
           }
-          $current_url = "https://www.varcreative.com/admin/facturas/function/ver/".$hash;
+          $current_url = "https://app.inmovar.com/admin/facturas/function/ver/".$hash;
           $preference_data = array(
             "items" => $items,
             "payer" => array(
@@ -1470,7 +1470,7 @@ class Facturas extends REST_Controller {
               "pending" => $current_url,
             ),
             "auto_return" => "all",
-            "notification_url" => "https://www.varcreative.com/ipn-factura-periodica.php",
+            "notification_url" => "https://app.inmovar.com/ipn-factura-periodica.php",
             "external_reference" => $factura->id."_".$factura->id_empresa."_".$factura->id_punto_venta,
           );
         }
@@ -2445,7 +2445,7 @@ class Facturas extends REST_Controller {
       if ($temp !== FALSE) {
         $body = $temp->texto;
         $body = str_replace("{{nombre}}", $cliente->nombre, $body);
-        $body = str_replace("{{link_estado}}", "https://www.varcreative.com/sandbox/1003/web/estado/?id=".$id."&id_punto_venta=".$array->id_punto_venta, $body);
+        $body = str_replace("{{link_estado}}", "https://app.inmovar.com/sandbox/1003/web/estado/?id=".$id."&id_punto_venta=".$array->id_punto_venta, $body);
         $bcc_array = array("basile.matias99@gmail.com");
         require APPPATH.'libraries/Mandrill/Mandrill.php';
         mandrill_send(array(
@@ -2941,7 +2941,7 @@ class Facturas extends REST_Controller {
         );
         $fields_string = http_build_query($fields);
         $ch = curl_init();
-        curl_setopt($ch,CURLOPT_URL, "https://www.varcreative.com/admin/facturas/function/actualizar_cae_servidor/");
+        curl_setopt($ch,CURLOPT_URL, "https://app.inmovar.com/admin/facturas/function/actualizar_cae_servidor/");
         curl_setopt($ch,CURLOPT_POST, true);
         curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
         curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);

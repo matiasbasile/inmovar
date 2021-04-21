@@ -62,9 +62,9 @@
         </button>        
         <ul class="dropdown-menu pull-right">
           <% if (metodo == "S") { %>
-            <li><a target="_blank" href="http://www.varcreative.com/admin/application/cronjobs/sms.php?id=<%= id %>">Ejecutar ahora</a></li>
+            <li><a target="_blank" href="http://app.inmovar.com/admin/application/cronjobs/sms.php?id=<%= id %>">Ejecutar ahora</a></li>
           <% } else if (metodo == "E") { %>
-            <li><a target="_blank" href="http://www.varcreative.com/admin/application/cronjobs/emails.php?id=<%= id %>">Ejecutar ahora</a></li>
+            <li><a target="_blank" href="http://app.inmovar.com/admin/application/cronjobs/emails.php?id=<%= id %>">Ejecutar ahora</a></li>
           <% } %>
           <li><a href="javascript:void(0)" class="eliminar" data-id="<%= id %>">Eliminar</a></li>
         </ul>

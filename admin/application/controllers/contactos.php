@@ -31,7 +31,7 @@ class Contactos extends REST_Controller {
 
     // Redirecionamos
     $empresa = $this->Empresa_Model->get($id_empresa);
-    $dominio = (isset($empresa->dominios) && sizeof($empresa->dominios)>0) ? $empresa->dominios[0] : "www.varcreative.com/sandbox";
+    $dominio = (isset($empresa->dominios) && sizeof($empresa->dominios)>0) ? $empresa->dominios[0] : "app.inmovar.com/sandbox";
     $link = "https://".$dominio."/admin/propiedades/function/ficha/".$propiedad->hash."/";
     header("Location: $link");
   }
@@ -58,7 +58,7 @@ class Contactos extends REST_Controller {
     }
     $bcc_array = array("basile.matias99@gmail.com");
     $empresa = $this->Empresa_Model->get($id_empresa);
-    $dominio = (isset($empresa->dominios) && sizeof($empresa->dominios)>0) ? $empresa->dominios[0] : "www.varcreative.com/sandbox";
+    $dominio = (isset($empresa->dominios) && sizeof($empresa->dominios)>0) ? $empresa->dominios[0] : "app.inmovar.com/sandbox";
     $propiedad = $this->Propiedad_Model->get_by_id($id_propiedad);
     foreach($clientes as $id_cliente) {
 
@@ -87,7 +87,7 @@ class Contactos extends REST_Controller {
       } else if (strpos($propiedad->path, "http") == 0) {
         $body = str_replace("{{propiedad_foto}}",$propiedad->path,$body);
       } else {
-        $body = str_replace("{{propiedad_foto}}","https://www.varcreative.com/admin/uploads/".$propiedad->path,$body);
+        $body = str_replace("{{propiedad_foto}}","https://app.inmovar.com/admin/uploads/".$propiedad->path,$body);
       }
       $body = str_replace("{{propiedad_direccion}}",$propiedad->calle,$body);
       if ($propiedad->publica_precio == 0) {
@@ -98,7 +98,7 @@ class Contactos extends REST_Controller {
 
       $body = str_replace("{{empresa_nombre}}",$empresa->razon_social,$body);
       if (isset($empresa->config["logo_1"]) && !empty($empresa->config["logo_1"])) {
-        $body = str_replace("{{empresa_logo}}","https://www.varcreative.com/admin/".$empresa->config["logo_1"],$body);
+        $body = str_replace("{{empresa_logo}}","https://app.inmovar.com/admin/".$empresa->config["logo_1"],$body);
       }
       $body = str_replace("{{empresa_telefono}}",$empresa->telefono,$body);
       $telefono = $empresa->telefono;
@@ -107,7 +107,7 @@ class Contactos extends REST_Controller {
       $body = str_replace("{{empresa_direccion}}",utf8_encode($empresa->direccion),$body);
       $body = str_replace("{{empresa_email}}",$empresa->email,$body);
 
-      $propiedad_link = "https://www.varcreative.com/admin/contactos/function/registrar_interes_email/?e=".$propiedad->id_empresa."&p=".$propiedad->id."&c=".$id_cliente."&x=".$id_consulta;
+      $propiedad_link = "https://app.inmovar.com/admin/contactos/function/registrar_interes_email/?e=".$propiedad->id_empresa."&p=".$propiedad->id."&c=".$id_cliente."&x=".$id_consulta;
       $body = str_replace("{{propiedad_link}}",$propiedad_link,$body);
       $body = str_replace("'", "\"", $body);
 

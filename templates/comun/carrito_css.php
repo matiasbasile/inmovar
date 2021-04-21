@@ -2,44 +2,44 @@
 /*
 @font-face{
   font-family:'LatoRegular';
-  src:url('https://www.varcreative.com/templates/shopvar_1/fonts/lato-regular.eot');
-  src:url('https://www.varcreative.com/templates/shopvar_1/fonts/lato-regular.eot') format('embedded-opentype'),
-      url('https://www.varcreative.com/templates/shopvar_1/fonts/lato-regular.woff') format('woff'),
-      url('https://www.varcreative.com/templates/shopvar_1/fonts/lato-regular.ttf') format('truetype'),
-      url('https://www.varcreative.com/templates/shopvar_1/fonts/lato-regular.svg#LatoRegular') format('svg');
+  src:url('https://app.inmovar.com/templates/shopvar_1/fonts/lato-regular.eot');
+  src:url('https://app.inmovar.com/templates/shopvar_1/fonts/lato-regular.eot') format('embedded-opentype'),
+      url('https://app.inmovar.com/templates/shopvar_1/fonts/lato-regular.woff') format('woff'),
+      url('https://app.inmovar.com/templates/shopvar_1/fonts/lato-regular.ttf') format('truetype'),
+      url('https://app.inmovar.com/templates/shopvar_1/fonts/lato-regular.svg#LatoRegular') format('svg');
   font-weight:normal;
   font-style:normal;
 }
 
 @font-face{
   font-family:'LatoLight';
-  src:url('https://www.varcreative.com/templates/shopvar_1/fonts/lato-light.eot');
-  src:url('https://www.varcreative.com/templates/shopvar_1/fonts/lato-light.eot') format('embedded-opentype'),
-      url('https://www.varcreative.com/templates/shopvar_1/fonts/lato-light.woff') format('woff'),
-      url('https://www.varcreative.com/templates/shopvar_1/fonts/lato-light.ttf') format('truetype'),
-      url('https://www.varcreative.com/templates/shopvar_1/fonts/lato-light.svg#LatoLight') format('svg');
+  src:url('https://app.inmovar.com/templates/shopvar_1/fonts/lato-light.eot');
+  src:url('https://app.inmovar.com/templates/shopvar_1/fonts/lato-light.eot') format('embedded-opentype'),
+      url('https://app.inmovar.com/templates/shopvar_1/fonts/lato-light.woff') format('woff'),
+      url('https://app.inmovar.com/templates/shopvar_1/fonts/lato-light.ttf') format('truetype'),
+      url('https://app.inmovar.com/templates/shopvar_1/fonts/lato-light.svg#LatoLight') format('svg');
   font-weight:normal;
   font-style:normal;
 }
 
 @font-face{
   font-family:'LatoBold';
-  src:url('https://www.varcreative.com/templates/shopvar_1/fonts/lato-bold.eot');
-  src:url('https://www.varcreative.com/templates/shopvar_1/fonts/lato-bold.eot') format('embedded-opentype'),
-      url('https://www.varcreative.com/templates/shopvar_1/fonts/lato-bold.woff') format('woff'),
-      url('https://www.varcreative.com/templates/shopvar_1/fonts/lato-bold.ttf') format('truetype'),
-      url('https://www.varcreative.com/templates/shopvar_1/fonts/lato-bold.svg#LatoBold') format('svg');
+  src:url('https://app.inmovar.com/templates/shopvar_1/fonts/lato-bold.eot');
+  src:url('https://app.inmovar.com/templates/shopvar_1/fonts/lato-bold.eot') format('embedded-opentype'),
+      url('https://app.inmovar.com/templates/shopvar_1/fonts/lato-bold.woff') format('woff'),
+      url('https://app.inmovar.com/templates/shopvar_1/fonts/lato-bold.ttf') format('truetype'),
+      url('https://app.inmovar.com/templates/shopvar_1/fonts/lato-bold.svg#LatoBold') format('svg');
   font-weight:normal;
   font-style:normal;
 }
 
 @font-face {
   font-family:'LatoBlack';
-  src:url('https://www.varcreative.com/templates/shopvar_1/fonts/lato-black.eot');
-  src:url('https://www.varcreative.com/templates/shopvar_1/fonts/lato-black.eot') format('embedded-opentype'),
-      url('https://www.varcreative.com/templates/shopvar_1/fonts/lato-black.woff') format('woff'),
-      url('https://www.varcreative.com/templates/shopvar_1/fonts/lato-black.ttf') format('truetype'),
-      url('https://www.varcreative.com/templates/shopvar_1/fonts/lato-black.svg#LatoBlack') format('svg');
+  src:url('https://app.inmovar.com/templates/shopvar_1/fonts/lato-black.eot');
+  src:url('https://app.inmovar.com/templates/shopvar_1/fonts/lato-black.eot') format('embedded-opentype'),
+      url('https://app.inmovar.com/templates/shopvar_1/fonts/lato-black.woff') format('woff'),
+      url('https://app.inmovar.com/templates/shopvar_1/fonts/lato-black.ttf') format('truetype'),
+      url('https://app.inmovar.com/templates/shopvar_1/fonts/lato-black.svg#LatoBlack') format('svg');
   font-weight:normal;
   font-style:normal;
 }
@@ -396,25 +396,25 @@ select.varcreative-input { margin-bottom: 10px; }
 }
 
 .varcreative-checkout .varcreative-option-btn.varcreative-option-envio-domicilio {  
-  background-image: url("https://www.varcreative.com/templates/comun/img/checkout-domicilio.png"), url("https://www.varcreative.com/templates/comun/img/checkout-flecha.png");
+  background-image: url("https://app.inmovar.com/templates/comun/img/checkout-domicilio.png"), url("https://app.inmovar.com/templates/comun/img/checkout-flecha.png");
 }
 .varcreative-checkout .varcreative-option-btn.varcreative-option-retiro-sucursal {
-  background-image: url("https://www.varcreative.com/templates/comun/img/checkout-sucursal.png"), url("https://www.varcreative.com/templates/comun/img/checkout-flecha.png");
+  background-image: url("https://app.inmovar.com/templates/comun/img/checkout-sucursal.png"), url("https://app.inmovar.com/templates/comun/img/checkout-flecha.png");
 }
 .varcreative-checkout .varcreative-option-btn.varcreative-option-coordinar-vendedor {
-  background-image: url("https://www.varcreative.com/templates/comun/img/checkout-coordinar-envio.png"), url("https://www.varcreative.com/templates/comun/img/checkout-flecha.png");
+  background-image: url("https://app.inmovar.com/templates/comun/img/checkout-coordinar-envio.png"), url("https://app.inmovar.com/templates/comun/img/checkout-flecha.png");
 }
 .varcreative-checkout .varcreative-option-pago-transferencia-bancaria {
-  background-image: url("https://www.varcreative.com/templates/comun/img/checkout-transferencia-bancaria.png"), url("https://www.varcreative.com/templates/comun/img/checkout-flecha.png");
+  background-image: url("https://app.inmovar.com/templates/comun/img/checkout-transferencia-bancaria.png"), url("https://app.inmovar.com/templates/comun/img/checkout-flecha.png");
 }
 .varcreative-checkout .varcreative-option-pago-sucursal {
-  background-image: url("https://www.varcreative.com/templates/comun/img/checkout-pago-sucursal.png"), url("https://www.varcreative.com/templates/comun/img/checkout-flecha.png");
+  background-image: url("https://app.inmovar.com/templates/comun/img/checkout-pago-sucursal.png"), url("https://app.inmovar.com/templates/comun/img/checkout-flecha.png");
 }
 .varcreative-checkout .varcreative-option-pago-mercadopago {
-  background-image: url("https://www.varcreative.com/templates/comun/img/checkout-mercadopago.png"), url("https://www.varcreative.com/templates/comun/img/checkout-flecha.png");
+  background-image: url("https://app.inmovar.com/templates/comun/img/checkout-mercadopago.png"), url("https://app.inmovar.com/templates/comun/img/checkout-flecha.png");
 }
 .varcreative-checkout .varcreative-option-pago-convenir {
-  background-image: url("https://www.varcreative.com/templates/comun/img/checkout-coordinar-envio.png"), url("https://www.varcreative.com/templates/comun/img/checkout-flecha.png");
+  background-image: url("https://app.inmovar.com/templates/comun/img/checkout-coordinar-envio.png"), url("https://app.inmovar.com/templates/comun/img/checkout-flecha.png");
 }
 
 

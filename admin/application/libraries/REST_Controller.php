@@ -34,7 +34,7 @@ class REST_Controller extends CI_Controller {
     if ($q->num_rows($q)>0) {
       $dom = $q->row();
       $d = $dom->dominio;
-    } else $d = "varcreative.com/sandbox/";
+    } else $d = "app.inmovar.com/sandbox/";
     if (substr($d,-1) !== "/") $d.="/"; // Si no termina con /, se la agregamos
     $d = (strpos($d, "http://") !== FALSE) ? $d : "http://".$d; // Siempre le agregamos el http://
     return $d.(($url !== "/")?$url:"");

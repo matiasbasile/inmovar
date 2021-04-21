@@ -51,14 +51,14 @@ class Entradas extends REST_Controller {
       ));
       exit();
     }
-    $dominio = ($id_empresa == 70) ? "https://www.quepensaschacabuco.com": "https://www.varcreative.com";
+    $dominio = ($id_empresa == 70) ? "https://www.quepensaschacabuco.com": "https://app.inmovar.com";
     $params = array(
       "id_empresa"=>$id_empresa,
       "texto"=>urlencode($entrada->titulo),
       "image"=>$dominio."/admin/".urlencode($entrada->path),
       "link"=>$dominio."/".urlencode($entrada->link),
     );
-    $url = "https://www.varcreative.com/admin/application/cronjobs/push_notification.php?".http_build_query($params);
+    $url = "https://app.inmovar.com/admin/application/cronjobs/push_notification.php?".http_build_query($params);
     $c = curl_init($url);
     curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);

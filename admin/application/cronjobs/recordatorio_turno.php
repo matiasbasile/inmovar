@@ -44,7 +44,7 @@ while(($row = mysqli_fetch_object($q))!==NULL) {
   $texto = str_replace("{{servicio}}",$row->servicio,$texto);
   $texto = str_replace("{{fecha}}",$row->fecha,$texto);
   $texto = str_replace("{{hora}}",$row->hora,$texto);
-  $link = "https://www.varcreative.com/admin/turnos/function/cancelar_turno/?id_empresa=$row->id_empresa&id=$row->id";
+  $link = "https://app.inmovar.com/admin/turnos/function/cancelar_turno/?id_empresa=$row->id_empresa&id=$row->id";
   $texto = str_replace("{{link_cancelar_turno}}",$link,$texto);
 
   $bcc = array();

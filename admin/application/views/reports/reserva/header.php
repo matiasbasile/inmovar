@@ -27,7 +27,7 @@
     #header_pymvar { z-index: 9999; overflow: hidden; position: fixed; top: 0px; width: 100%; left: 0px; height: 50px; background-color: white; border-bottom:solid 2px #CCC; }
     #header_pymvar .centrado { width: 210mm; margin: 0 auto; }
     .header_logo { color: <?php echo $color ?>; width: 300px; height: 80%; display: block; float: left; margin-top: 5px; }
-    .header_logo .header_logo_imagen { float: left; display: block; width: 43px; height: 37px; background: url(http://www.varcreative.com/templates/proyectos/images/logo2.png) no-repeat 50% 50% <?php echo $color ?>; background-size: cover; }
+    .header_logo .header_logo_imagen { float: left; display: block; width: 43px; height: 37px; background: url(http://app.inmovar.com/templates/proyectos/images/logo2.png) no-repeat 50% 50% <?php echo $color ?>; background-size: cover; }
     .header_logo .header_logo_nombre { font-family: 'Lato-Regular'; text-transform: uppercase; float: left; margin-left: 5px; line-height: 37px; font-size: 22px; font-weight: bold; }
     .header_logo .header_logo_nombre .negro { color:#282f38; }
     body { padding-top: 60px; }

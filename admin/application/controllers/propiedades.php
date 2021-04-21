@@ -433,7 +433,7 @@ class Propiedades extends REST_Controller {
 		$this->load->model("Empresa_Model");
     $dominio = strtolower($_SERVER["HTTP_HOST"]);
     $dominio = str_replace("www.", "", $dominio);
-    if ($dominio == "varcreative.com") {
+    if ($dominio == "app.inmovar.com") {
       $id_empresa = $propiedad->id_empresa;
     } else {
       $id_empresa_dominio = $this->Empresa_Model->get_id_empresa_by_dominio($dominio);
@@ -1167,11 +1167,11 @@ class Propiedades extends REST_Controller {
       $linea .= '"'.$tipo_operacion.'";';
 
       // Tenemos 8 campos de texto en total
-      $linea .= '"'.'https://www.varcreative.com/admin/'.($l->path).'";';
+      $linea .= '"'.'https://app.inmovar.com/admin/'.($l->path).'";';
       for($j=0;$j<7;$j++) {
         if (isset($propiedad->images[$j])) {
           $path = $propiedad->images[$j];
-          $linea.= '"'.'https://www.varcreative.com/admin/'.($path).'";';
+          $linea.= '"'.'https://app.inmovar.com/admin/'.($path).'";';
         } else {
           $linea.= '"";';
         }
@@ -2029,10 +2029,10 @@ class Propiedades extends REST_Controller {
       }
     }
 
-    if (!empty($propiedad->path)) $fields["aviso.fotos[0].url"] = "https://www.varcreative.com/admin/".$propiedad->path;
+    if (!empty($propiedad->path)) $fields["aviso.fotos[0].url"] = "https://app.inmovar.com/admin/".$propiedad->path;
     $i = 1;
     foreach($propiedad->images as $image) {
-      $fields["aviso.fotos[$i].url"] = "https://www.varcreative.com/admin/".$image;
+      $fields["aviso.fotos[$i].url"] = "https://app.inmovar.com/admin/".$image;
       $i++;
     }
 

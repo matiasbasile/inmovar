@@ -28,8 +28,8 @@ class Chat_Turnos extends CI_Controller {
 
   /*
   // INSTALACION
-<script type="text/javascript" src="https://www.varcreative.com/admin/resources/js/loader.js"></script>
-<script type="text/javascript">loadScript("https://www.varcreative.com/admin/chat_turnos/get/"+window.location.hostname+"/");</script>
+<script type="text/javascript" src="https://app.inmovar.com/admin/resources/js/loader.js"></script>
+<script type="text/javascript">loadScript("https://app.inmovar.com/admin/chat_turnos/get/"+window.location.hostname+"/");</script>
   */
   function get($dominio = 0) {
     date_default_timezone_set("America/Argentina/Buenos_Aires");
@@ -56,7 +56,7 @@ class Chat_Turnos extends CI_Controller {
     foreach($usuarios["results"] as $u) {
       $u->cargo = "";
       $u->disponible = 1;
-      $u->path = (empty($u->path)) ? "https://www.varcreative.com/admin/resources/images/a0.jpg" : "https://www.varcreative.com/admin/".$u->path;
+      $u->path = (empty($u->path)) ? "https://app.inmovar.com/admin/resources/images/a0.jpg" : "https://app.inmovar.com/admin/".$u->path;
       $u->dias = implode("-",$u->dias);
     }
 

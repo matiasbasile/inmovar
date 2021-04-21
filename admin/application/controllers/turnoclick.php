@@ -35,8 +35,8 @@ class TurnoClick extends CI_Controller {
 
   /*
   // INSTALACION
-<script type="text/javascript" src="https://www.varcreative.com/admin/resources/js/loader.js"></script>
-<script type="text/javascript">loadScript("https://www.varcreative.com/admin/turnoclick/get/"+window.location.hostname+"/");</script>
+<script type="text/javascript" src="https://app.inmovar.com/admin/resources/js/loader.js"></script>
+<script type="text/javascript">loadScript("https://app.inmovar.com/admin/turnoclick/get/"+window.location.hostname+"/");</script>
   */
   function get($dominio = 0) {
     @session_start();
@@ -49,7 +49,7 @@ class TurnoClick extends CI_Controller {
     $this->load->model("Empresa_Model");
     $dominio = str_replace("www.", "", $dominio);
     // TODO: ARREGLO MOMENTANEO
-    if ($dominio == "varcreative.com") {
+    if ($dominio == "app.inmovar.com") {
       $id_empresa = 948;
     } else {
       $id_empresa = $this->Empresa_Model->get_id_empresa_by_dominio($dominio);

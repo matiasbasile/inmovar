@@ -125,7 +125,7 @@ class Empresa_Model extends Abstract_Model {
       $body = str_replace("{{email}}",$r->email,$body);
       $body = str_replace("{{nombre}}",$nombre,$body);
       $body = str_replace("{{fecha_suspension}}",$r->fecha_suspension,$body);
-      $body = str_replace("{{link_factura}}", "https://www.varcreative.com/admin/facturas/function/ver_pdf/".$factura->id."/".$factura->id_punto_venta."/".$factura->id_empresa."/", $body);
+      $body = str_replace("{{link_factura}}", "https://app.inmovar/admin/facturas/function/ver_pdf/".$factura->id."/".$factura->id_punto_venta."/".$factura->id_empresa."/", $body);
       mandrill_send(array(
         "to"=>$r->email,
         "from"=>"no-reply@varcreative.com",

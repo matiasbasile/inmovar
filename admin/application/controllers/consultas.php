@@ -658,7 +658,7 @@ class Consultas extends REST_Controller {
           $temp = $this->Email_Template_Model->get_by_key($clave_template,290);
           $asunto = $temp->nombre;
           $body = $temp->texto;
-          $link_panel = "https://www.varcreative.com/admin/app/#cliente_acciones/".$contacto->id;
+          $link_panel = "https://app.inmovar.com/admin/app/#cliente_acciones/".$contacto->id;
           $link_whatsapp = "https://wa.me/".$prefijo.$telefono."?text=".urlencode("Hola $nombre muchas gracias por contactarte con nosotros");
           $body = str_replace("{{empresa}}", htmlentities($empresa->nombre,ENT_QUOTES), $body);
           $body = str_replace("{{nombre}}", $nombre, $body);

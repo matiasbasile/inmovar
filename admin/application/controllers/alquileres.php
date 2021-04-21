@@ -69,7 +69,7 @@ class Alquileres extends REST_Controller {
       $body = str_replace("{{vencimiento}}", $r->vencimiento, $body);
       $body = str_replace("{{direccion}}", $r->direccion, $body);
       $body = str_replace("{{total}}", $r->total, $body);
-      $body = str_replace("{{link_factura}}", "https://www.varcreative.com/admin/alquileres/function/cupon_pago/".$r->hash, $body);
+      $body = str_replace("{{link_factura}}", "https://app.inmovar.com/admin/alquileres/function/cupon_pago/".$r->hash, $body);
 
       $bcc_array = array();
       $bcc_array[] = "basile.matias99@gmail.com";
@@ -503,7 +503,7 @@ class Alquileres extends REST_Controller {
             "quantity"=>1,
             "unit_price"=>$factura->total+0,
           );            
-          $current_url = "https://www.varcreative.com/admin/alquileres/function/cupon_pago/".$id_empresa."/".$factura->id."/".$factura->id_punto_venta."/";
+          $current_url = "https://app.inmovar.com/admin/alquileres/function/cupon_pago/".$id_empresa."/".$factura->id."/".$factura->id_punto_venta."/";
           $preference_data = array(
             "items" => $items,
             "payer" => array(
@@ -516,7 +516,7 @@ class Alquileres extends REST_Controller {
               "pending" => $current_url,
             ),
             "auto_return" => "all",
-            "notification_url" => "https://www.varcreative.com/ipn_alquiler.php",
+            "notification_url" => "https://app.inmovar.com/ipn_alquiler.php",
             "external_reference" => $factura->id."_".$factura->id_empresa."_".$factura->id_punto_venta,
           );
         }

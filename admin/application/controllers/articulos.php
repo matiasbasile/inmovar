@@ -86,7 +86,7 @@ class Articulos extends REST_Controller {
     $excel = parent::get_get("excel",1);
     $id_empresa = parent::get_empresa();
     // Lo traemos de varcreative porque no tomaba el https
-    $result = file_get_contents("http://www.varcreative.com/products.json");
+    $result = file_get_contents("http://app.inmovar.com/products.json");
     $r = json_decode($result,true);
     $articulos = array();
     for($i=0;$i<sizeof($r["result"]);$i++) {
@@ -391,7 +391,7 @@ class Articulos extends REST_Controller {
   function notificar() {
     $id_empresa = parent::get_empresa();
     $mensaje = "Hay nuevas modificaciones de precios.";
-    $url = "https://www.varcreative.com/admin/application/cronjobs/push_notification.php?id_empresa=$id_empresa&texto=".urlencode($mensaje);
+    $url = "https://app.inmovar.com/admin/application/cronjobs/push_notification.php?id_empresa=$id_empresa&texto=".urlencode($mensaje);
     $c = curl_init($url);
     curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
@@ -540,7 +540,7 @@ class Articulos extends REST_Controller {
       return;            
     }
 
-    $url_server = (empty($configuracion->url_server)) ? "www.varcreative.com" : $configuracion->url_server;
+    $url_server = (empty($configuracion->url_server)) ? "app.inmovar.com" : $configuracion->url_server;
 
     // Debe haber conexion con el servidor
     $this->load->helper("connection_helper");
@@ -552,7 +552,7 @@ class Articulos extends REST_Controller {
       return;
     }
 
-    $url_server = ($url_server == "www.varcreative.com") ? "https://".$url_server : "http".$url_server;
+    $url_server = ($url_server == "app.inmovar.com") ? "https://".$url_server : "http".$url_server;
     $current_timestamp = time();
 
     // Obtenemos la ultima configuracion

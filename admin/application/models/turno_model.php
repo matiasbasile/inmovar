@@ -153,7 +153,7 @@ class Turno_Model extends Abstract_Model {
       $body = str_replace("{{servicio}}",utf8_decode($servicio),$body);
       $body = str_replace("{{empresa}}",($empresa->nombre),$body);
       if (!empty($empresa->dominio_ppal)) $body = str_replace("{{link_web}}",$empresa->dominio_ppal,$body);
-      $body = str_replace("{{link_ver_pedido}}","https://www.varcreative.com/admin/turnos/function/ver_pdf/".$id."/".$data->id_empresa,$body);    
+      $body = str_replace("{{link_ver_pedido}}","https://app.inmovar.com/admin/turnos/function/ver_pdf/".$id."/".$data->id_empresa,$body);    
       $body = str_replace("{{id_empresa}}",$empresa->id,$body);
       $body = str_replace("'", "\"", $body);
 

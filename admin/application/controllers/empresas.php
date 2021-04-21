@@ -83,7 +83,7 @@ class Empresas extends REST_Controller {
         $nombre = htmlentities($r->nombre,ENT_QUOTES);
         $nombre = ucwords(strtolower($nombre));
         $body = str_replace("{{nombre}}",$nombre,$body);
-        $body = str_replace("{{link_factura}}", "https://www.varcreative.com/admin/facturas/function/ver_pdf/".$s["id_factura"]."/".$s["id_punto_venta"]."/".$s["id_empresa"]."/", $body);
+        $body = str_replace("{{link_factura}}", "https://app.inmovar.com/admin/facturas/function/ver_pdf/".$s["id_factura"]."/".$s["id_punto_venta"]."/".$s["id_empresa"]."/", $body);
 
         if (strpos($body, "{{preference}}")) {
           $this->load->model("Medio_Pago_Configuracion_Model");
@@ -347,8 +347,8 @@ class Empresas extends REST_Controller {
     $this->load->helper("file_helper");
     $q = $this->db->query("SELECT * FROM empresas");
     foreach($q->result() as $r) {
-      //$dominio_varcreative = "www.varcreative.com/sandbox/".filename($r->razon_social,"-",0)."/";
-      $dominio_varcreative = "www.varcreative.com/sandbox/".$r->id."/";
+      //$dominio_varcreative = "app.inmovar.com/sandbox/".filename($r->razon_social,"-",0)."/";
+      $dominio_varcreative = "app.inmovar.com/sandbox/".$r->id."/";
       $this->db->query("UPDATE empresas SET dominio_varcreative = '$dominio_varcreative' WHERE id = $r->id ");
     }
     echo "TERMINO";

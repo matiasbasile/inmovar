@@ -58,7 +58,7 @@ class Propiedad_Reserva_Model extends Abstract_Model {
     $body = str_replace("{{cliente_email}}",htmlentities($reserva->cliente->email,ENT_QUOTES),$body);
     $body = str_replace("{{cliente_telefono}}",htmlentities($reserva->cliente->telefono,ENT_QUOTES),$body);
     $body = str_replace("{{cliente_celular}}",htmlentities($reserva->cliente->celular,ENT_QUOTES),$body);
-    $body = str_replace("{{propiedad_imagen}}","https://www.varcreative.com/admin/".$reserva->propiedad->path,$body);
+    $body = str_replace("{{propiedad_imagen}}","https://app.inmovar.com/admin/".$reserva->propiedad->path,$body);
     $body = str_replace("{{propiedad_nombre}}",htmlentities($reserva->propiedad->nombre,ENT_QUOTES),$body);
     $body = str_replace("{{propiedad_capacidad}}",$reserva->propiedad->capacidad_maxima,$body);
     $body = str_replace("{{reserva_mensaje}}",htmlentities($reserva->comentario,ENT_QUOTES),$body);

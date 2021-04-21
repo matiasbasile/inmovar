@@ -37,7 +37,7 @@ class Medio_Pago_Configuracion_Model extends Abstract_Model {
           "payer" => array(
             "email" => $email,
           ),
-          "notification_url" => "https://www.varcreative.com/admin/facturas/function/ipn_mercadopago/".$id_empresa."/".$id_factura."/".$id_punto_venta,
+          "notification_url" => "https://app.inmovar.com/admin/facturas/function/ipn_mercadopago/".$id_empresa."/".$id_factura."/".$id_punto_venta,
           "local_pickup"=>false,
         );
         $preference = $mp->create_preference($preference_data);

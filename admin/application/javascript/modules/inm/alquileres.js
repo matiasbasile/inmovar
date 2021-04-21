@@ -816,7 +816,7 @@
           return;
         }
         telefono = "549"+telefono;
-        var link_completo = 'Hola '+this.model.get("cliente")+', te enviamos el cupon de pago del alquiler de este mes: https://www.varcreative.com/admin/alquileres/function/cupon_pago/'+this.model.get("hash");
+        var link_completo = 'Hola '+this.model.get("cliente")+', te enviamos el cupon de pago del alquiler de este mes: https://app.inmovar.com/admin/alquileres/function/cupon_pago/'+this.model.get("hash");
         var salida = "https://wa.me/"+telefono+"?text="+encodeURIComponent(link_completo);
         window.open(salida,"_blank");        
       },

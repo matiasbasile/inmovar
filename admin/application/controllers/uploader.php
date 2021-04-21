@@ -71,7 +71,7 @@ class Uploader extends REST_Controller {
       return;            
     }
 
-    $url_server = (empty($configuracion->url_server)) ? "www.varcreative.com" : $configuracion->url_server;
+    $url_server = (empty($configuracion->url_server)) ? "app.inmovar.com" : $configuracion->url_server;
 
     // Debe haber conexion con el servidor
     $this->load->helper("connection_helper");
@@ -83,7 +83,7 @@ class Uploader extends REST_Controller {
       return;
     }
 
-    $url_server = ($url_server == "www.varcreative.com") ? "https://".$url_server : "http://".$url_server;
+    $url_server = ($url_server == "app.inmovar.com") ? "https://".$url_server : "http://".$url_server;
     $current_timestamp = time();
 
     // Obtenemos la ultima configuracion

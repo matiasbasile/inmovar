@@ -65,7 +65,7 @@ return t.parent().is(".ui-effects-wrapper")&&(t.parent().replaceWith(t),(t[0]===
     if (isEmpty(fecha)) return;
     if (id_servicio == 0) return;
     jQuery.ajax({
-      "url":"https://www.varcreative.com/sistema/turnos/function/disponibles/",
+      "url":"https://app.inmovar.com/sistema/turnos/function/disponibles/",
       "dataType":"json",
       "type":"post",
       "data":{
@@ -142,7 +142,7 @@ return t.parent().is(".ui-effects-wrapper")&&(t.parent().replaceWith(t),(t[0]===
     turno.hora = hora;
     turno.id_servicio = id_servicio;
     jQuery.ajax({
-      "url":"https://www.varcreative.com/sistema/turnos/function/enviar/",
+      "url":"https://app.inmovar.com/sistema/turnos/function/enviar/",
       "type":"post",
       "dataType":"json",
       "data":turno,

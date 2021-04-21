@@ -105,7 +105,7 @@
       <div class="form-group">
         <div class="oh w100p">
           <label class="control-label">Links para sincronizacion de calendarios</label>
-          <a href="https://www.varcreative.com/admin/propiedades/function/exportar_calendario/<%= ID_EMPRESA %>/" target="_blank" class="text-info link fr cp ml15">URL Calendario</a>
+          <a href="https://app.inmovar.com/admin/propiedades/function/exportar_calendario/<%= ID_EMPRESA %>/" target="_blank" class="text-info link fr cp ml15">URL Calendario</a>
           <span id="propiedad_sincronizar_calendario" class="text-info link fr cp ml15">Sincronizar</span>
         </div>
         <textarea id="propiedad_links_ical" class="form-control" name="links_ical"><%= links_ical %></textarea>
