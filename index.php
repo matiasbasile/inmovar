@@ -158,10 +158,6 @@ if ( (!(strpos($dominio, "app.inmovar") === FALSE) || !(strpos($dominio, "sandbo
   }
 }
 
-if (strpos($dominio, "enriquez") !== FALSE) {
-  echo "ANDA";
-}
-
 // Si no se encontro, redireccionamos
 if ($empresa === FALSE) {
   header('Content-Type: text/html; charset=UTF-8');
