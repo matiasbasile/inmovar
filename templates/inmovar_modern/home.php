@@ -1,5 +1,4 @@
 <?php 
-echo "1"; exit();
 include "includes/init.php";
 $titulo_pagina = "home";
 $page_act = "home"; ?>
