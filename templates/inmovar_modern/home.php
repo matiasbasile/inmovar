@@ -1,5 +1,7 @@
-<?php include "includes/init.php" ?>
-<?php $page_act = "home"  ?>
+<?php 
+include "includes/init.php";
+$titulo_pagina = "home";
+$page_act = "home"; ?>
 <!DOCTYPE html>
 <html>
 <head>
