@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 @session_start();
 require_once 'models/meli.php';
 require_once 'admin/params.php';
-require_once 'admin/libraries/Mandrill/Mandrill.php';
+require_once 'admin/application/libraries/Mandrill/Mandrill.php';
 
 // Guarda los tokens para volverlos a reutilizar mas tarde
 function guardar_tokens($array=array()) {
