@@ -35,7 +35,7 @@ while (($empresa = mysqli_fetch_object($q)) !== NULL) {
     try {
       // Refrescamos el access token
       $refresh = $meli->refreshAccessToken();
-      var_dump($refresh);
+      echo $empresa->id_empresa."<br/>";
       if (isset($refresh['body']->access_token) && !empty($refresh['body']->access_token)) {
         $empresa->ml_access_token = $refresh['body']->access_token;
         $empresa->expires_in = time() + $refresh['body']->expires_in;
