@@ -32,6 +32,7 @@ while (($empresa = mysqli_fetch_object($q)) !== NULL) {
 
   // Debemos controlar si el access token sigue siendo valido
   if($empresa->ml_expires_in < time()) {
+    echo "ENTRO";
     try {
       // Refrescamos el access token
       $refresh = $meli->refreshAccessToken();
@@ -47,7 +48,6 @@ while (($empresa = mysqli_fetch_object($q)) !== NULL) {
           "id_empresa"=>$id_empresa,
         ));
       }
-
     } catch (Exception $e) {
       echo $e->getMessage()."<br/>";
     }
