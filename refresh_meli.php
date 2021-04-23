@@ -23,7 +23,7 @@ function guardar_tokens($array=array()) {
 
 $sql = "SELECT * FROM web_configuracion WHERE ml_expires_in != '' ";
 $q = mysqli_query($conx,$sql);
-foreach(($empresa = mysqli_fetch_object($q)) !== NULL) {
+while (($empresa = mysqli_fetch_object($q)) !== NULL) {
 
   $ml_credentials = get_ml_credentials($empresa->id_empresa);
   $meli = new Meli($ml_credentials[0], $ml_credentials[1], $empresa->ml_access_token, $empresa->ml_refresh_token);
