@@ -36,7 +36,7 @@ while (($empresa = mysqli_fetch_object($q)) !== NULL) {
     // Refrescamos el access token
     $refresh = $meli->refreshAccessToken();
     $body = $refresh['body'];
-    if ($body->httpCode == 200) {
+    if ($refresh["httpCode"] == 200) {
       if (isset($body->access_token) && !empty($body->access_token)) {
         $empresa->ml_access_token = $body->access_token;
         $empresa->expires_in = time() + $body->expires_in;
