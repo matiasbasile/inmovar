@@ -6,6 +6,7 @@ error_reporting(E_ALL);
 @session_start();
 require_once 'models/meli.php';
 require_once 'admin/params.php';
+require_once 'admin/libraries/Mandrill/Mandrill.php';
 
 // Guarda los tokens para volverlos a reutilizar mas tarde
 function guardar_tokens($array=array()) {
@@ -21,7 +22,8 @@ function guardar_tokens($array=array()) {
   mysqli_query($conx,$sql);
 }
 
-$sql = "SELECT * FROM web_configuracion WHERE ml_expires_in != '' ";
+$errores = array();
+$sql = "SELECT WC.*, E.nombre FROM web_configuracion WC INNER JOIN empresas E ON (WC.id_empresa = E.id) WHERE WC.ml_expires_in != '' ";
 $q = mysqli_query($conx,$sql);
 while (($empresa = mysqli_fetch_object($q)) !== NULL) {
 
@@ -30,18 +32,15 @@ while (($empresa = mysqli_fetch_object($q)) !== NULL) {
 
   if (empty($empresa->ml_access_token) || empty($empresa->ml_expires_in)) continue;
 
-  // Debemos controlar si el access token sigue siendo valido
-  //if($empresa->ml_expires_in < time()) {
-    try {
-      // Refrescamos el access token
-      $refresh = $meli->refreshAccessToken();
-      echo $empresa->id_empresa."<br/>";
-      var_dump($refresh);
-      if (isset($refresh['body']->access_token) && !empty($refresh['body']->access_token)) {
-        $empresa->ml_access_token = $refresh['body']->access_token;
-        $empresa->expires_in = time() + $refresh['body']->expires_in;
-        $empresa->refresh_token = $refresh['body']->refresh_token;
-        echo $empresa->ml_access_token."<br/>";
+  try {
+    // Refrescamos el access token
+    $refresh = $meli->refreshAccessToken();
+    $body = $refresh['body'];
+    if ($body->httpCode == 200) {
+      if (isset($body->access_token) && !empty($body->access_token)) {
+        $empresa->ml_access_token = $body->access_token;
+        $empresa->expires_in = time() + $body->expires_in;
+        $empresa->refresh_token = $body->refresh_token;
         guardar_tokens(array(
           "access_token"=>$empresa->ml_access_token,
           "expires_in"=>$empresa->expires_in,
@@ -49,10 +48,22 @@ while (($empresa = mysqli_fetch_object($q)) !== NULL) {
           "id_empresa"=>$id_empresa,
         ));
       }
-    } catch (Exception $e) {
-      echo $e->getMessage()."<br/>";
+    } else {
+      $errores[] = $empresa->nombre." ".$body->message;
     }
-  //}
+  } catch (Exception $e) {
+    $errores[] = $empresa->nombre." ".$e->getMessage();
+  }
 }
-echo "TERMINO <br/>";
+
+if (sizeof($errores)>0) {
+  $body = implode("<br/>", $errores);
+  mandrill_send(array(
+    "to"=>"basile.matias99@gmail.com",
+    "subject"=>"ERROR TOKEN MERCADOLIBRE INMOVAR",
+    "from"=>"no-reply@varcreative.com",
+    "from_name"=>"Inmovar",
+    "body"=>$body,
+  ));  
+}
 ?>
