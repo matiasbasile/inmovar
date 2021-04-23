@@ -45,7 +45,7 @@ while (($empresa = mysqli_fetch_object($q)) !== NULL) {
           "access_token"=>$empresa->ml_access_token,
           "expires_in"=>$empresa->expires_in,
           "refresh_token"=>$empresa->refresh_token,
-          "id_empresa"=>$id_empresa,
+          "id_empresa"=>$empresa->id_empresa,
         ));
       }
     } else {
