@@ -1632,6 +1632,20 @@ class Propiedades extends REST_Controller {
         // Si no se encontro una localidad, lo ponemos como error
         if (empty($p->id_localidad)) {
           $errores[] = "ERROR NO SE ENCUENTRA LOCALIDAD: <br/>".print_r($property,TRUE)."<br/>";
+        } else {
+          // Obtenemos los otros datos de la localidad para estar seguros de que completamos todos los datos de ubicacion en el panel
+          $sql = "SELECT L.*, D.id_provincia, D.id AS id_departamento, P.id_pais ";
+          $sql.= " FROM com_localidades L ";
+          $sql.= " INNER JOIN com_departamentos D ON (L.id_departamento = D.id) ";
+          $sql.= " INNER JOIN com_provincias P ON (D.id_provincia = P.id) ";
+          $sql.= "WHERE L.id = $p->id_localidad LIMIT 0,1 ";
+          $qq = $this->db->query($sql);
+          if ($qq->num_rows() > 0) {
+            $rr = $qq->row();
+            $p->id_departamento = $rr->id_departamento;
+            $p->id_provincia = $rr->id_provincia;
+            $p->id_pais = $rr->id_pais;
+          }
         }
 
         $images = $property->get_field("photos");
