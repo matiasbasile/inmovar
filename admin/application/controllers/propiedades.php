@@ -1569,6 +1569,7 @@ class Propiedades extends REST_Controller {
         else if ($tipo->name == "Local") $p->id_tipo_inmueble = 9;
         else if ($tipo->name == "Galpón") $p->id_tipo_inmueble = 8;
         else if ($tipo->name == "Oficina") $p->id_tipo_inmueble = 11;
+        else if ($tipo->name == "Cochera") $p->id_tipo_inmueble = 13;
         else {
           // Si no esta definica el tipo de propiedad, lo ponemos como error
           $errores[] = "ERROR NO SE ENCUENTRA TIPO INMUEBLE: <br/>".print_r($property,TRUE)."<br/>";
@@ -1589,6 +1590,7 @@ class Propiedades extends REST_Controller {
         else if ($location->name == "Tolosa") $p->id_localidad = 900;
         else if ($location->name == "Villa Elvira") $p->id_localidad = 5117;
         else if ($location->name == "Abasto") $p->id_localidad = 10;
+        else if ($location->name == "Costa Esmeralda") $p->id_localidad = 3249;
         else if ($location->name == "Ringuelet") $p->id_localidad = 776;
         else if ($location->name == "Nueva Hermosura") $p->id_localidad = 5506;
         else if ($location->name == "San Bernardo Del Tuyu") $p->id_localidad = 812;
