@@ -815,7 +815,7 @@ class Propiedad_Model extends Abstract_Model {
     
     // Si en el campo calle tiene un e/ o entre, tenemos que sacarlo
     if (strpos(mb_strtolower($data->calle), "e/")>0) {
-      $entre = substr($data->calle, strpos(mb_strtolower($data->calle), "e/"));
+      $entre = substr($data->calle, strpos(mb_strtolower($data->calle), "e/")+2);
       if (strpos($entre, "y")>0) {
         $e = explode("y", $entre);
         if (sizeof($e)==2) {
@@ -828,7 +828,7 @@ class Propiedad_Model extends Abstract_Model {
       }
     }
     if (strpos(mb_strtolower($data->calle), "entre")>0) {
-      $entre = substr($data->calle, strpos(mb_strtolower($data->calle), "entre"));
+      $entre = substr($data->calle, strpos(mb_strtolower($data->calle), "entre")+5);
       if (strpos($entre, "y")>0) {
         $e = explode("y", $entre);
         if (sizeof($e)==2) {
