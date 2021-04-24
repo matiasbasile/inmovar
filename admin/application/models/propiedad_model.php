@@ -810,7 +810,37 @@ class Propiedad_Model extends Abstract_Model {
     }
 
     $data->nombre = $tipo_inmueble." en ".$tipo_operacion.((!empty($localidad)) ? " en ".$localidad : "");
+
+    $data->calle = str_replace(" - La Plata", "", $data->calle);
     
+    // Si en el campo calle tiene un e/ o entre, tenemos que sacarlo
+    if (strpos(mb_strtolower($data->calle), "e/")>0) {
+      $entre = substr($data->calle, strpos(mb_strtolower($data->calle), "e/"));
+      if (strpos($entre, "y")>0) {
+        $e = explode("y", $entre);
+        if (sizeof($e)==2) {
+          $data->calle = str_replace($entre, "", $data->calle);
+          $entre_calles = trim($e[0]);
+          $entre_calles_2 = trim($e[1]);
+          $data->entre_calles = ucwords($entre_calles);
+          $data->entre_calles_2 = ucwords($entre_calles_2);
+        }
+      }
+    }
+    if (strpos(mb_strtolower($data->calle), "entre")>0) {
+      $entre = substr($data->calle, strpos(mb_strtolower($data->calle), "entre"));
+      if (strpos($entre, "y")>0) {
+        $e = explode("y", $entre);
+        if (sizeof($e)==2) {
+          $data->calle = str_replace($entre, "", $data->calle);
+          $entre_calles = trim($e[0]);
+          $entre_calles_2 = trim($e[1]);
+          $data->entre_calles = ucwords($entre_calles);
+          $data->entre_calles_2 = ucwords($entre_calles_2);
+        }
+      }
+    }
+
     try {
 
       // Evaluamos si es un insert o un update
