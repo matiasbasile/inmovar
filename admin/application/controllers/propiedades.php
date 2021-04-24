@@ -31,33 +31,6 @@ class Propiedades extends REST_Controller {
     echo "TERMINO $cantidad";
   }
 
-  function arreglar_calle() {
-    $sql = "select * from inm_propiedades where entre_calles like '%y%'";
-    $q = $this->db->query($sql);
-    foreach($q->result() as $r) {
-
-      $r->entre_calles = strtolower($r->entre_calles);
-      $e = explode("y", $r->entre_calles);
-      $entre_calles = trim($e[0]);
-      $entre_calles_2 = trim($e[1]);
-      $entre_calles = ucwords($entre_calles);
-      $entre_calles_2 = ucwords($entre_calles_2);
-      
-      /*
-      $calle = substr($r->calle, 0, strpos($r->calle, "entre"));
-      $entre_calles = substr($r->calle, strpos($r->calle, "entre")+5);
-      $entre_calles = substr($entre_calles,0, strpos($entre_calles, " y "));
-      $entre_calles_2 = substr($r->calle, strpos($r->calle, " y ")+3);
-      $calle = trim($calle);
-      $entre_calles = trim($entre_calles);
-      $entre_calles_2 = trim($entre_calles_2);
-      */
-      $sql = "UPDATE inm_propiedades SET entre_calles = '$entre_calles', entre_calles_2 = '$entre_calles_2' ";
-      $sql.= "WHERE id_empresa = $r->id_empresa AND id = $r->id ";
-      $this->db->query($sql);
-    }
-  }
-
   function arreglar_nombres() {
     $sql = "SELECT * FROM inm_propiedades ";
     $q = $this->db->query($sql);
@@ -1689,24 +1662,6 @@ class Propiedades extends REST_Controller {
             $p->id = $this->Propiedad_Model->save($p);
             $cant_insert++;
           }
-
-          /*
-          // Creamos el link
-          $hash = md5($p->id);
-          $link = "propiedad/".filename($p->nombre,"-",0)."-".$p->id."/";
-          $this->db->query("UPDATE inm_propiedades SET link = '$link', hash = '$hash' WHERE id = $p->id AND id_empresa = $id_empresa");
-
-          // IMAGENES
-          if (sizeof($images)>0) {
-            $this->db->query("DELETE FROM inm_propiedades_images WHERE id_empresa = $id_empresa AND id_propiedad = $p->id ");
-            $k=0;
-            foreach($images as $im) {
-              if (empty($im->image)) continue;
-              $this->db->query("INSERT INTO inm_propiedades_images (id_empresa,id_propiedad,path,orden) VALUES ($id_empresa,$p->id,'$im->image',$k) ");
-              $k++;
-            }
-          }
-          */
 
         } catch(Exception $e) {
           $errores[] = $e->getMessage();
