@@ -952,7 +952,7 @@ class Propiedad_Model extends Abstract_Model {
   function update($id,$data) {
 
     // Controlamos que no se este editando por un codigo de otra propiedad
-    if (!empty($data->codigo)) {
+    if (!empty($data->codigo) && !isset($data->no_controlar_codigo)) {
       if ($this->existe_codigo($data->codigo,$id,$data->id_empresa)) {
         throw new Exception("El codigo '$data->codigo' ya existe en otra propiedad.");
       }      

@@ -1561,7 +1561,6 @@ class Propiedades extends REST_Controller {
 
         // TIPO PROPIEDAD
         $tipo = $property->get_field("type");
-        echo $tipo->name."<br/>";
         $p->id_tipo_inmueble = 0;
         if ($tipo->name == "Departamento") $p->id_tipo_inmueble = 2;
         else if ($tipo->name == "Casa") $p->id_tipo_inmueble = 1;
@@ -1647,6 +1646,7 @@ class Propiedades extends REST_Controller {
             $r = $q->row();
             $p->id = $r->id;
             $p->id_empresa = $id_empresa;
+            $p->no_controlar_codigo = 1;
             $this->Propiedad_Model->update($p->id,$p);
             $cant_update++;
           } else {
