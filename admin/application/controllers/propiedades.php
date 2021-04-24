@@ -1483,7 +1483,7 @@ class Propiedades extends REST_Controller {
         "operation_types"=>0,
         "property_types"=>0,
         "price_from"=>0,
-        "price_to"=>99999999,
+        "price_to"=>9999999999,
       ));
       $search->do_search();
       $properties = $search->get_properties();
@@ -1561,6 +1561,7 @@ class Propiedades extends REST_Controller {
 
         // TIPO PROPIEDAD
         $tipo = $property->get_field("type");
+        echo $tipo."<br/>";
         $p->id_tipo_inmueble = 0;
         if ($tipo->name == "Departamento") $p->id_tipo_inmueble = 2;
         else if ($tipo->name == "Casa") $p->id_tipo_inmueble = 1;
