@@ -1510,6 +1510,9 @@ class Propiedades extends REST_Controller {
         $p->nombre = $property->get_field("publication_title");
         $p->codigo = $property->get_field("reference_code");
         $p->calle = $property->get_field("real_address");
+        $p->altura = "";
+        $p->piso = "";
+        $p->numero = "";
         $p->banios = $property->get_field("bathroom_amount");
         $p->texto = $property->get_field("description");
         $p->latitud = $property->get_field("geo_lat");
