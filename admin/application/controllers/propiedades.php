@@ -1663,7 +1663,7 @@ class Propiedades extends REST_Controller {
             $p->id = $r->id;
             $p->id_empresa = $id_empresa;
             $p->no_controlar_codigo = 1;
-            $this->Propiedad_Model->update($p->id,$p);
+            $this->Propiedad_Model->save($p);
             $cant_update++;
           } else {
             $p->fecha_ingreso = date("Y-m-d");
@@ -1678,10 +1678,11 @@ class Propiedades extends REST_Controller {
               "id_empresa"=>$id_empresa,
             ));
 
-            $p->id = $this->Propiedad_Model->insert($p);
+            $p->id = $this->Propiedad_Model->save($p);
             $cant_insert++;
           }
 
+          /*
           // Creamos el link
           $hash = md5($p->id);
           $link = "propiedad/".filename($p->nombre,"-",0)."-".$p->id."/";
@@ -1697,6 +1698,7 @@ class Propiedades extends REST_Controller {
               $k++;
             }
           }
+          */
 
         } catch(Exception $e) {
           $errores[] = $e->getMessage();
