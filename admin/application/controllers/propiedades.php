@@ -1572,12 +1572,13 @@ class Propiedades extends REST_Controller {
         else if ($tipo->name == "Oficina") $p->id_tipo_inmueble = 11;
         else {
           // Si no esta definica el tipo de propiedad, lo ponemos como error
-          $errores[] = print_r($property,TRUE)."<br/>";
+          $errores[] = "ERROR NO SE ENCUENTRA TIPO INMUEBLE: <br/>".print_r($property,TRUE)."<br/>";
         }
 
         // LOCALIDAD
         $location = $property->get_field("location");
         $p->id_localidad = 0;
+        $p->id_departamento = 0;
         $p->id_provincia = 1;
         $p->id_pais = 1;
         if ($location->name == "La Plata" || $location->name == "Villa Parque Sicardi" || $location->id == 26524) $p->id_localidad = 513;
@@ -1612,7 +1613,7 @@ class Propiedades extends REST_Controller {
 
         else {
           // Sino buscamos por nombre
-          $sql = "SELECT L.*, D.id_provincia, P.id_pais ";
+          $sql = "SELECT L.*, D.id_provincia, D.id AS id_departamento, P.id_pais ";
           $sql.= " FROM com_localidades L ";
           $sql.= " INNER JOIN com_departamentos D ON (L.id_departamento = D.id) ";
           $sql.= " INNER JOIN com_provincias P ON (D.id_provincia = P.id) ";
@@ -1621,6 +1622,7 @@ class Propiedades extends REST_Controller {
           if ($qq->num_rows() > 0) {
             $rr = $qq->row();
             $p->id_localidad = $rr->id;
+            $p->id_departamento = $rr->id_departamento;
             $p->id_provincia = $rr->id_provincia;
             $p->id_pais = $rr->id_pais;
           }
@@ -1628,8 +1630,7 @@ class Propiedades extends REST_Controller {
 
         // Si no se encontro una localidad, lo ponemos como error
         if (empty($p->id_localidad)) {
-          $errores[] = print_r($property,TRUE)."<br/>";
-          print_r($property);
+          $errores[] = "ERROR NO SE ENCUENTRA LOCALIDAD: <br/>".print_r($property,TRUE)."<br/>";
         }
 
         $images = $property->get_field("photos");
