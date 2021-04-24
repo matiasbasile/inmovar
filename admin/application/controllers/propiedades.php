@@ -1651,10 +1651,15 @@ class Propiedades extends REST_Controller {
           }
         }
 
+        $p->images = array();
         $images = $property->get_field("photos");
         if (sizeof($images)>0) {
           $ppal = $images[0];
           $p->path = $ppal->image;
+          foreach($images as $im) {
+            if (empty($im->image)) continue;
+            $p->images[] = $im->image;
+          }
         }
 
         // Consultamos si la propiedad ya esta subida
