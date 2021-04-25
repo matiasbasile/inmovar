@@ -1638,6 +1638,7 @@ class Propiedades extends REST_Controller {
         // Consultamos si la propiedad ya esta subida
         $sql = "SELECT * FROM inm_propiedades WHERE tokko_id = '".$property->get_field("id")."' AND id_empresa = $id_empresa ";
         $q = $this->db->query($sql);
+        $p->no_controlar_plan = 1;
         try {
           if ($q->num_rows()>0) {
             $r = $q->row();

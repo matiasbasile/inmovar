@@ -996,16 +996,20 @@ class Propiedad_Model extends Abstract_Model {
   function insert($data) {
 
     // Controlamos el plan elegido, si se llego al maximo
-    $control_plan = $this->controlar_plan($data->id_empresa);
-    if ($control_plan !== TRUE) {
-      throw new Exception($controlar_plan["mensaje"]);
-    }    
+    if (!isset($data->no_controlar_plan)) {
+      $control_plan = $this->controlar_plan($data->id_empresa);
+      if ($control_plan !== TRUE) {
+        throw new Exception($controlar_plan["mensaje"]);
+      }
+    }
 
     // Controlamos si el codigo ya existe con otra propiedad
-    if (!empty($data->codigo)) {
-      if ($this->existe_codigo($data->codigo,0,$data->id_empresa)) {
-        throw new Exception("El codigo '$data->codigo' ya existe.");
-      }      
+    if (!isset($data->no_controlar_codigo)) {
+      if (!empty($data->codigo)) {
+        if ($this->existe_codigo($data->codigo,0,$data->id_empresa)) {
+          throw new Exception("El codigo '$data->codigo' ya existe.");
+        }      
+      }
     }
 
     // Si no tiene codigo, le creamos uno
