@@ -1578,7 +1578,7 @@ class Propiedades extends REST_Controller {
         else if ($location->name == "Villa Gesell") $p->id_localidad = 951;
         else if ($location->name == "Necochea") $p->id_localidad = 655;
         else if ($location->name == "Mar De Ajo") $p->id_localidad = 599;
-        else if (mb_strtolower($location->name) == "punta del este") $p->id_localidad = 5499;
+        else if (strpos(mb_strtolower($location->short_location), "punta del este") !== FALSE) $p->id_localidad = 5499;
         else if ($location->name == "Los Hornos") $p->id_localidad = 5504;
         else if ($location->name == "Joaquin Gorina") $p->id_localidad = 401;
         else if ($location->name == "Lisandro Olmos Etcheverry") $p->id_localidad = 674;
