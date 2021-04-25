@@ -17,7 +17,7 @@
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu">
-                <% for (var i=0;i< Math.min(window.localidades.length,10); i++) { %>
+                <% for (var i=0;i< window.localidades.length; i++) { %>
                   <% var localidad = window.localidades[i] %>
                   <li><a href="javascript:void(0)" data-id="<%= localidad.id %>" data-nombre="<%= localidad.nombre %>" class="setear_localidad"><%= localidad.nombre %> (<%= localidad.cantidad %>)</a></li>
                 <% } %>
