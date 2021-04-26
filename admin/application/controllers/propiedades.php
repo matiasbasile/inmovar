@@ -31,6 +31,19 @@ class Propiedades extends REST_Controller {
     echo "TERMINO $cantidad";
   }
 
+  function arreglar_imagenes_repetidas() {
+    $sql = "";
+    $sql.= "DELETE t1 FROM inm_propiedades_images t1 ";
+    $sql.= "INNER JOIN inm_propiedades_images t2 ";
+    $sql.= "WHERE  ";
+    $sql.= "t1.id < t2.id AND  ";
+    $sql.= "t1.path = t2.path AND ";
+    $sql.= "t1.id_propiedad = t2.id_propiedad AND ";
+    $sql.= "t1.id_empresa = t2.id_empresa ";
+    $q = $this->db->query($sql);
+    echo "TERMINO";
+  }
+
   function arreglar_nombres() {
     $sql = "SELECT * FROM inm_propiedades ";
     $q = $this->db->query($sql);
