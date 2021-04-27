@@ -167,6 +167,7 @@ if ($empresa === FALSE) {
 
 // Si es un SITEMAP
 if (strpos($url,"sitemap.xml") !== FALSE) {
+  header('Content-Type: text/xml; charset=UTF-8');
   include("admin/sitemap.php");
   ob_end_flush();
   exit();
@@ -175,6 +176,7 @@ if (strpos($url,"sitemap.xml") !== FALSE) {
 // Si es ROBOTS.TXT
 if (strpos($url,"robots.txt") !== FALSE) {
   if (empty($empresa->seo_robots)) {
+    header('Content-Type: text/plain; charset=UTF-8');
     echo "User-agent: *\n";
     echo "Disallow: /admin/\n";
     echo "Disallow: /admin/*\n";
