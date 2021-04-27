@@ -20,34 +20,27 @@
     </div>
   </div>
 <% } else { %>
-  <div class=" wrapper-md ng-scope">
-    <h1 class="m-n h3"><i class="fa fa-cog icono_principal"></i><?php echo lang(array("es"=>"Configuraci&oacute;n","en"=>"Configuration")); ?>
-      / <b><?php echo lang(array("es"=>"Plantillas de Emails","en"=>"Email Templates")); ?></b>
-    </h1>
-  </div>
-  <div class="wrapper-md">
-    <div class="panel panel-default">
-      <div class="panel-heading clearfix">
-        <div class="row">
-          <div class="search_container col-lg-3 col-md-6"></div>
-          <div class="col-md-6 col-lg-offset-3 col-lg-6 text-right">
-            <a class="btn pull-right btn-info btn-addon" href="app/#email_template"><i class="fa fa-plus"></i>&nbsp;&nbsp;<?php echo lang(array("es"=>"Nuevo","en"=>"New")); ?>&nbsp;&nbsp;</a>
-          </div>
+  <div class="panel panel-default" style="border: none;">
+    <div class="panel-heading clearfix">
+      <div class="row">
+        <div class="search_container col-lg-3 col-md-6"></div>
+        <div class="col-md-6 col-lg-offset-3 col-lg-6 text-right">
+          <a class="btn pull-right btn-info btn-addon nuevo" href="javascript:void(0)"><i class="fa fa-plus"></i>&nbsp;&nbsp;<?php echo lang(array("es"=>"Nuevo","en"=>"New")); ?>&nbsp;&nbsp;</a>
         </div>
       </div>
-      <div class="panel-body">
-        <div class="table-responsive">
-          <table id="emails_templates_table" data-ordenable-table="email_template" data-ordenable-where="" class="table table-striped ordenable m-b-none default footable">
-            <thead>
-              <tr>
-                <th><?php echo lang(array("es"=>"Asunto","en"=>"Subject")); ?></th>
-                <th class="w25"></th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-            <tfoot class="pagination_container hide-if-no-paging"></tfoot>
-          </table>
-        </div>
+    </div>
+    <div class="panel-body">
+      <div class="table-responsive">
+        <table id="emails_templates_table" data-ordenable-table="email_template" data-ordenable-where="" class="table table-striped ordenable m-b-none default footable">
+          <thead>
+            <tr>
+              <th><?php echo lang(array("es"=>"Asunto","en"=>"Subject")); ?></th>
+              <th class="w25"></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+          <tfoot class="pagination_container hide-if-no-paging"></tfoot>
+        </table>
       </div>
     </div>
   </div>
@@ -117,11 +110,22 @@
   
   <% } else { %>
     <div class="panel panel-default">
-      <div class="panel-heading bold"><%= nombre %></div>
+      <div style="font-size: 14px;" class="panel-heading bold"><b><%= (id == undefined) ? "<?php echo lang(array("es"=>"Nueva plantilla","en"=>"New")); ?>":"<?php echo lang(array("es"=>"Editar plantilla","en"=>"Edit")); ?>" %></b></div>
       <div class="panel-body">
+        <div class="form-group">
+          <label for="emails_templates_nombre">Nombre</label>
+          <input type="text" name="nombre" value="<%= nombre %>"  id="emails_templates_nombre" class="form-control">
+        </div>
+        <% if (VOLVER_SUPERADMIN == 1) { %>
+          <div class="form-group">
+            <label for="emails_templates_clave">Key</label>
+            <input type="text" name="clave" value="<%= clave %>" id="emails_templates_clave" class="form-control">
+          </div>
+        <% } %>
+        <label for="emails_templates_texto">Texto</label>
         <textarea name="texto" id="emails_templates_texto"><%= texto %></textarea>
       </div>
-      <div class="panel-footer">
+      <div class="panel-footer tar">
         <button class="btn btn-success guardar"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
       </div>
     </div>
