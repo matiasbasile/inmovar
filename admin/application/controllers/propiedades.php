@@ -24,14 +24,13 @@ class Propiedades extends REST_Controller {
       "buscar_imagenes"=>1,
     ));
     foreach($list["results"] as $propiedad) {
-      foreach($propiedad->images as $img) {
-        $ss = explode($img, "/");
+      $sql = "SELECT * FROM inm_propiedades_images WHERE id_empresa = $id_empresa AND id_propiedad = $propiedad->id ";
+      $q = $this->db->query($sql);
+      foreach($q->result() as $r) {
+        $ss = explode($r->path, "/");
         $file = end($ss);
         $file = "uploads/$id_empresa/propiedades/$file";
         echo $file."<br/>";
-        // Guardamos el archivo
-        //grab_image($img,$file);
-        // Y actualizamos la base de datos
       }
     }
     echo "TERMINO";
