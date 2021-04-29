@@ -63,13 +63,21 @@
       return this;
     },
     editar: function() {
-      if (this.habilitar_seleccion) {
-        window.email_template_seleccionado = this.model;
-        $('.modal:last').modal('hide');
-      } else {
-        // Cuando editamos un elemento, indicamos a la vista que lo cargue en los campos
-        location.href="app/#email_template/"+this.model.id;
-      }
+      var template = new app.models.EmailTemplate({ "id": this.model.id });
+      template.fetch({
+        "success":function() {
+          var view = new app.views.EmailTemplateEditView({
+            model: template,
+            lightbox: 1,
+          });
+          crearLightboxHTML({
+            "html":view.el,
+            "width":700,
+            "height":500,
+          });
+          workspace.crear_editor("emails_templates_texto");
+        }
+      });
     },
     borrar: function(e) {
       if (confirmar("Realmente desea eliminar este elemento?")) {
@@ -124,7 +132,9 @@
   app.views.EmailsTemplatesTableView = app.mixins.View.extend({
 
     template: _.template($("#emails_templates_panel_template").html()),
-
+    events: {
+      "click .nuevo": "nuevo_template",
+    },
     initialize : function (options) {
 
       _.bindAll(this); // Para que this pueda ser utilizado en las funciones
@@ -177,7 +187,21 @@
         habilitar_seleccion: self.habilitar_seleccion,
       });
       $(this.el).find("tbody").append(view.render().el);
-    }
+    },
+
+    nuevo_template: function(){
+      var template = new app.models.EmailTemplate();
+      var view = new app.views.EmailTemplateEditView({
+        model: template,
+        lightbox: 1,
+      });
+      crearLightboxHTML({
+        "html":view.el,
+        "width":700,
+        "height":500,
+      });
+      workspace.crear_editor("emails_templates_texto");
+    },
 
   });
 })(app);
@@ -212,6 +236,7 @@
       if (this.options.permiso > 1) edicion = true;
       this.lightbox = (typeof this.options.lightbox != "undefined") ? this.options.lightbox : false;
       var obj = { "edicion": edicion, id:this.model.id, "lightbox":this.lightbox };
+      console.log(obj);
       $.extend(obj,this.model.toJSON());
       $(this.el).html(this.template(obj));
       return this;
@@ -257,6 +282,39 @@
       this.render();
     },
     
+  });
+
+})(app.views, app.models);
+
+// ============================================================
+// USUARIOS Y PERFILES
+
+(function ( views, models ) {
+
+  views.ConfiguracionEmailsView = app.mixins.View.extend({
+
+    template: _.template($("#configuracion_emails").html()),
+
+    myEvents: {
+    },
+
+    initialize: function(options) {
+      _.bindAll(this);
+      this.render();
+    },
+
+    render: function() {
+      var self = this;
+      $(this.el).html(this.template(this.model.toJSON()));
+
+      var usuariosView = new app.views.EmailsTemplatesTableView({
+        collection: new app.collections.EmailsTemplates(),
+      });
+      this.$("#emails_container").html(usuariosView.el);
+
+      return this;
+    },
+        
   });
 
 })(app.views, app.models);
