@@ -27,7 +27,7 @@ class Propiedades extends REST_Controller {
       $sql = "SELECT * FROM inm_propiedades_images WHERE id_empresa = $id_empresa AND id_propiedad = $propiedad->id ";
       $q = $this->db->query($sql);
       foreach($q->result() as $r) {
-        $ss = explode($r->path, "/");
+        $ss = explode("/",$r->path);
         $file = end($ss);
         $file = "uploads/$id_empresa/propiedades/$file";
         echo $file."<br/>";
