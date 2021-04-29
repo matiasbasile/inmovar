@@ -23,6 +23,7 @@ class Propiedades extends REST_Controller {
       "offset"=>999999,
       "buscar_imagenes"=>1,
     ));
+    $i=0;
     foreach($list["results"] as $propiedad) {
       $sql = "SELECT * FROM inm_propiedades_images WHERE id_empresa = $id_empresa AND id_propiedad = $propiedad->id ";
       $q = $this->db->query($sql);
@@ -30,10 +31,13 @@ class Propiedades extends REST_Controller {
         $ss = explode("/",$r->path);
         $file = end($ss);
         $file = "uploads/$id_empresa/propiedades/$file";
-        echo $file."<br/>";
+        grab_image($r->path,$file);
+        $sql = "UPDATE inm_propiedades_images SET path = '$file' WHERE id = $r->id AND id_propiedad = $propiedad->id AND id_empresa = $id_empresa ";
+        $this->db->query($sql);
+        $i++;
       }
     }
-    echo "TERMINO";
+    echo "TERMINO $i";
   }
 
   function arreglar_imagenes() {
