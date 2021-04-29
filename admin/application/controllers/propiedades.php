@@ -12,6 +12,31 @@ class Propiedades extends REST_Controller {
     $this->load->model('Propiedad_Model', 'modelo');
   }
 
+  // Esta funcion es un helper que baja las imagenes que estan en una URL del servidor
+  function bajar_imagenes_url() {
+    $id_empresa = 1164;
+    $this->load->helper("file_helper");
+    $this->load->model("Propiedad_Model");
+    $list = $this->Propiedad_Model->buscar(array(
+      "id_empresa"=>$id_empresa,
+      "limit"=>0,
+      "offset"=>999999,
+      "buscar_imagenes"=>1,
+    ));
+    foreach($list["results"] as $propiedad) {
+      foreach($propiedad->images as $img) {
+        $ss = explode($img, "/");
+        $file = end($ss);
+        $file = "uploads/$id_empresa/propiedades/$file";
+        echo $file."<br/>";
+        // Guardamos el archivo
+        //grab_image($img,$file);
+        // Y actualizamos la base de datos
+      }
+    }
+    echo "TERMINO";
+  }
+
   function arreglar_imagenes() {
     $cantidad = 0;
     $sql = "SELECT * FROM inm_propiedades WHERE path != '' ";
