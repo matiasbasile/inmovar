@@ -9,6 +9,41 @@ class Empresas extends REST_Controller {
     $this->load->model('Empresa_Model', 'modelo');
   }
 
+  function arreglar_red() {
+    $id_empresa = 43;
+    $sql = "SELECT * FROM empresas WHERE id != $id_empresa ";
+    $q = $this->db->query($sql);
+    foreach($q->result() as $r) {
+      
+      // A la empresa creada, le damos los permisos de red del resto de las empresas
+      $sql = "SELECT * FROM inm_permisos_red WHERE id_empresa = $id_empresa AND id_empresa_compartida = $r->id ";
+      $qq = $this->db->query($sql);
+      if ($qq->num_rows() > 0) {
+        $rr = $qq->row();
+        $sql = "UPDATE inm_permisos_red SET permiso_red = 1 ";
+        $sql.= "WHERE id = $rr->id AND id_empresa = $id_empresa AND id_empresa_compartida = $r->id ";
+      } else {
+        $sql = "INSERT INTO inm_permisos_red (id_empresa, id_empresa_compartida, permiso_red) VALUES (";
+        $sql.= " $id_empresa, $r->id, 1 )";
+      }
+      $this->db->query($sql);
+      
+      // Al resto de las empresas, le agregamos el permiso de red de la empresa creada
+      $sql = "SELECT * FROM inm_permisos_red WHERE id_empresa = $r->id AND id_empresa_compartida = $id_empresa ";
+      $qq = $this->db->query($sql);
+      if ($qq->num_rows() > 0) {
+        $rr = $qq->row();
+        $sql = "UPDATE inm_permisos_red SET permiso_red = 1 ";
+        $sql.= "WHERE id = $rr->id AND id_empresa = $r->id AND id_empresa_compartida = $id_empresa ";
+      } else {
+        $sql = "INSERT INTO inm_permisos_red (id_empresa, id_empresa_compartida, permiso_red) VALUES (";
+        $sql.= " $r->id, $id_empresa, 1 )";
+      }
+      $this->db->query($sql);
+    }
+    echo "TERMINO";
+  }
+
   function export($id_empresa = 0) {
     if ($id_empresa == 0) { echo gzdeflate("0"); exit(); }
     $sql = "SELECT A.* ";
