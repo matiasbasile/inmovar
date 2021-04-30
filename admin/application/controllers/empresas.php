@@ -10,6 +10,9 @@ class Empresas extends REST_Controller {
   }
 
   function arreglar_red() {
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
     $id_empresa = 43;
     $sql = "SELECT * FROM empresas WHERE id != $id_empresa ";
     $q = $this->db->query($sql);
