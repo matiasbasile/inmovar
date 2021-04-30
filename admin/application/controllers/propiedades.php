@@ -79,7 +79,7 @@ class Propiedades extends REST_Controller {
 
   function arreglar_nombres($id_empresa = 0) {
 
-    $sql = "SELECT * FROM inm_propiedades ";
+    $sql = "SELECT * FROM inm_propiedades WHERE 1=1 ";
     if (!empty($id_empresa)) $sql.= "AND id_empresa = $id_empresa ";
     $q = $this->db->query($sql);
     foreach($q->result() as $data) {
