@@ -77,8 +77,10 @@ class Propiedades extends REST_Controller {
     echo "TERMINO";
   }
 
-  function arreglar_nombres() {
+  function arreglar_nombres($id_empresa = 0) {
+
     $sql = "SELECT * FROM inm_propiedades ";
+    if (!empty($id_empresa)) $sql.= "AND id_empresa = $id_empresa ";
     $q = $this->db->query($sql);
     foreach($q->result() as $data) {
       $tipo_inmueble = "";
