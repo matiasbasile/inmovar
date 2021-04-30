@@ -1516,6 +1516,7 @@ class Propiedades extends REST_Controller {
         $sql.= "AND tokko_url != '' ";
         $this->db->query($sql);
       }
+      echo "CANTIDAD DE PROPIEDADES A IMPORTAR: ".sizeof($properties)."<br/>";
       foreach ($properties as $property) {
 
         $this->Log_Model->imprimir(array(
