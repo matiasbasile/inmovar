@@ -1,0 +1,51 @@
+<?php
+include_once("includes/init.php");
+$entrada = $entrada_model->get($id);
+$page_act = $entrada->id;
+?>  
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+  <?php include "includes/head.php "?>
+</head>
+<body>
+
+  <!-- Header -->
+  <?php include "includes/header.php "?>
+  <section class="page-title">
+    <div class="container">
+      <h1><?php echo $entrada->titulo ?></h1>
+    </div>
+  </section>
+
+
+  <section class="featured-properties pt-5">
+    <div class="container">
+      <div class="section-title">
+        <div class="text-center">
+          <div class="mb50"><img src="<?php echo $entrada->path ?>" class="contain"></div>
+          <h2>
+            <?php echo $entrada->titulo ?>
+          </h2>
+        </div>
+        
+      </div>
+      <p><?php echo $entrada->texto ?></p>
+      
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <?php include "includes/footer.php" ?>
+
+
+  <!-- Scripts -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/html5.min.js"></script>
+  <script src="assets/js/owl.carousel.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+  <script src="assets/js/scripts.js"></script>
+</body>
+</html>
