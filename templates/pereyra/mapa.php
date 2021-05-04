@@ -151,7 +151,11 @@ $vc_dormitorios= isset($get_params["dm"]) ? $get_params["dm"] : 0;
 <script src="assets/js/owl.carousel.min.js"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <script src="assets/js/scripts.js"></script>
-
+<script type="text/javascript">
+  $(window).on("load",function(){
+    $(".scroll-box").mCustomScrollbar();
+  });
+</script>
 <script type="text/javascript">
   function change_price (min,max) { 
     $('#vc_minimo').val(min);

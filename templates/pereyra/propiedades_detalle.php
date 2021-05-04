@@ -78,7 +78,7 @@ $page_act = $propiedad->tipo_operacion_link;
       <div class="owl-carousel" data-items="3" data-items-lg="3" data-items-md="2" data-margin="3" data-center="false" data-loop="flase" data-nav="true" data-dots="false">
         <?php foreach ($propiedad->images as $i) {  ?>
           <div class="item">
-            <a href="<?php echo $i ?>" class="fancybox"><img src="<?php echo $i ?>" alt="Image"></a>
+            <a href="<?php echo $i ?>" class="fancybox cover" data-fancybox="gallery"><img src="<?php echo $i ?>" alt="Image"></a>
           </div>
         <?php } ?>
       </div>
@@ -200,7 +200,7 @@ $page_act = $propiedad->tipo_operacion_link;
               <ul>
                 <li><a onclick="window.open(this.href, 'mywin','left=50,top=50,width=600,height=350,toolbar=0'); return false;" href="https://www.facebook.com/sharer.php?u=<?php echo urlencode(current_url()) ?>" target="_blank" ><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
                 <li><a target="_blank" href="https://api.whatsapp.com/send?text=<?php echo urlencode(current_url()) ?>"><i class="fab fa-whatsapp"></i></a></li>
-                <li><a href="javascript:void(0)" onclick="myFunction()"><i class="fas fa-link"></i></a></li>
+                <li><a href="mailto:?subject=<?php echo html_entity_decode($propiedad->nombre,ENT_QUOTES) ?>&body=<?php echo(current_url()) ?>"><i class="fas fa-link"></i></a></li>
               </ul>
             </div>
           </form>

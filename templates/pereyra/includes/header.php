@@ -19,8 +19,9 @@
             <li class="nav-item <?php echo ($page_act == "emprendimientos")?"active":"" ?>">
               <a class="nav-link" href="<?php echo mklink ("propiedades/emprendimientos/") ?>">Emprendimientos</a>
             </li>
-            <li class="nav-item <?php echo ($page_act == "consorcio")?"active":"" ?>">
-              <a class="nav-link" href="<?php echo mklink ("web/administracion/") ?>">Administración de Consorcio</a>
+            <li class="nav-item <?php echo ($page_act == "44796")?"active":"" ?>">
+              <?php $entrada = $entrada_model->get(44796)?>
+              <a class="nav-link" href="<?php echo mklink ($entrada->link) ?>">Administración de Consorcio</a>
             </li>
             <li class="nav-item <?php echo ($page_act == "contacto")?"active":"" ?>">
               <a class="nav-link" href="<?php echo mklink ("contacto/") ?>">Contacto</a>

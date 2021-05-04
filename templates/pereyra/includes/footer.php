@@ -66,8 +66,3 @@
 
 <!-- Return to Top -->
 <a href="javascript:" id="return-to-top"><span><i class="fa fa-chevron-up"></i></span></a>
-<script type="text/javascript">
-  $(window).on("load",function(){
-    $(".scroll-box").mCustomScrollbar();
-  });
-</script>

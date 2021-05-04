@@ -1345,6 +1345,7 @@ header {
 
 .my-form-contact { margin: 0 200px; padding-top: 60px }
 .contain { object-fit: contain; height: 500px; width: 100% }
+.cover { object-fit: cover; height: 400px; width: 100% }
 /* Responsive Css */
 @media screen and (max-width: 1799px) {
   .navbar {
@@ -1537,6 +1538,8 @@ header {
 @media screen and (max-width: 767px) {
   .my-form-contact { margin: 0 auto; padding-top: 30px}
   .contain  { height: 300px; }
+  .cover { object-fit: cover; height: 300px; width: 100% }
+
   .navbar-expand-lg .navbar-collapse {
     width: 370px;
   }

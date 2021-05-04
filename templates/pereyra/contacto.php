@@ -169,5 +169,10 @@ $page_act = "contacto";
      }).addTo(mymap);
     });
   </script>
+  <script type="text/javascript">
+  $(window).on("load",function(){
+    $(".scroll-box").mCustomScrollbar();
+  });
+</script>
 </body>
 </html>

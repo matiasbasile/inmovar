@@ -161,6 +161,7 @@
     </div>
     <div class="row">
       <?php $propiedades = $propiedad_model->get_list(array("offset"=>6))?>
+      <?php print_r($propiedades)?>'
       <div class="col-xl-4 col-md-6">
         <div class="list-item">
           <div class="img-block"><a href="<?php echo ($p->link_propiedad) ?>">
@@ -221,6 +222,11 @@
 <script src="assets/js/owl.carousel.min.js"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <script src="assets/js/scripts.js"></script>
+<script type="text/javascript">
+  $(window).on("load",function(){
+    $(".scroll-box").mCustomScrollbar();
+  });
+</script>
 <script type="text/javascript">
   function filtrar() { 
     var link = "<?php echo mklink("propiedades/")?>";

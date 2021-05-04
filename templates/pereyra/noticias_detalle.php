@@ -23,7 +23,9 @@ $page_act = $entrada->id;
     <div class="container">
       <div class="section-title">
         <div class="text-center">
-          <div class="mb50"><img src="<?php echo $entrada->path ?>" class="contain"></div>
+          <?php if (!empty($entrada->path)) {   ?>
+            <div class="mb50"><img src="<?php echo $entrada->path ?>" class="contain"></div>
+          <?php } ?>
           <h2>
             <?php echo $entrada->titulo ?>
           </h2>
@@ -47,5 +49,10 @@ $page_act = $entrada->id;
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
   <script src="assets/js/scripts.js"></script>
+  <script type="text/javascript">
+  $(window).on("load",function(){
+    $(".scroll-box").mCustomScrollbar();
+  });
+</script>
 </body>
 </html>
