@@ -1530,7 +1530,10 @@ class Propiedades extends REST_Controller {
         $property->id_empresa = $id_empresa;
         $p = new stdClass();
         $p->nombre = $property->get_field("publication_title");
+        
         $p->codigo = $property->get_field("reference_code");
+        $p->codigo = preg_replace("/[^0-9.]/", "", $p->codigo);
+
         $p->calle = $property->get_field("real_address");
         $p->altura = "";
         $p->piso = "";
@@ -1707,10 +1710,10 @@ class Propiedades extends REST_Controller {
             if ($p->id_tipo_operacion == 1) $p->compartida = 1;
 
             // Problema: El codigo de tokko es alfanumerico, y al convertirse en int da 0
-            $p->codigo_tokko = $p->codigo;
-            $p->codigo = $this->Propiedad_Model->next(array(
-              "id_empresa"=>$id_empresa,
-            ));
+            // $p->codigo_tokko = $p->codigo;
+            // $p->codigo = $this->Propiedad_Model->next(array(
+            //   "id_empresa"=>$id_empresa,
+            // ));
 
             $p->id = $this->Propiedad_Model->save($p);
             $cant_insert++;
