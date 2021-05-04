@@ -6,12 +6,12 @@ $page_act = $entrada->id;
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
-  <?php include "includes/head.php "?>
+  <?php include "includes/head.php" ?>
 </head>
 <body>
 
   <!-- Header -->
-  <?php include "includes/header.php "?>
+  <?php include "includes/header.php" ?>
   <section class="page-title">
     <div class="container">
       <h1><?php echo $entrada->titulo ?></h1>

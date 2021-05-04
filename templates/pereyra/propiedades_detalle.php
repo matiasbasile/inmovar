@@ -42,12 +42,12 @@ $page_act = $propiedad->tipo_operacion_link;
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
-  <?php include "includes/head.php "?>
+  <?php include "includes/head.php" ?>
 </head>
 <body>
 
   <!-- Header -->
-  <?php include "includes/header.php "?>
+  <?php include "includes/header.php" ?>
 
   <section class="listing-detail">
     <div class="container">
@@ -59,7 +59,7 @@ $page_act = $propiedad->tipo_operacion_link;
           </div>
         </div>
         <div class="col-lg-6">
-          <h4><?php echo ($propiedad->precio != 0)?$propiedad->precio:"Consultar" ?></h4>
+          <h4><?php echo $propiedad->precio ?></h4>
           <ul class="listinfo">
             <li>
               <img src="assets/images/icon4.png" alt="Icon"> <?php echo ($propiedad->dormitorios != 0)?$propiedad->dormitorios:"-" ?> Habitaci<?php echo ($propiedad->dormitorios > 1)?"ones":"ón" ?>

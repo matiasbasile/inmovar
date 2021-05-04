@@ -145,7 +145,7 @@ $vc_dormitorios= isset($get_params["dm"]) ? $get_params["dm"] : 0;
                   <?php echo ($p->id_tipo_operacion == 2)?"En Alquiler":"" ?>
                   <?php echo ($p->id_tipo_operacion == 4)?"Emprendimientos":"" ?>
                 </div>
-                <big><?php echo ($p->precio == 0 )?"Consultar":$p->precio ?></big>
+                <big><?php echo $p->precio ?></big>
               </div>
               <div class="bottom-item">
                 <h3><?php echo $p->nombre ?></h3>

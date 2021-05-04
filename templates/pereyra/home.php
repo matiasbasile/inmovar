@@ -14,7 +14,7 @@
 <section class="top-banner">  
   <div class="owl-carousel" data-items="1" data-margin="0" data-loop="true" data-nav="false" data-dots="true">
     <?php foreach ($slides as $s) {   ?>
-      <div class="item" style="background: url(/admin/<?php echo $s->Path ?>) no-repeat 0 0; background-size: cover">
+      <div class="item" style="background: url(/admin/<?php echo $s->path ?>) no-repeat 0 0; background-size: cover">
       </div>
     <?php } ?>
   </div>
@@ -91,7 +91,7 @@
                   <?php echo ($p->id_tipo_operacion == 2)?"En Alquiler":"" ?>
                   <?php echo ($p->id_tipo_operacion == 4)?"Emprendimientos":"" ?>
                 </div>
-                <big><?php echo ($p->precio == 0 )?"Consultar":$p->precio ?></big>
+                <big><?php echo $p->precio ?></big>
               </div>
               <div class="bottom-item">
                 <h3><?php echo $p->nombre ?></h3>
@@ -172,7 +172,7 @@
                 <?php echo ($p->id_tipo_operacion == 2)?"En Alquiler":"" ?>
                 <?php echo ($p->id_tipo_operacion == 4)?"Emprendimientos":"" ?>
               </div>
-              <big><?php echo ($p->precio == 0 )?"Consultar":$p->precio ?></big>
+              <big><?php echo $p->precio ?></big>
             </div>
             <div class="bottom-item">
               <h3><?php echo $p->nombre ?></h3>
@@ -194,22 +194,22 @@
 </section>
 
 <!-- Our Partners -->
-<section class="our-partners">
-  <div class="container">
-    <div class="owl-carousel" data-items="5" data-items-lg="3" data-items-md="2" data-items-sm="2"  data-margin="20" data-loop="true" data-nav="true" data-dots="false">
-      <?php $logos = $entrada_model->get(44791)?>
-      <?php foreach ($logos->images as $i) { ?>
-        <div class="item">
-          <div class="logo-wrap">
-            <img src="<?php echo $i ?>" alt="Logo">
+<?php $logos = $entrada_model->get(44795)?>
+<?php if (!empty($logos)) {  ?>
+  <section class="our-partners">
+    <div class="container">
+      <div class="owl-carousel" data-items="5" data-items-lg="3" data-items-md="2" data-items-sm="2"  data-margin="20" data-loop="true" data-nav="true" data-dots="false">
+        <?php foreach ($logos->images as $i) { ?>
+          <div class="item">
+            <div class="logo-wrap">
+              <img src="<?php echo $i ?>" alt="Logo">
+            </div>
           </div>
+        <?php } ?>
         </div>
-      <?php } ?>
-      
       </div>
-    </div>
-  </div>
-</section>
+  </section>
+<?php } ?>
 
 <!-- Footer -->
 <?php include "includes/footer.php" ?>
