@@ -210,43 +210,45 @@ $page_act = $propiedad->tipo_operacion_link;
   </section>
 
   <!-- Recently Added -->
-  <section class="featured-properties recently-added pt-5 slider-properties">
-    <div class="container">
-      <div class="section-title">
-        <h2>Propiedades Similares</h2>
-        <span>Estas son algunas otras propiedades que podrían interesarte</span>
-      </div>
-      <div class="owl-carousel" data-items="3" data-items-lg="2" data-items-md="2" data-margin="0" data-center="false" data-loop="true" data-nav="true" data-dots="true">
-        <?php foreach ($propiedad->relacionados as $p) { ?>
-          <div class="item">
-            <div class="list-item">
-              <img src="/admin/<?php echo $p->path ?>" alt="Property Img">
-              <div class="overlay-block">
-                <div class="top-item">
-                  <div class="tag <?php echo ($p->id_tipo_operacion == 4)?"dark-blue":($p->id_tipo_operacion ==2)?"light-blue":"" ?>">
-                    <?php echo ($p->id_tipo_operacion == 1)?"En Venta":"" ?>
-                    <?php echo ($p->id_tipo_operacion == 2)?"En Alquiler":"" ?>
-                    <?php echo ($p->id_tipo_operacion == 4)?"Emprendimientos":"" ?>
+  <?php if (sizeof($propiedad->relacionados) > 0) {  ?>
+    <section class="featured-properties recently-added pt-5 slider-properties">
+      <div class="container">
+        <div class="section-title">
+          <h2>Propiedades Similares</h2>
+          <span>Estas son algunas otras propiedades que podrían interesarte</span>
+        </div>
+        <div class="owl-carousel" data-items="3" data-items-lg="2" data-items-md="2" data-margin="0" data-center="false" data-loop="true" data-nav="true" data-dots="true">
+          <?php foreach ($propiedad->relacionados as $p) { ?>
+            <div class="item">
+              <div class="list-item">
+                <img src="/admin/<?php echo $p->path ?>" alt="Property Img">
+                <div class="overlay-block">
+                  <div class="top-item">
+                    <div class="tag <?php echo ($p->id_tipo_operacion == 4)?"dark-blue":($p->id_tipo_operacion ==2)?"light-blue":"" ?>">
+                      <?php echo ($p->id_tipo_operacion == 1)?"En Venta":"" ?>
+                      <?php echo ($p->id_tipo_operacion == 2)?"En Alquiler":"" ?>
+                      <?php echo ($p->id_tipo_operacion == 4)?"Emprendimientos":"" ?>
+                    </div>
+                    <big><?php echo ($p->precio == 0 )?"Consultar":$p->precio ?></big>
                   </div>
-                  <big><?php echo ($p->precio == 0 )?"Consultar":$p->precio ?></big>
+                  <div class="bottom-item">
+                    <h3><?php echo $p->nombre ?></h3>
+                    <span><?php echo $p->direccion_completa ?></span>
+                    <ul>
+                      <li>Habitaciones: <small><?php echo ($p->dormitorios != "0")?$p->dormitorios:"-" ?></small></li>
+                      <li>Baños: <small><?php echo ($p->banios != "0")?$p->banios:"-" ?></small></li>
+                      <li>Metros: <small><?php echo ($p->superficie_total != "0")?$p->superficie_total:"-" ?></small></li>
+                    </ul>
+                  </div>
+                  <a class="plus" href="<?php echo ($p->link_propiedad) ?>"><img src="assets/images/plus-icon.png" alt="Plus Icon"></a>
                 </div>
-                <div class="bottom-item">
-                  <h3><?php echo $p->nombre ?></h3>
-                  <span><?php echo $p->direccion_completa ?></span>
-                  <ul>
-                    <li>Habitaciones: <small><?php echo ($p->dormitorios != "0")?$p->dormitorios:"-" ?></small></li>
-                    <li>Baños: <small><?php echo ($p->banios != "0")?$p->banios:"-" ?></small></li>
-                    <li>Metros: <small><?php echo ($p->superficie_total != "0")?$p->superficie_total:"-" ?></small></li>
-                  </ul>
-                </div>
-                <a class="plus" href="<?php echo ($p->link_propiedad) ?>"><img src="assets/images/plus-icon.png" alt="Plus Icon"></a>
               </div>
             </div>
-          </div>
-        <?php } ?>
+          <?php } ?>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  <?php } ?>
 
   <!-- Footer -->
   <?php include "includes/footer.php" ?>

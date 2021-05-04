@@ -14,7 +14,7 @@
 <section class="top-banner">  
   <div class="owl-carousel" data-items="1" data-margin="0" data-loop="true" data-nav="false" data-dots="true">
     <?php foreach ($slides as $s) {   ?>
-      <div class="item" style="background: url(/admin/<?php echo $s->path ?>) no-repeat 0 0; background-size: cover">
+      <div class="item" style="background: url(<?php echo $s->path ?>) no-repeat 0 0; background-size: cover">
       </div>
     <?php } ?>
   </div>
@@ -161,7 +161,6 @@
     </div>
     <div class="row">
       <?php $propiedades = $propiedad_model->get_list(array("offset"=>6))?>
-      <?php print_r($propiedades)?>'
       <div class="col-xl-4 col-md-6">
         <div class="list-item">
           <div class="img-block"><a href="<?php echo ($p->link_propiedad) ?>">
