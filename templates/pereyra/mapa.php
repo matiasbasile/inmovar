@@ -89,15 +89,15 @@ $vc_dormitorios= isset($get_params["dm"]) ? $get_params["dm"] : 0;
         </select>
       </div>
       <div class="selectbox smallbox">
-        <!-- <select class="form-control">
-          <option>Precios</option>
-            <option <?php echo ($vc_maximo == "25000" && $vc_minimo == "0")?"selected":"" ?> onchange="change_price('0','25000')">Hasta 25.000</option>
-            <option <?php echo ($vc_maximo == "50000" && $vc_minimo == "25000")?"selected":"" ?> onchange="change_price('25000','50000')">25.000 a 50.000</option>
-            <option <?php echo ($vc_maximo == "75000" && $vc_minimo == "50000")?"selected":"" ?> onchange="change_price('50000','75000')">50.000 a 75.000</option>
-            <option <?php echo ($vc_maximo == "100000" && $vc_minimo == "75000")?"selected":"" ?> onchange="change_price('75000','100000')">75.000 a 100.000</option>
-            <option <?php echo ($vc_maximo == "150000" && $vc_minimo == "100000")?"selected":"" ?> onchange="change_price('100000','150000')">100.000 a 150.000</option>
-            <option <?php echo ($vc_maximo == "" && $vc_minimo == "150000")?"selected":"" ?> onchange="change_price('150000','')">Más de 150.000</option>
-        </select> -->
+        <select class="form-control precios-select">
+          <option data-max="0" data-min="0">Precios</option>
+          <option <?php echo ($vc_maximo == "25000" && $vc_minimo == "0")?"selected":"" ?> data-max="25000" data-min="0">Hasta 25.000</option>
+          <option <?php echo ($vc_maximo == "50000" && $vc_minimo == "25000")?"selected":"" ?> data-max="50000" data-min="25000">25.000 a 50.000</option>
+          <option <?php echo ($vc_maximo == "75000" && $vc_minimo == "50000")?"selected":"" ?> data-max="75000" data-min="50000">50.000 a 75.000</option>
+          <option <?php echo ($vc_maximo == "100000" && $vc_minimo == "75000")?"selected":"" ?> data-max="100000" data-min="75000">75.000 a 100.000</option>
+          <option <?php echo ($vc_maximo == "150000" && $vc_minimo == "100000")?"selected":"" ?> data-max="150000" data-min="100000">100.000 a 150.000</option>
+          <option <?php echo ($vc_maximo == "" && $vc_minimo == "150000")?"selected":"" ?> data-max="" data-min="150000">Más de 150.000</option>
+        </select>
       </div>
       <a href="<?php echo mklink ("mapa/$vc_link_tipo_operacion/") ?>" class="btn btn-red">Limpiar Filtros</a>
     </form>
@@ -137,7 +137,7 @@ $vc_dormitorios= isset($get_params["dm"]) ? $get_params["dm"] : 0;
 </section>
 <?php if ($vc_total_resultados > 0) {  ?>
 
-<div id="map" style="min-height: 460px"></div>
+<div id="map" style="min-height: 520px; margin: 0 0 100px"></div>
 <?php } ?>
 
 <!-- Footer -->
@@ -157,11 +157,15 @@ $vc_dormitorios= isset($get_params["dm"]) ? $get_params["dm"] : 0;
   });
 </script>
 <script type="text/javascript">
-  function change_price (min,max) { 
+  $('.precios-select').change(function(){
+    var min = $(this).find(':selected').data('min');
+    var max = $(this).find(':selected').data('max');
     $('#vc_minimo').val(min);
     $('#vc_maximo').val(max);
     enviar_buscador_propiedades()
-  }
+  });
+
+
   function enviar_orden() { 
     $("#orden_form").submit();
   }

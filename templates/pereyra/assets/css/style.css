@@ -129,7 +129,12 @@ figure {
   font-family: 'Arial Rounded MT Bold';
   color: #4b4b4b;
 }
-
+.section-title p { 
+display: block;
+font-size: 18px;
+color: #4b4b4b;
+line-height: normal;
+font-weight: 500; }
 /* Buttons CSS */
 .btn {
   min-width: 217px;
@@ -1346,7 +1351,8 @@ header {
 .my-form-contact { margin: 0 200px; padding-top: 60px }
 .contain { object-fit: contain; height: 500px; width: 100% }
 .cover { object-fit: cover; height: 400px; width: 100% }
-.leaflet { color: #ed3237; }
+.leaflet-container a { color: #ed3237 !important;  }
+.leaflet-container h6 {  margin: 20px 0 0 0 }
 .mapa-img-path  {     max-width: 100%;
     object-fit: contain;
     height: 200px;
