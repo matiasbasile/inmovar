@@ -30,10 +30,8 @@ $page_act = $entrada->id;
             <?php echo $entrada->titulo ?>
           </h2>
         </div>
-        
+        <span><?php echo $entrada->texto ?></span>
       </div>
-      <span><?php echo $entrada->texto ?></span>
-      
     </div>
   </section>
 

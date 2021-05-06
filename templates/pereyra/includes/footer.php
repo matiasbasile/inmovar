@@ -17,7 +17,8 @@
             <li><a href="<?php echo mklink ("/") ?>">Inicio</a></li>
             <li><a href="<?php echo mklink ("propiedades/emprendimientos/") ?>">Emprendimientos</a></li>
             <li><a href="<?php echo mklink ("propiedades/ventas/") ?>">Comprar</a></li>
-            <li><a href="<?php echo mklink ("web/consorcio/") ?>">Administración de Consorcios</a></li>
+            <?php $entrada = $entrada_model->get(44796)?>
+            <li><a href="<?php echo mklink ($entrada->link) ?>">Administración de Consorcios</a></li>
             <li><a href="<?php echo mklink ("propiedades/alquileres/") ?>">Alquilar</a></li>
             <li><a href="<?php echo mklink ("contacto/") ?>">Contacto</a></li>
           </ul>
