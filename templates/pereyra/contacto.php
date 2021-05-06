@@ -26,47 +26,77 @@ $page_act = "contacto";
           <h2>
             Contacto
           </h2>
-          <p>Completa el siguiente formulario y nos comunicaremos a la brevedad.</p>
-          <form onsubmit="return enviar_contacto()" class="my-form-contact">
+          <?php $t = $web_model->get_text("contact-span-text","Completa el siguiente formulario y nos comunicaremos a la brevedad.")?>
+          <span class="editable mb40" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>">
+            <?php echo $t->plain_text ?>
+          </span>
+          <div class="general-information">
             <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <input type="text" name="Nombre *" class="form-control" id="contacto_nombre" placeholder="Nombre *">
+              <div class="col-lg-4 col-md-6">
+                <div class="item">
+                  <i class="fa fa-map-marker"></i>
+                  <h3>DIRECCIÓN</h3>
+                  <a href="javascript:void(0)"><?php echo $empresa->direccion ?> <br><?php echo $empresa->ciudad ?></a>
                 </div>
               </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <input type="email" name="Email  *" class="form-control" id="contacto_email" placeholder="Email  *">
+              <div class="col-lg-4 col-md-6">
+                <div class="item">
+                  <i class="fa fa-calendar"></i>
+                  <h3>HORARIOS</h3>
+                  <span style="max-width: 320px; margin: 0 auto"><?php echo $empresa->horario ?></span>
                 </div>
               </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <input type="text" name="Whatsapp (Cod. área sin 0 ni 15)" class="form-control" id="contacto_telefono" placeholder="Whatsapp (Cod. área sin 0 ni 15)">
+              <div class="col-lg-4 col-md-12">
+                <div class="item">
+                  <i class="fa fa-phone"></i>
+                  <h3>CONTACTO</h3>
+                  <a class="phone" href="tel:<?php echo $empresa->telefono ?> "><?php echo $empresa->telefono ?> </a><br>
+                  <a class="email" href="mailto:<?php echo $empresa->email ?>"><?php echo $empresa->email ?></a>
                 </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <select id="contacto_asunto" name="asunto" class="form-control">
-                    <option value="Contacto desde web">Asunto</option>
-                    <?php $asuntos = explode(";;;",$empresa->asuntos_contacto);
-                    foreach($asuntos as $a) { ?>
-                      <option><?php echo $a ?></option>
-                    <?php } ?>
-                  </select>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="form-group">
-                  <textarea class="form-control" id="contacto_mensaje" placeholder="Escriba aquí su mensaje"></textarea>
-                </div>
-              </div>
-              <div class="col-md-12 text-center">
-                <button type="submit" class="btn btn-red" id="contacto_submit">Enviar ahora</button>
               </div>
             </div>
-          </form>
+          </div>
+          <div class="form-inner">
+            <form onsubmit="return enviar_contacto()" class="my-form-contact">
+              <div class="row">
+                <div class="col-md-6 pb0">
+                  <div class="form-group">
+                    <input type="text" name="Nombre *" class="form-control" id="contacto_nombre" placeholder="Nombre *">
+                  </div>
+                </div>
+                <div class="col-md-6 pb0">
+                  <div class="form-group">
+                    <input type="email" name="Email  *" class="form-control" id="contacto_email" placeholder="Email  *">
+                  </div>
+                </div>
+                <div class="col-md-6 pb0">
+                  <div class="form-group">
+                    <input type="text" name="Whatsapp (Cod. área sin 0 ni 15)" class="form-control" id="contacto_telefono" placeholder="Whatsapp (Cod. área sin 0 ni 15)">
+                  </div>
+                </div>
+                <div class="col-md-6 pb0">
+                  <div class="form-group">
+                    <select id="contacto_asunto" name="asunto" class="form-control">
+                      <option value="Contacto desde web">Asunto</option>
+                      <?php $asuntos = explode(";;;",$empresa->asuntos_contacto);
+                      foreach($asuntos as $a) { ?>
+                        <option><?php echo $a ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-12 pb0">
+                  <div class="form-group">
+                    <textarea class="form-control" id="contacto_mensaje" placeholder="Escriba aquí su mensaje"></textarea>
+                  </div>
+                </div>
+                <div class="col-md-12 text-center top-banner">
+                  <button type="submit" class="btn btn-red" id="contacto_submit">Enviar ahora</button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
-        
       </div>
     </div>
   </section>

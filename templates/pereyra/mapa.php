@@ -218,13 +218,13 @@ $(document).ready(function(){
         '<div class="feature-item" style="padding: 0px;">'+
           '<div class="feature-image">'+
             '<a href=\"<?php echo mklink($p->link) ?>\">'+
-              '<img style="max-width:100%" src=\"<?php echo $path ?>\"/>'+
+              '<img clas="mapa-img-path" src=\"<?php echo $path ?>\"/>'+
             '</a>'+
           '</div>'+
           '<div class="tab_list_box_content">'+
             '<h6><a href=\"<?php echo mklink($p->link) ?>\"><?php echo ($p->nombre) ?></a></h6>'+
             '<p>'+
-              '<img src="images/locate_icon.png" alt="locate_icon">'+
+              '<img class="map-logo" src="assets/images/map-logo.png" alt="locate_icon">'+
               '<?php echo $p->direccion_completa ?>'+
               '<br><span class="color_span"><?php echo $p->localidad ?></span>'+
             '</p>'+

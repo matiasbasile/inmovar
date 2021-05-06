@@ -1346,7 +1346,55 @@ header {
 .my-form-contact { margin: 0 200px; padding-top: 60px }
 .contain { object-fit: contain; height: 500px; width: 100% }
 .cover { object-fit: cover; height: 400px; width: 100% }
+.leaflet { color: #ed3237; }
+.mapa-img-path  {     max-width: 100%;
+    object-fit: contain;
+    height: 200px;
+    margin: 20px auto;
+    width: 100%;
+    text-align: center; }
+.map-logo { width: 15px; margin-right: 8px }
+#mapid {     border-radius: 10px;   filter: grayscale(100%); }
 /* Responsive Css */
+.general-information {
+  padding: 43px 0;
+  border-bottom: 2px solid #f1f1f1;
+  border-top: 2px solid #f1f1f1;
+}
+.general-information .item {
+  text-align: center;
+}
+.general-information svg { width: 42px !important; height: 40px }
+.general-information .item img {
+  width: 42px;
+}
+.general-information .item h3 {
+  margin: 10px 0 20px;
+  color: #232323;
+  font-size: 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.general-information .item a, .general-information .item span, .order-popup .item span {
+  color: #b3b3b3;
+  font-size: 20px;
+  font-weight: 300;
+}
+.general-information .item a:hover {
+  color: #000;
+}
+.general-information .item span, .order-popup .item span {
+  display: block;
+}
+.general-information .item .phone {
+  color: #ed3237;
+}
+.general-information .item .phone:hover {
+  color: #000;
+}
+.general-information .item .email {
+  color: #2b66b9;
+}
 @media screen and (max-width: 1799px) {
   .navbar {
     padding: 0 0 0 40px;

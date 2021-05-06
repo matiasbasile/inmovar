@@ -49,7 +49,7 @@ $page_act = $propiedad->tipo_operacion_link;
   <!-- Header -->
   <?php include "includes/header.php" ?>
 
-  <section class="listing-detail">
+  <section class="listing-detail pb-5">
     <div class="container">
       <div class="row list-header">
         <div class="col-lg-6">
@@ -78,7 +78,7 @@ $page_act = $propiedad->tipo_operacion_link;
       <div class="owl-carousel" data-items="3" data-items-lg="3" data-items-md="2" data-margin="3" data-center="false" data-loop="flase" data-nav="true" data-dots="false">
         <?php foreach ($propiedad->images as $i) {  ?>
           <div class="item">
-            <a href="<?php echo $i ?>" class="fancybox cover" data-fancybox="gallery"><img src="<?php echo $i ?>" alt="Image"></a>
+            <a href="<?php echo $i ?>" class="fancybox" data-fancybox="gallery"><img src="<?php echo $i ?>" class="cover" alt="Image"></a>
           </div>
         <?php } ?>
       </div>
@@ -190,7 +190,7 @@ $page_act = $propiedad->tipo_operacion_link;
                 <input type="tel" class="form-control" id="contacto_telefono" placeholder="WhatsApp (sin 0 ni 15) *">
               </div>
               <div class="form-group">
-                <textarea class="form-control" id="contacto_mensaje" placeholder="Estoy interesado en “Duplex en venta en Ringuelet Cod: 1234”"></textarea>
+                <textarea class="form-control" id="contacto_mensaje" placeholder="Estoy interesado en “<?php echo $propiedad->nombre ?> Cod: <?php echo $propiedad->codigo ?>"></textarea>
               </div>
               <button type="submit" id="contacto_submit" class="btn">enviar por email</button>
               <a href="javascript:void(0)" onclick="enviar_contacto_whatsapp()" class="btn whatsbtn"><img src="assets/images/whatsicon.png" alt="whatsicon">enviar whatsapp</a>
@@ -211,7 +211,7 @@ $page_act = $propiedad->tipo_operacion_link;
 
   <!-- Recently Added -->
   <?php if (sizeof($propiedad->relacionados) > 0) {  ?>
-    <section class="featured-properties recently-added pt-5 slider-properties">
+    <section class="featured-properties recently-added slider-properties">
       <div class="container">
         <div class="section-title">
           <h2>Propiedades Similares</h2>

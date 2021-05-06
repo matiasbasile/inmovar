@@ -32,7 +32,7 @@ $page_act = $entrada->id;
         </div>
         
       </div>
-      <p><?php echo $entrada->texto ?></p>
+      <span><?php echo $entrada->texto ?></span>
       
     </div>
   </section>
