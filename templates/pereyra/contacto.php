@@ -35,23 +35,23 @@ $page_act = "contacto";
               <div class="col-lg-4 col-md-6">
                 <div class="item">
                   <i class="fa fa-map-marker"></i>
-                  <h3>DIRECCIÓN</h3>
+                  <h3>Dirección</h3>
                   <a href="javascript:void(0)"><?php echo $empresa->direccion ?> <br><?php echo $empresa->ciudad ?></a>
                 </div>
               </div>
               <div class="col-lg-4 col-md-6">
                 <div class="item">
                   <i class="fa fa-calendar"></i>
-                  <h3>HORARIOS</h3>
+                  <h3>Horarios</h3>
                   <span style="max-width: 320px; margin: 0 auto"><?php echo $empresa->horario ?></span>
                 </div>
               </div>
               <div class="col-lg-4 col-md-12">
                 <div class="item">
                   <i class="fa fa-phone"></i>
-                  <h3>CONTACTO</h3>
-                  <a class="phone" href="tel:<?php echo $empresa->telefono ?> "><?php echo $empresa->telefono ?> </a><br>
-                  <a class="email" href="mailto:<?php echo $empresa->email ?>"><?php echo $empresa->email ?></a>
+                  <h3>Contacto</h3>
+                  <a href="tel:<?php echo $empresa->telefono ?> "><?php echo $empresa->telefono ?> </a><br>
+                  <a href="mailto:<?php echo $empresa->email ?>"><?php echo $empresa->email ?></a>
                 </div>
               </div>
             </div>

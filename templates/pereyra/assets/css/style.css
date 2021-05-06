@@ -1370,7 +1370,7 @@ header {
 .general-information .item {
   text-align: center;
 }
-.general-information svg { width: 42px !important; height: 40px }
+.general-information svg { width: 42px !important; height: 40px;color: #ed3237 }
 .general-information .item img {
   width: 42px;
 }
@@ -1382,7 +1382,7 @@ header {
   text-transform: uppercase;
 }
 .general-information .item a, .general-information .item span, .order-popup .item span {
-  color: #b3b3b3;
+  color: #7e7e7e;
   font-size: 20px;
   font-weight: 300;
 }
@@ -1701,6 +1701,9 @@ header {
     max-width: 100%;
   }
 }
+@media screen and (min-width: 2000px) { 
+  .cover { height: 600px;  }
+ }
 
 @media screen and (max-width: 479px) {
   .navbar-expand-lg .navbar-collapse {

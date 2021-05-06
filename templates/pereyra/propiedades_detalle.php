@@ -190,7 +190,7 @@ $page_act = $propiedad->tipo_operacion_link;
                 <input type="tel" class="form-control" id="contacto_telefono" placeholder="WhatsApp (sin 0 ni 15) *">
               </div>
               <div class="form-group">
-                <textarea class="form-control" id="contacto_mensaje" placeholder="Estoy interesado en “<?php echo $propiedad->nombre ?> Cod: <?php echo $propiedad->codigo ?>"></textarea>
+                <textarea class="form-control" id="contacto_mensaje">Estoy interesado en “<?php echo $propiedad->nombre ?>" Cod: <?php echo $propiedad->codigo ?></textarea>
               </div>
               <button type="submit" id="contacto_submit" class="btn">enviar por email</button>
               <a href="javascript:void(0)" onclick="enviar_contacto_whatsapp()" class="btn whatsbtn"><img src="assets/images/whatsicon.png" alt="whatsicon">enviar whatsapp</a>
