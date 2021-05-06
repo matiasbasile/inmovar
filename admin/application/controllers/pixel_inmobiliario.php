@@ -65,7 +65,7 @@ class Pixel_inmobiliario extends REST_Controller {
         $finder = new DomXPath($dom);
         $atributes_top ="//div[contains(@class, 'property_single_top')]" ;
         $atributes_top_price = "//div[contains(@class, 'property-price')]";
-        $atributes_top_place = "//div[contains(@class, 'btn-group')]";
+        $atributes_top_place = "//div[contains(@class, 'btn-group d-flex')]";
         $atributes_center = "//div[contains(@id, 'gallery-1')]"; 
         $atributes_bottom = "//div[contains(@class, 'property_details')]";
 
@@ -86,19 +86,39 @@ class Pixel_inmobiliario extends REST_Controller {
           $imagen[] = $img;
         }
         
-        $description_place = $finder->query($atributes_top_place."//button[last()]");
-        //Aca lo que pasa es que me trae por ejemplo todo junto "dormitorio 3" y yo solo quiero 
-        //que me traiga dormitorio para poder generar un array de la siguiente manera
-        //$description_place = array(
-        //  "dormitorio"=>3,
-        //  "baños"=>1,
-        //  etc
-        //)
-        print_r($description_place[0]);
-
-        $propiertiesss->title = $title[0]->textContent;
-        $propiertiesss->code = $code[0]->textContent;
-        $propiertiesss->direction = $direction[0]->textContent;
+        $description_place = $finder->query($atributes_top_place."//button");
+        foreach($description_place as $key){
+          $remplazamos_espacios = str_replace(" ", "",$key->textContent);
+          $a = explode(" ", $remplazamos_espacios);
+          if(strpos($a[0],"Dormitorio") !== false ){
+            $dormitorios = str_replace("Dormitorios","",$a[0]);
+            $propiertiesss->dormitorios = $dormitorios;
+          }elseif(strpos($a[0],"Baño") !== false ) {
+            $banios = str_replace("Baños","",$a[0]);
+            $propiertiesss->banios = $banios;
+          }elseif(strpos($a[0],"M²Totales") !== false){
+            $metros_totales = str_replace("M²Totales","",$a[0]);
+            $propiertiesss->superficie_total = $metros_totales;
+          }elseif(strpos($a[0],"M²Cubiertos") !== false){
+            $metros_cubiertos = str_replace("M²Cubiertos","", $a[0]);
+            $propiertiesss->superficie_cubierta = $metros_cubiertos;
+          }elseif(strpos($a[0],"Ambientes") !== false){
+            $ambientes = str_replace("Ambientes","",$a[0]);
+            $propiertiesss->ambientes = $ambientes;
+          }
+        }
+        if(strpos($direction[0]->textContent,"La Plata")){
+          $propiertiesss->id_localidad = 513;
+          $calle = str_replace(" ", "..",$direction[0]->textContent);
+          $calle = str_replace(" ","..",$calle);
+          $calle = explode(",",$calle);
+          $calles = str_replace(".."," ",$calle[0]);
+          $propiertiesss->calle = $calles;
+        }
+        
+        $propiertiesss->nombre = $title[0]->textContent;
+        $propiertiesss->codigo = $code[0]->textContent;
+        $propiertiesss->direccion = $direction[0]->textContent;
         $propiertiesss->price = $price[0]->textContent;
         $propiertiesss->nose = $nose[0]->textContent;
         $propiertiesss->description_title = $description_title[0]->textContent;
