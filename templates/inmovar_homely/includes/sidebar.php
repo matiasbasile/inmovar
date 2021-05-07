@@ -41,24 +41,32 @@
 
       <div id="sidebar_precios" class="form-block border">
         <div class="form-group">
+          <style type="text/css">
+            #moneda_precio_minimo { width: 25%  !important}
+            #precio_minimo { width: 75%  !important}
+            #moneda_precio_maximo { width: 25%  !important}
+            #precio_maximo { width: 75%  !important}
+          </style>
           <label>Precio Mínimo</label>
           <?php $divisor = (($vc_link_tipo_operacion == "ventas" && isset($cotizacion_dolar)) ? $cotizacion_dolar : 1); ?>
           <?php $bloque = $vc_precio_maximo / 20; ?>
-          <select name="vc_minimo">
-            <?php 
-            $cont = 0;
-            for($i=0;$i<=20;$i++) { ?>
-              <option <?php echo (isset($vc_minimo) && $vc_minimo == $cont) ? "selected":"" ?> value="<?php echo $cont ?>"><?php echo (($divisor>1)?"USD":"$")." ".number_format($cont / $divisor,0) ?></option>
-              <?php $cont = $cont + $bloque; } ?>
+          <div style="display: inline-flex;width: 100%;">
+            <select id="moneda_precio_minimo" onchange="cambiar_moneda_precio_minimo()" name="m">
+              <option <?php echo (isset($vc_moneda) && $vc_moneda == "ARS")?"selected":"" ?> value="ARS">$</option>
+              <option <?php echo (isset($vc_moneda) && $vc_moneda == "USD")?"selected":"" ?> value="USD">USD</option>
             </select>
+              <input type="text" name="vc_minimo" id="precio_minimo" value="<?php echo (isset($vc_minimo) ? (($vc_minimo == 0)?"":$vc_minimo) : "") ?>"/> 
+            </div>
             <label>Precio Máximo</label>
-            <select name="vc_maximo">
-              <?php 
-              $cont = 0;
-              for($i=0;$i<=20;$i++) { ?>
-                <option <?php echo (isset($vc_maximo) && $vc_maximo == $cont) ? "selected":"" ?> value="<?php echo $cont ?>"><?php echo (($divisor>1)?"USD":"$")." ".number_format($cont / $divisor,0) ?></option>
-                <?php $cont = $cont + $bloque; } ?>
+            <div style="display: inline-flex; width: 100%">
+              <select id="moneda_precio_maximo" onchange="cambiar_moneda_precio_maximo()">
+                <option <?php echo (isset($vc_moneda) && $vc_moneda == "ARS")?"selected":"" ?> value="ARS">$</option>
+                <option <?php echo (isset($vc_moneda) && $vc_moneda == "USD")?"selected":"" ?> value="USD">USD</option>
               </select>
+              <input type="text" name="vc_maximo" id="precio_maximo" value="<?php echo (isset($vc_minimo) ? (($vc_maximo == 0)?"":$vc_maximo) : "") ?>"/>
+            </div>
+          
+            
             </div>
 
           </div>
@@ -100,11 +108,11 @@
           </div>
 
           <div class="form-block border">
-            <div class="col-lg-6 pl0 mb20">
+            <div class="col-lg-6 col-xs-12 pl0 mb20">
               <input id="apto_banco" class="border fl" type="checkbox" <?php echo (!empty($vc_apto_banco))?"checked":"" ?> name="banco" value="1">
               <label class="fl" for="apto_banco">Apto Crédito</label>
             </div>
-            <div class="col-lg-6 pr0 mb20">
+            <div class="col-lg-6 col-xs-12 pr0 mb20">
               <input id="acepta_permuta" class="border fl" type="checkbox" <?php echo (!empty($vc_acepta_permuta))?"checked":"" ?> name="per" value="1">
               <label class="fl" for="acepta_permuta">Acepta Permuta</label>
             </div>
@@ -116,3 +124,15 @@
         </form>
       </div><!-- end widget content -->
     </div>
+    <script type="text/javascript">
+      function cambiar_moneda_precio_minimo() {
+          var v = $("#moneda_precio_minimo").val();
+          $("#moneda_precio_maximo").val(v);
+          $("#moneda_precio_maximo_choosen a span").text(v);
+        }
+        function cambiar_moneda_precio_maximo() {
+          var v = $("#moneda_precio_maximo").val();
+          $("#moneda_precio_minimo").val(v);
+          $("#moneda_precio_minimo_choosen a span").text(v);
+        }
+    </script>
