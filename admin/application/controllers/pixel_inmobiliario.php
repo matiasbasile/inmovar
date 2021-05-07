@@ -54,7 +54,7 @@ class Pixel_inmobiliario extends REST_Controller {
        
       $propierties = array(); 
       
-      for ($i=0; $i < 5; $i++) { 
+      for ($i=0; $i < $limit_propierties; $i++) { 
         $imagen = array();
         //preguntar en cache
         $propiertiesss = new stdClass();
@@ -75,7 +75,7 @@ class Pixel_inmobiliario extends REST_Controller {
 
         $propiertiesss->nombre = "";
         $propiertiesss->codigo = 0;
-        $propiertiesss->nose = "";
+        $propiertiesss->id_tipo_inmueble = 0;
         $propiertiesss->description = "";
         $propiertiesss->imagen = array();
         $propiertiesss->precio = 0;
@@ -91,22 +91,11 @@ class Pixel_inmobiliario extends REST_Controller {
         $location = $finder->query($location."//iframe");
         
         $location = $location[0]->getAttribute("src");
-        echo "<br>";
-        print_r($location);
-        echo "<br>";
         $a = strpos($location, "q=") + 2;
         $location = substr($location,$a);
         $b = strpos($location,'&');
-        echo "<br>";
-        echo $a;
-        echo "<br>";
-        echo $b;
-        echo "<br>";
-        echo $location;
-        echo "<br>";
         $location = str_replace('&hl=es;z=14&output=embed'," ",$location);
         $location = explode(",",$location);
-        print_r($location);
         $propiertiesss->latitud = $location[0];
         $propiertiesss->longitud = $location[1];
         $imagenes = $finder->query($atributes_center."//img");
@@ -162,8 +151,27 @@ class Pixel_inmobiliario extends REST_Controller {
         $propiertiesss->nombre = $title[0]->textContent;
         $code = str_replace("Código: "," ",$code[0]->textContent);
         $propiertiesss->codigo = $code;
+
+        echo $nose[0]->textContent;
+        if($nose[0]->textContent=="Departamento"){
+          $propiertiesss->id_tipo_inmueble = 2;
+        }elseif($nose[0]->textContent=="Casa"){
+          $propiertiesss->id_tipo_inmueble = 1;
+        }elseif($nose[0]->textContent=="PH"){
+          echo "hola";
+          $propiertiesss->id_tipo_inmueble = 3;
+        }elseif($nose[0]->textContent=="Oficina"){
+          $propiertiesss->id_tipo_inmueble = 11;
+        }elseif($nose[0]->textContent=="Lote"){
+          $propiertiesss->id_tipo_inmueble = 7;
+        }elseif($nose[0]->textContent=="Piso"){
+          $propiertiesss->id_tipo_inmueble = 17;
+        }elseif($nose[0]->textContent=="Duplex"){
+          $propiertiesss->id_tipo_inmueble = 15;
+        }elseif($nose[0]->textContent=="Cochera"){
+          $propiertiesss->id_tipo_inmueble = 13;
+        }
         
-        $propiertiesss->nose = $nose[0]->textContent;
         $propiertiesss->description = $description[0]->textContent;
         $propiertiesss->imagen = $imagen;
 
