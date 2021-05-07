@@ -86,7 +86,7 @@ $titulo_pagina = "Inicio";
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                   <div class="form-group">
                     <label>Tipo de propiedad</label>
-                    <select id="buscador_tipo_propiedad" class="selectpicker search-fields" name="tipo_inmueble" data-live-search="true" data-live-search-placeholder="Buscar" >
+                    <select id="buscador_tipo_propiedad" class="selectpicker search-fields" name="tp" data-live-search="true" data-live-search-placeholder="Buscar" >
                       <option value="0">Todos</option>
                       <?php foreach ($tipos_propiedades as $tipos) { ?>
                       <option <?php echo (isset($tipo_inmueble) && $tipo_inmueble == $tipos->id) ? "selected":"" ?>  value="<?php echo $tipos->id ?>"><?php echo $tipos->nombre ?></option>
