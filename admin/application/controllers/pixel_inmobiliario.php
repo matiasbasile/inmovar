@@ -54,7 +54,7 @@ class Pixel_inmobiliario extends REST_Controller {
        
       $propierties = array(); 
       
-      for ($i=0; $i < 1; $i++) { 
+      for ($i=0; $i < 5; $i++) { 
         $imagen = array();
         //preguntar en cache
         $propiertiesss = new stdClass();
@@ -63,11 +63,23 @@ class Pixel_inmobiliario extends REST_Controller {
         libxml_use_internal_errors(true);
         $dom->loadHTML($html);
         $finder = new DomXPath($dom);
+        $propiertiesss->inmobusquedas_url = $array_propierties[$i];
         $atributes_top ="//div[contains(@class, 'property_single_top')]" ;
         $atributes_top_price = "//div[contains(@class, 'property-price')]";
         $atributes_top_place = "//div[contains(@class, 'btn-group d-flex')]";
         $atributes_center = "//div[contains(@id, 'gallery-1')]"; 
         $atributes_bottom = "//div[contains(@class, 'property_details')]";
+        $location = "//div[contains(@class, 'map_widget')]";
+
+       
+
+        $propiertiesss->nombre = "";
+        $propiertiesss->codigo = 0;
+        $propiertiesss->nose = "";
+        $propiertiesss->description = "";
+        $propiertiesss->imagen = array();
+        $propiertiesss->precio = 0;
+        $propiertiesss->moneda = "";
 
         //Atributes 
         $title = $finder->query($atributes_top."//h5");
@@ -75,10 +87,28 @@ class Pixel_inmobiliario extends REST_Controller {
         $direction = $finder->query($atributes_top."//p");
         $price = $finder->query($atributes_top_price."//p");
         $nose = $finder->query($atributes_top_price."//div");
-        $description_title = $finder->query($atributes_bottom."//h4");
         $description = $finder->query($atributes_bottom."//p");
+        $location = $finder->query($location."//iframe");
         
-
+        $location = $location[0]->getAttribute("src");
+        echo "<br>";
+        print_r($location);
+        echo "<br>";
+        $a = strpos($location, "q=") + 2;
+        $location = substr($location,$a);
+        $b = strpos($location,'&');
+        echo "<br>";
+        echo $a;
+        echo "<br>";
+        echo $b;
+        echo "<br>";
+        echo $location;
+        echo "<br>";
+        $location = str_replace('&hl=es;z=14&output=embed'," ",$location);
+        $location = explode(",",$location);
+        print_r($location);
+        $propiertiesss->latitud = $location[0];
+        $propiertiesss->longitud = $location[1];
         $imagenes = $finder->query($atributes_center."//img");
        
         foreach ($imagenes as $key){
@@ -115,19 +145,31 @@ class Pixel_inmobiliario extends REST_Controller {
           $calles = str_replace(".."," ",$calle[0]);
           $propiertiesss->calle = $calles;
         }
+        if(isset($price[0]->textContent)){
+          if(strpos($price[0]->textContent,'U$D')){
+            $propiertiesss->moneda = 'U$S';
+            $price = str_replace('U$D',"",$price[0]->textContent);
+            $price = str_replace(".","",$price);
+            $propiertiesss->precio = $price;
+          }else{
+            $propiertiesss->moneda = '$';
+            $price = str_replace('$',"",$price[0]->textContent);
+            $price = str_replace(".","",$price);
+            $propiertiesss->precio = $price;
+          }
+        }
         
         $propiertiesss->nombre = $title[0]->textContent;
-        $propiertiesss->codigo = $code[0]->textContent;
-        $propiertiesss->direccion = $direction[0]->textContent;
-        $propiertiesss->price = $price[0]->textContent;
+        $code = str_replace("Código: "," ",$code[0]->textContent);
+        $propiertiesss->codigo = $code;
+        
         $propiertiesss->nose = $nose[0]->textContent;
-        $propiertiesss->description_title = $description_title[0]->textContent;
         $propiertiesss->description = $description[0]->textContent;
         $propiertiesss->imagen = $imagen;
 
         $propierties[] = $propiertiesss;
       }
-      //print_r($propierties);
+      print_r($propierties);
       
       
       
