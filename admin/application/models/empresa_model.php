@@ -550,6 +550,7 @@ class Empresa_Model extends Abstract_Model {
 
     // Actualizamos los campos que pertenecen a la otra tabla
     $sql = "UPDATE web_configuracion SET ";
+    if (isset($data->email)) $sql.= " email = '$data->email', ";
     if (isset($data->direccion_web)) $sql.= " direccion_web = '$data->direccion_web', ";
     if (isset($data->codigo_postal)) $sql.= " codigo_postal = '$data->codigo_postal', ";
     if (isset($data->ciudad)) $sql.= " ciudad = '$data->ciudad', ";
