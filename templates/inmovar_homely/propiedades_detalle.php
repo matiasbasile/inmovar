@@ -14,7 +14,8 @@ $propiedad = $propiedad_model->get($id,array(
   "buscar_relacionados_offset"=>6,
 ));
 if ($propiedad === FALSE) {
-  header("Location: ".mklink("/"));
+  include("redirect.php");
+  exit();
 }
 $page_active = $propiedad->tipo_operacion_link;
 $titulo_pagina = $propiedad->tipo_operacion_link;

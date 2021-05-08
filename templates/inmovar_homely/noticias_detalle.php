@@ -74,7 +74,7 @@
            </div>
          </div><!-- end blog post -->
 
-          <?php if ($entrada->habilitar_contacto == 1) { ?>
+          <?php if (isset($entrada->habilitar_contacto) && $entrada->habilitar_contacto == 1) { ?>
             <div class="widget property-single-item property-location comment-form">
               <h4><span>Formulario de Consulta</span></h4><hr class="divisorline">
               <?php 
