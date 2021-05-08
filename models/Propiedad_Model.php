@@ -615,7 +615,7 @@ class Propiedad_Model {
       $empresas_compartida = $this->get_empresas_red();
       if (sizeof($empresas_compartida)>0) {
         $emp_comp = implode(",", $empresas_compartida);
-        
+        echo $emp_comp;
         // Que pertenezca a alguna de las inmobiliarias que esta compartiendo
         /*
         $sql.= "AND A.id_empresa IN ($emp_comp) ";
