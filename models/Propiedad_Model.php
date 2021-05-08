@@ -617,6 +617,7 @@ class Propiedad_Model {
         $emp_comp = implode(",", $empresas_compartida);
         
         // Que pertenezca a alguna de las inmobiliarias que esta compartiendo
+        /*
         $sql.= "AND A.id_empresa IN ($emp_comp) ";
         // Que no este bloqueada para que no aparezca
         $sql.= " AND NOT EXISTS (";
@@ -631,6 +632,7 @@ class Propiedad_Model {
         $sql.= " AND A.id_tipo_estado NOT IN (2,3,4,6) ";
         $sql.= " AND A.activo = 1 ";
         echo $sql;
+        */
       }
     }
 
