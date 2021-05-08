@@ -129,19 +129,23 @@ $page_active = $vc_link_tipo_operacion;
 <?php include "includes/footer.php"?>
 <?php include "includes/scripts.php"?>
 <script type="text/javascript">
-  function submit_buscador_propiedades() {
-    // Cargamos el offset y el orden en este formulario
-    $("#sidebar_orden").val($("#ordenador_orden").val());
-    $("#sidebar_offset").val($("#ordenador_offset").val());
-    $("#form_propiedades").submit();
-  }
+function submit_buscador_propiedades() {
+  // Cargamos el offset y el orden en este formulario
+  $("#sidebar_orden").val($("#ordenador_orden").val());
+  $("#sidebar_offset").val($("#ordenador_offset").val());
+  $("#form_propiedades").submit();
+}
 
-  function onsubmit_buscador_propiedades() { 
+function onsubmit_buscador_propiedades() { 
   var link = (($("input[name='tipo_busqueda']:checked").val() == "mapa") ? "<?php echo mklink("mapa/")?>" : "<?php echo mklink("propiedades/")?>");
   var tipo_operacion = $("#tipo_operacion").val();
   var localidad = $("#localidad").val();
   var tp = $("#tp").val();
   link = link + tipo_operacion + "/" + localidad + "/<?php echo $vc_params?>";
+  var minimo = $("#precio_minimo").val().replace(".","");
+  $("#precio_minimo_oculto").val(minimo);
+  var maximo = $("#precio_maximo").val().replace(".","");
+  $("#precio_maximo_oculto").val(maximo);
   $("#form_propiedades").attr("action",link);
   return true;
 }

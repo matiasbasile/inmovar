@@ -102,4 +102,24 @@ function enviar_newsletter() {
   return false;
 }  
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/autonumeric@4.5.4"></script>
+<script>
+$(document).ready(function(){
+  if ($("#precio_minimo").length > 0) {
+    new AutoNumeric('#precio_minimo', { 
+      'decimalPlaces':0,
+      'decimalCharacter':',',
+      'digitGroupSeparator':'.',
+    });
+  }
+  if ($("#precio_maximo").length > 0) {
+    new AutoNumeric('#precio_maximo', { 
+      'decimalPlaces':0,
+      'decimalCharacter':',',
+      'digitGroupSeparator':'.',
+    });
+  }
+})
+</script>
 <?php include("templates/comun/clienapp.php") ?>

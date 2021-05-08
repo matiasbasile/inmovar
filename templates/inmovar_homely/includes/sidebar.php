@@ -55,7 +55,8 @@
               <option <?php echo (isset($vc_moneda) && $vc_moneda == "ARS")?"selected":"" ?> value="ARS">$</option>
               <option <?php echo (isset($vc_moneda) && $vc_moneda == "USD")?"selected":"" ?> value="USD">USD</option>
             </select>
-              <input type="text" name="vc_minimo" id="precio_minimo" value="<?php echo (isset($vc_minimo) ? (($vc_minimo == 0)?"":$vc_minimo) : "") ?>"/> 
+              <input type="text" id="precio_minimo" value="<?php echo (isset($vc_minimo) ? (($vc_minimo == 0)?"":$vc_minimo) : "") ?>"/> 
+              <input type="hidden" id="precio_minimo_oculto" name="vc_minimo" value="<?php echo (isset($vc_minimo) ? (($vc_minimo == 0)?"":$vc_minimo) : "") ?>"/>
             </div>
             <label>Precio Máximo</label>
             <div style="display: inline-flex; width: 100%">
@@ -63,7 +64,8 @@
                 <option <?php echo (isset($vc_moneda) && $vc_moneda == "ARS")?"selected":"" ?> value="ARS">$</option>
                 <option <?php echo (isset($vc_moneda) && $vc_moneda == "USD")?"selected":"" ?> value="USD">USD</option>
               </select>
-              <input type="text" name="vc_maximo" id="precio_maximo" value="<?php echo (isset($vc_minimo) ? (($vc_maximo == 0)?"":$vc_maximo) : "") ?>"/>
+              <input type="text" id="precio_maximo" value="<?php echo (isset($vc_minimo) ? (($vc_maximo == 0)?"":$vc_maximo) : "") ?>"/>
+              <input type="hidden" id="precio_maximo_oculto" name="vc_maximo" value="<?php echo (isset($vc_maximo) ? (($vc_maximo == 0)?"":$vc_maximo) : "") ?>"/>
             </div>
           
             
