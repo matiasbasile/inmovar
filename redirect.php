@@ -9,6 +9,6 @@ setTimeout(function(){
 </script>
 </head>
 <body>
-<h1>Propiedad no encontrada.</h1>
+<h1>Propiedad no encontrada. </h1>
 </body>
 </html>
