@@ -625,14 +625,12 @@ class Propiedad_Model {
         $sql.= "  AND BL.id_propiedad = A.id ";
         $sql.= "  AND BL.id_empresa_propiedad = $id_empresa ";
         $sql.= ") ";
-        echo $sql; exit();
-        /*
         // Que este compartida
         $sql.= " AND A.compartida = 1 ";
         // Que este activa
         $sql.= " AND A.id_tipo_estado NOT IN (2,3,4,6) ";
         $sql.= " AND A.activo = 1 ";
-        */
+        echo $sql; exit();
       }
     }
 
