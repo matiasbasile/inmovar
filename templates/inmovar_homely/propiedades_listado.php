@@ -61,7 +61,13 @@ $page_active = $vc_link_tipo_operacion;
                 <div class="property-price"><?php echo $p->precio ?></div>
                 <div class="property-color-bar"></div>
                 <div class="">
-                  <img src="<?php echo $p->imagen ?>" class="mi-img-responsive" />
+                  <?php if (!empty($p->imagen)) { ?>
+                    <img src="<?php echo $p->imagen ?>" class="mi-img-responsive" alt="<?php echo ($p->nombre); ?>" />
+                  <?php } else if (!empty($empresa->no_imagen)) { ?>
+                    <img src="/admin/<?php echo $empresa->no_imagen ?>" class="mi-img-responsive" alt="<?php echo ($p->nombre); ?>" />
+                  <?php } else { ?>
+                    <img src="images/logo.png" alt="<?php echo ($p->nombre); ?>" />
+                  <?php } ?>
                 </div>
               </a>
               <div class="property-content">
