@@ -1,7 +1,9 @@
-<?php include "includes/init.php";
+<?php 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
+include "includes/init.php";
 
 $id_empresa = isset($get_params["em"]) ? $get_params["em"] : $empresa->id;
 $propiedad = $propiedad_model->get($id,array(
@@ -12,7 +14,8 @@ $propiedad = $propiedad_model->get($id,array(
   "buscar_relacionados_offset"=>6,
 ));
 if ($propiedad === FALSE) {
-  header("Location:".mklink("/"));
+  echo "Propiedad bloqueada"; exit();
+  //header("Location:".mklink("/"));
 }
 $page_active = $propiedad->tipo_operacion_link;
 $titulo_pagina = $propiedad->tipo_operacion_link;

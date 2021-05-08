@@ -630,7 +630,6 @@ class Propiedad_Model {
         // Que este activa
         $sql.= " AND A.id_tipo_estado NOT IN (2,3,4,6) ";
         $sql.= " AND A.activo = 1 ";
-        echo $sql; exit();
       }
     }
 
