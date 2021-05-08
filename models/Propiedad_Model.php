@@ -625,6 +625,7 @@ class Propiedad_Model {
         $sql.= "  AND BL.id_propiedad = A.id ";
         $sql.= "  AND BL.id_empresa_propiedad = $id_empresa ";
         $sql.= ") ";
+        echo $sql; exit();
         /*
         // Que este compartida
         $sql.= " AND A.compartida = 1 ";
