@@ -2,8 +2,6 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-$propiedad = $propiedad_model->get($id);
-extract($propiedad_model->get_variables());
 
 $id_empresa = isset($get_params["em"]) ? $get_params["em"] : $empresa->id;
 $propiedad = $propiedad_model->get($id,array(
