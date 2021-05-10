@@ -419,7 +419,7 @@
           <label class="control-label">En caso de que la propiedad no tenga usuario asignado:</label>
           <select id="crm_enviar_emails_usuarios" name="crm_enviar_emails_usuarios" class="form-control">
             <option <%= (crm_enviar_emails_usuarios == 0)?"selected":"" %> value="0">Notificar al email de la inmobiliaria (<%= EMAIL %>)</option>
-            <option <%= (crm_enviar_emails_usuarios == 1)?"selected":"" %> value="1">Elegir aleatoriamente entre todos los usuarios</option>
+            <option <%= (crm_enviar_emails_usuarios == 1)?"selected":"" %> value="1">Elegir aleatoriamente entre todos los usuarios que reciben notificaciones</option>
           </select>
         </div>  
 
