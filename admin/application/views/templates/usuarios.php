@@ -220,6 +220,15 @@
             </div>        
           </div>
 
+          <div class="form-group">
+            <div class="checkbox">
+              <label class="i-checks">
+                <input type="checkbox" id="recibe_notificaciones" name="recibe_notificaciones" class="checkbox" value="1" <%= (recibe_notificaciones == 1)?"checked":"" %>><i></i>
+                Recibe notificaciones por email de las consultas de las propiedades
+              </label>
+            </div>
+          </div>
+
         </div>  
 
 
