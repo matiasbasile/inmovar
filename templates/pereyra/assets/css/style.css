@@ -641,10 +641,12 @@ header {
   opacity: 0;
   visibility: hidden;
 }
+/*
 .list-item a img {
   height: auto;
   transform: none;
 }
+*/
 .list-item:hover .overlay-block {
   background: rgba(47, 81, 104, 0.85);
 }
