@@ -105,7 +105,7 @@
 
 <script type="text/javascript" src="/admin/resources/js/jquery.min.js"></script>
 <script type="text/javascript" src="/admin/resources/js/libs/bootstrap.min.js"></script>
-<script type="text/javascript" src="assets/js/smoothscroll.js"></script>
+<!--<script type="text/javascript" src="assets/js/smoothscroll.js"></script>-->
 <script type="text/javascript" src="/admin/resources/js/bootstrap-select.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery.placeholder.js"></script>
