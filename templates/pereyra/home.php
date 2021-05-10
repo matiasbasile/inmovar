@@ -83,7 +83,13 @@
       <?php foreach ($propiedades as $p) {  ?>
         <div class="col-xl-4 col-md-6">
           <div class="list-item">
-            <img src="<?php echo $p->imagen ?>" alt="Property Img">
+            <?php if (!empty($p->imagen)) { ?>
+              <img src="<?php echo $p->imagen ?>" alt="<?php echo ($p->nombre);?>">
+            <?php } else if (!empty($empresa->no_imagen)) { ?>
+              <img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre);?>">
+            <?php } else { ?>
+              <img src="images/no-imagen.png" alt="<?php echo ($p->nombre);?>">
+            <?php } ?>
             <div class="overlay-block">
               <div class="top-item">
                 <div class="tag <?php echo ($p->id_tipo_operacion == 4)?"dark-blue":($p->id_tipo_operacion ==2)?"light-blue":"" ?>">
@@ -167,7 +173,13 @@
           <div class="list-item">
             <div class="img-block">
               <a href="<?php echo ($p->link_propiedad) ?>">
-                <img src="<?php echo $p->imagen ?>" alt="<?php echo $p->nombre ?>">
+                <?php if (!empty($p->imagen)) { ?>
+                  <img src="<?php echo $p->imagen ?>" alt="<?php echo ($p->nombre);?>">
+                <?php } else if (!empty($empresa->no_imagen)) { ?>
+                  <img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre);?>">
+                <?php } else { ?>
+                  <img src="images/no-imagen.png" alt="<?php echo ($p->nombre);?>">
+                <?php } ?>
               </a>
             </div>
             <div class="overlay-block">
