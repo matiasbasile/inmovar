@@ -878,7 +878,8 @@ class Propiedades extends REST_Controller {
 
   function ver_propiedad($id,$id_empresa) {
     $propiedad = $this->modelo->get($id,array(
-      "id_empresa"=>$id_empresa
+      "id_empresa"=>$id_empresa,
+      "id_empresa_original"=>parent::get_empresa(),
     ));
     echo json_encode($propiedad);    
   }
