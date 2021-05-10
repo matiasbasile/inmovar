@@ -1227,6 +1227,29 @@ class Propiedad_Model extends Abstract_Model {
       $propiedad->precio = "Consultar";
     }    
 
+    $propiedad->bloqueado_web = 0;
+    $propiedad->permiso_web = 0;
+
+    // Controlamos si la otra inmobiliaria nos dio permiso
+    $sql = "SELECT permiso_web FROM inm_permisos_red ";
+    $sql.= "WHERE id_empresa = $propiedad->id_empresa ";
+    $sql.= "AND id_empresa_compartida = $id_empresa ";
+    $sql.= "AND solicitud_permiso = 0 ";
+    $sql.= "AND bloqueado = 0 ";
+    $qqq = $this->db->query($sql);
+    if ($qqq->num_rows() > 0) {
+      $rrr = $qqq->row();
+      $propiedad->permiso_web = $rrr->permiso_web;
+    }
+
+    // Controlamos si tenemos bloqueada a la propiedad
+    $sql = "SELECT 1 FROM inm_propiedades_bloqueadas ";
+    $sql.= "WHERE id_empresa = $id_empresa ";
+    $sql.= "AND id_propiedad = $propiedad->id ";
+    $sql.= "AND id_empresa_propiedad = $propiedad->id_empresa ";
+    $qqq = $this->db->query($sql);
+    if ($qqq->num_rows() > 0) $propiedad->bloqueado_web = 1;
+
     return $propiedad;
   }
   
