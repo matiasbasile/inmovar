@@ -34,6 +34,7 @@
       horarios_entrega: [],
       sucursales: [],
       images: [],
+      recibe_notificaciones: 1,
 
       // Estos datos se guardan en otra tabla
       solo_usuario: 0,
@@ -626,6 +627,7 @@
       if (this.validar()) {
         this.model.set({
           "language": ((self.$("#usuario_language").length > 0) ? self.$("#usuario_language").val() : 0),
+          "recibe_notificaciones": ((self.$("#recibe_notificaciones").length > 0) ? (self.$("#recibe_notificaciones").is(":checked") ? 1 : 0) : 0),
         });
         if (this.model.id == null) {
           this.model.set({id:0});

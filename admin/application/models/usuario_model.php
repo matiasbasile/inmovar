@@ -10,6 +10,23 @@ class Usuario_Model extends Abstract_Model {
 		parent::__construct("com_usuarios","id");
 	}
 
+  function get_random($config = array()) {
+    $id_empresa = (isset($config["id_empresa"]) ? $config["id_empresa"] : parent::get_empresa());
+    $sql = "SELECT id ";
+    $sql.= "FROM com_usuarios ";
+    $sql.= "WHERE id_empresa = $id_empresa ";
+    $sql.= "AND activo = 1 ";
+    $sql.= "AND recibe_notificaciones = 1 ";
+    $sql.= "ORDER BY RAND() ASC ";
+    $sql.= "LIMIT 0,1 ";
+    $q = $this->db->query($sql);
+    if ($q->num_rows() == 0) return FALSE;
+    $r = $q->row();
+    return $this->get($r->id,array(
+      "id_empresa"=>$id_empresa,
+    ));
+  }
+
   function get_usuario_principal($id_empresa) {
     $sql = "SELECT U.* ";
     $sql.= "FROM com_usuarios U INNER JOIN com_perfiles P ON (U.id_empresa = P.id_empresa AND U.id_perfiles = P.id) ";

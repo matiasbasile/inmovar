@@ -465,7 +465,10 @@ class Consultas extends REST_Controller {
 
     // En el caso de estar consultando por una propiedad de la red
     $id_empresa_relacion = parent::get_post("id_empresa_relacion",$id_empresa);
-   
+
+    if (isset($para) && empty($para)) $para = $empresa->email;
+    if (!is_array($para)) $para = explode(",", $para);
+
     // Si la empresa no esta definida, es porque es para el Administrador
     if (empty($id_empresa) || $id_empresa == 0) {
      
@@ -505,7 +508,70 @@ class Consultas extends REST_Controller {
         ));
         // Si no estamos definiendo un usuario desde la web, tenemos que poner el asignado en la propiedad
         if (empty($id_usuario)) $id_usuario = $propiedad->id_usuario;
-      }       
+
+        // Dependiendo de la configuracion
+        $this->load->model("Web_Configuracion_Model");
+        $web = $this->Web_Configuracion_Model->get($id_empresa);
+        
+        // Se tiene que enviar solo al usuario de la propiedad asignada
+        if (isset($web->crm_notificar_usuario_propiedad) && $web->crm_notificar_usuario_propiedad == 1) {
+
+          // Si es una propiedad de la misma empresa (no una de la RED)
+          if ($propiedad->id_empresa == $id_empresa) {
+
+            if (isset($propiedad->usuario_email) && !empty($propiedad->usuario_email)) {
+              // Si tiene seteado un usuario, le mandamos a ese
+              $para = array($propiedad->usuario_email);
+              $id_usuario = $propiedad->id_usuario;
+
+            } else {
+
+              // En caso de que la propiedad no tenga usuario asignado
+              if (isset($web->crm_enviar_emails_usuarios) && $web->crm_enviar_emails_usuarios == 0) {
+                $para = array($empresa->email);
+                $id_usuario = 0;
+
+              } else if (isset($web->crm_enviar_emails_usuarios) && $web->crm_enviar_emails_usuarios == 1) {
+                // Entonces tenemos que elegir aleatoriamente uno
+                $this->load->model("Usuario_Model");
+                $aleatorio = $this->Usuario_Model->get_random(array(
+                  "id_empresa"=>$id_empresa,
+                ));
+                if ($aleatorio !== FALSE) {
+                  $para = array($aleatorio->email);
+                  $id_usuario = $aleatorio->id;
+                }
+              }
+            }
+
+          // Se esta consultando por una propiedad compartida
+          } else {
+
+            // En caso de que la propiedad no tenga usuario asignado
+            if (isset($web->crm_enviar_emails_usuarios) && $web->crm_enviar_emails_usuarios == 0) {
+              $para = array($empresa->email);
+              $id_usuario = 0;
+
+            } else if (isset($web->crm_enviar_emails_usuarios) && $web->crm_enviar_emails_usuarios == 1) {
+              // Entonces tenemos que elegir aleatoriamente uno
+              $this->load->model("Usuario_Model");
+              $aleatorio = $this->Usuario_Model->get_random(array(
+                "id_empresa"=>$id_empresa,
+              ));
+              if ($aleatorio !== FALSE) {
+                $para = array($aleatorio->email);
+                $id_usuario = $aleatorio->id;
+              }
+            }
+
+          }
+        }
+
+        // Se tiene que mandar tambien al email de la inmobiliaria
+        if (isset($web->crm_notificar_inmobiliaria) && $web->crm_notificar_inmobiliaria == 1) {
+          $para[] = $empresa->email;
+        }        
+      }
       
       if ($contacto === FALSE) {
         // Debemos crearlo
@@ -594,59 +660,9 @@ class Consultas extends REST_Controller {
       $sql.= "WHERE id = $contacto->id AND id_empresa = $id_empresa ";
       $this->db->query($sql);
 
-      // TODO: ESTO POR AHORA ESTA PARA YACOUB, PERO DESPUES HABRIA QUE ELIMINARLO
-      $tiene_email = FALSE;
-      if ($id_empresa == 108) {
-        // Si estamos consultando por una propiedad, tenemos que ver que usuario
-        // esta asignado a la misma, para enviarle el email a el
-        if (!empty($id_propiedad)) {
+      // Por las dudas que haya quedado algun repetido, lo eliminamos y listo
+      $para = array_unique($para);
 
-          // Primero controlamos si en la configuracion de emails
-          // hay alguno que coincide
-          if ($propiedad->id_tipo_operacion == 1 && !empty($empresa->config["emails_ventas"])) {
-            // Ventas
-            $para = $empresa->config["emails_ventas"];
-            $para = explode(",", $para);
-            $tiene_email = TRUE;
-
-          } else if ($propiedad->id_tipo_operacion == 2 && !empty($empresa->config["emails_alquileres"])) {
-            // Alquileres
-            $para = $empresa->config["emails_alquileres"];
-            $para = explode(",", $para);
-            $tiene_email = TRUE;
-
-          } else if ($propiedad->id_tipo_operacion == 4 && !empty($empresa->config["emails_emprendimientos"])) {
-            // Emprendimientos
-            $para = $empresa->config["emails_emprendimientos"];
-            $para = explode(",", $para);
-            $tiene_email = TRUE;
-          }
-
-          // Si el origen es un REGISTRO
-          if ($id_origen == 10 && !empty($empresa->config["emails_registro"])) {
-            $para = $empresa->config["emails_registro"];
-            $para = explode(",", $para);
-            $tiene_email = TRUE;
-          }
-
-          // Email del usuario que cargo la propiedad
-          if (!empty($propiedad->usuario_email) && !$tiene_email) $para = $propiedad->usuario_email;
-        }
-
-        // Si el origen es una TASACION
-        if ($custom == "TASACION" && !empty($empresa->config["emails_tasaciones"])) {
-          $para = $empresa->config["emails_tasaciones"];
-          $para = explode(",", $para);
-          $tiene_email = TRUE;
-        }
-
-        // Es una consulta general
-        if (!$tiene_email && !empty($empresa->config["emails_contacto"])) {
-          $para = $empresa->config["emails_contacto"];
-          $para = explode(",", $para);
-        }
-      } // Fin YACOUB
-      
       $body = "";
       if ($solo_mensaje == 1) {
         $body = nl2br($mensaje);
@@ -725,28 +741,6 @@ class Consultas extends REST_Controller {
         $bcc_array = array_merge($bcc_array,$arr);
         $bcc_array = array_unique($bcc_array);
       }
-
-      if (isset($para) && empty($para)) $para = $empresa->email;
-      if (!is_array($para)) $para = explode(",", $para);
-
-      // Dependiendo de la configuracion 
-      if (!empty($id_propiedad) && isset($propiedad->usuario_email) && !empty($propiedad->usuario_email)) {
-        $this->load->model("Web_Configuracion_Model");
-        $web = $this->Web_Configuracion_Model->get($id_empresa);
-        if (isset($web->crm_enviar_emails_usuarios) && $web->crm_enviar_emails_usuarios == 1) {
-          // Se tiene que enviar solo al usuario de la propiedad asignada
-          $para = array($propiedad->usuario_email);
-        } else if (isset($web->crm_enviar_emails_usuarios) && $web->crm_enviar_emails_usuarios == 2) {
-          // Se tiene que mandar tanto al email de la empresa como el usuario asignado a la propiedad
-          $para = array(
-            $propiedad->usuario_email,
-            $empresa->email
-          );
-        }
-      }
-
-      // Por las dudas que haya quedado algun repetido, lo eliminamos y listo
-      $para = array_unique($para);
 
       require APPPATH.'libraries/Mandrill/Mandrill.php';
       mandrill_send(array(
