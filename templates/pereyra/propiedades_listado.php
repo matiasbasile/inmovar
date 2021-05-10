@@ -1,6 +1,6 @@
 <?php 
 include("includes/init.php");
-$get_params["offset"] = 6;
+$get_params["offset"] = 18;
 if (!empty($get_params["orden"])) { 
 $vc_orden = $get_params["orden"] ;} else { 
 $vc_orden ="";}
