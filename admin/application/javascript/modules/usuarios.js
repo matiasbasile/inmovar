@@ -121,6 +121,25 @@
         });
         return false;
       },
+      "click .recibe_notificaciones":function(e) {
+        var self = this;
+        e.stopPropagation();
+        e.preventDefault();
+        var recibe_notificaciones = this.model.get("recibe_notificaciones");
+        recibe_notificaciones = (recibe_notificaciones == 1)?0:1;
+        self.model.set({"recibe_notificaciones":recibe_notificaciones});
+        this.change_property({
+          "table":"com_usuarios",
+          "url":"usuarios/function/change_property/",
+          "attribute":"recibe_notificaciones",
+          "value":recibe_notificaciones,
+          "id":self.model.id,
+          "success":function(){
+            self.render();
+          }
+        });
+        return false;
+      },
     },
     initialize: function(options) {
       this.options = options;

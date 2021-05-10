@@ -29,6 +29,7 @@
   <td class="ver"><span class='<%= clase %>'><%= nombre.ucwords() %></span></td>
   <td class='ver'><span><%= perfil.ucwords() %></span></td>
   <td class="p5 td_acciones tar">
+    <i data-toggle="tooltip" title="Recibe Notificaciones por Email" class="mr10 fa-envelope iconito fa recibe_notificaciones <%= (recibe_notificaciones == 1)?"active":"" %>"></i>
     <i data-toggle="tooltip" title="Activo" class="fa-check iconito fa activo <%= (activo == 1)?"active":"" %>"></i>
     <div class="btn-group dropdown ml10">
       <button class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
