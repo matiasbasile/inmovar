@@ -44,6 +44,12 @@
            Plantillas de email
           </a>
         </li>
+        <li>
+          <a class="<%= (id_modulo == "wpp_templates")?"active":"" %>" href="app/#configuracion/wpp_templates">
+            <span class="material-icons">arrow_forward_ios</span>
+           Plantillas de Whatsapp
+          </a>
+        </li>
       </ul>
     </div>
     <div class="col-md-9">
@@ -493,6 +499,27 @@
     </div>
     <div class="panel-body expand" style="display:block">
       <div id="emails_container">
+      </div>
+    </div>
+  </div>
+</script>
+
+<script type="text/template" id="configuracion_wpp">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="padder">
+        <div class="form-group mb0 clearfix expand-link cp">
+          <label class="control-label cp">
+            Plantillas de Whatsapp
+          </label>
+          <div class="panel-description">
+            Crear, modificar o eliminar plantillas de Whatsapp.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body expand" style="display:block">
+      <div id="wpps_container">
       </div>
     </div>
   </div>

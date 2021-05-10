@@ -74,6 +74,13 @@
         });
         self.$("#configuracion_content").html(view.el);
 
+      } else if (self.model.get("id_modulo") == "wpp_templates") {
+
+        var view = new app.views.ConfiguracionWppView({
+          model: new app.models.AbstractModel(),
+        });
+        self.$("#configuracion_content").html(view.el);
+
       } else if (self.model.get("id_modulo") == "usuarios") {
 
         var view = new app.views.UsuariosTableView({
