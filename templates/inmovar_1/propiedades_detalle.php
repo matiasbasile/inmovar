@@ -117,7 +117,7 @@ else $vc_moneda = "$";
                 <?php } ?>
               </span>
             </header>
-            <?php if (sizeof($propiedad->images) == 0) { ?>
+            <?php if (sizeof($propiedad->images) > 0) { ?>
               <section id="property-gallery" class="pr">
 
                 <?php if (sizeof($propiedad->images)==1) { 
@@ -480,7 +480,7 @@ else $vc_moneda = "$";
   <?php include("includes/footer.php"); ?>
 </div>
 <?php include_once("templates/comun/mapa_js.php"); ?>
-<script type="text/javascript" src="assets/js/infobox.js"></script>
+<!--<script type="text/javascript" src="assets/js/infobox.js"></script>-->
 <script type="text/javascript" src="assets/js/jquery.raty.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery.magnific-popup.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery.fitvids.js"></script>
