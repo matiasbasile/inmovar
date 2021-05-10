@@ -135,8 +135,10 @@ $vc_dormitorios= isset($get_params["dm"]) ? $get_params["dm"] : 0;
       <?php foreach($vc_listado as $p) {  ?>
         <div class="col-xl-4 col-md-6">
           <div class="list-item">
-            <div class="img-block"><a href="<?php echo ($p->link_propiedad) ?>">
-              <img src="/admin/<?php echo $p->path ?>" alt="Property Img"></a>
+            <div class="img-block">
+              <a href="<?php echo ($p->link_propiedad) ?>">
+                <img src="<?php echo $p->imagen ?>" alt="<?php echo $p->nombre ?>">
+              </a>
             </div>
             <div class="overlay-block">
               <div class="top-item">
