@@ -356,6 +356,8 @@
           // o si a los usuarios asignados a la propiedad
           this.model.set({
             "crm_enviar_emails_usuarios":(this.$("#crm_enviar_emails_usuarios").val()),
+            "crm_notificar_inmobiliaria":(this.$("#crm_notificar_inmobiliaria").is(":checked")?1:0),
+            "crm_notificar_usuario_propiedad":(this.$("#crm_notificar_usuario_propiedad").is(":checked")?1:0),
           });
         }
         return true;
