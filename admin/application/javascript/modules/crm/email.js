@@ -148,3 +148,141 @@
     },
   });
 })(app);
+
+(function ( app ) {
+
+  app.views.EnviarPlantillaView = app.mixins.View.extend({
+
+    template: _.template($("#enviar_plantilla_template").html()),
+      
+    myEvents: {
+    },
+    
+    initialize: function(options) {
+      var self = this;
+      this.options = options;
+      this.adjuntos = new Array();
+      _.bindAll(this);
+      var edicion = false;
+      if (this.options.permiso > 1) edicion = true;
+      var obj = { "edicion": edicion,"id":this.model.id }
+      _.extend(obj,this.model.toJSON());
+      $(this.el).html(this.template(obj));
+      this.cargar_plantilla();
+      this.cargar_clientes();
+    },
+
+    cargar_plantilla: function() {
+      var self = this;
+      var plantilla = this.model.get("plantilla");
+      $.ajax({
+        "url":"propiedades/function/get_plantilla/",
+        "dataType":"json",
+        "data":{
+          "plantilla": plantilla,
+          "id_empresa": ID_EMPRESA,
+        },
+        "type": "post",
+        "success":function(r) {
+          var texto = r.texto;
+          $.when(self.cargar_tabla()).then(
+            //sucess
+            function(data) {
+              texto += data;
+              CKEDITOR.instances['enviar_plantilla_texto'].setData(texto);
+            },
+          );
+        }
+      });
+    },
+    
+    cargar_clientes: function(){
+      new app.mixins.Select({
+        modelClass: app.models.Clientes,
+        url: "clientes/function/get_clientes/?id_empresa="+ID_EMPRESA,
+        render: "#enviar_plantilla_clientes",
+        firstOptions: ["<option value='0'>Seleccione un cliente</option>"],
+        onComplete:function(c) {
+          crear_select2("enviar_plantilla_clientes");
+        },
+      });
+    },
+
+    validar: function() {
+      try {
+        var self = this;
+
+        var asunto = this.$("#email_asunto").val();
+        if (isEmpty(asunto)) {
+          alert("Por favor ingrese un asunto para el email.");
+          this.$("#email_asunto").focus();
+          return false;
+        }
+
+        var cktext = CKEDITOR.instances['email_texto'].getData();
+        self.model.set({
+          "adjuntos":self.adjuntos,
+          "texto":cktext,
+          "archivo":self.$("#hidden_archivo").val(),
+        });
+        return true;
+      } catch(e) {
+        return false;
+      }
+    },  
+  
+    guardar:function() {
+      if (this.validar()) {
+        if (this.model.id == null) {
+          this.model.set({id:0});
+        }
+        this.model.save({},{
+          success: function(model,response) {
+            if (response.error == 1) {
+              show(response.mensaje);
+              return;
+            } else {
+              //emails.add(model);
+              $('.modal:last').modal('hide');
+            }
+          }
+        });
+      }   
+    },
+
+    cargar_tabla:function(){
+      var dfd = jQuery.Deferred();
+      var self = this;
+      var plantilla = this.model.get("plantilla");
+      $.ajax({
+        "url":"propiedades/function/get_data/",
+        "dataType":"json",
+        "data":{
+          "propiedades": self.model.get("propiedades"),
+          "id_empresa": ID_EMPRESA,
+        },
+        "type": "post",
+        "success":function(res) {
+          if (plantilla == "whatsapp"){
+            var links = "<br> ";
+            for (var i = 0; i < res.propiedades.length; i++) {
+              links += res.propiedades[i].link+" ";
+            }
+            dfd.resolve(links);
+          } else {
+            var tabla = "<br><table><tr><th>Codigo</th><th>Link</th></tr>";
+            for (var i = 0; i < res.propiedades.length; i++) {
+              tabla += "<tr><td>"+res.propiedades[i].codigo+"</td><td>"+res.propiedades[i].link+"</td></tr>"
+            } 
+            tabla += "</table>";
+            dfd.resolve(tabla);          
+          }               
+        },"error":function(){
+          dfd.reject("adios");
+        },
+      });
+      return dfd.promise();
+    },
+    
+  });
+})(app);

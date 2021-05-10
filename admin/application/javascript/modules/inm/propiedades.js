@@ -219,7 +219,27 @@
       },
       "click .no_compartir_red_multiple":function() {
         this.compartir_red_multiple(0);
-      },      
+      },    
+
+      "click .enviar_por_whatsapp": function(){
+        var array = [];
+        $(".check-row:checked").each(function(i,e){
+          array.push($(e).val());
+        });
+        var self = this;
+        var edicion = new app.views.EnviarPlantillaView({
+          model: new app.models.AbstractModel({
+            plantilla: "whatsapp",
+            propiedades: array,
+          }),
+        });
+        crearLightboxHTML({
+          "html":edicion.el,
+          "width":900,
+          "height":700,
+        });
+        workspace.crear_editor("enviar_plantilla_texto");
+      },  
 
       "click #buscar_propias_tab":function() {
         this.$(".buscar_tab").removeClass("active");
@@ -1447,6 +1467,11 @@
         });
       }
       $(".cantidad_seleccionados").html(window.propiedades_marcadas.length);
+      var imagenes = "";
+      $(".check-row:checked").each(function(i,e){
+        imagenes += "<img class='ml10' width='40' height='40' src='"+$(e).attr("data-img")+"'>";
+      });
+      $(".imagenes_propiedades").html(imagenes);
 
       // Si hay alguno marcado
       var marcado = false;

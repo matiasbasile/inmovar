@@ -1867,4 +1867,16 @@ class Clientes extends REST_Controller {
     return;
   }
 
+
+  function get_clientes() {
+    $id_empresa = parent::get_get("id_empresa");
+
+    $r = $this->modelo->buscar(array(
+      "id_empresa"=>$id_empresa,
+      "get_telefonos"=>1,
+    ));
+
+    echo json_encode($r);
+  }   
+
 }
