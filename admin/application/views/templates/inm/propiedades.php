@@ -152,6 +152,7 @@
     <% } %>
     <br/>Cod. <%= codigo_completo %>
 
+    <?php /*
     <% if (ID_EMPRESA == id_empresa_inmobiliaria) { %>
       <div class="cb oh mt5">
         <span class="material-icons fs16 fl mr5">person</span>
@@ -166,6 +167,7 @@
         </select>
       </div>
     <% } %>
+    */ ?>
 
   </td>
   <td class="<%= clase %> data">
