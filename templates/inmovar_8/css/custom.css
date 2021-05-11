@@ -958,7 +958,7 @@ background-color: var(--c3);
 
 .footer_logo p {
   display: inline-block;
-  font-size: 28px;
+  font-size: 20px;
   margin: auto;
   padding: 0 28px 0 18px;
   vertical-align: middle;
@@ -1015,7 +1015,7 @@ font-family:  'latobold';
 
 .footer_social {margin: 26px 0 0;}
 .footer_logo img {
-  max-width: 220px;
+  max-width: 180px;
 }
 
 .quick_link li {display: inline-block;}
