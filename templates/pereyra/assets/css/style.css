@@ -1786,4 +1786,4 @@ header {
   }
 }
 
-.imagen-ppal { height: 280px; object-fit: cover; }
+.imagen-ppal { height: 280px; object-fit: cover; width: 100%; }
