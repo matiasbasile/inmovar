@@ -1377,6 +1377,26 @@
         return false;
       },
 
+      "change .usuario_asignado":function(e){
+        var self = this;
+        e.stopPropagation();
+        e.preventDefault();
+        if($(e.currentTarget).attr("disabled") == "disabled") return;
+        var id_usuario = $(e.currentTarget).val();
+        self.model.set({"id_usuario":id_usuario});
+        this.change_property({
+          "table":"inm_propiedades",
+          "url":"propiedades/function/change_property/",
+          "attribute":"id_usuario",
+          "value":id_usuario,
+          "id":self.model.id,
+          "success":function(){
+            self.render();  
+          }
+        });
+        return false;
+      },
+
       "click .duplicar":function(e) {
         var self = this;
         e.stopPropagation();
