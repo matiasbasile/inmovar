@@ -501,7 +501,9 @@ class Consultas extends REST_Controller {
         ));
       }
 
-      if (!empty($id_propiedad)) {
+      // Si estamos consultando por una propiedad
+      // pero el origen no es whatsapp
+      if (!empty($id_propiedad) && !($id_origen == 30 || $id_origen == 31)) {
         $this->load->model("Propiedad_Model");
         $propiedad = $this->Propiedad_Model->get($id_propiedad,array(
           "id_empresa"=>$id_empresa_relacion
