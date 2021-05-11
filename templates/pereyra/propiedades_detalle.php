@@ -221,7 +221,15 @@ $page_act = $propiedad->tipo_operacion_link;
           <?php foreach ($propiedad->relacionados as $p) { ?>
             <div class="item">
               <div class="list-item">
-                <img src="/admin/<?php echo $p->path ?>" class="cover" alt="Property Img">
+
+                <?php if (!empty($p->imagen)) { ?>
+                  <img class="cover" src="<?php echo $p->imagen ?>" alt="<?php echo ($p->nombre);?>">
+                <?php } else if (!empty($empresa->no_imagen)) { ?>
+                  <img class="cover" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre);?>">
+                <?php } else { ?>
+                  <img class="cover" src="images/no-imagen.png" alt="<?php echo ($p->nombre);?>">
+                <?php } ?>
+
                 <div class="overlay-block">
                   <div class="top-item">
                     <div class="tag <?php echo ($p->id_tipo_operacion == 4)?"dark-blue":($p->id_tipo_operacion ==2)?"light-blue":"" ?>">
