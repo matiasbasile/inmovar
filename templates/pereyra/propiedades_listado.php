@@ -138,11 +138,11 @@ $vc_dormitorios= isset($get_params["dm"]) ? $get_params["dm"] : 0;
             <div class="img-block">
               <a href="<?php echo ($p->link_propiedad) ?>">
                 <?php if (!empty($p->imagen)) { ?>
-                  <img src="<?php echo $p->imagen ?>" alt="<?php echo ($p->nombre);?>">
+                  <img class="imagen-ppal" src="<?php echo $p->imagen ?>" alt="<?php echo ($p->nombre);?>">
                 <?php } else if (!empty($empresa->no_imagen)) { ?>
-                  <img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre);?>">
+                  <img class="imagen-ppal" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre);?>">
                 <?php } else { ?>
-                  <img src="images/no-imagen.png" alt="<?php echo ($p->nombre);?>">
+                  <img class="imagen-ppal" src="images/no-imagen.png" alt="<?php echo ($p->nombre);?>">
                 <?php } ?>
               </a>
             </div>

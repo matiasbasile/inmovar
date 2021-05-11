@@ -1785,3 +1785,5 @@ header {
     margin: 0 0 15px;
   }
 }
+
+.imagen-ppal { height: 280px; object-fit: cover; }
