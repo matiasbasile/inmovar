@@ -151,22 +151,6 @@
       <br/><span class="text-info"><%= tipo_estado %></span>
     <% } %>
     <br/>Cod. <%= codigo_completo %>
-
-    <% if (id_empresa == ID_EMPRESA) { %>
-      <div class="cb oh mt5">
-        <span class="material-icons fs16 fl mr5">person</span>
-        <select style="background-color:transparent;border:none;padding:0px;font-size:13px;margin-top:2px" class="no-model usuario_asignado fl">
-          <option value="0">Seleccione</option>
-          <% for(var i=0;i< window.usuarios.models.length;i++) { %>
-            <% var o = window.usuarios.models[i]; %>
-            <% if (SOLO_USUARIO == 0 || (SOLO_USUARIO == 1 && o.id == ID_USUARIO)) { %>
-              <option value="<%= o.id %>" <%= (o.id == id_usuario)?"selected":"" %>><%= o.get("nombre") %></option>
-            <% } %>
-          <% } %>
-        </select>
-      </div>
-    <% } %>
-
   </td>
   <td class="<%= clase %> data">
     <% if (ambientes > 0) { %><%= ambientes %> Amb.<br/><% } %>
@@ -382,6 +366,22 @@
             <% } %>
           </ul>
         </div>
+
+        <% if (id_empresa == ID_EMPRESA) { %>
+          <div class="cb oh mt5">
+            <span class="material-icons fs16 fl mr5">person</span>
+            <select style="background-color:transparent;border:none;padding:0px;font-size:13px;margin-top:2px" class="no-model usuario_asignado fl">
+              <option value="0">Seleccione</option>
+              <% for(var i=0;i< window.usuarios.models.length;i++) { %>
+                <% var o = window.usuarios.models[i]; %>
+                <% if (SOLO_USUARIO == 0 || (SOLO_USUARIO == 1 && o.id == ID_USUARIO)) { %>
+                  <option value="<%= o.id %>" <%= (o.id == id_usuario)?"selected":"" %>><%= o.get("nombre") %></option>
+                <% } %>
+              <% } %>
+            </select>
+          </div>
+        <% } %>
+        
       </td>
     <% } else { %>
 
