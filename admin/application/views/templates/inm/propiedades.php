@@ -152,7 +152,7 @@
     <% } %>
     <br/>Cod. <%= codigo_completo %>
 
-    <% if (id_empresa == id_empresa_inmobiliaria) { %>
+    <% if (ID_EMPRESA == id_empresa_inmobiliaria) { %>
       <div class="cb oh mt5">
         <span class="material-icons fs16 fl mr5">person</span>
         <select style="background-color:transparent;border:none;padding:0px;font-size:13px;margin-top:2px" class="no-model usuario_asignado fl">
