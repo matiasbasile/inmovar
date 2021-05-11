@@ -67,3 +67,5 @@
 
 <!-- Return to Top -->
 <a href="javascript:" id="return-to-top"><span><i class="fa fa-chevron-up"></i></span></a>
+
+<?php include("templates/comun/clienapp.php") ?>

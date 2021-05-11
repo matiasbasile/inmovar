@@ -1787,3 +1787,4 @@ header {
 }
 
 .imagen-ppal { height: 280px; object-fit: cover; width: 100%; }
+.cover-relacionadas { height: 280px; overflow: hidden; }

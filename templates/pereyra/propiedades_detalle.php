@@ -222,13 +222,15 @@ $page_act = $propiedad->tipo_operacion_link;
             <div class="item">
               <div class="list-item">
 
-                <?php if (!empty($p->imagen)) { ?>
-                  <img class="cover" src="<?php echo $p->imagen ?>" alt="<?php echo ($p->nombre);?>">
-                <?php } else if (!empty($empresa->no_imagen)) { ?>
-                  <img class="cover" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre);?>">
-                <?php } else { ?>
-                  <img class="cover" src="images/no-imagen.png" alt="<?php echo ($p->nombre);?>">
-                <?php } ?>
+                <div class="cover-relacionadas">
+                  <?php if (!empty($p->imagen)) { ?>
+                    <img class="cover" src="<?php echo $p->imagen ?>" alt="<?php echo ($p->nombre);?>">
+                  <?php } else if (!empty($empresa->no_imagen)) { ?>
+                    <img class="cover" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre);?>">
+                  <?php } else { ?>
+                    <img class="cover" src="images/no-imagen.png" alt="<?php echo ($p->nombre);?>">
+                  <?php } ?>
+                </div>
 
                 <div class="overlay-block">
                   <div class="top-item">
