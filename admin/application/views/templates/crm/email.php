@@ -74,3 +74,39 @@
   </div>
 </div>
 </script>
+
+<script type="text/template" id="enviar_plantilla_template">
+<div class="panel panel-default mb0">
+  <div class="panel-heading font-bold">
+    Enviar Plantilla
+    <i class="pull-right cerrar_lightbox fa fa-times cp"></i>
+  </div>
+  <div class="panel-body">
+    <div class="form-horizontal">
+      <div class="form-group">
+        <div class="col-sm-1 col-md-1 col-xs-12">
+          <label class="control-label">Para:</label>
+        </div>
+        <div class="col-sm-9 col-md-9 col-xs-12">
+          <select type="text" name="email" id="enviar_plantilla_clientes" class="form-control">
+          </select>
+        </div>
+        <div class="col-sm-2 col-md-2 col-xs-12">
+          <a id="agregar_cliente" class="btn btn-default btn-block">+ Agregar</a>
+        </div>
+      </div>      
+
+      <div class="form-group">
+        <div class="col-xs-12">
+          <textarea name="texto" id="enviar_plantilla_texto"></textarea>
+        </div>
+      </div>      
+    </div>
+  </div>
+  <div class="panel-footer clearfix">
+    <button class="btn guardar pull-right btn-info btn-addon">
+      <i class="fa fa-send"></i><span>Enviar</span>
+    </button>
+  </div>
+</div>
+</script>

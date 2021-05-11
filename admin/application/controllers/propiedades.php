@@ -878,7 +878,8 @@ class Propiedades extends REST_Controller {
 
   function ver_propiedad($id,$id_empresa) {
     $propiedad = $this->modelo->get($id,array(
-      "id_empresa"=>$id_empresa
+      "id_empresa"=>$id_empresa,
+      "id_empresa_original"=>parent::get_empresa(),
     ));
     echo json_encode($propiedad);    
   }
@@ -1352,6 +1353,7 @@ class Propiedades extends REST_Controller {
         $altura->addCDATA($p->altura);
 
         $texto = $aviso->addChild("DESCRIPTION");
+        $p->texto = utf8_encode($texto);
         $texto->addCDATA($p->texto);
 
         $provincia = $aviso->addChild("PROVINCIA");
@@ -2683,6 +2685,48 @@ class Propiedades extends REST_Controller {
       echo $error."<br/>";
     }
     echo "TERMINO $cant_insert";
+  }
+
+  function get_data(){
+    $salida = array();
+    $id_empresa = parent::get_post("id_empresa");
+    $propiedades = parent::get_post("propiedades");
+
+
+    foreach ($propiedades as $s) {
+      $prop = $this->modelo->get($s, $id_empresa);
+      $salida[] = $prop;
+    }
+
+    echo json_encode(array(
+      "error"=>0,
+      "propiedades"=>$salida,
+    ));
+  }
+
+  function get_plantilla(){
+    $salida = "";
+    $id_empresa = parent::get_post("id_empresa");
+    $plantilla = parent::get_post("plantilla");
+
+    if ($plantilla == "whatsapp"){
+      $this->load->model("Wpp_Templates_Model");
+      $template = $this->Wpp_Templates_Model->get_by_key("compartir-propiedad",$id_empresa);
+      if ($template !== FALSE) {
+        $salida = $template->texto;
+      }
+    } else {
+      $this->load->model("Email_Template_Model");
+      $template = $this->Email_Template_Model->get_by_key("compartir-propiedad",$id_empresa);
+      if ($template !== FALSE) {
+        $salida = $template->texto;
+      }
+    }
+
+    echo json_encode(array(
+      "error"=>0,
+      "texto"=>$salida,
+    ));
   }
 
     

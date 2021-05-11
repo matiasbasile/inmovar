@@ -75,8 +75,9 @@
       <?php include("buscar_propiedades.php") ?>
       <% if (!seleccionar) { %>
         <div class="bulk_action wrapper pb0">
-          <p><b class="cantidad_seleccionados"></b> elementos seleccionados</p>
-          <button class="btn btn-default enviar btn-addon"><i class="icon fa fa-send"></i>Enviar fichas por email</button>
+          <p><b class="cantidad_seleccionados"></b> elementos seleccionados <b class="imagenes_propiedades"></b></p>
+          <button class="btn btn-default enviar_por_email btn-addon"><i class="icon fa fa-send"></i>Enviar fichas por email</button>
+          <button class="btn btn-default enviar_por_whatsapp btn-addon"><i class="icon fa fa-whatsapp"></i>Enviar fichas por whatsapp</button>
           <div class="btn-group dropdown">
             <button class="btn btn-default btn-addon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="icon fa fa-share-alt"></i>Red Inmovar
@@ -128,7 +129,7 @@
       <input type="hidden" id="<%= id %>_tipo_operacion" value="<%= id_tipo_operacion %>"/>
       <input type="hidden" id="<%= id %>_tipo_inmueble" value="<%= id_tipo_inmueble %>"/>
       <label class="i-checks m-b-none">
-        <input class="esc check-row" value="<%= id %>" type="checkbox"><i></i>
+        <input class="esc check-row" data-img="<%= path %>" value="<%= id %>" type="checkbox"><i></i>
       </label>
     </td>
   <% } %>

@@ -126,6 +126,7 @@ if (file_exists("application/views/templates/wait.php")) include_once ("applicat
 if (file_exists("application/views/templates/localidades.php")) include_once ("application/views/templates/localidades.php");
 if (file_exists("application/views/templates/provincias.php")) include_once ("application/views/templates/provincias.php");
 if (file_exists("application/views/templates/crm/emails_templates.php")) include_once ("application/views/templates/crm/emails_templates.php");
+if (file_exists("application/views/templates/crm/wpp_templates.php")) include_once ("application/views/templates/crm/wpp_templates.php");
 if (file_exists("application/views/templates/crm/consultas.php")) include_once ("application/views/templates/crm/consultas.php");
 if (file_exists("application/views/templates/crm/contactos.php")) include_once ("application/views/templates/crm/contactos.php");
 if (file_exists("application/views/templates/crm/eventos.php")) include_once ("application/views/templates/crm/eventos.php");

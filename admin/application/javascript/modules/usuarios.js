@@ -34,6 +34,7 @@
       horarios_entrega: [],
       sucursales: [],
       images: [],
+      recibe_notificaciones: 1,
 
       // Estos datos se guardan en otra tabla
       solo_usuario: 0,
@@ -113,6 +114,25 @@
           "url":"usuarios/function/change_property/",
           "attribute":"activo",
           "value":activo,
+          "id":self.model.id,
+          "success":function(){
+            self.render();
+          }
+        });
+        return false;
+      },
+      "click .recibe_notificaciones":function(e) {
+        var self = this;
+        e.stopPropagation();
+        e.preventDefault();
+        var recibe_notificaciones = this.model.get("recibe_notificaciones");
+        recibe_notificaciones = (recibe_notificaciones == 1)?0:1;
+        self.model.set({"recibe_notificaciones":recibe_notificaciones});
+        this.change_property({
+          "table":"com_usuarios",
+          "url":"usuarios/function/change_property/",
+          "attribute":"recibe_notificaciones",
+          "value":recibe_notificaciones,
           "id":self.model.id,
           "success":function(){
             self.render();
@@ -626,6 +646,7 @@
       if (this.validar()) {
         this.model.set({
           "language": ((self.$("#usuario_language").length > 0) ? self.$("#usuario_language").val() : 0),
+          "recibe_notificaciones": ((self.$("#recibe_notificaciones").length > 0) ? (self.$("#recibe_notificaciones").is(":checked") ? 1 : 0) : 0),
         });
         if (this.model.id == null) {
           this.model.set({id:0});

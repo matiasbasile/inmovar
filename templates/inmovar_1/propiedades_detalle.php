@@ -117,39 +117,41 @@ else $vc_moneda = "$";
                 <?php } ?>
               </span>
             </header>
-            <section id="property-gallery" class="pr">
+            <?php if (sizeof($propiedad->images) > 0) { ?>
+              <section id="property-gallery" class="pr">
 
-              <?php if (sizeof($propiedad->images)==1) { 
-                $image = $propiedad->images[0]; ?>
-                <img class="alto-2" src="<?php echo $image ?>" style="width: 100%" alt="<?php echo $propiedad->nombre ?>"/>
-              <?php } else { ?>
-              <div id="property-carousel" class="property-carousel carousel slide" data-ride="carousel">
+                <?php if (sizeof($propiedad->images)==1) { 
+                  $image = $propiedad->images[0]; ?>
+                  <img class="alto-2" src="<?php echo $image ?>" style="width: 100%" alt="<?php echo $propiedad->nombre ?>"/>
+                <?php } else { ?>
+                <div id="property-carousel" class="property-carousel carousel slide" data-ride="carousel">
 
-                <?php if ($propiedad->id_tipo_estado == 2) { ?>
-                  <figure class="ribbon">Alquilado</figure>
-                <?php } else if ($propiedad->id_tipo_estado == 4) { ?>
-                  <figure class="ribbon">Reservado</figure>
-                <?php } else if ($propiedad->id_tipo_estado == 3) { ?>
-                  <figure class="ribbon">Vendido</figure>
-                <?php } ?>
-                
-                <a id="prev" class="carousel-control" href="#property-carousel" data-slide="prev"></a>
-                <a id="next" class="carousel-control" href="#property-carousel" data-slide="next"></a>
+                  <?php if ($propiedad->id_tipo_estado == 2) { ?>
+                    <figure class="ribbon">Alquilado</figure>
+                  <?php } else if ($propiedad->id_tipo_estado == 4) { ?>
+                    <figure class="ribbon">Reservado</figure>
+                  <?php } else if ($propiedad->id_tipo_estado == 3) { ?>
+                    <figure class="ribbon">Vendido</figure>
+                  <?php } ?>
+                  
+                  <a id="prev" class="carousel-control" href="#property-carousel" data-slide="prev"></a>
+                  <a id="next" class="carousel-control" href="#property-carousel" data-slide="next"></a>
 
-                <div class="carousel-inner">
-                  <?php 
-                  $i=0;
-                  foreach($propiedad->images as $image) { ?>
-                    <div class="item <?php echo ($i==0)?"active":"" ?>">
-                      <a href="<?php echo $image ?>" class="image-popup">
-                        <img class="alto-2" src="<?php echo $image ?>" alt="<?php echo $propiedad->nombre ?>"/>
-                      </a>
-                    </div>
-                  <?php $i++; } ?>
+                  <div class="carousel-inner">
+                    <?php 
+                    $i=0;
+                    foreach($propiedad->images as $image) { ?>
+                      <div class="item <?php echo ($i==0)?"active":"" ?>">
+                        <a href="<?php echo $image ?>" class="image-popup">
+                          <img class="alto-2" src="<?php echo $image ?>" alt="<?php echo $propiedad->nombre ?>"/>
+                        </a>
+                      </div>
+                    <?php $i++; } ?>
+                  </div>
                 </div>
-              </div>
-              <?php } ?>
-            </section>
+                <?php } ?>
+              </section>
+            <?php } ?>
             <div class="row">
               <div class="col-md-4 col-sm-12">
                 <section id="quick-summary" class="clearfix">
@@ -478,7 +480,7 @@ else $vc_moneda = "$";
   <?php include("includes/footer.php"); ?>
 </div>
 <?php include_once("templates/comun/mapa_js.php"); ?>
-<script type="text/javascript" src="assets/js/infobox.js"></script>
+<!--<script type="text/javascript" src="assets/js/infobox.js"></script>-->
 <script type="text/javascript" src="assets/js/jquery.raty.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery.magnific-popup.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery.fitvids.js"></script>

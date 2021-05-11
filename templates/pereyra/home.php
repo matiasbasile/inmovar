@@ -83,7 +83,13 @@
       <?php foreach ($propiedades as $p) {  ?>
         <div class="col-xl-4 col-md-6">
           <div class="list-item">
-            <img src="/admin/<?php echo $p->path ?>" alt="Property Img">
+            <?php if (!empty($p->imagen)) { ?>
+              <img src="<?php echo $p->imagen ?>" alt="<?php echo ($p->nombre);?>">
+            <?php } else if (!empty($empresa->no_imagen)) { ?>
+              <img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre);?>">
+            <?php } else { ?>
+              <img src="images/no-imagen.png" alt="<?php echo ($p->nombre);?>">
+            <?php } ?>
             <div class="overlay-block">
               <div class="top-item">
                 <div class="tag <?php echo ($p->id_tipo_operacion == 4)?"dark-blue":($p->id_tipo_operacion ==2)?"light-blue":"" ?>">
@@ -160,32 +166,44 @@
       <span>Conoce las últimas propiedades en La Plata y Alrededores</span>
     </div>
     <div class="row">
-      <?php $propiedades = $propiedad_model->get_list(array("offset"=>6))?>
-      <div class="col-xl-4 col-md-6">
-        <div class="list-item">
-          <div class="img-block"><a href="<?php echo ($p->link_propiedad) ?>">
-            <img src="/admin/<?php echo $p->path ?>" alt="Property Img"></a></div>
-          <div class="overlay-block">
-            <div class="top-item">
-              <div class="tag <?php echo ($p->id_tipo_operacion == 4)?"dark-blue":($p->id_tipo_operacion ==2)?"light-blue":"" ?>">
-                <?php echo ($p->id_tipo_operacion == 1)?"En Venta":"" ?>
-                <?php echo ($p->id_tipo_operacion == 2)?"En Alquiler":"" ?>
-                <?php echo ($p->id_tipo_operacion == 4)?"Emprendimientos":"" ?>
-              </div>
-              <big><?php echo $p->precio ?></big>
+      <?php 
+      $propiedades = $propiedad_model->ultimas(array("offset"=>6));
+      foreach($propiedades as $p) { ?>
+        <div class="col-xl-4 col-md-6">
+          <div class="list-item">
+            <div class="img-block">
+              <a href="<?php echo ($p->link_propiedad) ?>">
+                <?php if (!empty($p->imagen)) { ?>
+                  <img src="<?php echo $p->imagen ?>" alt="<?php echo ($p->nombre);?>">
+                <?php } else if (!empty($empresa->no_imagen)) { ?>
+                  <img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre);?>">
+                <?php } else { ?>
+                  <img src="images/no-imagen.png" alt="<?php echo ($p->nombre);?>">
+                <?php } ?>
+              </a>
             </div>
-            <div class="bottom-item">
-              <h3><?php echo $p->nombre ?></h3>
-              <span><?php echo $p->direccion_completa ?></span>
-              <ul>
-                <li>Habitaciones: <small><?php echo ($p->dormitorios != "0")?$p->dormitorios:"-" ?></small></li>
-                <li>Baños: <small><?php echo ($p->banios != "0")?$p->banios:"-" ?></small></li>
-                <li>Metros: <small><?php echo ($p->superficie_total != "0")?$p->superficie_total:"-" ?></small></li>
-              </ul>
+            <div class="overlay-block">
+              <div class="top-item">
+                <div class="tag <?php echo ($p->id_tipo_operacion == 4)?"dark-blue":($p->id_tipo_operacion ==2)?"light-blue":"" ?>">
+                  <?php echo ($p->id_tipo_operacion == 1)?"En Venta":"" ?>
+                  <?php echo ($p->id_tipo_operacion == 2)?"En Alquiler":"" ?>
+                  <?php echo ($p->id_tipo_operacion == 4)?"Emprendimientos":"" ?>
+                </div>
+                <big><?php echo $p->precio ?></big>
+              </div>
+              <div class="bottom-item">
+                <h3><?php echo $p->nombre ?></h3>
+                <span><?php echo $p->direccion_completa ?></span>
+                <ul>
+                  <li>Habitaciones: <small><?php echo ($p->dormitorios != "0")?$p->dormitorios:"-" ?></small></li>
+                  <li>Baños: <small><?php echo ($p->banios != "0")?$p->banios:"-" ?></small></li>
+                  <li>Metros: <small><?php echo ($p->superficie_total != "0")?$p->superficie_total:"-" ?></small></li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      <?php } ?>
       <div class="col-md-12 text-center mt-5">
         <a href="<?php echo mklink ("propiedades/") ?>" class="btn">Ver Todas Las Propiedades</a>
       </div>

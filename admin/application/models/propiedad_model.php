@@ -1041,6 +1041,7 @@ class Propiedad_Model extends Abstract_Model {
   
   function get($id,$config=array()) {
     $id_empresa = isset($config["id_empresa"]) ? $config["id_empresa"] : parent::get_empresa();
+    $id_empresa_original = isset($config["id_empresa_original"]) ? $config["id_empresa_original"] : $id_empresa;
     // Obtenemos los datos del propiedad
     $id = (int)$id;
     $sql = "SELECT A.*, ";
@@ -1226,6 +1227,34 @@ class Propiedad_Model extends Abstract_Model {
     } else {
       $propiedad->precio = "Consultar";
     }    
+
+    $propiedad->bloqueado_web = 0;
+    if ($propiedad->id_empresa != $id_empresa_original) {
+      $propiedad->permiso_web = 0;
+
+      // Controlamos si la otra inmobiliaria nos dio permiso
+      $sql = "SELECT permiso_web FROM inm_permisos_red ";
+      $sql.= "WHERE id_empresa = $propiedad->id_empresa ";
+      $sql.= "AND id_empresa_compartida = $id_empresa_original ";
+      $sql.= "AND solicitud_permiso = 0 ";
+      $sql.= "AND bloqueado = 0 ";
+      $propiedad->sql = $sql;
+      $qqq = $this->db->query($sql);
+      if ($qqq->num_rows() > 0) {
+        $rrr = $qqq->row();
+        $propiedad->permiso_web = $rrr->permiso_web;
+      }
+
+      // Controlamos si tenemos bloqueada a la propiedad
+      $sql = "SELECT 1 FROM inm_propiedades_bloqueadas ";
+      $sql.= "WHERE id_empresa = $id_empresa_original ";
+      $sql.= "AND id_propiedad = $propiedad->id ";
+      $sql.= "AND id_empresa_propiedad = $propiedad->id_empresa ";
+      $qqq = $this->db->query($sql);
+      if ($qqq->num_rows() > 0) $propiedad->bloqueado_web = 1;
+    } else {
+      $propiedad->permiso_web = 1;
+    }
 
     return $propiedad;
   }

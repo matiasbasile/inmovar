@@ -44,6 +44,12 @@
            Plantillas de email
           </a>
         </li>
+        <li>
+          <a class="<%= (id_modulo == "wpp_templates")?"active":"" %>" href="app/#configuracion/wpp_templates">
+            <span class="material-icons">arrow_forward_ios</span>
+           Plantillas de Whatsapp
+          </a>
+        </li>
       </ul>
     </div>
     <div class="col-md-9">
@@ -290,6 +296,12 @@
             </div>
           </div>
         </div>
+
+        <div class="form-group">
+          <label class="control-label">Email</label>
+          <input type="text" name="email" class="form-control" id="empresas_email" value="<%= email %>"/>
+        </div>
+
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
@@ -374,25 +386,77 @@
 </script>
 
 <script type="text/template" id="configuracion_notificaciones">
+
   <div class="panel panel-default">
     <div class="panel-body">
       <div class="padder">
         <div class="form-group mb0 clearfix expand-link cp">
           <label class="control-label cp">
-            Notificaciones
+            Consultas de la web
           </label>
           <div class="panel-description">
-            Configure las notificaciones que desea recibir.
+            Configure el comportamiento al recibir consultas a través de la web.
           </div>
         </div>
       </div>
     </div>          
     <div class="panel-body expand" style="display:block">
       <div class="padder">
+
         <div class="form-group">
-          <label class="control-label">Enviar como copia oculta las notificaciones del sistema a las siguientes direcciones (separadas por coma)</label>
+          <div class="checkbox">
+            <label class="i-checks">
+              <input type="checkbox" id="crm_notificar_inmobiliaria" name="crm_notificar_inmobiliaria" <%= (crm_notificar_inmobiliaria == 1) ? 'checked' : '' %>><i></i>
+              Enviar notificación por email a la cuenta de la inmobiliaria (<b><%= EMAIL %></b>)
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="checkbox">
+            <label class="i-checks">
+              <input type="checkbox" id="crm_notificar_usuario_propiedad" name="crm_notificar_usuario_propiedad" <%= (crm_notificar_usuario_propiedad == 1) ? 'checked' : '' %>><i></i>
+              Enviar notificación por email al usuario asignado de la propiedad.
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">En caso de que la propiedad no tenga usuario asignado:</label>
+          <select id="crm_enviar_emails_usuarios" name="crm_enviar_emails_usuarios" class="form-control">
+            <option <%= (crm_enviar_emails_usuarios == 0)?"selected":"" %> value="0">Notificar al email de la inmobiliaria (<%= EMAIL %>)</option>
+            <option <%= (crm_enviar_emails_usuarios == 1)?"selected":"" %> value="1">Elegir aleatoriamente entre todos los usuarios que reciben notificaciones</option>
+          </select>
+        </div>  
+
+        <div class="form-group">
+          <label class="control-label">Enviar como copia oculta a las siguientes direcciones de emails (separadas por coma)</label>
           <input type="text" class="form-control" value="<%= bcc_email %>" name="bcc_email"/>
         </div>
+
+        <div class="clearfix">
+          <button class="btn fr btn-info guardar"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
+        </div>
+      </div>
+    </div>
+  </div>  
+
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="padder">
+        <div class="form-group mb0 clearfix expand-link cp">
+          <label class="control-label cp">
+            Otras notificaciones
+          </label>
+          <div class="panel-description">
+            Determine cuando recibir notificaciones del sistema.
+          </div>
+        </div>
+      </div>
+    </div>          
+    <div class="panel-body expand" style="display:block">
+      <div class="padder">
 
         <div class="form-group">
           <div class="checkbox">
@@ -411,15 +475,6 @@
             </label>
           </div>
         </div>
-
-        <div class="form-group">
-          <label class="control-label">Notificaciones de nuevas consultas</label>
-          <select id="crm_enviar_emails_usuarios" name="crm_enviar_emails_usuarios" class="form-control">
-            <option <%= (crm_enviar_emails_usuarios == 0)?"selected":"" %> value="0">Enviar email al correo de la empresa</option>
-            <option <%= (crm_enviar_emails_usuarios == 1)?"selected":"" %> value="1">Enviar email solo al usuario asignado de la propiedad</option>
-            <option <%= (crm_enviar_emails_usuarios == 2)?"selected":"" %> value="2">Enviar email a ambos correos, el de la empresa y el usuario asignado a la propiedad</option>
-          </select>
-        </div>  
 
         <div class="clearfix">
           <button class="btn fr btn-info guardar"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
@@ -487,6 +542,27 @@
     </div>
     <div class="panel-body expand" style="display:block">
       <div id="emails_container">
+      </div>
+    </div>
+  </div>
+</script>
+
+<script type="text/template" id="configuracion_wpp">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="padder">
+        <div class="form-group mb0 clearfix expand-link cp">
+          <label class="control-label cp">
+            Plantillas de Whatsapp
+          </label>
+          <div class="panel-description">
+            Crear, modificar o eliminar plantillas de Whatsapp.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body expand" style="display:block">
+      <div id="wpps_container">
       </div>
     </div>
   </div>

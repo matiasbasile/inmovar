@@ -29,6 +29,7 @@
   <td class="ver"><span class='<%= clase %>'><%= nombre.ucwords() %></span></td>
   <td class='ver'><span><%= perfil.ucwords() %></span></td>
   <td class="p5 td_acciones tar">
+    <i data-toggle="tooltip" title="Recibe Notificaciones por Email" class="mr10 fa-envelope iconito fa recibe_notificaciones <%= (recibe_notificaciones == 1)?"active":"" %>"></i>
     <i data-toggle="tooltip" title="Activo" class="fa-check iconito fa activo <%= (activo == 1)?"active":"" %>"></i>
     <div class="btn-group dropdown ml10">
       <button class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -218,6 +219,15 @@
                 <?php echo lang(array("es"=>"Mostrar solamente la informacion correspondiente al usuario","en"=>"Show only the information created by the user")); ?>
               </label>
             </div>        
+          </div>
+
+          <div class="form-group">
+            <div class="checkbox">
+              <label class="i-checks">
+                <input type="checkbox" id="recibe_notificaciones" name="recibe_notificaciones" class="checkbox" value="1" <%= (recibe_notificaciones == 1)?"checked":"" %>><i></i>
+                Recibe notificaciones por email de las consultas de las propiedades
+              </label>
+            </div>
           </div>
 
         </div>  

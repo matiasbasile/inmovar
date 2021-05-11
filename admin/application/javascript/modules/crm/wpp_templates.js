@@ -1,7 +1,7 @@
 (function ( models ) {
 
-  models.EmailTemplate = Backbone.Model.extend({
-    urlRoot: "emails_templates/",
+  models.WppTemplates = Backbone.Model.extend({
+    urlRoot: "wpp_templates/",
     defaults: {
       nombre: "",
       texto: "",
@@ -15,26 +15,26 @@
 
 (function (collections, model, paginator) {
 
-  collections.EmailsTemplates = paginator.requestPager.extend({
+  collections.WppTemplates = paginator.requestPager.extend({
     model: model,
     paginator_core: {
-      url: "emails_templates/"
+      url: "wpp_templates/"
     },
   });
 
-})( app.collections, app.models.EmailTemplate, Backbone.Paginator);
+})( app.collections, app.models.WppTemplates, Backbone.Paginator);
 
 
 (function ( app ) {
 
-  app.views.EmailTemplateItem = Backbone.View.extend({
+  app.views.WppTemplateItem = Backbone.View.extend({
     tagName: "tr",
     attributes: function() {
       return {
         id: this.model.id // Es necesario hacer esto para reordenar
       }
     },
-    template: _.template($('#emails_templates_item').html()),
+    template: _.template($('#wpp_templates_item').html()),
     events: {
       "click .edit": "editar",
       "click .delete": "borrar",
@@ -63,10 +63,10 @@
       return this;
     },
     editar: function() {
-      var template = new app.models.EmailTemplate({ "id": this.model.id });
+      var template = new app.models.WppTemplates({ "id": this.model.id });
       template.fetch({
         "success":function() {
-          var view = new app.views.EmailTemplateEditView({
+          var view = new app.views.WppTemplateEditView({
             model: template,
             lightbox: 1,
           });
@@ -75,7 +75,7 @@
             "width":700,
             "height":500,
           });
-          workspace.crear_editor("emails_templates_texto");
+          workspace.crear_editor("wpp_templates_texto");
         }
       });
     },
@@ -86,37 +86,6 @@
       }
       e.stopPropagation();
     },
-    notificar: function() {
-      var self = this;
-      $.ajax({
-        "url":"emails_templates/function/enviar_plantilla/",
-        "dataType":"json",
-        "data":{
-          "id_email_template":self.model.id,
-        },
-        "type":"post",
-        "timeout":0,
-        "dataType":"json",
-        "success":function(r) {
-          if (r.error == 0) {
-            alert("Proceso terminado. Se han enviado "+r.cantidad+" emails.");
-            location.reload();
-          }
-          else alert(r.mensaje);
-        },
-      });
-    },
-    duplicar: function(e) {
-      var clonado = this.model.clone();
-      clonado.set({id:null}); // Ponemos el ID como NULL para que se cree un nuevo elemento
-      clonado.save({},{
-        success: function(model,response) {
-          model.set({id:response.id});
-        }
-      });
-      this.model.collection.add(clonado);
-      e.stopPropagation();
-    }
   });
 
 })( app );
@@ -129,14 +98,13 @@
 
 (function ( app ) {
 
-  app.views.EmailsTemplatesTableView = app.mixins.View.extend({
+  app.views.WppTemplatesTableView = app.mixins.View.extend({
 
-    template: _.template($("#emails_templates_panel_template").html()),
+    template: _.template($("#wpp_templates_panel_template").html()),
     events: {
       "click .nuevo": "nuevo_template",
     },
     initialize : function (options) {
-
       _.bindAll(this); // Para que this pueda ser utilizado en las funciones
 
       var lista = this.collection;
@@ -181,7 +149,7 @@
 
     addOne : function ( item ) {
       var self = this;
-      var view = new app.views.EmailTemplateItem({
+      var view = new app.views.WppTemplateItem({
         model: item,
         permiso: this.permiso,
         habilitar_seleccion: self.habilitar_seleccion,
@@ -190,8 +158,8 @@
     },
 
     nuevo_template: function(){
-      var template = new app.models.EmailTemplate();
-      var view = new app.views.EmailTemplateEditView({
+      var template = new app.models.WppTemplates();
+      var view = new app.views.WppTemplateEditView({
         model: template,
         lightbox: 1,
       });
@@ -200,7 +168,7 @@
         "width":700,
         "height":500,
       });
-      workspace.crear_editor("emails_templates_texto");
+      workspace.crear_editor("wpp_templates_texto");
     },
 
   });
@@ -213,9 +181,9 @@
 // -------------------------------
 (function ( views, models ) {
 
-  views.EmailTemplateEditView = app.mixins.View.extend({
+  views.WppTemplateEditView = app.mixins.View.extend({
 
-    template: _.template($("#emails_templates_edit_panel_template").html()),
+    template: _.template($("#wpp_templates_edit_panel_template").html()),
 
     myEvents: {
       "click .guardar": "guardar",
@@ -247,11 +215,7 @@
       try {
         // Validamos los campos que sean necesarios
         if (!this.lightbox) {
-          validate_input("emails_templates_nombre",IS_EMPTY,"Por favor, ingrese un nombre.");
-          var id_web_template = $("#emails_templates_templates").val();
-          this.model.set({
-            "id_web_template":id_web_template,
-          });
+          validate_input("wpp_templates_nombre",IS_EMPTY,"Por favor, ingrese un nombre.");
         }
         if (this.model.id == null) {
           this.model.set({id:0});
@@ -265,22 +229,18 @@
     guardar: function() {
       var self = this;
       if (this.validar()) {
-        var cktext = CKEDITOR.instances['emails_templates_texto'].getData();
+        var cktext = CKEDITOR.instances['wpp_templates_texto'].getData();
         this.model.save({
             "texto":cktext,
           },{
           success: function(model,response) {
             if (self.lightbox) location.reload();
-            else location.href="app/#emails_templates";
+            else location.href="app/#wpp_templates";
           }
         });                 
       }
     },
         
-    limpiar : function() {
-      this.model = new app.models.EmailTemplate();
-      this.render();
-    },
     
   });
 
@@ -291,9 +251,9 @@
 
 (function ( views, models ) {
 
-  views.ConfiguracionEmailsView = app.mixins.View.extend({
+  views.ConfiguracionWppView = app.mixins.View.extend({
 
-    template: _.template($("#configuracion_emails").html()),
+    template: _.template($("#configuracion_wpp").html()),
 
     myEvents: {
     },
@@ -307,10 +267,10 @@
       var self = this;
       $(this.el).html(this.template(this.model.toJSON()));
 
-      var usuariosView = new app.views.EmailsTemplatesTableView({
-        collection: new app.collections.EmailsTemplates(),
+      var usuariosView = new app.views.WppTemplatesTableView({
+        collection: new app.collections.WppTemplates(),
       });
-      this.$("#emails_container").html(usuariosView.el);
+      this.$("#wpps_container").html(usuariosView.el);
 
       return this;
     },
@@ -318,4 +278,3 @@
   });
 
 })(app.views, app.models);
-

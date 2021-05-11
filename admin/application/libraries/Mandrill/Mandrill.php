@@ -181,8 +181,8 @@ function mandrill_send($conf = array()) {
   $to_name = isset($conf["to_name"]) ? $conf["to_name"] : "";
   $cc_name = isset($conf["cc_name"]) ? $conf["cc_name"] : "";
   $bcc_name = isset($conf["bcc_name"]) ? $conf["bc_name"] : "";
-  $reply_to = isset($conf["reply_to"]) ? $conf["reply_to"] : "";
-  $reply_to_name = isset($conf["reply_to_name"]) ? $conf["reply_to_name"] : "";
+  $reply_to = isset($conf["reply_to"]) ? $conf["reply_to"] : $from;
+  $reply_to_name = isset($conf["reply_to_name"]) ? $conf["reply_to_name"] : $from_name;
 
   // Archivos adjuntos
   $attachments = isset($conf["attachments"]) ? $conf["attachments"] : array();

@@ -1,6 +1,6 @@
 <?php 
 include("includes/init.php");
-$get_params["offset"] = 6;
+$get_params["offset"] = 18;
 if (!empty($get_params["orden"])) { 
 $vc_orden = $get_params["orden"] ;} else { 
 $vc_orden ="";}
@@ -135,8 +135,16 @@ $vc_dormitorios= isset($get_params["dm"]) ? $get_params["dm"] : 0;
       <?php foreach($vc_listado as $p) {  ?>
         <div class="col-xl-4 col-md-6">
           <div class="list-item">
-            <div class="img-block"><a href="<?php echo ($p->link_propiedad) ?>">
-              <img src="/admin/<?php echo $p->path ?>" alt="Property Img"></a>
+            <div class="img-block">
+              <a href="<?php echo ($p->link_propiedad) ?>">
+                <?php if (!empty($p->imagen)) { ?>
+                  <img src="<?php echo $p->imagen ?>" alt="<?php echo ($p->nombre);?>">
+                <?php } else if (!empty($empresa->no_imagen)) { ?>
+                  <img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre);?>">
+                <?php } else { ?>
+                  <img src="images/no-imagen.png" alt="<?php echo ($p->nombre);?>">
+                <?php } ?>
+              </a>
             </div>
             <div class="overlay-block">
               <div class="top-item">

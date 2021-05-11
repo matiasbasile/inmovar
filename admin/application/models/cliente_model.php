@@ -646,6 +646,7 @@ class Cliente_Model extends Abstract_Model {
     $custom_5 = isset($params["custom_5"]) ? $params["custom_5"] : "";
     $desde = isset($params["desde"]) ? $params["desde"] : "";
     $hasta = isset($params["hasta"]) ? $params["hasta"] : "";
+    $get_telefonos = isset($params["get_telefonos"]) ? $params["get_telefonos"] : 0;
 
 		$sql = "SELECT SQL_CALC_FOUND_ROWS C.*, ";
     $sql.= "  IF(T.nombre IS NULL,'',T.nombre) AS tipo_estado, ";
@@ -798,6 +799,10 @@ class Cliente_Model extends Abstract_Model {
         foreach($qq->result() as $etiq) {
           $row->etiquetas[] = $etiq;
         }
+      }
+
+      if ($get_telefonos == 1){
+        $row->nombre = $row->nombre." ".$row->apellido." | ".$row->telefono;
       }
 
       $salida[] = $row;

@@ -61,7 +61,13 @@ $page_active = $vc_link_tipo_operacion;
                 <div class="property-price"><?php echo $p->precio ?></div>
                 <div class="property-color-bar"></div>
                 <div class="">
-                  <img src="<?php echo $p->imagen ?>" class="mi-img-responsive" />
+                  <?php if (!empty($p->imagen)) { ?>
+                    <img src="<?php echo $p->imagen ?>" class="mi-img-responsive" alt="<?php echo ($p->nombre); ?>" />
+                  <?php } else if (!empty($empresa->no_imagen)) { ?>
+                    <img src="/admin/<?php echo $empresa->no_imagen ?>" class="mi-img-responsive" alt="<?php echo ($p->nombre); ?>" />
+                  <?php } else { ?>
+                    <img src="images/logo.png" alt="<?php echo ($p->nombre); ?>" />
+                  <?php } ?>
                 </div>
               </a>
               <div class="property-content">
@@ -123,19 +129,23 @@ $page_active = $vc_link_tipo_operacion;
 <?php include "includes/footer.php"?>
 <?php include "includes/scripts.php"?>
 <script type="text/javascript">
-  function submit_buscador_propiedades() {
-    // Cargamos el offset y el orden en este formulario
-    $("#sidebar_orden").val($("#ordenador_orden").val());
-    $("#sidebar_offset").val($("#ordenador_offset").val());
-    $("#form_propiedades").submit();
-  }
+function submit_buscador_propiedades() {
+  // Cargamos el offset y el orden en este formulario
+  $("#sidebar_orden").val($("#ordenador_orden").val());
+  $("#sidebar_offset").val($("#ordenador_offset").val());
+  $("#form_propiedades").submit();
+}
 
-  function onsubmit_buscador_propiedades() { 
+function onsubmit_buscador_propiedades() { 
   var link = (($("input[name='tipo_busqueda']:checked").val() == "mapa") ? "<?php echo mklink("mapa/")?>" : "<?php echo mklink("propiedades/")?>");
   var tipo_operacion = $("#tipo_operacion").val();
   var localidad = $("#localidad").val();
   var tp = $("#tp").val();
   link = link + tipo_operacion + "/" + localidad + "/<?php echo $vc_params?>";
+  var minimo = $("#precio_minimo").val().replace(".","");
+  $("#precio_minimo_oculto").val(minimo);
+  var maximo = $("#precio_maximo").val().replace(".","");
+  $("#precio_maximo_oculto").val(maximo);
   $("#form_propiedades").attr("action",link);
   return true;
 }
@@ -150,5 +160,27 @@ $page_active = $vc_link_tipo_operacion;
   $(".property-content").height(maximo);
 });
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/autonumeric@4.5.4"></script>
+<script>
+$(document).ready(function(){
+  if ($("#precio_minimo").length > 0) {
+    new AutoNumeric('#precio_minimo', { 
+      'decimalPlaces':0,
+      'decimalCharacter':',',
+      'digitGroupSeparator':'.',
+    });
+  }
+  if ($("#precio_maximo").length > 0) {
+    new AutoNumeric('#precio_maximo', { 
+      'decimalPlaces':0,
+      'decimalCharacter':',',
+      'digitGroupSeparator':'.',
+    });
+  }
+})
+</script>
+
+
 </body>
 </html>
