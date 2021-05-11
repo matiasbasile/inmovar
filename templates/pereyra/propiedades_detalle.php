@@ -221,7 +221,7 @@ $page_act = $propiedad->tipo_operacion_link;
           <?php foreach ($propiedad->relacionados as $p) { ?>
             <div class="item">
               <div class="list-item">
-                <img src="/admin/<?php echo $p->path ?>" alt="Property Img">
+                <img src="/admin/<?php echo $p->path ?>" class="cover" alt="Property Img">
                 <div class="overlay-block">
                   <div class="top-item">
                     <div class="tag <?php echo ($p->id_tipo_operacion == 4)?"dark-blue":($p->id_tipo_operacion ==2)?"light-blue":"" ?>">

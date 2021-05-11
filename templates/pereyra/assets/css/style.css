@@ -592,7 +592,7 @@ header {
   overflow: hidden;
   position: relative;
 }
-.list-item img {
+.list-item .cover {
   height: 399px;
   object-fit: cover;
   transition: all ease .4s;

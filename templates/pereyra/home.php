@@ -84,11 +84,11 @@
         <div class="col-xl-4 col-md-6">
           <div class="list-item">
             <?php if (!empty($p->imagen)) { ?>
-              <img src="<?php echo $p->imagen ?>" alt="<?php echo ($p->nombre);?>">
+              <img class="cover" src="<?php echo $p->imagen ?>" alt="<?php echo ($p->nombre);?>">
             <?php } else if (!empty($empresa->no_imagen)) { ?>
-              <img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre);?>">
+              <img class="cover" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre);?>">
             <?php } else { ?>
-              <img src="images/no-imagen.png" alt="<?php echo ($p->nombre);?>">
+              <img class="cover" src="images/no-imagen.png" alt="<?php echo ($p->nombre);?>">
             <?php } ?>
             <div class="overlay-block">
               <div class="top-item">

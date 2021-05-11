@@ -31,7 +31,7 @@ font-family: 'Lato', sans-serif;
     font-style: normal;
 
 }
-
+.self-center {     align-self: center !important; }
 
 
 
@@ -1015,7 +1015,7 @@ font-family:  'latobold';
 
 .footer_social {margin: 26px 0 0;}
 .footer_logo img {
-  max-width: 100px;
+  max-width: 220px;
 }
 
 .quick_link li {display: inline-block;}

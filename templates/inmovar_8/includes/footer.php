@@ -2,7 +2,7 @@
   <div class="container">
     <div class="main_footer">
       <div class="row footer_logo_social">
-        <div class="col-lg-7 col-md-12 footer_logo">
+        <div class="col-lg-7 col-md-12 footer_logo self-center">
           <?php if (!empty($empresa->logo)) {  ?>
             <a href="<?php echo mklink ("/") ?>">
               <img src="/admin/<?php echo $empresa->logo ?>" alt="footer_logo">
