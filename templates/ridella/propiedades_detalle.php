@@ -72,6 +72,7 @@ if ($propiedad === FALSE) {
   <meta property="og:image:height" content="600"/>
 <?php } ?>
 <script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
+<script>const ID_EMPRESA_RELACION = "<?php echo $id_empresa ?>";</script>
 </head>
 <body class="propiedad_detalle">
 <?php include "includes/header.php" ?>

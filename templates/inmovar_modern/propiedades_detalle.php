@@ -17,13 +17,14 @@ if ($propiedad === FALSE) {
 <!DOCTYPE html>
 <html>
 <head>
-	<?php include "includes/head.php" ?>
-	<meta property="og:url" content="<?php echo current_url(); ?>" />
-	<meta property="og:type" content="article" />
-	<meta property="og:title" content="<?php echo $propiedad->nombre; ?>" />
-	<meta property="og:description" content="<?php echo $direccion; ?>" />
-	<meta property="og:image" content="<?php echo $propiedad->imagen ?>"/>
-	<script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
+<?php include "includes/head.php" ?>
+<meta property="og:url" content="<?php echo current_url(); ?>" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="<?php echo $propiedad->nombre; ?>" />
+<meta property="og:description" content="<?php echo $direccion; ?>" />
+<meta property="og:image" content="<?php echo $propiedad->imagen ?>"/>
+<script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
+<script>const ID_EMPRESA_RELACION = "<?php echo $id_empresa ?>";</script>
 </head>
 <body>
 	<?php include "includes/header.php" ?>

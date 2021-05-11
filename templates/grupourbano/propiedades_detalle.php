@@ -51,6 +51,7 @@ else $vc_moneda = "$";
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 <script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
+<script>const ID_EMPRESA_RELACION = "<?php echo $id_empresa ?>";</script>
 </head>
 <body>
 

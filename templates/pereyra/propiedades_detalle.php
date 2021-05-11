@@ -42,7 +42,9 @@ $page_act = $propiedad->tipo_operacion_link;
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
-  <?php include "includes/head.php" ?>
+<?php include "includes/head.php" ?>
+<script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
+<script>const ID_EMPRESA_RELACION = "<?php echo $id_empresa ?>";</script>
 </head>
 <body>
 

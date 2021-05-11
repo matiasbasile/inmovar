@@ -64,6 +64,7 @@ else $vc_moneda = "$";
 <meta property="og:image:height" content="600"/>
 <?php include("includes/head.php"); ?>
 <script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
+<script>const ID_EMPRESA_RELACION = "<?php echo $id_empresa ?>";</script>
 <style type="text/css">
   .fluid-width-video-wrapper { padding-top: 100% !important }
 </style>

@@ -43,6 +43,7 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no
 <meta property="og:image" content="<?php echo $imagen_ppal; ?>"/>
 <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.min.css"/>
 <script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
+<script>const ID_EMPRESA_RELACION = "<?php echo $id_empresa ?>";</script>
 </head>
 <body class="detalle">
 

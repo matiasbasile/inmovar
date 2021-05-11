@@ -27,6 +27,7 @@ if ($propiedad === FALSE || !isset($propiedad->nombre)) header("Location:".mklin
 <meta property="og:image:width" content="800"/>
 <meta property="og:image:height" content="600"/>
 <script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
+<script>const ID_EMPRESA_RELACION = "<?php echo $id_empresa ?>";</script>
 </head>
 <body>
 

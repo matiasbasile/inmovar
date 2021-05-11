@@ -43,9 +43,10 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <?php include "includes/head.php" ?>
-  <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.min.css">
-  <script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
+<?php include "includes/head.php" ?>
+<link rel="stylesheet" type="text/css" href="css/jquery.fancybox.min.css">
+<script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
+<script>const ID_EMPRESA_RELACION = "<?php echo $id_empresa ?>";</script>
 </head>
 <body>
   <?php include "includes/header.php" ?>

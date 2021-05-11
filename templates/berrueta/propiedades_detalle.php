@@ -54,6 +54,8 @@ else $vc_moneda = "$";
 <meta property="og:title" content="<?php echo $propiedad->nombre; ?>" />
 <meta property="og:description" content="<?php echo str_replace("\n","",(strip_tags(html_entity_decode($propiedad->texto,ENT_QUOTES)))); ?>" />
 <meta property="og:image" content="<?php echo $propiedad->imagen ?>"/>
+<script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
+<script>const ID_EMPRESA_RELACION = "<?php echo $id_empresa ?>";</script>
 </head>
 <body>
 
