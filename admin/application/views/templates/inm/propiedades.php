@@ -152,8 +152,7 @@
     <% } %>
     <br/>Cod. <%= codigo_completo %>
 
-    <?php /*
-    <% if (ID_EMPRESA == id_empresa_inmobiliaria) { %>
+    <% if (id_empresa == ID_EMPRESA) { %>
       <div class="cb oh mt5">
         <span class="material-icons fs16 fl mr5">person</span>
         <select style="background-color:transparent;border:none;padding:0px;font-size:13px;margin-top:2px" class="no-model usuario_asignado fl">
@@ -167,7 +166,6 @@
         </select>
       </div>
     <% } %>
-    */ ?>
 
   </td>
   <td class="<%= clase %> data">
