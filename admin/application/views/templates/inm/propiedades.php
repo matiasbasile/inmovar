@@ -367,6 +367,7 @@
           </ul>
         </div>
 
+        <?php /*
         <% if (id_empresa == ID_EMPRESA) { %>
           <div class="cb oh mt5">
             <span class="material-icons fs16 fl mr5">person</span>
@@ -381,7 +382,8 @@
             </select>
           </div>
         <% } %>
-        
+        */ ?>
+
       </td>
     <% } else { %>
 
