@@ -16,7 +16,6 @@ class Water{
             throw new Exception("Error falta agregar campos");
         }
         
-
         //Establish the margin and image for apply the water mask 
         $sx_i = imagesx($image);
         $sy_i = imagesy($image);
@@ -85,7 +84,6 @@ class Water{
         header('Content-type: image/png'); 
         imagepng($image,$destiny,null,PNG_NO_FILTER); // null = Compression of quality. 0 (not compression) until 9 much compression
         imagedestroy($image); //Destroy the image for liberate memory
-        
     }
 
 }
