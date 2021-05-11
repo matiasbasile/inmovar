@@ -306,7 +306,6 @@ $page_act = $propiedad->tipo_operacion_link;
       return false;          
     }
 
-
     if (isEmpty(telefono) || telefono == "telefono") {
       alert("Por favor ingrese un telefono");
       jQuery("#contacto_telefono").focus();
@@ -333,6 +332,7 @@ $page_act = $propiedad->tipo_operacion_link;
       "asunto":"Consulta por: <?php echo $propiedad->nombre ?>",
       "mensaje":mensaje,
       "id_propiedad":"<?php echo $propiedad->id ?>",
+      <?php if (isset($id_empresa)) { ?>"id_empresa_relacion":"<?php echo $id_empresa ?>",<?php } ?>
       "id_empresa":ID_EMPRESA,
     }
     jQuery.ajax({

@@ -270,6 +270,7 @@ String.prototype.chat_replaceAll = function(search, replacement) {
 
       // Si esta sobre una web nuestra, tomamos el ID de la propiedad
       if (typeof ID_PROPIEDAD != "undefined") d.id_propiedad = ID_PROPIEDAD;
+      if (typeof ID_EMPRESA_RELACION != "undefined") d.id_empresa_relacion = ID_EMPRESA_RELACION;
 
       if (config.mostrar_email == 1) {
         d.buscar_telefono = 0;

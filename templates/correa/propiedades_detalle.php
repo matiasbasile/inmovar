@@ -355,6 +355,7 @@ if ($propiedad === FALSE || !isset($propiedad->nombre)) header("Location:".mklin
       "mensaje":mensaje,
       "id_propiedad":"<?php echo $propiedad->id ?>",
       "id_empresa":ID_EMPRESA,
+      <?php if (isset($id_empresa)) { ?>"id_empresa_relacion":"<?php echo $id_empresa ?>",<?php } ?>
     }
     jQuery.ajax({
       "url":"https://app.inmovar.com/admin/consultas/function/enviar/",

@@ -579,6 +579,7 @@ function enviar_contacto() {
     "id_propiedad":id_propiedad,
     "id_empresa":ID_EMPRESA,
     "id_origen": 9,
+    <?php if (isset($id_empresa)) { ?>"id_empresa_relacion":"<?php echo $id_empresa ?>",<?php } ?>
   }
   $.ajax({
     "url":"https://app.inmovar.com/admin/consultas/function/enviar/",

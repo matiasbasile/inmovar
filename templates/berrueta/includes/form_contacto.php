@@ -72,7 +72,8 @@ function enviar_contacto() {
         "asunto":asunto,
         "id_propiedad":id_propiedad,
         "id_empresa":ID_EMPRESA,
-        "id_origen":<?php echo(isset($id_origen) ? $id_origen : 6); ?>,        
+        "id_origen":<?php echo(isset($id_origen) ? $id_origen : 6); ?>,
+        <?php if (isset($id_empresa)) { ?>"id_empresa_relacion":"<?php echo $id_empresa ?>",<?php } ?>
     }
     $.ajax({
         "url":"/admin/consultas/function/enviar/",

@@ -68,6 +68,7 @@ function enviar_contacto() {
     "telefono":telefono,
     "asunto":"<?php echo (isset($contacto_asunto) ? $contacto_asunto : "Contacto desde web") ?>",
     "id_propiedad":"<?php echo (isset($contacto_id_propiedad) ? $contacto_id_propiedad : 0) ?>",
+    <?php if (isset($id_empresa)) { ?>"id_empresa_relacion":"<?php echo $id_empresa ?>",<?php } ?>
     "id_empresa":ID_EMPRESA,
     "bcc":"<?php echo $empresa->bcc_email ?>",
   }
