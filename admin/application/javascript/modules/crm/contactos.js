@@ -240,21 +240,8 @@
       this.render_consultas();
     },
 
-    guardar_nota: function(texto) {
+    guardar_nota: function(value) {
       var self = this;
-      if (isEmpty(texto)) return;
-      this.model.save({
-        "texto":texto,
-        "tipo":1, // Estamos ENVIANDO
-        "id_origen":14, // una NOTA
-        "id_empresa":ID_EMPRESA,
-        "id_usuario":ID_USUARIO,
-      },{
-        "success":function() {
-          self.actualizar_consultas();
-        }
-      });      
-      /*
       self.model.set({"observaciones":value});
       this.change_property({
         "table":"clientes",
@@ -262,7 +249,6 @@
         "value":value,
         "id":self.model.id,
       });      
-      */
     },
 
     actualizar_consultas: function() {

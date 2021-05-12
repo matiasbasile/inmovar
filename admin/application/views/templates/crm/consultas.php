@@ -245,9 +245,14 @@
           <a id="tab3_link" href="#tab_tarea" role="tab" data-toggle="tab"><i class="fa fa-clock-o text-muted"></i> Tarea</a>
         </li>
       <% } %>
+      <?php /*
       <li>
         <a id="tab_link_observacion" href="#tab_observacion" role="tab" data-toggle="tab"><i class="fa fa-file-text text-muted"></i> Nota</a>
       </li>
+      */ ?>
+      <li>
+        <a id="tab_link_nota" href="#tab_nota" role="tab" data-toggle="tab"><i class="fa fa-file-text text-muted"></i> Nota</a>
+      </li>      
     </ul>
     <div class="tab-content">
       <div id="tab1" class="tab-pane panel-body <%= (active_tab=='tab1')?'active':'' %>">
