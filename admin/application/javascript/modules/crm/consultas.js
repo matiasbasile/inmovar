@@ -891,6 +891,9 @@
           }
         });
       },
+      "click .expand-link-2":function(e){
+        $(e.currentTarget).parents(".panel-body").next(".expand").slideToggle();
+      },
       "click .eliminar":"eliminar",
       "click .editar_nota":"editar_nota",
       "click .reenviar_email":"reenviar_email",

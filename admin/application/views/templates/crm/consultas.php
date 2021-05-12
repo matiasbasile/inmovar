@@ -732,7 +732,7 @@
           <!-- NOTA -->
           <% if (id_origen == 14) { %>          
             <div class="opciones tar">
-              <a class="expand-link">
+              <a class="expand-link-2">
                 <?php echo lang(array(
                   "es"=>"+ M&aacute;s opciones",
                   "en"=>"+ More options",
