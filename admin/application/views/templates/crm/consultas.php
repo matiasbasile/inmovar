@@ -274,7 +274,7 @@
               <span class="btn btn-default fileinput-button">
                 <i class="glyphicon glyphicon-folder-open m-r-xs"></i>
                 <span>Adjuntar archivos</span>
-                <input id="fileupload_timeline" type="file" name="files[]" multiple>
+                <input <%= (alerta_email)?"disabled":"" %> id="fileupload_timeline" type="file" name="files[]" multiple>
               </span>
               <div id="progress_timeline" class="progress" style="display: none">
                 <div class="progress-bar progress-bar-success"></div>
