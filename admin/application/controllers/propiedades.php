@@ -1344,10 +1344,10 @@ class Propiedades extends REST_Controller {
         $calle->addCDATA($p->calle);
 
         $entre_calle_1 = $aviso->addChild("DIRECCION_ENTRECALLE1");
-        $entre_calle_1->addCDATA("");
+        $entre_calle_1->addCDATA($p->entre_calles);
 
         $entre_calle_2 = $aviso->addChild("DIRECCION_ENTRECALLE2");
-        $entre_calle_2->addCDATA("");
+        $entre_calle_2->addCDATA($p->entre_calles_2);
 
         $altura = $aviso->addChild("DIRECCION_NUMERO");
         $altura->addCDATA($p->altura);
