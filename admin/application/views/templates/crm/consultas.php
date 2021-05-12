@@ -253,9 +253,9 @@
       <div id="tab1" class="tab-pane panel-body <%= (active_tab=='tab1')?'active':'' %>">
         <div class="form-group">
           <div class="input-group">
-            <input type="text" id="consulta_email_asunto" placeholder="Asunto" class="form-control"/>
+            <input type="text" <%= (alerta_email)?"disabled":"" %> id="consulta_email_asunto" placeholder="Asunto" class="form-control"/>
             <div class="input-group-btn dropdown">
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <button <%= (alerta_email)?"disabled":"" %> type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Plantillas <span class="caret"></span>
               </button>
               <ul class="dropdown-menu pull-right">
@@ -266,7 +266,7 @@
           </div>  
         </div>
         <div class="form-group">
-          <textarea id="consulta_email_texto"></textarea>
+          <textarea <%= (alerta_email)?"disabled":"" %> id="consulta_email_texto"></textarea>
         </div>      
         <div class="form-group clearfix">
           <div class="fl">
@@ -282,7 +282,7 @@
               <div id="files_timeline" class="files"></div>
             </div>
           </div>
-          <button class="btn btn-pd btn-info guardar_email fr">Enviar</button>
+          <button <%= (alerta_email)?"disabled":"" %> class="btn btn-pd btn-info guardar_email fr">Enviar</button>
         </div>
         <% if (alerta_email) { %>
           <div class="form-group clearfix">
@@ -327,7 +327,7 @@
       <% if (mostrar_whatsapp) { %>
         <div id="tab3" class="tab-pane panel-body <%= (active_tab=='tab3')?'active':'' %>">
           <div class="form-group">
-            <textarea id="consulta_whatsapp" placeholder="Escribe aqui tu mensaje..." class="form-control h100 no-model"></textarea>
+            <textarea <%= (alerta_celular)?"disabled":"" %> id="consulta_whatsapp" placeholder="Escribe aqui tu mensaje..." class="form-control h100 no-model"></textarea>
           </div>
           <div class="form-group clearfix">
             <% if (alerta_celular) { %>
@@ -336,7 +336,7 @@
                 Atenci&oacute;n! La persona no tiene cargada un celular de contacto.
               </div>
             <% } %>
-            <button class="btn btn-pd btn-info enviar_whatsapp fr">Enviar</button>
+            <button <%= (alerta_celular)?"disabled":"" %> class="btn btn-pd btn-info enviar_whatsapp fr">Enviar</button>
           </div>
         </div>
       <% } %>
