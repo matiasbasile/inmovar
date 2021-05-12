@@ -171,13 +171,16 @@
       if (typeof window.propiedad_seleccionado == "undefined") return;
       var self = this;
       var ids = new Array();
+      var ids_empresas = new Array();
       ids.push(window.propiedad_seleccionado.id);
+      ids_empresas.push(window.propiedad_seleccionado.get("id_empresa"));
       $.ajax({
         "url":"contactos/function/guardar_propiedades_interesadas/",
         "type":"post",
         "dataType":"json",
         "data":{
           "ids":ids,
+          "ids_empresas":ids_empresas,
           "id_cliente":self.model.id,
         },
         "success":function(r) {

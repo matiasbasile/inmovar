@@ -221,13 +221,17 @@ class Contactos extends REST_Controller {
       exit();
     }
     $ids = parent::get_post("ids",array());
+    $ids_empresas = parent::get_post("ids_empresas",array());
+    $j=0;
     foreach($ids as $id_propiedad) {
+      if (isset($ids_empresas[$j])) $id_empresa_propiedad = $ids_empresas[$j];
       $sql = "SELECT * FROM inm_propiedades_contactos WHERE id_empresa_propiedad = $id_empresa_propiedad AND id_contacto = $id_contacto AND id_propiedad = $id_propiedad ";
       $q = $this->db->query($sql);
       if ($q->num_rows()<=0) {
         $sql = "INSERT INTO inm_propiedades_contactos (id_empresa,id_contacto,id_propiedad,fecha,id_empresa_propiedad) VALUES ($id_empresa,$id_contacto,$id_propiedad,NOW(),$id_empresa_propiedad)";
         $this->db->query($sql);
       }
+      $j++;
     }
     echo json_encode(array("error"=>0));
   }
