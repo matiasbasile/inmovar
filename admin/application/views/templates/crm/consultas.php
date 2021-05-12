@@ -726,7 +726,7 @@
             <textarea id="consulta_timeline_edicion_texto" name="texto" class="form-control h100"><%= texto %></textarea>
             <div class="tar m-t-xs">
               <button class="btn btn-default descartar_texto">Cancelar</button>
-              <button class="btn btn-success guardar_texto">Guardar</button>
+              <button class="btn btn-info guardar_texto">Guardar</button>
             </div>
           </div>
           <!-- NOTA -->
@@ -745,7 +745,7 @@
         <% if (id_origen == 14) { %>          
           <div class="panel-body expand tar">
             <a href="javascript:void(0)" class="btn editar_texto btn-white">
-              <i class="fa fa-pencil"></i> Editar
+              <i class="fa fa-pencil"></i>
             </a>
             <a href="javascript:void(0)" class="btn eliminar btn-white">
               <i class="fa fa-trash"></i>
