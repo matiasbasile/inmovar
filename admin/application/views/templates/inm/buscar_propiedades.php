@@ -175,6 +175,12 @@
 
       <div class="col-sm-3 col-xs-12 h50 pr5 pl5">
         <div class="form-group">
+          <select class="form-control" id="propiedades_buscar_propietarios"></select>
+        </div>
+      </div>
+
+      <div class="col-sm-3 col-xs-12 h50 pr5 pl5">
+        <div class="form-group">
           <select class="form-control" id="propiedades_buscar_compartida_en">
             <option <%= (window.propiedades_compartida_en == "")?"selected":"" %> value="">Compartida en</option>
             <optgroup label="Red Inmovar">

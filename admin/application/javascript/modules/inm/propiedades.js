@@ -278,6 +278,7 @@
       "change #propiedades_buscar_cocheras":"buscar",
       "change #propiedades_buscar_compartida_en":"buscar",
       "change #propiedades_buscar_inmobiliarias":"buscar",
+      "change #propiedades_buscar_propietarios":"buscar",
 
       "keydown #propiedades_tabla tbody tr .radio:first":function(e) {
         // Si estamos en el primer elemento y apretamos la flechita de arriba
@@ -372,6 +373,7 @@
       window.propiedades_filtro_argenprop = (typeof window.propiedades_filtro_argenprop != "undefined") ? window.propiedades_filtro_argenprop : -1;
       window.propiedades_filtro_web = (typeof window.propiedades_filtro_web != "undefined") ? window.propiedades_filtro_web : -1;
       window.propiedades_mapa = (typeof window.propiedades_mapa != "undefined") ? window.propiedades_mapa : 0;
+      window.propiedades_id_propietario = (typeof window.propiedades_id_propietario != "undefined") ? window.propiedades_id_propietario : 0;
 
       // Flag que indica cuando se guardo una nueva propiedad
       window.propiedades_guardo_nueva_propiedad = (typeof window.propiedades_guardo_nueva_propiedad != "undefined") ? window.propiedades_guardo_nueva_propiedad : 0;
@@ -446,6 +448,17 @@
         }
       });            
       */
+
+      new app.mixins.Select({
+        modelClass: app.models.Propietario,
+        url: "propietarios/",
+        firstOptions: ["<option value='0'>Propietario</option>"],
+        render: "#propiedades_buscar_propietarios",
+        selected: window.propiedades_id_propietario,
+        onComplete:function(c) {
+          crear_select2("propiedades_buscar_propietarios");
+        }                    
+      });      
 
       // Cargamos el paginador
       this.$(".pagination_container").html(this.pagination.el);
@@ -550,6 +563,11 @@
         cambio_parametros = true;
         window.propiedades_buscar_red_empresa = 0;
       }
+
+      if (window.propiedades_id_propietario != this.$("#propiedades_buscar_propietarios").val()) {
+        window.propiedades_id_propietario = (this.$("#propiedades_buscar_propietarios").val() == null) ? 0 : this.$("#propiedades_buscar_propietarios").val();
+        cambio_parametros = true;
+      }      
 
       if (window.propiedades_id_tipo_estado != this.$("#propiedades_buscar_tipos_estado").val()) {
         window.propiedades_id_tipo_estado = (this.$("#propiedades_buscar_tipos_estado").val() == null) ? 0 : this.$("#propiedades_buscar_tipos_estado").val();  
@@ -668,6 +686,7 @@
         "monto_2":window.propiedades_monto_2,
         "monto_tipo":window.propiedades_monto_tipo,
         "monto_moneda":window.propiedades_monto_moneda,
+        "id_propietario":window.propiedades_id_propietario,
         //"apto_banco":window.propiedades_apto_banco,
         //"acepta_permuta":window.propiedades_acepta_permuta,
         "dormitorios":window.propiedades_dormitorios,
