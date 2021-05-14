@@ -168,7 +168,7 @@ function filter() {
                     <div class="item-picture">
                       <div class="block">
                         <?php if (!empty($r->imagen)) { ?>
-                          <img class="thumb-image" src="/admin/<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre) ?>" />
+                          <img class="thumb-image" src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre) ?>" />
                         <?php } else { ?>
                           <img class="thumb-image" src="images/no-image-1.jpg" alt="<?php echo ($r->nombre) ?>" />
                         <?php } ?>
@@ -352,8 +352,8 @@ function filter() {
                     <div class="work-list">
                       <div class="item-picture">
                         <div class="block">
-                          <?php if (!empty($r->path)) { ?>
-                            <img class="thumb-image" src="<?php echo $r->path ?>" alt="<?php echo ($r->nombre) ?>" />
+                          <?php if (!empty($r->imagen)) { ?>
+                            <img class="thumb-image" src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre) ?>" />
                           <?php } else { ?>
                             <img class="thumb-image" src="images/no-image-2.jpg" alt="<?php echo ($r->nombre) ?>" />
                           <?php } ?>
