@@ -20,6 +20,7 @@ class Inmobusquedas extends REST_Controller {
         echo $e->getMessage();
       }
     }
+    echo json_encode(array("error"=>0));
   }
 
   function importa($config = array()) {

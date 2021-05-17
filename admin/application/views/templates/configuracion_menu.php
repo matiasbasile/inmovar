@@ -232,7 +232,7 @@
           <div class="input-group">            
             <input type="text" class="form-control" name="url_web_inmobusqueda" value="<%= url_web_inmobusqueda %>" />
             <span class="input-group-btn">
-              <a href="https://app.inmovar.com/admin/inmobusquedas/function/importacion/<%= ID_EMPRESA %>" target="_blank" class="btn btn-default" type="button">Sincronizar</a>
+              <button class="sincronizar_inmobusqueda btn btn-default">Sincronizar</button>
             </span>
           </div>
         </div>

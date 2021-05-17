@@ -117,6 +117,28 @@
     myEvents: {
       "click .guardar": "guardar",
 
+      "click .sincronizar_inmobusqueda":function(){
+        var self = this;
+        if (this.validar()) {
+          workspace.esperar();
+          this.model.save({},{
+            success: function(model,response) {
+              $.ajax({
+                "url":"https://app.inmovar.com/admin/inmobusquedas/function/importacion/"+ID_EMPRESA,
+                "dataType":"json",
+                "success":function(){
+                  location.reload();
+                },
+                "error":function() {
+                  alert("Ocurrio un error al sincronizar con Inmobusqueda");
+                  location.reload();
+                }
+              });
+            }
+          });
+        }
+      },
+
       "click .sincronizacion_completa_articulos_meli":function() {
         workspace.esperar("Sincronizando...");
         $.ajax({
