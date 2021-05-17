@@ -1372,6 +1372,14 @@ class Propiedad_Model extends Abstract_Model {
     $this->load->helper("fecha_helper");    
 
     $html = file_get_contents($link);
+    echo $html; exit();
+    $this->load->model("Log_Model");
+    /*
+    $this->Log_Model->imprimir(array(
+      "id_empresa"=>$id_empresa,
+      "file"=>
+    ));
+    */
 
     $propiedad = new stdClass();
     $propiedad->id_empresa = $id_empresa;
