@@ -1377,6 +1377,16 @@ class Propiedad_Model extends Abstract_Model {
     $propiedad->id_empresa = $id_empresa;
     $propiedad->inmobusquedas_habilitado = 0;
     $propiedad->inmobusquedas_url = $link;
+
+    // Consultamos si ya existe alguna propiedad con ese link, para setearle el ID
+    $sql = "SELECT * FROM inm_propiedades WHERE ";
+    $sql.= " inmobusquedas_url = '$link' AND id_empresa = $id_empresa ";
+    $q = $this->db->query($sql);
+    if ($q->num_rows() > 0) {
+      $r = $q->row();
+      $propiedad->id = $r->id;
+    }
+
     $imagenes = array();
     $propiedad->latitud = 0;
     $propiedad->longitud = 0;
@@ -1652,18 +1662,18 @@ class Propiedad_Model extends Abstract_Model {
     }
   
     // INSERTAMOS EL OBJETO
-    $insert_id = $this->save($propiedad);
-    $hash = md5($insert_id);
+    $id_propiedad = $this->save($propiedad);
+    $hash = md5($id_propiedad);
 
     // Actualizamos el link
-    $propiedad->link = "propiedad/".filename($propiedad->nombre,"-",0)."-".$insert_id."/";
-    $this->db->query("UPDATE inm_propiedades SET link = '$propiedad->link', hash='$hash' WHERE id = $insert_id AND id_empresa = $id_empresa");
+    $propiedad->link = "propiedad/".filename($propiedad->nombre,"-",0)."-".$id_propiedad."/";
+    $this->db->query("UPDATE inm_propiedades SET link = '$propiedad->link', hash='$hash' WHERE id = $id_propiedad AND id_empresa = $id_empresa");
 
     // INSERTAMOS LAS IMAGENES
     $k=0;
-    $this->db->query("DELETE FROM inm_propiedades_images WHERE id_empresa = $id_empresa AND id_propiedad = $insert_id ");
+    $this->db->query("DELETE FROM inm_propiedades_images WHERE id_empresa = $id_empresa AND id_propiedad = $id_propiedad ");
     foreach($imagenes as $im) {
-      $this->db->query("INSERT INTO inm_propiedades_images (id_empresa,id_propiedad,path,orden,plano) VALUES($id_empresa,$insert_id,'$im',$k,0)");
+      $this->db->query("INSERT INTO inm_propiedades_images (id_empresa,id_propiedad,path,orden,plano) VALUES($id_empresa,$id_propiedad,'$im',$k,0)");
       $k++;
     }
     $cant_insert++;
