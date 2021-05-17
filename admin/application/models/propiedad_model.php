@@ -1394,7 +1394,6 @@ class Propiedad_Model extends Abstract_Model {
       }
     }
 
-    $obtener_link = true;
     if ($obtener_link) {
       // Obtenemos el HTML
       $c = curl_init($link);
