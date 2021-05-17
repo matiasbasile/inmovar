@@ -238,6 +238,15 @@
         </div>
 
         <div class="form-group">
+          <div class="checkbox">
+            <label class="i-checks">
+              <input type="checkbox" id="web_seo_inmobusqueda_diario" name="inmobusqueda_diario" <%= (inmobusqueda_diario == 1) ? 'checked' : '' %>><i></i> 
+              Importar todas las noches las propiedades desde Inmobusqueda.
+            </label>
+          </div>                    
+        </div>                          
+
+        <div class="form-group">
           <label class="control-label">URL de exportación de propiedades a Inmobusqueda</label>
           <input type="text" class="form-control" name="url_inmobusqueda" value="<%= url_inmobusqueda %>" />
         </div>
