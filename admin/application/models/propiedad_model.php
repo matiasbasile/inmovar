@@ -1414,7 +1414,10 @@ class Propiedad_Model extends Abstract_Model {
     $propiedad->path = (sizeof($imagenes)>0) ? $imagenes[0] : "";
     $propiedad->nombre = "";
     $propiedad->superficie_total = "";
-    $propiedad->direccion = "";
+    $propiedad->calle = "";
+    $propiedad->altura = "";
+    $propiedad->piso = "";
+    $propiedad->numero = "";
     $propiedad->precio_final = "";
     $propiedad->ciudad = "";
 
@@ -1430,7 +1433,7 @@ class Propiedad_Model extends Abstract_Model {
           $j = 0;
           if ($c->hasChildNodes()) {
             foreach($c->childNodes as $cc) {
-              if ($j == 0) $propiedad->direccion = trim($cc->textContent);
+              if ($j == 0) $propiedad->calle = trim($cc->textContent);
               else if ($j == 2) $propiedad->precio_final = trim($cc->textContent);
               $j++;
             }
