@@ -1364,11 +1364,6 @@ class Propiedad_Model extends Abstract_Model {
 
   function importar_inmobusqueda($config = array()) {
 
-    set_time_limit(0);
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
-
     $id_empresa = isset($config["id_empresa"]) ? $config["id_empresa"] : parent::get_empresa();
     $link = isset($config["link"]) ? $config["link"] : "";
     $errores = array();
