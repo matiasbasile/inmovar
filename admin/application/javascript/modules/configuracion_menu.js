@@ -131,7 +131,7 @@
                 },
                 "error":function() {
                   alert("Ocurrio un error al sincronizar con Inmobusqueda");
-                  location.reload();
+                  //location.reload();
                 }
               });
             }
