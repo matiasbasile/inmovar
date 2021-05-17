@@ -1459,9 +1459,8 @@ class Propiedad_Model extends Abstract_Model {
     $propiedad->ciudad = "";
 
     // Buscamos el nombre
-    $nodes = $finder->query("//div[@class='nombresobreslide']");
+    $nodes = $finder->query("//div[@class='nombresobreslide ']");
     foreach ($nodes as $node) {
-      print_r($node);
       $i=0;
       foreach($node->childNodes as $c) {
         if ($i==0) $propiedad->nombre = trim($c->textContent);
