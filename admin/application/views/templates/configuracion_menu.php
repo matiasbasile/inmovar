@@ -226,8 +226,19 @@
     </div>
     <div class="panel-body expand">
       <div class="padder">
+
         <div class="form-group">
-          <label class="control-label">URL de propiedades</label>
+          <label class="control-label">URL de inmobiliaria en Inmobusqueda</label>
+          <div class="input-group">            
+            <input type="text" class="form-control" name="url_web_inmobusqueda" value="<%= url_web_inmobusqueda %>" />
+            <span class="input-group-btn">
+              <a href="https://app.inmovar.com/admin/inmobusquedas/function/importacion/<%= ID_EMPRESA %>" target="_blank" class="btn btn-default" type="button">Sincronizar</a>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">URL de exportación de propiedades a Inmobusqueda</label>
           <input type="text" class="form-control" name="url_inmobusqueda" value="<%= url_inmobusqueda %>" />
         </div>
 

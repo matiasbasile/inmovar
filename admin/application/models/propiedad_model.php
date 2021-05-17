@@ -1362,4 +1362,314 @@ class Propiedad_Model extends Abstract_Model {
     return $q->valor;
   }
 
+  function importar_inmobusqueda($config = array()) {
+
+    set_time_limit(0);
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
+    $id_empresa = isset($config["id_empresa"]) ? $config["id_empresa"] : parent::get_empresa();
+    $link = isset($config["link"]) ? $config["link"] : "";
+    $errores = array();
+    $cant_insert = 0;
+    $this->load->helper("file_helper");
+    $this->load->helper("fecha_helper");    
+
+    $html = file_get_contents($link);
+
+    $propiedad = new stdClass();
+    $propiedad->id_empresa = $id_empresa;
+    $propiedad->inmobusquedas_habilitado = 0;
+    $propiedad->inmobusquedas_url = $link;
+    $imagenes = array();
+    $propiedad->latitud = 0;
+    $propiedad->longitud = 0;
+    $propiedad->zoom = 16;
+
+    // Procesamos las lineas del archivo para encontrar la latitud y longitud
+    $lineas = explode("\n", $html);
+    foreach($lineas as $l) {
+      if (strpos($l, "center: [") !== FALSE) {
+        $l = str_replace("center: [", "", $l);
+        $l = str_replace("],", "", $l);
+        $pos = explode(", ", $l);
+        $propiedad->latitud = trim($pos[0]);
+        $propiedad->longitud = trim($pos[1]);
+        break;
+      }
+    }
+
+    $dom = new DOMDocument();
+    libxml_use_internal_errors(true);
+    $dom->loadHTML($html);
+    $finder = new DomXPath($dom);
+
+    // Buscamos las fotos
+    $nodes = $finder->query("//div[@id='listadoFo3tos']//a");
+    foreach ($nodes as $node) {
+      $imagen = $node->getAttribute("href");
+      $cc = explode("/", $imagen);
+      $filename = end($cc);
+      $path = "uploads/$id_empresa/propiedades/$filename";
+      if (!file_exists($path)) grab_image($imagen,$path);
+      $imagenes[] = $path;
+    }
+
+    $propiedad->path = (sizeof($imagenes)>0) ? $imagenes[0] : "";
+    $propiedad->nombre = "";
+    $propiedad->superficie_total = "";
+    $propiedad->direccion = "";
+    $propiedad->precio_final = "";
+    $propiedad->ciudad = "";
+
+    // Buscamos el nombre
+    $nodes = $finder->query("//div[@class='nombresobreslide']");
+    foreach ($nodes as $node) {
+      $i=0;
+      foreach($node->childNodes as $c) {
+        if ($i==0) $propiedad->nombre = trim($c->textContent);
+        else if ($i==1) $propiedad->superficie_total = trim($c->textContent);
+        else if ($i==3) {
+          // Direccion y precio
+          $j = 0;
+          if ($c->hasChildNodes()) {
+            foreach($c->childNodes as $cc) {
+              if ($j == 0) $propiedad->direccion = trim($cc->textContent);
+              else if ($j == 2) $propiedad->precio_final = trim($cc->textContent);
+              $j++;
+            }
+          }
+        } else if ($i==5) {
+          // Ciudad
+          $propiedad->ciudad = $c->textContent;
+        }
+        $i++;
+      }
+    }
+
+    $propiedad->atributos = array();
+
+    $nodes = $finder->query("//*[contains(@class, 'detalleizquierda')]");
+    foreach ($nodes as $node) {
+      $propiedad->atributos[] = array(
+        "propiedad"=>$node->textContent,
+      );
+      $node->parentNode->removeChild($node);
+    }
+
+    $nodes = $finder->query("//*[contains(@class, 'detallederecha')]");
+    $i=0;
+    foreach ($nodes as $node) {
+      $propiedad->atributos[$i]["valor"] = $node->textContent;
+      $node->parentNode->removeChild($node);
+      $i++;
+    }
+
+    $nodes = $finder->query("//*[contains(@class, 'descripcion')]");
+    $i=0;
+    $propiedad->texto = "";
+    foreach ($nodes as $node) {
+      if ($i==1) { 
+        foreach($node->childNodes as $c) {
+          if ($c->nodeName == "#text") $propiedad->texto.= $c->textContent; 
+        }
+        break;
+      }
+      $i++;
+    }
+    $propiedad->texto = trim($propiedad->texto);
+
+    // Si el titulo tiene la palabra Venta
+    if (strpos($propiedad->nombre, "Venta")>0) {
+      $propiedad->id_tipo_operacion = 1;
+    } else $propiedad->id_tipo_operacion = 2;
+
+    // Dependiendo de las palabras clave del titulo
+    $propiedad->id_tipo_inmueble = 0;
+    if (strpos($propiedad->nombre, "Casa") !== FALSE) {
+      $propiedad->id_tipo_inmueble = 1;
+    } else if (strpos($propiedad->nombre, "Departamento") !== FALSE) {
+      $propiedad->id_tipo_inmueble = 2;
+    } else if (strpos($propiedad->nombre, "PH") !== FALSE) {
+      $propiedad->id_tipo_inmueble = 3;
+    } else if (strpos($propiedad->nombre, "Lote") !== FALSE) {
+      $propiedad->id_tipo_inmueble = 7;
+    } else if (strpos($propiedad->nombre, "Campo") !== FALSE) {
+      $propiedad->id_tipo_inmueble = 6;
+    } else if (strpos($propiedad->nombre, "Terreno") !== FALSE) {
+      $propiedad->id_tipo_inmueble = 7;
+    } else if (strpos($propiedad->nombre, "Galpon") !== FALSE || strpos($propiedad->nombre, "Galpón") !== FALSE) {
+      $propiedad->id_tipo_inmueble = 8;
+    } else if (strpos($propiedad->nombre, "Local") !== FALSE) {
+      $propiedad->id_tipo_inmueble = 9;
+    } else if (strpos($propiedad->nombre, "Oficina") !== FALSE) {
+      $propiedad->id_tipo_inmueble = 11;
+    } else if (strpos($propiedad->nombre, "Cochera") !== FALSE) {
+      $propiedad->id_tipo_inmueble = 13;
+    } else if (strpos($propiedad->nombre, "Monoambiente") !== FALSE) {
+      $propiedad->id_tipo_inmueble = 2;
+    } else if (strpos($propiedad->nombre, "Deposito") !== FALSE || strpos($propiedad->nombre, "Depósito") !== FALSE) {
+      $propiedad->id_tipo_inmueble = 18;
+    } else if (strpos($propiedad->nombre, "Duplex") !== FALSE || strpos($propiedad->nombre, "Dúplex") !== FALSE) {
+      $propiedad->id_tipo_inmueble = 15;
+    }
+
+    // Acomodamos el precio y la moneda
+    $propiedad->moneda = '$';
+    $propiedad->publica_precio = 1;
+    if (strpos($propiedad->precio_final, 'u$d') !== FALSE) {
+      $propiedad->moneda = 'U$S';
+      $propiedad->precio_final = str_replace('u$d', '', $propiedad->precio_final);
+    } else if (strpos($propiedad->precio_final, "Consulte") !== FALSE) {
+      $propiedad->publica_precio = 0;
+      $propiedad->precio_final = 0;
+    }
+    $propiedad->precio_final = str_replace("$", "", $propiedad->precio_final);
+    $propiedad->precio_final = str_replace(".", "", $propiedad->precio_final);
+    $precio = explode(" ", $propiedad->precio_final);
+    $propiedad->precio_final = $precio[0];
+
+    // La superficie total puede tener la cantidad de dormitorios tmb
+    $subtitulo = explode("   ", $propiedad->superficie_total);
+    $propiedad->dormitorios = "";
+    if (sizeof($subtitulo)>1) {
+      $propiedad->dormitorios = $subtitulo[0];
+      $propiedad->dormitorios = str_replace(" Dorm", "", $propiedad->dormitorios);
+      $propiedad->superficie_total = $subtitulo[1];
+      $propiedad->superficie_total = str_replace(" mts", "", $propiedad->superficie_total);
+      $propiedad->superficie_total = str_replace(",", ".", $propiedad->superficie_total);
+    }
+
+    $propiedad->activo = 1;
+    $propiedad->id_tipo_estado = 1; // Por defecto todas activas
+    $propiedad->fecha_ingreso = date("Y-m-d");
+
+    // Analizamos la ciudad
+    $propiedad->id_localidad = 0;
+    $propiedad->id_departamento = 0;
+    if (strpos($propiedad->ciudad, "casco urbano") !== FALSE) {
+      $propiedad->id_localidad = 513;
+      $propiedad->id_departamento = 9;
+    } else if (strpos($propiedad->ciudad, "Romero") !== FALSE) {
+      $propiedad->id_localidad = 791;
+      $propiedad->id_departamento = 9;
+    } else if (strpos($propiedad->ciudad, "Ringuelet") !== FALSE) {
+      $propiedad->id_localidad = 776;
+      $propiedad->id_departamento = 9;
+    } else if (strpos($propiedad->ciudad, "San Lorenzo") !== FALSE) {
+      $propiedad->id_localidad = 5503;
+      $propiedad->id_departamento = 9;
+    } else if (strpos($propiedad->ciudad, "Villa Elvira") !== FALSE) {
+      $propiedad->id_localidad = 5117;
+      $propiedad->id_departamento = 9;
+    } else if (strpos($propiedad->ciudad, "Berisso") !== FALSE) {
+      $propiedad->id_localidad = 5492;
+      $propiedad->id_departamento = 66;
+    } else if (strpos($propiedad->ciudad, "Gonnet") !== FALSE) {
+      $propiedad->id_localidad = 396;
+      $propiedad->id_departamento = 9;
+    } else if (strpos($propiedad->ciudad, "Hernández") !== FALSE) {
+      $propiedad->id_localidad = 425;
+      $propiedad->id_departamento = 9;
+    } else if (strpos($propiedad->ciudad, "Ensenada") !== FALSE) {
+      $propiedad->id_localidad = 312;
+      $propiedad->id_departamento = 117;
+    } else if (strpos($propiedad->ciudad, "Gorina") !== FALSE) {
+      $propiedad->id_localidad = 401;
+      $propiedad->id_departamento = 9;
+    } else if (strpos($propiedad->ciudad, "Elisa") !== FALSE) {
+      $propiedad->id_localidad = 946;
+      $propiedad->id_departamento = 9;
+    } else if (strpos($propiedad->ciudad, "San Carlos") !== FALSE) {
+      $propiedad->id_localidad = 5505;
+      $propiedad->id_departamento = 9;
+    } else if (strpos($propiedad->ciudad, "Tolosa") !== FALSE) {
+      $propiedad->id_localidad = 900;
+      $propiedad->id_departamento = 9;
+    } else if (strpos($propiedad->ciudad, "Etcheverry") !== FALSE) {
+      $propiedad->id_localidad = 326;
+      $propiedad->id_departamento = 9;
+    } else if (strpos($propiedad->ciudad, "Correas") !== FALSE) {
+      $propiedad->id_localidad = 244;
+      $propiedad->id_departamento = 9;
+    } else if (strpos($propiedad->ciudad, "Abasto") !== FALSE) {
+      $propiedad->id_localidad = 10;
+      $propiedad->id_departamento = 9;
+    } else if (strpos($propiedad->ciudad, "Arana") !== FALSE) {
+      $propiedad->id_localidad = 56;
+      $propiedad->id_departamento = 9;
+    } else if (strpos($propiedad->ciudad, "Olmos") !== FALSE) {
+      $propiedad->id_localidad = 674;
+      $propiedad->id_departamento = 9;
+    } else if (strpos($propiedad->ciudad, "Garibaldi") !== FALSE) {
+      $propiedad->id_localidad = 948;
+      $propiedad->id_departamento = 9;
+    } else if (strpos($propiedad->ciudad, "El Peligro") !== FALSE) {
+      $propiedad->id_localidad = 5502;
+      $propiedad->id_departamento = 9;
+    } else if (strpos($propiedad->ciudad, "Hornos") !== FALSE) {
+      $propiedad->id_localidad = 5504;
+      $propiedad->id_departamento = 9;
+    } else if (strpos($propiedad->ciudad, "Hermosura") !== FALSE) {
+      $propiedad->id_localidad = 5506;
+      $propiedad->id_departamento = 9;
+    }
+
+    // Analizamos algunos atributos mas
+    $propiedad->banios = 0;
+    $propiedad->cocheras = 0;
+    $propiedad->servicios_cloacas = 0;
+    $propiedad->servicios_agua_corriente = 0;
+    $propiedad->servicios_asfalto = 0;
+    $propiedad->servicios_electricidad = 0;
+    $propiedad->servicios_telefono = 0;
+    $propiedad->servicios_cable = 0;
+    $propiedad->superficie_cubierta = 0;
+    $propiedad->ambientes = 0;
+
+    foreach($propiedad->atributos as $atributo) {
+      if ($atributo["propiedad"] == "Baños") {
+        $propiedad->banios = $atributo["valor"];
+      } else if ($atributo["propiedad"] == "Garage") {
+        if ($atributo["valor"] == "Si" || strlen($atributo["valor"])>2) $propiedad->cocheras = 1;
+      } else if ($atributo["propiedad"] == "Cloacas") {
+        if ($atributo["valor"] == "Si") $propiedad->servicios_cloacas = 1;
+      } else if ($atributo["propiedad"] == "Agua") {
+        if ($atributo["valor"] == "Si") $propiedad->servicios_agua_corriente = 1;
+      } else if ($atributo["propiedad"] == "Asfalto") {
+        if ($atributo["valor"] == "Si") $propiedad->servicios_asfalto = 1;
+      } else if ($atributo["propiedad"] == "Energia") {
+        if ($atributo["valor"] == "Si") $propiedad->servicios_electricidad = 1;
+      } else if ($atributo["propiedad"] == "Teléfono") {
+        if ($atributo["valor"] == "Si") $propiedad->servicios_telefono = 1;
+      } else if ($atributo["propiedad"] == "Cable") {
+        if ($atributo["valor"] == "Si") $propiedad->servicios_cable = 1;
+      } else if ($atributo["propiedad"] == "Superficie Construida") {
+        $s = explode(" ", $atributo["valor"]);
+        $propiedad->superficie_cubierta = $s[0];
+      } else if ($atributo["propiedad"] == "Ambientes") {
+        $propiedad->ambientes = (($atributo["valor"] == "-") ? 0 : $atributo["valor"]);
+      }
+    }
+  
+    // INSERTAMOS EL OBJETO
+    $insert_id = $this->modelo->save($propiedad);
+    $hash = md5($insert_id);
+
+    // Actualizamos el link
+    $propiedad->link = "propiedad/".filename($propiedad->nombre,"-",0)."-".$insert_id."/";
+    $this->db->query("UPDATE inm_propiedades SET link = '$propiedad->link', hash='$hash' WHERE id = $insert_id AND id_empresa = $id_empresa");
+
+    // INSERTAMOS LAS IMAGENES
+    $k=0;
+    $this->db->query("DELETE FROM inm_propiedades_images WHERE id_empresa = $id_empresa AND id_propiedad = $insert_id ");
+    foreach($imagenes as $im) {
+      $this->db->query("INSERT INTO inm_propiedades_images (id_empresa,id_propiedad,path,orden,plano) VALUES($id_empresa,$insert_id,'$im',$k,0)");
+      $k++;
+    }
+    $cant_insert++;
+  }
+
+
 }
