@@ -1378,9 +1378,11 @@ class Propiedad_Model extends Abstract_Model {
     curl_setopt($c, CURLOPT_USERAGENT, 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)');
     $html = curl_exec($c);
     curl_close($c);
-    echo $html; exit();
-    $this->load->model("Log_Model");
+    if ($html == "Bot no autorizado") {
+      throw new Exception("Bot no autorizado");
+    }
     /*
+    $this->load->model("Log_Model");
     $this->Log_Model->imprimir(array(
       "id_empresa"=>$id_empresa,
       "file"=>
