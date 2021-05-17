@@ -745,10 +745,12 @@ class Propiedad_Model extends Abstract_Model {
       $sql = "SELECT precio_final FROM inm_propiedades where id = $data->id AND id_empresa = $data->id_empresa ";
       $q = $this->db->query($sql);
       $q = $q->row();
+      if (empty($data->precio_final)) $data->precio_final = 0;
+      if (empty($q->precio_final)) $q->precio_final = 0;
       if ($q->precio_final != $data->precio_final){
         $fecha = date("Y-m-d");
         $sql = "INSERT INTO inm_propiedades_precios_historicos (id_propiedad, id_empresa, precio_anterior, precio_nuevo, fecha) VALUES ";
-        $sql.= "($data->id, $data->id_empresa, $q->precio_final, $data->precio_final, '$fecha') ";
+        $sql.= "($data->id, $data->id_empresa, '$q->precio_final', '$data->precio_final', '$fecha') ";
         $this->db->query($sql);
       }
     }
