@@ -13,9 +13,11 @@ class Log_Model extends Abstract_Model {
 		$id_usuario = isset($config["id_usuario"]) ? $config["id_usuario"] : (isset($_SESSION["id"]) ? $_SESSION["id"] : 0);
 		$fecha = isset($config["fecha"]) ? $config["fecha"] : date("Y-m-d H:i:s").": ";
 		$file = isset($config["file"]) ? $config["file"] : "";
+		$append = isset($config["append"]) ? $config["append"] : 1;
 		$texto = isset($config["texto"]) ? $config["texto"] : "";
 		if (!file_exists("logs/$id_empresa")) @mkdir("logs/$id_empresa");
-		@file_put_contents("logs/$id_empresa/".$file, $fecha.$texto."\n", FILE_APPEND);
+		if ($append == 1) @file_put_contents("logs/$id_empresa/".$file, $fecha.$texto."\n", FILE_APPEND);
+		else @file_put_contents("logs/$id_empresa/".$file, $fecha.$texto."\n");
 	}
 
 	function log_file($file,$texto) {

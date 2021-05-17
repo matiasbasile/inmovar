@@ -1714,6 +1714,7 @@ class Propiedad_Model extends Abstract_Model {
       "id_empresa"=>$id_empresa,
       "file"=>"ib_".$id_propiedad.".txt",
       "texto"=>$html,
+      "append"=>0, // Para que reemplace los archivos
       "fecha"=>"", // Para que no ponga la fecha al principio
     ));
 
