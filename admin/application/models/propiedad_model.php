@@ -1371,7 +1371,13 @@ class Propiedad_Model extends Abstract_Model {
     $this->load->helper("file_helper");
     $this->load->helper("fecha_helper");    
 
-    $html = file_get_contents($link);
+    $c = curl_init($link);
+    curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($c,CURLOPT_USERAGENT,'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
+    $html = curl_exec($c);
+    curl_close($c);
     echo $html; exit();
     $this->load->model("Log_Model");
     /*
