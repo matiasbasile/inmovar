@@ -1370,25 +1370,8 @@ class Propiedad_Model extends Abstract_Model {
     $this->load->helper("file_helper");
     $this->load->helper("fecha_helper");    
 
-    $c = curl_init($link);
-    curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
-    curl_setopt($c, CURLOPT_USERAGENT, 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)');
-    $html = curl_exec($c);
-    curl_close($c);
-    if ($html == "Bot no autorizado") {
-      return array(
-        "errores"=>array("Bot no autorizado [$link]"),
-      );
-    }
-
     $propiedad = new stdClass();
-    $propiedad->id_empresa = $id_empresa;
-    $propiedad->inmobusquedas_habilitado = 0;
-    $propiedad->inmobusquedas_url = $link;
-    $errores = array();
-
+    $obtener_link = true;
     // Consultamos si ya existe alguna propiedad con ese link, para setearle el ID
     $sql = "SELECT * FROM inm_propiedades WHERE ";
     $sql.= " inmobusquedas_url = '$link' AND id_empresa = $id_empresa ";
@@ -1396,8 +1379,40 @@ class Propiedad_Model extends Abstract_Model {
     if ($q->num_rows() > 0) {
       $r = $q->row();
       $propiedad->id = $r->id;
+
+      // Controlamos si se bajo el archivo el dia de hoy
+      // esto se hace por si hay algun error, se corrije y no volverlo a bajar
+      $f = "logs/$id_empresa/ib_".$propiedad->id.".txt";
+      if (file_exists($f)) {
+        $time = filemtime($f);
+        if (date("Y-m-d",$time) == date("Y-m-d")) {
+          $html = file_get_contents($f);
+          $obtener_link = false;
+        }
+      }
     }
 
+    $obtener_link = true;
+    if ($obtener_link) {
+      // Obtenemos el HTML
+      $c = curl_init($link);
+      curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+      curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
+      curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
+      curl_setopt($c, CURLOPT_USERAGENT, 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)');
+      $html = curl_exec($c);
+      curl_close($c);
+      if ($html == "Bot no autorizado") {
+        return array(
+          "errores"=>array("Bot no autorizado [$link]"),
+        );
+      }
+    }
+
+    $propiedad->id_empresa = $id_empresa;
+    $propiedad->inmobusquedas_habilitado = 0;
+    $propiedad->inmobusquedas_url = $link;
+    $errores = array();
     $imagenes = array();
     $propiedad->latitud = 0;
     $propiedad->longitud = 0;
@@ -1698,6 +1713,7 @@ class Propiedad_Model extends Abstract_Model {
       "id_empresa"=>$id_empresa,
       "file"=>"ib_".$id_propiedad.".txt",
       "texto"=>$html,
+      "fecha"=>"", // Para que no ponga la fecha al principio
     ));
 
     return array(

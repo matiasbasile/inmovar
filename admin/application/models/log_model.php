@@ -11,10 +11,11 @@ class Log_Model extends Abstract_Model {
 	function imprimir($config = array()) {
 		$id_empresa = isset($config["id_empresa"]) ? $config["id_empresa"] : parent::get_empresa();
 		$id_usuario = isset($config["id_usuario"]) ? $config["id_usuario"] : (isset($_SESSION["id"]) ? $_SESSION["id"] : 0);
+		$fecha = isset($config["fecha"]) ? $config["fecha"] : date("Y-m-d H:i:s").": ";
 		$file = isset($config["file"]) ? $config["file"] : "";
 		$texto = isset($config["texto"]) ? $config["texto"] : "";
 		if (!file_exists("logs/$id_empresa")) @mkdir("logs/$id_empresa");
-		@file_put_contents("logs/$id_empresa/".$file, date("Y-m-d H:i:s").": ".$texto."\n", FILE_APPEND);
+		@file_put_contents("logs/$id_empresa/".$file, $fecha.$texto."\n", FILE_APPEND);
 	}
 
 	function log_file($file,$texto) {
