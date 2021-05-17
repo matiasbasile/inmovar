@@ -1545,6 +1545,8 @@ class Propiedad_Model extends Abstract_Model {
       $propiedad->id_tipo_inmueble = 13;
     } else if (strpos($propiedad->nombre, "Monoambiente") !== FALSE) {
       $propiedad->id_tipo_inmueble = 2;
+    } else if (strpos($propiedad->nombre, "Edificio") !== FALSE) {
+      $propiedad->id_tipo_inmueble = 2;
     } else if (strpos($propiedad->nombre, "Deposito") !== FALSE || strpos($propiedad->nombre, "Depósito") !== FALSE) {
       $propiedad->id_tipo_inmueble = 18;
     } else if (strpos($propiedad->nombre, "Duplex") !== FALSE || strpos($propiedad->nombre, "Dúplex") !== FALSE) {
@@ -1628,6 +1630,21 @@ class Propiedad_Model extends Abstract_Model {
     } else if (strpos($propiedad->ciudad, "Etcheverry") !== FALSE) {
       $propiedad->id_localidad = 326;
       $propiedad->id_departamento = 9;
+    } else if (strpos($propiedad->ciudad, "Berazategui") !== FALSE) {
+      $propiedad->id_localidad = 122;
+      $propiedad->id_departamento = 73;
+    } else if (strpos($propiedad->ciudad, "El Retiro") !== FALSE) {
+      $propiedad->id_localidad = 1624;
+      $propiedad->id_departamento = 207;
+    } else if (strpos($propiedad->ciudad, "City Bell") !== FALSE) {
+      $propiedad->id_localidad = 205;
+      $propiedad->id_departamento = 9;
+    } else if (strpos($propiedad->ciudad, "Pinamar") !== FALSE) {
+      $propiedad->id_localidad = 725;
+      $propiedad->id_departamento = 712;
+    } else if (strpos($propiedad->ciudad, "Mar del Plata") !== FALSE) {
+      $propiedad->id_localidad = 600;
+      $propiedad->id_departamento = 84;
     } else if (strpos($propiedad->ciudad, "Correas") !== FALSE) {
       $propiedad->id_localidad = 244;
       $propiedad->id_departamento = 9;

@@ -16,6 +16,7 @@ class Inmobusquedas extends REST_Controller {
     $sql = "SELECT * FROM web_configuracion WHERE url_web_inmobusqueda != '' ";
     if (!empty($id)) $sql.= "AND id_empresa = $id ";
     $q = $this->db->query($sql);
+    $errores = "";
     foreach($q->result() as $r) {
       try {
         $this->importa(array(
@@ -24,10 +25,11 @@ class Inmobusquedas extends REST_Controller {
           "logging" => $logging,
         ));
       } catch(Exception $e) {
-        echo $e->getMessage();
+        $errores.= $e->getMessage()." | ";
       }
     }
-    echo json_encode(array("error"=>0));
+    if (strlen($errores)>0) echo json_encode(array("error"=>1,"mensaje"=>$errores));
+    else echo json_encode(array("error"=>0));
   }
 
   function importa($config = array()) {

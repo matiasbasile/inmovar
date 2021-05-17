@@ -126,8 +126,9 @@
               $.ajax({
                 "url":"https://app.inmovar.com/admin/inmobusquedas/function/importacion/"+ID_EMPRESA,
                 "dataType":"json",
-                "success":function(){
-                  //location.reload();
+                "success":function(r){
+                  if (r.error == 0) location.reload();
+                  else alert(r.mensaje);
                 },
                 "error":function() {
                   alert("Ocurrio un error al sincronizar con Inmobusqueda");
