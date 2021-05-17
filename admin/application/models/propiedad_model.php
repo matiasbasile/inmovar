@@ -1457,12 +1457,12 @@ class Propiedad_Model extends Abstract_Model {
     $propiedad->numero = "";
     $propiedad->precio_final = "";
     $propiedad->ciudad = "";
+    echo "ANDA"; exit();
 
     // Buscamos el nombre
     $nodes = $finder->query("//div[@class='nombresobreslide']");
     foreach ($nodes as $node) {
       $i=0;
-      print_r($node);exit();
       foreach($node->childNodes as $c) {
         if ($i==0) $propiedad->nombre = trim($c->textContent);
         else if ($i==1) $propiedad->superficie_total = trim($c->textContent);
