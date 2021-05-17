@@ -6,9 +6,9 @@ date_default_timezone_set("America/Argentina/Buenos_Aires");
 if (!defined("SERVER_DB")) { DEFINE ("SERVER_DB","localhost"); }
 if (!defined("DATABASE")) { DEFINE ("DATABASE","inmovar"); }
 if (!defined("USER_DB")) { DEFINE ("USER_DB","root"); }
-if (!defined("PASSWORD_DB")) { DEFINE ("PASSWORD_DB",""); }
+if (!defined("PASSWORD_DB")) { DEFINE ("PASSWORD_DB","varcreative1805"); }
 if (!defined("FORCE_HTTPS")) { DEFINE ("FORCE_HTTPS",false); }
-if (!defined("DOMINIO")) { DEFINE ("DOMINIO","http://inmovar/"); }
+if (!defined("DOMINIO")) { DEFINE ("DOMINIO","http://app.inmovar.com/"); }
 
 if (!function_exists("get_conex")) {
   function get_conex() {
