@@ -36,6 +36,7 @@ class Inmobusquedas extends REST_Controller {
     $id_empresa = isset($config["id_empresa"]) ? $config["id_empresa"] : parent::get_empresa();
     $logging = isset($config["logging"]) ? $config["logging"] : 1;
 
+    $errores = array();
     $pages = 99999;
     $links = array();
 
@@ -88,15 +89,28 @@ class Inmobusquedas extends REST_Controller {
     foreach($links as $link) {
       if ($logging==1) echo "Importando: $link <br/>";
       try {
-        $this->Propiedad_Model->importar_inmobusqueda(array(
+        $s = $this->Propiedad_Model->importar_inmobusqueda(array(
           "id_empresa"=>$id_empresa,
           "link"=>$link,
         ));
+        if (isset($s["errores"])) {
+          $errores = array_merge($errores,$s["errores"]);
+        }
         $i++;
       } catch(Exception $e) {
         echo $e->getMessage();
       }
     }
     if ($logging==1) echo "Propiedades importadas: $i";
+
+    if (sizeof($errores)>0) {
+      $body = implode("<br/>", $errores);
+      require_once APPPATH.'libraries/Mandrill/Mandrill.php';
+      mandrill_send(array(
+        "to"=>"basile.matias99@gmail.com",
+        "subject"=>"ERROR IMPORTACION INMOBUSQUEDA $id_empresa",
+        "body"=>$body,
+      ));
+    }
   }
 }

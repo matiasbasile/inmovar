@@ -1367,7 +1367,6 @@ class Propiedad_Model extends Abstract_Model {
     $id_empresa = isset($config["id_empresa"]) ? $config["id_empresa"] : parent::get_empresa();
     $link = isset($config["link"]) ? $config["link"] : "";
     $errores = array();
-    $cant_insert = 0;
     $this->load->helper("file_helper");
     $this->load->helper("fecha_helper");    
 
@@ -1379,20 +1378,16 @@ class Propiedad_Model extends Abstract_Model {
     $html = curl_exec($c);
     curl_close($c);
     if ($html == "Bot no autorizado") {
-      throw new Exception("Bot no autorizado");
+      return array(
+        "errores"=>array("Bot no autorizado [$link]");
+      );
     }
-    /*
-    $this->load->model("Log_Model");
-    $this->Log_Model->imprimir(array(
-      "id_empresa"=>$id_empresa,
-      "file"=>
-    ));
-    */
 
     $propiedad = new stdClass();
     $propiedad->id_empresa = $id_empresa;
     $propiedad->inmobusquedas_habilitado = 0;
     $propiedad->inmobusquedas_url = $link;
+    $errores = array();
 
     // Consultamos si ya existe alguna propiedad con ese link, para setearle el ID
     $sql = "SELECT * FROM inm_propiedades WHERE ";
@@ -1471,6 +1466,7 @@ class Propiedad_Model extends Abstract_Model {
         $i++;
       }
     }
+    if (empty($propiedad->calle)) $errores[] = "No se encontro calle [$link]";
 
     $propiedad->atributos = array();
 
@@ -1537,6 +1533,8 @@ class Propiedad_Model extends Abstract_Model {
       $propiedad->id_tipo_inmueble = 18;
     } else if (strpos($propiedad->nombre, "Duplex") !== FALSE || strpos($propiedad->nombre, "Dúplex") !== FALSE) {
       $propiedad->id_tipo_inmueble = 15;
+    } else {
+      $errores[] = "Tipo de inmueble no encontrado [$link]";
     }
 
     // Acomodamos el precio y la moneda
@@ -1638,6 +1636,8 @@ class Propiedad_Model extends Abstract_Model {
     } else if (strpos($propiedad->ciudad, "Hermosura") !== FALSE) {
       $propiedad->id_localidad = 5506;
       $propiedad->id_departamento = 9;
+    } else {
+      $errores[] = "Localidad no encontrada [$link]";
     }
 
     // Analizamos algunos atributos mas
@@ -1692,7 +1692,17 @@ class Propiedad_Model extends Abstract_Model {
       $this->db->query("INSERT INTO inm_propiedades_images (id_empresa,id_propiedad,path,orden,plano) VALUES($id_empresa,$id_propiedad,'$im',$k,0)");
       $k++;
     }
-    $cant_insert++;
+
+    $this->load->model("Log_Model");
+    $this->Log_Model->imprimir(array(
+      "id_empresa"=>$id_empresa,
+      "file"=>"ib_".$id_propiedad.".txt",
+      "texto"=>$html,
+    ));
+
+    return array(
+      "errores"=>$errores,
+    );
   }
 
 
