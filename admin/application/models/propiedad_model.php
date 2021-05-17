@@ -1649,7 +1649,7 @@ class Propiedad_Model extends Abstract_Model {
     }
   
     // INSERTAMOS EL OBJETO
-    $insert_id = $this->modelo->save($propiedad);
+    $insert_id = $this->save($propiedad);
     $hash = md5($insert_id);
 
     // Actualizamos el link
