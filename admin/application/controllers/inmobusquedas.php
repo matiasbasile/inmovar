@@ -10,7 +10,7 @@ class Inmobusquedas extends REST_Controller {
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
-    
+
     $id = intval($id);
     $sql = "SELECT * FROM web_configuracion WHERE url_web_inmobusqueda != '' ";
     if (!empty($id)) $sql.= "AND id_empresa = $id ";
@@ -69,11 +69,12 @@ class Inmobusquedas extends REST_Controller {
       }
     }
 
+    $this->load->model("Propiedad_Model");
     $i=0;
     foreach($links as $link) {
       if ($logging==1) echo "Importando: $link <br/>";
       try {
-        $this->modelo->importar_inmobusqueda(array(
+        $this->Propiedad_Model->importar_inmobusqueda(array(
           "id_empresa"=>$id_empresa,
           "link"=>$link,
         ));
