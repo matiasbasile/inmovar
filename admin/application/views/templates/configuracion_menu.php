@@ -228,7 +228,7 @@
       <div class="padder">
 
         <div class="form-group">
-          <label class="control-label">URL de inmobiliaria en Inmobusqueda</label>
+          <label class="control-label">URL de la inmobiliaria para la importación desde Inmobusqueda</label>
           <div class="input-group">            
             <input type="text" class="form-control" name="url_web_inmobusqueda" value="<%= url_web_inmobusqueda %>" />
             <span class="input-group-btn">
