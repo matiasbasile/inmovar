@@ -1588,85 +1588,86 @@ class Propiedad_Model extends Abstract_Model {
     // Analizamos la ciudad
     $propiedad->id_localidad = 0;
     $propiedad->id_departamento = 0;
+    $propiedad->ciudad = mb_strtolower($propiedad->ciudad);
     if (strpos($propiedad->ciudad, "casco urbano") !== FALSE) {
       $propiedad->id_localidad = 513;
       $propiedad->id_departamento = 9;
-    } else if (strpos($propiedad->ciudad, "Romero") !== FALSE) {
+    } else if (strpos($propiedad->ciudad, "romero") !== FALSE) {
       $propiedad->id_localidad = 791;
       $propiedad->id_departamento = 9;
-    } else if (strpos($propiedad->ciudad, "Ringuelet") !== FALSE) {
+    } else if (strpos($propiedad->ciudad, "ringuelet") !== FALSE) {
       $propiedad->id_localidad = 776;
       $propiedad->id_departamento = 9;
-    } else if (strpos($propiedad->ciudad, "San Lorenzo") !== FALSE) {
+    } else if (strpos($propiedad->ciudad, "san lorenzo") !== FALSE) {
       $propiedad->id_localidad = 5503;
       $propiedad->id_departamento = 9;
-    } else if (strpos($propiedad->ciudad, "Villa Elvira") !== FALSE) {
+    } else if (strpos($propiedad->ciudad, "villa elvira") !== FALSE) {
       $propiedad->id_localidad = 5117;
       $propiedad->id_departamento = 9;
-    } else if (strpos($propiedad->ciudad, "Berisso") !== FALSE) {
+    } else if (strpos($propiedad->ciudad, "berisso") !== FALSE) {
       $propiedad->id_localidad = 5492;
       $propiedad->id_departamento = 66;
-    } else if (strpos($propiedad->ciudad, "Gonnet") !== FALSE) {
+    } else if (strpos($propiedad->ciudad, "gonnet") !== FALSE) {
       $propiedad->id_localidad = 396;
       $propiedad->id_departamento = 9;
-    } else if (strpos($propiedad->ciudad, "Hernández") !== FALSE) {
+    } else if (strpos($propiedad->ciudad, "hernández") !== FALSE) {
       $propiedad->id_localidad = 425;
       $propiedad->id_departamento = 9;
-    } else if (strpos($propiedad->ciudad, "Ensenada") !== FALSE) {
+    } else if (strpos($propiedad->ciudad, "ensenada") !== FALSE) {
       $propiedad->id_localidad = 312;
       $propiedad->id_departamento = 117;
-    } else if (strpos($propiedad->ciudad, "Gorina") !== FALSE) {
+    } else if (strpos($propiedad->ciudad, "gorina") !== FALSE) {
       $propiedad->id_localidad = 401;
       $propiedad->id_departamento = 9;
-    } else if (strpos($propiedad->ciudad, "Elisa") !== FALSE) {
+    } else if (strpos($propiedad->ciudad, "elisa") !== FALSE) {
       $propiedad->id_localidad = 946;
       $propiedad->id_departamento = 9;
-    } else if (strpos($propiedad->ciudad, "San Carlos") !== FALSE) {
+    } else if (strpos($propiedad->ciudad, "san carlos") !== FALSE) {
       $propiedad->id_localidad = 5505;
       $propiedad->id_departamento = 9;
-    } else if (strpos($propiedad->ciudad, "Tolosa") !== FALSE) {
+    } else if (strpos($propiedad->ciudad, "tolosa") !== FALSE) {
       $propiedad->id_localidad = 900;
       $propiedad->id_departamento = 9;
-    } else if (strpos($propiedad->ciudad, "Etcheverry") !== FALSE) {
+    } else if (strpos($propiedad->ciudad, "etcheverry") !== FALSE) {
       $propiedad->id_localidad = 326;
       $propiedad->id_departamento = 9;
-    } else if (strpos($propiedad->ciudad, "Berazategui") !== FALSE) {
+    } else if (strpos($propiedad->ciudad, "berazategui") !== FALSE) {
       $propiedad->id_localidad = 122;
       $propiedad->id_departamento = 73;
-    } else if (strpos($propiedad->ciudad, "El Retiro") !== FALSE) {
+    } else if (strpos($propiedad->ciudad, "el retiro") !== FALSE) {
       $propiedad->id_localidad = 1624;
       $propiedad->id_departamento = 207;
-    } else if (strpos($propiedad->ciudad, "City Bell") !== FALSE) {
+    } else if (strpos($propiedad->ciudad, "city bell") !== FALSE) {
       $propiedad->id_localidad = 205;
       $propiedad->id_departamento = 9;
-    } else if (strpos($propiedad->ciudad, "Pinamar") !== FALSE) {
+    } else if (strpos($propiedad->ciudad, "pinamar") !== FALSE) {
       $propiedad->id_localidad = 725;
       $propiedad->id_departamento = 712;
-    } else if (strpos($propiedad->ciudad, "Mar del Plata") !== FALSE) {
+    } else if (strpos($propiedad->ciudad, "mar del plata") !== FALSE) {
       $propiedad->id_localidad = 600;
       $propiedad->id_departamento = 84;
-    } else if (strpos($propiedad->ciudad, "Correas") !== FALSE) {
+    } else if (strpos($propiedad->ciudad, "correas") !== FALSE) {
       $propiedad->id_localidad = 244;
       $propiedad->id_departamento = 9;
-    } else if (strpos($propiedad->ciudad, "Abasto") !== FALSE) {
+    } else if (strpos($propiedad->ciudad, "abasto") !== FALSE) {
       $propiedad->id_localidad = 10;
       $propiedad->id_departamento = 9;
-    } else if (strpos($propiedad->ciudad, "Arana") !== FALSE) {
+    } else if (strpos($propiedad->ciudad, "arana") !== FALSE) {
       $propiedad->id_localidad = 56;
       $propiedad->id_departamento = 9;
-    } else if (strpos($propiedad->ciudad, "Olmos") !== FALSE) {
+    } else if (strpos($propiedad->ciudad, "olmos") !== FALSE) {
       $propiedad->id_localidad = 674;
       $propiedad->id_departamento = 9;
-    } else if (strpos($propiedad->ciudad, "Garibaldi") !== FALSE) {
+    } else if (strpos($propiedad->ciudad, "garibaldi") !== FALSE) {
       $propiedad->id_localidad = 948;
       $propiedad->id_departamento = 9;
-    } else if (strpos($propiedad->ciudad, "El Peligro") !== FALSE) {
+    } else if (strpos($propiedad->ciudad, "el peligro") !== FALSE) {
       $propiedad->id_localidad = 5502;
       $propiedad->id_departamento = 9;
-    } else if (strpos($propiedad->ciudad, "Hornos") !== FALSE) {
+    } else if (strpos($propiedad->ciudad, "hornos") !== FALSE) {
       $propiedad->id_localidad = 5504;
       $propiedad->id_departamento = 9;
-    } else if (strpos($propiedad->ciudad, "Hermosura") !== FALSE) {
+    } else if (strpos($propiedad->ciudad, "hermosura") !== FALSE) {
       $propiedad->id_localidad = 5506;
       $propiedad->id_departamento = 9;
     } else {
