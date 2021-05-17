@@ -1462,7 +1462,7 @@ class Propiedad_Model extends Abstract_Model {
     $nodes = $finder->query("//div[@class='nombresobreslide']");
     foreach ($nodes as $node) {
       $i=0;
-      echo $node->nodeValue; exit();
+      print_r($node);exit();
       foreach($node->childNodes as $c) {
         if ($i==0) $propiedad->nombre = trim($c->textContent);
         else if ($i==1) $propiedad->superficie_total = trim($c->textContent);
