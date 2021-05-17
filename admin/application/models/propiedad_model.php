@@ -1375,7 +1375,7 @@ class Propiedad_Model extends Abstract_Model {
     curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
-    curl_setopt($c,CURLOPT_USERAGENT,'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
+    curl_setopt($c, CURLOPT_USERAGENT, 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)');
     $html = curl_exec($c);
     curl_close($c);
     echo $html; exit();
