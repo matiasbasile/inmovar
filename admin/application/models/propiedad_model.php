@@ -1379,7 +1379,7 @@ class Propiedad_Model extends Abstract_Model {
     curl_close($c);
     if ($html == "Bot no autorizado") {
       return array(
-        "errores"=>array("Bot no autorizado [$link]");
+        "errores"=>array("Bot no autorizado [$link]"),
       );
     }
 
