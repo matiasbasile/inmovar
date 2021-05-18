@@ -1541,6 +1541,10 @@ class Propiedad_Model extends Abstract_Model {
       $propiedad->id_tipo_inmueble = 9;
     } else if (strpos($propiedad->nombre, "Oficina") !== FALSE) {
       $propiedad->id_tipo_inmueble = 11;
+    } else if (strpos($propiedad->nombre, "Countries") !== FALSE) {
+      $propiedad->id_tipo_inmueble = 4;
+    } else if (strpos($propiedad->nombre, "Piso") !== FALSE) {
+      $propiedad->id_tipo_inmueble = 17;
     } else if (strpos($propiedad->nombre, "Cochera") !== FALSE) {
       $propiedad->id_tipo_inmueble = 13;
     } else if (strpos($propiedad->nombre, "Monoambiente") !== FALSE) {
@@ -1666,6 +1670,9 @@ class Propiedad_Model extends Abstract_Model {
       $propiedad->id_departamento = 9;
     } else if (strpos($propiedad->ciudad, "hornos") !== FALSE) {
       $propiedad->id_localidad = 5504;
+      $propiedad->id_departamento = 9;
+    } else if (strpos($propiedad->ciudad, "altos de san lorenzo") !== FALSE) {
+      $propiedad->id_localidad = 5503;
       $propiedad->id_departamento = 9;
     } else if (strpos($propiedad->ciudad, "hermosura") !== FALSE) {
       $propiedad->id_localidad = 5506;
