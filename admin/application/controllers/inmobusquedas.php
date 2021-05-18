@@ -5,7 +5,7 @@ require APPPATH.'libraries/REST_Controller.php';
 class Inmobusquedas extends REST_Controller {
 
   // Recorremos todas las empresas, obtenemos la URL de la inmobiliaria que se esta sincronizando
-  function importacion($id = 0) {
+  function importacion($id = 0, $diario = 0) {
     set_time_limit(0);
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
@@ -15,6 +15,7 @@ class Inmobusquedas extends REST_Controller {
     $logging = 0;
     $sql = "SELECT * FROM web_configuracion WHERE url_web_inmobusqueda != '' ";
     if (!empty($id)) $sql.= "AND id_empresa = $id ";
+    if (!empty($diario)) $sql.= "AND inmobusqueda_diario = 1 "; // Parametro que indica que hay que hacerlo desde el cronjob
     $q = $this->db->query($sql);
     $errores = "";
     foreach($q->result() as $r) {
