@@ -12,6 +12,23 @@ class Propiedades extends REST_Controller {
     $this->load->model('Propiedad_Model', 'modelo');
   }
 
+  function arreglar_codigos_cero() {
+    $id_empresa = parent::get_empresa();
+    $sql = "SELECT * FROM inm_propiedades ";
+    $sql.= "WHERE id_empresa = $id_empresa ";
+    $sql.= "AND (codigo = 0 OR codigo = '') ";
+    $q = $this->db->query($sql);
+    foreach($q->result() as $r) {
+      $codigo = $this->modelo->next(array(
+        "id_empresa"=>$id_empresa,
+      ));
+      $sql = "UPDATE inm_propiedades SET codigo = '$codigo' ";
+      $sql.= "WHERE id_empresa = $id_empresa AND id = $r->id ";
+      $this->db->query($sql);
+    }
+    echo "TERMINO";
+  }
+
   // Esta funcion es un helper que baja las imagenes que estan en una URL del servidor
   function bajar_imagenes_url() {
     $id_empresa = 1164;
