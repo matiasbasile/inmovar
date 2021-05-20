@@ -1370,8 +1370,8 @@ class Propiedades extends REST_Controller {
         $altura->addCDATA($p->altura);
 
         $texto = $aviso->addChild("DESCRIPTION");
-        $p->texto = strip_tags($p->texto);
         $p->texto = utf8_encode($p->texto);
+        $p->texto = strip_tags($p->texto);
         $texto->addCDATA($p->texto);
 
         $provincia = $aviso->addChild("PROVINCIA");
