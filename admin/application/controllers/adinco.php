@@ -10,13 +10,12 @@ class Adinco extends REST_Controller {
       foreach ($links as $key) {
         $get_data = $this->get_data($key);
       }
-      
     }
 
     function get_links($url){
       $links = array();
       $a=1;
-      while ($a <= 1) {
+      while ($a <= 9999) {
         $urll = $url . "/home/properties". $page = ($a > 1 ) ? "/page:$a" : " "; 
         $html = file_get_contents($urll);
         $dom = new DOMDocument();
@@ -36,7 +35,6 @@ class Adinco extends REST_Controller {
         }else{
           break;
         }
-       
         $a += 1;
       } 
       return $links;
@@ -56,18 +54,23 @@ class Adinco extends REST_Controller {
       $finder = new DomXPath($dom);
       $principal = "//div[@class='principal clearfix']";
       $data = "//div[@class='datos']";
+      $image = "//div[@class='media clearfix']";
+      $image = $finder->query($image."//img");
+      $imagen = array();
+      foreach ($image as $key){
+        $img = $key->getAttribute("src");
+        $imagen[] = $img;
+      } 
       
-      for ($i=0; $i <1 ; $i++) { 
+  
         $data_info = $finder->query($principal.$data);
-      }
+      
       $detail = "//div[@class='ficha']//div[@class='detalles']";
       $details = $finder->query($detail."//p");
       $details = $details["length"]->textContent;
       $title = $finder->query($principal.$data."//h4");
       $code = $finder->query($principal.$data."//p//span");
      
-      
-      echo "<br>";
       $geolocation = $finder->query("//div[@class='detalles']//td//script");
       $latlng = strpos($html,"LatLng");
       $latlng = $latlng+7;
@@ -77,9 +80,6 @@ class Adinco extends REST_Controller {
 
       $latlngg = substr($html,$latlng,$latlngg); 
       $latlngg = explode(",",$latlngg);
-
-  
-      echo "<br>";
       
       //Primary data section
       $length_ubication = strpos($data_info["length"]->textContent,"Ubicación");
@@ -130,10 +130,13 @@ class Adinco extends REST_Controller {
       if(strpos($price,'U$D')>0){
         $propiedad->moneda = 'U$S';
         $price = str_replace('Precio:',"",$price);
+        $price = str_replace('.',"",$price);
         $propiedad->precio_final =  str_replace('U$D',"",$price);
+
       }else{
         $propiedad->moneda = "$";
         $price = str_replace('Precio:',"",$price);
+        $price = str_replace('.',"",$price);
         $propiedad->precio_final =  str_replace('$',"",$price);
       }
       $propiedad->calle = str_replace("Dirección					:","",$direction);
@@ -172,11 +175,9 @@ class Adinco extends REST_Controller {
       }
       $propiedad->latitud = $latlngg[0];
       $propiedad->longitud = $latlngg[1];
-
-      echo "<br>";
-
+      $propiedad->imagen = $imagen;
       print_r($propiedad);
-    
+      return $propiedad; 
     }
 
     function replace($data,$r){
