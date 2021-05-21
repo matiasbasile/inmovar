@@ -6,7 +6,7 @@
     <form id="form_propiedades" onsubmit="return enviar_buscador_propiedades()" method="GET">
 
       <input type="hidden" id="orden_h" name="orden" value="<?php echo (isset($vc_orden) ? $vc_orden : 4) ?>">
-      <input type="hidden" name="orden" value="<?php echo (isset($vc_orden) ? $vc_orden : 4) ?>">
+      <input type="hidden" id="offset_h" name="offset" value="<?php echo (isset($vc_offset) ? $vc_offset : 10) ?>">
 
       <div class="box-space">
         <input checked type="checkbox" name="tipo_vista" id="list-view3" class="MyCheck" />
