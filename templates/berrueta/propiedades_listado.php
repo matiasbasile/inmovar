@@ -10,25 +10,16 @@ function filter() {
       <li><a class="grid-view <?php echo(($vc_view != "0")?"active":"") ?>" onclick="change_view(this,'grid')" href="javascript:void(0)"></a></li>
       <li><a class="list-view <?php echo(($vc_view == "0")?"active":"") ?>" onclick="change_view(this,'list')" href="javascript:void(0)"></a></li>
     </ul>
-    <div class="sort-by">
+    <div class="sort-by" style="display: inline;">
       <label for="sort-by">Ordenar por:</label>
-      <form  style="display: inline" id="orden_form" action="<?php echo mklink ("propiedades/".(empty($vc_link_tipo_operacion)?"todas":$vc_link_tipo_operacion)."/".(empty($vc_link_localidad)?"todas":$vc_link_localidad)."/$vc_params") ?>" method="GET">
-        <input type="hidden" id="tp" value="<?php echo (!empty($vc_id_tipo_inmueble))?$vc_id_tipo_inmueble:"todas" ?>" name="tp">
-        <input type="hidden" id="dm" value="<?php echo (!empty($vc_dormitorios))?"$vc_dormitorios":"" ?>" name="dm">
-        <input type="hidden" id="bn" value="<?php echo (!empty($vc_banios))?"$vc_banios":"" ?>" name="bn">
-        <input type="hidden" id="moneda" value="<?PHP echo (!empty($vc_moneda))?$vc_moneda:"ars" ?>" name="m">
-        <input type="hidden" id="banco" value="<?php echo (!empty($vc_apto_banco) == 1)?"1":"" ?>" name="banco">
-        <input type="hidden" id="per" value="<?php echo (!empty($vc_acepta_permuta) == 1)?"1":"" ?>" name="per">
-        <input type="hidden" id="vc_minimo" value="<?php echo (!empty($vc_minimo))?"$vc_minimo":"" ?>" name="vc_minimo">
-        <input type="hidden" id="vc_maximo" value="<?php echo (!empty($vc_maximo))?"$vc_maximo":"" ?>" name="vc_maximo">
-        <input type="hidden" id="vc_offset" value="<?php echo (!empty($vc_offset))?"$vc_offset":"" ?>" name="offset">
+      <div id="orden_form">
         <select id="sort-by" onchange="enviar_orden()" name="orden">
           <option <?php echo ($vc_orden == -1 ) ? "selected" : "" ?> value="nuevo">Ver los más nuevos</option>
           <option <?php echo ($vc_orden == 2 ) ? "selected" : "" ?> value="barato">Precio menor a mayor</option>
           <option <?php echo ($vc_orden == 1 ) ? "selected" : "" ?> value="caro">Precio mayor a menor</option>
           <option <?php echo ($vc_orden == 4 ) ? "selected" : "" ?> value="destacados">Destacados</option>
         </select>  
-      </form>
+      </div>
     </div>
     <?php if ($vc_total_paginas > 1) { ?>
       <div class="pagination">
@@ -46,16 +37,7 @@ function filter() {
       </div>
     <?php } ?>
     <div class="present">
-      <form style="display: inline;" id="offset_form" method="GET" action="<?php echo mklink ("propiedades/".(empty($vc_link_tipo_operacion)?"todas":$vc_link_tipo_operacion)."/".(empty($vc_link_localidad)?"todas":$vc_link_localidad)."/$vc_params") ?>">
-        <input type="hidden" id="tp" value="<?php echo (!empty($vc_id_tipo_inmueble))?$vc_id_tipo_inmueble:"todas" ?>" name="tp">
-        <input type="hidden" id="dm" value="<?php echo (!empty($vc_dormitorios))?"$vc_dormitorios":"" ?>" name="dm">
-        <input type="hidden" id="bn" value="<?php echo (!empty($vc_banios))?"$vc_banios":"" ?>" name="bn">
-        <input type="hidden" id="moneda" value="<?PHP echo (!empty($vc_moneda))?$vc_moneda:"ars" ?>" name="m">
-        <input type="hidden" id="banco" value="<?php echo (!empty($vc_apto_banco) == 1)?"1":"" ?>" name="banco">
-        <input type="hidden" id="per" value="<?php echo (!empty($vc_acepta_permuta) == 1)?"1":"" ?>" name="per">
-        <input type="hidden" id="vc_minimo" value="<?php echo (!empty($vc_minimo))?"$vc_minimo":"" ?>" name="vc_minimo">
-        <input type="hidden" id="vc_maximo" value="<?php echo (!empty($vc_maximo))?"$vc_maximo":"" ?>" name="vc_maximo">
-        <input type="hidden" id="vc_orden" value="<?php echo (!empty($vc_orden))?"$vc_orden":"" ?>" name="orden">
+      <div style="display: inline;" id="offset_form">
         <label for="show">Mostrar:</label>
         <select id="show" onchange="enviar_offset()" name="offset">
           <option <?php echo($vc_offset==5)?"selected":"" ?> value="5">5</option>
@@ -391,10 +373,12 @@ $(document).ready(function(){
 </script>
 <script type="text/javascript">
   function enviar_orden() { 
-    $("#orden_form").submit();
+    $("#orden_h").val($("#sort-by").val());
+    $("#form_propiedades").submit();
   }
   function enviar_offset() { 
-    $("#offset_form").submit();
+    $("#offset_h").val($("#show").val());
+    $("#form_propiedades").submit();
   }
 </script>
 </body>
