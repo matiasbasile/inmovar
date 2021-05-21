@@ -64,7 +64,7 @@
         </select>
       </div>
       <div class="box-space">
-        <div class="textbox-title">Precio Minimo</div>
+        <div class="textbox-title">Precio Mínimo</div>
         <div class="w100p fl cb">
           <div class="row">
             <div class="col-xs-5 pr0">
@@ -79,7 +79,7 @@
             </div>
           </div>
         </div>
-        <div class="textbox-title">Precio Maximo</div>
+        <div class="textbox-title">Precio Máximo</div>
         <div class="w100p fl cb">
           <div class="row">
             <div class="col-xs-5 pr0">
