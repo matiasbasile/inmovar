@@ -5,6 +5,9 @@
     </div>
     <form id="form_propiedades" onsubmit="return enviar_buscador_propiedades()" method="GET">
 
+      <input type="hidden" id="orden_h" name="orden" value="<?php echo (isset($vc_orden) ? $vc_orden : 4) ?>">
+      <input type="hidden" name="orden" value="<?php echo (isset($vc_orden) ? $vc_orden : 4) ?>">
+
       <div class="box-space">
         <input checked type="checkbox" name="tipo_vista" id="list-view3" class="MyCheck" />
         <label for="list-view3">Listado <img src="images/list-view-icon.png" alt="List View" /></label>
