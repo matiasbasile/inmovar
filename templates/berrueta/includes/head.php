@@ -11,6 +11,7 @@
 <script type="text/javascript" src="/admin/resources/js/common.js"></script>
 <script type="text/javascript" src="/admin/resources/js/main.js"></script>
 <link href="/admin/resources/css/common.css" type="text/css" media="all" rel="stylesheet">
+<link href="/admin/resources/css/bootstrap-cols.css" type="text/css" media="all" rel="stylesheet">
 
 <?php if (!empty($empresa->analytics)) { echo html_entity_decode($empresa->analytics,ENT_QUOTES); } ?>
 <?php if (!empty($empresa->zopim)) { echo html_entity_decode($empresa->zopim,ENT_QUOTES); } ?>
