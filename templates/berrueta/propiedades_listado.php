@@ -10,9 +10,9 @@ function filter() {
       <li><a class="grid-view <?php echo(($vc_view != "0")?"active":"") ?>" onclick="change_view(this,'grid')" href="javascript:void(0)"></a></li>
       <li><a class="list-view <?php echo(($vc_view == "0")?"active":"") ?>" onclick="change_view(this,'list')" href="javascript:void(0)"></a></li>
     </ul>
-    <div class="sort-by" style="display: inline;">
+    <div class="sort-by">
       <label for="sort-by">Ordenar por:</label>
-      <div id="orden_form">
+      <div id="orden_form" style="display: inline;">
         <select id="sort-by" onchange="enviar_orden()" name="orden">
           <option <?php echo ($vc_orden == -1 ) ? "selected" : "" ?> value="nuevo">Ver los más nuevos</option>
           <option <?php echo ($vc_orden == 2 ) ? "selected" : "" ?> value="barato">Precio menor a mayor</option>
