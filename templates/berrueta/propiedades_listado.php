@@ -45,7 +45,7 @@ function filter() {
           <option <?php echo($vc_offset==20)?"selected":"" ?> value="20">20</option>
           <option <?php echo($vc_offset==50)?"selected":"" ?> value="50">50</option>
         </select>
-      </form>
+      </div>
     </div>    
   </div>
 <?php } ?>
