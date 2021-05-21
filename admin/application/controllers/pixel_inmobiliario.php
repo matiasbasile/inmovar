@@ -16,7 +16,7 @@ class Pixel_inmobiliario extends REST_Controller {
       $links = $this->get_links($config);
       $config["links"] = $links;
       $data = $this->get_data($config);
-      
+
     }
     function get_id($config = array()){
       $url = isset($config["url"]) ? $config["url"] : ""; //llega link anto
@@ -66,10 +66,9 @@ class Pixel_inmobiliario extends REST_Controller {
     }
     function get_data($config = array()){
       $links = isset($config["links"]) ? $config["links"] : array(); 
-      print_r($links);
+      $dates = array();
       foreach ($links as $key) {
         $imagen = array();
-
         $html = file_get_contents($key);
         $dom = new DOMDocument();
         libxml_use_internal_errors(true);
@@ -116,9 +115,22 @@ class Pixel_inmobiliario extends REST_Controller {
 
         $direction = $direction[0]->textContent;
         $config["direction"] = $direction;
-        
-        $price = $price[0]->textContent;
-        $config["price"] = $price;
+      
+        //var_dump($price);
+        $pricee = $price;
+        if($pricee->length == 0 ){
+          $config["publica_precio"] = 0;
+          $config["price"] = 0;
+        }else{
+          $config["publica_precio"] = 1;
+          $config["price"] = $price[0]->textContent;
+
+
+        } 
+       
+        //echo $config["link"];
+     
+    
         
         $config["name"] =  $title[0]->textContent;
         $config["code"] = $code[0]->textContent;
@@ -127,9 +139,10 @@ class Pixel_inmobiliario extends REST_Controller {
        
         $config["description"] = $description[0]->textContent;
 
-        $this->filter_data($config);
-       
+        $dates[] = $this->filter_data($config);
+        
       }
+      return $dates;
     }
     function filter_data($config = array()){
       $propiedades = new stdClass();
@@ -143,10 +156,7 @@ class Pixel_inmobiliario extends REST_Controller {
       $property_type = isset($config["property_type"]) ? $config["property_type"] : ""; //finish
       $description = isset($config["description"]) ? $config["description"] : ""; //finish
       $link = isset($config["link"]) ? $config["link"] : ""; //finish
-      echo "<br>";
-      
-       
-      echo "<br>";
+      $publica_precio = isset($config["publica_precio"]) ? $config["publica_precio"] : ""; //finish
       foreach ($description_place as $key){
         if(strpos($key,"Dormitorio") !== false ){
           $dormitorios = str_replace("Dormitorios","",$key);
@@ -165,7 +175,23 @@ class Pixel_inmobiliario extends REST_Controller {
           $propiedades->ambientes = $ambientes;
         }
       }
-
+      if($publica_precio == 0){
+        $propiedades->publica_precio = 0;
+      }else{
+        if(isset($price)){
+          if(strpos($price,'U$D')){
+            $propiedades->moneda = 'U$S';
+            $price = str_replace('U$D',"",$price);
+            $price = str_replace(".","",$price);
+            $propiedades->precio_final = $price;
+          }else{
+            $propiedades->moneda = '$';
+            $price = str_replace('$',"",$price);
+            $price = str_replace(".","",$price);
+            $propiedades->precio_final = $price;
+          }
+        }
+      }
       $a = strpos($location, "q=") + 2;
       $location = substr($location,$a); 
       $location = str_replace('&hl=es;z=14&output=embed'," ",$location);
@@ -205,19 +231,7 @@ class Pixel_inmobiliario extends REST_Controller {
         $calles = str_replace(".."," ",$calle[0]);
         $propiedades->calle = $calles;
       }
-      if(isset($price)){
-        if(strpos($price,'U$D')){
-          $propiedades->moneda = 'U$S';
-          $price = str_replace('U$D',"",$price);
-          $price = str_replace(".","",$price);
-          $propiedades->precio_final = $price;
-        }else{
-          $propiedades->moneda = '$';
-          $price = str_replace('$',"",$price);
-          $price = str_replace(".","",$price);
-          $propiedades->precio_final = $price;
-        }
-      } 
+      
       $direction = mb_strtolower($direction);
       if (strpos($direction, "casco urbano") !== FALSE) {
           $propiedades->id_localidad = 513;
@@ -310,140 +324,7 @@ class Pixel_inmobiliario extends REST_Controller {
           $errores[] = "Localidad no encontrada [$link]";
         }
       
-      print_r($propiedades);
-      echo "fin";
+      return $propiedades;
     }
 
-    function importar(){
-
-      //$array_propierties= array("http://www.antoninipropiedades.com/ad/casa-en-venta-27");
-      $limit_propierties = count($array_propierties);
-      $count = 0; 
-       
-      $propierties = array(); 
-      
-      for ($i=0; $i < $limit_propierties; $i++) { 
-        $imagen = array();
-        //preguntar en cache
-        $propiertiesss = new stdClass();
-        $html = file_get_contents($array_propierties[$i]);
-        $dom = new DOMDocument();
-        libxml_use_internal_errors(true);
-        $dom->loadHTML($html);
-        $finder = new DomXPath($dom);
-        $propiertiesss->inmobusquedas_url = $array_propierties[$i];
-        $atributes_top ="//div[contains(@class, 'property_single_top')]" ;
-        $atributes_top_price = "//div[contains(@class, 'property-price')]";
-        $atributes_top_place = "//div[contains(@class, 'btn-group d-flex')]";
-        $atributes_center = "//div[contains(@id, 'gallery-1')]"; 
-        $atributes_bottom = "//div[contains(@class, 'property_details')]";
-        $location = "//div[contains(@class, 'map_widget')]";
-
-       
-
-        $propiertiesss->nombre = "";
-        $propiertiesss->codigo = 0;
-        $propiertiesss->id_tipo_inmueble = 0;
-        $propiertiesss->description = "";
-        $propiertiesss->imagen = array();
-        $propiertiesss->precio = 0;
-        $propiertiesss->moneda = "";
-
-        //Atributes 
-        $title = $finder->query($atributes_top."//h5");
-        $code = $finder->query($atributes_top."//h6");
-        $direction = $finder->query($atributes_top."//p");
-        $price = $finder->query($atributes_top_price."//p");
-        $nose = $finder->query($atributes_top_price."//div");
-        $description = $finder->query($atributes_bottom."//p");
-        $location = $finder->query($location."//iframe");
-        
-        $location = $location[0]->getAttribute("src");
-        $a = strpos($location, "q=") + 2;
-        $location = substr($location,$a);
-        $b = strpos($location,'&');
-        $location = str_replace('&hl=es;z=14&output=embed'," ",$location);
-        $location = explode(",",$location);
-        $propiertiesss->latitud = $location[0];
-        $propiertiesss->longitud = $location[1];
-        $imagenes = $finder->query($atributes_center."//img");
-       
-        foreach ($imagenes as $key){
-          $img = $key->getAttribute("src");
-          $imagen[] = $img;
-        }
-        
-        $description_place = $finder->query($atributes_top_place."//button");
-        foreach($description_place as $key){
-          $remplazamos_espacios = str_replace(" ", "",$key->textContent);
-          $a = explode(" ", $remplazamos_espacios);
-          if(strpos($a[0],"Dormitorio") !== false ){
-            $dormitorios = str_replace("Dormitorios","",$a[0]);
-            $propiertiesss->dormitorios = $dormitorios;
-          }elseif(strpos($a[0],"Baño") !== false ) {
-            $banios = str_replace("Baños","",$a[0]);
-            $propiertiesss->banios = $banios;
-          }elseif(strpos($a[0],"M²Totales") !== false){
-            $metros_totales = str_replace("M²Totales","",$a[0]);
-            $propiertiesss->superficie_total = $metros_totales;
-          }elseif(strpos($a[0],"M²Cubiertos") !== false){
-            $metros_cubiertos = str_replace("M²Cubiertos","", $a[0]);
-            $propiertiesss->superficie_cubierta = $metros_cubiertos;
-          }elseif(strpos($a[0],"Ambientes") !== false){
-            $ambientes = str_replace("Ambientes","",$a[0]);
-            $propiertiesss->ambientes = $ambientes;
-          }
-        }
-        if(strpos($direction[0]->textContent,"La Plata")){
-          $propiertiesss->id_localidad = 513;
-          $calle = str_replace(" ", "..",$direction[0]->textContent);
-          $calle = str_replace(" ","..",$calle);
-          $calle = explode(",",$calle);
-          $calles = str_replace(".."," ",$calle[0]);
-          $propiertiesss->calle = $calles;
-        }
-        if(isset($price[0]->textContent)){
-          if(strpos($price[0]->textContent,'U$D')){
-            $propiertiesss->moneda = 'U$S';
-            $price = str_replace('U$D',"",$price[0]->textContent);
-            $price = str_replace(".","",$price);
-            $propiertiesss->precio = $price;
-          }else{
-            $propiertiesss->moneda = '$';
-            $price = str_replace('$',"",$price[0]->textContent);
-            $price = str_replace(".","",$price);
-            $propiertiesss->precio = $price;
-          }
-        }
-        
-        $propiertiesss->nombre = $title[0]->textContent;
-        $code = str_replace("Código: "," ",$code[0]->textContent);
-        $propiertiesss->codigo = $code;
-
-        if($nose[0]->textContent=="Departamento"){
-          $propiertiesss->id_tipo_inmueble = 2;
-        }elseif($nose[0]->textContent=="Casa"){
-          $propiertiesss->id_tipo_inmueble = 1;
-        }elseif($nose[0]->textContent=="PH"){
-          echo "hola";
-          $propiertiesss->id_tipo_inmueble = 3;
-        }elseif($nose[0]->textContent=="Oficina"){
-          $propiertiesss->id_tipo_inmueble = 11;
-        }elseif($nose[0]->textContent=="Lote"){
-          $propiertiesss->id_tipo_inmueble = 7;
-        }elseif($nose[0]->textContent=="Piso"){
-          $propiertiesss->id_tipo_inmueble = 17;
-        }elseif($nose[0]->textContent=="Duplex"){
-          $propiertiesss->id_tipo_inmueble = 15;
-        }elseif($nose[0]->textContent=="Cochera"){
-          $propiertiesss->id_tipo_inmueble = 13;
-        }
-        
-        $propiertiesss->description = $description[0]->textContent;
-        $propiertiesss->imagen = $imagen;
-
-        $propierties[] = $propiertiesss;
-      }
-      
-    }
 }
