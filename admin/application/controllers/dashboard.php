@@ -8,6 +8,39 @@ class Dashboard extends REST_Controller {
     parent::__construct();
   }
 
+  function enviar_soporte() {
+    $asunto = parent::get_post("asunto");
+    $texto = parent::get_post("texto");
+    $id_empresa = parent::get_empresa();
+    $this->load->model("Empresa_Model");
+    $empresa = $this->Empresa_Model->get($id_empresa);
+    if (empty($asunto)) {
+      echo json_encode(array("error"=>1,"mensaje"=>"El asunto es vacio"));
+      return;
+    }
+    if (empty($texto)) {
+      echo json_encode(array("error"=>1,"mensaje"=>"El texto es vacio"));
+      return;
+    }
+    $bcc_array = array(
+      "florencia@inmovar.com",
+    );
+    require APPPATH.'libraries/Mandrill/Mandrill.php';
+    $body = "";
+    $body.= "Cliente: $empresa->nombre <br/>";
+    $body.= "Asunto: $asunto <br/>";
+    $body.= "Mensaje: <br/>$texto";
+    mandrill_send(array(
+      "to"=>"soporte@inmovar.com",
+      "subject"=>$asunto,
+      "body"=>$body,
+      "bcc"=>$bcc_array,
+    ));
+    echo json_encode(array(
+      "error"=>0,
+    ));
+  }
+
   function get_info() {
 
     ini_set('display_errors', 1);
