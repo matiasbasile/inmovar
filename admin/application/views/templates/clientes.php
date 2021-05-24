@@ -4,11 +4,11 @@
     <div class="panel panel-default tac">
       <div class="panel-body">
         <h1>Contactos</h1>
-        <p>Inmovar</p>
+        <p>Centraliza todos tus clientes en un solo lugar</p>
         <div>
           <img style="max-width:450px;" class="w100p mb30" src="resources/images/contactos.png" />
         </div>
-        <p style="max-width:450px;" class="mb30 mla mra fs16">Aumente las ventas mejorando el seguimiento de clientes con <span class="c-main">Inmovar CRM</span></p>
+        <p style="max-width:450px;" class="mb30 mla mra fs16">Guarda una copia completa de todos los contactos que consultaron a tu inmobiliaria en la <span class="c-main">Agenda de Contactos</span></p>
         <a class="btn btn-lg btn-info mb30" href="app/#precios">
           <span>&nbsp;&nbsp;Activar Contactos&nbsp;&nbsp;</span>
         </a>
