@@ -78,7 +78,7 @@ return t.parent().is(".ui-effects-wrapper")&&(t.parent().replaceWith(t),(t[0]===
     });
 
     // Boton de ENVIAR
-    jQuery(chat).find("#converse-enviar").click(enviar_turno);
+    //jQuery(chat).find("#converse-enviar").click(enviar_turno);
 
     // Boton de CERRAR
     jQuery(chat).find(".converse-menu-icon").click(function(){
