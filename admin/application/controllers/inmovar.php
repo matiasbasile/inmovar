@@ -34,10 +34,10 @@ class Inmovar extends CI_Controller {
     */
 
     $empresa = $this->Empresa_Model->get($id_empresa);
-    if ($empresa->estado_cuenta == 2) {
+    //if ($empresa->estado_cuenta == 2) {
       // La cuenta esta vencida, no debemos mostrar el CHAT
-      exit();
-    }
+      //exit();
+    //}
     $conf = array();
 
     $useragent=$_SERVER['HTTP_USER_AGENT'];
