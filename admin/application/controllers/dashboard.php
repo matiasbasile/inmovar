@@ -36,7 +36,7 @@ class Dashboard extends REST_Controller {
     $body.= "Mensaje: <br/>$texto";
     mandrill_send(array(
       "to"=>"soporte@inmovar.com",
-      "subject"=>$asunto,
+      "subject"=>"Soporte Inmovar",
       "body"=>$body,
       "bcc"=>$bcc_array,
     ));
