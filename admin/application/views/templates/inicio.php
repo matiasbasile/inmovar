@@ -349,17 +349,17 @@
             Responderemos tu consulta en 24hs. hábiles a tu correo electrónico.
           </div>
           <div class="form-group">
-            <select name="" id="soporte_asunto" class="form-control">
-              <option>Elige un tema</option>
+            <select id="soporte_asunto" class="form-control">
+              <option value="">Elige un tema</option>
               <option>Ayuda con mi cuenta</option>
               <option>Errores o problemas técnicos</option>
             </select>
           </div>
           <div class="form-group">
-            <textarea class="form-control h100" placeholder="Escribe tu consulta"></textarea>
+            <textarea id="soporte_texto" class="form-control h100" placeholder="Escribe tu consulta"></textarea>
           </div>
           <div class="form-group">
-            <button class="btn btn-block btn-info">Enviar Consulta</button>
+            <button id="soporte_enviar" class="btn btn-block btn-info">Enviar Consulta</button>
           </div>
         </div>
       </div>
