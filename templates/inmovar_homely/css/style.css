@@ -458,7 +458,10 @@ header { background:white; width:100%; position:relative; z-index:1000; }
 	min-height:83px;
 	padding-left:0px;
 }
-.navbar-brand img { width: auto; max-height: 100px; }
+.navbar-brand img { width: auto; max-height: 100px; max-width: 250px; }
+@media (max-width: 500px) {
+	.navbar-brand img { max-width: 180px; }
+}
 
 /* MENU TOGGLE */
 .navbar-toggle { 
