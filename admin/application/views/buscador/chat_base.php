@@ -262,10 +262,7 @@ input:-webkit-autofill {
       </div>
     </div>
     <div class="clienchat-link">
-      <a href='https://www.turnoclick.com' target='_blank'>Somos parte de Inmovar</a>
+      <a href='https://www.inmovar.com' target='_blank'>Somos parte de Inmovar</a>
     </div>
   </div>
 </div>
-<audio id="hiSound">
-  <source src="https://varcreative.com/sistema/resources/sounds/incomming-message.mp3" type="audio/mp3">
-</audio>
