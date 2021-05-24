@@ -27,8 +27,8 @@ class Dashboard extends REST_Controller {
       "basile.matias99@gmail.com",
       "misticastudio@gmail.com",
     );
-    $asunto = utf8_encode($asunto);
-    $texto = utf8_encode($texto);
+    $asunto = utf8_decode($asunto);
+    $texto = utf8_decode($texto);
     require APPPATH.'libraries/Mandrill/Mandrill.php';
     $body = "";
     $body.= "Cliente: $empresa->nombre <br/>";
