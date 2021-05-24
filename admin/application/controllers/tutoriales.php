@@ -11,24 +11,26 @@ class Tutoriales extends REST_Controller {
   function buscar() {
     $id_modulo = parent::get_get("id_modulo",0);
 
+    $sql = "SELECT * FROM com_videos ";
+    $sql.= "WHERE clave = '$id_modulo' ";
+    $sql.= "ORDER BY id DESC ";
+    $q = $this->db->query($sql);
+    $videos = array();
+    foreach($q->result() as $r) {
+      $r->video_es = str_replace("https://www.youtube.com/watch?v=", "", $r->video_es);
+      $r->video_es = str_replace("https://youtube.com/watch?v=", "", $r->video_es);
+      $videos[] = array(
+        "id"=>$r->id,
+        "titulo"=>$r->nombre_es,
+        "descripcion"=>$r->texto_es,
+        "link"=>$r->video_es,
+      );
+    }
+
     $lista = array(
-      "id_modulo"=>"propiedades",
-      "titulo"=>"Propiedades",
-      "descripcion"=>"Lorep ipsum...",
-      "videos"=>array(
-        array(
-          "id"=>1,
-          "titulo"=>"Introducción",
-          "descripcion"=>"Este es un video introductorio a la parte de propiedades.",
-          "link"=>"https://www.youtube.com/watch?v=uLIs0j2WnlM",
-        ),
-        array(
-          "id"=>2,
-          "titulo"=>"Invitaciones",
-          "descripcion"=>"Este es un video introductorio a la parte de propiedades 2.",
-          "link"=>"https://www.youtube.com/watch?v=uLIs0j2WnlM",
-        ),
-      ),
+      "id_modulo"=>$id_modulo,
+      "titulo"=>$id_modulo,
+      "videos"=>$videos,
     );
 
     echo json_encode(array(

@@ -307,7 +307,7 @@
 <script type="text/template" id="tutoriales_detalle_view">
   <% for(var i=0;i< videos.length;i++) { %>
     <% var v = videos[i] %>
-    <a href="<%= v.link %>" target="_blank" class="panel panel-default db">
+    <div class="panel panel-default db">
       <div class="panel-body">
         <div class="padder">
           <div class="form-group mb0 clearfix cp">
@@ -320,7 +320,10 @@
           </div>
         </div>
       </div>
-    </a>  
+      <div class="panel-body expand" style="display:none">
+        <iframe width="100%" height="400" src="https://www.youtube.com/embed/<%= v.link %>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>  
   <% } %>
 </script>
 
