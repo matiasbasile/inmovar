@@ -279,24 +279,32 @@ class App extends CI_Controller {
 
     $categorias_videos = array(
       array(
-        "link"=>"propiedades",
-        "nombre"=>"Propiedades",
+        "link"=>"escritorio",
+        "nombre"=>"Escritorio",
       ),
       array(
-        "link"=>"oportunidades",
-        "nombre"=>"Oportunidades",
+        "link"=>"seguimiento",
+        "nombre"=>"Seguimiento",
+      ),
+      array(
+        "link"=>"propiedades",
+        "nombre"=>"Propiedades",
       ),
       array(
         "link"=>"red_inmovar",
         "nombre"=>"Red Inmovar",
       ),
       array(
-        "link"=>"sitio_web",
-        "nombre"=>"Sitio Web",
+        "link"=>"alquileres",
+        "nombre"=>"Alquileres",
       ),
       array(
-        "link"=>"estadisticas",
-        "nombre"=>"Estadísticas",
+        "link"=>"contactos",
+        "nombre"=>"Contactos",
+      ),
+      array(
+        "link"=>"sitio_web",
+        "nombre"=>"Sitio Web",
       ),
       array(
         "link"=>"configuracion",
