@@ -153,7 +153,9 @@ class Notificacion_Model extends Abstract_Model {
     }    
 
     // Aviso de nueva inmobiliaria
+    $dos_dias = date("Y-m-d H:i:s",strtotime("-2 days"));
     $sql = "SELECT * FROM com_log WHERE id_empresa = $id_empresa AND importancia = 'B' AND leida = 0 ";
+    $sql.= "AND fecha >= '$dos_dias' ";
     $sql.= "ORDER BY fecha DESC ";
     $q = $this->db->query($sql);
     foreach($q->result() as $r) {

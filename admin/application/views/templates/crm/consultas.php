@@ -4,7 +4,7 @@
     <div class="panel panel-default tac">
       <div class="panel-body">
         <h1>Seguimiento</h1>
-        <p>Inmovar CRM</p>
+        <p>Mejore la atención comercial</p>
         <div>
           <img style="max-width:450px;" class="w100p mb30" src="resources/images/seguimiento.png" />
         </div>
