@@ -310,7 +310,7 @@
     <div class="panel panel-default db">
       <div class="panel-body">
         <div class="padder">
-          <div class="form-group mb0 clearfix cp">
+          <div class="form-group mb0 clearfix expand-link cp">
             <label class="control-label cp">
               <%= v.titulo %>
             </label>
