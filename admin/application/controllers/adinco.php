@@ -23,7 +23,6 @@ class Adinco extends REST_Controller {
         $dom->loadHTML($html);
         $finder = new DomXPath($dom);
         $segurity = $finder->query("//div[@class='titulo']//h1");
-      
         $segurity = $segurity["length"]->textContent;
         if($segurity == "Propiedades"){
           $link= $finder->query("//div[@class='listado']//a[@class='ampliar']/@href");
@@ -38,7 +37,6 @@ class Adinco extends REST_Controller {
         $a += 1;
       } 
       return $links;
-
     }
 
     function get_data($link){
