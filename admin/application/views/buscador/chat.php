@@ -241,9 +241,6 @@ return t.parent().is(".ui-effects-wrapper")&&(t.parent().replaceWith(t),(t[0]===
     }
 
     jQuery("body").prepend(chat);
-    if (config.sonido == 1) {
-      document.getElementById('hiSound').play();
-    }
   };
 
 
