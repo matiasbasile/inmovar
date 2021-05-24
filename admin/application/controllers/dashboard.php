@@ -25,6 +25,7 @@ class Dashboard extends REST_Controller {
     $bcc_array = array(
       "florencia@inmovar.com",
       "basile.matias99@gmail.com",
+      "misticastudio@gmail.com",
     );
     $asunto = utf8_encode($asunto);
     $texto = utf8_encode($texto);
