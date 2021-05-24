@@ -779,6 +779,11 @@
         //$('.app-aside').toggleClass('off-screen');
       },
 
+      ver_red: function() {
+        window.propiedades_buscar_red = 1;
+        location.href="app/#propiedades";
+      },
+
       asignar_color: function(i) {
         if (i == 0) return "#14d0ad";
         else if (i == 1) return "#28bfd2";
