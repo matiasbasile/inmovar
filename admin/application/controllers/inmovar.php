@@ -23,7 +23,6 @@ class Inmovar extends CI_Controller {
     $id_empresa = 45;
     /*
     $dominio = str_replace("www.", "", $dominio);
-    $this->load->model("Empresa_Model");
     $id_empresa = $this->Empresa_Model->get_id_empresa_by_dominio($dominio,array(
       "test"=>1
     ));
@@ -33,6 +32,7 @@ class Inmovar extends CI_Controller {
     }
     */
 
+    $this->load->model("Empresa_Model");
     $empresa = $this->Empresa_Model->get($id_empresa);
     //if ($empresa->estado_cuenta == 2) {
       // La cuenta esta vencida, no debemos mostrar el CHAT
