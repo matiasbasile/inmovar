@@ -519,13 +519,11 @@ input:-webkit-autofill {
             </select>
           </div>
           <div class="inmovar_user_form_col_9">
-            <div class="inmovar_user_form_row">
-              <div class="inmovar_user_form_col_6">
-                <input id="inmovar_user_form_desde" type="number" class="inmovar_user_form_input" placeholder="DESDE">
-              </div>
-              <div class="inmovar_user_form_col_6">
-                <input id="inmovar_user_form_hasta" type="number" class="inmovar_user_form_input" placeholder="HASTA">
-              </div>
+            <div class="inmovar_user_form_col_6">
+              <input id="inmovar_user_form_desde" type="number" class="inmovar_user_form_input" placeholder="DESDE">
+            </div>
+            <div class="inmovar_user_form_col_6">
+              <input id="inmovar_user_form_hasta" type="number" class="inmovar_user_form_input" placeholder="HASTA">
             </div>
           </div>
         </div>
