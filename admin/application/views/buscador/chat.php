@@ -63,17 +63,6 @@ return t.parent().is(".ui-effects-wrapper")&&(t.parent().replaceWith(t),(t[0]===
   // Inicializa el chat en el body
   var initChat = function() {
 
-    new AutoNumeric('#inmovar_user_form_desde', { 
-      'decimalPlaces':0,
-      'decimalCharacter':',',
-      'digitGroupSeparator':'.',
-    });
-    new AutoNumeric('#inmovar_user_form_hasta', { 
-      'decimalPlaces':0,
-      'decimalCharacter':',',
-      'digitGroupSeparator':'.',
-    });
-
     // Enter sobre NOMBRE
     jQuery(chat).find("#inmovar_user_form_nombre").keypress(function(e){
       if (e.which == 13) jQuery("#inmovar_user_form_email").select();
@@ -121,6 +110,17 @@ return t.parent().is(".ui-effects-wrapper")&&(t.parent().replaceWith(t),(t[0]===
     if (config.abierto == 0) {
       jQuery(chat).find("#turno-chat-cont").hide();
     }
+
+    new AutoNumeric('#inmovar_user_form_desde', { 
+      'decimalPlaces':0,
+      'decimalCharacter':',',
+      'digitGroupSeparator':'.',
+    });
+    new AutoNumeric('#inmovar_user_form_hasta', { 
+      'decimalPlaces':0,
+      'decimalCharacter':',',
+      'digitGroupSeparator':'.',
+    });    
 
     jQuery("body").prepend(chat);
   };
