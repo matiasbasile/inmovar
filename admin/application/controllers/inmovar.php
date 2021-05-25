@@ -140,8 +140,8 @@ class Inmovar extends CI_Controller {
     $tipo_inmueble = $this->Tipo_Inmueble_Model->get($id_tipo_inmueble);
     $texto.= $tipo_inmueble->nombre;
 
-    if ($id_tipo_operacion == 2) $texto.= " en alquiler";
-    else $texto.= " en venta";
+    if ($id_tipo_operacion == 2) $texto.= " en Alquiler";
+    else $texto.= " en Venta";
 
     if (!empty($id_localidad)) {
       $this->load->model("Localidad_Model");
