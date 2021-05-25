@@ -141,6 +141,22 @@ if ( (!(strpos($dominio, "app.inmovar") === FALSE) || !(strpos($dominio, "sandbo
     }
   }
 
+} else if ( isset($params[0]) && $params[0] == "buscador" ) {
+  // Buscamos el dominio dentro de inmovar
+  if (!empty($params[1])) {
+    $empresa = get_empresa_by_dominio_inmovar($params[1]);
+    print_r($empresa);
+    $empresa->template_path = "buscador";
+    if ($empresa !== FALSE) {
+      $dominio = $dominio."/buscador/".$params[1]."/";
+      $base = "/buscador/".$params[1]."/";
+      // Movemos el array dos lugares para adelante (buscador/dominio/ son dos lugares);
+      array_shift($params);
+      array_shift($params);
+      $ultimo = end($params);
+    }
+  }
+
 // Consultamos por el dominio
 } else {
   $empresa = get_empresa_by_dominio($dominio);
