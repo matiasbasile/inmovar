@@ -70,25 +70,13 @@ else $vc_moneda = "$";
 </style>
 </head>
 <body class="page-sub-page page-property-detail" id="page-top">
-<!-- Wrapper -->
 <div class="wrapper">
-  <?php include("includes/header.php"); ?>
-  <!-- Page Content -->
-  <div id="page-content">
-    <!-- Breadcrumb -->
-    <div class="container">
-      <ol class="breadcrumb">
-        <li><a href="<?php echo mklink("/"); ?>">Home</a></li>
-        <li><a href="<?php echo mklink("propiedades/$propiedad->tipo_operacion_link/"); ?>"><?php echo $propiedad->tipo_operacion ?></a></li>
-        <li><a href="<?php echo mklink("propiedades/$propiedad->tipo_operacion_link/$propiedad->localidad_link/"); ?>"><?php echo $propiedad->localidad ?></a></li>
-        <li class="active"><a href="<?php echo $propiedad->link_propiedad ?>"><?php echo $propiedad->nombre ?></a></li>
-      </ol>
-    </div>
-    <!-- end Breadcrumb -->
 
+  <?php include("includes/header.php"); ?>
+
+  <div id="page-content">
     <div class="container">
       <div class="row">
-        <!-- Property Detail Content -->
         <div class="col-md-9 col-sm-9">
           <section id="property-detail">
             <header class="property-title">
@@ -103,20 +91,7 @@ else $vc_moneda = "$";
               <?php if (isset($propiedad->pertenece_red) && $propiedad->pertenece_red == 1) { ?>
                 <div class="mt10"><span class="tag price">Red Inmovar</span></div>
               <?php } ?>
-
-              <span class="actions">
-                <?php if (estaEnFavoritos($propiedad->id)) { ?>
-                  <a class="bookmark" data-bookmark-state="added" href="/admin/favoritos/eliminar/?id=<?php echo $propiedad->id; ?>">
-                    <span class="title-add">Guarda Tus Inmuebles Favoritos</span>
-                    <span class="title-added">Guardado en Favoritos</span>
-                  </a>
-                <?php } else { ?>
-                  <a class="bookmark" data-bookmark-state="empty" href="/admin/favoritos/agregar/?id=<?php echo $propiedad->id; ?>">
-                    <span class="title-add">Guarda Tus Inmuebles Favoritos</span>
-                    <span class="title-added">Guardado en Favoritos</span>
-                  </a>
-                <?php } ?>
-              </span>
+              
             </header>
             <?php if (sizeof($propiedad->images) > 0) { ?>
               <section id="property-gallery" class="pr">
@@ -349,63 +324,6 @@ else $vc_moneda = "$";
                 </section>
               </div><!-- /.col-md-8 -->
               <div class="col-md-12 col-sm-12">
-                <?php /*
-                <section id="contact-agent">
-                  <header><h2>Contact Agent</h2></header>
-                  <div class="row">
-                    <section class="agent-form">
-                      <div class="col-md-7 col-sm-12">
-                        <aside class="agent-info clearfix">
-                          <figure><a href="agent-detail.html"><img alt="" src="assets/img/agent-01.jpg"></a></figure>
-                          <div class="agent-contact-info">
-                            <h3>Robert Farley</h3>
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et dui vestibulum,
-                              bibendum purus sit amet, vulputate mauris. Ut adipiscing gravida tincidunt.
-                              Duis euismod placerat rhoncus.
-                            </p>
-                            <dl>
-                              <dt>Phone:</dt>
-                              <dd>(123) 456 789</dd>
-                              <dt>Mobile:</dt>
-                              <dd>888 123 456 789</dd>
-                              <dt>Email:</dt>
-                              <dd><a href="mailto:#">john.doe@example.com</a></dd>
-                              <dt>Skype:</dt>
-                              <dd>john.doe</dd>
-                            </dl>
-                            <hr>
-                            <a href="agent-detail.html" class="link-arrow">Full Profile</a>
-                          </div>
-                        </aside><!-- /.agent-info -->
-                      </div><!-- /.col-md-7 -->
-                      <div class="col-md-5 col-sm-12">
-                        <div class="agent-form">
-                          <form role="form" id="form-contact-agent" method="post"  class="clearfix">
-                            <div class="form-group">
-                              <label for="form-contact-agent-name">Your Name<em>*</em></label>
-                              <input type="text" class="form-control" id="form-contact-agent-name" name="form-contact-agent-name" required>
-                            </div><!-- /.form-group -->
-                            <div class="form-group">
-                              <label for="form-contact-agent-email">Your Email<em>*</em></label>
-                              <input type="email" class="form-control" id="form-contact-agent-email" name="form-contact-agent-email" required>
-                            </div><!-- /.form-group -->
-                            <div class="form-group">
-                              <label for="form-contact-agent-message">Your Message<em>*</em></label>
-                              <textarea class="form-control" id="form-contact-agent-message" rows="2" name="form-contact-agent-message" required></textarea>
-                            </div><!-- /.form-group -->
-                            <div class="form-group">
-                              <button type="submit" class="btn pull-right btn-default" id="form-contact-agent-submit">Send a Message</button>
-                            </div><!-- /.form-group -->
-                            <div id="form-contact-agent-status"></div>
-                          </form><!-- /#form-contact -->
-                        </div><!-- /.agent-form -->
-                      </div><!-- /.col-md-5 -->
-                    </section><!-- /.agent-form -->
-                  </div><!-- /.row -->
-                </section><!-- /#contact-agent -->
-                <hr class="thick">
-                */ ?>
                 <?php if (isset($propiedad->relacionados) && sizeof($propiedad->relacionados)>0) { ?>
                   <section id="similar-properties">
                     <header><h2 class="no-border">Propiedades Relacionadas</h2></header>
@@ -461,27 +379,22 @@ else $vc_moneda = "$";
             </div><!-- /.row -->
           </section><!-- /#property-detail -->
         </div><!-- /.col-md-9 -->
-        <!-- end Property Detail Content -->
 
-        <!-- sidebar -->
         <div class="col-md-3 col-sm-3">
           <section id="sidebar">
             <aside id="edit-search">
               <header><h3>Buscador</h3></header>
               <?php include("includes/buscador.php"); ?>
             </aside>
-            <?php include("includes/destacadas.php"); ?>
-          </section><!-- /#sidebar -->
-        </div><!-- /.col-md-3 -->
-        <!-- end Sidebar -->
-      </div><!-- /.row -->
-    </div><!-- /.container -->
+          </section>
+        </div>
+        
+      </div>
+    </div>
   </div>
-  <!-- end Page Content -->
   <?php include("includes/footer.php"); ?>
 </div>
 <?php include_once("templates/comun/mapa_js.php"); ?>
-<!--<script type="text/javascript" src="assets/js/infobox.js"></script>-->
 <script type="text/javascript" src="assets/js/jquery.raty.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery.magnific-popup.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery.fitvids.js"></script>
