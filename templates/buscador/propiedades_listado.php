@@ -20,8 +20,8 @@ if (isset($_GET["test"])) print_r($vc_listado);
       <div class="row">
         <!-- Results -->
         <div class="col-md-9 col-sm-9">
-          <section id="results">
-            <header class="mt30"><h1><?php echo $vc_tipo_operacion; ?></h1></header>
+          <section id="results" class="mt30">
+
             <section id="search-filter">
               <figure>
                 <h3><i class="fa fa-search"></i>Resultados de b&uacute;squeda:</h3>
