@@ -199,23 +199,23 @@ input:-webkit-autofill {
 .clienchat-link { text-align: right; padding: 5px 10px; background-color: #f1f1f1; }
 .clienchat-link a { font-family: 'Lato', sans-serif; font-size: 10px; color: #999; text-decoration: none; outline: none; }
 
-.turno_chat_user { }
-.turno_chat_user_card { display: table; border-top: solid 1px #eee; padding: 10px; cursor: pointer; width: 100%; overflow: hidden; margin-bottom: 5px; }
-.turno_chat_user:first-child .turno_chat_user_card { border-top: none !important; }
-.turno_chat_user_image { vertical-align: middle; display: table-cell; text-align: center; width: 58px; padding-top: 5px }
-.turno_chat_user_image img { width: 48px; height: 48px; margin-right: 5px; margin-left: 5px border-radius: 50%; -webkit-border-radius: 50%; -moz-border-radius: 50%; border: solid 1px #eee; }
-.turno_chat_user_info { display: table-cell; vertical-align: middle; padding-top: 5px; }
-.turno_chat_user_info .turno_chat_user_cargo { color: #272727; font-size: 12px; font-weight: bold; text-transform: uppercase; line-height: 18px }
-.turno_chat_user_info .turno_chat_user_nombre { color: #929292; font-size: 14px; }
-.turno_chat_user_info .turno_chat_user_disponible, .turno_chat_user_info .turno_chat_user_no_disponible { font-size: 12px; color: #272727; }
-.turno_chat_user_form .turno_chat_user_form_step_1, .turno_chat_user_form .turno_chat_user_form_step_2 { display: none; }
-.turno_chat_user_form .turno_chat_user_form_row { overflow: hidden; margin-left: -6px; margin-right: -6px; }
-.turno_chat_user_form .turno_chat_user_form_row .turno_chat_user_form_input { background-color: white; width: 100%; display: block; color: #3f3f3f; border: solid 1px #dddddd; padding: 12px 8px; font-size: 14px; line-height: 14px; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; outline: none !important; box-shadow: none !important; -webkit-appearance: none; -moz-appearance: none; appearance: none; height: 40px; margin-bottom: 10px}
-.turno_chat_user_form .turno_chat_user_form_row .turno_chat_user_form_input:focus { border: solid 1px val(--c1) !important; }
-.turno_chat_user_form .turno_chat_user_form_col { float: left; width: 100%; padding-left: 6px; padding-right: 6px; }
-.turno_chat_user_form .turno_chat_user_form_col_6 { float: left; width: 50%; padding-left: 0px; padding-right: 0px; }
-.turno_chat_user_form .turno_chat_user_form_col_4 { float: left; width: 33.33333333333333%; padding-left: 0px; padding-right: 0px; }
-.turno_chat_user_form .turno_chat_user_form_col_8 { float: left; width: 66.66666666666666%; padding-left: 0px; padding-right: 0px; }
+.inmovar_user { }
+.inmovar_user_card { display: table; border-top: solid 1px #eee; padding: 10px; cursor: pointer; width: 100%; overflow: hidden; margin-bottom: 5px; }
+.inmovar_user:first-child .inmovar_user_card { border-top: none !important; }
+.inmovar_user_image { vertical-align: middle; display: table-cell; text-align: center; width: 58px; padding-top: 5px }
+.inmovar_user_image img { width: 48px; height: 48px; margin-right: 5px; margin-left: 5px border-radius: 50%; -webkit-border-radius: 50%; -moz-border-radius: 50%; border: solid 1px #eee; }
+.inmovar_user_info { display: table-cell; vertical-align: middle; padding-top: 5px; }
+.inmovar_user_info .inmovar_user_cargo { color: #272727; font-size: 12px; font-weight: bold; text-transform: uppercase; line-height: 18px }
+.inmovar_user_info .inmovar_user_nombre { color: #929292; font-size: 14px; }
+.inmovar_user_info .inmovar_user_disponible, .inmovar_user_info .inmovar_user_no_disponible { font-size: 12px; color: #272727; }
+.inmovar_user_form .inmovar_user_form_step_1, .inmovar_user_form .inmovar_user_form_step_2 { display: none; }
+.inmovar_user_form .inmovar_user_form_row { overflow: hidden; margin-left: -6px; margin-right: -6px; }
+.inmovar_user_form .inmovar_user_form_row .inmovar_user_form_input { background-color: white; width: 100%; display: block; color: #3f3f3f; border: solid 1px #dddddd; padding: 12px 8px; font-size: 14px; line-height: 14px; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; outline: none !important; box-shadow: none !important; -webkit-appearance: none; -moz-appearance: none; appearance: none; height: 40px; margin-bottom: 10px}
+.inmovar_user_form .inmovar_user_form_row .inmovar_user_form_input:focus { border: solid 1px val(--c1) !important; }
+.inmovar_user_form .inmovar_user_form_col { float: left; width: 100%; padding-left: 6px; padding-right: 6px; }
+.inmovar_user_form .inmovar_user_form_col_6 { float: left; width: 50%; padding-left: 0px; padding-right: 0px; }
+.inmovar_user_form .inmovar_user_form_col_4 { float: left; width: 33.33333333333333%; padding-left: 0px; padding-right: 0px; }
+.inmovar_user_form .inmovar_user_form_col_8 { float: left; width: 66.66666666666666%; padding-left: 0px; padding-right: 0px; }
 
 #converse-enviar { height: auto; width: 100%; font-size: 15px; font-weight: bold; line-height: 16px; background-color: var(--varcreative-c1); display: block; color: white; padding: 15px; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; text-transform: uppercase; border: none; }
 .converse-subtitle { margin-bottom: 10px; }
@@ -233,15 +233,15 @@ input:-webkit-autofill {
   </div> 
   <div class="turno-chatbox" style="height: 100%; display: block;">    
     <div class="converse-conversation">
-      <div class="turno_chat_user_form">
-        <div class="turno_chat_user_form_row">
-          <div class="turno_chat_user_form_col_12">
-            <input id="turno_chat_user_form_nombre" type="text" class="turno_chat_user_form_input" placeholder="NOMBRE">
+      <div class="inmovar_user_form">
+        <div class="inmovar_user_form_row">
+          <div class="inmovar_user_form_col_12">
+            <input id="inmovar_user_form_nombre" type="text" class="inmovar_user_form_input" placeholder="NOMBRE">
           </div>
         </div>
-        <div class="turno_chat_user_form_row">
-          <div class="chat_user_form_row_4">
-            <select class="turno_chat_user_form_input chat_user_form_2_prefijo">
+        <div class="inmovar_user_form_row">
+          <div class="inmovar_user_form_col_4">
+            <select class="inmovar_user_form_input chat_user_form_2_prefijo">
               <option value="376">AD (+376)</option>
               <option value="971">AE (+971)</option>
               <option value="93">AF (+93)</option>
@@ -484,37 +484,37 @@ input:-webkit-autofill {
               <option value="263">ZW (+263)</option>
             </select>
           </div>
-          <div class="turno_chat_user_form_col_8">
-            <input id="turno_chat_user_form_telefono" type="text" class="turno_chat_user_form_input" placeholder="WHATSAPP">
+          <div class="inmovar_user_form_col_8">
+            <input id="inmovar_user_form_telefono" type="text" class="inmovar_user_form_input" placeholder="WHATSAPP">
           </div>
         </div>
-        <div class="turno_chat_user_form_row">
-          <div class="turno_chat_user_form_col_12">
-            <select id="turno_chat_user_form_zona" class="turno_chat_user_form_input">
+        <div class="inmovar_user_form_row">
+          <div class="inmovar_user_form_col_12">
+            <select id="inmovar_user_form_zona" class="inmovar_user_form_input">
               <option value="0">CIUDAD</option>
             </select>
           </div>
-          <div class="turno_chat_user_form_col_12">
-            <select id="turno_chat_user_form_propiedad" class="turno_chat_user_form_input">
+          <div class="inmovar_user_form_col_12">
+            <select id="inmovar_user_form_propiedad" class="inmovar_user_form_input">
               <option value="0">TIPO DE PROPIEDAD</option>
             </select>
           </div>
         </div>
-        <div class="turno_chat_user_form_row">
-          <div class="turno_chat_user_form_col_4">
-            <select class="turno_chat_user_form_input" id="turno_chat_user_form_moneda">
+        <div class="inmovar_user_form_row">
+          <div class="inmovar_user_form_col_4">
+            <select class="inmovar_user_form_input" id="inmovar_user_form_moneda">
               <option>$</option>
               <option>U$S</option>
             </select>
           </div>
-          <div class="turno_chat_user_form_col_4">
-            <input id="turno_chat_user_form_desde" type="text" class="turno_chat_user_form_input" placeholder="DESDE">
+          <div class="inmovar_user_form_col_4">
+            <input id="inmovar_user_form_desde" type="text" class="inmovar_user_form_input" placeholder="DESDE">
           </div>
-          <div class="turno_chat_user_form_col_4">
-            <input id="turno_chat_user_form_hasta" type="text" class="turno_chat_user_form_input" placeholder="HASTA">
+          <div class="inmovar_user_form_col_4">
+            <input id="inmovar_user_form_hasta" type="text" class="inmovar_user_form_input" placeholder="HASTA">
           </div>
         </div>
-        <div class="turno_chat_user_form_row">
+        <div class="inmovar_user_form_row">
           <button id="converse-enviar">Buscar</button>
         </div>
       </div>  
