@@ -63,18 +63,18 @@ return t.parent().is(".ui-effects-wrapper")&&(t.parent().replaceWith(t),(t[0]===
   var initChat = function() {
 
     // Enter sobre NOMBRE
-    jQuery(chat).find("#turno_chat_user_form_nombre").keypress(function(e){
-      if (e.which == 13) jQuery("#turno_chat_user_form_email").select();
+    jQuery(chat).find("#inmovar_user_form_nombre").keypress(function(e){
+      if (e.which == 13) jQuery("#inmovar_user_form_email").select();
     });
 
     // Enter sobre EMAIL
-    jQuery(chat).find("#turno_chat_user_form_email").keypress(function(e){
-      if (e.which == 13) jQuery("#turno_chat_user_form_telefono").select();
+    jQuery(chat).find("#inmovar_user_form_email").keypress(function(e){
+      if (e.which == 13) jQuery("#inmovar_user_form_telefono").select();
     });
 
     // Enter sobre TELEFONO
-    jQuery(chat).find("#turno_chat_user_form_telefono").keypress(function(e){
-      if (e.which == 13) jQuery("#turno_chat_user_form_servicios").focus();
+    jQuery(chat).find("#inmovar_user_form_telefono").keypress(function(e){
+      if (e.which == 13) jQuery("#inmovar_user_form_servicios").focus();
     });
 
     // Boton de ENVIAR
