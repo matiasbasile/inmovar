@@ -79,10 +79,10 @@
 <div class="buscador-flotante">
   <div class="row">
     <div class="col-xs-6">
-      <button onclick="ver_filtros()" class="btn btn-default">Filtrar</button>
+      <button onclick="ver_filtros()" class="button">Filtrar</button>
     </div>
     <div class="col-xs-6">
-      <button onclick="ver_orden()" class="btn btn-default">Ordenar</button>
+      <button onclick="ver_orden()" class="button">Ordenar</button>
     </div>
   </div>
 </div>
