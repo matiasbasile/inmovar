@@ -6122,6 +6122,7 @@ input.form-control { box-shadow: 0px 1px 1px rgb(0 0 0 / 20%); }
 @media (max-width: 768px) {
   .form-search { display: none; }
   .navbar-brand { float: none; }
+  #search-filter { margin-bottom: 20px; }
   .page-search-results .navigation .navbar { text-align: center; }
   .page-search-results .sorting { display: none; }
   .page-search-results .buscador-flotante { display: block; position: fixed; width: 100%; bottom: 0px; left: 0px; right: 0px; z-index: 9998; }
