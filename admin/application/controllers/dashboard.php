@@ -104,8 +104,8 @@ class Dashboard extends REST_Controller {
     $datos["consultas_sitio_web"] = $this->Consulta_Model->contar(array(
       "id_empresa"=>$id_empresa,
       "tipo"=>0,
-      "desde"=>$desde,
-      "hasta"=>$hasta,
+      "desde"=>$desde." 00:00:00",
+      "hasta"=>$hasta." 23:59:59",
     ));
     $datos["consultas_red"] = $this->Consulta_Model->contar_consultas_red(array(
       "desde"=>$desde,
