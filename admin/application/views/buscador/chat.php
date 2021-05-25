@@ -23,7 +23,6 @@ return t.parent().is(".ui-effects-wrapper")&&(t.parent().replaceWith(t),(t[0]===
 
   var id_empresa = "<?php echo $id_empresa ?>";
   var config = <?php echo json_encode($config) ?>;
-  console.log(config);
   var templates = {
     "base":`<?php echo $tpl_base ?>`,
   };
@@ -74,7 +73,7 @@ return t.parent().is(".ui-effects-wrapper")&&(t.parent().replaceWith(t),(t[0]===
 
     // Enter sobre TELEFONO
     jQuery(chat).find("#inmovar_user_form_telefono").keypress(function(e){
-      if (e.which == 13) jQuery("#inmovar_user_form_servicios").focus();
+      if (e.which == 13) jQuery("#inmovar_user_form_ciudad").focus();
     });
 
     jQuery(chat).find("#inmovar_user_form_ciudad").empty();
@@ -85,14 +84,16 @@ return t.parent().is(".ui-effects-wrapper")&&(t.parent().replaceWith(t),(t[0]===
     }
 
     jQuery(chat).find("#inmovar_user_form_propiedad").empty();
-    jQuery(chat).find("#inmovar_user_form_propiedad").append('<option value="0">TIPO DE PROPIEDAD</option>');
+    jQuery(chat).find("#inmovar_user_form_propiedad").append('<option value="0">PROPIEDAD</option>');
     for(let i=0;i<config.tipos_inmueble.length;i++) {
       let ti = config.tipos_inmueble[i];
       jQuery(chat).find("#inmovar_user_form_propiedad").append('<option value="'+ti.id+'">'+ti.nombre+'</option>');
     }    
 
     // Boton de ENVIAR
-    //jQuery(chat).find("#converse-enviar").click(enviar_turno);
+    jQuery(chat).find("#converse-enviar").click(function(){
+
+    });
 
     // Boton de CERRAR
     jQuery(chat).find(".converse-menu-icon").click(function(){
