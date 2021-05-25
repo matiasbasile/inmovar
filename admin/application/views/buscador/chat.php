@@ -109,7 +109,9 @@ return t.parent().is(".ui-effects-wrapper")&&(t.parent().replaceWith(t),(t[0]===
 
     if (config.abierto == 0) {
       jQuery(chat).find("#turno-chat-cont").hide();
-    }
+    }  
+
+    jQuery("body").prepend(chat);
 
     new AutoNumeric('#inmovar_user_form_desde', { 
       'decimalPlaces':0,
@@ -120,9 +122,8 @@ return t.parent().is(".ui-effects-wrapper")&&(t.parent().replaceWith(t),(t[0]===
       'decimalPlaces':0,
       'decimalCharacter':',',
       'digitGroupSeparator':'.',
-    });    
-
-    jQuery("body").prepend(chat);
+    });
+        
   };
 
 
