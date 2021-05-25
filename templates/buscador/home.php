@@ -1,3 +1,3 @@
 <?php 
-include("includes/propiedades_listado.php");
+include("propiedades_listado.php");
 ?>
