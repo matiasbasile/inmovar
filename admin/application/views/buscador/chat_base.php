@@ -520,10 +520,10 @@ input:-webkit-autofill {
           </div>
           <div class="inmovar_user_form_col_9">
             <div class="inmovar_user_form_col_6">
-              <input id="inmovar_user_form_desde" type="number" class="inmovar_user_form_input" placeholder="DESDE">
+              <input id="inmovar_user_form_desde" type="text" class="inmovar_user_form_input" placeholder="DESDE">
             </div>
             <div class="inmovar_user_form_col_6">
-              <input id="inmovar_user_form_hasta" type="number" class="inmovar_user_form_input" placeholder="HASTA">
+              <input id="inmovar_user_form_hasta" type="text" class="inmovar_user_form_input" placeholder="HASTA">
             </div>
           </div>
         </div>
