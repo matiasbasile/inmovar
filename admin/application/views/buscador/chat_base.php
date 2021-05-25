@@ -96,7 +96,7 @@
 #inmovar-chat .converse-conversation {
   border-left: 1px solid #EDEDED;
   border-right: 1px solid #EDEDED;
-  height: 352px;
+  height: 330px;
   background-color: #f4f4f6;
   padding: 16px 24px;
   overflow-y: auto;
@@ -196,7 +196,7 @@ input:-webkit-autofill {
   color: rgb(170, 170, 170) !important;
   font-weight: 400;
 }
-.clienchat-link { text-align: right; padding: 10px; background-color: #f1f1f1; }
+.clienchat-link { text-align: right; padding: 10px; background-color: #f4f4f6; }
 .clienchat-link a { font-family: 'Lato', sans-serif; font-size: 13px; color: #999; text-decoration: none; outline: none; margin-right: 10px; }
 .clienchat-link img { width: 110px; }
 
