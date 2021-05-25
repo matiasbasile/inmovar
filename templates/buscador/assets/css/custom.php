@@ -6118,12 +6118,13 @@ input[type="checkbox"]:checked + label:before, input[type="radio"]:checked + lab
 .cerrar_filtros { display: none; }
 @media (max-width: 768px) {
   .buscador-flotante { display: block; position: fixed; width: 100%; bottom: 0px; left: 0px; right: 0px; z-index: 9998; }
-  .buscador-flotante .button { border: solid 2px <?php echo $c2; ?>; color: <?php echo $c2; ?>; font-size: 14px; padding: 6px 9px 5px 9px; outline: none; width: 100%; text-align: center; border-radius: 15px; font-weight: bold; }
+  .buscador-flotante .button { border: solid 2px <?php echo $c2; ?>; color: <?php echo $c2; ?>; font-size: 14px; padding: 6px 9px 5px 9px; outline: none; width: 100%; text-align: center; border-radius: 10px; font-weight: bold; }
   .buscador-flotante .button:hover, .buscador-flotante .button:focus, .buscador-flotante .button:active { background-color: <?php echo $c2; ?>; color: white; }
   .form-search { display: none; }
   .form-search.active { overflow: auto; padding: 20px; background-color: #f3f3f3; display: block; position: fixed; z-index: 9999; top: 0px; left: 0px; bottom: 0px; right: 0px; }
-  #sidebar .form-search.active h3 { border-bottom: none; margin-bottom: 20px; padding-bottom: 0px; margin-top: 0px; }
-  #sidebar .form-search.active select { background-color: white; border-radius: 8px; }
-  .form-search.active .cerrar_filtros { display: inline-block; cursor: pointer; float: right; font-size: 18px; color: #222; }
+  #sidebar .form-search.active h3 { font-weight: bold; border-bottom: none; margin-bottom: 20px; padding-bottom: 0px; margin-top: 0px; }
+  #sidebar .form-search.active select, #sidebar .form-search.active .form-control { background-color: white; border-radius: 8px; }
+  .form-search.active .cerrar_filtros { display: inline-block; cursor: pointer; float: right; font-size: 18px; color: rgb(90, 90, 90); }
   #page-footer .inner #footer-copyright { padding-bottom: 100px; }
+  .btn-buscar { border-radius: 10px; }
 }
