@@ -6,7 +6,7 @@
           <h1>Dashboard</h1>
         </div>
         <div class="col-xs-12 col-sm-3 tar">
-          <input type="text" id="inicio_rango_fechas" disabled value="Última Semana" class="form-control w100p calendar fr mt20">
+          <input type="text" id="inicio_rango_fechas" class="form-control w100p calendar fr mt20">
         </div>
       </div>
     </div>
