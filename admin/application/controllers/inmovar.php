@@ -64,4 +64,78 @@ class Inmovar extends CI_Controller {
       "tpl_base"=>$tpl_base,
     ));
   }
+
+  function registrar() {
+    @session_start();
+    date_default_timezone_set("America/Argentina/Buenos_Aires");
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+    header('Access-Control-Allow-Origin: *');
+
+    $this->load->model("Cliente_Model");
+    $this->load->model("Consulta_Model");
+
+    $id_empresa = parent::get_post("id_empresa",0);
+    $nombre = parent::get_post("nombre",0);
+    $telefono = parent::get_post("telefono",0);
+    $prefijo = parent::get_post("prefijo",0);
+    $id_localidad = parent::get_post("id_localidad",0);
+    $id_tipo_operacion = parent::get_post("id_tipo_operacion",0);
+    $id_tipo_inmueble = parent::get_post("id_tipo_inmueble",0);
+    $email = parent::get_post("email",0);
+
+    $contacto = (!empty($email)) ? $this->Cliente_Model->get_by_email($email,$id_empresa) : FALSE;
+
+    if ($contacto === FALSE) {
+      // Debemos crearlo
+      $contacto = new stdClass();
+      $contacto->id_empresa = $id_empresa;
+      $contacto->email = $email;
+      $contacto->nombre = $nombre;
+      $contacto->telefono = $telefono;
+      $contacto->fax = $prefijo;
+      $contacto->fecha_inicial = date("Y-m-d");
+      $contacto->fecha_ult_operacion = date("Y-m-d H:i:s");
+      // Por defecto le ponemos contreña 1 a los que consultan para no tener problemas al momento de comprar
+      $contacto->password = "c4ca4238a0b923820dcc509a6f75849b";
+      $contacto->tipo = 1; // 1 = Contacto
+      $contacto->activo = 1; // El cliente esta activo por defecto
+      $contacto->id_sucursal = 0; // Para que en algunas BD no tire error de default value
+      $contacto->custom_3 = 1; // Que es un contacto
+      $id = $this->Cliente_Model->insert($contacto);
+      $contacto->id = $id;
+
+      // REGISTRAMOS COMO UN EVENTO LA CREACION DEL NUEVO USUARIO
+      $this->Consulta_Model->registro_creacion_usuario(array(
+        "id_contacto"=>$id,
+        "id_empresa"=>$id_empresa,
+      ));
+    } else {
+      // Si hay algun dato distinto, debemos actualizarlo
+      $updates = array();
+      if (!empty($nombre) && $nombre != $contacto->nombre) $updates[] = array("key"=>"nombre","value"=>$nombre);
+      if (!empty($telefono) && $telefono != $contacto->telefono) $updates[] = array("key"=>"telefono","value"=>$telefono);
+      if (!empty($prefijo) && $prefijo != $contacto->fax) $updates[] = array("key"=>"fax","value"=>$prefijo);
+      if (sizeof($updates)>0) {
+        $sql = "UPDATE clientes SET ";
+        for ($it=0; $it < sizeof($updates); $it++) { 
+          $up = $updates[$it];
+          $sql.= $up["key"]." = '".$up["value"]."' ".(($it<sizeof($updates)-1)?",":"");
+        }
+        $sql.= "WHERE id = $contacto->id AND id_empresa = $id_empresa ";
+        $this->db->query($sql);
+      }
+    }
+
+    // Guardamos el tipo de busqueda dependiendo de los valores de la propiedad que consulto
+    $sql = "INSERT INTO inm_busquedas_contactos (id_empresa,id_cliente,id_localidad,id_tipo_operacion,id_tipo_inmueble,fecha) VALUES(";
+    $sql.= " '$id_empresa','$contacto->id','$id_localidad','$id_tipo_operacion','$id_tipo_inmueble',NOW() )";
+    $this->db->query($sql);
+
+    echo json_encode(array(
+      "error"=>0,
+    ));
+
+  }
 }
