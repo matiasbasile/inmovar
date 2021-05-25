@@ -218,7 +218,7 @@ input:-webkit-autofill {
 .inmovar_user_form .inmovar_user_form_col_4 { float: left; width: 33.33333333333333%; padding-left: 0px; padding-right: 0px; }
 .inmovar_user_form .inmovar_user_form_col_8 { float: left; width: 66.66666666666666%; padding-left: 0px; padding-right: 0px; }
 .inmovar_user_form .inmovar_user_form_col_9 { float: left; width: 75%; padding-left: 0px; padding-right: 0px; }
-.inmovar_user_form .inmovar_user_message { display: none; }
+.inmovar_user_message { display: none; }
 
 #converse-enviar { height: auto; width: 100%; font-size: 15px; font-weight: bold; line-height: 16px; background-color: var(--varcreative-c1); display: block; color: white; padding: 15px; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; text-transform: uppercase; border: none; }
 .converse-subtitle { margin-bottom: 10px; }
