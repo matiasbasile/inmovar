@@ -54,6 +54,7 @@ if (isset($_SESSION["favoritos"])) {
           </a>
         </div>
       </div>
+      <?php /*
       <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
         <ul class="nav navbar-nav">
           <li class="<?php echo ($nombre_pagina=="ventas")?"active":"" ?>">
@@ -67,6 +68,7 @@ if (isset($_SESSION["favoritos"])) {
           </li>
         </ul>
       </nav>
+      */ ?>
     </header>
   </div>
 </div>

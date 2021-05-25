@@ -6117,6 +6117,7 @@ input[type="checkbox"]:checked + label:before, input[type="radio"]:checked + lab
 .buscador-flotante { display: none; background-color: #f3f3f3; padding: 10px; }
 .cerrar_filtros { display: none; }
 @media (max-width: 768px) {
+  .sorting { display: none; }
   .buscador-flotante { display: block; position: fixed; width: 100%; bottom: 0px; left: 0px; right: 0px; z-index: 9998; }
   .buscador-flotante .button { border: solid 2px <?php echo $c2; ?>; color: <?php echo $c2; ?>; font-size: 14px; padding: 6px 9px 5px 9px; outline: none; width: 100%; text-align: center; border-radius: 10px; font-weight: bold; }
   .buscador-flotante .button:hover, .buscador-flotante .button:focus, .buscador-flotante .button:active { background-color: <?php echo $c2; ?>; color: white; }
