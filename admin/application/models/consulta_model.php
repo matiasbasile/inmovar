@@ -40,6 +40,7 @@ class Consulta_Model extends Abstract_Model {
     31 = CLIENAPP CONSULTA FUERA DE LINEA
     32 = NOTIFICACION DEL SISTEMA: CAMBIO DE ESTADO O DE USUARIO
     40 = DIARIO EL DIA
+    50 = BUSCADOR FLOTANTE
   */
 
   // =====================================
