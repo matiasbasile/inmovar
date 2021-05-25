@@ -28,11 +28,6 @@ return t.parent().is(".ui-effects-wrapper")&&(t.parent().replaceWith(t),(t[0]===
   var templates = {
     "base":`<?php echo $tpl_base ?>`,
   };
-  var turno = {
-    "id_servicio":0,
-    "fecha":"",
-    "hora":0,
-  };
 
   var isEmpty = function(str) {
     try {
@@ -56,9 +51,89 @@ return t.parent().is(".ui-effects-wrapper")&&(t.parent().replaceWith(t),(t[0]===
     return (/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,10})$/.test(mail));
   }
 
-  var chat = jQuery("<div id='turno-chat'/>");
+  var chat = jQuery("<div id='inmovar-chat'/>");
   if (config.posicion == "I") jQuery(chat).addClass("chat_izquierda");
   jQuery(chat).append(templates.base);
+
+  var enviando = 0;
+
+  var enviar = function() {
+    let nombre = jQuery(chat).find("#inmovar_user_form_nombre").val();
+    let email = jQuery(chat).find("#inmovar_user_form_email").val();
+    let telefono = jQuery(chat).find("#inmovar_user_form_telefono").val();
+    let prefijo = jQuery(chat).find("#inmovar_user_form_prefijo").val();
+    let id_tipo_operacion = jQuery(chat).find("#inmovar_user_form_operacion").val();
+    let link_tipo_operacion = jQuery(chat).find("#inmovar_user_form_operacion option:selected").data("link");
+    let id_tipo_inmueble = jQuery(chat).find("#inmovar_user_form_propiedad").val();
+    let id_localidad = jQuery(chat).find("#inmovar_user_form_ciudad").val();
+    let link_localidad = jQuery(chat).find("#inmovar_user_form_ciudad option:selected").data("link");
+    let moneda = jQuery(chat).find("#inmovar_user_form_moneda").val();
+    let desde = jQuery(chat).find("#inmovar_user_form_desde").val();
+    let hasta = jQuery(chat).find("#inmovar_user_form_hasta").val();
+    
+    if (isEmpty(nombre)) {
+      alert("Completa tu nombre");
+      jQuery(chat).find("#inmovar_user_form_nombre").focus();
+      return;
+    }
+    if (!validateEmail(email)) {
+      alert("Completa tu email");
+      jQuery(chat).find("#inmovar_user_form_email").focus();
+      return;
+    }
+    if (!isTelephone(telefono)) {
+      alert("Completa tu telefono");
+      jQuery(chat).find("#inmovar_user_form_telefono").focus();
+      return;
+    }
+    if (isEmpty(id_tipo_inmueble)) {
+      alert("Selecciona el tipo de propiedad buscado");
+      jQuery(chat).find("#inmovar_user_form_propiedad").focus();
+      return;
+    }
+    if (isEmpty(id_localidad)) {
+      alert("Selecciona la localidad");
+      jQuery(chat).find("#inmovar_user_form_ciudad").focus();
+      return;
+    }
+    desde = desde.replaceAll(".","");
+    hasta = hasta.replaceAll(".","");
+    if (enviando == 1) return;
+    enviando = 1;
+    jQuery.ajax({
+      "url":"https://app.inmovar.com/admin/inmovar/function/registrar/",
+      "dataType":"json",
+      "type":"post",
+      "data":{
+        "id_empresa":id_empresa,
+        "nombre": nombre,
+        "email": email,
+        "telefono": telefono,
+        "prefijo": prefijo,
+        "id_tipo_operacion": id_tipo_operacion,
+        "id_tipo_inmueble": id_tipo_inmueble,
+        "id_localidad": id_localidad,
+        "moneda": moneda,
+        "desde": desde,
+        "hasta": hasta,
+      },
+      "success":function() {
+        enviando = 0;
+        let url = "https://app.inmovar.com/buscador/"+id_empresa+"/propiedades/"+link_tipo_operacion+"/"+link_localidad+"/";
+        url += "?tp="+id_tipo_inmueble;
+        url += "&m="+moneda;
+        url += "&vc_minimo="+desde;
+        url += "&vc_maximo="+hasta;
+        let open = window.open(url,"_blank");
+        if (open == null || typeof(open)=='undefined') location.href = url;
+        jQuery(chat).find(".inmovar_user_form").hide();
+        jQuery(chat).find(".inmovar_user_message").show();
+      },
+      "error":{
+        enviando = 0;
+      }
+    });
+  }
 
   // Inicializa el chat en el body
   var initChat = function() {
@@ -82,33 +157,31 @@ return t.parent().is(".ui-effects-wrapper")&&(t.parent().replaceWith(t),(t[0]===
     jQuery(chat).find("#inmovar_user_form_ciudad").append('<option value="0">CIUDAD</option>');
     for(let i=0;i<config.localidades.length;i++) {
       let ti = config.localidades[i];
-      jQuery(chat).find("#inmovar_user_form_ciudad").append('<option value="'+ti.id+'">'+ti.nombre+'</option>');
+      jQuery(chat).find("#inmovar_user_form_ciudad").append('<option data-link="'+ti.link+'" value="'+ti.id+'">'+ti.nombre+'</option>');
     }
 
     jQuery(chat).find("#inmovar_user_form_propiedad").empty();
     jQuery(chat).find("#inmovar_user_form_propiedad").append('<option value="0">PROPIEDAD</option>');
     for(let i=0;i<config.tipos_inmueble.length;i++) {
       let ti = config.tipos_inmueble[i];
-      jQuery(chat).find("#inmovar_user_form_propiedad").append('<option value="'+ti.id+'">'+ti.nombre+'</option>');
+      jQuery(chat).find("#inmovar_user_form_propiedad").append('<option data-link="'+ti.link+'" value="'+ti.id+'">'+ti.nombre+'</option>');
     }    
 
     // Boton de ENVIAR
-    jQuery(chat).find("#converse-enviar").click(function(){
-
-    });
+    jQuery(chat).find("#converse-enviar").click(enviar);
 
     // Boton de CERRAR
     jQuery(chat).find(".converse-menu-icon").click(function(){
-      jQuery(chat).find("#turno-chat-cont").hide();
+      jQuery(chat).find("#inmovar-chat-cont").hide();
     });
 
     // Icono de WHATSAPP
-    jQuery(chat).find("#turno-chat-launcher").click(function(){
-      jQuery(chat).find("#turno-chat-cont").toggle();
+    jQuery(chat).find("#inmovar-chat-launcher").click(function(){
+      jQuery(chat).find("#inmovar-chat-cont").toggle();
     })
 
     if (config.abierto == 0) {
-      jQuery(chat).find("#turno-chat-cont").hide();
+      jQuery(chat).find("#inmovar-chat-cont").hide();
     }  
 
     jQuery("body").prepend(chat);
@@ -123,12 +196,12 @@ return t.parent().is(".ui-effects-wrapper")&&(t.parent().replaceWith(t),(t[0]===
       'decimalCharacter':',',
       'digitGroupSeparator':'.',
     });
-        
+
   };
 
 
   window.vc_open_chat = function() {
-    jQuery("#turno-chat-cont").toggle();
+    jQuery("#inmovar-chat-cont").toggle();
   }
 
   jQuery(document).ready(function(){
