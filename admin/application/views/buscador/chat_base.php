@@ -214,8 +214,10 @@ input:-webkit-autofill {
 .inmovar_user_form .inmovar_user_form_row .inmovar_user_form_input:focus { border: solid 1px val(--c1) !important; }
 .inmovar_user_form .inmovar_user_form_col { float: left; width: 100%; padding-left: 6px; padding-right: 6px; }
 .inmovar_user_form .inmovar_user_form_col_6 { float: left; width: 50%; padding-left: 0px; padding-right: 0px; }
+.inmovar_user_form .inmovar_user_form_col_3 { float: left; width: 25%; padding-left: 0px; padding-right: 0px; }
 .inmovar_user_form .inmovar_user_form_col_4 { float: left; width: 33.33333333333333%; padding-left: 0px; padding-right: 0px; }
 .inmovar_user_form .inmovar_user_form_col_8 { float: left; width: 66.66666666666666%; padding-left: 0px; padding-right: 0px; }
+.inmovar_user_form .inmovar_user_form_col_9 { float: left; width: 75%; padding-left: 0px; padding-right: 0px; }
 
 #converse-enviar { height: auto; width: 100%; font-size: 15px; font-weight: bold; line-height: 16px; background-color: var(--varcreative-c1); display: block; color: white; padding: 15px; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; text-transform: uppercase; border: none; }
 .converse-subtitle { margin-bottom: 10px; }
@@ -510,17 +512,21 @@ input:-webkit-autofill {
           </div>
         </div>
         <div class="inmovar_user_form_row">
-          <div class="inmovar_user_form_col_4">
+          <div class="inmovar_user_form_col_3">
             <select class="inmovar_user_form_input" id="inmovar_user_form_moneda">
               <option selected>U$S</option>
               <option>$</option>
             </select>
           </div>
-          <div class="inmovar_user_form_col_4">
-            <input id="inmovar_user_form_desde" type="number" class="inmovar_user_form_input" placeholder="DESDE">
-          </div>
-          <div class="inmovar_user_form_col_4">
-            <input id="inmovar_user_form_hasta" type="number" class="inmovar_user_form_input" placeholder="HASTA">
+          <div class="inmovar_user_form_col_9">
+            <div class="inmovar_user_form_row">
+              <div class="inmovar_user_form_col_6">
+                <input id="inmovar_user_form_desde" type="number" class="inmovar_user_form_input" placeholder="DESDE">
+              </div>
+              <div class="inmovar_user_form_col_6">
+                <input id="inmovar_user_form_hasta" type="number" class="inmovar_user_form_input" placeholder="HASTA">
+              </div>
+            </div>
           </div>
         </div>
         <div class="inmovar_user_form_row">
