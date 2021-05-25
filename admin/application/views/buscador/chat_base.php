@@ -240,6 +240,11 @@ input:-webkit-autofill {
           </div>
         </div>
         <div class="inmovar_user_form_row">
+          <div class="inmovar_user_form_col_12">
+            <input id="inmovar_user_form_email" type="text" class="inmovar_user_form_input" placeholder="EMAIL">
+          </div>
+        </div>
+        <div class="inmovar_user_form_row">
           <div class="inmovar_user_form_col_4">
             <select class="inmovar_user_form_input chat_user_form_2_prefijo">
               <option value="376">AD (+376)</option>
@@ -251,7 +256,7 @@ input:-webkit-autofill {
               <option value="374">AM (+374)</option>
               <option value="599">AN (+599)</option>
               <option value="244">AO (+244)</option>
-              <option value="549">AR (+54)</option>
+              <option selected value="549">AR (+54)</option>
               <option value="1684">AS (+1 684)</option>
               <option value="43">AT (+43)</option>
               <option value="61">AU (+61)</option>
@@ -490,14 +495,10 @@ input:-webkit-autofill {
         </div>
         <div class="inmovar_user_form_row">
           <div class="inmovar_user_form_col_12">
-            <select id="inmovar_user_form_zona" class="inmovar_user_form_input">
-              <option value="0">CIUDAD</option>
-            </select>
+            <select id="inmovar_user_form_ciudad" class="inmovar_user_form_input"></select>
           </div>
           <div class="inmovar_user_form_col_12">
-            <select id="inmovar_user_form_propiedad" class="inmovar_user_form_input">
-              <option value="0">TIPO DE PROPIEDAD</option>
-            </select>
+            <select id="inmovar_user_form_propiedad" class="inmovar_user_form_input"></select>
           </div>
         </div>
         <div class="inmovar_user_form_row">

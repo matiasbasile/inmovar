@@ -77,6 +77,20 @@ return t.parent().is(".ui-effects-wrapper")&&(t.parent().replaceWith(t),(t[0]===
       if (e.which == 13) jQuery("#inmovar_user_form_servicios").focus();
     });
 
+    jQuery(chat).find("#inmovar_user_form_ciudad").empty();
+    jQuery(chat).find("#inmovar_user_form_ciudad").append('<option value="0">CIUDAD</option>');
+    for(let i=0;i<config.localidades.length;i++) {
+      let ti = config.localidades[i];
+      jQuery(chat).find("#inmovar_user_form_ciudad").append('<option value="'+ti.id+'">'+ti.nombre+'</option>');
+    }
+
+    jQuery(chat).find("#inmovar_user_form_propiedad").empty();
+    jQuery(chat).find("#inmovar_user_form_propiedad").append('<option value="0">TIPO DE PROPIEDAD</option>');
+    for(let i=0;i<config.tipos_inmueble.length;i++) {
+      let ti = config.tipos_inmueble[i];
+      jQuery(chat).find("#inmovar_user_form_propiedad").append('<option value="'+ti.id+'">'+ti.nombre+'</option>');
+    }    
+
     // Boton de ENVIAR
     //jQuery(chat).find("#converse-enviar").click(enviar_turno);
 

@@ -50,6 +50,13 @@ class Inmovar extends CI_Controller {
     $q = $this->db->query("SELECT id,nombre,link FROM inm_tipos_inmueble ORDER BY orden ASC");
     $conf["tipos_inmueble"] = $q->result();
 
+    // Localidades
+    $this->load->model('Localidad_Model');
+    $conf["localidades"] = $this->Localidad_Model->utilizadas(array(
+      "id_empresa"=>$id_empresa,
+      "id_proyecto"=>3,
+    ));
+
     $tpl_base = $this->load->view("buscador/chat_base",null,true);
     $this->load->view("buscador/chat",array(
       "id_empresa"=>$id_empresa,
