@@ -65,6 +65,12 @@ class Inmovar extends CI_Controller {
     ));
   }
 
+  private function get_post($clave,$default = "") {
+    $value = $this->input->post($clave);
+    if ($value === FALSE) return $default;
+    else return ($value);
+  }  
+
   function registrar() {
     @session_start();
     date_default_timezone_set("America/Argentina/Buenos_Aires");
@@ -76,14 +82,14 @@ class Inmovar extends CI_Controller {
     $this->load->model("Cliente_Model");
     $this->load->model("Consulta_Model");
 
-    $id_empresa = parent::get_post("id_empresa",0);
-    $nombre = parent::get_post("nombre",0);
-    $telefono = parent::get_post("telefono",0);
-    $prefijo = parent::get_post("prefijo",0);
-    $id_localidad = parent::get_post("id_localidad",0);
-    $id_tipo_operacion = parent::get_post("id_tipo_operacion",0);
-    $id_tipo_inmueble = parent::get_post("id_tipo_inmueble",0);
-    $email = parent::get_post("email",0);
+    $id_empresa = $this->get_post("id_empresa",0);
+    $nombre = $this->get_post("nombre",0);
+    $telefono = $this->get_post("telefono",0);
+    $prefijo = $this->get_post("prefijo",0);
+    $id_localidad = $this->get_post("id_localidad",0);
+    $id_tipo_operacion = $this->get_post("id_tipo_operacion",0);
+    $id_tipo_inmueble = $this->get_post("id_tipo_inmueble",0);
+    $email = $this->get_post("email",0);
 
     $contacto = (!empty($email)) ? $this->Cliente_Model->get_by_email($email,$id_empresa) : FALSE;
 
