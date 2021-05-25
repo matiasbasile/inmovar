@@ -79,7 +79,7 @@ else $vc_moneda = "$";
       <div class="row">
         <div class="col-md-9 col-sm-9">
           <section id="property-detail">
-            <header class="property-title">
+            <header class="property-title mt30">
               <h1><?php echo $propiedad->nombre ?></h1>
               <figure class="fs16">
                 <?php if (!empty($propiedad->codigo)) { ?>
