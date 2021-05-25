@@ -86,7 +86,6 @@ class Dashboard extends REST_Controller {
       "desde"=>$desde." 00:00:00",
       "hasta"=>$hasta." 23:59:59",
       "tipo"=>0,
-      "in_origenes"=>"12,13,14,15,16,18,20",
     ));
 
     $this->load->model("Propiedad_Visita_Model");

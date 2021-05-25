@@ -455,7 +455,7 @@ class Consulta_Model extends Abstract_Model {
   function count_all() {
     $sql = "SELECT IF(COUNT(*) IS NULL,0,COUNT(*)) AS cantidad FROM crm_consultas ";
     $sql.= "WHERE id_empresa = ".parent::get_empresa()." ";
-    $sql.= "AND tipo = 0 AND id_origen NOT IN (12,13,14,15,16,18,20) ";
+    $sql.= "AND tipo = 0 AND id_origen NOT IN (32,12,13,14,15,16,18,20,21,22,23) ";
     $q = $this->db->query($sql);
     $row = $q->row();
     return $row->cantidad;
@@ -467,7 +467,7 @@ class Consulta_Model extends Abstract_Model {
     $hasta = isset($config["hasta"]) ? $config["hasta"] : "";    
     $tipo = isset($config["tipo"]) ? $config["tipo"] : 0;
     $in_origenes = isset($config["in_origenes"]) ? $config["in_origenes"] : "";
-    $not_in_origenes = isset($config["not_ids_origen"]) ? $config["not_ids_origen"] : "";
+    $not_in_origenes = isset($config["not_ids_origen"]) ? $config["not_ids_origen"] : "32,12,13,14,15,16,18,20,21,22,23";
     $clientes_unicos = isset($config["clientes_unicos"]) ? $config["clientes_unicos"] : 0;
     $referencia_unica = isset($config["referencia_unica"]) ? $config["referencia_unica"] : 0;
 
@@ -497,7 +497,7 @@ class Consulta_Model extends Abstract_Model {
 
     $id_empresa = isset($config["id_empresa"]) ? $config["id_empresa"] : parent::get_empresa();
     $in_origenes = isset($config["in_origenes"]) ? $config["in_origenes"] : "";
-    $not_in_origenes = isset($config["not_ids_origen"]) ? $config["not_ids_origen"] : "";
+    $not_in_origenes = isset($config["not_ids_origen"]) ? $config["not_ids_origen"] : "32,12,13,14,15,16,18,20,21,22,23";
     $clientes_unicos = isset($config["clientes_unicos"]) ? $config["clientes_unicos"] : 0;
     $tipo = isset($config["tipo"]) ? $config["tipo"] : 0;
     $id_usuario = isset($config["id_usuario"]) ? $config["id_usuario"] : 0;
