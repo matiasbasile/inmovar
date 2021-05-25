@@ -134,6 +134,47 @@ class Inmovar extends CI_Controller {
       }
     }
 
+    $texto = "Interés: ";
+
+    $this->load->model("Tipo_Inmueble_Model");
+    $tipo_inmueble = $this->Tipo_Inmueble_Model->get($id_tipo_inmueble);
+    $texto.= $tipo_inmueble->nombre;
+
+    if ($id_tipo_operacion == 2) $texto.= " en alquiler";
+    else $texto.= " en venta";
+
+    if (!empty($id_localidad)) {
+      $this->load->model("Localidad_Model");
+      $localidad = $this->Localidad_Model->get($id_localidad);
+      if (!empty($localidad)) {
+        $texto.= " en $localidad->nombre";
+      }
+    }
+
+    $fecha = date("Y-m-d H:i:s");
+    $consulta = new stdClass();
+    $consulta->id_empresa = $id_empresa;
+    $consulta->id_empresa_relacion = $id_empresa;
+    $consulta->id_entrada = 0;
+    $consulta->fecha = $fecha;
+    $consulta->hora = date("H:i:s");
+    $consulta->asunto = "Búsqueda por Formulario";
+    $consulta->subtitulo = "";
+    $consulta->texto = $texto;
+    $consulta->id_contacto = $contacto->id;
+    $consulta->id_origen = 50; // Origen que indica el interes
+    $consulta->id_usuario = 0; // No es de ningun usuario
+    $consulta->id_referencia = 0; // No es de ninguna propiedad
+    $this->Consulta_Model->insert($consulta);
+
+    // Actualizamos el contacto con la ultima fecha de operacion
+    $sql = "UPDATE clientes SET ";
+    $sql.= "fecha_ult_operacion = '$fecha', ";
+    $sql.= "tipo = 1, "; // Vuelve a contactar
+    $sql.= "no_leido = 1 ";
+    $sql.= "WHERE id = $contacto->id AND id_empresa = $id_empresa ";
+    $this->db->query($sql);    
+
     // Guardamos el tipo de busqueda dependiendo de los valores de la propiedad que consulto
     $sql = "INSERT INTO inm_busquedas_contactos (id_empresa,id_cliente,id_localidad,id_tipo_operacion,id_tipo_inmueble,fecha) VALUES(";
     $sql.= " '$id_empresa','$contacto->id','$id_localidad','$id_tipo_operacion','$id_tipo_inmueble',NOW() )";
