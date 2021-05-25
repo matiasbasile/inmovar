@@ -6116,6 +6116,8 @@ input[type="checkbox"]:checked + label:before, input[type="radio"]:checked + lab
 
 .buscador-flotante { display: none; background-color: #f3f3f3; padding: 10px; }
 .cerrar_filtros { display: none; }
+.sorting select { width: auto; }
+.sorting label { margin-right: 10px; }
 @media (max-width: 768px) {
   .form-search { display: none; }
   .page-search-results .navigation .navbar { text-align: center; }
