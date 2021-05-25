@@ -6117,8 +6117,9 @@ input[type="checkbox"]:checked + label:before, input[type="radio"]:checked + lab
 .buscador-flotante { display: none; background-color: #f3f3f3; padding: 10px; }
 @media (max-width: 768px) {
   .buscador-flotante { display: block; position: fixed; width: 100%; bottom: 0px; left: 0px; right: 0px; z-index: 9998; }
-  .buscador-flotante .button { border: solid 2px <?php echo $c2; ?>; color: <?php echo $c2; ?>; font-size: 14px; padding: 10px 9px 9px 9px; outline: none; width: 100%; text-align: center; border-radius: 15px; }
+  .buscador-flotante .button { border: solid 2px <?php echo $c2; ?>; color: <?php echo $c2; ?>; font-size: 14px; padding: 6px 9px 5px 9px; outline: none; width: 100%; text-align: center; border-radius: 15px; font-weight: bold; }
   .buscador-flotante .button:hover, .buscador-flotante .button:focus, .buscador-flotante .button:active { background-color: <?php echo $c2; ?>; color: white; }
   .form-search { display: none; }
-  .form-search.active { display: block; position: fixed; z-index: 9999; top: 0px; left: 0px; bottom: 0px; right: 0px; }
+  .form-search.active { padding: 20px; background-color: #f3f3f3; display: block; position: fixed; z-index: 9999; top: 0px; left: 0px; bottom: 0px; right: 0px; }
+  #page-footer .inner #footer-copyright { padding-bottom: 100px; }
 }
