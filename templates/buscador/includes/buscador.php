@@ -99,16 +99,16 @@
     <label for="orden_1">Más nuevos</label>
   </div>
   <div class="form-group">
-    <input type="radio" name="ordenar" value="" id="orden_1" />
-    <label for="orden_1">Menor precio</label>
+    <input type="radio" name="ordenar" value="" id="orden_2" />
+    <label for="orden_2">Menor precio</label>
   </div>
   <div class="form-group">
-    <input type="radio" name="ordenar" value="" id="orden_1" />
-    <label for="orden_1">Mayor precio</label>
+    <input type="radio" name="ordenar" value="" id="orden_3" />
+    <label for="orden_3">Mayor precio</label>
   </div>
   <div class="form-group">
-    <input type="radio" name="ordenar" value="" id="orden_1" />
-    <label for="orden_1">Destacados</label>
+    <input type="radio" name="ordenar" value="" id="orden_4" />
+    <label for="orden_4">Destacados</label>
   </div>
   <div class="form-group">
     <button type="submit" class="btn btn-buscar btn-default">Buscar</button>
@@ -124,7 +124,7 @@ function cerrar_filtros() {
   $("#orden_propiedades").removeClass("active");
 }
 function ver_orden() {
-  $("#orden_propiedades").removeClass("active");
+  $("#orden_propiedades").addClass("active");
 }
 
 function filtrar() { 
