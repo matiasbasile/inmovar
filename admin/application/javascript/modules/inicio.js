@@ -35,7 +35,7 @@ app.views.InicioSingleView = Backbone.View.extend({
   
   initialize: function() {
     if (PERFIL == -1) return;
-    this.listenTo(this.model, "all", this.render);
+    //this.listenTo(this.model, "all", this.render);
     this.model.fetch();
   },
 
