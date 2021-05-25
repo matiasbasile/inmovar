@@ -1,6 +1,6 @@
 <?php
 include("includes/init.php");
-$get_params["offset"] = 10;
+$get_params["offset"] = 48;
 extract($propiedad_model->get_variables());
 $nombre_pagina = $vc_link_tipo_operacion;
 if (isset($_GET["test"])) print_r($vc_listado);
@@ -21,7 +21,7 @@ if (isset($_GET["test"])) print_r($vc_listado);
         <!-- Results -->
         <div class="col-md-9 col-sm-9">
           <section id="results">
-            <header><h1><?php echo $vc_tipo_operacion; ?></h1></header>
+            <header class="mt30"><h1><?php echo $vc_tipo_operacion; ?></h1></header>
             <section id="search-filter">
               <figure>
                 <h3><i class="fa fa-search"></i>Resultados de b&uacute;squeda:</h3>
