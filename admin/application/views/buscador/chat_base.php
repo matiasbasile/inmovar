@@ -241,7 +241,7 @@ input:-webkit-autofill {
         </div>
         <div class="turno_chat_user_form_row">
           <div class="chat_user_form_row_4">
-            <select class="chat_user_form_select chat_user_form_2_prefijo">
+            <select class="turno_chat_user_form_input chat_user_form_2_prefijo">
               <option value="376">AD (+376)</option>
               <option value="971">AE (+971)</option>
               <option value="93">AF (+93)</option>
