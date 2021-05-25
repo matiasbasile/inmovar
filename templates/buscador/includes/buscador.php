@@ -1,6 +1,11 @@
 <form onsubmit="return filtrar(this)" method="get" role="form" id="form_propiedades" class="<?php echo ($nombre_pagina=="home")?"form-map":"" ?> form-search">
 
-  <header><h3>Buscador</h3></header>
+  <header>
+    <h3>
+      Filtrar
+      <i onclick="cerrar_filtros()" class="cerrar_filtros fa fa-times"></i>
+    </h3>
+  </header>
 
   <div class="form-group" id="buscador-tipo-operacion">
     <select id="tipo_operacion" class="filter_tipo_operacion">
