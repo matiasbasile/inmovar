@@ -129,7 +129,7 @@ return t.parent().is(".ui-effects-wrapper")&&(t.parent().replaceWith(t),(t[0]===
         jQuery(chat).find(".inmovar_user_form").hide();
         jQuery(chat).find(".inmovar_user_message").show();
       },
-      "error":{
+      "error":function(){
         enviando = 0;
       }
     });
