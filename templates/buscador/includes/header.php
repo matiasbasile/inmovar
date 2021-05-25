@@ -19,15 +19,6 @@ if (isset($_SESSION["favoritos"])) {
       </div>
       <div class="user-area">
         <div class="language-bar">
-          <a href="<?php echo mklink("favoritos/"); ?>">
-            <?php if ($cant_favoritos>0) { ?>
-              <i class="fa fa-heart"></i>
-            <?php } else { ?>
-              <i class="fa fa-heart-o"></i>
-            <?php } ?>
-            <span>(<?php echo $cant_favoritos ?>)</span>
-            <span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
-          </a>
           <?php if (!empty($empresa->facebook)) { ?>
             <a target="_blank" href="<?php echo $empresa->facebook ?>" class="fa fa-facebook"></a>
           <?php } ?>
