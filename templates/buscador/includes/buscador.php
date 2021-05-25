@@ -1,9 +1,6 @@
 <form onsubmit="return filtrar(this)" method="get" role="form" id="form_propiedades" class="<?php echo ($nombre_pagina=="home")?"form-map":"" ?> form-search">
   <?php if ($nombre_pagina == "home") { ?><h2>Buscador</h2><?php } ?>
 
-  <div class="form-group" id="buscador-codigo">
-    <input type="text" id="filter_codigo" class="form-control filter_codigo" name="cod" value="<?php echo isset($vc_codigo)?$vc_codigo:"" ?>" placeholder="Buscar por c&oacute;digo" />
-  </div>
   <div class="form-group" id="buscador-tipo-operacion">
     <select id="tipo_operacion" class="filter_tipo_operacion">
       <?php $filter_tipos_operacion = $propiedad_model->get_tipos_operaciones();
@@ -78,6 +75,18 @@
     <button type="submit" class="btn btn-default">Buscar</button>
   </div>
 </form>
+
+<div class="buscador-flotante">
+  <div class="row">
+    <div class="col-xs-6">
+      <button onclick="ver_filtros()" class="btn">Filtrar</button>
+    </div>
+    <div class="col-xs-6">
+      <button onclick="ver_orden()" class="btn">Ordenar</button>
+    </div>
+  </div>
+</div>
+
 <script>
 function cambiar_moneda_precio_minimo() {
   var v = $("#moneda_precio_minimo").val();
