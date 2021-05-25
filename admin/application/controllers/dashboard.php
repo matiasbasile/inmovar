@@ -82,6 +82,11 @@ class Dashboard extends REST_Controller {
       "offset"=>3
     ));
     $datos["consultas"] = $consultas["results"];
+    $datos["total_consultas"] = $this->Consulta_Model->contar(array(
+      "desde"=>$desde." 00:00:00",
+      "hasta"=>$hasta." 23:59:59",
+      "tipo"=>0,
+    ));
 
     $this->load->model("Propiedad_Visita_Model");
     $datos["visitas_sitio_web"] = $this->Propiedad_Visita_Model->contar(array(
@@ -106,8 +111,6 @@ class Dashboard extends REST_Controller {
       "desde"=>$desde,
       "hasta"=>$hasta,
     ));
-
-    $datos["total_consultas"] = intval($datos["consultas_sitio_web"]) + intval($datos["consultas_red"]);
 
     echo json_encode($datos);
   }  
