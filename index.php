@@ -145,7 +145,6 @@ if ( (!(strpos($dominio, "app.inmovar") === FALSE) || !(strpos($dominio, "sandbo
   // Buscamos el dominio dentro de inmovar
   if (!empty($params[1])) {
     $empresa = get_empresa_by_dominio_inmovar($params[1]);
-    print_r($empresa);
     $empresa->template_path = "buscador";
     if ($empresa !== FALSE) {
       $dominio = $dominio."/buscador/".$params[1]."/";
