@@ -1,5 +1,6 @@
 <form onsubmit="return filtrar(this)" method="get" role="form" id="form_propiedades" class="<?php echo ($nombre_pagina=="home")?"form-map":"" ?> form-search">
-  <?php if ($nombre_pagina == "home") { ?><h2>Buscador</h2><?php } ?>
+
+  <header><h3>Buscador</h3></header>
 
   <div class="form-group" id="buscador-tipo-operacion">
     <select id="tipo_operacion" class="filter_tipo_operacion">
@@ -88,6 +89,13 @@
 </div>
 
 <script>
+function ver_filtros() {
+  $("#form_propiedades").addClass("active");
+}
+function cerrar_filtros() {
+  $("#form_propiedades").removeClass("active");
+}
+
 function cambiar_moneda_precio_minimo() {
   var v = $("#moneda_precio_minimo").val();
   $("#moneda_precio_maximo").val(v);

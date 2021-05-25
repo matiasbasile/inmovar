@@ -114,10 +114,7 @@ if (isset($_GET["test"])) print_r($vc_listado);
 
         <div class="col-md-3 col-sm-3">
           <section id="sidebar">
-            <aside id="edit-search">
-              <header><h3>Buscador</h3></header>
-              <?php include("includes/buscador.php"); ?>
-            </aside>
+            <?php include("includes/buscador.php"); ?>
           </section>
         </div>
         
