@@ -198,7 +198,7 @@ input:-webkit-autofill {
 }
 .clienchat-link { text-align: right; padding: 10px; background-color: #f4f4f6; }
 .clienchat-link a { font-family: 'Lato', sans-serif; font-size: 13px; color: #999; text-decoration: none; outline: none; margin-right: 10px; }
-.clienchat-link img { width: 110px; }
+.clienchat-link img { width: 110px; margin-left: 7px; }
 
 .inmovar_user { }
 .inmovar_user_card { display: table; border-top: solid 1px #eee; padding: 10px; cursor: pointer; width: 100%; overflow: hidden; margin-bottom: 5px; }
