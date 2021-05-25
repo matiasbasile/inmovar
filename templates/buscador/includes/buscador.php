@@ -53,32 +53,22 @@
   </div><!-- /.form-group -->
   <div class="form-group" id="buscador-precio-minimo">
     <div class="row">
-      <div class="col-xs-5 pr0">
-        <select id="moneda_precio_minimo" onchange="cambiar_moneda_precio_minimo()" name="m">
+      <div class="col-xs-4 pr0">
+        <select id="moneda_precio_minimo" name="m">
           <option <?php echo (isset($vc_moneda) && $vc_moneda == "ars")?"selected":"" ?> value="ARS">$</option>
           <option <?php echo (isset($vc_moneda) && $vc_moneda == "USD")?"selected":"" ?> value="USD">USD</option>
         </select>
       </div>
-      <div class="col-xs-7 pl0">
+      <div class="col-xs-4 pl0 pr0">
+        <input class="form-control" placeholder="Precio Maximo" id="precio_maximo" type="text" name="vc_maximo" value="<?php echo (isset($vc_maximo) ? (($vc_maximo == 0)?"":$vc_maximo) : "") ?>"/>
+      </div>
+      <div class="col-xs-4 pl0">
         <input class="form-control" placeholder="Precio Minimo" id="precio_minimo" type="text" name="vc_minimo" value="<?php echo (isset($vc_minimo) ? (($vc_minimo == 0)?"":$vc_minimo) : "") ?>"/>
       </div>
     </div>
   </div>
-  <div class="form-group" id="buscador-precio-maximo">
-    <div class="row">
-      <div class="col-xs-5 pr0">
-        <select id="moneda_precio_maximo" onchange="cambiar_moneda_precio_maximo()">
-          <option <?php echo (isset($vc_moneda) && $vc_moneda == "ars")?"selected":"" ?> value="ARS">$</option>
-          <option <?php echo (isset($vc_moneda) && $vc_moneda == "USD")?"selected":"" ?> value="USD">USD</option>
-        </select>
-      </div>
-      <div class="col-xs-7 pl0">
-        <input class="form-control" placeholder="Precio Maximo" id="precio_maximo" type="text" name="vc_maximo" value="<?php echo (isset($vc_maximo) ? (($vc_maximo == 0)?"":$vc_maximo) : "") ?>"/>
-      </div>
-    </div>
-  </div>
   <div class="form-group">
-    <button type="submit" class="btn btn-default">Buscar</button>
+    <button type="submit" class="btn btn-buscar btn-default">Buscar</button>
   </div>
 </form>
 
@@ -99,15 +89,6 @@ function ver_filtros() {
 }
 function cerrar_filtros() {
   $("#form_propiedades").removeClass("active");
-}
-
-function cambiar_moneda_precio_minimo() {
-  var v = $("#moneda_precio_minimo").val();
-  $("#moneda_precio_maximo").val(v);
-}
-function cambiar_moneda_precio_maximo() {
-  var v = $("#moneda_precio_maximo").val();
-  $("#moneda_precio_minimo").val(v);
 }
 
 function filtrar() { 
