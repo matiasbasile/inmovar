@@ -59,12 +59,14 @@
           <option <?php echo (isset($vc_moneda) && $vc_moneda == "USD")?"selected":"" ?> value="USD">USD</option>
         </select>
       </div>
-      <div class="row">
-        <div class="col-xs-6 pr0">
-          <input class="form-control" placeholder="Precio Maximo" id="precio_maximo" type="text" name="vc_maximo" value="<?php echo (isset($vc_maximo) ? (($vc_maximo == 0)?"":$vc_maximo) : "") ?>"/>
-        </div>
-        <div class="col-xs-6 pl0">
-          <input class="form-control" placeholder="Precio Minimo" id="precio_minimo" type="text" name="vc_minimo" value="<?php echo (isset($vc_minimo) ? (($vc_minimo == 0)?"":$vc_minimo) : "") ?>"/>
+      <div class="col-xs-9 pl0">
+        <div class="row">
+          <div class="col-xs-6 pr0">
+            <input class="form-control" placeholder="Máx." id="precio_maximo" type="text" name="vc_maximo" value="<?php echo (isset($vc_maximo) ? (($vc_maximo == 0)?"":$vc_maximo) : "") ?>"/>
+          </div>
+          <div class="col-xs-6 pl0">
+            <input class="form-control" placeholder="Min." id="precio_minimo" type="text" name="vc_minimo" value="<?php echo (isset($vc_minimo) ? (($vc_minimo == 0)?"":$vc_minimo) : "") ?>"/>
+          </div>
         </div>
       </div>
     </div>
