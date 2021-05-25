@@ -499,8 +499,8 @@ input:-webkit-autofill {
         <div class="inmovar_user_form_row">
           <div class="inmovar_user_form_col_6">
             <select id="inmovar_user_form_operacion" class="inmovar_user_form_input">
-              <option selected value="1">VENTA</option>
-              <option value="2">ALQUILER</option>
+              <option data-link="ventas" selected value="1">VENTA</option>
+              <option data-link="alquileres" value="2">ALQUILER</option>
             </select>
           </div>
           <div class="inmovar_user_form_col_6">

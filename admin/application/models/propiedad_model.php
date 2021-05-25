@@ -414,7 +414,7 @@ class Propiedad_Model extends Abstract_Model {
     $hasta = (isset($config["hasta"])) ? $config["hasta"] : "";
     $sql = "SELECT id_propiedad, COUNT(*) AS cantidad ";
     $sql.= "FROM inm_propiedades_visitas ";
-    $sql.= "WHERE id_empresa = $id_empresa ";
+    $sql.= "WHERE id_empresa_propiedad = $id_empresa ";
     if (!empty($desde)) $sql.= "AND stamp >= '$desde' ";
     if (!empty($hasta)) $sql.= "AND stamp <= '$hasta' ";
     $sql.= "GROUP BY id_propiedad ";
