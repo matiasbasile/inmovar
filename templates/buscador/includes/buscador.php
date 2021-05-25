@@ -87,12 +87,44 @@
   </div>
 </div>
 
+<div id="orden_propiedades" class="form-search">
+  <header>
+    <h3>
+      Ordenar
+      <i onclick="cerrar_filtros()" class="cerrar_filtros fa fa-times"></i>
+    </h3>
+  </header>
+  <div class="form-group">
+    <input type="radio" name="ordenar" value="" id="orden_1" />
+    <label for="orden_1">Más nuevos</label>
+  </div>
+  <div class="form-group">
+    <input type="radio" name="ordenar" value="" id="orden_1" />
+    <label for="orden_1">Menor precio</label>
+  </div>
+  <div class="form-group">
+    <input type="radio" name="ordenar" value="" id="orden_1" />
+    <label for="orden_1">Mayor precio</label>
+  </div>
+  <div class="form-group">
+    <input type="radio" name="ordenar" value="" id="orden_1" />
+    <label for="orden_1">Destacados</label>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-buscar btn-default">Buscar</button>
+  </div>
+</form>
+
 <script>
 function ver_filtros() {
   $("#form_propiedades").addClass("active");
 }
 function cerrar_filtros() {
   $("#form_propiedades").removeClass("active");
+  $("#orden_propiedades").removeClass("active");
+}
+function ver_orden() {
+  $("#orden_propiedades").removeClass("active");
 }
 
 function filtrar() { 
