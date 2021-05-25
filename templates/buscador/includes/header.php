@@ -38,12 +38,14 @@ if (isset($_SESSION["favoritos"])) {
   <div class="container">
     <header class="navbar" id="top" role="banner">
       <div class="navbar-header">
+        <?php /*
         <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+        */ ?>
         <div class="navbar-brand nav" id="brand">
           <a href="<?php echo mklink("/"); ?>">
             <?php if (empty($empresa->logo_1)) { ?>
