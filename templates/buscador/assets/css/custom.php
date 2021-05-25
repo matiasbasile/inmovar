@@ -6114,9 +6114,10 @@ input[type="checkbox"]:checked + label:before, input[type="radio"]:checked + lab
   border: solid 2px transparent;
 }
 
-.buscador-flotante { display: none; background-color: #f3f3f3; padding: 5px; }
+.buscador-flotante { display: none; background-color: #f3f3f3; padding: 10px; }
 @media (max-width: 768px) {
-  .buscador-flotante { display: block; position: absolute; width: 100%; bottom: 0px; left: 0px; right: 0px; z-index: 9998; }
+  .buscador-flotante { display: block; position: fixed; width: 100%; bottom: 0px; left: 0px; right: 0px; z-index: 9998; }
+  .buscador-flotante .btn { width: 100%; text-align: center; border-radius: 15px; }
   .form-search { display: none; }
-  .form-search.active { display: block; position: absolute; z-index: 9999; top: 0px; left: 0px; bottom: 0px; right: 0px; }
+  .form-search.active { display: block; position: fixed; z-index: 9999; top: 0px; left: 0px; bottom: 0px; right: 0px; }
 }
