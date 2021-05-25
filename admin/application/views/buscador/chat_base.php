@@ -209,7 +209,7 @@ input:-webkit-autofill {
 .turno_chat_user_info .turno_chat_user_nombre { color: #929292; font-size: 14px; }
 .turno_chat_user_info .turno_chat_user_disponible, .turno_chat_user_info .turno_chat_user_no_disponible { font-size: 12px; color: #272727; }
 .turno_chat_user_form .turno_chat_user_form_step_1, .turno_chat_user_form .turno_chat_user_form_step_2 { display: none; }
-.turno_chat_user_form .turno_chat_user_form_row { overflow: hidden; margin-left: -6px; margin-right: -6px; margin-bottom: 12px; }
+.turno_chat_user_form .turno_chat_user_form_row { overflow: hidden; margin-left: -6px; margin-right: -6px; }
 .turno_chat_user_form .turno_chat_user_form_row .turno_chat_user_form_input { background-color: white; width: 100%; display: block; color: #3f3f3f; border: solid 1px #dddddd; padding: 12px 8px; font-size: 14px; line-height: 14px; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; outline: none !important; box-shadow: none !important; -webkit-appearance: none; -moz-appearance: none; appearance: none; height: 40px; margin-bottom: 10px}
 .turno_chat_user_form .turno_chat_user_form_row .turno_chat_user_form_input:focus { border: solid 1px val(--c1) !important; }
 .turno_chat_user_form .turno_chat_user_form_col { float: left; width: 100%; padding-left: 6px; padding-right: 6px; }
@@ -253,7 +253,7 @@ input:-webkit-autofill {
         </div>
         <div class="turno_chat_user_form_row">
           <div class="turno_chat_user_form_col_4">
-            <select id="turno_chat_user_form_moneda">
+            <select class="turno_chat_user_form_input" id="turno_chat_user_form_moneda">
               <option>$</option>
               <option>U$S</option>
             </select>
@@ -265,10 +265,10 @@ input:-webkit-autofill {
             <input id="turno_chat_user_form_hasta" type="text" class="turno_chat_user_form_input" placeholder="HASTA">
           </div>
         </div>
+        <div class="turno_chat_user_form_row">
+          <button id="converse-enviar">Buscar</button>
+        </div>
       </div>  
-      <div>
-        <button id="converse-enviar">Buscar</button>
-      </div>
     </div>
     <div class="clienchat-link">
       <a href='https://www.inmovar.com' target='_blank'>Somos parte de Inmovar</a>
