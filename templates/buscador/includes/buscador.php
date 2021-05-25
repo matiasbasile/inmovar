@@ -72,7 +72,7 @@
     </div>
   </div>
   <div class="form-group">
-    <button type="submit" class="btn btn-buscar btn-default">Buscar</button>
+    <button type="submit" class="btn btn-buscar btn-default">Aplicar</button>
   </div>
 </form>
 
@@ -111,7 +111,7 @@
     <label for="orden_4">Destacados</label>
   </div>
   <div class="form-group">
-    <button onclick="aplicar_orden()" class="btn btn-buscar btn-default">Buscar</button>
+    <button onclick="aplicar_orden()" class="btn btn-buscar btn-default">Aplicar</button>
   </div>
 </form>
 

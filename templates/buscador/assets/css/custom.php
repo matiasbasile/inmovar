@@ -6115,7 +6115,9 @@ input[type="checkbox"]:checked + label:before, input[type="radio"]:checked + lab
 }
 
 .buscador-flotante { display: none; background-color: #f3f3f3; padding: 10px; }
-.cerrar_filtros { display: none; }
+.cerrar_filtros, #orden_propiedades { display: none; }
+.sorting select { width: auto; }
+.sorting label { margin-right: 10px; }
 @media (max-width: 768px) {
   .form-search { display: none; }
   .page-search-results .navigation .navbar { text-align: center; }
@@ -6128,7 +6130,7 @@ input[type="checkbox"]:checked + label:before, input[type="radio"]:checked + lab
   .page-search-results .buscador-flotante .button:active { background-color: <?php echo $c2; ?>; color: white; }
   .page-search-results .form-search .btn { width: 100%; }
   .page-search-results .form-search input[type=radio] { visibility: hidden; }
-  .page-search-results .form-search.active { overflow: auto; padding: 20px; background-color: #f3f3f3; display: block; position: fixed; z-index: 9999; top: 0px; left: 0px; bottom: 0px; right: 0px; }
+  .page-search-results .form-search.active { overflow: auto; padding: 20px; background-color: #f3f3f3; display: block !important; position: fixed; z-index: 9999; top: 0px; left: 0px; bottom: 0px; right: 0px; }
   .page-search-results #sidebar .form-search.active h3 { font-weight: bold; border-bottom: none; margin-bottom: 20px; padding-bottom: 0px; margin-top: 0px; }
   .page-search-results #sidebar .form-search.active select, 
   .page-search-results #sidebar .form-search.active .form-control { background-color: white; border-radius: 8px; box-shadow: 0px 1px 1px rgb(0 0 0 / 20%); border: none; outline: none; }
