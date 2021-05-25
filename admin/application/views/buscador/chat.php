@@ -86,12 +86,12 @@ return t.parent().is(".ui-effects-wrapper")&&(t.parent().replaceWith(t),(t[0]===
       jQuery(chat).find("#inmovar_user_form_telefono").focus();
       return;
     }
-    if (isEmpty(id_tipo_inmueble)) {
+    if (id_tipo_inmueble == 0) {
       alert("Selecciona el tipo de propiedad buscado");
       jQuery(chat).find("#inmovar_user_form_propiedad").focus();
       return;
     }
-    if (isEmpty(id_localidad)) {
+    if (id_localidad == 0) {
       alert("Selecciona la localidad");
       jQuery(chat).find("#inmovar_user_form_ciudad").focus();
       return;
@@ -101,7 +101,7 @@ return t.parent().is(".ui-effects-wrapper")&&(t.parent().replaceWith(t),(t[0]===
     if (enviando == 1) return;
     enviando = 1;
     jQuery.ajax({
-      "url":"https://app.inmovar.com/admin/inmovar/function/registrar/",
+      "url":"https://app.inmovar.com/admin/inmovar/registrar/",
       "dataType":"json",
       "type":"post",
       "data":{
