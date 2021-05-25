@@ -621,6 +621,8 @@
         <i title="Whatsapp" class="fa fa-whatsapp"></i>
       <% } else if (id_origen == 3) { %>
         <i title="Personal" class="fa fa-user"></i>
+      <% } else if (id_origen == 50) { %>
+        <i title="Búsqueda" class="fa fa-globe"></i>
       <% } else { %>
         <i class="fa fa-user"></i>
       <% } %>
