@@ -27,7 +27,7 @@
   font-size: 16px !important;
   font-weight: bold !important;
 }
-#inmovar-chat-launcher > img { margin-right: 10px; border-radius: 100%; }
+#inmovar-chat-launcher > img { margin-right: 10px; border-radius: 100%; width: 34px; }
 #inmovar-chat-cont {
   width: 360px !important;
   position: fixed !important;
@@ -196,8 +196,9 @@ input:-webkit-autofill {
   color: rgb(170, 170, 170) !important;
   font-weight: 400;
 }
-.clienchat-link { text-align: right; padding: 5px 10px; background-color: #f1f1f1; }
-.clienchat-link a { font-family: 'Lato', sans-serif; font-size: 10px; color: #999; text-decoration: none; outline: none; }
+.clienchat-link { text-align: right; padding: 10px; background-color: #f1f1f1; }
+.clienchat-link a { font-family: 'Lato', sans-serif; font-size: 13px; color: #999; text-decoration: none; outline: none; margin-right: 10px; }
+.clienchat-link img { width: 110px; }
 
 .inmovar_user { }
 .inmovar_user_card { display: table; border-top: solid 1px #eee; padding: 10px; cursor: pointer; width: 100%; overflow: hidden; margin-bottom: 5px; }
@@ -510,22 +511,6 @@ input:-webkit-autofill {
         <div class="inmovar_user_form_row">
           <div class="inmovar_user_form_col_12">
             <select id="inmovar_user_form_ciudad" class="inmovar_user_form_input"></select>
-          </div>
-        </div>
-        <div class="inmovar_user_form_row">
-          <div class="inmovar_user_form_col_3">
-            <select class="inmovar_user_form_input" id="inmovar_user_form_moneda">
-              <option value="USD" selected>U$S</option>
-              <option value="ARS">$</option>
-            </select>
-          </div>
-          <div class="inmovar_user_form_col_9">
-            <div class="inmovar_user_form_col_6">
-              <input id="inmovar_user_form_desde" type="text" class="inmovar_user_form_input" placeholder="DESDE">
-            </div>
-            <div class="inmovar_user_form_col_6">
-              <input id="inmovar_user_form_hasta" type="text" class="inmovar_user_form_input" placeholder="HASTA">
-            </div>
           </div>
         </div>
         <div class="inmovar_user_form_row">
