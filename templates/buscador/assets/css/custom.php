@@ -6117,18 +6117,22 @@ input[type="checkbox"]:checked + label:before, input[type="radio"]:checked + lab
 .buscador-flotante { display: none; background-color: #f3f3f3; padding: 10px; }
 .cerrar_filtros { display: none; }
 @media (max-width: 768px) {
-  .navigation .navbar { text-align: center; }
-  .navbar-brand { float: none; }
-  .sorting { display: none; }
-  .buscador-flotante { display: block; position: fixed; width: 100%; bottom: 0px; left: 0px; right: 0px; z-index: 9998; }
-  .buscador-flotante .button { border: solid 2px <?php echo $c2; ?>; color: <?php echo $c2; ?>; font-size: 14px; padding: 6px 9px 5px 9px; outline: none; width: 100%; text-align: center; border-radius: 10px; font-weight: bold; }
-  .buscador-flotante .button:hover, .buscador-flotante .button:focus, .buscador-flotante .button:active { background-color: <?php echo $c2; ?>; color: white; }
-  .form-search { display: none; }
-  .form-search .btn { width: 100%; }
-  .form-search.active { overflow: auto; padding: 20px; background-color: #f3f3f3; display: block; position: fixed; z-index: 9999; top: 0px; left: 0px; bottom: 0px; right: 0px; }
-  #sidebar .form-search.active h3 { font-weight: bold; border-bottom: none; margin-bottom: 20px; padding-bottom: 0px; margin-top: 0px; }
-  #sidebar .form-search.active select, #sidebar .form-search.active .form-control { background-color: white; border-radius: 8px; box-shadow: 0px 1px 1px rgb(0 0 0 / 20%); border: none; outline: none; }
-  .form-search.active .cerrar_filtros { display: inline-block; cursor: pointer; float: right; font-size: 18px; color: rgb(90, 90, 90); }
-  #page-footer .inner #footer-copyright { padding-bottom: 100px; }
-  .btn-buscar { border-radius: 10px; }
+  .page-search-results .navigation .navbar { text-align: center; }
+  .page-search-results .navbar-brand { float: none; }
+  .page-search-results .sorting { display: none; }
+  .page-search-results .buscador-flotante { display: block; position: fixed; width: 100%; bottom: 0px; left: 0px; right: 0px; z-index: 9998; }
+  .page-search-results .buscador-flotante .button { border: solid 2px <?php echo $c2; ?>; color: <?php echo $c2; ?>; font-size: 14px; padding: 6px 9px 5px 9px; outline: none; width: 100%; text-align: center; border-radius: 10px; font-weight: bold; }
+  .page-search-results .buscador-flotante .button:hover, 
+  .page-search-results .buscador-flotante .button:focus, 
+  .page-search-results .buscador-flotante .button:active { background-color: <?php echo $c2; ?>; color: white; }
+  .page-search-results .form-search { display: none; }
+  .page-search-results .form-search .btn { width: 100%; }
+  .page-search-results .form-search input[type=radio] { visibility: hidden; }
+  .page-search-results .form-search.active { overflow: auto; padding: 20px; background-color: #f3f3f3; display: block; position: fixed; z-index: 9999; top: 0px; left: 0px; bottom: 0px; right: 0px; }
+  .page-search-results #sidebar .form-search.active h3 { font-weight: bold; border-bottom: none; margin-bottom: 20px; padding-bottom: 0px; margin-top: 0px; }
+  .page-search-results #sidebar .form-search.active select, 
+  .page-search-results #sidebar .form-search.active .form-control { background-color: white; border-radius: 8px; box-shadow: 0px 1px 1px rgb(0 0 0 / 20%); border: none; outline: none; }
+  .page-search-results .form-search.active .cerrar_filtros { display: inline-block; cursor: pointer; float: right; font-size: 18px; color: rgb(90, 90, 90); }
+  .page-search-results #page-footer .inner #footer-copyright { padding-bottom: 100px; }
+  .page-search-results .btn-buscar { border-radius: 10px; }
 }
