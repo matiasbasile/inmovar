@@ -6117,6 +6117,7 @@ input[type="checkbox"]:checked + label:before, input[type="radio"]:checked + lab
 .buscador-flotante { display: none; background-color: #f3f3f3; padding: 10px; }
 .cerrar_filtros { display: none; }
 @media (max-width: 768px) {
+  .form-search { display: none; }
   .page-search-results .navigation .navbar { text-align: center; }
   .page-search-results .navbar-brand { float: none; }
   .page-search-results .sorting { display: none; }
@@ -6125,7 +6126,6 @@ input[type="checkbox"]:checked + label:before, input[type="radio"]:checked + lab
   .page-search-results .buscador-flotante .button:hover, 
   .page-search-results .buscador-flotante .button:focus, 
   .page-search-results .buscador-flotante .button:active { background-color: <?php echo $c2; ?>; color: white; }
-  .page-search-results .form-search { display: none; }
   .page-search-results .form-search .btn { width: 100%; }
   .page-search-results .form-search input[type=radio] { visibility: hidden; }
   .page-search-results .form-search.active { overflow: auto; padding: 20px; background-color: #f3f3f3; display: block; position: fixed; z-index: 9999; top: 0px; left: 0px; bottom: 0px; right: 0px; }
