@@ -186,7 +186,7 @@
         <i class="fa fa-envelope"></i> MercadoLibre
 
       <% } else if (id_origen == 50) { %>
-        <i class="fa fa-globe"></i> Búsqueda
+        <i class="fa fa-search"></i> Búsqueda
 
       <% } else if (id_origen == 1 || id_origen == 6 || id_origen == 7 || id_origen == 8 || id_origen == 9 || id_origen == 10) { %>
         <i class="fa fa-globe"></i> Web
@@ -622,7 +622,7 @@
       <% } else if (id_origen == 3) { %>
         <i title="Personal" class="fa fa-user"></i>
       <% } else if (id_origen == 50) { %>
-        <i title="Búsqueda" class="fa fa-globe"></i>
+        <i title="Búsqueda" class="fa fa-search"></i>
       <% } else { %>
         <i class="fa fa-user"></i>
       <% } %>
