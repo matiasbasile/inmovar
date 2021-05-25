@@ -490,29 +490,37 @@ input:-webkit-autofill {
             </select>
           </div>
           <div class="inmovar_user_form_col_8">
-            <input id="inmovar_user_form_telefono" type="text" class="inmovar_user_form_input" placeholder="WHATSAPP">
+            <input id="inmovar_user_form_telefono" type="number" class="inmovar_user_form_input" placeholder="WHATSAPP">
+          </div>
+        </div>
+        <div class="inmovar_user_form_row">
+          <div class="inmovar_user_form_col_6">
+            <select id="inmovar_user_form_operacion" class="inmovar_user_form_input">
+              <option selected value="1">VENTA</option>
+              <option value="2">ALQUILER</option>
+            </select>
+          </div>
+          <div class="inmovar_user_form_col_6">
+            <select id="inmovar_user_form_propiedad" class="inmovar_user_form_input"></select>
           </div>
         </div>
         <div class="inmovar_user_form_row">
           <div class="inmovar_user_form_col_12">
             <select id="inmovar_user_form_ciudad" class="inmovar_user_form_input"></select>
           </div>
-          <div class="inmovar_user_form_col_12">
-            <select id="inmovar_user_form_propiedad" class="inmovar_user_form_input"></select>
-          </div>
         </div>
         <div class="inmovar_user_form_row">
           <div class="inmovar_user_form_col_4">
             <select class="inmovar_user_form_input" id="inmovar_user_form_moneda">
+              <option selected>U$S</option>
               <option>$</option>
-              <option>U$S</option>
             </select>
           </div>
           <div class="inmovar_user_form_col_4">
-            <input id="inmovar_user_form_desde" type="text" class="inmovar_user_form_input" placeholder="DESDE">
+            <input id="inmovar_user_form_desde" type="number" class="inmovar_user_form_input" placeholder="DESDE">
           </div>
           <div class="inmovar_user_form_col_4">
-            <input id="inmovar_user_form_hasta" type="text" class="inmovar_user_form_input" placeholder="HASTA">
+            <input id="inmovar_user_form_hasta" type="number" class="inmovar_user_form_input" placeholder="HASTA">
           </div>
         </div>
         <div class="inmovar_user_form_row">
