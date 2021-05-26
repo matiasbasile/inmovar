@@ -713,6 +713,7 @@ class Propiedades_Meli extends REST_Controller {
   }
 
   private function publicar_meli($body,$propiedad) {
+    $this->load->model("Log_Model");
     $this->connect();
     $params = array('access_token' => $this->configuracion->ml_access_token);
 
@@ -735,6 +736,11 @@ class Propiedades_Meli extends REST_Controller {
           "link"=>$res->permalink,
         );
       } else if ($response["httpCode"] >= 400){
+        $this->Log_Model->imprimir(array(
+          "id_empresa"=>$propiedad->id_empresa,
+          "file"=>"log_meli.txt",
+          "texto"=>print_r($response,true)."\n\n",
+        ));
         // Ocurrio un error, lo enviamos
         $body = $response["body"];
         return array(
@@ -764,6 +770,12 @@ class Propiedades_Meli extends REST_Controller {
         );
 
       } else if ($response["httpCode"] == 400){
+
+        $this->Log_Model->imprimir(array(
+          "id_empresa"=>$propiedad->id_empresa,
+          "file"=>"log_meli.txt",
+          "texto"=>print_r($response,true)."\n\n",
+        ));
 
         // Ocurrio un error, lo enviamos
         $body = $response["body"];
