@@ -621,7 +621,7 @@ class Propiedades_Meli extends REST_Controller {
         "longitude"=>$propiedad->longitud,
       ),
       "description"=> array(
-        "plain_text"=>html_entity_decode($propiedad->texto_meli,ENT_QUOTES),
+        "plain_text"=>trim(strip_tags(html_entity_decode($propiedad->texto_meli,ENT_QUOTES))),
       ),
     );
     if (!empty($localidad->mercadolibre_barrio_id)) {
