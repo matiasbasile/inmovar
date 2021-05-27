@@ -2061,7 +2061,7 @@ class Propiedades extends REST_Controller {
     else if (!empty($propiedad->id_barrio_argenprop)) $fields["propiedad.Direccion.Barrio.Id"] = $propiedad->id_barrio_argenprop;
     $fields['propiedad.Direccion.Coordenadas.Latitud'] = $propiedad->latitud;
     $fields['propiedad.Direccion.Coordenadas.Longitud'] = $propiedad->longitud;
-    $fields['propiedad.Direccion.Nombrecalle'] = $propiedad->calle;
+    $fields['propiedad.Direccion.Nombrecalle'] = $propiedad->calle.(!empty($propiedad->entre_calles) ? " e/ $propiedad->entre_calles y $propiedad->entre_calles_2");
     $fields['propiedad.Direccion.Numero'] = $propiedad->altura;
  
     if (!empty($propiedad->superficie_cubierta)) $fields['propiedad.SuperficieCubierta'] = "$propiedad->superficie_cubierta";
