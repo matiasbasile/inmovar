@@ -1228,7 +1228,7 @@
         e.stopPropagation();
         e.preventDefault();
         if($(e.currentTarget).attr("disabled") == "disabled") return;
-        if (!isEmpty(self.model.get("argenprop_url"))) return;
+        //if (!isEmpty(self.model.get("argenprop_url"))) return;
         $.ajax({
           "url":"propiedades/function/compartir_argenprop/",
           "data":{
