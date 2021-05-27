@@ -467,6 +467,9 @@ class Propiedades_Meli extends REST_Controller {
       exit();
     }
     $salida = $this->publicar_meli($body,$propiedad);
+    if ($salida["error"]==0) {
+      $this->enviar_descripcion($propiedad);
+    }
     echo json_encode($salida);
   }
 
@@ -539,12 +542,26 @@ class Propiedades_Meli extends REST_Controller {
     } else {
       foreach($para_publicar as $pp) {
         $resp = $this->publicar_meli($pp["body"],$pp["propiedad"]);
+        if ($resp["error"]==0) {
+          $this->enviar_descripcion($pp["propiedad"]);
+        }        
       }
       echo json_encode(array(
         "error"=>0,
       ));
       exit();
     }
+  }
+
+  private function enviar_descripcion($propiedad) {
+    if (!isset($propiedad->id_meli) || empty($propiedad->id_meli)) return FALSE;
+    $this->connect();
+    $params = array('access_token' => $this->configuracion->ml_access_token);
+    $body = array(
+      "plain_text"=>trim(strip_tags(html_entity_decode($propiedad->texto_meli,ENT_QUOTES))),
+    );
+    $response = $this->meli->put("/items/".$propiedad->id_meli."/description", $body, $params);
+    return $response;
   }
 
   // Arma el objeto que se va a enviar a MercadoLibre
@@ -619,9 +636,6 @@ class Propiedades_Meli extends REST_Controller {
         "address_line"=>$propiedad->calle." ".$propiedad->altura,
         "latitude"=>$propiedad->latitud,
         "longitude"=>$propiedad->longitud,
-      ),
-      "description"=> array(
-        "plain_text"=>trim(strip_tags(html_entity_decode($propiedad->texto_meli,ENT_QUOTES))),
       ),
     );
     if (!empty($localidad->mercadolibre_barrio_id)) {
@@ -764,6 +778,7 @@ class Propiedades_Meli extends REST_Controller {
           "activo_meli"=>1,
           "fecha_publicacion"=>date("Y-m-d H:i:s"),
         ));
+        $propiedad->id_meli = $res->id; // Se lo agregamos al objeto
         return array(
           "error"=>0,
           "link"=>$res->permalink,
