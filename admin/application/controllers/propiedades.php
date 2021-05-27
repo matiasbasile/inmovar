@@ -2029,6 +2029,12 @@ class Propiedades extends REST_Controller {
     $moneda = "2";
     if ($propiedad->moneda == '$') $moneda = "1";
 
+    $propiedad->texto = preg_replace('/[\x00-\x1F\x7F\xA0]/u', '', $propiedad->texto);
+    $propiedad->texto = mb_convert_encoding($propiedad->texto, 'UTF-8', 'UTF-8');
+    $propiedad->texto = strip_tags($propiedad->texto);
+
+    $titulo = $this->modelo->generar_titulo($propiedad);
+
     $fields = array(
       'usr' => $usuario_argenprop,
       'psd' => $password_argenprop,
@@ -2037,7 +2043,8 @@ class Propiedades extends REST_Controller {
       'aviso.EsWeb' => 'true',
       'aviso.Vendedor.Id' => $id_vendedor,
       'aviso.IdOrigen' => $id_origen,
-      'aviso.Titulo' => substr($propiedad->nombre, 0, 100),
+      'aviso.InformacionAdicional' => $propiedad->texto,
+      'aviso.Titulo' => substr($titulo, 0, 100),
       'aviso.TipoOperacion' => $id_tipo_operacion,
       'visibilidades[0].MontoOperacion' => $monto,
       'visibilidades[0].Moneda.Id' => $moneda,
