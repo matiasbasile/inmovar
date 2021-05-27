@@ -121,6 +121,20 @@
             </div>
           </div>
         <% } %>  
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="template-item mb20">
+            <img style="height:280px" src="resources/images/amedida.jpg"/>
+            <div class="template-item-footer">
+              <span class="bold white">Diseño a medida</span>
+            </div>
+            <div class="template-item-over">
+              <div class="template-item-over-nombre">Diseño a medida</div>
+              <div class="btn-item">
+                <button class="btn solicitar_disenio">Solicitar</button>
+              </div>
+            </div>    
+          </div>
+        </div>
 
         <% if (!encontro && ID_WEB_TEMPLATE != 0) { %>
           <div class="col-md-4 col-sm-6 col-xs-12">
@@ -240,7 +254,34 @@
       <div id="web_configuracion_sliders" class="ordenable"></div>
     </div>
   </div>
+</script>
 
+<script type="text/template" id="web_solicitar_disenio">
+  <div class="rform">
+    <div class="panel panel-default">
+      <div class="panel-body expand" style="display:block">
+        <div class="padder">
+          <div class="panel-description mb10">
+            Si tenés dudas, sugerencias o simplemente estas interesado en un diseño a medida,
+            no dudes en contactarnos.<br/>
+            Responderemos tu consulta en 24hs. hábiles a tu correo electrónico.
+          </div>
+          <div class="form-group">
+            <select id="soporte_asunto" class="form-control">
+              <option>Diseño a medida</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <textarea id="soporte_texto" class="form-control h100" placeholder="Escribe tu consulta"></textarea>
+          </div>
+          <div class="form-group">
+            <button id="soporte_enviar" class="btn btn-block btn-info">Enviar Consulta</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </script>
 
 <script type="text/template" id="web_contenido_template">

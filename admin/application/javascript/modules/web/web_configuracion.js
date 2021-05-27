@@ -224,7 +224,17 @@
             location.reload();
           }
         });
-      }
+      },
+      "click .solicitar_disenio":function(){
+        var view = new app.views.SolicitarDisenioView({
+          model: new app.models.AbstractModel(),
+        });
+        crearLightboxHTML({
+          "html":view.el,
+          "width":800,
+          "height":300,
+        });
+      },
     },
 
     initialize: function(options) {
@@ -310,6 +320,63 @@
 
 })(app.views, app.models);
 
+
+(function ( views, models ) {
+
+  views.SolicitarDisenioView = app.mixins.View.extend({
+
+    template: _.template($("#web_solicitar_disenio").html()),
+
+    myEvents: {
+      "click #soporte_enviar":"enviar",
+    },
+
+    initialize: function(options) {
+      _.bindAll(this);
+      this.render();
+    },
+
+    render: function() {
+      var self = this;
+      $(this.el).html(this.template(this.model.toJSON()));
+
+      return this;
+    },
+
+    enviar: function() {
+      var asunto = this.$("#soporte_asunto").val();
+      var texto = this.$("#soporte_texto").val();
+      if (isEmpty(asunto)) {
+        alert("Por favor seleccione un asunto.");
+        this.$("#soporte_asunto").focus();
+        return;
+      }
+      if (isEmpty(texto)) {
+        alert("Por favor escriba el motivo de su consulta.");
+        this.$("#soporte_texto").focus();
+        return;
+      }
+      $.ajax({
+        "url":"dashboard/function/enviar_soporte/",
+        "dataType":"json",
+        "type":"post",
+        "data":{
+          "asunto":asunto,
+          "texto":texto,
+        },
+        "success":function(r) {
+          if (r.error == 1) alert(r.mensaje);
+          else {
+            alert("Hemos recibido su consulta. Le responderemos a la mayor brevedad para solucionar su inconveniente.");
+            location.reload();
+          }
+        }
+      });
+    },   
+  
+  });
+
+})(app.views, app.models);
 
 // ============================================================
 // CONTENIDO
