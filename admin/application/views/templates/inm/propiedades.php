@@ -312,6 +312,7 @@
                       <i title="Opciones" class="iconito fa fa-caret-down dropdown-toggle menu-compartir-submenu-dropdown" data-toggle="dropdown"></i>
                       <ul class="dropdown-menu pull-right">
                         <li><a target="_blank" href="<%= argenprop_url %>">Ver publicacion</a></li>
+                        <li><a class="argenprop_habilitado" href="javascript:void(0)">Enviar datos</a></li>
                         <% if (argenprop_habilitado == 1) { %>
                           <li><a class="argenprop_pausar" href="javascript:void(0)">Pausar</a></li>
                         <% } else if (argenprop_habilitado > 1) { %>
