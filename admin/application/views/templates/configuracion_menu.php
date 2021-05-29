@@ -182,10 +182,17 @@
     </div>
     <div class="panel-body expand">
       <div class="padder">
+
         <div class="form-group">
           <label class="control-label">API Key</label>
-          <input type="text" class="form-control" name="tokko_apikey" value="<%= tokko_apikey %>" />
+          <div class="input-group">            
+            <input type="text" class="form-control" name="tokko_apikey" value="<%= tokko_apikey %>" />
+            <span class="input-group-btn">
+              <button class="importar_tokko btn btn-default">Importar</button>
+            </span>
+          </div>
         </div>
+
         <div class="form-group">
           <div class="checkbox">
             <label class="i-checks">

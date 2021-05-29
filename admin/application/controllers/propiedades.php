@@ -1539,7 +1539,13 @@ class Propiedades extends REST_Controller {
         $sql.= "AND tokko_url != '' ";
         $this->db->query($sql);
       }
-      echo "CANTIDAD DE PROPIEDADES A IMPORTAR: ".sizeof($properties)."<br/>";
+
+      $this->Log_Model->imprimir(array(
+        "id_empresa"=>$id_empresa,
+        "file"=>date("Ymd")."_importacion_tokko.txt",
+        "texto"=>"CANTIDAD DE PROPIEDADES A IMPORTAR: ".sizeof($properties)."\n\n",
+      ));
+
       foreach ($properties as $property) {
 
         $this->Log_Model->imprimir(array(
@@ -1756,7 +1762,7 @@ class Propiedades extends REST_Controller {
         "body"=>$body,
       ));
     } else {
-      echo "TODO OK";
+      echo json_encode(array("error"=>0));
     }
   }
 

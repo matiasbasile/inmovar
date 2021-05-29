@@ -140,6 +140,29 @@
         }
       },
 
+      "click .importar_tokko":function(){
+        var self = this;
+        if (this.validar()) {
+          workspace.esperar();
+          this.model.save({},{
+            success: function(model,response) {
+              $.ajax({
+                "url":"propiedades/function/importar_tokko/"+ID_EMPRESA,
+                "dataType":"json",
+                "success":function(r){
+                  if (r.error == 0) location.reload();
+                  else alert(r.mensaje);
+                },
+                "error":function() {
+                  alert("Ocurrio un error al importar las propiedades con Tokko.");
+                  //location.reload();
+                }
+              });
+            }
+          });
+        }
+      },
+
       "click .sincronizacion_completa_articulos_meli":function() {
         workspace.esperar("Sincronizando...");
         $.ajax({
