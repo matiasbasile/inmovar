@@ -1584,6 +1584,9 @@ class Propiedades extends REST_Controller {
           $p->zoom = 17;
           $p->activo = 1;
 
+          // Limpiamos la descripcion para que no tenga informacion de la Inmobiliaria
+          $p->texto = str_replace("------------------------ Dacal Bienes Raíces (0221) 421-3888/1112 (011) 4342-3951","",$p->texto);
+
           // TAGS
           $tags = $property->get_field("tags");
           if (sizeof($tags)>0) {
