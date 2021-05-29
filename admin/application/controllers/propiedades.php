@@ -1507,252 +1507,287 @@ class Propiedades extends REST_Controller {
   // Esta funcion se ejecuta en un cronjob
   function importar_tokko($id_empresa = 0) {
     set_time_limit(0);
-    include_once APPPATH.'libraries/tokko/api.php';
-    // Buscamos todas las empresas que tengan la importacion automatica de TOKKO
-    $sql = "SELECT id_empresa, tokko_apikey FROM web_configuracion ";
-    $sql.= "WHERE tokko_apikey != '' AND tokko_importacion = 1 ";
-    if (!empty($id_empresa)) $sql.= "AND id_empresa = $id_empresa ";
-    $q = $this->db->query($sql);
-    $this->load->model("Propiedad_Model");
-    $this->load->helper("file_helper");
-    $cant_update = 0;
-    $cant_insert = 0;
-    $errores = array();
-    $this->load->model("Log_Model");
-    foreach($q->result() as $emp) {
-      $id_empresa = $emp->id_empresa;
-      $auth = new TokkoAuth($emp->tokko_apikey);
-      $search = new TokkoSearch($auth,array(
-        "operation_types"=>0,
-        "property_types"=>0,
-        "price_from"=>0,
-        "price_to"=>9999999999,
-      ));
-      $search->do_search();
-      $properties = $search->get_properties();
-      if (sizeof($properties)>0) {
-        // Limpiamos todas las propiedades que esten sincronizadas con Tokko
-        // Porque las que no vienen en el array es porque se deshabilitaron del otro lado
-        $sql = "UPDATE inm_propiedades ";
-        $sql.= "SET activo = 0 ";
-        $sql.= "WHERE id_empresa = $id_empresa ";
-        $sql.= "AND tokko_id != '' ";
-        $sql.= "AND tokko_url != '' ";
-        $this->db->query($sql);
-      }
-
-      $this->Log_Model->imprimir(array(
-        "id_empresa"=>$id_empresa,
-        "file"=>date("Ymd")."_importacion_tokko.txt",
-        "texto"=>"CANTIDAD DE PROPIEDADES A IMPORTAR: ".sizeof($properties)."\n\n",
-      ));
-
-      foreach ($properties as $property) {
+    try {
+      include_once APPPATH.'libraries/tokko/api.php';
+      // Buscamos todas las empresas que tengan la importacion automatica de TOKKO
+      $sql = "SELECT id_empresa, tokko_apikey FROM web_configuracion ";
+      $sql.= "WHERE tokko_apikey != '' AND tokko_importacion = 1 ";
+      if (!empty($id_empresa)) $sql.= "AND id_empresa = $id_empresa ";
+      $q = $this->db->query($sql);
+      $this->load->model("Propiedad_Model");
+      $this->load->helper("file_helper");
+      $cant_update = 0;
+      $cant_insert = 0;
+      $errores = array();
+      $this->load->model("Log_Model");
+      foreach($q->result() as $emp) {
+        $id_empresa = $emp->id_empresa;
+        $auth = new TokkoAuth($emp->tokko_apikey);
+        $search = new TokkoSearch($auth,array(
+          "operation_types"=>0,
+          "property_types"=>0,
+          "price_from"=>0,
+          "price_to"=>9999999999,
+        ));
+        $search->do_search();
+        $properties = $search->get_properties();
+        if (sizeof($properties)>0) {
+          // Limpiamos todas las propiedades que esten sincronizadas con Tokko
+          // Porque las que no vienen en el array es porque se deshabilitaron del otro lado
+          $sql = "UPDATE inm_propiedades ";
+          $sql.= "SET activo = 0 ";
+          $sql.= "WHERE id_empresa = $id_empresa ";
+          $sql.= "AND tokko_id != '' ";
+          $sql.= "AND tokko_url != '' ";
+          $this->db->query($sql);
+        }
 
         $this->Log_Model->imprimir(array(
+          "append"=>0, // Asi limpiamos el archivo de log
           "id_empresa"=>$id_empresa,
           "file"=>date("Ymd")."_importacion_tokko.txt",
-          "texto"=>print_r($property,TRUE)."\n\n",
+          "texto"=>"CANTIDAD DE PROPIEDADES A IMPORTAR: ".sizeof($properties)."\n\n",
         ));
 
-        $property->id_empresa = $id_empresa;
-        $p = new stdClass();
-        $p->nombre = $property->get_field("publication_title");
-        
-        $p->codigo = $property->get_field("reference_code");
-        $p->codigo = preg_replace("/[^0-9.]/", "", $p->codigo);
+        foreach ($properties as $property) {
 
-        $p->calle = $property->get_field("real_address");
-        $p->altura = "";
-        $p->piso = "";
-        $p->numero = "";
-        $p->banios = $property->get_field("bathroom_amount");
-        $p->texto = $property->get_field("description");
-        $p->latitud = $property->get_field("geo_lat");
-        $p->longitud = $property->get_field("geo_long");
-        $p->tokko_id = $property->get_field("id");
-        $p->tokko_url = $property->get_field("public_url");
-        $p->dormitorios = $property->get_field("suite_amount");
-        $p->ambientes = $property->get_field("room_amount");
-        $p->cocheras = $property->get_field("parking_lot_amount");
-        $p->superficie_cubierta = $property->get_field("roofed_surface");
-        $p->superficie_semicubierta = $property->get_field("semiroofed_surface");
-        $p->superficie_descubierta = $property->get_field("unroofed_surface");
-        $p->superficie_total = $property->get_field("total_surface");
-        $p->zoom = 17;
-        $p->activo = 1;
+          $this->Log_Model->imprimir(array(
+            "id_empresa"=>$id_empresa,
+            "file"=>date("Ymd")."_importacion_tokko.txt",
+            "texto"=>print_r($property,TRUE)."\n\n",
+          ));
 
-        // TAGS
-        $tags = $property->get_field("tags");
-        if (sizeof($tags)>0) {
-          foreach($tags as $t) {
-            if ($t->name == "Agua Corriente") $p->servicios_agua_corriente = 1;
-            else if ($t->name == "Cloaca") $p->servicios_cloacas = 1;
-            else if ($t->name == "Gas Natural") $p->servicios_gas = 1;
-            else if ($t->name == "Electricidad") $p->servicios_electricidad = 1;
-            else if ($t->name == "Pavimento") $p->servicios_asfalto = 1;
-            else if ($t->name == "Telefono") $p->servicios_telefono = 1;
-            else if ($t->name == "Cable") $p->servicios_cable = 1;
-            else if ($t->name == "Balcón") $p->balcon = 1;
-            else if ($t->name == "Apto crédito") $p->apto_banco = 1;
+          $property->id_empresa = $id_empresa;
+          $p = new stdClass();
+          $p->nombre = $property->get_field("publication_title");
+          
+          $p->codigo = $property->get_field("reference_code");
+          $p->codigo = preg_replace("/[^0-9.]/", "", $p->codigo);
+
+          $p->calle = $property->get_field("real_address");
+          $p->altura = "";
+          $p->piso = "";
+          $p->numero = "";
+          $p->banios = $property->get_field("bathroom_amount");
+          $p->texto = $property->get_field("description");
+          $p->latitud = $property->get_field("geo_lat");
+          $p->longitud = $property->get_field("geo_long");
+          $p->tokko_id = $property->get_field("id");
+          $p->tokko_url = $property->get_field("public_url");
+          $p->dormitorios = $property->get_field("suite_amount");
+          $p->ambientes = $property->get_field("room_amount");
+          $p->cocheras = $property->get_field("parking_lot_amount");
+          $p->superficie_cubierta = $property->get_field("roofed_surface");
+          $p->superficie_semicubierta = $property->get_field("semiroofed_surface");
+          $p->superficie_descubierta = $property->get_field("unroofed_surface");
+          $p->superficie_total = $property->get_field("total_surface");
+          $p->zoom = 17;
+          $p->activo = 1;
+
+          // TAGS
+          $tags = $property->get_field("tags");
+          if (sizeof($tags)>0) {
+            foreach($tags as $t) {
+              if ($t->name == "Agua Corriente") $p->servicios_agua_corriente = 1;
+              else if ($t->name == "Cloaca") $p->servicios_cloacas = 1;
+              else if ($t->name == "Gas Natural") $p->servicios_gas = 1;
+              else if ($t->name == "Electricidad") $p->servicios_electricidad = 1;
+              else if ($t->name == "Pavimento") $p->servicios_asfalto = 1;
+              else if ($t->name == "Telefono") $p->servicios_telefono = 1;
+              else if ($t->name == "Cable") $p->servicios_cable = 1;
+              else if ($t->name == "Balcón") $p->balcon = 1;
+              else if ($t->name == "Apto crédito") $p->apto_banco = 1;
+            }
           }
-        }
 
-        // ID_TIPO_OPERACION
-        $operations = $property->get_field("operations");
-        $operacion = $operations[0];
-        if ($operacion->operation_type == "Venta") $p->id_tipo_operacion = 1;
-        else if ($operacion->operation_type == "Alquiler") $p->id_tipo_operacion = 2;
+          // ID_TIPO_OPERACION
+          $operations = $property->get_field("operations");
+          $operacion = $operations[0];
+          if ($operacion->operation_type == "Venta") $p->id_tipo_operacion = 1;
+          else if ($operacion->operation_type == "Alquiler") $p->id_tipo_operacion = 2;
 
-        // PRECIO
-        $p->publica_precio = 1;
-        $p->precio_final = 0;
-        foreach($operacion->prices as $precio) {
-          if ($precio->price > 0) {
-            if ($precio->currency == "USD") $p->moneda = 'U$S';
-            else $p->moneda = '$';
-            $p->precio_final = $precio->price;
+          // PRECIO
+          $p->publica_precio = 1;
+          $p->precio_final = 0;
+          foreach($operacion->prices as $precio) {
+            if ($precio->price > 0) {
+              if ($precio->currency == "USD") $p->moneda = 'U$S';
+              else $p->moneda = '$';
+              $p->precio_final = $precio->price;
+            }
           }
-        }
 
-        // TIPO PROPIEDAD
-        $tipo = $property->get_field("type");
-        $p->id_tipo_inmueble = 0;
-        if ($tipo->name == "Departamento") $p->id_tipo_inmueble = 2;
-        else if ($tipo->name == "Casa") $p->id_tipo_inmueble = 1;
-        else if ($tipo->name == "Terreno") $p->id_tipo_inmueble = 7;
-        else if ($tipo->name == "PH") $p->id_tipo_inmueble = 3;
-        else if ($tipo->name == "Local") $p->id_tipo_inmueble = 9;
-        else if ($tipo->name == "Galpón") $p->id_tipo_inmueble = 8;
-        else if ($tipo->name == "Oficina") $p->id_tipo_inmueble = 11;
-        else if ($tipo->name == "Cochera") $p->id_tipo_inmueble = 13;
-        else if ($tipo->name == "Fondo de Comercio") $p->id_tipo_inmueble = 10;
-        else if ($tipo->name == "Quinta") $p->id_tipo_inmueble = 5;        
-        else if ($tipo->name == "Campo") $p->id_tipo_inmueble = 6;
-        else {
-          // Si no esta definica el tipo de propiedad, lo ponemos como error
-          $errores[] = "ERROR NO SE ENCUENTRA TIPO INMUEBLE: <br/>".$tipo->name."<br/>";
-        }
-
-        // LOCALIDAD
-        $location = $property->get_field("location");
-        $p->id_localidad = 0;
-        $p->id_departamento = 0;
-        $p->id_provincia = 1;
-        $p->id_pais = 1;
-        if ($location->name == "La Plata" || $location->name == "Villa Parque Sicardi" || $location->id == 26524) $p->id_localidad = 513;
-        else if ($location->name == "City Bell") $p->id_localidad = 205;
-        else if ($location->name == "Berisso" || $location->name == "Los Talas") $p->id_localidad = 5492;
-        else if ($location->name == "Bme Bavio Gral Mansilla") $p->id_localidad = 111;
-        else if ($location->name == "Pilar") $p->id_localidad = 723;
-        else if ($location->name == "Manuel B Gonnet") $p->id_localidad = 396;
-        else if ($location->name == "Tolosa") $p->id_localidad = 900;
-        else if ($location->name == "Villa Elvira") $p->id_localidad = 5117;
-        else if ($location->name == "Abasto") $p->id_localidad = 10;
-        else if ($location->name == "Costa Esmeralda") $p->id_localidad = 3249;
-        else if ($location->name == "Ringuelet") $p->id_localidad = 776;
-        else if ($location->name == "Nueva Hermosura") $p->id_localidad = 5506;
-        else if ($location->name == "San Bernardo Del Tuyu") $p->id_localidad = 812;
-        else if ($location->name == "Mar Del Tuyu") $p->id_localidad = 601;
-        else if ($location->name == "San Clemente Del Tuyu") $p->id_localidad = 815;
-        else if ($location->name == "Ensenada") $p->id_localidad = 312;
-        else if ($location->name == "Villa Gesell") $p->id_localidad = 951;
-        else if ($location->name == "Necochea") $p->id_localidad = 655;
-        else if ($location->name == "Mar De Ajo") $p->id_localidad = 599;
-        else if (strpos(mb_strtolower($location->short_location), "punta del este") !== FALSE) $p->id_localidad = 5499;
-        else if ($location->name == "Los Hornos") $p->id_localidad = 5504;
-        else if ($location->name == "Joaquin Gorina") $p->id_localidad = 401;
-        else if ($location->name == "Lisandro Olmos Etcheverry") $p->id_localidad = 674;
-        else if ($location->name == "Guillermo E Hudson" || strpos($location->full_location, "Guillermo E Hudson") !== FALSE) $p->id_localidad = 431;
-        else if ($location->name == "Coronel Brandsen" || strpos($location->full_location, "Coronel Brandsen") !== FALSE) $p->id_localidad = 231;
-        
-        else if ($location->name == "Miami Beach") $p->id_localidad = 5500;
-        else if ($location->name == "El Palmar") $p->id_localidad = 5511;
-
-        // Si no se encuentra el nombre exacto, pero la ubicacion completa contiene el nombre de La Plata
-        else if (strpos($location->full_location, "La Plata") !== FALSE) $p->id_localidad = 513;
-
-        else {
-          // Sino buscamos por nombre
-          $sql = "SELECT L.*, D.id_provincia, D.id AS id_departamento, P.id_pais ";
-          $sql.= " FROM com_localidades L ";
-          $sql.= " INNER JOIN com_departamentos D ON (L.id_departamento = D.id) ";
-          $sql.= " INNER JOIN com_provincias P ON (D.id_provincia = P.id) ";
-          $sql.= "WHERE L.nombre = '$location->name' LIMIT 0,1 ";
-          $qq = $this->db->query($sql);
-          if ($qq->num_rows() > 0) {
-            $rr = $qq->row();
-            $p->id_localidad = $rr->id;
-            $p->id_departamento = $rr->id_departamento;
-            $p->id_provincia = $rr->id_provincia;
-            $p->id_pais = $rr->id_pais;
+          // TIPO PROPIEDAD
+          $tipo = $property->get_field("type");
+          $p->id_tipo_inmueble = 0;
+          if ($tipo->name == "Departamento") $p->id_tipo_inmueble = 2;
+          else if ($tipo->name == "Casa") $p->id_tipo_inmueble = 1;
+          else if ($tipo->name == "Terreno") $p->id_tipo_inmueble = 7;
+          else if ($tipo->name == "PH") $p->id_tipo_inmueble = 3;
+          else if ($tipo->name == "Local") $p->id_tipo_inmueble = 9;
+          else if ($tipo->name == "Galpón") $p->id_tipo_inmueble = 8;
+          else if ($tipo->name == "Oficina") $p->id_tipo_inmueble = 11;
+          else if ($tipo->name == "Cochera") $p->id_tipo_inmueble = 13;
+          else if ($tipo->name == "Fondo de Comercio") $p->id_tipo_inmueble = 10;
+          else if ($tipo->name == "Quinta") $p->id_tipo_inmueble = 5;        
+          else if ($tipo->name == "Campo") $p->id_tipo_inmueble = 6;
+          else if ($tipo->name == "Depósito") $p->id_tipo_inmueble = 18;
+          else if ($tipo->name == "Edificio Comercial") $p->id_tipo_inmueble = 23;
+          else if ($tipo->name == "Hotel") $p->id_tipo_inmueble = 24;
+          else if ($tipo->name == "Nave Industrial") $p->id_tipo_inmueble = 19;
+          else {
+            // Si no esta definica el tipo de propiedad, lo ponemos como error
+            $errores[] = "ERROR NO SE ENCUENTRA TIPO INMUEBLE: <br/>".$tipo->name."<br/>";
           }
-        }
 
-        // Si no se encontro una localidad, lo ponemos como error
-        if (empty($p->id_localidad)) {
-          $errores[] = "ERROR NO SE ENCUENTRA LOCALIDAD: <br/>".$location->name."<br/>";
-        } else {
-          // Obtenemos los otros datos de la localidad para estar seguros de que completamos todos los datos de ubicacion en el panel
-          $sql = "SELECT L.*, D.id_provincia, D.id AS id_departamento, P.id_pais ";
-          $sql.= " FROM com_localidades L ";
-          $sql.= " INNER JOIN com_departamentos D ON (L.id_departamento = D.id) ";
-          $sql.= " INNER JOIN com_provincias P ON (D.id_provincia = P.id) ";
-          $sql.= "WHERE L.id = $p->id_localidad LIMIT 0,1 ";
-          $qq = $this->db->query($sql);
-          if ($qq->num_rows() > 0) {
-            $rr = $qq->row();
-            $p->id_departamento = $rr->id_departamento;
-            $p->id_provincia = $rr->id_provincia;
-            $p->id_pais = $rr->id_pais;
+          // LOCALIDAD
+          $location = $property->get_field("location");
+          $p->id_localidad = 0;
+          $p->id_departamento = 0;
+          $p->id_provincia = 1;
+          $p->id_pais = 1;
+          if ($location->name == "La Plata" || $location->name == "Villa Parque Sicardi" || $location->id == 26524) $p->id_localidad = 513;
+          else if ($location->name == "City Bell") $p->id_localidad = 205;
+          else if ($location->name == "Berisso" || $location->name == "Los Talas") $p->id_localidad = 5492;
+          else if ($location->name == "Bme Bavio Gral Mansilla") $p->id_localidad = 111;
+          else if ($location->name == "Pilar") $p->id_localidad = 723;
+          else if ($location->name == "Manuel B Gonnet") $p->id_localidad = 396;
+          else if ($location->name == "Tolosa") $p->id_localidad = 900;
+          else if ($location->name == "Villa Elvira") $p->id_localidad = 5117;
+          else if ($location->name == "Abasto") $p->id_localidad = 10;
+          else if ($location->name == "Costa Esmeralda") $p->id_localidad = 3249;
+          else if ($location->name == "Ringuelet") $p->id_localidad = 776;
+          else if ($location->name == "Nueva Hermosura") $p->id_localidad = 5506;
+          else if ($location->name == "San Bernardo Del Tuyu") $p->id_localidad = 812;
+          else if ($location->name == "Mar Del Tuyu") $p->id_localidad = 601;
+          else if ($location->name == "San Clemente Del Tuyu") $p->id_localidad = 815;
+          else if ($location->name == "Ensenada") $p->id_localidad = 312;
+          else if ($location->name == "Villa Gesell") $p->id_localidad = 951;
+          else if ($location->name == "Necochea") $p->id_localidad = 655;
+          else if ($location->name == "Mar De Ajo") $p->id_localidad = 599;
+          else if (strpos(mb_strtolower($location->short_location), "punta del este") !== FALSE) $p->id_localidad = 5499;
+          else if ($location->name == "Los Hornos") $p->id_localidad = 5504;
+          else if ($location->name == "Joaquin Gorina") $p->id_localidad = 401;
+          else if ($location->name == "Lisandro Olmos Etcheverry") $p->id_localidad = 674;
+          else if ($location->name == "Guillermo E Hudson" || strpos($location->full_location, "Guillermo E Hudson") !== FALSE) $p->id_localidad = 431;
+          else if ($location->name == "Coronel Brandsen" || strpos($location->full_location, "Coronel Brandsen") !== FALSE) $p->id_localidad = 231;
+          
+          else if ($location->name == "Miami Beach") $p->id_localidad = 5500;
+          else if ($location->name == "El Palmar") $p->id_localidad = 5511;
+          else if (strpos(mb_strtolower($location->short_location), "palermo soho") !== FALSE) $p->id_localidad = 5482;
+          else if (strpos(mb_strtolower($location->short_location), "flores sur") !== FALSE) $p->id_localidad = 5478;
+          else if (strpos(mb_strtolower($location->short_location), "palermo hollywood") !== FALSE) $p->id_localidad = 5482;
+
+          /*
+          else if (strpos(mb_strtolower($location->short_location), "villa lila") !== FALSE) $p->id_localidad = 5499;
+          else if (strpos(mb_strtolower($location->short_location), "mar de las pampas") !== FALSE) $p->id_localidad = 5499;
+          else if (strpos(mb_strtolower($location->short_location), "costa del este") !== FALSE) $p->id_localidad = 5499;
+          else if (strpos(mb_strtolower($location->short_location), "centro") !== FALSE) $p->id_localidad = 5499;
+          else if (strpos(mb_strtolower($location->short_location), "punta ballena") !== FALSE) $p->id_localidad = 5499;
+          else if (strpos(mb_strtolower($location->short_location), "botanico") !== FALSE) $p->id_localidad = 5499;
+          else if (strpos(mb_strtolower($location->short_location), "hollywood") !== FALSE) $p->id_localidad = 5499;
+          else if (strpos(mb_strtolower($location->short_location), "carlos keen") !== FALSE) $p->id_localidad = 5499;
+          else if (strpos(mb_strtolower($location->short_location), "abril club de campo") !== FALSE) $p->id_localidad = 5499;
+          else if (strpos(mb_strtolower($location->short_location), "brickell") !== FALSE) $p->id_localidad = 5499;
+          else if (strpos(mb_strtolower($location->short_location), "hallandale") !== FALSE) $p->id_localidad = 5499;
+          else if (strpos(mb_strtolower($location->short_location), "jose ferrari") !== FALSE) $p->id_localidad = 5499;
+          else if (strpos(mb_strtolower($location->short_location), "club el carmen") !== FALSE) $p->id_localidad = 5499;
+          else if (strpos(mb_strtolower($location->short_location), "centro (capital federal)") !== FALSE) $p->id_localidad = 5499;
+          else if (strpos(mb_strtolower($location->short_location), "microcentro") !== FALSE) $p->id_localidad = 5499;
+          else if (strpos(mb_strtolower($location->short_location), "cordón") !== FALSE) $p->id_localidad = 5499;
+          else if (strpos(mb_strtolower($location->short_location), "villa libertador san martin") !== FALSE) $p->id_localidad = 5499;
+          else if (strpos(mb_strtolower($location->short_location), "colonia del sacramento") !== FALSE) $p->id_localidad = 5499;
+          else if (strpos(mb_strtolower($location->short_location), "congreso") !== FALSE) $p->id_localidad = 5499;
+          else if (strpos(mb_strtolower($location->short_location), "pereyra") !== FALSE) $p->id_localidad = 5499;
+          */
+
+          // Si no se encuentra el nombre exacto, pero la ubicacion completa contiene el nombre de La Plata
+          else if (strpos($location->full_location, "La Plata") !== FALSE) $p->id_localidad = 513;
+
+          else {
+            // Sino buscamos por nombre
+            $sql = "SELECT L.*, D.id_provincia, D.id AS id_departamento, P.id_pais ";
+            $sql.= " FROM com_localidades L ";
+            $sql.= " INNER JOIN com_departamentos D ON (L.id_departamento = D.id) ";
+            $sql.= " INNER JOIN com_provincias P ON (D.id_provincia = P.id) ";
+            $sql.= "WHERE L.nombre = '$location->name' LIMIT 0,1 ";
+            $qq = $this->db->query($sql);
+            if ($qq->num_rows() > 0) {
+              $rr = $qq->row();
+              $p->id_localidad = $rr->id;
+              $p->id_departamento = $rr->id_departamento;
+              $p->id_provincia = $rr->id_provincia;
+              $p->id_pais = $rr->id_pais;
+            }
           }
-        }
 
-        $p->images = array();
-        $images = $property->get_field("photos");
-        if (sizeof($images)>0) {
-          $ppal = $images[0];
-          $p->path = $ppal->image;
-          foreach($images as $im) {
-            if (empty($im->image)) continue;
-            $p->images[] = $im->image;
-          }
-        }
-
-        // Consultamos si la propiedad ya esta subida
-        $sql = "SELECT * FROM inm_propiedades WHERE tokko_id = '".$property->get_field("id")."' AND id_empresa = $id_empresa ";
-        $q = $this->db->query($sql);
-        $p->no_controlar_plan = 1;
-        try {
-          if ($q->num_rows()>0) {
-            $r = $q->row();
-            $p->id = $r->id;
-            $p->id_empresa = $id_empresa;
-            $p->no_controlar_codigo = 1;
-            $this->Propiedad_Model->save($p);
-            $cant_update++;
+          // Si no se encontro una localidad, lo ponemos como error
+          if (empty($p->id_localidad)) {
+            $errores[] = "ERROR NO SE ENCUENTRA LOCALIDAD: <br/>".$location->name."<br/>";
           } else {
-            $p->fecha_ingreso = date("Y-m-d");
-            $p->fecha_publicacion = date("Y-m-d");
-            $p->id_empresa = $id_empresa;
-            // Si se inserta la primera vez, si es venta ya va compartida a la red
-            if ($p->id_tipo_operacion == 1) $p->compartida = 1;
-
-            // Problema: El codigo de tokko es alfanumerico, y al convertirse en int da 0
-            // $p->codigo_tokko = $p->codigo;
-            // $p->codigo = $this->Propiedad_Model->next(array(
-            //   "id_empresa"=>$id_empresa,
-            // ));
-
-            $p->id = $this->Propiedad_Model->save($p);
-            $cant_insert++;
+            // Obtenemos los otros datos de la localidad para estar seguros de que completamos todos los datos de ubicacion en el panel
+            $sql = "SELECT L.*, D.id_provincia, D.id AS id_departamento, P.id_pais ";
+            $sql.= " FROM com_localidades L ";
+            $sql.= " INNER JOIN com_departamentos D ON (L.id_departamento = D.id) ";
+            $sql.= " INNER JOIN com_provincias P ON (D.id_provincia = P.id) ";
+            $sql.= "WHERE L.id = $p->id_localidad LIMIT 0,1 ";
+            $qq = $this->db->query($sql);
+            if ($qq->num_rows() > 0) {
+              $rr = $qq->row();
+              $p->id_departamento = $rr->id_departamento;
+              $p->id_provincia = $rr->id_provincia;
+              $p->id_pais = $rr->id_pais;
+            }
           }
 
-        } catch(Exception $e) {
-          $errores[] = $e->getMessage();
-        }
+          $p->images = array();
+          $images = $property->get_field("photos");
+          if (sizeof($images)>0) {
+            $ppal = $images[0];
+            $p->path = $ppal->image;
+            foreach($images as $im) {
+              if (empty($im->image)) continue;
+              $p->images[] = $im->image;
+            }
+          }
 
+          // Consultamos si la propiedad ya esta subida
+          $sql = "SELECT * FROM inm_propiedades WHERE tokko_id = '".$property->get_field("id")."' AND id_empresa = $id_empresa ";
+          $q = $this->db->query($sql);
+          $p->no_controlar_plan = 1;
+          try {
+            if ($q->num_rows()>0) {
+              $r = $q->row();
+              $p->id = $r->id;
+              $p->id_empresa = $id_empresa;
+              $p->no_controlar_codigo = 1;
+              $this->Propiedad_Model->save($p);
+              $cant_update++;
+            } else {
+              $p->fecha_ingreso = date("Y-m-d");
+              $p->fecha_publicacion = date("Y-m-d");
+              $p->id_empresa = $id_empresa;
+              // Si se inserta la primera vez, si es venta ya va compartida a la red
+              if ($p->id_tipo_operacion == 1) $p->compartida = 1;
+
+              // Problema: El codigo de tokko es alfanumerico, y al convertirse en int da 0
+              // $p->codigo_tokko = $p->codigo;
+              // $p->codigo = $this->Propiedad_Model->next(array(
+              //   "id_empresa"=>$id_empresa,
+              // ));
+
+              $p->id = $this->Propiedad_Model->save($p);
+              $cant_insert++;
+            }
+
+          } catch(Exception $e) {
+            $errores[] = $e->getMessage();
+          }
+
+        }
       }
+    } catch(Exception $e) {
+      $errores[] = $e->getMessage();
     }
     // Si hay errores, nos lo mandamos por email
     if (sizeof($errores)>0) {
