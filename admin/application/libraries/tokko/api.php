@@ -6,7 +6,7 @@ class TokkoWebContact
    var $BASE_SEND_URL = "http://tokkobroker.com/api/v1/webcontact/?key=";
    var $data = null;
 
-   function TokkoWebContact($auth = null, $data=array()){
+   function __construct($auth = null, $data=array()){
        $this->auth = $auth;
        $this->data = $data;
    }
@@ -38,7 +38,7 @@ class TokkoSearchForm
    var $selectors=array();
    var $filters = array();
 
-   function TokkoSearchForm($auth = null){
+   function __construct($auth = null){
        $this->auth = $auth;
    }
 
@@ -500,7 +500,7 @@ class TokkoPropertyTypes
    var $auth = null;
    var $property_types = array();
    
-   function TokkoPropertyTypes($auth, $filter=null){
+   function __construct($auth, $filter=null){
        try {
            $this->auth = $auth;
            $data = json_decode(file_get_contents($this->BASE_URL . "?lang=". $this->auth->get_language() . "&key=". $this->auth->key))->objects;
@@ -555,7 +555,7 @@ class TokkoCountries
    var $select_box_id = '';
    var $child = null;
    var $type='country';
-   function TokkoCountries(){
+   function __construct(){
        try {
            $this->countries = json_decode(file_get_contents($this->BASE_URL))->objects;
        }catch (Exception $e) {
@@ -599,7 +599,7 @@ class TokkoStates
        }
    }
 
-   function TokkoStates($country_id=null){
+   function __construct($country_id=null){
        if ($country_id){
            $this->country_id = $country_id;
            $this->load_states();
@@ -715,7 +715,7 @@ class TokkoDivisions
        }
    }
 
-   function TokkoDivisions($state_id=null, $division_id=null){
+   function __construct($state_id=null, $division_id=null){
        if ($state_id){
            $this->state_id = $state_id;
            $this->load_divisions();
@@ -932,7 +932,7 @@ class TokkoDevelopmentList
       }
   }
 
-  function TokkoDevelopmentList($auth=null){
+  function __construct($auth=null){
           $this->auth = $auth;
   }
 
@@ -1120,7 +1120,7 @@ class TokkoDevelopment
 {
    var $data = null;
    var $BASE_URL = "http://www.tokkobroker.com/api/v1/development/";
-   function TokkoDevelopment($get_type, $data, $auth=null){
+   function __construct($get_type, $data, $auth=null){
        if ($get_type == 'object'){
            $this->data = $data;
        }
@@ -1182,7 +1182,7 @@ class TokkoProperty
 {
    var $data = null;
    var $BASE_URL = "http://www.tokkobroker.com/api/v1/property/";
-   function TokkoProperty($get_type, $data, $auth=null){
+   function __construct($get_type, $data, $auth=null){
        if ($get_type == 'object'){
            $this->data = $data;
        }
@@ -1381,7 +1381,7 @@ class TokkoAuth
     var $default_lang = "es_ar";
     var $current_lang = "es_ar";
 
-    function TokkoAuth($key, $lang="es_ar"){
+    function __construct($key, $lang="es_ar"){
         $this->key = $key;
         $this->default_lang = $lang;
     }
@@ -1636,7 +1636,7 @@ class TokkoSearch
         return $this->current_search_order;
     }
 
-    function TokkoSearch($auth, $search_data=null) {
+    function __construct($auth, $search_data=null) {
         $this->auth = $auth;
         if ($search_data == null){
             try{
