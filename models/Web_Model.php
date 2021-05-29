@@ -339,6 +339,7 @@ class Web_Model {
     $q = mysqli_query($this->conx,$sql);
     if (mysqli_num_rows($q)>0) {
       $row = mysqli_fetch_object($q);
+      if (empty($row->texto)) $row->texto = "Lorep Ipsum";
       $texto = $row->texto;
       $row->texto = (html_entity_decode($texto,ENT_QUOTES));
       $row->plain_text = (strip_tags($texto,"<a><i><b><br>"));
