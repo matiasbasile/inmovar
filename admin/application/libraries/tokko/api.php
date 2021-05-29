@@ -899,7 +899,7 @@ class TokkoDevelopmentList
                 $cp = curl_init();
                 curl_setopt($cp, CURLOPT_RETURNTRANSFER, 1);
                 curl_setopt($cp, CURLOPT_URL, $url);
-                curl_setopt($cp, CURLOPT_TIMEOUT, 60);
+                curl_setopt($cp, CURLOPT_TIMEOUT, 600);
                 $this->data = json_decode(curl_exec($cp));
                 curl_close($cp);
             } catch (Exception $e) {
@@ -924,7 +924,7 @@ class TokkoDevelopmentList
           $cp = curl_init();
           curl_setopt($cp, CURLOPT_RETURNTRANSFER, 1);
           curl_setopt($cp, CURLOPT_URL, $url);
-          curl_setopt($cp, CURLOPT_TIMEOUT, 60);
+          curl_setopt($cp, CURLOPT_TIMEOUT, 600);
           $this->data = json_decode(curl_exec($cp));
           curl_close($cp);
       } catch (Exception $e) {
@@ -1108,7 +1108,7 @@ class TokkoDevelopmentList
     $cp = curl_init();
     curl_setopt($cp, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($cp, CURLOPT_URL, $url);
-    curl_setopt($cp, CURLOPT_TIMEOUT, 60);
+    curl_setopt($cp, CURLOPT_TIMEOUT, 600);
     $this->summary = json_decode(curl_exec($cp));
     curl_close($cp);
   }
@@ -1131,7 +1131,7 @@ class TokkoDevelopment
                $cp = curl_init();
                curl_setopt($cp, CURLOPT_RETURNTRANSFER, 1);
                curl_setopt($cp, CURLOPT_URL, $url);
-               curl_setopt($cp, CURLOPT_TIMEOUT, 60);
+               curl_setopt($cp, CURLOPT_TIMEOUT, 600);
                $this->data = json_decode(curl_exec($cp));
                curl_close($cp);
            }
@@ -1193,7 +1193,7 @@ class TokkoProperty
                $cp = curl_init();
                curl_setopt($cp, CURLOPT_RETURNTRANSFER, 1);
                curl_setopt($cp, CURLOPT_URL, $url);
-               curl_setopt($cp, CURLOPT_TIMEOUT, 60);
+               curl_setopt($cp, CURLOPT_TIMEOUT, 600);
                $this->data = json_decode(curl_exec($cp));
                curl_close($cp);
            }
@@ -1203,7 +1203,7 @@ class TokkoProperty
                $cp = curl_init();
                curl_setopt($cp, CURLOPT_RETURNTRANSFER, 1);
                curl_setopt($cp, CURLOPT_URL, $url);
-               curl_setopt($cp, CURLOPT_TIMEOUT, 60);
+               curl_setopt($cp, CURLOPT_TIMEOUT, 600);
                $this->data = json_decode(curl_exec($cp))->objects[0];
                curl_close($cp);
            }
@@ -1452,7 +1452,7 @@ class TokkoSearch
                 $cp = curl_init();
                 curl_setopt($cp, CURLOPT_RETURNTRANSFER, 1);
                 curl_setopt($cp, CURLOPT_URL, $url);
-                curl_setopt($cp, CURLOPT_TIMEOUT, 60);
+                curl_setopt($cp, CURLOPT_TIMEOUT, 600);
                 $this->summary = json_decode(curl_exec($cp));
                 curl_close($cp);
             } catch (Exception $e) {
@@ -1486,7 +1486,7 @@ class TokkoSearch
                 $cp = curl_init();
                 curl_setopt($cp, CURLOPT_RETURNTRANSFER, 1);
                 curl_setopt($cp, CURLOPT_URL, $url);
-                curl_setopt($cp, CURLOPT_TIMEOUT, 60);
+                curl_setopt($cp, CURLOPT_TIMEOUT, 600);
                 $this->properties_by_location = json_decode(curl_exec($cp));
                 curl_close($cp);
 
@@ -1665,7 +1665,7 @@ class TokkoSearch
                 $cp = curl_init();
                 curl_setopt($cp, CURLOPT_RETURNTRANSFER, 1);
                 curl_setopt($cp, CURLOPT_URL, $url);
-                curl_setopt($cp, CURLOPT_TIMEOUT, 60);
+                curl_setopt($cp, CURLOPT_TIMEOUT, 600);
                 $this->search_results = json_decode(curl_exec($cp));
                 curl_close($cp);
             } catch (Exception $e) {
