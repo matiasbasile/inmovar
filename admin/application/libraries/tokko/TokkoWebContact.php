@@ -6,7 +6,7 @@ class TokkoWebContact
    var $BASE_SEND_URL = "http://tokkobroker.com/api/v1/webcontact/?key=";
    var $data = null;
 
-   function TokkoWebContact($auth = null, $data=array()){
+   function __construct($auth = null, $data=array()){
        $this->auth = $auth;
        $this->data = $data;
    }
