@@ -1628,9 +1628,10 @@ class Propiedades extends REST_Controller {
         else if ($tipo->name == "Cochera") $p->id_tipo_inmueble = 13;
         else if ($tipo->name == "Fondo de Comercio") $p->id_tipo_inmueble = 10;
         else if ($tipo->name == "Quinta") $p->id_tipo_inmueble = 5;        
+        else if ($tipo->name == "Campo") $p->id_tipo_inmueble = 6;
         else {
           // Si no esta definica el tipo de propiedad, lo ponemos como error
-          $errores[] = "ERROR NO SE ENCUENTRA TIPO INMUEBLE: <br/>".print_r($property,TRUE)."<br/>";
+          $errores[] = "ERROR NO SE ENCUENTRA TIPO INMUEBLE: <br/>".$tipo->name."<br/>";
         }
 
         // LOCALIDAD
@@ -1690,7 +1691,7 @@ class Propiedades extends REST_Controller {
 
         // Si no se encontro una localidad, lo ponemos como error
         if (empty($p->id_localidad)) {
-          $errores[] = "ERROR NO SE ENCUENTRA LOCALIDAD: <br/>".print_r($property,TRUE)."<br/>";
+          $errores[] = "ERROR NO SE ENCUENTRA LOCALIDAD: <br/>".$location->name."<br/>";
         } else {
           // Obtenemos los otros datos de la localidad para estar seguros de que completamos todos los datos de ubicacion en el panel
           $sql = "SELECT L.*, D.id_provincia, D.id AS id_departamento, P.id_pais ";
