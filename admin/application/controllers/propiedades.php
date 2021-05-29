@@ -1506,6 +1506,7 @@ class Propiedades extends REST_Controller {
   // IMPORTACION DE PROPIEDADES DE TOKKO BROKERS
   // Esta funcion se ejecuta en un cronjob
   function importar_tokko($id_empresa = 0) {
+    set_time_limit(0);
     include_once APPPATH.'libraries/tokko/api.php';
     // Buscamos todas las empresas que tengan la importacion automatica de TOKKO
     $sql = "SELECT id_empresa, tokko_apikey FROM web_configuracion ";

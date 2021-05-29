@@ -1660,6 +1660,7 @@ class TokkoSearch
 
                 $url = $this->BASE_SEARCH_URL . "order_by=" . $order_by ."&order=". $order ."&format=". $this->results_format ."&key=". $this->auth->key ."&lang=". $this->auth->get_language() ."&limit=". $limit ."&offset=" . $this->get_search_offset() . "&data=" . json_encode($this->search_data);
                 $url = str_replace(" ","%20",$url);
+                file_put_contents("tokko_log.txt", $url."\n", FILE_APPEND);
 
                 $cp = curl_init();
                 curl_setopt($cp, CURLOPT_RETURNTRANSFER, 1);
