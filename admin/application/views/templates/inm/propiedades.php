@@ -345,10 +345,10 @@
 
       <td class="tar td_acciones">
         
-        <i <%= (!edicion)?"disabled":"" %> data-toggle="tooltip" title="Activa en Web" class="fa-check iconito fa activo <%= (activo == 1)?"active":"" %>"></i>
+        <i <%= (!edicion)?"disabled":"" %> data-toggle="tooltip" title="Activa en mi Web" class="fa-check iconito fa activo <%= (activo == 1)?"active":"" %>"></i>
         <i <%= (!edicion)?"disabled":"" %> data-toggle="tooltip" title="Destacado" class="fa fa-star iconito warning destacado <%= (destacado == 1)?"active":"" %>"></i>
 
-        <i <%= (!edicion)?"disabled":"" %> data-toggle="tooltip" title="Compartida en Red Inmovar" class="fa fa-share-alt iconito compartida <%= (compartida == 1)?"active":"" %>"></i>
+        <i <%= (!edicion)?"disabled":"" %> data-toggle="tooltip" title="Compartida en Red Inmovar" class="fa fa-share-alt iconito compartida <%= (compartida >= 1)?"active":"" %>"></i>
         <i <%= (!edicion)?"disabled":"" %> data-toggle="tooltip" title="Compartida en Webs de colegas" class="fa fa-globe iconito compartida_2 <%= (compartida == 2)?"active":"" %>"></i>
 
         <div class="fr btn-group dropdown ml10">
