@@ -349,6 +349,8 @@
         <i <%= (!edicion)?"disabled":"" %> data-toggle="tooltip" title="Destacado" class="fa fa-star iconito warning destacado <%= (destacado == 1)?"active":"" %>"></i>
 
         <i <%= (!edicion)?"disabled":"" %> data-toggle="tooltip" title="Compartida en Red Inmovar" class="fa fa-share-alt iconito compartida <%= (compartida == 1)?"active":"" %>"></i>
+        <i <%= (!edicion)?"disabled":"" %> data-toggle="tooltip" title="Compartida en Webs de colegas" class="fa fa-globe iconito compartida_2 <%= (compartida == 2)?"active":"" %>"></i>
+
         <div class="fr btn-group dropdown ml10">
           <i title="Opciones" class="iconito text-muted-2 fa fa-caret-down dropdown-toggle" data-toggle="dropdown"></i>
           <ul class="dropdown-menu pull-right">

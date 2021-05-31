@@ -626,7 +626,7 @@ class Propiedad_Model {
         $sql.= "  AND BL.id_empresa_propiedad = $id_empresa ";
         $sql.= ") ";
         // Que este compartida
-        $sql.= " AND A.compartida = 1 ";
+        $sql.= " AND A.compartida = 2 "; // 2 = compartida en webs de colegas
         // Que este activa
         $sql.= " AND A.id_tipo_estado NOT IN (2,3,4,6) ";
         $sql.= " AND A.activo = 1 ";
@@ -1052,7 +1052,7 @@ class Propiedad_Model {
         $sql.= " AND BL.id_empresa_propiedad = A.id_empresa ";
         $sql.= ") ";
         // Que este compartida
-        $sql.= " AND A.compartida = 1 ";
+        $sql.= " AND A.compartida = 2 "; // 2 compartida en webs de colegas
         // Que este activa
         $sql.= " AND A.id_tipo_estado NOT IN (2,3,4,6) ";
         $sql.= " AND A.activo = 1 ) ";
