@@ -1174,10 +1174,6 @@
         if($(e.currentTarget).attr("disabled") == "disabled") return;
         var compartida = this.model.get("compartida");
         compartida = (compartida == 1)?0:1;
-        if (compartida == 0) {
-          // Deshabilitamos el compartida_2
-          this.$(".compartida_2").removeClass("active");
-        }
         self.model.set({"compartida":compartida});
         this.change_property({
           "table":"inm_propiedades",
@@ -1197,11 +1193,7 @@
         e.preventDefault();
         if($(e.currentTarget).attr("disabled") == "disabled") return;
         var compartida = this.model.get("compartida");
-        compartida = (compartida == 2)?0:2;
-        if (compartida == 0) {
-          // Deshabilitamos el compartida
-          this.$(".compartida").removeClass("active");
-        }        
+        compartida = (compartida == 2)?1:2;
         self.model.set({"compartida":compartida});
         this.change_property({
           "table":"inm_propiedades",
