@@ -1737,7 +1737,7 @@ class Propiedad_Model extends Abstract_Model {
       $sql.= " FROM com_localidades L ";
       $sql.= " INNER JOIN com_departamentos D ON (L.id_departamento = D.id) ";
       $sql.= " INNER JOIN com_provincias P ON (D.id_provincia = P.id) ";
-      $sql.= "WHERE L.nombre = '%$localidad%' LIMIT 0,1 ";
+      $sql.= "WHERE L.nombre LIKE '%$localidad%' LIMIT 0,1 ";
       $qq = $this->db->query($sql);
       if ($qq->num_rows() > 0) {
         $rr = $qq->row();
