@@ -1173,7 +1173,7 @@
         e.preventDefault();
         if($(e.currentTarget).attr("disabled") == "disabled") return;
         var compartida = this.model.get("compartida");
-        compartida = (compartida == 1)?0:1;
+        compartida = (compartida >= 1)?0:1;
         self.model.set({"compartida":compartida});
         this.change_property({
           "table":"inm_propiedades",
