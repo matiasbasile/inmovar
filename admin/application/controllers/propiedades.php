@@ -2527,6 +2527,14 @@ class Propiedades extends REST_Controller {
         $propiedad->id_tipo_inmueble = 8;
       } else if (strpos($propiedad->nombre, "Local") !== FALSE) {
         $propiedad->id_tipo_inmueble = 9;
+      } else if (strpos(mb_strtolower($propiedad->nombre), "fondo de comercio") !== FALSE) {
+        $propiedad->id_tipo_inmueble = 10;
+      } else if (strpos(mb_strtolower($propiedad->nombre), "fracciones") !== FALSE) {
+        $propiedad->id_tipo_inmueble = 25;
+      } else if (strpos(mb_strtolower($propiedad->nombre), "hotel") !== FALSE) {
+        $propiedad->id_tipo_inmueble = 24;
+      } else if (strpos(mb_strtolower($propiedad->nombre), "haras") !== FALSE) {
+        $propiedad->id_tipo_inmueble = 26;
       } else if (strpos($propiedad->nombre, "Oficina") !== FALSE) {
         $propiedad->id_tipo_inmueble = 11;
       } else if (strpos($propiedad->nombre, "Cochera") !== FALSE) {
@@ -2683,9 +2691,57 @@ class Propiedades extends REST_Controller {
       } else if (strpos(strtolower($propiedad->ciudad), "magdalena") !== FALSE) {
         $propiedad->id_localidad = 591;
         $propiedad->id_departamento = 36;
+      } else if (strpos(strtolower($propiedad->ciudad), "punta indio") !== FALSE) {
+        $propiedad->id_localidad = 752;
+        $propiedad->id_departamento = 36;
       } else if (strpos(strtolower($propiedad->ciudad), "haras del sur") !== FALSE) {
         $propiedad->id_localidad = 513;
         $propiedad->id_departamento = 9;
+      } else if (strpos(strtolower($propiedad->ciudad), "villa gesell") !== FALSE) {
+        $propiedad->id_localidad = 951;
+        $propiedad->id_departamento = 713;
+      } else if (strpos(strtolower($propiedad->ciudad), "chascomus") !== FALSE) {
+        $propiedad->id_localidad = 197;
+        $propiedad->id_departamento = 15;
+      } else if (strpos(strtolower($propiedad->ciudad), "general belgrano") !== FALSE) {
+        $propiedad->id_localidad = 360;
+        $propiedad->id_departamento = 97;
+      } else if (strpos(strtolower($propiedad->ciudad), "san rafael") !== FALSE) {
+        $propiedad->id_localidad = 3331;
+        $propiedad->id_departamento = 355;
+      } else if (strpos(strtolower($propiedad->ciudad), "punta indio") !== FALSE) {
+        $propiedad->id_localidad = 752;
+        $propiedad->id_departamento = 36;
+      } else if (strpos(strtolower($propiedad->ciudad), "los cocos") !== FALSE) {
+        $propiedad->id_localidad = 1829;
+        $propiedad->id_departamento = 207;
+      } else if (strpos(strtolower($propiedad->ciudad), "veronica") !== FALSE) {
+        $propiedad->id_localidad = 928;
+        $propiedad->id_departamento = 36;
+      } else if (strpos(strtolower($propiedad->ciudad), "puerto madero") !== FALSE) {
+        $propiedad->id_localidad = 5440;
+        $propiedad->id_departamento = 574;
+        $propiedad->id_barrio = 97;
+      } else if (strpos(strtolower($propiedad->ciudad), "nuñez") !== FALSE) {
+        $propiedad->id_localidad = 5440;
+        $propiedad->id_departamento = 574;
+        $propiedad->id_barrio = 66;
+      } else {
+        // Sino buscamos por nombre
+        $ciudad = mb_strtolower($propiedad->ciudad);
+        $sql = "SELECT L.*, D.id_provincia, D.id AS id_departamento, P.id_pais ";
+        $sql.= " FROM com_localidades L ";
+        $sql.= " INNER JOIN com_departamentos D ON (L.id_departamento = D.id) ";
+        $sql.= " INNER JOIN com_provincias P ON (D.id_provincia = P.id) ";
+        $sql.= "WHERE L.nombre = '$ciudad' LIMIT 0,1 ";
+        $qq = $this->db->query($sql);
+        if ($qq->num_rows() > 0) {
+          $rr = $qq->row();
+          $propiedad->id_localidad = $rr->id;
+          $propiedad->id_departamento = $rr->id_departamento;
+          $propiedad->id_provincia = $rr->id_provincia;
+          $propiedad->id_pais = $rr->id_pais;
+        }
       }
 
       // Analizamos algunos atributos mas
