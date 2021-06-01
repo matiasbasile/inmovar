@@ -1718,6 +1718,21 @@ class Propiedad_Model extends Abstract_Model {
     } else if (strpos(strtolower($propiedad->ciudad), "veronica") !== FALSE) {
       $propiedad->id_localidad = 928;
       $propiedad->id_departamento = 36;
+    } else if (strpos(strtolower($propiedad->ciudad), "miralagos club de campo") !== FALSE) {
+      $propiedad->id_localidad = 513;
+      $propiedad->id_departamento = 9;
+    } else if (strpos(strtolower($propiedad->ciudad), "san bernardo") !== FALSE) {
+      $propiedad->id_localidad = 5509;
+      $propiedad->id_departamento = 711;
+    } else if (strpos(strtolower($propiedad->ciudad), "nueva atlantis") !== FALSE) {
+      $propiedad->id_localidad = 5509;
+      $propiedad->id_departamento = 711;
+    } else if (strpos(strtolower($propiedad->ciudad), "posada de los lagos") !== FALSE) {
+      $propiedad->id_localidad = 231;
+      $propiedad->id_departamento = 32;
+    } else if (strpos(strtolower($propiedad->ciudad), "guardia del monte") !== FALSE) {
+      $propiedad->id_localidad = 835;
+      $propiedad->id_departamento = 92;
     } else if (strpos(strtolower($propiedad->ciudad), "puerto madero") !== FALSE) {
       $propiedad->id_localidad = 5440;
       $propiedad->id_departamento = 574;
