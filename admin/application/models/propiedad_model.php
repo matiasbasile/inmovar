@@ -1728,12 +1728,15 @@ class Propiedad_Model extends Abstract_Model {
       $propiedad->id_barrio = 66;
     } else {
       // Sino buscamos por nombre
+      // En inmobusqueda, el nombre de la localidad esta como primera posicion hasta la coma
       $ciudad = mb_strtolower($propiedad->ciudad);
+      $localidad = explode(",", $ciudad);
+      $localidad = (sizeof($localidad)>0) ? $localidad[0] : $ciudad;
       $sql = "SELECT L.*, D.id_provincia, D.id AS id_departamento, P.id_pais ";
       $sql.= " FROM com_localidades L ";
       $sql.= " INNER JOIN com_departamentos D ON (L.id_departamento = D.id) ";
       $sql.= " INNER JOIN com_provincias P ON (D.id_provincia = P.id) ";
-      $sql.= "WHERE L.nombre = '$ciudad' LIMIT 0,1 ";
+      $sql.= "WHERE L.nombre = '$localidad' LIMIT 0,1 ";
       $qq = $this->db->query($sql);
       if ($qq->num_rows() > 0) {
         $rr = $qq->row();
