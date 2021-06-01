@@ -107,8 +107,8 @@
                 <th>Propiedad</th>
                 <th class="w150 sorting" data-sort-by="precio_final">Operación</th>
                 <th class="w150">Caract.</th>
-                <th></th>
-                <th class="th_acciones w150">Acciones</th>
+                <th class="w120"></th>
+                <th class="th_acciones w180">Acciones</th>
               </tr>
             </thead>
             <tbody class="tbody"></tbody>
@@ -877,7 +877,7 @@
               <th class="sorting" data-sort-by="telefono">Telefono</th>
               <th class="sorting" data-sort-by="celular">Celular</th>
               <% if (permiso > 1) { %>
-                <th class="w120 th_acciones">Acciones</th>
+                <th class="w100 th_acciones">Acciones</th>
               <% } %>
             </tr>
           </thead>
