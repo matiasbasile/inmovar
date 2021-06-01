@@ -34,7 +34,7 @@ class Propiedad_Model extends Abstract_Model {
     $sql.= "AND LOWER(altura) = '$altura' ";
     $sql.= "AND LOWER(piso) = '$piso' ";
     $sql.= "AND LOWER(numero) = '$numero' ";
-    $sql.= "AND compartida = 1 "; // Tiene que estar compartida en la RED
+    $sql.= "AND compartida >= 1 "; // Tiene que estar compartida en la RED
     $q = $this->db->query($sql);
     $this->load->model("Notificacion_Model");
     foreach($q->result() as $r) {
@@ -122,7 +122,7 @@ class Propiedad_Model extends Abstract_Model {
     $sql.= "WHERE A.activo = 1 "; // La propiedad tiene que estar activa
     $sql.= "AND E.activo = 1 ";   // y la empresa tambien
     $sql.= "AND A.id_tipo_estado NOT IN (2,3,4,6) ";
-    $sql.= "AND A.compartida = 1 ";
+    $sql.= "AND A.compartida >= 1 ";
     $q = $this->db->query($sql);
     $r = $q->row();
     return $r->cantidad;
@@ -135,7 +135,7 @@ class Propiedad_Model extends Abstract_Model {
     $sql.= "INNER JOIN empresas E ON (A.id_empresa = E.id) ";
     $sql.= "WHERE A.activo = 1 "; // La propiedad tiene que estar activa
     $sql.= "AND E.activo = 1 ";   // y la empresa tambien
-    $sql.= "AND A.compartida = 1 ";
+    $sql.= "AND A.compartida >= 1 ";
     $sql.= "AND A.id_tipo_estado NOT IN (2,3,4,6) ";
     $sql.= "AND (A.id_empresa IN (";
     $sql.= " SELECT PR.id_empresa FROM inm_permisos_red PR ";
@@ -564,7 +564,7 @@ class Propiedad_Model extends Abstract_Model {
     }
 
     // Bloque de SQL que identifica que estamos buscando en la red
-    $sql_red = "AND A.compartida = 1 "; // En primer lugar tiene que estar compartida
+    $sql_red = "AND A.compartida >= 1 "; // En primer lugar tiene que estar compartida
     $sql_red.= "AND A.activo = 1 "; // SIEMPRE BUSCA LAS ACTIVAS
     $sql_red.= "AND E.activo = 1 "; // LA EMPRESA TIENE QUE ESTAR ACTIVA
     $sql_red.= "AND A.id_tipo_estado NOT IN (2,3,4,6) "; // Tampoco tiene sentido buscar las vendidas o alquiladas
@@ -613,7 +613,7 @@ class Propiedad_Model extends Abstract_Model {
       else if ($filtro_olx == 2) $sql_where_2.= "AND A.olx_habilitado = 1 AND A.olx_id = '' ";
       else if ($filtro_olx == 0) $sql_where_2.= "AND A.olx_habilitado = 0 ";
 
-      if ($filtro_inmovar == 1) $sql_where_2.= "AND A.compartida = 1 ";
+      if ($filtro_inmovar == 1) $sql_where_2.= "AND A.compartida >= 1 ";
       else if ($filtro_inmovar == 0) $sql_where_2.= "AND A.compartida = 0 ";
 
       if ($filtro_inmobusquedas == 1) $sql_where_2.= "AND A.inmobusquedas_habilitado = 1 AND A.inmobusquedas_url != '' ";

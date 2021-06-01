@@ -107,8 +107,8 @@
                 <th>Propiedad</th>
                 <th class="w150 sorting" data-sort-by="precio_final">Operación</th>
                 <th class="w150">Caract.</th>
-                <th></th>
-                <th class="th_acciones w150">Acciones</th>
+                <th class="w120"></th>
+                <th class="th_acciones w180">Acciones</th>
               </tr>
             </thead>
             <tbody class="tbody"></tbody>
@@ -345,10 +345,12 @@
 
       <td class="tar td_acciones">
         
-        <i <%= (!edicion)?"disabled":"" %> data-toggle="tooltip" title="Activa en Web" class="fa-check iconito fa activo <%= (activo == 1)?"active":"" %>"></i>
+        <i <%= (!edicion)?"disabled":"" %> data-toggle="tooltip" title="Activa en mi Web" class="fa-check iconito fa activo <%= (activo == 1)?"active":"" %>"></i>
         <i <%= (!edicion)?"disabled":"" %> data-toggle="tooltip" title="Destacado" class="fa fa-star iconito warning destacado <%= (destacado == 1)?"active":"" %>"></i>
 
-        <i <%= (!edicion)?"disabled":"" %> data-toggle="tooltip" title="Compartida en Red Inmovar" class="fa fa-share-alt iconito compartida <%= (compartida == 1)?"active":"" %>"></i>
+        <i <%= (!edicion)?"disabled":"" %> data-toggle="tooltip" title="Compartida en Red Inmovar" class="fa fa-share-alt iconito compartida <%= (compartida >= 1)?"active":"" %>"></i>
+        <i <%= (!edicion)?"disabled":"" %> data-toggle="tooltip" title="Compartida en Webs de colegas" class="fa fa-globe iconito compartida_2 <%= (compartida == 2)?"active":"" %>"></i>
+
         <div class="fr btn-group dropdown ml10">
           <i title="Opciones" class="iconito text-muted-2 fa fa-caret-down dropdown-toggle" data-toggle="dropdown"></i>
           <ul class="dropdown-menu pull-right">

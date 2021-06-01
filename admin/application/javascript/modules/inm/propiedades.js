@@ -32,7 +32,7 @@
       numero: "",
       titulo: "", // Este campo no se guarda sino que se usa para mostrar nada mas
       subtitulo: "",
-      compartida: 1,
+      compartida: 2,
       entre_calles: "",
       entre_calles_2: "",
       valor_expensas: 0,
@@ -1173,7 +1173,27 @@
         e.preventDefault();
         if($(e.currentTarget).attr("disabled") == "disabled") return;
         var compartida = this.model.get("compartida");
-        compartida = (compartida == 1)?0:1;
+        compartida = (compartida >= 1)?0:1;
+        self.model.set({"compartida":compartida});
+        this.change_property({
+          "table":"inm_propiedades",
+          "url":"propiedades/function/change_property/",
+          "attribute":"compartida",
+          "value":compartida,
+          "id":self.model.id,
+          "success":function(){
+            self.render();
+          }
+        });
+        return false;
+      },
+      "click .compartida_2":function(e) {
+        var self = this;
+        e.stopPropagation();
+        e.preventDefault();
+        if($(e.currentTarget).attr("disabled") == "disabled") return;
+        var compartida = this.model.get("compartida");
+        compartida = (compartida == 2)?1:2;
         self.model.set({"compartida":compartida});
         this.change_property({
           "table":"inm_propiedades",

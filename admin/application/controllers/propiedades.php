@@ -738,7 +738,7 @@ class Propiedades extends REST_Controller {
 
       // Valores por defecto
       if (!isset($array->id_tipo_estado)) $array->id_tipo_estado = 1;
-      if (!isset($array->compartida)) $array->compartida = 1;
+      if (!isset($array->compartida)) $array->compartida = 2;
       if (!isset($array->id_pais)) $array->id_pais = 1;
       if (!isset($array->id_provincia)) $array->id_provincia = 1;
       if (!isset($array->publica_precio)) $array->publica_precio = 1;
@@ -1771,7 +1771,7 @@ class Propiedades extends REST_Controller {
               $p->fecha_publicacion = date("Y-m-d");
               $p->id_empresa = $id_empresa;
               // Si se inserta la primera vez, si es venta ya va compartida a la red
-              if ($p->id_tipo_operacion == 1) $p->compartida = 1;
+              if ($p->id_tipo_operacion == 1) $p->compartida = 2;
 
               // Problema: El codigo de tokko es alfanumerico, y al convertirse en int da 0
               // $p->codigo_tokko = $p->codigo;
@@ -2505,7 +2505,7 @@ class Propiedades extends REST_Controller {
 
       // Si el titulo tiene la palabra Venta
       if (strpos($propiedad->nombre, "Venta")>0) {
-        $propiedad->compartida = 1;
+        $propiedad->compartida = 2;
         $propiedad->id_tipo_operacion = 1;
       } else $propiedad->id_tipo_operacion = 2;
 

@@ -91,7 +91,7 @@ class Importacion_Xintel_Model extends Abstract_Model {
         $compartida = 0;
         if ($p->operacion == "Venta"){
           $tipo = 1;
-          $compartida = 1;
+          $compartida = 2;
         } elseif ($p->operacion == "Alquiler"){
           $tipo = 2;
         } else {
@@ -215,7 +215,7 @@ class Importacion_Xintel_Model extends Abstract_Model {
         $pr->calle = $p->in_cal;
         $pr->numero = $p->in_nro;
         $pr->activo = 1;
-        $pr->compartida = 1;
+        $pr->compartida = 2;
         $pr->altura = $p->in_nro;
         $pr->piso = $p->in_pis;
         $pr->texto = $obs;
