@@ -1732,11 +1732,12 @@ class Propiedad_Model extends Abstract_Model {
       $ciudad = mb_strtolower($propiedad->ciudad);
       $localidad = explode(",", $ciudad);
       $localidad = (sizeof($localidad)>0) ? $localidad[0] : $ciudad;
+      $localidad = trim($localidad);
       $sql = "SELECT L.*, D.id_provincia, D.id AS id_departamento, P.id_pais ";
       $sql.= " FROM com_localidades L ";
       $sql.= " INNER JOIN com_departamentos D ON (L.id_departamento = D.id) ";
       $sql.= " INNER JOIN com_provincias P ON (D.id_provincia = P.id) ";
-      $sql.= "WHERE L.nombre = '$localidad' LIMIT 0,1 ";
+      $sql.= "WHERE L.nombre = '%$localidad%' LIMIT 0,1 ";
       $qq = $this->db->query($sql);
       if ($qq->num_rows() > 0) {
         $rr = $qq->row();
