@@ -877,7 +877,7 @@
               <th class="sorting" data-sort-by="telefono">Telefono</th>
               <th class="sorting" data-sort-by="celular">Celular</th>
               <% if (permiso > 1) { %>
-                <th class="w100 th_acciones">Acciones</th>
+                <th class="w120 th_acciones">Acciones</th>
               <% } %>
             </tr>
           </thead>
