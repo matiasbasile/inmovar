@@ -69,7 +69,7 @@ class Importacion_Dacal_Model extends Abstract_Model {
         $sql.= "codigo_tokko, id_empresa, id_tipo_inmueble, id_tipo_operacion, id_tipo_estado, moneda, precio_final, path, latitud, longitud, ";
         $sql.= "link, dormitorios, cocheras, superficie_cubierta, superficie_total, calle, activo, compartida) ";
         $sql.= "VALUES ('$p->id', $id_empresa, $tipo_inmueble, $tipo, 1, '$moneda', '$valor', '$path', '$p->lat', '$p->lon', ";
-        $sql.= "'$p->url', '$p->dm', '$p->co', '$p->sc', '$p->s', '$p->dir', 1, 1) ";
+        $sql.= "'$p->url', '$p->dm', '$p->co', '$p->sc', '$p->s', '$p->dir', 1, 2) ";
 
         $this->db->query($sql);
         $id = $this->db->insert_id();

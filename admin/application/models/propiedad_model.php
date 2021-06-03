@@ -1373,6 +1373,7 @@ class Propiedad_Model extends Abstract_Model {
     $this->load->helper("fecha_helper");    
 
     $propiedad = new stdClass();
+    $propiedad->id = 0;
     $obtener_link = true;
     // Consultamos si ya existe alguna propiedad con ese link, para setearle el ID
     $sql = "SELECT * FROM inm_propiedades WHERE ";
@@ -1519,7 +1520,12 @@ class Propiedad_Model extends Abstract_Model {
     // Si el titulo tiene la palabra Venta
     if (strpos($propiedad->nombre, "Venta")>0) {
       $propiedad->id_tipo_operacion = 1;
-    } else $propiedad->id_tipo_operacion = 2;
+      // Por defecto compartimos
+      $propiedad->compartida = 2;
+    } else {
+      $propiedad->id_tipo_operacion = 2;
+      $propiedad->compartida = 0;
+    }
 
     // Dependiendo de las palabras clave del titulo
     $propiedad->id_tipo_inmueble = 0;
