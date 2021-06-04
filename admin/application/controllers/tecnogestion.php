@@ -11,22 +11,36 @@ class Tecnogestion extends REST_Controller {
     error_reporting(E_ALL);
     $url = "https://www.fernandezber.com.ar";
     $links = $this->get_link($url);
-    /* foreach($links as $link){
+    foreach($links as $link){
       $get_data = $this->get_data($url,$link);
-      print_r($get_data);
-      
-      echo "<br>";
-      echo "<br>";
-      echo "<br>";
-    } */
+    }
     
   }
 
   function get_link($url){
-    $a = 0;
+    $a = 1;
     $i=1;
     $links = array();
-    while ($a<371) {
+    $ch = curl_init("https://www.fernandezber.com.ar/Buscar/Inmuebles/");
+    curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt ($ch, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt ($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)');
+    $respuesta = curl_exec ($ch);
+    //o el error, por si falla
+    $error = curl_error($ch);
+    //y finalmente cerramos curl
+    curl_close ($ch);
+    $dom = new DOMDocument();
+    libxml_use_internal_errors(true);
+    $dom->loadHTML($respuesta);
+    $finder = new DomXPath($dom);
+    $segurity = $finder->query("//form[@class='searchForm hidden-xs']//input/@value");
+
+    $segurity = explode(" ",$segurity["length"]->textContent);
+    $segurity = $segurity[0] / 8;
+    $segurity = round($segurity,0,PHP_ROUND_HALF_UP);
+    while ($a<$segurity) {
       $ch = curl_init("$url/Buscar/CargaMasInmueblesParam");
       curl_setopt ($ch, CURLOPT_POST, 1);
       curl_setopt ($ch, CURLOPT_POSTFIELDS,"Pagina=$i&Orden=8&SucursalID=null&Operacion=&Producto=&Ubicacion=&PrecioDesde=&PrecioHasta=&IncluirEmprendimientos=1&Dormitorios=&Antiguedad=&DescripcionBusqueda=&ConCochera=null&AptoProfesional=null&ConBalcon=null&ConBalconTerraza=null&ConDependencia=null&Amoblado=null&ConVigilancia=null&Mapa=false&Geolocalizacion=&AptoCreditoHipotecario=false");
@@ -43,8 +57,8 @@ class Tecnogestion extends REST_Controller {
       $html = @file_get_contents($respuesta);
       $dom = new DOMDocument();
       libxml_use_internal_errors(true);
-      $dom->loadHTML($respuesta);
-      $finder = new DomXPath($dom); 
+      @$dom->loadHTML($respuesta);
+      $finder = new DomXPath($dom);
       $link = $finder->query("//div[@class='col-lg-12 col-md-12']//a[@class='propertyImgLink']/@href"); 
       
       foreach ($link as $key){
@@ -55,7 +69,7 @@ class Tecnogestion extends REST_Controller {
       $i++;
       $a++;
     }
-    print_r($links);
+    return $links;
   }
   
   function get_data($url,$link){
@@ -93,10 +107,10 @@ class Tecnogestion extends REST_Controller {
         $propiedades->id_tipo_operacion = $this->operation_types($data);
       }elseif($type_data == "Barrio "){
         $propiedades->id_localidad = $this->location($data);
-      }elseif($type_data == "Despachos "){
-        //AMBIENTES
       }elseif($type_data == "Baños "){
         $propiedades->banios = $data;
+      }/*elseif($type_data == "Despachos "){
+        //AMBIENTES
       }elseif($type_data == "Antigüedad "){
         // PREGUNTAR
       }elseif($type_data == "Estado "){
@@ -105,7 +119,7 @@ class Tecnogestion extends REST_Controller {
         // como se llama en la tabla 
       }elseif($type_data == "Disposición"){
         
-      }elseif($type_data == "Sup. Total "){
+      } */elseif($type_data == "Sup. Total "){
         $data = explode(",",$data);
         $propiedades->superficie_total = $data[0];
       }elseif($type_data == "Sup. Cubierta "){
