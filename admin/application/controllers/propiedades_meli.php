@@ -18,6 +18,28 @@ class Propiedades_Meli extends REST_Controller {
     $this->load->model('Propiedad_Model', 'modelo');
   }
 
+  public function get($id) {
+    $propiedad = $this->modelo->get($id);
+    $p = $this->get_publicacion(array(
+      "id_meli"=>$propiedad->id_meli,
+      "id_empresa"=>$propiedad->id_empresa,
+    ));
+    print_r($p);
+  }
+
+  // Obtiene los datos de una publicacion en particular de MercadoLibre
+  private function get_publicacion($config = array()) {
+    $publicacion = FALSE;
+    $id_empresa = (isset($config["id_empresa"])) ? $config["id_empresa"] : parent::get_empresa();
+    $id_meli = (isset($config["id_meli"])) ? $config["id_meli"] : "";
+    $this->connect($id_empresa);
+    $params = array('access_token' => $this->configuracion->ml_access_token);
+    $response = $this->meli->get('/items/'.$id_meli, $params);
+    if ($response["httpCode"] == 200 && isset($response["body"])) {
+      return $response["body"];
+    }
+  }  
+
   function get_paquetes_publicacion_usuario() {
     $this->connect();
     $params = array('access_token' => $this->configuracion->ml_access_token);
