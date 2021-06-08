@@ -337,6 +337,7 @@ class Propiedad_Model {
       else $orden = $get_params["orden"];
     } 
     
+    $order_empresa = isset($config["order_empresa"]) ? $config["order_empresa"] : 1;
     $desde = isset($config["desde"]) ? $config["desde"] : "";
     $hasta = isset($config["hasta"]) ? $config["hasta"] : "";
     $personas = isset($config["personas"]) ? $config["personas"] : 0;
@@ -406,6 +407,7 @@ class Propiedad_Model {
         "limit"=>($page*$offset),
         "antiguedad"=>$antiguedad,
         "ids_tipo_operacion"=>$ids_tipo_operacion,
+        "order_empresa"=>$order_empresa,
       );
 
       if ($moneda == "USD") {
@@ -981,6 +983,7 @@ class Propiedad_Model {
     $id_cliente = isset($config["id_cliente"]) ? intval($config["id_cliente"]) : 0;
     $activo_desde = isset($config["activo_desde"]) ? $config["activo_desde"] : "";
     $solo_contar = isset($config["solo_contar"]) ? intval($config["solo_contar"]) : 0;
+    $order_empresa = isset($config["order_empresa"]) ? intval($config["order_empresa"]) : 1;
     $ids_tipo_operacion = isset($config["ids_tipo_operacion"]) ? $config["ids_tipo_operacion"] : array();
     $valido_hasta = isset($config["valido_hasta"]) ? $config["valido_hasta"] : ($this->id_empresa == 263 ? date("Y-m-d") : "");
     $tiene_etiqueta_link = isset($config["tiene_etiqueta_link"]) ? $config["tiene_etiqueta_link"] : "";
@@ -1159,7 +1162,7 @@ class Propiedad_Model {
     if ($tiene_interno == 1) $sql.= "AND A.ubicacion_departamento = 'I' ";
     if (!empty($calle)) $sql.= "AND A.calle = '$calle' ";
 
-    $order_by_empresa = "IF(A.id_empresa = $this->id_empresa,0,1) ASC, ";
+    $order_by_empresa = ($order_empresa == 1) ? "IF(A.id_empresa = $this->id_empresa,0,1) ASC, " : "";
 
     if (!empty($order_by)) {
       $sql.= "ORDER BY $order_by_empresa $order_by ";
