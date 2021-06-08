@@ -95,20 +95,12 @@
     </h3>
   </header>
   <div class="form-group">
-    <input type="radio" name="ordenar" <?php echo ($vc_orden == -1 ) ? "checked" : "" ?> value="nuevo" id="orden_1" />
-    <label for="orden_1">Más nuevos</label>
-  </div>
-  <div class="form-group">
     <input type="radio" name="ordenar" <?php echo ($vc_orden == 2 ) ? "checked" : "" ?> value="barato" id="orden_2" />
     <label for="orden_2">Menor precio</label>
   </div>
   <div class="form-group">
     <input type="radio" name="ordenar" <?php echo ($vc_orden == 1 ) ? "checked" : "" ?> value="caro" id="orden_3" />
     <label for="orden_3">Mayor precio</label>
-  </div>
-  <div class="form-group">
-    <input type="radio" name="ordenar" <?php echo ($vc_orden == 4 ) ? "checked" : "" ?> value="destacado" id="orden_4" />
-    <label for="orden_4">Destacados</label>
   </div>
   <div class="form-group">
     <button onclick="aplicar_orden()" class="btn btn-buscar btn-default">Aplicar</button>

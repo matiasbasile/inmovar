@@ -1026,7 +1026,7 @@ class Propiedad_Model {
     $sql.= "LEFT JOIN inm_tipos_operacion X ON (A.id_tipo_operacion = X.id) ";
     $sql.= "LEFT JOIN inm_propietarios P ON (A.id_propietario = P.id AND A.id_empresa = P.id_empresa) ";
     $sql.= "LEFT JOIN com_localidades L ON (A.id_localidad = L.id) ";
-    $sql.= "WHERE 1=1 ";
+    $sql.= "WHERE A.precio_final != 0 "; // SIEMPRE TIENE QUE TENER PRECIO
     if ($apto_banco == 1) $sql.= "AND A.apto_banco = 1 ";
     if ($pint == 1) $sql.= "AND A.pint != '' ";
     if ($video == 1) $sql.= "AND A.video != '' ";
