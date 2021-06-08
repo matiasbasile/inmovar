@@ -37,7 +37,9 @@ class Propiedades_Meli extends REST_Controller {
       ));
       if ($publicacion === FALSE) continue;
 
-      $propiedad = $this->modelo->get($r->id_propiedad,$r->id_empresa);
+      $propiedad = $this->modelo->get($r->id_propiedad,array(
+        "id_empresa"=>$r->id_empresa,
+      ));
 
       $obj = new stdClass();
       $obj->errores = array();
