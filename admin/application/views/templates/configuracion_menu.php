@@ -21,6 +21,12 @@
           </li>
         <% } %>
         <li>
+          <a class="<%= (id_modulo == "buscador")?"active":"" %>" href="app/#configuracion/buscador">
+            <span class="material-icons">arrow_forward_ios</span>
+            Buscador Inmovar
+          </a>
+        </li>
+        <li>
           <a class="<%= (id_modulo == "api")?"active":"" %>" href="app/#configuracion/api">
             <span class="material-icons">arrow_forward_ios</span>
             API para desarrolladores
@@ -286,6 +292,32 @@
         <div class="form-group">
           <label class="control-label">Clave privada</label>
           <input type="text" disabled class="form-control" value="<%= hex_md5(ID_EMPRESA) %>" />
+        </div>
+      </div>
+    </div>
+  </div>  
+</script>
+
+<script type="text/template" id="configuracion_buscador">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="padder">
+        <div class="form-group mb0 clearfix expand-link cp">
+          <label class="control-label cp">
+            Buscador Inmovar
+          </label>
+          <div class="panel-description">
+            Copie el siguiente código para poner el buscador de Inmovar en su página web.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body expand" style="display:block">
+      <div class="padder">
+        <div class="form-group">
+          <label class="control-label">Código de buscador Inmovar</label>
+          <code><script type="text/javascript" src="https://app.inmovar.com/admin/resources/js/loader.js"></script>
+<script type="text/javascript">loadScript("https://app.inmovar.com/admin/inmovar/get/<%= ID_EMPRESA %>/");</script></code>
         </div>
       </div>
     </div>
