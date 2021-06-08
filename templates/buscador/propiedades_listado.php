@@ -47,12 +47,8 @@ if (isset($_GET["test"])) print_r($vc_listado);
             <section id="properties" class="display-lines">
               <?php foreach($vc_listado as $r) { ?>
                 <div class="property">
-                  <?php if (isset($r->pertenece_red) && $r->pertenece_red == 1) { ?>
-                    <figure class="tag status">Red Inmovar</figure>
-                  <?php } else { ?>
-                    <?php if ($r->nuevo == 1) { ?>
-                      <figure class="tag status">Nuevo</figure>
-                    <?php } ?>
+                  <?php if ($r->nuevo == 1) { ?>
+                    <figure class="tag status">Nuevo</figure>
                   <?php } ?>
                   <div class="property-image">
                     <?php if ($r->id_tipo_estado == 2) { ?>
