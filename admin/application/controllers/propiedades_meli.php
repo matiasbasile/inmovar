@@ -775,7 +775,7 @@ class Propiedades_Meli extends REST_Controller {
         $sql.= " status = '$res->status', ";
         $sql.= " titulo_meli = '$res->title', ";
         $sql.= " precio_meli = '$res->price' ";
-        $sql.= "WHERE id_meli = 'propiedad->$id_meli' ";
+        $sql.= "WHERE id_meli = '$propiedad->$id_meli' ";
         $sql.= "AND id_empresa = $propiedad->id_empresa ";
         $this->db->query($sql);
 
