@@ -316,8 +316,8 @@
       <div class="padder">
         <div class="form-group">
           <label class="control-label">Código de buscador Inmovar</label>
-          <code><script type="text/javascript" src="https://app.inmovar.com/admin/resources/js/loader.js"></script>
-<script type="text/javascript">loadScript("https://app.inmovar.com/admin/inmovar/get/<%= ID_EMPRESA %>/");</script></code>
+          <blockquote><script type="text/javascript" src="https://app.inmovar.com/admin/resources/js/loader.js"></script>
+<script type="text/javascript">loadScript("https://app.inmovar.com/admin/inmovar/get/<%= ID_EMPRESA %>/");</script></blockquote>
         </div>
       </div>
     </div>
