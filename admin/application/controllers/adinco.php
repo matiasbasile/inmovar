@@ -201,9 +201,6 @@ class Adinco extends REST_Controller {
       error_reporting(E_ALL);
       $propiedad = new stdClass();
       $url = $url . $link;
-      echo "<br>";
-      echo $url;
-      echo "<br>";
       $html = file_get_contents($url);
       $dom = new DOMDocument();
       libxml_use_internal_errors(true);

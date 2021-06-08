@@ -204,7 +204,8 @@ class Pixel_inmobiliario extends REST_Controller {
       $propiedades->longitud = $location[1];
       $propiedades->inmobusquedas_url = $link;
       $propiedades->descripcion = $description;
-     
+      $propiedades->imagen = $images;
+      
       if($property_type=="Departamento"){
         $propiedades->id_tipo_inmueble = 2;
         }elseif($property_type=="Casa"){
