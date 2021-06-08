@@ -767,6 +767,18 @@ class Propiedades_Meli extends REST_Controller {
       $response = $this->meli->put("/items/".$propiedad->id_meli, $body2, $params);
       if ($response["httpCode"] == 200) {
         $res = $response["body"];
+
+        // Actualizamos los campos
+        $sql = "UPDATE inm_propiedades_meli SET ";
+        if ($item->status == "active") $sql.= " activo_meli = 1, ";
+        else $sql.= " activo_meli = 0, ";
+        $sql.= " status = '$item->status', ";
+        $sql.= " titulo_meli = '$item->title', ";
+        $sql.= " precio_meli = '$item->price' ";
+        $sql.= "WHERE id_meli = 'propiedad->$id_meli' ";
+        $sql.= "AND id_empresa = $propiedad->id_empresa ";
+        $this->db->query($sql);
+
         $this->Log_Model->imprimir(array(
           "id_empresa"=>$propiedad->id_empresa,
           "file"=>"log_meli.txt",
