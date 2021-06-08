@@ -770,11 +770,11 @@ class Propiedades_Meli extends REST_Controller {
 
         // Actualizamos los campos
         $sql = "UPDATE inm_propiedades_meli SET ";
-        if ($item->status == "active") $sql.= " activo_meli = 1, ";
+        if ($res->status == "active") $sql.= " activo_meli = 1, ";
         else $sql.= " activo_meli = 0, ";
-        $sql.= " status = '$item->status', ";
-        $sql.= " titulo_meli = '$item->title', ";
-        $sql.= " precio_meli = '$item->price' ";
+        $sql.= " status = '$res->status', ";
+        $sql.= " titulo_meli = '$res->title', ";
+        $sql.= " precio_meli = '$res->price' ";
         $sql.= "WHERE id_meli = 'propiedad->$id_meli' ";
         $sql.= "AND id_empresa = $propiedad->id_empresa ";
         $this->db->query($sql);
