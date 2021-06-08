@@ -6,35 +6,6 @@ if (isset($_SESSION["favoritos"])) {
 }
 ?>
 <div class="navigation">
-  <div class="secondary-navigation">
-    <div class="container">
-      <div class="contact">
-        <?php if (!empty($empresa->telefono)) { ?>
-          <figure><strong>Tel&eacute;fono:</strong><?php echo $empresa->telefono ?></figure>
-        <?php } ?>
-        <figure>
-          <strong>Email:</strong>
-          <a href="mailto:<?php echo $empresa->email ?>"><?php echo $empresa->email ?></a>
-        </figure>
-      </div>
-      <div class="user-area">
-        <div class="language-bar">
-          <?php if (!empty($empresa->facebook)) { ?>
-            <a target="_blank" href="<?php echo $empresa->facebook ?>" class="fa fa-facebook"></a>
-          <?php } ?>
-          <?php if (!empty($empresa->twitter)) { ?>
-            <a target="_blank" href="<?php echo $empresa->twitter ?>" class="fa fa-twitter"></a>
-          <?php } ?>
-          <?php if (!empty($empresa->instagram)) { ?>
-            <a target="_blank" href="<?php echo $empresa->instagram ?>" class="fa fa-instagram"></a>
-          <?php } ?>
-          <?php if (!empty($empresa->linkedin)) { ?>
-            <a target="_blank" href="<?php echo $empresa->linkedin ?>" class="fa fa-linkedin"></a>
-          <?php } ?>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="container">
     <header class="navbar" id="top" role="banner">
       <div class="navbar-header">
