@@ -283,9 +283,7 @@ class Empresa_Model extends Abstract_Model {
   }
 
   function get_by_md5_id($id) {
-    $id = md5($id);
     $sql = "SELECT * FROM empresas WHERE MD5(id) = '".$id."' ";
-    echo $sql;
     $q = $this->db->query($sql);
     if ($q->num_rows()>0) {
       $r = $q->row();
