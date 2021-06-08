@@ -291,20 +291,31 @@ class Articulos extends REST_Controller {
 
   function copiar_precios_sucursales() {
     $id_empresa = 249;
-    $id_sucursal = 21;
+    $id_sucursal = 702;
     $id_sucursal_destino = 1037;
     $i = 0;
     $sql = "SELECT * FROM articulos_precios_sucursales WHERE id_empresa = $id_empresa AND id_sucursal = $id_sucursal ";
     $q = $this->db->query($sql);
     foreach($q->result() as $row) {
       // Controlamos si existe primero
-      $sql = "SELECT * FROM articulos_precios_sucursales WHERE id_empresa = $id_empresa AND id_sucursal = $id_sucursal_destino AND id_articulo = $row->id_articulo ";
+      $sql = "SELECT * FROM articulos_precios_sucursales ";
+      $sql.= "WHERE id_empresa = $id_empresa AND id_sucursal = $id_sucursal_destino AND id_articulo = $row->id_articulo ";
       $qq = $this->db->query($sql);
       if ($qq->num_rows() == 0) {
         $row->id_sucursal = $id_sucursal_destino;
         $this->db->insert("articulos_precios_sucursales",$row);
-        $i++;        
+      } else {
+        $rr = $qq->row();
+        // Si tiene precios distintos, la borramos y la volvemos a insertar
+        if ($rr->precio_final != $row->precio_final) {
+          $sql = "DELETE FROM articulos_precios_sucursales ";
+          $sql.= "WHERE id_empresa = $id_empresa AND id_sucursal = $id_sucursal_destino AND id = $rr->id AND id_articulo = $row->id_articulo";
+          $this->db->query($sql);
+          $row->id_sucursal = $id_sucursal_destino;
+          $this->db->insert("articulos_precios_sucursales",$row);
+        }
       }
+      $i++;
     }
     echo "TERMINO $i";
   }

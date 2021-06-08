@@ -2002,6 +2002,21 @@ class Propiedades extends REST_Controller {
     return ($a->orden >= $b->orden) ? 1 : -1;
   }
 
+  function resincronizar_argenprop() {
+    $sql = "SELECT * FROM inm_propiedades where argenprop_url != '' AND argenprop_habilitado = 1 and id_empresa = 280 and activo = 1 ";
+    $q = $this->db->query($sql);
+    $i=0;
+    foreach($q->result() as $r) {
+      $ch = curl_init();
+      curl_setopt($ch,CURLOPT_URL, 'https://app.inmovar.com/admin/propiedades/function/compartir_argenprop/?id_propiedad=$r->id');
+      curl_setopt($ch,CURLOPT_RETURNTRANSFER, 1);
+      curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, false);
+      $result = curl_exec($ch);
+      $i++;
+    }
+    echo "TERMINO $i";
+  }
+
   function compartir_argenprop() {
 
     $this->load->model("Log_Model");
