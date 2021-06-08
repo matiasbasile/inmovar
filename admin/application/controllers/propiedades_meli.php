@@ -18,7 +18,7 @@ class Propiedades_Meli extends REST_Controller {
     $this->load->model('Propiedad_Model', 'modelo');
   }
 
-  function controlar_sincronizacion() {
+  function controlar_sincronizacion() { 
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
