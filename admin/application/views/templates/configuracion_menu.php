@@ -316,7 +316,7 @@
       <div class="padder">
         <div class="form-group">
           <div class="show-code">&lt;script type="text/javascript" src="https://app.inmovar.com/admin/resources/js/loader.js">&lt;/script><br/>
-&lt;script type="text/javascript">loadScript("https://app.inmovar.com/admin/inmovar/get/<%= ID_EMPRESA %>/");&lt;/script>
+&lt;script type="text/javascript">loadScript("https://app.inmovar.com/admin/inmovar/get/<%= hex_md5(ID_EMPRESA) %>/");&lt;/script>
           </div>
         </div>
       </div>
