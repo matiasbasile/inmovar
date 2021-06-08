@@ -40,6 +40,7 @@ class Propiedades_Meli extends REST_Controller {
       $propiedad = $this->modelo->get($r->id_propiedad,array(
         "id_empresa"=>$r->id_empresa,
       ));
+      if ($propiedad === FALSE) continue;
 
       $obj = new stdClass();
       $obj->errores = array();
