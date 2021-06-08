@@ -18,6 +18,61 @@ class Propiedades_Meli extends REST_Controller {
     $this->load->model('Propiedad_Model', 'modelo');
   }
 
+  function controlar_sincronizacion() {
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+    $id_empresa = parent::get_empresa();
+    $this->load->model("Articulo_Model");
+    $this->load->model("Stock_Model");
+    $this->load->model("Punto_Venta_Model");
+    $sql = "SELECT * FROM inm_propiedades_meli WHERE id_empresa = $id_empresa AND permalink != '' ";
+    $q = $this->db->query($sql);
+    $salida = array();
+    $cantidad = 0;
+    foreach($q->result() as $r) {
+      $publicacion = $this->get_publicacion(array(
+        "id_empresa"=>$r->id_empresa,
+        "id_meli"=>$r->id_meli,
+      ));
+      if ($publicacion === FALSE) continue;
+
+      $propiedad = $this->modelo->get($r->id_propiedad,$r->id_empresa);
+
+      $obj = new stdClass();
+      $obj->errores = array();
+      $obj->id = $propiedad->id;
+      $obj->codigo = $propiedad->codigo;
+      $obj->nombre = $propiedad->nombre;
+      $obj->path = $propiedad->path;
+
+      if ($publicacion->status != $r->status) {
+        $error = new stdClass();
+        $error->tipo_error = "status";
+        $error->sistema = $r->status;
+        $error->meli = $publicacion->status;
+        $obj->errores[] = $error;
+        $cantidad++;
+      }
+
+      if ($propiedad->precio_final != $publicacion->price) {
+        $error = new stdClass();
+        $error->tipo_error = "precio";
+        $error->sistema = $propiedad->precio_final;
+        $error->meli = $publicacion->price;
+        $obj->errores[] = $error;
+        $cantidad++;
+      }
+
+      if (sizeof($obj->errores)>0) $salida[] = $obj;
+    }
+
+    echo json_encode(array(
+      "results"=>$salida,
+      "total"=>sizeof($salida),
+    ));
+  }
+
   public function get($id) {
     $propiedad = $this->modelo->get($id);
     $p = $this->get_publicacion(array(
@@ -37,7 +92,7 @@ class Propiedades_Meli extends REST_Controller {
     $response = $this->meli->get('/items/'.$id_meli, $params);
     if ($response["httpCode"] == 200 && isset($response["body"])) {
       return $response["body"];
-    }
+    } else return FALSE;
   }  
 
   function get_paquetes_publicacion_usuario() {
