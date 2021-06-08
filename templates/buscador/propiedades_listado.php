@@ -3,6 +3,7 @@ include("includes/init.php");
 $get_params["offset"] = 48;
 extract($propiedad_model->get_variables(array(
   "orden"=>2,
+  "order_empresa"=>0,
 )));
 $nombre_pagina = $vc_link_tipo_operacion;
 if (isset($_GET["test"])) print_r($vc_listado);
