@@ -62,7 +62,7 @@ if (isset($_GET["test"])) print_r($vc_listado);
                       <?php } else if (!empty($empresa->no_imagen)) { ?>
                         <img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->nombre); ?>" />
                       <?php } else { ?>
-                        <img src="images/logo.png" alt="<?php echo ($r->nombre); ?>" />
+                        <img src="assets/img/logo.png" alt="<?php echo ($r->nombre); ?>" />
                       <?php } ?>
                     </a>
                   </div>
