@@ -767,6 +767,11 @@ class Propiedades_Meli extends REST_Controller {
       $response = $this->meli->put("/items/".$propiedad->id_meli, $body2, $params);
       if ($response["httpCode"] == 200) {
         $res = $response["body"];
+        $this->Log_Model->imprimir(array(
+          "id_empresa"=>$propiedad->id_empresa,
+          "file"=>"log_meli.txt",
+          "texto"=>print_r($res,true)."\n\n",
+        ));
         return array(
           "error"=>0,
           "link"=>$res->permalink,
