@@ -391,6 +391,18 @@ else $vc_moneda = "$";
   <?php include("includes/footer.php"); ?>
 </div>
 <?php include_once("templates/comun/mapa_js.php"); ?>
+
+<div class="buscador-flotante">
+  <div class="row">
+    <div class="col-xs-6">
+      <button onclick="ver_whatsapp()" class="button">Whatsapp</button>
+    </div>
+    <div class="col-xs-6">
+      <button onclick="ver_buscador()" class="button">Consultar</button>
+    </div>
+  </div>
+</div>
+
 <script type="text/javascript" src="assets/js/jquery.raty.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery.magnific-popup.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery.fitvids.js"></script>
