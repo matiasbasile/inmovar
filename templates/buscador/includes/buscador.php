@@ -2,7 +2,7 @@
 
   <header>
     <h3>
-      Filtrar
+      ¿Qué estás buscando?
       <i onclick="cerrar_filtros()" class="cerrar_filtros fa fa-times"></i>
     </h3>
   </header>
@@ -72,7 +72,7 @@
     </div>
   </div>
   <div class="form-group">
-    <button type="submit" class="btn btn-buscar btn-default">Aplicar</button>
+    <button type="submit" class="btn btn-buscar btn-default">Buscar</button>
   </div>
 </form>
 
