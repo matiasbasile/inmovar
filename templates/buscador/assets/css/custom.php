@@ -1788,7 +1788,7 @@ ul.list-links li a:hover {
 }
 .display-lines .property .ribbon {
   margin: inherit;
-  left: initial;
+  left:-30px;
 }
 
 /****
@@ -6126,10 +6126,10 @@ input.form-control { box-shadow: 0px 1px 1px rgb(0 0 0 / 20%); }
   .page-search-results .navigation .navbar { text-align: center; }
   .page-search-results .sorting { display: none; }
   .page-search-results .buscador-flotante { display: block; position: fixed; width: 100%; bottom: 0px; left: 0px; right: 0px; z-index: 9998; }
-  .page-search-results .buscador-flotante .button { border: solid 2px <?php echo $c2; ?>; color: <?php echo $c2; ?>; font-size: 15px; padding: 10px 9px 9px 9px; outline: none; width: 100%; text-align: center; border-radius: 10px; font-weight: bold; }
+  .page-search-results .buscador-flotante .button { border: solid 2px <?php echo $c1; ?>; color: <?php echo $c2; ?>; font-size: 15px; padding: 10px 9px 9px 9px; outline: none; width: 100%; text-align: center; border-radius: 10px; font-weight: bold; }
   .page-search-results .buscador-flotante .button:hover, 
   .page-search-results .buscador-flotante .button:focus, 
-  .page-search-results .buscador-flotante .button:active { background-color: <?php echo $c2; ?>; color: white; }
+  .page-search-results .buscador-flotante .button:active { background-color: <?php echo $c1; ?>; color: white; }
   .page-search-results .form-search .btn { width: 100%; }
   .page-search-results .form-search input[type=radio] { visibility: hidden; }
   .page-search-results .form-search.active { overflow: auto; padding: 20px; background-color: #f3f3f3; display: block !important; position: fixed; z-index: 9999; top: 0px; left: 0px; bottom: 0px; right: 0px; }
