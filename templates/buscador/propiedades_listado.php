@@ -22,7 +22,7 @@ if (isset($_GET["test"])) print_r($vc_listado);
         <div class="col-md-9 col-sm-9">
           <section id="results" class="mt30">
 
-            <header><h1><?php echo $vc_tipo_operacion; ?></h1></header>
+            <header><h1><?php echo (empty($vc_tipo_operacion) ? "Propiedades" : $vc_tipo_operacion); ?></h1></header>
 
             <section id="search-filter">
               <figure>
