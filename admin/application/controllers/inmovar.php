@@ -12,7 +12,7 @@ class Inmovar extends CI_Controller {
 <script type="text/javascript">loadScript("https://app.inmovar.com/admin/inmovar/get/"+window.location.hostname+"/");</script>
 */
 
-  function get($dominio = 0) {
+  function get($id_empresa = 0) {
     @session_start();
     date_default_timezone_set("America/Argentina/Buenos_Aires");
     ini_set('display_errors', 1);
@@ -20,24 +20,12 @@ class Inmovar extends CI_Controller {
     error_reporting(E_ALL);
     header('Access-Control-Allow-Origin: *');
 
-    $id_empresa = 45;
-    /*
-    $dominio = str_replace("www.", "", $dominio);
-    $id_empresa = $this->Empresa_Model->get_id_empresa_by_dominio($dominio,array(
-      "test"=>1
-    ));
-    if ($id_empresa == 0) {
-      // No existe la empresa seleccionada, no devolvemos nada
+    $this->load->model("Empresa_Model");
+    $empresa = $this->Empresa_Model->get_by_md5_id($id_empresa);
+    if (empty($empresa)) {
       exit();
     }
-    */
-
-    $this->load->model("Empresa_Model");
-    $empresa = $this->Empresa_Model->get($id_empresa);
-    //if ($empresa->estado_cuenta == 2) {
-      // La cuenta esta vencida, no debemos mostrar el CHAT
-      //exit();
-    //}
+    $id_empresa = $empresa->id_empresa;
     $conf = array();
 
     $useragent=$_SERVER['HTTP_USER_AGENT'];
