@@ -47,6 +47,13 @@
         });
         self.$("#configuracion_content").html(view.el);
 
+      } else if (self.model.get("id_modulo") == "buscador") {
+
+        var view = new app.views.ConfiguracionBuscadorView({
+          model: new app.models.AbstractModel(),
+        });
+        self.$("#configuracion_content").html(view.el);
+
       } else if (self.model.get("id_modulo") == "notificaciones") {
         var conf = new app.models.WebConfiguracion({
           "id":ID_EMPRESA
@@ -327,6 +334,32 @@
 
 })(app.views, app.models);
 
+// ============================================================
+// BUSCADOR
+
+(function ( views, models ) {
+
+  views.ConfiguracionBuscadorView = app.mixins.View.extend({
+
+    template: _.template($("#configuracion_buscador").html()),
+
+    myEvents: {
+    },
+
+    initialize: function(options) {
+      _.bindAll(this);
+      this.render();
+    },
+
+    render: function() {
+      var self = this;
+      $(this.el).html(this.template(this.model.toJSON()));
+      return this;
+    },
+        
+  });
+
+})(app.views, app.models);
 
 // ============================================================
 // NOTIFICACIONES
