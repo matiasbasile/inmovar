@@ -1,5 +1,5 @@
 <?php
-$esta_buscando = (isset($vc_id_tipo_inmueble) && !empty($vc_id_tipo_inmueble)) || (isset($vc_dormitorios) && !empty($vc_dormitorios)) || (isset($vc_banios) && !empty($vc_banios)) || (isset($vc_minimo) && !empty($vc_minimo)) || (isset($vc_maximo) && !empty($vc_maximo));
+$esta_buscando = (isset($vc_link_localidad) && !empty($vc_link_localidad)) || (isset($vc_id_tipo_inmueble) && !empty($vc_id_tipo_inmueble)) || (isset($vc_dormitorios) && !empty($vc_dormitorios)) || (isset($vc_banios) && !empty($vc_banios)) || (isset($vc_minimo) && !empty($vc_minimo)) || (isset($vc_maximo) && !empty($vc_maximo));
 ?>
 <form onsubmit="return filtrar(this)" method="get" role="form" id="form_propiedades" class="<?php echo ($nombre_pagina=="home")?"form-map":"" ?> form-search">
 
