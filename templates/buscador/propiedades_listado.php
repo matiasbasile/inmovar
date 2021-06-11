@@ -56,7 +56,11 @@ if (isset($_GET["test"])) print_r($vc_listado);
                     <?php } else if ($r->id_tipo_estado == 3) { ?>
                       <figure class="ribbon">Vendido</figure>
                     <?php } ?>
-                    <figure class="ribbon2"><img src="assets/img/red.png" alt="red inmovar" /></figure>
+                    <figure class="ribbon2">
+                      <a href="<?php echo $r->link_propiedad; ?>">
+                        <img src="assets/img/red.png" alt="red inmovar" />
+                      </a>
+                    </figure>
                     <a href="<?php echo $r->link_propiedad; ?>">
                       <?php if (!empty($r->imagen)) { ?>
                         <img loading="lazy" src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre); ?>" />
