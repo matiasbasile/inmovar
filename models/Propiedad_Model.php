@@ -1287,6 +1287,8 @@ class Propiedad_Model {
         else $t.= ", ";
       }
     }
+    if ($propiedad->apto_banco == 1) $t.= "Apto para crédito bancario. ";
+    if ($propiedad->acepta_permuta == 1) $t.= "Acepta permuta. ";
     $propiedad->plain_text = $t;
     $propiedad->texto = $t;
   }
