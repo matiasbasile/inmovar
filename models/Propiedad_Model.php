@@ -761,9 +761,6 @@ class Propiedad_Model {
 
     $propiedad->pertenece_red = ($this->id_empresa == $propiedad->id_empresa) ? 0 : 1;
 
-    // Si es una propiedad de la red, la descripcion se la armamos nosotros
-    if ($propiedad->pertenece_red == 1) $propiedad->texto = $this->armar_texto($propiedad);
-
     $propiedad = $this->encoding($propiedad);
 
     $propiedad->link_propiedad = (isset($propiedad->pertenece_red) && $propiedad->pertenece_red == 1) ? mklink($propiedad->link)."?em=".$propiedad->id_empresa : mklink($propiedad->link);
@@ -831,6 +828,9 @@ class Propiedad_Model {
     if (empty($propiedad->seo_title)) {
       $propiedad->seo_title = $propiedad->nombre;
     }
+
+    // Si es una propiedad de la red, la descripcion se la armamos nosotros
+    if ($propiedad->pertenece_red == 1) $this->armar_texto($propiedad);
 
     return $propiedad;
   }
@@ -1219,9 +1219,6 @@ class Propiedad_Model {
       // Utilizado cuando la empresa no es propia sino de la red
       $r->link_propiedad = (isset($r->pertenece_red) && $r->pertenece_red == 1) ? mklink($r->link)."?em=".$r->id_empresa : mklink($r->link);
 
-      // Si es una propiedad de la red, la descripcion se la armamos nosotros
-      if ($r->pertenece_red == 1) $r->texto = $this->armar_texto($r);      
-
       $r->disponibilidad = 1;
       if ($r->id_tipo_operacion == 3) {
         // Si es un alquiler temporal, calculamos los precios
@@ -1259,13 +1256,18 @@ class Propiedad_Model {
       }
 
       $r = $this->encoding($r);
+
+      // Si es una propiedad de la red, la descripcion se la armamos nosotros
+      if ($r->pertenece_red == 1) $this->armar_texto($r);      
+
       $salida[] = $r;
     }
     return $salida;
   }
 
   function armar_texto($propiedad) {
-    return "";
+    $propiedad->plain_text = "";
+    $propiedad->texto = "";
   }
 
   function get_total_results() {
