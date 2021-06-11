@@ -11,7 +11,7 @@ $esta_buscando = (isset($vc_link_localidad) && !empty($vc_link_localidad)) || (i
   </header>
 
   <div class="form-group" id="buscador-tipo-operacion">
-    <select id="tipo_operacion" class="filter_tipo_operacion active">
+    <select id="tipo_operacion" class="filter_tipo_operacion filter_tilde active">
       <?php $filter_tipos_operacion = $propiedad_model->get_tipos_operaciones();
       foreach($filter_tipos_operacion as $r) { ?>
         <option <?php echo (isset($vc_link_tipo_operacion) == $r->link) ? "selected":"" ?> value="<?php echo $r->link ?>"><?php echo $r->nombre ?></option>
