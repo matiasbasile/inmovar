@@ -1,3 +1,6 @@
+<?php
+$esta_buscando = (isset($vc_id_tipo_inmueble) && !empty($vc_id_tipo_inmueble)) || (isset($vc_dormitorios) && !empty($vc_dormitorios)) || (isset($vc_banios) && !empty($vc_banios)) || (isset($vc_minimo) && !empty($vc_minimo)) || (isset($vc_maximo) && !empty($vc_maximo));
+?>
 <form onsubmit="return filtrar(this)" method="get" role="form" id="form_propiedades" class="<?php echo ($nombre_pagina=="home")?"form-map":"" ?> form-search">
 
   <header>
@@ -14,7 +17,7 @@
         <option <?php echo (isset($vc_link_tipo_operacion) == $r->link) ? "selected":"" ?> value="<?php echo $r->link ?>"><?php echo $r->nombre ?></option>
       <?php } ?>
     </select>
-  </div><!-- /.form-group -->
+  </div>
   <div class="form-group" id="buscador-localidad">
     <select id="localidad" class="filter_localidad">
       <option value="0">Localidad</option>
@@ -23,7 +26,7 @@
         <option <?php echo (isset($vc_link_localidad) && $vc_link_localidad == $r->link) ? "selected":"" ?> value="<?php echo $r->link ?>"><?php echo $r->nombre ?></option>
       <?php } ?>
     </select>
-  </div><!-- /.form-group -->
+  </div>
   <div class="form-group" id="buscador-tipo-propiedad">
     <select class="filter_tipo_propiedad" name="tp">
       <option value="0">Tipo de Propiedad</option>
@@ -32,7 +35,7 @@
         <option <?php echo (isset($vc_id_tipo_inmueble) && $vc_id_tipo_inmueble == $r->id) ? "selected":"" ?> value="<?php echo $r->id ?>"><?php echo $r->nombre ?></option>
       <?php } ?>
     </select>
-  </div><!-- /.form-group -->
+  </div>
   <div class="form-group" id="buscador-dormitorios">
     <select class="filter_dormitorios" name="dm">
       <option value="">Habitaciones</option>
@@ -41,7 +44,7 @@
         <option <?php echo (isset($vc_dormitorios) && $vc_dormitorios == $r->dormitorios) ? "selected":"" ?> value="<?php echo $r->dormitorios ?>"><?php echo $r->dormitorios ?></option>
       <?php } ?>
     </select>
-  </div><!-- /.form-group -->
+  </div>
   <div class="form-group" id="buscador-banios">
     <select class="filter_banios" name="bn">
       <option value="">Ba&ntilde;os</option>
@@ -50,7 +53,7 @@
         <option <?php echo (isset($vc_banios) && $vc_banios == $r->banios) ? "selected":"" ?> value="<?php echo $r->banios ?>"><?php echo $r->banios ?></option>
       <?php } ?>
     </select>
-  </div><!-- /.form-group -->
+  </div>
   <div class="form-group" id="buscador-precio-minimo">
     <div class="row">
       <div class="col-xs-3 pr0">
@@ -79,7 +82,7 @@
 <div class="buscador-flotante">
   <div class="row">
     <div class="col-xs-6">
-      <button onclick="ver_filtros()" class="button">Filtrar</button>
+      <button onclick="ver_filtros()" class="button"><?php echo ($esta_buscando) ? "Buscando":"Buscar" ?></button>
     </div>
     <div class="col-xs-6">
       <button onclick="ver_orden()" class="button">Ordenar</button>

@@ -145,7 +145,7 @@ function do_enviar(datos) {
           url+= "?text="+encodeURIComponent(tpl);  
           var open = window.open(url,"_blank");
           if (open == null || typeof(open)=='undefined') location.href = url;
-          location.reload();
+          else location.reload();
           
         } else {
           alert("Tu consulta ha sido enviada!");
