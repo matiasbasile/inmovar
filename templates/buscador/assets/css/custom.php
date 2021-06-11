@@ -3010,6 +3010,7 @@ ul.list-links li a:hover {
   bottom: inherit;
   right: inherit;
 }
+.ribbon2 { position: absolute; z-index: 3; right: 15px; bottom: 15px; width: 120px; object-fit: contain; }
 
 /****
   S
