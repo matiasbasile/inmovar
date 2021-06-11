@@ -1273,6 +1273,18 @@ class Propiedad_Model {
       $ubicado = ($propiedad->tipo_inmueble_genero == "F") ? "Ubicada" : "Ubicado";
       $t.= $ubicado." en ".$propiedad->direccion_completa.". ";
     }
+    $cuenta = array();
+    if ($propiedad->ambientes > 0) $cuenta[] = ($propiedad->ambientes > 1) ? $propiedad->ambientes." ambientes" : "un ambiente";
+    if ($propiedad->dormitorios > 0) $cuenta[] = ($propiedad->dormitorios > 1) ? $propiedad->dormitorios." habitaciones" : "una habitación";
+    if ($propiedad->banios > 0) $cuenta[] = ($propiedad->banios > 1) ? $propiedad->banios." baños" : "baño";
+    if ($propiedad->cocheras > 0) $cuenta[] = ($propiedad->cocheras > 1) ? $propiedad->cocheras." cocheras" : "un garage";
+    if (sizeof($cuenta)>0) {
+      $t.= "Cuenta con ";
+      for($i=0;$i<sizeof($cuentas);$i++) {
+        $c = $cuentas[$i];
+        $t.= $c.($i<(sizeof($cuentas)-1))?", ":" y ";
+      }
+    }
     $propiedad->plain_text = $t;
     $propiedad->texto = $t;
   }
