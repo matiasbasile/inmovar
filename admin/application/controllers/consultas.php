@@ -357,6 +357,10 @@ class Consultas extends REST_Controller {
     $template = $this->input->post("template");
     if ($template === FALSE) $template = "";
 
+    // Se envia el cliente como parametro, no se envian los datos de contacto
+    // esto se usa por ejemplo cuando lo tenemos guardado con una cookie
+    $id_cliente = parent::get_post("id_cliente",0);
+
     // Este es un parametro especial que se usa para el CHAT
     // Como en el registro antes de enviar un whatsapp no se pide email,
     // mandamos este parametro para que busque y enlace el contacto por el telefono
@@ -492,13 +496,22 @@ class Consultas extends REST_Controller {
       }
       if (empty($bcc) && isset($empresa->bcc_email)) $bcc = $empresa->bcc_email;
 
-      // Si se paso un email, buscamos el contacto para saber si existe
-      if ($buscar_telefono == 0) {
-        $contacto = (!empty($email)) ? $this->Cliente_Model->get_by_email($email,$id_empresa) : FALSE;
-      } else {
-        $contacto = $this->Cliente_Model->get_by_telefono($telefono,array(
-          "id_empresa"=>$id_empresa
-        ));
+      
+      // Buscamos por el parametro id_cliente
+      $contacto = FALSE;
+      if (!empty($id_cliente)) $contacto = $this->Cliente_Model->get($id_cliente,$id_empresa);
+
+      // Si no se encontro anteriormente un contacto
+      if ($contacto === FALSE) {
+        if ($buscar_telefono == 0) {
+          // Si se paso un email, buscamos el contacto para saber si existe
+          $contacto = (!empty($email)) ? $this->Cliente_Model->get_by_email($email,$id_empresa) : FALSE;
+        } else {
+          // Sino, buscamos por el numero de telefono
+          $contacto = $this->Cliente_Model->get_by_telefono($telefono,array(
+            "id_empresa"=>$id_empresa
+          ));
+        }
       }
 
       // Si estamos consultando por una propiedad
@@ -661,6 +674,9 @@ class Consultas extends REST_Controller {
       $sql.= "no_leido = 1 ";
       $sql.= "WHERE id = $contacto->id AND id_empresa = $id_empresa ";
       $this->db->query($sql);
+
+      // Guardamos una cookie del cliente
+      setcookie("idc",$contacto->id,time()+60*60*24*365,"/");
 
       // Por las dudas que haya quedado algun repetido, lo eliminamos y listo
       $para = array_unique($para);
@@ -832,9 +848,14 @@ class Consultas extends REST_Controller {
 
     }
     
-    echo json_encode(array(
-     "error"=>0,
-    ));
+    $s = array("error"=>0);
+    // Si se envio un cliente, mandamos la info actualizada
+    if (!empty($id_cliente)) {
+      $s["nombre"] = $contacto->nombre;
+      $s["email"] = $contacto->email;
+      $s["telefono"] = $contacto->telefono;
+    }
+    echo json_encode($s);
   }
 
   function exportar($id_origen = 0) {
