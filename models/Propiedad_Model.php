@@ -1266,8 +1266,10 @@ class Propiedad_Model {
   }
 
   function armar_texto($propiedad) {
-    $propiedad->plain_text = "";
-    $propiedad->texto = "";
+    $t = $propiedad->tipo_inmueble." en ".$propiedad->tipo_operacion." en ".$propiedad->localidad.". ";
+    if (isset($propiedad->direccion_completa) && !empty($propiedad->direccion_completa)) $t.= "Ubicada en ".$propiedad->direccion_completa.". ";
+    $propiedad->plain_text = $t;
+    $propiedad->texto = $t;
   }
 
   function get_total_results() {
