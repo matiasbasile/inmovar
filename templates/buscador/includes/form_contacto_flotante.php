@@ -63,7 +63,6 @@ function enviar_contacto_flotante() {
   var mensaje = $("#contacto_flotante_mensaje").val();
   var asunto = $("#contacto_flotante_asunto").val();
   var id_propiedad = $("#contacto_flotante_propiedad").val();
-  var id_origen = <?php echo (isset($id_origen) ? $id_origen : 0) ?>;
   var es_whatsapp = $("#contacto_flotante_whatsapp").val();
   
   if (isEmpty(nombre)) {
@@ -105,6 +104,8 @@ function enviar_contacto_flotante() {
 }
 
 function enviar_contacto_cliente() {
+  var id_propiedad = $("#contacto_flotante_propiedad").val();
+  var es_whatsapp = $("#contacto_flotante_whatsapp").val();
   var datos = {
     "id_cliente":"<?php echo $cookie_id_cliente ?>",
     "asunto":"Consulta en <?php echo $asunto ?>",
@@ -134,7 +135,7 @@ function do_enviar(datos) {
 
           var telefono_usuario = "<?php echo $telefono_propiedad ?>";
           if (telefono_usuario.indexOf("549") == -1) telefono_usuario = "549"+telefono_usuario;
-          
+
           var tpl = "Hola! estoy interesado en la propiedad <?php echo $asunto ?>\n\n";
           tpl += "Nombre y Apellido: *"+r.nombre+"*\n\n";
           tpl += "Telefono: *"+((r.telefono.indexOf("549") == -1)?"549":"")+r.telefono+"*\n\n";
