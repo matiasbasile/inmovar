@@ -397,6 +397,8 @@ else $vc_moneda = "$";
   </div>
 </div>
 
+<?php include("includes/form_contacto_flotante.php"); ?>
+
 <?php include_once("templates/comun/mapa_js.php"); ?>
 
 <script type="text/javascript" src="assets/js/jquery.raty.min.js"></script>

@@ -105,7 +105,7 @@
   <div class="form-group">
     <button onclick="aplicar_orden()" class="btn btn-buscar btn-default">Aplicar</button>
   </div>
-</form>
+</div>
 
 <script>
 function ver_filtros() {
