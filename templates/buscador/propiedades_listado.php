@@ -76,7 +76,9 @@ if (isset($_GET["test"])) print_r($vc_listado);
                     </header>
                     <div class="tag price"><?php echo ($r->precio_final != 0 && $r->publica_precio == 1) ? $r->moneda." ".number_format($r->precio_final,0) : "Consultar"; ?></div>
                     <aside>
-                      <p><?php echo substr($r->plain_text,0,140)."..."; ?></p>
+                      <?php if (!empty($r->plain_text)) { ?>
+                        <p><?php echo substr($r->plain_text,0,140)."..."; ?></p>
+                      <?php } ?>
                       <dl>
                         <?php if (!empty($r->superficie_total)) { ?>
                           <dt>Superficie:</dt>
