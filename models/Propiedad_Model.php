@@ -1281,8 +1281,7 @@ class Propiedad_Model {
     if (sizeof($cuentas)>0) {
       $t.= "Cuenta con ";
       for($i=0;$i<sizeof($cuentas);$i++) {
-        $c = $cuentas[$i];
-        $t.= $c.($i<(sizeof($cuentas)-1))?", ":" y ";
+        $t.= $cuentas[$i].(($i<(sizeof($cuentas)-1))?", ":" y ");
       }
     }
     $propiedad->plain_text = $t;
