@@ -132,13 +132,14 @@ function do_enviar(datos) {
       if (r.error == 0) {
         if (datos.id_origen == 30) {
 
-          var tpl = "Hola! estoy interesado en la propiedad <?php echo $asunto ?>\n\n";
-          tpl += "Nombre y Apellido: *"+r.nombre+"*\n\n";
-          tpl += "Telefono: *"+((telefono_usuario.indexOf("549") == -1)?"549":"")+r.telefono+"*\n\n";
-          tpl += "Email: *"+r.email+"*\n\n";
-  
           var telefono_usuario = "<?php echo $telefono_propiedad ?>";
           if (telefono_usuario.indexOf("549") == -1) telefono_usuario = "549"+telefono_usuario;
+          
+          var tpl = "Hola! estoy interesado en la propiedad <?php echo $asunto ?>\n\n";
+          tpl += "Nombre y Apellido: *"+r.nombre+"*\n\n";
+          tpl += "Telefono: *"+((r.telefono.indexOf("549") == -1)?"549":"")+r.telefono+"*\n\n";
+          tpl += "Email: *"+r.email+"*\n\n";
+          
           var url = "https://wa.me/"+telefono_usuario;
           url+= "?text="+encodeURIComponent(tpl);  
           var open = window.open(url,"_blank");
