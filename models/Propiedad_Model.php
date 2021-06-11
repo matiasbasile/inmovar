@@ -592,6 +592,7 @@ class Propiedad_Model {
     $sql.= "IF(C.email IS NULL,'',C.email) AS cliente_email, ";
     $sql.= "IF(U.nombre IS NULL,'',U.nombre) AS usuario, ";
     $sql.= "IF(U.email IS NULL,'',U.email) AS usuario_email, ";
+    $sql.= "IF(U.celular IS NULL,'',U.celular) AS usuario_celular, ";
     $sql.= "IF(U.path IS NULL,'',U.path) AS usuario_path, ";
     $sql.= "IF(PART.nombre IS NULL,'',PART.nombre) AS partido, ";
     $sql.= "IF(PROV.nombre IS NULL,'',PROV.nombre) AS provincia, ";
@@ -756,6 +757,8 @@ class Propiedad_Model {
 
       $propiedad->departamentos[] = $r;
     }
+
+    $propiedad->usuario_celular = preg_replace("/[^0-9]/", "", $propiedad->usuario_celular);
 
     // Area total
     $propiedad->superficie_total = $propiedad->superficie_cubierta + $propiedad->superficie_descubierta + $propiedad->superficie_semicubierta;
