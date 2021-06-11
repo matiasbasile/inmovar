@@ -11,7 +11,7 @@ $esta_buscando = (isset($vc_link_localidad) && !empty($vc_link_localidad)) || (i
   </header>
 
   <div class="form-group">
-    <a href="<?php echo mklink("propiedades/ventas/") ?>" class="btn-limpiar"><i class="fa fa-times"> Limpiar búsqueda</a>
+    <a href="<?php echo mklink("propiedades/ventas/") ?>" class="btn-limpiar"><i class="fa fa-times"></i> Limpiar búsqueda</a>
   </div>
 
   <div class="form-group" id="buscador-tipo-operacion">
