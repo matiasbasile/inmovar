@@ -10,6 +10,10 @@ $esta_buscando = (isset($vc_link_localidad) && !empty($vc_link_localidad)) || (i
     </h3>
   </header>
 
+  <div class="form-group">
+    <a href="<?php echo mklink("propiedades/ventas/") ?>" class="btn-limpiar">Limpiar búsqueda</a>
+  </div>
+
   <div class="form-group" id="buscador-tipo-operacion">
     <select id="tipo_operacion" class="filter_tipo_operacion filter_tilde active">
       <?php $filter_tipos_operacion = $propiedad_model->get_tipos_operaciones();
@@ -73,9 +77,6 @@ $esta_buscando = (isset($vc_link_localidad) && !empty($vc_link_localidad)) || (i
         </div>
       </div>
     </div>
-  </div>
-  <div class="form-group">
-    <a href="<?php echo mklink("propiedades/ventas/") ?>" class="btn btn-limpiar btn-default">Limpiar búsqueda</a>
   </div>
   <div class="form-group">
     <button type="submit" class="btn btn-buscar btn-default">Buscar</button>
