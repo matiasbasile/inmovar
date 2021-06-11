@@ -1268,10 +1268,10 @@ class Propiedad_Model {
   }
 
   function armar_texto($propiedad) {
-    $t = $propiedad->tipo_inmueble." en ".$propiedad->tipo_operacion." en ".$propiedad->localidad.". ";
+    $t = $propiedad->tipo_inmueble." en ".$propiedad->tipo_operacion." en ".trim($propiedad->localidad).". ";
     if (isset($propiedad->direccion_completa) && !empty($propiedad->direccion_completa)) {
       $ubicado = ($propiedad->tipo_inmueble_genero == "F") ? "Ubicada" : "Ubicado";
-      $t.= $ubicado." en ".$propiedad->direccion_completa.". ";
+      $t.= $ubicado." en ".trim($propiedad->direccion_completa).". ";
     }
     $cuentas = array();
     if ($propiedad->ambientes > 1) $cuentas[] = $propiedad->ambientes." ambientes";
@@ -1287,6 +1287,8 @@ class Propiedad_Model {
         else $t.= ", ";
       }
     }
+    if ($propiedad->apto_banco == 1) $t.= "Apto para crédito bancario. ";
+    if ($propiedad->acepta_permuta == 1) $t.= "Acepta permuta. ";
     $propiedad->plain_text = $t;
     $propiedad->texto = $t;
   }
