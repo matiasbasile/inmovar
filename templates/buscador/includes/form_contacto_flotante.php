@@ -1,5 +1,5 @@
 <?php 
-$asunto = $propiedad->nombre." [Cod: ".$propiedad->codigo_completo."]"; 
+$asunto = $propiedad->nombre." [Cod: ".$propiedad->codigo."]";
 $telefono_propiedad = empty($propiedad->usuario_celular) ? $propiedad->usuario_celular : preg_replace("/[^0-9]/", "", $empresa->telefono);
 ?>
 <form id="form_flotante" onsubmit="return enviar_contacto_flotante()" class="form-search">
