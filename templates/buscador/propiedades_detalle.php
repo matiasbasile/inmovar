@@ -87,11 +87,6 @@ else $vc_moneda = "$";
                 <?php } ?>
                 <?php echo $propiedad->direccion_completa." | ".$propiedad->localidad; ?>
               </figure>
-
-              <?php if (isset($propiedad->pertenece_red) && $propiedad->pertenece_red == 1) { ?>
-                <div class="mt10"><span class="tag price">Red Inmovar</span></div>
-              <?php } ?>
-              
             </header>
             <?php if (sizeof($propiedad->images) > 0) { ?>
               <section id="property-gallery" class="pr">
