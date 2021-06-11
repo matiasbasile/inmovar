@@ -1277,12 +1277,13 @@ class Propiedad_Model {
     if ($propiedad->ambientes > 0) $cuentas[] = ($propiedad->ambientes > 1) ? $propiedad->ambientes." ambientes" : "un ambiente";
     if ($propiedad->dormitorios > 0) $cuentas[] = ($propiedad->dormitorios > 1) ? $propiedad->dormitorios." habitaciones" : "una habitación";
     if ($propiedad->banios > 0) $cuentas[] = ($propiedad->banios > 1) ? $propiedad->banios." baños" : "baño";
-    if ($propiedad->cocheras > 0) $cuentas[] = ($propiedad->cocheras > 1) ? $propiedad->cocheras." cocheras" : "un garage";
+    if ($propiedad->cocheras > 0) $cuentas[] = ($propiedad->cocheras > 1) ? $propiedad->cocheras." cocheras" : "garage";
     if (sizeof($cuentas)>0) {
-      $t.= "Cuenta con ";
+      $t.= "<br/>Cuenta con ";
       for($i=0;$i<sizeof($cuentas);$i++) {
         $t.= $cuentas[$i].(($i<(sizeof($cuentas)-1))?", ":" y ");
       }
+      $t.= ".";
     }
     $propiedad->plain_text = $t;
     $propiedad->texto = $t;
