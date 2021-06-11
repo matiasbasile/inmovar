@@ -17,7 +17,7 @@ $telefono_propiedad = empty($propiedad->usuario_celular) ? $propiedad->usuario_c
   </div>
   <div class="form-group">
     <label for="contacto_flotante_telefono">Tel&eacute;fono<em>*</em></label>
-    <input class="form-control" type="number" id="contacto_flotante_telefono" value="<?php echo isset($_SESSION["telefono"]) ? $_SESSION["telefono"] : "" ?>" placeholder="Tel&eacute;fono" />
+    <input class="form-control" type="number" id="contacto_flotante_telefono" value="<?php echo isset($_SESSION["telefono"]) ? $_SESSION["telefono"] : "" ?>" placeholder="Tel&eacute;fono (sin 0 ni 15)" />
   </div>
   <div class="form-group">
     <label for="contacto_flotante_email">Email<em>*</em></label>
