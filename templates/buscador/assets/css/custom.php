@@ -6138,7 +6138,7 @@ input.form-control { box-shadow: 0px 1px 1px rgb(0 0 0 / 20%); }
   .page-search-results .buscador-flotante .button.active, .page-search-results .buscador-flotante .button:hover, .page-search-results .operaciones-flotante .button:hover, 
   .page-search-results .buscador-flotante .button:focus, .page-search-results .operaciones-flotante .button:focus, 
   .page-search-results .buscador-flotante .button:active, .page-search-results .operaciones-flotante .button:active { background-color: <?php echo $c1; ?>; color: white; }
-  .buscador-flotante .button.active { background-color: <?php echo $c1; ?> !important; color: white !important; }
+  .page-search-results .buscador-flotante .button.active { background-color: <?php echo $c1; ?> !important; color: white !important; }
   .page-search-results .form-search .btn { width: 100%; }
   .page-search-results .form-search input[type=radio] { visibility: hidden; }
   .page-search-results .form-search.active { overflow: auto; padding: 20px; background-color: #f3f3f3; display: block !important; position: fixed; z-index: 9999; top: 0px; left: 0px; bottom: 0px; right: 0px; }
