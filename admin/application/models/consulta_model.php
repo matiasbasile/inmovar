@@ -613,6 +613,7 @@ class Consulta_Model extends Abstract_Model {
       // Y despues tomamos la ultima consulta
       $consultas = $this->buscar_consultas(array(
         "id_contacto"=>$res->id,
+        "id_empresa"=>$id_empresa,
         "limit"=>0,
         "offset"=>1,
         "tipo"=>0, // Consultas recibidas
