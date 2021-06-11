@@ -82,7 +82,7 @@ $esta_buscando = (isset($vc_link_localidad) && !empty($vc_link_localidad)) || (i
 <div class="buscador-flotante">
   <div class="row">
     <div class="col-xs-6 pr5">
-      <button onclick="ver_filtros()" class="button"><?php echo ($esta_buscando) ? "Buscando":"Buscar" ?></button>
+      <button onclick="ver_filtros()" class="button <?php echo ($esta_buscando) ? "active":"" ?>"><?php echo ($esta_buscando) ? "Ver búsqueda":"Buscar" ?></button>
     </div>
     <div class="col-xs-6 pl5">
       <button onclick="ver_orden()" class="button">Ordenar</button>
