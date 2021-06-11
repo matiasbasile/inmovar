@@ -63,11 +63,11 @@ if (isset($_GET["test"])) print_r($vc_listado);
                     </figure>
                     <a href="<?php echo $r->link_propiedad; ?>">
                       <?php if (!empty($r->imagen)) { ?>
-                        <img loading="lazy" src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre); ?>" />
+                        <img src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre); ?>" />
                       <?php } else if (!empty($empresa->no_imagen)) { ?>
-                        <img loading="lazy" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->nombre); ?>" />
+                        <img src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->nombre); ?>" />
                       <?php } else { ?>
-                        <img loading="lazy" src="assets/img/logo.png" alt="<?php echo ($r->nombre); ?>" />
+                        <img src="assets/img/logo.png" alt="<?php echo ($r->nombre); ?>" />
                       <?php } ?>
                     </a>
                   </div>
