@@ -27,6 +27,13 @@
   </div>
 </form>
 <script type="text/javascript">
+function ver_whatsapp() {
+  $("#form_flotante").addClass("active");
+}
+function ver_consultar() {
+  $("#form_flotante").addClass("active");
+}
+
 var enviando = 0;
 function enviar_contacto_flotante() {
   if (enviando == 1) return;

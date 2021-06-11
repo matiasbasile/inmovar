@@ -392,7 +392,7 @@ else $vc_moneda = "$";
       <button onclick="ver_whatsapp()" class="button">Whatsapp</button>
     </div>
     <div class="col-xs-6">
-      <button onclick="ver_buscador()" class="button">Consultar</button>
+      <button onclick="ver_consultar()" class="button">Consultar</button>
     </div>
   </div>
 </div>
