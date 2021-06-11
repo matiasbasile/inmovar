@@ -1749,6 +1749,7 @@ ul.list-links li a:hover {
 .display-lines .property .info {
   display: table;
   position: relative;
+  width: 100%;
 }
 .display-lines .property .info header a {
   display: inline-block;
