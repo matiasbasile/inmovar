@@ -6144,4 +6144,5 @@ input.form-control { box-shadow: 0px 1px 1px rgb(0 0 0 / 20%); }
   .page-search-results #page-footer .inner #footer-copyright { padding-bottom: 100px; }
   .page-search-results .btn-buscar { border-radius: 10px; }
   .display-lines .property .info header h3 { font-size: 24px; line-height: 32px; }
+  #form_flotante .form-control, #form_flotante textarea { background-color: white; }
 }
