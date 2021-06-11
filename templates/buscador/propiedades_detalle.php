@@ -226,32 +226,7 @@ else $vc_moneda = "$";
                       <dt>Posibilidad de permuta</dt>
                       <dd>&nbsp;</dd>
                     <?php } ?>
-                    
                   </dl>
-                  <div class="property-share">
-                    <?php 
-                    // LANGONE
-                    if ($empresa->id == 161) { ?>
-                      <div class="whatsapp_cont">
-                        <div class="whatsapp_cont_icon">
-                          <i class="fa fa-whatsapp"></i>
-                        </div>
-                        <div class="whatsapp_cont_texto">
-                          <span>HABLANOS POR WHATSAPP</span>
-                          <?php $tel = preg_replace("/[^0-9]/", "", $empresa->telefono_2); ?>
-                          <h3><a href="https://api.whatsapp.com/send?phone=<?php echo $tel ?>"><?php echo $empresa->telefono_2 ?></a></h3>
-                        </div>
-                      </div>
-                    <?php } ?>
-                    <div class="share-block">
-                      <ul>
-                        <li><a class="fb" onclick="window.open(this.href, 'mywin','left=50,top=50,width=600,height=350,toolbar=0'); return false;" href="https://www.facebook.com/sharer.php?u=<?php echo urlencode(current_url()) ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                        <li><a class="twitter" target="_blank" href="https://twitter.com/intent/tweet?text=<?php echo urlencode(html_entity_decode($propiedad->nombre,ENT_QUOTES)) ?>&amp;url=<?php echo urlencode(current_url()) ?>"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                        <li><a class="mail" href="mailto:?subject=<?php echo html_entity_decode($propiedad->nombre,ENT_QUOTES) ?>&body=<?php echo(current_url()) ?>"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
-                        <li><a class="whatsapp" href="whatsapp://send?text=<?php echo urlencode(current_url()) ?>"><i class="fa fa-whatsapp"></i></a></li>
-                      </ul>
-                    </div>
-                  </div>
                 </section><!-- /#quick-summary -->
               </div><!-- /.col-md-4 -->
               <div class="col-md-8 col-sm-12">
@@ -388,11 +363,11 @@ else $vc_moneda = "$";
 
 <div class="operaciones-flotante">
   <div class="row">
-    <div class="col-xs-6 pr5">
-      <button onclick="ver_whatsapp()" class="button">Whatsapp</button>
+    <div class="col-xs-3 pr5">
+      <button onclick="ver_whatsapp()" class="button btn-whatsapp"><i class="fa fa-whatsapp"></i></button>
     </div>
     <div class="col-xs-6 pl5">
-      <button onclick="ver_consultar()" class="button">Consultar</button>
+      <button onclick="ver_consultar()" class="button active">Consultar</button>
     </div>
   </div>
 </div>
