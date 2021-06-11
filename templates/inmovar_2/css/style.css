@@ -292,6 +292,7 @@ input[type=checkbox]:checked+label:before {
     .title-map { font-family: 'Open Sans', sans-serif; font-size: 18px; font-weight: 600; }
     .leaflet-popup-content { width: 430px !important;  margin: 13px 0}
     .feature-image img { width: 120px; height: 120px; object-fit: cover; margin-right: 10px  }
+    .cover-list { object-fit: cover; height: 260px; }
     .tab_list_box_content { border-left: 1px solid #dedede; padding-left: 10px ; }
     .leaflet-container a { color: black !important;   }
     .feature-item { display: inline-flex; }

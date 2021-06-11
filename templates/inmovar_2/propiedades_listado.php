@@ -75,11 +75,11 @@ $page_active = $vc_link_tipo_operacion;
                           <?php echo $p->precio ?>
                         </div>
                         <?php if (!empty($p->imagen)) { ?>
-                          <img class="img-responsive" src="<?php echo $p->imagen ?>" alt="<?php echo ($p->nombre); ?>" />
+                          <img class="img-responsive cover-list" src="<?php echo $p->imagen ?>" alt="<?php echo ($p->nombre); ?>" />
                         <?php } else if (!empty($empresa->no_imagen)) { ?>
-                          <img class="img-responsive" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre); ?>" />
+                          <img class="img-responsive cover-list" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre); ?>" />
                         <?php } else { ?>
-                          <img class="img-responsive" src="images/logo.png" alt="<?php echo ($p->nombre); ?>" />
+                          <img class="img-responsive cover-list" src="images/logo.png" alt="<?php echo ($p->nombre); ?>" />
                         <?php } ?>
                       </a>
                     </div>
@@ -132,11 +132,11 @@ $page_active = $vc_link_tipo_operacion;
                           </div>
                           <div class="property-main-image">
                             <?php if (!empty($p->imagen)) { ?>
-                              <img class="img-responsive" src="<?php echo $p->imagen ?>" alt="<?php echo ($p->nombre); ?>" />
+                              <img class="img-responsive cover-list" src="<?php echo $p->imagen ?>" alt="<?php echo ($p->nombre); ?>" />
                             <?php } else if (!empty($empresa->no_imagen)) { ?>
-                              <img class="img-responsive" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre); ?>" />
+                              <img class="img-responsive cover-list" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($p->nombre); ?>" />
                             <?php } else { ?>
-                              <img class="img-responsive" src="images/logo.png" alt="<?php echo ($p->nombre); ?>" />
+                              <img class="img-responsive cover-list" src="images/logo.png" alt="<?php echo ($p->nombre); ?>" />
                             <?php } ?>
                           </div>
                         </a>
