@@ -75,6 +75,9 @@ $esta_buscando = (isset($vc_link_localidad) && !empty($vc_link_localidad)) || (i
     </div>
   </div>
   <div class="form-group">
+    <a href="<?php echo mklink("propiedades/ventas/") ?>" class="btn btn-default">Limpiar búsqueda</a>
+  </div>
+  <div class="form-group">
     <button type="submit" class="btn btn-buscar btn-default">Buscar</button>
   </div>
 </form>
