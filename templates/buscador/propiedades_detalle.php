@@ -364,6 +364,9 @@ else $vc_moneda = "$";
 <div class="operaciones-flotante">
   <div class="row">
     <div class="col-xs-3 pr5">
+      <button onclick="window.history.back()" class="button"><i class="fa fa-arrow-left"></i></button>
+    </div>
+    <div class="col-xs-3 pr5">
       <button onclick="ver_whatsapp()" class="button btn-whatsapp"><i class="fa fa-whatsapp"></i></button>
     </div>
     <div class="col-xs-6 pl5">
