@@ -6122,7 +6122,7 @@ input.form-control { box-shadow: 0px 1px 1px rgb(0 0 0 / 20%); }
 #search-filter .sorting select { width: auto; }
 #search-filter .sorting label { margin-right: 10px; }
 @media (max-width: 768px) {
-  .filter_tilde.active { background-image:url("https://app.inmovar.com/templates/buscador/assets/img/tilde.png"); background-position: 95% 12px; background-repeat:no-repeat; }
+  .filter_tilde.active { background-image:url("https://app.inmovar.com/templates/buscador/assets/img/tilde.png"); background-position: 95% 12px; background-repeat:no-repeat; background-size:20px; }
   #contacto-section { display: none; }
   #contacto_submit { display: block; width: 100%; }
   .form-search { display: none; }
