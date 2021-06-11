@@ -385,7 +385,6 @@ else $vc_moneda = "$";
   </div>
   <?php include("includes/footer.php"); ?>
 </div>
-<?php include_once("templates/comun/mapa_js.php"); ?>
 
 <div class="operaciones-flotante">
   <div class="row">
@@ -397,6 +396,8 @@ else $vc_moneda = "$";
     </div>
   </div>
 </div>
+
+<?php include_once("templates/comun/mapa_js.php"); ?>
 
 <script type="text/javascript" src="assets/js/jquery.raty.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery.magnific-popup.min.js"></script>
