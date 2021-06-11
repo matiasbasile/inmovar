@@ -33,22 +33,30 @@ $telefono_propiedad = empty($propiedad->usuario_celular) ? $propiedad->usuario_c
 </form>
 <script type="text/javascript">
 function ver_whatsapp() {
-  $("#form_flotante .titulo").html("Enviar Whatsapp");
   $("#contacto_flotante_whatsapp").val(1);
-  $("#form_flotante").addClass("active");
+  <?php if (!empty($cookie_id_cliente)) { ?>
+    enviar_contacto_cliente();
+  <?php } else { ?>
+    $("#form_flotante .titulo").html("Enviar Whatsapp");
+    $("#form_flotante").addClass("active");
+  <?php } ?>
 }
 function ver_consultar() {
-  $("#form_flotante .titulo").html("Enviar Email");
   $("#contacto_flotante_whatsapp").val(0);
-  $("#form_flotante").addClass("active");
+  <?php if (!empty($cookie_id_cliente)) { ?>
+    enviar_contacto_cliente();
+  <?php } else { ?>
+    $("#form_flotante .titulo").html("Enviar Email");
+    $("#form_flotante").addClass("active");
+  <?php } ?>
 }
 function cerrar() {
   $("#form_flotante").removeClass("active");
 }
 
-var enviando = 0;
+window.enviando = 0;
 function enviar_contacto_flotante() {
-  if (enviando == 1) return;
+  if (enviando == 1) return false;
   var nombre = $("#contacto_flotante_nombre").val();
   var email = $("#contacto_flotante_email").val();
   var telefono = $("#contacto_flotante_telefono").val();
@@ -79,12 +87,6 @@ function enviar_contacto_flotante() {
     return false;      
   }
 
-  var tpl = "Hola! estoy interesado en la propiedad <?php echo $asunto ?>\n\n";
-  tpl += "Nombre y Apellido: *"+nombre+"*\n\n";
-  tpl += "Telefono: *549"+telefono+"*\n\n";
-  tpl += "Email: *"+email+"*\n\n";
-
-  $("#contacto_flotante_submit").attr('disabled', 'disabled');
   var datos = {
     "nombre":nombre,
     "email":email,
@@ -98,7 +100,29 @@ function enviar_contacto_flotante() {
     <?php } ?>
     "id_origen": ((es_whatsapp == 1) ? 30 : 1),
   }
-  enviando = 1;
+  do_enviar(datos);
+  return false;
+}
+
+function enviar_contacto_cliente() {
+  var datos = {
+    "id_cliente":"<?php echo $cookie_id_cliente ?>",
+    "asunto":"Consulta en <?php echo $asunto ?>",
+    "id_propiedad":id_propiedad,
+    "id_empresa":ID_EMPRESA,
+    <?php if (isset($propiedad) && $propiedad->id_empresa != $empresa->id) { ?>
+      "id_empresa_relacion":"<?php echo $propiedad->id_empresa ?>",
+    <?php } ?>
+    "id_origen": ((es_whatsapp == 1) ? 30 : 1),
+  }
+  do_enviar(datos);
+  return false;
+}
+
+function do_enviar(datos) {
+  window.enviando = 1;
+  $("#contacto_flotante_submit").attr('disabled', 'disabled');
+
   $.ajax({
     "url":"https://app.inmovar.com/admin/consultas/function/enviar/",
     "type":"post",
@@ -106,7 +130,12 @@ function enviar_contacto_flotante() {
     "data":datos,
     "success":function(r){
       if (r.error == 0) {
-        if (es_whatsapp == 1) {
+        if (datos.id_origen == 30) {
+
+          var tpl = "Hola! estoy interesado en la propiedad <?php echo $asunto ?>\n\n";
+          tpl += "Nombre y Apellido: *"+r.nombre+"*\n\n";
+          tpl += "Telefono: *"+((telefono_usuario.indexOf("549") == -1)?"549":"")+r.telefono+"*\n\n";
+          tpl += "Email: *"+r.email+"*\n\n";
   
           var telefono_usuario = "<?php echo $telefono_propiedad ?>";
           if (telefono_usuario.indexOf("549") == -1) telefono_usuario = "549"+telefono_usuario;
@@ -123,10 +152,9 @@ function enviar_contacto_flotante() {
       } else {
         alert("Ocurrio un error al enviar su email. Disculpe las molestias");
         $("#contacto_flotante_submit").removeAttr('disabled');
-        enviando = 0;
+        window.enviando = 0;
       }
     }
   });
-  return false;
-}  
+}
 </script>
