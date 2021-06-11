@@ -1253,6 +1253,13 @@ class Propiedad_Model {
       }
 
       $r = $this->encoding($r);
+
+      // Si es una propiedad de la red, no mandamos la descripcion
+      if ($r->id_empresa != $this->id_empresa) {
+        $r->texto = "";
+        $r->plain_text = "";
+      }
+
       $salida[] = $r;
     }
     return $salida;
