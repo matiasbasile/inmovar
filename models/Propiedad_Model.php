@@ -1279,7 +1279,7 @@ class Propiedad_Model {
     if ($propiedad->banios > 1) $cuentas[] = $propiedad->banios." baños";
     if ($propiedad->cocheras > 0) $cuentas[] = ($propiedad->cocheras > 1) ? $propiedad->cocheras." cocheras" : "garage";
     if (sizeof($cuentas)>0) {
-      $t.= "<br/>Cuenta con ";
+      $t.= "Cuenta con ";
       for($i=0;$i<sizeof($cuentas);$i++) {
         $t.= $cuentas[$i];
         if ($i == (sizeof($cuentas)-2)) $t.= " y ";
