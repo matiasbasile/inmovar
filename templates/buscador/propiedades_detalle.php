@@ -312,7 +312,7 @@ else $vc_moneda = "$";
                     </div>
                   </section>
                 <?php } ?>
-                <section id="video-presentation">
+                <section id="contacto-section">
                   <header><h2>Consulta por esta propiedad</h2></header>
                   <?php include("includes/form_contacto.php"); ?>
                 </section>
