@@ -1280,10 +1280,12 @@ class Propiedad_Model {
     if ($propiedad->cocheras > 0) $cuenta[] = ($propiedad->cocheras > 1) ? $propiedad->cocheras." cocheras" : "un garage";
     if (sizeof($cuenta)>0) {
       $t.= "Cuenta con ";
+      /*
       for($i=0;$i<sizeof($cuentas);$i++) {
         $c = $cuentas[$i];
         $t.= $c.($i<(sizeof($cuentas)-1))?", ":" y ";
       }
+      */
     }
     $propiedad->plain_text = $t;
     $propiedad->texto = $t;
