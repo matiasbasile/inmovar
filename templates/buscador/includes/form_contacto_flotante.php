@@ -3,7 +3,7 @@
   <header>
     <h3>
       <span class="titulo"></span>
-      <i onclick="cerrar_filtros()" class="cerrar_filtros fa fa-times"></i>
+      <i onclick="cerrar()" class="cerrar_filtros fa fa-times"></i>
     </h3>
   </header>
   <div class="form-group">
@@ -32,6 +32,9 @@ function ver_whatsapp() {
 }
 function ver_consultar() {
   $("#form_flotante").addClass("active");
+}
+function cerrar() {
+  $("#form_flotante").removeClass("active");
 }
 
 var enviando = 0;
