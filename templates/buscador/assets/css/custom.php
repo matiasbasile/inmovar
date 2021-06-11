@@ -6128,7 +6128,7 @@ input.form-control { box-shadow: 0px 1px 1px rgb(0 0 0 / 20%); }
   .form-search { display: none; }
   .navbar-brand { float: none; }
   #search-filter { margin-bottom: 20px; }
-  .page-search-results .btn-limpiar { border-radius: 25px; font-size: 12px; display:inline-block; background-color:#dddddd;color:#5a5a5a; cursor:pointer; padding:3px 7px; }
+  .page-search-results .btn-limpiar { border-radius: 25px; font-size: 13px; display:inline-block; background-color:#dddddd;color:#5a5a5a; cursor:pointer; padding:4px 10px; }
   .page-search-results .navigation .navbar { text-align: center; }
   .page-search-results .sorting { display: none; }
   .page-search-results .buscador-flotante, .page-search-results .operaciones-flotante { display: block; position: fixed; width: 100%; bottom: 0px; left: 0px; right: 0px; z-index: 900; }
