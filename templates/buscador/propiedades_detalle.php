@@ -388,10 +388,10 @@ else $vc_moneda = "$";
 
 <div class="operaciones-flotante">
   <div class="row">
-    <div class="col-xs-6">
+    <div class="col-xs-6 pr5">
       <button onclick="ver_whatsapp()" class="button">Whatsapp</button>
     </div>
-    <div class="col-xs-6">
+    <div class="col-xs-6 pl5">
       <button onclick="ver_consultar()" class="button">Consultar</button>
     </div>
   </div>

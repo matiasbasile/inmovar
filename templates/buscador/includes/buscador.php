@@ -81,10 +81,10 @@ $esta_buscando = (isset($vc_id_tipo_inmueble) && !empty($vc_id_tipo_inmueble)) |
 
 <div class="buscador-flotante">
   <div class="row">
-    <div class="col-xs-6">
+    <div class="col-xs-6 pr5">
       <button onclick="ver_filtros()" class="button"><?php echo ($esta_buscando) ? "Buscando":"Buscar" ?></button>
     </div>
-    <div class="col-xs-6">
+    <div class="col-xs-6 pl5">
       <button onclick="ver_orden()" class="button">Ordenar</button>
     </div>
   </div>
