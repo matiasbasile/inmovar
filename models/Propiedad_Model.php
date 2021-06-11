@@ -829,6 +829,12 @@ class Propiedad_Model {
       $propiedad->seo_title = $propiedad->nombre;
     }
 
+    // Si es una propiedad de la red, no mandamos la descripcion
+    if ($propiedad->pertenece_red == 1) {
+      $propiedad->texto = "";
+      $propiedad->plain_text = "";
+    }    
+
     return $propiedad;
   }
 
