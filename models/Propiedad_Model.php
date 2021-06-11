@@ -585,6 +585,7 @@ class Propiedad_Model {
     $sql.= "IF(P.nombre IS NULL,'',P.nombre) AS propietario, ";
     $sql.= "IF(TE.nombre IS NULL,'',TE.nombre) AS tipo_estado, ";
     $sql.= "IF(TI.nombre IS NULL,'',TI.nombre) AS tipo_inmueble, ";
+    $sql.= "IF(TI.genero IS NULL,'M',TI.genero) AS tipo_inmueble_genero, ";
     $sql.= "IF(X.nombre IS NULL,'',X.nombre) AS tipo_operacion, ";
     $sql.= "IF(X.link IS NULL,'',X.link) AS tipo_operacion_link, ";
     $sql.= "IF(C.nombre IS NULL,'',C.nombre) AS cliente, ";
@@ -1021,6 +1022,7 @@ class Propiedad_Model {
     $sql.= "IF(P.nombre IS NULL,'',P.nombre) AS propietario, ";
     $sql.= "IF(TE.nombre IS NULL,'',TE.nombre) AS tipo_estado, ";
     $sql.= "IF(TI.nombre IS NULL,'',TI.nombre) AS tipo_inmueble, ";
+    $sql.= "IF(TI.genero IS NULL,'M',TI.genero) AS tipo_inmueble_genero, ";
     $sql.= "IF(X.nombre IS NULL,'',X.nombre) AS tipo_operacion, ";
     $sql.= "IF(X.link IS NULL,'',X.link) AS tipo_operacion_link, ";
     $sql.= "IF(L.nombre IS NULL,'',L.nombre) AS localidad, ";
@@ -1267,7 +1269,10 @@ class Propiedad_Model {
 
   function armar_texto($propiedad) {
     $t = $propiedad->tipo_inmueble." en ".$propiedad->tipo_operacion." en ".$propiedad->localidad.". ";
-    if (isset($propiedad->direccion_completa) && !empty($propiedad->direccion_completa)) $t.= "Ubicada en ".$propiedad->direccion_completa.". ";
+    if (isset($propiedad->direccion_completa) && !empty($propiedad->direccion_completa)) {
+      $ubicado = ($propiedad->tipo_inmueble_genero == "F") ? : "Ubicada" : "Ubicado";
+      $t.= $ubicado." en ".$propiedad->direccion_completa.". ";
+    }
     $propiedad->plain_text = $t;
     $propiedad->texto = $t;
   }
