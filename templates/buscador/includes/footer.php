@@ -35,3 +35,12 @@
 <![endif]-->
 <script type="text/javascript" src="/admin/resources/js/common.js"></script>
 <script type="text/javascript" src="/admin/resources/js/main.js"></script>
+
+<script>
+$(document).ready(function(){
+  $(".filter_tilde").change(function(e){
+    if ($(e.currentTarget).val() == 0) $(e.currentTarget).removeClass("active");
+    else $(e.currentTarget).addClass("active");
+  });
+});
+</script>

@@ -409,13 +409,6 @@ else $vc_moneda = "$";
 <![endif]-->
 <script type="text/javascript" src="assets/js/custom.js"></script>
 <script>
-$(document).ready(function(){
-  $(".filter_tilde").change(function(e){
-    if ($(e.currentTarget).val() == 0) $(e.currentTarget).removeClass("active");
-    else $(e.currentTarget).addClass("active");
-  });
-});
-
 <?php if (isset($propiedad->latitud) && isset($propiedad->longitud) && $propiedad->latitud != 0 && $propiedad->longitud != 0) { ?>
 //MAP SCRIPT
 $(document).ready(function(){
