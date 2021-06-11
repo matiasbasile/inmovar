@@ -6122,6 +6122,7 @@ input.form-control { box-shadow: 0px 1px 1px rgb(0 0 0 / 20%); }
 #search-filter .sorting select { width: auto; }
 #search-filter .sorting label { margin-right: 10px; }
 @media (max-width: 768px) {
+  #contacto-section { display: none; }
   #contacto_submit { display: block; width: 100%; }
   .form-search { display: none; }
   .navbar-brand { float: none; }

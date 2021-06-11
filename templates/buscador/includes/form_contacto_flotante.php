@@ -63,11 +63,6 @@ function enviar_contacto_flotante() {
     $("#contacto_flotante_nombre").focus();
     return false;      
   }
-  if (!validateEmail(email)) {
-    alert("Por favor ingrese un email valido");
-    $("#contacto_flotante_email").focus();
-    return false;      
-  }
   if (isEmpty(telefono)) {
     alert("Por favor ingrese un telefono");
     $("#contacto_flotante_telefono").focus();
@@ -77,6 +72,11 @@ function enviar_contacto_flotante() {
     alert("Por favor ingrese un telefono valido (sin 0 ni 15)");
     $("#contacto_flotante_telefono").focus();
     return false;    
+  }
+  if (!validateEmail(email)) {
+    alert("Por favor ingrese un email valido");
+    $("#contacto_flotante_email").focus();
+    return false;      
   }
 
   var tpl = "Hola! estoy interesado en la propiedad <?php echo $asunto ?>\n\n";
@@ -114,7 +114,8 @@ function enviar_contacto_flotante() {
           url+= "?text="+encodeURIComponent(tpl);  
           var open = window.open(url,"_blank");
           if (open == null || typeof(open)=='undefined') location.href = url;
-
+          location.reload();
+          
         } else {
           alert("Tu consulta ha sido enviada!");
           location.reload();
