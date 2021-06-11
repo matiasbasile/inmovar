@@ -148,7 +148,7 @@ function do_enviar(datos) {
           else location.reload();
           
         } else {
-          alert("Tu consulta ha sido enviada!");
+          alert("Tu consulta por esta propiedad ha sido enviada. Pronto nos estaremos comunicando. ¡Muchas gracias!");
           location.reload();
         }
       } else {

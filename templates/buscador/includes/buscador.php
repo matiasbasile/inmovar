@@ -10,9 +10,11 @@ $esta_buscando = (isset($vc_link_localidad) && !empty($vc_link_localidad)) || (i
     </h3>
   </header>
 
-  <div class="form-group">
-    <a href="<?php echo mklink("propiedades/ventas/") ?>" class="btn-limpiar"><i class="fa fa-times"></i> Limpiar búsqueda</a>
-  </div>
+  <?php if ($esta_buscando) { ?>
+    <div class="form-group">
+      <a href="<?php echo mklink("propiedades/ventas/") ?>" class="btn-limpiar"><i class="fa fa-times"></i> Limpiar búsqueda</a>
+    </div>
+  <?php } ?>
 
   <div class="form-group" id="buscador-tipo-operacion">
     <select id="tipo_operacion" class="filter_tipo_operacion filter_tilde active">
