@@ -387,7 +387,7 @@ else $vc_moneda = "$";
 </div>
 <?php include_once("templates/comun/mapa_js.php"); ?>
 
-<div class="buscador-flotante">
+<div class="operaciones-flotante">
   <div class="row">
     <div class="col-xs-6">
       <button onclick="ver_whatsapp()" class="button">Whatsapp</button>
