@@ -19,7 +19,7 @@ $esta_buscando = (isset($vc_link_localidad) && !empty($vc_link_localidad)) || (i
     </select>
   </div>
   <div class="form-group" id="buscador-localidad">
-    <select id="localidad" class="filter_localidad">
+    <select id="localidad" class="filter_localidad filter_tilde">
       <option value="0">Localidad</option>
       <?php $filter_localidades = $propiedad_model->get_localidades();
       foreach($filter_localidades as $r) { ?>
@@ -28,7 +28,7 @@ $esta_buscando = (isset($vc_link_localidad) && !empty($vc_link_localidad)) || (i
     </select>
   </div>
   <div class="form-group" id="buscador-tipo-propiedad">
-    <select class="filter_tipo_propiedad" name="tp">
+    <select class="filter_tipo_propiedad filter_tilde" name="tp">
       <option value="0">Tipo de Propiedad</option>
       <?php $filter_tipos_propiedades = $propiedad_model->get_tipos_propiedades();
       foreach($filter_tipos_propiedades as $r) { ?>
@@ -37,7 +37,7 @@ $esta_buscando = (isset($vc_link_localidad) && !empty($vc_link_localidad)) || (i
     </select>
   </div>
   <div class="form-group" id="buscador-dormitorios">
-    <select class="filter_dormitorios" name="dm">
+    <select class="filter_dormitorios filter_tilde" name="dm">
       <option value="">Habitaciones</option>
       <?php $filter_dormitorios = $propiedad_model->get_dormitorios();
       foreach($filter_dormitorios as $r) { ?>
@@ -46,7 +46,7 @@ $esta_buscando = (isset($vc_link_localidad) && !empty($vc_link_localidad)) || (i
     </select>
   </div>
   <div class="form-group" id="buscador-banios">
-    <select class="filter_banios" name="bn">
+    <select class="filter_banios filter_tilde" name="bn">
       <option value="">Ba&ntilde;os</option>
       <?php $filter_banios = $propiedad_model->get_banios();
       foreach($filter_banios as $r) { ?>
