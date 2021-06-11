@@ -11,7 +11,7 @@ $esta_buscando = (isset($vc_link_localidad) && !empty($vc_link_localidad)) || (i
   </header>
 
   <div class="form-group" id="buscador-tipo-operacion">
-    <select id="tipo_operacion" class="filter_tipo_operacion">
+    <select id="tipo_operacion" class="filter_tipo_operacion active">
       <?php $filter_tipos_operacion = $propiedad_model->get_tipos_operaciones();
       foreach($filter_tipos_operacion as $r) { ?>
         <option <?php echo (isset($vc_link_tipo_operacion) == $r->link) ? "selected":"" ?> value="<?php echo $r->link ?>"><?php echo $r->nombre ?></option>
@@ -20,7 +20,7 @@ $esta_buscando = (isset($vc_link_localidad) && !empty($vc_link_localidad)) || (i
   </div>
   <div class="form-group" id="buscador-localidad">
     <select id="localidad" class="filter_localidad filter_tilde <?php echo (isset($vc_link_localidad) && !empty($vc_link_localidad)) ? "active":"" ?>">
-      <option value="0">Localidad</option>
+      <option value="0">Todas las localidades</option>
       <?php $filter_localidades = $propiedad_model->get_localidades();
       foreach($filter_localidades as $r) { ?>
         <option <?php echo (isset($vc_link_localidad) && $vc_link_localidad == $r->link) ? "selected":"" ?> value="<?php echo $r->link ?>"><?php echo $r->nombre ?></option>
