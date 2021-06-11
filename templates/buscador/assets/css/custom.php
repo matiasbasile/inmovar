@@ -6128,7 +6128,7 @@ input.form-control { box-shadow: 0px 1px 1px rgb(0 0 0 / 20%); }
   .form-search { display: none; }
   .navbar-brand { float: none; }
   #search-filter { margin-bottom: 20px; }
-  .btn-whatsapp { background-color:#20be3a }
+  .btn-whatsapp { background-color:#20be3a; border-color:#20be3a; color: white; font-size: 18px; }
   .page-search-results .btn-limpiar { border-radius: 25px; font-size: 13px; display:inline-block; background-color:#dddddd;color:#5a5a5a; cursor:pointer; padding:4px 10px; }
   .page-search-results .navigation .navbar { text-align: center; }
   .page-search-results .sorting { display: none; }
@@ -6136,7 +6136,7 @@ input.form-control { box-shadow: 0px 1px 1px rgb(0 0 0 / 20%); }
   .page-property-detail .buscador-flotante { display: none !important }
   .page-search-results .buscador-flotante .button, .page-search-results .operaciones-flotante .button { border: solid 2px <?php echo $c1; ?>; color: #5a5a5a; font-size: 15px; padding: 10px 9px 9px 9px; outline: none; width: 100%; text-align: center; border-radius: 10px; font-weight: bold; }
   .page-search-results .buscador-flotante .button.active, .page-search-results .buscador-flotante .button:hover, .page-search-results .operaciones-flotante .button:hover, 
-  .page-search-results .buscador-flotante .button:focus, .page-search-results .operaciones-flotante .button:focus, 
+  .page-search-results .buscador-flotante .button:focus, .page-search-results .buscador-flotante .button.active, .page-search-results .operaciones-flotante .button:focus, 
   .page-search-results .buscador-flotante .button:active, .page-search-results .operaciones-flotante .button:active { background-color: <?php echo $c1; ?>; color: white; }
   .page-search-results .form-search .btn { width: 100%; }
   .page-search-results .form-search input[type=radio] { visibility: hidden; }
