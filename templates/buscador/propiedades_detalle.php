@@ -69,7 +69,7 @@ else $vc_moneda = "$";
   .fluid-width-video-wrapper { padding-top: 100% !important }
 </style>
 </head>
-<body class="page-sub-page page-property-detail" id="page-top">
+<body class="page-sub-page page-search-results page-property-detail" id="page-top">
 <div class="wrapper">
 
   <?php include("includes/header.php"); ?>
