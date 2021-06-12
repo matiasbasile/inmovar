@@ -25,15 +25,15 @@ $precio_maximo = $propiedad_model->get_precio_maximo(array(
   "id_tipo_operacion"=>$propiedad->id_tipo_operacion,
 ));
 
-// Minimo
-if (isset($_POST["minimo"])) { $_SESSION["minimo"] = filter_var($_POST["minimo"],FILTER_SANITIZE_STRING); }
-$minimo = isset($_SESSION["minimo"]) ? $_SESSION["minimo"] : 0;
-if ($minimo == "undefined" || empty($minimo)) $minimo = 0;
-
-// Maximo
-if (isset($_POST["maximo"])) { $_SESSION["maximo"] = filter_var($_POST["maximo"],FILTER_SANITIZE_STRING); }
-$maximo = isset($_SESSION["maximo"]) ? $_SESSION["maximo"] : $precio_maximo;
-if ($maximo == "undefined" || empty($maximo)) $maximo = $precio_maximo;
+if (isset($_SESSION["vc_minimo"])) $vc_minimo = $_SESSION["vc_minimo"];
+if (isset($_SESSION["vc_maximo"])) $vc_maximo = $_SESSION["vc_maximo"];
+if (isset($_SESSION["vc_link_localidad"])) $vc_link_localidad = $_SESSION["vc_link_localidad"];
+if (isset($_SESSION["vc_link_tipo_operacion"])) $vc_link_tipo_operacion = $_SESSION["vc_link_tipo_operacion"];
+if (isset($_SESSION["vc_id_tipo_inmueble"])) $vc_id_tipo_inmueble = $_SESSION["vc_id_tipo_inmueble"];
+if (isset($_SESSION["vc_dormitorios"])) $vc_dormitorios = $_SESSION["vc_dormitorios"];
+if (isset($_SESSION["vc_moneda"])) $vc_moneda = $_SESSION["vc_moneda"];
+if (isset($_SESSION["vc_banios"])) $vc_banios = $_SESSION["vc_banios"];
+if (isset($_SESSION["vc_cocheras"])) $vc_cocheras = $_SESSION["vc_cocheras"];
 
 // Tomamos los datos de SEO
 $seo_title = (!empty($propiedad->seo_title)) ? $propiedad->seo_title : $empresa->seo_title;
