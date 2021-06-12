@@ -102,8 +102,8 @@ if (isset($_GET["test"])) print_r($vc_listado);
               <!-- Pagination -->
               <div class="center">
                 <?php
-                if ($vc_page < $vc_total_paginas) { ?>
-                  <a class="btn button active" href="<?php echo mklink($vc_link.($vc_page+1)."/").$vc_params ?>">Ver más propiedades</a>
+                if ($vc_page < ($vc_total_paginas - 1)) { ?>
+                  <a class="btn button btn-default btn-block mb20 active" href="<?php echo mklink($vc_link.($vc_page+1)."/").$vc_params ?>">Ver más propiedades</a>
                 <?php } ?>
               </div>
             </section>
