@@ -402,7 +402,7 @@
           <div class="col-md-4">
             <div class="form-group">
               <label class="control-label">Número de Whatsapp</label>
-              <input type="text" name="whatsapp" placeholder="Con 549 sin espacios (Ej: 5492211223344)" class="form-control" value="<%= whatsapp %>"/>
+              <input type="text" name="whatsapp" placeholder="Ej: 5492211223344" class="form-control" value="<%= whatsapp %>"/>
             </div>
           </div>
           <div class="col-md-4">
