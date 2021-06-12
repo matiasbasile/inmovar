@@ -194,9 +194,8 @@
     <% } %>
   </td>
   <td class="data">
-    <%= tipo_inmueble %> en <%= tipo_operacion %><br/>
+    <%= nombre %><br/>
     <span class="bold"><%= direccion_completa %></span><br/>
-    <%= localidad %>
   </td>
   <td class="data">
     <%= tipo_operacion %><br/>

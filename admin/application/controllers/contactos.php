@@ -181,23 +181,27 @@ class Contactos extends REST_Controller {
   function propiedades_vistas() {
     $id_empresa = parent::get_empresa();
     $id_cliente = parent::get_get("id_cliente",0);
-    $sql = "SELECT PC.*, A.nombre, A.path, PC.id_empresa_propiedad AS id_empresa, ";
+    $sql = "SELECT PC.*, A.nombre, A.path, PC.id_empresa_propiedad AS id_empresa, A.codigo, ";
+    $sql.= " CONCAT(E.codigo,'-',A.codigo) AS codigo_completo, ";
+    $sql.= " A.calle, A.altura, A.piso, A.numero, A.entre_calles, A.entre_calles_2, A.publica_altura, ";
+    $sql.= " A.moneda, A.precio_final, A.id_tipo_estado, A.ambientes, A.banios, A.superficie_total, ";
     $sql.= " IF(PC.stamp='0000-00-00 00:00:00','',DATE_FORMAT(PC.stamp,'%d/%m/%Y %H:%i')) AS stamp, ";
-    $sql.= " IF(TE.nombre IS NULL,'',TE.nombre) AS tipo_estado, ";
-    $sql.= " IF(TI.nombre IS NULL,'',TI.nombre) AS tipo_inmueble, ";
-    $sql.= " IF(X.nombre IS NULL,'',X.nombre) AS tipo_operacion, ";
-    $sql.= " IF(L.nombre IS NULL,'',L.nombre) AS localidad ";
+    $sql.= " IF(TE.nombre IS NULL,'',TE.nombre) AS tipo_estado ";
     $sql.= "FROM inm_propiedades_visitas PC ";
     $sql.= "INNER JOIN inm_propiedades A ON (PC.id_empresa_propiedad = A.id_empresa AND PC.id_propiedad = A.id) ";
+    $sql.= "INNER JOIN empresas E ON (A.id_empresa = E.id) ";
     $sql.= "LEFT JOIN inm_tipos_estado TE ON (A.id_tipo_estado = TE.id) ";
-    $sql.= "LEFT JOIN inm_tipos_inmueble TI ON (A.id_tipo_inmueble = TI.id) ";
-    $sql.= "LEFT JOIN inm_tipos_operacion X ON (A.id_tipo_operacion = X.id) ";
-    $sql.= "LEFT JOIN com_localidades L ON (A.id_localidad = L.id) ";
     $sql.= "WHERE PC.id_empresa = $id_empresa AND PC.id_cliente = $id_cliente ";
     $sql.= "ORDER BY PC.stamp DESC ";
     $q = $this->db->query($sql);
+    $salida = array();
+    foreach($q->result() as $r) {
+      $r->direccion_completa = $r->calle.(!empty($r->entre_calles) ? " e/ ".$r->entre_calles.(!empty($r->entre_calles_2) ? " y ".$r->entre_calles_2 : "") : "");
+      $r->direccion_completa.= (($r->publica_altura == 1)?" N° ".$r->altura:"") . (!empty($r->piso) ? " Piso ".$r->piso : "") . (!empty($r->numero) ? " Depto. ".$r->numero : "");
+      $salida[] = $r;
+    }
     echo json_encode(array(
-      "results"=>$q->result(),
+      "results"=>$salida,
     ));
   }
 
