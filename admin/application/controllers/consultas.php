@@ -677,6 +677,9 @@ class Consultas extends REST_Controller {
 
       // Guardamos una cookie del cliente
       setcookie("idc",$contacto->id,time()+60*60*24*365,"/");
+      setcookie("vc_nombre",$contacto->nombre,time()+60*60*24*365,"/");
+      setcookie("vc_email",$contacto->email,time()+60*60*24*365,"/");
+      setcookie("vc_telefono",$contacto->telefono,time()+60*60*24*365,"/");
 
       // Por las dudas que haya quedado algun repetido, lo eliminamos y listo
       $para = array_unique($para);
