@@ -27,11 +27,34 @@ $telefono_propiedad = empty($propiedad->usuario_celular) ? $propiedad->usuario_c
     <label for="contacto_flotante_mensaje">Mensaje<em>*</em></label>
     <textarea class="form-control" id="contacto_flotante_mensaje" placeholder="Consulta">Hola! estoy interesado en <?php echo $asunto ?></textarea>
   </div>
-  <div class="form-group">
+  <div id="contacto_solo_boton" class="form-group">
     <button type="submit" id="contacto_flotante_submit" class="btn btn-buscar btn-default">Enviar</button>
+  </div>
+  <div id="contacto_dos_botones" class="row">
+    <div class="col-xs-6">
+      <div class="form-group">
+        <a href="javascript:void(0)" rel="nofollow" onclick="enviar_whatsapp()" class="btn btn-default">Enviar Whatsapp</a>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <div class="form-group">
+        <a href="javascript:void(0)" rel="nofollow" onclick="enviar_email()" class="btn btn-buscar btn-default">Enviar Email</a>
+      </div>
+    </div>
   </div>
 </form>
 <script type="text/javascript">
+
+function enviar_whatsapp() {
+  $("#contacto_flotante_whatsapp").val(1);
+  $("#form_flotante").submit();
+}
+
+function enviar_email() {
+  $("#contacto_flotante_whatsapp").val(0);
+  $("#form_flotante").submit();
+}
+
 function ver_whatsapp() {
   $("#contacto_flotante_whatsapp").val(1);
   <?php if (!empty($cookie_id_cliente)) { ?>
