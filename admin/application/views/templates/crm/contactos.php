@@ -73,6 +73,11 @@
               </a>
             </li>
             <li>
+              <a href="javascript:void(0)" class="cambiar_tab_grande" data-id="4" role="tab" data-toggle="tab"><i class="material-icons mr5">visibility</i>
+                Propiedades vistas
+              </a>
+            </li>
+            <li>
               <a href="javascript:void(0)" class="cambiar_tab_grande" data-id="1" role="tab" data-toggle="tab"><i class="material-icons mr5">search</i>
                 Perfil de búsqueda
               </a>
@@ -127,6 +132,33 @@
             </div>
           </div>
 
+          <div id="tab_grande_3" class="tab-pane tab_grande">
+
+            <div class="panel panel-default mt-1">
+              <div class="panel-body">
+
+                <div id="contacto_propiedades_vistas_vacio" style="display:block">
+                  <div class="h3 tac" style="padding: 83px 0px;">No hay registro de propiedades vistas</div>
+                </div>
+                <div id="contacto_propiedades_vistas" class="table-responsive mb0" style="height: 191px; overflow:auto; display:none">
+                  <table class="table table-striped sortable m-b-none default footable">
+                    <thead>
+                      <tr>
+                        <th class="w50 tac"></th>
+                        <th>Propiedad</th>
+                        <th class="w150">Operación</th>
+                        <th class="w150">Caract.</th>
+                        <th>Fecha</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -153,6 +185,34 @@
 </div>
 </script>
 
+
+<script type="text/template" id="contacto_propiedad_vista_item_template">
+  <td class="p0 data">
+    <% if (!isEmpty(path)) { %>
+      <% var prefix = (path.indexOf("http") == 0) ? "" : "/admin/" %>
+      <img src="<%= prefix + path %>?t=<%= Math.ceil(Math.random()*10000) %>" class="customcomplete-image br5"/>
+    <% } %>
+  </td>
+  <td class="data">
+    <%= tipo_inmueble %> en <%= tipo_operacion %><br/>
+    <span class="bold"><%= direccion_completa %></span><br/>
+    <%= localidad %>
+  </td>
+  <td class="data">
+    <%= tipo_operacion %><br/>
+    <%= moneda %> <%= Number(precio_final).format(0) %>
+    <% if (id_tipo_estado != 1) { %>
+      <br/><span class="text-info"><%= tipo_estado %></span>
+    <% } %>
+    <br/>Cod. <%= codigo_completo %>
+  </td>
+  <td class="data">
+    <% if (ambientes > 0) { %><%= ambientes %> Amb.<br/><% } %>
+    <% if (banios > 1) { %><%= banios %> Baños<br/><% } %>
+    <% if (superficie_total > 0) { %>Sup. <%= superficie_total %> m<sup>2</sup><br/><% } %>
+  </td>
+  <td class="data"><%= fecha %></td>
+</script>
 
 <script type="text/template" id="contacto_edit_template">
   <div class="modal-header">

@@ -178,6 +178,29 @@ class Contactos extends REST_Controller {
     echo json_encode($salida);
   }
 
+  function propiedades_vistas() {
+    $id_empresa = parent::get_empresa();
+    $id_cliente = parent::get_get("id_cliente",0);
+    $sql = "SELECT PC.*, A.nombre, A.path, PC.id_empresa_propiedad AS id_empresa, ";
+    $sql.= " IF(PC.stamp='0000-00-00 00:00:00','',DATE_FORMAT(PC.stamp,'%d/%m/%Y %H:%i')) AS stamp, ";
+    $sql.= " IF(TE.nombre IS NULL,'',TE.nombre) AS tipo_estado, ";
+    $sql.= " IF(TI.nombre IS NULL,'',TI.nombre) AS tipo_inmueble, ";
+    $sql.= " IF(X.nombre IS NULL,'',X.nombre) AS tipo_operacion, ";
+    $sql.= " IF(L.nombre IS NULL,'',L.nombre) AS localidad ";
+    $sql.= "FROM inm_propiedades_visitas PC ";
+    $sql.= "INNER JOIN inm_propiedades A ON (PC.id_empresa_propiedad = A.id_empresa AND PC.id_propiedad = A.id) ";
+    $sql.= "LEFT JOIN inm_tipos_estado TE ON (A.id_tipo_estado = TE.id) ";
+    $sql.= "LEFT JOIN inm_tipos_inmueble TI ON (A.id_tipo_inmueble = TI.id) ";
+    $sql.= "LEFT JOIN inm_tipos_operacion X ON (A.id_tipo_operacion = X.id) ";
+    $sql.= "LEFT JOIN com_localidades L ON (A.id_localidad = L.id) ";
+    $sql.= "WHERE PC.id_empresa = $id_empresa AND PC.id_cliente = $id_cliente ";
+    $sql.= "ORDER BY PC.stamp DESC ";
+    $q = $this->db->query($sql);
+    echo json_encode(array(
+      "results"=>$q->result(),
+    ));
+  }
+
   function ver_interesadas() {
     $id_empresa = parent::get_empresa();
     $id_cliente = parent::get_get("id_cliente",0);
