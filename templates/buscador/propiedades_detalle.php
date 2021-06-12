@@ -289,7 +289,7 @@ else $vc_moneda = "$";
                 <?php } ?>
                 <section id="contacto-section">
                   <header><h2>Consulta por esta propiedad</h2></header>
-                  <?php include("includes/form_contacto.php"); ?>
+                  <?php include("includes/form_contacto_flotante.php"); ?>
                 </section>
               </div><!-- /.col-md-8 -->
               <div class="col-md-12 col-sm-12">
