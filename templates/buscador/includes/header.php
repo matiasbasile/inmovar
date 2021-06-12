@@ -18,7 +18,7 @@ if (isset($_SESSION["favoritos"])) {
         </button>
         */ ?>
         <div class="navbar-brand nav" id="brand">
-          <a href="<?php echo mklink("/"); ?>">
+          <a href="<?php echo mklink("propiedades/ventas/"); ?>">
             <?php if (empty($empresa->logo_1)) { ?>
               <?php echo ($empresa->nombre); ?>
             <?php } else { ?>

@@ -102,14 +102,8 @@ if (isset($_GET["test"])) print_r($vc_listado);
               <!-- Pagination -->
               <div class="center">
                 <?php
-                if ($vc_total_paginas > 1) { ?>
-                  <ul class="pagination">
-                    <?php for($i=0;$i<$vc_total_paginas;$i++) { ?>
-                      <?php if (abs($vc_page-$i)<2) { ?>
-                        <li class="<?php echo ($i==$vc_page) ? "active" : ""?>"><a href="<?php echo mklink($vc_link.$i."/").$vc_params ?>"><?php echo ($i+1); ?></a></li>
-                      <?php } ?>
-                    <?php } ?>
-                  </ul>
+                if ($vc_page < $vc_total_paginas) { ?>
+                  <a class="btn button active" href="<?php echo mklink($vc_link.($vc_page+1)."/").$vc_params ?>">Ver más propiedades</a>
                 <?php } ?>
               </div>
             </section>
