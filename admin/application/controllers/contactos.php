@@ -185,7 +185,7 @@ class Contactos extends REST_Controller {
     $sql.= " CONCAT(E.codigo,'-',A.codigo) AS codigo_completo, ";
     $sql.= " A.calle, A.altura, A.piso, A.numero, A.entre_calles, A.entre_calles_2, A.publica_altura, ";
     $sql.= " A.moneda, A.precio_final, A.id_tipo_estado, A.ambientes, A.banios, A.superficie_total, ";
-    $sql.= " IF(PC.stamp='0000-00-00 00:00:00','',DATE_FORMAT(PC.stamp,'%d/%m/%Y %H:%i')) AS stamp, ";
+    $sql.= " IF(PC.stamp='0000-00-00 00:00:00','',DATE_FORMAT(PC.stamp,'%d/%m/%Y %H:%i')) AS fecha, ";
     $sql.= " IF(TE.nombre IS NULL,'',TE.nombre) AS tipo_estado ";
     $sql.= "FROM inm_propiedades_visitas PC ";
     $sql.= "INNER JOIN inm_propiedades A ON (PC.id_empresa_propiedad = A.id_empresa AND PC.id_propiedad = A.id) ";
