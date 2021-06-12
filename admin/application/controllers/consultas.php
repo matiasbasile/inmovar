@@ -850,7 +850,7 @@ class Consultas extends REST_Controller {
     
     $s = array("error"=>0);
     // Si se envio un cliente, mandamos la info actualizada
-    if (!empty($id_cliente)) {
+    if (!empty($id_cliente) || $id_origen == 30 || $id_origen == 31) {
       $s["nombre"] = $contacto->nombre;
       $s["email"] = $contacto->email;
       $s["telefono"] = $contacto->telefono;
