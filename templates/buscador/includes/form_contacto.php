@@ -58,8 +58,13 @@
         <textarea class="form-control" id="contacto_mensaje" placeholder="Consulta"></textarea>
       </div>
     </div>
-    <div class="col-md-12">
-      <button type="submit" id="contacto_submit" class="btn pull-right btn-default">Enviar</button>
+    <div class="row">
+      <div class="col-xs-6">
+        <button type="submit" id="contacto_submit" class="btn pull-right btn-default">Enviar</button>
+      </div>
+      <div class="col-xs-6">
+        <button type="submit" id="contacto_submit" class="btn pull-right btn-default">Enviar</button>
+      </div>
     </div>
   </div>
 </form>
