@@ -46,10 +46,9 @@ function filter() {
     <div class="present">
       <label for="show">Mostrar:</label>
       <select id="show" name="offset" onchange="filtrar()">
-        <option <?php echo($vc_offset==5)?"selected":"" ?> value="5">5</option>
-        <option <?php echo($vc_offset==10)?"selected":"" ?> value="10">10</option>
-        <option <?php echo($vc_offset==20)?"selected":"" ?> value="20">20</option>
-        <option <?php echo($vc_offset==50)?"selected":"" ?> value="50">50</option>
+        <option <?php echo($vc_offset==12)?"selected":"" ?> value="12">12</option>
+        <option <?php echo($vc_offset==24)?"selected":"" ?> value="24">24</option>
+        <option <?php echo($vc_offset==48)?"selected":"" ?> value="48">48</option>
       </select>
     </div>    
   </div>
