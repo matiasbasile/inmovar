@@ -439,6 +439,7 @@ class Empresa_Model extends Abstract_Model {
     if ($q->num_rows()>0) {
 
       $web_configuracion = $q->row();
+      $row->whatsapp = $web_configuracion->whatsapp;
       $row->telefono = $web_configuracion->telefono_web;
       $row->direccion = $web_configuracion->direccion_web;
       $row->direccion_web = $web_configuracion->direccion_web;
@@ -559,6 +560,7 @@ class Empresa_Model extends Abstract_Model {
 
     // Actualizamos los campos que pertenecen a la otra tabla
     $sql = "UPDATE web_configuracion SET ";
+    if (isset($data->whatsapp)) $sql.= " whatsapp = '$data->whatsapp', ";
     if (isset($data->email)) $sql.= " email = '$data->email', ";
     if (isset($data->direccion_web)) $sql.= " direccion_web = '$data->direccion_web', ";
     if (isset($data->codigo_postal)) $sql.= " codigo_postal = '$data->codigo_postal', ";
