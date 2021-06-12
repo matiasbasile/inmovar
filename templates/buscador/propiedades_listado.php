@@ -1,6 +1,6 @@
 <?php
 include("includes/init.php");
-$get_params["offset"] = 48;
+$get_params["offset"] = 24;
 extract($propiedad_model->get_variables(array(
   "orden"=>2,
   "order_empresa"=>0,
