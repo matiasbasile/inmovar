@@ -198,7 +198,6 @@
     <span class="bold"><%= direccion_completa %></span><br/>
   </td>
   <td class="data">
-    <%= tipo_operacion %><br/>
     <%= moneda %> <%= Number(precio_final).format(0) %>
     <% if (id_tipo_estado != 1) { %>
       <br/><span class="text-info"><%= tipo_estado %></span>
