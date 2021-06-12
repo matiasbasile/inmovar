@@ -187,7 +187,7 @@
 
 
 <script type="text/template" id="contacto_propiedad_vista_item_template">
-  <td class="p0 data">
+  <td class="pl0 pr0 data">
     <% if (!isEmpty(path)) { %>
       <% var prefix = (path.indexOf("http") == 0) ? "" : "/admin/" %>
       <img src="<%= prefix + path %>?t=<%= Math.ceil(Math.random()*10000) %>" class="customcomplete-image br5"/>
