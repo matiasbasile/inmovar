@@ -139,8 +139,10 @@ function filtrar() {
   var tipo_operacion = $("#tipo_operacion").val();
   var localidad = $("#localidad").val();
   link = link + tipo_operacion + "/" + localidad + "/";
-  $("#precio_minimo_oculto").val($("#precio_minimo").val());
-  $("#precio_maximo_oculto").val($("#precio_maximo").val());
+  var minimo = String($("#precio_minimo").val()).replaceAll(".","");
+  var maximo = String($("#precio_maximo").val()).replaceAll(".","");
+  $("#precio_minimo_oculto").val(minimo);
+  $("#precio_maximo_oculto").val(maximo);
   $("#form_propiedades").attr("action",link);
   return true;
 }
