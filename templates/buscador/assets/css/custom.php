@@ -6116,6 +6116,7 @@ input[type="checkbox"]:checked + label:before, input[type="radio"]:checked + lab
   border: solid 2px transparent;
 }
 
+#form_flotante > header { display: none; }
 .show-xs { display: none; }
 .buscador-flotante, .operaciones-flotante { display: none; background-color: #f3f3f3; padding: 10px; }
 .cerrar_filtros, #orden_propiedades { display: none; }
