@@ -13,15 +13,15 @@ $telefono_propiedad = empty($propiedad->usuario_celular) ? $propiedad->usuario_c
   </header>
   <div class="form-group">
     <label for="contacto_flotante_nombre">Nombre<em>*</em></label>
-    <input class="form-control" type="text" id="contacto_flotante_nombre" value="<?php echo isset($_SESSION["nombre"]) ? $_SESSION["nombre"] : "" ?>" placeholder="Nombre" />
+    <input class="form-control" type="text" id="contacto_flotante_nombre" value="<?php echo isset($_COOKIE["vc_nombre"]) ? $_COOKIE["vc_nombre"] : "" ?>" placeholder="Nombre" />
   </div>
   <div class="form-group">
     <label for="contacto_flotante_telefono">Tel&eacute;fono<em>*</em></label>
-    <input class="form-control" type="number" id="contacto_flotante_telefono" value="<?php echo isset($_SESSION["telefono"]) ? $_SESSION["telefono"] : "" ?>" placeholder="Tel&eacute;fono (sin 0 ni 15)" />
+    <input class="form-control" type="number" id="contacto_flotante_telefono" value="<?php echo isset($_COOKIE["vc_telefono"]) ? $_COOKIE["vc_telefono"] : "" ?>" placeholder="Tel&eacute;fono (sin 0 ni 15)" />
   </div>
   <div class="form-group">
     <label for="contacto_flotante_email">Email<em>*</em></label>
-    <input class="form-control" type="email" id="contacto_flotante_email" value="<?php echo isset($_SESSION["email"]) ? $_SESSION["email"] : "" ?>" placeholder="Email" />
+    <input class="form-control" type="email" id="contacto_flotante_email" value="<?php echo isset($_COOKIE["vc_email"]) ? $_COOKIE["vc_email"] : "" ?>" placeholder="Email" />
   </div>
   <div class="form-group">
     <label for="contacto_flotante_mensaje">Mensaje<em>*</em></label>
