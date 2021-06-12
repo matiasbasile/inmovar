@@ -378,15 +378,14 @@
         },
         "success":function(r) {
           self.$("#contacto_propiedades_vistas tbody").empty();
-          if (r.length == 0) {
+          if (r.results.length == 0) {
             self.$("#contacto_propiedades_vistas").hide();
             self.$("#contacto_propiedades_vistas_vacio").show();
           } else {
             self.$("#contacto_propiedades_vistas_vacio").hide();
             self.$("#contacto_propiedades_vistas").show();
-            for(var i=0; i<r.length; i++) {
-              var o = r[i];
-              console.log(o);
+            for(var i=0; i<r.results.length; i++) {
+              var o = r.results[i];
               var view = new views.ContactoPropiedadVistaItem({
                 model: new app.models.AbstractModel(o),
                 parent: self,
