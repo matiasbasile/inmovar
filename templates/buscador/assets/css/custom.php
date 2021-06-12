@@ -6123,6 +6123,7 @@ input.form-control { box-shadow: 0px 1px 1px rgb(0 0 0 / 20%); }
 #search-filter .sorting select { width: auto; }
 #search-filter .sorting label { margin-right: 10px; }
 .filter_tilde.active { background-image:url("https://app.inmovar.com/templates/buscador/assets/img/tilde.png"); background-position: 95% 12px; background-repeat:no-repeat; background-size:20px; }
+.page-search-results .btn-limpiar { border-radius: 25px; font-size: 13px; display:inline-block; background-color:#dddddd;color:#5a5a5a; cursor:pointer; padding:4px 10px; }
 @media (max-width: 768px) {
   .show-xs { display: block }
   #property-carousel .item .image-popup img { height: 280px; object-fit: contain; }
@@ -6133,7 +6134,6 @@ input.form-control { box-shadow: 0px 1px 1px rgb(0 0 0 / 20%); }
   .navbar-brand { float: none; }
   #search-filter { margin-bottom: 20px; }
   .btn-whatsapp { background-color: #20be3a !important; border-color: #20be3a !important; color: white !important; font-size: 21px !important; padding: 5px !important; }
-  .page-search-results .btn-limpiar { border-radius: 25px; font-size: 13px; display:inline-block; background-color:#dddddd;color:#5a5a5a; cursor:pointer; padding:4px 10px; }
   .page-search-results .navigation .navbar { text-align: center; }
   .page-search-results .sorting { display: none; }
   .page-search-results .buscador-flotante, .page-search-results .operaciones-flotante { display: block; position: fixed; width: 100%; bottom: 0px; left: 0px; right: 0px; z-index: 9000; }
