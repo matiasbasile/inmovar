@@ -386,6 +386,7 @@
             self.$("#contacto_propiedades_vistas").show();
             for(var i=0; i<r.length; i++) {
               var o = r[i];
+              console.log(o);
               var view = new views.ContactoPropiedadVistaItem({
                 model: new app.models.AbstractModel(o),
                 parent: self,
