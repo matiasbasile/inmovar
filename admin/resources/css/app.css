@@ -5144,7 +5144,9 @@ input[type=number].no-spinner::-webkit-outer-spin-button {
 
 .select2-container--open { z-index: 9999; }
 
-#propiedades_tabla .customcomplete-image, #permisos_red_tabla .customcomplete-image { 
+#propiedades_tabla .customcomplete-image, 
+#permisos_red_tabla .customcomplete-image,
+#contacto_propiedades_vistas .customcomplete-image { 
   margin-right: 0px;
   border-radius: 5px;
   -moz-border-radius: 5px;

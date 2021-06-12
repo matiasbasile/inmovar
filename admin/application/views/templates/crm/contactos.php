@@ -140,7 +140,7 @@
                 <div id="contacto_propiedades_vistas_vacio" style="display:block">
                   <div class="h3 tac" style="padding: 83px 0px;">No hay registro de propiedades vistas</div>
                 </div>
-                <div id="contacto_propiedades_vistas" class="table-responsive mb0" style="height: 191px; overflow:auto; display:none">
+                <div id="contacto_propiedades_vistas" class="table-responsive mb0" style="height: 500px; overflow:auto; display:none">
                   <table class="table table-striped sortable m-b-none default footable">
                     <thead>
                       <tr>
