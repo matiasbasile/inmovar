@@ -122,10 +122,8 @@ $vc_dormitorios= isset($get_params["dm"]) ? $get_params["dm"] : 0;
         <span>ordenar por:</span>
         <form id="orden_form">
           <select class="form-control" onchange="enviar_orden()" name="orden"> 
-            <option <?php echo ($vc_orden == -1 ) ? "selected" : "" ?> value="nuevo">Más nuevos</option>
             <option <?php echo ($vc_orden == 2 ) ? "selected" : "" ?> value="barato">Precio menor a mayor</option>
             <option <?php echo ($vc_orden == 1 ) ? "selected" : "" ?> value="caro">Precio mayor a menor</option>
-            <option <?php echo ($vc_orden == 4 ) ? "selected" : "" ?> value="destacados">Destacados</option>
           </select>  
         </form>
         <a href="<?php echo mklink ("mapa/$vc_link_tipo_operacion/") ?>" class="btn"><img src="assets/images/map-white.png" alt="Map Icon"> Vista Mapa</a>

@@ -23,10 +23,8 @@ function filter() {
     <div class="sort-by">
       <label for="sort-by">Ordenar por:</label>
       <select id="sort-by" name="orden" onchange="filtrar()">
-        <option <?php echo($vc_orden == 0)?"selected":"" ?> value="0">Recientes</option>
-        <option <?php echo($vc_orden == 1)?"selected":"" ?> value="1">Precio Mayor a Menor</option>
         <option <?php echo($vc_orden == 2)?"selected":"" ?> value="2">Precio Menor a Mayor</option>
-        <option <?php echo($vc_orden == 9)?"selected":"" ?> value="9">Relevancia</option>
+        <option <?php echo($vc_orden == 1)?"selected":"" ?> value="1">Precio Mayor a Menor</option>
       </select>
     </div>
     <?php
@@ -238,9 +236,8 @@ function filter() {
                 <div class="sort-by">
                   <label for="orden_emprendimientos">Ordenar por:</label>
                   <select id="orden_emprendimientos" name="orden" onchange="filtrar_emprendimientos()">
-                    <option <?php echo (!isset($vc_orden))?"selected":"" ?> <?php echo($vc_orden == 0)?"selected":"" ?> value="0">Recientes</option>
-                    <option <?php echo($vc_orden == 1)?"selected":"" ?> value="1">Precio Mayor a Menor</option>
                     <option <?php echo($vc_orden == 2)?"selected":"" ?> value="2">Precio Menor a Mayor</option>
+                    <option <?php echo($vc_orden == 1)?"selected":"" ?> value="1">Precio Mayor a Menor</option>
                   </select>
                 </div>
                 <?php
@@ -314,9 +311,8 @@ function filter() {
                 <div class="sort-by">
                   <label for="orden_obras">Ordenar por:</label>
                   <select id="orden_obras" name="orden" onchange="filtrar_obras()">
-                    <option <?php echo (!isset($vc_orden))?"selected":"" ?> <?php echo($vc_orden == 0)?"selected":"" ?> value="0">Recientes</option>
-                    <option <?php echo($vc_orden == 1)?"selected":"" ?> value="1">Precio Mayor a Menor</option>
                     <option <?php echo($vc_orden == 2)?"selected":"" ?> value="2">Precio Menor a Mayor</option>
+                    <option <?php echo($vc_orden == 1)?"selected":"" ?> value="1">Precio Mayor a Menor</option>
                   </select>
                 </div>
                 <?php

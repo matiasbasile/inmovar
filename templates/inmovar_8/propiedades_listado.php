@@ -59,8 +59,6 @@ $list_view = ($vc_apto_banco == 1);
                     <div class="order_number st_slect hidden-xs"> 
                       <span>Ordenar por:</span>
                       <select class="form-control-grey" onchange="submit_buscador_propiedades()" id="ordenador_orden" name="orden">
-                        <option <?php echo ($vc_orden == 4 ) ? "selected" : "" ?> value="destacados">Destacados</option>
-                        <option <?php echo ($vc_orden == -1 ) ? "selected" : "" ?> value="nuevo">Ver los más nuevos</option>
                         <option <?php echo ($vc_orden == 2 ) ? "selected" : "" ?> value="barato">Precio menor a mayor</option>
                         <option <?php echo ($vc_orden == 1 ) ? "selected" : "" ?> value="caro">Precio mayor a menor</option>
                       </select>
