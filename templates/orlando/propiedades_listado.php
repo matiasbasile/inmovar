@@ -39,8 +39,6 @@ $page_act = $vc_link_tipo_operacion;
 						<div class="select-box">
 							<span>Ordenar por:</span>
 							<select class="form-control" onchange="submit_buscador_propiedades()" id="ordenador_orden" name="orden">
-								<option <?php echo ($vc_orden == 4 ) ? "selected" : "" ?> value="destacados">Destacados</option>
-								<option <?php echo ($vc_orden == -1 ) ? "selected" : "" ?> value="nuevo">Ver los más nuevos</option>
 								<option <?php echo ($vc_orden == 2 ) ? "selected" : "" ?> value="barato">Precio menor a mayor</option>
 								<option <?php echo ($vc_orden == 1 ) ? "selected" : "" ?> value="caro">Precio mayor a menor</option>
 							</select>
