@@ -6118,7 +6118,8 @@ input[type="checkbox"]:checked + label:before, input[type="radio"]:checked + lab
 
 #form_flotante > header, #contacto_solo_boton { display: none; }
 #contacto_dos_botones { display: block }
-#contacto_dos_botones .btn-whatsapp { }
+#contacto_dos_botones .btn-whatsapp { background-color: #20be3a !important; border-color: #20be3a !important; color: white !important; display: block; text-align:center;width:100%; }
+#contacto_dos_botones .btn-buscar { display:block; width:100%;}
 .show-xs { display: none; }
 .buscador-flotante, .operaciones-flotante { display: none; background-color: #f3f3f3; padding: 10px; }
 .cerrar_filtros, #orden_propiedades { display: none; }
