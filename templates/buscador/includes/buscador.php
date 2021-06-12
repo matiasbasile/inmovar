@@ -1,6 +1,3 @@
-<?php
-$esta_buscando = (isset($vc_link_localidad) && !empty($vc_link_localidad)) || (isset($vc_id_tipo_inmueble) && !empty($vc_id_tipo_inmueble)) || (isset($vc_dormitorios) && !empty($vc_dormitorios)) || (isset($vc_banios) && !empty($vc_banios)) || (isset($vc_minimo) && !empty($vc_minimo)) || (isset($vc_maximo) && !empty($vc_maximo));
-?>
 <form onsubmit="return filtrar(this)" method="get" role="form" id="form_propiedades" class="<?php echo ($nombre_pagina=="home")?"form-map":"" ?> form-search">
 
   <header>
@@ -10,7 +7,7 @@ $esta_buscando = (isset($vc_link_localidad) && !empty($vc_link_localidad)) || (i
     </h3>
   </header>
 
-  <?php if ($esta_buscando) { ?>
+  <?php if ($vc_esta_buscando) { ?>
     <div class="form-group">
       <a href="<?php echo mklink("propiedades/ventas/") ?>" class="btn-limpiar"><i class="fa fa-times"></i> Limpiar búsqueda</a>
     </div>
@@ -90,7 +87,7 @@ $esta_buscando = (isset($vc_link_localidad) && !empty($vc_link_localidad)) || (i
 <div class="buscador-flotante">
   <div class="row">
     <div class="col-xs-6 pr5">
-      <button onclick="ver_filtros()" class="button <?php echo ($esta_buscando) ? "active":"" ?>"><?php echo ($esta_buscando) ? "Ver búsqueda":"Buscar" ?></button>
+      <button onclick="ver_filtros()" class="button <?php echo ($vc_esta_buscando) ? "active":"" ?>"><?php echo ($vc_esta_buscando) ? "Ver búsqueda":"Buscar" ?></button>
     </div>
     <div class="col-xs-6 pl5">
       <button onclick="ver_orden()" class="button">Ordenar</button>

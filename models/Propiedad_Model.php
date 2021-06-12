@@ -437,6 +437,12 @@ class Propiedad_Model {
       }
     }
     if (isset($config["moneda"])) $config_list["moneda"] = $config["moneda"];
+
+    // Si esta el valor por defecto del orden de empresa
+    // tenemos que evaluar si esta buscando, en ese caso mezclamos las propiedades de todas las inmobiliarias
+    $vc_esta_buscando = (!empty($link_localidad)) || (!empty($id_tipo_inmueble)) || (!empty($dormitorios)) || (!empty($banios)) || (!empty($vc_minimo)) || (!empty($vc_maximo));
+    if ($order_empresa == 1 && $vc_esta_buscando) $order_empresa = 0;
+
     $s_params = (!empty($get_params)) ? "?".http_build_query($get_params) : "";
     $listado = $this->get_list($config_list);
 
@@ -500,6 +506,7 @@ class Propiedad_Model {
       "vc_orden"=>$orden,
       "vc_link"=>$vc_link,
       "vc_view"=>$view,
+      "vc_esta_buscando"=>$vc_esta_buscando,
     );
   }
 
