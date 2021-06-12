@@ -204,6 +204,7 @@
       self.render_timeline();
       self.render_busquedas();
       self.render_propiedades_interesadas();
+      self.render_propiedades_vistas();
 
       setTimeout(function(){
         $('[data-toggle="tooltip"]').tooltip();   
@@ -366,6 +367,36 @@
       })
     },
 
+    render_propiedades_vistas: function() {
+      var self = this;
+      $.ajax({
+        "url":"contactos/function/propiedades_vistas/",
+        "dataType":"json",
+        "type":"get",
+        "data":{
+          "id_cliente":self.model.id,
+        },
+        "success":function(r) {
+          self.$("#contacto_propiedades_vistas tbody").empty();
+          if (r.length == 0) {
+            self.$("#contacto_propiedades_vistas").hide();
+            self.$("#contacto_propiedades_vistas_vacio").show();
+          } else {
+            self.$("#contacto_propiedades_vistas_vacio").hide();
+            self.$("#contacto_propiedades_vistas").show();
+            for(var i=0; i<r.length; i++) {
+              var o = r[i];
+              var view = new views.ContactoPropiedadVistaItem({
+                model: new app.models.AbstractModel(o),
+                parent: self,
+              });
+              self.$("#contacto_propiedades_vistas tbody").append(view.el);
+            }            
+          }
+        }
+      })
+    },
+
 	});
 
 })(app.views, app.models);
@@ -392,6 +423,57 @@
             self.parent.render_busquedas();
           }
         })
+      },
+    },
+
+    initialize: function(options) {
+      _.bindAll(this);
+      this.options = options;
+      this.parent = options.parent;
+      this.render();
+    },
+
+    render: function() {
+      var self = this;
+      var obj = { id:this.model.id };
+      $.extend(obj,this.model.toJSON());
+      $(this.el).html(this.template(obj));
+      return this;
+    },
+
+  });
+
+})(app.views, app.models);
+
+
+(function ( views, models ) {
+
+  views.ContactoPropiedadVistaItem = app.mixins.View.extend({
+
+    template: _.template($("#contacto_propiedad_vista_item_template").html()),
+    tagName: "tr",
+    myEvents: {
+      "click .data":function(){
+        var self = this;
+        $.ajax({
+          "url":"propiedades/function/ver_propiedad/"+self.model.get("id_propiedad")+"/"+self.model.get("id_empresa"),
+          "dataType":"json",
+          "success":function(r) {
+            var propiedad = new app.models.Propiedades(r);
+            var view = new app.views.PropiedadPreview({
+              model: propiedad,
+              telefono: self.parent.model.get("telefono"),
+              email: self.parent.model.get("email"),
+              id_cliente: self.parent.model.id,
+              ficha_contacto: self.parent,
+            });
+            crearLightboxHTML({
+              "html":view.el,
+              "width":1200,
+              "height":500,
+            });
+          }
+        });
       },
     },
 
