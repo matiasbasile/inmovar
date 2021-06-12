@@ -15,6 +15,7 @@
       codigo_postal: "",
       telefono: "",
       telefono_2: "",
+      whatsapp: "",
       horario: "",
       analytics: "",
       view_id: "",
