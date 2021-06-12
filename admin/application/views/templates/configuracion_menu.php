@@ -399,13 +399,19 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">Número de Whatsapp</label>
+              <input type="text" name="whatsapp" placeholder="Con 549 sin espacios (Ej: 5492211223344)" class="form-control" value="<%= whatsapp %>"/>
+            </div>
+          </div>
+          <div class="col-md-4">
             <div class="form-group">
               <label class="control-label"><?php echo lang(array("es"=>"Teléfono","en"=>"Phone ")) ?></label>
               <input type="text" name="telefono_web" class="form-control" value="<%= telefono_web %>"/>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="form-group">
               <label class="control-label"><?php echo lang(array("es"=>"Teléfono 2","en"=>"Phone two")) ?></label>
               <input type="text" name="telefono_2" class="form-control" value="<%= telefono_2 %>"/>

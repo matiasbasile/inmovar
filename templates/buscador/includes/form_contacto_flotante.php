@@ -1,6 +1,6 @@
 <?php 
 $asunto = $propiedad->nombre." [Cod: ".$propiedad->codigo."]";
-$telefono_propiedad = empty($propiedad->usuario_celular) ? $propiedad->usuario_celular : preg_replace("/[^0-9]/", "", $empresa->telefono);
+$telefono_propiedad = empty($propiedad->usuario_celular) ? $propiedad->usuario_celular : preg_replace("/[^0-9]/", "", $empresa->whatsapp);
 ?>
 <form id="form_flotante" onsubmit="return enviar_contacto_flotante()" class="form-search">
   <input type="hidden" name="id_propiedad" id="contacto_flotante_propiedad" value="<?php echo (isset($propiedad) ? $propiedad->id : 0) ?>"/>
