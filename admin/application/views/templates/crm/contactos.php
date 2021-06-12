@@ -122,7 +122,7 @@
             <div class="panel panel-default mt-1">
               <div class="panel-body">
                 <div class="tar">
-                  <button class="btn btn-info buscar_propiedades">Buscar propiedades</button>
+                  <button class="btn btn-info mb20 buscar_propiedades">Buscar propiedades</button>
                 </div>
                 <div id="contacto_propiedades_interesadas_vacio" style="display:block">
                   <div class="h3 tac" style="padding: 83px 0px;">No existen propiedades interesadas</div>
@@ -132,7 +132,7 @@
             </div>
           </div>
 
-          <div id="tab_grande_3" class="tab-pane tab_grande">
+          <div id="tab_grande_4" class="tab-pane tab_grande">
 
             <div class="panel panel-default mt-1">
               <div class="panel-body">
