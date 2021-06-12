@@ -33,7 +33,7 @@ $telefono_propiedad = empty($propiedad->usuario_celular) ? $propiedad->usuario_c
   <div id="contacto_dos_botones" class="row">
     <div class="col-xs-6">
       <div class="form-group">
-        <a href="javascript:void(0)" rel="nofollow" onclick="enviar_whatsapp()" class="btn btn-default">Enviar Whatsapp</a>
+        <a href="javascript:void(0)" rel="nofollow" onclick="enviar_whatsapp()" class="btn btn-whatsapp btn-default">Enviar Whatsapp</a>
       </div>
     </div>
     <div class="col-xs-6">
