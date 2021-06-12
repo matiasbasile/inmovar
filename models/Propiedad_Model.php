@@ -272,6 +272,7 @@ class Propiedad_Model {
 
     global $params;
     global $get_params;
+    @session_start();
     $page = 0;
     $vc_link = "propiedades/";
     $no_analizar_url = isset($config["no_analizar_url"]) ? $config["no_analizar_url"] : 0;
@@ -448,6 +449,20 @@ class Propiedad_Model {
     ));
     //if (empty($vc_maximo)) $vc_maximo = $precio_maximo;
 
+    try {
+      $this->set_session(array(
+        "vc_link_localidad"=>$link_localidad,
+        "vc_link_tipo_operacion"=>$link_tipo_operacion,
+        "vc_id_tipo_inmueble"=>$id_tipo_inmueble,
+        "vc_dormitorios"=>$dormitorios,
+        "vc_moneda"=>$moneda,
+        "vc_banios"=>$banios,
+        "vc_cocheras"=>$cocheras,
+        "vc_minimo"=>$vc_minimo,
+        "vc_maximo"=>$vc_maximo,
+      ));
+    } catch(Exception $e) {}
+
     return array(
       "vc_total_resultados"=>$total,
       "vc_total_paginas"=>$total_paginas,
@@ -486,6 +501,12 @@ class Propiedad_Model {
       "vc_link"=>$vc_link,
       "vc_view"=>$view,
     );
+  }
+
+  function set_session($config = array()) {
+    foreach ($config as $key => $value) {
+      $_SESSION[$key] = $value;
+    }
   }
 
   function get_sql() {
