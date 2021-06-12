@@ -6125,11 +6125,10 @@ input.form-control { box-shadow: 0px 1px 1px rgb(0 0 0 / 20%); }
 .filter_tilde.active { background-image:url("https://app.inmovar.com/templates/buscador/assets/img/tilde.png"); background-position: 95% 12px; background-repeat:no-repeat; background-size:20px; }
 .page-search-results .btn-limpiar { border-radius: 25px; font-size: 13px; display:inline-block; background-color:#dddddd;color:#5a5a5a; cursor:pointer; padding:4px 10px; }
 @media (max-width: 768px) {
-  #form_flotante { display: none; }
+  #form_flotante, #contacto-section header { display: none; }
   #form_flotante.active { display: block; }
   .show-xs { display: block }
   #property-carousel .item .image-popup img { height: 280px; object-fit: contain; }
-  #contacto-section { display: none; }
   #contacto_submit { display: block; width: 100%; }
   .display-lines .property .info aside p { max-height: inherit; }
   .form-search { display: none; }
