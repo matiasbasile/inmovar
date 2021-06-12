@@ -104,6 +104,8 @@ if (isset($_GET["test"])) print_r($vc_listado);
                 <?php
                 if ($vc_page < ($vc_total_paginas - 1)) { ?>
                   <a class="btn button btn-default btn-block mb20 active" href="<?php echo mklink($vc_link.($vc_page+1)."/").$vc_params ?>">Ver más propiedades</a>
+                <?php } else { ?>
+                  <a class="show-xs btn button btn-default btn-block mb20 active" href="javascript:void(0)" rel="nofollow" onclick="ver_filtros()">Volver a buscar</a>
                 <?php } ?>
               </div>
             </section>
