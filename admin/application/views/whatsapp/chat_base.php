@@ -345,7 +345,7 @@ input:-webkit-autofill {
     <div class="converse-conversation">
     </div>
     <div class="clienchat-link">
-      <a href='https://clien.app' target='_blank'>CLIEN.APP</a>
+      <a href='https://www.inmovar.com' target='_blank'>INMOVAR</a>
     </div>
   </div>
 </div>
