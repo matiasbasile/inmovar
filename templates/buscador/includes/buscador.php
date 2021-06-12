@@ -71,10 +71,12 @@ $esta_buscando = (isset($vc_link_localidad) && !empty($vc_link_localidad)) || (i
       <div class="col-xs-9 pl0">
         <div class="row">
           <div class="col-xs-6 pr0">
-            <input class="form-control" placeholder="Min." id="precio_minimo" type="text" name="vc_minimo" value="<?php echo (isset($vc_minimo) ? (($vc_minimo == 0)?"":$vc_minimo) : "") ?>"/>
+            <input class="form-control" placeholder="Min." id="precio_minimo" type="number" value="<?php echo (isset($vc_minimo) ? (($vc_minimo == 0)?"":$vc_minimo) : "") ?>"/>
+            <input type="hidden" id="precio_minimo_oculto" name="vc_minimo" value="<?php echo (isset($vc_minimo) ? (($vc_minimo == 0)?"":$vc_minimo) : "") ?>"/>
           </div>
           <div class="col-xs-6 pl0">
-            <input class="form-control" placeholder="Máx." id="precio_maximo" type="text" name="vc_maximo" value="<?php echo (isset($vc_maximo) ? (($vc_maximo == 0)?"":$vc_maximo) : "") ?>"/>            
+            <input class="form-control" placeholder="Máx." id="precio_maximo" type="number" value="<?php echo (isset($vc_maximo) ? (($vc_maximo == 0)?"":$vc_maximo) : "") ?>"/>            
+            <input type="hidden" id="precio_maximo_oculto" name="vc_maximo" value="<?php echo (isset($vc_maximo) ? (($vc_maximo == 0)?"":$vc_maximo) : "") ?>"/>
           </div>
         </div>
       </div>
@@ -137,6 +139,8 @@ function filtrar() {
   var tipo_operacion = $("#tipo_operacion").val();
   var localidad = $("#localidad").val();
   link = link + tipo_operacion + "/" + localidad + "/";
+  $("#precio_minimo_oculto").val($("#precio_minimo").val());
+  $("#precio_maximo_oculto").val($("#precio_maximo").val());
   $("#form_propiedades").attr("action",link);
   return true;
 }
