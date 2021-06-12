@@ -139,8 +139,8 @@ function filtrar() {
   var tipo_operacion = $("#tipo_operacion").val();
   var localidad = $("#localidad").val();
   link = link + tipo_operacion + "/" + localidad + "/";
-  var minimo = String($("#precio_minimo").val()).replaceAll(".","");
-  var maximo = String($("#precio_maximo").val()).replaceAll(".","");
+  var minimo = String($("#precio_minimo").val()).replace(".","");
+  var maximo = String($("#precio_maximo").val()).replace(".","");
   $("#precio_minimo_oculto").val(minimo);
   $("#precio_maximo_oculto").val(maximo);
   $("#form_propiedades").attr("action",link);
