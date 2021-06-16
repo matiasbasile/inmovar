@@ -189,7 +189,7 @@ if (sizeof($slides)>0) { ?>
 <!-- ab part Start here -->
 <div class="nostros_part">
   <div class="container">
-    <div class="nostros_wrap">
+    <div class="nostros_wrap p0 pt30">
       <div class="row">
         <?php $nosotros = $entrada_model->get_list(array("categoria"=>"empresa","offset"=>1)) ?>
         <?php foreach ($nosotros as $l) {  ?>

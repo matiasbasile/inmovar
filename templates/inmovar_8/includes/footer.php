@@ -2,15 +2,10 @@
   <div class="container">
     <div class="main_footer">
       <div class="row footer_logo_social">
-        <div class="col-lg-7 col-md-12 footer_logo self-center">
-          <?php if (!empty($empresa->logo)) {  ?>
-            <a href="<?php echo mklink ("/") ?>">
-              <img src="/admin/<?php echo $empresa->logo ?>" alt="footer_logo">
-            </a>
-          <?php } ?>
+        <div class="col-lg-6 col-md-12 footer_logo self-center">
           <p>¿Tenés alguna consulta?</p>
           <a class="btn_outline" href="<?php echo mklink ("contacto/") ?>">contactanos</a> </div>
-        <div class="col-lg-5 col-md-12 footer_social text-right m0"> <i class="fa fa-clock-o" aria-hidden="true"></i>
+        <div class="col-lg-6 col-md-12 footer_social text-right m0"> <i class="fa fa-clock-o" aria-hidden="true"></i>
           <p><?php echo (($empresa->horario)) ?></p>
           <ul>
             <?php if (!empty($empresa->facebook)) {  ?><li> <a target="_blank" href="<?php echo $empresa->facebook ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a> </li><?php } ?>
