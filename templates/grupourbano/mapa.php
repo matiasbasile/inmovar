@@ -71,13 +71,13 @@ mymap.fitBounds([
     if (isset($p->latitud) && isset($p->longitud) && !empty($p->latitud) && !empty($p->longitud)) { ?>
       var contentString<?php echo $i; ?> = '<div id="content">'+
         '<div style="padding: 0px;">'+
-            <?php if(!empty($p->link)) { ?>'<a href=\"/<?php echo $p->link ?>\">'+<?php } ?>
+            <?php if(!empty($p->link_propiedad)) { ?>'<a href=\"/<?php echo $p->link_propiedad ?>\">'+<?php } ?>
             '<h4 style="font-size:20px;margin:5px 0px"><?php echo ($p->nombre) ?></h4>'+
             '<p style="font-size:16px;color:#222;margin:0px;"><?php echo ($p->direccion_completa." | ".$p->localidad) ?></p>'+
-            <?php if(!empty($p->link)) { ?>'</a>'+<?php } ?>
-            <?php if(!empty($p->link)) { ?>'<a href=\"/<?php echo $p->link ?>\">'+<?php } ?>
+            <?php if(!empty($p->link_propiedad)) { ?>'</a>'+<?php } ?>
+            <?php if(!empty($p->link_propiedad)) { ?>'<a href=\"/<?php echo $p->link_propiedad ?>\">'+<?php } ?>
             '<img width=\"200\" src=\"<?php echo $p->imagen ?>\"/>'+
-            <?php if(!empty($p->link)) { ?>'</a>'+<?php } ?>
+            <?php if(!empty($p->link_propiedad)) { ?>'</a>'+<?php } ?>
         '</div>'+
         '</div>';
 
