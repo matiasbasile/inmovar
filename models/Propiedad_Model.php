@@ -438,6 +438,9 @@ class Propiedad_Model {
     }
     if (isset($config["moneda"])) $config_list["moneda"] = $config["moneda"];
 
+    // Si es obras o emprendimientos, son solo propios
+    if ($link_tipo_operacion == "obras" || $link_tipo_operacion == "emprendimientos") $config["solo_propias"] = 1;
+
     // Si esta el valor por defecto del orden de empresa
     // tenemos que evaluar si esta buscando, en ese caso mezclamos las propiedades de todas las inmobiliarias
     $vc_esta_buscando = (!empty($link_localidad)) || (!empty($id_tipo_inmueble)) || (!empty($dormitorios)) || (!empty($banios)) || (!empty($vc_minimo)) || (!empty($vc_maximo));
