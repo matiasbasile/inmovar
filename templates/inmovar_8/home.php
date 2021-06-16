@@ -230,7 +230,7 @@ if (sizeof($slides)>0) { ?>
       </ul>
     </div>
   </div>
-  <div class="listing_boxes">
+  <div class="listing_boxes mb30">
     <div class="container">
       <div class="tab-content" id="myTabContent">
         <?php $ventas_listado = $propiedad_model->get_list(array("destacado"=>"1","tipo_operacion"=>"ventas"))?>
