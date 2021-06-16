@@ -7,10 +7,10 @@ include_once("includes/init.php");
 include_once("includes/funciones.php");
 $nombre_pagina = "mapa";
 
-
 $propiedades = extract($propiedad_model->get_variables(array(
   "offset"=>9999999
 )));
+echo $vc_link_localidad;
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
