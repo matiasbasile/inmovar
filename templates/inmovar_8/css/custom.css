@@ -2494,9 +2494,10 @@ filter: grayscale(100%); }
 .tab_slider_section .owl-prev {
   font-size: 0 !important;
   padding: 0 !important;
-  background-image: url("../images/owl__hover_arrow_left.png") !important;
+  background-image: url("../images/owl_hover_arrow_left.png") !important;
 }
-
+.listing_boxes .owl-nav{ display: block !important  }
+.listing_boxes .owl-theme .owl-nav { margin-top: 30px !important }
 .tab_slider_section .owl-prev:hover {
   background-image: url("../images/owl_hover_arrow_left.png") !important;
 }
