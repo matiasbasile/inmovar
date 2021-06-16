@@ -958,7 +958,7 @@ background-color: var(--c3);
 
 .footer_logo p {
   display: inline-block;
-  font-size: 20px;
+  font-size: 30px;
   margin: auto;
   padding: 0 28px 0 18px;
   vertical-align: middle;
@@ -2494,7 +2494,7 @@ filter: grayscale(100%); }
 .tab_slider_section .owl-prev {
   font-size: 0 !important;
   padding: 0 !important;
-  background-image: url("../images/owl_arrow_left.png") !important;
+  background-image: url("../images/owl__hover_arrow_left.png") !important;
 }
 
 .tab_slider_section .owl-prev:hover {
@@ -2508,7 +2508,7 @@ filter: grayscale(100%); }
 .tab_slider_section .owl-next {
   font-size: 0 !important;
   padding: 0 !important;
-  background-image: url("../images/owl_arrow_right.png") !important;
+  background-image: url("../images/owl_hover_arrow_right.png") !important;
 }
 .tab_slider_section .owl-theme .owl-nav [class*="owl-"] {
   background-color: rgba(0, 0, 0, 0) !important;
@@ -2989,13 +2989,13 @@ h2, .h2 {font-size: 25px;}
 }
 
 
-
+.flex-center { display: flex; align-items: center; }
 @media screen and (max-width: 991px) {
 .logo_closebtn {
   display: block;
 }
 .menacho_header {padding: 16px 0 17px;}
-.menacho_logo img {max-width: 150px;}
+.menacho_logo img {max-width: 150px !important;}
 .social_header {
   position: absolute;
   right: 65px;

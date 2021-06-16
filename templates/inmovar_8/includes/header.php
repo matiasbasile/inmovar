@@ -8,13 +8,13 @@ if (isset($_SESSION["favoritos"])) {
 <header class="menacho_header">
   <div class="container-fluid">
     <div class="main-header">
-      <div class="row">
-        <div class="col-lg-3 col-7">
-          <div class="menacho_logo">
+      <div class="row flex-center">
+        <div class="col-lg-3 col-sm-6">
+          <div class="menacho_logo p0">
             <a href="<?php echo mklink ("/") ?>"><img style="max-width: 220px" src="<?php echo '/admin/'.$empresa->logo_1 ?>" alt="logo"></a>
           </div>
         </div>
-        <div class="col-lg-9">
+        <div class="col-lg-9 col-sm-6">
           <div class="menacho_navbar">
             <div class="main_nav">
               <nav class="navbar navbar-expand-lg"> 
