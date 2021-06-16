@@ -398,6 +398,7 @@ function enviar_ficha_email() {
 $(document).ready(function(){
   <?php if (!empty($propiedad->latitud) && !empty($propiedad->longitud)) { ?>
 
+    if ($("#map").length == 0) return;
     var mymap = L.map('map').setView([<?php echo $propiedad->latitud ?>,<?php echo $propiedad->longitud ?>], 16);
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
