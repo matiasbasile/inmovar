@@ -24,7 +24,6 @@ foreach($rss_ITEM as $itemdata) {
 
   // Primero controlamos que el link original a la nota ya no exista, asi no duplicamos la noticia
   $link_original = $itemdata['LINK'];
-  echo $link_original."<br/>";
 
   $sql = "SELECT * FROM not_entradas WHERE id_empresa = $id_empresa AND link_original = '$link_original' ";
   $q_entrada = mysqli_query($conx,$sql);
@@ -68,9 +67,10 @@ foreach($rss_ITEM as $itemdata) {
   }
 
   $imagen = "";
-  $nodes = $finder->query("//*[contains(@id, 'content-gallery')]/div/div/div/img");
+  $nodes = $finder->query("//*[contains(@class, 'gallery-slide')]/figure/img/@data-td-src-property");
   foreach ($nodes as $node) {
-    $imagen = $node->getAttribute("longdesc");
+    print_r($node);
+    //$imagen = $node->getAttribute("longdesc");
   }
 
   $contenido = "";
@@ -78,6 +78,7 @@ foreach($rss_ITEM as $itemdata) {
   foreach ($nodes as $node) {
     $contenido.= $node->textContent."<br/>";
   }
+  /*
 
   $contenido = str_replace('“', "&quot;", $contenido);
   $contenido = str_replace('”', "&quot;", $contenido);
@@ -101,7 +102,7 @@ foreach($rss_ITEM as $itemdata) {
   $link = "entrada/".filename($titulo)."-$id_entrada/";
   $sql = "UPDATE not_entradas SET link = '$link' WHERE id = $id_entrada ";
   mysqli_query($conx,$sql);
-
+  */
   $j++;
 }
 ?>
