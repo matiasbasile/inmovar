@@ -8,7 +8,9 @@ include_once("includes/funciones.php");
 $nombre_pagina = "mapa";
 
 
-$propiedades = extract($propiedad_model->get_variables(array()));
+$propiedades = extract($propiedad_model->get_variables(array(
+  "offset"=>9999999
+)));
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
