@@ -10,7 +10,6 @@ $nombre_pagina = "mapa";
 $propiedades = extract($propiedad_model->get_variables(array(
   "offset"=>9999999
 )));
-echo $propiedad_model->get_sql();
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
