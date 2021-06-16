@@ -1068,7 +1068,12 @@ class Propiedad_Model {
     $sql.= "LEFT JOIN inm_tipos_operacion X ON (A.id_tipo_operacion = X.id) ";
     $sql.= "LEFT JOIN inm_propietarios P ON (A.id_propietario = P.id AND A.id_empresa = P.id_empresa) ";
     $sql.= "LEFT JOIN com_localidades L ON (A.id_localidad = L.id) ";
-    $sql.= "WHERE A.precio_final != 0 "; // SIEMPRE TIENE QUE TENER PRECIO
+
+    if ($link_tipo_operacion == "obras" || $link_tipo_operacion == "emprendimientos") $config["solo_propias"] = 1;
+
+    // SI ES VENTA O ALQUILER, SIEMPRE TIENE QUE TENER PRECIO
+    // una obra o emprendimiento puede no tener precio
+    $sql.= "WHERE IF(A.id_tipo_operacion = 1 OR A.id_tipo_operacion = 2, IF (A.precio_final != 0,1,0), 1) = 1 ";
     if ($apto_banco == 1) $sql.= "AND A.apto_banco = 1 ";
     if ($pint == 1) $sql.= "AND A.pint != '' ";
     if ($video == 1) $sql.= "AND A.video != '' ";
