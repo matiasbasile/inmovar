@@ -43,7 +43,7 @@
         <div id="tabs-1" class="ui-tabs-hide ui-tabs-panel ui-corner-bottom ui-widget-content" aria-labelledby="ui-id-1" role="tabpanel" aria-hidden="false">
           <form onsubmit="enviar_buscador_propiedades()" id="form_propiedades">
             <div class="row">
-              <div class="col-md-7">
+              <div class="col-md-6">
                 <div class="row">
                   <div class="col-md-4">
                     <div class="filter-item">
@@ -83,15 +83,30 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-5">
+              <div class="col-md-6">
                 <div class="row">
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <div class="filter-item">
                       <label>Direcci&oacute;n</label>
                       <input type="text" class="form-control" name="calle"/>
                     </div>
                   </div>                                    
-                  <div class="col-md-4">
+                  <div class="col-md-3">
+                    <div class="filter-item">
+                      <label>Dormitorios</label>
+                      <select name="dm" class="form-control">
+                        <?php $dormitorios = $propiedad_model->get_dormitorios() ?>
+                        <option value="">-</option>
+                        <option <?php echo ($vc_dormitorios == 99)?"selected":"" ?> value="99">Monoambiente</option>
+                        <?php foreach ($dormitorios as $dm) { ?>
+                          <?php if ($dm->dormitorios != 0) {  ?>
+                            <option value="<?php echo $dm->dormitorios ?>" <?php echo ($vc_dormitorios == $dm->dormitorios)?"selected":"" ?> ><?php echo $dm->dormitorios ?></option>
+                          <?php } ?>
+                        <?php } ?>
+                      </select>
+                    </div>
+                  </div>                                    
+                  <div class="col-md-3">
                     <div class="filter-item">
                       <label>Código</label>
                       <input type="text" class="form-control mb5" name="cod"/>
@@ -101,7 +116,7 @@
                       <label class="fl" for="apto_banco">Apto Crédito</label>
                     </div>                    
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <div class="filter-item">
                       <label class="label-submit">Enviar</label><br>
                       <input type="submit" class="button alt w100p tac" value="Buscar">
