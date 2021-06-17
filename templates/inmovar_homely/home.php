@@ -97,10 +97,10 @@
                       <select name="dm" class="form-control">
                         <?php $dormitorios = $propiedad_model->get_dormitorios() ?>
                         <option value="">-</option>
-                        <option <?php echo ($vc_dormitorios == 99)?"selected":"" ?> value="99">Monoambiente</option>
+                        <option value="99">Monoambiente</option>
                         <?php foreach ($dormitorios as $dm) { ?>
                           <?php if ($dm->dormitorios != 0) {  ?>
-                            <option value="<?php echo $dm->dormitorios ?>" <?php echo ($vc_dormitorios == $dm->dormitorios)?"selected":"" ?> ><?php echo $dm->dormitorios ?></option>
+                            <option value="<?php echo $dm->dormitorios ?>"><?php echo $dm->dormitorios ?></option>
                           <?php } ?>
                         <?php } ?>
                       </select>
