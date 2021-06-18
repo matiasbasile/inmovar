@@ -25,7 +25,7 @@
               <div class="<?php echo (!empty($s->linea_1)?"shadow":"") ?>" style="height: 600px; background-size: cover; background-position: center center; background-image: url(<?php echo $s->path ?>)">
                 <?php if (!empty($s->linea_1)) { ?>
                   <div class="container">
-                    <h1 class="tac pb30" style="padding-top: 140px !important; text-shadow: 0px 0px 14px black;"><?php echo $s->linea_1 ?></h1>
+                    <h1 class="tac pb30" style="padding-top: 200px !important; text-shadow: 0px 0px 14px black;"><?php echo $s->linea_1 ?></h1>
                     <p class="tac" style="text-shadow: 0px 0px 14px black;"><?php echo $s->linea_2 ?></p>
                   </div>
                 <?php } ?>
