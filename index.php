@@ -225,7 +225,6 @@ $nombre_pagina = (sizeof($params)>0) ? $params[0] : "";
 
 if ($nombre_pagina == "ficha") {
   include("templates/ficha/home.php");
-  else go_404();
   
 } else if (isset($empresa->template_path) && !empty($empresa->template_path)) { 
 
