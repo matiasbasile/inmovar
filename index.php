@@ -224,8 +224,7 @@ $dominio = "http://".$dominio;
 $nombre_pagina = (sizeof($params)>0) ? $params[0] : "";
 
 if ($nombre_pagina == "ficha") {
-  $id = $params[1]; // Obtenemos el ID del ultimo parametro
-  if (file_exists("templates/ficha/home.php")) include("templates/ficha/home.php");
+  include("templates/ficha/home.php");
   else go_404();
   
 } else if (isset($empresa->template_path) && !empty($empresa->template_path)) { 
