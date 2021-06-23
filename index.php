@@ -244,6 +244,11 @@ if (isset($empresa->template_path) && !empty($empresa->template_path)) {
     if (file_exists($dir_template.$empresa->template_pagina.".php")) include($dir_template.$empresa->template_pagina.".php");
     else go_404();
 
+  } else if ($nombre_pagina == "ficha") {
+    $id = $params[1]; // Obtenemos el ID del ultimo parametro
+    if (file_exists("templates/ficha/home.php")) include("templates/ficha/home.php");
+    else go_404();
+
   // Si la pagina empieza con WEB, vamos al archivo especificado por el segundo parametro
   // Esto permite dar libertad a cada template por si hay que mostrar archivos especificos del proyecto,
   // asi, todo lo que empiece por web/* es como ejecutar *.php
