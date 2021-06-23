@@ -222,7 +222,6 @@ if ($empresa->administrar_pagos == 1 && $fecha_suspension->format("Y-m-d") < dat
 
 $dominio = "http://".$dominio;
 $nombre_pagina = (sizeof($params)>0) ? $params[0] : "";
-echo "[$nombre_pagina]";
 if ($nombre_pagina == "ficha") {
   include("templates/ficha/home.php");
 
