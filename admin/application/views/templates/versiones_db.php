@@ -35,7 +35,7 @@
 
 
 <script type="text/template" id="versiones_db_item">
-	<td class="p5 tac"><i title="Subido" class="glyphicon glyphicon-ok subido <%= (subido == 1)?"text-success":"text-muted" %>"></i></td>
+	<td class="p5 tac"><i title="Subido" class="fa fa-check subido <%= (subido == 1)?"text-success":"text-muted" %>"></i></td>
 	<td><span class='ver'><%= id %></span></td>
 	<% if (permiso > 1) { %>
 		<td><i class="fa fa-file-text-o edit text-dark" data-id="<%= id %>" /></td>

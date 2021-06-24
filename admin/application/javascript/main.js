@@ -88,6 +88,10 @@
         "inquilinos": "ver_inquilinos",
         "propietarios": "ver_propietarios",
 
+        "versiones_db": "ver_versiones_db",
+        "version_db": "ver_version_db",
+        "version_db/:id": "ver_version_db",
+
         // Funcionamiento de ABM General
         '': 'router',
         ':mod(/)': 'router',
@@ -210,6 +214,48 @@
           $("#cuentas_corrientes_clientes_codigo").select();
         //}
       },  
+
+      ver_versiones_db: function() {
+        var permiso = control.check("versiones_db");
+        if (permiso > 0) {
+          window.versiones_db = new app.collections.VersionesDb();
+          app.views.versiones_dbTableView = new app.views.VersionesDbTableView({
+            collection: window.versiones_db,
+            permiso: permiso
+          });    
+          this.mostrar({
+            "top" : app.views.versiones_dbTableView.el,
+          });
+        }
+      },
+      ver_version_db: function(id) {
+        var self = this;
+        var permiso = control.check("versiones_db");
+        if (permiso > 0) {
+          if (id == undefined) {
+            app.views.version_dbEditView = new app.views.VersionDbEditView({
+              model: new app.models.VersionDb(),
+              permiso: permiso
+            });
+            this.mostrar({
+              "top" : app.views.version_dbEditView.el,
+            });
+          } else {
+            var version_db = new app.models.VersionDb({ "id": id });
+            version_db.fetch({
+              "success":function() {
+                app.views.version_dbEditView = new app.views.VersionDbEditView({
+                  model: version_db,
+                  permiso: permiso
+                });
+                self.mostrar({
+                  "top" : app.views.version_dbEditView.el,
+                });
+              }
+            });
+          }
+        }                
+      },
 
       ver_facturacion: function(id) {
         if (ID_EMPRESA == 1) {
