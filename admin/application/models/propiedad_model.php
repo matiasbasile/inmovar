@@ -1025,7 +1025,7 @@ class Propiedad_Model extends Abstract_Model {
     $id = parent::insert($data);
 
     // Actualizamos el link
-    $data->hash = md5($id);
+    $data->hash = md5($id.$data->id_empresa);
     $data->link = "propiedad/".filename($data->nombre,"-",0)."-".$id."/";
     $this->db->query("UPDATE inm_propiedades SET link = '$data->link', hash='$data->hash' WHERE id = $id AND id_empresa = $data->id_empresa");
 
@@ -1810,7 +1810,7 @@ class Propiedad_Model extends Abstract_Model {
   
     // INSERTAMOS EL OBJETO
     $id_propiedad = $this->save($propiedad);
-    $hash = md5($id_propiedad);
+    $hash = md5($id_propiedad.$propiedad->id_empresa);
 
     // Actualizamos el link
     $propiedad->link = "propiedad/".filename($propiedad->nombre,"-",0)."-".$id_propiedad."/";

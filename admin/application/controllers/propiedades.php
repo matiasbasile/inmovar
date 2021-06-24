@@ -12,6 +12,12 @@ class Propiedades extends REST_Controller {
     $this->load->model('Propiedad_Model', 'modelo');
   }
 
+  function arreglar_hash() {
+    $sql = "UPDATE inm_propiedades SET hash = MD5(CONCAT(id,id_empresa)) ";
+    $this->db->query($sql);
+    echo "TERMINO";
+  }
+
   function arreglar_codigos_cero() {
     $id_empresa = parent::get_empresa();
     $sql = "SELECT * FROM inm_propiedades ";
