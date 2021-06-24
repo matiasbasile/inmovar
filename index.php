@@ -271,6 +271,7 @@ if ($nombre_pagina == "ficha") {
     $propiedad = $propiedad_model->get($p->id,array(
       "id_empresa"=>$p->id_empresa,
     ));
+    echo $propiedad_model->get_sql();
     var_dump($propiedad);
     include("templates/ficha/home.php");
   } else {
