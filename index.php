@@ -263,11 +263,12 @@ $dominio = "http://".$dominio;
 $nombre_pagina = (sizeof($params)>0) ? $params[0] : "";
 if ($nombre_pagina == "ficha") {
   $hash = (sizeof($params)>1) ? $params[1] : "";
+  echo $hash;
   include_once("models/Propiedad_Model.php");
   $propiedad_model = new Propiedad_Model($empresa->id,$conx);
   $propiedad = $propiedad_model->get_by_hash($hash);
+  if ($propiedad === FALSE) go_404();
   $empresa = get_empresa_by_id($propiedad->id_empresa);
-  print_r($propiedad);
   include("templates/ficha/home.php");
 
 } else if (isset($empresa->template_path) && !empty($empresa->template_path)) { 
