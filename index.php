@@ -82,6 +82,45 @@ function get_empresa_by_dominio($dominio) {
   }
 }
 
+function get_empresa_by_id($id) {
+  global $conx;
+  if (empty($dominio)) return FALSE;
+  $dominio_con_www = (strpos("www.", $dominio) === FALSE) ? "www.".$dominio : $dominio;
+  $sql = "SELECT E.*, T.path AS template_path, WC.*, ";
+  $sql.= " IF(L.nombre IS NULL,'',L.nombre) AS localidad ";
+  $sql.= "FROM empresas E ";
+  $sql.= " INNER JOIN empresas_dominios ED ON (E.id = ED.id_empresa) ";
+  $sql.= " INNER JOIN web_configuracion WC ON (E.id = WC.id_empresa) ";
+  $sql.= " INNER JOIN web_templates T ON (E.id_web_template = T.id) ";
+  $sql.= " LEFT JOIN com_localidades L ON (E.id_localidad = L.id) ";
+  $sql.= "WHERE E.id = '$id' ";
+  if ($dominio_con_www != $dominio) $sql.= "OR ED.dominio = '$dominio_con_www' ";
+  $q = mysqli_query($conx,$sql);
+  if (mysqli_num_rows($q)>0) {
+    $empresa = mysqli_fetch_object($q);
+    $empresa->direccion = $empresa->direccion_web;
+    $empresa->telefono = $empresa->telefono_web;    
+    if (isset($empresa->configuraciones_especiales) && !empty($empresa->configuraciones_especiales)) {
+      $empresa->config = array();
+      $lineas = explode(";",$empresa->configuraciones_especiales);
+      foreach($lineas as $l) {
+        $l = trim($l);
+        if (empty($l)) continue;
+        if (strpos($l,"=")>0) {
+          $campos = explode("=",$l);
+          $clave = trim($campos[0]);
+          $valor = trim($campos[1]);
+          if (empty($clave)) continue;
+          $empresa->config[$clave] = $valor;
+        }
+      }      
+    }
+    return $empresa;
+  } else {
+    return FALSE;
+  }
+}
+
 function get_empresa_by_dominio_inmovar($dominio) {
   global $conx;
   $sql = "SELECT E.*, T.path AS template_path, WC.*, ";
@@ -227,6 +266,7 @@ if ($nombre_pagina == "ficha") {
   include_once("models/Propiedad_Model.php");
   $propiedad_model = new Propiedad_Model($empresa->id,$conx);
   $propiedad = $propiedad_model->get_by_hash($hash);
+  $empresa = get_empresa_by_id($propiedad->id_empresa);
   print_r($propiedad);
   include("templates/ficha/home.php");
 
