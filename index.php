@@ -265,7 +265,7 @@ if ($nombre_pagina == "ficha") {
   $hash = (sizeof($params)>1) ? urldecode($params[1]) : "";
   $hash = str_replace(" ", "", $hash);
   $sql = "SELECT id, id_empresa FROM inm_propiedades WHERE hash = '$hash' ";
-  $q = mysqli_query($this->conx,$sql);
+  $q = mysqli_query($conx,$sql);
   if (mysqli_num_rows($q)>0) {
     $p = mysqli_fetch_object($q);
     $empresa = get_empresa_by_id($p->id_empresa);
