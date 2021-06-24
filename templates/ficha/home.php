@@ -2,8 +2,86 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<?php 
+$ver_precios = ($empresa->tienda_ver_precios == 0 || ($empresa->tienda_ver_precios == 1 && isset($_SESSION["id_cliente"])));
+$ver_carrito = ($empresa->tienda_carrito < 2);
+$ver_consulta = ($empresa->tienda_consulta_productos == 0);
+$incluir_buscador_neumaticos = (isset($empresa->tipo_empresa)) ? (($empresa->tipo_empresa == 1)?1:0) : 0;
+$incluir_turnos = (isset($empresa->tipo_empresa)) ? (($empresa->tipo_empresa == 2 || isset($empresa->config["incluir_turnos"]))?1:0) : 0;
+
+$boton_comprar_ahora = isset($empresa->config["boton_comprar_ahora"]) ? $empresa->config["boton_comprar_ahora"] : "comprar ahora";
+$boton_comprar = isset($empresa->config["boton_comprar"]) ? $empresa->config["boton_comprar"] : "COMPRAR";
+$boton_agregar_carrito = isset($empresa->config["boton_agregar_carrito"]) ? $empresa->config["boton_agregar_carrito"] : "agregar al carrito";
+$ocultar_boton_agregar_carrito = isset($empresa->config["ocultar_boton_agregar_carrito"]) ? $empresa->config["ocultar_boton_agregar_carrito"] : 0;
+$ocultar_boton_comprar = isset($empresa->config["ocultar_boton_comprar"]) ? $empresa->config["ocultar_boton_comprar"] : 0;
+?>
+<?php if (!empty($empresa->gtm_head)) { echo html_entity_decode($empresa->gtm_head,ENT_QUOTES); } ?>
+<base href="/templates/ficha/"/>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<?php 
+$title = (isset($seo_title)) ? (html_entity_decode($seo_title,ENT_QUOTES)) : (html_entity_decode($empresa->seo_title,ENT_QUOTES));
+$title = str_replace("\n", " ", $title);
+?>
+<title><?php echo $title ?></title>
+
+<?php 
+$description = (isset($seo_description)) ? (html_entity_decode($seo_description,ENT_QUOTES)) : (html_entity_decode($empresa->seo_description,ENT_QUOTES));
+$description = str_replace("\n", " ", $description);
+?>
+<meta name="description" content="<?php echo $description ?>">
+
+<?php 
+$keywords = (isset($seo_keywords)) ? (html_entity_decode($seo_keywords,ENT_QUOTES)) : (html_entity_decode($empresa->seo_keywords,ENT_QUOTES));
+$keywords = str_replace("\n", " ", $keywords);
+?>
+<meta name="keywords" content="<?php echo $keywords ?>">
+
+<?php include_once("templates/comun/ldjson/organization.php"); ?>
+
+<?php if (strpos(strtolower($empresa->favicon), ".png")>0) { ?>
+  <link rel="shortcut icon" type="image/png" href="/admin/<?php echo $empresa->favicon ?>"/>
+<?php } else if (strpos(strtolower($empresa->favicon), ".ico")>0) { ?>
+  <link rel="shortcut icon" type="image/x-icon" href="/admin/<?php echo $empresa->favicon ?>" />
+<?php } else { ?>
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<?php } ?>
+
+<link href="/admin/resources/css/common.css" media="all" type="text/css" rel="stylesheet"/>
+
+<?php if (isset($incluir_buscador_neumaticos) && $incluir_buscador_neumaticos == 1) { ?>
+  <?php include_once("templates/comun/neumaticos/buscador_css.php"); ?>
+<?php } ?>
+
+<?php if (isset($incluir_turnos) && $incluir_turnos == 1) { ?>
+  <link rel="stylesheet" type="text/css" href="/admin/resources/js/jquery/ui/jquery-ui.min.css">
+  <link rel="stylesheet" type="text/css" href="/admin/resources/js/jquery/ui/jquery-ui.theme.min.css">
+<?php } ?>
+
+
+<style type="text/css">
+:root {
+  <?php if (!empty($empresa->color_principal)) { ?>
+    --c1: <?php echo $empresa->color_principal ?>;
+  <?php } ?>
+  <?php if (!empty($empresa->color_secundario)) { ?>
+    --c2: <?php echo $empresa->color_secundario ?>;
+  <?php } ?>
+  <?php if (!empty($empresa->color_terciario)) { ?>
+    --c3: <?php echo $empresa->color_terciario ?>;
+  <?php } ?>
+  <?php if (!empty($empresa->color_4)) { ?>
+    --c4: <?php echo $empresa->color_4 ?>;
+  <?php } ?>
+  <?php if (!empty($empresa->color_5)) { ?>
+    --c5: <?php echo $empresa->color_5 ?>;
+  <?php } ?>
+  <?php if (!empty($empresa->color_6)) { ?>
+    --c6: <?php echo $empresa->color_6 ?>;
+  <?php } ?>
+}
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
 
 <link href='assets/fonts/openSans.css' rel='stylesheet' type='text/css'>
 <link href='assets/css/style.css' rel='stylesheet' type='text/css'>
@@ -15,12 +93,10 @@
 <script type="text/javascript" src="assets/js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery-sticky.js"></script>
 
-<title>20 y 32 | La Plata</title>
-
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="20 y 32 | La Plata" />
 <meta name="twitter:image" content="https://static.tokkobroker.com/pictures/10310731172228030020173195667303805718351347376946130912451072671840420925279.jpg" />
-
+<?php include "templates/comun/post_head.php" ?>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -80,9 +156,9 @@ $('#big_slides_close').css ( 'margin-left', close_margin); */
         <div id="ficha">
             <div id="header_ficha">
                   
-                <div class="pre-title-header">PH en La Plata</div>
+                <div class="pre-title-header"><?= $propiedad->nombre ?></div>
                 <div class="titulo_header">
-                    <div class="titulo_address" style="">20 y 32 | La Plata</div>
+                    <div class="titulo_address" style=""><?= $propiedad->calle ?> | <?= $propiedad->localidad ?></div>
                     <div class="titulo_precio">
 
                     </div>
@@ -157,12 +233,17 @@ $('#big_slides_close').css ( 'margin-left', close_margin); */
             <div class="operations-box">
                 
                 
-                <div class="op-venta"><div class="op-operation">Venta</div><div class="op-values"> <div class="op-value"> USD 68.000</div> </div></div>
+                <div class="op-venta">
+                    <div class="op-operation"><?= $propiedad->tipo_operacion ?></div>
+                    <div class="op-values"> 
+                        <div class="op-value"><?= $propiedad->precio ?></div>
+                    </div>
+                </div>
                 
                 
             </div>
-            <div class="ficha_detalle_item"><b>Direccion</b><br/>20 y 32 | La Plata</div>
-            <div class="ficha_detalle_item"><b>Localidad/Partido</b><br/>La Plata</div>
+            <div class="ficha_detalle_item"><b>Direccion</b><br/><?= $propiedad->calle ?> | <?= $propiedad->localidad ?></div>
+            <div class="ficha_detalle_item"><b>Localidad/Partido</b><br/><?= $propiedad->localidad ?></div>
             
             <div id="ficha_detalle_ref">(REF. EPH3702409)</div>
         </div>
@@ -206,35 +287,35 @@ $('#big_slides_close').css ( 'margin-left', close_margin); */
     <div class="titulo2">Información básica.</div>
     <ul class="ficha_ul" id="lista_informacion_basica">
         
-          <li><i class="fa fa-check detalleColorC"></i>Ambientes: 3</li>
+          <li><i class="fa fa-check detalleColorC"></i>Ambientes: <?= $propiedad->ambientes ?></li>
         
 
         
-          <li><i class="fa fa-check detalleColorC"></i>Dormitorios: 2</li>
+          <li><i class="fa fa-check detalleColorC"></i>Dormitorios: <?= $propiedad->dormitorios ?></li>
         
 
         
-          <li><i class="fa fa-check detalleColorC"></i>Baños: 1</li>
-        
-
-        
-
-        
-          <li><i class="fa fa-check detalleColorC"></i>Cocheras: 1</li>
+          <li><i class="fa fa-check detalleColorC"></i>Baños: <?= $propiedad->banios ?></li>
         
 
         
 
         
-          <li><i class="fa fa-check detalleColorC"></i>Condición: Reciclado</li>
+          <li><i class="fa fa-check detalleColorC"></i>Cocheras: <?= $propiedad->cocheras ?></li>
         
 
         
 
-        <li><i class="fa fa-check detalleColorC"></i>Antigüedad:  A estrenar</li>
+        
+          <li><i class="fa fa-check detalleColorC"></i>Condición: no encontre</li>
+        
 
         
-          <li><i class="fa fa-check detalleColorC"></i>Situación: Vacía </li>
+
+        <li><i class="fa fa-check detalleColorC"></i>Antigüedad: no encontre</li>
+
+        
+          <li><i class="fa fa-check detalleColorC"></i>Situación: no encontre </li>
         
 
         
@@ -257,12 +338,12 @@ $('#big_slides_close').css ( 'margin-left', close_margin); */
     <ul class="ficha_ul" id="lista_superficies">
         
         
-                <li><i class="fa fa-check detalleColorC"></i>Superficie del terreno: 60,00 m²</li>
+                <li><i class="fa fa-check detalleColorC"></i>Superficie del terreno: <?= $propiedad->superficie_total ?></li>
             
         
 
         
-        <li><i class="fa fa-check detalleColorC"></i>Superficie cubierta: 40,00 m²</li>
+        <li><i class="fa fa-check detalleColorC"></i>Superficie cubierta: <?= $propiedad->superficie_cubierta ?></li>
         
 
         
@@ -270,7 +351,7 @@ $('#big_slides_close').css ( 'margin-left', close_margin); */
         
 
         
-        <li><i class="fa fa-check detalleColorC"></i>Total construido: 40,00 m²</li>
+        <li><i class="fa fa-check detalleColorC"></i>Total construido: que poner?</li>
         
     </ul>
 </section>
@@ -279,7 +360,7 @@ $('#big_slides_close').css ( 'margin-left', close_margin); */
     <div class="card">
         
             <div class="titulo2">Descripción</div>
-            <p>Muy buen PH en esquina reciclado por completo.<br />dos dormitorios cocina comedor y baño, patio con parrilla  y entrada garaje.</p>
+            <?= $propiedad->texto ?>
         
         
     </div>
@@ -395,29 +476,9 @@ $('#big_slides_close').css ( 'margin-left', close_margin); */
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <section id="ficha_mapa" style="color:  !important;" class="card noprint">
-    <div class="titulo2">Ubicación</div>
-    <div id="mapa_box">
-        <iframe width="100%" height="300" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDH5NsK4cieJYGGsm4jSWyp3WaPIcXr7aA&q=-34.9130697297,-57.98223315" allowfullscreen>
-        </iframe>
-    </div>
+  <div class="titulo2">Ubicación</div>
+  <div style="height: 500px;" id="mapid"></div>
 </section>
 
 
@@ -494,22 +555,52 @@ $('#big_slides_close').css ( 'margin-left', close_margin); */
 </div>
 
 <script>
-function stickCheck(){
-    if ( $(window).width() > 767 ) {
-        $(".tostick").sticky({topSpacing: 20, bottomSpacing: 20});
-    }else{
-        $(".tostick").unstick();
+    function stickCheck(){
+        if ( $(window).width() > 767 ) {
+            $(".tostick").sticky({topSpacing: 20, bottomSpacing: 20});
+        }else{
+            $(".tostick").unstick();
+        }
     }
-}
 
-$(document).ready(function(){
-    stickCheck();
-});
+    $(document).ready(function(){
+        stickCheck();
+    });
 
-$(window).resize(function() {
-    stickCheck();
-})
+    $(window).resize(function() {
+        stickCheck();
+    })
 </script>
 
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"></script>
+<?php if (!empty($propiedad->latitud) && !empty($propiedad->longitud)) { ?>
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+			var mymap = L.map('mapid').setView([<?php echo $propiedad->latitud ?>,<?php echo $propiedad->longitud ?>], 15);
+
+	    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+	      attribution: '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
+	      tileSize: 512,
+	      maxZoom: 18,
+	      zoomOffset: -1,
+	      id: 'mapbox/streets-v11',
+	      accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
+	    }).addTo(mymap);
+
+
+			var icono = L.icon({
+				iconUrl: 'assets/images/map-logo.png',
+		      iconSize:     [101, 112], // size of the icon
+		      iconAnchor:   [50, 112], // point of the icon which will correspond to marker's location
+		    }); 
+
+			L.marker([<?php echo $propiedad->latitud ?>,<?php echo $propiedad->longitud ?>],{
+				icon: icono
+			}).addTo(mymap);
+		});
+	</script>
+<?php } ?>
 </body>
 </html>
