@@ -84,8 +84,6 @@ function get_empresa_by_dominio($dominio) {
 
 function get_empresa_by_id($id) {
   global $conx;
-  if (empty($dominio)) return FALSE;
-  $dominio_con_www = (strpos("www.", $dominio) === FALSE) ? "www.".$dominio : $dominio;
   $sql = "SELECT E.*, T.path AS template_path, WC.*, ";
   $sql.= " IF(L.nombre IS NULL,'',L.nombre) AS localidad ";
   $sql.= "FROM empresas E ";
@@ -94,7 +92,6 @@ function get_empresa_by_id($id) {
   $sql.= " INNER JOIN web_templates T ON (E.id_web_template = T.id) ";
   $sql.= " LEFT JOIN com_localidades L ON (E.id_localidad = L.id) ";
   $sql.= "WHERE E.id = '$id' ";
-  if ($dominio_con_www != $dominio) $sql.= "OR ED.dominio = '$dominio_con_www' ";
   $q = mysqli_query($conx,$sql);
   if (mysqli_num_rows($q)>0) {
     $empresa = mysqli_fetch_object($q);
@@ -268,7 +265,6 @@ if ($nombre_pagina == "ficha") {
   $q_prop = mysqli_query($conx,$sql);
   if (mysqli_num_rows($q_prop)>0) {
     $p = mysqli_fetch_object($q_prop);
-    var_dump($p);
     $empresa = get_empresa_by_id($p->id_empresa);
     include_once("models/Propiedad_Model.php");
     $propiedad_model = new Propiedad_Model($empresa->id,$conx);
