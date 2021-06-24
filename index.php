@@ -269,6 +269,7 @@ if ($nombre_pagina == "ficha") {
     include_once("models/Propiedad_Model.php");
     $propiedad_model = new Propiedad_Model($empresa->id,$conx);
     $propiedad = $propiedad_model->get($p->id);
+    var_dump($propiedad);
     include("templates/ficha/home.php");
   } else {
     go_404();
