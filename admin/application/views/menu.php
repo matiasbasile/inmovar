@@ -44,6 +44,12 @@ function modulo_habilitado($permisos,$modulo) {
                 Modulos
               </a>
             </li>
+            <li>
+              <a href='app/#versiones_db'>
+                <i class='material-icons'>settings</i>
+                Versiones
+              </a>
+            </li>
 
           <?php 
           // CUENTA ESPECIAL DE INMOVAR

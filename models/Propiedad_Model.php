@@ -591,6 +591,17 @@ class Propiedad_Model {
     return max($maximo_usd,$maximo_pe);
   }
 
+  function get_by_hash($hash = "") {
+    $sql = "SELECT id, id_empresa FROM inm_propiedades WHERE hash = '$hash' ";
+    $q = mysqli_query($this->conx,$sql);
+    if (mysqli_num_rows($q)>0) {
+      $r = mysqli_fetch_object($q);
+      return $this->get($r->id,array(
+        "id_empresa"=>$r->id_empresa,
+      ));
+    } else return FALSE;
+  }
+
   // Obtenemos los datos del propiedad
   function get($id,$config = array()) {
 

@@ -82,6 +82,42 @@ function get_empresa_by_dominio($dominio) {
   }
 }
 
+function get_empresa_by_id($id) {
+  global $conx;
+  $sql = "SELECT E.*, T.path AS template_path, WC.*, ";
+  $sql.= " IF(L.nombre IS NULL,'',L.nombre) AS localidad ";
+  $sql.= "FROM empresas E ";
+  $sql.= " INNER JOIN empresas_dominios ED ON (E.id = ED.id_empresa) ";
+  $sql.= " INNER JOIN web_configuracion WC ON (E.id = WC.id_empresa) ";
+  $sql.= " INNER JOIN web_templates T ON (E.id_web_template = T.id) ";
+  $sql.= " LEFT JOIN com_localidades L ON (E.id_localidad = L.id) ";
+  $sql.= "WHERE E.id = '$id' ";
+  $q = mysqli_query($conx,$sql);
+  if (mysqli_num_rows($q)>0) {
+    $empresa = mysqli_fetch_object($q);
+    $empresa->direccion = $empresa->direccion_web;
+    $empresa->telefono = $empresa->telefono_web;    
+    if (isset($empresa->configuraciones_especiales) && !empty($empresa->configuraciones_especiales)) {
+      $empresa->config = array();
+      $lineas = explode(";",$empresa->configuraciones_especiales);
+      foreach($lineas as $l) {
+        $l = trim($l);
+        if (empty($l)) continue;
+        if (strpos($l,"=")>0) {
+          $campos = explode("=",$l);
+          $clave = trim($campos[0]);
+          $valor = trim($campos[1]);
+          if (empty($clave)) continue;
+          $empresa->config[$clave] = $valor;
+        }
+      }      
+    }
+    return $empresa;
+  } else {
+    return FALSE;
+  }
+}
+
 function get_empresa_by_dominio_inmovar($dominio) {
   global $conx;
   $sql = "SELECT E.*, T.path AS template_path, WC.*, ";
@@ -222,7 +258,25 @@ if ($empresa->administrar_pagos == 1 && $fecha_suspension->format("Y-m-d") < dat
 
 $dominio = "http://".$dominio;
 $nombre_pagina = (sizeof($params)>0) ? $params[0] : "";
-if (isset($empresa->template_path) && !empty($empresa->template_path)) { 
+if ($nombre_pagina == "ficha") {
+  $hash = (sizeof($params)>1) ? urldecode($params[1]) : "";
+  $hash = str_replace(" ", "", $hash);
+  $sql = "SELECT id, id_empresa FROM inm_propiedades WHERE hash = '$hash' ";
+  $q_prop = mysqli_query($conx,$sql);
+  if (mysqli_num_rows($q_prop)>0) {
+    $p = mysqli_fetch_object($q_prop);
+    $empresa = get_empresa_by_id($p->id_empresa);
+    include_once("models/Propiedad_Model.php");
+    $propiedad_model = new Propiedad_Model($empresa->id,$conx);
+    $propiedad = $propiedad_model->get($p->id,array(
+      "id_empresa"=>$p->id_empresa,
+    ));
+    include("templates/ficha/home.php");
+  } else {
+    go_404();
+  }
+
+} else if (isset($empresa->template_path) && !empty($empresa->template_path)) { 
 
   $dir_template = "templates/$empresa->template_path/";
 
