@@ -669,8 +669,8 @@ class Propiedad_Model extends Abstract_Model {
 
         // Controlamos si la otra inmobiliaria nos dio permiso
         $sql = "SELECT permiso_web FROM inm_permisos_red ";
-        $sql.= "WHERE id_empresa = $r->id_inmobiliaria ";
-        $sql.= "AND id_empresa_compartida = $id_empresa ";
+        $sql.= "WHERE id_empresa = $id_empresa ";
+        $sql.= "AND id_empresa_compartida = $r->id_inmobiliaria ";
         $sql.= "AND solicitud_permiso = 0 ";
         $sql.= "AND bloqueado = 0 ";
         $qqq = $this->db->query($sql);
