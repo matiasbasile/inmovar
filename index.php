@@ -262,14 +262,20 @@ if ($empresa->administrar_pagos == 1 && $fecha_suspension->format("Y-m-d") < dat
 $dominio = "http://".$dominio;
 $nombre_pagina = (sizeof($params)>0) ? $params[0] : "";
 if ($nombre_pagina == "ficha") {
-  $hash = (sizeof($params)>1) ? $params[1] : "";
-  echo $hash;
-  include_once("models/Propiedad_Model.php");
-  $propiedad_model = new Propiedad_Model($empresa->id,$conx);
-  $propiedad = $propiedad_model->get_by_hash($hash);
-  if ($propiedad === FALSE) go_404();
-  $empresa = get_empresa_by_id($propiedad->id_empresa);
-  include("templates/ficha/home.php");
+  $hash = (sizeof($params)>1) ? urldecode($params[1]) : "";
+  $hash = str_replace(" ", "", $hash);
+  $sql = "SELECT id, id_empresa FROM inm_propiedades WHERE hash = '$hash' ";
+  $q = mysqli_query($this->conx,$sql);
+  if (mysqli_num_rows($q)>0) {
+    $p = mysqli_fetch_object($q);
+    $empresa = get_empresa_by_id($p->id_empresa);
+    include_once("models/Propiedad_Model.php");
+    $propiedad_model = new Propiedad_Model($empresa->id,$conx);
+    $propiedad = $propiedad_model->get($p->id);
+    include("templates/ficha/home.php");
+  } else {
+    go_404();
+  }
 
 } else if (isset($empresa->template_path) && !empty($empresa->template_path)) { 
 
