@@ -593,7 +593,6 @@ class Propiedad_Model {
 
   function get_by_hash($hash = "") {
     $sql = "SELECT id, id_empresa FROM inm_propiedades WHERE hash = '$hash' ";
-    echo $sql;
     $q = mysqli_query($this->conx,$sql);
     if (mysqli_num_rows($q)>0) {
       $r = mysqli_fetch_object($q);
