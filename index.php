@@ -223,6 +223,11 @@ if ($empresa->administrar_pagos == 1 && $fecha_suspension->format("Y-m-d") < dat
 $dominio = "http://".$dominio;
 $nombre_pagina = (sizeof($params)>0) ? $params[0] : "";
 if ($nombre_pagina == "ficha") {
+  $hash = (sizeof($params)>1) ? $params[1] : "";
+  include_once("models/Propiedad_Model.php");
+  $propiedad_model = new Propiedad_Model($empresa->id,$conx);
+  $propiedad = $propiedad_model->get_by_hash($hash);
+  print_r($propiedad);
   include("templates/ficha/home.php");
 
 } else if (isset($empresa->template_path) && !empty($empresa->template_path)) { 
