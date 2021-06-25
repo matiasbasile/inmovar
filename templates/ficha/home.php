@@ -11,8 +11,9 @@
 	<div id="big_slides_next" onClick="next_enlarged()"></div>
   <img id="big_img" onload="center()">
 </div>
-<div class="header">
-  <img src="https://static.tokkobroker.com/logos/8274/Ridella.jpg" height="100" />
+<div class="header"> 
+  
+  <img src="<?= $propiedad->path ?>" height="100" />
 </div>
 <div id="property_detail_wrapper" class="content_wrapper">
   <div id="property_detail_content">
@@ -168,10 +169,10 @@
         <div class="titulo2">Superficies</div>
      
         <ul class="ficha_ul" id="lista_superficies">
-        <?= isset($propiedad->superficie_cubierta) ? "<li><i class='fa fa-check detalleColorC'></i>Superficie Cubierta: $propiedad->superficie_cubierta m²</li>" : "" ?>
-        <?= isset($propiedad->superficie_semicubierta) ? "<li><i class='fa fa-check detalleColorC'></i>Superficie Semicubierta: $propiedad->superficie_semicubierta m²</li>" : "" ?>
-        <?= isset($propiedad->superficie_descubierta) ? "<li><i class='fa fa-check detalleColorC'></i>Superficie Descubierta: $propiedad->superficie_descubierta m²</li>" : "" ?>
-        <?= isset($propiedad->superficie_total) ? "<li><i class='fa fa-check detalleColorC'></i>Superficie Total del Terreno: $propiedad->superficie_total m² </li>" : "" ?> 
+        <?= isset($propiedad->superficie_cubierta) and $propiedad->superficie_cubierta != 0  ? "<li><i class='fa fa-check detalleColorC'></i>Superficie Cubierta: $propiedad->superficie_cubierta m²</li>" : "" ?>
+        <?= isset($propiedad->superficie_semicubierta) and $propiedad->superficie_semicubierta != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Superficie Semicubierta: $propiedad->superficie_semicubierta m²</li>" : "" ?>
+        <?= isset($propiedad->superficie_descubierta) and $propiedad->superficie_descubierta != 0 ?  "<li><i class='fa fa-check detalleColorC'></i>Superficie Descubierta: $propiedad->superficie_descubierta m²</li>" : "" ?>
+        <?= isset($propiedad->superficie_total) and $propiedad->superficie_total != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Superficie Total del Terreno: $propiedad->superficie_total m² </li>" : "" ?> 
         </ul>
       </section>
       <div class="card">
