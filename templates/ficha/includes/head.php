@@ -1,4 +1,5 @@
 <?php 
+include("init.php");
 $ver_precios = ($empresa->tienda_ver_precios == 0 || ($empresa->tienda_ver_precios == 1 && isset($_SESSION["id_cliente"])));
 $ver_carrito = ($empresa->tienda_carrito < 2);
 $ver_consulta = ($empresa->tienda_consulta_productos == 0);
@@ -44,6 +45,7 @@ $keywords = str_replace("\n", " ", $keywords);
 <?php } ?>
 
 <link href="/admin/resources/css/common.css" media="all" type="text/css" rel="stylesheet"/>
+<link href="assets/css/bootstrap-min.css" media="all" type="text/css" rel="stylesheet"/>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" />
 <?php if (isset($incluir_buscador_neumaticos) && $incluir_buscador_neumaticos == 1) { ?>
   <?php include_once("templates/comun/neumaticos/buscador_css.php"); ?>
@@ -79,6 +81,7 @@ $keywords = str_replace("\n", " ", $keywords);
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <link href='assets/fonts/openSans.css' rel='stylesheet' type='text/css'>
+<link href="assets/css/orlando_formulario.css" media="all" type="text/css" rel="stylesheet"/>
 <link href='assets/css/style.css' rel='stylesheet' type='text/css'>
 <link href="assets/css/jquery-bxslider.css" rel="stylesheet" />
 <link href="https://static.tokkobroker.com/static/css/jquery-ui-1.11.14.css?20210623013909" />
