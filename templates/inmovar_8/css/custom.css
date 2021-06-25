@@ -2497,7 +2497,7 @@ filter: grayscale(100%); }
   background-image: url("../images/owl_hover_arrow_left.png") !important;
 }
 .listing_boxes .owl-nav{ display: block !important  }
-.listing_boxes .owl-theme .owl-nav { margin-top: 30px !important }
+.listing_boxes .owl-theme .owl-nav { margin-top: 30px  }
 .tab_slider_section .owl-prev:hover {
   background-image: url("../images/owl_hover_arrow_left.png") !important;
 }
@@ -2625,6 +2625,9 @@ filter: grayscale(100%); }
 /** @meida query for mobile device Start here **/
 
 @media screen and (max-width: 767px) {
+.footer_logo { text-align: center !important }
+.footer_social { text-align: center !important } 
+
 .despegar { margin: 20px auto; width: 100%; object-fit: contain; }
 
 /** slider banner responsive css start here **/
@@ -2688,7 +2691,7 @@ h1{ font-size: 26px; }
   padding: 10px 16px;
   margin: 7px 0 0;
  }
-.footer_social {margin: 15px 0 0;text-align: left !important;}
+.footer_social {margin: 15px 0 0;text-align: center !important;}
 
 
 .footer_social p {font-size: 14px;width: 82%;}
@@ -2945,7 +2948,7 @@ h2, .h2 {font-size: 25px;}
 }
 
 
-.tab_slider_section .owl-nav{ display: none; }
+.tab_slider_section .owl-nav{ display: none; margin-top:  55px !important}
 .tab_list_box_footer img {
   margin: -4px 4px 0 0;
   max-width: 14px;
