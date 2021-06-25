@@ -186,6 +186,9 @@ input[type="radio"] + label img{margin:-3px 7px 0;}
 	background: #c60018;
 	color: #ffffff;
 }
+.btn-blue{
+	background:#132baa ;
+}
 
 .btn-red:hover, .btn-red:focus, .btn-red:active {
 	background: #000;
