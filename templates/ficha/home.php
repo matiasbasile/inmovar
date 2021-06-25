@@ -4,15 +4,14 @@
 <?php include("includes/head.php"); ?>
 </head>
 <body class="bgcolorA">
-<?php //print_r($propiedad); ?>
 <div id="big_slides_container" style="display:none;">
 	<div id="big_slides_close" onClick="close_enlarged()">X</div>
 	<div id="big_slides_prev" onClick="prev_enlarged()"></div>
 	<div id="big_slides_next" onClick="next_enlarged()"></div>
   <img id="big_img" onload="center()">
 </div>
-<div class="header">
-  <img src="https://static.tokkobroker.com/logos/8274/Ridella.jpg" height="100" />
+<div class="header"> 
+  <img src="/admin/<?= $empresa->logo_1 ?>" height="100" />
 </div>
 <div id="property_detail_wrapper" class="content_wrapper">
   <div id="property_detail_content">
@@ -68,7 +67,7 @@
             <?php 
             $a = (isset($propiedad->calle) ? "<b>Direccion</b><br/>" . $propiedad->calle : "");
             $b = (isset($propiedad->localidad) ? $propiedad->localidad : ""); ?>
-            <?= $a  ?> | <?= $b ?>
+            <?= $a  ?>  <?= "| " .$b ?>
           </div>
           <?php  ?>
           <div class="ficha_detalle_item">
@@ -93,11 +92,10 @@
           ?>
         </div>
       </div>
-      <?php if(isset($propiedad->usuario_email) and $propiedad->usuario_email != ""){ ?> 
       <div id="producer_container" class="card">
         <img src="assets/images/icon-agent.png"/>
         <div id="producer_info">
-          <div id="producer_name">LAUTARO SESSA</div>
+          <div id="producer_name"><?= $propiedad->usuario ?></div>
           <div class="producer-item">
             <a href="mailto:<?= $propiedad->usuario_email ?>">
               <img src="https://static.tokkobroker.com/static/img/mail.svg?20210623013909">
@@ -112,7 +110,6 @@
           </div>
         </div>
       </div>
-      <?php } ?>
     </div>
     <div id="ficha_desc">
       <section id="ficha_informacion_basica" class="card" style="color:  !important; width: 100%;">
@@ -168,10 +165,10 @@
         <div class="titulo2">Superficies</div>
      
         <ul class="ficha_ul" id="lista_superficies">
-        <?= isset($propiedad->superficie_cubierta) ? "<li><i class='fa fa-check detalleColorC'></i>Superficie Cubierta: $propiedad->superficie_cubierta m²</li>" : "" ?>
-        <?= isset($propiedad->superficie_semicubierta) ? "<li><i class='fa fa-check detalleColorC'></i>Superficie Semicubierta: $propiedad->superficie_semicubierta m²</li>" : "" ?>
-        <?= isset($propiedad->superficie_descubierta) ? "<li><i class='fa fa-check detalleColorC'></i>Superficie Descubierta: $propiedad->superficie_descubierta m²</li>" : "" ?>
-        <?= isset($propiedad->superficie_total) ? "<li><i class='fa fa-check detalleColorC'></i>Superficie Total del Terreno: $propiedad->superficie_total m² </li>" : "" ?> 
+        <?= isset($propiedad->superficie_cubierta) and $propiedad->superficie_cubierta != 0  ? "<li><i class='fa fa-check detalleColorC'></i>Superficie Cubierta: $propiedad->superficie_cubierta m²</li>" : "" ?>
+        <?= isset($propiedad->superficie_semicubierta) and $propiedad->superficie_semicubierta != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Superficie Semicubierta: $propiedad->superficie_semicubierta m²</li>" : "" ?>
+        <?= isset($propiedad->superficie_descubierta) and $propiedad->superficie_descubierta != 0 ?  "<li><i class='fa fa-check detalleColorC'></i>Superficie Descubierta: $propiedad->superficie_descubierta m²</li>" : "" ?>
+        <?= isset($propiedad->superficie_total) and $propiedad->superficie_total != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Superficie Total del Terreno: $propiedad->superficie_total m² </li>" : "" ?> 
         </ul>
       </section>
       <div class="card">
@@ -181,7 +178,6 @@
         <?= $propiedad->texto ?>
       </div>
     </div>
-    
     <div id="ficha_contacto" style="color:  !important;" class="card noprint">
       <div class="titulo2" style="text-transform: uppercase;">Contacto</div>
         <div id="ficha_gracias" style="height:300px; display:none; color:  !important;">
@@ -212,15 +208,9 @@
       </div>
       <section id="ficha_mapa" style="color:  !important;" class="card noprint">
         <div class="titulo2">Ubicación</div>
-        <div style="height: 500px;" id="mapid"></div>
+        
+         <?php include("contacto.php") ?>
       </section>
-
-
-
-      <!-- <div id="network_portal" class="card">
-        Nota importante: Toda la información y medidas provistas son aproximadas y deberán ratificarse con la documentación pertinente y no compromete contractualmente a nuestra empresa. Los gastos (expensas, ABL) expresados      refieren a la última información recabada y deberán confirmarse. Fotografias no vinculantes ni contractuales.
-      
-      </div> -->
     </div>
   </div>
   <div class="footer">
