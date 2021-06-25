@@ -4,6 +4,7 @@
 <?php include("includes/head.php"); ?>
 </head>
 <body class="bgcolorA">
+<?php //print_r($propiedad); ?>
 <div id="big_slides_container" style="display:none;">
 	<div id="big_slides_close" onClick="close_enlarged()">X</div>
 	<div id="big_slides_prev" onClick="prev_enlarged()"></div>
@@ -18,26 +19,33 @@
     <div id="ficha">
       <div id="header_ficha">
         <div class="pre-title-header">
+        <?php if(isset($propiedad->nombre)){ ?>
           <?= $propiedad->nombre ?>
+        <?php } ?>
         </div>
-        <div class="titulo_header">
-          <div class="titulo_address" style="">
-            <?= $propiedad->calle ?> | <?= $propiedad->localidad ?>
+        <?php if(isset($propiedad->calle) and isset($propiedad->localidad) ){ ?>
+          <div class="titulo_header">
+            <div class="titulo_address" style="">
+              <?= $propiedad->calle ?> | <?= $propiedad->localidad ?>
+            </div>
           </div>
-        </div>
+        <?php } ?>
       <div class="titulo_precio">
       </div>
     </div>
   </div>
   <div id="ficha_slider">
     <ul class="slides" onClick="enlarge()">
-      <li data-thumb="https://static.tokkobroker.com/pictures/10310731172228030020173195667303805718351347376946130912451072671840420925279.jpg"> <img src="https://static.tokkobroker.com/pictures/10310731172228030020173195667303805718351347376946130912451072671840420925279.jpg"  class="zoomImg" alt="Foto  en  en Argentina | G.B.A. Zona Sur | La Plata  20 y 32 | La Plata" title="Foto  en  en Argentina | G.B.A. Zona Sur | La Plata  20 y 32 | La Plata numero 1" /></li>
-      <li data-thumb="https://static.tokkobroker.com/pictures/63119213139912688178411842487794057619414033553825619873750376882171374745530.jpg"> <img src="https://static.tokkobroker.com/pictures/63119213139912688178411842487794057619414033553825619873750376882171374745530.jpg"  class="zoomImg" alt="Foto  en  en Argentina | G.B.A. Zona Sur | La Plata  20 y 32 | La Plata" title="Foto  en  en Argentina | G.B.A. Zona Sur | La Plata  20 y 32 | La Plata numero 2" /></li>
-      <li data-thumb="https://static.tokkobroker.com/pictures/36252178531727002310253554524784809984628253327030271974943829284299199873427.jpg"> <img src="https://static.tokkobroker.com/pictures/36252178531727002310253554524784809984628253327030271974943829284299199873427.jpg"  class="zoomImg" alt="Foto  en  en Argentina | G.B.A. Zona Sur | La Plata  20 y 32 | La Plata" title="Foto  en  en Argentina | G.B.A. Zona Sur | La Plata  20 y 32 | La Plata numero 3" /></li>
-      <li data-thumb="https://static.tokkobroker.com/pictures/49725233523305756678731128811332357345529160313026921124556410057806807696965.jpg"> <img src="https://static.tokkobroker.com/pictures/49725233523305756678731128811332357345529160313026921124556410057806807696965.jpg"  class="zoomImg" alt="Foto  en  en Argentina | G.B.A. Zona Sur | La Plata  20 y 32 | La Plata" title="Foto  en  en Argentina | G.B.A. Zona Sur | La Plata  20 y 32 | La Plata numero 4" /></li>
-      <li data-thumb="https://static.tokkobroker.com/pictures/70395707087771075696208934104638630689039843454515665688141646514597072486814.jpg"> <img src="https://static.tokkobroker.com/pictures/70395707087771075696208934104638630689039843454515665688141646514597072486814.jpg"  class="zoomImg" alt="Foto  en  en Argentina | G.B.A. Zona Sur | La Plata  20 y 32 | La Plata" title="Foto  en  en Argentina | G.B.A. Zona Sur | La Plata  20 y 32 | La Plata numero 5" /></li>
-      <li data-thumb="https://static.tokkobroker.com/pictures/75668594932886527279033846700064803167406528336496070379902704481860978222888.jpg"> <img src="https://static.tokkobroker.com/pictures/75668594932886527279033846700064803167406528336496070379902704481860978222888.jpg"  class="zoomImg" alt="Foto  en  en Argentina | G.B.A. Zona Sur | La Plata  20 y 32 | La Plata" title="Foto  en  en Argentina | G.B.A. Zona Sur | La Plata  20 y 32 | La Plata numero 6" /></li>
-      <li data-thumb="https://static.tokkobroker.com/pictures/88461507502800074974332944632187119089746093043185308625897629226714179046885.jpg"> <img src="https://static.tokkobroker.com/pictures/88461507502800074974332944632187119089746093043185308625897629226714179046885.jpg"  class="zoomImg" alt="Foto  en  en Argentina | G.B.A. Zona Sur | La Plata  20 y 32 | La Plata" title="Foto  en  en Argentina | G.B.A. Zona Sur | La Plata  20 y 32 | La Plata numero 7" /></li>
+      <?php
+        foreach ($propiedad->images as $key) { ?>
+        <li data-thumb="<?= $key ?>">
+          <img src="<?= $key ?>"  class="zoomImg" />
+        </li>
+          
+        <?php
+        }
+      ?>
+
     </ul>
   </div>
   <div class="tostick">
@@ -46,69 +54,124 @@
         <div id="ficha_detalle_cuerpo">
           <div class="operations-box">
             <div class="op-venta">
-              <div class="op-operation"><?= $propiedad->tipo_operacion ?></div>
+              <?php if(isset($propiedad->tipo_operacion)){ ?>
+                <div class="op-operation"><?= $propiedad->tipo_operacion ?></div>
+              <?php } ?>
               <div class="op-values"> 
-                <div class="op-value"><?= $propiedad->precio ?></div>
+                <?php if($propiedad->publica_precio = 1){ ?>
+                  <div class="op-value"><?= $propiedad->precio ?></div>
+                <?php } ?>
               </div>
             </div>
           </div>
           <div class="ficha_detalle_item">
-            <b>Direccion</b><br/><?= $propiedad->calle ?> | <?= $propiedad->localidad ?>
+            <?php 
+            $a = (isset($propiedad->calle) ? "<b>Direccion</b><br/>" . $propiedad->calle : "");
+            $b = (isset($propiedad->localidad) ? $propiedad->localidad : ""); ?>
+            <?= $a  ?> | <?= $b ?>
           </div>
+          <?php  ?>
           <div class="ficha_detalle_item">
-            <b>Localidad/Partido</b><br/><?= $propiedad->localidad ?>
+            <?php if(isset($propiedad->localidad)){ ?>
+              <b>Localidad/Partido</b><br/><?= $propiedad->localidad ?>
+            <?php } ?>
           </div>
-          <div id="ficha_detalle_ref">(REF. EPH3702409)</div>
+          <?php if(isset($propiedad->codigo)){ ?>
+          <div id="ficha_detalle_ref">( COD. <?= $propiedad->codigo ?> )</div>
+          <?php } ?>
         </div>
         <div id="slider_thumbs" class="noprint">
-          <a data-slide-index="0" href=""><img src="https://static.tokkobroker.com/thumbs/10310731172228030020173195667303805718351347376946130912451072671840420925279_thumb.jpg" data-big="https://static.tokkobroker.com/pictures/10310731172228030020173195667303805718351347376946130912451072671840420925279.jpg" class="slider-thumb" alt="Foto thumbnail  en  en Argentina | G.B.A. Zona Sur | La Plata  20 y 32 | La Plata" title="Foto thumbnail  en  en Argentina | G.B.A. Zona Sur | La Plata  20 y 32 | La Plata numero 1"></a>
-          <a data-slide-index="1" href=""><img src="https://static.tokkobroker.com/thumbs/63119213139912688178411842487794057619414033553825619873750376882171374745530_thumb.jpg" data-big="https://static.tokkobroker.com/pictures/63119213139912688178411842487794057619414033553825619873750376882171374745530.jpg" class="slider-thumb" alt="Foto thumbnail  en  en Argentina | G.B.A. Zona Sur | La Plata  20 y 32 | La Plata" title="Foto thumbnail  en  en Argentina | G.B.A. Zona Sur | La Plata  20 y 32 | La Plata numero 2"></a>
-          <a data-slide-index="2" href=""><img src="https://static.tokkobroker.com/thumbs/36252178531727002310253554524784809984628253327030271974943829284299199873427_thumb.jpg" data-big="https://static.tokkobroker.com/pictures/36252178531727002310253554524784809984628253327030271974943829284299199873427.jpg" class="slider-thumb" alt="Foto thumbnail  en  en Argentina | G.B.A. Zona Sur | La Plata  20 y 32 | La Plata" title="Foto thumbnail  en  en Argentina | G.B.A. Zona Sur | La Plata  20 y 32 | La Plata numero 3"></a>
-          <a data-slide-index="3" href=""><img src="https://static.tokkobroker.com/thumbs/49725233523305756678731128811332357345529160313026921124556410057806807696965_thumb.jpg" data-big="https://static.tokkobroker.com/pictures/49725233523305756678731128811332357345529160313026921124556410057806807696965.jpg" class="slider-thumb" alt="Foto thumbnail  en  en Argentina | G.B.A. Zona Sur | La Plata  20 y 32 | La Plata" title="Foto thumbnail  en  en Argentina | G.B.A. Zona Sur | La Plata  20 y 32 | La Plata numero 4"></a>
-          <a data-slide-index="4" href=""><img src="https://static.tokkobroker.com/thumbs/70395707087771075696208934104638630689039843454515665688141646514597072486814_thumb.jpg" data-big="https://static.tokkobroker.com/pictures/70395707087771075696208934104638630689039843454515665688141646514597072486814.jpg" class="slider-thumb" alt="Foto thumbnail  en  en Argentina | G.B.A. Zona Sur | La Plata  20 y 32 | La Plata" title="Foto thumbnail  en  en Argentina | G.B.A. Zona Sur | La Plata  20 y 32 | La Plata numero 5"></a>
-          <a data-slide-index="5" href=""><img src="https://static.tokkobroker.com/thumbs/75668594932886527279033846700064803167406528336496070379902704481860978222888_thumb.jpg" data-big="https://static.tokkobroker.com/pictures/75668594932886527279033846700064803167406528336496070379902704481860978222888.jpg" class="slider-thumb" alt="Foto thumbnail  en  en Argentina | G.B.A. Zona Sur | La Plata  20 y 32 | La Plata" title="Foto thumbnail  en  en Argentina | G.B.A. Zona Sur | La Plata  20 y 32 | La Plata numero 6"></a>
-          <a data-slide-index="6" href=""><img src="https://static.tokkobroker.com/thumbs/88461507502800074974332944632187119089746093043185308625897629226714179046885_thumb.jpg" data-big="https://static.tokkobroker.com/pictures/88461507502800074974332944632187119089746093043185308625897629226714179046885.jpg" class="slider-thumb" alt="Foto thumbnail  en  en Argentina | G.B.A. Zona Sur | La Plata  20 y 32 | La Plata" title="Foto thumbnail  en  en Argentina | G.B.A. Zona Sur | La Plata  20 y 32 | La Plata numero 7"></a>
+          <?php
+          $x_img = 0;
+          foreach ($propiedad->images as $key) { ?>
+            <a data-slide-index="<?= $x_img ?>" href="">
+              <img src="<?= $key ?>" data-big="<?= $key ?>" class="slider-thumb">
+            </a>
+          <?php
+          $x_img +=1;
+          }
+          ?>
         </div>
       </div>
+      <?php if(isset($propiedad->usuario_email) and $propiedad->usuario_email != ""){ ?> 
       <div id="producer_container" class="card">
-        <img src="https://static.tokkobroker.com/static/img/user.png"/>
+        <img src="assets/images/icon-agent.png"/>
         <div id="producer_info">
           <div id="producer_name">LAUTARO SESSA</div>
           <div class="producer-item">
-            <a href="mailto:lautaro@ridellapropiedades.com">
+            <a href="mailto:<?= $propiedad->usuario_email ?>">
               <img src="https://static.tokkobroker.com/static/img/mail.svg?20210623013909">
-              <div>lautaro@ridellapropiedades.com</div>
+              <div><?= $propiedad->usuario_email ?></div>
             </a>
           </div>
           <div class="producer-item">
-            <a href="tel: 5492216318721" >
+            <a href="tel: <?= $propiedad->usuario_celular ?>" >
               <img src="https://static.tokkobroker.com/static/img/cellphone.svg?20210623013909">
-              <div> 5492216318721</div>
+              <div> <?= $propiedad->usuario_celular ?></div>
             </a>
           </div>
         </div>
       </div>
+      <?php } ?>
     </div>
     <div id="ficha_desc">
       <section id="ficha_informacion_basica" class="card" style="color:  !important; width: 100%;">
-        <div class="titulo2">Información básica.</div>
+        <div class="titulo2">Información básica</div>
         <ul class="ficha_ul" id="lista_informacion_basica">
-          <li><i class="fa fa-check detalleColorC"></i>Ambientes: <?= $propiedad->ambientes ?></li>
-          <li><i class="fa fa-check detalleColorC"></i>Dormitorios: <?= $propiedad->dormitorios ?></li>
-          <li><i class="fa fa-check detalleColorC"></i>Baños: <?= $propiedad->banios ?></li>
-          <li><i class="fa fa-check detalleColorC"></i>Cocheras: <?= $propiedad->cocheras ?></li>
-          <li><i class="fa fa-check detalleColorC"></i>Condición: no encontre</li>
-          <li><i class="fa fa-check detalleColorC"></i>Antigüedad: no encontre</li>
-          <li><i class="fa fa-check detalleColorC"></i>Situación: no encontre </li>
+        <?= isset($propiedad->ambientes) ? "<li><i class='fa fa-check detalleColorC'></i>Ambientes: $propiedad->ambientes </li>" : "" ?>
+        <?= isset($propiedad->dormitorios) ? "<li><i class='fa fa-check detalleColorC'></i>Dormitorios: $propiedad->dormitorios  </li>" : "" ?>
+        <?= isset($propiedad->banios) ? "<li><i class='fa fa-check detalleColorC'></i>Baños: $propiedad->banios </li>" : "" ?>
+        <?= isset($propiedad->cocheras) ? "<li><i class='fa fa-check detalleColorC'></i>Cocheras: $propiedad->cocheras </li>" : "" ?>
+        <?= $propiedad->parrilla != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Parrilla: Si </li>" : "" ?>
+        <?= $propiedad->permite_mascotas != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Permite Mascotas: Si </li>" : "" ?>
+        <?= $propiedad->piscina != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Piscina: Si </li>" : "" ?>
+        <?= $propiedad->vigilancia != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Vigilancia: Si </li>" : "" ?>
+        <?= $propiedad->sala_juegos != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Sala de Juegos: Si </li>" : "" ?>
+        <?= $propiedad->ascensor != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Ascensor: Si </li>" : "" ?> 
+        <?= $propiedad->lavadero != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Lavadero: Si </li>" : "" ?> 
+        <?= $propiedad->living_comedor != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Living Comedor: Si </li>" : "" ?>  
+        <?= $propiedad->terraza != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Terraza: Si </li>" : "" ?> 
+        <?= $propiedad->accesible != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Accesible: Si </li>" : "" ?> 
+        <?= $propiedad->gimnasio != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Gimnasio: Si </li>" : "" ?> 
+        <!--<?= $propiedad->servicios_aire_acondicionado != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Aire Acondicionado: Si </li>" : "" ?> 
+        <?= $propiedad->servicios_uso_comercial != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Uso Comercial: Si </li>" : "" ?> 
+        <?= $propiedad->servicios_internet != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Internet: Si </li>" : "" ?> 
+        <?= $propiedad->servicios_gas != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Gas: Si </li>" : "" ?> 
+        <?= $propiedad->servicios_cloacas != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Cloacas: Si </li>" : "" ?> 
+        <?= $propiedad->servicios_agua_corriente != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Agua Corriente: Si </li>" : "" ?> 
+        <?= $propiedad->servicios_asfalto != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Asfalto: Si </li>" : "" ?>  
+        <?= $propiedad->servicios_electricidad != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Electricidad: Si </li>" : "" ?> 
+        <?= $propiedad->servicios_telefono != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Telefono: Si </li>" : "" ?> 
+        <?= $propiedad->servicios_cable != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Cable: Si </li>" : "" ?>  -->
+        <?= $propiedad->balcon != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Balcon: Si </li>" : "" ?> 
+        <?= $propiedad->patio != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Patio: Si </li>" : "" ?> 
+        <?= $propiedad->acepta_financiacion != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Financiacion: Si </li>" : "" ?> 
+        <?= $propiedad->acepta_permuta != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Acepta Permuta: Si </li>" : "" ?> 
+        </ul>
+      </section>
+      <section id="ficha_servicios" class="card" style="color:  !important; width: 100%;">
+        <div class="titulo2">Servicios</div>
+        <ul class="ficha_ul" id="lista_informacion_basica">
+        <?= $propiedad->servicios_aire_acondicionado != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Aire Acondicionado: Si </li>" : "" ?> 
+        <?= $propiedad->servicios_uso_comercial != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Uso Comercial: Si </li>" : "" ?> 
+        <?= $propiedad->servicios_internet != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Internet: Si </li>" : "" ?> 
+        <?= $propiedad->servicios_gas != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Gas: Si </li>" : "" ?> 
+        <?= $propiedad->servicios_cloacas != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Cloacas: Si </li>" : "" ?> 
+        <?= $propiedad->servicios_agua_corriente != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Agua Corriente: Si </li>" : "" ?> 
+        <?= $propiedad->servicios_asfalto != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Asfalto: Si </li>" : "" ?>  
+        <?= $propiedad->servicios_electricidad != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Electricidad: Si </li>" : "" ?> 
+        <?= $propiedad->servicios_telefono != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Telefono: Si </li>" : "" ?> 
+        <?= $propiedad->servicios_cable != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Cable: Si </li>" : "" ?> 
         </ul>
       </section> 
       <section id="ficha_superficies" class="card" style="color:  !important; width: 100%;">
         <div class="titulo2">Superficies</div>
      
         <ul class="ficha_ul" id="lista_superficies">
-          <li><i class="fa fa-check detalleColorC"></i>Superficie del terreno: <?= $propiedad->superficie_total ?></li>
-          <li><i class="fa fa-check detalleColorC"></i>Superficie cubierta: <?= $propiedad->superficie_cubierta ?></li>
-          <li><i class="fa fa-check detalleColorC"></i>Total construido: que poner?</li>
+        <?= isset($propiedad->superficie_cubierta) ? "<li><i class='fa fa-check detalleColorC'></i>Superficie Cubierta: $propiedad->superficie_cubierta m²</li>" : "" ?>
+        <?= isset($propiedad->superficie_semicubierta) ? "<li><i class='fa fa-check detalleColorC'></i>Superficie Semicubierta: $propiedad->superficie_semicubierta m²</li>" : "" ?>
+        <?= isset($propiedad->superficie_descubierta) ? "<li><i class='fa fa-check detalleColorC'></i>Superficie Descubierta: $propiedad->superficie_descubierta m²</li>" : "" ?>
+        <?= isset($propiedad->superficie_total) ? "<li><i class='fa fa-check detalleColorC'></i>Superficie Total del Terreno: $propiedad->superficie_total m² </li>" : "" ?> 
         </ul>
       </section>
       <div class="card">
@@ -118,6 +181,7 @@
         <?= $propiedad->texto ?>
       </div>
     </div>
+    
     <div id="ficha_contacto" style="color:  !important;" class="card noprint">
       <div class="titulo2" style="text-transform: uppercase;">Contacto</div>
         <div id="ficha_gracias" style="height:300px; display:none; color:  !important;">
@@ -153,18 +217,18 @@
 
 
 
-      <div id="network_portal" class="card">
+      <!-- <div id="network_portal" class="card">
         Nota importante: Toda la información y medidas provistas son aproximadas y deberán ratificarse con la documentación pertinente y no compromete contractualmente a nuestra empresa. Los gastos (expensas, ABL) expresados      refieren a la última información recabada y deberán confirmarse. Fotografias no vinculantes ni contractuales.
       
-      </div>
+      </div> -->
     </div>
   </div>
   <div class="footer">
     <div class="powered">
-      Powered by
+      Somos parte de 
     </div>
-      <a href="https://www.tokkobroker.com" target="_blank"> 
-        <img class="poweredimg" src="https://static.tokkobroker.com/static/img/logotokko_small_bw.svg?20210623013909" />
+      <a href="https://www.inmovar.com/" target="_blank"> 
+        <img class="poweredimg" src="/admin/resources/images/inmovar-grande.png" />
       </a>
   </div>
 
