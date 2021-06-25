@@ -25,8 +25,8 @@
 
 			var icono = L.icon({
 				iconUrl: 'assets/images/map-logo.png',
-		      iconSize:     [101, 112], // size of the icon
-		      iconAnchor:   [50, 112], // point of the icon which will correspond to marker's location
+		      iconSize:     [40, 49], // size of the icon
+		      iconAnchor:   [20, 49], // point of the icon which will correspond to marker's location
 		    }); 
 
 			L.marker([<?php echo $propiedad->latitud ?>,<?php echo $propiedad->longitud ?>],{
@@ -52,13 +52,13 @@
   $(window).resize(function() {
       stickCheck();
   })
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /* (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-33967930-4', 'auto');
-  ga('send', 'pageview');
+  ga('send', 'pageview'); */
   
   function center(){
     var parent_height = $('#big_img').parent().height();
@@ -92,6 +92,7 @@
     $("#big_slides_container").width($(window).width());
     current_ix = $("#slider_thumbs").find("a").index($("#slider_thumbs").find(".active"));
     $("#big_slides_container").fadeIn();
+    console.log(src);
   }
   function next_enlarged(){
     if ($("#slider_thumbs").find("a").length-1 == current_ix){

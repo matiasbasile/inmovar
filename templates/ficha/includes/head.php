@@ -84,7 +84,4 @@ $keywords = str_replace("\n", " ", $keywords);
 <link href="https://static.tokkobroker.com/static/css/jquery-ui-1.11.14.css?20210623013909" />
 <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.css" />
 
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="20 y 32 | La Plata" />
-<meta name="twitter:image" content="https://static.tokkobroker.com/pictures/10310731172228030020173195667303805718351347376946130912451072671840420925279.jpg" />
 <?php include "templates/comun/post_head.php" ?>
