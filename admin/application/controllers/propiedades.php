@@ -1312,7 +1312,6 @@ class Propiedades extends REST_Controller {
       "buscar_imagenes"=>1,
       "offset"=>999999,
     ));
-    echo $propiedades["sql"];
 
     require APPPATH.'libraries/SimpleXMLExtended.php';
     $xml = new SimpleXMLExtended("<xml/>");
