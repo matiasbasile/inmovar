@@ -32,7 +32,7 @@
 								</div>
 								<div class="col-md-12">
 									<div class="pull-right">
-										<input type="submit" id="contacto_submit" value="enviar consulta" class="btn btn-red">
+										<input type="submit" id="contacto_submit" value="enviar consulta" class="btn btn-red btn-blue">
 									</div>
 								</div>
 							</div>                
