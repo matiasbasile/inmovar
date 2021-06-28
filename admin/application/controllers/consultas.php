@@ -629,10 +629,6 @@ class Consultas extends REST_Controller {
         if (!empty($localidad) && $localidad != $contacto->localidad) $updates[] = array("key"=>"localidad","value"=>$localidad);
         if (!empty($celular) && $celular != $contacto->celular) $updates[] = array("key"=>"celular","value"=>$celular);
         if (!empty($id_localidad) && $id_localidad != $contacto->id_localidad) $updates[] = array("key"=>"id_localidad","value"=>$id_localidad);
-
-        // Si ya consulto anteriormente, tenemos que cambiarlo de estado nuevamente 'A Contactar'
-        $updates["tipo"] = 1;
-
         if (sizeof($updates)>0) {
           $sql = "UPDATE clientes SET ";
           for ($it=0; $it < sizeof($updates); $it++) { 
@@ -674,7 +670,7 @@ class Consultas extends REST_Controller {
       // Actualizamos el contacto con la ultima fecha de operacion
       $sql = "UPDATE clientes SET ";
       if ($no_actualizar_fecha == 0) $sql.= "fecha_ult_operacion = '$fecha', ";
-      if ($tipo != 1) $sql.= "tipo = '$tipo', ";
+      $sql.= "tipo = '$tipo', "; // Vuelve a TIPO = 1 (A CONTACTAR)
       $sql.= "no_leido = 1 ";
       $sql.= "WHERE id = $contacto->id AND id_empresa = $id_empresa ";
       $this->db->query($sql);
