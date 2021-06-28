@@ -629,6 +629,10 @@ class Consultas extends REST_Controller {
         if (!empty($localidad) && $localidad != $contacto->localidad) $updates[] = array("key"=>"localidad","value"=>$localidad);
         if (!empty($celular) && $celular != $contacto->celular) $updates[] = array("key"=>"celular","value"=>$celular);
         if (!empty($id_localidad) && $id_localidad != $contacto->id_localidad) $updates[] = array("key"=>"id_localidad","value"=>$id_localidad);
+
+        // Si ya consulto anteriormente, tenemos que cambiarlo de estado nuevamente 'A Contactar'
+        $updates["tipo"] = 1;
+
         if (sizeof($updates)>0) {
           $sql = "UPDATE clientes SET ";
           for ($it=0; $it < sizeof($updates); $it++) { 
