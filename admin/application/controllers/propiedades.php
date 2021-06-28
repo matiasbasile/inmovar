@@ -1570,6 +1570,7 @@ class Propiedades extends REST_Controller {
           $p->codigo = $property->get_field("reference_code");
           $p->codigo = preg_replace("/[^0-9.]/", "", $p->codigo);
 
+          $p->id_tipo_estado = 1; // Disponible
           $p->calle = $property->get_field("real_address");
           $p->altura = "";
           $p->piso = "";
