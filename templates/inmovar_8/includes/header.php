@@ -29,23 +29,25 @@ if (isset($_SESSION["favoritos"])) {
                   </div>
                   <ul class="navbar-nav">
                     <li class="nav-item"><a class="<?php echo $titulo_pagina == "inicio"?"active":"" ?>" href="<?php echo mklink ("/") ?>"> INICIO <span class="sr-only"><?php echo $titulo_pagina == "inicio"?"(current)":"" ?></span></a> </li>
-                    <li class="nav-item dropdown"> <a class=" dropdown-toggle <?php echo ($titulo_pagina == "informacion")?"active":"" ?>" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Informacion</a>
-                      <div class="dropdown-menu" aria-labelledby="dropdown09">
-                        <ul class="sub-menu-ul">
-                          <?php $categorias_informacion = $entrada_model->get_subcategorias(186)?>
-                          <?php foreach ($categorias_informacion as $cat) {  ?>
-                            <li class="dropdown-submenu">
-                              <a href="<?php echo mklink ("entradas/$cat->link/") ?>"><?php echo utf8_encode($cat->nombre) ?></a>
-                              <?php /*$listado_catsmenu = $entrada_model->get_list(array("offset"=>3,"from_id_categoria"=>$cat->id ))?>
-                                <ul class="dropdown-menu">
-                                  <?php foreach ($listado_catsmenu as $l) {  ?><li><a href="<?php echo mklink ($l->link) ?>"><?php echo $l->titulo ?></a></li><?php } ?>
-                                </ul>
-                                */ ?>
-                            </li>
-                          <?php } ?>
-                        </ul>
-                      </div>
-                    </li>
+                    <?php $categorias_informacion = $entrada_model->get_subcategorias(186)?>
+                    <?php if (!empty($categorias_informacion)) {  ?>
+                      <li class="nav-item dropdown"> <a class=" dropdown-toggle <?php echo ($titulo_pagina == "informacion")?"active":"" ?>" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Informacion</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown09">
+                          <ul class="sub-menu-ul">
+                            <?php foreach ($categorias_informacion as $cat) {  ?>
+                              <li class="dropdown-submenu">
+                                <a href="<?php echo mklink ("entradas/$cat->link/") ?>"><?php echo utf8_encode($cat->nombre) ?></a>
+                                <?php /*$listado_catsmenu = $entrada_model->get_list(array("offset"=>3,"from_id_categoria"=>$cat->id ))?>
+                                  <ul class="dropdown-menu">
+                                    <?php foreach ($listado_catsmenu as $l) {  ?><li><a href="<?php echo mklink ($l->link) ?>"><?php echo $l->titulo ?></a></li><?php } ?>
+                                  </ul>
+                                  */ ?>
+                              </li>
+                            <?php } ?>
+                          </ul>
+                        </div>
+                      </li>
+                    <?php } ?>
                     <li class="nav-item"> <a class="<?php echo $titulo_pagina == "ventas"?"active":"" ?>" href="<?php echo mklink ("propiedades/ventas/") ?>"> VENTAS </a> </li>
                     <li class="nav-item"> <a class="<?php echo $titulo_pagina == "alquileres"?"active":"" ?>" href="<?php echo mklink ("propiedades/alquileres/") ?>"> ALQUILERES</a> </li>
                     <li class="nav-item"> <a class="<?php echo $titulo_pagina == "emprendimientos"?"active":"" ?>" href="<?php echo mklink ("propiedades/emprendimientos/") ?>"> EMPRENDIMIENTOS</a> </li>
