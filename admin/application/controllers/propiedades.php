@@ -2024,6 +2024,7 @@ class Propiedades extends REST_Controller {
     echo "TERMINO $i";
   }
 
+  // DOCUMENTACION: https://inmuebles.atlassian.net/wiki/spaces/PUB/pages/39813313/3.5+Ejemplos
   function compartir_argenprop() {
 
     $this->load->model("Log_Model");
@@ -2073,9 +2074,9 @@ class Propiedades extends REST_Controller {
     }
 
     $id_tipo_propiedad = "3"; // Casa
-    if ($propiedad->id_tipo_inmueble == 2) {
-      $id_tipo_propiedad = "1"; // Departamento
-    } else if ($propiedad->id_tipo_inmueble == 5) {
+    if ($propiedad->id_tipo_inmueble == 2 || $propiedad->id_tipo_inmueble == 14) {
+      $id_tipo_propiedad = "1"; // Departamento o Monoambiente
+    } else if ($propiedad->id_tipo_inmueble == 5 || $propiedad->id_tipo_inmueble == 22) {
       $id_tipo_propiedad = "4"; // Quinta
     } else if ($propiedad->id_tipo_inmueble == 13) {
       $id_tipo_propiedad = "5"; // Cochera
@@ -2085,12 +2086,14 @@ class Propiedades extends REST_Controller {
       $id_tipo_propiedad = "8"; // Terreno
     } else if ($propiedad->id_tipo_inmueble == 11) {
       $id_tipo_propiedad = "9"; // Oficina
-    } else if ($propiedad->id_tipo_inmueble == 6) {
+    } else if ($propiedad->id_tipo_inmueble == 6 || $propiedad->id_tipo_inmueble == 25) {
       $id_tipo_propiedad = "10"; // Campo
     } else if ($propiedad->id_tipo_inmueble == 10) {
       $id_tipo_propiedad = "11"; // Fondo de Comercio
     } else if ($propiedad->id_tipo_inmueble == 8) {
       $id_tipo_propiedad = "12"; // Galpon
+    } else if ($propiedad->id_tipo_inmueble == 20 || $propiedad->id_tipo_inmueble == 24) {
+      $id_tipo_propiedad = "7"; // Hotel o Hostel
     }
 
     $monto = (string)round($propiedad->precio_final,0);
