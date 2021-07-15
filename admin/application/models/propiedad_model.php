@@ -1924,6 +1924,7 @@ class Propiedad_Model extends Abstract_Model {
 
     $propiedad->texto = preg_replace('/[\x00-\x1F\x7F\xA0]/u', '', $propiedad->texto);
     $propiedad->texto = mb_convert_encoding($propiedad->texto, 'UTF-8', 'UTF-8');
+    $propiedad->texto = str_replace("</p>", "</p>\n", $propiedad->texto);
     $propiedad->texto = str_replace("<br/>", "\n", $propiedad->texto);
     $propiedad->texto = str_replace("<br />", "\n", $propiedad->texto);
     $propiedad->texto = str_replace("<br>", "\n", $propiedad->texto);
