@@ -991,7 +991,16 @@ class Propiedad_Model extends Abstract_Model {
         throw new Exception("El codigo '$data->codigo' ya existe en otra propiedad.");
       }      
     }
-    return parent::update($id,$data);
+    $s = parent::update($id,$data);
+
+    if (isset($data->argenprop_url) && !empty($data->argenprop_url)) {
+      $this->compartir_argenprop(array(
+        "id_empresa"=>$data->id_empresa,
+        "id_propiedad"=>$id,
+      ));
+    }
+
+    return $s;
   }
 
   // INSERTAR UNA PROPIEDAD
@@ -1838,5 +1847,195 @@ class Propiedad_Model extends Abstract_Model {
     );
   }
 
+  function compartir_argenprop($config = array()) {
+
+    $id_empresa = isset($config["id_empresa"]) ? $config["id_empresa"] : parent::get_empresa();
+    $id_propiedad = isset($config["id_propiedad"]) ? $config["id_propiedad"] : 0;
+    $this->load->model("Log_Model");
+
+    $propiedad = $this->get($id_propiedad,array(
+      "id_empresa"=>$id_empresa
+    ));
+    if (empty($propiedad)) {
+      return array(
+        "error"=>1,
+        "mensaje"=>"No se encuentra la propiedad con ID: $id_propiedad",
+      );
+    }
+
+    $this->load->model("Web_Configuracion_Model");
+    $web_conf = $this->Web_Configuracion_Model->get($id_empresa);
+    if (empty($web_conf->argenprop_usuario) || empty($web_conf->argenprop_password) || empty($web_conf->argenprop_id_vendedor)) {
+      return array(
+        "error"=>1,
+        "mensaje"=>"Falta configurar las credenciales de Argenprop. Por favor ingreselas en Configuracion / Avanzada / Integracion con Argenprop",
+      );
+      exit();
+    }
+
+    $headers = array(
+      'cache-control' => 'no-cache',
+      'content-type' => 'application/x-www-form-urlencoded'
+    );
+
+    $id_origen = $propiedad->id."_".$propiedad->id_empresa;
+    //$usuario_argenprop = 'integrador@argenprop.com';
+    //$password_argenprop = '123456';
+    //$id_vendedor = '242566';
+    $usuario_argenprop = $web_conf->argenprop_usuario;
+    $password_argenprop = $web_conf->argenprop_password;
+    $id_vendedor = $web_conf->argenprop_id_vendedor;
+
+    $id_tipo_operacion = "1"; // Venta
+    if ($propiedad->id_tipo_operacion == 2) {
+      $id_tipo_operacion = "2"; // Alquiler
+    } else if ($propiedad->id_tipo_operacion == 3) {
+      $id_tipo_operacion = "3"; // Alquiler temporario
+    } else if ($propiedad->id_tipo_operacion == 4) {
+      $id_tipo_operacion = "1"; // Emprendimientos: es venta en realidad
+    }
+
+    $id_tipo_propiedad = "3"; // Casa
+    if ($propiedad->id_tipo_inmueble == 2 || $propiedad->id_tipo_inmueble == 14) {
+      $id_tipo_propiedad = "1"; // Departamento o Monoambiente
+    } else if ($propiedad->id_tipo_inmueble == 5 || $propiedad->id_tipo_inmueble == 22) {
+      $id_tipo_propiedad = "4"; // Quinta
+    } else if ($propiedad->id_tipo_inmueble == 13) {
+      $id_tipo_propiedad = "5"; // Cochera
+    } else if ($propiedad->id_tipo_inmueble == 9) {
+      $id_tipo_propiedad = "6"; // Local
+    } else if ($propiedad->id_tipo_inmueble == 7) {
+      $id_tipo_propiedad = "8"; // Terreno
+    } else if ($propiedad->id_tipo_inmueble == 11) {
+      $id_tipo_propiedad = "9"; // Oficina
+    } else if ($propiedad->id_tipo_inmueble == 6 || $propiedad->id_tipo_inmueble == 25) {
+      $id_tipo_propiedad = "10"; // Campo
+    } else if ($propiedad->id_tipo_inmueble == 10) {
+      $id_tipo_propiedad = "11"; // Fondo de Comercio
+    } else if ($propiedad->id_tipo_inmueble == 8) {
+      $id_tipo_propiedad = "12"; // Galpon
+    } else if ($propiedad->id_tipo_inmueble == 20 || $propiedad->id_tipo_inmueble == 24) {
+      $id_tipo_propiedad = "7"; // Hotel o Hostel
+    }
+
+    $monto = (string)round($propiedad->precio_final,0);
+    $moneda = "2";
+    if ($propiedad->moneda == '$') $moneda = "1";
+
+    $propiedad->texto = preg_replace('/[\x00-\x1F\x7F\xA0]/u', '', $propiedad->texto);
+    $propiedad->texto = mb_convert_encoding($propiedad->texto, 'UTF-8', 'UTF-8');
+    $propiedad->texto = strip_tags($propiedad->texto);
+
+    $titulo = $this->generar_titulo($propiedad);
+
+    $fields = array(
+      'usr' => $usuario_argenprop,
+      'psd' => $password_argenprop,
+      'aviso.SistemaOrigen.Id' => '10',
+      'aviso.Vendedor.IdOrigen' => $id_origen,
+      'aviso.EsWeb' => 'true',
+      'aviso.Vendedor.Id' => $id_vendedor,
+      'aviso.IdOrigen' => $id_origen,
+      'aviso.InformacionAdicional' => $propiedad->texto,
+      'aviso.Titulo' => substr($titulo, 0, 100),
+      'aviso.TipoOperacion' => $id_tipo_operacion,
+      'visibilidades[0].MontoOperacion' => $monto,
+      'visibilidades[0].Moneda.Id' => $moneda,
+      'tipoPropiedad' => $id_tipo_propiedad,
+    );
+
+    $this->load->model("Localidad_Model");
+    $localidad = $this->Localidad_Model->get_argenprop($propiedad->id_localidad);
+    $fields['propiedad.Direccion.Pais.Id'] = $localidad->id_pais_argenprop;
+    $fields['propiedad.Direccion.Provincia.Id'] = $localidad->id_provincia_argenprop;
+    $fields['propiedad.Direccion.Partido.Id'] = $localidad->id_departamento_argenprop;
+    $fields['propiedad.Direccion.Localidad.Id'] = $localidad->id_localidad_argenprop;
+    if (!empty($localidad->id_barrio_argenprop)) $fields["propiedad.Direccion.Barrio.Id"] = $localidad->id_barrio_argenprop;
+    else if (!empty($propiedad->id_barrio_argenprop)) $fields["propiedad.Direccion.Barrio.Id"] = $propiedad->id_barrio_argenprop;
+    $fields['propiedad.Direccion.Coordenadas.Latitud'] = $propiedad->latitud;
+    $fields['propiedad.Direccion.Coordenadas.Longitud'] = $propiedad->longitud;
+    $fields['propiedad.Direccion.Nombrecalle'] = $propiedad->calle.(!empty($propiedad->entre_calles) ? " e/ $propiedad->entre_calles y $propiedad->entre_calles_2" : "");
+    $fields['propiedad.Direccion.Numero'] = $propiedad->altura;
+ 
+    if (!empty($propiedad->superficie_cubierta)) $fields['propiedad.SuperficieCubierta'] = "$propiedad->superficie_cubierta";
+    if (!empty($propiedad->superficie_total)) $fields['propiedad.SuperficieTotal'] = "$propiedad->superficie_total";
+    if (!empty($propiedad->nuevo)) $fields['propiedad.Antiguedad'] = "$propiedad->nuevo";
+    if (!empty($propiedad->ambientes)) $fields['propiedad.CantidadAmbientes'] = "$propiedad->ambientes";
+    if (!empty($propiedad->banios)) $fields['propiedad.CantidadBanos'] = "$propiedad->banios";
+    if (!empty($propiedad->dormitorios)) $fields['propiedad.CantidadDormitorios'] = "$propiedad->dormitorios";
+    if (!empty($propiedad->cocheras)) $fields['propiedad.CantidadCocheras'] = "$propiedad->cocheras";
+    if ($propiedad->balcon == 1) $fields["propiedad.Ambientes.Balcon"] = 'true';
+    if ($propiedad->patio == 1) $fields["propiedad.Ambientes.Patio"] = 'true';
+
+    if ($propiedad->apto_profesional == 1) $fields["propiedad.AptoProfesional"] = 'true';
+    if ($propiedad->servicios_gas == 1) $fields["propiedad.Instalaciones.GasNatural"] = 'true';
+    //if ($propiedad->servicios_cloacas == 1) $fields["propiedad.Ambientes.Patio"] = 'true';
+    if ($propiedad->servicios_agua_corriente == 1) $fields["propiedad.Ambientes.Patio"] = 'true';
+    //if ($propiedad->servicios_asfalto == 1) $fields["propiedad.Ambientes.Patio"] = 'true';
+    if ($propiedad->servicios_electricidad == 1) $fields["propiedad.Instalaciones.Electricidad"] = 'true';
+    if ($propiedad->servicios_telefono == 1) $fields["propiedad.Instalaciones.Telefono"] = 'true';
+    if ($propiedad->servicios_cable == 1) $fields["propiedad.Servicios.Videocable"] = 'true';
+
+    if (!empty($propiedad->id_usuario)) {
+      $this->load->model("Usuario_Model");
+      $usuario = $this->Usuario_Model->get($propiedad->id_usuario,array(
+        "id_empresa"=>$id_empresa
+      ));
+      if ($id_empresa == 45) $usuario->email = "info@grupo-urbano.com.ar";
+      if (!empty($usuario)) {
+        if (!empty($usuario->nombre)) $fields['aviso.DatosContacto.Nombre'] = $usuario->nombre;
+        if (!empty($usuario->celular)) $fields['aviso.DatosContacto.Celular'] = $usuario->celular;
+        if (!empty($usuario->telefono)) $fields['aviso.DatosContacto.Telefono'] = $usuario->telefono;
+        if (!empty($usuario->email)) $fields['aviso.DatosContacto.Email'] = $usuario->email;
+      }
+    }
+
+    if (!empty($propiedad->path)) $fields["aviso.fotos[0].url"] = "https://app.inmovar.com/admin/".$propiedad->path;
+    $i = 1;
+    foreach($propiedad->images as $image) {
+      $fields["aviso.fotos[$i].url"] = "https://app.inmovar.com/admin/".$image;
+      $i++;
+    }
+
+    $this->Log_Model->imprimir(array("file"=>"argenprop.txt","id_empresa"=>$id_empresa,"texto"=>"PREPARANDO PARA COMPARTIR: \n".print_r($fields,TRUE)));
+
+    $ch = curl_init();
+    curl_setopt($ch,CURLOPT_URL, 'https://www.inmuebles.clarin.com/Publicaciones/Publicar?contentType=json');
+    curl_setopt($ch,CURLOPT_POST, 1);
+    curl_setopt($ch,CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch,CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch,CURLOPT_POSTFIELDS, $fields);
+    $result = curl_exec($ch);
+    $this->Log_Model->imprimir(array("file"=>"argenprop.txt","id_empresa"=>$id_empresa,"texto"=>"COMPARTIR: ".$result));
+
+    $array = json_decode($result);
+    if (!is_array($array)) {
+      return array(
+        "error"=>1,
+        "mensaje"=>$result,
+      );
+      exit();
+    }
+    if (!isset($array[0]) || !is_numeric($array[0])) {
+      return array(
+        "error"=>1,
+        "mensaje"=>$result,
+      );
+      exit();      
+    }
+    $id_argenprop = $array[0];
+
+    $url_final = "https://www.argenprop.com/prop--".$id_argenprop;
+
+    // Actualizamos la tabla
+    $sql = "UPDATE inm_propiedades SET argenprop_habilitado = 1, argenprop_url = '$url_final' ";
+    $sql.= "WHERE id_empresa = $id_empresa AND id = $id_propiedad ";
+    $this->db->query($sql);
+    return array(
+      "error"=>0,
+      "mensaje"=>$url_final,
+    );
+  }
 
 }
