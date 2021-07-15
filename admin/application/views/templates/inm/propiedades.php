@@ -318,9 +318,7 @@
                         <% } else if (argenprop_habilitado > 1) { %>
                           <li><a class="argenprop_activar" href="javascript:void(0)">Activar</a></li>
                         <% } %>
-                        <?php /*
                         <li><a class="argenprop_eliminar" href="javascript:void(0)">Eliminar</a></li>
-                        */ ?>
                       </ul>
                     </div>
                   <% } %>
