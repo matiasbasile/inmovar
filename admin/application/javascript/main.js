@@ -593,7 +593,7 @@
 
       ver_tutoriales: function(id) {
         var self = this;
-        if (id == undefined) id = "propiedades";
+        if (id == undefined) id = "Propiedades";
         var edit = new app.views.TutorialesSingleView({
           model: new app.models.AbstractModel({
             "id_modulo":id,
