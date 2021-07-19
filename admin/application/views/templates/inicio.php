@@ -231,22 +231,26 @@
 
       <% for(var i=0; i< planes.length; i++) { %>
         <% var plan = planes[i] %>
+        <% var descuento = (100 - Number((plan.precio_anual / plan.precio_sin_dto) * 100).toFixed(0)) %>
         <div class="col-md-4">
           <% if (plan.id == ID_PLAN) { %>
             <div class="plan panel b-a m-t-n-md m-b-xl">
               <div class="wrapper bg-info text-center m-l-n-xxs m-r-n-xxs">
                 <h4 class="text-u-c m-b-none"><%= plan.nombre %></h4>
                 <h2 class="m-t-none">
-                  <sup class="pos-rlt" style="top:-22px">$</sup>
                   <% if (plan.precio_anual == 0) { %>
                     <span class="text-2x text-lt">GRATIS</span>
                   <% } else { %>
+                    <sup class="pos-rlt" style="top:-22px">$</sup>
                     <span class="text-2x text-lt"><%= Number(plan.precio_anual).format(0) %></span>
                     <span class="text-xs">/ mes</span>
                   <% } %>
                 </h2>
                 <div class="tac fs18">
-                  <span>40% OFF!</span> $<strike><%= Number(plan.precio_sin_dto).format(0) %></strike>
+                  <% if (descuento > 0) { %>
+                    <span><%= descuento %>% OFF!</span> 
+                  <% } %>
+                  $<strike><%= Number(plan.precio_sin_dto).format(0) %></strike>
                 </div>
               </div>
               <%= plan.observaciones %>
@@ -261,12 +265,19 @@
               <div class="wrapper text-center b-b b-light">
                 <h4 class="text-u-c m-b-none"><%= plan.nombre %></h4>
                 <h2 class="m-t-none">
-                  <sup class="pos-rlt" style="top:-22px">$</sup>
-                  <span class="text-2x text-lt"><%= Number(plan.precio_anual).format(0) %></span>
-                  <span class="text-xs">/ mes</span>
+                  <% if (plan.precio_anual == 0) { %>
+                    <span class="text-2x text-lt">GRATIS</span>
+                  <% } else { %>
+                    <sup class="pos-rlt" style="top:-22px">$</sup>
+                    <span class="text-2x text-lt"><%= Number(plan.precio_anual).format(0) %></span>
+                    <span class="text-xs">/ mes</span>
+                  <% } %>
                 </h2>
                 <div class="tac fs18">
-                  <span>40% OFF!</span> $<strike><%= Number(plan.precio_anual).format(0) %></strike>
+                  <% if (descuento > 0) { %>
+                    <span><%= descuento %>% OFF!</span>
+                  <% } %>
+                  $<strike><%= Number(plan.precio_anual).format(0) %></strike>
                 </div>
               </div>
               <%= plan.observaciones %>
