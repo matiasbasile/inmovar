@@ -289,7 +289,7 @@
           <% for(var i=0; i< categorias_videos.length;i++) { %>
             <% var cat = categorias_videos[i] %>
             <li>
-              <a class="<%= (id_modulo == cat.link)?"active":"" %>" href="app/#tutoriales/<%= cat.link %>">
+              <a class="<%= (id_modulo == cat.nombre)?"active":"" %>" href="app/#tutoriales/<%= encodeURIComponent(cat.nombre) %>">
                 <span class="material-icons">arrow_forward_ios</span>
                 <%= cat.nombre %>
               </a>
