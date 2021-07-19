@@ -250,7 +250,9 @@
                   <% if (descuento > 0) { %>
                     <span><%= descuento %>% OFF!</span> 
                   <% } %>
-                  $<strike><%= Number(plan.precio_sin_dto).format(0) %></strike>
+                  <% if (plan.precio_sin_dto != 0) { %>
+                    $<strike><%= Number(plan.precio_sin_dto).format(0) %></strike>
+                  <% } %>
                 </div>
               </div>
               <%= plan.observaciones %>
@@ -277,7 +279,9 @@
                   <% if (descuento > 0) { %>
                     <span><%= descuento %>% OFF!</span>
                   <% } %>
-                  $<strike><%= Number(plan.precio_anual).format(0) %></strike>
+                  <% if (plan.precio_sin_dto != 0) { %>
+                    $<strike><%= Number(plan.precio_anual).format(0) %></strike>
+                  <% } %>
                 </div>
               </div>
               <%= plan.observaciones %>
