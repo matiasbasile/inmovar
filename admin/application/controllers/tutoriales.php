@@ -10,6 +10,7 @@ class Tutoriales extends REST_Controller {
 
   function buscar() {
     $id_modulo = parent::get_get("id_modulo",0);
+    $id_modulo = urldecode($id_modulo);
 
     $sql = "SELECT * FROM com_videos ";
     $sql.= "WHERE clave = '$id_modulo' ";
