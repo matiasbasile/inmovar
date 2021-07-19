@@ -280,7 +280,7 @@
                     <span><%= descuento %>% OFF!</span>
                   <% } %>
                   <% if (plan.precio_sin_dto != 0) { %>
-                    $<strike><%= Number(plan.precio_anual).format(0) %></strike>
+                    $<strike><%= Number(plan.precio_sin_dto).format(0) %></strike>
                   <% } %>
                 </div>
               </div>
