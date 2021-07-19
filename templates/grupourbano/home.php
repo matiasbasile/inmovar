@@ -408,11 +408,11 @@ if (!empty($obras_destacadas) || !empty($obras_normales)) { ?>
               <div class="item-picture">
                 <div class="block">
                   <?php if (!empty($r->imagen)) { ?>
-                    <img class="alto" src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre); ?>" />
+                    <img class="thumb-image" src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre); ?>" />
                   <?php } else if (!empty($empresa->no_imagen)) { ?>
-                    <img class="alto" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->nombre); ?>" />
+                    <img class="thumb-image" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->nombre); ?>" />
                   <?php } else { ?>
-                    <img class="alto" src="images/no-image-1.jpg" alt="<?php echo ($r->nombre); ?>" />
+                    <img class="thumb-image" src="images/no-image-1.jpg" alt="<?php echo ($r->nombre); ?>" />
                   <?php } ?>
                 </div>
               </div>
@@ -456,11 +456,11 @@ if (!empty($obras_destacadas) || !empty($obras_normales)) { ?>
                       <div class="item-picture">
                         <div class="block">
                            <?php if (!empty($r->imagen)) { ?>
-		                    <img class="alto" src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre); ?>" />
+		                    <img class="thumb-image" src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre); ?>" />
 		                  <?php } else if (!empty($empresa->no_imagen)) { ?>
-		                    <img class="alto" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->nombre); ?>" />
+		                    <img class="thumb-image" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->nombre); ?>" />
 		                  <?php } else { ?>
-		                    <img class="alto" src="images/no-image-1.jpg" alt="<?php echo ($r->nombre); ?>" />
+		                    <img class="thumb-image" src="images/no-image-1.jpg" alt="<?php echo ($r->nombre); ?>" />
 		                  <?php } ?>
                         </div>
                       </div>
