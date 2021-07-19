@@ -196,13 +196,20 @@ class Empresas extends REST_Controller {
 
     $empresa = $this->modelo->get_min($id_empresa);
 
+    $sql = "SELECT * FROM planes WHERE id = $id_plan ";
+    $q = $this->db->query($sql);
+    $plan = $q->row();
+
     // Cambiamos el campo en la base de datos
-    $sql = "UPDATE empresas SET id_plan = $id_plan WHERE id = $id_empresa ";
-    $this->db->query($sql);
+    //$sql = "UPDATE empresas SET id_plan = $id_plan WHERE id = $id_empresa ";
+    //$this->db->query($sql);
 
     // Enviamos un nuevo email
-    $this->load->model("Email_Template_Model");
-    $template = $this->Email_Template_Model->get_by_proyecto("cambio-plan",$empresa->id_proyecto);
+    //$this->load->model("Email_Template_Model");
+    //$template = $this->Email_Template_Model->get_by_proyecto("cambio-plan",$empresa->id_proyecto);
+    $template = new stdClass();
+    $template->nombre = "Solicitud de cambio de plan Inmovar";
+    $template->texto = "{{nombre}} ha solicitado el cambio de plan por $plan->nombre.";
 
     $bcc_array = array("basile.matias99@gmail.com","misticastudio@gmail.com");
     require APPPATH.'libraries/Mandrill/Mandrill.php';
@@ -212,7 +219,7 @@ class Empresas extends REST_Controller {
     mandrill_send(array(
       "to"=>$empresa->email,
       "from"=>"no-reply@varcreative.com",
-      "from_name"=>$empresa->proyecto,
+      "from_name"=>"Inmovar",
       "subject"=>$template->nombre,
       "body"=>$body,
       "reply_to"=>"info@varcreative.com",
