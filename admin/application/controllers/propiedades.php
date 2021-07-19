@@ -601,6 +601,8 @@ class Propiedades extends REST_Controller {
     $propiedad->id = 0;
     $propiedad->codigo = $this->modelo->next(); // Ponemos el siguiente codigo
     $propiedad->link = ""; // Como el link tiene el ID, se tiene que generar de vuelta
+    $propiedad->argenprop_habilitado = 0;
+    $propiedad->argenprop_url = "";
     
     $insert_id = $this->modelo->insert($propiedad);
 	  $hash = md5($insert_id);
