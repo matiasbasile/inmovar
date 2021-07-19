@@ -58,11 +58,13 @@ if (sizeof($ultimas)>0) { ?>
               <div class="property-list <?php echo $clase; ?>">
                 <div class="item-picture">
                   <div class="block">
-                    <?php if (!empty($r->imagen)) { ?>
-                      <img src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre) ?>" />
-                    <?php } else { ?>
-                      <img src="images/no-image-1.jpg" alt="<?php echo ($r->nombre) ?>" />
-                    <?php } ?>
+                     <?php if (!empty($r->imagen)) { ?>
+	                    <img class="alto" src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre); ?>" />
+	                  <?php } else if (!empty($empresa->no_imagen)) { ?>
+	                    <img class="alto" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->nombre); ?>" />
+	                  <?php } else { ?>
+	                    <img class="alto" src="images/no-image-1.jpg" alt="<?php echo ($r->nombre); ?>" />
+	                  <?php } ?>
                   </div>
                   <?php if ($r->id_tipo_estado != 1) { ?>
                     <div class="ribbon red"><?php echo ($r->tipo_estado) ?></div>
@@ -168,11 +170,13 @@ if (sizeof($destacadas)>0) { ?>
               <div class="property-list <?php echo $clase; ?>">
                 <div class="item-picture">
                   <div class="block">
-                    <?php if (!empty($r->imagen)) { ?>
-                      <img src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre) ?>" />
-                    <?php } else { ?>
-                      <img src="images/no-image-1.jpg" alt="<?php echo ($r->nombre) ?>" />
-                    <?php } ?>
+	                  <?php if (!empty($r->imagen)) { ?>
+	                    <img class="alto" src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre); ?>" />
+	                  <?php } else if (!empty($empresa->no_imagen)) { ?>
+	                    <img class="alto" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->nombre); ?>" />
+	                  <?php } else { ?>
+	                    <img class="alto" src="images/no-image-1.jpg" alt="<?php echo ($r->nombre); ?>" />
+	                  <?php } ?>
                   </div>
                   <?php if ($r->id_tipo_estado != 1) { ?>
                     <div class="ribbon red"><?php echo ($r->tipo_estado) ?></div>
@@ -404,9 +408,11 @@ if (!empty($obras_destacadas) || !empty($obras_normales)) { ?>
               <div class="item-picture">
                 <div class="block">
                   <?php if (!empty($r->imagen)) { ?>
-                    <img style="object-fit:cover; height: 280px; width: 100% " src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre) ?>" />
+                    <img class="alto" src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre); ?>" />
+                  <?php } else if (!empty($empresa->no_imagen)) { ?>
+                    <img class="alto" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->nombre); ?>" />
                   <?php } else { ?>
-                    <img style="object-fit:cover; height: 280px; width: 100% " src="images/no-image-2.jpg" alt="<?php echo ($r->nombre) ?>" />
+                    <img class="alto" src="images/no-image-1.jpg" alt="<?php echo ($r->nombre); ?>" />
                   <?php } ?>
                 </div>
               </div>
@@ -449,11 +455,13 @@ if (!empty($obras_destacadas) || !empty($obras_normales)) { ?>
                     <div class="property-list half-list">
                       <div class="item-picture">
                         <div class="block">
-                          <?php if (!empty($r->imagen)) { ?>
-                            <img src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre) ?>" />
-                          <?php } else { ?>
-                            <img src="images/no-image-1.jpg" alt="<?php echo ($r->nombre) ?>" />
-                          <?php } ?>
+                           <?php if (!empty($r->imagen)) { ?>
+		                    <img class="alto" src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre); ?>" />
+		                  <?php } else if (!empty($empresa->no_imagen)) { ?>
+		                    <img class="alto" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->nombre); ?>" />
+		                  <?php } else { ?>
+		                    <img class="alto" src="images/no-image-1.jpg" alt="<?php echo ($r->nombre); ?>" />
+		                  <?php } ?>
                         </div>
                       </div>
                       <div class="property-info">

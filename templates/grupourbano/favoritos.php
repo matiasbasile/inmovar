@@ -39,10 +39,12 @@ if ($maximo == "undefined" || empty($maximo)) $maximo = $precio_maximo;
                 <div class="property-item">
                   <div class="item-picture">
                     <div class="block">
-                      <?php if (!empty($r->imagen)) { ?>
-                        <img class="cover" src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre) ?>" />
+                     <?php if (!empty($r->imagen)) { ?>
+                        <img class="cover" src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre); ?>" />
+                      <?php } else if (!empty($empresa->no_imagen)) { ?>
+                        <img class="cover" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->nombre); ?>" />
                       <?php } else { ?>
-                        <img class="cover" src="images/no-image-1.jpg" alt="<?php echo ($r->nombre) ?>" />
+                        <img class="cover" src="images/no-image-1.jpg" alt="<?php echo ($r->nombre); ?>" />
                       <?php } ?>
                     </div>
                     <a class="view-more" href="/<?php echo $r->link ?>"><span></span></a>

@@ -145,10 +145,12 @@ function filter() {
                 <div class="property-item noticia">
                   <div class="item-picture">
                     <div class="block">
-                      <?php if (!empty($r->path)) { ?>
-                        <img class="cover" src="<?php echo $r->path ?>" alt="<?php echo ($r->titulo) ?>" />
+                      <?php if (!empty($r->imagen)) { ?>
+                        <img class="cover" src="<?php echo $r->imagen ?>" alt="<?php echo ($r->titulo); ?>" />
+                      <?php } else if (!empty($empresa->no_imagen)) { ?>
+                        <img class="cover" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->titulo); ?>" />
                       <?php } else { ?>
-                        <img class="cover" src="images/no-image-1.jpg" alt="<?php echo ($r->titulo) ?>" />
+                        <img class="cover" src="images/no-image-1.jpg" alt="<?php echo ($r->titulo); ?>" />
                       <?php } ?>
                     </div>
                     <a class="view-more" href="<?php echo mklink($r->link) ?>"><span></span></a>
