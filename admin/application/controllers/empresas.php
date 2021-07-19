@@ -228,7 +228,7 @@ class Empresas extends REST_Controller {
 
     echo json_encode(array(
       "error"=>0,
-      "mensaje"=>"Hemos actualizado tu plan correctamente. Muchas gracias!",
+      "mensaje"=>"Hemos enviado tu solicitud de cambio de plan. Nos estaremos contactando a la brevedad. Muchas gracias!",
     ));
   }
 
