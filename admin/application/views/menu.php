@@ -45,6 +45,12 @@ function modulo_habilitado($permisos,$modulo) {
               </a>
             </li>
             <li>
+              <a href='app/#planes'>
+                <i class='material-icons'>settings</i>
+                Planes
+              </a>
+            </li>
+            <li>
               <a href='app/#versiones_db'>
                 <i class='material-icons'>settings</i>
                 Versiones
