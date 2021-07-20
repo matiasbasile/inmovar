@@ -164,9 +164,7 @@
                           <option value="0" <%= (id_plan == 0)?"selected":"" %>>-</option>
                           <% for (var i=0;i< planes.length;i++) { %>
                             <% var plan = planes[i] %>
-                            <% if (id_proyecto == plan.id_proyecto) { %>
-                              <option data-costo="<%= plan.precio_anual %>" data-limite="<%= plan.limite_articulos %>" value="<%= plan.id %>" <%= (plan.id == id_plan)?"selected":"" %>><%= plan.nombre %></option>
-                            <% } %>
+                            <option data-costo="<%= plan.precio_anual %>" data-limite="<%= plan.limite_articulos %>" value="<%= plan.id %>" <%= (plan.id == id_plan)?"selected":"" %>><%= plan.nombre %></option>
                           <% } %>
                         </select>
                       </div>
