@@ -308,6 +308,7 @@ Ideal para <perfil>
             
     myEvents: {
       "click .guardar": "guardar",
+      "click .buscar_propiedades":"buscar_propiedades",
 
       "change #oportunidades_paises":function(){
         var id_provincia = this.$("#oportunidades_provincias").val();
@@ -408,7 +409,39 @@ Ideal para <perfil>
           crear_select2("oportunidades_barrio");
         }                    
       });
-    },   
+    },  
+
+    buscar_propiedades: function() {
+      var self = this;
+      var view = new app.views.PropiedadesTableView({
+        "collection":new app.collections.Propiedades(),
+        "vista_busqueda":true,
+      });
+      crearLightboxHTML({
+        "html":view.el,
+        "width":860,
+        "height":140,
+        "callback":function() {
+          self.seleccionar_propiedad();
+        }
+      });
+    },
+
+    seleccionar_propiedad: function() {
+      if (typeof window.propiedad_seleccionado == "undefined") return;
+      this.$("#operaciones_propiedad").val(window.propiedad_seleccionado.get("titulo"));
+      this.$("#oportunidades_tipos_inmueble").val(window.propiedad_seleccionado.get("id_tipo_inmueble"));
+      this.$("#oportunidades_ambientes").val(window.propiedad_seleccionado.get("ambientes"));
+      this.$("#oportunidades_dormitorios").val(window.propiedad_seleccionado.get("dormitorios"));
+      this.$("#oportunidades_paises").val(window.propiedad_seleccionado.get("id_pais"));
+      this.$("#oportunidades_provincias").val(window.propiedad_seleccionado.get("id_provincia"));
+      this.$("#oportunidades_departamentos").val(window.propiedad_seleccionado.get("id_departamento"));
+      this.$("#oportunidades_localidades").val(window.propiedad_seleccionado.get("id_localidad"));
+      this.$("#oportunidades_barrio").val(window.propiedad_seleccionado.get("id_barrio"));
+      this.model.set({
+        "id_propiedad":window.propiedad_seleccionado.id,
+      });
+    },
 
     validar: function() {
       try {
