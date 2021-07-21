@@ -536,7 +536,9 @@
 
       // Estamos probando las historias
       if (VOLVER_SUPERADMIN == 1) {
-        let stories = new app.views.StoriesView();
+        let stories = new app.views.StoriesView({
+          model: new app.models.AbstractModel(),
+        });
         this.$(".stories_container").append(stories.el);
       }
 
