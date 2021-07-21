@@ -87,7 +87,6 @@
   </td>
   <td class="tar td_acciones">
     <i data-toggle="tooltip" title="Activa en mi Web" class="fa-check iconito fa activo <%= (activo == 1)?"active":"" %>"></i>
-
     <div class="fr btn-group dropdown ml10">
       <i title="Opciones" class="iconito text-muted-2 fa fa-caret-down dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu pull-right">
@@ -99,7 +98,7 @@
         <% } %>
       </ul>
     </div>
-  <% } %>
+  </td>
 </script>
 
 
