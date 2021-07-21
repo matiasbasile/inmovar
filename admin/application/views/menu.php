@@ -95,7 +95,7 @@ function modulo_habilitado($permisos,$modulo) {
               </li>
             <?php } ?>
 
-            <?php if ((isset($volver_superadmin) && $volver_superadmin == 1)) { ?>
+            <?php if ( modulo_habilitado($permisos,"oportunidades")>0 && (isset($volver_superadmin) && $volver_superadmin == 1)) { ?>
               <li>
                 <a href="app/#oportunidades" class=""><i class="material-icons md-22">search</i><span>Oportunidades</span></a>
               </li>
