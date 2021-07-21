@@ -92,7 +92,7 @@ Ideal para <perfil>
     template: _.template($("#oportunidades_resultados_template").html()),
         
     myEvents: {
-      "click nueva_oportunidad":"nueva_oportunidad",
+      "click .nueva_oportunidad":"nueva_oportunidad",
       "click #buscar_propias_tab":function() {
         this.$(".buscar_tab").removeClass("active");
         this.$("#buscar_propias_tab").addClass("active");
