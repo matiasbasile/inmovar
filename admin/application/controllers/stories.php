@@ -28,7 +28,15 @@ class Stories extends REST_Controller {
           "src"=>"https://app.inmovar.com/admin/uploads/1577/propiedades/img-20210301-wa0024.jpg?t=91489?t=6233?t=15190?t=4921",
           "preview"=>"https://app.inmovar.com/admin/uploads/1577/propiedades/img-20210301-wa0024.jpg?t=91489?t=6233?t=15190?t=4921",
           "seen"=>false,
-        )
+        ),
+        array(
+          "id"=>2,
+          "type"=>"photo",
+          "length"=>3,
+          "src"=>"https://app.inmovar.com/admin/uploads/1577/propiedades/img-20210226-wa0103.jpg?t=35907?t=76486?t=8427",
+          "preview"=>"https://app.inmovar.com/admin/uploads/1577/propiedades/img-20210226-wa0103.jpg?t=35907?t=76486?t=8427",
+          "seen"=>false,
+        ),
       )
     );
     $salida["stories"] = array($story);
