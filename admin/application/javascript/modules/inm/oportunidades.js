@@ -438,6 +438,9 @@ Ideal para <perfil>
       this.$("#oportunidades_departamentos").val(window.propiedad_seleccionado.get("id_departamento"));
       this.$("#oportunidades_localidades").val(window.propiedad_seleccionado.get("id_localidad"));
       this.$("#oportunidades_barrio").val(window.propiedad_seleccionado.get("id_barrio"));
+      this.$("#oportunidades_paises").trigger("change");
+      this.$("#oportunidades_provincias").trigger("change");
+      this.$("#oportunidades_localidades").trigger("change");
       this.model.set({
         "id_propiedad":window.propiedad_seleccionado.id,
       });
