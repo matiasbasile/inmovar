@@ -176,6 +176,7 @@ Ideal para <perfil>
     },
 
     nueva_oportunidad: function() {
+      alert("ANDA");
       var edicion = new app.views.OportunidadesEditView({
         model: new app.models.Oportunidades(),
       });
