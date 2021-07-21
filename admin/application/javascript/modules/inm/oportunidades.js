@@ -176,7 +176,6 @@ Ideal para <perfil>
     },
 
     nueva_oportunidad: function() {
-      alert("ANDA");
       var edicion = new app.views.OportunidadesEditView({
         model: new app.models.Oportunidades(),
       });
@@ -297,10 +296,6 @@ Ideal para <perfil>
 })(app);
 
 
-
-// -----------------------------------------
-//   DETALLE DEL ARTICULO
-// -----------------------------------------
 (function ( app ) {
 
   app.views.OportunidadesEditView = app.mixins.View.extend({
