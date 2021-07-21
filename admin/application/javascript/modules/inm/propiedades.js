@@ -534,6 +534,13 @@
         window.propiedades_guardo_nueva_propiedad = 0;
       }
 
+      // Estamos probando las historias
+      if (VOLVER_SUPERADMIN == 1) {
+        let stories = new app.views.StoriesView();
+        this.$(".stories_container").append(stories.el);
+      }
+
+
       $('html').click(function(e) {
         if (typeof e.originalEvent != "undefined") {
           var clases = (e.originalEvent.target.className);

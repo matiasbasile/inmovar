@@ -656,6 +656,8 @@ class App extends CI_Controller {
       "resources/js/owl.carousel.min.js",
       "resources/js/jquery.flexslider.js",
       "resources/js/daterangepicker.js",
+
+      "resources/js/zuck/zuck.min.js",
       
       // PUNTO DE ENTRADA A LA APLICACION
       "application/javascript/main.js",
@@ -710,6 +712,7 @@ class App extends CI_Controller {
     $array[] = 'application/javascript/modules/recibos_clientes.js';
     $array[] = 'application/javascript/modules/cajas.js';
     $array[] = 'application/javascript/modules/cajas_movimientos.js';
+    $array[] = 'application/javascript/modules/stories.js';
 
     if ($id_proyecto == 0) {
       $array[] = 'application/javascript/modules/config/videos.js';
@@ -826,6 +829,8 @@ class App extends CI_Controller {
       "resources/css/owl.carousel.min.css",
       "resources/css/flexslider.css",
       "resources/css/daterangepicker.css",
+      "resources/js/zuck/zuck.min.css",
+      "resources/js/zuck/skins/snapgram.min.css",
     );
     return $array;
   }

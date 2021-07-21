@@ -156,6 +156,7 @@ include_once ("application/views/templates/cajas_movimientos.php");
 include_once ("application/views/templates/facturacion.php");
 include_once ("application/views/templates/recibos_clientes.php");
 include_once ("application/views/templates/cuentas_corrientes_clientes.php");
+include_once ("application/views/templates/stories.php");
 ?>
 <!-- Modulo de Permisos -->
 <script type="text/javascript">
