@@ -33,6 +33,14 @@ app.views.StoriesView = app.mixins.View.extend({
     $(this.el).html(this.template());
     let stories = new Zuck("stories",{
       "stories": self.model.get("stories"),
+      "template": {
+        // use these functions to render custom templates
+        // see src/zuck.js for more details
+        timelineItem: function (itemData) {
+          alert("ANDA");
+          return ``;
+        },
+      },
     });
     return this;
   },
