@@ -34,6 +34,8 @@ Ideal para <perfil>
       tipo_inmueble: "",
       tipo_estado: "",
       localidad: "",
+      id_pais: 0,
+      id_provincia: 0,
       id_localidad: ((typeof ID_LOCALIDAD != "undefined") ? ID_LOCALIDAD : 0),
       ambientes: 0,
       dormitorios: 0,
@@ -47,7 +49,8 @@ Ideal para <perfil>
       color: "",
       perfil_cliente: 0,
       usuario: "",
-      id_usuario: 0,
+      id_empresa: ID_EMPRESA,
+      id_usuario: ID_USUARIO,
       id_barrio: 0,
     },
   });
