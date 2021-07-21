@@ -15,8 +15,8 @@ class Stories extends REST_Controller {
     $salida = array();
     $story = array(
       "id"=>1,
-      "photo"=>"",
-      "name"=>"",
+      "photo"=>"https://app.inmovar.com/admin/uploads/1435/images622301690508.jpg",
+      "name"=>"Autino Propiedades",
       "link"=>"",
       "lastUpdate"=>date("Y-m-d H:i:s"),
       "seen"=>false,
@@ -25,8 +25,8 @@ class Stories extends REST_Controller {
           "id"=>1,
           "type"=>"photo",
           "length"=>3,
-          "src"=>"",
-          "preview"=>"",
+          "src"=>"https://app.inmovar.com/admin/uploads/1577/propiedades/img-20210301-wa0024.jpg?t=91489?t=6233?t=15190?t=4921",
+          "preview"=>"https://app.inmovar.com/admin/uploads/1577/propiedades/img-20210301-wa0024.jpg?t=91489?t=6233?t=15190?t=4921",
           "seen"=>false,
         )
       )
