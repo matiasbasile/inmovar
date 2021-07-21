@@ -123,7 +123,7 @@
         <div class="form-group">
           <label class="control-label">Propiedad</label>
           <div class="input-group">
-            <input type="text" disabled placeholder="Interesado en propiedad..." autocomplete="off" id="contacto_propiedad" class="form-control"/>
+            <input type="text" disabled placeholder="Interesado en propiedad..." autocomplete="off" id="operaciones_propiedad" class="form-control"/>
             <span class="input-group-btn">
               <button data-toggle="tooltip" title="Buscar propiedades" tabindex="-1" type="button" class="btn btn-default buscar_propiedades"><i class="fa fa-search"></i></button>
             </span>        
