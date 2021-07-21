@@ -18,7 +18,7 @@ class Stories extends REST_Controller {
       "photo"=>"https://app.inmovar.com/admin/uploads/1435/images622301690508.jpg",
       "name"=>"Autino Propiedades",
       "link"=>"",
-      "lastUpdate"=>"Tue Jul 20 2021 22:43:54 GMT-0300",
+      "lastUpdate"=>time(),
       "seen"=>false,
       "items"=>array(
         array(
