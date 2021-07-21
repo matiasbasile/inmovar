@@ -73,7 +73,7 @@ Ideal para <perfil>
     },
 
     paginator_core: {
-      url: "oportunidades/function/ver",
+      url: "oportunidades/",
     }
     
   });
