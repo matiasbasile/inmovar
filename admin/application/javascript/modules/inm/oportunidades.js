@@ -445,10 +445,12 @@ Ideal para <perfil>
         "id_departamento":window.propiedad_seleccionado.get("id_departamento"),
         "id_localidad":window.propiedad_seleccionado.get("id_localidad"),
         "id_barrio":window.propiedad_seleccionado.get("id_barrio"),
+        "id_tipo_inmueble":window.propiedad_seleccionado.get("id_tipo_inmueble"),
       });
       this.$("#oportunidades_paises").trigger("change");
       this.$("#oportunidades_provincias").trigger("change");
       this.$("#oportunidades_localidades").trigger("change");
+      this.$("#oportunidades_tipos_inmueble").trigger("change");
     },
 
     validar: function() {
