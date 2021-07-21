@@ -133,7 +133,7 @@
     </div>
 
     <div class="row">
-      <div class="col-md-7">
+      <div class="col-md-3">
         <div class="form-group">
           <label class="control-label">Desde</label>
           <div class="input-group">
@@ -149,26 +149,39 @@
           </div>
         </div>
       </div>    
-      <div class="col-md-5">
+      <div class="col-md-3">
         <div class="form-group">
           <label class="control-label">Hasta</label>
           <input id="oportunidades_valor_hasta" value="<%= valor_hasta %>" type="number" class="form-control number" name="valor_hasta"/>
         </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class="control-label">Ambientes</label>
+          <input type="number" min="0" id="oportunidades_ambientes" value="<%= ambientes %>" name="ambientes" class="form-control"/>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class="control-label">Dormitorios</label>
+          <input type="number" min="0" id="oportunidades_dormitorios" value="<%= dormitorios %>" name="dormitorios" class="form-control"/>
+        </div>
       </div>    
     </div>
 
-    <div class="form-group">
-      <label class="control-label">Pais</label>
-      <select id="oportunidades_paises" name="id_pais" class="form-control">
-        <% for(var i=0;i< paises.length;i++) { %>
-          <% var p = paises[i] %>
-          <option <%= (id_pais == p.id)?"selected":"" %> value="<%= p.id %>"><%= p.nombre %></option>
-        <% } %>
-      </select>
-    </div>
-
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label class="control-label">Pais</label>
+          <select id="oportunidades_paises" name="id_pais" class="form-control">
+            <% for(var i=0;i< paises.length;i++) { %>
+              <% var p = paises[i] %>
+              <option <%= (id_pais == p.id)?"selected":"" %> value="<%= p.id %>"><%= p.nombre %></option>
+            <% } %>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
         <div class="form-group">
           <label class="control-label">Provincia</label>
           <select id="oportunidades_provincias" name="id_provincia" class="form-control">
@@ -179,7 +192,7 @@
           </select>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-4">
         <div class="form-group">
           <label class="control-label">Departamento / Partido</label>
           <select id="oportunidades_departamentos" name="id_departamento" class="form-control"></select>
@@ -198,21 +211,6 @@
         <div class="form-group">
           <label class="control-label">Barrio</label>
           <select class="form-control" name="id_barrio" id="oportunidades_barrio"></select>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-2">
-        <div class="form-group">
-          <label class="control-label">Ambientes</label>
-          <input type="number" min="0" id="oportunidades_ambientes" value="<%= ambientes %>" name="ambientes" class="form-control"/>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="form-group">
-          <label class="control-label">Dormitorios</label>
-          <input type="number" min="0" id="oportunidades_dormitorios" value="<%= dormitorios %>" name="dormitorios" class="form-control"/>
         </div>
       </div>
     </div>
