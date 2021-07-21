@@ -121,6 +121,7 @@
       </div>
       <div class="col-md-8">
         <div class="form-group">
+          <label class="control-label">Propiedad</label>
           <div class="input-group">
             <input type="text" disabled placeholder="Interesado en propiedad..." autocomplete="off" id="contacto_propiedad" class="form-control"/>
             <span class="input-group-btn">
@@ -134,6 +135,7 @@
     <div class="row">
       <div class="col-md-4">
         <div class="form-group">
+          <label class="control-label">Fecha</label>
           <div class="input-group">
             <input type="text" placeholder="Fecha" id="oportunidades_fecha" value="<%= fecha %>" class="form-control" name="fecha"/>
             <span class="input-group-btn">
