@@ -45,6 +45,7 @@ app.views.StoriesView = app.mixins.View.extend({
                     data-length="${itemData.length}"
                     data-linkText="${itemData.linkText}">
                     <img loading="auto" src="${itemData.preview}" />
+                    <h1>ANDAAA</h1>
                   </a>`;          
         },
       },
