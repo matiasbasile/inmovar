@@ -464,6 +464,12 @@ Ideal para <perfil>
           "id_departamento": (self.$("#oportunidades_departamentos").length > 0) ? ($(self.el).find("#oportunidades_departamentos").val() == null ? 0 : $(self.el).find("#oportunidades_departamentos").val()) : 0,
           "id_provincia": (self.$("#oportunidades_provincias").length > 0) ? ($(self.el).find("#oportunidades_provincias").val() == null ? 0 : $(self.el).find("#oportunidades_provincias").val()) : 0,
           "id_pais": (self.$("#oportunidades_paises").length > 0) ? ($(self.el).find("#oportunidades_paises").val() == null ? 0 : $(self.el).find("#oportunidades_paises").val()) : 0,
+          "ambientes": self.$("#oportunidades_ambientes").val(),
+          "dormitorios": self.$("#oportunidades_dormitorios").val(),
+          "tipo": self.$("#oportunidades_tipo").val(),
+          "moneda": self.$("#oportunidades_monedas").val(),
+          "valor_hasta": self.$("#oportunidades_valor_hasta").val(),
+          "valor_desde": self.$("#oportunidades_valor_desde").val(),
         });
         $(".error").removeClass("error");
         return true;
