@@ -36,10 +36,16 @@ app.views.StoriesView = app.mixins.View.extend({
       "template": {
         // use these functions to render custom templates
         // see src/zuck.js for more details
-        timelineItem: function (itemData) {
+        timelineStoryItem: function (itemData) {
           console.log(itemData);
-          alert("ANDA");
-          return ``;
+          return `<a href="${itemData.src}"
+                    data-link="${itemData.link}"
+                    data-time="${itemData.time}"
+                    data-type="${itemData.type}"
+                    data-length="${itemData.length}"
+                    data-linkText="${itemData.linkText}">
+                    <img loading="auto" src="${itemData.preview}" />
+                  </a>`;          
         },
       },
     });
