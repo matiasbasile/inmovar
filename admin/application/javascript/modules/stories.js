@@ -45,7 +45,7 @@ app.views.StoriesView = app.mixins.View.extend({
                     data-length="${itemData.length}"
                     data-linkText="${itemData.linkText}">
                     <h1>ANDAAA</h1>
-                  </a>`;          
+                  </a>`;           
         },
       },
     });
