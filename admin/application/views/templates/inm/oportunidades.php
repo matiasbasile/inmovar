@@ -6,7 +6,7 @@
     <div class="header-lg">
       <div class="row">
         <div class="col-md-6 col-xs-8">
-          <h1>Propiedades</h1>
+          <h1>Oportunidades</h1>
         </div>
         <div class="col-md-6 col-xs-4 tar">
           <% if (permiso > 1) { %>
@@ -23,13 +23,14 @@
       <ul class="nav nav-tabs nav-tabs-2" role="tablist">
         <li id="buscar_propias_tab" class="buscar_tab <%= (window.propiedades_buscar_tipo == 0)?"active":"" %>">
           <a href="javascript:void(0)">
-            <i class="material-icons">store</i> Venta
+            <?php //<i class="material-icons">store</i>  ?>
+            Venta
             <span id="propiedades_propias_total" class="counter">0</span>
           </a>
         </li>
         <li id="buscar_tipo_tab" class="buscar_tab <%= (window.propiedades_buscar_tipo == 1)?"active":"" %>">
           <a href="javascript:void(0)">
-            <i class="material-icons">share</i> Compra
+            Compra
             <span id="propiedades_red_total" class="counter">0</span>
           </a>
         </li>
