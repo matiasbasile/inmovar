@@ -68,7 +68,7 @@ Ideal para <perfil>
     
     paginator_ui: {
       perPage: 10,
-      order_by: 'A.fecha DESC, A.id ',
+      order_by: 'fecha DESC, id ASC ',
       order: 'desc',
     },
 
