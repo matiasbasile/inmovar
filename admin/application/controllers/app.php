@@ -657,7 +657,7 @@ class App extends CI_Controller {
       "resources/js/jquery.flexslider.js",
       "resources/js/daterangepicker.js",
 
-      "resources/js/zuck/zuck.min.js",
+      "resources/js/zuck/zuck.js",
       
       // PUNTO DE ENTRADA A LA APLICACION
       "application/javascript/main.js",
