@@ -37,6 +37,7 @@ app.views.StoriesView = app.mixins.View.extend({
         // use these functions to render custom templates
         // see src/zuck.js for more details
         timelineItem: function (itemData) {
+          console.log(itemData);
           alert("ANDA");
           return ``;
         },
