@@ -110,7 +110,7 @@
   <div class="modal-body">
 
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-4">
         <div class="form-group">
           <label class="control-label">Tipo</label>
           <select id="oportunidades_tipo" class="form-control" name="tipo">
@@ -119,21 +119,30 @@
           </select>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-8">
         <div class="form-group">
-          <label class="control-label">Tipo Inmueble</label>
-          <select id="oportunidades_tipos_inmueble" class="w100p">
-            <% for(var i=0;i< window.tipos_inmueble.length;i++) { %>
-              <% var o = tipos_inmueble[i]; %>
-              <option value="<%= o.id %>" <%= (o.id == id_tipo_inmueble)?"selected":"" %>><%= o.nombre %></option>
-            <% } %>
-          </select>
-        </div>
+          <div class="input-group">
+            <input type="text" disabled placeholder="Interesado en propiedad..." autocomplete="off" id="contacto_propiedad" class="form-control"/>
+            <span class="input-group-btn">
+              <button data-toggle="tooltip" title="Buscar propiedades" tabindex="-1" type="button" class="btn btn-default buscar_propiedades"><i class="fa fa-search"></i></button>
+            </span>        
+          </div>
+        </div>      
       </div>
     </div>
 
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-4">
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" placeholder="Fecha" id="oportunidades_fecha" value="<%= fecha %>" class="form-control" name="fecha"/>
+            <span class="input-group-btn">
+              <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="fa fa-calendar"></i></button>
+            </span>        
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
         <div class="form-group">
           <label class="control-label">Desde</label>
           <div class="input-group">
@@ -149,19 +158,32 @@
           </div>
         </div>
       </div>    
-      <div class="col-md-3">
+      <div class="col-md-4">
         <div class="form-group">
           <label class="control-label">Hasta</label>
           <input id="oportunidades_valor_hasta" value="<%= valor_hasta %>" type="number" class="form-control number" name="valor_hasta"/>
         </div>
       </div>
-      <div class="col-md-3">
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label class="control-label">Tipo Inmueble</label>
+          <select id="oportunidades_tipos_inmueble" class="w100p">
+            <% for(var i=0;i< window.tipos_inmueble.length;i++) { %>
+              <% var o = tipos_inmueble[i]; %>
+              <option value="<%= o.id %>" <%= (o.id == id_tipo_inmueble)?"selected":"" %>><%= o.nombre %></option>
+            <% } %>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
         <div class="form-group">
           <label class="control-label">Ambientes</label>
           <input type="number" min="0" id="oportunidades_ambientes" value="<%= ambientes %>" name="ambientes" class="form-control"/>
         </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-4">
         <div class="form-group">
           <label class="control-label">Dormitorios</label>
           <input type="number" min="0" id="oportunidades_dormitorios" value="<%= dormitorios %>" name="dormitorios" class="form-control"/>
