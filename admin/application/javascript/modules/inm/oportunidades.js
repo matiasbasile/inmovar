@@ -30,6 +30,7 @@ Ideal para <perfil>
     defaults: {
       // Atributos que no se persisten directamente
       tipo: 0,
+      activo: 1,
       id_propiedad: 0,
       tipo_inmueble: "",
       tipo_estado: "",
