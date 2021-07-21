@@ -103,9 +103,9 @@
 
 
 <script type="text/template" id="oportunidades_edit_template">
-  <div class="modal-heading">
-    <h4 class="h4 pull-left">Nueva Oportunidad</h4>
-    <span class="pull-right cp material-icons cerrar">close</span>
+  <div class="modal-header">
+    <b>Nueva Oportunidad</b>
+    <i class="pull-right cerrar_lightbox fs16 fa fa-times cp"></i>
   </div>
   <div class="modal-body">
 
