@@ -145,14 +145,14 @@
                 <% } %>
               </select>                      
             </div>
-            <input id="oportunidades_precio_final" value="<%= precio_final %>" type="number" class="form-control number" name="precio_final"/>
+            <input id="oportunidades_valor_desde" value="<%= valor_desde %>" type="number" class="form-control number" name="valor_desde"/>
           </div>
         </div>
       </div>    
       <div class="col-md-5">
         <div class="form-group">
           <label class="control-label">Hasta</label>
-          <input id="oportunidades_precio_final" value="<%= precio_final %>" type="number" class="form-control number" name="precio_final"/>
+          <input id="oportunidades_valor_hasta" value="<%= valor_hasta %>" type="number" class="form-control number" name="valor_hasta"/>
         </div>
       </div>    
     </div>
