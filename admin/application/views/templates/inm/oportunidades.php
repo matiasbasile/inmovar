@@ -1,0 +1,232 @@
+<script type="text/template" id="oportunidades_resultados_template">
+  <div class="centrado rform">
+
+    <div class="stories_container"></div>
+
+    <div class="header-lg">
+      <div class="row">
+        <div class="col-md-6 col-xs-8">
+          <h1>Propiedades</h1>
+        </div>
+        <div class="col-md-6 col-xs-4 tar">
+          <% if (permiso > 1) { %>
+            <a class="btn btn-info nueva_oportunidad" href="javascript:void(0)">
+              <span class="material-icons show-xs">add</span>
+              <span class="hidden-xs">&nbsp;&nbsp;Nueva Oportunidad&nbsp;&nbsp;</span>
+            </a>
+          <% } %>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-container mb0">
+      <ul class="nav nav-tabs nav-tabs-2" role="tablist">
+        <li id="buscar_propias_tab" class="buscar_tab <%= (window.propiedades_buscar_tipo == 0)?"active":"" %>">
+          <a href="javascript:void(0)">
+            <i class="material-icons">store</i> Venta
+            <span id="propiedades_propias_total" class="counter">0</span>
+          </a>
+        </li>
+        <li id="buscar_tipo_tab" class="buscar_tab <%= (window.propiedades_buscar_tipo == 1)?"active":"" %>">
+          <a href="javascript:void(0)">
+            <i class="material-icons">share</i> Compra
+            <span id="propiedades_red_total" class="counter">0</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="panel panel-default">
+
+      <div class="panel-body pb0">
+
+        <div id="oportunidades_tabla_cont" class="table-responsive">
+          <table id="oportunidades_tabla" class="table table-striped sortable m-b-none default footable">
+            <thead>
+              <tr>
+                <th class="w50 tac"></th>
+                <th>Propiedad</th>
+                <th class="w150 sorting" data-sort-by="precio_final">Operación</th>
+                <th class="w150">Caract.</th>
+                <th class="th_acciones w180">Acciones</th>
+              </tr>
+            </thead>
+            <tbody class="tbody"></tbody>
+            <tfoot class="pagination_container hide-if-no-paging"></tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
+
+<script type="text/template" id="oportunidades_item_resultados_template">
+  <% var clase = (activo==1)?"":"text-muted"; %>
+  <td class="<%= clase %> p0 data">
+    <% if (!isEmpty(path)) { %>
+      <% var prefix = (path.indexOf("http") == 0) ? "" : "/admin/" %>
+      <img src="<%= prefix + path %>?t=<%= Math.ceil(Math.random()*10000) %>" class="customcomplete-image br5"/>
+    <% } %>
+  </td>
+  <td class="<%= clase %> data">
+    <%= tipo_inmueble %><br/>
+    <%= localidad %>
+  </td>
+  <td class="<%= clase %> data">
+    <% if (valor_desde != 0) { %>
+      Desde: <%= moneda %> <%= Number(valor_desde).format(0) %><br/>
+    <% } %>
+    <% if (valor_hasta != 0) { %>
+      Hasta: <%= moneda %> <%= Number(valor_hasta).format(0) %>
+    <% } %>
+  </td>
+  <td class="<%= clase %> data">
+    <% if (ambientes > 0) { %><%= ambientes %> Amb.<br/><% } %>
+    <% if (dormitorios > 0) { %><%= dormitorios %> Hab.<br/><% } %>
+  </td>
+  <td class="tar td_acciones">
+    <i data-toggle="tooltip" title="Activa en mi Web" class="fa-check iconito fa activo <%= (activo == 1)?"active":"" %>"></i>
+
+    <div class="fr btn-group dropdown ml10">
+      <i title="Opciones" class="iconito text-muted-2 fa fa-caret-down dropdown-toggle" data-toggle="dropdown"></i>
+      <ul class="dropdown-menu pull-right">
+        <li><a href="javascript:void(0)" class="editar"><i class="text-muted-2 fa fa-pencil w25"></i> Editar</a></li>
+        <% if (control.check("oportunidades") == 3) { %>
+          <li class="divider"></li>
+          <li><a href="javascript:void(0)" class="duplicar" data-id="<%= id %>"><i class="text-muted-2 fa fa-files-o w25"></i> Duplicar</a></li>
+          <li><a href="javascript:void(0)" class="eliminar" data-id="<%= id %>"><i class="text-muted-2 fa fa-times w25"></i> Eliminar</a></li>
+        <% } %>
+      </ul>
+    </div>
+  <% } %>
+</script>
+
+
+<script type="text/template" id="oportunidades_edit_template">
+  <div class="modal-heading">
+    <h4 class="h4 pull-left">Nueva Oportunidad</h4>
+    <span class="pull-right cp material-icons cerrar">close</span>
+  </div>
+  <div class="modal-body">
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label">Tipo</label>
+          <select id="oportunidades_tipo" class="form-control" name="tipo">
+            <option value="0">Venta</option>
+            <option value="1">Compra</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label">Tipo Inmueble</label>
+          <select id="oportunidades_tipos_inmueble" class="w100p">
+            <% for(var i=0;i< window.tipos_inmueble.length;i++) { %>
+              <% var o = tipos_inmueble[i]; %>
+              <option value="<%= o.id %>" <%= (o.id == id_tipo_inmueble)?"selected":"" %>><%= o.nombre %></option>
+            <% } %>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-7">
+        <div class="form-group">
+          <label class="control-label">Desde</label>
+          <div class="input-group">
+            <div class="input-group-btn">
+              <select id="oportunidades_monedas" class="form-control w80">
+                <% for(var i=0;i< window.monedas.length;i++) { %>
+                  <% var o = monedas[i]; %>
+                  <option <%= (o.signo == moneda)?"selected":"" %> value="<%= o.signo %>"><%= o.signo %></option>
+                <% } %>
+              </select>                      
+            </div>
+            <input id="oportunidades_precio_final" value="<%= precio_final %>" type="number" class="form-control number" name="precio_final"/>
+          </div>
+        </div>
+      </div>    
+      <div class="col-md-5">
+        <div class="form-group">
+          <label class="control-label">Hasta</label>
+          <input id="oportunidades_precio_final" value="<%= precio_final %>" type="number" class="form-control number" name="precio_final"/>
+        </div>
+      </div>    
+    </div>
+
+    <div class="form-group">
+      <label class="control-label">Pais</label>
+      <select id="oportunidades_paises" name="id_pais" class="form-control">
+        <% for(var i=0;i< paises.length;i++) { %>
+          <% var p = paises[i] %>
+          <option <%= (id_pais == p.id)?"selected":"" %> value="<%= p.id %>"><%= p.nombre %></option>
+        <% } %>
+      </select>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label">Provincia</label>
+          <select id="oportunidades_provincias" name="id_provincia" class="form-control">
+            <% for(var i=0;i< provincias.length;i++) { %>
+              <% var p = provincias[i] %>
+              <option data-id_pais="<%= p.id_pais %>" <%= (id_provincia == p.id)?"selected":"" %> value="<%= p.id %>"><%= p.nombre %></option>
+            <% } %>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label">Departamento / Partido</label>
+          <select id="oportunidades_departamentos" name="id_departamento" class="form-control"></select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label">Localidad</label>
+          <select id="oportunidades_localidades" name="id_localidad" class="form-control"></select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label">Barrio</label>
+          <select class="form-control" name="id_barrio" id="oportunidades_barrio"></select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-2">
+        <div class="form-group">
+          <label class="control-label">Ambientes</label>
+          <input type="number" min="0" id="oportunidades_ambientes" value="<%= ambientes %>" name="ambientes" class="form-control"/>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <label class="control-label">Dormitorios</label>
+          <input type="number" min="0" id="oportunidades_dormitorios" value="<%= dormitorios %>" name="dormitorios" class="form-control"/>
+        </div>
+      </div>
+    </div>
+
+    <?php
+    single_file_upload(array(
+      "name"=>"path",
+      "label"=>"Foto",
+      "url"=>"/admin/propiedades/function/save_file/",
+    )); ?>
+
+  </div>
+  <div class="modal-footer text-right">
+    <button class="btn guardar btn-info tab">Guardar</button>
+  </div>
+</div>
+</script>

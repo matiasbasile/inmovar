@@ -427,6 +427,16 @@
         });
       },
 
+      ver_oportunidades: function() {
+        var view = new app.views.OportunidadesTableView({
+          collection: new app.collections.Oportunidades(),
+          permiso: 3,
+        });    
+        this.mostrar({
+          "top" : view.el,
+        });
+      },
+
       ver_precios: function() {
         var precio = new app.views.PreciosView({
           model: new app.models.AbstractModel(),

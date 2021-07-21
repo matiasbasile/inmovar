@@ -94,11 +94,13 @@ function modulo_habilitado($permisos,$modulo) {
                 <a href="app/#propiedades" class=""><i class="material-icons md-22">home</i><span>Propiedades</span></a>
               </li>
             <?php } ?>
-            <!--
-            <li>
-              <a href="app/#busquedas" class=""><i class="material-icons md-22">search</i><span>Búsquedas</span></a>
-            </li>
-            -->
+
+            <?php if ((isset($volver_superadmin) && $volver_superadmin == 1)) { ?>
+              <li>
+                <a href="app/#oportunidades" class=""><i class="material-icons md-22">search</i><span>Oportunidades</span></a>
+              </li>
+            <?php } ?>
+
             <?php if (modulo_habilitado($permisos,"permisos_red")>0) { ?>
               <li>
                 <a href="app/#permisos_red" class=""><i class="material-icons md-22">share</i><span>Red Inmovar</span></a>
