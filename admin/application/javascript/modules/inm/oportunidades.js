@@ -488,9 +488,7 @@ Ideal para <perfil>
               show(response.mensaje);
               return;
             } else {
-              // Si se guardo una propiedad nueva, activamos una bandera para mostrar el lightbox de buscar interesados
-              if (nuevo) window.oportunidades_guardo_nueva_propiedad = model.id;
-              history.back();
+              window.location.reload();
             }
           }
         });
