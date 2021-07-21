@@ -456,7 +456,6 @@ Ideal para <perfil>
     validar: function() {
       try {
         var self = this;
-        
         this.model.set({
           "id_tipo_inmueble":self.$("#oportunidades_tipos_inmueble").val(),
           "fecha":((self.$("#oportunidades_fecha").length > 0) ? self.$("#oportunidades_fecha").val() : ""),
@@ -466,14 +465,13 @@ Ideal para <perfil>
           "id_provincia": (self.$("#oportunidades_provincias").length > 0) ? ($(self.el).find("#oportunidades_provincias").val() == null ? 0 : $(self.el).find("#oportunidades_provincias").val()) : 0,
           "id_pais": (self.$("#oportunidades_paises").length > 0) ? ($(self.el).find("#oportunidades_paises").val() == null ? 0 : $(self.el).find("#oportunidades_paises").val()) : 0,
         });
-
         $(".error").removeClass("error");
         return true;
       } catch(e) {
         console.log(e);
         return false;
       }
-    },  
+    },
 
     guardar:function() {
       if (this.validar()) {
@@ -492,7 +490,7 @@ Ideal para <perfil>
             }
           }
         });
-      }      
+      }
     },
           
   });
