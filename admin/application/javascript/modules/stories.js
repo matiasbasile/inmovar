@@ -34,7 +34,7 @@ app.views.StoriesView = app.mixins.View.extend({
     let stories = new Zuck("stories",{
       "stories": self.model.get("stories"),
       "template": {
-        timelineStoryItem: function (itemData) {
+        timelineStoryItem (itemData) {
           return `<a ${attributes}>
                     <img loading="auto" src="${get(itemData, 'preview')}" />
                   </a>`;
