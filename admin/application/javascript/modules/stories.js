@@ -1,6 +1,6 @@
 (function ( app ) {
 
-app.views.StoriesView = app.mixinx.View.extend({
+app.views.StoriesView = app.mixins.View.extend({
 
   template: _.template($("#stories_template").html()),
   
