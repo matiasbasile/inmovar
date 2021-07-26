@@ -1,4 +1,5 @@
 /*
+Ofertas
 Oportunidad de Venta
 
 Busco <tipo propiedad>
@@ -13,7 +14,7 @@ entre <valor> y <valor> USD
 Oportunidad de Compra
 
 Codigo de propiedad (no obligatorio)
-Ofrezco <tipo propiedad>
+ <tipo propiedad>
 en <localidad>
 zona <barrio>
 con <ambientes> ambientes
