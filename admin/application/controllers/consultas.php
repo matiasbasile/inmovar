@@ -720,6 +720,7 @@ class Consultas extends REST_Controller {
           $link_propiedad = "";
           if (isset($empresa->dominios) && sizeof($empresa->dominios)>0 && isset($propiedad) && isset($propiedad->link)) {
             $link_propiedad = "https://".$empresa->dominios[0]."/".$propiedad->link;
+            if ($propiedad->id_empresa != $id_empresa) $link_propiedad.= "?em=$propiedad->id_empresa";
             $link_propiedad = "<a href='".$link_propiedad."' target='_blank'>Ver propiedad</a>";
           }
           if (!empty($asunto)) $body.= "<b>Interesado en:</b> $asunto ".($link_propiedad)."<br/>";
