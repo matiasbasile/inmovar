@@ -136,17 +136,6 @@
         </div>
       </div>
 
-      <div class="col-md-2 col-sm-3 col-xs-12 h50 pr5 pl5">
-        <div class="form-group">
-          <select style="width: 100%" id="propiedades_buscar_tipos_estado">
-            <% for(var i=0;i< window.tipos_estado.length;i++) { %>
-              <% var o = tipos_estado[i]; %>
-              <option <%= (window.propiedades_id_tipo_estado == o.id)?"selected":"" %> value="<%= o.id %>"><%= o.nombre %></option>
-            <% } %>
-          </select>
-        </div>
-      </div>
-
       <div class="col-md-2 col-sm-6 col-xs-12 mh50 pr5 pl5">
         <div class="form-group">
           <div class="input-group">
@@ -189,6 +178,17 @@
               </div>
             </span>
           </div>
+        </div>
+      </div>
+
+      <div class="col-md-2 col-sm-3 col-xs-12 h50 pr5 pl5">
+        <div class="form-group">
+          <select style="width: 100%" id="propiedades_buscar_tipos_estado">
+            <% for(var i=0;i< window.tipos_estado.length;i++) { %>
+              <% var o = tipos_estado[i]; %>
+              <option <%= (window.propiedades_id_tipo_estado == o.id)?"selected":"" %> value="<%= o.id %>"><%= o.nombre %></option>
+            <% } %>
+          </select>
         </div>
       </div>
 
