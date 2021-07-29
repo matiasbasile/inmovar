@@ -1031,10 +1031,10 @@
     <thead>
       <tr>
         <th>Fecha</th>
-        <th>Archivo</th>
         <th>Concepto</th>
         <th>Monto</th>
-        <th class="w20">Descripcion</th>
+        <th>Observaciones</th>
+        <th class="w20"></th>
         <th class="th_acciones w50"></th>
       </tr>
     </thead>
@@ -1043,8 +1043,8 @@
       <tr>
         <td></td>
         <td></td>
-        <th></th>
         <td>Total: $<span class="total_gastos">0</span></td>
+        <th></th>
         <td></td>
         <td></td>
       </tr>
@@ -1055,16 +1055,12 @@
 
 <script type="text/template" id="propiedades_gasto_item">
 <td class="data"><%= moment(fecha.substring(0, 10), "YYYY-MM-DD").format("DD/MM/YYYY") %></td>
+<td class="data"><%= concepto %></td>
+<td class="data">$ <%= Number(monto).format(2) %></td>
+<td class="data"><%= descripcion %></td>
 <td class="data">
   <% if (!isEmpty(path)) { %>
-    <a class="text-info" target="_blank" href="/admin/<%= path %>">Ver archivo</a>
-  <% } %>
-</td>
-<td class="data"><%= concepto %></td>
-<td class="data">$ <%= monto %></td>
-<td class="data">
-  <% if (!isEmpty(descripcion)) { %>
-    <i data-toggle="tooltip" title="<%= descripcion %>" class="fa fa-commenting text-warning"></i>
+    <a class="text-info" target="_blank" href="/admin/<%= path %>"><i class="fa fa-text"></i></a>
   <% } %>
 </td>
 <td class="tar td_acciones">
@@ -1102,7 +1098,7 @@
     </div>
 
     <div class="form-group">
-      <label class="control-label">Descripcion</label>
+      <label class="control-label">Observaciones</label>
       <textarea class="form-control" id="propiedades_gastos_descripcion" name="descripcion"><%= descripcion %></textarea>
     </div>
     <div class="form-group">
