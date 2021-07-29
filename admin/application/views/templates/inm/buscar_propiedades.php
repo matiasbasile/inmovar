@@ -136,6 +136,17 @@
         </div>
       </div>
 
+      <div class="col-md-2 col-sm-3 col-xs-12 h50 pr5 pl5">
+        <div class="form-group">
+          <select style="width: 100%" id="propiedades_buscar_tipos_estado">
+            <% for(var i=0;i< window.tipos_estado.length;i++) { %>
+              <% var o = tipos_estado[i]; %>
+              <option <%= (window.propiedades_id_tipo_estado == o.id)?"selected":"" %> value="<%= o.id %>"><%= o.nombre %></option>
+            <% } %>
+          </select>
+        </div>
+      </div>
+
       <div class="col-md-2 col-sm-6 col-xs-12 mh50 pr5 pl5">
         <div class="form-group">
           <div class="input-group">
@@ -181,46 +192,6 @@
         </div>
       </div>
 
-      <div class="col-sm-9 col-xs-12 h50 pr5 pl5">
-        <div class="row">
-          <?php /*
-          <div class="col-sm-3 col-xs-12 h50 pr5 pl5">
-            <select class="form-control no-model" id="propiedades_buscar_dormitorios">
-              <option <%= (isEmpty(window.propiedades_dormitorios)) ? "selected":"" %> value="">Dormitorios</option>
-              <option <%= (window.propiedades_dormitorios == "1") ? "selected":"" %> value="1">1</option>
-              <option <%= (window.propiedades_dormitorios == "2") ? "selected":"" %> value="2">2</option>
-              <option <%= (window.propiedades_dormitorios == "3") ? "selected":"" %> value="3">3</option>
-              <option <%= (window.propiedades_dormitorios == "4") ? "selected":"" %> value="4">4</option>
-              <option <%= (window.propiedades_dormitorios == "5") ? "selected":"" %> value="5">5</option>
-              <option <%= (window.propiedades_dormitorios == "6") ? "selected":"" %> value="6">6</option>
-              <option <%= (window.propiedades_dormitorios == "7") ? "selected":"" %> value="7">M&aacute;s</option>
-            </select>
-          </div>
-          <div class="col-sm-3 col-xs-12 h50 pr5 pl5">
-            <select class="form-control no-model" id="propiedades_buscar_banios">
-              <option <%= (isEmpty(window.propiedades_banios)) ? "selected":"" %> value="">Ba&ntilde;os</option>
-              <option <%= (window.propiedades_banios == "1") ? "selected":"" %> value="1">1</option>
-              <option <%= (window.propiedades_banios == "2") ? "selected":"" %> value="2">2</option>
-              <option <%= (window.propiedades_banios == "3") ? "selected":"" %> value="3">3</option>
-              <option <%= (window.propiedades_banios == "4") ? "selected":"" %> value="4">4</option>
-              <option <%= (window.propiedades_banios == "5") ? "selected":"" %> value="5">5</option>
-              <option <%= (window.propiedades_banios == "6") ? "selected":"" %> value="6">6</option>
-              <option <%= (window.propiedades_banios == "7") ? "selected":"" %> value="7">M&aacute;s</option>
-            </select>
-          </div>
-          <div class="col-sm-3 col-xs-12 h50 pr5 pl5">
-            <select class="form-control no-model" id="propiedades_buscar_cocheras">
-              <option <%= (isEmpty(window.propiedades_cocheras)) ? "selected":"" %> value="">Cocheras</option>
-              <option <%= (window.propiedades_cocheras == "1") ? "selected":"" %> value="1">1</option>
-              <option <%= (window.propiedades_cocheras == "2") ? "selected":"" %> value="2">2</option>
-              <option <%= (window.propiedades_cocheras == "3") ? "selected":"" %> value="3">3</option>
-              <option <%= (window.propiedades_cocheras == "4") ? "selected":"" %> value="4">M&aacute;s</option>
-            </select>
-          </div>
-          */ ?>
-          
-        </div>
-      </div>
       <div class="col-sm-4 col-xs-12 h50 pr5 pl5">
         <div class="row">
           <div class="col-md-4">
@@ -243,17 +214,6 @@
       <div class="col-sm-3 col-xs-12 h50 pr5 pl5">
         <div class="form-group">
           <select class="form-control" id="propiedades_buscar_propietarios"></select>
-        </div>
-      </div>
-
-      <div class="col-md-3 col-sm-3 col-xs-12 h50 pr5 pl5">
-        <div class="form-group">
-          <select style="width: 100%" id="propiedades_buscar_tipos_estado">
-            <% for(var i=0;i< window.tipos_estado.length;i++) { %>
-              <% var o = tipos_estado[i]; %>
-              <option <%= (window.propiedades_id_tipo_estado == o.id)?"selected":"" %> value="<%= o.id %>"><%= o.nombre %></option>
-            <% } %>
-          </select>
         </div>
       </div>
 
