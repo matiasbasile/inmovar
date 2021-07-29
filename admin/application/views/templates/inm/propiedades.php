@@ -1024,3 +1024,104 @@
   </div>
 </div>
 </script>
+
+<script type="text/template" id="propiedades_gasto_table">
+<div class="b-a table-responsive">
+  <table id="gastos_tabla" class="table table-small table-striped sortable m-b-none default footable">
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Archivo</th>
+        <th>Concepto</th>
+        <th>Monto</th>
+        <th class="w20">Descripcion</th>
+        <th class="th_acciones w50"></th>
+      </tr>
+    </thead>
+    <tbody class="tbody"></tbody>
+    <tfoot class="tfoot">
+      <tr>
+        <td></td>
+        <td></td>
+        <th></th>
+        <td>Total: $<span class="total_gastos">0</span></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+</script>
+
+<script type="text/template" id="propiedades_gasto_item">
+<td class="data"><%= moment(fecha.substring(0, 10), "YYYY-MM-DD").format("DD/MM/YYYY") %></td>
+<td class="data">
+  <% if (!isEmpty(path)) { %>
+    <a class="text-info" target="_blank" href="/admin/<%= path %>">Ver archivo</a>
+  <% } %>
+</td>
+<td class="data"><%= concepto %></td>
+<td class="data">$ <%= monto %></td>
+<td class="data">
+  <% if (!isEmpty(descripcion)) { %>
+    <i data-toggle="tooltip" title="<%= descripcion %>" class="fa fa-commenting text-warning"></i>
+  <% } %>
+</td>
+<td class="tar td_acciones">
+  <button class="btn btn-white eliminar"><i class="fa fa-trash"></i></button> 
+</td>
+</script>
+
+<script type="text/template" id="propiedades_gasto_edit">
+<div class="panel panel-default">
+  <div class="panel-heading oh">
+    <span class="bold fl fs16 mt7">Agregar gasto</span>
+    <button class="fr btn btn-default cerrar"><i class="fa fa-times"></i></button>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label">Fecha</label>
+          <div class="input-group">
+            <input placeholder="Fecha" type="text" class="form-control" id="propiedades_gastos_fecha" name="fecha"/>
+            <span class="input-group-btn">
+              <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="material-icons">date_range</i></button>
+            </span>        
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label">Monto</label>
+          <input type="number" value="<%= monto %>" class="form-control" id="propiedades_gastos_monto" name="monto">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label">Concepto</label>
+      <select class="form-control" id="propiedades_gastos_concepto" name="concepto">
+        <option <%= (concepto == "Concepto de prueba") ? 'selected' : '' %>>Concepto de prueba</option>
+        <option <%= (concepto == "Concepto de prueba 2") ? 'selected' : '' %>>Concepto de prueba 2</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label">Descripcion</label>
+      <textarea class="form-control" id="propiedades_gastos_descripcion" name="descripcion"><%= descripcion %></textarea>
+    </div>
+    <div class="form-group">
+    <?php
+    single_file_upload(array(
+      "name"=>"path",
+      "label"=>"Subir archivo",
+      "url"=>"gastos/function/save_file/",
+    )); ?>
+    </div>
+  </div>
+  <div class="panel-footer clearfix tar">
+    <button class="btn guardar btn-info">Guardar</button>
+  </div>
+</div>
+</script>

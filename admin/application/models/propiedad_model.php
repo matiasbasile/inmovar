@@ -793,6 +793,7 @@ class Propiedad_Model extends Abstract_Model {
     $images_meli = (isset($data->images_meli)) ? $data->images_meli : array();
     $planos = (isset($data->planos)) ? $data->planos : array();
     $departamentos = (isset($data->departamentos)) ? $data->departamentos : array();
+    $gastos = (isset($data->gastos)) ? $data->gastos : array();
     $productos_relacionados = (isset($data->relacionados)) ? $data->relacionados : array();
     $temporada = (isset($data->temporada)) ? $data->temporada : array();
     $impuestos = (isset($data->impuestos)) ? $data->impuestos : array();
@@ -949,6 +950,20 @@ class Propiedad_Model extends Abstract_Model {
           $j++;
         }
         $i++;
+      }
+
+      // Actualizamos los gastos
+      $this->db->query("DELETE FROM inm_propiedades_gastos WHERE id_propiedad = $id AND id_empresa = $id_empresa");
+      foreach($gastos as $p) {
+        $this->db->insert("inm_propiedades_gastos",array(
+          "id_propiedad"=>$id,
+          "path"=>$p->path,
+          "descripcion"=>$p->descripcion,
+          "fecha"=>$p->fecha,
+          "id_empresa"=>$p->id_empresa,
+          "concepto"=>$p->concepto,
+          "monto"=>$p->monto,
+        ));
       }
           
       // Guardamos las imagenes
@@ -1147,6 +1162,16 @@ class Propiedad_Model extends Abstract_Model {
       $r->images_dptos = array();
       foreach($qq->result() as $rr) $r->images_dptos[] = $rr->path;
       $propiedad->departamentos[] = $r;
+    }
+
+    // Obtenemos los departamentos
+    $sql = "SELECT * ";
+    $sql.= "FROM inm_propiedades_gastos ";
+    $sql.= "WHERE id_propiedad = $id AND id_empresa = $propiedad->id_empresa ";
+    $q = $this->db->query($sql);
+    $propiedad->gastos = array();
+    foreach($q->result() as $r) {
+      $propiedad->gastos[] = $r;
     }
 
     // Obtenemos las imagenes de ese propiedad

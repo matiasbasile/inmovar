@@ -12,6 +12,7 @@
       planos: [],
       images_meli: [],
       departamentos: [],
+      gastos: [],
       relacionados: [], // Productos relacionados
       tipo_inmueble: "",
       tipo_operacion: "",
@@ -1991,6 +1992,22 @@
         });
       },
 
+      "click .nuevo_gasto":function(){
+        var self = this;
+        var v = new app.views.PropiedadGastoEditView({
+          model: new app.models.PropiedadGastos({}),
+          collection: self.gastos,
+        });
+        crearLightboxHTML({
+          "html":v.el,
+          "width":600,
+          "height":140,
+          "callback":function() {
+            console.log(self.gastos);
+          }
+        });
+      },
+
       // ABRIMOS MODAL PARA UPLOAD MULTIPLE
       "click .upload_multiple":function(e) {
         var self = this;
@@ -2114,6 +2131,18 @@
         collection: self.departamentos
       });
       this.$("#propiedad_departamentos").html(this.departamentosTable.el);
+
+      self.gastos = new app.collections.PropiedadesGastos();
+      var dep = this.model.get("gastos");
+      for(var i=0;i<dep.length;i++) {
+        var dd = dep[i];
+        var ddo = new app.models.PropiedadGastos(dd);
+        self.gastos.add(ddo);
+      }
+      this.gastosTable = new app.views.PropiedadesGastosTableView({
+        collection: self.gastos
+      });
+      this.$("#propiedad_gastos").html(this.gastosTable.el);
     },
 
     cargar_propietarios: function(id_propietario) {
@@ -2524,6 +2553,14 @@
           departamentos.push(dpto.toJSON());
         });
         self.model.set({"departamentos":departamentos});
+
+        // Listado de departamentos
+        var gastos = new Array();
+        self.gastos.each(function(gsts){
+          console.log(gsts);
+          gastos.push(gsts.toJSON());
+        });
+        self.model.set({"gastos":gastos});
         
         // Listado de Propiedades Relacionados
         /*
@@ -4086,3 +4123,205 @@
   });
 
 })(app.views, app.models);
+
+// -----------
+//   MODELO
+// -----------
+
+(function ( models ) {
+
+  models.PropiedadGastos = Backbone.Model.extend({
+    urlRoot: "gastos",
+    defaults: {
+      descripcion: "",
+      path: "",
+      monto: "",
+      fecha: "",
+      id_empresa: ID_EMPRESA,
+      id_propiedad: 0,
+      concepto: "",
+    },
+  });
+      
+})( app.models );
+
+
+
+// ----------------------
+//   COLECCION PAGINADA
+// ----------------------
+
+(function (collections, model) {
+
+  collections.PropiedadesGastos = Backbone.Collection.extend({
+    model: model,
+  });
+
+})( app.collections, app.models.PropiedadGastos);
+
+// -----------------------------------------
+//   TABLA DE RESULTADOS
+// -----------------------------------------
+(function ( app ) {
+
+  app.views.PropiedadesGastosTableView = app.mixins.View.extend({
+
+    template: _.template($("#propiedades_gasto_table").html()),
+        
+    myEvents: {
+      "click .buscar":"buscar",
+    },
+        
+    initialize : function (options) {
+      var self = this;
+      _.bindAll(this); // Para que this pueda ser utilizado en las funciones
+      this.options = options;
+      this.id_propiedad = (typeof this.options.id_propiedad != "undefined") ? this.options.id_propiedad : 0;
+      this.render();
+      this.collection.on('all', this.addAll, this);
+      this.addAll();
+    },
+
+    render: function() {
+      $(this.el).html(this.template());
+      return this;
+    },
+        
+    addAll : function () {
+      window.total_gastos = 0;
+      $(this.el).find(".tbody").empty();
+      if (this.collection.length > 0) this.collection.each(this.addOne);
+      this.$(".total_gastos").html(window.total_gastos);
+    },
+        
+    addOne : function ( item ) {
+      var self = this;
+      var view = new app.views.PropiedadesGastoItemResultados({
+        model: item,
+        collection: self.collection,
+      });
+      window.total_gastos += parseFloat(item.get("monto"));
+      console.log(window.total_gastos);
+      this.$(".tbody").append(view.render().el);
+    },
+            
+  });
+
+})(app);
+
+
+
+
+// -----------------------------------------
+//   ITEM DE LA TABLA DE RESULTADOS
+// -----------------------------------------
+(function ( app ) {
+  app.views.PropiedadesGastoItemResultados = app.mixins.View.extend({
+        
+    template: _.template($("#propiedades_gasto_item").html()),
+    tagName: "tr",
+    myEvents: {
+      "click .data":"seleccionar",
+      "click .eliminar":function(e) {
+        var self = this;
+        e.stopPropagation();
+        e.preventDefault();
+        if (confirm("Realmente desea eliminar el elemento?")) {
+          this.model.destroy();  // Eliminamos el modelo
+          $(this.el).remove();  // Lo eliminamos de la vista
+        }
+        return false;
+      },
+    },
+    seleccionar: function() {
+      var self = this;
+      var v = new app.views.PropiedadGastoEditView({
+        model:self.model,
+        collection:self.collection,
+      });
+      crearLightboxHTML({
+        "html":v.el,
+        "width":600,
+        "height":140,
+      });
+    },
+    initialize: function(options) {
+      var self = this;
+      _.bindAll(this);
+      this.options = options;
+      this.render();
+    },
+    render: function() {
+      $(this.el).html(this.template(this.model.toJSON()));
+      return this;
+    },
+  });
+})(app);
+
+
+
+(function ( app ) {
+
+  app.views.PropiedadGastoEditView = app.mixins.View.extend({
+
+    template: _.template($("#propiedades_gasto_edit").html()),
+            
+    myEvents: {
+      "click .guardar": "guardar",
+      "click .cerrar":function() {
+        $('.modal:last').modal('hide');
+      },
+    },    
+                
+    initialize: function(options) {
+      var self = this;
+      _.bindAll(this);
+      
+
+      var edicion = false;
+      var obj = { "id":this.model.id }
+      _.extend(obj,this.model.toJSON());
+      $(this.el).html(this.template(obj));
+      var fecha = this.model.get("fecha");
+      if (isEmpty(fecha)) fecha = new Date();
+      createdatepicker($(this.el).find("#propiedades_gastos_fecha"),fecha);
+    },
+        
+    validar: function() {
+      try {
+        var self = this;
+        
+        var fecha = self.$("#propiedades_gastos_fecha").val();
+        fecha = moment(fecha.substring(0, 10), "DD/MM/YYYY").format("YYYY-MM-DD");
+        this.model.set({
+          "path": ((self.$("#hidden_path").length > 0) ? self.$("#hidden_path").val() : ""),
+          "fecha":fecha,
+        });
+         
+        $(".error").removeClass("error");
+        return true;
+      } catch(e) {
+        console.log(e);
+        return false;
+      }
+    },  
+
+    guardar:function() {
+      var self = this;
+      if (this.validar()) {
+        if (this.model.id == null) {
+          // NO PONEMOS ID = 0, PORQUE SINO NO AGREGA DOS ELEMENTOS CON EL MISMO ID
+          var maxId = 0;
+          this.collection.each(function(item){
+            if (item.id > maxId) maxId = item.id;
+          });
+          maxId++;
+          this.model.set({id:maxId});
+        }
+        this.collection.add(this.model);
+        $('.modal:last').modal('hide');
+      }      
+    },
+          
+  });
+})(app);
