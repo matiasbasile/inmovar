@@ -1083,12 +1083,7 @@
       <div class="col-md-6">
         <div class="form-group">
           <label class="control-label">Fecha</label>
-          <div class="input-group">
-            <input placeholder="Fecha" type="text" class="form-control" id="propiedades_gastos_fecha" name="fecha"/>
-            <span class="input-group-btn">
-              <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="material-icons">date_range</i></button>
-            </span>        
-          </div>
+          <input placeholder="Fecha" type="date" class="form-control" value="<%= fecha %>" id="propiedades_gastos_fecha" name="fecha"/>
         </div>
       </div>
       <div class="col-md-6">
@@ -1102,8 +1097,7 @@
     <div class="form-group">
       <label class="control-label">Concepto</label>
       <select class="form-control" id="propiedades_gastos_concepto" name="concepto">
-        <option <%= (concepto == "Concepto de prueba") ? 'selected' : '' %>>Concepto de prueba</option>
-        <option <%= (concepto == "Concepto de prueba 2") ? 'selected' : '' %>>Concepto de prueba 2</option>
+        <option <%= (concepto == "") ? 'selected' : '' %> value="-">-</option>
       </select>
     </div>
 
@@ -1115,7 +1109,7 @@
     <?php
     single_file_upload(array(
       "name"=>"path",
-      "label"=>"Subir archivo",
+      "label"=>"Subir archivo de comprobante",
       "url"=>"gastos/function/save_file/",
     )); ?>
     </div>

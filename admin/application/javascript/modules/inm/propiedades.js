@@ -4282,9 +4282,6 @@
       var obj = { "id":this.model.id }
       _.extend(obj,this.model.toJSON());
       $(this.el).html(this.template(obj));
-      var fecha = this.model.get("fecha");
-      if (isEmpty(fecha)) fecha = new Date();
-      createdatepicker($(this.el).find("#propiedades_gastos_fecha"),fecha);
     },
         
     validar: function() {
@@ -4296,6 +4293,7 @@
         this.model.set({
           "path": ((self.$("#hidden_path").length > 0) ? self.$("#hidden_path").val() : ""),
           "fecha":fecha,
+          "concepto":self.$("#propiedades_gastos_concepto").val(),
         });
          
         $(".error").removeClass("error");
