@@ -1054,7 +1054,7 @@
 </script>
 
 <script type="text/template" id="propiedades_gasto_item">
-<td class="data"><%= moment(fecha.substring(0, 10), "YYYY-MM-DD").format("DD/MM/YYYY") %></td>
+<td class="data"><%= fecha %></td>
 <td class="data"><%= concepto %></td>
 <td class="data">$ <%= Number(monto).format(2) %></td>
 <td class="data"><%= descripcion %></td>
