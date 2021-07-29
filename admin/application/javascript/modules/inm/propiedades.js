@@ -4289,7 +4289,6 @@
         var self = this;
         
         var fecha = self.$("#propiedades_gastos_fecha").val();
-        fecha = moment(fecha.substring(0, 10), "DD/MM/YYYY").format("YYYY-MM-DD");
         this.model.set({
           "path": ((self.$("#hidden_path").length > 0) ? self.$("#hidden_path").val() : ""),
           "fecha":fecha,
