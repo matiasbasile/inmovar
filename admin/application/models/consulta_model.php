@@ -217,17 +217,17 @@ class Consulta_Model extends Abstract_Model {
     // Si estamos consultando por una propiedad
     if (isset($data->id_referencia) && !empty($data->id_referencia)) {
 
+      $data->id_empresa_relacion = (isset($data->id_empresa_relacion) ? $data->id_empresa_relacion : $data->id_empresa);
       $id_propiedad = $data->id_referencia;
       $this->load->model("Propiedad_Model");
       $propiedad = $this->Propiedad_Model->get($id_propiedad,array(
-        "id_empresa"=>$id_empresa
+        "id_empresa"=>$data->id_empresa_relacion,
       ));
 
       // Guardamos el interes en la propiedad
       $sql = "SELECT * FROM inm_propiedades_contactos WHERE id_empresa = '$data->id_empresa' AND id_contacto = '$data->id_contacto' AND id_propiedad = '$id_propiedad'  ";
       $q_interesado = $this->db->query($sql);
       if ($q_interesado->num_rows() == 0) {
-        $data->id_empresa_relacion = (isset($data->id_empresa_relacion) ? $data->id_empresa_relacion : $data->id_empresa);
         $sql = "INSERT INTO inm_propiedades_contactos (id_empresa,id_contacto,fecha,id_propiedad,id_empresa_propiedad) VALUES(";
         $sql.= " '$id_empresa','$data->id_contacto',NOW(),'$id_propiedad','$data->id_empresa_relacion' )";
         $this->db->query($sql);
