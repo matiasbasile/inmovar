@@ -1408,6 +1408,7 @@ class Propiedad_Model extends Abstract_Model {
     if ($id_empresa === FALSE) return;
     $q = $this->db->query("SELECT * FROM inm_propiedades WHERE id = $id AND id_empresa = $id_empresa ");
     if ($q->num_rows()>0) {
+      $this->db->query("DELETE FROM inm_propiedades_gastos WHERE id_propiedad = $id AND id_empresa = $id_empresa");
       $this->db->query("DELETE FROM inm_propiedades_impuestos WHERE id_propiedad = $id AND id_empresa = $id_empresa");
       $this->db->query("DELETE FROM inm_propiedades_precios WHERE id_propiedad = $id AND id_empresa = $id_empresa");
       $this->db->query("DELETE FROM inm_departamentos WHERE id_propiedad = $id AND id_empresa = $id_empresa");
