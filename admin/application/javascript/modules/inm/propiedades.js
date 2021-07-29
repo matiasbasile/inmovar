@@ -4191,7 +4191,7 @@
       window.total_gastos = 0;
       $(this.el).find(".tbody").empty();
       if (this.collection.length > 0) this.collection.each(this.addOne);
-      this.$(".total_gastos").html(window.total_gastos);
+      this.$(".total_gastos").html("$ "+Number(window.total_gastos).format(2));
     },
         
     addOne : function ( item ) {
