@@ -724,27 +724,6 @@
       <div class="padder">
         <div class="form-group mb0 clearfix expand-link cp">
           <label class="control-label cp">
-            Control de Gastos
-          </label>
-          <div class="panel-description">Indique los distintos gastos asociados a esta propiedad.</div>
-        </div>
-      </div>
-    </div>    
-    <div class="panel-body expand">  
-      <div class="padder">  
-        <div class="tar">
-          <button class="btn btn-info nuevo_gasto">+ Agregar</button>
-        </div>
-        <div id="propiedad_gastos" class="mt10"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <div class="padder">
-        <div class="form-group mb0 clearfix expand-link cp">
-          <label class="control-label cp">
             <?php echo lang(array(
               "es"=>"Multimedia",
               "en"=>"Multimedia",
@@ -801,6 +780,27 @@
       </div>
     </div>
   </div>  
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="padder">
+        <div class="form-group mb0 clearfix expand-link cp">
+          <label class="control-label cp">
+            Control de Gastos
+          </label>
+          <div class="panel-description">Indique los distintos gastos asociados a esta propiedad.</div>
+        </div>
+      </div>
+    </div>    
+    <div class="panel-body expand">  
+      <div class="padder">  
+        <div class="tar">
+          <button class="btn btn-info nuevo_gasto">+ Agregar</button>
+        </div>
+        <div id="propiedad_gastos" class="mt10"></div>
+      </div>
+    </div>
+  </div>
 
   <% if (ID_EMPRESA == 202 || ID_EMPRESA == 208 || ID_EMPRESA == 476 || ID_EMPRESA == 538) { %>
     <div class="panel panel-default">
