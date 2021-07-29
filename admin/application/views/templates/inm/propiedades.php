@@ -1026,8 +1026,8 @@
 </script>
 
 <script type="text/template" id="propiedades_gasto_table">
-<div class="b-a table-responsive">
-  <table id="gastos_tabla" class="table table-small table-striped sortable m-b-none default footable">
+<div class="table-responsive">
+  <table id="gastos_tabla" class="table table-striped sortable m-b-none default footable">
     <thead>
       <tr>
         <th>Fecha</th>
