@@ -724,6 +724,27 @@
       <div class="padder">
         <div class="form-group mb0 clearfix expand-link cp">
           <label class="control-label cp">
+            Gastos
+          </label>
+          <div class="panel-description">Ingrese el dinero invertido en la propiedad.</div>
+        </div>
+      </div>
+    </div>    
+    <div class="panel-body expand">  
+      <div class="padder">  
+        <div class="tar">
+          <button class="btn btn-info nuevo_gasto">+ Agregar</button>
+        </div>
+        <div id="propiedad_gastos" class="mt10"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="padder">
+        <div class="form-group mb0 clearfix expand-link cp">
+          <label class="control-label cp">
             <?php echo lang(array(
               "es"=>"Multimedia",
               "en"=>"Multimedia",
