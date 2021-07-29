@@ -1042,8 +1042,8 @@
     <tfoot class="tfoot">
       <tr>
         <td></td>
-        <td></td>
-        <td>Total: $<span class="total_gastos">0</span></td>
+        <td class="tar fs16 bold">TOTAL:</td>
+        <td><span class="total_gastos fs16 bold">0</span></td>
         <th></th>
         <td></td>
         <td></td>
