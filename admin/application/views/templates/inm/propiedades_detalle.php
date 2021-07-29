@@ -724,9 +724,9 @@
       <div class="padder">
         <div class="form-group mb0 clearfix expand-link cp">
           <label class="control-label cp">
-            Gastos
+            Control de Gastos
           </label>
-          <div class="panel-description">Ingrese el dinero invertido en la propiedad.</div>
+          <div class="panel-description">Indique los distintos gastos asociados a esta propiedad.</div>
         </div>
       </div>
     </div>    
