@@ -305,6 +305,30 @@
         var newOption = new Option(data.text, data.id, true, true);
         this.$('#propiedades_buscar_localidades').append(newOption).trigger('change');
       },
+      "click .setear_dormitorio":function(e) {
+        var data = {
+          id: $(e.currentTarget).data("id"),
+          text: $(e.currentTarget).data("nombre")
+        };
+        var newOption = new Option(data.text, data.id, true, true);
+        this.$('#propiedades_buscar_dormitorios').append(newOption).trigger('change');
+      },
+      "click .setear_banio":function(e) {
+        var data = {
+          id: $(e.currentTarget).data("id"),
+          text: $(e.currentTarget).data("nombre")
+        };
+        var newOption = new Option(data.text, data.id, true, true);
+        this.$('#propiedades_buscar_banios').append(newOption).trigger('change');
+      },
+      "click .setear_cochera":function(e) {
+        var data = {
+          id: $(e.currentTarget).data("id"),
+          text: $(e.currentTarget).data("nombre")
+        };
+        var newOption = new Option(data.text, data.id, true, true);
+        this.$('#propiedades_buscar_cocheras').append(newOption).trigger('change');
+      },
       "click .guardar_busqueda":function() {
         var self = this;
         var localidades = this.$("#propiedades_buscar_localidades").val();
@@ -434,6 +458,42 @@
         self.buscar();
         self.$("#propiedades_buscar_localidades").parent().find(".select2-search__field").attr("placeholder","Localidades");
         self.$("#propiedades_buscar_localidades").parent().find(".select2-search__field").css("width","100%");
+      });
+
+      this.$("#propiedades_buscar_dormitorios").select2({
+        multiple: true,
+        language: "es",
+      });
+      this.$("#propiedades_buscar_dormitorios").parent().find(".select2-search__field").attr("placeholder","Dormitorios");
+      this.$("#propiedades_buscar_dormitorios").parent().find(".select2-search__field").css("width","100%");
+      this.$("#propiedades_buscar_dormitorios").on("change.select2",function(e){
+        self.buscar();
+        self.$("#propiedades_buscar_dormitorios").parent().find(".select2-search__field").attr("placeholder","Dormitorios");
+        self.$("#propiedades_buscar_dormitorios").parent().find(".select2-search__field").css("width","100%");
+      });
+
+      this.$("#propiedades_buscar_banios").select2({
+        multiple: true,
+        language: "es",
+      });
+      this.$("#propiedades_buscar_banios").parent().find(".select2-search__field").attr("placeholder","Baños");
+      this.$("#propiedades_buscar_banios").parent().find(".select2-search__field").css("width","100%");
+      this.$("#propiedades_buscar_banios").on("change.select2",function(e){
+        self.buscar();
+        self.$("#propiedades_buscar_banios").parent().find(".select2-search__field").attr("placeholder","Baños");
+        self.$("#propiedades_buscar_banios").parent().find(".select2-search__field").css("width","100%");
+      });
+
+      this.$("#propiedades_buscar_cocheras").select2({
+        multiple: true,
+        language: "es",
+      });
+      this.$("#propiedades_buscar_cocheras").parent().find(".select2-search__field").attr("placeholder","Cocheras");
+      this.$("#propiedades_buscar_cocheras").parent().find(".select2-search__field").css("width","100%");
+      this.$("#propiedades_buscar_cocheras").on("change.select2",function(e){
+        self.buscar();
+        self.$("#propiedades_buscar_cocheras").parent().find(".select2-search__field").attr("placeholder","Cocheras");
+        self.$("#propiedades_buscar_cocheras").parent().find(".select2-search__field").css("width","100%");
       });
 
       /*
@@ -613,18 +673,25 @@
         window.propiedades_monto_2 = this.$("#propiedades_buscar_monto_2").val();  
         cambio_parametros = true;
       }
+
       if (window.propiedades_dormitorios != this.$("#propiedades_buscar_dormitorios").val()) {
-        window.propiedades_dormitorios = this.$("#propiedades_buscar_dormitorios").val();  
+        window.propiedades_dormitorios = this.$("#propiedades_buscar_dormitorios").val();
+        if ($.isArray(window.propiedades_dormitorios)) window.propiedades_dormitorios = window.propiedades_dormitorios.join("-");
         cambio_parametros = true;
       }
+
       if (window.propiedades_banios != this.$("#propiedades_buscar_banios").val()) {
-        window.propiedades_banios = this.$("#propiedades_buscar_banios").val();  
+        window.propiedades_banios = this.$("#propiedades_buscar_banios").val();
+        if ($.isArray(window.propiedades_banios)) window.propiedades_banios = window.propiedades_banios.join("-");
         cambio_parametros = true;
       }
+
       if (window.propiedades_cocheras != this.$("#propiedades_buscar_cocheras").val()) {
-        window.propiedades_cocheras = this.$("#propiedades_buscar_cocheras").val();  
+        window.propiedades_cocheras = this.$("#propiedades_buscar_cocheras").val();
+        if ($.isArray(window.propiedades_cocheras)) window.propiedades_cocheras = window.propiedades_cocheras.join("-");
         cambio_parametros = true;
       }
+
       if (window.propiedades_entre_calles != this.$("#propiedades_entre_calles").val()) {
         window.propiedades_entre_calles = this.$("#propiedades_entre_calles").val();  
         cambio_parametros = true;

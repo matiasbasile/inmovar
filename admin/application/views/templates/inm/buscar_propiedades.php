@@ -82,6 +82,11 @@
           </div>
         </div>
       </div>
+      <div class="col-md-2 col-sm-6 col-xs-12 h50 pr5 pl5">
+        <div class="form-group">
+          <input type="text" class="form-control no-model" id="propiedades_buscar_codigo" placeholder="Código de propiedad">
+        </div>
+      </div>
       */ ?>
 
       <div class="col-md-3 col-sm-6 col-xs-12 h50 pr5 pl5">
@@ -107,8 +112,78 @@
         </div>
       </div>
 
+      <div class="col-md-2 col-sm-6 col-xs-12 mh50 pr5 pl5">
+        <div class="form-group">
+          <div class="input-group">
+            <select multiple="multiple" class="form-control no-model" id="propiedades_buscar_dormitorios"></select>
+            <span class="input-group-btn">
+              <div class="btn-group dropdown pull-right">
+                <button class="btn btn-default dropdown-toggle btn-addon" data-toggle="dropdown">
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a href="javascript:void(0)" data-id="1" data-nombre="1" class="setear_dormitorio">1</a></li>
+                  <li><a href="javascript:void(0)" data-id="2" data-nombre="2" class="setear_dormitorio">2</a></li>
+                  <li><a href="javascript:void(0)" data-id="3" data-nombre="3" class="setear_dormitorio">3</a></li>
+                  <li><a href="javascript:void(0)" data-id="4" data-nombre="4" class="setear_dormitorio">4</a></li>
+                  <li><a href="javascript:void(0)" data-id="5" data-nombre="5" class="setear_dormitorio">5</a></li>
+                  <li><a href="javascript:void(0)" data-id="6" data-nombre="6" class="setear_dormitorio">6</a></li>
+                  <li><a href="javascript:void(0)" data-id="7" data-nombre="7" class="setear_dormitorio">Más</a></li>
+                </ul>
+              </div>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-2 col-sm-6 col-xs-12 mh50 pr5 pl5">
+        <div class="form-group">
+          <div class="input-group">
+            <select multiple="multiple" class="form-control no-model" id="propiedades_buscar_banios"></select>
+            <span class="input-group-btn">
+              <div class="btn-group dropdown pull-right">
+                <button class="btn btn-default dropdown-toggle btn-addon" data-toggle="dropdown">
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a href="javascript:void(0)" data-id="1" data-nombre="1" class="setear_banio">1</a></li>
+                  <li><a href="javascript:void(0)" data-id="2" data-nombre="2" class="setear_banio">2</a></li>
+                  <li><a href="javascript:void(0)" data-id="3" data-nombre="3" class="setear_banio">3</a></li>
+                  <li><a href="javascript:void(0)" data-id="4" data-nombre="4" class="setear_banio">4</a></li>
+                  <li><a href="javascript:void(0)" data-id="5" data-nombre="5" class="setear_banio">5</a></li>
+                  <li><a href="javascript:void(0)" data-id="6" data-nombre="6" class="setear_banio">6</a></li>
+                  <li><a href="javascript:void(0)" data-id="7" data-nombre="7" class="setear_banio">Más</a></li>
+                </ul>
+              </div>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-2 col-sm-6 col-xs-12 mh50 pr5 pl5">
+        <div class="form-group">
+          <div class="input-group">
+            <select multiple="multiple" class="form-control no-model" id="propiedades_buscar_cocheras"></select>
+            <span class="input-group-btn">
+              <div class="btn-group dropdown pull-right">
+                <button class="btn btn-default dropdown-toggle btn-addon" data-toggle="dropdown">
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a href="javascript:void(0)" data-id="1" data-nombre="1" class="setear_cochera">1</a></li>
+                  <li><a href="javascript:void(0)" data-id="2" data-nombre="2" class="setear_cochera">2</a></li>
+                  <li><a href="javascript:void(0)" data-id="3" data-nombre="3" class="setear_cochera">3</a></li>
+                  <li><a href="javascript:void(0)" data-id="4" data-nombre="4" class="setear_cochera">Más</a></li>
+                </ul>
+              </div>
+            </span>
+          </div>
+        </div>
+      </div>
+
       <div class="col-sm-9 col-xs-12 h50 pr5 pl5">
         <div class="row">
+          <?php /*
           <div class="col-sm-3 col-xs-12 h50 pr5 pl5">
             <select class="form-control no-model" id="propiedades_buscar_dormitorios">
               <option <%= (isEmpty(window.propiedades_dormitorios)) ? "selected":"" %> value="">Dormitorios</option>
@@ -142,16 +217,8 @@
               <option <%= (window.propiedades_cocheras == "4") ? "selected":"" %> value="4">M&aacute;s</option>
             </select>
           </div>
-          <div class="col-md-3 col-sm-3 col-xs-12 h50 pr5 pl5">
-            <div class="form-group">
-              <select style="width: 100%" id="propiedades_buscar_tipos_estado">
-                <% for(var i=0;i< window.tipos_estado.length;i++) { %>
-                  <% var o = tipos_estado[i]; %>
-                  <option <%= (window.propiedades_id_tipo_estado == o.id)?"selected":"" %> value="<%= o.id %>"><%= o.nombre %></option>
-                <% } %>
-              </select>
-            </div>
-          </div>
+          */ ?>
+          
         </div>
       </div>
       <div class="col-sm-4 col-xs-12 h50 pr5 pl5">
@@ -176,6 +243,17 @@
       <div class="col-sm-3 col-xs-12 h50 pr5 pl5">
         <div class="form-group">
           <select class="form-control" id="propiedades_buscar_propietarios"></select>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-3 col-xs-12 h50 pr5 pl5">
+        <div class="form-group">
+          <select style="width: 100%" id="propiedades_buscar_tipos_estado">
+            <% for(var i=0;i< window.tipos_estado.length;i++) { %>
+              <% var o = tipos_estado[i]; %>
+              <option <%= (window.propiedades_id_tipo_estado == o.id)?"selected":"" %> value="<%= o.id %>"><%= o.nombre %></option>
+            <% } %>
+          </select>
         </div>
       </div>
 

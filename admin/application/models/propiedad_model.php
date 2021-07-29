@@ -539,16 +539,46 @@ class Propiedad_Model extends Abstract_Model {
     if ($apto_banco == 1) $sql_where.= "AND A.apto_banco = 1 ";
     if ($acepta_permuta == 1) $sql_where.= "AND A.acepta_permuta = 1 ";
     if (!empty($dormitorios)) {
-      if ($dormitorios == "7") $sql_where.= "AND A.dormitorios > 6 ";
-      else $sql_where.= "AND A.dormitorios = $dormitorios ";
+      if (strpos($dormitorios,"-")>0) {
+        $dormitorios_array = explode("-", $dormitorios);
+        foreach($dormitorios_array as &$dom) $dom = intval($dom);
+        $dormitorios = implode(",", $dormitorios_array);
+        $sql_where.= "AND (A.dormitorios IN ($dormitorios) ";
+        if (in_array("7", $dormitorios_array)) $sql_where.= "OR A.dormitorios > 6 ";
+        $sql_where.= ") ";
+      } else {
+        $dormitorios = intval($dormitorios);
+        if ($dormitorios == "7") $sql_where.= "AND A.dormitorios > 6 ";
+        else $sql_where.= "AND A.dormitorios = $dormitorios ";
+      }
     }
     if (!empty($banios)) {
-      if ($banios == "7") $sql_where.= "AND A.banios > 6 ";
-      else $sql_where.= "AND A.banios = $banios ";
+      if (strpos($banios,"-")>0) {
+        $banios_array = explode("-", $banios);
+        foreach($banios_array as &$dom) $dom = intval($dom);
+        $banios = implode(",", $banios_array);
+        $sql_where.= "AND (A.banios IN ($banios) ";
+        if (in_array("7", $banios_array)) $sql_where.= "OR A.banios > 6 ";
+        $sql_where.= ") ";
+      } else {
+        $banios = intval($banios);
+        if ($banios == "7") $sql_where.= "AND A.banios > 6 ";
+        else $sql_where.= "AND A.banios = $banios ";
+      }
     }
     if (!empty($cocheras)) {
-      if ($cocheras == "4") $sql_where.= "AND A.cocheras > 3 ";
-      else $sql_where.= "AND A.cocheras = $cocheras ";
+      if (strpos($cocheras,"-")>0) {
+        $cocheras_array = explode("-", $cocheras);
+        foreach($cocheras_array as &$dom) $dom = intval($dom);
+        $cocheras = implode(",", $cocheras_array);
+        $sql_where.= "AND (A.cocheras IN ($cocheras) ";
+        if (in_array("4", $cocheras_array)) $sql_where.= "OR A.cocheras > 3 ";
+        $sql_where.= ") ";
+      } else {
+        $cocheras = intval($cocheras);
+        if ($cocheras == "4") $sql_where.= "AND A.cocheras > 3 ";
+        else $sql_where.= "AND A.cocheras = $cocheras ";
+      }
     }
 
     if ($monto_moneda == 'U$D') {
