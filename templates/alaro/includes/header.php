@@ -24,7 +24,7 @@
                     <div class="feature-item">
                       <div class="feature-image"> 
                         <a href="<?php echo mklink($r->link); ?>">
-                          <?php if (file_exists("/home/ubuntu/inmovar/".$r->thumbnail)) { ?>
+                          <?php if (file_exists("/home/ubuntu/inmovar".$r->thumbnail)) { ?>
                             <img class="image-thumb-header" src="<?php echo $r->thumbnail ?>" alt="<?php echo $r->nombre ?>" />
                           <?php } else { ?>
                             <img class="image-thumb-header" src="/admin/<?php echo $r->path ?>" alt="<?php echo $r->nombre ?>" />

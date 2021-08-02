@@ -255,7 +255,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
           <?php 
           $i=0;
           foreach($propiedad->images as $img) { 
-            list($width, $height, $type, $attr) = getimagesize("/home/ubuntu/inmovar/".$img); ?>
+            list($width, $height, $type, $attr) = getimagesize("/home/ubuntu/inmovar".$img); ?>
             <div class="image-wrapper" data-width="<?php echo $width ?>" data-height="<?php echo $height ?>">
               <img data-i="<?php echo $i ?>" class="image-thumb" src="<?php echo $img ?>"/>
             </div>
