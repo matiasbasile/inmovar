@@ -1,0 +1,39 @@
+/* REVOLUTION SLIDER CSS */
+.revolution-container{float:left; width:100%; position:relative; color:#fff; height: 945px !important;}
+.tp-simpleresponsive ul li{position:absolute; visibility:hidden;}
+.tp-simpleresponsive ul li:before{content: ""; position: absolute; top: 0; left: 0; height: 100%; z-index: 1 !important; width: 100%; background: rgba(0,0,0,0.8);}
+.tp-hide-revslider, .tp-caption.tp-hidden-caption{visibility:hidden !important; display:none !important;}
+.tp-caption{position:absolute; left:0 !important; top: 20% !important; right:0 !important; width:1170px; margin:0 auto !important; line-height:normal !important; z-index:1;}
+.tp-caption-demo .tp-caption{position:relative !important; display:inline-block; margin-bottom:10px; margin-right:20px !important;}
+.tp-simpleresponsive .caption, .tp-simpleresponsive .tp-caption{position:absolute; visibility:hidden; -webkit-font-smoothing:antialiased !important;}
+.tpclear{clear:both;}
+.tp-loader{top:50%; left:50%; z-index:10000; position:absolute;}
+.tp-bullets{position:absolute; left:0 !important; z-index:99; width: 100%; bottom: 35px !important; text-align: center; margin: 0 !important;}
+.tp-bullets .bullet{display: inline-block; width:10px; height:10px; margin:0 5px; cursor:pointer; border: 1px solid #ffffff; -webkit-border-radius: 100px; border-radius: 100px;}
+.tp-bullets .bullet.selected{background:#ffffff;}
+.tp-bgimg{z-index: 0;}
+
+/*Responsive CSS*/
+
+@media screen and (max-width:1299px) {
+.tp-caption{width: 100%; padding: 0 35px;}
+}
+@media screen and (max-width:1249px) {
+.revolution-container{height:630px !important;}
+}
+@media screen and (max-width:1024px) {
+.tp-caption{top: 130px !important;}
+}
+@media screen and (max-width:800px) {
+.revolution-container .head-title{font-size: 36px; line-height: normal;}
+.revolution-container .sub-title{font-size: 20px; line-height: normal;}
+.revolution-container{height:550px !important;}
+}
+
+@media screen and (max-width:767px) {
+.revolution-container{height:400px !important;}
+.tp-caption{top:100px !important;}
+}
+@media screen and (max-width:479px) {
+.tp-caption{top: 100px !important;}
+}
