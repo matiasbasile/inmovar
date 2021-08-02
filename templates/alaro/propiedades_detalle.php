@@ -45,7 +45,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
   <meta property="og:type" content="article" />
   <meta property="og:title" content="<?php echo $propiedad->nombre; ?>" />
   <meta property="og:description" content="<?php echo $direccion; ?>" />
-  <meta property="og:image" content="<?php echo current_url(TRUE)."/sistema/".((!empty($propiedad->path)) ? $propiedad->path : $empresa->no_imagen); ?>"/>
+  <meta property="og:image" content="<?php echo current_url(TRUE)."/admin/".((!empty($propiedad->path)) ? $propiedad->path : $empresa->no_imagen); ?>"/>
   <?php echo $propiedad->codigo_seguimiento; ?>
   <style type="text/css">
     .barra-izq { position: relative; right: -40px }
@@ -96,7 +96,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
         <div class="col-md-4">
           <div class="feature-item bn">
             <div class="project-list"> 
-              <img src="/sistema/<?php echo $propiedad->path ?>" alt="<?php echo $propiedad->nombre ?>" />
+              <img src="/admin/<?php echo $propiedad->path ?>" alt="<?php echo $propiedad->nombre ?>" />
             </div>
             <div class="block text-center">
               <div class="proy-finalizado"> 
@@ -114,7 +114,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
   <?php } else { ?>
 
     <!-- PRODUCT DETAIL BANNER -->
-    <div class="banner-blog" <?php echo (!empty($propiedad->custom_6)) ? "style='background-image:url(/sistema/$propiedad->custom_6)' ":"" ?>>
+    <div class="banner-blog" <?php echo (!empty($propiedad->custom_6)) ? "style='background-image:url(/admin/$propiedad->custom_6)' ":"" ?>>
       <div class="banner-caption">
         <div class="center-content">
           <div class="align-center">
@@ -139,7 +139,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
               <div class="white-box">
                 <?php if (!empty($propiedad->custom_5)) { ?>
                   <div class="box-logo">
-                    <img src="/sistema/<?php echo $propiedad->custom_5 ?>" alt="Logo" />
+                    <img src="/admin/<?php echo $propiedad->custom_5 ?>" alt="Logo" />
                   </div>
                 <?php } ?>
             <?php /* if (!empty($propiedad->custom_2)) { ?>
@@ -185,7 +185,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
               <div class="block" style="margin-bottom: 10px;">
                 <?php if (!empty($propiedad->archivo)) { ?>
                   <div class="pull-left">
-                    <a class="btn btn-red" target="_blank" href="/sistema/<?php echo $propiedad->archivo ?>">descargar brochure</a>
+                    <a class="btn btn-red" target="_blank" href="/admin/<?php echo $propiedad->archivo ?>">descargar brochure</a>
                   </div>
                 <?php } ?>
                 <div class="pull-left">
@@ -320,7 +320,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
                         <?php foreach($depto->images_dptos as $img) { ?>
                           <li>
                             <div class="col-md-6"> 
-                              <img src="/sistema/<?php echo $img ?>" alt="Plot Map" />
+                              <img src="/admin/<?php echo $img ?>" alt="Plot Map" />
                               <?php if ($depto->disponible == 1) { ?>
                                 <div class="sticker">DISPONIBLE</div>
                               <?php } else { ?>
@@ -601,7 +601,7 @@ if (screen.width <= 767) {
       "id_origen": ((id_origen != 0) ? id_origen : ((id_propiedad != 0)?1:6)),
     }
     $.ajax({
-      "url":"/sistema/consultas/function/enviar/",
+      "url":"/admin/consultas/function/enviar/",
       "type":"post",
       "dataType":"json",
       "data":datos,

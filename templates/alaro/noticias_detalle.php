@@ -1,5 +1,5 @@
 <?php
-include_once("sistema/application/helpers/fecha_helper.php");
+include_once("admin/application/helpers/fecha_helper.php");
 include_once("models/Entrada_Model.php");
 $entrada_model = new Entrada_Model($empresa->id,$conx);
 include_once("models/Web_Model.php");

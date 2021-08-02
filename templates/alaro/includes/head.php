@@ -11,14 +11,14 @@
 <link rel="stylesheet" type="text/css" href="css/swiper.min.css" media="all">
 <link rel="stylesheet" type="text/css" href="css/custom-scroll.css" media="all">
 <link rel="stylesheet" href="css/fancybox.css" media="screen">
-<link href="/sistema/resources/css/common.css" rel="stylesheet" media="screen">
-<script type="text/javascript" src="/sistema/resources/js/common.js"></script>
-<script type="text/javascript" src="/sistema/resources/js/main.js"></script>
+<link href="/admin/resources/css/common.css" rel="stylesheet" media="screen">
+<script type="text/javascript" src="/admin/resources/js/common.js"></script>
+<script type="text/javascript" src="/admin/resources/js/main.js"></script>
 <?php if (!empty($empresa->analytics)) { echo html_entity_decode($empresa->analytics,ENT_QUOTES); } ?>
 <?php if (!empty($empresa->zopim)) { echo html_entity_decode($empresa->zopim,ENT_QUOTES); } ?>
 <?php if (!empty($empresa->gtm_head)) { echo html_entity_decode($empresa->gtm_head,ENT_QUOTES); } ?>
 <script type="text/javascript">
-// Constantes que se utilizan en el sistema
+// Constantes que se utilizan en el admin
 const ID_EMPRESA = "<?php echo $empresa->id ?>";
 const CURRENT_URL = "<?php echo current_url(); ?>";
 </script>

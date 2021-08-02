@@ -27,7 +27,7 @@
                           <?php if (file_exists("/home/ubuntu/data/".$r->thumbnail)) { ?>
                             <img class="image-thumb-header" src="<?php echo $r->thumbnail ?>" alt="<?php echo $r->nombre ?>" />
                           <?php } else { ?>
-                            <img class="image-thumb-header" src="/sistema/<?php echo $r->path ?>" alt="<?php echo $r->nombre ?>" />
+                            <img class="image-thumb-header" src="/admin/<?php echo $r->path ?>" alt="<?php echo $r->nombre ?>" />
                           <?php } ?>
                         </a>
                         <div class="about-product"> 

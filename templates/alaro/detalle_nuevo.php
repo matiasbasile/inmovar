@@ -42,7 +42,7 @@ else $vc_moneda = "$";
   <meta property="og:type" content="website" />
   <meta property="og:title" content="<?php echo ($propiedad->nombre); ?>" />
   <meta property="og:description" content="<?php echo str_replace("\n","",(strip_tags(html_entity_decode($propiedad->texto,ENT_QUOTES)))); ?>" />
-  <meta property="og:image" content="<?php echo current_url(TRUE); ?>/sistema/<?php echo $propiedad->path; ?>"/>
+  <meta property="og:image" content="<?php echo current_url(TRUE); ?>/admin/<?php echo $propiedad->path; ?>"/>
   <script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
   <style type="text/css">
   	.slick-dots { display: none !important }
@@ -87,7 +87,7 @@ else $vc_moneda = "$";
             </div>
           <?php } else { ?>
             <div class="banner">
-              <img src="/sistema/<?php echo $propiedad->path ?>" class="contain-detail">
+              <img src="/admin/<?php echo $propiedad->path ?>" class="contain-detail">
             </div>
           <?php } ?>
           <div class="detail-top">
@@ -265,7 +265,7 @@ else $vc_moneda = "$";
             <div class="item">
               <div class="product-list-item">
                 <div class="product-img">
-                  <a href="<?php echo ($p->link_propiedad) ?>"><img class="cover-home" src="/sistema/<?php echo $p->path ?>" alt="Product"></a>
+                  <a href="<?php echo ($p->link_propiedad) ?>"><img class="cover-home" src="/admin/<?php echo $p->path ?>" alt="Product"></a>
                 </div>
                 <div class="product-details">
                   <h4><?php echo $p->nombre ?></h4>
@@ -355,7 +355,7 @@ else $vc_moneda = "$";
         "id_empresa":ID_EMPRESA,
       }
       jQuery.ajax({
-        "url":"/sistema/consultas/function/enviar/",
+        "url":"/admin/consultas/function/enviar/",
         "type":"post",
         "dataType":"json",
         "data":datos,
@@ -415,7 +415,7 @@ else $vc_moneda = "$";
         "id_empresa":ID_EMPRESA,
       }
       jQuery.ajax({
-        "url":"/sistema/consultas/function/enviar/",
+        "url":"/admin/consultas/function/enviar/",
         "type":"post",
         "dataType":"json",
         "data":datos,

@@ -105,7 +105,7 @@ if ($tipo_operacion->id == 8) {
               <div class="col-md-3">
                 <div class="feature-item">
                   <?php mostrar_etiqueta($r) ?>
-                  <div class="feature-image"> <a href="<?php echo mklink($r->link); ?>"><img src="/sistema/<?php echo $r->path ?>" alt="<?php echo $r->nombre ?>" /></a>
+                  <div class="feature-image"> <a href="<?php echo mklink($r->link); ?>"><img src="/admin/<?php echo $r->path ?>" alt="<?php echo $r->nombre ?>" /></a>
                     <div class="overlay-info">
                       <div class="center-content">
                         <div class="align-center"> <a href="<?php echo mklink($r->link); ?>"></a> </div>
@@ -127,7 +127,7 @@ if ($tipo_operacion->id == 8) {
               <div class="col-md-3">
                 <div class="feature-item">
                   <?php mostrar_etiqueta($r) ?>
-                  <div class="feature-image"> <a href="<?php echo mklink($r->link); ?>"><img src="/sistema/<?php echo $r->path ?>" alt="<?php echo $r->nombre ?>" /></a>
+                  <div class="feature-image"> <a href="<?php echo mklink($r->link); ?>"><img src="/admin/<?php echo $r->path ?>" alt="<?php echo $r->nombre ?>" /></a>
                     <div class="overlay-info">
                       <div class="center-content">
                         <div class="align-center"> <a href="<?php echo mklink($r->link); ?>"></a> </div>
@@ -154,7 +154,7 @@ if ($tipo_operacion->id == 8) {
               <div class="col-md-3">
                 <div class="feature-item">
                   <?php mostrar_etiqueta($r) ?>
-                  <div class="feature-image"> <a href="<?php echo mklink($r->link); ?>"><img src="/sistema/<?php echo $r->path ?>" alt="<?php echo $r->nombre ?>" /></a>
+                  <div class="feature-image"> <a href="<?php echo mklink($r->link); ?>"><img src="/admin/<?php echo $r->path ?>" alt="<?php echo $r->nombre ?>" /></a>
                     <div class="overlay-info">
                       <div class="center-content">
                         <div class="align-center"> <a href="<?php echo mklink($r->link); ?>"></a> </div>

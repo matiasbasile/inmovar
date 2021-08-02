@@ -76,7 +76,7 @@ error_reporting(E_ALL); ?>
 				foreach($en_construccion_result as $p) { 
 			?>
 				<div class="feature-item">
-	  			<div class="feature-image"> <a class="principal" href="<?php echo mklink ($p->link) ?>"><img src="/sistema/<?php echo $p->path?>" alt="Product" /></a>
+	  			<div class="feature-image"> <a class="principal" href="<?php echo mklink ($p->link) ?>"><img src="/admin/<?php echo $p->path?>" alt="Product" /></a>
 	  				<?php if (!empty($p->etiquetas)) {  ?>
 		  				<div class="label-text"><?php foreach ($p->etiquetas as $etiq) { echo $etiq->nombre ; } ?></div>
 		  			<?php } ?>
@@ -186,7 +186,7 @@ error_reporting(E_ALL); ?>
 		  			<div class="col-md-4">
 		  				<div class="feature-item">
 		  					<div class="feature-image">
-		  						<a href="<?php echo mklink ($d->link) ?>"><img src="/sistema/<?php echo $d->path ?>" alt="Product" /></a>
+		  						<a href="<?php echo mklink ($d->link) ?>"><img src="/admin/<?php echo $d->path ?>" alt="Product" /></a>
 		  						<div class="label-text">ventas</div>
 		  					</div>
 		  					<div class="feature-info">
@@ -551,7 +551,7 @@ error_reporting(E_ALL); ?>
               "id_empresa":ID_EMPRESA,
             }
             jQuery.ajax({
-              "url":"/sistema/consultas/function/enviar/",
+              "url":"/admin/consultas/function/enviar/",
               "type":"post",
               "dataType":"json",
               "data":datos,
