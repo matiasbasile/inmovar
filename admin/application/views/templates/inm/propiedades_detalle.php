@@ -21,6 +21,14 @@
     </div>
     <div class="panel-body expand" style="display:block">    
       <div class="padder">
+
+        <% if (ID_EMPRESA == 1575) { %>
+          <div class="form-group">
+            <label class="control-label">Título</label>
+            <input <%= (!edicion)?"disabled":"" %> class="form-control" id="propiedad_nombre" type="text" name="nombre">
+          </div>
+        <% } %>
+
         <div class="row">
           <div class="col-md-2">
             <div class="form-group">
