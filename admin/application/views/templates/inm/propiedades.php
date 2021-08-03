@@ -140,8 +140,12 @@
     <% } %>
   </td>
   <td class="<%= clase %> data">
-    <%= tipo_inmueble %> en <%= tipo_operacion %><br/>
-    <span class="bold"><%= direccion_completa %></span><br/>
+    <% if (ID_EMPRESA == 1575) { %>
+      <%= nombre %>
+    <% } else { %>
+      <%= tipo_inmueble %> en <%= tipo_operacion %><br/>
+      <span class="bold"><%= direccion_completa %></span><br/>
+    <% } %>
     <%= localidad %>
   </td>
   <td class="<%= clase %> data">
