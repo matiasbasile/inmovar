@@ -11,8 +11,8 @@ $propiedad_model = new Propiedad_Model($empresa->id,$conx);
 $propiedad = $propiedad_model->get($id,array(
   "buscar_total_visitas"=>1,
 ));
-?>
-<?php if ($propiedad->tipo_operacion_link == "ventas" || $propiedad->tipo_operacion_link == "alquileres") { 
+echo $propiedad->tipo_operacion_link;
+if ($propiedad->tipo_operacion_link == "ventas" || $propiedad->tipo_operacion_link == "alquileres") { 
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
