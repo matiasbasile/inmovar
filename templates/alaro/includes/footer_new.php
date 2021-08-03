@@ -58,7 +58,7 @@
 						<a class="capitalize" href="<?php echo mklink("contacto/"); ?>">Contacto</a>
 					</li>
 					<li class="<?php echo($nombre_pagina=="proyectos-finalizados")?"active":"" ?>">
-						<a class="capitalize" href="<?php echo mklink("propiedades/proyectos-finalizados/"); ?>">proyectos realizados</a>
+						<a class="capitalize" href="<?php echo mklink("propiedades/proyectos-finalizados/"); ?>">proyectos finalizados</a>
 					</li>
 					
 			         
