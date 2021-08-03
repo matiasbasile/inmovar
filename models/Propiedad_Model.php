@@ -896,7 +896,7 @@ class Propiedad_Model {
 
     $p->plain_text = (!empty($p->descripcion)) ? $this->encod($p->descripcion) : $this->encod(strip_tags($p->texto,"<br>"));
 
-    $p->nombre = $p->tipo_inmueble." en ".$p->tipo_operacion." en ".$p->localidad;
+    $p->nombre = ($p->id_empresa != 1575) ? ($p->tipo_inmueble." en ".$p->tipo_operacion." en ".$p->localidad) : $p->nombre;
     $p->nombre = $this->encod($p->nombre);
     if (isset($p->codigo_completo)) $p->codigo = $p->codigo_completo;
 
