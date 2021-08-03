@@ -61,6 +61,7 @@ $config["limit"] = 0;
 $config["offset"] = 999999;
 $config["order_by"] = "A.fecha_publicacion DESC, A.id DESC ";
 $config["buscar_etiquetas"] = 1;
+$config["solo_propias"] = 1;
 
 if ($tipo_operacion->id == 8) {
   $config["id_tipo_operacion"] = 8;

@@ -72,6 +72,7 @@ error_reporting(E_ALL); ?>
   	<div class="on-going" id="on-going"> 
   		<?php 
   		  $config["id_tipo_operacion"] = 6;
+  		  $config["solo_propias"] = 1;
 				$en_construccion_result = $propiedad_model->get_list($config);
 				foreach($en_construccion_result as $p) { 
 			?>
@@ -160,7 +161,9 @@ error_reporting(E_ALL); ?>
   	</div>
   </div>
 
-  <?php $destacados = $propiedad_model->get_list(array())?>
+  <?php $destacados = $propiedad_model->get_list(array(
+  	"solo_propias"=>1,
+  ))?>
 	 <?php if (!empty($destacados)) { ?>
     <div class="featured-departments">
 	  	<div class="container">
