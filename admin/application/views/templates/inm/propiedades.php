@@ -145,8 +145,8 @@
     <% } else { %>
       <%= tipo_inmueble %> en <%= tipo_operacion %><br/>
       <span class="bold"><%= direccion_completa %></span><br/>
+      <%= localidad %>
     <% } %>
-    <%= localidad %>
   </td>
   <td class="<%= clase %> data">
     <%= tipo_operacion %><br/>
