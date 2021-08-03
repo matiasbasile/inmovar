@@ -84,10 +84,10 @@ $empresa->telefono_num_2 = preg_replace($regex, '', $empresa->telefono_2);
   <section class="page-title">
     <div class="container">
       <h1>
-        <?php echo ($vc_link_tipo_operacion == "alquileres")?"Alquilar":"" ?>
-        <?php echo ($vc_link_tipo_operacion == "ventas")?"Comprar":"" ?>
+        <?php echo ($vc_link_tipo_operacion == "alquileres")?"Alquileres":"" ?>
+        <?php echo ($vc_link_tipo_operacion == "ventas")?"Ventas":"" ?>
         <?php echo ($vc_link_tipo_operacion == "emprendimientos")?"Emprendimientos":"" ?>
-        <?php echo ($vc_link_tipo_operacion == "proyectos-finalizados")?"Proyectos En Curso":"" ?>
+        <?php echo ($vc_link_tipo_operacion == "proyectos-finalizados")?"Proyectos Finalizados":"" ?>
         <?php echo ($vc_link_tipo_operacion == "proximos-proyectos")?"Edificios en desarrollo":"" ?>
         <?php echo ($vc_link_tipo_operacion == "proyectos-a-estrenar" || $vc_link_tipo_operacion == "proyectos-en-construccion")?"Edificios en desarrollo":"" ?>
       </h1>
@@ -222,7 +222,7 @@ $empresa->telefono_num_2 = preg_replace($regex, '', $empresa->telefono_2);
             <?php echo ($vc_link_tipo_operacion == "alquileres")?"Propiedades en alquiler":"" ?>
             <?php echo ($vc_link_tipo_operacion == "ventas")?"Propiedades en venta":"" ?>
             <?php echo ($vc_link_tipo_operacion == "emprendimientos")?"Emprendimientos":"" ?>
-            <?php echo ($vc_link_tipo_operacion == "proyectos-finalizados")?"Proyectos En Curso":"" ?>
+            <?php echo ($vc_link_tipo_operacion == "proyectos-finalizados")?"Todos los proyectos":"" ?>
             <?php echo ($vc_link_tipo_operacion == "proximos-proyectos")?"Todos los proyectos":"" ?>
             <?php echo ($vc_link_tipo_operacion == "proyectos-a-estrenar")?"Edificios a estrenar":"" ?>
             <?php echo ($vc_link_tipo_operacion == "proyectos-en-construccion")?"Edificios en construcción":"" ?>
