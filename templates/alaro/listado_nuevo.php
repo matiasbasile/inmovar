@@ -4,7 +4,7 @@ extract($propiedad_model->get_variables());
 if (isset($params[1])) {
   if ($params[1] == "proximos-proyectos") {
     $get_params["offset"] = 999;
-    $vc_listado = $propiedad_model->get_list(array("ids_tipo_operacion"=>"6,7","offset"=>999));
+    $vc_listado = $propiedad_model->get_list(array("ids_tipo_operacion"=>"6,7","offset"=>999,"solo_propias"=>1));
     $vc_total_resultados = sizeof($vc_listado);
   }
 }
@@ -18,14 +18,14 @@ if (isset($params[1])) {
 if (isset($params[1])) {
   if ($params[1] == "proyectos-en-construccion") {
     $get_params["offset"] = 999;
-    $vc_listado = $propiedad_model->get_list(array("id_tipo_operacion"=>6));
+    $vc_listado = $propiedad_model->get_list(array("id_tipo_operacion"=>6,"solo_propias"=>1));
     $vc_total_resultados = sizeof($vc_listado);
   }
 }
 if (isset($params[1])) {
   if ($params[1] == "proyectos-a-estrenar") {
     $get_params["offset"] = 999;
-    $vc_listado = $propiedad_model->get_list(array("id_tipo_operacion"=>7));
+    $vc_listado = $propiedad_model->get_list(array("id_tipo_operacion"=>7,"solo_propias"=>1));
     $vc_total_resultados = sizeof($vc_listado);
   }
 }
