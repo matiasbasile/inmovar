@@ -15,7 +15,7 @@ $propiedad = $propiedad_model->get($id,array(
   "buscar_total_visitas"=>1,
 ));
 if ($propiedad->id_tipo_operacion == 1 || $propiedad->id_tipo_operacion == 2) { 
-	include "includes_nuevos/detalle_nuevo.php"; 
+	include "includes_nuevo/detalle_nuevo.php"; 
 	?>
 <?php } else {
 	include "includes_viejos/detalle_viejo.php" ;
