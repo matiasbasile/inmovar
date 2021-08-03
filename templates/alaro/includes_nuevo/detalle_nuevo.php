@@ -38,7 +38,7 @@ else $vc_moneda = "$";
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
-  <?php include "includes/head_new.php" ?>
+  <?php include "head_new.php" ?>
   <meta property="og:type" content="website" />
   <meta property="og:title" content="<?php echo ($propiedad->nombre); ?>" />
   <meta property="og:description" content="<?php echo str_replace("\n","",(strip_tags(html_entity_decode($propiedad->texto,ENT_QUOTES)))); ?>" />
@@ -50,7 +50,7 @@ else $vc_moneda = "$";
 </head>
 <body>
 
-  <?php include "includes/header_new.php" ?>
+  <?php include "header_new.php" ?>
 
   <!-- Page Title -->
   <section class="page-title">
@@ -300,7 +300,7 @@ else $vc_moneda = "$";
   <?php } ?>
 
   <!-- Footer -->
-  <?php include "includes/footer_new.php" ?>
+  <?php include "footer_new.php" ?>
 
   <!-- Scripts -->
   <script src="js/correa/jquery.min.js"></script>
