@@ -810,7 +810,7 @@
     </div>
   </div>
 
-  <% if (ID_EMPRESA == 202 || ID_EMPRESA == 208 || ID_EMPRESA == 476 || ID_EMPRESA == 538) { %>
+  <% if (ID_EMPRESA == 1575) { %>
     <div class="panel panel-default">
       <div class="panel-body">
         <div class="padder">
