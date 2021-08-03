@@ -88,6 +88,8 @@
     display:none;
 }
 /* Direction nav styles (e.g. Next & Prev) */
+
+.nivo-directionNav { font-size: 40px; }
 .nivo-directionNav a {
 	position:absolute;
 	top:45%;
@@ -95,10 +97,10 @@
 	cursor:pointer;
 }
 .nivo-prevNav {
-	left:0px;
+	left:20px;
 }
 .nivo-nextNav {
-	right:0px;
+	right:20px;
 }
 /* Control nav styles (e.g. 1,2,3...) */
 .nivo-controlNav {
