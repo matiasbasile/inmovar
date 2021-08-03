@@ -11,7 +11,6 @@ $propiedad_model = new Propiedad_Model($empresa->id,$conx);
 $propiedad = $propiedad_model->get($id,array(
   "buscar_total_visitas"=>1,
 ));
-print_r($propiedad); exit();
 if ($propiedad->id_tipo_operacion == 1 || $propiedad->id_tipo_operacion == 2) { 
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
