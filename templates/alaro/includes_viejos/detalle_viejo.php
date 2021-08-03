@@ -19,7 +19,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
 <html dir="ltr" lang="en-US">
 <head>
   <meta charset="utf-8">
-  <?php include("includes/head.php"); ?>
+  <?php include("head.php"); ?>
   <meta property="og:url" content="<?php echo current_url(); ?>" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="<?php echo $propiedad->nombre; ?>" />
@@ -40,7 +40,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
 <body class="loading" id="old-detail">
   <?php 
   $header_style = ($propiedad->id_tipo_operacion == 8) ? "" : "style2 style3";
-  include("includes/header.php"); ?>
+  include("header.php"); ?>
 
   <?php if ($propiedad->id_tipo_operacion == 8) { ?>
     <div class="red-box-title">
@@ -408,7 +408,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
 
 <?php } ?>
 
-<?php include("includes/footer.php"); ?>
+<?php include("footer.php"); ?>
 <script src="js/customscroll.js" type="text/javascript"></script> 
 <script type="text/javascript" src="js/fancybox.js"></script> 
 <script type="text/javascript" src="js/jquery.imagesGrid.js"></script>
