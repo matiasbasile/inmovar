@@ -54,7 +54,7 @@ $empresa->telefono_num_2 = preg_replace($regex, '', $empresa->telefono_2);
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
-  <?php include "includes/head_new.php" ?>
+  <?php include "head_new.php" ?>
   <style type="text/css">
     .edit {
     margin: 0 30px;
@@ -78,7 +78,7 @@ $empresa->telefono_num_2 = preg_replace($regex, '', $empresa->telefono_2);
 </head>
 <body>
 
-  <?php include "includes/header_new.php" ?>
+  <?php include "header_new.php" ?>
 
   <!-- Page Title -->
   <section class="page-title">
@@ -323,7 +323,7 @@ $empresa->telefono_num_2 = preg_replace($regex, '', $empresa->telefono_2);
   </section>
 
   <!-- Footer -->
-  <?php include "includes/footer_new.php" ?>
+  <?php include "footer_new.php" ?>
 
   <!-- Scripts -->
   <script src="js/correa/jquery.min.js"></script>
