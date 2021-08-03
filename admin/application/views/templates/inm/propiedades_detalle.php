@@ -25,7 +25,7 @@
         <% if (ID_EMPRESA == 1575) { %>
           <div class="form-group">
             <label class="control-label">Título</label>
-            <input <%= (!edicion)?"disabled":"" %> class="form-control" id="propiedad_nombre" type="text" name="nombre">
+            <input <%= (!edicion)?"disabled":"" %> class="form-control" id="propiedad_nombre" value="<%= nombre %>" type="text" name="nombre">
           </div>
         <% } %>
 
