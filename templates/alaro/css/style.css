@@ -476,6 +476,8 @@ header.style3 { background: url(../images/product-detail-header.png) no-repeat 0
 .general-information .btn { background: url(../images/pdf-icon.png) no-repeat 0 0 #b21f22; padding: 16px 30px 16px 90px; font-size: 16px; }
 .general-information .btn.btn-black { background: url(../images/email-icon.png) no-repeat 0 0 #252525; padding: 16px 30px 16px 90px; font-size: 16px; margin-left: 15px; }
 @media (max-width: 768px) {
+  .logo { height: auto !important; line-height: initial; }
+  nav ul li a { height: auto !important; line-height: initial }
 .en-movil-center { text-align: center; }
 .footer .contact-info span { margin-left:0; }
   .general-information .btn { width: 100% !important; margin-bottom: 10px; padding: 16px 30px 16px 80px !important; margin-left: 0px !important; }
