@@ -126,12 +126,7 @@ iframe { width: 100% !important }
                       <?php if (!empty($propiedad->video)) {  ?>
                         <div class="col-xs-12">
                           <div class="detail_video">
-                            <?php 
-                            if (strpos($propiedad->video, "https://youtu.be/")>=0) {
-                              $propiedad->video = str_replace("https://youtu.be/", '', $propiedad->video);
-                              $propiedad->video = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'.$propiedad->video.'?playlist='.$propiedad->video.'&loop=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
-                            }
-                            echo $propiedad->video ?>
+                            <?php echo $propiedad->video ?>
                           </div>
                         </div>
                       <?php } ?>
