@@ -334,7 +334,7 @@ iframe { width: 100% !important }
                           <div class="hover_content">
                             <div class="display-table">
                               <div class="display-table-cell">
-                                <a class="pluss_icon" href="<?php echo mklink ($l->link) ?>">
+                                <a class="pluss_icon" href="<?php echo $l->link_propiedad ?>">
                                   <i class="fa fa-plus"></i>
                                 </a>
 
@@ -353,7 +353,7 @@ iframe { width: 100% !important }
                           </div>
                         </div>
                         <div class="tab_list_box_content">
-                          <h6><a href="<?php echo mklink($l->link) ?>"><?php echo $l->nombre ?></a></h6>
+                          <h6><a href="<?php echo $l->link_propiedad ?>"><?php echo $l->nombre ?></a></h6>
                           <p>
                             <img src="images/locate_icon.png" alt="locate_icon"> <?php echo $l->direccion_completa ?>
                             <br/><span class="color_span"><?php echo $l->localidad ?></span>
