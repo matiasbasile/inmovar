@@ -98,7 +98,7 @@
 				<span><a href="<?php echo mklink ("/") ?>" class="logo"><img src="images/logo1.png" width="150" alt="Logo"></a></span>
 			</div>
 			<div class="col-xl-4 text-right">
-				<span> <a href="http://www.misticastudio.com"><img class="mt20" src="images/mistica.png" alt="Mistica Logo"></a></span>
+				<span> <a href="https://www.misticastudio.com"><img class="mt20" src="images/mistica.png" alt="Mistica Logo"></a></span>
 			</div>
 		</div>
 	</div>
