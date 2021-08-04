@@ -4,14 +4,14 @@
 <meta name="description" content="<?php echo (isset($seo_description)) ? (html_entity_decode($seo_description,ENT_QUOTES)) : (html_entity_decode($empresa->seo_description,ENT_QUOTES)); ?>">
 <meta name="keywords" content="<?php echo (isset($seo_keywords)) ? (html_entity_decode($seo_keywords,ENT_QUOTES)) : (html_entity_decode($empresa->seo_keywords,ENT_QUOTES)); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-<link href="css/style.css" type="text/css" media="all" rel="stylesheet" />
-<link href="css/slider.css" type="text/css" media="all" rel="stylesheet" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" media="all">
-<link rel="stylesheet" type="text/css" href="css/swiper.min.css" media="all">
-<link rel="stylesheet" type="text/css" href="css/custom-scroll.css" media="all">
-<link rel="stylesheet" href="css/fancybox.css" media="screen">
-<link href="/admin/resources/css/common.css" rel="stylesheet" media="screen">
+<link href="css/style.css?v=1" type="text/css" media="all" rel="stylesheet" />
+<link href="css/slider.css?v=1" type="text/css" media="all" rel="stylesheet" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css?v=1">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css?v=1" media="all">
+<link rel="stylesheet" type="text/css" href="css/swiper.min.css?v=1" media="all">
+<link rel="stylesheet" type="text/css" href="css/custom-scroll.css?v=1" media="all">
+<link rel="stylesheet" href="css/fancybox.css?v=1" media="screen">
+<link href="/admin/resources/css/common.css?v=1" rel="stylesheet" media="screen">
 <script type="text/javascript" src="/admin/resources/js/common.js"></script>
 <script type="text/javascript" src="/admin/resources/js/main.js"></script>
 <?php if (!empty($empresa->analytics)) { echo html_entity_decode($empresa->analytics,ENT_QUOTES); } ?>
