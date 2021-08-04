@@ -163,6 +163,8 @@ error_reporting(E_ALL); ?>
 
   <?php $destacados = $propiedad_model->get_list(array(
   	"solo_propias"=>1,
+    "offset"=>999,
+    "id_tipo_operacion"=>1,
   ))?>
 	 <?php if (!empty($destacados)) { ?>
     <div class="featured-departments">
