@@ -56,8 +56,8 @@ else $vc_moneda = "$";
   <section class="page-title">
     <div class="container">
       <h1>
-        <?php echo ($propiedad->id_tipo_operacion == 1)?"Comprar":"" ?>
-        <?php echo ($propiedad->id_tipo_operacion == 2)?"Alquilar":"" ?>
+        <?php echo ($propiedad->id_tipo_operacion == 1)?"Ventas":"" ?>
+        <?php echo ($propiedad->id_tipo_operacion == 2)?"Alquileres":"" ?>
         <?php echo ($propiedad->id_tipo_operacion == 4)?"Emprendimientos":"" ?>
       </h1>
     </div>
