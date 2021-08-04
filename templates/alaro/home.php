@@ -392,7 +392,7 @@ error_reporting(E_ALL); ?>
   				<p><span>Edificios Alaró.</span> Todos los Derechos Reservados.</p>
   			</div>
   			<div class="col-md-6">
-  				<p><a href="www.misticastudio.com" target="_blank"><img src="assets_nuevo/images/mistica-logo.png" alt="Mistica Logo" /></a></p>
+  				<p><a href="https://www.misticastudio.com" target="_blank"><img src="assets_nuevo/images/mistica-logo.png" alt="Mistica Logo" /></a></p>
   			</div>
   		</div>
   	</div>
