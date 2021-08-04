@@ -53,7 +53,7 @@
 <div class="copyright">
   <div class="container">
     <p><span>Edificios Alaro.</span> Todos los Derechos Reservados.</p>
-    <p class="pt20"><a href="http://www.misticastudio.com/" target="_blank"><img src="assets_nuevo/images/mistica-logo.png" alt="Mistica Logo" /></a></p>
+    <p class="pt20"><a href="https://www.misticastudio.com/" target="_blank"><img src="assets_nuevo/images/mistica-logo.png" alt="Mistica Logo" /></a></p>
     <div class="back-top"><a href="javascript:void(0);"><i class="fa fa-chevron-up" aria-hidden="true"></i></a></div>
   </div>
 </div>
