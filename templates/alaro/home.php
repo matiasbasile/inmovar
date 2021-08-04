@@ -650,5 +650,6 @@ error_reporting(E_ALL); ?>
   });
 
 </script>
+<?php include("templates/comun/clienapp.php") ?>
 </body>
 </html>
