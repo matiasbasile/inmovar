@@ -256,7 +256,7 @@ if (sizeof($slides)>0) { ?>
                         <div class="hover_content">
                           <div class="display-table">
                             <div class="display-table-cell"> 
-                              <a class="pluss_icon" href="<?php echo mklink ($l->link) ?>"><i class="fa fa-plus" aria-hidden="true"></i></a> 
+                              <a class="pluss_icon" href="<?php echo $l->link_propiedad ?>"><i class="fa fa-plus" aria-hidden="true"></i></a> 
 
                               <?php if (estaEnFavoritos($l->id)) { ?>
                                 <a class="likes_icon active" rel="nofollow" href="/admin/favoritos/eliminar/?id=<?php echo $l->id; ?>">
@@ -273,7 +273,7 @@ if (sizeof($slides)>0) { ?>
                         </div>
                       </div>
                       <div class="tab_list_box_content">
-                        <h6><a href="<?php echo mklink($l->link) ?>"><?php echo $l->nombre ?></a></h6>
+                        <h6><a href="<?php echo $l->link_propiedad ?>"><?php echo $l->nombre ?></a></h6>
                         <p>
                           <img src="images/locate_icon.png" alt="locate_icon"> <?php echo $l->direccion_completa ?>
                           <br/><span class="color_span"><?php echo $l->localidad ?></span>
@@ -326,7 +326,7 @@ if (sizeof($slides)>0) { ?>
                         <div class="hover_content">
                           <div class="display-table">
                             <div class="display-table-cell"> 
-                              <a class="pluss_icon" href="<?php echo mklink ($l->link) ?>"><i class="fa fa-plus" aria-hidden="true"></i></a> 
+                              <a class="pluss_icon" href="<?php echo $l->link_propiedad ?>"><i class="fa fa-plus" aria-hidden="true"></i></a> 
                               <?php if (estaEnFavoritos($l->id)) { ?>
                                 <a class="likes_icon active" rel="nofollow" href="/admin/favoritos/eliminar/?id=<?php echo $l->id; ?>">
                                   <i class="fa fa-heart-o" aria-hidden="true"></i>
@@ -341,7 +341,7 @@ if (sizeof($slides)>0) { ?>
                         </div>
                       </div>
                       <div class="tab_list_box_content">
-                        <h6><a href="<?php echo mklink($l->link) ?>"><?php echo $l->nombre ?></a></h6>
+                        <h6><a href="<?php echo $l->link_propiedad ?>"><?php echo $l->nombre ?></a></h6>
                         <?php if(!empty($l->localidad)) {  ?>
                           <p>
                             <img src="images/locate_icon.png" alt="locate_icon"> <?php echo $l->direccion_completa ?>
@@ -411,7 +411,7 @@ if (sizeof($slides)>0) { ?>
                           </div>
                         </div>
                         <div class="tab_list_box_content">
-                          <h6><a href="<?php echo mklink($l->link) ?>"><?php echo $l->nombre ?></a></h6>
+                          <h6><a href="<?php echo $l->link_propiedad ?>"><?php echo $l->nombre ?></a></h6>
                           <p>
                             <img src="images/locate_icon.png" alt="locate_icon"><?php echo $l->direccion_completa ?>
                             <br/><span class="color_span"><?php echo $l->localidad ?></span>
@@ -471,7 +471,7 @@ if (sizeof($emprendimientos)>0) { ?>
                     <img src="images/no-imagen.png" alt="<?php echo ($l->nombre);?>">
                   <?php } ?>
                   <div class="empr_box_content">
-                    <h5><a href="<?php echo mklink($l->link)?>"><?php echo $l->nombre ?></a></h5>
+                    <h5><a href="<?php echo $l->link_propiedad?>"><?php echo $l->nombre ?></a></h5>
                     <div class="anchor_btn_div"> <a class="anchor_btn" href="<?php echo mklink ($l->link) ?>">Ver Proyecto <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a> </div>
                   </div>
                 </div>
@@ -491,7 +491,7 @@ if (sizeof($emprendimientos)>0) { ?>
                   <?php } ?>
 
                   <div class="empr_box_content">
-                    <h5><a href="<?php echo mklink($l->link)?>"><?php echo $l->nombre ?></a></h5>
+                    <h5><a href="<?php echo $l->link_propiedad?>"><?php echo $l->nombre ?></a></h5>
                     <div class="anchor_btn_div"> <a class="anchor_btn" href="<?php echo mklink ($l->link) ?>">Ver Proyecto <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a> </div>
                   </div>
                 </div>

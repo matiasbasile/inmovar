@@ -102,7 +102,7 @@ $list_view = ($vc_apto_banco == 1);
                           <div class="col-lg-6 col-md-6">
                             <div class="tab_list_box">
                               <div class="hover_box_div">
-                                <?php if (!empty($l->video)) {  ?>
+                                <?php /*if (!empty($l->video)) {  ?>
                                   <div class="tab_list_box_img gallery_box_img_second">
                                     <?php 
                                     if (strpos($l->video, "https://youtu.be/")>=0) {
@@ -111,7 +111,7 @@ $list_view = ($vc_apto_banco == 1);
                                     }
                                     echo $l->video ?>
                                   </div>
-                                <?php } else { ?>                                
+                                <?php } else { */ ?>
                                   <?php $path = "images/no-imagen.png";
                                   if (!empty($l->imagen)) { 
                                     $path = $l->imagen;
@@ -139,10 +139,10 @@ $list_view = ($vc_apto_banco == 1);
                                       </div>
                                     </div>
                                   </div>
-                                <?php } ?>
+                                <?php //} ?>
                               </div>
                               <div class="tab_list_box_content">
-                                <h6><a href="<?php echo mklink($l->link) ?>"><?php echo $l->nombre ?></a></h6>
+                                <h6><a href="<?php echo $l->link_propiedad ?>"><?php echo $l->nombre ?></a></h6>
                                 <p>
                                   <img src="images/locate_icon.png" alt="locate_icon"> <?php echo $l->direccion_completa ?>
                                   <br/><span class="color_span"><?php echo $l->localidad ?></span>
@@ -194,7 +194,7 @@ $list_view = ($vc_apto_banco == 1);
                               <?php if (!empty($l->video)) {  ?>
                                 <?php echo $l->video ?>
                               <?php } else { ?>                                
-                                <a href="<?php echo mklink($l->link) ?>" class="">
+                                <a href="<?php echo $l->link_propiedad ?>" class="">
                                   <?php if (!empty($l->imagen)) { ?>
                                     <img src="<?php echo $l->imagen ?>" alt="<?php echo ($l->nombre);?>">
                                   <?php } else if (!empty($empresa->no_imagen)) { ?>
@@ -224,7 +224,7 @@ $list_view = ($vc_apto_banco == 1);
                         </div>
                         <div class="col-lg-6 col-md-6">
                           <div class="list_view_details">
-                            <h3><a href="<?php echo mklink($l->link) ?>"><?php echo $l->nombre ?></a></h3>
+                            <h3><a href="<?php echo $l->link_propiedad ?>"><?php echo $l->nombre ?></a></h3>
                             <div class="address_detail1">
                               <p>
                                 <img src="images/locate_icon.png" alt="locate_icon"> <?php echo $l->direccion_completa ?>
