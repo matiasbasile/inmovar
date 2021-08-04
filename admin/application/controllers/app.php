@@ -205,12 +205,7 @@ class App extends CI_Controller {
       $q = $this->db->query("SELECT * FROM web_templates WHERE (id_proyecto = $empresa->id_proyecto AND publico = 1) OR (id_empresa = $id_empresa) ORDER BY id DESC");
       $templates = $q->result();      
 
-      // Primero consultamos si no existen algunos registros especificos de la empresa      
-      $q = $this->db->query("SELECT * FROM inm_tipos_operacion WHERE id_empresa = $id_empresa ORDER BY orden ASC");
-      if ($q->num_rows() == 0) {
-        // Sino, tomamos los valores por defecto (id_empresa = 0)
-        $q = $this->db->query("SELECT * FROM inm_tipos_operacion WHERE id_empresa = 0 ORDER BY orden ASC");
-      }
+      $q = $this->db->query("SELECT * FROM inm_tipos_operacion WHERE (id_empresa = 0 OR id_empresa = $id_empresa) ORDER BY orden ASC");
       $tipos_operacion = $q->result();
 
       $q = $this->db->query("SELECT * FROM crm_asuntos WHERE id_empresa = 0 OR id_empresa = $id_empresa ORDER BY orden ASC");
