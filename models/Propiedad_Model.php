@@ -623,7 +623,7 @@ class Propiedad_Model {
     $id = (int)$id;
     $sql = "SELECT A.*, ";
     $sql.= "IF(A.valido_hasta = '0000-00-00','',DATE_FORMAT(A.valido_hasta,'%d/%m/%Y')) AS valido_hasta, ";
-    $sql.= " CONCAT(E.codigo,'-',P.codigo) AS codigo_completo, ";
+    $sql.= " CONCAT(E.codigo,'-',A.codigo) AS codigo_completo, ";
     $sql.= "IF(P.nombre IS NULL,'',P.nombre) AS propietario, ";
     $sql.= "IF(TE.nombre IS NULL,'',TE.nombre) AS tipo_estado, ";
     $sql.= "IF(TI.nombre IS NULL,'',TI.nombre) AS tipo_inmueble, ";
@@ -1062,7 +1062,7 @@ class Propiedad_Model {
     $cotizacion = $r_cot->valor;
 
     $sql = "SELECT SQL_CALC_FOUND_ROWS A.*, ";
-    $sql.= " CONCAT(E.codigo,'-',P.codigo) AS codigo_completo, ";
+    $sql.= " CONCAT(E.codigo,'-',A.codigo) AS codigo_completo, ";
     $sql.= "IF(A.fecha_publicacion='0000-00-00','',DATE_FORMAT(A.fecha_publicacion,'%d/%m/%Y')) AS fecha_publicacion, ";
     $sql.= "IF(P.nombre IS NULL,'',P.nombre) AS propietario, ";
     $sql.= "IF(TE.nombre IS NULL,'',TE.nombre) AS tipo_estado, ";
