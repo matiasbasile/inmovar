@@ -68,7 +68,7 @@ iframe { width: 100% !important }
             <!-- left list details part start -->
             <div class="col-lg-9 paddi_right">
               <div class="left_detail_wraper">
-                <span class="cod_span"><strong>Cod:</strong> <?php echo $propiedad->codigo_completo ?></span>
+                <span class="cod_span"><strong>Cod:</strong> <?php echo $propiedad->codigo ?></span>
                 <h4 class="heading_details"> <?php echo $propiedad->nombre ?> </h4>
                 <div class="row price_tages">
                   <div class="col-lg-3 col-md-3 dollar_price">
