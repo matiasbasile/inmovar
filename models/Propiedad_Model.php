@@ -614,7 +614,7 @@ class Propiedad_Model {
     $buscar_propietario = isset($config["buscar_propietario"]) ? $config["buscar_propietario"] : 0;
     $desde = isset($config["desde"]) ? $config["desde"] : "";
     $hasta = isset($config["hasta"]) ? $config["hasta"] : "";
-    $solo_propias = isset($config["solo_propias"]) ? $config["solo_propias"] : 0;
+    $solo_propias = isset($config["solo_propias"]) ? intval($config["solo_propias"]) : 0;
     $personas = isset($config["personas"]) ? $config["personas"] : 1;
     $moneda = isset($config["moneda"]) ? $config["moneda"] : "$";
     $id_cliente = isset($config["id_cliente"]) ? $config["id_cliente"] : 0;
