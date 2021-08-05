@@ -623,6 +623,7 @@ class Propiedad_Model {
     $id = (int)$id;
     $sql = "SELECT A.*, ";
     $sql.= "IF(A.valido_hasta = '0000-00-00','',DATE_FORMAT(A.valido_hasta,'%d/%m/%Y')) AS valido_hasta, ";
+    $sql.= " E.habilitar_descripciones, ";
     $sql.= " CONCAT(E.codigo,'-',A.codigo) AS codigo_completo, ";
     $sql.= "IF(P.nombre IS NULL,'',P.nombre) AS propietario, ";
     $sql.= "IF(TE.nombre IS NULL,'',TE.nombre) AS tipo_estado, ";
@@ -1062,6 +1063,7 @@ class Propiedad_Model {
     $cotizacion = $r_cot->valor;
 
     $sql = "SELECT SQL_CALC_FOUND_ROWS A.*, ";
+    $sql.= " E.habilitar_descripciones, ";
     $sql.= " CONCAT(E.codigo,'-',A.codigo) AS codigo_completo, ";
     $sql.= "IF(A.fecha_publicacion='0000-00-00','',DATE_FORMAT(A.fecha_publicacion,'%d/%m/%Y')) AS fecha_publicacion, ";
     $sql.= "IF(P.nombre IS NULL,'',P.nombre) AS propietario, ";
@@ -1316,6 +1318,7 @@ class Propiedad_Model {
   }
 
   function armar_texto($propiedad) {
+    if ($propiedad->habilitar_descripciones == 1) return;
     $t = $propiedad->tipo_inmueble." en ".$propiedad->tipo_operacion." en ".trim($propiedad->localidad).". ";
     if (isset($propiedad->direccion_completa) && !empty($propiedad->direccion_completa)) {
       $ubicado = ($propiedad->tipo_inmueble_genero == "F") ? "Ubicada" : "Ubicado";
