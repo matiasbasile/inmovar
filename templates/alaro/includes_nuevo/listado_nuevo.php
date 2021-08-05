@@ -1,6 +1,8 @@
 <?php 
 $get_params["offset"] = 6;
-extract($propiedad_model->get_variables());
+extract($propiedad_model->get_variables(array(
+  "solo_propias"=>1,
+)));
 if (isset($params[1])) {
   if ($params[1] == "proximos-proyectos") {
     $get_params["offset"] = 999;
