@@ -193,7 +193,15 @@
                         La empresa se encuentra activa.
                       </label>
                     </label>
-                  </div>                  
+                  </div>     
+                  <div class="form-group">
+                    <label class="control-label">
+                      <label class="i-checks m-b-none">
+                        <input id="empresa_habilitar_descripciones" value="1" <%= (habilitar_descripciones==1)?"checked":"" %> type="checkbox"><i></i>
+                        Habilitar descripciones.
+                      </label>
+                    </label>
+                  </div>               
                 <% } %>
                 <% if (id == undefined) { %>
                   <div class="form-group">
