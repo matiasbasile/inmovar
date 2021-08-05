@@ -898,7 +898,7 @@ class Propiedad_Model {
 
     $p->nombre = ($p->id_empresa != 1575) ? ($p->tipo_inmueble." en ".$p->tipo_operacion." en ".$p->localidad) : $p->nombre;
     $p->nombre = $this->encod($p->nombre);
-    if (isset($p->codigo_completo)) $p->codigo = $p->codigo_completo;
+    if (isset($p->codigo_completo) && !empty($p->codigo_completo)) $p->codigo = $p->codigo_completo;
 
     if (!empty($p->video)) {
       if (strpos($p->video, "iframe") === FALSE) {
