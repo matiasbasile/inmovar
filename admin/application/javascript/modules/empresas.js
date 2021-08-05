@@ -36,6 +36,7 @@
       fecha_suspension: "",
       costo: 0,
       activo: 1,
+      habilitar_descripciones: 0,
       periodo_fact: "+1 month",
       dominio_ppal: "",
       numero_ib: "",
@@ -553,7 +554,13 @@
           this.model.set({
             "activo":($("#empresa_activo").is(":checked")?1:0),
           });
-        }        
+        }     
+
+        if (this.$("#empresa_habilitar_descripciones").length > 0) {
+          this.model.set({
+            "habilitar_descripciones":($("#empresa_habilitar_descripciones").is(":checked")?1:0),
+          });
+        }       
 
         if ($("#empresa_administrar_pagos").length > 0) {
           this.model.set({
