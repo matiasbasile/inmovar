@@ -1318,7 +1318,7 @@ class Propiedad_Model {
   }
 
   function armar_texto($propiedad) {
-    //if ($propiedad->habilitar_descripciones == 1) return;
+    if ($propiedad->habilitar_descripciones == 1) return;
     $t = $propiedad->tipo_inmueble." en ".$propiedad->tipo_operacion." en ".trim($propiedad->localidad).". ";
     if (isset($propiedad->direccion_completa) && !empty($propiedad->direccion_completa)) {
       $ubicado = ($propiedad->tipo_inmueble_genero == "F") ? "Ubicada" : "Ubicado";

@@ -124,7 +124,7 @@ $list_view = ($vc_apto_banco == 1);
                                   <div class="hover_content">
                                     <div class="display-table">
                                       <div class="display-table-cell">
-                                        <a class="pluss_icon" href="<?php echo mklink ($l->link) ?>">
+                                        <a class="pluss_icon" href="<?php echo $l->link_propiedad ?>">
                                           <i class="fa fa-plus"></i>
                                         </a>
                                         <?php if (estaEnFavoritos($l->id)) { ?>
@@ -216,7 +216,7 @@ $list_view = ($vc_apto_banco == 1);
                             <div class="hover_content1">
                               <div class="display-table">
                                 <div class="display-table-cell">
-                                  <a class="squ_icon" href="<?php echo mklink ($l->link) ?>"><i class="fa fa-plus-square" aria-hidden="true"></i></a> 
+                                  <a class="squ_icon" href="<?php echo $l->link_propiedad ?>"><i class="fa fa-plus-square" aria-hidden="true"></i></a> 
                                 </div>
                               </div>
                             </div>
