@@ -4,6 +4,7 @@ $id_empresa = isset($get_params["em"]) ? $get_params["em"] : $empresa->id;
 $propiedad = $propiedad_model->get($id,array(
   "id_empresa"=>$id_empresa,
   "id_empresa_original"=>$empresa->id,
+  "solo_propias"=>1,
 ));
 // Tomamos los datos de SEO
 $seo_title = (!empty($propiedad->seo_title)) ? ($propiedad->seo_title) : $empresa->seo_title;
