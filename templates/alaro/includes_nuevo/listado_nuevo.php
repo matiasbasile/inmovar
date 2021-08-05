@@ -1,5 +1,5 @@
 <?php 
-$get_params["offset"] = 6;
+$get_params["offset"] = 12;
 extract($propiedad_model->get_variables(array(
   "solo_propias"=>1,
 )));
