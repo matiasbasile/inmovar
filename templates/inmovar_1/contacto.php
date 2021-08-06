@@ -75,23 +75,26 @@ if ($maximo == "undefined" || empty($maximo)) $maximo = $precio_maximo;
                     </section>
                   <?php } ?>                    
 
-                  <section id="social">
-                    <header><h3>Redes Sociales</h3></header>
-                    <div class="agent-social">
-                      <?php if (!empty($empresa->facebook)) { ?>
-                        <a target="_blank" href="<?php echo $empresa->facebook ?>" class="fa fa-facebook btn btn-grey-dark"></a>
-                      <?php } ?>
-                      <?php if (!empty($empresa->twitter)) { ?>
-                        <a target="_blank" href="<?php echo $empresa->twitter ?>" class="fa fa-twitter btn btn-grey-dark"></a>
-                      <?php } ?>
-                      <?php if (!empty($empresa->instagram)) { ?>
-                        <a target="_blank" href="<?php echo $empresa->instagram ?>" class="fa fa-instagram btn btn-grey-dark"></a>
-                      <?php } ?>
-                      <?php if (!empty($empresa->linkedin)) { ?>
-                        <a target="_blank" href="<?php echo $empresa->linkedin ?>" class="fa fa-linkedin btn btn-grey-dark"></a>
-                      <?php } ?>
-                    </div>
-                  </section><!-- /#social -->
+                  <?php if (!empty($empresa->facebook) || !empty($empresa->twitter) || !empty($empresa->instagram) || !empty($empresa->linkedin)) { ?>
+                    <section id="social">
+                      <header><h3>Redes Sociales</h3></header>
+                      <div class="agent-social">
+                        <?php if (!empty($empresa->facebook)) { ?>
+                          <a target="_blank" href="<?php echo $empresa->facebook ?>" class="fa fa-facebook btn btn-grey-dark"></a>
+                        <?php } ?>
+                        <?php if (!empty($empresa->twitter)) { ?>
+                          <a target="_blank" href="<?php echo $empresa->twitter ?>" class="fa fa-twitter btn btn-grey-dark"></a>
+                        <?php } ?>
+                        <?php if (!empty($empresa->instagram)) { ?>
+                          <a target="_blank" href="<?php echo $empresa->instagram ?>" class="fa fa-instagram btn btn-grey-dark"></a>
+                        <?php } ?>
+                        <?php if (!empty($empresa->linkedin)) { ?>
+                          <a target="_blank" href="<?php echo $empresa->linkedin ?>" class="fa fa-linkedin btn btn-grey-dark"></a>
+                        <?php } ?>
+                      </div>
+                    </section>
+                  <?php } ?>
+                  
                 </div><!-- /.col-md-4 -->
                 <div class="col-md-8 col-sm-7">
                   <header><h3>Donde estamos</h3></header>
