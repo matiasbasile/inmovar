@@ -61,6 +61,9 @@ if ($maximo == "undefined" || empty($maximo)) $maximo = $precio_maximo;
                     <?php if (!empty($empresa->telefono_2)) { ?>
                       <?php echo $empresa->telefono_2 ?><br>
                     <?php } ?>
+                    <?php if (!empty($empresa->horarios)) { ?>
+                      <?php echo $empresa->horarios ?><br>
+                    <?php } ?>
                     <?php if (!empty($empresa->email)) { ?>
                       <a href="mailto:<?php echo $empresa->email ?>">
                         <?php echo $empresa->email ?>
