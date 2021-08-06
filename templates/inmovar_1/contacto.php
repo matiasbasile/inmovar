@@ -66,12 +66,15 @@ if ($maximo == "undefined" || empty($maximo)) $maximo = $precio_maximo;
                         <?php echo $empresa->email ?>
                       </a>
                     <?php } ?>
-                    <?php if (!empty($empresa->horario)) { ?>
-                      <br/>
+                  </section><!-- /#address -->
+
+                  <?php if (!empty($empresa->horario)) { ?>
+                    <section>
                       <header><h3>Horarios de Atención</h3></header>
                       <?php echo $empresa->horario ?><br>
-                    <?php } ?>                    
-                  </section><!-- /#address -->
+                    </section>
+                  <?php } ?>                    
+
                   <section id="social">
                     <header><h3>Redes Sociales</h3></header>
                     <div class="agent-social">
