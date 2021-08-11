@@ -190,7 +190,6 @@
             //sucess
             function(data) {
               texto += data;
-              CKEDITOR.instances['enviar_plantilla_texto'].setData(texto);
             },
           );
         }
