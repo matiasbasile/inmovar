@@ -244,9 +244,7 @@
       });
       */
       var texto = this.$("#enviar_plantilla_texto").val();
-      var carac = this.$("#enviar_plantilla_clientes option:selected").data("fax");
-      if (isEmpty(carac)) carac = "549";
-      var telefono = carac + this.$("#enviar_plantilla_clientes option:selected").data("telefono");
+      var telefono = "549" + this.$("#enviar_plantilla_clientes option:selected").data("telefono");
       var salida = "https://wa.me/"+telefono+"?text="+encodeURIComponent(texto);
       window.open(salida,"_blank");
       $('.modal:last').modal('hide');
