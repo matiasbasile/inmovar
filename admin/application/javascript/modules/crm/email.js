@@ -190,6 +190,7 @@
             //sucess
             function(data) {
               texto += data;
+              $("#enviar_plantilla_texto").val(texto);
             },
           );
         }
@@ -263,7 +264,8 @@
         "type": "post",
         "success":function(res) {
           if (plantilla == "whatsapp"){
-            var links = "<br> ";
+            var links = "";
+            console.log(res.propiedades);
             for (var i = 0; i < res.propiedades.length; i++) {
               links += "https://app.inmovar.com/ficha/"+res.propiedades[i].hash+"\n";
             }
