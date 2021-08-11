@@ -2410,6 +2410,7 @@
         return;
       }
       var altura = $("#propiedad_altura").val();
+      if (isEmpty(altura)) return;
       var localidad = $("#propiedad_localidades option:selected").text();
       if (isEmpty(localidad)) {
         alert("Por favor ingrese una localidad");
