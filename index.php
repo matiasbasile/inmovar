@@ -259,10 +259,10 @@ if ($empresa->administrar_pagos == 1 && $fecha_suspension->format("Y-m-d") < dat
 $dominio = "http://".$dominio;
 $nombre_pagina = (sizeof($params)>0) ? $params[0] : "";
 if ($nombre_pagina == "ficha") {
+  echo "ENTRA"; exit();
   $hash = (sizeof($params)>1) ? urldecode($params[1]) : "";
   $hash = str_replace(" ", "", $hash);
   $sql = "SELECT id, id_empresa FROM inm_propiedades WHERE hash = '$hash' ";
-  echo $sql;
   $q_prop = mysqli_query($conx,$sql);
   if (mysqli_num_rows($q_prop)>0) {
     $p = mysqli_fetch_object($q_prop);
