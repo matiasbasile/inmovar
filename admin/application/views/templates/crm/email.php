@@ -97,7 +97,7 @@
 
       <div class="form-group">
         <div class="col-xs-12">
-          <textarea name="texto" class="form-control" id="enviar_plantilla_texto"></textarea>
+          <textarea name="texto" class="form-control h100" id="enviar_plantilla_texto"></textarea>
         </div>
       </div>      
     </div>
