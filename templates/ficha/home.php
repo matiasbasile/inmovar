@@ -22,7 +22,6 @@
             <?php echo $propiedad->nombre ?>
           </div>
         </div>
-        <div class="titulo_precio"><?php echo $propiedad->precio ?></div>
       </div>
     </div>
   </div>
