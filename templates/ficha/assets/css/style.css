@@ -142,7 +142,7 @@ input, optgroup, select, textarea { color:#000; }
 .slider-thumb { display:inline-block; width:92px; height:70px; overflow:hidden; border:1px solid #FFF; cursor:pointer;float:left; }
 #slider_thumbs{ height: 80px; padding: 0 18px; display:none; }
 #slider_thumbs div:last-child { margin-right:0px; }
-#slider_thumbs div img { height:60px; }
+#slider_thumbs div img { height:80px; object-fit: cover; }
 #slider_thumbs .active .slider-thumb { border-color:#b91100; }
 #ficha_servicios, #ficha_ambientes { display:inline-block; }
 #ficha_medidas { display:inline-block; }
