@@ -493,6 +493,7 @@ class Propiedad_Model extends Abstract_Model {
     
     $sql_fields = "SQL_CALC_FOUND_ROWS A.*, ";
     $sql_fields.= "E.razon_social AS inmobiliaria, E.path AS logo_inmobiliaria, E.id AS id_inmobiliaria, ";
+    $sql_fields.= "E.incluye_comision_35, ";
     $sql_fields.= "E.codigo AS codigo_inmobiliaria, CONCAT(E.codigo,'-',A.codigo) AS codigo_completo, ";
     $sql_fields.= "IF(A.valido_hasta='0000-00-00','',DATE_FORMAT(A.valido_hasta,'%d/%m/%Y')) AS valido_hasta, ";
     $sql_fields.= "IF(A.fecha_publicacion='0000-00-00','',DATE_FORMAT(A.fecha_publicacion,'%d/%m/%Y')) AS fecha_publicacion, ";
@@ -1105,6 +1106,7 @@ class Propiedad_Model extends Abstract_Model {
     $sql.= "IF(A.fecha_publicacion='0000-00-00','',DATE_FORMAT(A.fecha_publicacion,'%d/%m/%Y')) AS fecha_publicacion, ";
     $sql.= "E.nombre AS empresa, E.path AS empresa_path, E.telefono_empresa AS empresa_telefono, E.direccion_empresa AS empresa_direccion, E.email AS empresa_email, ";
     $sql.= "E.codigo AS codigo_inmobiliaria, CONCAT(E.codigo,'-',A.codigo) AS codigo_completo, ";
+    $sql.= "E.incluye_comision_35, ";
     $sql.= "IF(P.nombre IS NULL,'',P.nombre) AS propietario, ";
     $sql.= "IF(P.telefono IS NULL,'',P.telefono) AS propietario_telefono, ";
     $sql.= "IF(P.email IS NULL,'',P.email) AS propietario_email, ";

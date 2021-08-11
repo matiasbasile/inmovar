@@ -102,6 +102,7 @@
       ubicacion_departamento: "",
       balcon: 0,
       patio: 0,
+      incluye_comision_35: 0,
 
       servicios_gas: 0,
       servicios_cloacas: 0,
