@@ -240,7 +240,6 @@
           "width":900,
           "height":700,
         });
-        workspace.crear_editor("enviar_plantilla_texto");
       },  
 
       "click #buscar_propias_tab":function() {
