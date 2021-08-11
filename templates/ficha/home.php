@@ -17,34 +17,21 @@
   <div id="property_detail_content">
     <div id="ficha">
       <div id="header_ficha">
-        <div class="pre-title-header">
-        <?php if(isset($propiedad->nombre)){ ?>
-          <?= $propiedad->nombre ?>
-        <?php } ?>
-        </div>
-        <?php if(isset($propiedad->calle) and isset($propiedad->localidad) ){ ?>
-          <div class="titulo_header">
-            <div class="titulo_address" style="">
-              <?= $propiedad->calle ?> | <?= $propiedad->localidad ?>
-            </div>
+        <div class="titulo_header">
+          <div class="titulo_address" style="">
+            <?php echo $propiedad->nombre ?>
           </div>
-        <?php } ?>
-      <div class="titulo_precio">
-      </div>
+        </div>
+        <div class="titulo_precio"><?php echo $propiedad->precio ?></div>
     </div>
   </div>
   <div id="ficha_slider">
     <ul class="slides" onClick="enlarge()">
-      <?php
-        foreach ($propiedad->images as $key) { ?>
+      <?php foreach ($propiedad->images as $key) { ?>
         <li data-thumb="<?= $key ?>">
           <img src="<?= $key ?>"  class="zoomImg" />
         </li>
-          
-        <?php
-        }
-      ?>
-
+      <?php } ?>
     </ul>
   </div>
   <div class="tostick">
@@ -57,18 +44,11 @@
                 <div class="op-operation"><?= $propiedad->tipo_operacion ?></div>
               <?php } ?>
               <div class="op-values"> 
-                <?php if($propiedad->publica_precio = 1){ ?>
-                  <div class="op-value"><?= $propiedad->precio ?></div>
-                <?php } ?>
+                <div class="op-value"><?= $propiedad->precio ?></div>
               </div>
             </div>
           </div>
-          <div class="ficha_detalle_item">
-            <?php 
-            $a = (isset($propiedad->calle) ? "<b>Direccion</b><br/>" . $propiedad->calle : "");
-            $b = (isset($propiedad->localidad) ? $propiedad->localidad : ""); ?>
-            <?= $a  ?>  <?= "| " .$b ?>
-          </div>
+          <div class="ficha_detalle_item"><?php echo $propiedad->direccion_completa ?></div>
           <?php  ?>
           <div class="ficha_detalle_item">
             <?php if(isset($propiedad->localidad)){ ?>
