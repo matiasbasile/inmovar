@@ -103,7 +103,7 @@
     </div>
   </div>
   <div class="panel-footer clearfix">
-    <button class="btn guardar pull-right btn-info btn-addon">
+    <button class="btn enviar pull-right btn-info btn-addon">
       <i class="fa fa-send"></i><span>Enviar</span>
     </button>
   </div>
