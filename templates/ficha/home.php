@@ -48,8 +48,10 @@
               </div>
             </div>
           </div>
-          <div class="ficha_detalle_item"><?php echo $propiedad->direccion_completa ?></div>
-          <?php  ?>
+          <div class="ficha_detalle_item">
+            <b>Dirección</b><br/>
+            <?php echo $propiedad->direccion_completa ?>
+          </div>
           <div class="ficha_detalle_item">
             <?php if(isset($propiedad->localidad)){ ?>
               <b>Localidad/Partido</b><br/><?= $propiedad->localidad ?>
