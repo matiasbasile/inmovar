@@ -177,6 +177,19 @@ if ( (!(strpos($dominio, "app.inmovar") === FALSE) || !(strpos($dominio, "sandbo
     }
   }
 
+} else if ( isset($params[0]) && $params[0] == "ficha" ) {
+  $hash = (sizeof($params)>1) ? urldecode($params[1]) : "";
+  $hash = str_replace(" ", "", $hash);
+  $sql = "SELECT id, id_empresa FROM inm_propiedades WHERE hash = '$hash' ";
+  $q_prop = mysqli_query($conx,$sql);
+  if (mysqli_num_rows($q_prop)>0) {
+    $p = mysqli_fetch_object($q_prop);
+    $empresa = get_empresa_by_id($p->id_empresa);
+    $empresa->template_path = "ficha";
+  } else {
+    go_404();
+  }
+
 } else if ( isset($params[0]) && $params[0] == "buscador" ) {
   // Buscamos el dominio dentro de inmovar
   if (!empty($params[1])) {
@@ -258,23 +271,14 @@ if ($empresa->administrar_pagos == 1 && $fecha_suspension->format("Y-m-d") < dat
 
 $dominio = "http://".$dominio;
 $nombre_pagina = (sizeof($params)>0) ? $params[0] : "";
-if ($nombre_pagina == "ficha") {
-  $hash = (sizeof($params)>1) ? urldecode($params[1]) : "";
-  $hash = str_replace(" ", "", $hash);
-  $sql = "SELECT id, id_empresa FROM inm_propiedades WHERE hash = '$hash' ";
-  $q_prop = mysqli_query($conx,$sql);
-  if (mysqli_num_rows($q_prop)>0) {
-    $p = mysqli_fetch_object($q_prop);
-    $empresa = get_empresa_by_id($p->id_empresa);
-    include_once("models/Propiedad_Model.php");
-    $propiedad_model = new Propiedad_Model($empresa->id,$conx);
-    $propiedad = $propiedad_model->get($p->id,array(
-      "id_empresa"=>$p->id_empresa,
-    ));
-    include("templates/ficha/home.php");
-  } else {
-    go_404();
-  }
+
+if ( $nombre_pagina == "buscador") {
+  include_once("models/Propiedad_Model.php");
+  $propiedad_model = new Propiedad_Model($empresa->id,$conx);
+  $propiedad = $propiedad_model->get($p->id,array(
+    "id_empresa"=>$p->id_empresa,
+  ));
+  include("templates/ficha/home.php");  
 
 } else if (isset($empresa->template_path) && !empty($empresa->template_path)) { 
 
