@@ -295,7 +295,7 @@ error_reporting(E_ALL); ?>
 	  			<div class="section-title">
 	  				<span>Testimonios</span>
 	  				<h2>Que dicen nuestros clientes</h2>
-	  				<?php $t = $web_model->get_text("testimonios-texto","Algunos testimonios registrados en Google de clientes satisfechos <br>por comprar en Alaró una propiedad.")?>
+	  				<?php $t = $web_model->get_text("testimonios-textov2","Compartimos algunas experiencias de clientes que confiaron en nosotros.<br> Con Muchos de ellos venimos creciendo juntos hace años <br>en distintos proyectos de inversión.")?>
 	  				<p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></p>
 	  			</div>
 	  		</div>
