@@ -295,7 +295,8 @@ error_reporting(E_ALL); ?>
 	  			<div class="section-title">
 	  				<span>Testimonios</span>
 	  				<h2>Que dicen nuestros clientes</h2>
-	  				<p>Algunos testimonios registrados en Google de clientes satisfechos <br>por comprar en Alaró una propiedad.</p>
+	  				<?php $t = $web_model->get_text("testimonios-texto","Algunos testimonios registrados en Google de clientes satisfechos <br>por comprar en Alaró una propiedad.")?>
+	  				<p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></p>
 	  			</div>
 	  		</div>
 	  		<div class="slider-wrap"> 

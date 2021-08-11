@@ -291,9 +291,13 @@ $empresa->telefono_num_2 = preg_replace($regex, '', $empresa->telefono_2);
                      <?php if ($p->superficie_total != "0") {  ?><span><img src="images/sqft-icon.png" alt="SQFT Icon"> <?php echo $p->superficie_total ?> m2</span><?php } ?>
                   </div>
                 <div class="btns-block">
-                  <a href="<?php echo ($p->link_propiedad) ?>" class="btn btn-secoundry">Más Información</a>
-                  <a href="<?php echo ($p->link_propiedad) ?>#contacto_nombre" class="icon-box"></a>
-                  <a href="#0" onclick="llenar_id(<?php echo $p->id ?>)" data-toggle="modal" data-target="#exampleModalCenter" class="icon-box whatsapp-box"></a>
+                  <?php if ($vc_link_tipo_operacion != "proyectos-finalizados") {  ?>
+                    <a href="<?php echo ($p->link_propiedad) ?>" class="btn btn-secoundry">Más Información</a>
+                    <a href="<?php echo ($p->link_propiedad) ?>#contacto_nombre" class="icon-box"></a>
+                    <a href="#0" onclick="llenar_id(<?php echo $p->id ?>)" data-toggle="modal" data-target="#exampleModalCenter" class="icon-box whatsapp-box"></a>
+                  <?php } else { ?>
+                    <a href="<?php echo ($p->link_propiedad) ?>" class="btn btn-secoundry w-100">ver galería de fotos</a>
+                  <?php } ?>
                 </div>
               </div>
             </div>
