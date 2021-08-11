@@ -272,7 +272,7 @@ if ($empresa->administrar_pagos == 1 && $fecha_suspension->format("Y-m-d") < dat
 $dominio = "http://".$dominio;
 $nombre_pagina = (sizeof($params)>0) ? $params[0] : "";
 
-if ( $nombre_pagina == "buscador") {
+if ( $nombre_pagina == "ficha") {
   include_once("models/Propiedad_Model.php");
   $propiedad_model = new Propiedad_Model($empresa->id,$conx);
   $propiedad = $propiedad_model->get($p->id,array(
