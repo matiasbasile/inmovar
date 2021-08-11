@@ -227,7 +227,7 @@ error_reporting(E_ALL); ?>
   				<h2 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
   					<?php echo $t->plain_text ?>
   				</h2>
-  				<?php $t = $web_model->get_text("seccion-edificios-txt","Somos una empresa familiar que a través del compromiso, esfuerzo<br>y la ética profesional realiza desarrollos inmobiliarios de alto valor agregado.")?>
+  				<?php $t = $web_model->get_text("seccion-edificios-txtv2","Somos una empresa familiar que a través del compromiso, esfuerzo<br>y la ética profesional realiza desarrollos inmobiliarios de alto valor agregado.")?>
   				<p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
   					<?php echo $t->plain_text ?>
   				</p>
