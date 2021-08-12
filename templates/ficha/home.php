@@ -127,7 +127,7 @@
           <?= $propiedad->acepta_permuta != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Acepta Permuta: Si </li>" : "" ?> 
           </ul>
         </section>
-        <section id="ficha_servicios" class="card">
+        <section class="card">
           <div class="titulo2">Servicios</div>
           <ul class="ficha_ul" id="lista_informacion_basica">
           <?= $propiedad->servicios_aire_acondicionado != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Aire Acondicionado: Si </li>" : "" ?> 
