@@ -49,16 +49,16 @@
               </div>
             </div>
             <div class="ficha_detalle_item">
-              <b>Dirección</b><br/>
+              <b>Dirección:</b><br/>
               <?php echo $propiedad->direccion_completa ?>
             </div>
-            <div class="ficha_detalle_item">
-              <?php if(isset($propiedad->localidad)){ ?>
-                <b>Localidad/Partido</b><br/><?= $propiedad->localidad ?>
-              <?php } ?>
-            </div>
+            <?php if(isset($propiedad->localidad)){ ?>
+              <div class="ficha_detalle_item">
+                <b>Localidad/Partido:</b><br/><?= $propiedad->localidad ?>
+              </div>
+            <?php } ?>
             <?php if(isset($propiedad->codigo)){ ?>
-            <div id="ficha_detalle_ref">( COD. <?= $propiedad->codigo ?> )</div>
+              <div id="ficha_detalle_ref">( COD. <?= $propiedad->codigo ?> )</div>
             <?php } ?>
           </div>
           <div id="slider_thumbs" class="noprint mb20">
@@ -71,24 +71,26 @@
             <?php $x_img +=1; } ?>
           </div>
         </div>
-        <div id="producer_container" class="card">
-          <img src="assets/images/icon-agent.png"/>
-          <div id="producer_info">
-            <div id="producer_name"><?= $propiedad->usuario ?></div>
-            <div class="producer-item">
-              <a href="mailto:<?= $propiedad->usuario_email ?>">
-                <img src="https://static.tokkobroker.com/static/img/mail.svg?20210623013909">
-                <div><?= $propiedad->usuario_email ?></div>
-              </a>
-            </div>
-            <div class="producer-item">
-              <a href="tel: <?= $propiedad->usuario_celular ?>" >
-                <img src="https://static.tokkobroker.com/static/img/cellphone.svg?20210623013909">
-                <div> <?= $propiedad->usuario_celular ?></div>
-              </a>
+        <?php if (!empty($propiedad->id_usuario)) { ?>
+          <div id="producer_container" class="card">
+            <img src="assets/images/icon-agent.png"/>
+            <div id="producer_info">
+              <div id="producer_name"><?= $propiedad->usuario ?></div>
+              <div class="producer-item">
+                <a href="mailto:<?= $propiedad->usuario_email ?>">
+                  <img src="https://static.tokkobroker.com/static/img/mail.svg?20210623013909">
+                  <div><?= $propiedad->usuario_email ?></div>
+                </a>
+              </div>
+              <div class="producer-item">
+                <a href="tel: <?= $propiedad->usuario_celular ?>" >
+                  <img src="https://static.tokkobroker.com/static/img/cellphone.svg?20210623013909">
+                  <div> <?= $propiedad->usuario_celular ?></div>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
+        <?php } ?>
       </div>
       <div id="ficha_desc">
         <section id="ficha_informacion_basica" class="card">

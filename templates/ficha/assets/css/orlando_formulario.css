@@ -2555,5 +2555,5 @@ footer .container {
 }
 
 @media (max-width: 768px) {
-	.ficha_detalle_item { width: 100%; }
+	.ficha_detalle_item { width: 100% !important; display: block !important; }
 }
