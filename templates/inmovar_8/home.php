@@ -146,7 +146,7 @@ if (sizeof($slides)>0) { ?>
               <?php $t = $web_model->get_text("box1txtv2","Encontra la propiedad <br> que estas buscando al <br> mejor precio.")?>
               <p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></p>
               <?php $t = $web_model->get_text("box1btnv2",mklink ("propiedades/ventas/")) ?>
-              <a href="<?php echo $t->link ?>">Ver Propiedades <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a> 
+              <a class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" href="<?php echo $t->link ?>">Ver Propiedades <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a> 
             </div>
           </div>
         </div>
@@ -161,7 +161,7 @@ if (sizeof($slides)>0) { ?>
               <?php $t = $web_model->get_text("box2txt","Encontra la propiedad <br> que estas buscando al <br> mejor precio.")?>
               <p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></p>
               <?php $t = $web_model->get_text("box2btnv2",mklink ("propiedades/alquileres/")) ?>
-              <a href="<?php echo $t->link ?>">Ver Propiedades <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a> 
+              <a class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" href="<?php echo $t->link ?>">Ver Propiedades <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a> 
             </div>
           </div>
         </div>
@@ -176,7 +176,7 @@ if (sizeof($slides)>0) { ?>
               <?php $t = $web_model->get_text("box3txt","Encontra la propiedad <br> que estas buscando al <br> mejor precio.")?>
               <p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></p>
               <?php $t = $web_model->get_text("box3btnv2",mklink ("propiedades/emprendimientos/")) ?>
-              <a href="<?php echo $t->link ?>">Ver Propiedades <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a> 
+              <a class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" href="<?php echo $t->link ?>">Ver Propiedades <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a> 
             </div>
           </div>
         </div>
