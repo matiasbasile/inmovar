@@ -160,6 +160,7 @@
         <?= $propiedad->texto ?>
       </div>
     </div>
+    
     <div id="ficha_contacto" style="color:  !important;" class="card noprint">
       <div class="titulo2" style="text-transform: uppercase;">Contacto</div>
         <div id="ficha_gracias" style="height:300px; display:none; color:  !important;">
@@ -188,11 +189,16 @@
           ENVIAR
         </div>
       </div>
-      <section id="ficha_mapa" style="color:  !important;" class="card noprint">
+
+      <section id="ficha_mapa" class="card">
         <div class="titulo2">Ubicación</div>
-        
-         <?php include("contacto.php") ?>
       </section>
+
+      <section id="ficha_mapa" class="card noprint">
+        <div class="titulo2">Contacto</div>
+        <?php include("contacto.php") ?>
+      </section>
+
     </div>
   </div>
   <div class="footer">
