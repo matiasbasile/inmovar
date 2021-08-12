@@ -206,7 +206,7 @@
                     <label class="control-label">
                       <label class="i-checks m-b-none">
                         <input id="empresa_incluye_comision_35" value="1" <%= (incluye_comision_35==1)?"checked":"" %> type="checkbox"><i></i>
-                        Incluye 3.50% de Comisión.
+                        Incluye 3% de Comisión.
                       </label>
                     </label>
                   </div>               
