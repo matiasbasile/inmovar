@@ -91,7 +91,7 @@
         </div>
       </div>
       <div id="ficha_desc">
-        <section id="ficha_informacion_basica" class="card" style="color:  !important; width: 100%;">
+        <section id="ficha_informacion_basica" class="card">
           <div class="titulo2">Información básica</div>
           <ul class="ficha_ul" id="lista_informacion_basica">
           <?= isset($propiedad->ambientes) ? "<li><i class='fa fa-check detalleColorC'></i>Ambientes: $propiedad->ambientes </li>" : "" ?>
@@ -125,7 +125,7 @@
           <?= $propiedad->acepta_permuta != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Acepta Permuta: Si </li>" : "" ?> 
           </ul>
         </section>
-        <section id="ficha_servicios" class="card" style="color:  !important; width: 100%;">
+        <section id="ficha_servicios" class="card">
           <div class="titulo2">Servicios</div>
           <ul class="ficha_ul" id="lista_informacion_basica">
           <?= $propiedad->servicios_aire_acondicionado != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Aire Acondicionado: Si </li>" : "" ?> 
@@ -146,7 +146,7 @@
             <?= !empty($propiedad->superficie_cubierta) ? "<li><i class='fa fa-check detalleColorC'></i>Superficie Cubierta: $propiedad->superficie_cubierta m²</li>" : "" ?>
             <?= !empty($propiedad->superficie_semicubierta) ? "<li><i class='fa fa-check detalleColorC'></i>Superficie Semicubierta: $propiedad->superficie_semicubierta m²</li>" : "" ?>
             <?= !empty($propiedad->superficie_descubierta) ? "<li><i class='fa fa-check detalleColorC'></i>Superficie Descubierta: $propiedad->superficie_descubierta m²</li>" : "" ?>
-            <?= !empty($propiedad->superficie_total) ? "<li><i class='fa fa-check detalleColorC'></i>Superficie Total del Terreno: $propiedad->superficie_total m² </li>" : "" ?>
+            <?= !empty($propiedad->superficie_total) ? "<li><i class='fa fa-check detalleColorC'></i>Superficie Total: $propiedad->superficie_total m² </li>" : "" ?>
           </ul>
         </section>
         <div class="card">
@@ -154,35 +154,6 @@
             Descripción
           </div>
           <?= $propiedad->texto ?>
-        </div>
-      </div>
-
-      <div id="ficha_contacto" style="color:  !important;" class="card noprint">
-        <div class="titulo2" style="text-transform: uppercase;">Contacto</div>
-        <div id="ficha_gracias" style="height:300px; display:none; color:  !important;">
-          Gracias por tu consulta. <br>
-          Te responderemos a la brevedad.
-        </div>
-        <div class="ficha_contacto_item"><label>Nombre</label> <input id="contact_name" type="text" />
-        </div>
-        <div class="ficha_contacto_item"><label>Teléfono</label> <input id="contact_phone" type="text" />
-        </div>
-        <div class="ficha_contacto_item"><label>E-mail</label> <input id="contact_email" type="text" />
-        </div>
-        <div class="ficha_contacto_item"><label>Tipo de operación</label>
-            <select id="contact_operation">
-            </select>
-        </div>
-        <div class="ficha_contacto_item">
-          <label>
-            Mensaje
-          </label> 
-          <textarea id="contact_text">
-            Estoy interesado en esta propiedad.
-          </textarea>
-        </div>
-        <div id="ficha_send" class="detalleColor" style="cursor:pointer;" onclick="send_webcontact()">
-          ENVIAR
         </div>
       </div>
 
