@@ -2553,3 +2553,7 @@ footer .container {
 	cursor: pointer;
 	z-index: 999999;
 }
+
+@media (max-width: 768px) {
+	.ficha_detalle_item { width: 100%; }
+}
