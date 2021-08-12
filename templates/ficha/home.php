@@ -61,7 +61,7 @@
             <div id="ficha_detalle_ref">( COD. <?= $propiedad->codigo ?> )</div>
             <?php } ?>
           </div>
-          <div id="slider_thumbs" class="noprint">
+          <div id="slider_thumbs" class="noprint mb20">
             <?php
             $x_img = 0;
             foreach ($propiedad->images as $key) { ?>
