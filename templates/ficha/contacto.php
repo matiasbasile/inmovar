@@ -1,43 +1,38 @@
 <section class="container" id="form-contact">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="property-full-info">
-				<div class="box-space mb50">
-					<h2 class="section-title text-center">Enviar consulta</h2>
-					<div class="form">
-						<form onsubmit="return enviar_contacto()">
-							<div class="row">
-								<div class="col-md-6">
-									<input class="form-control" id="contacto_nombre" type="text" placeholder="Nombre *">
-								</div>
-								<div class="col-md-6">
-									<input class="form-control" id="contacto_telefono" type="tel" placeholder="Teléfono *">
-								</div>
-								<div class="col-md-6">
-									<input class="form-control" id="contacto_email" type="email" placeholder="Email *">
-								</div>
-								<div class="col-md-6">
-									<select class="form-control" style="height: 100%">
-										<option>Asunto</option>
-										<?php $asuntos = explode(";;;",$empresa->asuntos_contacto);
-										foreach($asuntos as $a) { ?>
-											<option><?php echo $a ?></option>
-										<?php } ?>
-									</select>
-								</div>
-							</div>
-							<div class="col-md-12">
-								<textarea class="form-control" id="contacto_mensaje" placeholder="Escriba aquí su mensaje*"></textarea>
-							</div>
-							<div class="col-md-12">
-								<div class="pull-right">
-									<input type="submit" id="contacto_submit" value="enviar consulta" class="btn btn-red btn-blue">
-								</div>
-							</div>
-						</form>
-					</div>                
-				</div>
-			</div>
+	<div class="property-full-info">
+		<div class="box-space">
+			<div class="form">
+				<form onsubmit="return enviar_contacto()">
+					<div class="row">
+						<div class="col-md-6">
+							<input class="form-control" id="contacto_nombre" type="text" placeholder="Nombre *">
+						</div>
+						<div class="col-md-6">
+							<input class="form-control" id="contacto_telefono" type="tel" placeholder="Teléfono *">
+						</div>
+						<div class="col-md-6">
+							<input class="form-control" id="contacto_email" type="email" placeholder="Email *">
+						</div>
+						<div class="col-md-6">
+							<select class="form-control" style="height: 100%">
+								<option>Asunto</option>
+								<?php $asuntos = explode(";;;",$empresa->asuntos_contacto);
+								foreach($asuntos as $a) { ?>
+									<option><?php echo $a ?></option>
+								<?php } ?>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<textarea class="form-control" id="contacto_mensaje" placeholder="Escriba aquí su mensaje*"></textarea>
+					</div>
+					<div class="col-md-12">
+						<div class="pull-right">
+							<input type="submit" id="contacto_submit" value="enviar consulta" class="btn btn-red btn-blue">
+						</div>
+					</div>
+				</form>
+			</div>                
 		</div>
 	</div>
 </section>
