@@ -270,10 +270,6 @@ textarea.form-control {
 	height: 185px;
 }
 
-select.form-control:not([size]):not([multiple]) {
-	height: 38px;
-}
-
 select.form-control {
 	background: url("../images/select-bg.png") no-repeat 100% 52% #ffffff;
 	cursor: pointer;
