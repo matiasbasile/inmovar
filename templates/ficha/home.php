@@ -140,14 +140,13 @@
           <?= $propiedad->servicios_cable != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Cable: Si </li>" : "" ?> 
           </ul>
         </section> 
-        <section id="ficha_superficies" class="card" style="color:  !important; width: 100%;">
+        <section id="ficha_superficies" class="card">
           <div class="titulo2">Superficies</div>
-       
           <ul class="ficha_ul" id="lista_superficies">
-          <?= isset($propiedad->superficie_cubierta) and $propiedad->superficie_cubierta != 0  ? "<li><i class='fa fa-check detalleColorC'></i>Superficie Cubierta: $propiedad->superficie_cubierta m²</li>" : "" ?>
-          <?= isset($propiedad->superficie_semicubierta) and $propiedad->superficie_semicubierta != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Superficie Semicubierta: $propiedad->superficie_semicubierta m²</li>" : "" ?>
-          <?= isset($propiedad->superficie_descubierta) and $propiedad->superficie_descubierta != 0 ?  "<li><i class='fa fa-check detalleColorC'></i>Superficie Descubierta: $propiedad->superficie_descubierta m²</li>" : "" ?>
-          <?= isset($propiedad->superficie_total) and $propiedad->superficie_total != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Superficie Total del Terreno: $propiedad->superficie_total m² </li>" : "" ?> 
+            <?= !empty($propiedad->superficie_cubierta) ? "<li><i class='fa fa-check detalleColorC'></i>Superficie Cubierta: $propiedad->superficie_cubierta m²</li>" : "" ?>
+            <?= !empty($propiedad->superficie_semicubierta) ? "<li><i class='fa fa-check detalleColorC'></i>Superficie Semicubierta: $propiedad->superficie_semicubierta m²</li>" : "" ?>
+            <?= !empty($propiedad->superficie_descubierta) ? "<li><i class='fa fa-check detalleColorC'></i>Superficie Descubierta: $propiedad->superficie_descubierta m²</li>" : "" ?>
+            <?= !empty($propiedad->superficie_total) ? "<li><i class='fa fa-check detalleColorC'></i>Superficie Total del Terreno: $propiedad->superficie_total m² </li>" : "" ?>
           </ul>
         </section>
         <div class="card">
