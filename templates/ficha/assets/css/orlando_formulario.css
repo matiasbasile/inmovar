@@ -270,10 +270,6 @@ textarea.form-control {
 	height: 185px;
 }
 
-select.form-control:not([size]):not([multiple]) {
-	height: 38px;
-}
-
 select.form-control {
 	background: url("../images/select-bg.png") no-repeat 100% 52% #ffffff;
 	cursor: pointer;
@@ -1672,9 +1668,6 @@ footer .container {
 .property-full-info form [class*="col-"], .visit .search-filter form [class*="col-"] {
 	padding: 0 5px 10px;
 }
-.property-full-info form .row [class*="col-"]:last-child {
-	padding-bottom: 0;
-}
 .property-full-info form .btn {
 	font-size: 18px;
 	width: 100%;
@@ -2559,4 +2552,8 @@ footer .container {
 .onclick-span { 
 	cursor: pointer;
 	z-index: 999999;
+}
+
+@media (max-width: 768px) {
+	.ficha_detalle_item { width: 100% !important; display: block !important; }
 }

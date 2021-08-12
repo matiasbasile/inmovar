@@ -102,6 +102,7 @@
       ubicacion_departamento: "",
       balcon: 0,
       patio: 0,
+      incluye_comision_35: 0,
 
       servicios_gas: 0,
       servicios_cloacas: 0,
@@ -239,7 +240,6 @@
           "width":900,
           "height":700,
         });
-        workspace.crear_editor("enviar_plantilla_texto");
       },  
 
       "click #buscar_propias_tab":function() {
@@ -2410,6 +2410,7 @@
         return;
       }
       var altura = $("#propiedad_altura").val();
+      if (isEmpty(altura)) return;
       var localidad = $("#propiedad_localidades option:selected").text();
       if (isEmpty(localidad)) {
         alert("Por favor ingrese una localidad");

@@ -156,6 +156,7 @@
     template: _.template($("#enviar_plantilla_template").html()),
       
     myEvents: {
+      "click .enviar":"enviar",
     },
     
     initialize: function(options) {
@@ -189,7 +190,7 @@
             //sucess
             function(data) {
               texto += data;
-              CKEDITOR.instances['enviar_plantilla_texto'].setData(texto);
+              $("#enviar_plantilla_texto").val(texto);
             },
           );
         }
@@ -201,6 +202,7 @@
         modelClass: app.models.Clientes,
         url: "clientes/function/get_clientes/?id_empresa="+ID_EMPRESA,
         render: "#enviar_plantilla_clientes",
+        fields: ["fax","telefono"],
         firstOptions: ["<option value='0'>Seleccione un cliente</option>"],
         onComplete:function(c) {
           crear_select2("enviar_plantilla_clientes");
@@ -212,42 +214,40 @@
       try {
         var self = this;
 
-        var asunto = this.$("#email_asunto").val();
-        if (isEmpty(asunto)) {
-          alert("Por favor ingrese un asunto para el email.");
-          this.$("#email_asunto").focus();
+        var id_cliente = this.$("#enviar_plantilla_clientes").val();
+        if (isEmpty(id_cliente)) {
+          alert("Por favor seleccione un cliente.");
+          this.$("#enviar_plantilla_clientes").focus();
           return false;
         }
+        var texto = this.$("#enviar_plantilla_texto").val();
+        if (isEmpty(texto)) {
+          alert("Por favor ingrese un texto.");
+          this.$("#enviar_plantilla_texto").focus();
+          return false;          
+        }
 
-        var cktext = CKEDITOR.instances['email_texto'].getData();
-        self.model.set({
-          "adjuntos":self.adjuntos,
-          "texto":cktext,
-          "archivo":self.$("#hidden_archivo").val(),
-        });
         return true;
       } catch(e) {
         return false;
       }
     },  
   
-    guardar:function() {
-      if (this.validar()) {
-        if (this.model.id == null) {
-          this.model.set({id:0});
+    enviar:function() {
+      if (!this.validar()) return;
+      /*
+      TODO: TENEMOS QUE GUARDAR QUE LE ENVIAMOS ESAS PROPIEDADES AL CLIENTE
+      $.ajax({
+        "success":function(r){
+          
         }
-        this.model.save({},{
-          success: function(model,response) {
-            if (response.error == 1) {
-              show(response.mensaje);
-              return;
-            } else {
-              //emails.add(model);
-              $('.modal:last').modal('hide');
-            }
-          }
-        });
-      }   
+      });
+      */
+      var texto = this.$("#enviar_plantilla_texto").val();
+      var telefono = "549" + this.$("#enviar_plantilla_clientes option:selected").data("telefono");
+      var salida = "https://wa.me/"+telefono+"?text="+encodeURIComponent(texto);
+      window.open(salida,"_blank");
+      $('.modal:last').modal('hide');
     },
 
     cargar_tabla:function(){
@@ -264,9 +264,10 @@
         "type": "post",
         "success":function(res) {
           if (plantilla == "whatsapp"){
-            var links = "<br> ";
+            var links = "";
+            console.log(res.propiedades);
             for (var i = 0; i < res.propiedades.length; i++) {
-              links += res.propiedades[i].link+" ";
+              links += "https://app.inmovar.com/ficha/"+ID_EMPRESA+"/"+res.propiedades[i].hash+"\n";
             }
             dfd.resolve(links);
           } else {

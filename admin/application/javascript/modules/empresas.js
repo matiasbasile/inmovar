@@ -49,6 +49,7 @@
       configuraciones_especiales: "",
       limite: 0,
       codigo: "",
+      incluye_comision_35: 0,
 
       // Estos datos son de web_configuracion
       direccion_web: "",
@@ -559,6 +560,12 @@
         if (this.$("#empresa_habilitar_descripciones").length > 0) {
           this.model.set({
             "habilitar_descripciones":($("#empresa_habilitar_descripciones").is(":checked")?1:0),
+          });
+        }       
+
+        if (this.$("#empresa_incluye_comision_35").length > 0) {
+          this.model.set({
+            "incluye_comision_35":($("#empresa_incluye_comision_35").is(":checked")?1:0),
           });
         }       
 

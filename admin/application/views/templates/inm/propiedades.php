@@ -147,6 +147,9 @@
       <span class="bold"><%= direccion_completa %></span><br/>
       <%= localidad %>
     <% } %>
+    <% if (id_empresa != ID_EMPRESA && incluye_comision_35 == 1) { %>
+      <br/><span class="btn etiqueta">Incluye 3% Comisión</span>
+    <% } %>
   </td>
   <td class="<%= clase %> data">
     <%= tipo_operacion %><br/>
