@@ -1668,9 +1668,6 @@ footer .container {
 .property-full-info form [class*="col-"], .visit .search-filter form [class*="col-"] {
 	padding: 0 5px 10px;
 }
-.property-full-info form .row [class*="col-"]:last-child {
-	padding-bottom: 0;
-}
 .property-full-info form .btn {
 	font-size: 18px;
 	width: 100%;
