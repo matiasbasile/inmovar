@@ -843,7 +843,9 @@ class Propiedad_Model extends Abstract_Model {
       $localidad = $ti->nombre;
     }
 
-    $data->nombre = $tipo_inmueble." en ".$tipo_operacion.((!empty($localidad)) ? " en ".$localidad : "");
+    if ($data->id_empresa != 1575) {
+      $data->nombre = $tipo_inmueble." en ".$tipo_operacion.((!empty($localidad)) ? " en ".$localidad : "");
+    }
 
     $data->calle = str_replace(" - La Plata", "", $data->calle);
     
