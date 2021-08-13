@@ -145,8 +145,8 @@ if (sizeof($slides)>0) { ?>
               <h5 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></h5>
               <?php $t = $web_model->get_text("box1txtv2","Encontra la propiedad <br> que estas buscando al <br> mejor precio.")?>
               <p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></p>
-              <?php $t = $web_model->get_text("box1btnv2",mklink ("propiedades/ventas/")) ?>
-              <a class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" href="<?php echo (!empty($t->link))?$t->link:$t->plain_text ?>">Ver Propiedades <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a> 
+              <?php $t = $web_model->get_text("box1btnv2","Ver Propiedades") ?>
+              <a class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" href="<?php echo (!empty($t->link))?$t->link:"javascript:void(0)" ?>"><?php echo $t->link ?> <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a> 
             </div>
           </div>
         </div>
@@ -160,8 +160,8 @@ if (sizeof($slides)>0) { ?>
               <h5 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></h5>
               <?php $t = $web_model->get_text("box2txt","Encontra la propiedad <br> que estas buscando al <br> mejor precio.")?>
               <p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></p>
-              <?php $t = $web_model->get_text("box2btnv2",mklink ("propiedades/alquileres/")) ?>
-              <a class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" href="<?php echo (!empty($t->link))?$t->link:$t->plain_text ?>">Ver Propiedades <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a> 
+              <?php $t = $web_model->get_text("box2btnv2","Ver Propiedades") ?>
+              <a class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" href="<?php echo (!empty($t->link))?$t->link:"javascript:void(0)" ?>"><?php echo $t->link ?> <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a> 
             </div>
           </div>
         </div>
@@ -175,8 +175,8 @@ if (sizeof($slides)>0) { ?>
               <h5 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></h5>
               <?php $t = $web_model->get_text("box3txt","Encontra la propiedad <br> que estas buscando al <br> mejor precio.")?>
               <p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></p>
-              <?php $t = $web_model->get_text("box3btnv2",mklink ("propiedades/emprendimientos/")) ?>
-              <a class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" href="<?php echo (!empty($t->link))?$t->link:$t->plain_text ?>">Ver Propiedades <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a> 
+              <?php $t = $web_model->get_text("box3btnv2","Ver Propiedades") ?>
+              <a class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" href="<?php echo (!empty($t->link))?$t->link:"javascript:void(0)" ?>"><?php echo $t->link ?> <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a> 
             </div>
           </div>
         </div>

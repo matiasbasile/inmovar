@@ -128,16 +128,20 @@ $total_paginas = ceil ($total / $offset);
                   <?php foreach ($listado_infos as $l) {  ?>
                     <div class="list_view_listing">
                       <div class="row">
-                        <div class="col-lg-6 col-md-6 pad-r">
-                          <div class="list_view_img">
-                            <?php if (!empty($l->path)) { ?>
+                        <?php if (!empty($l->path)) { ?>
+                          <div class="col-lg-6 col-md-6 pad-r">
+                            <div class="list_view_img">
                               <img style="object-fit: cover;width: 100%;height: 280px" src="<?php echo $l->path ?>" alt="<?php echo ($l->titulo); ?>" />
-                            <?php } else if (!empty($empresa->no_imagen)) { ?>
-                              <img style="object-fit: cover;width: 100%;height: 280px" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($l->titulo); ?>" />
-                            <?php } ?>
+                            </div>
                           </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
+                        <?php } else if (!empty($empresa->no_imagen)) { ?>
+                          <div class="col-lg-6 col-md-6 pad-r">
+                            <div class="list_view_img">
+                              <img style="object-fit: cover;width: 100%;height: 280px" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($l->titulo); ?>" />
+                            </div>
+                          </div>
+                        <?php } ?>
+                        <div class="<?php echo (!empty($l->path) || !empty($empresa->no_imagen))?'col-lg-6 col-md-6':'col-lg-12 col-md-12' ?>">
                           <div class="list_boxes_content">
                             <h3 class="heading_details1"><?php echo $l->titulo ?></h3>
                             <?php if ($l->mostrar_fecha == 1) {  ?><div class="date_time"> <span><i class="fa fa-calendar" aria-hidden="true"></i><?php echo $l->fecha ?></span> <span class="time_span"><i class="fa fa-clock-o" aria-hidden="true"></i><?php echo $l->hora ?>hs.</span> </div><?php } ?>
