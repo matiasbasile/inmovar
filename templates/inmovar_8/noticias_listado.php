@@ -134,8 +134,6 @@ $total_paginas = ceil ($total / $offset);
                               <img style="object-fit: cover;width: 100%;height: 280px" src="<?php echo $l->path ?>" alt="<?php echo ($l->titulo); ?>" />
                             <?php } else if (!empty($empresa->no_imagen)) { ?>
                               <img style="object-fit: cover;width: 100%;height: 280px" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($l->titulo); ?>" />
-                            <?php } else { ?>
-                              <img style="object-fit: cover;width: 100%;height: 280px" src="images/logo.png" alt="<?php echo ($l->titulo); ?>" />
                             <?php } ?>
                           </div>
                         </div>
