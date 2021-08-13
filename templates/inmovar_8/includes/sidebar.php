@@ -4,7 +4,7 @@
       <h5 class="heading_ng">Información</h5>
       <div class="date_notify_tab">
         <div id="accordion">
-          <?php $categorias_info = $entrada_model->get_subcategorias(186,array(
+          <?php $categorias_info = $entrada_model->get_subcategorias(0,array(
             "buscar_hijos"=>0,
           ));
           foreach ($categorias_info as $cat) {  ?>
