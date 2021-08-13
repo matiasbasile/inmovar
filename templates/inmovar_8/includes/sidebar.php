@@ -4,14 +4,14 @@
       <h5 class="heading_ng">Información</h5>
       <div class="date_notify_tab">
         <div id="accordion">
-          <?php $categorias_info = $entrada_model->get_subcategorias(186,array(
+          <?php $categorias_info = $entrada_model->get_subcategorias(0,array(
             "buscar_hijos"=>0,
           ));
           foreach ($categorias_info as $cat) {  ?>
             <div class="card">
               <div class="card-header" id="<?php  echo $cat->link.'heading' ?>">
                 <h5>
-                  <button class="btn-link" data-toggle="collapse" data-target="#<?php echo $cat->link ?>" aria-expanded="true" aria-controls="<?php echo $cat->link ?>"> <?php echo utf8_encode($cat->nombre) ?> </button>
+                  <button class="btn-link" data-toggle="collapse" data-target="#<?php echo $cat->link ?>" aria-expanded="true" aria-controls="<?php echo $cat->link ?>"> <?php echo ($cat->nombre) ?> </button>
                 </h5>
               </div>
               <div id="<?php echo $cat->link ?>" class="collapse <?php echo $titulo_pagina == $cat->link?"show":"" ?>" aria-labelledby="<?php  echo $cat->link.'heading' ?>" data-parent="#accordion">
