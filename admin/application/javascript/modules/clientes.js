@@ -75,6 +75,7 @@
       propiedad_nombre: "",
       propiedad_id_tipo_operacion: 0,
       propiedad_tipo_operacion: "",
+      propiedad_codigo: "",
     }
   });
 
