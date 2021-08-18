@@ -120,11 +120,10 @@ class Contacto_Model extends Abstract_Model {
         $row->subtitulo = $respuesta->subtitulo;            
         $row->id_origen = $respuesta->id_origen;
         $row->id_usuario_asignado = $respuesta->id_usuario;
-        if ($empresa->id_proyecto == 3) {
-          $row->propiedad_nombre = $respuesta->propiedad_nombre;
-          $row->propiedad_id_tipo_operacion = $respuesta->propiedad_id_tipo_operacion;
-          $row->propiedad_tipo_operacion = $respuesta->propiedad_tipo_operacion;
-        }
+        $row->propiedad_nombre = $respuesta->propiedad_nombre;
+        $row->propiedad_id_tipo_operacion = $respuesta->propiedad_id_tipo_operacion;
+        $row->propiedad_tipo_operacion = $respuesta->propiedad_tipo_operacion;
+        $row->propiedad_codigo = $respuesta->propiedad_codigo;
       } else {
         $row->respondido = 0;
         $row->id_consulta = 0;
@@ -132,11 +131,10 @@ class Contacto_Model extends Abstract_Model {
         $row->subtitulo = "";
         $row->id_origen = 0;
         $row->id_usuario_asignado = 0;
-        if ($empresa->id_proyecto == 3) {
-          $row->propiedad_nombre = "";
-          $row->propiedad_id_tipo_operacion = 0;
-          $row->propiedad_tipo_operacion = "";
-        }
+        $row->propiedad_nombre = "";
+        $row->propiedad_id_tipo_operacion = 0;
+        $row->propiedad_tipo_operacion = "";
+        $row->propiedad_codigo = "";
       }
 
       // Buscamos tambien si tiene una tarea no realizada
