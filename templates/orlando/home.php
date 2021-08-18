@@ -1,4 +1,5 @@
 <?php include "includes/init.php" ?>
+<?php $page_act = "home" ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>

@@ -1,9 +1,5 @@
-<base href="/templates/<?php echo $empresa->template_path ?>/"/>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-<title><?php echo (isset($seo_title)) ? (html_entity_decode($seo_title,ENT_QUOTES)) : (html_entity_decode($empresa->seo_title,ENT_QUOTES)); ?></title>
-<meta name="description" content="<?php echo (isset($seo_description)) ? (html_entity_decode($seo_description,ENT_QUOTES)) : (html_entity_decode($empresa->seo_description,ENT_QUOTES)); ?>">
-<meta name="keywords" content="<?php echo (isset($seo_keywords)) ? (html_entity_decode($seo_keywords,ENT_QUOTES)) : (html_entity_decode($empresa->seo_keywords,ENT_QUOTES)); ?>">
+<?php include "templates/comun/pre_head.php" ?>
+
 <link rel="canonical" href="<?php echo current_url(TRUE); ?>" />
 <link rel='shortlink' href="<?php echo current_url(TRUE); ?>" />
 <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
@@ -29,22 +25,8 @@ include_once("templates/".$empresa->template_path."/assets/css/custom.php");
 <script src="js/html5shiv.js"></script>
 <![endif]-->
 
-<?php if (strpos(strtolower($empresa->favicon), ".png")>0) { ?>
-  <link rel="shortcut icon" type="image/png" href="/admin/<?php echo $empresa->favicon ?>"/>
-<?php } else if (strpos(strtolower($empresa->favicon), ".ico")>0) { ?>
-  <link rel="shortcut icon" type="image/x-icon" href="/admin/<?php echo $empresa->favicon ?>" />
-<?php } else { ?>
-  <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
-<?php } ?>
 
-<link href="/admin/resources/css/common.css" type="text/css" media="all" rel="stylesheet">
-<script type="text/javascript">
-// Constantes que se utilizan en el sistema
-const ID_EMPRESA = "<?php echo $empresa->id ?>";
-</script>
-<?php echo html_entity_decode($empresa->analytics,ENT_QUOTES); ?>
-<?php echo html_entity_decode($empresa->zopim,ENT_QUOTES); ?>
-
-<?php if (!empty($empresa->texto_css)) { ?>
-<style type="text/css"><?php echo $empresa->texto_css ?></style>
-<?php } ?>
+<!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<![endif]-->
+<?php include "templates/comun/post_head.php" ?>

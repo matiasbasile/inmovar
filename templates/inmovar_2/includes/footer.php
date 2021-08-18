@@ -80,6 +80,7 @@
             <div class="main-title-2">
               <h3>Últimas propiedades</h3>
             </div>
+            <?php if (!empty($listado_full)) {  ?>
             <?php for($i=0;$i<2;$i++) { $p = $listado_full[$i] ?>      
               <div class="media">
                 <div class="media-left">
@@ -96,6 +97,7 @@
                 </div>
               </div>
             <?php } ?>
+          <?php } ?>
           </div>
         </div>
       </div>

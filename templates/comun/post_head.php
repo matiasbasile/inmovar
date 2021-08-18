@@ -4,6 +4,8 @@
 <?php if (!empty($empresa->google_site_verification)) { echo html_entity_decode($empresa->google_site_verification,ENT_QUOTES); } ?>
 <?php if (!empty($empresa->adsense)) { echo html_entity_decode($empresa->adsense,ENT_QUOTES); } ?>
 <?php if (!empty($empresa->pixel_fb)) { echo html_entity_decode($empresa->pixel_fb,ENT_QUOTES); } ?>
+<?php if (!empty($empresa->remarketing)) { echo html_entity_decode($empresa->remarketing,ENT_QUOTES); } ?>
+<?php if (!empty($empresa->view_id)) { echo html_entity_decode($empresa->view_id,ENT_QUOTES); } ?>
 <script type="text/javascript">
 // Constantes que se utilizan en el sistema
 const ID_EMPRESA = "<?php echo $empresa->id ?>";
