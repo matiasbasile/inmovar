@@ -10,7 +10,9 @@ $page_act = "home"; ?>
 <body id="index">
 	<?php include "includes/header.php" ?>
 	<?php $slides = $web_model->get_slider() ?>
-	<?php foreach ($slides as $s) {  ?>
+	<?php $x=1;foreach ($slides as $s) { 
+	if ($x==1) {  ?>
+
 		<section id="home">	
 			<div class="jumbotron paral paralsec" style='background-image: url("<?php echo $s->path ?>");'>
 				<div class="container">
@@ -78,6 +80,7 @@ $page_act = "home"; ?>
 				</div>
 			</div>
 		</section>
+		<?php $x=0;} ?>
 	<?php } ?>
 
 	<section class="sec-pad flexed-property">
@@ -235,10 +238,11 @@ $page_act = "home"; ?>
 				</div>	
 			</div>
 		</section> -->
-		<?php include "includes/footer.php" ?>
 		<script type="text/javascript" src="js/jquery.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/owl.carousel.min.js"></script>
+		<?php include "includes/footer.php" ?>
+		
 		<script type="text/javascript">
 			$('.owl-carousel').owlCarousel({
 				loop:true,

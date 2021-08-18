@@ -323,6 +323,7 @@ class Web_Model {
       @session_start();
     }
     $no_lang = isset($config["no_lang"]) ? $config["no_lang"] : 0;
+    $link_default = isset($config["link_default"]) ? $config["link_default"] : "";
     $sql = "SELECT id, id_empresa, clave, link, texto_en, ";
     $language = (isset($_SESSION["language"])) ? $_SESSION["language"] : "";
     if ($no_lang == 1) {
@@ -356,7 +357,7 @@ class Web_Model {
       $row->plain_text_en = $default;
       $row->titulo = "";
       $row->clave = $clave;
-      $row->link = "";
+      $row->link = $link_default;
       $row->id = 0;
       return $row;
     }
