@@ -136,4 +136,13 @@
 .td-classic-twitter .twitter-share-button {
   margin: 0 !important;
 }
+
+
+.gracias { min-height: 500px; }
+.gracias .pt100 { padding-top: 100px }
+.gracias h2 { font-weight: 800 }
+.gracias .fa-check { font-size: 40px !important; color: #19ba55 !important }
+.gracias a { color: #19ba55 }
+.gracias a:hover { text-decoration: none }
 </style>
+
