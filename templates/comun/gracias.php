@@ -1,5 +1,5 @@
 <style type="text/css">
-	.gracias { min-height: 500px; }
+.gracias { min-height: 500px; clear: both; }
 .gracias .pt100 { padding-top: 100px; padding-bottom: 100px }
 .gracias h2 { font-weight: 800 }
 .gracias .fa-check { font-size: 40px !important; color: #19ba55 !important }

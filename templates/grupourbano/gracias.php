@@ -2,9 +2,9 @@
 include_once("includes/init.php");
 include_once("includes/funciones.php");
 
-$nombre_pagina = "Nosotros";
+$nombre_pagina = "Gracias";
 $breadcrumb = array(
-  array("titulo"=>"Nosotros","link"=>"/web/nosotros/")
+  array("titulo"=>"Gracias","link"=>"/web/gracias/")
 );
 ?>
 <!DOCTYPE html>
