@@ -671,6 +671,10 @@
           <label class="control-label">View ID</label>
           <textarea placeholder="<?php echo lang(array("es"=>"C&oacute;digo de View ID para enlazar estad&iacute;sticas de Google Analytics.","en"=>"Insert here the View ID Code to bind web statics.")); ?>" name="view_id" class="form-control"><%= view_id %></textarea>
         </div>
+        <div class="form-group">
+          <label class="control-label">Código de Seguimiento de Contactos</label>
+          <textarea placeholder="<?php echo lang(array("es"=>"C&oacute;digo de seguimiento de Contactos","en"=>"Contacts Code")); ?>" name="seguimiento_contacto" class="form-control"><%= seguimiento_contacto %></textarea>
+        </div>
         <div class="clearfix">
           <button class="btn fr btn-info guardar"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
         </div>
