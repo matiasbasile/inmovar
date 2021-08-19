@@ -9,27 +9,11 @@
   
 <!-- header part start here -->
 
-  <?php include "includes/header.php" ?>
+<?php include "includes/header.php" ?>
 
 <!-- header part end here --> 
-  <!-- Contact Us Page Start here -->
 
-<div class="container">
-  <div class="thankyou text-center">
-    <h1>Gracias!</h1>
-    <p>Muchas gracias por contactarse con nosotros. Le responderemos a la mayor brevedad! </p>
-
-  </div>
-</div>
-
-
- <!-- Contact Us Page End here -->
-
-
-
-
-
-
+<?php include "templates/comun/gracias.php" ?>
 
 <!-- Footer Part Start here -->
 <?php include "includes/footer.php" ?>
