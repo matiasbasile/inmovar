@@ -226,8 +226,7 @@ $titulo_pagina = "Contacto"; ?>
     "data":datos,
     "success":function(r){
       if (r.error == 0) {
-        alert("Muchas gracias por contactarse con nosotros. Le responderemos a la mayor brevedad!");
-        location.reload();
+        window.location.href = "<?php echo mklink ("web/gracias/") ?>";
       } else {
         alert("Ocurrio un error al enviar su email. Disculpe las molestias");
         $("#contacto_submit").removeAttr('disabled');
