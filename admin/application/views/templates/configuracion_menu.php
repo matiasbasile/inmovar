@@ -260,6 +260,15 @@
         </div>                          
 
         <div class="form-group">
+          <div class="checkbox">
+            <label class="i-checks">
+              <input type="checkbox" id="web_seo_inmobusqueda_diario_fotos" name="inmobusqueda_diario_fotos" <%= (inmobusqueda_diario_fotos == 1) ? 'checked' : '' %>><i></i> 
+              No incluir en la importación de Inmobusqueda las fotos de las propiedades.
+            </label>
+          </div>                    
+        </div>
+
+        <div class="form-group">
           <label class="control-label">URL de exportación de propiedades a Inmobusqueda</label>
           <input type="text" class="form-control" name="url_inmobusqueda" value="<%= url_inmobusqueda %>" />
         </div>

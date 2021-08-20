@@ -1885,12 +1885,17 @@ class Propiedad_Model extends Abstract_Model {
     $propiedad->link = "propiedad/".filename($propiedad->nombre,"-",0)."-".$id_propiedad."/";
     $this->db->query("UPDATE inm_propiedades SET link = '$propiedad->link', hash='$hash' WHERE id = $id_propiedad AND id_empresa = $id_empresa");
 
-    // INSERTAMOS LAS IMAGENES
-    $k=0;
-    $this->db->query("DELETE FROM inm_propiedades_images WHERE id_empresa = $id_empresa AND id_propiedad = $id_propiedad ");
-    foreach($imagenes as $im) {
-      $this->db->query("INSERT INTO inm_propiedades_images (id_empresa,id_propiedad,path,orden,plano) VALUES($id_empresa,$id_propiedad,'$im',$k,0)");
-      $k++;
+    // Controlamos si tenemos que traer o no las fotos
+    $this->load->model("Web_Configuracion_Model");
+    $web_conf = $this->Web_Configuracion_Model->get($propiedad->id_empresa);
+    if ($web_conf->inmobusqueda_diario_fotos == 0) {
+      // INSERTAMOS LAS IMAGENES
+      $k=0;
+      $this->db->query("DELETE FROM inm_propiedades_images WHERE id_empresa = $id_empresa AND id_propiedad = $id_propiedad ");
+      foreach($imagenes as $im) {
+        $this->db->query("INSERT INTO inm_propiedades_images (id_empresa,id_propiedad,path,orden,plano) VALUES($id_empresa,$id_propiedad,'$im',$k,0)");
+        $k++;
+      }
     }
 
     $this->load->model("Log_Model");
