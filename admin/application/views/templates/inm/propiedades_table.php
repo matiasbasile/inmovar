@@ -20,7 +20,7 @@
                 <th>Propiedad</th>
                 <th class="w150 sorting" data-sort-by="precio_final">Operación</th>
                 <th class="w150">Caract.</th>
-                <th class="w120 mostrar_en_red"></th>
+                <th class="w120 mostrar_en_red" style="display: none;"></th>
               </tr>
             </thead>
             <tbody class="tbody"></tbody>
