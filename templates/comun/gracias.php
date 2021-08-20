@@ -6,7 +6,7 @@
 .gracias a { color: #19ba55 }
 .gracias i { margin-bottom: 15px; }
 .gracias a:hover { text-decoration: none }
-.gracias p { margin-bottom: 20px; }
+.gracias p { margin-bottom: 20px; text-align: center; max-width: 500px; line-height: 1.5em; }
 .text-center  { text-align: center; }
 </style>
 
@@ -18,7 +18,7 @@
 				<?php echo $t->plain_text ?>
 			</h2>
 			<i class="fa fa-check"></i>
-			<?php $t = $web_model->get_text("gracias-texto","Muchas gracias por contactarse con nosotros! Le responderemos a la brevedad")?>
+			<?php $t = $web_model->get_text("gracias-texto","Muchas gracias por contactarse con nosotros! <br/>Le responderemos a la brevedad.")?>
 			<p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
 				<?php echo $t->plain_text ?>
 			</p>
