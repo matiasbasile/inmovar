@@ -44,6 +44,7 @@ $keywords = str_replace("\n", " ", $keywords);
 <?php } ?>
 
 <link href="/admin/resources/css/common.css" media="all" type="text/css" rel="stylesheet"/>
+  <?php include_once("templates/comun/css.php"); ?>
 
 <?php if (isset($incluir_buscador_neumaticos) && $incluir_buscador_neumaticos == 1) { ?>
   <?php include_once("templates/comun/neumaticos/buscador_css.php"); ?>
