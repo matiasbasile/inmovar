@@ -159,7 +159,7 @@
       });
       crearLightboxHTML({
         "html":view.el,
-        "width":860,
+        "width":1000,
         "height":140,
         "callback":function() {
           self.agregar_interes();
@@ -638,7 +638,7 @@
       });
       crearLightboxHTML({
         "html":view.el,
-        "width":860,
+        "width":1000,
         "height":140,
         "callback":function() {
           self.seleccionar_propiedad();
