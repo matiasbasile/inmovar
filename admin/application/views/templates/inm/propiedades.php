@@ -21,6 +21,7 @@
                 <th>Propiedad</th>
                 <th class="w150 sorting" data-sort-by="precio_final">Operación</th>
                 <th class="w150">Caract.</th>
+                <th class="w120"></th>
               </tr>
             </thead>
             <tbody class="tbody"></tbody>
@@ -164,10 +165,10 @@
     <% if (banios > 1) { %><%= banios %> Baños<br/><% } %>
     <% if (superficie_total > 0) { %>Sup. <%= superficie_total %> m<sup>2</sup><br/><% } %>
   </td>
-  <% if (!seleccionar && !vista_busqueda) { %>
+  <% if (!seleccionar) { %>
 
     <?php // MIS PROPIEDADES ?>
-    <% if (id_empresa == ID_EMPRESA) { %>
+    <% if (id_empresa == ID_EMPRESA && !vista_busqueda) { %>
       <td class="vam">
         <div class="dropdown">
           <% var esta_compartida = (!isEmpty(permalink) || !isEmpty(olx_id) || inmobusquedas_habilitado == 1 || argenprop_habilitado == 1 || eldia_habilitado == 1) ? 1 : 0 %>
@@ -408,25 +409,27 @@
           </div>
         </div>
       </td>
-      <td>
-        <% if (permiso_web == 1) { %>
-          <% if (bloqueado_web == 1) { %>
-            <div data-toggle="tooltip" title="Compartida en web" class="doble-check bloqueado_web">
-              <span class="material-icons text-danger">clear</span>
-            </div>
+      <% if (!vista_busqueda) { %>
+        <td>
+          <% if (permiso_web == 1) { %>
+            <% if (bloqueado_web == 1) { %>
+              <div data-toggle="tooltip" title="Compartida en web" class="doble-check bloqueado_web">
+                <span class="material-icons text-danger">clear</span>
+              </div>
+            <% } else { %>
+              <div data-toggle="tooltip" title="Compartida en web" class="doble-check bloqueado_web">
+                <span class="material-icons text-success">done</span>
+                <span class="material-icons text-success">done</span>
+              </div>
+            <% } %>
           <% } else { %>
-            <div data-toggle="tooltip" title="Compartida en web" class="doble-check bloqueado_web">
+            <div data-toggle="tooltip" title="No compartida en web" class="doble-check">
               <span class="material-icons text-success">done</span>
-              <span class="material-icons text-success">done</span>
+              <span class="material-icons">done</span>
             </div>
           <% } %>
-        <% } else { %>
-          <div data-toggle="tooltip" title="No compartida en web" class="doble-check">
-            <span class="material-icons text-success">done</span>
-            <span class="material-icons">done</span>
-          </div>
-        <% } %>
-      </td>
+        </td>
+      <% } %>
 
     <% } %>
   <% } %>
