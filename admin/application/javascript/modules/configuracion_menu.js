@@ -260,6 +260,7 @@
             "tokko_enviar_consultas":(self.$("#web_seo_tokko_enviar_consultas").is(":checked") ? 1 : 0),
             "tokko_importacion":(self.$("#web_seo_tokko_importacion").is(":checked") ? 1 : 0),
             "inmobusqueda_diario":(self.$("#web_seo_inmobusqueda_diario").is(":checked") ? 1 : 0),
+            "inmobusqueda_diario_fotos":(self.$("#web_seo_inmobusqueda_diario_fotos").is(":checked") ? 1 : 0),
           });
         }
         return true;
