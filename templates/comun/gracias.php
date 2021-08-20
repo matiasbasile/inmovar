@@ -1,10 +1,12 @@
 <style type="text/css">
 .gracias { min-height: 500px; clear: both; }
 .gracias .pt100 { padding-top: 100px; padding-bottom: 100px }
-.gracias h2 { font-weight: 800 }
+.gracias h2 { font-weight: 800; margin-bottom: 20px; }
 .gracias .fa-check { font-size: 40px !important; color: #19ba55 !important }
 .gracias a { color: #19ba55 }
+.gracias i { margin-bottom: 15px; }
 .gracias a:hover { text-decoration: none }
+.gracias p { margin-bottom: 20px; }
 .text-center  { text-align: center; }
 </style>
 
