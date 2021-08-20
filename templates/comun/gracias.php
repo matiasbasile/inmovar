@@ -6,7 +6,7 @@
 .gracias a { color: #19ba55 }
 .gracias i { margin-bottom: 15px; }
 .gracias a:hover { text-decoration: none }
-.gracias p { margin-bottom: 20px; text-align: center; max-width: 500px; line-height: 1.5em; }
+.gracias p { margin-bottom: 20px; text-align: center; max-width: 500px; line-height: 1.5em; margin-left: auto; margin-right: auto; }
 .text-center  { text-align: center; }
 </style>
 
