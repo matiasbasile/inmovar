@@ -291,17 +291,17 @@
       <td>
         <% if (permiso_web == 1) { %>
           <% if (bloqueado_web == 1) { %>
-            <div data-toggle="tooltip" title="Compartida en web" class="doble-check bloqueado_web">
+            <div data-toggle="tooltip" title="Compartida en web" class="doble-check fl bloqueado_web">
               <span class="material-icons text-danger">clear</span>
             </div>
           <% } else { %>
-            <div data-toggle="tooltip" title="Compartida en web" class="doble-check bloqueado_web">
+            <div data-toggle="tooltip" title="Compartida en web" class="doble-check fl bloqueado_web">
               <span class="material-icons text-success">done</span>
               <span class="material-icons text-success">done</span>
             </div>
           <% } %>
         <% } else { %>
-          <div data-toggle="tooltip" title="No compartida en web" class="doble-check">
+          <div data-toggle="tooltip" title="No compartida en web" class="doble-check fl">
             <span class="material-icons text-success">done</span>
             <span class="material-icons">done</span>
           </div>
