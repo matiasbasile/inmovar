@@ -501,3 +501,9 @@
 
   <% } %>
 </script>
+
+<script type="text/template" id="filtros_item_template">
+  <span class="filter-item-label"><%= label %>:</span> 
+  <span class="filter-item-value"><%= label_value %></span>
+  <span class="filter-item-close material-icons">close</span>
+</script>

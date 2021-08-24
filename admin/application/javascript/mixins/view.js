@@ -245,6 +245,35 @@
       },
     },
 
+    // Muestra los filtros en caso de que se dispare el trigger
+    render_filtros: function() {
+      var self = this;
+      this.$(".filtros_container").empty();
+      var array = this.filtros.get("filtros");
+      for(var i = 0; i< array.length; i++) {
+        var f = array[i];
+        var modelo = new app.models.AbstractModel(array[i]);
+        var f = new app.mixins.FiltrosItem({
+          model: modelo,
+          filtros: self.filtros,
+        });
+        if (modelo.get("visible") == 1) this.$(".filtros_container").append(f.el);
+      }
+    },  
+
+    create_filters: function(o) {
+      // Creamos el objeto de filtros
+      if (window[o.name] != undefined) {
+        this.filtros = window[o.name];
+      } else {
+        this.filtros = o.filter;
+        window[o.name] = this.filtros;
+      }
+      // Cuando cambia el modelo de filtros, llamamos al callback
+      this.filtros.off('change_filtros');
+      this.filtros.on('change_filtros', o.callback, this);
+    }, 
+
     // ABRIMOS EL LIGHTBOX PARA SUBIR MULTIPLES IMAGENES
     open_multiple_upload: function(config) {
       var upload = new app.views.ImageUpload(config);        
