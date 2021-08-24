@@ -1553,7 +1553,7 @@
         e.stopPropagation();
         e.preventDefault();
         if($(e.currentTarget).attr("disabled") == "disabled") return;
-        window.open("propiedades/function/ver_ficha/"+ID_EMPRESA+"/"+this.model.id+"/","_blank");
+        window.open("propiedades/function/ver_ficha/"+this.model.get("id_empresa")+"/"+this.model.id+"/"+ID_EMPRESA,"_blank");
         return false;
       },
       "click .compartir_olx":function(e) {
