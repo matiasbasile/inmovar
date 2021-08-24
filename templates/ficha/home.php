@@ -105,13 +105,13 @@ $og_desc = (strlen($og_desc)>180) ? substr($og_desc, 0, 180)."..." : $og_desc; ?
             <div id="producer_name"><?= $nombre_usuario ?></div>
             <div class="producer-item">
               <a href="mailto:<?= $email_usuario ?>">
-                <img src="templates/ficha/assets/images/mail.svg">
+                <img src="/templates/ficha/assets/images/mail.svg">
                 <div><?= $email_usuario ?></div>
               </a>
             </div>
             <div class="producer-item">
               <a href="tel:<?= $telefono_usuario_f ?>" >
-                <img src="templates/ficha/assets/images/cellphone.svg">
+                <img src="/templates/ficha/assets/images/cellphone.svg">
                 <div><?= $telefono_usuario ?></div>
               </a>
             </div>
