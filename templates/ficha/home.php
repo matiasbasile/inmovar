@@ -84,26 +84,39 @@ $og_desc = (strlen($og_desc)>180) ? substr($og_desc, 0, 180)."..." : $og_desc; ?
             <?php $x_img +=1; } ?>
           </div>
         </div>
-        <?php if (!empty($propiedad->id_usuario)) { ?>
-          <div id="producer_container" class="card">
-            <img src="assets/images/icon-agent.png"/>
-            <div id="producer_info">
-              <div id="producer_name"><?= $propiedad->usuario ?></div>
-              <div class="producer-item">
-                <a href="mailto:<?= $propiedad->usuario_email ?>">
-                  <img src="https://static.tokkobroker.com/static/img/mail.svg?20210623013909">
-                  <div><?= $propiedad->usuario_email ?></div>
-                </a>
-              </div>
-              <div class="producer-item">
-                <a href="tel: <?= $propiedad->usuario_celular ?>" >
-                  <img src="https://static.tokkobroker.com/static/img/cellphone.svg?20210623013909">
-                  <div> <?= $propiedad->usuario_celular ?></div>
-                </a>
-              </div>
+
+        <?php 
+        // SI LA PROPIEDAD ES LA MISMA QUE LA EMPRESA
+        if ($empresa->id == $propiedad->id_empresa) { 
+          // Entonces tomamos los datos del vendedor
+          $nombre_usuario = (!empty($propiedad->usuario) ? $propiedad->usuario : $empresa->nombre);
+          $email_usuario = (!empty($propiedad->usuario_email) ? $propiedad->usuario_email : $empresa->email);
+          $telefono_usuario = (!empty($propiedad->usuario_celular) ? $propiedad->usuario_celular : $empresa->telefono);
+        } else {
+          // Tomamos los datos de la empresa
+          $nombre_usuario = $empresa->nombre;
+          $email_usuario = $empresa->email;
+          $telefono_usuario = $empresa->telefono;
+        } 
+        $telefono_usuario_f = preg_replace('/\D/', '', $telefono_usuario); ?>
+        <div id="producer_container" class="card">
+          <img src="assets/images/icon-agent.png"/>
+          <div id="producer_info">
+            <div id="producer_name"><?= $nombre_usuario ?></div>
+            <div class="producer-item">
+              <a href="mailto:<?= $email_usuario ?>">
+                <img src="templates/ficha/assets/img/mail.svg">
+                <div><?= $email_usuario ?></div>
+              </a>
+            </div>
+            <div class="producer-item">
+              <a href="tel:<?= $telefono_usuario_f ?>" >
+                <img src="templates/ficha/assets/img/cellphone.svg">
+                <div><?= $telefono_usuario ?></div>
+              </a>
             </div>
           </div>
-        <?php } ?>
+        </div>
       </div>
       <div id="ficha_desc">
         <section id="ficha_informacion_basica" class="card">
