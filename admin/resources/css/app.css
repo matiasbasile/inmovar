@@ -5311,3 +5311,9 @@ tfoot tr td { white-space: nowrap !important; }
   .header-lg .btn { margin-top: 0px; padding: 8px 15px; }
 }
 .tab-container + .panel-default { margin-top: -2px; }
+
+.filtros_container { overflow: hidden; padding: 15px 15px 0px 15px; }
+.filtros_container .filter-item { background-color: #fafbfb; border: solid 1px #d3dbe2; border-radius: 16px; font-size: 13px; float: left; padding: 5px 10px; margin-bottom: 5px; margin-right: 15px; -webkit-box-shadow: 0 1px 1px rgb(90 90 90 / 10%); box-shadow: 0 1px 1px rgb(90 90 90 / 10%); }
+.filter-item-label { color: #5a5a5a; }
+.filter-item-value { color: #222; font-weight: bold; }
+.filter-item-close { font-size: 14px; margin-left: 5px; position: relative; top: 3px; cursor: pointer; color: #949494; text-shadow: 1px 1px 1px #cecece; }
