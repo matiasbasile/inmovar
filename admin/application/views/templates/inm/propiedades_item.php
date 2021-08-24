@@ -306,6 +306,17 @@
             <span class="material-icons">done</span>
           </div>
         <% } %>
+
+        <div class="fr btn-group dropdown ml10">
+          <i title="Opciones" class="iconito text-muted-2 fa fa-caret-down dropdown-toggle" data-toggle="dropdown"></i>
+          <ul class="dropdown-menu pull-right">
+            <% if (permiso_web == 1) { %>
+              <li><a href="<%= link_completo %>" target="_blank"><i class="text-muted-2 fa fa-globe w25"></i> Ver web</a></li>
+            <% } %>
+            <li><a href="javascript:void(0)" class="ver_ficha" data-id="<%= id %>"><i class="text-muted-2 fa fa-file w25"></i> Ver ficha</a></li>
+          </ul>
+        </div>
+
       </td>
     <% } %>
 
