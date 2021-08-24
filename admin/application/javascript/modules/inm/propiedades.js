@@ -1556,6 +1556,14 @@
         window.open("propiedades/function/ver_ficha/"+this.model.get("id_empresa")+"/"+this.model.id+"/"+ID_EMPRESA,"_blank");
         return false;
       },
+      "click .ver_ficha_web":function(e){
+        var self = this;
+        e.stopPropagation();
+        e.preventDefault();
+        if($(e.currentTarget).attr("disabled") == "disabled") return;
+        window.open("https://app.inmovar.com/ficha/"+ID_EMPRESA+"/"+this.model.get("hash"),"_blank");
+        return false;
+      },
       "click .compartir_olx":function(e) {
         var self = this;
         e.stopPropagation();
@@ -3538,6 +3546,14 @@
         e.preventDefault();
         if($(e.currentTarget).attr("disabled") == "disabled") return;
         window.open("propiedades/function/ver_ficha/"+this.model.get("id_empresa")+"/"+this.model.id+"/"+ID_EMPRESA,"_blank");
+        return false;
+      },
+      "click .ver_ficha_web":function(e){
+        var self = this;
+        e.stopPropagation();
+        e.preventDefault();
+        if($(e.currentTarget).attr("disabled") == "disabled") return;
+        window.open("https://app.inmovar.com/ficha/"+ID_EMPRESA+"/"+this.model.get("hash"),"_blank");
         return false;
       },
       "click .marcar_interes":"marcar_interes",
