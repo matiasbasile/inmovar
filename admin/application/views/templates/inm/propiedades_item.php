@@ -241,8 +241,9 @@
             <li><a href="javascript:void(0)" class="ver_interesados"><i class="text-muted-2 fa fa-users w25"></i> Ver interesados</a></li>
             <li><a href="javascript:void(0)" class="buscar_interesados"><i class="text-muted-2 fa fa-search w25"></i> Buscar interesados</a></li>
             <li class="divider"></li>
-            <li><a href="<%= link_completo %>" target="_blank"><i class="text-muted-2 fa fa-globe w25"></i> Ver web</a></li>
-            <li><a href="javascript:void(0)" class="ver_ficha" data-id="<%= id %>"><i class="text-muted-2 fa fa-file w25"></i> Ver ficha</a></li>
+            <li><a href="javascript:void(0)" class="ver_ficha" data-id="<%= id %>"><i class="text-muted-2 fa fa-file w25"></i> Ver ficha web</a></li>
+            <li><a href="javascript:void(0)" class="ver_ficha" data-id="<%= id %>"><i class="text-muted-2 fa fa-file w25"></i> Ver ficha hoja A4</a></li>
+            <li><a href="<%= link_completo %>" target="_blank"><i class="text-muted-2 fa fa-globe w25"></i> Ver en web</a></li>
 
             <% if (control.check("propiedades") == 3) { %>
               <li class="divider"></li>
@@ -310,10 +311,10 @@
         <div class="fr btn-group dropdown ml10">
           <i title="Opciones" class="iconito text-muted-2 fa fa-caret-down dropdown-toggle" data-toggle="dropdown"></i>
           <ul class="dropdown-menu pull-right">
+            <li><a href="javascript:void(0)" class="ver_ficha" data-id="<%= id %>"><i class="text-muted-2 fa fa-file w25"></i> Ver ficha hoja A4</a></li>
             <% if (permiso_web == 1) { %>
-              <li><a href="<%= link_completo %>?em=<%= id_empresa %>" target="_blank"><i class="text-muted-2 fa fa-globe w25"></i> Ver web</a></li>
+              <li><a href="<%= link_completo %>?em=<%= id_empresa %>" target="_blank"><i class="text-muted-2 fa fa-globe w25"></i> Ver en web</a></li>
             <% } %>
-            <li><a href="javascript:void(0)" class="ver_ficha" data-id="<%= id %>"><i class="text-muted-2 fa fa-file w25"></i> Ver ficha</a></li>
           </ul>
         </div>
 
