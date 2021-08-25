@@ -75,7 +75,7 @@
                       <td><%= m.localidad %></td>
 
                       <td>
-                        <% if (lcni == 1) { %>
+                        <% if (m.lcni == 1) { %>
                           <img class="w100p" style="max-width:50px" src="/resources/images/logolcni.png" />
                         <% } %>
                       </td>
