@@ -572,7 +572,7 @@
 
         if (this.$("#empresa_incluye_lcni").length > 0) {
           this.model.set({
-            "incluye_lcni":($("#empresa_incluye_lcni").is(":checked")?1:0),
+            "lcni":($("#empresa_incluye_lcni").is(":checked")?1:0),
           });
         }       
 
