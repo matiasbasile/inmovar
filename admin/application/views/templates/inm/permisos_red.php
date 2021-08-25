@@ -76,7 +76,7 @@
 
                       <td>
                         <% if (m.lcni == 1) { %>
-                          <img class="w100p" style="max-width:50px" src="/resources/images/logolcni.png" />
+                          <img class="w100p" style="max-width:85px" src="/admin/resources/images/logolcni.png" />
                         <% } %>
                       </td>
 
