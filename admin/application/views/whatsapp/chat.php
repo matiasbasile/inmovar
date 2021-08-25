@@ -326,7 +326,12 @@ String.prototype.chat_replaceAll = function(search, replacement) {
         jQuery(parent).find(".chat_user_form_2_nombre").val("");
         jQuery(parent).find(".chat_user_form_2_celular").val("");
         jQuery(parent).find(".chat_user_form_2_mensaje").val("");      
-        clienapp_atras();        
+
+        if (config.empresa.dominios.length > 0) {
+          location.href = "https://"+window.location.hostname+"/web/gracias/";
+        } else {
+          clienapp_atras();
+        }
       }
       return false;
     });
