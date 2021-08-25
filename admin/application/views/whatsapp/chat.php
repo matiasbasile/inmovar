@@ -288,7 +288,11 @@ String.prototype.chat_replaceAll = function(search, replacement) {
         "success":function(r){
           if (en_linea == 0) {
             if (r.error == 0) {
-              jQuery(".chat_user_form_2_resultado").text("Muchas gracias por contactarse con nosotros. Le responderemos a la mayor brevedad!");
+              if (config.empresa.dominios.length > 0) {
+                location.href = "https://"+window.location.hostname+"/web/gracias/";
+              } else {
+                jQuery(".chat_user_form_2_resultado").text("Muchas gracias por contactarse con nosotros. Le responderemos a la mayor brevedad!");
+              }
             } else {
               jQuery(".chat_user_form_2_resultado").text("Ocurrio un error al enviar su email. Disculpe las molestias");
             }
