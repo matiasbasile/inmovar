@@ -570,9 +570,9 @@
           });
         }       
 
-        if (this.$("#empresa_incluye_lcni").length > 0) {
+        if (this.$("#empresa_lcni").length > 0) {
           this.model.set({
-            "lcni":($("#empresa_incluye_lcni").is(":checked")?1:0),
+            "lcni":($("#empresa_lcni").is(":checked")?1:0),
           });
         }       
 
