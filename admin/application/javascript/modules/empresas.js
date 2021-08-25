@@ -570,6 +570,12 @@
           });
         }       
 
+        if (this.$("#empresa_incluye_lcni").length > 0) {
+          this.model.set({
+            "incluye_lcni":($("#empresa_incluye_lcni").is(":checked")?1:0),
+          });
+        }       
+
         if ($("#empresa_administrar_pagos").length > 0) {
           this.model.set({
             "administrar_pagos":($("#empresa_administrar_pagos").is(":checked")?1:0),
