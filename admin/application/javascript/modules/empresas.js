@@ -50,6 +50,7 @@
       limite: 0,
       codigo: "",
       incluye_comision_35: 0,
+      lcni: 0,
 
       // Estos datos son de web_configuracion
       direccion_web: "",

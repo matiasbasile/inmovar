@@ -210,6 +210,14 @@
                       </label>
                     </label>
                   </div>               
+                  <div class="form-group">
+                    <label class="control-label">
+                      <label class="i-checks m-b-none">
+                        <input id="empresa_lcni" value="1" <%= (lcni==1)?"checked":"" %> type="checkbox"><i></i>
+                        Pertenece a LCNI.
+                      </label>
+                    </label>
+                  </div>               
                 <% } %>
                 <% if (id == undefined) { %>
                   <div class="form-group">

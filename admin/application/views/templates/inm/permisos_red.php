@@ -47,6 +47,7 @@
                     <th>Inmobiliaria</th>
                     <th>Información</th>
                     <th>Localidad</th>
+                    <th class="tac"></th>
                     <th class="tac">Tu Sitio Web</th>
                     <th style="width:130px" class="tac">Red Interna</th>
                   </tr>
@@ -72,6 +73,13 @@
                         <% } %>
                       </td>
                       <td><%= m.localidad %></td>
+
+                      <td>
+                        <% if (lcni == 1) { %>
+                          <img class="w100p" style="max-width:50px" src="/resources/images/logolcni.png" />
+                        <% } %>
+                      </td>
+
                       <td class="tac">
                         <% if (m.bloqueado == 0) { %>
                           <% if (m.permiso_web == 0) { %>
