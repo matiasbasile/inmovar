@@ -394,6 +394,7 @@ class Consultas extends REST_Controller {
     $entrada_fecha = parent::get_post("entrada_fecha",date("Y-m-d H:i:s"));
 
     $link_ficha_propiedad = parent::get_post("link_ficha_propiedad","");
+    $pagina = parent::get_post("pagina","");
 
     // 1 = Contacto por defecto
     $tipo = ($this->input->post("tipo") !== FALSE) ? ((int) $this->input->post("tipo")) : 1;
@@ -692,7 +693,11 @@ class Consultas extends REST_Controller {
         $body = nl2br($mensaje);
       } else {
         if ($id_origen == 30 || $id_origen == 31) { 
-          
+
+          $stamp = time();
+          $sql = "INSERT INTO whatsapp_clicks (id_empresa,id_usuario,stamp,pagina) VALUES ('$id_empresa','$id_usuario','$stamp','$pagina') ";
+          $this->db->query($sql);
+
           // Contacto de Clienapp (sea directo o fuera de linea)
           $clave_template = (($id_origen == 31) ? "contacto-clienapp-fuera-linea" : "contacto-clienapp");
           $temp = $this->Email_Template_Model->get_by_key($clave_template,1);
