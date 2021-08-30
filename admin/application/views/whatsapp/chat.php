@@ -287,33 +287,32 @@ String.prototype.chat_replaceAll = function(search, replacement) {
         "dataType":"json",
         "data":d,
         "success":function(r){
-          if (en_linea == 0) {
-            if (r.error == 1) {
-              jQuery(".chat_user_form_2_resultado").text("Ocurrio un error al enviar su email. Disculpe las molestias");
-            }
-            jQuery(".chat_user_form_2").hide();
-            jQuery(".chat_user_form_2_resultado").show();
-
-            if (en_linea == 1) {
-              // Finalmente abrimos el whatsapp
-              var url = (config.movil == 1) ? "https://api.whatsapp.com/" : "https://web.whatsapp.com/";
-              url = url+"send?phone="+celular+"&text="+encodeURIComponent(d.mensaje);
-              window.open(url,"_blank");
-
-              // Simulamos que se hace click en Atras
-              jQuery(parent).find(".chat_user_form_2_nombre").val("");
-              jQuery(parent).find(".chat_user_form_2_celular").val("");
-              jQuery(parent).find(".chat_user_form_2_mensaje").val("");      
-
-              if (config.empresa.dominios.length > 0) {
-                location.href = "https://"+window.location.hostname+"/web/gracias/";
-              } else {
-                clienapp_atras();
-              }
-            }
-
+          if (r.error == 1) {
+            jQuery(parent).find(".chat_user_form_2_enviar").removeAttr('disabled');
+            jQuery(".chat_user_form_2_resultado").text("Ocurrio un error al enviar su email. Disculpe las molestias");
+            return;
           }
-          jQuery(parent).find(".chat_user_form_2_enviar").removeAttr('disabled');
+          jQuery(".chat_user_form_2").hide();
+          jQuery(".chat_user_form_2_resultado").show();
+
+          if (en_linea == 1) {
+            // Finalmente abrimos el whatsapp
+            var url = (config.movil == 1) ? "https://api.whatsapp.com/" : "https://web.whatsapp.com/";
+            url = url+"send?phone="+celular+"&text="+encodeURIComponent(d.mensaje);
+            window.open(url,"_blank");
+
+            // Simulamos que se hace click en Atras
+            jQuery(parent).find(".chat_user_form_2_nombre").val("");
+            jQuery(parent).find(".chat_user_form_2_celular").val("");
+            jQuery(parent).find(".chat_user_form_2_mensaje").val("");      
+          }
+
+          if (config.empresa.dominios.length > 0) {
+            location.href = "https://"+window.location.hostname+"/web/gracias/";
+          } else {
+            clienapp_atras();
+          }
+          
         },
         "error":function() {
           jQuery(parent).find(".chat_user_form_2_enviar").removeAttr('disabled');
