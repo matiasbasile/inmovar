@@ -289,7 +289,7 @@ String.prototype.chat_replaceAll = function(search, replacement) {
           if (en_linea == 0) {
             if (r.error == 0) {
               if (config.empresa.dominios.length > 0) {
-                location.href = "https://"+window.location.hostname+"/web/gracias/";
+                //location.href = "https://"+window.location.hostname+"/web/gracias/";
               } else {
                 jQuery(".chat_user_form_2_resultado").text("Muchas gracias por contactarse con nosotros. Le responderemos a la mayor brevedad!");
               }
@@ -328,7 +328,7 @@ String.prototype.chat_replaceAll = function(search, replacement) {
         jQuery(parent).find(".chat_user_form_2_mensaje").val("");      
 
         if (config.empresa.dominios.length > 0) {
-          location.href = "https://"+window.location.hostname+"/web/gracias/";
+          //location.href = "https://"+window.location.hostname+"/web/gracias/";
         } else {
           clienapp_atras();
         }
