@@ -695,7 +695,7 @@ class Consultas extends REST_Controller {
           
           // Contacto de Clienapp (sea directo o fuera de linea)
           $clave_template = (($id_origen == 31) ? "contacto-clienapp-fuera-linea" : "contacto-clienapp");
-          $temp = $this->Email_Template_Model->get_by_key($clave_template,290);
+          $temp = $this->Email_Template_Model->get_by_key($clave_template,1);
           $asunto = $temp->nombre;
           $body = $temp->texto;
           $link_panel = "https://app.inmovar.com/admin/app/#cliente_acciones/".$contacto->id;
