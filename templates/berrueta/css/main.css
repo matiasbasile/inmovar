@@ -711,6 +711,6 @@ body{font-size:14px;}
 .grid-view .item-picture img { height: 220px; object-fit: contain; width: 100%; }
 #list-view .item-picture img { height: 280px; object-fit: cover; width: 100%; }
 .iframe-pint iframe { width: 100%; margin-bottom: 30px }
-.design3d {     background-repeat: no-repeat;
-    background-size: 24px;
-    background-position: center; }
+.design3d {     background-repeat: no-repeat !important;
+    background-size: 24px !important;
+    background-position: center !important; }
