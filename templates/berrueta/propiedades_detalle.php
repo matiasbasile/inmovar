@@ -84,6 +84,11 @@ else $vc_moneda = "$";
     <div class="row">
       <div class="col-md-9 primary">
         <div class="property-full-info">
+          <?php if (!empty($propiedad->pint)) {  ?>
+            <div class="iframe-pint">
+              <?php echo $propiedad->pint ?>
+            </div>
+          <?php }?>
           <?php if (!empty($propiedad->images)) { ?>
             <?php $foto = $propiedad->images[0]; ?>
             <div id="gallery-slider">

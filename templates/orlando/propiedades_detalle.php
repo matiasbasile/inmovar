@@ -6,6 +6,7 @@ $propiedad = $propiedad_model->get($id,array(
 	"id_empresa"=>$id_empresa,
 	"id_empresa_original"=>$empresa->id,
 )); 
+print_r($propiedad);
 $page_act = $propiedad->tipo_operacion_link;
 
 // Tomamos los datos de SEO

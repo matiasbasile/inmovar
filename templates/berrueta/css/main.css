@@ -710,3 +710,4 @@ body{font-size:14px;}
 .latest-properties .propertie-list.ultimas .block img { height: 215px; object-fit: cover; width: 100%; }
 .grid-view .item-picture img { height: 220px; object-fit: contain; width: 100%; }
 #list-view .item-picture img { height: 280px; object-fit: cover; width: 100%; }
+.iframe-pint iframe { width: 100%; margin-bottom: 30px }
