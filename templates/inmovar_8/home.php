@@ -141,7 +141,7 @@ if (sizeof($slides)>0) { ?>
               <div class="img_hover"><img src="images/box_img1.png" alt="box_img1"></div>
             </div>
             <div class="box_wrap_content">
-              <?php $t = $web_model->get_text("box1titv2","ventas")?>
+              <?php $t = $web_model->get_text("box1titv2","Ventas")?>
               <h5 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></h5>
               <?php $t = $web_model->get_text("box1txtv2","Encontra la propiedad <br> que estas buscando al <br> mejor precio.")?>
               <p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></p>
@@ -156,7 +156,7 @@ if (sizeof($slides)>0) { ?>
               <div class="img_hover"><img src="images/box_img2.png" alt="box_img2"></div>
             </div>
             <div class="box_wrap_content">
-              <?php $t = $web_model->get_text("box2tit","alquileres")?>
+              <?php $t = $web_model->get_text("box2tit","Alquileres")?>
               <h5 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></h5>
               <?php $t = $web_model->get_text("box2txt","Encontra la propiedad <br> que estas buscando al <br> mejor precio.")?>
               <p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></p>
@@ -171,7 +171,7 @@ if (sizeof($slides)>0) { ?>
               <div class="img_hover"><img src="images/box_img3.png" alt="box_img3"></div>
             </div>
             <div class="box_wrap_content">
-              <?php $t = $web_model->get_text("box3tit","emprendimientos")?>
+              <?php $t = $web_model->get_text("box3tit","Emprendimientos")?>
               <h5 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></h5>
               <?php $t = $web_model->get_text("box3txt","Encontra la propiedad <br> que estas buscando al <br> mejor precio.")?>
               <p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></p>

@@ -775,14 +775,16 @@ class Propiedad_Model extends Abstract_Model {
     if (isset($data->id) && $data->id != 0) { //Si ya tiene ID
       $sql = "SELECT precio_final FROM inm_propiedades where id = $data->id AND id_empresa = $data->id_empresa ";
       $q = $this->db->query($sql);
-      $q = $q->row();
-      if (empty($data->precio_final)) $data->precio_final = 0;
-      if (empty($q->precio_final)) $q->precio_final = 0;
-      if ($q->precio_final != $data->precio_final){
-        $fecha = date("Y-m-d");
-        $sql = "INSERT INTO inm_propiedades_precios_historicos (id_propiedad, id_empresa, precio_anterior, precio_nuevo, fecha) VALUES ";
-        $sql.= "($data->id, $data->id_empresa, '$q->precio_final', '$data->precio_final', '$fecha') ";
-        $this->db->query($sql);
+      if ($q->num_rows() > 0) {
+        $r = $q->row();
+        if (empty($data->precio_final)) $data->precio_final = 0;
+        if (empty($r->precio_final)) $r->precio_final = 0;
+        if ($r->precio_final != $data->precio_final){
+          $fecha = date("Y-m-d");
+          $sql = "INSERT INTO inm_propiedades_precios_historicos (id_propiedad, id_empresa, precio_anterior, precio_nuevo, fecha) VALUES ";
+          $sql.= "($data->id, $data->id_empresa, '$r->precio_final', '$data->precio_final', '$fecha') ";
+          $this->db->query($sql);
+        }
       }
     }
     $this->load->helper("file_helper");
