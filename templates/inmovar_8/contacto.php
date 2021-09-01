@@ -62,7 +62,7 @@
 
         <div class="contact_form custom_select_arrow">
           <h4>Enviar Consulta</h4>
-         <form onsubmit="return enviar_contacto()">
+          <form id="contact" onsubmit="return enviar_contacto()">
             <div class="form-row">
               <div class="form-group col-md-6">
                 <input id="contacto_nombre" type="text" class="form-control" name="Nombre" placeholder="Nombre*" required />
@@ -79,7 +79,7 @@
                 <select id="contacto_asunto" name="consultasgenerales" class="form-control custom_selct" required />
                  <?php $asuntos = explode(";;;",$empresa->asuntos_contacto);
                   foreach($asuntos as $a) { ?>
-                     <option><?php echo $a ?></option>
+                    <option <?php echo (isset($get_params["s"]) && mb_strtolower($get_params["s"]) == mb_strtolower($a)) ? "selected":"" ?>><?php echo $a ?></option>
                   <?php } ?>
                 </select>
               </div>
