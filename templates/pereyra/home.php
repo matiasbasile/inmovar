@@ -70,11 +70,11 @@
   <div class="container">
     <div class="section-title">
       <?php $t = $web_model->get_text("prop-dest","Propiedades Destacadas")?>
-      <h2 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+      <h2 class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
        <?php echo $t->plain_text ?>
       </h2>
       <?php $t = $web_model->get_text("pro-dest-text","Estas son algunas de las mejores propiedades que tenemos para ofrecerte")?>
-      <span class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+      <span class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
         <?php echo $t->plain_text ?>
       </span>
     </div>
@@ -122,36 +122,36 @@
   <div class="container">
     <div class="section-title">
       <?php $t = $web_model->get_text("elegirnos-tit","¿Por qué elegirnos?") ?>
-      <h2 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></h2>
+      <h2 class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></h2>
       <?php $t = $web_model->get_text("elegirnos-txt","Somos líderes en el mercado inmobiliario con más de 30 años de experiencia en el rubro") ?>
-      <span class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></span>
+      <span class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></span>
     </div>
     <div class="row">
       <div class="col-lg-4 col-md-6">
         <div class="white-box">
           <span><img src="assets/images/icon1.png" alt="Icon"></span>
           <?php $t = $web_model->get_text("box-1","Ventas") ?>
-          <h4 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></h4>
+          <h4 class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></h4>
           <?php $t = $web_model->get_text("box-1-txt","Lorem Ipsum is simply dummy <br>text of the printing and typesetting") ?>
-          <p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></p>
+          <p class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></p>
         </div>
       </div>
       <div class="col-lg-4 col-md-6">
         <div class="white-box">
           <span><img src="assets/images/icon2.png" alt="Icon"></span>
           <?php $t = $web_model->get_text("box-2","Alquiler") ?>
-          <h4 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></h4>
+          <h4 class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></h4>
           <?php $t = $web_model->get_text("box-2-txt","Lorem Ipsum is simply dummy <br>text of the printing and typesetting") ?>
-          <p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></p>
+          <p class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></p>
         </div>
       </div>
       <div class="col-lg-4 col-md-6">
         <div class="white-box">
           <span><img src="assets/images/icon3.png" alt="Icon"></span>
           <?php $t = $web_model->get_text("box-3","Emprendimientos") ?>
-          <h4 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></h4>
+          <h4 class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></h4>
           <?php $t = $web_model->get_text("box-3-txt","Lorem Ipsum is simply dummy <br>text of the printing and typesetting") ?>
-          <p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></p>
+          <p class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></p>
         </div>
       </div>
     </div>

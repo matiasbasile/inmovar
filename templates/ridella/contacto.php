@@ -34,7 +34,7 @@
   <div class="border-title">contacto</div>
   <center class="mb30">
   <?php $t = $web_model->get_text("textoContacto","Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make.")?>
-  <p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+  <p class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
     <?php echo $t->plain_text ?>
   </p>
   </center>

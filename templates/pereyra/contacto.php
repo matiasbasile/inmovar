@@ -27,7 +27,7 @@ $page_act = "contacto";
             Contacto
           </h2>
           <?php $t = $web_model->get_text("contact-span-text","Completa el siguiente formulario y nos comunicaremos a la brevedad.")?>
-          <span class="editable mb40" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>">
+          <span class="editable mb40" data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>">
             <?php echo $t->plain_text ?>
           </span>
           <div class="general-information">

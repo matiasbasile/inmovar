@@ -7,9 +7,9 @@
           <div class="col-md-3 col-sm-3">
             <article>
             <?php $t = $web_model->get_text("footer-texto-titulo"); ?>
-            <h3 data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" class="editable"><?php echo $t->plain_text ?></h3>
+            <h3 data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" class="editable"><?php echo $t->plain_text ?></h3>
             <?php $t = $web_model->get_text("footer-texto-texto"); ?>
-            <div data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" class="editable"><?php echo $t->plain_text ?></div>
+            <div data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" class="editable"><?php echo $t->plain_text ?></div>
             <hr>
             <a href="<?php echo $t->link ?>" class="link-arrow">Leer m&aacute;s</a>
             </article>

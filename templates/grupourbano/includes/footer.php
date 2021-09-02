@@ -68,42 +68,42 @@ if ($nombre_pagina != "mapa") { ?>
           <h6 class="titulo">VENTAS Y ALQUILERES</h6>
           <div class="pt8 latolight">
         		<?php $t = $web_model->get_text("tel1","0221 427 1544 / 45") ?>
-            <span class="word">T:</span><span class="editable" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>"><?php echo $t->plain_text ?></span>
+            <span class="word">T:</span><span class="editable" data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>"><?php echo $t->plain_text ?></span>
             <br>
         		<?php $t = $web_model->get_text("tel2","+54 (221) 525 1821 / 601 0023 / 5578357") ?>
-            <span class="pb5 pt5 editable" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>">
+            <span class="pb5 pt5 editable" data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>">
             	<?php echo $t->plain_text ?>
           	</span>
           	<br>
         		<?php $t = $web_model->get_text("mail1","info@grupo-urbano.com.ar") ?>
-            <span class="word">E:</span><span class="editable" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>"><?php echo $t->plain_text ?></span>
+            <span class="word">E:</span><span class="editable" data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>"><?php echo $t->plain_text ?></span>
           </div>  
         </div>
         <div class="pt20">
           <h6 class="titulo">ADMINISTRACIÓN DE PROPIEDADES</h6>
           <div class="pt8 latolight">
         		<?php $t = $web_model->get_text("tel3","+ 54 9 (0221) 463-7615") ?>
-            <span class="word">T:</span><span class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?> </span><br>
+            <span class="word">T:</span><span class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?> </span><br>
         		<?php $t = $web_model->get_text("mail2","administracion@grupo-urbano.com.ar") ?>
-            <span class="word">E:</span><span class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?> </span>
+            <span class="word">E:</span><span class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?> </span>
           </div>  
         </div>
         <div class="pt20">
           <h6 class="titulo">ADMINISTRACIÓN DE CONSORCIOS</h6>
           <div class="pt8 latolight">
         		<?php $t = $web_model->get_text("teEl4","+54 9 (221) 437-6487 (Urgencias)") ?>
-            <span class="word">T:</span><span class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"> <?php echo $t->plain_text ?></span><br>
+            <span class="word">T:</span><span class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"> <?php echo $t->plain_text ?></span><br>
         		<?php $t = $web_model->get_text("mail3","consorcios@grupo-urbano.com.ar") ?>
-            <span class="word">E:</span><span class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?> </span>
+            <span class="word">E:</span><span class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?> </span>
           </div>  
         </div>
         <div class="pt20">
           <h6 class="titulo">PROYECTOS Y DESARROLLOS </h6>
           <div class="pt8 latolight">
         		<?php $t = $web_model->get_text("tel5","+54 9 (221) 637 2369") ?>
-            <span class="word">T:</span><span class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"> <?php echo $t->plain_text ?></span><br>
+            <span class="word">T:</span><span class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"> <?php echo $t->plain_text ?></span><br>
         		<?php $t = $web_model->get_text("mail4","pablog@grupo-urbano.com.ar") ?>
-            <span class="word">E:</span><span class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"> <?php echo $t->plain_text ?></span>
+            <span class="word">E:</span><span class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"> <?php echo $t->plain_text ?></span>
           </div>  
         </div>
         

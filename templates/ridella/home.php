@@ -82,7 +82,7 @@
           <div class="service-icon"></div>
           <h3><a href="<?php echo mklink("propiedades/ventas/")?>">ventas</a></h3>
           <?php $t = $web_model->get_text("ventasTxt","Lorem Ipsum is simply dummy text of the printing and typesetting")?>
-          <p class="editable" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>">
+          <p class="editable" data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>">
             <?php echo $t->plain_text ?>
           </p>
         </div>
@@ -92,7 +92,7 @@
           <div class="service-icon icon2"></div>
           <h3><a href="<?php echo mklink("propiedades/alquileres/")?>">alquileres</a></h3>
           <?php $t = $web_model->get_text("alquileresTxt","Lorem Ipsum is simply dummy text of the printing and typesetting")?>
-          <p class="editable" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>">
+          <p class="editable" data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>">
             <?php echo $t->plain_text ?>
           </p>
         </div>
@@ -102,7 +102,7 @@
           <div class="service-icon icon3"></div>
           <h3><a href="<?php echo mklink("entrada/tasaciones-1700/"); ?>">tasaciones</a></h3>
           <?php $t = $web_model->get_text("TasacionesTxt","Lorem Ipsum is simply dummy text of the printing and typesetting")?>
-          <p class="editable" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>">
+          <p class="editable" data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>">
             <?php echo $t->plain_text ?>
           </p>
         </div>

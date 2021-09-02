@@ -19,7 +19,7 @@
           <li> <a href="<?php echo mklink ("/") ?>">home</a> </li>
           <li>
            <?php $t = $web_model->get_text("nosotros-link",mklink ("entradas/"))?>
-           <a class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" href="<?php echo (!empty($t->link))?$t->link:$t->plain_text ?>">NOSOTROS</a> 
+           <a class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" href="<?php echo (!empty($t->link))?$t->link:$t->plain_text ?>">NOSOTROS</a> 
           </li>
           <li> <a href="<?php echo mklink ("entradas/") ?>">información</a> </li>
           <li> <a href="<?php echo mklink ("propiedades/ventas/") ?>">VENTAS</a> </li>

@@ -32,7 +32,7 @@ include_once("includes/funciones.php");
           <div class="title">contacto</div>
           <?php
           $texto = $web_model->get_text("contacto1","Ante cualquier consulta no dude en comunicarse mediante el siguiente formulario de contacto o bien hacerlo por Whatsapp directamente en la página web. Responderemos a la brevedad. Muchas gracias."); ?>
-          <p class="editable" data-id="<?php echo $texto->id ?>" data-clave="<?php echo $texto->clave ?>"><?php echo html_entity_decode($texto->texto,ENT_QUOTES); ?></p>
+          <p class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $texto->id ?>" data-clave="<?php echo $texto->clave ?>"><?php echo html_entity_decode($texto->texto,ENT_QUOTES); ?></p>
         </div>
         <div class="info-title">formulario de consulta</div>
         <div class="box-space">

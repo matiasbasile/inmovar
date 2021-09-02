@@ -48,7 +48,7 @@
           <h3>Contactate</h3>
           <div class="ts-box">
             <?php $t = $web_model->get_text("inmovar_7_p_contacto","Find a Nice Place To Live")?>
-            <p class="editable" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" ><?php echo $t->plain_text?></p>
+            <p class="editable" data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" ><?php echo $t->plain_text?></p>
             <figure class="ts-center__vertical">
               <?php if (!empty($empresa->telefono)){?>
                 <i class="fa fa-phone ts-opacity__50 mr-3 mb-0 h4 font-weight-bold"></i>
