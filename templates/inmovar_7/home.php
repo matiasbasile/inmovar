@@ -122,11 +122,11 @@ if (sizeof($slider)>0) { ?>
               <img src="assets/img/icon-house.png" alt="">
             </figure>
             <?php $t = $web_model->get_text("inmovar_7_h4_1","Find a Nice Place To Live")?>
-            <h4 class="editable" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" >
+            <h4 class="editable" data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" >
               <?php echo $t->plain_text ?>
             </h4>
             <?php $t = $web_model->get_text("inmovar_7_p_1","Find a Nice Place To Live")?>
-            <p class="editable" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" ><?php echo $t->plain_text?></p>
+            <p class="editable" data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" ><?php echo $t->plain_text?></p>
 
           </div>
         </div>
@@ -143,11 +143,11 @@ if (sizeof($slider)>0) { ?>
             </figure>
 
             <?php $t = $web_model->get_text("inmovar_7_h4_2","Find a Nice Place To Live")?>
-            <h4 class="editable" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" >
+            <h4 class="editable" data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" >
               <?php echo $t->plain_text ?>
             </h4>
             <?php $t = $web_model->get_text("inmovar_7_p_2","Find a Nice Place To Live")?>
-            <p class="editable" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" ><?php echo $t->plain_text?></p>
+            <p class="editable" data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" ><?php echo $t->plain_text?></p>
 
           </div>
         </div>
@@ -164,11 +164,11 @@ if (sizeof($slider)>0) { ?>
             </figure>
 
             <?php $t = $web_model->get_text("inmovar_7_h4_3","Find a Nice Place To Live")?>
-            <h4 class="editable" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" >
+            <h4 class="editable" data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" >
               <?php echo $t->plain_text ?>
             </h4>
             <?php $t = $web_model->get_text("inmovar_7_p_3","Find a Nice Place To Live")?>
-            <p class="editable" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" ><?php echo $t->plain_text?></p>
+            <p class="editable" data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" ><?php echo $t->plain_text?></p>
 
           </div>
         </div>
@@ -185,11 +185,11 @@ if (sizeof($slider)>0) { ?>
             </figure>
 
             <?php $t = $web_model->get_text("inmovar_7_h4_4","Find a Nice Place To Live")?>
-            <h4 class="editable" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" >
+            <h4 class="editable" data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" >
               <?php echo $t->plain_text ?>
             </h4>
             <?php $t = $web_model->get_text("inmovar_7_p_4","Find a Nice Place To Live")?>
-            <p class="editable" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" ><?php echo $t->plain_text?></p>
+            <p class="editable" data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" ><?php echo $t->plain_text?></p>
 
           </div>
         </div>

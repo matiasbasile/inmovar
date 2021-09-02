@@ -6,7 +6,7 @@
           <a href="<?php echo mklink ("/") ?>"><img src="assets/images/logo02.png" alt="Logo"></a>
         </div>
         <?php $t = $web_model->get_text("slogan-footer","Somos una empresa joven, liderada por personal profesionalmente capacitado en el rubro inmobiliario y de la construcción.")?>
-        <p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+        <p class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
           <?php echo $t->plain_text ?>
         </p>
       </div>

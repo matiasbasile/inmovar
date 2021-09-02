@@ -7,7 +7,7 @@
                         <img src="<?php echo "/admin/".$empresa->logo_1;?>" class="logo" alt="">
                     </a>
                     <?php $t = $web_model->get_text("inmovar_7_p_footer_adsada","Find a Nice Place To Live");?>
-                    <p class="mb-4 editable" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" >
+                    <p class="mb-4 editable" data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" >
                         <?php echo $t->plain_text?>
                     </p>
                     <a href="<?php echo mklink("web/contacto"); ?>" class="btn btn-outline-dark mb-4">Contactanos</a>

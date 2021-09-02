@@ -128,18 +128,18 @@
 
 			<!-- Our Services -->
 			<?php $t = $web_model->get_text("slider_dos!","assets/images/services-bg.jpg")?>
-			<div class="our-services editable editable-img" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" style="background: url(<?php echo $t->plain_text?>) no-repeat  0 0;background-size: cover" data-width="1600" data-height="480">
+			<div class="our-services editable editable-img" data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" style="background: url(<?php echo $t->plain_text?>) no-repeat  0 0;background-size: cover" data-width="1600" data-height="480">
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-4">
 							<div class="service-item">
 								<span class="icon-box"></span>
 								<?php $tit = $web_model->get_text("ventasssss-tit","Ventas")?>
-								<h4 onclick="window.location.href='<?php echo $tit->link ?>'"  class="editable pointer" data-id="<?php echo $tit->id ?>" data-clave="<?php echo $tit->clave ?>">
+								<h4 onclick="window.location.href='<?php echo $tit->link ?>'"  class="editable pointer" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $tit->id ?>" data-clave="<?php echo $tit->clave ?>">
 									<?php echo $tit->plain_text ?>
 								</h4>
 								<?php $t = $web_model->get_text("ventas-text","Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's")?>
-								<p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+								<p class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
 									<?php echo $t->plain_text ?>
 								</p>
 								<div onclick="window.location.href='<?php echo $tit->link ?>'" class="stretched-link play-icon pointer-rel"></div>
@@ -149,11 +149,11 @@
 							<div class="service-item alquileres">
 								<span class="icon-box"></span>
 								<?php $tit = $web_model->get_text("alqui-tit","Alquileres")?>
-								<h4 onclick="window.location.href='<?php echo $tit->link ?>'" class="editable pointer" data-id="<?php echo $tit->id ?>" data-clave="<?php echo $tit->clave ?>">
+								<h4 onclick="window.location.href='<?php echo $tit->link ?>'" class="editable pointer" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $tit->id ?>" data-clave="<?php echo $tit->clave ?>">
 									<?php echo $tit->plain_text ?>
 								</h4>
 								<?php $t = $web_model->get_text("alqui-text","Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's")?>
-								<p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+								<p class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
 									<?php echo $t->plain_text ?>
 								</p>
 								<div onclick="window.location.href='<?php echo $tit->link ?>'" class="stretched-link play-icon pointer-rel"></div>
@@ -163,11 +163,11 @@
 							<div class="service-item emprendimientos">
 								<span class="icon-box"></span>
 								<?php $tit = $web_model->get_text("empre-tit","Emprendimientos")?>
-								<h4 class="editable pointer" onclick="window.location.href='<?php echo $tit->link ?>'"  data-id="<?php echo $tit->id ?>" data-clave="<?php echo $tit->clave ?>">
+								<h4 class="editable pointer" onclick="window.location.href='<?php echo $tit->link ?>'"  data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $tit->id ?>" data-clave="<?php echo $tit->clave ?>">
 									<?php echo $tit->plain_text ?>
 								</h4>
 								<?php $t = $web_model->get_text("empr-text","Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's")?>
-								<p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+								<p class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
 									<?php echo $t->plain_text ?>
 								</p>
 								<div onclick="window.location.href='<?php echo $tit->link ?>'" class="stretched-link play-icon pointer-rel	"></div>
@@ -240,76 +240,76 @@
 			<div class="featured-cities text-center">
 				<div class="container">
 					<?php $t = $web_model->get_text("ciudades-titt","Ciudades Destacadas")?>
-					<h2 class="section-title" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+					<h2 class="section-title" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
 						<?php echo $t->plain_text ?>
 					</h2>
 					<?php $t = $web_model->get_text("ciudades-text","Conocé las propiedades de cada ciudad que tenemos para ofrecerte")?>
-					<p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+					<p class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
 						<?php echo $t->plain_text ?>
 					</p>
 					<div class="row">
 						<div class="col-lg-4 col-md-6">
 							<?php $t = $web_model->get_text("img-1-path","assets/images/property-img7.png")?>
-							<div class="featured-list-item editable editable-img" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+							<div class="featured-list-item editable editable-img" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
 								<img src="<?php echo $t->plain_text ?>" alt="Property Img">
 								<div class="rollover">
 									<?php $t = $web_model->get_text("img-1-texto-1","La Plata")?>
-									<div onclick="window.location.href='<?php echo $t->link ?>'" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="editable stretched-link onclick"><?php echo $t->plain_text ?></div>
+									<div onclick="window.location.href='<?php echo $t->link ?>'" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="editable stretched-link onclick"><?php echo $t->plain_text ?></div>
 									<span onclick="window.location.href='<?php echo $t->link ?>'" class="onclick-span">Ver Más</span>
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-6">
 							<?php $t = $web_model->get_text("img-2-path","assets/images/property-img8.png")?>
-							<div class="featured-list-item editable editable-img" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+							<div class="featured-list-item editable editable-img" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
 								<img src="<?php echo $t->plain_text ?>" alt="Property Img">
 								<div class="rollover">
 									<?php $t = $web_model->get_text("img-2-texto-2","City Bell")?>
-									<div onclick="window.location.href='<?php echo $t->link ?>'" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="editable stretched-link onclick"><?php echo $t->plain_text ?></div>
+									<div onclick="window.location.href='<?php echo $t->link ?>'" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="editable stretched-link onclick"><?php echo $t->plain_text ?></div>
 									<span onclick="window.location.href='<?php echo $t->link ?>'" class="onclick-span">Ver Más</span>
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-6">
 							<?php $t = $web_model->get_text("img-3-path","assets/images/property-img9.png")?>
-							<div class="featured-list-item editable editable-img" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+							<div class="featured-list-item editable editable-img" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
 								<img src="<?php echo $t->plain_text ?>" alt="Property Img">
 								<div class="rollover">
 									<?php $t = $web_model->get_text("img-3-texto-3","Villa Elisa")?>
-									<div onclick="window.location.href='<?php echo $t->link ?>'" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="editable stretched-link onclick"><?php echo $t->plain_text ?></div>
+									<div onclick="window.location.href='<?php echo $t->link ?>'" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="editable stretched-link onclick"><?php echo $t->plain_text ?></div>
 									<span onclick="window.location.href='<?php echo $t->link ?>'" class="onclick-span">Ver Más</span>
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-6">
 							<?php $t = $web_model->get_text("img-4-path","assets/images/property-img10.png")?>
-							<div class="featured-list-item editable editable-img" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+							<div class="featured-list-item editable editable-img" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
 								<img src="<?php echo $t->plain_text ?>" alt="Property Img">
 								<div class="rollover">
 									<?php $t = $web_model->get_text("img-4-texto-4","Pinamar")?>
-									<div onclick="window.location.href='<?php echo $t->link ?>'" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="editable stretched-link onclick"><?php echo $t->plain_text ?></div>
+									<div onclick="window.location.href='<?php echo $t->link ?>'" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="editable stretched-link onclick"><?php echo $t->plain_text ?></div>
 									<span class="onclick-span" onclick="window.location.href='<?php echo $t->link ?>'">Ver Más</span>
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-6">
 							<?php $t = $web_model->get_text("img-5-path","assets/images/property-img11.png")?>
-							<div class="featured-list-item editable editable-img" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+							<div class="featured-list-item editable editable-img" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
 								<img src="<?php echo $t->plain_text ?>" alt="Property Img">
 								<div class="rollover">
 									<?php $t = $web_model->get_text("img-5-texto-5","Hudson")?>
-									<div onclick="window.location.href='<?php echo $t->link ?>'" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="editable stretched-link onclick"><?php echo $t->plain_text ?></div>
+									<div onclick="window.location.href='<?php echo $t->link ?>'" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="editable stretched-link onclick"><?php echo $t->plain_text ?></div>
 									<span onclick="window.location.href='<?php echo $t->link ?>'" class="onclick-span">Ver Más</span>
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-6">
 							<?php $t = $web_model->get_text("img-6-path","assets/images/property-img12.png")?>
-							<div class="featured-list-item editable editable-img" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+							<div class="featured-list-item editable editable-img" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
 								<img src="<?php echo $t->plain_text ?>" alt="Property Img">
 								<div class="rollover">
 									<?php $t = $web_model->get_text("img-6-texto-6","Mar Del Plata")?>
-									<div onclick="window.location.href='<?php echo $t->link ?>'" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="editable stretched-link onclick"><?php echo $t->plain_text ?></div>
+									<div onclick="window.location.href='<?php echo $t->link ?>'" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="editable stretched-link onclick"><?php echo $t->plain_text ?></div>
 									<span class="onclick-span" onclick="window.location.href='<?php echo $t->link ?>'">Ver Más</span>
 								</div>
 							</div>

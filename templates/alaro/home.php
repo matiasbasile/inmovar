@@ -53,20 +53,20 @@ error_reporting(E_ALL); ?>
   		<div class="title-wrap">
   			<div class="section-title">
   				<?php $t = $web_model->get_text("primer-bloque-subtit","Edificios en Desarrollo")?>
-  				<span class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+  				<span class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
   					<?php echo $t->plain_text ?>
   				</span>
   				<?php $t = $web_model->get_text("primer-bloque-tit","Edificios en construcción")?>
-  				<h2 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+  				<h2 class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
   					<?php echo $t->plain_text ?>
   				</h2>
   				<?php $t = $web_model->get_text("primer-bloque-txt","Lorem Ipsum is simply dummy text of the printing and typesetting industry has  industry been the industry's.")?>
-  				<p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+  				<p class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
   					<?php echo $t->plain_text ?>
   				</p>
   			</div>
   			<?php $t = $web_model->get_text("primer-bloque-link","ver todos")?>
-  			<a class="btn btn-red editable" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" href="<?php echo $t->link ?>"><?php echo $t->plain_text ?><img src="assets_nuevo/images/btn-arrow.png" alt="Arrow"></a>
+  			<a class="btn btn-red editable" data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" href="<?php echo $t->link ?>"><?php echo $t->plain_text ?><img src="assets_nuevo/images/btn-arrow.png" alt="Arrow"></a>
   		</div>
   	</div>
   	<div class="on-going" id="on-going"> 
@@ -106,9 +106,9 @@ error_reporting(E_ALL); ?>
   					<div class="item">
   						<img src="assets_nuevo/images/icon01.png" alt="icon">
   						<?php $t = $web_model->get_text("counter1","28")?>
-  						<span class="counter editable" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>"><?php echo $t->plain_text ?></span>
+  						<span class="counter editable" data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>"><?php echo $t->plain_text ?></span>
   						<?php $t = $web_model->get_text("counter1text","Edificios <br>Terminados")?>
-  						<span class="counter-title editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+  						<span class="counter-title editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
   							<?php  echo $t->plain_text ?>
   						</span>
   					</div>
@@ -117,9 +117,9 @@ error_reporting(E_ALL); ?>
   					<div class="item">
   						<img src="assets_nuevo/images/icon02.png" alt="icon">
   						<?php $t = $web_model->get_text("counter2","11")?>
-  						<span class="counter editable" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>"><?php echo $t->plain_text ?></span>
+  						<span class="counter editable" data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>"><?php echo $t->plain_text ?></span>
   						<?php $t = $web_model->get_text("counter2text","Edificios en Desarrollo")?>
-  						<span class="counter-title editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+  						<span class="counter-title editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
   							<?php  echo $t->plain_text ?>
   						</span>
   					</div>
@@ -128,9 +128,9 @@ error_reporting(E_ALL); ?>
   					<div class="item">
   						<img src="assets_nuevo/images/icon03.png" alt="icon">
   						<?php $t = $web_model->get_text("counter3","62000")?>
-  						<span class="counter editable" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>"><?php echo $t->plain_text ?></span>
+  						<span class="counter editable" data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>"><?php echo $t->plain_text ?></span>
   						<?php $t = $web_model->get_text("counter3text","Metros Cuadrados Construidos")?>
-  						<span class="counter-title editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+  						<span class="counter-title editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
   							<?php  echo $t->plain_text ?>
   						</span>
   					</div>
@@ -139,9 +139,9 @@ error_reporting(E_ALL); ?>
   					<div class="item">
   						<img src="assets_nuevo/images/icono4.png" alt="icon">
   						<?php $t = $web_model->get_text("counter4","750")?>
-  						<span class="counter editable" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>"><?php echo $t->plain_text ?></span>
+  						<span class="counter editable" data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>"><?php echo $t->plain_text ?></span>
   						<?php $t = $web_model->get_text("counter4text","Departamentos Entregados")?>
-  						<span class="counter-title editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+  						<span class="counter-title editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
   							<?php  echo $t->plain_text ?>
   						</span>
   					</div>
@@ -150,9 +150,9 @@ error_reporting(E_ALL); ?>
   					<div class="item">
   						<img src="assets_nuevo/images/icono5.png" alt="icon">
   						<?php $t = $web_model->get_text("counter5","70")?>
-  						<span class="counter editable" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>"><?php echo $t->plain_text ?></span>
+  						<span class="counter editable" data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>"><?php echo $t->plain_text ?></span>
   						<?php $t = $web_model->get_text("counter5text","Casas <br>Terminadas")?>
-  						<span class="counter-title editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+  						<span class="counter-title editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
   							<?php  echo $t->plain_text ?>
   						</span>
   					</div>
@@ -172,15 +172,15 @@ error_reporting(E_ALL); ?>
   				<div class="title-wrap style-two">
   					<div class="section-title">
   						<?php $t = $web_model->get_text("terminados-sub","Venta de terminados")?>
-  						<span class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+  						<span class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
   							<?php echo $t->plain_text ?>
   						</span>
   						<?php $t = $web_model->get_text("terminados-tit","Departamentos destacados")?>
-  						<h2 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+  						<h2 class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
   							<?php echo $t->plain_text ?>
   						</h2>
   						<?php $t = $web_model->get_text("terminados-txt","Lorem Ipsum is simply dummy text of the printing and typesetting industry has <br>industry been the industry's.")?>
-  						<p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+  						<p class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
   							<?php echo $t->plain_text ?>
   						</p>
   						<div class="gray-title">Destacados</div>
@@ -220,15 +220,15 @@ error_reporting(E_ALL); ?>
   			<div class="title-wrap style-two">
   				<div class="section-title">
   					<?php $t = $web_model->get_text("seccion-edificios-sub","alaró edificios")?>
-  					<span class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+  					<span class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
   						<?php echo $t->plain_text ?>
   					</span>
   					<?php $t = $web_model->get_text("seccion-edificios-tit","¿Por qué confiar en nosotros?")?>
-  					<h2 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+  					<h2 class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
   						<?php echo $t->plain_text ?>
   					</h2>
   					<?php $t = $web_model->get_text("seccion-edificios-txtv2","Somos una empresa familiar que a través del compromiso, esfuerzo<br>y la ética profesional realiza desarrollos inmobiliarios de alto valor agregado.")?>
-  					<p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+  					<p class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
   						<?php echo $t->plain_text ?>
   					</p>
   					<div class="gray-title">Nosotros</div>
@@ -242,11 +242,11 @@ error_reporting(E_ALL); ?>
   							<span class="check-icon"></span>
   						</div>
   						<?php $t = $web_model->get_text("confiar-1","Proyectos <br>Funcionales")?>
-  						<h3 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+  						<h3 class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
   							<?php echo $t->plain_text ?>
   						</h3>
   						<?php $t = $web_model->get_text("confiar-1-txt","Lorem Ipsum is simply dummy <br>text of the printing and typesetting.")?>
-  						<p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+  						<p class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
   							<?php echo $t->plain_text ?>
   						</p>
   					</div>
@@ -258,11 +258,11 @@ error_reporting(E_ALL); ?>
   							<span class="check-icon"></span>
   						</div>
   						<?php $t = $web_model->get_text("confiar-2","Modernas<br>Terminaciones")?>
-  						<h3 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+  						<h3 class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
   							<?php echo $t->plain_text ?>
   						</h3>
   						<?php $t = $web_model->get_text("confiar-2-txt","Lorem Ipsum is simply dummy <br>text of the printing and typesetting.")?>
-  						<p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+  						<p class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
   							<?php echo $t->plain_text ?>
   						</p>
   					</div>
@@ -274,11 +274,11 @@ error_reporting(E_ALL); ?>
   							<span class="check-icon"></span>
   						</div>
   						<?php $t = $web_model->get_text("confiar-3","Equipo<br>Multidisciplinario")?>
-  						<h3 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+  						<h3 class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
   							<?php echo $t->plain_text ?>
   						</h3>
   						<?php $t = $web_model->get_text("confiar-3-txt","Lorem Ipsum is simply dummy <br>text of the printing and typesetting.")?>
-  						<p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+  						<p class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
   							<?php echo $t->plain_text ?>
   						</p>
   					</div>
@@ -296,7 +296,7 @@ error_reporting(E_ALL); ?>
   						<span>Testimonios</span>
   						<h2>Que dicen nuestros clientes</h2>
   						<?php $t = $web_model->get_text("testimonios-textov2","Compartimos algunas experiencias de clientes que confiaron en nosotros.<br> Con Muchos de ellos venimos creciendo juntos hace años <br>en distintos proyectos de inversión.")?>
-  						<p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></p>
+  						<p class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></p>
   					</div>
   				</div>
   				<div class="slider-wrap"> 

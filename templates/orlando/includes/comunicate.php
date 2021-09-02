@@ -5,11 +5,11 @@
         <img src="assets/images/logo4.png" alt="Logo">
         <div class="right-content">
           <?php $t = $web_model->get_text("sloga-tit","Tenes una propiedad para vender o alquilar?")?>
-          <h3 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+          <h3 class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
             <?php echo $t->plain_text ?>
           </h3>
           <?php $t = $web_model->get_text("sloga-txt","Trae tu propiedad a Prado Inmobiliaria para que lo gestionemos por vos!")?>
-          <p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+          <p class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
             <?php echo $t->plain_text ?>
           </p>
         </div>

@@ -18,7 +18,7 @@
 					<div class="col-xl-3 col-lg-3"></div>
 					<div class="col-xl-3 col-lg-3">
 						<?php $t = $web_model->get_text("tit1","LA PLATA")?>
-						<h6 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave?>">
+						<h6 class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave?>">
 							<?php echo $t->plain_text ?>
 						</h6>
 						<ul>
@@ -29,7 +29,7 @@
 							</li>
 							<li>
 								<?php $t = $web_model->get_text("text-2","(221) 424 0322")?>
-								<a href="tel:<?php echo $t->plain_text ?>" class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave?>">
+								<a href="tel:<?php echo $t->plain_text ?>" class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave?>">
 									<?php echo $t->plain_text ?>
 								</a>
 							</li>
@@ -37,19 +37,19 @@
 					</div>
 					<!-- <div class="col-xl-3 col-lg-3">
 						<?php $t = $web_model->get_text("box2-tit1","BUENOS AIRES")?>
-						<h6 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave?>">
+						<h6 class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave?>">
 							<?php echo $t->plain_text ?>
 						</h6>
 						<ul>
 							<li>
 								<?php $t = $web_model->get_text("box2-text-1","Av. Las Heras y Ugarteche")?>
-								<a href="javascript:void(0)" class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave?>">
+								<a href="javascript:void(0)" class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave?>">
 									<?php echo $t->plain_text ?>
 								</a>
 							</li>
 							<li>
 								<?php $t = $web_model->get_text("box2-text-2","(221) 424 0322")?>
-								<a href="tel:<?php echo $t->plain_text ?>" class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave?>">
+								<a href="tel:<?php echo $t->plain_text ?>" class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave?>">
 									<?php echo $t->plain_text ?>
 								</a>
 							</li>
@@ -57,19 +57,19 @@
 					</div> -->
 					<!-- <div class="col-xl-3 col-lg-3">
 						<?php $t = $web_model->get_text("box3tit1","MAR DEL PLATA")?>
-						<h6 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave?>">
+						<h6 class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave?>">
 							<?php echo $t->plain_text ?>
 						</h6>
 						<ul>
 							<li>
 								<?php $t = $web_model->get_text("box3text-1","O'Higgins y Buenos Aires")?>
-								<a href="javascript:void(0)" class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave?>">
+								<a href="javascript:void(0)" class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave?>">
 									<?php echo $t->plain_text ?>
 								</a>
 							</li>
 							<li>
 								<?php $t = $web_model->get_text("box3text-2","(221) 424 0322")?>
-								<a href="tel:<?php echo $t->plain_text ?>" class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave?>">
+								<a href="tel:<?php echo $t->plain_text ?>" class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave?>">
 									<?php echo $t->plain_text ?>
 								</a>
 							</li>
@@ -77,7 +77,7 @@
 					</div> -->
 					<div class="col-xl-3 col-lg-3">
 						<?php $t = $web_model->get_text("box4tit1","VIAS DE COMUNICACIÓN")?>
-						<h6 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave?>">
+						<h6 class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave?>">
 							<?php echo $t->plain_text ?>
 						</h6>
 						<ul>
@@ -88,7 +88,7 @@
 							</li>
 							<li>
 								<?php $t = $web_model->get_text("box4text-2","www.orlandobienesraices.com.ar")?>
-								<a href="javascript:void(0)" class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave?>">
+								<a href="javascript:void(0)" class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave?>">
 									<?php echo $t->plain_text ?>
 								</a>
 							</li>
