@@ -26,7 +26,7 @@ class Web_Texto_Model extends Abstract_Model {
 			$o->clave = "";
 			$o->id = 0;
 			$o->id_empresa = $this->get_empresa();
-			$o->id_idioma = ""
+			$o->id_idioma = "";
 			$o->id_web_template = "";
 			$o->link = "";
 			$o->texto = "";
