@@ -17,6 +17,9 @@ class Web_Texto_Model extends Abstract_Model {
 	}
 
 	function get($id) {
+		ini_set('display_errors', 1);
+		ini_set('display_startup_errors', 1);
+		error_reporting(E_ALL);
 		$o = parent::get($id);
 		if (empty($o)) {
 			$o = new stdClass();
