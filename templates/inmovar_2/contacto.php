@@ -10,7 +10,7 @@ $titulo_pagina = "Contacto"; ?>
 <?php include "includes/header.php" ?>
 
   <?php $t = $web_model->get_text("contacto-banner","images/sub-banner-1.jpg")?>
-  <div class="sub-banner editable editable-img" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" data-height="279" data-width="1583">
+  <div class="sub-banner editable editable-img" data-id_empresa="<?php echo $empresa->id ?>" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" data-height="279" data-width="1583">
     <div class="overlay">
       <div class="container">
         <div class="breadcrumb-area">

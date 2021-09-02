@@ -12,7 +12,7 @@
               <h3>Contacto</h3>
             </div>
             <?php $t = $web_model->get_text("TextodeFooter","Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's printing and typesetting") ?>
-            <p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
+            <p class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
               <?php echo $t->plain_text ?>
             </p>
             <ul class="personal-info">

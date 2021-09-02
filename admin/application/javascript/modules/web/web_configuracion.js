@@ -1473,6 +1473,8 @@
         self.$("#iframe").contents().find(".editable").click(function(e){
           e.preventDefault();
           var id = $(e.currentTarget).data("id");
+          var id_empresa = $(e.currentTarget).data("id_empresa");
+          if (typeof id_empresa === "undefined") id_empresa = ID_EMPRESA;
           if (typeof id === "undefined") return;
           var clave = $(e.currentTarget).data("clave");
           var width = $(e.currentTarget).data("width");
@@ -1492,7 +1494,7 @@
             "id":id,
             "clave":clave,
             "titulo":clave,
-            "id_empresa":ID_EMPRESA,
+            "id_empresa":id_empresa,
             "id_web_template":ID_WEB_TEMPLATE,
           });
           texto.fetch({
