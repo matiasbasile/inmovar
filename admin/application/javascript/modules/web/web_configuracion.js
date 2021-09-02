@@ -1492,13 +1492,17 @@
           // Cargamos el modelo
           var texto = new app.models.WebTexto({
             "id":id,
-            "clave":clave,
-            "titulo":clave,
-            "id_empresa":id_empresa,
-            "id_web_template":ID_WEB_TEMPLATE,
           });
           texto.fetch({
             "success":function() {
+
+              texto.set({
+                "clave":clave,
+                "titulo":clave,
+                "id_empresa":id_empresa,
+                "id_web_template":ID_WEB_TEMPLATE,
+              });
+
               // Abrimos la vista en un lightbox
               var textoEditView = new app.views.WebTextoEditView({
                 "model":texto,

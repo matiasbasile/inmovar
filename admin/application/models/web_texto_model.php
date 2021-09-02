@@ -15,6 +15,33 @@ class Web_Texto_Model extends Abstract_Model {
 		$this->db->close();
 		return $result;
 	}
+
+	function get($id) {
+		$o = parent::get($id);
+		if (empty($o)) {
+			$o = new stdClass();
+			$o->clave = "";
+			$o->id = 0;
+			$o->id_empresa = $this->get_empresa();
+			$o->id_idioma = ""
+			$o->id_web_template = "";
+			$o->link = "";
+			$o->texto = "";
+			$o->texto_en = "";
+			$o->texto_pt = "";
+			$o->titulo = "";
+		}
+		return $o;
+    if ($this->usa_id_empresa == 1) {
+      $id_empresa = $this->get_empresa();
+      $query = $this->db->get_where($this->tabla,array($this->ident=>$id,"id_empresa"=>$id_empresa));
+    } else {
+      $query = $this->db->get_where($this->tabla,array($this->ident=>$id));
+    }
+    $row = $query->row(); 
+    $this->db->close();
+    return $row;
+  }
 	
 	function get_all($limit = null, $offset = null,$order_by = '',$order = '') {
 		
