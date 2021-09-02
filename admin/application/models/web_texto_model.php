@@ -75,6 +75,7 @@ class Web_Texto_Model extends Abstract_Model {
 		if ($web_template->publico == 1) {
 			
 			// Seleccionamos las empresas que tienen ese template pero no tienen cargada esa clave
+			/*
 			$sql = "SELECT E.id FROM empresas E ";
 			$sql.= "WHERE E.id_web_template = $texto->id_web_template ";
 			$sql.= "AND NOT EXISTS (SELECT * FROM web_textos WHERE clave = '$texto->clave' AND id_empresa = E.id ) ";
@@ -84,7 +85,8 @@ class Web_Texto_Model extends Abstract_Model {
 				$sql = "INSERT INTO web_textos (id_empresa,clave,texto,titulo,id_web_template,texto_en,texto_pt) VALUES (";
 				$sql.= "$r->id, '$texto->clave', '$texto->texto', '$texto->titulo', $texto->id_web_template,'$texto->texto_en','$texto->texto_pt' )";
 				$this->db->query($sql);
-			}			
+			}	
+			*/		
 		}
 		
 	}
