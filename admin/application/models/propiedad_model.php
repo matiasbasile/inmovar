@@ -1981,6 +1981,8 @@ class Propiedad_Model extends Abstract_Model {
       $id_tipo_propiedad = "11"; // Fondo de Comercio
     } else if ($propiedad->id_tipo_inmueble == 8) {
       $id_tipo_propiedad = "12"; // Galpon
+    } else if ($propiedad->id_tipo_inmueble == 3) {
+      $id_tipo_propiedad = "2"; // PH
     } else if ($propiedad->id_tipo_inmueble == 20 || $propiedad->id_tipo_inmueble == 24) {
       $id_tipo_propiedad = "7"; // Hotel o Hostel
     }
