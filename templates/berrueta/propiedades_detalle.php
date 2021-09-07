@@ -84,6 +84,14 @@ else $vc_moneda = "$";
     <div class="row">
       <div class="col-md-9 primary">
         <div class="property-full-info">
+          <div class="property-name">
+            <div class="property-price">
+              <big>
+                <?php echo $propiedad->precio ?>
+              </big>
+            </div>
+            <?php echo $propiedad->nombre; ?>
+          </div>
           <?php if (!empty($propiedad->pint)) {  ?>
             <div class="iframe-pint">
               <?php echo $propiedad->pint ?>
@@ -111,14 +119,7 @@ else $vc_moneda = "$";
               <img style="width: 100%; margin-bottom: 30px; " src="<?php echo $propiedad->imagen ?>" alt="" />
             </div>
           <?php } ?>
-          <div class="property-name">
-            <div class="property-price">
-              <big>
-                <?php echo $propiedad->precio ?>
-              </big>
-            </div>
-            <?php echo $propiedad->nombre; ?>
-          </div>
+          
           <div class="border-box">
             <div class="box-space">
               <div class="property-location">
