@@ -127,7 +127,7 @@ function filter() {
                         <div class="property-price">
                           <big><?php echo $r->precio ?></big>
                           <?php if (!empty($r->pint)) {  ?>
-                            <a href="javascript:void(0)" style="background: url(images/3d-design.png);" class="favorites-properties design3d"><span class="tooltip">Vista 360*</span></a>
+                            <a href="javascript:void(0)" style="background: url(images/design.svg);" class="favorites-properties design3d mr10"><span class="tooltip">Vista 360*</span></a>
                           <?php } ?>
 
                           <?php if (estaEnFavoritos($r->id)) { ?>
