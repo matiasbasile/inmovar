@@ -1112,6 +1112,8 @@ class Propiedad_Model {
         $sql.= " AND BL.id_propiedad = A.id ";
         $sql.= " AND BL.id_empresa_propiedad = A.id_empresa ";
         $sql.= ") ";
+        // Que NO sea ALQUILER
+        $sql.= " AND A.id_tipo_operacion != 2 ";
         // Que este compartida
         $sql.= " AND A.compartida = 2 "; // 2 compartida en webs de colegas
         // Que este activa
