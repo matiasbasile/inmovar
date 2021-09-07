@@ -711,6 +711,9 @@ body{font-size:14px;}
 .grid-view .item-picture img { height: 220px; object-fit: contain; width: 100%; }
 #list-view .item-picture img { height: 280px; object-fit: cover; width: 100%; }
 .iframe-pint iframe { width: 100%; margin-bottom: 60px }
-.design3d {     background-repeat: no-repeat !important;
+.design3d { 
+    background: url(../images/pint-gris.png);
+    background-repeat: no-repeat !important;
     background-size: 24px !important;
     background-position: center !important; }
+.design3d:hover { background: url(../images/pint-gris.png) no-repeat 50% 50% #e15616 }
