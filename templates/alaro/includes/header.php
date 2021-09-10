@@ -3,7 +3,11 @@
 <header class="<?php echo (isset($header_style) ? $header_style : "") ?>">
   <div class="logo">
     <a href="<?php echo mklink("/"); ?>">
-      <img src="<?php echo (isset($header_style) && !empty($header_style))?"images/logo1.png":"images/logo1.png" ?>" alt="Logo" />
+      <?php if ($nombre_pagina == "alquileres") {  ?>
+        <img src="images/reyes.png" alt="Logo" />
+      <?php } else { ?>
+        <img src="<?php echo (isset($header_style) && !empty($header_style))?"images/logo1.png":"images/logo1.png" ?>" alt="Logo" />
+      <?php } ?>
     </a>
   </div>
   <a href="javascript:void(0);" onClick="$('.header-right').slideToggle();" class="toggle-menu"><span></span> <span></span> <span></span></a>
