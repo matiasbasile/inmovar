@@ -18,7 +18,13 @@
   </ul>
 </div>
 <header>
-  <div class="logo"><a href="<?php echo mklink ("/") ?>"><img src="assets_nuevo/images/logo1.png" alt="Logo" /></a></div>
+  <div class="logo"><a href="<?php echo mklink ("/") ?>">
+    <?php if ($nombre_pagina == "alquileres") {  ?>
+      <img style="max-width: 200px" src="images/reyes.png" alt="Logo" class="reyes" />
+    <?php } else { ?>
+      <img src="assets_nuevo/images/logo1.png" alt="Logo" /></a>
+    <?php } ?>
+  </div>
   <a href="javascript:void(0);" onClick="$('.header-right').slideToggle();" class="dots-toggle"><span></span> <span></span> <span></span></a>
   <div class="header-right">
     <nav>

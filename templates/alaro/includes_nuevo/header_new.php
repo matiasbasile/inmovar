@@ -41,7 +41,13 @@
 </div>
 <header class="<?php echo ($page_act=="home")?"home-header":""?>">  
 	<nav class="navbar navbar-expand-lg">
-		<a class="navbar-brand" href="<?php echo mklink ("/") ?>"><img style="max-width: 150px" src="images/logo1.png" alt="Lasa Papelera"></a>
+		<a class="navbar-brand" href="<?php echo mklink ("/") ?>">
+		<?php if ($nombre_pagina == "alquileres") {  ?>
+        	<img style="max-width: 200px" src="images/reyes.png" alt="Logo" class="reyes" />
+      	<?php } else { ?>
+			<img style="max-width: 150px" src="images/logo1.png" alt="Alaro">
+		<?php } ?>
+		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>

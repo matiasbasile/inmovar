@@ -47,7 +47,6 @@ foreach($tipos_propiedades as $l) {
 }
 $vc_banios = isset($get_params["bn"]) ? $get_params["bn"] : 0;
 $vc_dormitorios= isset($get_params["dm"]) ? $get_params["dm"] : 0;
-$nombre_pagina = "listado_nuevo";
 $conservar = '0-9'; // juego de caracteres a conservar
 $regex = sprintf('~[^%s]++~i', $conservar); // case insensitive
 $empresa->telefono_num = preg_replace($regex, '', $empresa->telefono);
