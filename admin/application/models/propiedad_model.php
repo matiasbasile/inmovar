@@ -1906,14 +1906,15 @@ class Propiedad_Model extends Abstract_Model {
       $k=0;
       $this->db->query("DELETE FROM inm_propiedades_images WHERE id_empresa = $id_empresa AND id_propiedad = $id_propiedad ");
       foreach($imagenes as $im) {
-        $this->db->query("INSERT INTO inm_propiedades_images (id_empresa,id_propiedad,path,orden,plano) VALUES($id_empresa,$id_propiedad,'$im',$k,0)");
+        $sql = "INSERT INTO inm_propiedades_images (id_empresa,id_propiedad,path,orden,plano) VALUES($id_empresa,$id_propiedad,'$im',$k,0)";
+        $this->db->query($sql);
         $k++;
+        $this->Log_Model->imprimir(array(
+          "id_empresa"=>$id_empresa,
+          "file"=>"ib_log.txt",
+          "texto"=>$sql,
+        ));
       }
-      $this->Log_Model->imprimir(array(
-        "id_empresa"=>$id_empresa,
-        "file"=>"ib_log.txt",
-        "texto"=>print_r($imagenes,TRUE),
-      ));
     }
 
     $this->Log_Model->imprimir(array(
