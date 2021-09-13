@@ -20,7 +20,7 @@
 <header>
   <div class="logo"><a href="<?php echo mklink ("/") ?>">
     <?php if ($nombre_pagina == "alquileres") {  ?>
-      <img style="max-width: 200px" src="images/reyes.png" alt="Logo" class="reyes" />
+      <img src="images/reyes.png" alt="Logo" class="reyes" />
     <?php } else { ?>
       <img src="assets_nuevo/images/logo1.png" alt="Logo" /></a>
     <?php } ?>

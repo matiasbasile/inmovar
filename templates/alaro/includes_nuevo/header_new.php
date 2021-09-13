@@ -43,7 +43,7 @@
 	<nav class="navbar navbar-expand-lg">
 		<a class="navbar-brand" href="<?php echo mklink ("/") ?>">
 		<?php if ($nombre_pagina == "alquileres") {  ?>
-        	<img style="max-width: 200px" src="images/reyes.png" alt="Logo" class="reyes" />
+        	<img src="images/reyes.png" alt="Logo" class="reyes" />
       	<?php } else { ?>
 			<img style="max-width: 150px" src="images/logo1.png" alt="Alaro">
 		<?php } ?>

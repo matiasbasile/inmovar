@@ -1975,3 +1975,4 @@ footer ul {
 }
 .uppercase { text-transform: uppercase; }
 .capitalize { text-transform: capitalize; }
+.reyes { max-width: 300px }
