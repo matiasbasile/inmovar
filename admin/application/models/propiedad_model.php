@@ -1452,6 +1452,7 @@ class Propiedad_Model extends Abstract_Model {
 
     $propiedad = new stdClass();
     $propiedad->id = 0;
+    $es_nueva = TRUE;
     $obtener_link = true;
     // Consultamos si ya existe alguna propiedad con ese link, para setearle el ID
     $sql = "SELECT * FROM inm_propiedades WHERE id_empresa = $id_empresa ";
@@ -1461,6 +1462,7 @@ class Propiedad_Model extends Abstract_Model {
     if ($q->num_rows() > 0) {
       $r = $q->row();
       $propiedad = $r;
+      $es_nueva = FALSE;
 
       // Controlamos si se bajo el archivo el dia de hoy
       // esto se hace por si hay algun error, se corrije y no volverlo a bajar
@@ -1898,7 +1900,7 @@ class Propiedad_Model extends Abstract_Model {
     // Controlamos si tenemos que traer o no las fotos
     $this->load->model("Web_Configuracion_Model");
     $web_conf = $this->Web_Configuracion_Model->get($propiedad->id_empresa);
-    if ($web_conf->inmobusqueda_diario_fotos == 0) {
+    if ($web_conf->inmobusqueda_diario_fotos == 0 || $es_nueva) {
       // INSERTAMOS LAS IMAGENES
       $k=0;
       $this->db->query("DELETE FROM inm_propiedades_images WHERE id_empresa = $id_empresa AND id_propiedad = $id_propiedad ");
