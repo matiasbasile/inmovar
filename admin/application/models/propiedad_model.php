@@ -1439,20 +1439,28 @@ class Propiedad_Model extends Abstract_Model {
 
     $id_empresa = isset($config["id_empresa"]) ? $config["id_empresa"] : parent::get_empresa();
     $link = isset($config["link"]) ? $config["link"] : "";
+    $id_propiedad = isset($config["id_propiedad"]) ? $config["id_propiedad"] : 0;
     $errores = array();
     $this->load->helper("file_helper");
     $this->load->helper("fecha_helper");    
+
+    $link = str_replace("https://www.inmobusqueda.com.ar/ficha-", "", $link);
+    $link = str_replace("http://www.inmobusqueda.com.ar/ficha-", "", $link);
+    $link = str_replace("../importar/inmobusqueda/cache/", "", $link);
+    $link = str_replace(".txt", "", $link);
+    $link = "http://www.inmobusqueda.com.ar/ficha-".$link;    
 
     $propiedad = new stdClass();
     $propiedad->id = 0;
     $obtener_link = true;
     // Consultamos si ya existe alguna propiedad con ese link, para setearle el ID
-    $sql = "SELECT * FROM inm_propiedades WHERE ";
-    $sql.= " inmobusquedas_url = '$link' AND id_empresa = $id_empresa ";
+    $sql = "SELECT * FROM inm_propiedades WHERE id_empresa = $id_empresa ";
+    if (!empty($id_propiedad)) $sql.= "AND id = $id_propiedad ";
+    else $sql.= " AND inmobusquedas_url = '$link' ";
     $q = $this->db->query($sql);
     if ($q->num_rows() > 0) {
       $r = $q->row();
-      $propiedad->id = $r->id;
+      $propiedad = $r;
 
       // Controlamos si se bajo el archivo el dia de hoy
       // esto se hace por si hay algun error, se corrije y no volverlo a bajar

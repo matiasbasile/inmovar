@@ -87,6 +87,14 @@ class Inmobusquedas extends REST_Controller {
       }
     }
 
+    // Desactivamos todas las propiedades que hayan venido de inmobusqueda,
+    // para que en la nueva importacion queden solamente las activas
+    $sql = "UPDATE inm_propiedades ";
+    $sql.= "SET activo = 0 ";
+    $sql.= "WHERE id_empresa = $id_empresa ";
+    $sql.= "AND inmobusquedas_url != '' ";
+    $this->db->query($sql);
+
     $this->load->model("Propiedad_Model");
     $i=0;
     foreach($links as $link) {
