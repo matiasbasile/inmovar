@@ -1442,7 +1442,8 @@ class Propiedad_Model extends Abstract_Model {
     $id_propiedad = isset($config["id_propiedad"]) ? $config["id_propiedad"] : 0;
     $errores = array();
     $this->load->helper("file_helper");
-    $this->load->helper("fecha_helper");    
+    $this->load->helper("fecha_helper");  
+    $this->load->model("Log_Model");  
 
     $link = str_replace("https://www.inmobusqueda.com.ar/ficha-", "", $link);
     $link = str_replace("http://www.inmobusqueda.com.ar/ficha-", "", $link);
@@ -1908,9 +1909,13 @@ class Propiedad_Model extends Abstract_Model {
         $this->db->query("INSERT INTO inm_propiedades_images (id_empresa,id_propiedad,path,orden,plano) VALUES($id_empresa,$id_propiedad,'$im',$k,0)");
         $k++;
       }
+      $this->Log_Model->imprimir(array(
+        "id_empresa"=>$id_empresa,
+        "file"=>"ib_log.txt",
+        "texto"=>print_r($imagenes,TRUE),
+      ));
     }
 
-    $this->load->model("Log_Model");
     $this->Log_Model->imprimir(array(
       "id_empresa"=>$id_empresa,
       "file"=>"ib_".$id_propiedad.".txt",
