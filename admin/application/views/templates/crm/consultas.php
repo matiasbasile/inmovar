@@ -31,13 +31,11 @@
             <span id="consultas_vencidas_counter" class="counter">0</span>
           </a>
         </li>
-        <?php /*
         <li>
           <a href="app/#consultastipos" class="btn-tab-large">
             <i class="material-icons md-22 mr0 mt2 mb2">settings</i>
           </a>
         </li>
-        */ ?>
       </ul>
     </div>
     <div class="panel panel-default">
