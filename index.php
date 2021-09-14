@@ -183,6 +183,7 @@ if ( (!(strpos($dominio, "app.inmovar") === FALSE) || !(strpos($dominio, "sandbo
   $hash = urldecode($params[2]);
   $hash = str_replace(" ", "", $hash);
   $sql = "SELECT id, id_empresa FROM inm_propiedades WHERE hash = '$hash' ";
+  if (isset($get_params["test"])) echo $sql;
   $empresa->template_path = "ficha";
   $q_prop = mysqli_query($conx,$sql);
   if (mysqli_num_rows($q_prop)>0) {
