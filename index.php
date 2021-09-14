@@ -278,13 +278,11 @@ if ( $nombre_pagina == "ficha") {
   $propiedad_model = new Propiedad_Model($empresa->id,$conx);
   $id_propiedad = $propiedad->id;
   $id_empresa_propiedad = $propiedad->id_empresa;
-  echo "($empresa->id)";
-  echo "($id_propiedad)";
-  echo "($id_empresa_propiedad)";
   $propiedad = $propiedad_model->get($id_propiedad,array(
     "id_empresa"=>$empresa->id,
     "id_empresa_original"=>$id_empresa_propiedad,
   ));
+  echo $propiedad_model->get_sql();
   include("templates/ficha/home.php");  
 
 } else if (isset($empresa->template_path) && !empty($empresa->template_path)) {
