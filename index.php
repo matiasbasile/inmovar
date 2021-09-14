@@ -282,6 +282,7 @@ if ( $nombre_pagina == "ficha") {
     "id_empresa"=>$empresa->id,
     "id_empresa_original"=>$id_empresa_propiedad,
   ));
+  var_dump($propiedad);
   if (isset($get_params["test"])) var_dump($propiedad);
   include("templates/ficha/home.php");  
 
