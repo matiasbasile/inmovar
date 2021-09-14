@@ -277,7 +277,7 @@ if ( $nombre_pagina == "ficha") {
   include_once("models/Propiedad_Model.php");
   $id_propiedad = $propiedad->id;
   $id_empresa_propiedad = $propiedad->id_empresa;
-  $propiedad_model = new Propiedad_Model($empresa->id,$conx);
+  $propiedad_model = new Propiedad_Model($id_empresa_propiedad,$conx);
   $propiedad = $propiedad_model->get($id_propiedad,array(
     "id_empresa"=>$id_empresa_propiedad,
     "id_empresa_original"=>$id_empresa_propiedad,
