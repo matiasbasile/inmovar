@@ -178,7 +178,7 @@ if ( (!(strpos($dominio, "app.inmovar") === FALSE) || !(strpos($dominio, "sandbo
   }
 
 } else if ( isset($params[0]) && $params[0] == "ficha" && isset($params[1])  && isset($params[2]) ) {
-  
+  echo "ANDA";
   $empresa = get_empresa_by_dominio_inmovar($params[1]);
   if (isset($get_params["test"])) var_dump($empresa);
   $hash = urldecode($params[2]);
