@@ -280,6 +280,7 @@ if ( $nombre_pagina == "ficha") {
     "id_empresa"=>$empresa->id,
     "id_empresa_original"=>$propiedad->id_empresa,
   ));
+  if (isset($get_params["test"])) var_dump($propiedad);
   include("templates/ficha/home.php");  
 
 } else if (isset($empresa->template_path) && !empty($empresa->template_path)) {
