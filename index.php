@@ -282,7 +282,6 @@ if ( $nombre_pagina == "ficha") {
     "id_empresa"=>$empresa->id,
     "id_empresa_original"=>$id_empresa_propiedad,
   ));
-  echo $propiedad_model->get_sql();
   include("templates/ficha/home.php");  
 
 } else if (isset($empresa->template_path) && !empty($empresa->template_path)) {
