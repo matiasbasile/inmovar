@@ -187,7 +187,6 @@ if ( (!(strpos($dominio, "app.inmovar") === FALSE) || !(strpos($dominio, "sandbo
   $q_prop = mysqli_query($conx,$sql);
   if (mysqli_num_rows($q_prop)>0) {
     $propiedad = mysqli_fetch_object($q_prop);
-    var_dump($propiedad);
   } else {
     go_404();
   }
@@ -277,9 +276,11 @@ $nombre_pagina = (sizeof($params)>0) ? $params[0] : "";
 if ( $nombre_pagina == "ficha") {
   include_once("models/Propiedad_Model.php");
   $propiedad_model = new Propiedad_Model($empresa->id,$conx);
-  $propiedad = $propiedad_model->get($propiedad->id,array(
+  $id_propiedad = $propiedad->id;
+  $id_empresa_propiedad = $propiedad->id_empresa;
+  $propiedad = $propiedad_model->get($id_propiedad,array(
     "id_empresa"=>$empresa->id,
-    "id_empresa_original"=>$propiedad->id_empresa,
+    "id_empresa_original"=>$id_empresa_propiedad,
   ));
   if (isset($get_params["test"])) var_dump($propiedad);
   include("templates/ficha/home.php");  
