@@ -840,6 +840,65 @@
     </div>
   <% } %>
 
+  <?php 
+  $usa_custom = false;
+  for($i=1;$i<=10;$i++) {
+    if ((isset($empresa->config["propiedad_custom_".$i."_label"])) || (isset($empresa->config["propiedad_custom_".$i."_file"]))) {
+      $usa_custom = true;
+      break;
+    }
+  } 
+  if ($usa_custom) { ?>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="padder">
+          <div class="form-group mb0 clearfix expand-link cp">
+            <label class="control-label cp">Información adicional</label>
+            <div class="panel-description">Campos específicos de la cuenta.</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body expand">
+        <div class="padder">
+          <div class="row">
+            <?php for($i=1;$i<=10;$i++) { ?>
+
+              <?php if (isset($empresa->config["propiedad_custom_".$i."_file"])) { ?>
+                
+                <div class="col-xs-12">
+                  <?php single_file_upload(array(
+                    "name"=>"custom_$i",
+                    "label"=>$empresa->config["propiedad_custom_".$i."_file"],
+                    "url"=>"/admin/propiedades/function/save_file/",
+                  )); ?>
+                </div>
+
+              <?php } else if (isset($empresa->config["propiedad_custom_".$i."_label"])) { ?>
+                <div class="<?php echo (isset($empresa->config['propiedad_custom_'.$i.'_class'])) ? $empresa->config['propiedad_custom_'.$i.'_class'] :'col-xs-12'?>">
+                  <div class="form-group">
+                    <label class="control-label"><?php echo $empresa->config["propiedad_custom_".$i."_label"] ?></label>
+                    <?php if(isset($empresa->config['propiedad_custom_'.$i.'_values'])) { 
+                      $values = explode("|",$empresa->config['propiedad_custom_'.$i.'_values']); ?>
+                      <select class="form-control" name="custom_<?php echo $i ?>">
+                        <?php foreach($values as $value) { ?>
+                          <option <%= (<?php echo "custom_".$i ?> == "<?php echo $value ?>")?"selected":""  %> value="<?php echo $value ?>"><?php echo $value ?></option>
+                        <?php } ?>
+                      </select>
+                    <?php } else { ?>
+                      <input type="text" name="custom_<?php echo $i ?>" id="propiedad_custom_<?php echo $i ?>" value="<%= custom_<?php echo $i ?> %>" class="form-control"/>
+                    <?php } ?>
+                  </div>
+                </div>
+              <?php } ?>
+            <?php } ?>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  <?php } ?>
+ 
+
   <% if (edicion) { %>
     <div class="tar mb30">
       <button class="btn guardar btn-info btn-lg">Guardar</button>
