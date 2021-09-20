@@ -2556,6 +2556,14 @@
         });
         self.model.set({"images":images});
 
+        if (this.$("#planos_tabla").length > 0) {
+          var planos = new Array();
+          this.$("#planos_tabla .list-group-item .filename").each(function(i,e){
+            planos.push($(e).text());
+          });
+          self.model.set({"planos":planos});
+        }
+
         // Listado de departamentos
         var departamentos = new Array();
         self.departamentos.each(function(dpto){

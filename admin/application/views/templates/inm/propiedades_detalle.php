@@ -761,6 +761,18 @@
           "upload_multiple"=>true,
         )); ?>
 
+        <% if (ID_EMPRESA == 1575) { %>
+          <?php
+          multiple_upload(array(
+            "name"=>"planos",
+            "label"=>"Planos",
+            "url"=>"propiedades/function/save_image/",
+            "width"=>(isset($empresa->config["propiedad_plano_image_width"]) ? $empresa->config["propiedad_plano_image_width"] : 1200),
+            "height"=>(isset($empresa->config["propiedad_plano_image_height"]) ? $empresa->config["propiedad_plano_image_height"] : 600),
+            "quality"=>(isset($empresa->config["propiedad_plano_image_quality"]) ? $empresa->config["propiedad_plano_image_quality"] : 0),
+          )); ?>
+        <% } %>
+
         <div class="form-group">
           <label class="control-label">Video</label>
           <textarea <%= (!edicion)?"disabled":"" %> id="propiedad_video" style="height:80px;" placeholder="Pegue aqui el codigo del video que desea insertar" class="form-control" name="video"><%= video %></textarea>
@@ -860,6 +872,14 @@
       </div>
       <div class="panel-body expand">
         <div class="padder">
+
+          <% if (ID_EMPRESA == 1575) { %>
+            <div class="form-group">
+              <label class="control-label">Ubicación</label>
+              <input <%= (!edicion)?"disabled":"" %> class="form-control" id="propiedad_descripcion_ubicacion" value="<%= descripcion_ubicacion %>" type="text" name="descripcion_ubicacion">
+            </div>
+          <% } %>
+
           <div class="row">
             <?php for($i=1;$i<=10;$i++) { ?>
 
