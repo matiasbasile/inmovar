@@ -190,29 +190,24 @@ function multiple_upload($conf) {
       <div class="bootstrap-filestyle-container">
           <input id="<?php echo $name; ?>" class="multiple_upload" type="file" tabindex="-1" style="position: absolute; clip: rect(0px 0px 0px 0px);">
           <div class="bootstrap-filestyle input-group">
-              <input type="text" class="form-control" id="<?php echo $name; ?>_text" disabled="">
-              <?php /*
+            <input type="text" class="form-control" id="<?php echo $name; ?>_text" disabled="">
+            <?php if ($name == "planos") { ?>
               <span class="group-span-filestyle input-group-btn" tabindex="0">
                 <label for="<?php echo $name; ?>" class="btn btn-default ">
                     <span class="glyphicon glyphicon-folder-open m-r-xs"></span>
                     <?php echo lang(array("es"=>"Elegir y editar","en"=>"Choose and edit")); ?>
                 </label>
-              </span> */ ?>
+              </span>
+            <?php } else { ?>
               <span class="group-span-filestyle input-group-btn" tabindex="0">
                 <a href="javascript:void(0)" id="<?php echo $name; ?>_upload_multiple" class="btn btn-default fs14 fr w100p upload_multiple">
                   <i class="fa fa-upload m-r-xs"></i><?php echo lang(array("es"=>"Seleccionar","en"=>"Select")); ?>
                 </a>
               </span>
-              <?php /*if ($ver_galeria) { ?>
-                <div style="display: table-cell; width: 70px">
-                  <a href="javascript:void(0)" id="<?php echo $name; ?>_galeria" class="btn btn-default fs14 fr w100p abrir_galeria">
-                    <i class="fa fa-picture-o m-r-xs"></i>Galeria
-                  </a>
-                </div>
-              <?php }*/ ?>
+            <?php } ?>
           </div>
           <?php if (!empty($description)) { ?>
-              <span class="help-block m-b-none"><?php echo $description ?></span>
+            <span class="help-block m-b-none"><?php echo $description ?></span>
           <?php } ?>
       </div>
   </form>
