@@ -2570,6 +2570,17 @@
           gastos.push(gsts.toJSON());
         });
         self.model.set({"gastos":gastos});
+
+        // Si los custom llegan a ser fileuploaders, hay que setearlos en el modelo
+        for(var i=1;i<=10;i++) {
+          if ((self.$("#hidden_custom_"+i).length > 0)) {
+            var cus = $(self.el).find("#hidden_custom_"+i).val();
+            var key = "custom_"+i;
+            var obj = {};
+            obj[key] = cus;
+            self.model.set(obj);
+          }          
+        }
         
         // Listado de Propiedades Relacionados
         /*
