@@ -2120,12 +2120,19 @@
       
       // Cuando cambian las imagens, renderizamos la tabla
       this.listenTo(this.model, 'change_table', self.render_tabla_fotos);
+      this.listenTo(this.model, 'change_table', self.render_tabla_planos);
       this.render_tabla_fotos();
+      this.render_tabla_planos();
       
       this.$("#images_tabla").sortable({
         update:function(event,ui){
           self.reordenar_tabla_fotos();
         }
+      });
+      this.$("#planos_tabla").sortable({
+        update:function(event,ui){
+          self.reordenar_tabla_planos();
+        }        
       });
 
       self.departamentos = new app.collections.PropiedadesDepartamentos();
@@ -2327,6 +2334,40 @@
         "images":images,
       });
     },    
+
+    reordenar_tabla_planos: function() {
+      var images = new Array();
+      this.$("#planos_tabla li .img_preview").each(function(i,e){
+        images.push($(e).attr("src"));
+      });
+      this.model.set({
+        "planos":images,
+      });
+    }, 
+
+    render_tabla_planos: function() {
+      var planos = this.model.get("planos");
+      this.$("#planos_tabla").empty();
+      if (planos.length == 0) {
+        this.$("#planos_container").removeClass('tiene');
+      } else {
+        this.$("#planos_container").addClass('tiene');
+        for(var i=0;i<planos.length;i++) {
+          var path = planos[i];
+          var pth = path+"?t="+parseInt(Math.random()*100000);
+          var li = "";
+          li+="<li class='list-group-item'>";
+          li+=" <span><i class='fa fa-sort text-muted fa m-r-sm'></i> </span>";
+          li+=" <img style='margin-left: 10px; margin-right:10px; max-height:50px' class='img_preview' src='"+pth+"'/>";
+          li+=" <span class='dn filename'>"+path+"</span>";
+          li+=" <span class='cp pull-right m-t eliminar_foto' data-property='planos'><i class='fa fa-fw fa-times'></i> </span>";
+          li+=" <span data-id='planos' class='cp m-r pull-right m-t editar_foto_multiple'><i class='fa fa-pencil'></i> </span>";
+          li+="</li>";
+          this.$("#planos_tabla").append(li);
+        }
+        this.$("#planos_container").show();
+      }
+    },
 
     render_tabla_fotos: function() {
       var images = this.model.get("images");
