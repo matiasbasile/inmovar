@@ -72,7 +72,7 @@
           });
           crearLightboxHTML({
             "html":view.el,
-            "width":700,
+            "width":800,
             "height":500,
           });
           workspace.crear_editor("emails_templates_texto");
@@ -197,7 +197,7 @@
       });
       crearLightboxHTML({
         "html":view.el,
-        "width":700,
+        "width":800,
         "height":500,
       });
       workspace.crear_editor("emails_templates_texto");
