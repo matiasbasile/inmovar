@@ -450,12 +450,12 @@ class UploadHandler
     protected function upcount_name_callback($matches) {
         $index = isset($matches[1]) ? ((int)$matches[1]) + 1 : 1;
         $ext = isset($matches[2]) ? $matches[2] : '';
-        return ' ('.$index.')'.$ext;
+        return '-'.$index.$ext;
     }
 
     protected function upcount_name($name) {
         return preg_replace_callback(
-            '/(?:(?: \(([\d]+)\))?(\.[^.]+))?$/',
+            '/(?:(?: \-([\d]+))?(\.[^.]+))?$/',
             array($this, 'upcount_name_callback'),
             $name,
             1
@@ -473,7 +473,7 @@ class UploadHandler
         // LIMPIAMOS EL NOMBRE DE LOS CARACTERES ESPECIALES
         $name = strtolower($name);
         $name = str_replace(' ', '-', $name);
-        $name = preg_replace('/[^A-Za-z0-9\-\.\_]/', '-', $name);
+        $name = preg_replace('/[^A-Za-z0-9\-\.\_\%\$\&]/', '-', $name);
 
         while(is_dir($this->get_upload_path($name))) {
             $name = $this->upcount_name($name);
