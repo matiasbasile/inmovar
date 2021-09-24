@@ -817,6 +817,7 @@ class Propiedad_Model extends Abstract_Model {
     $data->fecha_publicacion = (!empty($data->fecha_publicacion)) ? fecha_mysql($data->fecha_publicacion) : date("Y-m-d");
     $data->codigo = isset($data->codigo) ? $data->codigo : "";
     $data->codigo = trim($data->codigo);
+    $data->path = str_replace(" / ", "/", $data->path);
 
     // La primera foto del array es la imagen principal
     if (sizeof($images)>0) $data->path = $images[0];
@@ -975,6 +976,7 @@ class Propiedad_Model extends Abstract_Model {
       $this->db->query("DELETE FROM inm_propiedades_images WHERE plano = 0 AND id_propiedad = $id AND id_empresa = $id_empresa");
       $k=0;
       foreach($images as $im) {
+        $im = str_replace(" / ", "/", $im);
         $this->db->query("INSERT INTO inm_propiedades_images (plano,id_empresa,id_propiedad,path,orden) VALUES(0,$id_empresa,$id,'$im',$k)");
         $k++;
       }
@@ -992,6 +994,7 @@ class Propiedad_Model extends Abstract_Model {
       $this->db->query("DELETE FROM inm_propiedades_images WHERE plano = 1 AND id_propiedad = $id AND id_empresa = $id_empresa");
       $k=0;
       foreach($planos as $im) {
+        $im = str_replace(" / ", "/", $im);
         $this->db->query("INSERT INTO inm_propiedades_images (plano,id_empresa,id_propiedad,path,orden) VALUES(1,$id_empresa,$id,'$im',$k)");
         $k++;
       }
