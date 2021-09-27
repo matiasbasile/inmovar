@@ -48,7 +48,22 @@ class Inmobusquedas extends REST_Controller {
 
     // Si no tiene configurado el ID de inmobusqueda
     if (empty($web_conf->inmobusqueda_id)) {
-      $html = file_get_contents($url);
+
+      $curl = curl_init();
+      curl_setopt_array($curl, array(
+        CURLOPT_URL => $url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        CURLOPT_USERAGENT =>'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0',
+      ));
+      $html = curl_exec($curl);
+      curl_close($curl);
+
       $dom = new DOMDocument(); 
       libxml_use_internal_errors(true);
       $dom->loadHTML($html);
@@ -70,7 +85,21 @@ class Inmobusquedas extends REST_Controller {
     
     for ($i=1; $i <= $pages ; $i++) {
       $url = "https://www.inmobusqueda.com/perfil/perfil.resultados.php?pagina=$i&tipo=0&operacion=99&orden=1&publicada=0&dormitorios=99&disponible=200&provincia=0&ciudad=0&sobrecalle=&numero=&moneda=0&aptobanco=2&precio=0&preciohasta=10000000&dormitorios=99&dormitorios2=99&estado=99&estado2=99&antiguedad=200&antiguedad2=200&garage=7&eid=$id&eidc=&fichas=";
-      $html = file_get_contents($url);
+      $curl = curl_init();
+      curl_setopt_array($curl, array(
+        CURLOPT_URL => $url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        CURLOPT_USERAGENT =>'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0',
+      ));
+      $html = curl_exec($curl);
+      curl_close($curl);
+
       $dom = new DOMDocument();
       libxml_use_internal_errors(true);
       $dom->loadHTML($html);
@@ -104,6 +133,7 @@ class Inmobusquedas extends REST_Controller {
           "id_empresa"=>$id_empresa,
           "link"=>$link,
         ));
+        sleep(1);
         if (isset($s["errores"])) {
           $errores = array_merge($errores,$s["errores"]);
         }
