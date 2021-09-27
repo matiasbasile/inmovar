@@ -1481,12 +1481,18 @@ class Propiedad_Model extends Abstract_Model {
     }
 
     if ($obtener_link) {
-      // Obtenemos el HTML
-      $c = curl_init($link);
-      curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-      curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
-      curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
-      curl_setopt($c, CURLOPT_USERAGENT, 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)');
+      $c = curl_init();
+      curl_setopt_array($c, array(
+        CURLOPT_URL => $link,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        CURLOPT_USERAGENT =>'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0',
+      ));
       $html = curl_exec($c);
       curl_close($c);
       if ($html == "Bot no autorizado") {

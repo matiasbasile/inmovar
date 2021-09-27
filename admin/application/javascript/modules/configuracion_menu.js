@@ -131,7 +131,7 @@
           this.model.save({},{
             success: function(model,response) {
               $.ajax({
-                "url":"https://app.inmovar.com/admin/inmobusquedas/function/importacion/"+ID_EMPRESA,
+                "url":"/admin/inmobusquedas/function/importacion/"+ID_EMPRESA,
                 "dataType":"json",
                 "success":function(r){
                   if (r.error == 0) location.reload();
