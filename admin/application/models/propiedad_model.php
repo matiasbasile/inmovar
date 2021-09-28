@@ -817,10 +817,10 @@ class Propiedad_Model extends Abstract_Model {
     $data->fecha_publicacion = (!empty($data->fecha_publicacion)) ? fecha_mysql($data->fecha_publicacion) : date("Y-m-d");
     $data->codigo = isset($data->codigo) ? $data->codigo : "";
     $data->codigo = trim($data->codigo);
-    $data->path = str_replace(" / ", "/", $data->path);
 
     // La primera foto del array es la imagen principal
     if (sizeof($images)>0) $data->path = $images[0];
+    $data->path = str_replace(" / ", "/", $data->path);
 
     // Si no tiene propietario asignado
     if (!isset($data->id_propietario) || is_null($data->id_propietario)) $data->id_propietario = 0;
