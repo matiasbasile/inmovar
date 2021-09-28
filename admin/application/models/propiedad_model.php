@@ -1452,6 +1452,7 @@ class Propiedad_Model extends Abstract_Model {
     $link = str_replace("http://www.inmobusqueda.com.ar/ficha-", "", $link);
     $link = str_replace("../importar/inmobusqueda/cache/", "", $link);
     $link = str_replace(".txt", "", $link);
+    $link_inmobusqueda = $link;
     $link = "http://www.inmobusqueda.com.ar/ficha-".$link;    
 
     $propiedad = new stdClass();
@@ -1478,6 +1479,15 @@ class Propiedad_Model extends Abstract_Model {
           $obtener_link = false;
         }
       }
+    }
+
+    $f = "logs/$id_empresa/ib_".$link_inmobusqueda.".txt";
+    if (file_exists($f)) {
+      $time = filemtime($f);
+      if (date("Y-m-d",$time) == date("Y-m-d")) {
+        $html = file_get_contents($f);
+        $obtener_link = false;
+      }      
     }
 
     if ($obtener_link) {
