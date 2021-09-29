@@ -253,6 +253,9 @@
                   <% if (plan.precio_sin_dto != 0) { %>
                     $<strike><%= Number(plan.precio_sin_dto).format(0) %></strike>
                   <% } %>
+                  <div class="tac fs18">
+                    <span>Hasta Diciembre 2021<br>Válido solo para cuentas nuevas</span>
+                  </div>
                 </div>
               </div>
               <%= plan.observaciones %>
@@ -281,6 +284,13 @@
                   <% } %>
                   <% if (plan.precio_sin_dto != 0) { %>
                     $<strike><%= Number(plan.precio_sin_dto).format(0) %></strike>
+                  <% } %>
+                </div>
+                <div class="tac fs18">
+                  <% if (plan.precio_anual == 0) { %>
+                    <span style="color:#0dd384">Hasta Diciembre 2021</span>
+                  <% } else { %>
+                    <span style="color:#0dd384">Hasta Diciembre 2021<br>Válido solo para cuentas nuevas</span>
                   <% } %>
                 </div>
               </div>
