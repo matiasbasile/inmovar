@@ -34,7 +34,7 @@ function single_upload($conf) {
         <input id="<?php echo $name; ?>_url_file" type="hidden" value="<?php echo $url_file; ?>" />
 
         <!-- PREVIEW DE LA IMAGEN GUARDADA -->
-        <img id="preview_<?php echo $name; ?>" class="img_preview" style="max-width: 150px; display:<%= (display_file)?'inline-block':'none' %>" src="<%= <?php echo $name; ?> %>"/>
+        <img id="preview_<?php echo $name; ?>" class="img_preview" style="max-width: 150px; display:<%= (display_file)?'inline-block':'none' %>" src="<%= <?php echo $name."?t=".rand(1000); ?> %>"/>
 
         <!-- PATH DE LA IMAGEN (Se mantiene para guardarla cuando se submitea el form) -->
         <input id="hidden_<?php echo $name; ?>" type="hidden" value="<%= <?php echo $name; ?> %>" name="<?php echo $name; ?>"/>
