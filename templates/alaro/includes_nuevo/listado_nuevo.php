@@ -293,7 +293,7 @@ $empresa->telefono_num_2 = preg_replace($regex, '', $empresa->telefono_2);
                   <?php if ($vc_link_tipo_operacion != "proyectos-finalizados") {  ?>
                     <a href="<?php echo ($p->link_propiedad) ?>" class="btn btn-secoundry">Más Información</a>
                     <a href="<?php echo ($p->link_propiedad) ?>#contacto_nombre" class="icon-box"></a>
-                    <a href="#0" onclick="llenar_id(<?php echo $p->id ?>)" data-toggle="modal" data-target="#exampleModalCenter" class="icon-box whatsapp-box"></a>
+                    <a href="#0" onclick="llenar_id(<?php echo $p->id ?>,'<?php echo $p->nombre ?>')" data-toggle="modal" data-target="#exampleModalCenter" class="icon-box whatsapp-box"></a>
                   <?php } else { ?>
                     <a href="<?php echo ($p->link_propiedad) ?>" class="btn btn-secoundry w-100">ver galería de fotos</a>
                   <?php } ?>
@@ -371,8 +371,10 @@ $empresa->telefono_num_2 = preg_replace($regex, '', $empresa->telefono_2);
           </div>
         </div>
   <script type="text/javascript">
-    function llenar_id(item) { 
+    function llenar_id(item,nombre) { 
+      var nombre = "Estoy interesado en " + nombre ;
       $("#contacto_id_propiedad").val(item);
+      $("#contacto_mensaje").attr("placeholder", nombre);
     } 
   </script>
   <script type="text/javascript">
