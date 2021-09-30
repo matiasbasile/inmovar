@@ -171,7 +171,8 @@
 
 <?php 
 $destacados = $propiedad_model->destacadas(array(
-  "offset"=>12
+  "offset"=>12,
+  "solo_propias"=>1,
 )); 
 if (sizeof($destacados)>0) { ?> 
   <section class="module no-padding properties featured">
@@ -255,7 +256,7 @@ if (sizeof($destacados)>0) { ?>
 </section>
 */ ?>
 
-<?php $propiedades = $propiedad_model->ultimas(array("offset"=>3)); ?>
+<?php $propiedades = $propiedad_model->ultimas(array("offset"=>3,"solo_propias"=>1)); ?>
 <?php if (!empty($propiedades)) { ?>
   <section class="module no-padding properties ultimas mb30">
     <div class="container">
