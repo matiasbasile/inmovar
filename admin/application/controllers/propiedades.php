@@ -1393,7 +1393,7 @@ class Propiedades extends REST_Controller {
         $localidad = $aviso->addChild("LOCALIDAD");
         $id_localidad = $p->id_localidad_inmobusquedas;
         if (empty($id_localidad)) $id_localidad = 23244;
-        $localidad->addCDATA($id_localidada);
+        $localidad->addCDATA($id_localidad);
 
         // TODO: Tomar los barrios
         $barrio = $aviso->addChild("BARRIO");
