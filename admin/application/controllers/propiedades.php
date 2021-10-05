@@ -1381,13 +1381,19 @@ class Propiedades extends REST_Controller {
         $texto->addCDATA($p->texto);
 
         $provincia = $aviso->addChild("PROVINCIA");
-        $provincia->addCDATA($p->id_provincia_inmobusquedas);
+        $id_provincia = $p->id_provincia_inmobusquedas;
+        if (empty($id_provincia)) $id_provincia = 1;
+        $provincia->addCDATA($id_provincia);
 
         $partido = $aviso->addChild("PARTIDO");
-        $partido->addCDATA($p->id_partido_inmobusquedas);
+        $id_partido = $p->id_partido_inmobusquedas;
+        if (empty($id_partido)) $id_partido = 68;
+        $partido->addCDATA($id_partido);
 
         $localidad = $aviso->addChild("LOCALIDAD");
-        $localidad->addCDATA($p->id_localidad_inmobusquedas);
+        $id_localidad = $p->id_localidad_inmobusquedas;
+        if (empty($id_localidad)) $id_localidad = 23244;
+        $localidad->addCDATA($id_localidada);
 
         // TODO: Tomar los barrios
         $barrio = $aviso->addChild("BARRIO");
