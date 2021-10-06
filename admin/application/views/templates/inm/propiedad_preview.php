@@ -49,6 +49,15 @@
                 </li>
               <% } %>
 
+              <% if (id_empresa == ID_EMPRESA) { %>
+                <li class="">
+                  <a id="propiedad_preview_5_link" href="#propiedad_preview_tab5" class="oh buscar_todos" role="tab" data-toggle="tab">
+                    <i class="material-icons">schedule</i>
+                    <span class="hidden-xs m-l-xs"> Reportes</span>
+                  </a>
+                </li>
+              <% } %>
+
               <li class="show-xs-dib fr" id="cerrar_preview" style="float: right !important;">
                 <a href="javascript:void" class="oh" style="background-color: transparent !important; border-color: transparent !important; padding-right: 0px !important">
                   <i class="material-icons mr0">close</i>
@@ -119,6 +128,39 @@
                     <b>Email:</b> <a class="text-info cp" href="mailto:<%= empresa_email %>"><%= empresa_email %></a>
                   </div>
                 <% } %>
+              </div>
+
+              <div id="propiedad_preview_tab5" class="tab-pane">
+
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="control-label">Fecha desde</label>
+                      <div class="input-group">
+                        <input type="text" name="fecha_cobro" class="form-control" id="propiedad_preview_fecha_desde"/>
+                        <span class="input-group-btn">
+                          <button style="height: 35px;" tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="material-icons">date_range</i></button>
+                        </span>              
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="control-label">Fecha hasta</label>
+                      <div class="input-group">
+                        <input type="text" name="fecha_debitado" class="form-control" id="propiedad_preview_fecha_hasta"/>
+                        <span class="input-group-btn">
+                          <button style="height: 35px;" tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="material-icons">date_range</i></button>
+                        </span>              
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mt20 tar">
+                    <button class="btn btn-info imprimir_reporte">Imprimir PDF</button>
+                  </div>
+                </div>
+
+                <div class="h150" style="width: 750px;" id="vision_general_bar"></div>
               </div>
 
             </div>

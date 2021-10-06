@@ -9,6 +9,25 @@ class Propiedades extends REST_Controller {
     $this->load->model('Propiedad_Model', 'modelo');
   }
 
+  function guardar_visita_panel() {
+    $id_empresa = parent::get_post("id_empresa", parent::get_empresa());
+    $id_propiedad = parent::get_post("id_propiedad", 0);
+    $id_inmobiliaria = parent::get_post("id_inmobiliaria", 0);
+
+    if (empty($id_empresa) || empty($id_propiedad) || empty($id_inmobiliaria)) { echo json_encode(array("error"=>1)); exit(); }
+
+    $fecha = date("Y-m-d");
+    $hora = date("H:i:s");
+    $sql = "SELECT 1 FROM visitas_panel WHERE id_empresa = '$id_empresa' AND id_propiedad = '$id_propiedad' ";
+    $sql.= "AND id_inmobiliaria = '$id_inmobiliaria' AND DATE_FORMAT(fecha,'%Y-%m-%d') = '$fecha' ";
+    if ($this->db->query($sql)->num_rows()>0) { echo json_encode(array("error"=>1)); exit(); }
+
+    $sql = "INSERT INTO visitas_panel (id_empresa, id_propiedad, id_inmobiliaria, fecha) VALUES ";
+    $sql.= "('$id_empresa', '$id_propiedad', '$id_inmobiliaria', '$fecha $hora') ";
+    $this->db->query($sql);
+    echo json_encode(array("error"=>0));
+  }
+
   function arreglar_hash() {
     $sql = "UPDATE inm_propiedades SET hash = MD5(CONCAT(id,id_empresa)) ";
     $this->db->query($sql);
@@ -899,9 +918,14 @@ class Propiedades extends REST_Controller {
   }
 
   function ver_propiedad($id,$id_empresa) {
+    $desde = parent::get_get("desde", "");
+    $hasta = parent::get_get("hasta", "");
     $propiedad = $this->modelo->get($id,array(
       "id_empresa"=>$id_empresa,
       "id_empresa_original"=>parent::get_empresa(),
+      "get_data"=>1,
+      "fecha_desde"=>$desde,
+      "fecha_hasta"=>$hasta,
     ));
     echo json_encode($propiedad);    
   }
