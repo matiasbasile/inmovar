@@ -744,7 +744,7 @@ class Propiedad_Model {
     $propiedad->planos = array();
     if ($buscar_imagenes == 1) {
       // Obtenemos las imagenes de ese propiedad
-      $sql = "SELECT AI.* FROM inm_propiedades_images AI WHERE AI.id_propiedad = $id AND AI.id_empresa = $id_empresa ORDER BY AI.orden ASC";
+      $sql = "SELECT AI.* FROM inm_propiedades_images AI WHERE AI.id_propiedad = $propiedad->id AND AI.id_empresa = $id_empresa ORDER BY AI.orden ASC";
       $q = mysqli_query($this->conx,$sql);
       while(($r=mysqli_fetch_object($q))!==NULL) {
         if (!empty($r->path)) {
