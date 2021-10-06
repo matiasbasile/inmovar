@@ -281,6 +281,7 @@ if ( $nombre_pagina == "ficha") {
     "id_empresa"=>$propiedad->id_empresa,
     "buscar_imagenes"=>1,
   ));
+  print_r($propiedad);
   $id = $propiedad->id;
   include("templates/ficha/home.php");  
 
