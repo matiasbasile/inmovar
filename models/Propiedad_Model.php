@@ -663,7 +663,7 @@ class Propiedad_Model {
     $sql.= "AND A.id_empresa = $id_empresa ";
     if ($id_cliente != 0) $sql.= "AND A.id_cliente = $id_cliente ";
 
-    if ($id_empresa != $this->id_empresa) {
+    if ($id_empresa != $this->id_empresa && $hash != '') {
       $empresas_compartida = $this->get_empresas_red();
       if (sizeof($empresas_compartida)>0) {
         $emp_comp = implode(",", $empresas_compartida);
@@ -678,7 +678,7 @@ class Propiedad_Model {
         $sql.= "  AND BL.id_empresa_propiedad = $id_empresa ";
         $sql.= ") ";
         // Que este compartida
-        //$sql.= " AND A.compartida = 2 "; // 2 = compartida en webs de colegas
+        $sql.= " AND A.compartida = 2 "; // 2 = compartida en webs de colegas
         // Que este activa
         $sql.= " AND A.id_tipo_estado NOT IN (2,3,4,6) ";
         $sql.= " AND A.activo = 1 ";
