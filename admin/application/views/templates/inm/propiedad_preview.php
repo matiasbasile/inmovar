@@ -50,12 +50,14 @@
               <% } %>
 
               <% if (id_empresa == ID_EMPRESA) { %>
+              <!--
                 <li class="">
                   <a id="propiedad_preview_5_link" href="#propiedad_preview_tab5" class="oh buscar_todos" role="tab" data-toggle="tab">
                     <i class="material-icons">schedule</i>
                     <span class="hidden-xs m-l-xs"> Reportes</span>
                   </a>
                 </li>
+              -->
               <% } %>
 
               <li class="show-xs-dib fr" id="cerrar_preview" style="float: right !important;">
