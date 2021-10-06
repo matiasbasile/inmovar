@@ -597,9 +597,9 @@ class Propiedad_Model {
     $q = mysqli_query($this->conx,$sql);
     if (mysqli_num_rows($q)>0) {
       $r = mysqli_fetch_object($q);
-      echo $r->id;
       return $this->get($r->id,array(
         "id_empresa"=>$r->id_empresa,
+        "filtrar_red"=>0,
       ));
     } else return FALSE;
   }
@@ -616,6 +616,7 @@ class Propiedad_Model {
     $desde = isset($config["desde"]) ? $config["desde"] : "";
     $hasta = isset($config["hasta"]) ? $config["hasta"] : "";
     $solo_propias = isset($config["solo_propias"]) ? intval($config["solo_propias"]) : 0;
+    $filtrar_red = isset($config["filtrar_red"]) ? intval($config["filtrar_red"]) : 1;
     $personas = isset($config["personas"]) ? $config["personas"] : 1;
     $moneda = isset($config["moneda"]) ? $config["moneda"] : "$";
     $hash = isset($config["hash"]) ? $config["hash"] : "";
@@ -664,7 +665,7 @@ class Propiedad_Model {
     $sql.= "AND A.id_empresa = $id_empresa ";
     if ($id_cliente != 0) $sql.= "AND A.id_cliente = $id_cliente ";
 
-    if ($id_empresa != $this->id_empresa) {
+    if ($id_empresa != $this->id_empresa && $filtrar_red == 1) {
       $empresas_compartida = $this->get_empresas_red();
       if (sizeof($empresas_compartida)>0) {
         $emp_comp = implode(",", $empresas_compartida);
