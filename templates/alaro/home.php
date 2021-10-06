@@ -206,7 +206,7 @@ error_reporting(E_ALL); ?>
   								<div class="btn-block">
   									<a class="btn btn-border" href="<?php echo mklink ($d->link) ?>">Más Información</a>
   									<a class="btn btn-border email" href="<?php echo mklink ($d->link) ?>#contacto_nombre"><img src="assets_nuevo/images/email-icon.png" alt="Email"></a>
-  									<a class="btn btn-border whatsup" href="javascript:void(0)" onclick="llenar_id(<?php echo $p->id ?>)" data-toggle="modal" data-target="#exampleModalCenter"><img src="assets_nuevo/images/whatsup-icon.png" alt="Whatsup"></a>
+  									<a class="btn btn-border whatsup" href="javascript:void(0)" onclick="llenar_id(<?php echo $d->id ?>,'<?php echo $d->nombre ?>')" data-toggle="modal" data-target="#exampleModalCenter"><img src="assets_nuevo/images/whatsup-icon.png" alt="Whatsup"></a>
   								</div>
   							</div>
   						</div>
@@ -509,43 +509,45 @@ error_reporting(E_ALL); ?>
 
   //map script
 
-  function llenar_id(item) { 
-  	$("#contacto_id_propiedad").val(item);
+  function llenar_id(item,nombre) { 
+  	var nombre = "Estoy interesado en " + nombre ;
+  	$("#contacto_id_propiedad_wsp").val(item);
+    $("#contacto_mensaje_wsp").attr("placeholder", nombre);
   } 
 </script>
 <script type="text/javascript">
 	function enviar_contacto() {
 
-		var nombre = jQuery("#contacto_nombre").val();
-		var email = jQuery("#contacto_email").val();
-		var mensaje = jQuery("#contacto_mensaje").val();
-		var telefono = jQuery("#contacto_telefono").val();
-		var id_propiedad = jQuery("#contacto_id_propiedad").val();
+		var nombre = jQuery("#contacto_nombre_wsp").val();
+		var email = jQuery("#contacto_email_wsp").val();
+		var mensaje = jQuery("#contacto_mensaje_wsp").val();
+		var telefono = jQuery("#contacto_telefono_wsp").val();
+		var id_propiedad = jQuery("#contacto_id_propiedad_wsp").val();
 
 		if (isEmpty(nombre) || nombre == "Nombre") {
 			alert("Por favor ingrese un nombre");
-			jQuery("#contacto_nombre").focus();
+			jQuery("#contacto_nombre_wsp").focus();
 			return false;          
 		}
 
 
 		if (isEmpty(telefono) || telefono == "telefono") {
 			alert("Por favor ingrese un telefono");
-			jQuery("#contacto_telefono").focus();
+			jQuery("#contacto_telefono_wsp").focus();
 			return false;          
 		}
 
 		if (!validateEmail(email)) {
 			alert("Por favor ingrese un email valido");
-			jQuery("#contacto_email").focus();
+			jQuery("#contacto_email_wsp").focus();
 			return false;          
 		}
 		if (isEmpty(mensaje) || mensaje == "Mensaje") {
 			alert("Por favor ingrese un mensaje");
-			jQuery("#contacto_mensaje").focus();
+			jQuery("#contacto_mensaje_wsp").focus();
 			return false;              
 		}    
-		jQuery("#contacto_submit").attr('disabled', 'disabled');
+		jQuery("#contacto_submit_wsp").attr('disabled', 'disabled');
 		var datos = {
 			"para":"<?php echo $empresa->email ?>",
 			"nombre":nombre,
@@ -591,20 +593,20 @@ error_reporting(E_ALL); ?>
 			<div class="modal-body">
 				<form onsubmit="return enviar_contacto()">
 					<div class="form-group">
-						<input type="hidden" value="" id="contacto_id_propiedad" name="">
-						<input type="name" name="Nombre *" id="contacto_nombre" placeholder="Nombre *" class="form-control">
+						<input type="hidden" value="" id="contacto_id_propiedad_wsp" name="">
+						<input type="name" name="Nombre *" id="contacto_nombre_wsp" placeholder="Nombre *" class="form-control">
 					</div>
 					<div class="form-group">
-						<input type="email" name="Email *" id="contacto_email" placeholder="Email *" class="form-control">
+						<input type="email" name="Email *" id="contacto_email_wsp" placeholder="Email *" class="form-control">
 					</div>
 					<div class="form-group">
-						<input type="tel" name="WhatsApp (sin 0 ni 15) *" id="contacto_telefono" placeholder="WhatsApp (sin 0 ni 15) *" class="form-control">
+						<input type="tel" name="WhatsApp (sin 0 ni 15) *" id="contacto_telefono_wsp" placeholder="WhatsApp (sin 0 ni 15) *" class="form-control">
 					</div>
 					<div class="form-group">
-						<textarea id="contacto_mensaje" placeholder="Estoy interesado en “Duplex en venta en Ringuelet Cod: 1234”" class="form-control"></textarea>
+						<textarea id="contacto_mensaje_wsp" placeholder="Estoy interesado en “Duplex en venta en Ringuelet Cod: 1234”" class="form-control"></textarea>
 					</div>
 					<div class="form-group">
-						<button type="submit" id="contacto_submit" class="btn">hablar ahora</button>
+						<button type="submit" id="contacto_submit_wsp" class="btn">hablar ahora</button>
 					</div>
 				</form>
 			</div>

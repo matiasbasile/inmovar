@@ -8,7 +8,7 @@ if (!defined("DATABASE")) { DEFINE ("DATABASE","inmovar"); }
 if (!defined("USER_DB")) { DEFINE ("USER_DB","root"); }
 if (!defined("PASSWORD_DB")) { DEFINE ("PASSWORD_DB",""); }
 if (!defined("FORCE_HTTPS")) { DEFINE ("FORCE_HTTPS",false); }
-if (!defined("DOMINIO")) { DEFINE ("DOMINIO","http://inmovar/"); }
+if (!defined("DOMINIO")) { DEFINE ("DOMINIO","inmovar/"); }
 
 if (!function_exists("get_conex")) {
   function get_conex() {

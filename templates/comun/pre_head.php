@@ -37,6 +37,8 @@ $keywords = str_replace("\n", " ", $keywords);
 
 <?php if (strpos(strtolower($empresa->favicon), ".png")>0) { ?>
   <link rel="shortcut icon" type="image/png" href="/admin/<?php echo $empresa->favicon ?>"/>
+<?php } else if (strpos(strtolower($empresa->favicon), ".jpeg")>0 || strpos(strtolower($empresa->favicon), ".jpg")>0) { ?>
+  <link rel="shortcut icon" type="image/jpeg" href="/admin/<?php echo $empresa->favicon ?>"/>
 <?php } else if (strpos(strtolower($empresa->favicon), ".ico")>0) { ?>
   <link rel="shortcut icon" type="image/x-icon" href="/admin/<?php echo $empresa->favicon ?>" />
 <?php } else { ?>

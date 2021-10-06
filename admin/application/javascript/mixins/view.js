@@ -357,7 +357,7 @@
 
       // Estamos editando un archivo
       } else {
-        this.url = src;
+        this.url = src+"?t="+Math.ceil(Math.random()*1000);
       }
 
       var options = {

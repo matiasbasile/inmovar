@@ -1522,6 +1522,7 @@ class Propiedad_Model {
     $config["limit"] = isset($config["limit"]) ? $config["limit"] : 0;
     $config["offset"] = isset($config["offset"]) ? $config["offset"] : 6;
     $config["id_propietario"] = $id_propietario;
+    $config["solo_propias"] = 1;
     return $this->get_list($config);
   }
 
@@ -1533,6 +1534,7 @@ class Propiedad_Model {
     $config["limit"] = isset($config["limit"]) ? $config["limit"] : 0;
     $config["offset"] = isset($config["offset"]) ? $config["offset"] : 6;
     $config["destacado"] = 1;
+    $config["solo_propias"] = 1;
     return $this->get_list($config);
   }
 
@@ -1543,6 +1545,7 @@ class Propiedad_Model {
   function ultimas($config = array()) {
     $config["limit"] = isset($config["limit"]) ? $config["limit"] : 0;
     $config["offset"] = isset($config["offset"]) ? $config["offset"] : 6;
+    $config["solo_propias"] = 1;
     //$config["order"] = "A.fecha_ingreso DESC ";
     return $this->get_list($config);
   }
