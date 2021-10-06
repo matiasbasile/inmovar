@@ -1101,11 +1101,90 @@ class Propiedad_Model extends Abstract_Model {
     $r = $q->row();
     return ((int)$r->codigo + 1);
   }
+
+  function get_visitas_propiedad($conf = array()) {
+    $res = new Stdclass;
+    $un_mes_antes = new DateTime('1 month ago');
+    $id_empresa = isset($conf['id_empresa']) ? $conf['id_empresa'] : parent::get_empresa();
+    $id_propiedad = isset($conf['id_propiedad']) ? $conf['id_propiedad'] : 0;
+    $fecha_desde = isset($conf['fecha_desde']) ? $conf['fecha_desde'] : $un_mes_antes->format('Y-m-d');
+    $fecha_hasta = isset($conf['fecha_hasta']) ? $conf['fecha_hasta'] : date('Y-m-d');
+    //No buscar
+    $no_buscar = isset($conf['no_buscar']) ? $conf['no_buscar'] : 0;
+    $intervalo = "D";
+    $desde = new DateTime($fecha_desde);
+    $hasta = new DateTime($fecha_hasta);
+    $hasta->add(new DateInterval('P1D'));
+    $interval = new DateInterval('P1'.$intervalo);
+    $range = new DatePeriod($desde,$interval,$hasta);
+    $diff = $hasta->diff($desde)->format("%a"); 
+    $res->visitas_web = array();
+    $res->clientes_consultas = array();
+    // Recorremos cada dia del rango
+    if ($no_buscar == 0) {
+      foreach($range as $fecha) {
+
+        // Sacamos las visitas web
+        $sql = "SELECT PV.*, DATE_FORMAT(PV.stamp,'%Y-%m-%d') as fecha FROM inm_propiedades_visitas PV ";
+        //$sql.= "LEFT JOIN inm_propiedades P ON (P.id = PV.id_propiedad AND P.id_empresa = PV.id_empresa) ";
+        $sql.= "WHERE PV.id_empresa = '$id_empresa' ";
+        $sql.= "AND PV.id_propiedad = '$id_propiedad' ";
+        $sql.= "AND DATE_FORMAT(PV.stamp,'%Y-%m-%d') = '".$fecha->format("Y-m-d")."' ";
+        $q = $this->db->query($sql);
+        $res->visitas_web[] = $q->num_rows();
+
+
+        // Sacamos als consultas
+
+        $sql = "SELECT CC.*, IF(C.nombre IS NULL, '', C.nombre) as cliente_nombre FROM crm_consultas CC ";
+        $sql.= "LEFT JOIN clientes C ON (C.id = CC.id_contacto AND C.id_empresa = CC.id_empresa) ";
+        $sql.= "WHERE CC.id_empresa = '$id_empresa' ";
+        $sql.= "AND CC.id_referencia = '$id_propiedad' ";
+        $sql.= "AND DATE_FORMAT(CC.fecha,'%Y-%m-%d') = '".$fecha->format("Y-m-d")."' ";
+        //$sql.= "AND CC.tipo IN (1,2) ";
+        $q = $this->db->query($sql);
+
+        $res->consultas[] = $q->num_rows();
+
+        if ($q->num_rows() > 0 ) { 
+          foreach ($q->result() as $con) {
+            $res->clientes_consultas[] = $con;
+          }
+        }
+      }
+    }
+
+
+    $sql = "SELECT PV.* FROM inm_propiedades_visitas PV ";
+    $sql.= "LEFT JOIN inm_propiedades P ON (P.id = PV.id_propiedad AND P.id_empresa = PV.id_empresa) ";
+    $sql.= "WHERE PV.id_empresa = '$id_empresa' ";
+    $sql.= "AND PV.id_propiedad = '$id_propiedad' ";
+    $sql.= "AND DATE_FORMAT(PV.stamp,'%Y-%m-%d') >= '$fecha_desde' AND DATE_FORMAT(PV.stamp,'%Y-%m-%d') <= '$fecha_hasta' ";
+    $q = $this->db->query($sql);
+    $res->visitas_rep = $q->num_rows();
+
+    $sql = "SELECT CC.* FROM crm_consultas CC ";
+    $sql.= "LEFT JOIN inm_propiedades P ON (P.id = CC.id_referencia AND P.id_empresa = CC.id_empresa) ";
+    $sql.= "AND DATE_FORMAT(CC.fecha,'%Y-%m-%d') >= '$fecha_desde' AND DATE_FORMAT(CC.fecha,'%Y-%m-%d') <= '$fecha_hasta' ";
+    $sql.= "AND CC.id_referencia = '$id_propiedad' ";
+    $sql.= "AND CC.id_empresa = '$id_empresa' ";
+    $q = $this->db->query($sql);
+    $res->total_consultas = $q->num_rows();
+    //Para guardar las fechas en formato YYYY-MM-DD
+    $res->fechas_sql = array($fecha_desde, $fecha_hasta);
+
+    $res->id_propiedad = $id_propiedad;
+
+    return $res;
+  }
   
   
   function get($id,$config=array()) {
     $id_empresa = isset($config["id_empresa"]) ? $config["id_empresa"] : parent::get_empresa();
     $id_empresa_original = isset($config["id_empresa_original"]) ? $config["id_empresa_original"] : $id_empresa;
+    $get_data = isset($config["get_data"]) ? $config["get_data"] : 0;
+    $fecha_desde = isset($config["fecha_desde"]) ? $config["fecha_desde"] : "";
+    $fecha_hasta = isset($config["fecha_hasta"]) ? $config["fecha_hasta"] : "";
     // Obtenemos los datos del propiedad
     $id = (int)$id;
     $sql = "SELECT A.*, ";
@@ -1152,6 +1231,16 @@ class Propiedad_Model extends Abstract_Model {
       $obj->path = $r->path;
       $obj->destacado = $r->destacado;
       $propiedad->relacionados[] = $obj;
+    }
+
+
+    if ($get_data == 1) {
+      $visitas_propiedad_array = array();
+      $visitas_propiedad_array['id_propiedad'] = $id;
+      $visitas_propiedad_array['id_empresa'] = $id_empresa;
+      if (!empty($fecha_desde)) $visitas_propiedad_array['fecha_desde'] = $fecha_desde;
+      if (!empty($fecha_hasta)) $visitas_propiedad_array['fecha_hasta'] = $fecha_hasta;
+      $row->data_graficos = $this->get_visitas_propiedad($visitas_propiedad_array);
     }
 
     // Obtenemos los departamentos

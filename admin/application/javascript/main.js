@@ -951,6 +951,19 @@
         $('.modal:last').modal('hide');        
       },
 
+      enviar_visita: function(data) {
+        $.ajax({
+          "url":"propiedades/function/guardar_visita_panel",
+          "dataType":"json",
+          "type": "post",
+          "data":{
+            "id_empresa": data.id_empresa,
+            "id_propiedad": data.id_propiedad,
+            "id_inmobiliaria": data.id_inmobiliaria,
+          },
+        });     
+      },
+
       volver_superadmin: function() {
         $.ajax({
           "url":"login/cambiar_empresa/",
