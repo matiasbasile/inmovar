@@ -4,7 +4,7 @@
 <?php include("includes/head.php"); ?>
 <meta property="og:url" content="<?php echo current_url(); ?>" />
 <meta property="og:type" content="article" />
-<meta property="og:title" content="<?php echo ($propiedad->titulo." - ".$propiedad->subtitulo); ?>" />
+<meta property="og:title" content="<?php echo ($propiedad->nombre); ?>" />
 <?php $og_desc = strip_tags(html_entity_decode($propiedad->texto,ENT_QUOTES));
 $og_desc = str_replace("\n","",$og_desc);
 $og_desc = str_replace("\"","",$og_desc);
