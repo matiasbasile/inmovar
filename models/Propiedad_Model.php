@@ -663,7 +663,7 @@ class Propiedad_Model {
     $sql.= "AND A.id_empresa = $id_empresa ";
     if ($id_cliente != 0) $sql.= "AND A.id_cliente = $id_cliente ";
 
-    if ($id_empresa != $this->id_empresa && $hash != '') {
+    if ($id_empresa != $this->id_empresa) {
       $empresas_compartida = $this->get_empresas_red();
       if (sizeof($empresas_compartida)>0) {
         $emp_comp = implode(",", $empresas_compartida);
