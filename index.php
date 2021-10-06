@@ -275,13 +275,12 @@ $nombre_pagina = (sizeof($params)>0) ? $params[0] : "";
 
 if ( $nombre_pagina == "ficha") {
   include_once("models/Propiedad_Model.php");
-  $id_propiedad = $propiedad->id;
-  $id_empresa_propiedad = $propiedad->id_empresa;
-  $propiedad_model = new Propiedad_Model($empresa->id,$conx);
-  $propiedad = $propiedad_model->get($id_propiedad,array(
-    "id_empresa"=>$empresa->id,
-    "id_empresa_original"=>$id_empresa_propiedad,
+  $propiedad_model = new Propiedad_Model($propiedad->id_empresa,$conx);
+  $propiedad = $propiedad_model->get(0,array(
+    "id_empresa"=>$propiedad->id_empresa,
+    "hash"=>$propiedad->hash
   ));
+  $id = $propiedad->id;
   include("templates/ficha/home.php");  
 
 } else if (isset($empresa->template_path) && !empty($empresa->template_path)) {

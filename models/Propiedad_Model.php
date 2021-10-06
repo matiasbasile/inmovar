@@ -617,6 +617,7 @@ class Propiedad_Model {
     $solo_propias = isset($config["solo_propias"]) ? intval($config["solo_propias"]) : 0;
     $personas = isset($config["personas"]) ? $config["personas"] : 1;
     $moneda = isset($config["moneda"]) ? $config["moneda"] : "$";
+    $hash = isset($config["hash"]) ? $config["hash"] : "";
     $id_cliente = isset($config["id_cliente"]) ? $config["id_cliente"] : 0;
     $id_empresa = isset($config["id_empresa"]) ? $config["id_empresa"] : $this->id_empresa;
     $id_empresa_original = isset($config["id_empresa_original"]) ? $config["id_empresa_original"] : $this->id_empresa;
@@ -656,7 +657,9 @@ class Propiedad_Model {
     $sql.= "LEFT JOIN com_paises PAIS ON (PROV.id_pais = PAIS.id) ";
     $sql.= "LEFT JOIN com_usuarios U ON (A.id_usuario = U.id AND A.id_empresa = U.id_empresa) ";
     $sql.= "LEFT JOIN clientes C ON (A.id_cliente = C.id AND A.id_empresa = C.id_empresa) ";
-    $sql.= "WHERE A.id = $id ";
+    $sql.= "WHERE 1=1 ";
+    if (!empty($id)) $sql.= "AND A.id = $id ";
+    if (!empty($hash)) $sql.= "AND A.hash = '$hash' ";
     $sql.= "AND A.id_empresa = $id_empresa ";
     if ($id_cliente != 0) $sql.= "AND A.id_cliente = $id_cliente ";
 
