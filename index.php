@@ -276,7 +276,6 @@ $nombre_pagina = (sizeof($params)>0) ? $params[0] : "";
 if ( $nombre_pagina == "ficha") {
   include_once("models/Propiedad_Model.php");
   $propiedad_model = new Propiedad_Model($propiedad->id_empresa,$conx);
-  $hash = $propiedad->hash;
   $propiedad = $propiedad_model->get(0,array(
     "id_empresa"=>$propiedad->id_empresa,
     "hash"=>$hash,
