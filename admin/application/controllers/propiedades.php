@@ -13,17 +13,18 @@ class Propiedades extends REST_Controller {
     $id_empresa = parent::get_post("id_empresa", parent::get_empresa());
     $id_propiedad = parent::get_post("id_propiedad", 0);
     $id_inmobiliaria = parent::get_post("id_inmobiliaria", 0);
+    $tipo = parent::get_post("tipo", 0);
 
     if (empty($id_empresa) || empty($id_propiedad) || empty($id_inmobiliaria)) { echo json_encode(array("error"=>1)); exit(); }
 
     $fecha = date("Y-m-d");
     $hora = date("H:i:s");
-    $sql = "SELECT 1 FROM visitas_panel WHERE id_empresa = '$id_empresa' AND id_propiedad = '$id_propiedad' ";
+    $sql = "SELECT 1 FROM visitas_panel WHERE id_empresa = '$id_empresa' AND id_propiedad = '$id_propiedad' AND tipo = '$tipo' ";
     $sql.= "AND id_inmobiliaria = '$id_inmobiliaria' AND DATE_FORMAT(fecha,'%Y-%m-%d') = '$fecha' ";
     if ($this->db->query($sql)->num_rows()>0) { echo json_encode(array("error"=>1)); exit(); }
 
-    $sql = "INSERT INTO visitas_panel (id_empresa, id_propiedad, id_inmobiliaria, fecha) VALUES ";
-    $sql.= "('$id_empresa', '$id_propiedad', '$id_inmobiliaria', '$fecha $hora') ";
+    $sql = "INSERT INTO visitas_panel (id_empresa, id_propiedad, id_inmobiliaria, fecha, tipo) VALUES ";
+    $sql.= "('$id_empresa', '$id_propiedad', '$id_inmobiliaria', '$fecha $hora', '$tipo') ";
     $this->db->query($sql);
     echo json_encode(array("error"=>0));
   }
@@ -918,8 +919,8 @@ class Propiedades extends REST_Controller {
   }
 
   function ver_propiedad($id,$id_empresa) {
-    $desde = parent::get_get("desde", "");
-    $hasta = parent::get_get("hasta", "");
+    $desde = parent::get_get("fecha_desde", "");
+    $hasta = parent::get_get("fecha_hasta", "");
     $propiedad = $this->modelo->get($id,array(
       "id_empresa"=>$id_empresa,
       "id_empresa_original"=>parent::get_empresa(),
@@ -929,9 +930,42 @@ class Propiedades extends REST_Controller {
     ));
     echo json_encode($propiedad);    
   }
+
+  function imprimir_pdf($id_propiedad) {
+
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
+    $id_empresa = parent::get_empresa();
+    $fecha_desde = parent::get_get("fd");
+    $fecha_hasta = parent::get_get("fh");
+    $fecha_desde = urldecode($fecha_desde);
+    $fecha_hasta = urldecode($fecha_hasta);
+    $propiedad = $this->modelo->get($id_propiedad,array(
+      "fecha_desde"=>$fecha_desde,
+      "fecha_hasta"=>$fecha_hasta,
+      "id_empresa"=>$id_empresa,
+      "get_data"=>1,
+    ));    
+    $this->load->model("Empresa_Model");
+    $empresa = $this->Empresa_Model->get($id_empresa);
+    $header = $this->load->view("reports/propiedad/header.php",null,true);
+    $this->load->model("Web_Configuracion_Model");
+    $web_conf = $this->Web_Configuracion_Model->get($id_empresa);
+    $empresa = (object) array_merge((array) $empresa, (array) $web_conf);
+
+    $datos = array(
+      "propiedad"=>$propiedad,
+      "header"=>$header,
+      "empresa"=>$empresa,
+    );
+    $this->load->view("reports/propiedad/preview/preview.php",$datos);
+
+  }
     
     
-  /**
+  /*
    *  Muestra todos los propiedades filtrando segun distintos parametros
    *  El resultado esta paginado
    */

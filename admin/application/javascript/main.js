@@ -960,6 +960,7 @@
             "id_empresa": data.id_empresa,
             "id_propiedad": data.id_propiedad,
             "id_inmobiliaria": data.id_inmobiliaria,
+            "tipo": data.tipo,
           },
         });     
       },

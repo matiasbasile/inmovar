@@ -5317,3 +5317,4 @@ tfoot tr td { white-space: nowrap !important; }
 .filter-item-label { color: #5a5a5a; }
 .filter-item-value { color: #222; font-weight: bold; }
 .filter-item-close { font-size: 14px; margin-left: 5px; position: relative; top: 3px; cursor: pointer; color: #949494; text-shadow: 1px 1px 1px #cecece; }
+.fixed-grafico{position: absolute;background-color: white;z-index: 99;height: 85px;max-width: 94%;top: 45px;padding-top: 10px;}

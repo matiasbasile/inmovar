@@ -3628,6 +3628,20 @@
           },1000);
         }
       },
+      "click #propiedad_preview_3_link":function() {
+        console.log("llega");
+        var self = this;
+        if (ID_EMPRESA != self.model.get("id_empresa")) {
+          workspace.enviar_visita({
+            "id_empresa": ID_EMPRESA,
+            "id_inmobiliaria": self.model.get("id_empresa"),
+            "id_propiedad": self.model.id,
+            //TIPO = 0 VISITA EN EL PANEL
+            //TIPO = 1 CONSULTA EN EL PANEL
+            "tipo": 1,
+          });
+        }
+      },
       "click .imprimir_reporte":function() {
         var url = "propiedades/function/imprimir_pdf/"+this.model.id;
         url += "?fd="+encodeURI(moment($("#propiedad_preview_fecha_desde").val(),"DD/MM/YYYY").format("YYYY-MM-DD"));
@@ -3656,6 +3670,9 @@
           "id_empresa": ID_EMPRESA,
           "id_inmobiliaria": self.model.get("id_empresa"),
           "id_propiedad": self.model.id,
+          //TIPO = 0 VISITA EN EL PANEL
+          //TIPO = 1 CONSULTA EN EL PANEL
+          "tipo": 0,
         });
       }
 
@@ -3665,7 +3682,7 @@
       var fecha_hasta = moment().format('YYYY-MM-DD');
       createdatepicker($(this.el).find("#propiedad_preview_fecha_hasta"),fecha_hasta);
 
-      /*
+      
       window.desde_anio = fecha_desde.substr(0,4);
       window.desde_mes = fecha_desde.substr(5,5);
       window.desde_dia = fecha_desde.substr(8,11);
@@ -3681,7 +3698,7 @@
           align: "right",
           verticalAlign: "top",
         },
-        colors: ['#28b492','#19a9d5'],
+        colors: ['#28b492','#19a9d5','#e7953e'],
         xAxis: {
           type: 'datetime',
           dateTimeLabelFormats: {
@@ -3719,38 +3736,43 @@
           }
         },
         series: [{
-          name: 'Visitas Web ('+self.model.get("data_graficos").visitas_rep+')',
+          name: 'Visitas Web ('+self.model.get("data_graficos").total_web+')',
           data: self.model.get("data_graficos").visitas_web,
         },{
-          name: 'Visitas Fisicas ('+self.model.get("data_graficos").total_fisicas+')',
-          data: self.model.get("data_graficos").visitas_fisicas,
+          name: 'Visitas Panel ('+self.model.get("data_graficos").total_panel+')',
+          data: self.model.get("data_graficos").visitas_panel,
+        },{
+          name: 'Consultas Web ('+self.model.get("data_graficos").total_consultas+')',
+          data: self.model.get("data_graficos").consultas,
         }]
-      }); */
+      }); 
+
+      self.$(".total_visitas").html(self.model.get("data_graficos").total_web+self.model.get("data_graficos").total_panel);
+      self.$(".total_web").html(self.model.get("data_graficos").total_web);
+      self.$(".total_panel").html(self.model.get("data_graficos").total_panel);
+      self.$(".total_consultas").html(self.model.get("data_graficos").total_consultas_web+self.model.get("data_graficos").total_consultas_panel);
+      self.$(".consultas_web").html(self.model.get("data_graficos").total_consultas_web);
+      self.$(".consultas_panel").html(self.model.get("data_graficos").total_consultas_panel);
       return this;
     },
 
 
     calcular_grafico: function() {
-      console.log("hola");
-      /*
+      
       var f_desde = $("#propiedad_preview_fecha_desde").val();
       var f_hasta = $("#propiedad_preview_fecha_hasta").val();
 
-      if (f_desde > f_hasta) {
-        alert ("Por favor ingrese una fecha valida");
-        return false;
-      }
+      console.log(f_desde);
+      console.log(f_hasta);
       
       var self = this;
       $.ajax({
-        "url":"vehiculos/function/conseguir_data/",
+        "url":"propiedades/function/ver_propiedad/"+self.model.id+"/"+self.model.get("id_empresa"),
         "dataType":"json",
-        "type":"post",
+        "type":"get",
         "data":{
           "fecha_desde":moment(f_desde,"DD/MM/YYYY").format("YYYY-MM-DD"),
           "fecha_hasta":moment(f_hasta,"DD/MM/YYYY").format("YYYY-MM-DD"),
-          "id_vehiculo":self.model.id,
-          "id_empresa": ID_EMPRESA,
         },
         "success":function(r) {
           
@@ -3803,42 +3825,40 @@
               }
             },
             series: [{
-              name: 'Visitas Web ('+r.data.visitas_rep+')',
-              data: r.data.visitas_web,
+              name: 'Visitas Web ('+r.data_graficos.total_web+')',
+              data: r.data_graficos.visitas_web,
             },{
-              name: 'Visitas Fisicas ('+r.data.total_fisicas+')',
-              data: r.data.visitas_fisicas,
+              name: 'Visitas Panel ('+r.data_graficos.total_panel+')',
+              data: r.data_graficos.visitas_panel,
             },{
-              name: 'Consultas ('+r.data.total_consultas+')',
-              data: r.data.consultas,
+              name: 'Consultas Web('+r.data_graficos.total_consultas+')',
+              data: r.data_graficos.consultas,
             }]
           }); 
 
+
+          self.$(".total_visitas").html(r.data_graficos.total_web+r.data_graficos.total_panel);
+          self.$(".total_web").html(r.data_graficos.total_web);
+          self.$(".total_panel").html(r.data_graficos.total_panel);
+          self.$(".total_consultas").html(r.data_graficos.total_consultas_web+total_consultas_panel);
+          self.$(".consultas_web").html(r.data_graficos.total_consultas_web);
+          self.$(".consultas_panel").html(r.data_graficos.total_consultas_panel);
+
           self.$('.consultas .consul').empty();
-          self.$('.consultas .fisicas').empty();
-          for (var i=0;i< r.data.clientes_consultas.length;i++) {
-            var c = r.data.clientes_consultas[i];
-
-            if (c.tipo == 1) tipo = 'A contactar';
-            if (c.tipo == 2) tipo = 'Contactado';
-            if (c.tipo == 3) tipo = 'Con actividad';
-            if (c.tipo == 4) tipo = 'En negociacion';
-            var p = '<p><span class="text-info">'+c.cliente_nombre+'</span> | '+ moment(c.fecha,"YYYY-MM-DD HH:mm:ss").format("DD/MM/YYYY HH:mm:ss")+' | '+tipo+'</p>';
-            self.$('.consultas .consul').append(p);
-          }
-
-          for (var i=0;i< r.data.clientes_fisicas.length;i++) {
-            var c = r.data.clientes_fisicas[i];
-            if (c.tipo == 1) tipo = 'A contactar';
-            if (c.tipo == 2) tipo = 'Contactado';
-            if (c.tipo == 3) tipo = 'Con actividad';
-            if (c.tipo == 4) tipo = 'En negociacion';
-            var p = '<p><span class="text-info">'+c.cliente_nombre+'</span> | '+ moment(c.fecha,"YYYY-MM-DD HH:mm:ss").format("DD/MM/YYYY HH:mm:ss")+' | '+tipo+'</p>';
-            self.$('.consultas .fisicas').append(p);
+          if (r.data_graficos.clientes_consultas !== undefined) {
+            for (var i=0;i< r.data_graficos.clientes_consultas.length;i++) {
+              var c = r.data_graficos.clientes_consultas[i];
+              if (c.tipo == 1) tipo = 'A contactar';
+              if (c.tipo == 2) tipo = 'Contactado';
+              if (c.tipo == 3) tipo = 'Con actividad';
+              if (c.tipo == 4) tipo = 'En negociacion';
+              var p = '<p><span class="text-info">'+c.cliente_nombre+'</span> | '+ moment(c.fecha,"YYYY-MM-DD HH:mm:ss").format("DD/MM/YYYY HH:mm:ss")+' | '+tipo+'</p>';
+              self.$('.consultas .consul').append(p);
+            }
           }
 
         },
-      });*/
+      });
     },
 
 
