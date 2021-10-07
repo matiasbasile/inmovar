@@ -49,8 +49,7 @@
                 </li>
               <% } %>
 
-              <% if (id_empresa == ID_EMPRESA) { %>
-              
+              <% if (id_empresa == ID_EMPRESA && VOLVER_SUPERADMIN == 1) { %>
                 <li class="">
                   <a id="propiedad_preview_5_link" href="#propiedad_preview_tab5" class="oh buscar_todos" role="tab" data-toggle="tab">
                     <i class="material-icons">schedule</i>
