@@ -112,6 +112,16 @@ else $vc_moneda = "$";
               </li>
             </ul>
           </div>
+          <?php if (!empty($propiedad->video)){ ?>
+            <div class="border-box-info">
+              <div class="row">
+                <div class="col-md-12">
+                  <?php echo $propiedad->video?>
+                </div>
+              </div>
+            </div>
+          <?php } ?>
+
           <?php if (!empty($propiedad->texto)){ ?>
             <div class="border-box-info">
               <div class="row">

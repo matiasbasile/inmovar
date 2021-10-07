@@ -292,11 +292,29 @@ $empresa->telefono_num_2 = preg_replace($regex, '', $empresa->telefono_2);
                 <div class="btns-block">
                   <?php if ($vc_link_tipo_operacion != "proyectos-finalizados") {  ?>
                     <a href="<?php echo ($p->link_propiedad) ?>" class="btn btn-secoundry">Más Información</a>
-                    <a href="<?php echo ($p->link_propiedad) ?>#contacto_nombre" class="icon-box"></a>
+                    <?php if (!empty($p->video)) {  ?>
+                      <a href="javascript:void(0)" data-toggle="modal" data-target="#videoModal<?php echo $p->id ?>" class="icon-box play"><i class="fa fa-play"></i> </a>
+                    <?php } else { ?>
+                      <a href="<?php echo ($p->link_propiedad) ?>#contacto_nombre" class="icon-box"></a>
+                    <?php } ?>
                     <a href="#0" onclick="llenar_id(<?php echo $p->id ?>,'<?php echo $p->nombre ?>')" data-toggle="modal" data-target="#exampleModalCenter" class="icon-box whatsapp-box"></a>
                   <?php } else { ?>
                     <a href="<?php echo ($p->link_propiedad) ?>" class="btn btn-secoundry w-100">ver galería de fotos</a>
                   <?php } ?>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade videoModal" id="videoModal<?php echo $p->id ?>" tabindex="-1" role="dialog" aria-labelledby="videoModal<?php echo $p->id ?>Title" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 100%;">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <img src="images/popup-close.png" alt="Close Btn">
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <?php echo $p->video ?>
                 </div>
               </div>
             </div>
@@ -338,38 +356,39 @@ $empresa->telefono_num_2 = preg_replace($regex, '', $empresa->telefono_2);
   <script src="js/correa/placeholders.min.js"></script>
   <script src="js/correa/owl.carousel.min.js"></script>
   <script src="js/correa/scripts.js"></script>
+  
   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5><img src="images/whatsapp-icon-2.png" alt="Whatsapp"> enviar whatsapp</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <img src="images/popup-close.png" alt="Close Btn">
-                </button>
-              </div>
-              <div class="modal-body">
-                <form onsubmit="return enviar_contacto()">
-                  <div class="form-group">
-                    <input type="hidden" value="" id="contacto_id_propiedad" name="">
-                    <input type="name" name="Nombre *" id="contacto_nombre" placeholder="Nombre *" class="form-control">
-                  </div>
-                  <div class="form-group">
-                    <input type="email" name="Email *" id="contacto_email" placeholder="Email *" class="form-control">
-                  </div>
-                  <div class="form-group">
-                    <input type="tel" name="WhatsApp (sin 0 ni 15) *" id="contacto_telefono" placeholder="WhatsApp (sin 0 ni 15) *" class="form-control">
-                  </div>
-                  <div class="form-group">
-                    <textarea id="contacto_mensaje" placeholder="Estoy interesado en “Duplex en venta en Ringuelet Cod: 1234”" class="form-control"></textarea>
-                  </div>
-                  <div class="form-group">
-                    <button type="submit" id="contacto_submit" class="btn">hablar ahora</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5><img src="images/whatsapp-icon-2.png" alt="Whatsapp"> enviar whatsapp</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <img src="images/popup-close.png" alt="Close Btn">
+          </button>
         </div>
+        <div class="modal-body">
+          <form onsubmit="return enviar_contacto()">
+            <div class="form-group">
+              <input type="hidden" value="" id="contacto_id_propiedad" name="">
+              <input type="name" name="Nombre *" id="contacto_nombre" placeholder="Nombre *" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="email" name="Email *" id="contacto_email" placeholder="Email *" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="tel" name="WhatsApp (sin 0 ni 15) *" id="contacto_telefono" placeholder="WhatsApp (sin 0 ni 15) *" class="form-control">
+            </div>
+            <div class="form-group">
+              <textarea id="contacto_mensaje" placeholder="Estoy interesado en “Duplex en venta en Ringuelet Cod: 1234”" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+              <button type="submit" id="contacto_submit" class="btn">hablar ahora</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
   <script type="text/javascript">
     function llenar_id(item,nombre) { 
       var nombre = "Estoy interesado en " + nombre ;
