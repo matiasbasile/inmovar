@@ -220,10 +220,10 @@
                     <div class="col-md-12 consul">
                       <% for(var i=0;i< data_graficos.clientes_consultas.length;i++) { %>
                         <% var r = data_graficos.clientes_consultas[i] %>
-                        <% if (c.tipo == 1) tipo = 'A contactar'; %>
-                        <% if (c.tipo == 2) tipo = 'Contactado'; %>
-                        <% if (c.tipo == 3) tipo = 'Con actividad'; %>
-                        <% if (c.tipo == 4) tipo = 'En negociacion' %>
+                        <% if (r.tipo == 1) tipo = 'A contactar'; %>
+                        <% if (r.tipo == 2) tipo = 'Contactado'; %>
+                        <% if (r.tipo == 3) tipo = 'Con actividad'; %>
+                        <% if (r.tipo == 4) tipo = 'En negociacion' %>
                         <p><span class="text-info"> <%= r.cliente_nombre %></span> | <%= moment(r.fecha,"YYYY-MM-DD HH:mm:ss").format("DD/MM/YYYY HH:mm:ss") %> | <%= tipo %> </p>
                       <% } %>
                     </div>
