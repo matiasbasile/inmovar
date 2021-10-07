@@ -658,6 +658,27 @@ body .banner form [class*="col-"] {
   background: url("../../images/socials-icon.png") no-repeat 10px 12px #a2a2a3;
   background-size: 25px auto;
 }
+
+.videoModal .modal-content, .videoModal .modal-header, .videoModal .modal-body { background: transparent !important; }
+.product-details .icon-box.play { 
+  background: #a2a2a3 !important; 
+}
+.product-details .icon-box.play:hover { 
+  background: white !important; 
+transition: all 0.2 ease-in-out;
+}
+.product-details .icon-box.play i { 
+  color: white;
+  font-size: 20px;
+  display: table;
+  position: relative;
+  right: 6px;
+  top: 11px;
+}
+.product-details .icon-box.play:hover i { 
+  color: #a2a2a3;
+  transition: all 0.2 ease-in-out;
+}
 .product-details .icon-box:hover {
   background-color: transparent;
   background-position: 10px -48px;

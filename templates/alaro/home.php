@@ -205,11 +205,31 @@ error_reporting(E_ALL); ?>
   								</div>
   								<div class="btn-block">
   									<a class="btn btn-border" href="<?php echo mklink ($d->link) ?>">Más Información</a>
-  									<a class="btn btn-border email" href="<?php echo mklink ($d->link) ?>#contacto_nombre"><img src="assets_nuevo/images/email-icon.png" alt="Email"></a>
+  									  <?php if (!empty($d->video)) {  ?>
+				                      <a href="javascript:void(0)" data-toggle="modal" data-target="#videoModal<?php echo $d->id ?>" class="btn btn-border email play"><i class="fa fa-play"></i> </a>
+				                    <?php } else { ?>
+			                    	   <a class="btn btn-border email" href="<?php echo ($d->link_propiedad) ?>#contacto_nombre" alt="Email">
+			                    	   	<img src="assets_nuevo/images/email-icon.png" alt="Email">
+			                    	   </a>
+				                    <?php } ?>
   									<a class="btn btn-border whatsup" href="javascript:void(0)" onclick="llenar_id(<?php echo $d->id ?>,'<?php echo $d->nombre ?>')" data-toggle="modal" data-target="#exampleModalCenter"><img src="assets_nuevo/images/whatsup-icon.png" alt="Whatsup"></a>
   								</div>
   							</div>
   						</div>
+  						<div class="modal fade videoModalHome" id="videoModal<?php echo $d->id ?>" tabindex="-1" role="dialog" aria-labelledby="videoModal<?php echo $d->id ?>Title" aria-hidden="true">
+			            <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 100%;">
+			              <div class="modal-content">
+			                <div class="modal-header">
+			                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			                    <img src="images/popup-close.png" alt="Close Btn">
+			                  </button>
+			                </div>
+			                <div class="modal-body">
+			                  <?php echo $d->video ?>
+			                </div>
+			              </div>
+			            </div>
+			          </div>
   					<?php } ?>
   				</div>
   			</div>

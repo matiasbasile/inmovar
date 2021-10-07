@@ -470,10 +470,13 @@ nav ul li a:hover, nav ul li.active a { font-family: 'Lato-Bold'; border-color: 
 }
 .btn-border.email .fa, .btn-border.whatsup .fa {
 	font-size: 20px;
+	position: relative;
+	top: 2px;
 }
 .btn-border.email:hover, .btn-border.email:focus {
 	background-color: #f7f7f7;
 	border-color: #a2a2a3;
+	color: #7f7f7f;
 }
 .btn-border.whatsup {
 	background-color: #00b363;
@@ -484,7 +487,7 @@ nav ul li a:hover, nav ul li.active a { font-family: 'Lato-Bold'; border-color: 
 	background-color: #07c570;
 	border-color: #07c570;
 }
-
+.videoModalHome .modal-content, .videoModalHome .modal-header, .videoModalHome .modal-body { background: transparent !important; }
 /* Alaro Buildings CSS */
 .alaro-buildings {
 	float: left;
@@ -1417,6 +1420,11 @@ video { width: auto; min-width: 100%; height: auto; min-height: 100%; }
 .modal-dialog {
   max-width: 355px;
 }
+.videoModalHome .modal-dialog { width: 100% !important; max-width: 100%;}
+.videoModalHome .modal-dialog iframe { width: 100% !important; max-width: 100%;}
+#videoModal .modal-content, #videoModal .modal-header, #videoModal .modal-body { background: transparent !important; }
+
+
 .modal-content {
   border-radius: 8px;
 }
