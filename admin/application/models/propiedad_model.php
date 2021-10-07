@@ -1120,18 +1120,26 @@ class Propiedad_Model extends Abstract_Model {
     $diff = $hasta->diff($desde)->format("%a"); 
     $res->visitas_web = array();
     $res->clientes_consultas = array();
+    $res->visitas_panel = array();
+    $res->consultas_panel = array();
     // Recorremos cada dia del rango
     if ($no_buscar == 0) {
       foreach($range as $fecha) {
 
         // Sacamos las visitas web
         $sql = "SELECT PV.*, DATE_FORMAT(PV.stamp,'%Y-%m-%d') as fecha FROM inm_propiedades_visitas PV ";
-        //$sql.= "LEFT JOIN inm_propiedades P ON (P.id = PV.id_propiedad AND P.id_empresa = PV.id_empresa) ";
         $sql.= "WHERE PV.id_empresa = '$id_empresa' ";
         $sql.= "AND PV.id_propiedad = '$id_propiedad' ";
         $sql.= "AND DATE_FORMAT(PV.stamp,'%Y-%m-%d') = '".$fecha->format("Y-m-d")."' ";
         $q = $this->db->query($sql);
         $res->visitas_web[] = $q->num_rows();
+
+        // Sacamos las visitas del panel
+        $sql = "SELECT PV.*, DATE_FORMAT(PV.fecha,'%Y-%m-%d') as fecha FROM visitas_panel PV ";
+        $sql.= "WHERE PV.id_propiedad = '$id_propiedad' AND PV.tipo = 0 ";
+        $sql.= "AND DATE_FORMAT(PV.fecha,'%Y-%m-%d') = '".$fecha->format("Y-m-d")."' ";
+        $q = $this->db->query($sql);
+        $res->visitas_panel[] = $q->num_rows();
 
 
         // Sacamos als consultas
@@ -1151,30 +1159,50 @@ class Propiedad_Model extends Abstract_Model {
             $res->clientes_consultas[] = $con;
           }
         }
+
+        // Sacamos las visitas del panel
+        $sql = "SELECT PV.*, DATE_FORMAT(PV.fecha,'%Y-%m-%d') as fecha FROM visitas_panel PV ";
+        $sql.= "WHERE PV.id_propiedad = '$id_propiedad' AND PV.tipo = 1 ";
+        $sql.= "AND DATE_FORMAT(PV.fecha,'%Y-%m-%d') = '".$fecha->format("Y-m-d")."' ";
+        $q = $this->db->query($sql);
+        $res->consultas_panel[] = $q->num_rows();
+
+
       }
     }
 
 
     $sql = "SELECT PV.* FROM inm_propiedades_visitas PV ";
-    $sql.= "LEFT JOIN inm_propiedades P ON (P.id = PV.id_propiedad AND P.id_empresa = PV.id_empresa) ";
     $sql.= "WHERE PV.id_empresa = '$id_empresa' ";
     $sql.= "AND PV.id_propiedad = '$id_propiedad' ";
     $sql.= "AND DATE_FORMAT(PV.stamp,'%Y-%m-%d') >= '$fecha_desde' AND DATE_FORMAT(PV.stamp,'%Y-%m-%d') <= '$fecha_hasta' ";
     $q = $this->db->query($sql);
-    $res->visitas_rep = $q->num_rows();
+    $res->total_web = $q->num_rows();
+
+    $sql = "SELECT PV.* FROM visitas_panel PV ";
+    $sql.= "WHERE PV.id_propiedad = '$id_propiedad' AND PV.tipo = 0 ";
+    $sql.= "AND DATE_FORMAT(PV.fecha,'%Y-%m-%d') >= '$fecha_desde' AND DATE_FORMAT(PV.fecha,'%Y-%m-%d') <= '$fecha_hasta' ";
+    $q = $this->db->query($sql);
+    $res->total_panel = $q->num_rows();
 
     $sql = "SELECT CC.* FROM crm_consultas CC ";
-    $sql.= "LEFT JOIN inm_propiedades P ON (P.id = CC.id_referencia AND P.id_empresa = CC.id_empresa) ";
-    $sql.= "AND DATE_FORMAT(CC.fecha,'%Y-%m-%d') >= '$fecha_desde' AND DATE_FORMAT(CC.fecha,'%Y-%m-%d') <= '$fecha_hasta' ";
+    $sql.= "WHERE DATE_FORMAT(CC.fecha,'%Y-%m-%d') >= '$fecha_desde' AND DATE_FORMAT(CC.fecha,'%Y-%m-%d') <= '$fecha_hasta' ";
     $sql.= "AND CC.id_referencia = '$id_propiedad' ";
     $sql.= "AND CC.id_empresa = '$id_empresa' ";
     $q = $this->db->query($sql);
-    $res->total_consultas = $q->num_rows();
+    $res->total_consultas_web = $q->num_rows();
+
+    $sql = "SELECT PV.* FROM visitas_panel PV ";
+    $sql.= "WHERE PV.id_propiedad = '$id_propiedad' AND PV.tipo = 1 ";
+    $sql.= "AND DATE_FORMAT(PV.fecha,'%Y-%m-%d') >= '$fecha_desde' AND DATE_FORMAT(PV.fecha,'%Y-%m-%d') <= '$fecha_hasta' ";
+    $q = $this->db->query($sql);
+    $res->total_consultas_panel = $q->num_rows();
+
+    $res->total_consultas = $res->total_consultas_web;//+$res->total_consultas_panel;
     //Para guardar las fechas en formato YYYY-MM-DD
     $res->fechas_sql = array($fecha_desde, $fecha_hasta);
 
     $res->id_propiedad = $id_propiedad;
-
     return $res;
   }
   
@@ -1240,7 +1268,7 @@ class Propiedad_Model extends Abstract_Model {
       $visitas_propiedad_array['id_empresa'] = $id_empresa;
       if (!empty($fecha_desde)) $visitas_propiedad_array['fecha_desde'] = $fecha_desde;
       if (!empty($fecha_hasta)) $visitas_propiedad_array['fecha_hasta'] = $fecha_hasta;
-      $row->data_graficos = $this->get_visitas_propiedad($visitas_propiedad_array);
+      $propiedad->data_graficos = $this->get_visitas_propiedad($visitas_propiedad_array);
     }
 
     // Obtenemos los departamentos

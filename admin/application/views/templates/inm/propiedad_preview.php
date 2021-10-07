@@ -50,14 +50,14 @@
               <% } %>
 
               <% if (id_empresa == ID_EMPRESA) { %>
-              <!--
+              
                 <li class="">
                   <a id="propiedad_preview_5_link" href="#propiedad_preview_tab5" class="oh buscar_todos" role="tab" data-toggle="tab">
                     <i class="material-icons">schedule</i>
                     <span class="hidden-xs m-l-xs"> Reportes</span>
                   </a>
                 </li>
-              -->
+              
               <% } %>
 
               <li class="show-xs-dib fr" id="cerrar_preview" style="float: right !important;">
@@ -66,7 +66,7 @@
                 </a>
               </li>
             </ul>
-            <div class="tab-content">
+            <div class="tab-content" style="overflow: auto;max-height: 562px;">
 
               <div id="propiedad_preview_tab1" class="tab-pane active">
                 <div id="propiedades_preview_slider" class="flexslider">
@@ -134,7 +134,7 @@
 
               <div id="propiedad_preview_tab5" class="tab-pane">
 
-                <div class="row">
+                <div class="row fixed-grafico">
                   <div class="col-md-4">
                     <div class="form-group">
                       <label class="control-label">Fecha desde</label>
@@ -162,7 +162,74 @@
                   </div>
                 </div>
 
-                <div class="h150" style="width: 750px;" id="vision_general_bar"></div>
+                <div class="row">
+      		        <div class="col-sm-12">
+      					    <div class="block panel padder-v item bg-info mb0" style="height: 105px; margin-top: 70px;">
+      						  	<div class="h1 font-thin text-white h1 m-t-md total_visitas tac mt10">0</div>
+      						  	<span class="text-muted text-md tac db">Visitas</span>
+      						</div>
+		            </div>
+                <div class="col-sm-4">
+      						<div class="block panel padder-v item" style="height: 105px">
+      						  	<span class="font-thin text-muted h1 block m-t-md total_web tac">0</span>
+      						  	<span class="text-muted text-md db tac">En tu Web</span>
+      						</div>
+              	</div>
+              	<div class="col-sm-4">
+      						<div class="block panel padder-v item" style="height: 105px">
+      						  	<span class="font-thin h1 block m-t-md total_otra_web tac">0</span>
+      						  	<span class="text-muted text-md db tac fs16">Otras Web</span>
+      						</div>
+                </div>
+                <div class="col-sm-4">
+      						<div class="block panel padder-v item" style="height: 105px">
+      						  	<span class="font-thin h1 block m-t-md total_panel tac">0</span>
+      						  	<span class="text-muted text-md db tac">En el panel</span>
+      						</div>
+                </div>
+              </div>
+              <div class="row">
+		            <div class="col-sm-12">
+					       <div class="block panel padder-v item bg-success mb0" style="height: 105px">
+						  	   <div class="h1 font-thin text-white h1 m-t-md total_consultas tac mt10">0</div>
+						  	   <span class="text-muted text-md tac db">Consultas</span>
+						     </div>
+		            </div>
+              <div class="col-sm-4">
+    						<div class="block panel padder-v item" style="height: 105px">
+    						  	<span class="font-thin h1 block m-t-md consultas_web tac">0</span>
+    						  	<span class="text-muted text-md db tac">En tu Web</span>
+    						</div>
+              </div>
+              <div class="col-sm-4">
+    						<div class="block panel padder-v item" style="height: 105px">
+    						  	<span class="font-thin h1 block m-t-md consultas_otra_web tac">0</span>
+    						  	<span class="text-muted text-md db tac">Otras Web</span>
+    						</div>
+              </div>
+              <div class="col-sm-4">
+    						<div class="block panel padder-v item" style="height: 105px">
+    						  	<span class="font-thin h1 block m-t-md consultas_panel tac">0</span>
+    						  	<span class="text-muted text-md db tac">En el panel</span>
+    						</div>
+              </div>
+            </div>
+                <div class="h150" style="width: 540px;" id="vision_general_bar"></div>
+
+                <div class="consultas">
+                  <div class="row">
+                    <div class="col-md-12 consul">
+                      <% for(var i=0;i< data_graficos.clientes_consultas.length;i++) { %>
+                        <% var r = data_graficos.clientes_consultas[i] %>
+                        <% if (c.tipo == 1) tipo = 'A contactar'; %>
+                        <% if (c.tipo == 2) tipo = 'Contactado'; %>
+                        <% if (c.tipo == 3) tipo = 'Con actividad'; %>
+                        <% if (c.tipo == 4) tipo = 'En negociacion' %>
+                        <p><span class="text-info"> <%= r.cliente_nombre %></span> | <%= moment(r.fecha,"YYYY-MM-DD HH:mm:ss").format("DD/MM/YYYY HH:mm:ss") %> | <%= tipo %> </p>
+                      <% } %>
+                    </div>
+                  </div>
+                </div>
               </div>
 
             </div>
