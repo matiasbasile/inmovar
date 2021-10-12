@@ -223,7 +223,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
     </div>
 
     <!--PHOTO-GALLERY-->
-    <?php /* if (sizeof($propiedad->images)>0) { ?>
+    <?php if (sizeof($propiedad->images)>0) { ?>
       <div class="photo-gallery">
 
         <div class="center-text">
@@ -253,7 +253,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
             </div>
 
           </div>
-        <?php } */ ?>
+        <?php } ?>
 
         <div class="our-plans">
           <?php if (sizeof($propiedad->departamentos)>0) { 
@@ -317,7 +317,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
             </div>  
 
             <!--PHOTO-GALLERY-->
-  <?php if (sizeof($propiedad->images)>0) { ?>
+  <?php /*if (sizeof($propiedad->images)>0) { ?>
     <div class="photo-gallery">
       <div class="center-text">
         <h2>galería de fotos</h2>
@@ -336,7 +336,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
         </section>
       </div>
     </div>
-  <?php } ?>
+  <?php }*/ ?>
 
   <?php 
   $propiedad->video = trim($propiedad->video);
