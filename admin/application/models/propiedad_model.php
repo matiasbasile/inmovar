@@ -1662,6 +1662,8 @@ class Propiedad_Model extends Abstract_Model {
       $imagen = $node->getAttribute("href");
       $cc = explode("/", $imagen);
       $filename = end($cc);
+      if (!file_exists("uploads/$id_empresa")) @mkdir("uploads/$id_empresa");
+      if (!file_exists("uploads/$id_empresa/propiedades")) @mkdir("uploads/$id_empresa/propiedades");
       $path = "uploads/$id_empresa/propiedades/$filename";
       if (!file_exists($path)) grab_image($imagen,$path);
       $imagenes[] = $path;
