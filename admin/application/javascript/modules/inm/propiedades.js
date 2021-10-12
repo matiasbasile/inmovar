@@ -397,7 +397,7 @@
       window.propiedades_filtro_inmovar = (typeof window.propiedades_filtro_inmovar != "undefined") ? window.propiedades_filtro_inmovar : -1;
       window.propiedades_filtro_inmobusquedas = (typeof window.propiedades_filtro_inmobusquedas != "undefined") ? window.propiedades_filtro_inmobusquedas : -1;
       window.propiedades_filtro_argenprop = (typeof window.propiedades_filtro_argenprop != "undefined") ? window.propiedades_filtro_argenprop : -1;
-      window.propiedades_filtro_web = (typeof window.propiedades_filtro_web != "undefined") ? window.propiedades_filtro_web : -1;
+      window.propiedades_filtro_web = (typeof window.propiedades_filtro_web != "undefined") ? window.propiedades_filtro_web : 1;
       window.propiedades_mapa = (typeof window.propiedades_mapa != "undefined") ? window.propiedades_mapa : 0;
       window.propiedades_id_propietario = (typeof window.propiedades_id_propietario != "undefined") ? window.propiedades_id_propietario : 0;
 
