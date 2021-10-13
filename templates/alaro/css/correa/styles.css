@@ -1238,9 +1238,10 @@ transition: all 0.2 ease-in-out;
   display: none;
 }
 iframe {
-  width: 100%;
+  width: 90%;
   height: 550px;
 }
+.modal-body{text-align: center;}
 .modal-dialog {
   max-width: 355px;
 }
