@@ -417,7 +417,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
   $(document).ready(function(){
 
   // https://www.jqueryscript.net/gallery/Responsive-Justified-Image-Grid-Plugin.html
-  var alto = ($(window).width() > 900) ? 350 : 250:
+  var alto = ($(window).width() > 900) ? 350 : 250;
   $(".images-grid-demo").imagesGrid({
     rowHeight: alto
   });
