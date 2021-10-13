@@ -667,14 +667,7 @@ body .banner form [class*="col-"] {
   background: white !important; 
 transition: all 0.2 ease-in-out;
 }
-.product-details .icon-box.play i { 
-  color: white;
-  font-size: 20px;
-  display: table;
-  position: relative;
-  right: 6px;
-  top: 11px;
-}
+.product-details .icon-box.play i {font-size: 20px;padding-left: 15px;padding-top: 10px;}
 .product-details .icon-box.play:hover i { 
   color: #a2a2a3;
   transition: all 0.2 ease-in-out;
