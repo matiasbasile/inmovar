@@ -980,6 +980,7 @@ class Propiedades extends REST_Controller {
     $id_propietario = parent::get_get("id_propietario",0);
     $filter = $this->input->get("filter");
     $offset = $this->input->get("offset");
+    $activo = $this->input->get("activo");
     $order_by = $this->input->get("order_by");
     $order = $this->input->get("order");
     $id_categoria = $this->input->get("id_categoria");
@@ -1047,6 +1048,7 @@ class Propiedades extends REST_Controller {
       "entre_calles_2"=>$entre_calles_2,
       "id_usuario"=>$id_usuario,
       "id_propietario"=>$id_propietario,
+      "activo"=>$activo,
     );
     $r = $this->modelo->buscar($conf);
 
