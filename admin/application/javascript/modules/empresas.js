@@ -524,6 +524,10 @@
             this.model.set({
               "dominios":c.join(";;;"),
             });
+          } else {
+            this.model.set({
+              "dominios": '',
+            });
           }
         }
 
