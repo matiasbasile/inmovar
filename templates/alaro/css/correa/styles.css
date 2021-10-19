@@ -1241,6 +1241,23 @@ iframe {
   width: 90%;
   height: 550px;
 }
+
+
+@media screen and (min-width: 1700px) {
+  iframe {height: 700px;}
+}
+@media screen and (min-width: 2200px) {
+  iframe {height: 800px;}
+}
+@media screen and (min-width: 2600px) {
+  iframe {height: 1100px;}
+}
+@media screen and (min-width: 3000px) {
+  iframe {height: 1850px;}
+}
+
+
+
 .modal-body{text-align: center;}
 .modal-dialog {
   max-width: 355px;
