@@ -1,0 +1,178 @@
+<?php
+include_once("includes/funciones.php");
+include_once("models/Web_Model.php");
+$web_model = new Web_Model($empresa->id,$conx);
+include_once("models/Propiedad_Model.php");
+$propiedad_model = new Propiedad_Model($empresa->id,$conx);
+include_once("models/Entrada_Model.php");
+$entrada_model = new Entrada_Model($empresa->id,$conx);
+$nombre_pagina = "cotizacion";
+
+$cotizaciones = $web_model->get_cotizaciones();
+?>
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<?php include("includes/head.php"); ?>
+</head>
+<style>
+  .cotizacion .btn-group > div {float: left;padding: 7px;color:#3c3c3b;border: 1px solid #3c3c3b;font-size: 84%;}
+  .cotizacion .btn-group > div:hover {background-color: #3c3c3b; cursor: pointer; color: white}
+  .cotizacion .btn-item:first-child {border-top-left-radius: 5px;border-bottom-left-radius: 5px;}
+  .cotizacion .btn-item:last-child {border-top-right-radius: 5px;border-bottom-right-radius: 5px;}
+  .cotizacion .active {background-color: #3c3c3b !important;color:#fff!important}
+  .cotizacion label{font-weight: 600;font-size: 18px;line-height: 23px;color: #3c3c3b;margin-top: 20px;display: block;}
+  .cotizacion input[type='range'] {display: block;width: 100%;}
+  .cotizacion input[type='range']:focus {  outline: none;}
+  .cotizacion input[type='range'],input[type='range']::-webkit-slider-runnable-track,input[type='range']::-webkit-slider-thumb {-webkit-appearance: none;}
+  .cotizacion input[type=range]::-webkit-slider-thumb {background-color: #777;width: 20px;height: 20px;border: 3px solid #333;border-radius: 50%;margin-top: -9px;}
+  .cotizacion input[type=range]::-moz-range-thumb {background-color: #777;width: 15px;height: 15px;border: 3px solid #333;border-radius: 50%;}
+  .cotizacion input[type=range]::-ms-thumb {background-color: #777;width: 20px;height: 20px;border: 3px solid #333;  border-radius: 50%;}
+  .cotizacion input[type=range]::-webkit-slider-runnable-track {background-color: #777;height: 3px;}
+  .cotizacion input[type=range]:focus::-webkit-slider-runnable-track {outline: none;}
+  .cotizacion input[type=range]::-moz-range-track {background-color: #777;height: 3px;}
+  .cotizacion input[type=range]::-ms-track {background-color: #777;height: 3px;}
+  .cotizacion input[type=range]::-ms-fill-lower {background-color: HotPink}
+  .cotizacion input[type=range]::-ms-fill-upper {background-color: black;} 
+  .cotizacion h3{font-weight: 500;font-size: 20px;line-height: 25px;color: #3c3c3b;margin: 0px;}
+  .cotizacion .inputDiv input{width: 300px;}
+  .cotizacion .panel{width: 80%;font-weight: 500;font-size: 20px;line-height: 25px;color: #3c3c3b;margin: 0px;border-radius: 10px;padding: 5px;margin-top: 5px;}
+  .cotizacion .panel.green{border: 2px solid #279d2e;}
+  .cotizacion .panel.red{border: 2px solid #a4160f;}
+  .cotizacion .subpanel{display: inline;text-align: center;float: left;letter-spacing: 2px;color: gray;width: 30%;border-top-left-radius: 5px;border-bottom-left-radius: 5px;color: white;font-weight: bold;height: 31px;margin-right: 8px;line-height: 29px;}
+  .cotizacion .subpanel.green{border: solid 1px #279d2e;background-color: #279d2e;}
+  .cotizacion .subpanel.red{border: solid 1px #a4160f;background-color: #a4160f;}
+  .cotizacion .panel-label{font-size: 55%;font-weight: bold;color: grey;line-height: 13PX;}
+  .cotizacion .panel-precio{font-size: 90%;font-weight: bold;line-height: 18PX;vertical-align: inherit;}
+  .cotizacion .panel-precio.green{color: #279d2e;}
+  .cotizacion .panel-precio.red{color: #a4160f;}
+  .cotizacion hr{border-top: 2px solid green;width: 80%;margin-top: 10px;margin-bottom: 10px;}
+  .cotizacion .info label{margin-top: 5px;}
+</style>
+<body class="page-sub-page page-contact" id="page-top">
+<div class="wrapper">
+  <?php include("includes/header.php"); ?>
+  <div class="container">
+    <div class="row cotizacion mt30 mb50">
+      <div class="col-md-4 col-sm-12">
+      </div>
+      <div class="col-md-4 col-sm-12">
+
+        <div class="inputDiv">
+          <label>Monto a Solicitar</label>
+          <input disabled type="number" value="<?= $cotizaciones['datos']->valor_medio?>" class="form-control" id="monto_maximo">
+          <input class="range" type="range" onchange="changeRange()" value="<?= $cotizaciones['datos']->valor_medio?>" min="<?= $cotizaciones['datos']->cotizaciones_minimo ?>" max="<?= $cotizaciones['datos']->cotizaciones_maximo ?>" autocomplete="off">
+        </div>
+
+
+        <label>Plazo</label>
+        <div class="plazo btn-group">
+          <?php $i = 0; ?>
+          <?php foreach ($cotizaciones['anios'] as $an) { ?>
+            <div data-value="<?= $an->anios ?>" class="btn-item <?= ($i == 0) ? 'active' : '' ?>" onclick="changeFocus(this);"><?= $an->anios ?> Años</div>
+            <?php $i++; ?>
+          <?php } ?>
+        </div>
+        <label>Haberes</label>
+        <div class="haberes btn-group">
+          <div data-value="0" class="btn-item active" onclick="changeFocus(this);">Sin haberes en el banco</div>
+          <div data-value="1" class="btn-item" onclick="changeFocus(this);">Con haberes en el banco</div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-12 mt20">
+        <h3>Resumen del crédito: Ejemplo representativo para la compra de un inmueble</h3>
+        <div class="panel green mt20">
+          <div class="subpanel green" id="inmueble-porcentaje">100%</div>
+          <div class="panel-label">VALOR DEL INMUEBLE</div>
+          <div class="panel-precio green" id="valor-monto-credito">$3.108.822</div>
+        </div>
+        <div class="panel green">
+          <div class="subpanel green" id="monto-porcentaje">100%</div>
+          <div class="panel-label">MONTO DEL CRÉDITO</div>
+          <div class="panel-precio green" id="valor-monto-credito">$3.108.822</div>
+        </div>
+        <div class="panel red">
+          <div class="subpanel red" id="no-financiado-porcentaje">100%</div>
+          <div class="panel-label">MONTO NO FINANCIADO</div>
+          <div class="panel-precio red" id="valor-no-financiado">$3.108.822</div>
+        </div>
+        <div class="info">
+          <label class="mt20">CUOTA INICIAL ESTIMADA <br><span class="cuota_inicial">-</span></label><hr>
+          <label>INGRESO REQUERIDO ESTIMADO - TITULARES <br><span class="ingreso_requerido">-</span></label><hr>
+          <label>TOTAL DE CUOTAS <br><span class="total_cuotas">-</span></label><hr>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  <?php include("includes/footer.php"); ?>
+</div>
+
+<script type="text/javascript" src="assets/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery-migrate-1.2.1.min.js"></script>
+<?php include_once("templates/comun/mapa_js.php"); ?>
+<script type="text/javascript" src="assets/js/markerwithlabel_packed.js"></script>
+<script type="text/javascript" src="assets/js/infobox.js"></script>
+<script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="assets/js/smoothscroll.js"></script>
+<script type="text/javascript" src="assets/js/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="assets/js/retina-1.1.0.min.js"></script>
+<script type="text/javascript" src="assets/js/jshashtable-2.1_src.js"></script>
+<script type="text/javascript" src="assets/js/jquery.numberformatter-1.2.3.js"></script>
+<script type="text/javascript" src="assets/js/tmpl.js"></script>
+<script type="text/javascript" src="assets/js/jquery.dependClass-0.1.js"></script>
+<script type="text/javascript" src="assets/js/draggable-0.1.js"></script>
+<script type="text/javascript" src="assets/js/jquery.slider.js"></script>
+
+<script type="text/javascript" src="assets/js/custom-map.js"></script>
+<script type="text/javascript" src="assets/js/custom.js"></script>
+<script type="text/javascript" src="/admin/resources/js/common.js"></script>
+<script type="text/javascript" src="/admin/resources/js/main.js"></script>
+<!--[if gt IE 8]>
+<script type="text/javascript" src="assets/js/ie.js"></script>
+<![endif]-->
+<script type="text/javascript">
+  function changeFocus(e) {
+    var parent = $(e).parent();
+    var clases = parent.attr("class").split(' ');
+    $("."+clases[0]+" .btn-item").removeClass("active");
+    $(e).addClass("active");
+
+    var plazo = $(".plazo .btn-item.active").attr("data-value");
+    var haberes = $(".haberes .btn-item.active").attr("data-value");
+    var monto = $("#monto_maximo").val();
+    calcular_datos(plazo, haberes, monto);
+  }
+
+  function changeRange() {
+    $("#monto_maximo").val($(".range").val());
+    var plazo = $(".plazo .btn-item.active").attr("data-value");
+    var haberes = $(".haberes .btn-item.active").attr("data-value");
+    var monto = $("#monto_maximo").val();
+    calcular_datos(plazo, haberes, monto);
+  }
+
+  function calcular_datos(plazo, haberes, monto) {
+    var cotizaciones = '<?php echo json_encode($cotizaciones['cotizaciones']); ?>';
+    cotizaciones = JSON.parse(cotizaciones);
+    $.each(cotizaciones, function(clave, valor) {
+      if (valor.haberes == haberes && valor.anios == plazo) {
+        //Primero calculamos el total de las cuotas
+        var total_de_cuotas = plazo*12;
+        //Despues el valor anual total
+        var anual = parseFloat(monto)+parseFloat((monto/100*valor.taza));
+        var valor_de_cuota = anual/12;
+        //Por ultimo el ingreso requerido
+        var ingreso_requerido = (100*valor_de_cuota)/parseFloat("<?= $cotizaciones['datos']->cotizaciones_porcentaje_sueldo ?>")
+        //Metemos los datos en la view
+        $(".cuota_inicial").html("$ "+valor_de_cuota.toFixed(2));
+        $(".total_cuotas").html(total_de_cuotas+" ("+plazo+" Años)")
+        $(".ingreso_requerido").html("$ "+ingreso_requerido.toFixed(2));
+      }
+    });
+  }
+</script>
+</body>
+</html>

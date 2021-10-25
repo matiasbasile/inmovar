@@ -22,6 +22,17 @@ class Web_Configuracion_Model extends Abstract_Model {
       $row->images_meli[] = $r->path;
     }
 
+
+    $sql = "SELECT IC.* FROM inm_cotizaciones IC ";
+    $sql.= "WHERE IC.id_empresa = $row->id_empresa ";
+    $sql.= "ORDER BY IC.anios ASC";
+    $q = $this->db->query($sql);
+    $row->cotizaciones = array();
+    foreach($q->result() as $r) {
+      $row->cotizaciones[] = $r;
+    }
+
+
     // Controlamos si tiene cotizaciones especiales
     $sql = "SELECT * FROM cotizaciones WHERE id_empresa = $row->id_empresa ";
     $qq = $this->db->query($sql);
@@ -42,6 +53,7 @@ class Web_Configuracion_Model extends Abstract_Model {
 	function save($data) {
 		unset($data->id);
     $images_meli = (isset($data->images_meli)) ? $data->images_meli : array();
+    $cotizaciones = (isset($data->cotizaciones)) ? $data->cotizaciones : array();
 
     
     if (isset($data->conversion_automatica)) {
@@ -76,6 +88,17 @@ class Web_Configuracion_Model extends Abstract_Model {
       $this->db->query($sql);
       $k++;
     }
+
+    if (sizeof($cotizaciones)>0) {
+      $this->db->query("DELETE FROM inm_cotizaciones WHERE id_empresa = $data->id_empresa");
+      foreach($cotizaciones as $c) {
+        if ($c->eliminado == 0) {
+          $this->db->query("INSERT INTO inm_cotizaciones (id_empresa,anios,haberes,taza) VALUES ('$data->id_empresa','$c->anios','$c->haberes','$c->taza')");
+        }
+      }
+    }
+
+
 	}	
     
 }

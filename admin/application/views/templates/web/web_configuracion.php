@@ -566,6 +566,102 @@
   </div>  
 
 
+
+  <% if (ID_EMPRESA == 1633) { %>
+    <div class="panel panel-default db cp">
+      <div class="panel-body">
+        <div class="padder">
+          <div class="form-group mb0 clearfix expand-link cp">
+            <label class="control-label cp">
+              Cotizaciones
+            </label>
+            <div class="panel-description">
+              Modifique la taza de cotizaciones.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body expand">
+        <div class="padder">
+          <div class="row clearfix">
+            <div class="col-sm-12">
+              <div class="row">
+                <div class="form-group col-sm-4">
+                  <label class="control-label">Valor Minimo</label>
+                  <input type="number" name="cotizaciones_minimo" value="<%= cotizaciones_minimo %>" class="form-control">                  
+                </div>
+                <div class="form-group col-sm-4">
+                  <label class="control-label">Valor Maximo</label>
+                  <input type="number" name="cotizaciones_maximo" id="cotizaciones_maximo" value="<%= cotizaciones_maximo %>" class="form-control">                  
+                </div>
+                <div class="form-group col-sm-4">
+                  <label class="control-label">Porcentaje de Sueldo</label>
+                  <input type="number" name="cotizaciones_porcentaje_sueldo" id="cotizaciones_porcentaje_sueldo" value="<%= cotizaciones_porcentaje_sueldo %>" class="form-control">                  
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-sm-3">
+                  <label class="control-label">Cantidad de años</label>
+                  <input type="number" value="0" id="web_anios" class="form-control">                  
+                </div>
+                <div class="form-group col-sm-3">
+                  <label class="control-label">Haberes</label>
+                  <select class="form-control" id="web_haberes">
+                    <option value="0">Sin haberes</option>
+                    <option value="1">Con haberes</option>
+                  </select>                 
+                </div>
+                <div class="form-group col-sm-3">
+                  <label class="control-label">Taza anual (%)</label>
+                  <input type="number" value="0" id="web_taza" class="form-control">                  
+                </div>
+                <div class="form-group col-sm-3">
+                  <label class="control-label">&nbsp;</label>
+                  <a id="web_cotizaciones_agregar" class="btn btn-info btn-block">+ Agregar</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table id="web_cotizaciones" class="table m-b-none default footable">
+              <thead>
+                <tr>
+                  <th style="display: none"></th>
+                  <th>Años</th>
+                  <th>Haberes</th>
+                  <th>Taza</th>
+                  <th class="w25"></th>
+                  <th class="w25"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for(var i=0;i< cotizaciones.length;i++) { %>
+                  <% var p = cotizaciones[i] %>
+                  <% if (p.haberes == 1) { %>
+                  <%  p.haberes = 'Con haberes';  %>
+                  <% } else { %>
+                  <%  p.haberes = 'Sin haberes'; %>
+                  <% } %>
+                  <tr class=''>
+                    <td class='anios'><%= p.anios %></td>
+                    <td class="haberes"><%= p.haberes %></td>
+                    <td class="taza"><%= p.taza %></td>
+                    <td><i class='fa fa-pencil cp web_cotizaciones_editar'></i></td>
+                    <td><i class='fa fa-times web_cotizaciones_eliminar text-danger cp'></i></td>
+                  </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+          <div class="clearfix mt20">
+            <button class="btn fr btn-info guardar"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
+          </div>
+        </div>
+      </div>
+    </div> 
+  <% } %>
+
+
 </script>
 
 <script type="text/template" id="web_dominio_template">

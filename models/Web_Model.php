@@ -753,5 +753,35 @@ class Web_Model {
     return $salida;
   }  
 
+  function get_cotizaciones() {
+
+
+    $salida = array();
+    $salida['cotizaciones'] = array();
+    $salida['anios'] = array();
+    $salida['datos'] = array();
+    $sql = "SELECT * FROM inm_cotizaciones WHERE id_empresa = $this->id_empresa ";
+    $q = mysqli_query($this->conx,$sql);
+    while(($r=mysqli_fetch_object($q))!==NULL) {
+      $salida['cotizaciones'][] = $r;
+    }
+
+    $sql = "SELECT DISTINCT(anios) FROM inm_cotizaciones WHERE id_empresa = $this->id_empresa ORDER BY anios ASC ";
+    $q = mysqli_query($this->conx,$sql);
+    while(($r=mysqli_fetch_object($q))!==NULL) {
+      $salida['anios'][] = $r;
+    }
+
+    $sql = "SELECT cotizaciones_minimo, cotizaciones_maximo, cotizaciones_porcentaje_sueldo FROM web_configuracion WHERE id_empresa = $this->id_empresa ";
+    $q = mysqli_query($this->conx,$sql);
+    while(($r=mysqli_fetch_object($q))!==NULL) {
+      $r->valor_medio = ($r->cotizaciones_minimo+$r->cotizaciones_maximo)/2;
+      $salida['datos'] = $r;
+    }
+
+    return $salida;
+
+  }
+
 }
 ?>
