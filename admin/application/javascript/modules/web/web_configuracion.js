@@ -82,6 +82,10 @@
       tienda_envio_desde: 0,
       comp_instagram: 0,
       instagram_id: "",
+      cotizaciones: [],
+      cotizaciones_minimo: 0,
+      cotizaciones_maximo: 0,
+      cotizaciones_porcentaje_sueldo: 0,
     }
   });
 	    
@@ -565,7 +569,79 @@
 
     myEvents: {
       "click .guardar": "guardar",
+      "click #web_cotizaciones_agregar":"agregar_cotizacion",
+      "click .web_cotizaciones_editar":"editar_cotizacion",
+      "click .web_cotizaciones_eliminar":"eliminar_cotizacion",        
     },
+
+    agregar_cotizacion: function() {
+      // Controlamos los valores
+      var anios = this.$("#web_anios").val();
+      var haberes = this.$("#web_haberes").val();
+      var taza = this.$("#web_taza").val();
+
+      if (anios == 0){
+        alert ("Por favor ingrese la cantidad de años");
+        this.$("#web_anios").focus();
+        return false;
+      }
+
+      if (taza == 0) {
+        alert ("Por favor ingrese el porcentaje de la taza anual");
+        this.$("#web_taza").focus();
+        return false;
+      }
+
+      if (this.id_valor == null) {
+        var id = 0;
+      } else {
+        var id = this.id_valor;
+        this.id_valor = null;
+      }
+      var edito = 0;
+      if (this.edito_valor != null) {
+        var edito = 1;
+        this.edito_valor = null;
+      }
+
+      if (haberes == 1) haberes = 'Con haberes';
+      else haberes = 'Sin haberes';
+
+
+      var tr = "<tr class=''>";
+      tr+="<td class='anios'>"+anios+"</td>";
+      tr+="<td class='haberes'>"+haberes+"</td>";
+      tr+="<td class='taza'>"+taza+"</td>";
+      tr+="<td><i class='fa fa-pencil cp web_cotizaciones_editar'></i></td>";
+      tr+="<td><i class='fa fa-times web_cotizaciones_eliminar text-danger cp'></i></td>";
+      tr+="</tr>";
+      
+      if (this.valor == null) {
+        $("#web_cotizaciones tbody").append(tr);
+      } else {
+        $(this.valor).replaceWith(tr);
+        this.valor = null;
+      }
+      this.$("#web_anios").val(0)
+      this.$("#web_haberes").val(0)
+      this.$("#web_taza").val(0)
+      this.$("#web_anios").focus();
+    },
+    eliminar_cotizacion: function(e){
+      $(e.currentTarget).parents("tr").addClass('eliminado');
+      $(e.currentTarget).parents("tr").hide();
+    },
+    editar_cotizacion: function(e) {
+      this.valor = $(e.currentTarget).parents("tr");
+      var haberes = $(this.valor).find(".haberes").text();
+      if (haberes == 'Con haberes') haberes = 1;
+      else haberes = 0;
+      $("#web_taza").val($(this.valor).find(".taza").text());
+      $("#web_haberes").val(haberes);
+      $("#web_anios").val($(this.valor).find(".anios").text());
+      this.edito_valor = $(this.valor).find(".edito").val();
+      //$("articulo_ingrediente_nombre").focus();
+    },      
 
     initialize: function(options) {
       _.bindAll(this);
@@ -582,7 +658,35 @@
       var self = this;
       try {
         $(".error").removeClass("error");
+        if (this.$("#web_cotizaciones").length > 0) {
 
+
+          if ($("#cotizaciones_maximo").val() == 0) {
+            alert ("El valor maximo no puede ser 0");
+            return false;
+          }
+
+          if ($("#cotizaciones_porcentaje_sueldo").val() == 0) {
+            alert ("El porcentaje de sueldo no puede ser 0");
+            return false;
+          }
+
+
+          var cotizaciones = new Array();
+          this.$("#web_cotizaciones tbody tr").each(function(i,e){
+            var eliminado = $(e).hasClass('eliminado') ? 1 : 0;
+            var haberes = $(e).find(".haberes").text();
+            if (haberes == 'Con haberes') haberes = 1;
+            else haberes = 0;
+            cotizaciones.push({
+              "anios": $(e).find(".anios").text(),
+              "taza": $(e).find(".taza").text(),
+              "haberes": haberes,
+              "eliminado": eliminado,
+            });
+          });
+          this.model.set({"cotizaciones":cotizaciones});
+        }
         return true;
       } catch(e) {
         return false;
