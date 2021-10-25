@@ -10,6 +10,16 @@ $nombre_pagina = "cotizacion";
 
 $cotizaciones = $web_model->get_cotizaciones();
 ?>
+
+
+<?php 
+
+if ($empresa->id != 1633) {
+  header("Location: ".mklink("/"));
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
