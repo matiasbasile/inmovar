@@ -227,7 +227,10 @@
       "click .enviar_por_whatsapp": function(){
         var array = [];
         $(".check-row:checked").each(function(i,e){
-          array.push($(e).val());
+          array.push({
+            "id":$(e).val(),
+            "id_empresa":$(e).data("id_empresa"),
+          });
         });
         var self = this;
         var edicion = new app.views.EnviarPlantillaView({
