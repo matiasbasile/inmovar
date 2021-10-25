@@ -2728,9 +2728,8 @@ class Propiedades extends REST_Controller {
     $id_empresa = parent::get_post("id_empresa");
     $propiedades = parent::get_post("propiedades");
 
-
     foreach ($propiedades as $s) {
-      $prop = $this->modelo->get($s, $id_empresa);
+      $prop = $this->modelo->get($s['id'], array("id_empresa"=>$s['id_empresa']));
       $salida[] = $prop;
     }
 

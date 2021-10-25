@@ -5,7 +5,7 @@
     <input type="hidden" id="<%= id %>_tipo_operacion" value="<%= id_tipo_operacion %>"/>
     <input type="hidden" id="<%= id %>_tipo_inmueble" value="<%= id_tipo_inmueble %>"/>
     <label class="i-checks m-b-none">
-      <input class="esc check-row" data-img="<%= path %>" value="<%= id %>" type="checkbox"><i></i>
+      <input class="esc check-row" data-img="<%= path %>" data-id_empresa="<%= id_empresa %>" value="<%= id %>" type="checkbox"><i></i>
     </label>
   </td>
 <% } %>
