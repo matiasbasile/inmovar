@@ -70,8 +70,8 @@ if ($empresa->id != 1633) {
 
         <div class="inputDiv">
           <label>Monto a Solicitar</label>
-          <input disabled type="number" value="<?= $cotizaciones['datos']->valor_medio?>" class="form-control" id="monto_maximo">
-          <input class="range" type="range" onchange="changeRange()" value="<?= $cotizaciones['datos']->valor_medio?>" min="<?= $cotizaciones['datos']->cotizaciones_minimo ?>" max="<?= $cotizaciones['datos']->cotizaciones_maximo ?>" autocomplete="off">
+          <input onchange="changeMonto()" type="number" value="<?= $cotizaciones['datos']->valor_medio?>" class="form-control" id="monto_maximo">
+          <input step="10000" class="range" type="range" onchange="changeRange()" value="<?= $cotizaciones['datos']->valor_medio?>" min="<?= $cotizaciones['datos']->cotizaciones_minimo ?>" max="<?= $cotizaciones['datos']->cotizaciones_maximo ?>" autocomplete="off">
         </div>
 
 
@@ -155,6 +155,23 @@ if ($empresa->id != 1633) {
     var monto = $("#monto_maximo").val();
     calcular_datos(plazo, haberes, monto);
   }
+
+  function changeMonto() {
+
+    var valor_monto = parseFloat($("#monto_maximo").val());
+    var minimo = parseFloat("<?php echo $cotizaciones['datos']->cotizaciones_minimo ?>");
+    var maximo = parseFloat("<?php echo $cotizaciones['datos']->cotizaciones_maximo ?>");
+    if (minimo > valor_monto) $("#monto_maximo").val(minimo);
+    if (maximo < valor_monto) $("#monto_maximo").val(maximo);
+
+
+    $(".range").val($("#monto_maximo").val());
+    var plazo = $(".plazo .btn-item.active").attr("data-value");
+    var haberes = $(".haberes .btn-item.active").attr("data-value");
+    var monto = $("#monto_maximo").val();
+    calcular_datos(plazo, haberes, monto);
+  }
+
 
   function changeRange() {
     $("#monto_maximo").val($(".range").val());
