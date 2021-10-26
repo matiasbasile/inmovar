@@ -334,6 +334,16 @@
         var newOption = new Option(data.text, data.id, true, true);
         this.$('#propiedades_buscar_cocheras').append(newOption).trigger('change');
       },
+      "click .ttn":function(e) {
+        if ($(e.currentTarget).hasClass("sort")){
+          $(".sort.ttn i").addClass("dn");
+          $(e.currentTarget).children().removeClass("dn");
+        } else {
+          $(".sort-a.ttn i").addClass("dn");
+          $(e.currentTarget).children().removeClass("dn");          
+        }
+        this.buscar();
+      },
       "click .guardar_busqueda":function() {
         var self = this;
         var localidades = this.$("#propiedades_buscar_localidades").val();
@@ -771,6 +781,35 @@
         "filtro_argenprop":window.propiedades_filtro_argenprop,
         "activo":window.propiedades_filtro_web,
       };
+
+
+
+      //Acá hacemos el filtro de order y order by
+      //order_by es el nombre del campo y order es ASC o DESC
+      //sort es la clase para diferenciar order_by y sort-a para diferenciar order
+      
+      var order_by = '';
+      
+      $(".sort i").each(function(index) {
+        if (!$(this).hasClass("dn")){
+          order_by = $(this).attr("data-val");
+        }
+      });
+      //Si encontramos algun filtro de order_by
+      //Revisamos si es ASC o DESC y despues lo ingresamos al array de datos
+      if (order_by !== '') {
+        var order = 'ASC'; //Inicializamos ASC por default
+        $(".sort-a i").each(function(index) {
+          if (!$(this).hasClass("dn")){
+            order = $(this).attr("data-val");
+          }
+        });    
+
+        datos['order_by'] = order_by;
+        datos['order'] = order;    
+      }
+
+
       //if (SOLO_USUARIO == 1) datos.id_usuario = ID_USUARIO; // Buscamos solo los productos de ese usuario
       this.collection.server_api = datos;
       if (window.propiedades_mapa == 1) {

@@ -18,7 +18,7 @@
               <tr>
                 <th class="w50 tac"></th>
                 <th>Propiedad</th>
-                <th class="w150 sorting" data-sort-by="precio_final">Operación</th>
+                <th class="w150" data-sort-by="precio_final">Operación</th>
                 <th class="w150">Caract.</th>
                 <th class="w120 mostrar_en_red" style="display: none;"></th>
               </tr>
@@ -105,10 +105,24 @@
                 </th>
                 <th class="w50 tac"></th>
                 <th>Propiedad</th>
-                <th class="w150 sorting" data-sort-by="precio_final">Operación</th>
+                <th class="w150" data-sort-by="precio_final">Operación</th>
                 <th class="w150">Caract.</th>
                 <th class="w120"></th>
-                <th class="th_acciones w180">Acciones</th>
+                <th class="th_acciones w180">
+                  Acciones
+
+                  <div class="fr btn-group dropdown ml10">
+                    <i title="Opciones" class="iconito text-muted-2 fa fa-sort dropdown-toggle" data-toggle="dropdown"></i>
+                    <ul class="dropdown-menu pull-right">
+                      <li><a href="javascript:void(0)" class="ttn">Ordenar Por:</a></li>
+                      <li><a href="javascript:void(0)" class="ttn sort"><i data-val="precio_final" class="fa fa-check mr5 dn" aria-hidden="true"></i>Precio</a></li>
+                      <li><a href="javascript:void(0)" class="ttn sort"><i data-val="codigo" class="fa fa-check mr5 dn" aria-hidden="true"></i>Codigo</a></li>
+                      <li class="divider"></li>
+                      <li><a href="javascript:void(0)" class="ttn sort-a"><i data-val="ASC" class="fa fa-check mr5" aria-hidden="true"></i> Ascendiente</a></li>
+                      <li><a href="javascript:void(0)" class="ttn sort-a"><i data-val="DESC" class="fa fa-check mr5 dn" aria-hidden="true"></i>Descendiente</a></li>
+                    </ul>
+                  </div>
+                </th>
               </tr>
             </thead>
             <tbody class="tbody"></tbody>
