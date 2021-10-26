@@ -195,8 +195,18 @@
               </label>
             </div>
           </div>
-
-        </div>          
+        </div> 
+        <div class="permutas_div <%= (acepta_permuta == 1)?"":"dn" %>">
+          <div class="row">
+            <div class="col-md-9">
+              <label class="control-label control-label-sub mt10 mb10">Opciones de Permuta</label>
+            </div>
+            <div class="col-md-3 tar">
+              <button class="btn btn-info nueva_permuta">+ Agregar</button>
+            </div>
+          </div>         
+          <div id="propiedades_permutas" class="mt10"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -795,6 +805,158 @@
         <div class="form-group">
           <label class="control-label">Recorrido 3D</label>
           <textarea <%= (!edicion)?"disabled":"" %> id="propiedad_pint" style="height:80px;" placeholder="Pegue aqui el codigo que desea insertar" class="form-control" name="pint"><%= pint %></textarea>
+        </div>
+
+      </div>
+    </div>
+  </div>  
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="padder">
+        <div class="form-group mb0 clearfix expand-link cp">
+          <label class="control-label cp">
+            <?php echo lang(array(
+              "es"=>"Documentacion",
+              "en"=>"Documentacion",
+            )); ?>
+          </label>
+          <div class="panel-description">
+            <?php echo lang(array(
+              "es"=>"Agregue información de la propiedad, formas de la operación, etc.",
+              "en"=>"Agregue información de la propiedad, formas de la operación, etc.",
+            )); ?>                  
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body expand">
+      <div class="padder">
+
+        <label class="control-label control-label-sub">Documentacion de la propiedad</label>
+        <div class="row">
+          <div class="col-md-2">
+            <div class="form-group">
+              <label class="i-checks">
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedades_servicios_escritura" name="servicios_escritura" class="checkbox" value="1" <%= (servicios_escritura == 1)?"checked":"" %> >
+                <i></i> Escritura
+              </label>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <label class="i-checks">
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_servicios_reglamento" name="servicios_reglamento" class="checkbox" value="1" <%= (servicios_reglamento == 1)?"checked":"" %> >
+                <i></i> Reglamento
+              </label>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <label class="i-checks">
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_servicios_plano_obra" name="servicios_plano_obra" class="checkbox" value="1" <%= (servicios_plano_obra == 1)?"checked":"" %> >
+                <i></i> Plano Obra
+              </label>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <label class="i-checks">
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_servicios_plano_ph" name="servicios_plano_ph" class="checkbox" value="1" <%= (servicios_plano_ph == 1)?"checked":"" %> >
+                <i></i> Plano PH
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class="control-label">Fecha Chequeado</label>
+              <input <%= (!edicion)?"disabled":"" %> type="date" name="servicios_fecha_chequeado" id="propiedad_servicios_fecha_chequeado" value="<%= servicios_fecha_chequeado %>" class="form-control"/>              
+            </div>
+          </div>
+        </div>
+        <label class="control-label control-label-sub">Forma de la Operación</label>
+        <div class="row">
+          <div class="col-md-2">
+            <div class="form-group">
+              <label class="i-checks">
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_servicios_reservas" name="servicios_reservas" class="checkbox" value="1" <%= (servicios_reservas == 1)?"checked":"" %> >
+                <i></i> Reserva
+              </label>
+              <br>
+              <label class="control-label">Plazo de Reserva (Dias)</label>
+              <input name="plazo_reserva" type="number" value="<%= plazo_reserva %>" class="form-control" placeholder="Plazo">
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <label class="i-checks">
+                  <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_servicios_boleto" name="servicios_boleto" class="checkbox" value="1" <%= (servicios_boleto == 1)?"checked":"" %> >
+                  <i></i> Boleto
+              </label>
+              <br>
+              <label class="control-label">Plazo de Boleto (Dias)</label>
+              <input name="plazo_boleto" type="number" value="<%= plazo_boleto %>" class="form-control" placeholder="Plazo">
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <label class="i-checks">
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_servicios_escritura" name="servicios_escritura" class="checkbox" value="1" <%= (servicios_escritura == 1)?"checked":"" %> >
+                <i></i> Escritura
+              </label>
+            <br>
+            <label class="control-label">Plazo de Escritura (Dias)</label>
+            <input name="plazo_escritura" type="number" value="<%= plazo_escritura %>" class="form-control" placeholder="Plazo">
+            </div>
+          </div>
+        </div>
+        <label class="control-label control-label-sub">Información de la Documentacion</label>
+        <div class="row">
+          <div class="col-md-2">
+            <label class="control-label">Escritura</label>
+            <select class="form-control" name="documentacion_escritura">
+              <option value="0">Seleccione</option>         
+              <option <%= (documentacion_escritura == 1) ? 'selected' : '' %> value="1">Compraventa</option>  
+              <option <%= (documentacion_escritura == 2) ? 'selected' : '' %> value="2">Donación</option>  
+              <option <%= (documentacion_escritura == 3) ? 'selected' : '' %> value="3">Parte Indivisa</option>  
+              <option <%= (documentacion_escritura == 4) ? 'selected' : '' %> value="4">Fidelcomiso</option>  
+            </select>
+          </div>
+          <div class="col-md-2">
+            <label class="control-label">Estado Parcelario</label>
+            <select class="form-control" name="documentacion_estado_parcelario">
+              <option value="0">Seleccione</option>         
+              <option <%= (documentacion_estado_parcelario == 1) ? 'selected' : '' %> value="1">No lleva</option>  
+              <option <%= (documentacion_estado_parcelario == 2) ? 'selected' : '' %> value="2">Lleva</option>  
+            </select>
+          </div>
+          <div class="col-md-2">
+            <label class="control-label">Estado</label>
+            <select class="form-control" name="documentacion_estado">
+              <option value="0">Seleccione</option>         
+              <option <%= (documentacion_estado == 1) ? 'selected' : '' %> value="1">Desocupada</option>  
+              <option <%= (documentacion_estado == 2) ? 'selected' : '' %> value="2">Ocupada</option> 
+              <option <%= (documentacion_estado == 3) ? 'selected' : '' %> value="3">Alquilada</option> 
+            </select>
+          </div>
+          <div class="col-md-3">
+            <label class="control-label">Impuesto</label>
+            <select class="form-control" name="documentacion_impuesto">
+              <option value="0">Seleccione</option>         
+              <option <%= (documentacion_impuesto == 1) ? 'selected' : '' %> value="1">Impuesto Transferencia de Inmuebles</option>  
+              <option <%= (documentacion_impuesto == 2) ? 'selected' : '' %> value="2">Anticipo de Ganancias</option>  
+            </select>
+          </div>
+          <div class="col-md-3">
+            <label class="control-label">Coti</label>
+            <select class="form-control" name="documentacion_coti">
+              <option value="0">Seleccione</option>         
+              <option <%= (documentacion_coti == 1) ? 'selected' : '' %> value="1">Corresponde</option>  
+              <option <%= (documentacion_coti == 2) ? 'selected' : '' %> value="2">No Corresponde</option>  
+            </select>
+          </div>
         </div>
 
       </div>

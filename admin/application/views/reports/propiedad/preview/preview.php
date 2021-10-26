@@ -168,7 +168,7 @@ h3{border-bottom: 1px solid #1d36c2;padding-bottom: 20px;}
             <div>Desde <?php echo date("d/m/Y", strtotime($propiedad->data_graficos->fechas_sql[0]));?> hasta <?php echo date("d/m/Y", strtotime($propiedad->data_graficos->fechas_sql[1]));?></div>
             <div class="block panel padder-v item bg-info mb0 bg-inmovar br3" style="height: 105px; margin-top: 20px;">
               <div class="h1 font-thin text-white h1 m-t-md total_visitas pt20 tac mt10"><?= $propiedad->data_graficos->total_web+$propiedad->data_graficos->total_panel ?></div>
-              <span class="text-muted text-md tac db fs16">Visitas</span>
+              <span class="text-muted text-md tac db fs16">Vistas</span>
             </div>
             <div style="display: flex;">
               <div class="block panel padder-v item w33 mt10" style="height: 70px">
@@ -210,6 +210,7 @@ h3{border-bottom: 1px solid #1d36c2;padding-bottom: 20px;}
             <div class="">
               <?php foreach ($propiedad->data_graficos->clientes_consultas as $r) { ?>
                 <?php
+                $tipo = "";
                 if ($r->tipo == 1) $tipo = "A contactar";
                 if ($r->tipo == 2) $tipo = "Contactado";
                 if ($r->tipo == 3) $tipo = "Con actividad";
@@ -296,10 +297,10 @@ h3{border-bottom: 1px solid #1d36c2;padding-bottom: 20px;}
         }
       },
       series: [{
-        name: 'Visitas Web ('+'<?php echo $propiedad->data_graficos->total_web ?>'+')',
+        name: 'Vistas Web ('+'<?php echo $propiedad->data_graficos->total_web ?>'+')',
         data: JSON.parse(visitas_web),
       },{
-        name: 'Visitas Fisicas ('+'<?php echo $propiedad->data_graficos->total_panel ?>'+')',
+        name: 'Vistas Fisicas ('+'<?php echo $propiedad->data_graficos->total_panel ?>'+')',
         data: JSON.parse(visitas_panel),
       },{
         name: 'Consultas Web('+'<?php echo $propiedad->data_graficos->total_consultas ?>'+')',

@@ -8,6 +8,54 @@ class Propiedad_Model extends Abstract_Model {
     parent::__construct("inm_propiedades","id");
   }
 
+  function get_precios_propiedades($conf = array()) {
+    $res = new Stdclass;
+    $un_año_antes = new DateTime('1 year ago');
+    $id_empresa = isset($conf['id_empresa']) ? $conf['id_empresa'] : parent::get_empresa();
+    $id_propiedad = isset($conf['id_propiedad']) ? $conf['id_propiedad'] : 0;
+    $fecha_desde = isset($conf['fecha_desde']) ? $conf['fecha_desde'] : $un_año_antes->format('Y-m-d');
+    $fecha_hasta = isset($conf['fecha_hasta']) ? $conf['fecha_hasta'] : date('Y-m-d');
+    $intervalo = "D";
+    $desde = new DateTime($fecha_desde);
+    $hasta = new DateTime($fecha_hasta);
+    $hasta->add(new DateInterval('P1D'));
+    $interval = new DateInterval('P1'.$intervalo);
+    $range = new DatePeriod($desde,$interval,$hasta);
+    $diff = $hasta->diff($desde)->format("%a"); 
+    $res->precios = array();
+    $sql = "SELECT PV.* FROM inm_propiedades_precios_historicos PV ";
+    $sql.= "WHERE PV.id_empresa = '$id_empresa' ";
+    $sql.= "AND PV.id_propiedad = '$id_propiedad' ";
+    $sql.= "AND PV.precio_anterior = 0.00 ";
+    $q = $this->db->query($sql);
+    //Nos fijamos el precio de cuando se creo la propiedad para ponerlo siempre primero
+    if ($q->num_rows() > 0 ){
+      $row = $q->row();
+      $precio_anterior = intval($row->precio_nuevo);
+    } else {
+      //Sino usamos null asi se lo saltea el grafico
+      $precio_anterior = null;
+    }
+    foreach($range as $fecha) {
+
+      // Sacamos las visitas web
+      $sql = "SELECT PV.* FROM inm_propiedades_precios_historicos PV ";
+      $sql.= "WHERE PV.id_empresa = '$id_empresa' ";
+      $sql.= "AND PV.id_propiedad = '$id_propiedad' ";
+      $sql.= "AND fecha = '".$fecha->format("Y-m-d")."' LIMIT 0,1 ";
+      $q = $this->db->query($sql);
+      if ($q->num_rows() > 0) {
+        $r = $q->row();
+        $res->precios[] = intval($r->precio_nuevo);
+        $precio_anterior = intval($r->precio_nuevo);
+      } else {
+        $res->precios[] = $precio_anterior;        
+      } 
+    }
+
+    return $res;
+  }
+
   function buscar_similitudes($config = array()) {
     $id_empresa = isset($config["id_empresa"]) ? $config["id_empresa"] : parent::get_empresa();
     $id_propiedad = isset($config["id_propiedad"]) ? $config["id_propiedad"] : 0;
@@ -786,7 +834,7 @@ class Propiedad_Model extends Abstract_Model {
           $this->db->query($sql);
         }
       }
-    }
+    } 
     $this->load->helper("file_helper");
     $this->load->helper("fecha_helper");    
 
@@ -797,6 +845,7 @@ class Propiedad_Model extends Abstract_Model {
     $planos = (isset($data->planos)) ? $data->planos : array();
     $departamentos = (isset($data->departamentos)) ? $data->departamentos : array();
     $gastos = (isset($data->gastos)) ? $data->gastos : array();
+    $permutas = (isset($data->permutas)) ? $data->permutas : array();
     $productos_relacionados = (isset($data->relacionados)) ? $data->relacionados : array();
     $temporada = (isset($data->temporada)) ? $data->temporada : array();
     $impuestos = (isset($data->impuestos)) ? $data->impuestos : array();
@@ -890,6 +939,10 @@ class Propiedad_Model extends Abstract_Model {
         // Insertamos los datos, removiendo el id para que no haya problemas
         if (isset($data->id)) unset($data->id);
         $id = $this->insert($data);
+        $fecha = date("Y-m-d");
+        $sql = "INSERT INTO inm_propiedades_precios_historicos (id_propiedad, id_empresa, precio_anterior, precio_nuevo, fecha) VALUES ";
+        $sql.= "($id, $data->id_empresa, '0', '$data->precio_final', '$fecha') ";
+        $this->db->query($sql); 
       } else {
         // Si tiene algun valor, debemos actualizarlo
         $this->update($id,$data);
@@ -969,6 +1022,21 @@ class Propiedad_Model extends Abstract_Model {
           "id_empresa"=>$p->id_empresa,
           "concepto"=>$p->concepto,
           "monto"=>$p->monto,
+        ));
+      }
+
+
+      $this->db->query("DELETE FROM inm_propiedades_permutas WHERE id_propiedad = $id AND id_empresa = $id_empresa");
+      foreach($permutas as $p) {
+        $this->db->insert("inm_propiedades_permutas",array(
+          "id_propiedad"=>$id,
+          "id_empresa"=>$p->id_empresa,
+          "banios"=>$p->banios,
+          "dormitorios"=>$p->dormitorios,
+          "cocheras"=>$p->cocheras,
+          "precio_maximo"=>$p->precio_maximo,
+          "id_localidad"=>$p->id_localidad,
+          "id_tipo_inmueble"=>$p->id_tipo_inmueble,
         ));
       }
           
@@ -1290,7 +1358,7 @@ class Propiedad_Model extends Abstract_Model {
       $propiedad->departamentos[] = $r;
     }
 
-    // Obtenemos los departamentos
+    // Obtenemos los gastos
     $sql = "SELECT * ";
     $sql.= "FROM inm_propiedades_gastos ";
     $sql.= "WHERE id_propiedad = $id AND id_empresa = $propiedad->id_empresa ";
@@ -1298,6 +1366,19 @@ class Propiedad_Model extends Abstract_Model {
     $propiedad->gastos = array();
     foreach($q->result() as $r) {
       $propiedad->gastos[] = $r;
+    }
+
+    // Obtenemos las permutas
+    $sql = "SELECT P.*, IF(I.nombre IS NULL, '', I.nombre) as inmueble_nombre, ";
+    $sql.= "IF (L.nombre IS NULL, '', L.nombre) as localidad_nombre ";
+    $sql.= "FROM inm_propiedades_permutas P ";
+    $sql.= "LEFT JOIN com_localidades L ON (L.id = P.id_localidad) ";
+    $sql.= "LEFT JOIN inm_tipos_inmueble I ON (I.id = P.id_tipo_inmueble) ";
+    $sql.= "WHERE P.id_propiedad = $id AND P.id_empresa = $propiedad->id_empresa ";
+    $q = $this->db->query($sql);
+    $propiedad->permutas = array();
+    foreach($q->result() as $r) {
+      $propiedad->permutas[] = $r;
     }
 
     // Obtenemos las imagenes de ese propiedad
