@@ -116,6 +116,21 @@
       servicios_internet: 0,
       servicios_aire_acondicionado: 0,
       servicios_uso_comercial: 0,
+      servicios_escritura: 0,
+      servicios_reglamento: 0,
+      servicios_plano_obra: 0,
+      servicios_plano_ph: 0,
+      servicios_fecha_chequeado: "",
+      servicios_reservas: 0, 
+      servicios_boleto: 0,
+      plazo_reserva: 0,
+      plazo_boleto: 0,
+      plazo_escritura: 0,
+      documentacion_escritura: 0,
+      documentacion_estado_parcelario: 0,
+      documentacion_estado: 0,
+      documentacion_impuesto: 0,
+      documentacion_coti: 0,
 
       inmobusquedas_habilitado: 0,
       inmobusquedas_url: "",
@@ -2586,6 +2601,20 @@
           "servicios_telefono":((self.$("#propiedad_servicios_telefono").length>0) ? (self.$("#propiedad_servicios_telefono").is(":checked")?1:0) : 0),
           "servicios_cable":((self.$("#propiedad_servicios_cable").length>0) ? (self.$("#propiedad_servicios_cable").is(":checked")?1:0) : 0),
           "apto_profesional":((self.$("#propiedad_apto_profesional").length>0) ? (self.$("#propiedad_apto_profesional").is(":checked")?1:0) : 0),
+        
+
+
+          //Documentacion
+          "servicios_fecha_chequeado":((self.$("#propiedad_servicios_fecha_chequeado").length > 0) ? self.$("#propiedad_servicios_fecha_chequeado").val() : ""),
+          "servicios_escritura":((self.$("#propiedad_servicios_escritura").length>0) ? (self.$("#propiedad_servicios_escritura").is(":checked")?1:0) : 0),
+          "servicios_reglamento":((self.$("#propiedad_servicios_reglamento").length>0) ? (self.$("#propiedad_servicios_reglamento").is(":checked")?1:0) : 0),
+          "servicios_plano_obra":((self.$("#propiedad_servicios_plano_obra").length>0) ? (self.$("#propiedad_servicios_plano_obra").is(":checked")?1:0) : 0),
+          "servicios_plano_ph":((self.$("#propiedad_servicios_plano_ph").length>0) ? (self.$("#propiedad_servicios_plano_ph").is(":checked")?1:0) : 0),
+          "servicios_reservas":((self.$("#propiedad_servicios_reservas").length>0) ? (self.$("#propiedad_servicios_reservas").is(":checked")?1:0) : 0),
+          "servicios_boleto":((self.$("#propiedad_servicios_boleto").length>0) ? (self.$("#propiedad_servicios_boleto").is(":checked")?1:0) : 0),
+          "servicios_escritura":((self.$("#propiedad_servicios_escritura").length>0) ? (self.$("#propiedad_servicios_escritura").is(":checked")?1:0) : 0),
+
+
         });
 
         if (this.$("#propiedad_usuarios").length > 0) {
