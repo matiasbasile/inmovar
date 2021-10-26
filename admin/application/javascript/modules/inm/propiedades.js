@@ -3778,10 +3778,10 @@
           }
         },
         series: [{
-          name: 'Visitas Web ('+self.model.get("data_graficos").total_web+')',
+          name: 'Vistas Web ('+self.model.get("data_graficos").total_web+')',
           data: self.model.get("data_graficos").visitas_web,
         },{
-          name: 'Visitas Panel ('+self.model.get("data_graficos").total_panel+')',
+          name: 'Vistas Panel ('+self.model.get("data_graficos").total_panel+')',
           data: self.model.get("data_graficos").visitas_panel,
         },{
           name: 'Consultas Web ('+self.model.get("data_graficos").total_consultas+')',
@@ -3867,10 +3867,10 @@
               }
             },
             series: [{
-              name: 'Visitas Web ('+r.data_graficos.total_web+')',
+              name: 'Vistas Web ('+r.data_graficos.total_web+')',
               data: r.data_graficos.visitas_web,
             },{
-              name: 'Visitas Panel ('+r.data_graficos.total_panel+')',
+              name: 'Vistas Panel ('+r.data_graficos.total_panel+')',
               data: r.data_graficos.visitas_panel,
             },{
               name: 'Consultas Web('+r.data_graficos.total_consultas+')',

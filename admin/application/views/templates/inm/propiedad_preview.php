@@ -165,7 +165,7 @@
       		        <div class="col-sm-12">
       					    <div class="block panel padder-v item bg-info mb0" style="height: 105px; margin-top: 70px;">
       						  	<div class="h1 font-thin text-white h1 m-t-md total_visitas tac mt10">0</div>
-      						  	<span class="text-muted text-md tac db">Visitas</span>
+      						  	<span class="text-muted text-md tac db">Vistas</span>
       						</div>
 		            </div>
                 <div class="col-sm-4">
@@ -220,6 +220,7 @@
                     <div class="col-md-12 consul">
                       <% for(var i=0;i< data_graficos.clientes_consultas.length;i++) { %>
                         <% var r = data_graficos.clientes_consultas[i] %>
+                        <% tipo = ''; %>
                         <% if (r.tipo == 1) tipo = 'A contactar'; %>
                         <% if (r.tipo == 2) tipo = 'Contactado'; %>
                         <% if (r.tipo == 3) tipo = 'Con actividad'; %>
