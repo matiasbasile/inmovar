@@ -13,6 +13,7 @@
       images_meli: [],
       departamentos: [],
       gastos: [],
+      permutas: [],
       relacionados: [], // Productos relacionados
       tipo_inmueble: "",
       tipo_operacion: "",
@@ -1909,6 +1910,9 @@
       "click .guardar": "guardar",
       "click #cargar_mapa":"get_coords_by_address",
       "click #expand_mapa":"expand_mapa",
+      "click #propiedad_acepta_permuta":function(){
+        $(".permutas_div").toggleClass("dn");
+      },
 
       "change #propiedad_tipo_ubicacion":function(){
         var tipo_ubicacion = this.$("#propiedad_tipo_ubicacion").val();
@@ -2074,6 +2078,22 @@
         });
       },
 
+      "click .nueva_permuta":function(){
+        var self = this;
+        var v = new app.views.PropiedadPermutasEditView({
+          model: new app.models.PropiedadPermutas({}),
+          collection: self.permutas,
+        });
+        crearLightboxHTML({
+          "html":v.el,
+          "width":600,
+          "height":140,
+          "callback":function() {
+            console.log(self.permutas);
+          }
+        });
+      },
+
       // ABRIMOS MODAL PARA UPLOAD MULTIPLE
       "click .upload_multiple":function(e) {
         var self = this;
@@ -2205,6 +2225,19 @@
       });
       this.$("#propiedad_departamentos").html(this.departamentosTable.el);
 
+      self.permutas = new app.collections.PropiedadesPermutas();
+      var dep = this.model.get("permutas");
+      for(var i=0;i<dep.length;i++) {
+        var dd = dep[i];
+        var ddo = new app.models.PropiedadPermutas(dd);
+        self.permutas.add(ddo);
+      }
+      this.permutasTable = new app.views.PropiedadesPermutasTableView({
+        collection: self.permutas
+      });
+      this.$("#propiedades_permutas").html(this.permutasTable.el);
+
+
       self.gastos = new app.collections.PropiedadesGastos();
       var dep = this.model.get("gastos");
       for(var i=0;i<dep.length;i++) {
@@ -2216,6 +2249,8 @@
         collection: self.gastos
       });
       this.$("#propiedad_gastos").html(this.gastosTable.el);
+
+
     },
 
     cargar_propietarios: function(id_propietario) {
@@ -2563,6 +2598,13 @@
         }
         
         var id_tipo_operacion = self.$("#propiedad_tipos_operacion").val();
+        var permuta = self.$("#propiedad_acepta_permuta").is(":checked") ? 1 : 0;
+
+        if (permuta == 1 && self.permutas.length == 0) {
+          alert ("Por favor ingrese una opcion de permuta o desactive la opcion");
+          return false;
+        }
+
         this.model.set({
           //"destacado":(self.$("#propiedad_destacado").is(":checked")?1:0),
           "codigo":codigo,
@@ -2579,7 +2621,7 @@
           "publica_precio":(self.$("#propiedad_publica_precio").val()),
           "fecha_publicacion":((self.$("#propiedad_fecha_publicacion").length > 0) ? self.$("#propiedad_fecha_publicacion").val() : ""),
           "apto_banco":(self.$("#propiedad_apto_banco").is(":checked") ? 1 : 0),
-          "acepta_permuta":(self.$("#propiedad_acepta_permuta").is(":checked") ? 1 : 0),
+          "acepta_permuta":permuta,
           "publica_altura":((self.$("#propiedad_publica_altura").length > 0) ? (self.$("#propiedad_publica_altura").is(":checked")?1:0) : 0),
           "superficie_total":self.$("#propiedad_superficie_total").val(),
           "archivo": (self.$("#hidden_archivo").length > 0) ? $(self.el).find("#hidden_archivo").val() : "",
@@ -2687,10 +2729,15 @@
         // Listado de departamentos
         var gastos = new Array();
         self.gastos.each(function(gsts){
-          console.log(gsts);
           gastos.push(gsts.toJSON());
         });
         self.model.set({"gastos":gastos});
+
+        var permutas = new Array();
+        self.permutas.each(function(gsts){
+          permutas.push(gsts.toJSON());
+        });
+        self.model.set({"permutas":permutas});
 
         // Si los custom llegan a ser fileuploaders, hay que setearlos en el modelo
         for(var i=1;i<=10;i++) {
@@ -3713,6 +3760,11 @@
           });
         }
       },
+      "click #propiedad_preview_6_link":function() {
+        console.log("llega");
+        var self = this;
+        self.cargar_grafico_precios();
+      },
       "click .imprimir_reporte":function() {
         var url = "propiedades/function/imprimir_pdf/"+this.model.id;
         url += "?fd="+encodeURI(moment($("#propiedad_preview_fecha_desde").val(),"DD/MM/YYYY").format("YYYY-MM-DD"));
@@ -3749,9 +3801,12 @@
 
       console.log(this.model);
       var fecha_desde = moment().subtract(1, 'month').format('YYYY-MM-DD');
+      var fecha_desde_anio = moment().subtract(1, 'year').format('YYYY-MM-DD');
       createdatepicker($(this.el).find("#propiedad_preview_fecha_desde"),fecha_desde);
       var fecha_hasta = moment().format('YYYY-MM-DD');
       createdatepicker($(this.el).find("#propiedad_preview_fecha_hasta"),fecha_hasta);
+      createdatepicker($(this.el).find("#propiedad_graficos_fecha_desde"),fecha_desde_anio);
+      createdatepicker($(this.el).find("#propiedad_graficos_fecha_hasta"),fecha_hasta);
 
       
       window.desde_anio = fecha_desde.substr(0,4);
@@ -3817,7 +3872,6 @@
           data: self.model.get("data_graficos").consultas,
         }]
       }); 
-
       self.$(".total_visitas").html(self.model.get("data_graficos").total_web+self.model.get("data_graficos").total_panel);
       self.$(".total_web").html(self.model.get("data_graficos").total_web);
       self.$(".total_panel").html(self.model.get("data_graficos").total_panel);
@@ -3928,6 +3982,87 @@
             }
           }
 
+        },
+      });
+    },
+
+    cargar_grafico_precios: function() {
+      
+      var f_desde = $("#propiedad_graficos_fecha_desde").val();
+      var f_hasta = $("#propiedad_graficos_fecha_hasta").val();
+
+      f_desde = moment(f_desde,"DD/MM/YYYY").format("YYYY-MM-DD");
+      f_hasta = moment(f_hasta,"DD/MM/YYYY").format("YYYY-MM-DD");
+      
+      var desde_anio = f_desde.substr(0,4);
+      var desde_mes = f_desde.substr(5,5);
+      var desde_dia = f_desde.substr(8,11);
+
+      var self = this;
+      $.ajax({
+        "url":"propiedades/function/get_precios_propiedades/",
+        "dataType":"json",
+        "type":"post",
+        "data":{
+          "fecha_desde":f_desde,
+          "fecha_hasta":f_hasta,
+          "id":self.model.id,
+          "id_empresa":self.model.get("id_empresa"),
+        },
+        "success":function(r) {
+          self.$('#historial_precios_bar').highcharts({
+            chart: {
+              type: 'area',
+              zoomType: 'x'
+            },
+            title: { text: null },
+            legend: {
+              floating: true,
+              align: "right",
+              verticalAlign: "top",
+            },
+            colors: ['#28b492','#19a9d5','#e7953e'],
+            xAxis: {
+              type: 'datetime',
+              dateTimeLabelFormats: {
+                day: '%b %e',
+                week: '%b %e'
+              }      
+            },
+            yAxis: {
+              allowDecimals: false,
+              gridLineColor: '#f9f9f9',
+              title: {
+                text: null
+              },
+            },
+            tooltip: {
+              dateTimeLabelFormats: {
+                day: '%e/%m/%Y',
+                week: '%e/%m/%Y',
+              }
+            },
+            plotOptions: {
+              area: {
+                marker: {
+                  enabled: false,
+                  symbol: 'circle',
+                  radius: 2,
+                  states: {
+                    hover: { enabled: true }
+                  }
+                }
+              },
+              series: {
+                pointStart: Date.UTC(desde_anio,desde_mes.substr(0,2),desde_dia),
+                pointInterval: 24 * 3600 * 1000,
+              }
+            },
+            series: [{
+              name: 'Historial de Precios',
+              data: r.salida.precios,
+            }]
+          }); 
         },
       });
     },
@@ -4655,12 +4790,250 @@
     validar: function() {
       try {
         var self = this;
-        
+        propiedad_gastos
         var fecha = self.$("#propiedades_gastos_fecha").val();
         this.model.set({
           "path": ((self.$("#hidden_path").length > 0) ? self.$("#hidden_path").val() : ""),
           "fecha":fecha,
           "concepto":self.$("#propiedades_gastos_concepto").val(),
+        });
+         
+        $(".error").removeClass("error");
+        return true;
+      } catch(e) {
+        console.log(e);
+        return false;
+      }
+    },  
+
+    guardar:function() {
+      var self = this;
+      if (this.validar()) {
+        if (this.model.id == null) {
+          // NO PONEMOS ID = 0, PORQUE SINO NO AGREGA DOS ELEMENTOS CON EL MISMO ID
+          var maxId = 0;
+          this.collection.each(function(item){
+            if (item.id > maxId) maxId = item.id;
+          });
+          maxId++;
+          this.model.set({id:maxId});
+        }
+        this.collection.add(this.model);
+        $('.modal:last').modal('hide');
+      }      
+    },
+          
+  });
+})(app);
+
+// -----------
+//   MODELO
+// -----------
+
+(function ( models ) {
+
+  models.PropiedadPermutas = Backbone.Model.extend({
+    urlRoot: "permutas",
+    defaults: {
+      id_empresa: ID_EMPRESA,
+      id_propiedad: 0,
+      id_tipo_inmueble: 0,
+      id_localidad: 0,
+      banios: 0,
+      cocheras: 0,
+      dormitorios: 0,
+      precio_maximo: 0,
+      inmueble_nombre: "",
+      localidad_nombre: "",
+    },
+  });
+      
+})( app.models );
+
+
+
+// ----------------------
+//   COLECCION PAGINADA
+// ----------------------
+
+(function (collections, model) {
+
+  collections.PropiedadesPermutas = Backbone.Collection.extend({
+    model: model,
+  });
+
+})( app.collections, app.models.PropiedadPermutas);
+
+// -----------------------------------------
+//   TABLA DE RESULTADOS
+// -----------------------------------------
+(function ( app ) {
+
+  app.views.PropiedadesPermutasTableView = app.mixins.View.extend({
+
+    template: _.template($("#propiedades_permutas_table").html()),
+        
+    myEvents: {
+      "click .buscar":"buscar",
+    },
+        
+    initialize : function (options) {
+      var self = this;
+      _.bindAll(this); // Para que this pueda ser utilizado en las funciones
+      this.options = options;
+      this.id_propiedad = (typeof this.options.id_propiedad != "undefined") ? this.options.id_propiedad : 0;
+      this.render();
+      this.collection.on('all', this.addAll, this);
+      this.addAll();
+    },
+
+    render: function() {
+      $(this.el).html(this.template());
+      return this;
+    },
+        
+    addAll : function () {
+      window.total_gastos = 0;
+      $(this.el).find(".tbody").empty();
+      if (this.collection.length > 0) this.collection.each(this.addOne);
+      this.$(".total_gastos").html("$ "+Number(window.total_gastos).format(2));
+    },
+        
+    addOne : function ( item ) {
+      var self = this;
+      var view = new app.views.PropiedadesPermutasItemResultados({
+        model: item,
+        collection: self.collection,
+      });
+      this.$(".tbody").append(view.render().el);
+    },
+            
+  });
+
+})(app);
+
+
+
+
+// -----------------------------------------
+//   ITEM DE LA TABLA DE RESULTADOS
+// -----------------------------------------
+(function ( app ) {
+  app.views.PropiedadesPermutasItemResultados = app.mixins.View.extend({
+        
+    template: _.template($("#propiedades_permutas_item").html()),
+    tagName: "tr",
+    myEvents: {
+      "click .data":"seleccionar",
+      "click .eliminar":function(e) {
+        var self = this;
+        e.stopPropagation();
+        e.preventDefault();
+        if (confirm("Realmente desea eliminar el elemento?")) {
+          this.model.destroy();  // Eliminamos el modelo
+          $(this.el).remove();  // Lo eliminamos de la vista
+        }
+        return false;
+      },
+    },
+    seleccionar: function() {
+      var self = this;
+      var v = new app.views.PropiedadPermutasEditView({
+        model:self.model,
+        collection:self.collection,
+      });
+      crearLightboxHTML({
+        "html":v.el,
+        "width":600,
+        "height":140,
+      });
+    },
+    initialize: function(options) {
+      var self = this;
+      _.bindAll(this);
+      this.options = options;
+      this.render();
+    },
+    render: function() {
+      $(this.el).html(this.template(this.model.toJSON()));
+      return this;
+    },
+  });
+})(app);
+
+
+
+(function ( app ) {
+
+  app.views.PropiedadPermutasEditView = app.mixins.View.extend({
+
+    template: _.template($("#propiedades_permutas_edit").html()),
+            
+    myEvents: {
+      "click .guardar": "guardar",
+      "click .cerrar":function() {
+        $('.modal:last').modal('hide');
+      },
+    },    
+                
+    initialize: function(options) {
+      var self = this;
+      _.bindAll(this);
+      
+
+      var edicion = false;
+      var obj = { "id":this.model.id }
+      _.extend(obj,this.model.toJSON());
+      $(this.el).html(this.template(obj));
+
+      new app.mixins.Select({
+        modelClass: app.models.Localidad,
+        url: "localidades/function/utilizadas/?id_empresa="+ID_EMPRESA+"&id_proyecto="+ID_PROYECTO,
+        render: "#propiedades_buscar_localidades",
+        firstOptions: ["<option value='0'>Localidad</option>"],
+        selected: self.model.get("id_localidad"),
+        onComplete:function(c) {
+          crear_select2("propiedades_buscar_localidades");
+        }
+      });  
+
+
+      new app.mixins.Select({
+        modelClass: app.models.TipoInmueble,
+        url: "tipos_inmueble/",
+        render: "#propiedades_buscar_tipos_inmueble",
+        firstOptions: ["<option value='0'>Tipo de Inmueble</option>"],
+        selected: self.model.get("id_tipo_inmueble"),
+        onComplete:function(c) {
+          crear_select2("propiedades_buscar_tipos_inmueble");
+        }
+      });  
+
+
+    },
+        
+    validar: function() {
+      try {
+        var self = this;
+  
+        var id_localidad = self.$("#propiedades_buscar_localidades").val();
+        var id_tipo_inmueble = self.$("#propiedades_buscar_tipos_inmueble").val();
+
+        if (id_localidad == 0) {
+          alert ("Por favor ingrese una localidad");
+          return false;
+        }
+
+        if (id_tipo_inmueble == 0) {
+          alert ("Por favor ingrese un tipo de inmueble");
+          return false;
+        }
+
+        this.model.set({
+          "id_localidad":id_localidad,
+          "id_tipo_inmueble":id_tipo_inmueble,
+          "inmueble_nombre": self.$("#propiedades_buscar_localidades option:selected").text(),
+          "localidad_nombre": self.$("#propiedades_buscar_tipos_inmueble option:selected").text(),
         });
          
         $(".error").removeClass("error");

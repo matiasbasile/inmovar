@@ -696,3 +696,86 @@
   </div>
 </div>
 </script>
+
+<script type="text/template" id="propiedades_permutas_table">
+<div class="table-responsive">
+  <table id="gastos_tabla" class="table table-striped sortable m-b-none default footable">
+    <thead>
+      <tr>
+        <th>Tipo de Propiedad</th>
+        <th>Localidad</th>
+        <th>Precio Maximo</th>
+        <th>Dormitorios</th>
+        <th>Baños</th>
+        <th>Cocheras</th>
+        <th class="th_acciones w50"></th>
+      </tr>
+    </thead>
+    <tbody class="tbody"></tbody>
+    <tfoot class="tfoot">
+      <tr>
+        <td></td>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <td></td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+</script>
+
+<script type="text/template" id="propiedades_permutas_item">
+<td class="data"><%= inmueble_nombre %></td>
+<td class="data"><%= localidad_nombre %></td>
+<td class="data">$ <%= precio_maximo %></td>
+<td class="data"><%= dormitorios %></td>
+<td class="data"><%= banios %></td>
+<td class="data"><%= cocheras %></td>
+<td class="tar td_acciones">
+  <button class="btn btn-white eliminar"><i class="fa fa-trash"></i></button> 
+</td>
+</script>
+
+<script type="text/template" id="propiedades_permutas_edit">
+<div class="panel panel-default">
+  <div class="panel-heading oh">
+    <span class="bold fl fs16 mt7">Agregar permutas</span>
+    <button class="fr btn btn-default cerrar"><i class="fa fa-times"></i></button>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-6">
+        <select class="form-control no-model" id="propiedades_buscar_localidades"></select>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <select class="form-control no-model" id="propiedades_buscar_tipos_inmueble"></select>  
+        </div>
+      </div>
+      <div class="col-md-3">
+        <label class="control-label">Baños</label>
+        <input type="number" value="<%= banios %>" class="form-control" id="propiedades_permutas_banios" name="banios">
+      </div>
+      <div class="col-md-3">
+        <label class="control-label">Cocheras</label>
+        <input type="number" value="<%= cocheras %>" class="form-control" id="propiedades_permutas_cocheras" name="cocheras">
+      </div>
+      <div class="col-md-3">
+        <label class="control-label">Dormitorios</label>
+        <input type="number" value="<%= dormitorios %>" class="form-control" id="propiedades_permutas_dormitorios" name="dormitorios">
+      </div>
+      <div class="col-md-3">
+        <label class="control-label">Hasta Precio</label>
+        <input type="number" value="<%= precio_maximo %>" class="form-control" id="propiedades_permutas_precio_maximo" name="precio_maximo">
+      </div>
+    </div>
+
+  </div>
+  <div class="panel-footer clearfix tar">
+    <button class="btn guardar btn-info">Guardar</button>
+  </div>
+</div>
+</script>

@@ -56,7 +56,15 @@
                     <span class="hidden-xs m-l-xs"> Reportes</span>
                   </a>
                 </li>
-              
+              <% } %>
+
+              <% if (id_empresa == ID_EMPRESA && VOLVER_SUPERADMIN == 1) { %>
+                <li class="">
+                  <a id="propiedad_preview_6_link" href="#propiedad_preview_tab6" class="oh buscar_precios_grafico" role="tab" data-toggle="tab">
+                    <i class="material-icons">attach_money</i>
+                    <span class="hidden-xs m-l-xs">Precios</span>
+                  </a>
+                </li>
               <% } %>
 
               <li class="show-xs-dib fr" id="cerrar_preview" style="float: right !important;">
@@ -166,53 +174,53 @@
       					    <div class="block panel padder-v item bg-info mb0" style="height: 105px; margin-top: 70px;">
       						  	<div class="h1 font-thin text-white h1 m-t-md total_visitas tac mt10">0</div>
       						  	<span class="text-muted text-md tac db">Vistas</span>
-      						</div>
-		            </div>
-                <div class="col-sm-4">
-      						<div class="block panel padder-v item" style="height: 105px">
-      						  	<span class="font-thin text-muted h1 block m-t-md total_web tac">0</span>
-      						  	<span class="text-muted text-md db tac">En tu Web</span>
-      						</div>
-              	</div>
-              	<div class="col-sm-4">
-      						<div class="block panel padder-v item" style="height: 105px">
-      						  	<span class="font-thin h1 block m-t-md total_otra_web tac">0</span>
-      						  	<span class="text-muted text-md db tac fs16">Otras Web</span>
-      						</div>
+      						  </div>
+		              </div>
+                  <div class="col-sm-4">
+        						<div class="block panel padder-v item" style="height: 105px">
+        						  	<span class="font-thin text-muted h1 block m-t-md total_web tac">0</span>
+        						  	<span class="text-muted text-md db tac">En tu Web</span>
+        						</div>
+                	</div>
+                	<div class="col-sm-4">
+        						<div class="block panel padder-v item" style="height: 105px">
+        						  	<span class="font-thin h1 block m-t-md total_otra_web tac">0</span>
+        						  	<span class="text-muted text-md db tac fs16">Otras Web</span>
+        						</div>
+                  </div>
+                  <div class="col-sm-4">
+        						<div class="block panel padder-v item" style="height: 105px">
+        						  	<span class="font-thin h1 block m-t-md total_panel tac">0</span>
+        						  	<span class="text-muted text-md db tac">En el panel</span>
+        						</div>
+                  </div>
                 </div>
-                <div class="col-sm-4">
-      						<div class="block panel padder-v item" style="height: 105px">
-      						  	<span class="font-thin h1 block m-t-md total_panel tac">0</span>
-      						  	<span class="text-muted text-md db tac">En el panel</span>
-      						</div>
-                </div>
-              </div>
-              <div class="row">
+                <div class="row">
 		            <div class="col-sm-12">
 					       <div class="block panel padder-v item bg-success mb0" style="height: 105px">
 						  	   <div class="h1 font-thin text-white h1 m-t-md total_consultas tac mt10">0</div>
 						  	   <span class="text-muted text-md tac db">Consultas</span>
 						     </div>
 		            </div>
-              <div class="col-sm-4">
+                  <div class="col-sm-4">
     						<div class="block panel padder-v item" style="height: 105px">
     						  	<span class="font-thin h1 block m-t-md consultas_web tac">0</span>
     						  	<span class="text-muted text-md db tac">En tu Web</span>
     						</div>
-              </div>
-              <div class="col-sm-4">
+                  </div>
+                  <div class="col-sm-4">
     						<div class="block panel padder-v item" style="height: 105px">
     						  	<span class="font-thin h1 block m-t-md consultas_otra_web tac">0</span>
     						  	<span class="text-muted text-md db tac">Otras Web</span>
     						</div>
-              </div>
-              <div class="col-sm-4">
+                  </div>
+                  <div class="col-sm-4">
     						<div class="block panel padder-v item" style="height: 105px">
     						  	<span class="font-thin h1 block m-t-md consultas_panel tac">0</span>
     						  	<span class="text-muted text-md db tac">En el panel</span>
     						</div>
-              </div>
-            </div>
+                  </div>
+                </div>
                 <div class="h150" style="width: 540px;" id="vision_general_bar"></div>
 
                 <div class="consultas">
@@ -230,6 +238,37 @@
                     </div>
                   </div>
                 </div>
+              </div>
+
+              <div id="propiedad_preview_tab6" class="tab-pane">
+
+                <div class="row fixed-grafico">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="control-label">Fecha desde</label>
+                      <div class="input-group">
+                        <input type="text" name="fecha_cobro" class="form-control" id="propiedad_graficos_fecha_desde"/>
+                        <span class="input-group-btn">
+                          <button style="height: 35px;" tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="material-icons">date_range</i></button>
+                        </span>              
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="control-label">Fecha hasta</label>
+                      <div class="input-group">
+                        <input type="text" name="fecha_debitado" class="form-control" id="propiedad_graficos_fecha_hasta"/>
+                        <span class="input-group-btn">
+                          <button style="height: 35px;" tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="material-icons">date_range</i></button>
+                        </span>              
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="h250" style="width: 540px;margin-top: 100px;" id="historial_precios_bar"></div>
               </div>
 
             </div>

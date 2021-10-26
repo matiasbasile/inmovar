@@ -195,8 +195,18 @@
               </label>
             </div>
           </div>
-
-        </div>          
+        </div> 
+        <div class="permutas_div <%= (acepta_permuta == 1)?"":"dn" %>">
+          <div class="row">
+            <div class="col-md-9">
+              <label class="control-label control-label-sub mt10 mb10">Opciones de Permuta</label>
+            </div>
+            <div class="col-md-3 tar">
+              <button class="btn btn-info nueva_permuta">+ Agregar</button>
+            </div>
+          </div>         
+          <div id="propiedades_permutas" class="mt10"></div>
+        </div>
       </div>
     </div>
   </div>

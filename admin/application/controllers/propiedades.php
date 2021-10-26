@@ -9,6 +9,23 @@ class Propiedades extends REST_Controller {
     $this->load->model('Propiedad_Model', 'modelo');
   }
 
+  function get_precios_propiedades() {
+    $id_empresa = parent::get_post("id_empresa", parent::get_empresa());
+    $fecha_desde = parent::get_post("fecha_desde", 0);
+    $fecha_hasta = parent::get_post("fecha_hasta", 0);
+    $id = parent::get_post("id", 0);
+    $salida = $this->modelo->get_precios_propiedades(array(
+      "id_propiedad"=>$id,
+      "id_empresa"=>$id_empresa,
+      "fecha_desde"=>$fecha_desde,
+      "fecha_hasta"=>$fecha_hasta,
+    ));
+    echo json_encode(array(
+      "error"=>0,
+      "salida"=>$salida,
+    ));
+  }
+
   function guardar_visita_panel() {
     $id_empresa = parent::get_post("id_empresa", parent::get_empresa());
     $id_propiedad = parent::get_post("id_propiedad", 0);
