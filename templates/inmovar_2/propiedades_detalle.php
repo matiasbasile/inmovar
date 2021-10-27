@@ -324,7 +324,7 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no
                   <div class="col-md-4 col-sm-4 col-xs-12">
                     <ul class="condition">
                       <li>
-                        <i class="fa fa-television"></i>Aire Acondicionado
+                        <i class="fa fa-check"></i>Aire Acondicionado
                       </li>
                     </ul>
                   </div>
@@ -333,7 +333,7 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no
                   <div class="col-md-4 col-sm-4 col-xs-12">
                     <ul class="condition">
                       <li>
-                        <i class="fa fa-television"></i>Uso Comercial
+                        <i class="fa fa-check"></i>Uso Comercial
                       </li>
                     </ul>
                   </div>
@@ -342,7 +342,7 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no
                   <div class="col-md-4 col-sm-4 col-xs-12">
                     <ul class="condition">
                       <li>
-                        <i class="fa fa-television"></i>Internet
+                        <i class="fa fa-check"></i>Internet
                       </li>
                     </ul>
                   </div>
@@ -351,7 +351,7 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no
                   <div class="col-md-4 col-sm-4 col-xs-12">
                     <ul class="condition">
                       <li>
-                        <i class="fa fa-television"></i>Gimnasio
+                        <i class="fa fa-check"></i>Gimnasio
                       </li>
                     </ul>
                   </div>
@@ -360,7 +360,7 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no
                   <div class="col-md-4 col-sm-4 col-xs-12">
                     <ul class="condition">
                       <li>
-                        <i class="fa fa-television"></i>Parrilla
+                        <i class="fa fa-check"></i>Parrilla
                       </li>
                     </ul>
                   </div>
@@ -369,7 +369,7 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no
                   <div class="col-md-4 col-sm-4 col-xs-12">
                     <ul class="condition">
                       <li>
-                        <i class="fa fa-television"></i>Piscina
+                        <i class="fa fa-check"></i>Piscina
                       </li>
                     </ul>
                   </div>
@@ -378,7 +378,7 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no
                   <div class="col-md-4 col-sm-4 col-xs-12">
                     <ul class="condition">
                       <li>
-                        <i class="fa fa-television"></i>Vigilancia
+                        <i class="fa fa-check"></i>Vigilancia
                       </li>
                     </ul>
                   </div>
@@ -387,7 +387,7 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no
                   <div class="col-md-4 col-sm-4 col-xs-12">
                     <ul class="condition">
                       <li>
-                        <i class="fa fa-television"></i>Sala de Juegos
+                        <i class="fa fa-check"></i>Sala de Juegos
                       </li>
                     </ul>
                   </div>
@@ -396,7 +396,7 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no
                   <div class="col-md-4 col-sm-4 col-xs-12">
                     <ul class="condition">
                       <li>
-                        <i class="fa fa-television"></i>Ascensor
+                        <i class="fa fa-check"></i>Ascensor
                       </li>
                     </ul>
                   </div>
@@ -405,7 +405,7 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no
                   <div class="col-md-4 col-sm-4 col-xs-12">
                     <ul class="condition">
                       <li>
-                        <i class="fa fa-television"></i>Lavadero
+                        <i class="fa fa-check"></i>Lavadero
                       </li>
                     </ul>
                   </div>
@@ -414,7 +414,7 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no
                   <div class="col-md-4 col-sm-4 col-xs-12">
                     <ul class="condition">
                       <li>
-                        <i class="fa fa-television"></i>Living Comedor
+                        <i class="fa fa-check"></i>Living Comedor
                       </li>
                     </ul>
                   </div>
@@ -423,7 +423,7 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no
                   <div class="col-md-4 col-sm-4 col-xs-12">
                     <ul class="condition">
                       <li>
-                        <i class="fa fa-television"></i>Terraza
+                        <i class="fa fa-check"></i>Terraza
                       </li>
                     </ul>
                   </div>
@@ -432,7 +432,7 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no
                   <div class="col-md-4 col-sm-4 col-xs-12">
                     <ul class="condition">
                       <li>
-                        <i class="fa fa-television"></i>Accesible
+                        <i class="fa fa-check"></i>Accesible
                       </li>
                     </ul>
                   </div>
@@ -441,7 +441,7 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no
                   <div class="col-md-4 col-sm-4 col-xs-12">
                     <ul class="condition">
                       <li>
-                        <i class="fa fa-television"></i>Balcon
+                        <i class="fa fa-check"></i>Balcon
                       </li>
                     </ul>
                   </div>
@@ -450,7 +450,7 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no
                   <div class="col-md-4 col-sm-4 col-xs-12">
                     <ul class="condition">
                       <li>
-                        <i class="fa fa-television"></i>Patio
+                        <i class="fa fa-check"></i>Patio
                       </li>
                     </ul>
                   </div>
