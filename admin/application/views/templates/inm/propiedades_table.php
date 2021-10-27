@@ -118,8 +118,8 @@
                       <li><a href="javascript:void(0)" class="ttn sort"><i data-val="precio_final" class="fa fa-check mr5 dn" aria-hidden="true"></i>Precio</a></li>
                       <li><a href="javascript:void(0)" class="ttn sort"><i data-val="codigo" class="fa fa-check mr5 dn" aria-hidden="true"></i>Codigo</a></li>
                       <li class="divider"></li>
-                      <li><a href="javascript:void(0)" class="ttn sort-a"><i data-val="ASC" class="fa fa-check mr5" aria-hidden="true"></i> Ascendiente</a></li>
-                      <li><a href="javascript:void(0)" class="ttn sort-a"><i data-val="DESC" class="fa fa-check mr5 dn" aria-hidden="true"></i>Descendiente</a></li>
+                      <li><a href="javascript:void(0)" class="ttn sort-a"><i data-val="ASC" class="fa fa-check mr5" aria-hidden="true"></i> Ascendente</a></li>
+                      <li><a href="javascript:void(0)" class="ttn sort-a"><i data-val="DESC" class="fa fa-check mr5 dn" aria-hidden="true"></i>Descendente</a></li>
                     </ul>
                   </div>
                 </th>
