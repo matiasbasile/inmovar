@@ -320,6 +320,141 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no
                     </ul>
                   </div>
                 <?php } ?>
+                <?php if ($propiedad->servicios_aire_acondicionado == 1) { ?>
+                  <div class="col-md-4 col-sm-4 col-xs-12">
+                    <ul class="condition">
+                      <li>
+                        <i class="fa fa-television"></i>Aire Acondicionado
+                      </li>
+                    </ul>
+                  </div>
+                <?php } ?>
+                <?php if ($propiedad->servicios_uso_comercial == 1) { ?>
+                  <div class="col-md-4 col-sm-4 col-xs-12">
+                    <ul class="condition">
+                      <li>
+                        <i class="fa fa-television"></i>Uso Comercial
+                      </li>
+                    </ul>
+                  </div>
+                <?php } ?>
+                <?php if ($propiedad->servicios_internet == 1) { ?>
+                  <div class="col-md-4 col-sm-4 col-xs-12">
+                    <ul class="condition">
+                      <li>
+                        <i class="fa fa-television"></i>Internet
+                      </li>
+                    </ul>
+                  </div>
+                <?php } ?>
+                <?php if ($propiedad->gimnasio == 1) { ?>
+                  <div class="col-md-4 col-sm-4 col-xs-12">
+                    <ul class="condition">
+                      <li>
+                        <i class="fa fa-television"></i>Gimnasio
+                      </li>
+                    </ul>
+                  </div>
+                <?php } ?>
+                <?php if ($propiedad->parrilla == 1) { ?>
+                  <div class="col-md-4 col-sm-4 col-xs-12">
+                    <ul class="condition">
+                      <li>
+                        <i class="fa fa-television"></i>Parrilla
+                      </li>
+                    </ul>
+                  </div>
+                <?php } ?>
+                <?php if ($propiedad->piscina == 1) { ?>
+                  <div class="col-md-4 col-sm-4 col-xs-12">
+                    <ul class="condition">
+                      <li>
+                        <i class="fa fa-television"></i>Piscina
+                      </li>
+                    </ul>
+                  </div>
+                <?php } ?>
+                <?php if ($propiedad->vigilancia == 1) { ?>
+                  <div class="col-md-4 col-sm-4 col-xs-12">
+                    <ul class="condition">
+                      <li>
+                        <i class="fa fa-television"></i>Vigilancia
+                      </li>
+                    </ul>
+                  </div>
+                <?php } ?>
+                <?php if ($propiedad->sala_juegos == 1) { ?>
+                  <div class="col-md-4 col-sm-4 col-xs-12">
+                    <ul class="condition">
+                      <li>
+                        <i class="fa fa-television"></i>Sala de Juegos
+                      </li>
+                    </ul>
+                  </div>
+                <?php } ?>
+                <?php if ($propiedad->ascensor == 1) { ?>
+                  <div class="col-md-4 col-sm-4 col-xs-12">
+                    <ul class="condition">
+                      <li>
+                        <i class="fa fa-television"></i>Ascensor
+                      </li>
+                    </ul>
+                  </div>
+                <?php } ?>
+                <?php if ($propiedad->lavadero == 1) { ?>
+                  <div class="col-md-4 col-sm-4 col-xs-12">
+                    <ul class="condition">
+                      <li>
+                        <i class="fa fa-television"></i>Lavadero
+                      </li>
+                    </ul>
+                  </div>
+                <?php } ?>
+                <?php if ($propiedad->living_comedor == 1) { ?>
+                  <div class="col-md-4 col-sm-4 col-xs-12">
+                    <ul class="condition">
+                      <li>
+                        <i class="fa fa-television"></i>Living Comedor
+                      </li>
+                    </ul>
+                  </div>
+                <?php } ?>
+                <?php if ($propiedad->terraza == 1) { ?>
+                  <div class="col-md-4 col-sm-4 col-xs-12">
+                    <ul class="condition">
+                      <li>
+                        <i class="fa fa-television"></i>Terraza
+                      </li>
+                    </ul>
+                  </div>
+                <?php } ?>
+                <?php if ($propiedad->accesible == 1) { ?>
+                  <div class="col-md-4 col-sm-4 col-xs-12">
+                    <ul class="condition">
+                      <li>
+                        <i class="fa fa-television"></i>Accesible
+                      </li>
+                    </ul>
+                  </div>
+                <?php } ?>
+                <?php if ($propiedad->balcon == 1) { ?>
+                  <div class="col-md-4 col-sm-4 col-xs-12">
+                    <ul class="condition">
+                      <li>
+                        <i class="fa fa-television"></i>Balcon
+                      </li>
+                    </ul>
+                  </div>
+                <?php } ?>
+                <?php if ($propiedad->patio == 1) { ?>
+                  <div class="col-md-4 col-sm-4 col-xs-12">
+                    <ul class="condition">
+                      <li>
+                        <i class="fa fa-television"></i>Patio
+                      </li>
+                    </ul>
+                  </div>
+                <?php } ?>
                 
                 <?php if ($propiedad->apto_banco == 1) {  ?>
                   <div class="col-md-4 col-sm-4 col-xs-12">

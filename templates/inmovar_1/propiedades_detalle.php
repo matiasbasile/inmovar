@@ -248,6 +248,66 @@ else $vc_moneda = "$";
                       <dt>TV Cable:</dt>
                       <dd>Sí</dd>
                     <?php } ?>
+                    <?php if ($propiedad->servicios_aire_acondicionado == 1) { ?>
+                      <dt>Aire Acondicionado:</dt>
+                      <dd>Sí</dd>
+                    <?php } ?>
+                    <?php if ($propiedad->servicios_uso_comercial == 1) { ?>
+                      <dt>Uso Comercial:</dt>
+                      <dd>Sí</dd>
+                    <?php } ?>
+                    <?php if ($propiedad->servicios_internet == 1) { ?>
+                      <dt>Internet:</dt>
+                      <dd>Sí</dd>
+                    <?php } ?>
+                    <?php if ($propiedad->gimnasio == 1) { ?>
+                      <dt>Gimnasio:</dt>
+                      <dd>Sí</dd>
+                    <?php } ?>
+                    <?php if ($propiedad->parrilla == 1) { ?>
+                      <dt>Parrilla:</dt>
+                      <dd>Sí</dd>
+                    <?php } ?>
+                    <?php if ($propiedad->piscina == 1) { ?>
+                      <dt>Piscina:</dt>
+                      <dd>Sí</dd>
+                    <?php } ?>
+                    <?php if ($propiedad->vigilancia == 1) { ?>
+                      <dt>Vigilancia:</dt>
+                      <dd>Sí</dd>
+                    <?php } ?>
+                    <?php if ($propiedad->sala_juegos == 1) { ?>
+                      <dt>Sala de Juegos:</dt>
+                      <dd>Sí</dd>
+                    <?php } ?>
+                    <?php if ($propiedad->ascensor == 1) { ?>
+                      <dt>Ascensor:</dt>
+                      <dd>Sí</dd>
+                    <?php } ?>
+                    <?php if ($propiedad->lavadero == 1) { ?>
+                      <dt>Lavadero:</dt>
+                      <dd>Sí</dd>
+                    <?php } ?>
+                    <?php if ($propiedad->living_comedor == 1) { ?>
+                      <dt>Living Comedor:</dt>
+                      <dd>Sí</dd>
+                    <?php } ?>
+                    <?php if ($propiedad->terraza == 1) { ?>
+                      <dt>Terraza:</dt>
+                      <dd>Sí</dd>
+                    <?php } ?>
+                    <?php if ($propiedad->accesible == 1) { ?>
+                      <dt>Accesible:</dt>
+                      <dd>Sí</dd>
+                    <?php } ?>
+                    <?php if ($propiedad->balcon == 1) { ?>
+                      <dt>Balcon:</dt>
+                      <dd>Sí</dd>
+                    <?php } ?>
+                    <?php if ($propiedad->patio == 1) { ?>
+                      <dt>Patio:</dt>
+                      <dd>Sí</dd>
+                    <?php } ?>
                     <?php if ($propiedad->apto_banco == 1) {  ?>
                       <dt>Apto para crédito bancario</dt>
                       <dd>&nbsp;</dd>

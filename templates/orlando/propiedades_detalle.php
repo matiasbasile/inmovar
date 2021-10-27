@@ -121,46 +121,60 @@ if ($propiedad === FALSE) {
                   <div><?php echo $propiedad->texto ?></div>
                 <?php } ?>
               </div>
-              <?php if (!empty($propiedad->caracteristicas)) {  ?>
-                <?php $caracteristicas = explode(";;;",$propiedad->caracteristicas);?>
-                <div class="box-space">
-                  <div class="row">
-                    <div class="col-md-3">
-                      <div class="info-title">Características</div>                    
-                    </div>
-                    <div class="col-md-9">
-                      <div class="available-facilities">
-                        <ul>
-                          <?php foreach ($caracteristicas as $c) {  ?>
-                            <li><?php echo $c ?></li>
-                          <?php } ?>
-                        	<?php if ($propiedad->servicios_gas == 1) {  ?>
-                          	<li>Gas</li>
-                          <?php } ?>
-                        	<?php if ($propiedad->servicios_cloacas == 1) {  ?>
-                          	<li>Cloacas</li>
-                          <?php } ?>
-                          <?php if ($propiedad->servicios_agua_corriente == 1) {  ?>
-                          	<li>Agua Corriente</li>
-                          <?php } ?>
-                          <?php if ($propiedad->servicios_asfalto == 1) {  ?>
-                          	<li>Asfalto</li>
-                          <?php } ?>
-                          <?php if ($propiedad->servicios_electricidad == 1) {  ?>
-                          	<li>Electricidad</li>
-                          <?php } ?>
-                          <?php if ($propiedad->servicios_cable == 1) {  ?>
-                          	<li>Cable</li>
-                          <?php } ?>
-                          <?php if ($propiedad->servicios_telefono == 1) {  ?>
-                          	<li>Teléfono</li>
-                          <?php } ?>
-                        </ul>
-                      </div>
+              <?php $caracteristicas = explode(";;;",$propiedad->caracteristicas);?>
+              <div class="box-space">
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="info-title">Características</div>                    
+                  </div>
+                  <div class="col-md-9">
+                    <div class="available-facilities">
+                      <ul>
+                        <?php foreach ($caracteristicas as $c) {  ?>
+                          <li><?php echo $c ?></li>
+                        <?php } ?>
+                      	<?php if ($propiedad->servicios_gas == 1) {  ?>
+                        	<li>Gas</li>
+                        <?php } ?>
+                      	<?php if ($propiedad->servicios_cloacas == 1) {  ?>
+                        	<li>Cloacas</li>
+                        <?php } ?>
+                        <?php if ($propiedad->servicios_agua_corriente == 1) {  ?>
+                        	<li>Agua Corriente</li>
+                        <?php } ?>
+                        <?php if ($propiedad->servicios_asfalto == 1) {  ?>
+                        	<li>Asfalto</li>
+                        <?php } ?>
+                        <?php if ($propiedad->servicios_electricidad == 1) {  ?>
+                        	<li>Electricidad</li>
+                        <?php } ?>
+                        <?php if ($propiedad->servicios_cable == 1) {  ?>
+                        	<li>Cable</li>
+                        <?php } ?>
+                        <?php if ($propiedad->servicios_telefono == 1) {  ?>
+                        	<li>Teléfono</li>
+                        <?php } ?>
+                        <?php if ($propiedad->servicios_aire_acondicionado == 1) { ?><li>Aire</li><?php } ?>
+                        <?php if ($propiedad->servicios_uso_comercial == 1) { ?><li>Uso Comercial</li><?php } ?>
+                        <?php if ($propiedad->servicios_internet == 1) { ?><li>WiFi</li><?php } ?>
+                        <?php if ($propiedad->gimnasio == 1) { ?><li>Gimnasio</li><?php } ?>
+                        <?php if ($propiedad->parrilla == 1) { ?><li>Parrilla</li><?php } ?>
+                        <?php if ($propiedad->permite_mascotas == 1) { ?><li>Permite Mascotas</li><?php } ?>
+                        <?php if ($propiedad->piscina == 1) { ?><li>Piscina</li><?php } ?>
+                        <?php if ($propiedad->vigilancia == 1) { ?><li>Vigilancia</li><?php } ?>
+                        <?php if ($propiedad->sala_juegos == 1) { ?><li>Sala de Juegos</li><?php } ?>
+                        <?php if ($propiedad->ascensor == 1) { ?><li>Ascensor</li><?php } ?>
+                        <?php if ($propiedad->lavadero == 1) { ?><li>Lavadero</li><?php } ?>
+                        <?php if ($propiedad->living_comedor == 1) { ?><li>Living Comedor</li><?php } ?>
+                        <?php if ($propiedad->terraza == 1) { ?><li>Terraza</li><?php } ?>
+                        <?php if ($propiedad->accesible == 1) { ?><li>Accesible</li><?php } ?>
+                        <?php if ($propiedad->balcon == 1) { ?><li>Balcon</li><?php } ?>
+                        <?php if ($propiedad->patio == 1) { ?><li>Patio</li><?php } ?>
+                      </ul>
                     </div>
                   </div>
                 </div>
-              <?php } ?>            
+              </div>           
               <div class="box-space">
                 <div class="row">
                   <div class="col-md-3">

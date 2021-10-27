@@ -126,29 +126,6 @@ $og_desc = (strlen($og_desc)>180) ? substr($og_desc, 0, 180)."..." : $og_desc; ?
           <?= isset($propiedad->dormitorios) ? "<li><i class='fa fa-check detalleColorC'></i>Dormitorios: $propiedad->dormitorios  </li>" : "" ?>
           <?= isset($propiedad->banios) ? "<li><i class='fa fa-check detalleColorC'></i>Baños: $propiedad->banios </li>" : "" ?>
           <?= isset($propiedad->cocheras) ? "<li><i class='fa fa-check detalleColorC'></i>Cocheras: $propiedad->cocheras </li>" : "" ?>
-          <?= $propiedad->parrilla != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Parrilla: Si </li>" : "" ?>
-          <?= $propiedad->permite_mascotas != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Permite Mascotas: Si </li>" : "" ?>
-          <?= $propiedad->piscina != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Piscina: Si </li>" : "" ?>
-          <?= $propiedad->vigilancia != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Vigilancia: Si </li>" : "" ?>
-          <?= $propiedad->sala_juegos != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Sala de Juegos: Si </li>" : "" ?>
-          <?= $propiedad->ascensor != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Ascensor: Si </li>" : "" ?> 
-          <?= $propiedad->lavadero != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Lavadero: Si </li>" : "" ?> 
-          <?= $propiedad->living_comedor != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Living Comedor: Si </li>" : "" ?>  
-          <?= $propiedad->terraza != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Terraza: Si </li>" : "" ?> 
-          <?= $propiedad->accesible != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Accesible: Si </li>" : "" ?> 
-          <?= $propiedad->gimnasio != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Gimnasio: Si </li>" : "" ?> 
-          <!--<?= $propiedad->servicios_aire_acondicionado != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Aire Acondicionado: Si </li>" : "" ?> 
-          <?= $propiedad->servicios_uso_comercial != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Uso Comercial: Si </li>" : "" ?> 
-          <?= $propiedad->servicios_internet != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Internet: Si </li>" : "" ?> 
-          <?= $propiedad->servicios_gas != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Gas: Si </li>" : "" ?> 
-          <?= $propiedad->servicios_cloacas != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Cloacas: Si </li>" : "" ?> 
-          <?= $propiedad->servicios_agua_corriente != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Agua Corriente: Si </li>" : "" ?> 
-          <?= $propiedad->servicios_asfalto != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Asfalto: Si </li>" : "" ?>  
-          <?= $propiedad->servicios_electricidad != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Electricidad: Si </li>" : "" ?> 
-          <?= $propiedad->servicios_telefono != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Telefono: Si </li>" : "" ?> 
-          <?= $propiedad->servicios_cable != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Cable: Si </li>" : "" ?>  -->
-          <?= $propiedad->balcon != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Balcon: Si </li>" : "" ?> 
-          <?= $propiedad->patio != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Patio: Si </li>" : "" ?> 
           <?= $propiedad->acepta_financiacion != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Financiacion: Si </li>" : "" ?> 
           <?= $propiedad->acepta_permuta != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Acepta Permuta: Si </li>" : "" ?> 
           </ul>
@@ -166,6 +143,19 @@ $og_desc = (strlen($og_desc)>180) ? substr($og_desc, 0, 180)."..." : $og_desc; ?
           <?= $propiedad->servicios_electricidad != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Electricidad: Si </li>" : "" ?> 
           <?= $propiedad->servicios_telefono != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Telefono: Si </li>" : "" ?> 
           <?= $propiedad->servicios_cable != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Cable: Si </li>" : "" ?> 
+          <?= $propiedad->parrilla != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Parrilla: Si </li>" : "" ?>
+          <?= $propiedad->permite_mascotas != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Permite Mascotas: Si </li>" : "" ?>
+          <?= $propiedad->piscina != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Piscina: Si </li>" : "" ?>
+          <?= $propiedad->vigilancia != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Vigilancia: Si </li>" : "" ?>
+          <?= $propiedad->sala_juegos != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Sala de Juegos: Si </li>" : "" ?>
+          <?= $propiedad->ascensor != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Ascensor: Si </li>" : "" ?> 
+          <?= $propiedad->lavadero != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Lavadero: Si </li>" : "" ?> 
+          <?= $propiedad->living_comedor != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Living Comedor: Si </li>" : "" ?>  
+          <?= $propiedad->terraza != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Terraza: Si </li>" : "" ?> 
+          <?= $propiedad->accesible != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Accesible: Si </li>" : "" ?> 
+          <?= $propiedad->gimnasio != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Gimnasio: Si </li>" : "" ?> 
+          <?= $propiedad->balcon != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Balcon: Si </li>" : "" ?> 
+          <?= $propiedad->patio != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Patio: Si </li>" : "" ?> 
           </ul>
         </section> 
         <section id="ficha_superficies" class="card">
