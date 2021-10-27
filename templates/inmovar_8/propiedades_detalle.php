@@ -46,6 +46,10 @@ if (!empty($propiedad->imagen)) $propiedad->images = array_merge(array($propieda
 <script>const ID_EMPRESA_RELACION = "<?php echo $id_empresa ?>";</script>
 <style type="text/css">
 iframe { width: 100% !important }
+.info_content li{display: inline-block; width: 22%;list-style: none;}
+@media screen and (max-width: 767px){
+ .info_content li {width: 45%;}
+}
 </style>
 </head>
 <body>
@@ -191,6 +195,33 @@ iframe { width: 100% !important }
                     <div class="info_content">
                       <h4 class="heading_info marg_heading">Informacion general</h4>
                       <p><?php echo $propiedad->texto ?></p>
+                    </div>
+                    <hr>
+                    <div class="info_content">
+                      <h4 class="heading_info marg_heading">Servicios</h4>
+                      <?php if (!empty($propiedad->servicios_electricidad)) {  ?><li>Electricidad</li><?php } ?>
+                      <?php if (!empty($propiedad->servicios_gas)) {  ?><li>Gas</li><?php } ?>
+                      <?php if (!empty($propiedad->servicios_agua_corriente)) {  ?><li>Agua Corriente</li><?php } ?>
+                      <?php if (!empty($propiedad->servicios_cloacas)) {  ?><li>Cloacas</li><?php } ?>
+                      <?php if (!empty($propiedad->servicios_asfalto)) {  ?><li>Asfalto</li><?php } ?>
+                      <?php if (!empty($propiedad->servicios_telefono)) {  ?><li>Teléfono</li><?php } ?>
+                      <?php if (!empty($propiedad->servicios_cable)) {  ?><li>Cable</li><?php } ?>
+                      <?php if (!empty($propiedad->servicios_aire_acondicionado)) {  ?><li>Aire</li><?php } ?>
+                      <?php if (!empty($propiedad->servicios_uso_comercial)) {  ?><li>Uso Comercial</li><?php } ?>
+                      <?php if (!empty($propiedad->servicios_internet)) {  ?><li>WiFi</li><?php } ?>
+                      <?php if (!empty($propiedad->gimnasio)) {  ?><li>Gimnasio</li><?php } ?>
+                      <?php if (!empty($propiedad->parrilla)) {  ?><li>Parrilla</li><?php } ?>
+                      <?php if (!empty($propiedad->permite_mascotas)) {  ?><li>Permite Mascotas</li><?php } ?>
+                      <?php if (!empty($propiedad->piscina)) {  ?><li>Piscina</li><?php } ?>
+                      <?php if (!empty($propiedad->vigilancia)) {  ?><li>Vigilancia</li><?php } ?>
+                      <?php if (!empty($propiedad->sala_juegos)) {  ?><li>Sala de Juegos</li><?php } ?>
+                      <?php if (!empty($propiedad->ascensor)) {  ?><li>Ascensor</li><?php } ?>
+                      <?php if (!empty($propiedad->lavadero)) {  ?><li>Lavadero</li><?php } ?>
+                      <?php if (!empty($propiedad->living_comedor)) {  ?><li>Living Comedor</li><?php } ?>
+                      <?php if (!empty($propiedad->terraza)) {  ?><li>Terraza</li><?php } ?>
+                      <?php if (!empty($propiedad->accesible)) {  ?><li>Accesible</li><?php } ?>
+                      <?php if (!empty($propiedad->balcon)) {  ?><li>Balcon</li><?php } ?>
+                      <?php if (!empty($propiedad->patio)) {  ?><li>Patio</li><?php } ?>
                     </div>
                     <?php if (!empty($propiedad->caracteristicas))  { ?>
                       <div class="cara_div">

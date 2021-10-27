@@ -130,8 +130,12 @@ if ($propiedad === FALSE) {
                   <div class="col-md-9">
                     <div class="available-facilities">
                       <ul>
-                        <?php foreach ($caracteristicas as $c) {  ?>
-                          <li><?php echo $c ?></li>
+                        <?php if (sizeof($caracteristicas)>0){ ?>
+                          <?php foreach ($caracteristicas as $c) {  ?>
+                            <?php if ($c != "") { ?>
+                              <li><?php echo $c ?></li>
+                            <?php } ?>
+                          <?php } ?>
                         <?php } ?>
                       	<?php if ($propiedad->servicios_gas == 1) {  ?>
                         	<li>Gas</li>
