@@ -779,3 +779,36 @@
   </div>
 </div>
 </script>
+
+<script type="text/template" id="propiedades_desactivar">
+  <div class="modal-header">
+    <b>Desactivar Propiedad</b>
+    <i class="pull-right cerrar_lightbox fs16 fa fa-times cp"></i>    
+  </div>
+  <div class="modal-body">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label class="control-label">Seleccione un motivo</label>
+          <select name="motivo" id="propiedades_desactivar_motivo" class="form-control">
+            <option value="0">Seleccione un motivo</option>
+            <option value="1">Vendi la propiedad</option>
+            <option value="2">Vendi la propiedad con un colega de Red Inmovar</option>
+            <option value="3">La propiedad se vendio</option>
+            <option value="4">El propietario dejo de ofrecer la propiedad</option>
+            <option value="5">Otro</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <textarea name="observacion" id="propiedades_desactivar_observacion" placeholder="Escribe aquí alguna nota u observación..." class="form-control no-model h100"></textarea>
+    </div>
+
+  </div>
+  <div class="modal-footer tar">
+    <button class="btn btn-pd btn-info guardar">Guardar</button>
+  </div>
+</div>
+</script>
