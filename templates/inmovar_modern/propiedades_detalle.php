@@ -227,6 +227,126 @@ if ($propiedad === FALSE) {
 								</div>
 								<div class="col-md-6 char-font">
 									<div class="row">
+										<div class="list-title col-md-7 col-xs-6"><i class="fa fa-check"></i> Aire Acondicionado</div>
+										<div class="pl50 negritas-low col-md-5 col-xs-6">
+											<?php echo (($propiedad->servicios_aire_acondicionado == 1))?"Sí":"-" ?>
+										</div>										
+									</div>
+								</div>
+								<div class="col-md-6 char-font">
+									<div class="row">
+										<div class="list-title col-md-7 col-xs-6"><i class="fa fa-check"></i> Uso Comercial</div>
+										<div class="pl50 negritas-low col-md-5 col-xs-6">
+											<?php echo (($propiedad->servicios_uso_comercial == 1))?"Sí":"-" ?>
+										</div>										
+									</div>
+								</div>
+								<div class="col-md-6 char-font">
+									<div class="row">
+										<div class="list-title col-md-7 col-xs-6"><i class="fa fa-check"></i> Internet</div>
+										<div class="pl50 negritas-low col-md-5 col-xs-6">
+											<?php echo (($propiedad->servicios_internet == 1))?"Sí":"-" ?>
+										</div>										
+									</div>
+								</div>
+								<div class="col-md-6 char-font">
+									<div class="row">
+										<div class="list-title col-md-7 col-xs-6"><i class="fa fa-check"></i> Gimnasio</div>
+										<div class="pl50 negritas-low col-md-5 col-xs-6">
+											<?php echo (($propiedad->gimnasio == 1))?"Sí":"-" ?>
+										</div>										
+									</div>
+								</div>
+								<div class="col-md-6 char-font">
+									<div class="row">
+										<div class="list-title col-md-7 col-xs-6"><i class="fa fa-check"></i> Parrilla</div>
+										<div class="pl50 negritas-low col-md-5 col-xs-6">
+											<?php echo (($propiedad->parrilla == 1))?"Sí":"-" ?>
+										</div>										
+									</div>
+								</div>
+								<div class="col-md-6 char-font">
+									<div class="row">
+										<div class="list-title col-md-7 col-xs-6"><i class="fa fa-check"></i> Piscina</div>
+										<div class="pl50 negritas-low col-md-5 col-xs-6">
+											<?php echo (($propiedad->piscina == 1))?"Sí":"-" ?>
+										</div>										
+									</div>
+								</div>
+								<div class="col-md-6 char-font">
+									<div class="row">
+										<div class="list-title col-md-7 col-xs-6"><i class="fa fa-check"></i> Vigilancia</div>
+										<div class="pl50 negritas-low col-md-5 col-xs-6">
+											<?php echo (($propiedad->vigilancia == 1))?"Sí":"-" ?>
+										</div>										
+									</div>
+								</div>
+								<div class="col-md-6 char-font">
+									<div class="row">
+										<div class="list-title col-md-7 col-xs-6"><i class="fa fa-check"></i> Sala de Juegos</div>
+										<div class="pl50 negritas-low col-md-5 col-xs-6">
+											<?php echo (($propiedad->sala_juegos == 1))?"Sí":"-" ?>
+										</div>										
+									</div>
+								</div>
+								<div class="col-md-6 char-font">
+									<div class="row">
+										<div class="list-title col-md-7 col-xs-6"><i class="fa fa-check"></i> Ascensor</div>
+										<div class="pl50 negritas-low col-md-5 col-xs-6">
+											<?php echo (($propiedad->ascensor == 1))?"Sí":"-" ?>
+										</div>										
+									</div>
+								</div>
+								<div class="col-md-6 char-font">
+									<div class="row">
+										<div class="list-title col-md-7 col-xs-6"><i class="fa fa-check"></i> Lavadero</div>
+										<div class="pl50 negritas-low col-md-5 col-xs-6">
+											<?php echo (($propiedad->lavadero == 1))?"Sí":"-" ?>
+										</div>										
+									</div>
+								</div>
+								<div class="col-md-6 char-font">
+									<div class="row">
+										<div class="list-title col-md-7 col-xs-6"><i class="fa fa-check"></i> Living Comedor</div>
+										<div class="pl50 negritas-low col-md-5 col-xs-6">
+											<?php echo (($propiedad->living_comedor == 1))?"Sí":"-" ?>
+										</div>										
+									</div>
+								</div>
+								<div class="col-md-6 char-font">
+									<div class="row">
+										<div class="list-title col-md-7 col-xs-6"><i class="fa fa-check"></i> Terraza</div>
+										<div class="pl50 negritas-low col-md-5 col-xs-6">
+											<?php echo (($propiedad->terraza == 1))?"Sí":"-" ?>
+										</div>										
+									</div>
+								</div>
+								<div class="col-md-6 char-font">
+									<div class="row">
+										<div class="list-title col-md-7 col-xs-6"><i class="fa fa-check"></i> Accesible</div>
+										<div class="pl50 negritas-low col-md-5 col-xs-6">
+											<?php echo (($propiedad->accesible == 1))?"Sí":"-" ?>
+										</div>										
+									</div>
+								</div>
+								<div class="col-md-6 char-font">
+									<div class="row">
+										<div class="list-title col-md-7 col-xs-6"><i class="fa fa-check"></i> Balcon</div>
+										<div class="pl50 negritas-low col-md-5 col-xs-6">
+											<?php echo (($propiedad->balcon == 1))?"Sí":"-" ?>
+										</div>										
+									</div>
+								</div>
+								<div class="col-md-6 char-font">
+									<div class="row">
+										<div class="list-title col-md-7 col-xs-6"><i class="fa fa-check"></i> Patio</div>
+										<div class="pl50 negritas-low col-md-5 col-xs-6">
+											<?php echo (($propiedad->patio == 1))?"Sí":"-" ?>
+										</div>										
+									</div>
+								</div>
+								<div class="col-md-6 char-font">
+									<div class="row">
 										<div class="list-title col-md-7 col-xs-6"><i class="fa fa-warehouse"></i> Cocheras</div>
 										<div class="pl50 negritas-low col-md-5 col-xs-6">
 											<?php echo (!empty($propiedad->cocheras))?$propiedad->cocheras:"-" ?>

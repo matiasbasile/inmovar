@@ -219,7 +219,81 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
                 <i class="fa fa-television"></i>TV Cable
               </li>
             <?php } ?>
-
+            <?php if ($propiedad->servicios_aire_acondicionado == 1) { ?>
+              <li>
+                <i class="fa fa-check"></i>Aire Acondicionado
+              </li>
+            <?php } ?>
+            <?php if ($propiedad->servicios_uso_comercial == 1) { ?>
+              <li>
+                <i class="fa fa-check"></i>Uso Comercial
+              </li>
+            <?php } ?>
+            <?php if ($propiedad->servicios_internet == 1) { ?>
+              <li>
+                <i class="fa fa-check"></i>Internet
+              </li>
+            <?php } ?>
+            <?php if ($propiedad->gimnasio == 1) { ?>
+              <li>
+                <i class="fa fa-check"></i>Gimnasio
+              </li>
+            <?php } ?>
+            <?php if ($propiedad->parrilla == 1) { ?>
+              <li>
+                <i class="fa fa-check"></i>Parrilla
+              </li>
+            <?php } ?>
+            <?php if ($propiedad->piscina == 1) { ?>
+              <li>
+                <i class="fa fa-check"></i>Piscina
+              </li>
+            <?php } ?>
+            <?php if ($propiedad->vigilancia == 1) { ?>
+              <li>
+                <i class="fa fa-check"></i>Vigilancia
+              </li>
+            <?php } ?>
+            <?php if ($propiedad->sala_juegos == 1) { ?>
+              <li>
+                <i class="fa fa-check"></i>Sala de Juegos
+              </li>
+            <?php } ?>
+            <?php if ($propiedad->ascensor == 1) { ?>
+              <li>
+                <i class="fa fa-check"></i>Ascensor
+              </li>
+            <?php } ?>
+            <?php if ($propiedad->lavadero == 1) { ?>
+              <li>
+                <i class="fa fa-check"></i>Lavadero
+              </li>
+            <?php } ?>
+            <?php if ($propiedad->living_comedor == 1) { ?>
+              <li>
+                <i class="fa fa-check"></i>Living Comedor
+              </li>
+            <?php } ?>
+            <?php if ($propiedad->terraza == 1) { ?>
+              <li>
+                <i class="fa fa-check"></i>Terraza
+              </li>
+            <?php } ?>
+            <?php if ($propiedad->accesible == 1) { ?>
+              <li>
+                <i class="fa fa-check"></i>Accesible
+              </li>
+            <?php } ?>
+            <?php if ($propiedad->balcon == 1) { ?>
+              <li>
+                <i class="fa fa-check"></i>Balcon
+              </li>
+            <?php } ?>
+            <?php if ($propiedad->patio == 1) { ?>
+              <li>
+                <i class="fa fa-check"></i>Patio
+              </li>
+            <?php } ?>
             <?php if ($propiedad->apto_banco == 1) {  ?>
               <li>
                 <i class="fa fa-bank"></i>Apto crédito bancario

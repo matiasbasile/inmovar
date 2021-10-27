@@ -232,7 +232,7 @@
       "click .compartir_meli":"compartir_meli",
       "click .meli_pausar_multiple":"meli_pausar_multiple",
       "click .marcar_interes":"marcar_interes",
-
+      "change #propiedades_tipo_activo": "buscar",
       "click .compartir_red_multiple":function(){
         this.compartir_red_multiple(1);
       },
@@ -428,6 +428,7 @@
       window.propiedades_filtro_argenprop = (typeof window.propiedades_filtro_argenprop != "undefined") ? window.propiedades_filtro_argenprop : -1;
       window.propiedades_filtro_web = (typeof window.propiedades_filtro_web != "undefined") ? window.propiedades_filtro_web : 1;
       window.propiedades_mapa = (typeof window.propiedades_mapa != "undefined") ? window.propiedades_mapa : 0;
+      window.propiedades_tipo_activo = (typeof window.propiedades_tipo_activo != "undefined") ? window.propiedades_tipo_activo : 1;
       window.propiedades_id_propietario = (typeof window.propiedades_id_propietario != "undefined") ? window.propiedades_id_propietario : 0;
 
       // Flag que indica cuando se guardo una nueva propiedad
@@ -688,8 +689,12 @@
         window.propiedades_direccion = this.$("#propiedades_buscar_direccion").val();  
         cambio_parametros = true;
       }
-      if (window.propiedades_monto_tipo != this.$("#propiedades_buscar_monto_tipo").val()) {
-        window.propiedades_monto_tipo = this.$("#propiedades_buscar_monto_tipo").val();  
+      if (window.propiedades_direccion != this.$("#propiedades_buscar_direccion").val()) {
+        window.propiedades_direccion = this.$("#propiedades_buscar_direccion").val();  
+        cambio_parametros = true;
+      }
+      if (window.propiedades_tipo_activo != this.$("#propiedades_tipo_activo").val()) {
+        window.propiedades_tipo_activo = this.$("#propiedades_tipo_activo").val();  
         cambio_parametros = true;
       }
       if (window.propiedades_monto_moneda != this.$("#propiedades_buscar_monto_moneda").text()) {
@@ -752,6 +757,7 @@
         window.propiedades_filtro_inmobusquedas = -1;
         window.propiedades_filtro_argenprop = -1;
         window.propiedades_filtro_web = -1;
+        //window.propiedades_tipo_activo = -1;
         if (cp == "olx") { window.propiedades_filtro_olx = 1; cambio_parametros = true; }
         else if (cp == "no_olx") { window.propiedades_filtro_olx = 0; cambio_parametros = true; }
         else if (cp == "web") { window.propiedades_filtro_web = 1; cambio_parametros = true; }
@@ -795,7 +801,7 @@
         "filtro_inmovar":window.propiedades_filtro_inmovar,
         "filtro_inmobusquedas":window.propiedades_filtro_inmobusquedas,
         "filtro_argenprop":window.propiedades_filtro_argenprop,
-        "activo":window.propiedades_filtro_web,
+        "activo":window.propiedades_tipo_activo,
       };
 
 
@@ -967,6 +973,7 @@
         email: self.email,
         id_cliente: self.id_cliente,
         ficha_contacto: self.ficha_contacto,
+        parent: self,
       });
       this.$(".tbody").append(view.render().el);
     },
@@ -1498,23 +1505,44 @@
         if($(e.currentTarget).attr("disabled") == "disabled") return;
         var activo = this.model.get("activo");
         activo = (activo == 1)?0:1;
-        self.model.set({"activo":activo});
-        this.change_property({
-          "table":"inm_propiedades",
-          "url":"propiedades/function/change_property/",
-          "attribute":"activo",
-          "value":activo,
-          "id":self.model.id,
-          "success":function(){
-            if (!isEmpty(self.model.get("id_meli"))) {
-              // Si esta compartida en MercadoLibre, tenemos que sincronizar
-              if (activo == 1) self.meli_reactivar();
-              else self.meli_pausar();
-            } else {
-              self.render();  
+        if (activo == 1) {
+          self.model.set({"activo":activo});
+          this.change_property({
+            "table":"inm_propiedades",
+            "url":"propiedades/function/change_property/",
+            "attribute":"activo",
+            "value":activo,
+            "id":self.model.id,
+            "success":function(){
+              if (!isEmpty(self.model.get("id_meli"))) {
+                // Si esta compartida en MercadoLibre, tenemos que sincronizar
+                if (activo == 1) self.meli_reactivar();
+                else self.meli_pausar();
+              } else {
+                self.render();  
+              }
             }
-          }
-        });
+          });
+        } else {
+          var self = this;
+          var propiedad = new app.models.PropiedadDesactivar({
+            "id_propiedad": self.model.id,
+            "id_empresa": ID_EMPRESA,
+            "id_usuario": ID_USUARIO,
+          });
+          var view = new app.views.PropiedadDesactivar({
+            model: propiedad,
+          });
+          crearLightboxHTML({
+            "html":view.el,
+            "width":600,
+            "height":500,
+            "escapable": false,
+            "callback":function() {
+              self.parent.buscar();
+            }
+          });          
+        }
         return false;
       },
 
@@ -1698,6 +1726,7 @@
       this.email = (this.options.email != "undefined") ? this.options.email : "";
       this.id_cliente = (typeof this.options.id_cliente != "undefined") ? this.options.id_cliente : 0;
       this.ficha_contacto = (this.options.ficha_contacto != "undefined") ? this.options.ficha_contacto : null;
+      this.parent = (this.options.parent != "undefined") ? this.options.parent : null;
       this.render();
     },
     render: function() {
@@ -3724,7 +3753,8 @@
         e.stopPropagation();
         e.preventDefault();
         if($(e.currentTarget).attr("disabled") == "disabled") return;
-        window.open("propiedades/function/ver_ficha/"+this.model.get("id_empresa")+"/"+this.model.id+"/"+ID_EMPRESA,"_blank");
+        //window.open("propiedades/function/ver_ficha/"+this.model.get("id_empresa")+"/"+this.model.id+"/"+ID_EMPRESA,"_blank");
+        window.open("https://app.inmovar.com/ficha/"+ID_EMPRESA+"/"+this.model.get("hash"),"_blank");
         return false;
       },
       "click .ver_ficha_web":function(e){
@@ -5058,6 +5088,94 @@
         }
         this.collection.add(this.model);
         $('.modal:last').modal('hide');
+      }      
+    },
+          
+  });
+})(app);
+
+
+
+(function ( models ) {
+
+  models.PropiedadDesactivar = Backbone.Model.extend({
+    urlRoot: "propiedad_desactivar",
+    defaults: {
+      id_empresa: ID_EMPRESA,
+      id_propiedad: 0,
+      id_usuario: 0,
+      fecha: moment().format("YYYY-MM-DD HH:ii:ss"),
+      motivo: 0,
+      observacion: "",
+    },
+  });
+      
+})( app.models );
+
+
+
+(function ( app ) {
+
+  app.views.PropiedadDesactivar = app.mixins.View.extend({
+
+    template: _.template($("#propiedades_desactivar").html()),
+            
+    myEvents: {
+      "click .guardar": "guardar",
+      "click .cerrar_lightbox":function() {
+        $('.modal:last').modal('hide');
+      },
+    },    
+                
+    initialize: function(options) {
+      var self = this;
+      _.bindAll(this);
+      
+
+      var edicion = false;
+      var obj = { "id":this.model.id }
+      _.extend(obj,this.model.toJSON());
+      $(this.el).html(this.template(obj));
+    },
+        
+    validar: function() {
+      try {
+        var self = this;
+
+        var motivo = $("#propiedades_desactivar_motivo").val();
+        if (motivo == 0) {
+          alert ("Por favor ingrese un motivo");
+          return false;
+        }
+
+        var observacion = $("#propiedades_desactivar_observacion").val();
+        this.model.set({
+          "observacion": observacion,
+          "motivo": motivo,
+        });
+
+        $(".error").removeClass("error");
+        return true;
+      } catch(e) {
+        console.log(e);
+        return false;
+      }
+    },  
+
+    guardar:function() {
+      var self = this;
+      if (this.validar()) {
+        this.model.save({
+            "id_empresa":ID_EMPRESA,
+          },{
+          success: function(model,response) {
+            if (response.error == 1) {
+              show(response.mensaje);
+            } else {
+              $('.modal:last').modal('hide');
+            }
+          }
+        });
       }      
     },
           

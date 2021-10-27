@@ -145,6 +145,12 @@ if ($propiedad === FALSE || !isset($propiedad->nombre)) header("Location:".mklin
         <?php if (!empty($propiedad->vigilancia)) {  ?><li>Vigilancia</li><?php } ?>
         <?php if (!empty($propiedad->sala_juegos)) {  ?><li>Sala de Juegos</li><?php } ?>
         <?php if (!empty($propiedad->ascensor)) {  ?><li>Ascensor</li><?php } ?>
+        <?php if (!empty($propiedad->lavadero)) {  ?><li>Lavadero</li><?php } ?>
+        <?php if (!empty($propiedad->living_comedor)) {  ?><li>Living Comedor</li><?php } ?>
+        <?php if (!empty($propiedad->terraza)) {  ?><li>Terraza</li><?php } ?>
+        <?php if (!empty($propiedad->accesible)) {  ?><li>Accesible</li><?php } ?>
+        <?php if (!empty($propiedad->balcon)) {  ?><li>Balcon</li><?php } ?>
+        <?php if (!empty($propiedad->patio)) {  ?><li>Patio</li><?php } ?>
       </ul>
     </div>
     <div class="border-box-info">
