@@ -32,6 +32,8 @@ function lang($languages=array()) {
   <link rel="stylesheet" href="resources/css/min.css"/>
 <?php } ?>  
 <link rel="stylesheet" href="resources/css/font-awesome.min.css" type="text/css" />
+<link rel="stylesheet" href="resources/css/owl.carousel.min.css" type="text/css" />
+<link rel="stylesheet" href="resources/css/owl.theme.default.min.css" type="text/css" />
 </head>
 <body>
 <script type="text/javascript">
@@ -151,6 +153,7 @@ if (file_exists("application/views/templates/inm/propiedades.php")) include_once
 if (file_exists("application/views/templates/inm/busquedas.php")) include_once ("application/views/templates/inm/busquedas.php");
 if (file_exists("application/views/templates/inm/permisos_red.php")) include_once ("application/views/templates/inm/permisos_red.php");
 if (file_exists("application/views/templates/inm/alquileres.php")) include_once ("application/views/templates/inm/alquileres.php");
+if (file_exists("application/views/templates/novedades.php")) include_once ("application/views/templates/novedades.php");
 include_once ("application/views/templates/cajas.php");
 include_once ("application/views/templates/cajas_movimientos.php");
 include_once ("application/views/templates/facturacion.php");
@@ -300,6 +303,8 @@ var bancos = <?php echo json_encode($bancos); ?>;
 var almacenes = <?php echo json_encode($almacenes); ?>;
 var tipos_gastos = <?php echo json_encode($tipos_gastos); ?>;
 var empresas = <?php echo json_encode($empresas); ?>;
+var novedades = <?php echo json_encode($novedades); ?>;
+
 
 // Usuarios del sistema
 var usuarios = new app.collections.Usuarios(<?php echo json_encode($usuarios); ?>);
@@ -426,10 +431,76 @@ window.onload = function () {
   <?php } ?>
 </div>
 
+<?php if (isset($novedades) && sizeof($novedades)>0 && $volver_superadmin == 0) { ?>
+  <div class="modal fade" id="modal_novedades" role="dialog" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header tmh font-thin">
+          <h4 class="modal-title">Ultimas Novedades</h4>
+        </div>
+        <div class="modal-body">
+          <div class="owl-carousel owl-theme" id="novedades">
+            <?php foreach ($novedades as $n) { ?>
+              <div class="item">
+                <h3 class="mt0 font-thin"><?= $n->titulo ?></h3>
+                <img src="<?= $n->path; ?>">
+              </div>
+            <?php } ?>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary font-thin" onclick="cerrar_modal()">ENTENDIDO</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<?php } ?>
 <script>
 function toggleMenu() {
   $(".app-aside-fixed .aside-wrap").toggleClass("open")
 }
+
+function cerrar_modal() {
+  var array = new Array();
+  for (var i=0; i < novedades.length; i++) {
+    var n = novedades[i];
+    array.push(n.id);
+  }
+  $.ajax({
+    "url":"novedades/function/guardar_novedades/",
+    "dataType":"json",
+    "type": "post",
+    "data":{
+      "id_novedades": array,
+      "id_usuario": ID_USUARIO,
+      "id_empresa": ID_EMPRESA,
+    },
+    "success":function(res) {
+      $('#modal_novedades').modal('hide');            
+    }
+  });
+}
+
+$( window ).load(function() {
+  if (PERFIL != -1 && $('#modal_novedades').length > 0) {
+
+    setTimeout(function(){
+      $('#modal_novedades').modal('show');
+    },500);
+    
+    $('#novedades').owlCarousel({
+        //loop:true,
+        margin:10,
+        nav:true,
+        items: 1,
+        navText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-angle-right" aria-hidden="true"></i>'],
+    });
+  }
+
+});
+
+
+
 </script>
 
 </body>

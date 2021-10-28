@@ -45,6 +45,7 @@ class App extends CI_Controller {
     $comprobantes = array();
     $cajas = array();
     $empresas = array();
+    $novedades = array();
     $total_notificaciones = 0;
 
     $q = $this->db->query("SELECT * FROM com_idiomas ORDER BY id ASC");
@@ -218,7 +219,12 @@ class App extends CI_Controller {
       $consultas_tipos = $q->result();
 
       $q = $this->db->query("SELECT * FROM crm_origenes ORDER BY orden ASC");
-      $origenes = $q->result();      
+      $origenes = $q->result();  
+
+      $sql = "SELECT N.* FROM novedades N ";
+      $sql.= "WHERE N.id NOT IN (SELECT NU.id_novedad FROM novedades_usuarios NU WHERE NU.id_empresa = $id_empresa AND NU.id_usuario = $id_usuario) ";
+      $q = $this->db->query($sql);
+      $novedades = $q->result();       
       
       $usuarios = $this->Usuario_Model->buscar(array(
         "offset"=>999999,
@@ -378,6 +384,7 @@ class App extends CI_Controller {
       "asuntos" => $asuntos,
       
       "categorias_noticias" => $categorias_noticias,
+      "novedades" => $novedades,
     );
     
     $this->load->view('application',$data);
@@ -708,6 +715,7 @@ class App extends CI_Controller {
     $array[] = 'application/javascript/modules/cajas.js';
     $array[] = 'application/javascript/modules/cajas_movimientos.js';
     $array[] = 'application/javascript/modules/stories.js';
+    $array[] = 'application/javascript/modules/novedades.js';
 
     if ($id_proyecto == 0) {
       $array[] = 'application/javascript/modules/config/videos.js';
@@ -822,6 +830,7 @@ class App extends CI_Controller {
       "resources/js/jquery/upload/css/jquery.fileupload.css",
       "resources/js/jquery/contextmenu/jquery.contextMenu.min.css",
       "resources/css/owl.carousel.min.css",
+      "resources/css/owl.theme.default.min.css",
       "resources/css/flexslider.css",
       "resources/css/daterangepicker.css",
       "resources/js/zuck/zuck.min.css",

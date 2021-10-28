@@ -371,7 +371,7 @@
                 <% } %>
               </div>
               <div class="row pl10 pr10">
-                <% if (servicios_fecha_chequeado != "") { %>
+                <% if (servicios_fecha_chequeado != "0000-00-00") { %>
                   <div class="col-sm-6 col-xs-6 mb15 pl5 pr5">
                     <b>Fecha chequeado:</b> <%= moment(servicios_fecha_chequeado, "YYYY-MM-DD").format("DD/MM/YYYY") %>
                   </div>

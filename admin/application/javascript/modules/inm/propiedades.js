@@ -233,7 +233,6 @@
       "click .compartir_meli":"compartir_meli",
       "click .meli_pausar_multiple":"meli_pausar_multiple",
       "click .marcar_interes":"marcar_interes",
-      "change #propiedades_tipo_activo": "buscar",
       "click .compartir_red_multiple":function(){
         this.compartir_red_multiple(1);
       },
@@ -275,6 +274,13 @@
         this.$("#buscar_red_tab").addClass("active");
         this.$(".ocultar_en_red").hide();
         this.$(".mostrar_en_red").show();
+        this.buscar();
+      },
+      "click #buscar_inactivas_tab":function() {
+        this.$(".buscar_tab").removeClass("active");
+        this.$("#buscar_inactivas_tab").addClass("active");
+        this.$(".ocultar_en_red").show();
+        this.$(".mostrar_en_red").hide();
         this.buscar();
       },
       "click #propiedades_ver_mapa":function() {
@@ -429,7 +435,6 @@
       window.propiedades_filtro_argenprop = (typeof window.propiedades_filtro_argenprop != "undefined") ? window.propiedades_filtro_argenprop : -1;
       window.propiedades_filtro_web = (typeof window.propiedades_filtro_web != "undefined") ? window.propiedades_filtro_web : 1;
       window.propiedades_mapa = (typeof window.propiedades_mapa != "undefined") ? window.propiedades_mapa : 0;
-      window.propiedades_tipo_activo = (typeof window.propiedades_tipo_activo != "undefined") ? window.propiedades_tipo_activo : 1;
       window.propiedades_id_propietario = (typeof window.propiedades_id_propietario != "undefined") ? window.propiedades_id_propietario : 0;
       window.propiedades_id_usuario = (typeof window.propiedades_id_usuario != "undefined") ? window.propiedades_id_usuario : 0;
       // Flag que indica cuando se guardo una nueva propiedad
@@ -700,10 +705,6 @@
         window.propiedades_direccion = this.$("#propiedades_buscar_direccion").val();  
         cambio_parametros = true;
       }
-      if (window.propiedades_tipo_activo != this.$("#propiedades_tipo_activo").val()) {
-        window.propiedades_tipo_activo = this.$("#propiedades_tipo_activo").val();  
-        cambio_parametros = true;
-      }
       if (window.propiedades_monto_moneda != this.$("#propiedades_buscar_monto_moneda").text()) {
         window.propiedades_monto_moneda = this.$("#propiedades_buscar_monto_moneda").text();  
         cambio_parametros = true;
@@ -779,6 +780,10 @@
         else if (cp == "no_argenprop") { window.propiedades_filtro_argenprop = 0; cambio_parametros = true; }
       }
 
+      var filtro_activo = 1;
+      if (this.$("#buscar_inactivas_tab").hasClass("active")) {
+        var filtro_activo = 0;
+      }
       // Si se cambiaron los parametros, debemos volver a pagina 1
       if (cambio_parametros) window.propiedades_page = 1;
 
@@ -808,7 +813,7 @@
         "filtro_inmovar":window.propiedades_filtro_inmovar,
         "filtro_inmobusquedas":window.propiedades_filtro_inmobusquedas,
         "filtro_argenprop":window.propiedades_filtro_argenprop,
-        "activo":window.propiedades_tipo_activo,
+        "activo":filtro_activo,
         "id_usuario":window.propiedades_id_usuario,
       };
 
@@ -966,8 +971,9 @@
         }
         // Renderizamos cada elemento del array
         if (this.collection.length > 0) this.collection.each(this.addOne);
-        this.$("#propiedades_propias_total").html(this.collection.meta("total_propias"));
+        this.$("#propiedades_propias_total").html(this.collection.meta("total_activas"));
         this.$("#propiedades_red_total").html(this.collection.meta("total_red"));
+        this.$("#propiedades_inactivas_total").html(this.collection.meta("total_inactivas"));
       }
     },
         

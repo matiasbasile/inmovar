@@ -570,16 +570,12 @@ class Propiedad_Model extends Abstract_Model {
     if ($filtro_meli >= 0) $sql_from.= "LEFT JOIN inm_propiedades_meli PROP_MELI ON (A.id = PROP_MELI.id_propiedad AND A.id_empresa = PROP_MELI.id_empresa) ";
 
     $sql_where = "WHERE 1=1 ";
-    if ($activo != -1) $sql_where.= "AND A.activo = $activo ";
     if ($olx_habilitado != -1) $sql_where.= "AND A.olx_habilitado = $olx_habilitado ";
     if (!empty($filter)) $sql_where.= "AND (A.codigo LIKE '%$filter%' OR CONCAT(E.codigo,'-',A.codigo) = '$filter' OR A.nombre LIKE '%$filter%' OR A.calle LIKE '%$filter%') ";
     if (!empty($id_tipo_estado)) $sql_where.= "AND A.id_tipo_estado = $id_tipo_estado ";
     if (!empty($id_tipo_operacion)) $sql_where.= "AND A.id_tipo_operacion IN ($id_tipo_operacion) ";
     if (!empty($id_tipo_inmueble)) $sql_where.= "AND A.id_tipo_inmueble IN ($id_tipo_inmueble) ";
     
-    // Si estamos buscando por la red inmovar, el filtro de SOLO_USUARIO no deberia aplicarse
-    if (!empty($id_usuario) && empty($buscar_red)) $sql_where.= "AND A.id_usuario = $id_usuario ";
-
     if (!empty($id_propietario)) $sql_where.= "AND A.id_propietario = $id_propietario ";
     if (!empty($id_localidad)) $sql_where.= "AND A.id_localidad IN ($id_localidad) ";
     if (!empty($calle)) $sql_where.= "AND A.calle = '$calle' ";
@@ -656,6 +652,8 @@ class Propiedad_Model extends Abstract_Model {
 
     $sql_final = "";
 
+    $sql_activo = ($activo != -1) ? "AND A.activo = $activo " : " ";
+
     if ($buscar_red == 1) {
 
       // ARMAMOS LA CONSULTA PARA LA RED
@@ -668,11 +666,11 @@ class Propiedad_Model extends Abstract_Model {
       $q_total = $this->db->query("SELECT FOUND_ROWS() AS total");
       $total = $q_total->row();
       $total_red = $total->total;
-      $total2 = $total->total;
+      $total_resultados = $total->total;
 
       // Ahora hacemos la misma consulta, pero sobre mis propiedades
       $sql_where_2 = "AND A.id_empresa = $id_empresa ";
-      $sql = "SELECT ".$sql_count.$sql_from.$sql_where.$sql_where_2;
+      $sql = "SELECT ".$sql_count.$sql_from.$sql_where.$sql_where_2.$sql_activo;
       $q_total = $this->db->query($sql);
       $total = $q_total->row();
       $total_propias = $total->cantidad;
@@ -681,6 +679,9 @@ class Propiedad_Model extends Abstract_Model {
 
       // Si estamos buscando en MIS PROPIEDADES
       $sql_where_2 = "";
+
+      // Si estamos buscando por la red inmovar, el filtro de SOLO_USUARIO no deberia aplicarse
+      if (!empty($id_usuario)) $sql_where_2.= "AND A.id_usuario = $id_usuario ";      
 
       // Estos filtros solo se aplican para propiedades propias, no para las de la red
       if ($filtro_meli == 1) $sql_where_2.= "AND PROP_MELI.status = 'active' ";
@@ -706,16 +707,16 @@ class Propiedad_Model extends Abstract_Model {
       if ($id_empresa != -1) $sql_where_2.= "AND A.id_empresa = $id_empresa ";
 
       // ARMAMOS LA CONSULTA PRINCIPAL
-      $sql = "SELECT ".$sql_fields.$sql_from.$sql_where.$sql_where_2;
+      $sql = "SELECT ".$sql_fields.$sql_from.$sql_where.$sql_where_2.$sql_activo;
       if (!empty($order)) $sql.= "ORDER BY $order ";
       if ($offset != 0) $sql.= "LIMIT $limit, $offset ";
       $sql_final = $sql;
-      $q = $this->db->query($sql);
+      $q = $this->db->query($sql);      
 
       $q_total = $this->db->query("SELECT FOUND_ROWS() AS total");
-      $total = $q_total->row();      
+      $total = $q_total->row();   
+      $total_resultados = $total->total;
 
-      $total2 = $total->total;
       $total_propias = $total->total;
 
       // Ahora hacemos la misma consulta, pero sobre las propiedades de la RED
@@ -725,6 +726,14 @@ class Propiedad_Model extends Abstract_Model {
       $total_red = $total->cantidad;
     }
 
+    // Propiedades totales (activas y no activas)
+    $sql = "SELECT COUNT(*) as total ".$sql_from.$sql_where.$sql_where_2;
+    if (!empty($order)) $sql.= "ORDER BY $order ";
+    if ($offset != 0) $sql.= "LIMIT $limit, $offset ";
+    $sql_final = $sql;
+    $q_total = $this->db->query($sql);
+    $r_total = $q_total->row();
+    $total_todas = $r_total->total;
 
     $salida = array();
     foreach($q->result() as $r) {
@@ -806,13 +815,26 @@ class Propiedad_Model extends Abstract_Model {
       */
       $salida[] = $r;
     }
+
+    if ($activo == 1) {
+      $total_activas = $total_propias;
+      $total_inactivas = $total_todas - $total_propias;
+    } else if ($activo == 0) {
+      $total_inactivas = $total_propias;
+      $total_activas = $total_todas - $total_propias;
+    } else {
+      $total_activas = $total_propias;
+      $total_inactivas = $total_propias;
+    }
+
     return array(
       "results"=>$salida,
-      "total"=>$total2,
+      "total"=>$total_resultados,
       "sql"=>$sql_final,
       "meta"=>array(
         "total_red"=>$total_red,
-        "total_propias"=>$total_propias,
+        "total_activas"=>$total_activas,
+        "total_inactivas"=>$total_inactivas,
       ),
       
     );

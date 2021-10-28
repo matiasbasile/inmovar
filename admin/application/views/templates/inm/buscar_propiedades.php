@@ -259,15 +259,6 @@
       </div>
       <div class="col-md-2 col-sm-3 col-xs-12 h50 pr5 pl5">
         <div class="form-group">
-          <select style="width: 100%" id="propiedades_tipo_activo" class="form-control">
-            <option value="1">Solo Activas</option>
-            <option value="0">Solo Inactivas</option>
-            <option value="-1">Todas</option>
-          </select>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="form-group">
           <select id="propiedad_usuarios" class="form-control">
             <option value="0">Seleccione un usuario</option>
             <% for(var i=0;i< window.usuarios.models.length;i++) { %>
