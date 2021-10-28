@@ -347,6 +347,99 @@
                   <%= (nuevo == 200)?"M&aacute;s de 100 a&ntilde;os":"" %>
                 </div>
               </div>
+              <div class="subtitulo">Documentación</div>
+              <div class="row pl10 pr10">
+                <% if (servicios_escritura != 0) { %>
+                  <div class="col-sm-3 col-xs-6 mb15 pl5 pr5">
+                    <i class="fa fa-check mr5"></i>Escritura
+                  </div>
+                <% } %>
+                <% if (servicios_reglamento != 0) { %>
+                  <div class="col-sm-3 col-xs-6 mb15 pl5 pr5">
+                    <i class="fa fa-check mr5"></i>Reglamento
+                  </div>
+                <% } %>
+                <% if (servicios_plano_obra != 0) { %>
+                  <div class="col-sm-3 col-xs-6 mb15 pl5 pr5">
+                    <i class="fa fa-check mr5"></i>Plano de Obra
+                  </div>
+                <% } %>
+                <% if (servicios_plano_ph != 0) { %>
+                  <div class="col-sm-3 col-xs-6 mb15 pl5 pr5">
+                    <i class="fa fa-check mr5"></i>Plano PH
+                  </div>
+                <% } %>
+              </div>
+              <div class="row pl10 pr10">
+                <% if (servicios_fecha_chequeado != "") { %>
+                  <div class="col-sm-6 col-xs-6 mb15 pl5 pr5">
+                    <b>Fecha chequeado:</b> <%= moment(servicios_fecha_chequeado, "YYYY-MM-DD").format("DD/MM/YYYY") %>
+                  </div>
+                <% } %>
+                <% if (documentacion_escritura != 0) { %>
+                  <div class="col-sm-6 col-xs-6 mb15 pl5 pr5">
+                    <% var documentacion_texto = "" %>
+                    <% if (documentacion_escritura == 1) { documentacion_texto = "Compraventa" } %>
+                    <% if (documentacion_escritura == 2) { documentacion_texto = "Donación" } %>
+                    <% if (documentacion_escritura == 3) { documentacion_texto = "Parte Indivisa" } %>
+                    <% if (documentacion_escritura == 4) { documentacion_texto = "Fidelcomiso" } %>
+                    <b>Documentación:</b> <%= documentacion_texto %>
+                  </div>
+                <% } %>
+                <% if (documentacion_estado_parcelario != 0) { %>
+                  <div class="col-sm-6 col-xs-6 mb15 pl5 pr5">
+                    <% var estado_parcelario_texto = "" %>
+                    <% if (documentacion_estado_parcelario == 1) { estado_parcelario_texto = "No lleva" } %>
+                    <% if (documentacion_estado_parcelario == 2) { estado_parcelario_texto = "Lleva" } %>
+                    <b>Estado Parcelario:</b> <%= estado_parcelario_texto %>
+                  </div>
+                <% } %>
+                <% if (documentacion_estado != 0) { %>
+                  <div class="col-sm-6 col-xs-6 mb15 pl5 pr5">
+                    <% var estado_texto = "" %>
+                    <% if (documentacion_estado == 1) { estado_texto = "Desocupada" } %>
+                    <% if (documentacion_estado == 2) { estado_texto = "Ocupada" } %>
+                    <% if (documentacion_estado == 3) { estado_texto = "Alquilada" } %>
+                    <b>Estado:</b> <%= estado_texto %>
+                  </div>
+                <% } %>
+                <% if (documentacion_impuesto != 0) { %>
+                  <div class="col-sm-6 col-xs-6 mb15 pl5 pr5">
+                    <% var impuesto_texto = "" %>
+                    <% if (documentacion_impuesto == 1) { impuesto_texto = "Impuesto Transferencia de Inmuebles" } %>
+                    <% if (documentacion_impuesto == 2) { impuesto_texto = "Anticipo de Ganancias" } %>
+                    <b>Impuesto:</b> <%= impuesto_texto %>
+                  </div>
+                <% } %>
+                <% if (documentacion_coti != 0) { %>
+                  <div class="col-sm-6 col-xs-6 mb15 pl5 pr5">
+                    <% var coti_texto = "" %>
+                    <% if (documentacion_coti == 1) { coti_texto = "Corresponde" } %>
+                    <% if (documentacion_coti == 2) { coti_texto = "No Corresponde" } %>
+                    <b>Coti:</b> <%= coti_texto %>
+                  </div>
+                <% } %>
+              </div>
+              <% if (servicios_reservas != 0 || servicios_boleto != 0 || servicios_escri_plazo != 0) { %>
+                <div class="subtitulo">Formas de Operación</div>
+                <div class="row pl10 pr10">
+                  <% if (servicios_reservas != 0) { %>
+                    <div class="col-sm-4 col-xs-6 mb15 pl5 pr5">
+                      <i class="fa fa-check mr5"></i>Reserva (<%= plazo_reserva %> días)
+                    </div>
+                  <% } %>
+                  <% if (servicios_boleto != 0) { %>
+                    <div class="col-sm-4 col-xs-6 mb15 pl5 pr5">
+                      <i class="fa fa-check mr5"></i>Boleto (<%= plazo_boleto %> días)
+                    </div>
+                  <% } %>
+                  <% if (servicios_escri_plazo != 0) { %>
+                    <div class="col-sm-4 col-xs-6 mb15 pl5 pr5">
+                      <i class="fa fa-check mr5"></i>Escritura (<%= plazo_escritura %> días)
+                    </div>
+                  <% } %>
+                </div>           
+              <% } %>
             </div>
           </div>
           

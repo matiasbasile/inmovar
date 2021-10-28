@@ -9,7 +9,7 @@ class Propiedad_Desactivar_Model extends Abstract_Model {
   }
 
   function save($data) {
-  	$sql = "UPDATE inm_propiedades SET activo = 0 WHERE id_empresa = '$data->id_empresa' AND id = '$data->id_propiedad' ";
+  	$sql = "UPDATE inm_propiedades SET activo = 0, compartida = 0 WHERE id_empresa = '$data->id_empresa' AND id = '$data->id_propiedad' ";
   	$this->db->query($sql);
   	$data->fecha = date("Y-m-d H:i:s");
   	$id = parent::save($data);

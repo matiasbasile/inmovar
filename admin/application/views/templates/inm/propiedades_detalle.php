@@ -876,43 +876,6 @@
             </div>
           </div>
         </div>
-        <label class="control-label control-label-sub">Forma de la Operación</label>
-        <div class="row">
-          <div class="col-md-2">
-            <div class="form-group">
-              <label class="i-checks">
-                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_servicios_reservas" name="servicios_reservas" class="checkbox" value="1" <%= (servicios_reservas == 1)?"checked":"" %> >
-                <i></i> Reserva
-              </label>
-              <br>
-              <label class="control-label">Plazo de Reserva (Dias)</label>
-              <input name="plazo_reserva" type="number" value="<%= plazo_reserva %>" class="form-control" placeholder="Plazo">
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="form-group">
-              <label class="i-checks">
-                  <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_servicios_boleto" name="servicios_boleto" class="checkbox" value="1" <%= (servicios_boleto == 1)?"checked":"" %> >
-                  <i></i> Boleto
-              </label>
-              <br>
-              <label class="control-label">Plazo de Boleto (Dias)</label>
-              <input name="plazo_boleto" type="number" value="<%= plazo_boleto %>" class="form-control" placeholder="Plazo">
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="form-group">
-              <label class="i-checks">
-                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_servicios_escritura" name="servicios_escritura" class="checkbox" value="1" <%= (servicios_escritura == 1)?"checked":"" %> >
-                <i></i> Escritura
-              </label>
-            <br>
-            <label class="control-label">Plazo de Escritura (Dias)</label>
-            <input name="plazo_escritura" type="number" value="<%= plazo_escritura %>" class="form-control" placeholder="Plazo">
-            </div>
-          </div>
-        </div>
-        <label class="control-label control-label-sub">Información de la Documentacion</label>
         <div class="row">
           <div class="col-md-2">
             <label class="control-label">Escritura</label>
@@ -956,6 +919,42 @@
               <option <%= (documentacion_coti == 1) ? 'selected' : '' %> value="1">Corresponde</option>  
               <option <%= (documentacion_coti == 2) ? 'selected' : '' %> value="2">No Corresponde</option>  
             </select>
+          </div>
+        </div>
+        <label class="control-label control-label-sub mt20">Forma de la Operación</label>
+        <div class="row">
+          <div class="col-md-2">
+            <div class="form-group">
+              <label class="i-checks">
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_servicios_reservas" name="servicios_reservas" class="checkbox" value="1" <%= (servicios_reservas == 1)?"checked":"" %> >
+                <i></i> Reserva
+              </label>
+              <br>
+              <label class="control-label">Plazo de Reserva (Dias)</label>
+              <input name="plazo_reserva" type="number" value="<%= plazo_reserva %>" class="form-control" placeholder="Plazo">
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <label class="i-checks">
+                  <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_servicios_boleto" name="servicios_boleto" class="checkbox" value="1" <%= (servicios_boleto == 1)?"checked":"" %> >
+                  <i></i> Boleto
+              </label>
+              <br>
+              <label class="control-label">Plazo de Boleto (Dias)</label>
+              <input name="plazo_boleto" type="number" value="<%= plazo_boleto %>" class="form-control" placeholder="Plazo">
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <label class="i-checks">
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_servicios_escri_plazo" name="servicios_escri_plazo" class="checkbox" value="1" <%= (servicios_escri_plazo == 1)?"checked":"" %> >
+                <i></i> Escritura
+              </label>
+            <br>
+            <label class="control-label">Plazo de Escritura (Dias)</label>
+            <input name="plazo_escritura" type="number" value="<%= plazo_escritura %>" class="form-control" placeholder="Plazo">
+            </div>
           </div>
         </div>
 

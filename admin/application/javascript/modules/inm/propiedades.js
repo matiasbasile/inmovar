@@ -223,6 +223,7 @@
         
     myEvents: {
       "change #propiedades_buscar":"buscar",
+      "change #propiedad_usuarios": "buscar",
       "click .buscar":"buscar",
       "click .exportar": "exportar",
       "click .importar_csv": "importar",
@@ -430,7 +431,7 @@
       window.propiedades_mapa = (typeof window.propiedades_mapa != "undefined") ? window.propiedades_mapa : 0;
       window.propiedades_tipo_activo = (typeof window.propiedades_tipo_activo != "undefined") ? window.propiedades_tipo_activo : 1;
       window.propiedades_id_propietario = (typeof window.propiedades_id_propietario != "undefined") ? window.propiedades_id_propietario : 0;
-
+      window.propiedades_id_usuario = (typeof window.propiedades_id_usuario != "undefined") ? window.propiedades_id_usuario : 0;
       // Flag que indica cuando se guardo una nueva propiedad
       window.propiedades_guardo_nueva_propiedad = (typeof window.propiedades_guardo_nueva_propiedad != "undefined") ? window.propiedades_guardo_nueva_propiedad : 0;
 
@@ -681,8 +682,14 @@
         if ($.isArray(window.propiedades_id_localidad)) window.propiedades_id_localidad = window.propiedades_id_localidad.join("-");
         cambio_parametros = true;
       }
+
       if (window.propiedades_filter != this.$("#propiedades_buscar").val()) {
         window.propiedades_filter = this.$("#propiedades_buscar").val();  
+        cambio_parametros = true;
+      }
+
+      if (window.propiedades_id_usuario != this.$("#propiedad_usuarios").val()) {
+        window.propiedades_id_usuario = this.$("#propiedad_usuarios").val();  
         cambio_parametros = true;
       }
       if (window.propiedades_direccion != this.$("#propiedades_buscar_direccion").val()) {
@@ -802,6 +809,7 @@
         "filtro_inmobusquedas":window.propiedades_filtro_inmobusquedas,
         "filtro_argenprop":window.propiedades_filtro_argenprop,
         "activo":window.propiedades_tipo_activo,
+        "id_usuario":window.propiedades_id_usuario,
       };
 
 
@@ -2677,14 +2685,13 @@
 
           //Documentacion
           "servicios_fecha_chequeado":((self.$("#propiedad_servicios_fecha_chequeado").length > 0) ? self.$("#propiedad_servicios_fecha_chequeado").val() : ""),
-          "servicios_escritura":((self.$("#propiedad_servicios_escritura").length>0) ? (self.$("#propiedad_servicios_escritura").is(":checked")?1:0) : 0),
+          "servicios_escritura":((self.$("#propiedades_servicios_escritura").length>0) ? (self.$("#propiedades_servicios_escritura").is(":checked")?1:0) : 0),
           "servicios_reglamento":((self.$("#propiedad_servicios_reglamento").length>0) ? (self.$("#propiedad_servicios_reglamento").is(":checked")?1:0) : 0),
           "servicios_plano_obra":((self.$("#propiedad_servicios_plano_obra").length>0) ? (self.$("#propiedad_servicios_plano_obra").is(":checked")?1:0) : 0),
           "servicios_plano_ph":((self.$("#propiedad_servicios_plano_ph").length>0) ? (self.$("#propiedad_servicios_plano_ph").is(":checked")?1:0) : 0),
           "servicios_reservas":((self.$("#propiedad_servicios_reservas").length>0) ? (self.$("#propiedad_servicios_reservas").is(":checked")?1:0) : 0),
           "servicios_boleto":((self.$("#propiedad_servicios_boleto").length>0) ? (self.$("#propiedad_servicios_boleto").is(":checked")?1:0) : 0),
-          "servicios_escritura":((self.$("#propiedad_servicios_escritura").length>0) ? (self.$("#propiedad_servicios_escritura").is(":checked")?1:0) : 0),
-
+          "servicios_escri_plazo":((self.$("#propiedad_servicios_escri_plazo").length>0) ? (self.$("#propiedad_servicios_escri_plazo").is(":checked")?1:0) : 0),
 
         });
 
@@ -5107,6 +5114,8 @@
       fecha: moment().format("YYYY-MM-DD HH:ii:ss"),
       motivo: 0,
       observacion: "",
+      id_empresa_colega: 0,
+      precio_vendido: 0,
     },
   });
       
@@ -5125,6 +5134,21 @@
       "click .cerrar_lightbox":function() {
         $('.modal:last').modal('hide');
       },
+      "change #propiedades_desactivar_motivo":function(){
+        var self = this;
+        var motivo = $("#propiedades_desactivar_motivo").val();
+        if (motivo == 1 || motivo == 2) {
+            $(".precio").removeClass("dn");
+          if (motivo == 2) {
+            $(".red").removeClass("dn");
+          } else {
+            $(".red").addClass("dn");
+          }
+        } else {
+          $(".precio").addClass("dn");
+          $(".red").addClass("dn");
+        }
+      },
     },    
                 
     initialize: function(options) {
@@ -5136,6 +5160,8 @@
       var obj = { "id":this.model.id }
       _.extend(obj,this.model.toJSON());
       $(this.el).html(this.template(obj));
+
+      this.$("#propiedades_buscar_inmobiliarias").select2();
     },
         
     validar: function() {
@@ -5148,11 +5174,37 @@
           return false;
         }
 
+        var precio_venta = $("#propiedades_precio_venta").val();
+        if ((motivo == 1 || motivo == 2) && precio_venta == 0) {
+          alert ("Por favor ingrese un precio de venta");
+          return false;          
+        }
+
+        var buscar_inmobiliaria = self.$("#propiedades_buscar_inmobiliarias").val();
+        if (motivo == 2 && buscar_inmobiliaria == 0) {
+          alert ("Por favor ingrese un colega de la red");
+          return false;          
+        }
+
         var observacion = $("#propiedades_desactivar_observacion").val();
+
+        var id_empresa_colega = 0;
+        var precio_vendido = 0;
+
+        if (motivo == 1 || motivo == 2) {
+          precio_vendido = $("#propiedades_precio_venta").val();
+          if (motivo == 2) {
+            id_empresa_colega = self.$("#propiedades_buscar_inmobiliarias").val();
+          } 
+        }
+
         this.model.set({
           "observacion": observacion,
           "motivo": motivo,
+          "id_empresa_colega": id_empresa_colega,
+          "precio_vendido": precio_vendido,
         });
+
 
         $(".error").removeClass("error");
         return true;

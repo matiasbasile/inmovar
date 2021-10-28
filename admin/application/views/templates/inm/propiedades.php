@@ -795,11 +795,32 @@
             <option value="0">Seleccione un motivo</option>
             <option value="1">Vendi la propiedad</option>
             <option value="2">Vendi la propiedad con un colega de Red Inmovar</option>
-            <option value="3">La propiedad se vendio</option>
+            <option value="3">Otro vendio la propiedad</option>
             <option value="4">El propietario dejo de ofrecer la propiedad</option>
-            <option value="5">Otro</option>
+            <option value="5">La propiedad se encuentra incompleta</option>
           </select>
         </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 dn precio">
+        <div class="form-group">
+          <label class="control-label">Precio de Venta</label>
+          <div class="input-group">
+            <input placeholder="Ingrese el precio de venta" type="number" class="form-control" id="propiedades_precio_venta"/>
+            <span class="input-group-addon">$</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 dn red">
+        <label class="control-label">Colega de la Red</label>
+        <select style="width: 100%" id="propiedades_buscar_inmobiliarias">
+          <option value="0">Inmobiliaria</option>
+          <% for(var i=0;i< window.empresas.length;i++) { %>
+            <% var o = empresas[i] %>
+            <option value="<%= o.id %>"><%= o.nombre %></option>
+          <% } %>
+        </select>        
       </div>
     </div>
     <div class="form-group">
