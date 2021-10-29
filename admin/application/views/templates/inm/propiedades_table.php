@@ -33,7 +33,7 @@
           <p><b class="cantidad_seleccionados"></b> elementos seleccionados</p>  
         </div>
         <button class="btn btn-default marcar_interes">Marcar Inter&eacute;s</button>
-        <button class="btn btn-info enviar">Enviar fichas por email</button>
+        <button class="btn btn-info enviar_por_email">Enviar fichas por email</button>
         <button class="btn btn-success enviar_whatsapp">Enviar Whatsapp</button>
       </div>
     </div>
