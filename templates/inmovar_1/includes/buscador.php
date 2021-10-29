@@ -1,6 +1,8 @@
 <form onsubmit="return filtrar(this)" method="get" role="form" id="form_propiedades" class="<?php echo ($nombre_pagina=="home")?"form-map":"" ?> form-search">
   <?php if ($nombre_pagina == "home") { ?><h2>Buscador</h2><?php } ?>
 
+  <input type="hidden" name="orden" value="<?php echo $vc_orden ?>" id="orden_hidden">
+
   <div class="form-group oh">
     <input value="<?php echo mklink("propiedades/") ?>" <?php echo ($nombre_pagina != "mapa")?"checked":"" ?> type="radio" name="tipo_vista" id="list-view">
     <label for="list-view">Listado</label>

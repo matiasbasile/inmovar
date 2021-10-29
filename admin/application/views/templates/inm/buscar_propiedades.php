@@ -259,10 +259,12 @@
       </div>
       <div class="col-md-2 col-sm-3 col-xs-12 h50 pr5 pl5">
         <div class="form-group">
-          <select style="width: 100%" id="propiedades_tipo_activo" class="form-control">
-            <option value="1">Solo Activas</option>
-            <option value="0">Solo Inactivas</option>
-            <option value="-1">Todas</option>
+          <select id="propiedad_usuarios" class="form-control">
+            <option value="0">Seleccione un usuario</option>
+            <% for(var i=0;i< window.usuarios.models.length;i++) { %>
+              <% var o = window.usuarios.models[i]; %>
+              <option <%= (window.propiedades_id_usuario == o.id) ? 'selected' : '' %>value="<%= o.id %>"><%= o.get("nombre") %></option>
+            <% } %>
           </select>
         </div>
       </div>

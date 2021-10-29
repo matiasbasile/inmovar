@@ -21,7 +21,10 @@
   <% } else { %>
     <%= tipo_inmueble %> en <%= tipo_operacion %><br/>
     <span class="bold"><%= direccion_completa %></span><br/>
-    <%= localidad %>
+    <%= localidad %><br/>
+    <% if (usuario != "") { %>
+      <span class="material-icons fs20 fl mr5">person</span><%= usuario %>
+    <% } %>
   <% } %>
   <% if (id_empresa != ID_EMPRESA && incluye_comision_35 == 1) { %>
     <br/><span class="btn etiqueta">Incluye 3% Comisión</span>

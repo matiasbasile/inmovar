@@ -27,6 +27,12 @@ function modulo_habilitado($permisos,$modulo) {
               </a>
             </li>
             <li>
+              <a href='app/#novedades'>
+                <i class='material-icons'>feed</i>
+                Novedades
+              </a>
+            </li>
+            <li>
               <a href='app/#videos'>
                 <i class='material-icons'>settings</i>
                 Videos

@@ -29,7 +29,7 @@
         },
         "nuevo_proyecto/:id":function(id) {
           this.nueva_empresa(id);
-        },  
+        },
 
         // Configuracion de la web
         "menu_web(/)": "ver_web", // DESP ELIMINAR
@@ -91,6 +91,10 @@
         "versiones_db": "ver_versiones_db",
         "version_db": "ver_version_db",
         "version_db/:id": "ver_version_db",
+
+        "novedades": "ver_novedades",
+        "novedad": "ver_novedad",
+        "novedad/:id": "ver_novedad",        
 
         // Funcionamiento de ABM General
         '': 'router',
@@ -250,6 +254,46 @@
                 });
                 self.mostrar({
                   "top" : app.views.version_dbEditView.el,
+                });
+              }
+            });
+          }
+        }                
+      },
+
+      ver_novedades: function() {
+        if (PERFIL == -1) {
+          window.novedades = new app.collections.Novedades();
+          view = new app.views.NovedadesTableView({
+            collection: window.novedades,
+            novedades: novedades
+          });    
+          this.mostrar({
+            "top" : view.el,
+          });
+        }
+      },
+      ver_novedad: function(id) {
+        var self = this;
+        if (PERFIL == -1) {
+          if (id == undefined) {
+            view = new app.views.NovedadesEditView({
+              model: new app.models.Novedades(),
+              permiso: 3
+            });
+            this.mostrar({
+              "top" : view.el,
+            });
+          } else {
+            var novedad = new app.models.Novedades({ "id": id });
+            novedad.fetch({
+              "success":function() {
+                view = new app.views.NovedadesEditView({
+                  model: novedad,
+                  permiso: 3
+                });
+                self.mostrar({
+                  "top" : view.el,
                 });
               }
             });
