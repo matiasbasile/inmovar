@@ -28,7 +28,7 @@ class Alquileres extends REST_Controller {
     $this->load->model("Empresa_Model");
     $this->load->model("Email_Template_Model");
     $this->load->model("Log_Model");
-    require APPPATH.'libraries/Mandrill/Mandrill.php';
+    require_once APPPATH.'libraries/Mandrill/Mandrill.php';
 
     $sql = "SELECT F.id_empresa, C.nombre AS cliente, F.id, F.pago, C.telefono, C.celular, F.hash, C.email, ";
     $sql.= " F.comprobante, C.id AS id_cliente, DATE_FORMAT(F.fecha,'%d/%m/%Y') AS fecha, ";

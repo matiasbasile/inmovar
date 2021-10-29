@@ -157,7 +157,7 @@ class Facturas extends REST_Controller {
     $this->load->model("Log_Model");
     $this->load->model("Email_Template_Model");
     $bcc_array = array("basile.matias99@gmail.com");
-    require APPPATH.'libraries/Mandrill/Mandrill.php';    
+    require_once APPPATH.'libraries/Mandrill/Mandrill.php';    
 
     // Si la factura ya fue pagada, no volvemos a ejecutar el codigo
     $sql = "SELECT * FROM facturas WHERE id = $id_factura AND id_empresa = $id_empresa AND id_punto_venta = $id_punto_venta ";
@@ -2447,7 +2447,7 @@ class Facturas extends REST_Controller {
         $body = str_replace("{{nombre}}", $cliente->nombre, $body);
         $body = str_replace("{{link_estado}}", "https://app.inmovar.com/sandbox/1003/web/estado/?id=".$id."&id_punto_venta=".$array->id_punto_venta, $body);
         $bcc_array = array("basile.matias99@gmail.com");
-        require APPPATH.'libraries/Mandrill/Mandrill.php';
+        require_once APPPATH.'libraries/Mandrill/Mandrill.php';
         mandrill_send(array(
           "to"=>$cliente->email,
           "from_name"=>"City Notebooks",

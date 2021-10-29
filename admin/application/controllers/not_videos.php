@@ -70,7 +70,7 @@ class Not_Videos extends REST_Controller {
     $link = str_replace("//", "/", $dominio."/"."web/company/?id=".$cliente->id."&tab=video&id_video=".$entrada->id);
     $body = str_replace("{{link}}", "http://".$link, $body);
 
-    require APPPATH.'libraries/Mandrill/Mandrill.php';
+    require_once APPPATH.'libraries/Mandrill/Mandrill.php';
     mandrill_send(array(
       "to"=>$cliente->email,
       "from"=>"no-reply@varcreative.com",

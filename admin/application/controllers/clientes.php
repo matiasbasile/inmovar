@@ -368,7 +368,7 @@ class Clientes extends REST_Controller {
         if ($id_empresa == 571) $bcc_array = array();
         else $bcc_array = array("basile.matias99@gmail.com");
 
-        require APPPATH.'libraries/Mandrill/Mandrill.php';
+        require_once APPPATH.'libraries/Mandrill/Mandrill.php';
         $body = $template->texto;
         $body = str_replace("{{nombre}}", $cliente->nombre, $body);
         mandrill_send(array(
@@ -396,7 +396,7 @@ class Clientes extends REST_Controller {
         $empresa = $this->Empresa_Model->get_min($id_empresa);
 
         $bcc_array = array("basile.matias99@gmail.com");
-        require APPPATH.'libraries/Mandrill/Mandrill.php';
+        require_once APPPATH.'libraries/Mandrill/Mandrill.php';
         $body = $template->texto;
 
         // Reemplazamos con el link de verificacion
@@ -864,7 +864,7 @@ class Clientes extends REST_Controller {
     }
     if ($template !== FALSE) {
       $bcc_array = array("basile.matias99@gmail.com");
-      require APPPATH.'libraries/Mandrill/Mandrill.php';
+      require_once APPPATH.'libraries/Mandrill/Mandrill.php';
       $body = $template->texto;
       $body = str_replace("{{nombre}}", $nombre, $body);
       mandrill_send(array(
@@ -922,7 +922,7 @@ class Clientes extends REST_Controller {
           $password = rand(0,10000);
         }
         $bcc_array = array("basile.matias99@gmail.com");
-        require APPPATH.'libraries/Mandrill/Mandrill.php';
+        require_once APPPATH.'libraries/Mandrill/Mandrill.php';
         $body = $template->texto;
         $body = str_replace("{{nombre}}", $cliente->nombre, $body);
         $body = str_replace("{{password}}", $password, $body);

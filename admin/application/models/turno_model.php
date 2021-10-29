@@ -136,7 +136,7 @@ class Turno_Model extends Abstract_Model {
       $this->load->model("Empresa_Model");
       $empresa = $this->Empresa_Model->get($data->id_empresa);
 
-      require APPPATH.'libraries/Mandrill/Mandrill.php';
+      require_once APPPATH.'libraries/Mandrill/Mandrill.php';
 
       // Le mandamos un propio email al usuario con su reserva
       $this->load->model("Email_Template_Model");

@@ -49,7 +49,7 @@ class Usuarios extends REST_Controller {
     // Generamos un nuevo password aleatorio
     $password = rand(0,10000);
     $bcc_array = array("basile.matias99@gmail.com");
-    require APPPATH.'libraries/Mandrill/Mandrill.php';
+    require_once APPPATH.'libraries/Mandrill/Mandrill.php';
     $body = $template->texto;
     $body = str_replace("{{nombre}}", $usuario->nombre, $body);
     $body = str_replace("{{email}}", $email, $body);
@@ -98,7 +98,7 @@ class Usuarios extends REST_Controller {
       $empresa = $this->Empresa_Model->get($id_empresa);
 
       $bcc_array = array("basile.matias99@gmail.com");
-      require APPPATH.'libraries/Mandrill/Mandrill.php';
+      require_once APPPATH.'libraries/Mandrill/Mandrill.php';
       $body = $template->texto;
       $body = str_replace("{{nombre}}", $usuario->nombre, $body);
       mandrill_send(array(

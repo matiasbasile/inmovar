@@ -63,7 +63,7 @@ class Cliente_Model extends Abstract_Model {
     $this->load->model("Consulta_Tipo_Model");
     $this->load->model("Email_Template_Model");
     $this->load->model("Empresa_Model");
-    require APPPATH.'libraries/Mandrill/Mandrill.php';
+    require_once APPPATH.'libraries/Mandrill/Mandrill.php';
     $empresa = $this->Empresa_Model->get($id_empresa);
 
     // Primero obtenemos el estado actual 
