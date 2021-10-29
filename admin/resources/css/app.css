@@ -5334,3 +5334,9 @@ tfoot tr td { white-space: nowrap !important; }
 #modal_novedades .owl-next{position: absolute;top: 40%;left: 102%;font-size: 50px;}
 #modal_novedades .owl-next:hover{background: none; color: black;}
 #modal_novedades .owl-prev:hover{background: none; color: black;}
+
+.buscar_tab .svg { filter: invert(33%) sepia(1%) saturate(1294%) hue-rotate(1deg) brightness(95%) contrast(79%); }
+.buscar_tab.active .svg { filter: invert(15%) sepia(57%) saturate(6775%) hue-rotate(234deg) brightness(79%) contrast(91%); }
+
+.iconito .svg { width: 12px; position: relative; top: -5px; filter: invert(90%) sepia(6%) saturate(319%) hue-rotate(150deg) brightness(91%) contrast(86%); }
+.iconito.active .svg { filter: invert(100%) sepia(0%) saturate(31%) hue-rotate(88deg) brightness(107%) contrast(107%); }
