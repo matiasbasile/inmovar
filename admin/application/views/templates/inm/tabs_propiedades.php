@@ -12,7 +12,7 @@
 </li>
 <li id="buscar_inactivas_tab" class="buscar_tab <%= (window.propiedades_buscar_red == 2)?"active":"" %>">
   <a href="javascript:void(0)">
-    <i class="material-icons">store</i> Desactivas
+    <i class="material-icons">domain_disabled</i> Desactivas
     <span id="propiedades_inactivas_total" class="counter">0</span>
   </a>
 </li>
