@@ -1319,6 +1319,7 @@ class Propiedad_Model extends Abstract_Model {
     $sql.= "IF(X.nombre IS NULL,'',X.nombre) AS tipo_operacion, ";
     $sql.= "IF(U.nombre IS NULL,'',U.nombre) AS usuario, ";
     $sql.= "IF(U.email IS NULL,'',U.email) AS usuario_email, ";
+    $sql.= "IF(U.celular IS NULL,'',U.celular) AS usuario_celular, ";
     $sql.= "IF(L.nombre IS NULL,'',L.nombre) AS localidad ";
     $sql.= "FROM inm_propiedades A ";
     $sql.= "INNER JOIN empresas E ON (A.id_empresa = E.id) ";
@@ -1514,6 +1515,8 @@ class Propiedad_Model extends Abstract_Model {
     $propiedad->direccion_completa.= (($propiedad->publica_altura == 1)?" N° ".$propiedad->altura:"") . (!empty($propiedad->piso) ? " Piso ".$propiedad->piso : "") . (!empty($propiedad->numero) ? " Depto. ".$propiedad->numero : "");
 
     $propiedad->direccion_completa_red = $propiedad->calle.(!empty($propiedad->entre_calles) ? " e/ ".$propiedad->entre_calles.(!empty($propiedad->entre_calles_2) ? " y ".$propiedad->entre_calles_2 : "") : "");
+
+    $propiedad->usuario_celular =  preg_replace("/[^0-9]/", "", $propiedad->usuario_celular);
 
     // Formamos el precio (si se debe mostrar o no)
     if ($propiedad->publica_precio == 1) {

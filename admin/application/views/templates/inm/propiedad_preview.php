@@ -121,7 +121,35 @@
               </div>
 
               <div id="propiedad_preview_tab3" class="tab-pane">
-                <div class="titulo mt5 mb10"><%= empresa %></div>
+
+                <% if (!isEmpty(usuario)) { %>
+
+                  <div class="titulo mt5 mb10">Datos del Vendedor</div>
+
+                  <div class="mb20">
+                    <div class="clearfix mt10">
+                      <b>Nombre:</b> <%= usuario %>
+                    </div>
+                    <% if (!isEmpty(usuario_email)) { %>
+                      <div class="clearfix mt10">
+                        <b>Email:</b> <a class="text-info cp" href="mailto:<%= usuario_email %>"><%= usuario_email %></a>
+                      </div>
+                    <% } %>
+                    <% if (!isEmpty(usuario_celular)) { %>
+                      <div class="clearfix mt10">
+                        <b>Celular:</b> <a target="_blank" class="text-info cp" href="https://wa.me/<%= usuario_celular %>"><%= usuario_celular %></a>
+                      </div>
+                    <% } %>
+                  </div>
+
+                <% } %>
+
+                <div class="titulo mt5 mb10">Datos de la Inmobiliaria</div>
+
+                <div class="clearfix mb15">
+                  <b>Nombre: </b> <span><%= empresa %></span>
+                </div>
+
                 <% if (!isEmpty(empresa_direccion)) { %>
                   <div class="clearfix mb15">
                     <b>Direcci&oacute;n:</b> <span><%= empresa_direccion %></span>
@@ -136,17 +164,6 @@
                   <div class="clearfix mb15">
                     <b>Email:</b> <a class="text-info cp" href="mailto:<%= empresa_email %>"><%= empresa_email %></a>
                   </div>
-                <% } %>
-
-                <% if (!isEmpty(usuario)) { %>
-                  <div class="clearfix mt10">
-                    <span class="material-icons fs20 fl mr5">person</span><%= usuario %>
-                  </div>
-                  <% if (!isEmpty(usuario)) { %>
-                    <div class="clearfix mt10">
-                      <b>Email:</b> <a class="text-info cp" href="mailto:<%= usuario_email %>"><%= usuario_email %></a>
-                    </div>
-                  <% } %>
                 <% } %>
 
               </div>
