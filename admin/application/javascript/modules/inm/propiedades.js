@@ -118,6 +118,7 @@
       servicios_aire_acondicionado: 0,
       servicios_uso_comercial: 0,
       servicios_escritura: 0,
+      servicios_escri_plazo: 0,
       servicios_reglamento: 0,
       servicios_plano_obra: 0,
       servicios_plano_ph: 0,
