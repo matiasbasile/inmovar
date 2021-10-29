@@ -229,7 +229,7 @@
       "click .exportar": "exportar",
       "click .importar_csv": "importar",
       "click .exportar_csv": "exportar_csv",
-      "click .enviar": "enviar",
+      "click .enviar_por_email": "enviar_por_email",
       "click .enviar_whatsapp": "enviar_whatsapp",
       "click .compartir_meli":"compartir_meli",
       "click .meli_pausar_multiple":"meli_pausar_multiple",
@@ -1017,28 +1017,23 @@
       window.open("propiedades/function/exportar_csv/","_blank");
     },
         
-    enviar: function() {
+    enviar_por_email: function() {
       var self = this;
       var checks = this.$("#propiedades_tabla .check-row:checked");
       if (checks.length == 0) {
         alert("Por favor seleccione algun elemento de la tabla.");
         return;
       }
-      var links_adjuntos = new Array();
+      var texto = "<br/>";
       $(checks).each(function(i,e){
-        var id = $(e).val();
-        var art = self.collection.get(id);
-        links_adjuntos.push({
-          tipo: TIPO_ADJUNTO_PROPIEDAD,
-          id_objeto: id,
-          nombre: art.get("nombre"),
-        });
+        var hash = $(e).data("hash");
+        var link = "https://app.inmovar.com/ficha/"+ID_EMPRESA+"/"+hash;
+        texto += "<a href='"+link+"'>"+link+"</a><br/>";
       });
       var email = new app.models.Consulta({
         tipo: 1,
-        links_adjuntos:links_adjuntos,
         asunto:"Fichas de Propiedades",
-        email: self.email,
+        texto: texto
       });
       workspace.nuevo_email(email);
     },
