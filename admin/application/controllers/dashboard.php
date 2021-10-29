@@ -29,7 +29,7 @@ class Dashboard extends REST_Controller {
     );
     $asunto = utf8_decode($asunto);
     $texto = utf8_decode($texto);
-    require APPPATH.'libraries/Mandrill/Mandrill.php';
+    require_once APPPATH.'libraries/Mandrill/Mandrill.php';
     $body = "";
     $body.= "Cliente: $empresa->nombre <br/>";
     $body.= "Asunto: $asunto <br/>";

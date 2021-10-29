@@ -212,7 +212,7 @@ class Empresas extends REST_Controller {
     $template->texto = "{{nombre}} ha solicitado el cambio de plan por $plan->nombre.";
 
     $bcc_array = array("basile.matias99@gmail.com","misticastudio@gmail.com");
-    require APPPATH.'libraries/Mandrill/Mandrill.php';
+    require_once APPPATH.'libraries/Mandrill/Mandrill.php';
     $body = (html_entity_decode($template->texto,ENT_QUOTES));
     $body = str_replace("{{email}}",$empresa->email,$body);
     $body = str_replace("{{nombre}}",htmlentities($empresa->nombre,ENT_QUOTES),$body);
@@ -456,7 +456,7 @@ class Empresas extends REST_Controller {
     $template = $query->row();
     if (!empty($template)) {
       $bcc_array = array("basile.matias99@gmail.com","misticastudio@gmail.com");
-      require APPPATH.'libraries/Mandrill/Mandrill.php';
+      require_once APPPATH.'libraries/Mandrill/Mandrill.php';
       $body = $template->texto;
       $body = str_replace("{{email}}",$email,$body);
       $body = str_replace("{{nombre}}",htmlentities($nombre,ENT_QUOTES),$body);

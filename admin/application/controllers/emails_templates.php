@@ -17,7 +17,7 @@ class Emails_Templates extends REST_Controller {
     $this->load->model("Empresa_Model");
     $empresa = $this->Empresa_Model->get($id_empresa);
     $this->load->model("Cliente_Model");
-    require APPPATH.'libraries/Mandrill/Mandrill.php';
+    require_once APPPATH.'libraries/Mandrill/Mandrill.php';
 
     // Obtenemos los contactos que se suscribieron a digital
     $contactos = $this->Cliente_Model->buscar(array(
@@ -84,7 +84,7 @@ class Emails_Templates extends REST_Controller {
     $this->load->model("Empresa_Model");
     $empresa = $this->Empresa_Model->get($id_empresa);
     $this->load->model("Cliente_Model");
-    require APPPATH.'libraries/Mandrill/Mandrill.php';
+    require_once APPPATH.'libraries/Mandrill/Mandrill.php';
 
     // Obtenemos los contactos que se suscribieron a digital
     $contactos = $this->Cliente_Model->buscar(array(

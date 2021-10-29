@@ -123,7 +123,7 @@ class Entradas extends REST_Controller {
     $link = str_replace("//", "/", $dominio."/".$entrada->link);
     $body = str_replace("{{link}}", "http://".$link, $body);
 
-    require APPPATH.'libraries/Mandrill/Mandrill.php';
+    require_once APPPATH.'libraries/Mandrill/Mandrill.php';
     mandrill_send(array(
       "to"=>$cliente->email,
       "from"=>"no-reply@varcreative.com",
@@ -864,7 +864,7 @@ class Entradas extends REST_Controller {
     $mensaje_salida = "Muchas gracias por su comentario!";
 
     if ($id_empresa != 70) {
-      require APPPATH.'libraries/Mandrill/Mandrill.php';
+      require_once APPPATH.'libraries/Mandrill/Mandrill.php';
       mandrill_send(array(
         "to"=>$empresa->email,
         "from"=>"no-reply@varcreative.com",

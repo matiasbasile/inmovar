@@ -90,7 +90,7 @@ class Turnos extends REST_Controller {
 
       // Avisamos al administrador que el turno se cancelo
       $body = "El cliente ".$turno->cliente." ha cancelado su turno del servicio ".utf8_encode($turno->servicio)." para la fecha ".$turno->fecha." a las ".$turno->hora;
-      require APPPATH.'libraries/Mandrill/Mandrill.php';
+      require_once APPPATH.'libraries/Mandrill/Mandrill.php';
       mandrill_send(array(
         "to"=>$empresa->email,
         "from_name"=>$empresa->nombre,
@@ -336,7 +336,7 @@ class Turnos extends REST_Controller {
     // Y copia a la propia empresa
     $bcc_array[] = ((isset($para) && !empty($para)) ? $para : $empresa->email);
 
-    require APPPATH.'libraries/Mandrill/Mandrill.php';
+    require_once APPPATH.'libraries/Mandrill/Mandrill.php';
     mandrill_send(array(
       "from_name"=>$empresa->nombre,
       "to"=>$email,

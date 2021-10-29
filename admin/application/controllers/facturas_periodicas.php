@@ -119,7 +119,7 @@ class Facturas_Periodicas extends REST_Controller {
     $this->load->model("Log_Model");
     $this->load->model("Cliente_Model");
     $this->load->model("Articulo_Model");
-    require APPPATH.'libraries/Mandrill/Mandrill.php';
+    require_once APPPATH.'libraries/Mandrill/Mandrill.php';
 
     // Obtenemos la empresa
     $empresa = $this->Empresa_Model->get($id_empresa);
@@ -283,7 +283,7 @@ class Facturas_Periodicas extends REST_Controller {
     $this->load->model("Empresa_Model");
     $this->load->model("Cliente_Model");
     $this->load->model("Email_Template_Model");
-    require APPPATH.'libraries/Mandrill/Mandrill.php';
+    require_once APPPATH.'libraries/Mandrill/Mandrill.php';
 
     $sql = "SELECT F.id, F.id_empresa, F.id_punto_venta ";
     $sql.= "FROM facturas F ";

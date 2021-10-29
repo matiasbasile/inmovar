@@ -38,7 +38,7 @@ class Contactos extends REST_Controller {
 
   // Envia emails a los interesados de una propiedad
   function enviar_email_interesados() {
-    require APPPATH.'libraries/Mandrill/Mandrill.php';
+    require_once APPPATH.'libraries/Mandrill/Mandrill.php';
     $id_empresa = parent::get_empresa();
     $id_propiedad = parent::get_post("id_propiedad",0);
     $id_clientes = parent::get_post("id_clientes","");

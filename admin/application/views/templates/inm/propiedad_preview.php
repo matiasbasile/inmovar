@@ -137,6 +137,18 @@
                     <b>Email:</b> <a class="text-info cp" href="mailto:<%= empresa_email %>"><%= empresa_email %></a>
                   </div>
                 <% } %>
+
+                <% if (!isEmpty(usuario)) { %>
+                  <div class="clearfix mt10">
+                    <span class="material-icons fs20 fl mr5">person</span><%= usuario %>
+                  </div>
+                  <% if (!isEmpty(usuario)) { %>
+                    <div class="clearfix mt10">
+                      <b>Email:</b> <a class="text-info cp" href="mailto:<%= usuario_email %>"><%= usuario_email %></a>
+                    </div>
+                  <% } %>
+                <% } %>
+
               </div>
 
               <div id="propiedad_preview_tab5" class="tab-pane">
@@ -308,11 +320,11 @@
                 </div>
               </div>
 
-              <% if (usuario != "") { %>
+              <% if (id_empresa == ID_EMPRESA && usuario != "") { %>
                 <div class="clearfix mt10">
                   <span class="material-icons fs20 fl mr5">person</span><%= usuario %>
                 </div>
-              <% } %>              
+              <% } %>
 
             </div>
           </div>

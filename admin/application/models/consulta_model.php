@@ -345,7 +345,7 @@ class Consulta_Model extends Abstract_Model {
               $this->db->query($sql);
             }
 
-            require APPPATH.'libraries/Mandrill/Mandrill.php';
+            require_once APPPATH.'libraries/Mandrill/Mandrill.php';
             mandrill_send(array(
               "to"=>$email,
               "subject"=>$data->asunto,

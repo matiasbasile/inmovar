@@ -5,6 +5,9 @@ require APPPATH.'libraries/REST_Controller.php';
 class Consultas extends REST_Controller {
 
   function __construct() {
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
     parent::__construct();
     $this->load->model('Consulta_Model', 'modelo');
   }
@@ -134,7 +137,7 @@ class Consultas extends REST_Controller {
     $id_usuario_asignado = parent::get_post("id_usuario_asignado");
 
     $bcc_array = array("basile.matias99@gmail.com");
-    require APPPATH.'libraries/Mandrill/Mandrill.php';
+    require_once APPPATH.'libraries/Mandrill/Mandrill.php';
 
     $this->load->model("Empresa_Model");
     $this->load->model("Email_Template_Model");
@@ -234,7 +237,7 @@ class Consultas extends REST_Controller {
     $this->modelo->insert($consulta);
 
     $bcc_array = array("basile.matias99@gmail.com");
-    require APPPATH.'libraries/Mandrill/Mandrill.php';
+    require_once APPPATH.'libraries/Mandrill/Mandrill.php';
     mandrill_send(array(
       "to"=>$empresa->email,
       "from"=>"no-reply@varcreative.com",
@@ -772,7 +775,7 @@ class Consultas extends REST_Controller {
         $bcc_array = array_unique($bcc_array);
       }
 
-      require APPPATH.'libraries/Mandrill/Mandrill.php';
+      require_once APPPATH.'libraries/Mandrill/Mandrill.php';
       mandrill_send(array(
         "to"=>$para,
         "from"=>(($id_empresa == 186) ? "info@varcreative.com" : "no-reply@varcreative.com"),

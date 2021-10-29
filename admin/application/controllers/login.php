@@ -448,7 +448,7 @@ class Login extends CI_Controller {
               $template = $query->row();
               if (!empty($template)) {
                 $bcc_array = array("basile.matias99@gmail.com","misticastudio@gmail.com");
-                require APPPATH.'libraries/Mandrill/Mandrill.php';
+                require_once APPPATH.'libraries/Mandrill/Mandrill.php';
                 $body = $template->texto;
                 $body = str_replace("{{email}}",$usuario->email,$body);
                 $body = str_replace("{{nombre}}",htmlentities($usuario->nombre,ENT_QUOTES),$body);

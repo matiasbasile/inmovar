@@ -274,7 +274,7 @@ class Propiedades extends REST_Controller {
     $this->load->model("Email_Template_Model");
     $empresa = $this->Empresa_Model->get_min($id_empresa);
     $empresa->nombre = ucwords(strtolower($empresa->nombre));
-    require APPPATH.'libraries/Mandrill/Mandrill.php';
+    require_once APPPATH.'libraries/Mandrill/Mandrill.php';
     $template = $this->Email_Template_Model->get_by_key("invitacion",118);
     $template->nombre = str_replace("{{nombre}}", $empresa->nombre, $template->nombre);
     $body = str_replace("{{nombre}}", $empresa->nombre, $template->texto);
