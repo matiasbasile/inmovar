@@ -58,53 +58,80 @@ $entrada->mostrar_me_gusta = 1;
 <body class="page-sub-page page-legal" id="page-top">
 <!-- Wrapper -->
 <div class="wrapper">
-    <?php include("includes/header.php"); ?>
-    <div id="page-content">
-        <!-- Breadcrumb -->
-        <div class="container">
-            <ol class="breadcrumb">
-                <li><a href="<?php echo mklink("/"); ?>">Inicio</a></li>
-                <li class="active"><?php echo $entrada->titulo ?></li>
-            </ol>
-        </div>
-        <!-- end Breadcrumb -->
-
-        <div class="container">
-            <div class="row">
-                <!-- Content -->
-                <div class="col-md-9 col-sm-9">
-                    <section id="content">
-                        <header><h1><?php echo $entrada->titulo ?></h1></header>
-                        <section id="legal">
-                            <?php echo $entrada->texto; ?>
-                        </section>
-                        <?php if ($entrada->habilitar_contacto == 1) { ?>
-                            <section>
-                                <header><h1>Formulario de Contacto</h1></header>
-                                <?php 
-                                $asunto_defecto = $entrada->titulo;
-                                include("includes/form_contacto.php"); ?>
-                            </section>
-                        <?php } ?>
-                    </section><!-- /#agent-detail -->
-                </div><!-- /.col-md-9 -->
-                <!-- end Content -->
-
-                <!-- sidebar -->
-                <div class="col-md-3 col-sm-3">
-                    <section id="sidebar">
-                        <aside id="edit-search">
-                            <header><h3>Buscador</h3></header>
-                            <?php include("includes/buscador.php"); ?>
-                        </aside><!-- /#edit-search -->
-                        <?php include("includes/destacadas.php"); ?>
-                    </section><!-- /#sidebar -->
-                </div><!-- /.col-md-3 -->
-                <!-- end Sidebar -->
-            </div><!-- /.row -->
-        </div><!-- /.container -->
+  <?php include("includes/header.php"); ?>
+  <div id="page-content">
+    <!-- Breadcrumb -->
+    <div class="container">
+      <ol class="breadcrumb">
+        <li><a href="<?php echo mklink("/"); ?>">Inicio</a></li>
+        <li class="active"><?php echo $entrada->titulo ?></li>
+      </ol>
     </div>
-    <?php include("includes/footer.php"); ?>
+    <!-- end Breadcrumb -->
+
+    <div class="container">
+      <div class="row">
+        <!-- Content -->
+        <div class="col-md-9 col-sm-9">
+          <section id="content">
+            <header><h1><?php echo $entrada->titulo ?></h1></header>
+
+
+            <?php if (sizeof($entrada->images) > 0) { ?>
+              <section id="property-gallery" class="pr">
+                <?php if (sizeof($entrada->images)==1) { 
+                  $image = $entrada->images[0]; ?>
+                  <img class="alto-2" src="<?php echo $image ?>" style="width: 100%" alt="<?php echo $entrada->titulo ?>"/>
+                <?php } else { ?>
+                <div id="property-carousel" class="property-carousel carousel slide" data-ride="carousel">
+                  <a id="prev" class="carousel-control" href="#property-carousel" data-slide="prev"></a>
+                  <a id="next" class="carousel-control" href="#property-carousel" data-slide="next"></a>
+                  <div class="carousel-inner">
+                    <?php 
+                    $i=0;
+                    foreach($entrada->images as $image) { ?>
+                      <div class="item <?php echo ($i==0)?"active":"" ?>">
+                        <a href="<?php echo $image ?>" class="image-popup">
+                          <img class="alto-2" src="<?php echo $image ?>" alt="<?php echo $entrada->titulo ?>"/>
+                        </a>
+                      </div>
+                    <?php $i++; } ?>
+                  </div>
+                </div>
+                <?php } ?>
+              </section>
+            <?php } ?>
+
+            <section id="legal">
+              <?php echo $entrada->texto; ?>
+            </section>
+            <?php if ($entrada->habilitar_contacto == 1) { ?>
+              <section>
+                <header><h1>Formulario de Contacto</h1></header>
+                <?php 
+                $asunto_defecto = $entrada->titulo;
+                include("includes/form_contacto.php"); ?>
+              </section>
+            <?php } ?>
+          </section><!-- /#agent-detail -->
+        </div><!-- /.col-md-9 -->
+        <!-- end Content -->
+
+        <!-- sidebar -->
+        <div class="col-md-3 col-sm-3">
+          <section id="sidebar">
+            <aside id="edit-search">
+              <header><h3>Buscador</h3></header>
+              <?php include("includes/buscador.php"); ?>
+            </aside><!-- /#edit-search -->
+            <?php include("includes/destacadas.php"); ?>
+          </section><!-- /#sidebar -->
+        </div><!-- /.col-md-3 -->
+        <!-- end Sidebar -->
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+  </div>
+  <?php include("includes/footer.php"); ?>
 </div>
 
 <script type="text/javascript" src="assets/js/jquery-2.1.0.min.js"></script>
