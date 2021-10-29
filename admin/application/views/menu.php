@@ -109,7 +109,7 @@ function modulo_habilitado($permisos,$modulo) {
 
             <?php if (modulo_habilitado($permisos,"permisos_red")>0) { ?>
               <li>
-                <a href="app/#permisos_red" class=""><i class="material-icons md-22">share</i><span>Red Inmovar</span></a>
+                <a href="app/#permisos_red" class=""><img class="svg-menu" src="resources/images/logo.svg" /><span>Red Inmovar</span></a>
               </li>
             <?php } ?>
             <?php if (modulo_habilitado($permisos,"alquileres")>0) { ?>
