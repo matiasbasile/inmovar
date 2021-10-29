@@ -569,11 +569,11 @@
         language: "es",
         placeholder: {
           id: 0,
-          text: "Estado",
+          text: "Cartel en web",
         }
       });
       if (window.propiedades_id_tipo_estado == 0) this.$("#propiedades_buscar_tipos_estado").val(null).trigger("change");
-      this.$("#propiedades_buscar_tipos_estado").parent().find(".select2-search__field").attr("placeholder","Estado");
+      this.$("#propiedades_buscar_tipos_estado").parent().find(".select2-search__field").attr("placeholder","Cartel en web");
       this.$("#propiedades_buscar_tipos_estado").parent().find(".select2-search__field").css("width","100%");
       this.$("#propiedades_buscar_tipos_estado").on("change.select2",function(e){
         self.buscar();
