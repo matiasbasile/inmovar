@@ -230,7 +230,7 @@
 
       <td class="tar td_acciones">
         
-        <i <%= (!edicion)?"disabled":"" %> data-toggle="tooltip" title="Activa" class="fa-check iconito fa activo <%= (activo == 1)?"active bg-success":"" %>"></i>
+        <i <%= (!edicion)?"disabled":"" %> data-toggle="tooltip" title="Activa" class="fa-check iconito fa activo <%= (activo == 1)?"active success":"" %>"></i>
         <i <%= (!edicion)?"disabled":"" %> data-toggle="tooltip" title="Destacado" class="fa fa-star iconito warning destacado <%= (destacado == 1)?"active":"" %>"></i>
 
         <i <%= (!edicion)?"disabled":"" %> data-toggle="tooltip" title="Compartida en Red Inmovar" class="fa fa-share-alt iconito compartida <%= (compartida >= 1)?"active":"" %>"></i>
