@@ -133,7 +133,7 @@ class Inmobusquedas extends REST_Controller {
           "id_empresa"=>$id_empresa,
           "link"=>$link,
         ));
-        sleep(1);
+        //sleep(1);
         if (isset($s["errores"])) {
           $errores = array_merge($errores,$s["errores"]);
         }

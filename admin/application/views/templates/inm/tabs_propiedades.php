@@ -6,7 +6,7 @@
 </li>
 <li id="buscar_red_tab" class="buscar_tab <%= (window.propiedades_buscar_red == 1)?"active":"" %>">
   <a href="javascript:void(0)">
-    <i class="material-icons">share</i> Red Inmovar
+    <img class="svg" style="width: 17px; margin-right: 5px; position: relative; top: -2px;" src="resources/images/logo.svg" /> Red Inmovar
     <span id="propiedades_red_total" class="counter">0</span>
   </a>
 </li>
