@@ -652,7 +652,7 @@ class Propiedad_Model extends Abstract_Model {
 
     $sql_final = "";
 
-    $sql_activo = ($activo != -1) ? "AND A.activo = $activo " : " ";
+    $sql_activo = ($activo != -1 && $activo != '') ? "AND A.activo = $activo " : " ";
 
     if ($buscar_red == 1) {
 
