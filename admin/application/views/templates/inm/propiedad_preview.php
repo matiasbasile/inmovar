@@ -309,7 +309,7 @@
               </div>
 
               <% if (usuario != "") { %>
-                <div class="clearfix">
+                <div class="clearfix mt10">
                   <span class="material-icons fs20 fl mr5">person</span><%= usuario %>
                 </div>
               <% } %>              
