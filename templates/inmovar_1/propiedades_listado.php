@@ -36,13 +36,13 @@ if (isset($_GET["test"])) print_r($vc_listado);
                 <h3><i class="fa fa-search"></i>Resultados de b&uacute;squeda:</h3>
                 <span class="search-count"><?php echo $vc_total_resultados; ?></span>
                 <div class="sorting">
-                  <form class="form-group" action="<?php echo mklink ("propiedades/".(empty($vc_link_tipo_operacion)?"todas":$vc_link_tipo_operacion)."/".(empty($link_localidad)?"todas":$link_localidad)."/?".(empty($link_tipo_inmueble)?"":$link_tipo_inmueble)."/$vc_page/") ?>" method="GET" id="orden_form">
+                  <div class="form-group">
                     <label>Ordenar por:</label>
-                    <select onchange="enviar_orden()" name="orden">
+                    <select id="orden_select" onchange="enviar_orden()" name="orden">
                       <option <?php echo ($vc_orden == 2 ) ? "selected" : "" ?> value="barato">Precio menor a mayor</option>
                       <option <?php echo ($vc_orden == 1 ) ? "selected" : "" ?> value="caro">Precio mayor a menor</option>
                     </select>
-                  </form>
+                  </div>
                 </div>
               </figure>
             </section>
@@ -158,6 +158,7 @@ if (isset($_GET["test"])) print_r($vc_listado);
 <![endif]-->
 <script type="text/javascript">
 function enviar_orden() { 
+  $("#orden_hidden").val($("#orden_select").val());
   $("#orden_form").submit();
 }
 function enviar_buscador_propiedades() { 
