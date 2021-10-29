@@ -159,7 +159,7 @@ if (isset($_GET["test"])) print_r($vc_listado);
 <script type="text/javascript">
 function enviar_orden() { 
   $("#orden_hidden").val($("#orden_select").val());
-  $("#orden_form").submit();
+  $("#form_propiedades").submit();
 }
 function enviar_buscador_propiedades() { 
   var link = "<?php echo mklink("propiedades/")?>";
