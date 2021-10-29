@@ -100,16 +100,21 @@ if (isset($_SESSION["favoritos"])) {
                 "offset"=>9999,
                 "id_categoria"=>$r->id,
               ));
-              ?>
-              <li class="<?php echo ($nombre_pagina==$r->nombre)?"active":"" ?> has-child">
-                <a href="<?php echo mklink("entradas/$r->link/") ?>"><?php echo ($r->nombre)?></a>
-                <ul class="child-navigation">
-                  <?php foreach($entradas as $ent) { ?>
-                    <li><a href="<?php echo mklink($ent->link); ?>"><?php echo ($ent->titulo) ?></a></li>
-                  <?php } ?>
-                </ul>
-              </li>
-            <?php } ?>  
+              if (sizeof($entradas)>0) { ?>
+                <li class="<?php echo ($nombre_pagina==$r->nombre)?"active":"" ?> has-child">
+                  <a href="<?php echo mklink("entradas/$r->link/") ?>"><?php echo ($r->nombre)?></a>
+                  <ul class="child-navigation">
+                    <?php foreach($entradas as $ent) { ?>
+                      <li><a href="<?php echo mklink($ent->link); ?>"><?php echo ($ent->titulo) ?></a></li>
+                    <?php } ?>
+                  </ul>
+                </li>
+              <?php } else { ?>
+                <li class="<?php echo ($nombre_pagina==$r->nombre)?"active":"" ?>">
+                  <a href="<?php echo mklink("entradas/$r->link/") ?>"><?php echo ($r->nombre)?></a>
+                </li>
+              <?php } ?>
+            <?php } ?>
           <?php } ?>
           <li class="<?php echo ($nombre_pagina=="contacto")?"active":"" ?>">
             <a href="<?php echo mklink("contacto/"); ?>">Contacto</a>
