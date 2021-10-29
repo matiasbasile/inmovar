@@ -100,7 +100,7 @@ if (isset($_SESSION["favoritos"])) {
                 "offset"=>9999,
                 "id_categoria"=>$r->id,
               ));
-              if (sizeof($entradas)>0) { ?>
+              if (sizeof($entradas)>1) { ?>
                 <li class="<?php echo ($nombre_pagina==$r->nombre)?"active":"" ?> has-child">
                   <a href="<?php echo mklink("entradas/$r->link/") ?>"><?php echo ($r->nombre)?></a>
                   <ul class="child-navigation">
