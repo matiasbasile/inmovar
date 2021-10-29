@@ -192,6 +192,18 @@
         </div>
       </div>
 
+      <div class="col-md-2 col-sm-3 col-xs-12 h50 pr5 pl5">
+        <div class="form-group">
+          <select id="propiedad_usuarios" class="form-control">
+            <option value="0">Vendedor</option>
+            <% for(var i=0;i< window.usuarios.models.length;i++) { %>
+              <% var o = window.usuarios.models[i]; %>
+              <option <%= (window.propiedades_id_usuario == o.id) ? 'selected' : '' %>value="<%= o.id %>"><%= o.get("nombre") %></option>
+            <% } %>
+          </select>
+        </div>
+      </div>
+
       <div class="col-sm-4 col-xs-12 h50 pr5 pl5">
         <div class="row">
           <div class="col-md-4">
@@ -217,7 +229,7 @@
         </div>
       </div>
 
-      <div class="col-sm-3 col-xs-12 h50 pr5 pl5">
+      <div class="col-md-2 col-sm-3 col-xs-12 h50 pr5 pl5">
         <div class="form-group">
           <select class="form-control" id="propiedades_buscar_compartida_en">
             <option <%= (window.propiedades_compartida_en == "")?"selected":"" %> value="">Compartida en</option>
@@ -257,17 +269,7 @@
           <% } %>
         </select>        
       </div>
-      <div class="col-md-2 col-sm-3 col-xs-12 h50 pr5 pl5">
-        <div class="form-group">
-          <select id="propiedad_usuarios" class="form-control">
-            <option value="0">Seleccione un usuario</option>
-            <% for(var i=0;i< window.usuarios.models.length;i++) { %>
-              <% var o = window.usuarios.models[i]; %>
-              <option <%= (window.propiedades_id_usuario == o.id) ? 'selected' : '' %>value="<%= o.id %>"><%= o.get("nombre") %></option>
-            <% } %>
-          </select>
-        </div>
-      </div>
+      
       <div class="col-md-2 col-sm-3 col-xs-12 h50 pr5 pl5">
         <button data-toggle="tooltip" title="Ver como lista" id="propiedades_ver_lista" class="btn btn-default <%= (window.propiedades_mapa == 0)?'btn-info':'' %>">
           <i class="fa fa-list"></i>
