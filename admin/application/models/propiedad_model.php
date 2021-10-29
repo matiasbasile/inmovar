@@ -729,7 +729,6 @@ class Propiedad_Model extends Abstract_Model {
     // Propiedades totales (activas y no activas)
     $sql = "SELECT COUNT(*) as total ".$sql_from.$sql_where.$sql_where_2;
     if (!empty($order)) $sql.= "ORDER BY $order ";
-    if ($offset != 0) $sql.= "LIMIT $limit, $offset ";
     $sql_final = $sql;
     $q_total = $this->db->query($sql);
     $r_total = $q_total->row();
