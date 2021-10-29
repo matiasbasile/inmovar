@@ -97,7 +97,8 @@ if (isset($_SESSION["favoritos"])) {
           if (sizeof($cat_entradas)>0) {
             foreach($cat_entradas as $r) { 
               $entradas = $entrada_model->get_list(array(
-                "offset"=>9999
+                "offset"=>9999,
+                "id_categoria"=>$r->id,
               ));
               ?>
               <li class="<?php echo ($nombre_pagina==$r->nombre)?"active":"" ?> has-child">
