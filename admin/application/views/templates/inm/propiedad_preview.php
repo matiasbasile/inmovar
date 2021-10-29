@@ -308,6 +308,12 @@
                 </div>
               </div>
 
+              <% if (usuario != "") { %>
+                <div class="clearfix">
+                  <span class="material-icons fs20 fl mr5">person</span><%= usuario %>
+                </div>
+              <% } %>              
+
             </div>
           </div>
           <div class="panel-body expand db">
