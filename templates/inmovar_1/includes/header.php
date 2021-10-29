@@ -81,9 +81,17 @@ if (isset($_SESSION["favoritos"])) {
           <li class="<?php echo ($nombre_pagina=="alquileres")?"active":"" ?>">
             <a href="<?php echo mklink("propiedades/alquileres/"); ?>">Alquileres</a>
           </li>
-          <li class="<?php echo ($nombre_pagina=="emprendimientos")?"active":"" ?>">
-            <a href="<?php echo mklink("propiedades/emprendimientos/"); ?>">Emprendimientos</a>
-          </li>
+          
+          <?php $emprendimientos = $propiedad_model->get_list(array(
+            "solo_propias"=>1,
+            "id_tipo_operacion"=>4
+          )); 
+          if (sizeof($emprendimientos)>0) { ?>
+            <li class="<?php echo ($nombre_pagina=="emprendimientos")?"active":"" ?>">
+              <a href="<?php echo mklink("propiedades/emprendimientos/"); ?>">Emprendimientos</a>
+            </li>
+          <?php } ?>
+
           <?php
           $cat_entradas = $web_model->get_categorias(0);
           if (sizeof($cat_entradas)>0) {
