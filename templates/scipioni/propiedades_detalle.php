@@ -87,6 +87,9 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no
                 <h3>
                   <span>
                     <?php echo ($propiedad->precio_final != 0 && $propiedad->publica_precio == 1) ? $propiedad->moneda." ".number_format($propiedad->precio_final,0) : "Consultar"; ?>
+                    <?php if ($propiedad->precio_porcentaje_anterior < 0.00 && $propiedad->publica_precio == 1) { ?>
+                      <span class="dib" style="color: #0dd384;">(<img src="images/arrow_down.png" alt="Home" /> <?= floatval($propiedad->precio_porcentaje_anterior*-1) ?>%)</span>
+                    <?php } ?>  
                   </span>
                 </h3>
               </div>
