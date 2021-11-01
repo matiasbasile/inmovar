@@ -61,7 +61,12 @@ $page_act = $propiedad->tipo_operacion_link;
           </div>
         </div>
         <div class="col-lg-6">
-          <h4><?php echo $propiedad->precio ?></h4>
+          <h4>
+            <?php echo $propiedad->precio ?>
+            <?php if ($propiedad->precio_porcentaje_anterior < 0.00 && $propiedad->publica_precio == 1) { ?>
+              <span class="dib fs24" style="color: #0dd384;">(<img src="assets/images/arrow_down.png" alt="Home" /> <?= floatval($propiedad->precio_porcentaje_anterior*-1) ?>%)</span>
+            <?php } ?>              
+          </h4>
           <ul class="listinfo">
             <li>
               <img src="assets/images/icon4.png" alt="Icon"> <?php echo ($propiedad->dormitorios != 0)?$propiedad->dormitorios:"-" ?> Habitaci<?php echo ($propiedad->dormitorios > 1)?"ones":"ón" ?>

@@ -77,7 +77,7 @@ iframe { width: 100% !important }
                 <div class="row price_tages">
                   <div class="col-lg-3 col-md-3 dollar_price">
                     <h5 style="width: 400px"><?php echo $propiedad->precio ?>
-                      <?php if ($propiedad->precio_porcentaje_anterior < 0.00) { ?>
+                      <?php if ($propiedad->precio_porcentaje_anterior < 0.00 && $propiedad->publica_precio == 1) { ?>
                         <span style="color: #0dd384;">(<i class="fa fa-arrow-down" aria-hidden="true"></i> <?= floatval($propiedad->precio_porcentaje_anterior) ?>%)</span>
                       <?php } ?>
                     </h5>

@@ -62,7 +62,10 @@ if (!empty($propiedad->imagen)) $propiedad->images = array_merge(array($propieda
           <div class="property-header">
             <div class="property-title">
               <h4><?php echo $propiedad->nombre ?></h4>
-              <div class="property-price-single right"><?php echo $propiedad->precio ?><!-- <span>Per Month</span> --></div>
+              <div class="property-price-single right">
+                <?php echo $propiedad->precio ?>
+                <!-- <span>Per Month</span> -->
+              </div>
               <p class="property-address">Código: <?php echo $propiedad->codigo ?><br><i class="fa fa-map-marker icon"></i><?php echo $propiedad->direccion_completa." - ".$propiedad->localidad?></p>
               <div class="clear"></div>
             </div>

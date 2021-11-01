@@ -66,8 +66,11 @@ if ($propiedad === FALSE) {
                 <b>Cod:</b><?php echo $propiedad->codigo ?>
               </div>
               <h2><?php echo $propiedad->nombre ?></h2>
-              <div class="price-info">
-                <b><?php echo $propiedad->precio ?></b>
+              <div class="">
+                <b class="price-text"><?php echo $propiedad->precio ?></b>
+                <?php if ($propiedad->precio_porcentaje_anterior < 0.00 && $propiedad->publica_precio == 1) { ?>
+                  <span class="dib fs24" style="color: #0dd384;">(<img src="assets/images/arrow_down.png" alt="Home" /> <?= floatval($propiedad->precio_porcentaje_anterior*-1) ?>%)</span>
+                <?php } ?>
               </div>
               <div class="location-box">
                 <span><img src="assets/images/location-icon2.png" alt="Location"> <?php echo $propiedad->direccion_completa ?> | <strong><?php echo $propiedad->localidad ?></strong></span>
