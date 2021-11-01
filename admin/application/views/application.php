@@ -23,16 +23,6 @@ function lang($languages=array()) {
   --c2: #0dd384;          <?php // Color secundario (VERDE) ?>
 }
 </style>
-<!-- pwa -->
-<meta name="theme-color" content="#1d36c2">
-<meta name="MobileOptimized" content="width">
-<meta name="HandheldFriendly" content="true">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="shortcut icon" type="image/png" href="resources/images/propiedades.png">
-<link rel="apple-touch-icon" href="resources/images/propiedades.png">
-<link rel="apple-touch-startup-image" href="resources/images/propiedades.png">
-<link rel="manifest" href="application/views/manifest.json">
 
 <?php if(!empty($css_files)) { ?>
   <?php foreach($css_files as $file) { ?>
@@ -245,12 +235,6 @@ var control = new ControlPermiso();
 <!-- Inicializa el SW -->
 
 <script type="text/javascript">
-
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw_app.js')
-    .then(reg => console.log('Registro de SW exitoso', reg))
-    .catch(err => console.warn('Error al tratar de registrar el sw', err))
-} 
 
 var ajax_request = 0;
 function waitingMsg() {
