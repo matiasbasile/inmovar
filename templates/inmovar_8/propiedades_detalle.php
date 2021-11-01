@@ -76,7 +76,11 @@ iframe { width: 100% !important }
                 <h4 class="heading_details"> <?php echo $propiedad->nombre ?> </h4>
                 <div class="row price_tages">
                   <div class="col-lg-3 col-md-3 dollar_price">
-                    <h5 style="width: 400px"><?php echo $propiedad->precio ?></h5>
+                    <h5 style="width: 400px"><?php echo $propiedad->precio ?>
+                      <?php if ($propiedad->precio_porcentaje_anterior < 0.00) { ?>
+                        <span style="color: #0dd384;">(<i class="fa fa-arrow-down" aria-hidden="true"></i> <?= floatval($propiedad->precio_porcentaje_anterior) ?>%)</span>
+                      <?php } ?>
+                    </h5>
                   </div>
                   <div class="col-lg-9 col-md-9 muy text-right"> 
                     <?php if ($propiedad->total_visitas > 0) { ?>

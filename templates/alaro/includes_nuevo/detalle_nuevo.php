@@ -108,7 +108,12 @@ else $vc_moneda = "$";
                     &nbsp;&nbsp;|&nbsp;&nbsp;<?php echo ($propiedad->localidad); ?>
                   <?php } ?>
                 </span>
-                <big><?php echo ($propiedad->precio_final != 0)?$propiedad->moneda." ".$propiedad->precio_final:"Consultar" ?></big>
+                <big>
+                  <?php echo ($propiedad->precio_final != 0)?$propiedad->moneda." ".$propiedad->precio_final:"Consultar" ?>
+                  <?php if ($propiedad->precio_porcentaje_anterior < 0.00) { ?>
+                    <span class="dib" style="color: #0dd384;">(<i class="fa fa-arrow-down" aria-hidden="true"></i> <?= floatval($propiedad->precio_porcentaje_anterior*-1) ?>%)</span>
+                  <?php } ?>
+                </big>
               </li>
             </ul>
           </div>

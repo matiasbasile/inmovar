@@ -94,6 +94,9 @@ else $vc_moneda = "$";
             <div class="property-price">
               <big>
                 <?php echo $propiedad->precio ?>
+                <?php if ($propiedad->precio_porcentaje_anterior < 0.00) { ?>
+                  <span class="dib" style="color: #0dd384;">(<img src="images/arrow_down.png" alt="Home" /> <?= floatval($propiedad->precio_porcentaje_anterior*-1) ?>%)</span>
+                <?php } ?>
               </big>
             </div>
             <?php echo $propiedad->nombre; ?>
