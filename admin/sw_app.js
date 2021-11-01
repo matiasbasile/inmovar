@@ -1,5 +1,9 @@
+;
 //asignar un nombre y versión al cache
 const CACHE_NAME = 'v1_cache_programador_fitness',
+  urlsToCache = [
+    './',
+  ]
 //durante la fase de instalación, generalmente se almacena en caché los activos estáticos
 self.addEventListener('install', e => {
   e.waitUntil(
