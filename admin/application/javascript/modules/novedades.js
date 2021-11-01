@@ -185,6 +185,7 @@
 
         this.model.set({
           "path": $("#hidden_path").val(),
+          "texto": CKEDITOR.instances['novedades_texto'].getData(),
         });
 
         $(".error").removeClass("error");

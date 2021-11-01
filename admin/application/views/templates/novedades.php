@@ -59,18 +59,23 @@
         
             <div class="wrapper-md">
 		     
-              <div class="form-group">
-                <label class="control-label">Titulo</label>
-                <input type="text" required name="titulo" id="novedades_tiulo" value="<%= titulo %>" class="form-control"/>
-              </div>     
+	          <div class="form-group">
+	            <label class="control-label">Titulo</label>
+	            <input type="text" required name="titulo" id="novedades_tiulo" value="<%= titulo %>" class="form-control"/>
+	          </div>     
 
-                <?php
-                    single_upload(array(
-                    "name"=>"path",
-                    "label"=>"Imagen principal",
-                    "url"=>"/admin/novedades/function/save_image/",
-                    )); 
-                ?>
+	            <?php
+	                single_upload(array(
+	                "name"=>"path",
+	                "label"=>"Imagen principal",
+	                "url"=>"/admin/novedades/function/save_image/",
+	                )); 
+	            ?>
+
+			    <div class="form-group">
+			    	<label class="control-label">Titulo</label>
+			    	<textarea id="novedades_texto"><%= texto %></textarea>
+			    </div>  
 
                 <div class="line line-dashed b-b line-lg pull-in"></div>
                 <% if (edicion) { %>

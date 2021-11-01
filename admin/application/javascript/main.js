@@ -284,6 +284,9 @@
             this.mostrar({
               "top" : view.el,
             });
+            workspace.crear_editor('novedades_texto',{
+              "toolbar":"Basic",
+            });
           } else {
             var novedad = new app.models.Novedades({ "id": id });
             novedad.fetch({
@@ -294,6 +297,9 @@
                 });
                 self.mostrar({
                   "top" : view.el,
+                });
+                workspace.crear_editor('novedades_texto',{
+                  "toolbar":"Basic",
                 });
               }
             });
