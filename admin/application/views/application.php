@@ -24,7 +24,7 @@ function lang($languages=array()) {
 }
 </style>
 <!-- pwa -->
-<meta name="theme-color" content="#E41F29">
+<meta name="theme-color" content="#1d36c2">
 <meta name="MobileOptimized" content="width">
 <meta name="HandheldFriendly" content="true">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -246,16 +246,11 @@ var control = new ControlPermiso();
 
 <script type="text/javascript">
 
-console.log("llega");
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw_app.js')
     .then(reg => console.log('Registro de SW exitoso', reg))
     .catch(err => console.warn('Error al tratar de registrar el sw', err))
-} else {
-  console.log("no llega");
-}
-
-console.log ("llega 2");
+} 
 
 var ajax_request = 0;
 function waitingMsg() {
