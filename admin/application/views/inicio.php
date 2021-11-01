@@ -8,6 +8,15 @@
 <link rel="stylesheet" href="/admin/resources/css/common.css">
 <link rel="stylesheet" href="/admin/resources/css/login.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1d36c2">
+<meta name="MobileOptimized" content="width">
+<meta name="HandheldFriendly" content="true">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="shortcut icon" type="image/png" href="resources/images/propiedades.png">
+<link rel="apple-touch-icon" href="resources/images/propiedades.png">
+<link rel="apple-touch-startup-image" href="resources/images/propiedades.png">
+<link rel="manifest" href="application/views/manifest.json">
 </head>
 <body class="login-page">
   <div class="top-div">
@@ -59,6 +68,15 @@
 <script type="text/javascript" src="/admin/resources/js/common.js"></script>
 
 <script type="text/javascript">
+
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw_app.js')
+    .then(reg => console.log('Registro de SW exitoso', reg))
+    .catch(err => console.warn('Error al tratar de registrar el sw', err))
+} 
+
+  
 jQuery(document).ready(function($) {
   $("#nombre").focus();
   $(".input").keypress(function(e){
