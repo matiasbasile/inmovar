@@ -431,7 +431,7 @@ window.onload = function () {
   <?php } ?>
 </div>
 
-<?php if (isset($novedades) && sizeof($novedades)>0 && $volver_superadmin == 0) { ?>
+<?php if (isset($novedades) && sizeof($novedades)>0 && $volver_superadmin == 1) { ?>
   <div class="modal fade" id="modal_novedades" role="dialog" data-backdrop="static">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -443,13 +443,19 @@ window.onload = function () {
             <?php foreach ($novedades as $n) { ?>
               <div class="item">
                 <h3 class="mt0 font-thin"><?= $n->titulo ?></h3>
+                <div class="subtitulo readmore">
+                  <?= str_Replace("&nbsp;", " ", $n->texto) ?>
+                </div>
+                <div class="mt5">
+                  <a class="list_text" href="javascript:void(0)" onclick="leer_mas(this)">Leer mas...</a>
+                </div>
                 <img src="<?= $n->path; ?>">
               </div>
             <?php } ?>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary font-thin" onclick="cerrar_modal()">ENTENDIDO</button>
+          <button type="button" class="btn btn-primary font-thin mt10 mb10 mr20" onclick="cerrar_modal()">ENTENDIDO</button>
         </div>
       </div>
     </div>
@@ -458,6 +464,16 @@ window.onload = function () {
 <script>
 function toggleMenu() {
   $(".app-aside-fixed .aside-wrap").toggleClass("open")
+}
+
+
+function leer_mas(e) {
+  $(e).parent().parent().find('.subtitulo').toggleClass('readmore'); 
+  if ($(e).parent().parent().find('.subtitulo').hasClass('readmore')){
+    $(e).text("Leer mas...");
+  } else {
+    $(e).text("Leer menos...");
+  }
 }
 
 function cerrar_modal() {
