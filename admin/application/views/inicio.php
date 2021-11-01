@@ -13,7 +13,7 @@
 <meta name="HandheldFriendly" content="true">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="shortcut icon" type="image/png" href="resources/images/propiedades.png">
+<link rel="shortcut icon" href="resources/images/favicon.ico" type="image/x-icon">
 <link rel="apple-touch-icon" href="resources/images/propiedades.png">
 <link rel="apple-touch-startup-image" href="resources/images/propiedades.png">
 <link rel="manifest" href="application/views/manifest.json">
