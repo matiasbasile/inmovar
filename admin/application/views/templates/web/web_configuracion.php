@@ -576,7 +576,7 @@
               Cotizaciones
             </label>
             <div class="panel-description">
-              Modifique la taza de cotizaciones.
+              Modifique la tasa de cotizaciones.
             </div>
           </div>
         </div>
@@ -612,7 +612,7 @@
                   </select>                 
                 </div>
                 <div class="form-group col-sm-3">
-                  <label class="control-label">Taza anual (%)</label>
+                  <label class="control-label">Tasa anual (%)</label>
                   <input type="number" value="0" id="web_taza" class="form-control">                  
                 </div>
                 <div class="form-group col-sm-3">
@@ -629,7 +629,7 @@
                   <th style="display: none"></th>
                   <th>Años</th>
                   <th>Haberes</th>
-                  <th>Taza</th>
+                  <th>Tasa</th>
                   <th class="w25"></th>
                   <th class="w25"></th>
                 </tr>
