@@ -16,7 +16,7 @@
 <link rel="shortcut icon" href="resources/images/favicon.ico" type="image/x-icon">
 <link rel="apple-touch-icon" href="resources/images/propiedades.png">
 <link rel="apple-touch-startup-image" href="resources/images/propiedades.png">
-<link rel="manifest" href="application/views/manifest.json">
+<link rel="manifest" href="https://app.inmovar.com/admin/application/views/manifest.json">
 </head>
 <body class="login-page">
   <div class="top-div">
@@ -69,12 +69,11 @@
 
 <script type="text/javascript">
 
-/*
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw_app.js')
     .then(reg => console.log('Registro de SW exitoso', reg))
     .catch(err => console.warn('Error al tratar de registrar el sw', err))
-}*/
+}
 
 
 jQuery(document).ready(function($) {
