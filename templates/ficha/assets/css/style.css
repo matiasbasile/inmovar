@@ -9,7 +9,7 @@ div { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: b
 ul { margin:0; padding:0; list-style:none; }
 a { text-decoration:none; }
 button, input[type="button"] { border:none; }
-.flex-box{display: inline-flex;}
+.flex-box{display: inline-flex;width: 100%;}
 .flex-box .dib{align-self: center;}
 .fleft { float:left; }
 .fright { float:right; }
