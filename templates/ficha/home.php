@@ -51,15 +51,22 @@ $og_desc = (strlen($og_desc)>180) ? substr($og_desc, 0, 180)."..." : $og_desc; ?
       <div id="ficha_detalle" class="card">
         <div id="ficha_detalle_head" class="bgcolorC" style="text-transform: uppercase;">Detalles de la propiedad</div>
           <div id="ficha_detalle_cuerpo">
-            <div class="operations-box">
-              <div class="op-venta">
-                <?php if(isset($propiedad->tipo_operacion)){ ?>
-                  <div class="op-operation"><?= $propiedad->tipo_operacion ?></div>
-                <?php } ?>
-                <div class="op-values"> 
-                  <div class="op-value"><?= $propiedad->precio ?></div>
+            <div class="flex-box">
+              <div class="operations-box dib">
+                <div class="op-venta">
+                  <?php if(isset($propiedad->tipo_operacion)){ ?>
+                    <div class="op-operation"><?= $propiedad->tipo_operacion ?></div>
+                  <?php } ?>
+                  <div class="op-values"> 
+                    <div class="op-value"><?= $propiedad->precio ?></div>
+                  </div>
                 </div>
               </div>
+              <?php if ($propiedad->precio_porcentaje_anterior < 0.00) { ?>
+                <div class="dib">
+                  <span class="dib" style="color: #0dd384;">(<img src="assets/images/arrow_down.png" alt="Home" /> <?= floatval($propiedad->precio_porcentaje_anterior*-1) ?>%)</span>
+                </div>
+              <?php } ?>
             </div>
             <div class="ficha_detalle_item">
               <b>Dirección:</b><br/>
@@ -173,6 +180,84 @@ $og_desc = (strlen($og_desc)>180) ? substr($og_desc, 0, 180)."..." : $og_desc; ?
           </div>
           <?= $propiedad->texto ?>
         </div>
+
+
+
+        <?php if ($propiedad->servicios_escritura != 0 || $propiedad->servicios_reglamento != 0 || $propiedad->servicios_plano_obra != 0 || $propiedad->servicios_plano_ph != 0 || $propiedad->servicios_fecha_chequeado != "0000-00-00" || $propiedad->documentacion_escritura != 0 || $propiedad->documentacion_estado_parcelario != 0 || $propiedad->documentacion_estado != 0 || $propiedad->documentacion_impuesto != 0 || $propiedad->documentacion_coti != 0) { 
+        ?>
+
+          <div class="card">
+            <div class="titulo2">
+              Documentación
+            </div>
+            <ul class="ficha_ul" id="lista_informacion_basica">
+              <?= $propiedad->servicios_escritura != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Escritura: Si </li>" : "" ?> 
+              <?= $propiedad->servicios_reglamento != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Reglamento: Si </li>" : "" ?> 
+              <?= $propiedad->servicios_plano_obra != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Plano de Obra: Si </li>" : "" ?> 
+              <?= $propiedad->servicios_plano_ph != 0 ? "<li><i class='fa fa-check detalleColorC'></i>Plano PH: Si </li>" : "" ?> 
+              <?php if ($propiedad->servicios_fecha_chequeado != "0000-00-00") { ?>
+                <li><i class='fa fa-check detalleColorC'></i>Fecha Chequeado: <?php echo date('d/m/Y', strtotime($propiedad->servicios_fecha_chequeado)); ?> </li>
+              <?php } ?>
+              <?php if ($propiedad->documentacion_escritura != 0) { ?>
+                <?php $documentacion_texto = "" ?>
+                <?php if ($propiedad->documentacion_escritura == 1) $documentacion_texto = "Compraventa"; ?>
+                <?php if ($propiedad->documentacion_escritura == 2) $documentacion_texto = "Donación"; ?>
+                <?php if ($propiedad->documentacion_escritura == 3) $documentacion_texto = "Parte Indivisa"; ?>
+                <?php if ($propiedad->documentacion_escritura == 4) $documentacion_texto = "Fidelcomiso"; ?>
+                <li><i class='fa fa-check detalleColorC'></i>Documentación: <?= $documentacion_texto ?> </li>                
+              <?php } ?>
+              <?php if ($propiedad->documentacion_estado_parcelario != 0) { ?>
+                <?php $estado_parcelario_texto = "" ?>
+                <?php if ($propiedad->documentacion_estado_parcelario == 1) $estado_parcelario_texto = "No lleva"; ?>
+                <?php if ($propiedad->documentacion_estado_parcelario == 2) $estado_parcelario_texto = "Lleva"; ?>
+                <li><i class='fa fa-check detalleColorC'></i>Estado Parcelario: <?= $estado_parcelario_texto ?> </li>
+              <?php } ?>
+              <?php if ($propiedad->documentacion_estado != 0) { ?>
+                <?php $estado_texto = "" ?>
+                <?php if ($propiedad->documentacion_estado == 1) $estado_texto = "Desocupada"; ?>
+                <?php if ($propiedad->documentacion_estado == 2) $estado_texto = "Ocupada"; ?>
+                <?php if ($propiedad->documentacion_estado == 3) $estado_texto = "Alquilada"; ?>
+                <li><i class='fa fa-check detalleColorC'></i>Estado: <?= $estado_texto ?> </li>  
+              <?php } ?>
+              <?php if ($propiedad->documentacion_impuesto != 0) { ?>
+                <?php $impuesto_texto = "" ?>
+                <?php if ($propiedad->documentacion_impuesto == 1) $impuesto_texto = "Impuesto Transferencia de Inmuebles"; ?>
+                <?php if ($propiedad->documentacion_impuesto == 2) $impuesto_texto = "Anticipo de Ganancias"; ?>
+                <li><i class='fa fa-check detalleColorC'></i>Impuesto: <?= $impuesto_texto ?> </li>  
+              <?php } ?>
+              <?php if ($propiedad->documentacion_coti != 0) { ?>
+                <?php $coti_texto = "" ?>
+                <?php if ($propiedad->documentacion_coti == 1) $coti_texto = "Corresponde"; ?>
+                <?php if ($propiedad->documentacion_coti == 2) $coti_texto = "No Corresponde"; ?>
+                <li><i class='fa fa-check detalleColorC'></i>Coti: <?= $coti_texto ?> </li>  
+              <?php } ?> 
+            </ul>
+          </div>
+
+        <?php } ?>
+
+
+        <?php if ($propiedad->servicios_reservas != 0 || $propiedad->servicios_boleto != 0 || $propiedad->servicios_escri_plazo != 0) { ?>
+          <div class="card">
+            <div class="titulo2">
+              Formas de Operación
+            </div>
+            <ul class="ficha_ul" id="forma_operacion_basica">
+              <?php if ($propiedad->servicios_reservas != 0) { ?>
+                <li><i class='fa fa-check detalleColorC'></i>Reserva (<?= $propiedad->plazo_reserva ?> días) </li> 
+              <?php } ?>
+              <?php if ($propiedad->servicios_boleto != 0) { ?>
+                <li><i class='fa fa-check detalleColorC'></i>Boleto (<?= $propiedad->plazo_boleto ?> días) </li> 
+              <?php } ?>
+              <?php if ($propiedad->servicios_escri_plazo != 0) { ?>
+                <li><i class='fa fa-check detalleColorC'></i>Escritura (<?= $propiedad->plazo_escritura ?> días) </li> 
+              <?php } ?>
+            </ul>
+          </div>
+        <?php } ?>
+
+
+
       </div>
 
       <section id="ficha_mapa" class="card">
