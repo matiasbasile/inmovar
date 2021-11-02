@@ -327,7 +327,7 @@
                         <td class="p0 data">
                           <% if (!isEmpty(p.path)) { %>
                             <% var prefix = (p.path.indexOf("http") == 0) ? "" : "/admin/" %>
-                            <img src="<%= prefix + p.path %>?t=<%= Math.ceil(Math.random()*10000) %>" class="customcomplete-image br5"/>
+                            <img src="<%= prefix + p.path %>?t=<%= Math.ceil(Math.random()*10000) %>" class="imagen-preview-item br5"/>
                           <% } %>
                         </td>
                         <td class="data">
