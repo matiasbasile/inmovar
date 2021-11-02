@@ -130,6 +130,9 @@ else $vc_moneda = "$";
               <div class="property-price">
                 <big>
                   <?php echo $propiedad->precio ?>
+                  <?php if ($propiedad->precio_porcentaje_anterior < 0.00 && $propiedad->publica_precio == 1) { ?>
+                    <span class="dib" style="color: #0dd384;">(<i class="fa fa-arrow-down" aria-hidden="true"></i> <?= floatval($propiedad->precio_porcentaje_anterior*-1) ?>%)</span>
+                  <?php } ?>
                 </big>
               </div>
               <br>

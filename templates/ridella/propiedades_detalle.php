@@ -149,7 +149,12 @@ if ($propiedad === FALSE) {
           <div class="property-name"><?php echo (!empty($propiedad->nombre))?$propiedad->nombre : "" ?></div>
           <div class="property-price">
             <big>
-              <span><?php echo $propiedad->precio ?></span>
+              <span>
+                <?php echo $propiedad->precio ?>
+                <?php if ($propiedad->precio_porcentaje_anterior < 0.00 && $propiedad->publica_precio == 1) { ?>
+                  <span class="dib" style="color: #0dd384;">(<img src="images/arrow_down.png" alt="Home" /> <?= floatval($propiedad->precio_porcentaje_anterior*-1) ?>%)</span>
+                <?php } ?>                    
+              </span>
             </big>
           </div>
 

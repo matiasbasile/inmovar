@@ -1774,6 +1774,11 @@ footer .container {
 	color: #c60018;
 	font-weight: bold;
 }
+.price-text {
+	font-size: 28px;
+	color: #c60018;
+	font-weight: bold;	
+}
 .price-info span {
 	font-size: 12px;
 	color: #989898;

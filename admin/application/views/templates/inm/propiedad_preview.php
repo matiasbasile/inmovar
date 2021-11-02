@@ -67,6 +67,15 @@
                 </li>
               <% } %>
 
+              <% if (VOLVER_SUPERADMIN == 1) { %>
+                <li class="">
+                  <a id="propiedad_preview_7_link" href="#propiedad_preview_tab7" class="oh" role="tab" data-toggle="tab">
+                    <i class="material-icons">store</i>
+                    <span class="hidden-xs m-l-xs">Relacionadas</span>
+                  </a>
+                </li>
+              <% } %>
+
               <li class="show-xs-dib fr" id="cerrar_preview" style="float: right !important;">
                 <a href="javascript:void" class="oh" style="background-color: transparent !important; border-color: transparent !important; padding-right: 0px !important">
                   <i class="material-icons mr0">close</i>
@@ -298,6 +307,61 @@
 
 
                 <div class="h250" style="width: 540px;margin-top: 100px;" id="historial_precios_bar"></div>
+              </div>
+
+              <div id="propiedad_preview_tab7" class="tab-pane">
+
+                <div class="table-responsive">
+                  <table id="propiedad_preview_relacionadas" class="table table-striped sortable m-b-none default footable">
+                    <thead>
+                      <tr>
+                        <th class="w50 tac"></th>
+                        <th>Propiedad</th>
+                        <th>Operación</th>
+                      </tr>
+                    </thead>
+                    <tbody class="tbody">
+                      <% for (var i = 0; i < propiedades_relacionadas.length; i++) { %>
+                      <% var p = propiedades_relacionadas[i]; %>
+                      <tr data-id="<%= p.id %>" data-id_empresa="<%= p.id_empresa %>">
+                        <td class="p0 data">
+                          <% if (!isEmpty(p.path)) { %>
+                            <% var prefix = (p.path.indexOf("http") == 0) ? "" : "/admin/" %>
+                            <img src="<%= prefix + path %>?t=<%= Math.ceil(Math.random()*10000) %>" class="customcomplete-image br5"/>
+                          <% } %>
+                        </td>
+                        <td class="data">
+                          <% if (ID_EMPRESA == 1575) { %>
+                            <%= p.nombre %>
+                          <% } else { %>
+                            <%= p.tipo_inmueble %> en <%= p.tipo_operacion %><br/>
+                            <span class="bold"><%= p.direccion_completa %></span><br/>
+                            <%= p.localidad %><br/>
+                            <% if (usuario != "") { %>
+                              <span class="material-icons fs20 fl mr5">person</span><%= p.usuario %>
+                            <% } %>
+                          <% } %>
+                          <% if (p.id_empresa != ID_EMPRESA && p.incluye_comision_35 == 1) { %>
+                            <br/><span class="btn etiqueta">Incluye 3% Comisión</span>
+                          <% } %>
+                        </td>
+                        <td class="data">
+                          <%= p.tipo_operacion %><br/>
+                          <%= p.moneda %> <%= Number(p.precio_final).format(0) %>
+                          <% if (p.precio_porcentaje_anterior < 0.00) { %>
+                            <span style="color: #0dd384;">(<i class="fa fa-arrow-down" aria-hidden="true"></i> <%= Number(p.precio_porcentaje_anterior*-1).format(0) %>%)</span>
+                          <% } %>
+                          <% if (p.id_tipo_estado != 1) { %>
+                            <br/><span class="text-info"><%= p.tipo_estado %></span>
+                          <% } %>
+                          <br/>Cod. <%= codigo_completo %>
+                        </td>
+                      </tr>
+                      <% } %>
+                    </tbody>
+                  </table>
+                </div>
+
               </div>
 
             </div>

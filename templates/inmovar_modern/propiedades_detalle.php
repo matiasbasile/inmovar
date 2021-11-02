@@ -48,7 +48,12 @@ if ($propiedad === FALSE) {
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 col-xs-12 box-full">
-					<div class="price"><?php echo ($propiedad->precio_final !=0)?$propiedad->precio:"Consultar" ?></div>
+					<div class="price">
+						<?php echo ($propiedad->precio_final !=0)?$propiedad->precio:"Consultar" ?>
+			            <?php if ($propiedad->precio_porcentaje_anterior < 0.00 && $propiedad->publica_precio == 1) { ?>
+			              <span class="dib" style="color: #0dd384;">(<img src="img/arrow_down.png" alt="Home" /> <?= floatval($propiedad->precio_porcentaje_anterior*-1) ?>%)</span>
+			            <?php } ?>							
+					</div>
 					<div class="box-icon">
 						<img src="img/icon-size-large.png">
 						<div class="little-title">Sup. Total<br><span class="negritas"><?php echo (!empty($propiedad->superficie_total))?$propiedad->superficie_total:"-" ?>m2</span></div>

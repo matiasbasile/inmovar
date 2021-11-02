@@ -109,7 +109,12 @@ if ($propiedad === FALSE || !isset($propiedad->nombre)) header("Location:".mklin
               &nbsp;&nbsp;|&nbsp;&nbsp;<?php echo ($propiedad->localidad); ?>
             <?php } ?>
           </span>
-          <big><?php echo $propiedad->precio ?></big>
+          <big>
+            <?php echo $propiedad->precio ?>
+            <?php if ($propiedad->precio_porcentaje_anterior < 0.00 && $propiedad->publica_precio == 1) { ?>
+              <span class="dib" style="color: #0dd384;">(<img src="assets/images/arrow_down.png" alt="Home" /> <?= floatval($propiedad->precio_porcentaje_anterior*-1) ?>%)</span>
+            <?php } ?>
+          </big>
         </li>
       </ul>
     </div>

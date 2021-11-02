@@ -8,6 +8,61 @@ class Propiedad_Model extends Abstract_Model {
     parent::__construct("inm_propiedades","id");
   }
 
+  function obtener_propiedades_similares($config = array()) {
+    $salida = array();
+    $id_empresa = isset($config["id_empresa"]) ? $config["id_empresa"] : parent::get_empresa();
+    $id_propiedad = isset($config["id_propiedad"]) ? $config["id_propiedad"] : 0;
+    $id_localidad = isset($config["id_localidad"]) ? $config["id_localidad"] : 0;
+    $id_tipo_inmueble = isset($config["id_tipo_inmueble"]) ? $config["id_tipo_inmueble"] : 0;
+    $id_tipo_operacion = isset($config["id_tipo_operacion"]) ? $config["id_tipo_operacion"] : 0;
+    $limit = isset($config["limit"]) ? $config["limit"] : 0;
+    $offset = isset($config["offset"]) ? $config["offset"] : 5;
+    $calle = isset($config["calle"]) ? $config["calle"] : "";
+    $calle = mb_strtolower($calle);
+    $altura = isset($config["altura"]) ? $config["altura"] : "";
+    $altura = mb_strtolower($altura);
+    $piso = isset($config["piso"]) ? $config["piso"] : "";
+    $piso = mb_strtolower($piso);
+    $numero = isset($config["numero"]) ? $config["numero"] : "";
+    $numero = mb_strtolower($numero);
+
+    // Buscamos propiedades que sean iguales en la red
+    $sql = "SELECT P.*, ";
+    $sql.= "IF(U.nombre IS NULL,'',U.nombre) AS usuario, ";
+    if (!empty($id_localidad)) $sql.= "IF(L.nombre IS NULL,'',L.nombre) AS localidad, ";
+    $sql.= "E.nombre AS empresa, E.path AS empresa_path, E.telefono_empresa AS empresa_telefono, E.direccion_empresa AS empresa_direccion, E.email AS empresa_email, ";
+    $sql.= "E.codigo AS codigo_inmobiliaria, CONCAT(E.codigo,'-',P.codigo) AS codigo_completo, ";
+    $sql.= "E.incluye_comision_35, ";
+    $sql.= "IF(X.nombre IS NULL,'',X.nombre) AS tipo_operacion, ";
+    $sql.= "IF(TI.nombre IS NULL,'',TI.nombre) AS tipo_inmueble ";
+    $sql.= "FROM inm_propiedades P ";
+    if (!empty($id_localidad)) $sql.= "LEFT JOIN com_localidades L ON (P.id_localidad = L.id) ";
+    $sql.= "LEFT JOIN com_usuarios U ON (P.id_usuario = U.id AND P.id_empresa = U.id_empresa) ";
+    $sql.= "LEFT JOIN inm_tipos_inmueble TI ON (P.id_tipo_inmueble = TI.id) ";
+    $sql.= "LEFT JOIN inm_tipos_operacion X ON (P.id_tipo_operacion = X.id) ";
+    $sql.= "INNER JOIN empresas E ON (P.id_empresa = E.id) ";
+    $sql.= "WHERE P.id_empresa != $id_empresa ";
+    $sql.= "AND P.id != $id_propiedad ";
+    $sql.= "AND P.id_tipo_inmueble = $id_tipo_inmueble ";
+    if (!empty($id_localidad)) $sql.= "AND P.id_localidad = $id_localidad ";
+    if (!empty($id_tipo_operacion)) $sql.= "AND P.id_tipo_operacion = $id_tipo_operacion ";
+    if (!empty($calle)) $sql.= "AND LOWER(calle) = '$calle' ";
+    if (!empty($altura)) $sql.= "AND LOWER(altura) = '$altura' ";
+    if (!empty($piso)) $sql.= "AND LOWER(piso) = '$piso' ";
+    if (!empty($numero)) $sql.= "AND LOWER(numero) = '$numero' ";
+    $sql.= "AND P.compartida >= 1 "; // Tiene que estar compartida en la RED
+    $sql.= "LIMIT $limit,$offset ";
+    $q = $this->db->query($sql);
+
+    foreach ($q->result() as $p) {
+      $p->direccion_completa = $p->calle.(!empty($p->entre_calles) ? " e/ ".$p->entre_calles.(!empty($p->entre_calles_2) ? " y ".$p->entre_calles_2 : "") : "");
+      $p->direccion_completa.= (($p->publica_altura == 1)?" N° ".$p->altura:"") . (!empty($p->piso) ? " Piso ".$p->piso : "") . (!empty($p->numero) ? " Depto. ".$p->numero : "");
+      $salida[] = $p;
+    }
+
+    return $salida;
+  }  
+
   function get_precios_propiedades($conf = array()) {
     $res = new Stdclass;
     $un_año_antes = new DateTime('1 year ago');
@@ -852,10 +907,13 @@ class Propiedad_Model extends Abstract_Model {
           $fecha = date("Y-m-d");
           $sql = "INSERT INTO inm_propiedades_precios_historicos (id_propiedad, id_empresa, precio_anterior, precio_nuevo, fecha) VALUES ";
           $sql.= "($data->id, $data->id_empresa, '$r->precio_final', '$data->precio_final', '$fecha') ";
+
+          $data->precio_porcentaje_anterior = (($data->precio_final - $r->precio_final)/$r->precio_final)*100;
           $this->db->query($sql);
         }
       }
     } 
+
     $this->load->helper("file_helper");
     $this->load->helper("fecha_helper");    
 
@@ -1350,6 +1408,15 @@ class Propiedad_Model extends Abstract_Model {
       $obj->destacado = $r->destacado;
       $propiedad->relacionados[] = $obj;
     }
+
+
+    $propiedad->propiedades_relacionadas = $this->obtener_propiedades_similares(array(
+      "id"=>$propiedad->id,
+      "id_empresa"=>$propiedad->id_empresa,
+      "id_localidad"=>$propiedad->id_localidad,
+      "id_tipo_inmueble"=>$propiedad->id_tipo_inmueble,
+      "id_tipo_operacion"=>$propiedad->id_tipo_operacion,
+    ));
 
 
     if ($get_data == 1) {

@@ -33,6 +33,9 @@
 <td class="<%= clase %> data">
   <%= tipo_operacion %><br/>
   <%= moneda %> <%= Number(precio_final).format(0) %>
+  <% if (precio_porcentaje_anterior < 0.00) { %>
+    <span style="color: #0dd384;">(<i class="fa fa-arrow-down" aria-hidden="true"></i> <%= Number(precio_porcentaje_anterior*-1).format(0) %>%)</span>
+  <% } %>
   <% if (id_tipo_estado != 1) { %>
     <br/><span class="text-info"><%= tipo_estado %></span>
   <% } %>

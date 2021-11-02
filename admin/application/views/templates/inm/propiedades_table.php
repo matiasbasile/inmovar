@@ -18,7 +18,7 @@
               <tr>
                 <th class="w50 tac"></th>
                 <th>Propiedad</th>
-                <th class="w150" data-sort-by="precio_final">Operación</th>
+                <th class="" data-sort-by="precio_final">Operación</th>
                 <th class="w150">Caract.</th>
                 <th class="w120 mostrar_en_red" style="display: none;"></th>
               </tr>
@@ -105,7 +105,7 @@
                 </th>
                 <th class="w50 tac"></th>
                 <th>Propiedad</th>
-                <th class="w150" data-sort-by="precio_final">Operación</th>
+                <th class="" data-sort-by="precio_final">Operación</th>
                 <th class="w150">Caract.</th>
                 <th class="w120"></th>
                 <th class="th_acciones w180">

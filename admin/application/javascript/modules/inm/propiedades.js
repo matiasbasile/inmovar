@@ -10,6 +10,7 @@
       // Atributos que no se persisten directamente
       images: [],
       planos: [],
+      propiedades_relacionadas: [],
       images_meli: [],
       departamentos: [],
       gastos: [],
@@ -3748,6 +3749,27 @@
     template: _.template($("#propiedad_preview_template").html()),
     className: "propiedad_preview",
     myEvents: {
+      "click .data":function(e) {
+        var id = $(e.currentTarget).parent().attr("data-id");
+        var id_empresa = $(e.currentTarget).parent().attr("data-id_empresa");
+        $('.modal:last').modal('hide');
+        var self = this;
+        $.ajax({
+          "url":"propiedades/function/ver_propiedad/"+id+"/"+id_empresa,
+          "dataType":"json",
+          "success":function(r) {
+            var propiedad = new app.models.Propiedades(r);
+            var view = new app.views.PropiedadPreview({
+              model: propiedad,
+            });
+            crearLightboxHTML({
+              "html":view.el,
+              "width":1200,
+              "height":500,
+            });
+          }
+        });
+      },
       "click .editar":function() {
         $('.modal:last').modal('hide');
         location.href="app/#propiedades/"+this.model.id;
