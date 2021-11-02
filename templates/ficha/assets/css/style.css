@@ -9,6 +9,8 @@ div { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: b
 ul { margin:0; padding:0; list-style:none; }
 a { text-decoration:none; }
 button, input[type="button"] { border:none; }
+.flex-box{display: inline-flex;}
+.flex-box .dib{align-self: center;}
 .fleft { float:left; }
 .fright { float:right; }
 .bgcolorA { background-color:#f4f7fc; }
@@ -105,6 +107,7 @@ input, optgroup, select, textarea { color:#000; }
 .ficha_ul li i { color: #55c437; margin-right: 2px; font-size:12px; }
 
 #lista_informacion_basica li{ width: 45%; }
+#forma_operacion_basica li{ width: 31%; }
 #lista_superficies li { width: 45%; }
 
 .pre-title-header { font-size: 16px; margin-bottom: 4px; margin-top: 20px; padding: 0 5px; }

@@ -1392,7 +1392,21 @@ class Propiedad_Model extends Abstract_Model {
     $q = $this->db->query($sql);
     if ($q->num_rows() == 0) return array();
     $propiedad = $q->row();
+
+    //Calculamos la cantidad de meses que la propiedad estuvo activa
+    $f1 = strtotime($propiedad->fecha_ingreso);
+    $f2 = strtotime(date("Y-m-d"));
+    $y1 = date('Y', $f1);
+    $y2 = date('Y', $f2);
+    $m1 = date('m', $f1);
+    $m2 = date('m', $f2);
+    $propiedad->meses_activa = (($y2 - $y1) * 12) + ($m2 - $m1);
+    //Ademas traemos los días que esta activa porque es una buena informacion para tener
+    $f1 = new DateTime($propiedad->fecha_ingreso);
+    $f2 = new DateTime();
+    $propiedad->dias_activa = $f2->diff($f1)->format("%a");
     
+
     // Obtenemos los propiedades relacionados con ese producto
     $sql = "SELECT A.id, A.nombre, A.path, AR.destacado ";
     $sql.= "FROM inm_propiedades A INNER JOIN inm_propiedades_relacionados AR ON (A.id = AR.id_relacion) ";

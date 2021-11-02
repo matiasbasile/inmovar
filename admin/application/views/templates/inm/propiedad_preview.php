@@ -327,7 +327,7 @@
                         <td class="p0 data">
                           <% if (!isEmpty(p.path)) { %>
                             <% var prefix = (p.path.indexOf("http") == 0) ? "" : "/admin/" %>
-                            <img src="<%= prefix + path %>?t=<%= Math.ceil(Math.random()*10000) %>" class="customcomplete-image br5"/>
+                            <img src="<%= prefix + p.path %>?t=<%= Math.ceil(Math.random()*10000) %>" class="customcomplete-image br5"/>
                           <% } %>
                         </td>
                         <td class="data">
@@ -390,13 +390,27 @@
               </div>
 
               <div class="clearfix">
-                <div class="titulo"><%= moneda %> <%= Number(precio_final).format(0) %></div>
+                <div class="titulo">
+                  <%= moneda %> <%= Number(precio_final).format(0) %>
+                  <% if (precio_porcentaje_anterior < 0.00) { %>
+                    <span style="color: #0dd384;">(<i class="fa fa-arrow-down" aria-hidden="true"></i> <%= Number(precio_porcentaje_anterior*-1).format(0) %>%)</span>
+                  <% } %>
+                </div>
                 <div class="oh">
                   <% if (apto_banco==1) { %>
                     <span class="dib mr15 btn etiqueta btn-menu-compartir">Apto Crédito Bancario</span>
                   <% } %>
                   <% if (acepta_permuta==1) { %>
                     <span class="dib mr15 btn etiqueta btn-menu-compartir">Acepta Permuta</span>
+                  <% } %>
+                </div>
+                <div class="clearfix mt10 mb0">
+                  <% if (activo == 1) { %>
+                    <% if (meses_activa == 0) { %>
+                      Activa desde hace <%= dias_activa %> días 
+                    <% } else { %>
+                      Activa aproximadamente desde hace <%= meses_activa %> meses
+                    <% } %>
                   <% } %>
                 </div>
               </div>
