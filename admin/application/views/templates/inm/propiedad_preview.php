@@ -407,7 +407,9 @@
                 <div class="clearfix mt10 mb0">
                   <% if (activo == 1) { %>
                     <% if (meses_activa == 0) { %>
-                      Activa desde hace <%= dias_activa %> días 
+                      <% if (dias_activa != 0) { %>
+                        Activa desde hace <%= dias_activa %> días 
+                      <% } %>
                     <% } else { %>
                       Activa aproximadamente desde hace <%= meses_activa %> meses
                     <% } %>
