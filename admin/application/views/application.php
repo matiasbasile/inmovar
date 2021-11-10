@@ -8,7 +8,7 @@ function lang($languages=array()) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html translate="no" lang="es">
 <head>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="/admin/resources/fonts/product-sans/stylesheet.css" type="text/css" />
