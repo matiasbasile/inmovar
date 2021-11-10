@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html translate="no" lang="es">
 <head>
 <title>Inmovar</title>
 <base href="<?php echo current_url(); ?>"/>
