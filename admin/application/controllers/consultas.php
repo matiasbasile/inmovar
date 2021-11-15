@@ -12,6 +12,19 @@ class Consultas extends REST_Controller {
     $this->load->model('Consulta_Model', 'modelo');
   }
 
+
+  function verdos() {
+    $id_empresa = parent::get_get("id_empresa", parent::get_empresa());
+    //Primero sacamos todos los tipos de consulta
+    $sql = "SELECT * FROM crm_consultas_tipos WHERE id_empresa = $id_empresa ORDER BY orden ASC";
+    $q = $this->db->query($sql);
+    /*
+    foreach ($q->result() as $c) {
+      $sql = ''
+    }*/
+    exit();
+  }
+
   // Esta funcion llena el campo id_usuario de la tabla clientes
   // con el id_usuario de la ultima consulta
   function pasar_usuarios($id_empresa) {

@@ -5345,3 +5345,11 @@ tfoot tr td { white-space: nowrap !important; }
 
 .svg-menu { filter: invert(33%) sepia(1%) saturate(1294%) hue-rotate(1deg) brightness(95%) contrast(79%); width: 19px; margin-right: 20px; }
 .imagen-preview-item{margin-right: 0px;border-radius: 5px;-moz-border-radius: 5px;-webkit-border-radius: 5px;width: 75px;height: 75px;object-fit: cover;}
+
+
+.consultas-board-item{display: inline-block; width: 300px; background-color: #ebecf0;border-radius: 5px}
+.consultas-board-item .item-header{color: #2d2d2d; padding: 5px; text-align: center;font-weight: 700;}
+.consultas-board-item .item-body{height: 250px;padding: 5px}
+.consultas-board-item .item-footer{color: #2d2d2d; padding: 5px; text-align: center; font-weight: 700px; }
+.over-x{overflow-x: scroll;}
+.over-x .panel-body{width: max-content;height: 100%}

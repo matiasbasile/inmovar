@@ -38,6 +38,7 @@
 
         // Consultas vencidas
         "consultas_vencidas(/)": "ver_consultas_vencidas",
+        "consultas_dos(/)": "ver_consultas_dos",
 
         // Edicion de plantilla
         "editar_template(/)": "ver_editar_template",
@@ -616,6 +617,16 @@
         window.consultas_vencidas = 1;
         var edit = new app.views.ConsultasTableView({
           collection: new app.collections.Consultas(),
+        });
+        self.mostrar({
+          "top" : edit.el,
+        });        
+      },
+
+      ver_consultas_dos: function() {
+        var self = this;
+        var edit = new app.views.ConsultasTableViewDos({
+          collection: new app.collections.ConsultasDos(),
         });
         self.mostrar({
           "top" : edit.el,
