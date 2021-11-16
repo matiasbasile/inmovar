@@ -64,7 +64,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
               <div class="project-list"> 
                 <img class="cover" src="<?php echo $video->path ?>" alt="Gallery">
                 <div class="about-project">
-                  <div class="hover-2">
+                  <div class="small-list-2">
                     <div class="overlay-info">
                       <div class="center-content">
                         <div class="align-center"> <a class="fancybox fancybox.iframe" href="https://www.youtube.com/embed/<?php echo $video->video ?>" data-fancybox-group="gallery"></a> </div>
