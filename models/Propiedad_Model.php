@@ -926,7 +926,7 @@ class Propiedad_Model {
           foreach($vids as $vid) {
             $vid = str_replace("https://www.youtube.com/watch?v=", "", $vid);
             $vid = str_replace("https://youtu.be/", "", $vid);
-            $path = "https://img.youtube.com/vi/".$vid."/3.jpg";
+            $path = "https://img.youtube.com/vi/".$vid."/0.jpg";
             $o = new stdClass();
             $o->video = $vid;
             $o->path = $path;
