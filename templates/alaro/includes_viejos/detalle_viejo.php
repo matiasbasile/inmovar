@@ -59,7 +59,6 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
         <?php // Puede tener videos
         if (isset($propiedad->videos) && sizeof($propiedad->videos)>0) { ?>
           <?php 
-          print_r($propiedad->videos);
           foreach($propiedad->videos as $video) { ?>
             <div class="col-md-3">
               <div class="project-list"> 
