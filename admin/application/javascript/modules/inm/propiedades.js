@@ -3039,6 +3039,7 @@
         var self = this;
         this.open_multiple_upload({
           "model": self.model,
+          "name": "images_dptos",
           "url": "propiedades/function/upload_images/",
           "view": self,
         });

@@ -9,6 +9,7 @@ app.views.ImageUpload = app.mixins.View.extend({
   initialize: function(options) {
     $(this.el).html(this.template());
     this.url = options.url;
+    this.name = (options.name != undefined) ? options.name : "images";
     this.images = new Array();
     this.render();
   },
@@ -34,14 +35,17 @@ app.views.ImageUpload = app.mixins.View.extend({
       .parent().addClass($.support.fileInput ? undefined : 'disabled');
   },
   aceptar:function() {
-    var im = this.model.get("images");
+    var self = this;
+    var im = this.model.get(self.name);
     for(var i=0;i<this.images.length;i++) {
       var image = this.images[i];
       var pos = image.indexOf("uploads/");
       image = image.substr(pos);
       im.push(image);
     }
-    this.model.set({"images":im});
+    var obj = {};
+    obj[self.name] = im;
+    this.model.set(obj);
     this.model.trigger("change_table");
     this.cerrar();
   },
