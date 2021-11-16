@@ -21,17 +21,23 @@
 
     <div class="tab-container mb0">
       <ul class="nav nav-tabs nav-tabs-2" role="tablist">
-        <li id="buscar_propias_tab" class="buscar_tab <%= (window.propiedades_buscar_tipo == 0)?"active":"" %>">
+        <li id="buscar_propias_tab" data-tipo="0" class="buscar_tab <%= (window.oportunidades_tipo == 0)?"active":"" %>">
           <a href="javascript:void(0)">
             <?php //<i class="material-icons">store</i>  ?>
             Venta
-            <span id="propiedades_propias_total" class="counter">0</span>
+            <span id="oportunidades_venta_total" class="counter">0</span>
           </a>
         </li>
-        <li id="buscar_tipo_tab" class="buscar_tab <%= (window.propiedades_buscar_tipo == 1)?"active":"" %>">
+        <li id="buscar_tipo_tab" data-tipo="1" class="buscar_tab <%= (window.oportunidades_tipo == 1)?"active":"" %>">
           <a href="javascript:void(0)">
             Compra
-            <span id="propiedades_red_total" class="counter">0</span>
+            <span id="oportunidades_compra_total" class="counter">0</span>
+          </a>
+        </li>
+        <li id="buscar_mias_tab" data-tipo="-1" class="buscar_tab <%= (window.oportunidades_tipo == -1)?"active":"" %>">
+          <a href="javascript:void(0)">
+            Mis Oportunidades
+            <span id="oportunidades_mias_total" class="counter">0</span>
           </a>
         </li>
       </ul>
@@ -45,9 +51,9 @@
           <table id="oportunidades_tabla" class="table table-striped sortable m-b-none default footable">
             <thead>
               <tr>
-                <th class="w50 tac"></th>
-                <th>Propiedad</th>
-                <th class="w150 sorting" data-sort-by="precio_final">Operación</th>
+                <th class="w100 tac"></th>
+                <th>Informacion</th>
+                <th>Precio</th>
                 <th class="w150">Caract.</th>
                 <th class="th_acciones w180">Acciones</th>
               </tr>
@@ -62,6 +68,7 @@
 </script>
 
 <script type="text/template" id="oportunidades_item_resultados_template">
+
   <% var clase = (activo==1)?"":"text-muted"; %>
   <td class="<%= clase %> p0 data">
     <% if (!isEmpty(path)) { %>
@@ -69,9 +76,9 @@
       <img src="<%= prefix + path %>?t=<%= Math.ceil(Math.random()*10000) %>" class="customcomplete-image br5"/>
     <% } %>
   </td>
-  <td class="<%= clase %> data">
-    <%= tipo_inmueble %><br/>
-    <%= localidad %>
+  <td class="<%= clase %> p0 data">
+    <%= titulo %><br>
+    <%= descripcion %>
   </td>
   <td class="<%= clase %> data">
     <% if (valor_desde != 0) { %>
@@ -85,19 +92,27 @@
     <% if (ambientes > 0) { %><%= ambientes %> Amb.<br/><% } %>
     <% if (dormitorios > 0) { %><%= dormitorios %> Hab.<br/><% } %>
   </td>
-  <td class="tar td_acciones">
-    <i data-toggle="tooltip" title="Activa en mi Web" class="fa-check iconito fa activo <%= (activo == 1)?"active":"" %>"></i>
-    <div class="fr btn-group dropdown ml10">
-      <i title="Opciones" class="iconito text-muted-2 fa fa-caret-down dropdown-toggle" data-toggle="dropdown"></i>
-      <ul class="dropdown-menu pull-right">
-        <li><a href="javascript:void(0)" class="editar"><i class="text-muted-2 fa fa-pencil w25"></i> Editar</a></li>
-        <% if (control.check("oportunidades") == 3) { %>
-          <li class="divider"></li>
-          <li><a href="javascript:void(0)" class="duplicar" data-id="<%= id %>"><i class="text-muted-2 fa fa-files-o w25"></i> Duplicar</a></li>
-          <li><a href="javascript:void(0)" class="eliminar" data-id="<%= id %>"><i class="text-muted-2 fa fa-times w25"></i> Eliminar</a></li>
-        <% } %>
-      </ul>
-    </div>
+  <td class="tal td_acciones">
+    <% if (ID_EMPRESA == id_empresa) { %>
+      <div class="btn-group dropdown ml10">
+        <i title="Opciones" class="iconito text-muted-2 fa fa-caret-down dropdown-toggle" data-toggle="dropdown"></i>
+        <ul class="dropdown-menu pull-right">
+          <li><a href="javascript:void(0)" class="editar"><i class="text-muted-2 fa fa-pencil w25"></i> Editar</a></li>
+          <% if (control.check("oportunidades") == 3) { %>
+            <li class="divider"></li>
+            <li><a href="javascript:void(0)" class="duplicar" data-id="<%= id %>"><i class="text-muted-2 fa fa-files-o w25"></i> Duplicar</a></li>
+            <li><a href="javascript:void(0)" class="eliminar" data-id="<%= id %>"><i class="text-muted-2 fa fa-times w25"></i> Eliminar</a></li>
+          <% } %>
+        </ul>
+      </div>
+    <% } else { %>
+      <div class="btn-group dropdown ml10">
+        <i title="Opciones" class="iconito text-muted-2 fa fa-caret-down dropdown-toggle" data-toggle="dropdown"></i>
+        <ul class="dropdown-menu pull-right">
+          <li><a href="javascript:void(0)" class="ver"><i class="text-muted-2 fa fa-pencil w25"></i> Ver</a></li>
+        </ul>
+      </div>
+    <% } %>
   </td>
 </script>
 
@@ -109,6 +124,26 @@
   </div>
   <div class="modal-body">
 
+    <div class="row">
+      <div class="col-md-8">
+        <div class="form-group">
+          <label class="control-label">Titulo</label>
+          <input maxlength="75" id="oportunidades_titulo" value="<%= titulo %>" type="text" class="form-control number" name="titulo"/>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label class="control-label">Telefono de contacto</label>
+          <input id="oportunidades_telefono" value="<%= telefono %>" type="text" class="form-control number" name="telefono"/>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <label class="control-label">Descripcion</label>
+          <textarea maxlength="200" id="oportunidades_descripcion" class="form-control" rows="3"><%= descripcion %></textarea>
+        </div>
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-4">
         <div class="form-group">
@@ -240,10 +275,13 @@
     </div>
 
     <?php
-    single_file_upload(array(
-      "name"=>"path",
-      "label"=>"Foto",
-      "url"=>"/admin/propiedades/function/save_file/",
+    multiple_upload(array(
+      "name"=>"images",
+      "label"=>"Galer&iacute;a de Fotos (Hasta 5 fotos)",
+      "url"=>"propiedades/function/save_image/",
+      "width"=>(isset($empresa->config["departamento_galeria_image_width"]) ? $empresa->config["departamento_galeria_image_width"] : 800),
+      "height"=>(isset($empresa->config["departamento_galeria_image_height"]) ? $empresa->config["departamento_galeria_image_height"] : 600),
+      "quality"=>(isset($empresa->config["departamento_galeria_image_quality"]) ? $empresa->config["departamento_galeria_image_quality"] : 0),
     )); ?>
 
   </div>

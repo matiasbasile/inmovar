@@ -54,6 +54,10 @@ Ideal para <perfil>
       id_empresa: ID_EMPRESA,
       id_usuario: ID_USUARIO,
       id_barrio: 0,
+      telefono: TELEFONO,
+      titulo: "",
+      descripcion: "",
+      images: [],
     },
   });
       
@@ -98,18 +102,9 @@ Ideal para <perfil>
         
     myEvents: {
       "click .nueva_oportunidad":"nueva_oportunidad",
-      "click #buscar_propias_tab":function() {
+      "click .buscar_tab":function(e) {
         this.$(".buscar_tab").removeClass("active");
-        this.$("#buscar_propias_tab").addClass("active");
-        this.$(".ocultar_en_red").show();
-        this.$(".mostrar_en_red").hide();
-        this.buscar();
-      },
-      "click #buscar_tipo_tab":function() {
-        this.$(".buscar_tab").removeClass("active");
-        this.$("#buscar_tipo_tab").addClass("active");
-        this.$(".ocultar_en_red").hide();
-        this.$(".mostrar_en_red").show();
+        $(e.currentTarget).addClass("active");
         this.buscar();
       },
     },
@@ -125,7 +120,7 @@ Ideal para <perfil>
       this.permiso = this.options.permiso;
 
       // Filtros de la propiedad
-      window.oportunidades_buscar_tipo = (typeof window.oportunidades_buscar_tipo != "undefined") ? window.oportunidades_buscar_tipo : 0;
+      window.oportunidades_tipo = (typeof window.oportunidades_tipo != "undefined") ? window.oportunidades_tipo : -1;
       window.oportunidades_page = (typeof window.oportunidades_page != "undefined") ? window.oportunidades_page : 1;
 
       this.render();
@@ -164,7 +159,7 @@ Ideal para <perfil>
 
       var cambio_parametros = false;
 
-      var buscar_tipo = (this.$("#buscar_tipo_tab").hasClass("active")?1:0);
+      var buscar_tipo = (this.$(".buscar_tab.active").attr("data-tipo"));
       if (window.oportunidades_buscar_tipo != buscar_tipo) {
         window.oportunidades_buscar_tipo = buscar_tipo;
         cambio_parametros = true;
@@ -192,13 +187,15 @@ Ideal para <perfil>
     },
 
     addAll : function () {
+      console.log(this.collection);
       window.oportunidades_page = this.pagination.getPage();
       this.$("#oportunidades_tabla_cont").show();
       $(this.el).find(".tbody").empty();
       // Renderizamos cada elemento del array
       if (this.collection.length > 0) this.collection.each(this.addOne);
-      //this.$("#oportunidades_propias_total").html(this.collection.meta("total_propias"));
-      //this.$("#oportunidades_red_total").html(this.collection.meta("total_red"));
+      this.$("#oportunidades_venta_total").html(this.collection.meta("total_venta"));
+      this.$("#oportunidades_compra_total").html(this.collection.meta("total_compras"));
+      this.$("#oportunidades_mias_total").html(this.collection.meta("total_mias"));
     },
         
     addOne : function ( item ) {
@@ -327,6 +324,15 @@ Ideal para <perfil>
         var id_localidad = this.$("#oportunidades_localidades").val();
         this.cargar_barrios(id_localidad);
       },
+      "click .upload_multiple":function(e) {
+        var self = this;
+        this.open_multiple_upload({
+          "model": self.model,
+          "name": "images",
+          "url": "propiedades/function/upload_images/",
+          "view": self,
+        });
+      },
     },    
                 
     initialize: function(options) {
@@ -349,6 +355,18 @@ Ideal para <perfil>
       }
       this.$("#oportunidades_paises").select2({});
       this.$("#oportunidades_provincias").select2({});
+      createdatepicker($(this.el).find("#oportunidades_fecha"),moment().format("DD/MM/YYYY"));   
+
+      this.$("#images_tabla").sortable({
+        update:function(event,ui){
+          self.reordenar_tabla_fotos();
+        }
+      });
+
+      this.listenTo(this.model, 'change_table', self.render_tabla_fotos);
+      this.render_tabla_fotos();
+
+
     },
 
     cambiar_paises: function(id_provincia) {
@@ -454,12 +472,47 @@ Ideal para <perfil>
       this.$("#oportunidades_tipos_inmueble").trigger("change");
     },
 
+
+    reordenar_tabla_fotos: function() {
+      var images = new Array();
+      this.$("#images_tabla li .img_preview").each(function(i,e){
+        images.push($(e).attr("src"));
+      });
+      this.model.set({
+        "images":images,
+      });
+    },
+
+    render_tabla_fotos: function() {
+      var images = this.model.get("images");
+      this.$("#images_tabla").empty();
+      if (images.length == 0) {
+        this.$("#images_container").removeClass('tiene');
+      } else {
+        this.$("#images_container").addClass('tiene');
+        for(var i=0;i<images.length;i++) {
+          var path = images[i];
+          var pth = path+"?t="+parseInt(Math.random()*100000);
+          var li = "";
+          li+="<li class='list-group-item'>";
+          li+=" <span><i class='fa fa-sort text-muted fa m-r-sm'></i> </span>";
+          li+=" <img style='margin-left: 10px; margin-right:10px; max-height:75px' class='img_preview' src='"+pth+"'/>";
+          li+=" <span class='dn filename'>"+path+"</span>";
+          li+=" <span class='cp pull-right m-t eliminar_foto' data-property='images'><i class='fa fa-fw fa-times'></i> </span>";
+          li+=" <span data-id='images' class='cp m-r pull-right m-t editar_foto_multiple'><i class='fa fa-pencil'></i> </span>";
+          li+="</li>";
+          this.$("#images_tabla").append(li);
+        }
+        this.$("#images_container").show();
+      }
+    },
+
     validar: function() {
       try {
         var self = this;
         this.model.set({
           "id_tipo_inmueble":self.$("#oportunidades_tipos_inmueble").val(),
-          "fecha":((self.$("#oportunidades_fecha").length > 0) ? self.$("#oportunidades_fecha").val() : ""),
+          "fecha":((self.$("#oportunidades_fecha").length > 0) ? moment(self.$("#oportunidades_fecha").val(), "DD/MM/YYYY").format("YYYY-MM-DD"): ""),
           "id_barrio": (self.$("#oportunidades_barrio").length > 0) ? $(self.el).find("#oportunidades_barrio").val() : 0,
           "id_localidad": (self.$("#oportunidades_localidades").length > 0) ? ($(self.el).find("#oportunidades_localidades").val() == null ? 0 : $(self.el).find("#oportunidades_localidades").val()) : 0,
           "id_departamento": (self.$("#oportunidades_departamentos").length > 0) ? ($(self.el).find("#oportunidades_departamentos").val() == null ? 0 : $(self.el).find("#oportunidades_departamentos").val()) : 0,
@@ -471,7 +524,29 @@ Ideal para <perfil>
           "moneda": self.$("#oportunidades_monedas").val(),
           "valor_hasta": self.$("#oportunidades_valor_hasta").val(),
           "valor_desde": self.$("#oportunidades_valor_desde").val(),
+          "descripcion": self.$("#oportunidades_descripcion").val(),
+          "titulo": self.$("#oportunidades_titulo").val(),
+          "telefono": self.$("#oportunidades_telefono").val(),
         });
+
+
+        var images = new Array();
+        this.$("#images_tabla .list-group-item .filename").each(function(i,e){
+          images.push($(e).text());
+        });
+        if (images.length > 5) {
+          alert ("El maximo es de 5 imagenes");
+          return false;
+        } 
+        self.model.set({
+          "images":images,
+        });
+        if (images.length > 0) {
+          self.model.set({
+            "path":images[0],
+          });
+        }
+
         $(".error").removeClass("error");
         return true;
       } catch(e) {
