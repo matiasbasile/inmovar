@@ -3033,6 +3033,16 @@
             
     myEvents: {
       "click .guardar": "guardar",
+
+      // ABRIMOS MODAL PARA UPLOAD MULTIPLE
+      "click .upload_multiple":function(e) {
+        var self = this;
+        this.open_multiple_upload({
+          "model": self.model,
+          "url": "propiedades/function/upload_images/",
+          "view": self,
+        });
+      },
     },    
                 
     initialize: function(options) {
