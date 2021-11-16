@@ -15,15 +15,7 @@
     </div>
 
     <div class="panel panel-default over-x">
-      <div class="panel-body pb15">
-        <% for(var i=0;i< consultas_tipos.length;i++) { %>
-          <% c = consultas_tipos[i]; %>
-          <div class="consultas-board-item">
-            <div class="item-header"><%= c.nombre %></div>
-            <div class="item-body"></div>
-            <div class="item-footer">Footer</div>
-          </div>
-        <% } %>
+      <div class="panel-body pb15" id="wrapper_items">
       </div>
 
     </div>
@@ -31,116 +23,18 @@
 </script>
 
 <script type="text/template" id="consultas_item_dos">
-  <td class="p0">
-    <label class="i-checks m-b-none">
-      <input class="esc check-row" value="<%= id %>" type="checkbox"><i></i>
-    </label>
-  </td>
-  <td class="p0 w25">
-    <% if (!isEmpty(path)) { %>
-      <% if (path.indexOf("http") == 0) { %>
-        <img src="<%= path %>" class="customcomplete-image mr0"/>
-      <% } else { %>
-        <img src="/admin/<%= path %>" class="customcomplete-image mr0"/>
+  <div class="consultas-board-item">
+    <div class="item-header"><%= nombre %> (<span class="cantidad_<%= id %>"><%= items.results.length %></span>)</div>
+    <div id="body<%=id%>" class="item-body" data-body="<%= id %>">
+      <% for(var i=0;i< items.results.length;i++) { %>
+        <% c = items.results[i]; %>
+        <div data-id="<%= c.id %>" class="tarjeta-item">
+          <%= c.id %> 
+        </div>    
       <% } %>
-    <% } else { %>
-      <span class="avatar xs avatar-texto pull-left">
-        <%= isEmpty(nombre) ? email.substr(0,1).toUpperCase() : nombre.substr(0,1).toUpperCase() %>
-      </span>
-    <% } %>
-  </td>  
-  <td>
-    <div>
-      <% if (isEmpty(nombre)) { %>
-        <span class="capitalize data text-link fs16"><%= email %></span>
-      <% } else { %>
-        <span class="capitalize data text-link fs16"><%= nombre.ucwords() %></span>
-      <% } %>
-      <div class="cb oh mt5">
-        <span class="material-icons fs16 fl mr5">person</span>
-        <select style="background-color:transparent;border:none;padding:0px;font-size:13px;margin-top:2px" class="no-model usuario_asignado fl">
-          <% for (var i=0; i< usuarios.length; i++) { %>
-            <% var u = usuarios.models[i] %>
-            <option value="0">Sin asignar</option>
-            <option <%= (u.id == id_usuario)?"selected":"" %> value="<%= u.id %>"><%= u.get("nombre") %></option>
-          <% } %>
-        </select>
-      </div>
     </div>
-  </td>
-  <td class="p0 data w40">
-    <% if (!isEmpty(propiedad_path)) { %>
-      <% var prefix = (propiedad_path.indexOf("http") == 0) ? "" : "/admin/" %>
-      <img src="<%= prefix + propiedad_path %>?t=<%= Math.ceil(Math.random()*10000) %>" class="customcomplete-image mr0"/>
-    <% } %>
-  </td>
-  <td class="data">
-    <% if (propiedad_id != 0) { %>
-      <span class="bold"><%= propiedad_tipo_inmueble %> en <%= propiedad_tipo_operacion %></span><br/>
-      <%= propiedad_direccion %>, <%= propiedad_ciudad %>
-    <% } else { %>
-      <span class="btn etiqueta desactivo btn-menu-compartir">Asignar interés</span>
-    <% } %>
-  </td>
-  <td class="data">
-    <span style="color:#5a5a5a">
-      <% if (id_origen == 27 || id_origen == 30 || id_origen == 31) { %>
-        <i class="fa fa-whatsapp"></i> Whatsapp
-
-      <% } else if (id_origen == 24) { %>
-        <i class="fa fa-instagram"></i> Instagram
-
-      <% } else if (id_origen == 26) { %>
-        <i class="fa fa-facebook"></i> Facebook
-
-      <% } else if (id_origen == 40) { %>
-        <i class="fa fa-globe"></i> Diario El Dia
-
-      <% } else if (id_origen == 28 || id_origen == 5 || id_origen == 21 || id_origen == 22 || id_origen == 28) { %>
-        <i class="fa fa-envelope"></i> Email
-
-      <% } else if (id_origen == 2) { %>
-        <i class="fa fa-globe"></i> Newsletter
-
-      <% } else if (id_origen == 3) { %>
-        <i class="fa fa-users"></i> Personal
-
-      <% } else if (id_origen == 4) { %>
-        <i class="fa fa-telephone"></i> Teléfono
-
-      <% } else if (id_origen == 14) { %>
-        <i class="fa fa-blank"></i> Nota
-
-      <% } else if (id_origen == 15) { %>
-        <i class="fa fa-envelope"></i> SMS
-
-      <% } else if (id_origen == 17) { %>
-        <i class="fa fa-envelope"></i> Tarea
-
-      <% } else if (id_origen == 25) { %>
-        <i class="fa fa-envelope"></i> MercadoLibre
-
-      <% } else if (id_origen == 50) { %>
-        <i class="fa fa-search"></i> Búsqueda
-
-      <% } else if (id_origen == 1 || id_origen == 6 || id_origen == 7 || id_origen == 8 || id_origen == 9 || id_origen == 10) { %>
-        <i class="fa fa-globe"></i> Web
-
-      <% } %>
-    </span>
-    <br/><span><%= (moment("DD/MM/YYYY") == fecha)?"Hoy":fecha %> <%= hora %></span>
-  </td>
-  <td>
-    <button data-toggle="tooltip" title="Click para realizar acción" class="btn etiqueta btn-menu-compartir mostrar_estado">
-      <%= consulta_tipo %>
-      <?php /*
-      <% if (moment(fecha_vencimiento,"DD/MM/YYYY").isSameOrAfter(moment())) { %>
-        En progreso
-      <% } else { %>
-        Vencida
-      <% } %>*/?>
-    </button>
-  </td>
+    <div class="item-footer">Footer</div>
+  </div>
 </script>
 
 <script type="text/template" id="crear_consulta_timeline_template_dos">

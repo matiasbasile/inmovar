@@ -652,6 +652,7 @@ class App extends CI_Controller {
       "resources/js/jquery.cookie.js",
       "resources/js/jquery/jquery.toaster.js",
       "resources/js/jquery/contextmenu/jquery.contextMenu.min.js",
+      "resources/js/jquery/jquery.ui.touch-punch.min.js",
 
       "resources/js/jquery/upload/js/jquery.iframe-transport.js",
       "resources/js/jquery/upload/js/jquery.fileupload.js",

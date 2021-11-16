@@ -165,77 +165,62 @@
       this.options = options;
       this.habilitar_seleccion = (this.options.habilitar_seleccion == undefined || this.options.habilitar_seleccion == false) ? false : true;
       this.modulo = this.options.modulo;
-      window.consultas_filter = (typeof window.consultas_filter != "undefined") ? window.consultas_filter : "";
-      window.consultas_page = (typeof window.consultas_page != "undefined") ? window.consultas_page : 1;
-      window.consultas_tipo = (typeof window.consultas_tipo != "undefined") ? window.consultas_tipo : 1;
-      window.consultas_vencidas = (typeof window.consultas_vencidas != "undefined") ? window.consultas_vencidas : 0;
-      window.consultas_usuario = (typeof window.consultas_usuario != "undefined") ? window.consultas_usuario : 0;
-
       this.cambio_parametros = false;
       this.render();
       this.collection.off('sync');
       this.collection.on('sync', this.addAll, this);
       this.buscar();
-    },
 
-    buscar: function() {
-      if (this.$("#consultas_buscar").length > 0) {
-        if (window.consultas_filter != this.$("#consultas_buscar").val().trim()) {
-          window.consultas_filter = this.$("#consultas_buscar").val().trim();
-          this.cambio_parametros = true;
-        }
-      }
 
-      if (this.$("#consultas_usuarios").length > 0) {
-        if (window.consultas_usuario != this.$("#consultas_usuarios").val().trim()) {
-          window.consultas_usuario = this.$("#consultas_usuarios").val().trim();
-          this.cambio_parametros = true;
-        }
-      }
+      setTimeout(function(){ 
+        console.log("llega");
+        $(function () {
+          $("#body1,#body2,#body3,#body4,#body98,#body99").sortable({
+            connectWith: "#body1,#body2,#body3,#body4,#body98,#body99",
+            start: function (event, ui) {
+              ui.item.toggleClass("highlight");
+              window.tarjeta_id = $(ui.item).attr("data-id");
+              window.tarjeta_tipo = $(event.currentTarget).attr("data-body");
+            },
+            stop: function (event, ui) {
+              ui.item.toggleClass("highlight");
+              var new_tipo = $(ui.item).parent().attr("data-body");
 
-      if (this.$("#consultas_codigo_propiedad").length > 0) {
-        if (window.consultas_codigo_propiedad != this.$("#consultas_codigo_propiedad").val().trim()) {
-          window.consultas_codigo_propiedad = this.$("#consultas_codigo_propiedad").val().trim();
-          this.cambio_parametros = true;
-        }
-      }
-      if (this.$("#consultas_desde").length > 0) {
-        if (this.$("#consultas_desde").length > 0 && window.consultas_fecha_desde != this.$("#consultas_desde").val().trim()) {
-          window.consultas_fecha_desde = this.$("#consultas_desde").val().trim();
-          cambio_parametros = true;
-        }
-      }
-      if (this.$("#consultas_hasta").length > 0) {
-        if (this.$("#consultas_hasta").length > 0 && window.consultas_fecha_hasta != this.$("#consultas_hasta").val().trim()) {
-          window.consultas_fecha_hasta = this.$("#consultas_hasta").val().trim();
-          cambio_parametros = true;
-        }
-      }
+              if (window.tarjeta_tipo != new_tipo) {
+                $.ajax({
+                  "url":"consultas/function/actualizar_tipo_cliente/",
+                  "dataType":"json",
+                  "type":"post",
+                  "data":{
+                    "id_cliente":window.tarjeta_id,
+                    "tipo": new_tipo,
+                    "id_empresa": ID_EMPRESA,
+                    "success":function() {
+                      var cantidad_viejo = $(".cantidad_"+window.tarjeta_tipo).text();
+                      var cantidad_nuevo = $(".cantidad_"+new_tipo).text();
+                      $(".cantidad_"+window.tarjeta_tipo).text(parseInt(cantidad_viejo)-1);
+                      $(".cantidad_"+new_tipo).text(parseInt(cantidad_nuevo)+1);
+                    }
+                  },
+                });
+              } 
+            },
+            sort: function(event, ui) {
+              var pos_scroll = $('.over-x').scrollLeft();
+              var pos = $(ui.item).position().left;
+              var width = $(".over-x").width();
+              if (pos >= width-100) {
+                $('.over-x').scrollLeft(pos_scroll+10);
+              } else if (pos <= 100) {
+                $('.over-x').scrollLeft(pos_scroll-10);
+              }
+            }
+          });
+          $("#body1,#body2,#body3,#body4,#body98,#body99").disableSelection();
+        });
 
-      if (this.cambio_parametros) {
-        window.consultas_page = 1;
-        this.cambio_parametros = false;
-      }
-      var datos = {
-        "filter":encodeURIComponent(window.consultas_filter),
-        "codigo_propiedad":encodeURIComponent(window.consultas_codigo_propiedad),
-        "tipo":window.consultas_tipo,
-        "vencidas":window.consultas_vencidas,
-        "custom_3":window.consultas_custom_3,
-        "custom_4":window.consultas_custom_4,
-        "custom_5":window.consultas_custom_5,
-        "desde":window.consultas_fecha_desde,
-        "hasta":window.consultas_fecha_hasta,
-        "id_usuario":window.consultas_usuario,
-        "id_proyecto":ID_PROYECTO,
-      };
-      if (typeof SOLO_USUARIO != "undefined" && SOLO_USUARIO == 1 && ID_EMPRESA != 224) datos.id_usuario = ID_USUARIO;
-      // Si estamos viendo los contactos, el orden por defecto es por fecha_ult_operacion
-      this.collection.paginator_ui.order_by = "C.fecha_ult_operacion";
-      this.collection.paginator_ui.order = "desc";
-      datos.buscar_respuesta = 1;
-      this.collection.server_api = datos;
-      this.collection.goTo(window.consultas_page);
+      }, 10000);
+
     },
 
     render: function() {
@@ -249,20 +234,16 @@
         "seleccionar":this.habilitar_seleccion,
         "modulo":this.modulo,
       }));
-      $(this.el).find(".pagination_container").html(this.pagination.el);
-
-      // Creamos el select
-      new app.mixins.Select({
-        modelClass: app.models.ClienteEtiqueta,
-        url: "clientes_etiquetas/",
-        firstOptions: ["<option value='0'>Etiqueta</option>"],
-        render: "#consultas_etiquetas",
-        onComplete:function(c) {
-          crear_select2("consultas_etiquetas");
-        }                    
-      });
-
     },
+
+
+    buscar: function() {
+      //Trae la coleccion
+      var datos = {};
+      this.collection.server_api = datos;
+      this.collection.goTo(1);
+    },
+
 
     exportar: function(obj) {
       var url = this.collection.url+"function/exportar/?order="+encodeURI("C.fecha_ult_operacion DESC");
@@ -301,15 +282,10 @@
         "height":140,
       });
     }, 
-
+    
     addAll : function () {
-      window.consultas_page = this.pagination.getPage();
-      this.$("#consultas_table tbody").empty();
+      this.$("#wrapper_items").empty();
       if (this.collection.length > 0) this.collection.each(this.addOne);
-      for(var v in this.collection._meta.totales) {
-        $(".consultas_estado_"+v).html(this.collection._meta.totales[v]);
-      }
-      this.$("#consultas_vencidas_counter").html(this.collection._meta.vencidas);
     },
 
     addOne : function ( item ) {
@@ -321,7 +297,7 @@
         modulo: self.modulo,
         parent: self,
       });
-      $(this.el).find("tbody").append(view.render().el);
+      $(this.el).find("#wrapper_items").append(view.render().el);
     },
 
   });
@@ -333,42 +309,12 @@
 (function ( app ) {
 
   app.views.ConsultaItemDos = app.mixins.View.extend({
-    tagName: "tr",
-    template: _.template($('#consultas_item').html()),
+    tagName: "div",
+    className: "dib",
+    template: _.template($('#consultas_item_dos').html()),
     myEvents: {
-      "click .mostrar_estado":function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        var self = this;
-        var view = new app.views.CambiarEstadoConsultaView({
-          "model":self.model,
-          "view":self,
-        });
-        crearLightboxHTML({
-          "html":view.el,
-          "width":600,
-          "height":140,
-          "callback":function() {
-            self.parent.buscar();
-          }
-        });
-      },
-      "click .editar_tipo":function(e) {
-        var self = this;
-        var tipo = $(e.currentTarget).data("tipo");
-        $.ajax({
-          "url":"clientes/function/editar_tipo/",
-          "dataType":"json",
-          "type":"post",
-          "data":{
-            "ids":self.model.id,
-            "tipo":tipo,
-            "id_usuario":ID_USUARIO,
-          },
-          "success":function() {
-            self.parent.buscar();
-          },
-        });
+      "click .tarjeta-item":function(e){
+        location.href="app/#contacto_acciones/"+$(e.currentTarget).attr("data-id");
       },
       "change .usuario_asignado":function(e) {
         e.preventDefault();
@@ -404,19 +350,6 @@
         window.open(link_ws,"_blank");
       },      
 
-      "keyup .radio":function(e) {
-        if (e.which == 13) { this.seleccionar(); }
-      },
-
-      "focus .radio":function(e) {
-        $(e.currentTarget).parents("tbody").find("tr").removeClass("fila_roja");
-        $(e.currentTarget).parents("tr").addClass("fila_roja");
-        $(e.currentTarget).prop("checked",true);
-      },
-      "blur .radio":function(e) {
-        $(e.currentTarget).parents("tbody").find("tr").removeClass("fila_roja");
-        $(".radio").prop("checked",false);
-      },
       "click .activo":function(e) {
         var self = this;
         e.stopPropagation();
@@ -435,22 +368,6 @@
         });
         return false;
       },
-    },
-
-    marcar: function(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      var el = e.currentTarget;
-      var marcado = false;
-      window.consultas_marcadas = new Array();
-      $(".check-row").each(function(i,e){
-        if ($(e).is(":checked")) {
-          marcado = true;
-          window.consultas_marcadas.push($(e).val());
-        }
-      });
-      if (marcado) $(".bulk_action").slideDown();
-      else $(".bulk_action").slideUp();
     },
 
     seleccionar: function() {
@@ -480,7 +397,6 @@
       obj.seleccionar = this.habilitar_seleccion;
       obj.modulo = this.modulo;
       $(this.el).html(this.template(obj));
-
       $('[data-toggle="tooltip"]').tooltip();
       return this;
     },
@@ -491,17 +407,6 @@
       }
       e.stopPropagation();
     },
-    duplicar: function(e) {
-      var clonado = this.model.clone();
-      clonado.set({id:null}); // Ponemos el ID como NULL para que se cree un nuevo elemento
-      clonado.save({},{
-        success: function(model,response) {
-          model.set({id:response.id});
-        }
-      });
-      this.model.collection.add(clonado);
-      e.stopPropagation();
-    }
   });
 
 })( app );
