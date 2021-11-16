@@ -12,6 +12,42 @@ class Consultas extends REST_Controller {
     $this->load->model('Consulta_Model', 'modelo');
   }
 
+
+  function actualizar_tipo_cliente() {
+    $id_empresa = parent::get_post("id_empresa", parent::get_empresa());
+    $id_cliente = parent::get_post("id_cliente", 0);
+    $tipo = parent::get_post("tipo", 0);
+    if (empty($tipo) || empty($id_cliente)) {
+      echo json_encode(array("error"=>1));
+    } else {
+      $sql = "UPDATE clientes SET tipo = '$tipo' WHERE id_empresa = '$id_empresa' AND id = '$id_cliente' ";
+      $this->db->query($sql);
+      echo json_encode(array("error"=>0));
+    }
+  }
+
+  function verdos() {
+    $salida = array();
+    $id_empresa = parent::get_get("id_empresa", parent::get_empresa());
+    //Primero sacamos todos los tipos de consulta
+    $sql = "SELECT * FROM crm_consultas_tipos WHERE id_empresa = $id_empresa ORDER BY orden ASC";
+    $q = $this->db->query($sql);
+    foreach ($q->result() as $c) {
+      $res = $this->modelo->buscar(array(
+        "id_empresa"=>$id_empresa,
+        "tipo"=>$c->id,
+        "offset"=>999,
+      ));
+
+      $c->items = $res;
+      $salida[] = $c; 
+    }
+    echo json_encode(array(
+      "results"=>$salida,
+      "total"=>sizeof($salida),
+    ));
+  }
+
   // Esta funcion llena el campo id_usuario de la tabla clientes
   // con el id_usuario de la ultima consulta
   function pasar_usuarios($id_empresa) {

@@ -652,6 +652,7 @@ class App extends CI_Controller {
       "resources/js/jquery.cookie.js",
       "resources/js/jquery/jquery.toaster.js",
       "resources/js/jquery/contextmenu/jquery.contextMenu.min.js",
+      "resources/js/jquery/jquery.ui.touch-punch.min.js",
 
       "resources/js/jquery/upload/js/jquery.iframe-transport.js",
       "resources/js/jquery/upload/js/jquery.fileupload.js",
@@ -691,6 +692,8 @@ class App extends CI_Controller {
     $array[] = 'application/javascript/modules/crm/eventos.js';
     $array[] = 'application/javascript/modules/crm/tareas.js';
     $array[] = 'application/javascript/modules/crm/origenes.js';
+    $array[] = 'application/javascript/modules/crmdos/consultas_tipos.js';
+    $array[] = 'application/javascript/modules/crmdos/consultas.js';
     $array[] = 'application/javascript/modules/not/entradas.js';
     $array[] = 'application/javascript/modules/not/categorias_entradas.js';
     $array[] = 'application/javascript/modules/web/web_textos.js';
