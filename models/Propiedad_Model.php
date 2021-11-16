@@ -922,7 +922,7 @@ class Propiedad_Model {
 
         // ALARO PUEDE TENER MAS DE UN VIDEO
         if ($p->id_empresa == 1575) {
-          $vids = explode($p->video_original,"\n");
+          $vids = explode("\n",$p->video_original);
           foreach($vids as $vid) {
             $vid = str_replace("https://www.youtube.com/watch?v=", "", $vid);
             $vid = str_replace("https://youtu.be/", "", $vid);
