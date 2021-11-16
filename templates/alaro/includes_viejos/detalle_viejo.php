@@ -55,6 +55,26 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
         <div class="container"><?php echo $propiedad->nombre ?></div>
       </div>
       <?php if (sizeof($propiedad->images)>0) { ?>
+
+        <?php // Puede tener videos
+        if (isset($propiedad->videos) && sizeof($propiedad->videos)>0) { ?>
+          <?php foreach($propiedad->videos as $video) { ?>
+            <div class="col-md-3">
+              <div class="project-list"> 
+                <img class="cover" src="<?php echo $video->path ?>" alt="Gallery">
+                <div class="about-project">
+                  <div class="small-list">
+                    <div class="overlay-info">
+                      <div class="center-content">
+                        <div class="align-center"> <a class="fancybox" href="<?php echo $video->video ?>" data-fancybox-group="gallery"></a> </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <?php } ?>
+        <?php } ?>
         <?php foreach($propiedad->images as $img) { ?>
           <div class="col-md-3">
             <div class="project-list"> <img class="cover" src="<?php echo $img ?>" alt="Gallery">

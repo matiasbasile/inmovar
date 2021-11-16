@@ -25,5 +25,11 @@ class Notificaciones extends REST_Controller {
 		$this->db->query($sql);
 		echo json_encode(array("error"=>0));
 	}
+
+	function prueba() {
+		$this->load->library("Sendinblue");
+    	$s = new Sendinblue();
+    	$s->blue_send();
+	}
 	
 }
