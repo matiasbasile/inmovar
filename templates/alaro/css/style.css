@@ -740,6 +740,18 @@ header { padding: 5px 30px; }
 
 .ongoing-projects .block .btn { margin-top: 20px; }
 
+.overlay-info-2 {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+  font-size: 38px;
+  line-height: 380px;
+}
+
  @media screen and (max-width:799px) {
 .ongoing-projects .overlay-info { height: 67.5%; }
 .finished-projects .about-project:hover .squre:after, .about-project:hover .squre2:after { width: 85%; }
@@ -929,16 +941,4 @@ nav ul li a { padding: 8px; font-size: 12px; }
 .title-caption { font-size: 18px; padding: 27px 0; }
 .page-title { height: 80px; }
 .video iframe{height:180px;}
-}
-
-.overlay-info-2 {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0,0,0,0.5);
-  color: white;
-  font-size: 38px;
-  line-height: 380px;
 }
