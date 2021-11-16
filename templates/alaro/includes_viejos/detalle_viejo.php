@@ -67,10 +67,12 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
                   <div class="small-list-2">
                     <div class="overlay-info">
                       <div class="center-content">
-                        <div class="align-center"> <a class="fancybox fancybox.iframe" href="https://www.youtube.com/embed/<?php echo $video->video ?>" data-fancybox-group="gallery"></a> </div>
+                        <div class="align-center">  </div>
                       </div>
                     </div>
-                    <div class="overlay-info-2"><i class="fa fa-play"></i></div>
+                    <a class="fancybox fancybox.iframe overlay-info-2" href="https://www.youtube.com/embed/<?php echo $video->video ?>" data-fancybox-group="gallery">
+                      <i class="fa fa-play"></i>
+                    </a>
                   </div>
                 </div>
               </div>
