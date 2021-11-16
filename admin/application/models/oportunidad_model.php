@@ -21,6 +21,7 @@ class Oportunidad_Model extends Abstract_Model {
 	}
 
 	function buscar($conf = array()) {
+		$salida = array();
 		$id_empresa = (isset($conf["id_empresa"])) ? $conf["id_empresa"] : $this->get_empresa();
     	$limit = isset($conf["limit"]) ? $conf["limit"] : 0;
 		$offset = isset($conf["offset"]) ? $conf["offset"] : 0;
@@ -34,6 +35,13 @@ class Oportunidad_Model extends Abstract_Model {
 	    $q = $this->db->query($sql);
 	    $q_total = $this->db->query("SELECT FOUND_ROWS() AS total");
 	    $total = $q_total->row();
+
+	    foreach ($q->result() as $o) {
+	    	//$sql = "SELECT path FROM oportunidades_images WHERE id_empresa = '$o->id_empresa' AND id_oportunidad = '$o->id'";
+	    	//$c = $this->db->query($sql);
+	    	//$o->images = $c->result();
+	    	$salida[] = $o;
+	    }
 
     	$sql = "SELECT SQL_CALC_FOUND_ROWS O.* ";
     	$sql.= "FROM oportunidades O ";
@@ -60,7 +68,7 @@ class Oportunidad_Model extends Abstract_Model {
 	    $total_mias = $t->total;
 
 	    $ss = array(
-	      "results"=>$q->result(),
+	      "results"=>$salida,
 	      "total"=>$total->total,
 	      "meta"=>array(
 	        "total_venta"=>$total_venta,

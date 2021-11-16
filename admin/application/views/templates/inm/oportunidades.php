@@ -51,7 +51,7 @@
           <table id="oportunidades_tabla" class="table table-striped sortable m-b-none default footable">
             <thead>
               <tr>
-                <th class="w50 tac"></th>
+                <th class="w100 tac"></th>
                 <th>Informacion</th>
                 <th>Precio</th>
                 <th class="w150">Caract.</th>
@@ -68,8 +68,14 @@
 </script>
 
 <script type="text/template" id="oportunidades_item_resultados_template">
+
   <% var clase = (activo==1)?"":"text-muted"; %>
-  <td class="<%= clase %> p0 data"></td>
+  <td class="<%= clase %> p0 data">
+    <% if (!isEmpty(path)) { %>
+      <% var prefix = (path.indexOf("http") == 0) ? "" : "/admin/" %>
+      <img src="<%= prefix + path %>?t=<%= Math.ceil(Math.random()*10000) %>" class="customcomplete-image br5"/>
+    <% } %>
+  </td>
   <td class="<%= clase %> p0 data">
     <%= titulo %><br>
     <%= descripcion %>
@@ -119,10 +125,16 @@
   <div class="modal-body">
 
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-8">
         <div class="form-group">
           <label class="control-label">Titulo</label>
           <input maxlength="75" id="oportunidades_titulo" value="<%= titulo %>" type="text" class="form-control number" name="titulo"/>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label class="control-label">Telefono de contacto</label>
+          <input id="oportunidades_telefono" value="<%= telefono %>" type="text" class="form-control number" name="telefono"/>
         </div>
       </div>
       <div class="col-md-12">
@@ -167,13 +179,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-8">
-        <div class="form-group">
-          <label class="control-label">Telefono de contacto</label>
-          <input id="oportunidades_telefono" value="<%= telefono %>" type="text" class="form-control number" name="telefono"/>
-        </div>
-      </div>
-      <div class="col-md-6">
+      <div class="col-md-4">
         <div class="form-group">
           <label class="control-label">Desde</label>
           <div class="input-group">
@@ -189,7 +195,7 @@
           </div>
         </div>
       </div>    
-      <div class="col-md-6">
+      <div class="col-md-4">
         <div class="form-group">
           <label class="control-label">Hasta</label>
           <input id="oportunidades_valor_hasta" value="<%= valor_hasta %>" type="number" class="form-control number" name="valor_hasta"/>

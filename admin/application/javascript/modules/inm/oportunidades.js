@@ -365,7 +365,7 @@ Ideal para <perfil>
 
       this.listenTo(this.model, 'change_table', self.render_tabla_fotos);
       this.render_tabla_fotos();
-      
+
 
     },
 
@@ -538,7 +538,14 @@ Ideal para <perfil>
           alert ("El maximo es de 5 imagenes");
           return false;
         } 
-        self.model.set({"images":images});
+        self.model.set({
+          "images":images,
+        });
+        if (images.length > 0) {
+          self.model.set({
+            "path":images[0],
+          });
+        }
 
         $(".error").removeClass("error");
         return true;
