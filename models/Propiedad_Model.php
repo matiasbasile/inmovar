@@ -909,13 +909,31 @@ class Propiedad_Model {
     $p->nombre = $this->encod($p->nombre);
     if (isset($p->codigo_completo) && !empty($p->codigo_completo)) $p->codigo = $p->codigo_completo;
 
+    $p->videos = array();
+
     if (!empty($p->video)) {
       if (strpos($p->video, "iframe") === FALSE) {
         // Si no se adjunto un iframe, tenemos que crearlo
         $p->video_original = $p->video;
         $p->video = str_replace("https://www.youtube.com/watch?v=", "", $p->video);
         $p->video = str_replace("https://youtu.be/", "", $p->video);
+        $p->video_path = "https://img.youtube.com/vi/".$p->video."/0.jpg";
         $p->video = '<iframe width="100%" height="400" src="https://www.youtube.com/embed/'.$p->video.'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+
+        // ALARO PUEDE TENER MAS DE UN VIDEO
+        if ($p->id_empresa == 1575) {
+          $vids = explode($p->video_original,"\n");
+          foreach($vids as $vid) {
+            $vid = str_replace("https://www.youtube.com/watch?v=", "", $vid);
+            $vid = str_replace("https://youtu.be/", "", $vid);
+            $path = "https://img.youtube.com/vi/".$vid."/0.jpg";
+            $p->videos[] = array(
+              "video"=>$vid,
+              "path"=>$path,
+            );
+          }
+        }
+
       }
     }
     
