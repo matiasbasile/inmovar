@@ -793,9 +793,9 @@
           <label class="control-label">Seleccione un motivo</label>
           <select name="motivo" id="propiedades_desactivar_motivo" class="form-control">
             <option value="0">Seleccione un motivo</option>
-            <option value="1">Vendi la propiedad</option>
-            <option value="2">Vendi la propiedad con un colega de Red Inmovar</option>
-            <option value="3">Otro vendio la propiedad</option>
+            <option value="1">Vendí/Alquilé la propiedad</option>
+            <option value="2">Vendí/Alquilé la propiedad con un colega de Red Inmovar</option>
+            <option value="3">Otro colega vendió/alquiló la propiedad</option>
             <option value="4">El propietario dejo de ofrecer la propiedad</option>
             <option value="5">La propiedad se encuentra incompleta</option>
           </select>
