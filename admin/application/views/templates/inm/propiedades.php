@@ -805,9 +805,9 @@
     <div class="row">
       <div class="col-md-6 dn precio">
         <div class="form-group">
-          <label class="control-label">Precio de Venta</label>
+          <label class="control-label">Precio de Operación</label>
           <div class="input-group">
-            <input placeholder="Ingrese el precio de venta" type="number" class="form-control" id="propiedades_precio_venta"/>
+            <input placeholder="Ingrese el valor" type="number" class="form-control" id="propiedades_precio_venta"/>
             <span class="input-group-addon">$</span>
           </div>
         </div>
