@@ -5361,8 +5361,8 @@ tfoot tr td { white-space: nowrap !important; }
 #wrapper_items {display: flex;}
 
 .consultas-board-item .item-body::-webkit-scrollbar {width: 8px; border-radius: 5px; height: 5px;}
-.consultas-board-item .item-body::-webkit-scrollbar-track {-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);}
+.consultas-board-item .item-body::-webkit-scrollbar-track {-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);border-radius: 5px;}
 .consultas-board-item .item-body::-webkit-scrollbar-thumb {background-color: #bec3ce;outline: 1px solid #bec3ce; border-radius: 5px;}
 .over-x::-webkit-scrollbar {width: 8px; border-radius: 5px;}
-.over-x::-webkit-scrollbar-track {-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);}
+.over-x::-webkit-scrollbar-track {-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);border-radius: 5px;}
 .over-x::-webkit-scrollbar-thumb {background-color: #bec3ce;outline: 1px solid #bec3ce; border-radius: 5px;}

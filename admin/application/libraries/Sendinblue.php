@@ -1,8 +1,9 @@
 <?php
 class Sendinblue {
     
-    public $apikey = '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
-';
+    public $api_key = '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';
+	//public $apikey = 'ZqBstgYjHTNzAbwL';
+	public $smtp_key = 'xsmtpsib-e0f34135f0342025a87cef8a7b39c42d6e0d564849ec54db85163649147b3211-mf3JAUZMBwWkDRCs';
 
 	public function __construct() {
 		ini_set('display_errors', 1);
@@ -12,7 +13,7 @@ class Sendinblue {
 
 	function blue_send(){
 		require '../vendor/autoload.php';
-		$config = SendinBlue\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', $this->apikey);
+		$config = SendinBlue\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', $this->api_key);
 
 		$apiInstance = new SendinBlue\Client\Api\TransactionalEmailsApi(
 		    new GuzzleHttp\Client(),
@@ -24,9 +25,6 @@ class Sendinblue {
 		$sendSmtpEmail['sender'] = array('name' => 'Matias Basile', 'email' => 'matias.basile@varcreative.com');
 		$sendSmtpEmail['to'] = array(
 		    array('email' => 'matuschettino@gmail.com', 'name' => 'Matias Schettino')
-		);
-		$sendSmtpEmail['cc'] = array(
-		    array('email' => 'example2@example2.com', 'name' => 'Janice Doe')
 		);
 		$sendSmtpEmail['bcc'] = array(
 		    array('email' => 'example@example.com', 'name' => 'John Doe')
