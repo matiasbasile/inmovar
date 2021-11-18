@@ -230,7 +230,7 @@ $(document).ready(function(){
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/GDzGx_aq_bg" frameborder="0" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/OHy65JdRKSE" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
   </div>

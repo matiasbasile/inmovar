@@ -2310,7 +2310,7 @@ class Propiedades extends REST_Controller {
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
-    $id_empresa = 1507;
+    $id_empresa = 1636;
     $errores = array();
     $cant_insert = 0;
     $this->load->helper("file_helper");
