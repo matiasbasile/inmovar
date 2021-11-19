@@ -594,7 +594,7 @@
                   <label class="control-label">Valor Maximo</label>
                   <input type="number" name="cotizaciones_maximo" id="cotizaciones_maximo" value="<%= cotizaciones_maximo %>" class="form-control">                  
                 </div>
-                <div class="form-group col-sm-4">
+                <div class="form-group col-sm-4 dn">
                   <label class="control-label">Porcentaje de Sueldo</label>
                   <input type="number" name="cotizaciones_porcentaje_sueldo" id="cotizaciones_porcentaje_sueldo" value="<%= cotizaciones_porcentaje_sueldo %>" class="form-control">                  
                 </div>
