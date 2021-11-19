@@ -64,7 +64,7 @@ if ($empresa->id != 1633) {
   <?php include("includes/header.php"); ?>
   <div class="container">
 
-    <header><h1>Cotizador Online</h1></header>
+    <header class="mt50"><h1>Cotizador Online</h1></header>
 
     <section id="legal">
       <?php $t = $web_model->get_text("cotizador-texto"); ?>
