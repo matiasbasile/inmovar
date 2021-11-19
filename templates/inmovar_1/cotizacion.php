@@ -85,7 +85,7 @@ if ($empresa->id != 1633) {
         </div>
       </div>
       <div class="col-md-4 col-sm-12 mt20">
-        <h3>Resumen del crédito: Ejemplo representativo para la compra de un inmueble</h3>
+        <h3>Resumen del crédito:</h3>
         <div class="panel green mt20">
           <div class="panel-label">VALOR DE CUOTA</div>
           <div class="panel-precio green"><span class="cuota_inicial">-</span></div>
