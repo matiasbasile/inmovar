@@ -577,7 +577,6 @@
     agregar_cotizacion: function() {
       // Controlamos los valores
       var anios = this.$("#web_anios").val();
-      var haberes = this.$("#web_haberes").val();
       var taza = this.$("#web_taza").val();
 
       if (anios == 0){
@@ -604,13 +603,8 @@
         this.edito_valor = null;
       }
 
-      if (haberes == 1) haberes = 'Con haberes';
-      else haberes = 'Sin haberes';
-
-
       var tr = "<tr class=''>";
       tr+="<td class='anios'>"+anios+"</td>";
-      tr+="<td class='haberes dn'>"+haberes+"</td>";
       tr+="<td class='taza'>"+taza+"</td>";
       tr+="<td><i class='fa fa-pencil cp web_cotizaciones_editar'></i></td>";
       tr+="<td><i class='fa fa-times web_cotizaciones_eliminar text-danger cp'></i></td>";
@@ -623,7 +617,6 @@
         this.valor = null;
       }
       this.$("#web_anios").val(0)
-      this.$("#web_haberes").val(0)
       this.$("#web_taza").val(0)
       this.$("#web_anios").focus();
     },
@@ -633,11 +626,7 @@
     },
     editar_cotizacion: function(e) {
       this.valor = $(e.currentTarget).parents("tr");
-      var haberes = $(this.valor).find(".haberes").text();
-      if (haberes == 'Con haberes') haberes = 1;
-      else haberes = 0;
       $("#web_taza").val($(this.valor).find(".taza").text());
-      $("#web_haberes").val(haberes);
       $("#web_anios").val($(this.valor).find(".anios").text());
       this.edito_valor = $(this.valor).find(".edito").val();
       //$("articulo_ingrediente_nombre").focus();
@@ -675,13 +664,9 @@
           var cotizaciones = new Array();
           this.$("#web_cotizaciones tbody tr").each(function(i,e){
             var eliminado = $(e).hasClass('eliminado') ? 1 : 0;
-            var haberes = $(e).find(".haberes").text();
-            if (haberes == 'Con haberes') haberes = 1;
-            else haberes = 0;
             cotizaciones.push({
               "anios": $(e).find(".anios").text(),
               "taza": $(e).find(".taza").text(),
-              "haberes": haberes,
               "eliminado": eliminado,
             });
           });
