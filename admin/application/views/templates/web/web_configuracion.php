@@ -604,7 +604,7 @@
                   <label class="control-label">Cantidad de años</label>
                   <input type="number" value="0" id="web_anios" class="form-control">                  
                 </div>
-                <div class="form-group col-sm-3">
+                <div class="form-group col-sm-3 dn">
                   <label class="control-label">Haberes</label>
                   <select class="form-control" id="web_haberes">
                     <option value="0">Sin haberes</option>
@@ -628,7 +628,7 @@
                 <tr>
                   <th style="display: none"></th>
                   <th>Años</th>
-                  <th>Haberes</th>
+                  <th class="dn">Haberes</th>
                   <th>Tasa</th>
                   <th class="w25"></th>
                   <th class="w25"></th>
@@ -644,7 +644,7 @@
                   <% } %>
                   <tr class=''>
                     <td class='anios'><%= p.anios %></td>
-                    <td class="haberes"><%= p.haberes %></td>
+                    <td class="dn haberes"><%= p.haberes %></td>
                     <td class="taza"><%= p.taza %></td>
                     <td><i class='fa fa-pencil cp web_cotizaciones_editar'></i></td>
                     <td><i class='fa fa-times web_cotizaciones_eliminar text-danger cp'></i></td>
