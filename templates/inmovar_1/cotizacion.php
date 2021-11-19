@@ -63,6 +63,14 @@ if ($empresa->id != 1633) {
 <div class="wrapper">
   <?php include("includes/header.php"); ?>
   <div class="container">
+
+    <header><h1>Cotizador Online</h1></header>
+
+    <section id="legal">
+      <?php $t = $web_model->get_text("cotizador-texto"); ?>
+      <p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $t->id_empresa ?>"><?php echo $t->plain_text ?></p>
+    </section>    
+
     <div class="row cotizacion mt30 mb50">
       <div class="col-md-4 col-sm-12">
       </div>
