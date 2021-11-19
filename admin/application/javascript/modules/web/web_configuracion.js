@@ -610,7 +610,7 @@
 
       var tr = "<tr class=''>";
       tr+="<td class='anios'>"+anios+"</td>";
-      tr+="<td class='haberes'>"+haberes+"</td>";
+      tr+="<td class='haberes dn'>"+haberes+"</td>";
       tr+="<td class='taza'>"+taza+"</td>";
       tr+="<td><i class='fa fa-pencil cp web_cotizaciones_editar'></i></td>";
       tr+="<td><i class='fa fa-times web_cotizaciones_eliminar text-danger cp'></i></td>";

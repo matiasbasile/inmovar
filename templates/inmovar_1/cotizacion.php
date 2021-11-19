@@ -83,11 +83,6 @@ if ($empresa->id != 1633) {
             <?php $i++; ?>
           <?php } ?>
         </div>
-        <label>Haberes</label>
-        <div class="haberes btn-group">
-          <div data-value="0" class="btn-item active" onclick="changeFocus(this);">Sin haberes en el banco</div>
-          <div data-value="1" class="btn-item" onclick="changeFocus(this);">Con haberes en el banco</div>
-        </div>
       </div>
       <div class="col-md-4 col-sm-12 mt20">
         <h3>Resumen del crédito: Ejemplo representativo para la compra de un inmueble</h3>
@@ -151,9 +146,8 @@ if ($empresa->id != 1633) {
     $(e).addClass("active");
 
     var plazo = $(".plazo .btn-item.active").attr("data-value");
-    var haberes = $(".haberes .btn-item.active").attr("data-value");
     var monto = $("#monto_maximo").val();
-    calcular_datos(plazo, haberes, monto);
+    calcular_datos(plazo, 0, monto);
   }
 
   function changeMonto() {
@@ -167,18 +161,16 @@ if ($empresa->id != 1633) {
 
     $(".range").val($("#monto_maximo").val());
     var plazo = $(".plazo .btn-item.active").attr("data-value");
-    var haberes = $(".haberes .btn-item.active").attr("data-value");
     var monto = $("#monto_maximo").val();
-    calcular_datos(plazo, haberes, monto);
+    calcular_datos(plazo, 0, monto);
   }
 
 
   function changeRange() {
     $("#monto_maximo").val($(".range").val());
     var plazo = $(".plazo .btn-item.active").attr("data-value");
-    var haberes = $(".haberes .btn-item.active").attr("data-value");
     var monto = $("#monto_maximo").val();
-    calcular_datos(plazo, haberes, monto);
+    calcular_datos(plazo, 0, monto);
   }
 
   function calcular_datos(plazo, haberes, monto) {
