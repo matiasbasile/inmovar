@@ -87,26 +87,13 @@ if ($empresa->id != 1633) {
       <div class="col-md-4 col-sm-12 mt20">
         <h3>Resumen del crédito: Ejemplo representativo para la compra de un inmueble</h3>
         <div class="panel green mt20">
-          <div class="subpanel green" id="inmueble-porcentaje">100%</div>
-          <div class="panel-label">VALOR DEL INMUEBLE</div>
-          <div class="panel-precio green" id="valor-monto-credito">$3.108.822</div>
+          <div class="panel-label">VALOR DE CUOTA</div>
+          <div class="panel-precio green"><span class="cuota_inicial">-</span></div>
         </div>
         <div class="panel green">
-          <div class="subpanel green" id="monto-porcentaje">100%</div>
-          <div class="panel-label">MONTO DEL CRÉDITO</div>
-          <div class="panel-precio green" id="valor-monto-credito">$3.108.822</div>
+          <div class="panel-label">TOTAL DE CUOTAS</div>
+          <div class="panel-precio green"><span class="total_cuotas">-</span></div>
         </div>
-        <div class="panel red">
-          <div class="subpanel red" id="no-financiado-porcentaje">100%</div>
-          <div class="panel-label">MONTO NO FINANCIADO</div>
-          <div class="panel-precio red" id="valor-no-financiado">$3.108.822</div>
-        </div>
-        <div class="info">
-          <label class="mt20">CUOTA INICIAL ESTIMADA <br><span class="cuota_inicial">-</span></label><hr>
-          <label>INGRESO REQUERIDO ESTIMADO - TITULARES <br><span class="ingreso_requerido">-</span></label><hr>
-          <label>TOTAL DE CUOTAS <br><span class="total_cuotas">-</span></label><hr>
-        </div>
-
       </div>
 
     </div>
@@ -183,12 +170,9 @@ if ($empresa->id != 1633) {
         //Despues el valor anual total
         var anual = parseFloat(monto)+parseFloat((monto/100*valor.taza));
         var valor_de_cuota = anual/12;
-        //Por ultimo el ingreso requerido
-        var ingreso_requerido = (100*valor_de_cuota)/parseFloat("<?= $cotizaciones['datos']->cotizaciones_porcentaje_sueldo ?>")
         //Metemos los datos en la view
         $(".cuota_inicial").html("$ "+valor_de_cuota.toFixed(2));
         $(".total_cuotas").html(total_de_cuotas+" ("+plazo+" Años)")
-        $(".ingreso_requerido").html("$ "+ingreso_requerido.toFixed(2));
       }
     });
   }
