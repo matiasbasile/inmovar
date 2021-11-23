@@ -18,6 +18,7 @@ class Contacto_Model extends Abstract_Model {
     $id_contacto = (isset($data->id_contacto)) ? $data->id_contacto : 0;
     $id_origen = (isset($data->id_origen)) ? $data->id_origen : 0;
     $id_usuario = (isset($data->id_usuario)) ? $data->id_usuario : 0;
+    $id_empresa_propiedad = (isset($data->id_empresa_propiedad)) ? $data->id_empresa_propiedad : $data->id_empresa;
     $texto = (isset($data->texto)) ? $data->texto : "";
     $asunto = (isset($data->asunto)) ? $data->asunto : "";
     $fecha_ult_operacion = (isset($data->fecha_ult_operacion)) ? $data->fecha_ult_operacion : date("d/m/Y H:i:s");
@@ -55,6 +56,7 @@ class Contacto_Model extends Abstract_Model {
       $consulta->texto = $texto;
       $consulta->asunto = $asunto;
       $consulta->id_referencia = $id_propiedad;
+      $consulta->id_empresa_relacion = $id_empresa_propiedad;
       $this->Consulta_Model->insert($consulta);
     }
 
