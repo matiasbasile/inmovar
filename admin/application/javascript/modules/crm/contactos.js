@@ -651,6 +651,7 @@
       this.$("#contacto_propiedad").val(window.propiedad_seleccionado.get("titulo"));
       this.model.set({
         "id_propiedad":window.propiedad_seleccionado.id,
+        "id_empresa_propiedad":window.propiedad_seleccionado.get("id_empresa"),
       });
     },
 
