@@ -51,6 +51,7 @@ if ($empresa->id != 1633) {
   .cotizacion hr{border-top: 2px solid green;width: 80%;margin-top: 10px;margin-bottom: 10px;}
   .cotizacion .info label{margin-top: 5px;}
   .cotizacion .aclaracion { color: #959595;font-size: 12px;margin-top: 15px }
+  .cotizacion .texto_cotizacion { margin-top: 20px; color: black; font-weight: bold; font-size: 18px; margin-bottom: 20px; }
 </style>
 <body class="page-sub-page page-contact" id="page-top">
 <div class="wrapper">
