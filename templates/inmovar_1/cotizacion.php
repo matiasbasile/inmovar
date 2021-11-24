@@ -9,18 +9,10 @@ $entrada_model = new Entrada_Model($empresa->id,$conx);
 $nombre_pagina = "cotizacion";
 
 $cotizaciones = $web_model->get_cotizaciones();
-?>
-
-
-<?php 
-
 if ($empresa->id != 1633) {
   header("Location: ".mklink("/"));
 }
-
-?>
-
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html lang="en-US">
 <head>
 <?php include("includes/head.php"); ?>
@@ -110,6 +102,7 @@ if ($empresa->id != 1633) {
           <div class="panel-label">TOTAL DE CUOTAS</div>
           <div class="panel-precio green"><span class="total_cuotas">-</span></div>
         </div>
+        <p class="texto_cotizacion"></p>
       </div>
 
     </div>
@@ -194,6 +187,7 @@ if ($empresa->id != 1633) {
         //Metemos los datos en la view
         $(".cuota_inicial").html("$ "+valor_de_cuota.toFixed(2));
         $(".total_cuotas").html(total_de_cuotas+" ("+plazo+" Años)")
+        $(".texto_cotizacion").html(valor.texto);
       }
     });
   }
