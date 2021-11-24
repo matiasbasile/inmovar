@@ -93,7 +93,7 @@ class Web_Configuracion_Model extends Abstract_Model {
       $this->db->query("DELETE FROM inm_cotizaciones WHERE id_empresa = $data->id_empresa");
       foreach($cotizaciones as $c) {
         if ($c->eliminado == 0) {
-          $this->db->query("INSERT INTO inm_cotizaciones (id_empresa,anios,haberes,taza) VALUES ('$data->id_empresa','$c->anios','$c->haberes','$c->taza')");
+          $this->db->query("INSERT INTO inm_cotizaciones (id_empresa,anios,haberes,taza,texto) VALUES ('$data->id_empresa','$c->anios','$c->haberes','$c->taza','$c->texto')");
         }
       }
     }

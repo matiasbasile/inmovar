@@ -594,10 +594,6 @@
                   <label class="control-label">Valor Maximo</label>
                   <input type="number" name="cotizaciones_maximo" id="cotizaciones_maximo" value="<%= cotizaciones_maximo %>" class="form-control">                  
                 </div>
-                <div class="form-group col-sm-4 dn">
-                  <label class="control-label">Porcentaje de Sueldo</label>
-                  <input type="number" name="cotizaciones_porcentaje_sueldo" id="cotizaciones_porcentaje_sueldo" value="<%= cotizaciones_porcentaje_sueldo %>" class="form-control">                  
-                </div>
               </div>
               <div class="row">
                 <div class="form-group col-sm-3">
@@ -607,6 +603,10 @@
                 <div class="form-group col-sm-3">
                   <label class="control-label">Tasa anual (%)</label>
                   <input type="number" value="0" id="web_taza" class="form-control">                  
+                </div>
+                <div class="form-group col-sm-3">
+                  <label class="control-label">Texto</label>
+                  <input type="text" id="cotizaciones_texto" class="form-control">                  
                 </div>
                 <div class="form-group col-sm-3">
                   <label class="control-label">&nbsp;</label>
@@ -622,6 +622,7 @@
                   <th style="display: none"></th>
                   <th>Años</th>
                   <th>Tasa</th>
+                  <th>Texto</th>
                   <th class="w25"></th>
                   <th class="w25"></th>
                 </tr>
@@ -632,6 +633,7 @@
                   <tr class=''>
                     <td class='anios'><%= p.anios %></td>
                     <td class="taza"><%= p.taza %></td>
+                    <td class="texto"><%= p.texto %></td>
                     <td><i class='fa fa-pencil cp web_cotizaciones_editar'></i></td>
                     <td><i class='fa fa-times web_cotizaciones_eliminar text-danger cp'></i></td>
                   </tr>
