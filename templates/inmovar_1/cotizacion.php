@@ -58,6 +58,7 @@ if ($empresa->id != 1633) {
   .cotizacion .panel-precio.red{color: #a4160f;}
   .cotizacion hr{border-top: 2px solid green;width: 80%;margin-top: 10px;margin-bottom: 10px;}
   .cotizacion .info label{margin-top: 5px;}
+  .cotizacion .aclaracion { color: #959595;font-size: 12px;margin-top: 15px }
 </style>
 <body class="page-sub-page page-contact" id="page-top">
 <div class="wrapper">
@@ -146,10 +147,7 @@ if ($empresa->id != 1633) {
     var clases = parent.attr("class").split(' ');
     $("."+clases[0]+" .btn-item").removeClass("active");
     $(e).addClass("active");
-
-    var plazo = $(".plazo .btn-item.active").attr("data-value");
-    var monto = $("#monto_maximo").val();
-    calcular_datos(plazo, 0, monto);
+    calcular_datos();
   }
 
   function changeMonto() {
@@ -160,22 +158,22 @@ if ($empresa->id != 1633) {
     if (minimo > valor_monto) $("#monto_maximo").val(minimo);
     if (maximo < valor_monto) $("#monto_maximo").val(maximo);
 
-
     $(".range").val($("#monto_maximo").val());
-    var plazo = $(".plazo .btn-item.active").attr("data-value");
-    var monto = $("#monto_maximo").val();
-    calcular_datos(plazo, 0, monto);
+    calcular_datos();
   }
-
 
   function changeRange() {
     $("#monto_maximo").val($(".range").val());
-    var plazo = $(".plazo .btn-item.active").attr("data-value");
-    var monto = $("#monto_maximo").val();
-    calcular_datos(plazo, 0, monto);
+    calcular_datos();
   }
 
-  function calcular_datos(plazo, haberes, monto) {
+  $(document).ready(function(){
+    calcular_datos();
+  })
+
+  function calcular_datos() {
+    var plazo = $(".plazo .btn-item.active").attr("data-value");
+    var monto = $("#monto_maximo").val();
     var cotizaciones = '<?php echo json_encode($cotizaciones['cotizaciones']); ?>';
     cotizaciones = JSON.parse(cotizaciones);
     $.each(cotizaciones, function(clave, valor) {
