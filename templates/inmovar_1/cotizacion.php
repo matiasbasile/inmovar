@@ -177,7 +177,7 @@ if ($empresa->id != 1633) {
     var cotizaciones = '<?php echo json_encode($cotizaciones['cotizaciones']); ?>';
     cotizaciones = JSON.parse(cotizaciones);
     $.each(cotizaciones, function(clave, valor) {
-      if (valor.haberes == haberes && valor.anios == plazo) {
+      if (valor.anios == plazo) {
         //Primero calculamos el total de las cuotas
         var total_de_cuotas = plazo*12;
         //Despues el valor anual total
