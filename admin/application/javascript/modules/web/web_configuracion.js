@@ -85,7 +85,7 @@
       cotizaciones: [],
       cotizaciones_minimo: 0,
       cotizaciones_maximo: 0,
-      cotizaciones_porcentaje_sueldo: 0,
+      cotizaciones_porcentaje_sueldo: "",
     }
   });
 	    
@@ -578,6 +578,7 @@
       // Controlamos los valores
       var anios = this.$("#web_anios").val();
       var taza = this.$("#web_taza").val();
+      var texto = this.$("#cotizaciones_texto").val();
 
       if (anios == 0){
         alert ("Por favor ingrese la cantidad de años");
@@ -606,6 +607,7 @@
       var tr = "<tr class=''>";
       tr+="<td class='anios'>"+anios+"</td>";
       tr+="<td class='taza'>"+taza+"</td>";
+      tr+="<td class='texto'>"+texto+"</td>";
       tr+="<td><i class='fa fa-pencil cp web_cotizaciones_editar'></i></td>";
       tr+="<td><i class='fa fa-times web_cotizaciones_eliminar text-danger cp'></i></td>";
       tr+="</tr>";
@@ -616,8 +618,9 @@
         $(this.valor).replaceWith(tr);
         this.valor = null;
       }
-      this.$("#web_anios").val(0)
-      this.$("#web_taza").val(0)
+      this.$("#web_anios").val(0);
+      this.$("#web_taza").val(0);
+      this.$("#cotizaciones_texto").val("");
       this.$("#web_anios").focus();
     },
     eliminar_cotizacion: function(e){
@@ -628,6 +631,7 @@
       this.valor = $(e.currentTarget).parents("tr");
       $("#web_taza").val($(this.valor).find(".taza").text());
       $("#web_anios").val($(this.valor).find(".anios").text());
+      $("#cotizaciones_texto").val($(this.valor).find(".texto").text());
       this.edito_valor = $(this.valor).find(".edito").val();
       //$("articulo_ingrediente_nombre").focus();
     },      
@@ -648,25 +652,17 @@
       try {
         $(".error").removeClass("error");
         if (this.$("#web_cotizaciones").length > 0) {
-
-
           if ($("#cotizaciones_maximo").val() == 0) {
             alert ("El valor maximo no puede ser 0");
             return false;
           }
-
-          if ($("#cotizaciones_porcentaje_sueldo").val() == 0) {
-            alert ("El porcentaje de sueldo no puede ser 0");
-            return false;
-          }
-
-
           var cotizaciones = new Array();
           this.$("#web_cotizaciones tbody tr").each(function(i,e){
             var eliminado = $(e).hasClass('eliminado') ? 1 : 0;
             cotizaciones.push({
               "anios": $(e).find(".anios").text(),
               "taza": $(e).find(".taza").text(),
+              "texto": $(e).find(".texto").text(),
               "eliminado": eliminado,
             });
           });
