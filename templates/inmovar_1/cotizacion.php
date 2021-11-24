@@ -47,14 +47,14 @@ if ($empresa->id != 1633) {
   .cotizacion h3{font-weight: 500;font-size: 20px;line-height: 25px;color: #3c3c3b;margin: 0px;}
   .cotizacion .inputDiv input{width: 300px;}
   .cotizacion .panel{width: 80%;font-weight: 500;font-size: 20px;line-height: 25px;color: #3c3c3b;margin: 0px;border-radius: 10px;padding: 5px;margin-top: 5px;}
-  .cotizacion .panel.green{border: 2px solid #279d2e;}
+  .cotizacion .panel.green{border: 2px solid rgb(219,185,102);}
   .cotizacion .panel.red{border: 2px solid #a4160f;}
   .cotizacion .subpanel{display: inline;text-align: center;float: left;letter-spacing: 2px;color: gray;width: 30%;border-top-left-radius: 5px;border-bottom-left-radius: 5px;color: white;font-weight: bold;height: 31px;margin-right: 8px;line-height: 29px;}
-  .cotizacion .subpanel.green{border: solid 1px #279d2e;background-color: #279d2e;}
+  .cotizacion .subpanel.green{border: solid 1px rgb(219,185,102);background-color: rgb(219,185,102);}
   .cotizacion .subpanel.red{border: solid 1px #a4160f;background-color: #a4160f;}
   .cotizacion .panel-label{font-size: 55%;font-weight: bold;color: grey;line-height: 13PX;}
   .cotizacion .panel-precio{font-size: 90%;font-weight: bold;line-height: 18PX;vertical-align: inherit;}
-  .cotizacion .panel-precio.green{color: #279d2e;}
+  .cotizacion .panel-precio.green{color: rgb(219,185,102);}
   .cotizacion .panel-precio.red{color: #a4160f;}
   .cotizacion hr{border-top: 2px solid green;width: 80%;margin-top: 10px;margin-bottom: 10px;}
   .cotizacion .info label{margin-top: 5px;}
@@ -73,6 +73,7 @@ if ($empresa->id != 1633) {
 
     <div class="row cotizacion mt30 mb50">
       <div class="col-md-4 col-sm-12">
+        <img src="assets/img/cotizador.png" class="w100p" />
       </div>
       <div class="col-md-4 col-sm-12">
 
@@ -82,7 +83,6 @@ if ($empresa->id != 1633) {
           <input step="50000" class="range" type="range" onchange="changeRange()" value="<?= $cotizaciones['datos']->valor_medio?>" min="<?= $cotizaciones['datos']->cotizaciones_minimo ?>" max="<?= $cotizaciones['datos']->cotizaciones_maximo ?>" autocomplete="off">
         </div>
 
-
         <label>Plazo</label>
         <div class="plazo btn-group">
           <?php $i = 0; ?>
@@ -91,6 +91,13 @@ if ($empresa->id != 1633) {
             <?php $i++; ?>
           <?php } ?>
         </div>
+
+        <div class="mt20">
+          <a href="javascript:void(0)" class="btn btn-primary" onclick="enviar_consulta()">Iniciar Consulta</a>
+        </div>
+
+        <p class="aclaracion">El resultado que surja del presente simulador de préstamos es meramente referencial, no reviste carácter contractual ni constituye una oferta o aceptación de la solicitud que presente el cliente.</p>
+
       </div>
       <div class="col-md-4 col-sm-12 mt20">
         <h3>Resumen del crédito:</h3>

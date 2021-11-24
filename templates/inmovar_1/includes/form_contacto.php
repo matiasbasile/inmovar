@@ -55,7 +55,7 @@
     <div class="col-md-12">
       <div class="form-group">
         <label for="contacto_mensaje">Mensaje<em>*</em></label>
-        <textarea class="form-control" id="contacto_mensaje" placeholder="Consulta"></textarea>
+        <textarea class="form-control" id="contacto_mensaje" placeholder="Consulta"><?php echo (isset($get_params["m"]) ? urldecode($get_params["m"]) : "") ?></textarea>
       </div>
     </div>
     <div class="col-md-12">
