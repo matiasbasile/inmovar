@@ -93,7 +93,7 @@ if ($empresa->id != 1633) {
         </div>
 
         <div class="mt20">
-          <a href="javascript:void(0)" class="btn btn-primary" onclick="enviar_consulta()">Iniciar Consulta</a>
+          <a href="javascript:void(0)" class="btn btn-default" onclick="enviar_consulta()">Iniciar Consulta</a>
         </div>
 
         <p class="aclaracion">El resultado que surja del presente simulador de préstamos es meramente referencial, no reviste carácter contractual ni constituye una oferta o aceptación de la solicitud que presente el cliente.</p>
