@@ -142,6 +142,14 @@ if ($empresa->id != 1633) {
 <script type="text/javascript" src="assets/js/ie.js"></script>
 <![endif]-->
 <script type="text/javascript">
+
+  function enviar_consulta() {
+    var plazo = $(".plazo .btn-item.active").attr("data-value");
+    var monto = $("#monto_maximo").val();
+    var mensaje = "Solicito prestamo de "+monto+" en el plazo de "+plazo+" años.";
+    location.href = "<?php echo mklink("web/contacto/") ?>?m="+encodeURIComponent(mensaje);
+  }
+
   function changeFocus(e) {
     var parent = $(e).parent();
     var clases = parent.attr("class").split(' ');
