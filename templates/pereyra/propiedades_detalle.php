@@ -97,6 +97,14 @@ $page_act = $propiedad->tipo_operacion_link;
             <h5>Descripción</h5>
             <p><?php echo $propiedad->texto ?></p>
           </div>
+
+          <?php if (!empty($propiedad->video)) { ?>
+            <div class="block">
+              <h5>Video</h5>
+              <?php echo $propiedad->video ?>
+            </div>
+          <?php } ?>
+
           <div class="block">
             <h5>Servicios</h5>
             <ul class="bullet-list icon">
@@ -181,13 +189,6 @@ $page_act = $propiedad->tipo_operacion_link;
               </li>
             </ul>
           </div>
-
-          <?php if (!empty($propiedad->video)) { ?>
-            <div class="block">
-              <h5>Video</h5>
-              <?php echo $propiedad->video ?>
-            </div>
-          <?php } ?>
 
           <?php if (isset($propiedad->latitud) && isset($propiedad->longitud) && $propiedad->latitud != 0 && $propiedad->longitud != 0) { ?>
             <div class="block">
