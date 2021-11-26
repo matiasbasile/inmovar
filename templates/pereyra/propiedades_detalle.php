@@ -181,6 +181,14 @@ $page_act = $propiedad->tipo_operacion_link;
               </li>
             </ul>
           </div>
+
+          <?php if (!empty($propiedad->video)) { ?>
+            <div class="block">
+              <h5>Video</h5>
+              <?php echo $propiedad->video ?>
+            </div>
+          <?php } ?>
+
           <?php if (isset($propiedad->latitud) && isset($propiedad->longitud) && $propiedad->latitud != 0 && $propiedad->longitud != 0) { ?>
             <div class="block">
               <h5>Ubicación en mapa</h5>
