@@ -99,6 +99,9 @@ $slider = $web_model->get_slider(array(
         <div class="container">
           <?php $t = $web_model->get_text("home-banner-titulo"); ?>
           <h1 data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" class="editable no-bottom-margin no-border"><?php echo $t->plain_text ?></h1>
+          <?php if ($empresa->id == 1633) { ?>
+            <a class="btn btn-default mt15 mb15" href="<?php echo mklink("web/cotizacion/") ?>">COTIZÁ TU CRÉDITO HIPOTECARIO</a>
+          <?php } ?>
         </div>
       </div>
     </section><!-- /#banner -->
