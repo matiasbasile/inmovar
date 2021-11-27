@@ -193,5 +193,15 @@ if ($empresa->id != 1633) {
     });
   }
 </script>
+<script src="https://cdn.jsdelivr.net/npm/autonumeric@4.5.4"></script>
+<script>
+$(document).ready(function(){
+  new AutoNumeric('#monto_maximo', { 
+    'decimalPlaces':0,
+    'decimalCharacter':',',
+    'digitGroupSeparator':'.',
+  });
+})
+</script>
 </body>
 </html>
