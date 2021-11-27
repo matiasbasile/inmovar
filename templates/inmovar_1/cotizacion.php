@@ -186,7 +186,7 @@ if ($empresa->id != 1633) {
         var anual = parseFloat(monto)+parseFloat((monto/100*valor.taza));
         var valor_de_cuota = anual/12;
         //Metemos los datos en la view
-        $(".cuota_inicial").html("$ "+valor_de_cuota.toFixed(2));
+        $(".cuota_inicial").html("$ "+valor_de_cuota.toLocaleString());
         $(".total_cuotas").html(total_de_cuotas+" ("+plazo+" Años)")
         $(".texto_cotizacion").html(valor.texto);
       }
