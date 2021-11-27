@@ -6113,3 +6113,5 @@ input[type="checkbox"]:checked + label:before, input[type="radio"]:checked + lab
   background-color: <?php echo $c1; ?>;
   border: solid 2px transparent;
 }
+
+.btn-cotizacion { font-size: 26px; color: <?php echo $c2; ?>; }
