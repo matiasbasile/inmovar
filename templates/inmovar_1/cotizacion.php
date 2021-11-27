@@ -135,6 +135,7 @@ if ($empresa->id != 1633) {
 <!--[if gt IE 8]>
 <script type="text/javascript" src="assets/js/ie.js"></script>
 <![endif]-->
+<script src="https://cdn.jsdelivr.net/npm/autonumeric@4.5.4"></script>
 <script type="text/javascript">
 
   function enviar_consulta() {
@@ -191,17 +192,12 @@ if ($empresa->id != 1633) {
         $(".texto_cotizacion").html(valor.texto);
       }
     });
+    new AutoNumeric('#monto_maximo', { 
+      'decimalPlaces':0,
+      'decimalCharacter':',',
+      'digitGroupSeparator':'.',
+    });
   }
-</script>
-<script src="https://cdn.jsdelivr.net/npm/autonumeric@4.5.4"></script>
-<script>
-$(document).ready(function(){
-  new AutoNumeric('#monto_maximo', { 
-    'decimalPlaces':0,
-    'decimalCharacter':',',
-    'digitGroupSeparator':'.',
-  });
-})
 </script>
 </body>
 </html>
