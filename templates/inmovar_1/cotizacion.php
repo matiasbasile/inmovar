@@ -73,7 +73,7 @@ if ($empresa->id != 1633) {
 
         <div class="inputDiv">
           <label>Monto a Solicitar</label>
-          <input onchange="changeMonto()" type="number" value="<?= $cotizaciones['datos']->valor_medio?>" class="form-control" id="monto_maximo">
+          <input onchange="changeMonto()" type="text" value="<?= $cotizaciones['datos']->valor_medio?>" class="form-control" id="monto_maximo">
           <input step="50000" class="range" type="range" onchange="changeRange()" value="<?= $cotizaciones['datos']->valor_medio?>" min="<?= $cotizaciones['datos']->cotizaciones_minimo ?>" max="<?= $cotizaciones['datos']->cotizaciones_maximo ?>" autocomplete="off">
         </div>
 
