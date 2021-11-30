@@ -107,7 +107,7 @@ $og_desc = (strlen($og_desc)>180) ? substr($og_desc, 0, 180)."..." : $og_desc; ?
         } 
         $telefono_usuario_f = preg_replace('/\D/', '', $telefono_usuario); ?>
         <div id="producer_container" class="card">
-          <img src="<?php echo (!empty($empresa->path) ? $empresa->path : "assets/images/icon-agent.png") ?>"/>
+          <img src="<?php echo (!empty($empresa->path) ? "/admin/".$empresa->path : "assets/images/icon-agent.png") ?>"/>
           <div id="producer_info">
             <div id="producer_name"><?= $nombre_usuario ?></div>
             <div class="producer-item">
