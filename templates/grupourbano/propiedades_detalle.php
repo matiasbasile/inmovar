@@ -1,5 +1,4 @@
 <?php
-exit();
 $nombre_pagina = "detalle";
 include_once("includes/init.php");
 include_once("includes/funciones.php");
