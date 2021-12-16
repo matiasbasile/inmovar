@@ -156,7 +156,7 @@ if ($empresa->id != 1633) {
   function changeMonto() {
 
     var m = $("#monto_maximo").val();
-    m = m.replaceAll('.','');
+    m = parseFloat(String(m).replace(/\D/g,''));
     var valor_monto = parseFloat(m);
     var minimo = parseFloat("<?php echo $cotizaciones['datos']->cotizaciones_minimo ?>");
     var maximo = parseFloat("<?php echo $cotizaciones['datos']->cotizaciones_maximo ?>");
