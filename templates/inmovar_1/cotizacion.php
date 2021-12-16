@@ -170,7 +170,8 @@ if ($empresa->id != 1633) {
   }
 
   function changeRange() {
-    $("#monto_maximo").val($(".range").val());
+    var m = $(".range").val();
+    AutoNumeric.getElement('#monto_maximo').node().value = m;
     calcular_datos();
   }
 
