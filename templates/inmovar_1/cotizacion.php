@@ -176,6 +176,13 @@ if ($empresa->id != 1633) {
 
   $(document).ready(function(){
     calcular_datos();
+
+    new AutoNumeric('#monto_maximo', { 
+      'decimalPlaces':0,
+      'decimalCharacter':',',
+      'digitGroupSeparator':'.',
+    });
+
   })
 
   function calcular_datos() {
@@ -198,13 +205,6 @@ if ($empresa->id != 1633) {
       }
     });
     $("#monto_maximo").val(Number(monto).format(0));
-    /*
-    new AutoNumeric('#monto_maximo', { 
-      'decimalPlaces':0,
-      'decimalCharacter':',',
-      'digitGroupSeparator':'.',
-    });
-    */
   }
 </script>
 </body>
