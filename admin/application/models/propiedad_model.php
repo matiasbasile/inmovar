@@ -1804,13 +1804,13 @@ class Propiedad_Model extends Abstract_Model {
         CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => 'GET',
-        CURLOPT_USERAGENT =>'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0',
+        CURLOPT_USERAGENT =>'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36',
       ));
       $html = curl_exec($c);
       curl_close($c);
-      if ($html == "Bot no autorizado") {
+      if (strpos($html, "Bot no autorizado") !== FALSE) {
         return array(
-          "errores"=>array("Bot no autorizado [$link]"),
+          "errores"=>array("Bot no autorizado view-source:$link | ".$link_inmobusqueda),
         );
       }
     }
