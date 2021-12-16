@@ -155,13 +155,17 @@ if ($empresa->id != 1633) {
 
   function changeMonto() {
 
-    var valor_monto = parseFloat($("#monto_maximo").val());
+    var m = $("#monto_maximo").val();
+    m = m.replaceAll('.','');
+    var valor_monto = parseFloat(m);
     var minimo = parseFloat("<?php echo $cotizaciones['datos']->cotizaciones_minimo ?>");
     var maximo = parseFloat("<?php echo $cotizaciones['datos']->cotizaciones_maximo ?>");
     if (minimo > valor_monto) $("#monto_maximo").val(minimo);
     if (maximo < valor_monto) $("#monto_maximo").val(maximo);
 
     $(".range").val($("#monto_maximo").val());
+    
+    $("#monto_maximo").val(Number(valor_monto).format(0));
     calcular_datos();
   }
 
@@ -177,6 +181,7 @@ if ($empresa->id != 1633) {
   function calcular_datos() {
     var plazo = $(".plazo .btn-item.active").attr("data-value");
     var monto = $("#monto_maximo").val();
+    monto = monto.replaceAll('.','');
     var cotizaciones = '<?php echo json_encode($cotizaciones['cotizaciones']); ?>';
     cotizaciones = JSON.parse(cotizaciones);
     $.each(cotizaciones, function(clave, valor) {
@@ -192,6 +197,7 @@ if ($empresa->id != 1633) {
         $(".texto_cotizacion").html(valor.texto);
       }
     });
+    $("#monto_maximo").val(Number(monto).format(0));
     /*
     new AutoNumeric('#monto_maximo', { 
       'decimalPlaces':0,
