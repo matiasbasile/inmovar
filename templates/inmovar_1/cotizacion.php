@@ -184,11 +184,6 @@ if ($empresa->id != 1633) {
         $(".texto_cotizacion").html(valor.texto);
       }
     });
-    new AutoNumeric('#monto_maximo', { 
-      'decimalPlaces':0,
-      'decimalCharacter':',',
-      'digitGroupSeparator':'.',
-    });
   }
 </script>
 </body>
