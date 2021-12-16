@@ -188,6 +188,7 @@ if ($empresa->id != 1633) {
   function calcular_datos() {
     var plazo = $(".plazo .btn-item.active").attr("data-value");
     var monto = $("#monto_maximo").val();
+    console.log(monto);
     monto = parseFloat(String(monto).replace(/\D/g,''));
     console.log(monto);
     var cotizaciones = '<?php echo json_encode($cotizaciones['cotizaciones']); ?>';
