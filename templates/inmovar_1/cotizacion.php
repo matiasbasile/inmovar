@@ -171,7 +171,7 @@ if ($empresa->id != 1633) {
 
   function changeRange() {
     var m = $(".range").val();
-    AutoNumeric.getElement('#monto_maximo').node().value = m;
+    $("#monto_maximo").val(Number(m).format(0));
     calcular_datos();
   }
 
