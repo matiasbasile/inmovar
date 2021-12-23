@@ -1,0 +1,367 @@
+<?php
+include_once("includes/init.php");
+$nombre_pagina = "home";
+include_once("includes/funciones.php");
+?>
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+
+<head>
+
+  <head>
+    <?php include("includes/head.php"); ?>
+  </head>
+
+<body>
+
+  <?php include("includes/header.php"); ?>
+
+  <!-- Banner Section -->
+  <?php
+  // SLIDER PRINCIPAL
+  $slider = $web_model->get_slider();
+  ?>
+  <section class="banner">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <?php
+        $c = 0;
+        foreach ($slider as $r) {
+        ?>
+          <li data-transition="fade" data-slotamount="7" data-masterspeed="1500">
+            <div class="carousel-item <?php echo ($c == 0 ? "active" : "") ?>" style="background: url(<?php echo $r->path ?>) no-repeat 50% 0; background-size: cover;"></div>
+          </li>
+        <?php
+          $c++;
+        }
+        ?>
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+      </div>
+    </div>
+    <div class="carousel-caption">
+      <div class="container">
+        <form>
+          <select class="form-control">
+            <option>En Venta</option>
+          </select>
+          <select class="form-control">
+            <option>DEPARTAMENTO</option>
+          </select>
+          <select class="form-control">
+            <option>EN LA PLATA</option>
+          </select>
+          <button type="submit" class="btn btn-primary">BUSCAR</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Group Bertoia -->
+  <section class="group-bertoia padding-default">
+    <div class="container">
+      <h2 class="text-center">Grupo Urbano Bertoia Piñero</h2>
+      <h5 class="text-center">Somos la mejor opción para comprar o vender tu propiedad</h5>
+      <div class="media mt-5">
+        <img class="mr-4" src="assets/images/icon01.png" alt="img">
+        <div class="media-body">
+          <h4 class="mt-0">Quiero Comprar</h4>
+          <p>Te ofrecemos la cartera de propiedades más grande de la ciudad para que puedas elegir entre más de 10 mil propiedades en venta en zona.</p>
+          <a href="#0" class="btn btn-outline-primary">comenzar <i class="fa fa-chevron-right ml-3"></i></a>
+        </div>
+      </div>
+      <div class="media mt-5">
+        <img class="mr-4" src="assets/images/icon02.png" alt="img">
+        <div class="media-body">
+          <h4 class="mt-0">Quiero Vender</h4>
+          <p>Te ayudamos a vender tu propiedad más rápido generando contenido de calidad y promocionando en los portales y redes más populares.</p>
+          <a href="#0" class="btn btn-outline-primary">comenzar <i class="fa fa-chevron-right ml-3"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search by Zone -->
+  <section class="search-zone">
+    <div class="row m-0">
+      <div class="col-md-12 text-center">
+        <h2 class="d-block">Buscá por Zona</h2>
+        <h5 class="mb-4">Estas son algunas de las zonas más destacadas en La Plata</h5>
+      </div>
+      <div class="col-md-3 p-0">
+        <div class="img-block">
+          <img src="assets/images/zone01.jpg" alt="img" />
+          <div class="zone-info">
+            <h4>La Plata</h4>
+            <a href="<?php echo mklink("web/propiedades_listado/?id_localidad=513") ?>" class="btn btn-white">Ver Propiedades</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 p-0">
+        <div class="img-block">
+          <img src="assets/images/zone02.jpg" alt="img" />
+          <div class="zone-info">
+            <h4>Gonnet</h4>
+            <a href="<?php echo mklink("web/propiedades_listado/?id_localidad=396") ?>" class="btn btn-white">Ver Propiedades</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 p-0">
+        <div class="img-block">
+          <img src="assets/images/zone03.jpg" alt="img" />
+          <div class="zone-info">
+            <h4>City Bell</h4>
+            <a href="<?php echo mklink("web/propiedades_listado/?id_localidad=205") ?>" class="btn btn-white">Ver Propiedades</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 p-0">
+        <div class="img-block">
+          <img src="assets/images/zone04.jpg" alt="img" />
+          <div class="zone-info">
+            <h4>Costa Atlántica</h4>
+            <a href="<?php echo mklink("web/propiedades_listado/?id_localidad=396") ?>" class="btn btn-white">Ver Propiedades</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search According -->
+  <section class="group-bertoia padding-default d-block">
+    <div class="container">
+      <h2 class="text-center">Buscá Según Tu Momento</h2>
+      <h5 class="text-center">Queres mudarte con tu familia a una nueva casa, estas por empezar a construir y necesitas un terreno o<br class="d-md-block d-none"> búscas comprar un departamento para estudiar? Tenemos las mejores opciones para ofrecerte:</h5>
+    </div>
+    <div class="row m-0 mt-5">
+      <div class="col-md-3 p-0 search-moment-list">
+        <div class="search-moment">
+          <span class="moment-icon"></span>
+          <a href="#0" class="btn btn-outline-primary stretched-link">Vengo a Estudiar</a>
+        </div>
+      </div>
+      <div class="col-md-3 p-0 search-moment-list">
+        <div class="search-moment">
+          <span class="moment-icon"></span>
+          <a href="#0" class="btn btn-outline-primary stretched-link">Me independizo</a>
+        </div>
+      </div>
+      <div class="col-md-3 p-0 search-moment-list">
+        <div class="search-moment">
+          <span class="moment-icon"></span>
+          <a href="#0" class="btn btn-outline-primary stretched-link">Ya Somos más</a>
+        </div>
+      </div>
+      <div class="col-md-3 p-0 search-moment-list">
+        <div class="search-moment border-right-none">
+          <span class="moment-icon"></span>
+          <a href="#0" class="btn btn-outline-primary stretched-link">Soy Emprendedor</a>
+        </div>
+      </div>
+      <div class="col-md-3 p-0 search-moment-list">
+        <div class="search-moment">
+          <span class="moment-icon"></span>
+          <a href="#0" class="btn btn-outline-primary stretched-link">Mi primer Depto</a>
+        </div>
+      </div>
+      <div class="col-md-3 p-0 search-moment-list">
+        <div class="search-moment">
+          <span class="moment-icon"></span>
+          <a href="#0" class="btn btn-outline-primary stretched-link">Mi casa</a>
+        </div>
+      </div>
+      <div class="col-md-3 p-0 search-moment-list">
+        <div class="search-moment">
+          <span class="moment-icon"></span>
+          <a href="#0" class="btn btn-outline-primary stretched-link">vamos a construir</a>
+        </div>
+      </div>
+      <div class="col-md-3 p-0 search-moment-list">
+        <div class="search-moment border-right-none">
+          <span class="moment-icon"></span>
+          <a href="#0" class="btn btn-outline-primary stretched-link">Inversión</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Neighborhoods -->
+  <?php $countries_destacadas = $propiedad_model->get_list(array("id_tipo_inmueble" => 4, "offset" => 3, "limit" => 0, "destacado" =>  1)); ?>
+  <?php if (!empty($countries_destacadas)) { ?>
+    <section class="neighborhoods padding-default">
+      <div class="container text-center">
+        <h2>Especial Countries y Barrios Cerrados</h2>
+        <h5>Disfrutá de la seguridad y privacidad de vivir en un barrio cerrado y/o controlado. </h5>
+      </div>
+      <div class="row m-0 mt-5 pad-lr-50">
+        <?php foreach ($countries_destacadas as $destacadas) { ?>
+          <div class="col-md-4 p-0 neighborhoods-list">
+            <a href="<?php echo mklink($destacadas->link) ?>">
+              <div class="img-block">
+                <img src="<?php echo '/admin/' . $destacadas->path ?> " alt="img">
+                <div class="neighborhoods-top">
+                  <?php if (!empty($destacadas->direccion_completa)) { ?>
+                    <p><?php echo $destacadas->direccion_completa ?></p>
+                  <?php } ?>
+                  <?php if ($destacadas->publica_precio == 1) { ?>
+                    <h4><?php echo $destacadas->moneda; ?> <?php echo $destacadas->precio_final; ?></h4>
+                  <?php } else { ?>
+                    <h4>Consultar</h4>
+                  <?php } ?>
+                </div>
+                <div class="neighborhoods-bottom">
+                  <?php if ($destacadas->ambientes != 0) { ?>
+                    <div class="neighborhoods-info">
+                      <h6><?php echo $destacadas->ambientes ?> Hab.</h6>
+                      <img src="assets/images/icon11.png" alt="img">
+                    </div>
+                  <?php } ?>
+                  <?php if ($destacadas->ambientes != 0) { ?>
+                    <div class="neighborhoods-info">
+                      <h6><?php echo $destacadas->ambientes ?> Baños</h6>
+                      <img src="assets/images/icon12.png" alt="img">
+                    </div>
+                  <?php } ?>
+                  <?php if ($destacadas->cocheras != 0) { ?>
+                    <div class="neighborhoods-info">
+                      <h6><?php echo $destacadas->cocheras ?> Auto</h6>
+                      <img src="assets/images/icon13.png" alt="img">
+                    </div>
+                  <?php } ?>
+                  <?php if ($destacadas->superficie_total != 0) { ?>
+                    <div class="neighborhoods-info">
+                      <h6><?php echo $destacadas->superficie_total ?> m2</h6>
+                      <img src="assets/images/icon14.png" alt="img">
+                    </div>
+                  <?php } ?>
+                </div>
+              </div>
+            </a>
+          </div>
+        <?php } ?>
+        <!--  <div class="col-md-4 p-0 neighborhoods-list">
+          <div class="img-block">
+            <img src="assets/images/img02.jpg" alt="img">
+            <div class="neighborhoods-top">
+              <p>22 1805, e/69 y 70. La Plata</p>
+              <h4>U$S 140.000</h4>
+            </div>
+            <div class="neighborhoods-bottom">
+              <div class="neighborhoods-info">
+                <h6>2 Hab.</h6>
+                <img src="assets/images/icon11.png" alt="img">
+              </div>
+              <div class="neighborhoods-info">
+                <h6>2 Baños</h6>
+                <img src="assets/images/icon12.png" alt="img">
+              </div>
+              <div class="neighborhoods-info">
+                <h6>1 Auto</h6>
+                <img src="assets/images/icon13.png" alt="img">
+              </div>
+              <div class="neighborhoods-info">
+                <h6>813 m2</h6>
+                <img src="assets/images/icon14.png" alt="img">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 p-0 neighborhoods-list">
+          <div class="img-block">
+            <img src="assets/images/img03.jpg" alt="img">
+            <div class="neighborhoods-top">
+              <p>22 1805, e/69 y 70. La Plata</p>
+              <h4>U$S 140.000</h4>
+            </div>
+            <div class="neighborhoods-bottom">
+              <div class="neighborhoods-info">
+                <h6>2 Hab.</h6>
+                <img src="assets/images/icon11.png" alt="img">
+              </div>
+              <div class="neighborhoods-info">
+                <h6>2 Baños</h6>
+                <img src="assets/images/icon12.png" alt="img">
+              </div>
+              <div class="neighborhoods-info">
+                <h6>1 Auto</h6>
+                <img src="assets/images/icon13.png" alt="img">
+              </div>
+              <div class="neighborhoods-info">
+                <h6>813 m2</h6>
+                <img src="assets/images/icon14.png" alt="img">
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+      <div class="d-md-block mt-5 text-center">
+        <a href="#0" class="btn btn-outline-secondary">ver todos <i class="fa fa-chevron-right ml-3"></i></a>
+      </div>
+    </section>
+  <?php } ?>
+
+  <?php
+  $countries = $propiedad_model->get_list(array("id_tipo_inmueble" => 4, "limit" => 0, "offset" => 6));
+  ?>
+  <!-- Work -->
+  <?php if (!empty($countries)) { ?>
+    <section class="padding-default works">
+      <div class="container text-center">
+        <h2>Especial Countries y Barrios Cerrados</h2>
+        <h5>Disfrutá de la seguridad y privacidad de vivir en un barrio cerrado y/o controlado. </h5>
+      </div>
+      <div class="row m-0 mt-5 pad-lr-50">
+        <?php foreach ($countries as $countri) { ?>
+          <div class="col-md-3 work-list">
+            <div class="img-block">
+              <a href="<?php echo mklink($countri->link) ?>" class="stretched-link"><img src="<?php echo "/admin/" . $countri->path; ?>"></a>
+              <div class="work-tags"><?php echo $countri->tipo_inmueble ?></div>
+              <?php if ($countri->publica_precio == 1) { ?>
+                <div class="work-price"><?php echo $countri->moneda; ?> <?php echo $countri->precio_final; ?></div>
+              <?php } else { ?>
+                <div class="work-price">Consultar</div>
+              <?php } ?>
+            </div>
+            <div class="work-info">
+              <h6>
+                <?php echo ($countri->dormitorios != 0 ? "<span>" . $countri->dormitorios . " Hab </span>" : "") ?>
+                <?php echo ($countri->cocheras != 0 ? "<span>" . $countri->cocheras . " Cochera </span>" : "") ?>
+                <?php echo ($countri->superficie_total != 0 ? "<span>" . $countri->superficie_total . " m2 </span>" : "") ?>
+              </h6>
+              <p><?php echo $countri->direccion_completa ?></p>
+            </div>
+          </div>
+        <?php } ?>
+      </div>
+      <div class="d-md-block mt-5 text-center">
+        <a href="#0" class="btn btn-outline-secondary">ver todos <i class="fa fa-chevron-right ml-3"></i></a>
+      </div>
+    </section>
+  <?php } ?>
+
+  <!-- Sponsars -->
+  <?php $marcas = $articulo_model->get_marcas(array("grupo" => 1)) ?>
+  <?php if (!empty($marcas)) { ?>
+    <section class="sponsars padding-default">
+      <div class="container">
+        <div class="owl-carousel" data-items="5" data-margin="30" data-loop="false" data-nav="true" data-dots="false">
+          <?php foreach ($marcas as $m) {  ?>
+            <div class="item">
+              <div class="logo-box">
+                <img src="<?php echo $m->path ?>">
+              </div>
+            </div>
+          <?php } ?>
+        </div>
+      </div>
+    </section>
+  <?php } ?>
+
+  <!-- Footer -->
+  <?php include("includes/footer.php"); ?>
+</body>
+
+</html>

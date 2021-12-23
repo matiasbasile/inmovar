@@ -1,0 +1,224 @@
+<?php
+include_once("includes/init.php");
+$nombre_pagina = "Nosotros";
+include_once("includes/funciones.php");
+?>
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+
+<head>
+  <?php include("includes/head.php"); ?>
+
+</head>
+
+<body class="bg-gray">
+  <?php include("includes/header.php") ?>
+
+  <!-- lising -->
+  <?php $usuario = $usuario_model->get_list(); ?>
+  <?php print_r($usuario) ?>
+  <section class="padding-default">
+    <div class="container style-two">
+      <div class="page-heading">
+        <h2>Nosotros</h2>
+        <!-- <h6>Se encontraron <b><?php echo sizeof($usuario) ?></b> departamentos</h6> -->
+      </div>
+      <div class="our-team mt-5">
+        <div class="row">
+          <?php foreach ($usuario as $user) { ?>
+            <?php if ($user->aparece_web != 0) { ?>
+              <div class="col-md-6">
+                <div class="team-list">
+                  <div class="team-member-img"><img src="<?php echo $user->path ?>" alt="img"></div>
+                  <div class="team-member-info">
+                    <h3><?php echo $user->nombre ?></h3>
+                    <p><?php echo $user->titulo ?><br class="d-none d-md-block"> Desarrollador Inmobiliario</p>
+                    <h6><span>Col. 7342</span> - <span>Libro. XIII</span> - <span>Folio. 167</span></h6>
+                    <div class="member-info">
+                      <div class="row py-3">
+                        <div class="col-md-3"><b>Fijo</b></div>
+                        <div class="col-md-9 text-right">
+                          <p>0221 - 4271544 / 427-1545 Interno 307</p>
+                        </div>
+                      </div>
+                      <?php if (!empty($user->celular)) { ?>
+                        <div class="row border-top py-3">
+                          <div class="col-md-3"><b>Móvil</b></div>
+                          <div class="col-md-9 text-right">
+                            <p><?php echo $user->celular ?></p>
+                          </div>
+                        </div>
+                      <?php } ?>
+                      <?php if (!empty($user->email)) { ?>
+                        <div class="row border-top py-3">
+                          <div class="col-md-3"><b>Email</b></div>
+                          <div class="col-md-9 text-right">
+                            <p><?php echo $user->email ?></p>
+                          </div>
+                        </div>
+                      <?php } ?>
+                      <div class="row pt-3">
+                        <div class="col-md-6">
+                          <div class="social">
+                            <?php if (!empty($user->celular)) { ?>
+                              <a href="https://api.whatsapp.com/send?phone=<?php echo $user->celular ?>"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+                            <?php } ?>
+                            <?php if (!empty($user->facebook)){ ?>
+                            <a href="<?php echo $user->facebook ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                            <?php } ?>
+                            <?php if (!empty($user->instagram)){ ?>
+                            <a href="<?php echo $user->instagram ?>"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                            <?php } ?>
+                          </div>
+                        </div>
+                        <div class="col-md-6 text-right"><a href="<?php echo mklink("web/propiedades_listado/?id_usuario=".$user->id) ?>" class="btn btn-outline-primary">ver propiedades</a></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <?php } ?>
+          <?php } ?>
+          <!--   <div class="col-md-6">
+            <div class="team-list">
+              <div class="team-member-img"><img src="assets/images/team02.jpg" alt="img"></div>
+              <div class="team-member-info">
+                <h3>PABLO PIÑERO</h3>
+                <p>Martillero y Corredor Público Nacional</p>
+                <h6><span>Col. 7342</span> - <span>Libro. XIII</span> - <span>Folio. 167</span></h6>
+                <div class="member-info">
+                  <div class="row py-3">
+                    <div class="col-md-3"><b>Fijo</b></div>
+                    <div class="col-md-9 text-right">
+                      <p>0221 - 4271544 / 427-1545 Interno 307</p>
+                    </div>
+                  </div>
+                  <div class="row border-top py-3">
+                    <div class="col-md-3"><b>Móvil</b></div>
+                    <div class="col-md-9 text-right">
+                      <p>+54 (221) 123.5673</p>
+                    </div>
+                  </div>
+                  <div class="row border-top py-3">
+                    <div class="col-md-3"><b>Email</b></div>
+                    <div class="col-md-9 text-right">
+                      <p>leonel@grupo-urbano.com.ar</p>
+                    </div>
+                  </div>
+                  <div class="row pt-3">
+                    <div class="col-md-6">
+                      <div class="social">
+                        <a href="#0"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+                        <a href="#0"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#0"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                      </div>
+                    </div>
+                    <div class="col-md-6 text-right"><a href="#0" class="btn btn-outline-primary">ver propiedades</a></div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="team-list">
+              <div class="team-member-img"><img src="assets/images/team03.jpg" alt="img"></div>
+              <div class="team-member-info">
+                <h3>GLADYS CUETO</h3>
+                <p>División Ventas - Alquileres</p>
+                <div class="member-info">
+                  <div class="row py-3">
+                    <div class="col-md-3"><b>Fijo</b></div>
+                    <div class="col-md-9 text-right">
+                      <p>0221 - 4271544 / 427-1545 Interno 307</p>
+                    </div>
+                  </div>
+                  <div class="row border-top py-3">
+                    <div class="col-md-3"><b>Móvil</b></div>
+                    <div class="col-md-9 text-right">
+                      <p>+54 (221) 123.5673</p>
+                    </div>
+                  </div>
+                  <div class="row border-top py-3">
+                    <div class="col-md-3"><b>Email</b></div>
+                    <div class="col-md-9 text-right">
+                      <p>leonel@grupo-urbano.com.ar</p>
+                    </div>
+                  </div>
+                  <div class="row pt-3">
+                    <div class="col-md-6">
+                      <div class="social">
+                        <a href="#0"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+                        <a href="#0"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#0"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                      </div>
+                    </div>
+                    <div class="col-md-6 text-right"><a href="#0" class="btn btn-outline-primary">ver propiedades</a></div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="team-list">
+              <div class="team-member-img"><img src="assets/images/team04.jpg" alt="img"></div>
+              <div class="team-member-info">
+                <h3>LEONARDO CEJAS</h3>
+                <p>División Ventas</p>
+                <div class="member-info">
+                  <div class="row py-3">
+                    <div class="col-md-3"><b>Fijo</b></div>
+                    <div class="col-md-9 text-right">
+                      <p>0221 - 4271544 / 427-1545 Interno 307</p>
+                    </div>
+                  </div>
+                  <div class="row border-top py-3">
+                    <div class="col-md-3"><b>Móvil</b></div>
+                    <div class="col-md-9 text-right">
+                      <p>+54 (221) 123.5673</p>
+                    </div>
+                  </div>
+                  <div class="row border-top py-3">
+                    <div class="col-md-3"><b>Email</b></div>
+                    <div class="col-md-9 text-right">
+                      <p>leonel@grupo-urbano.com.ar</p>
+                    </div>
+                  </div>
+                  <div class="row pt-3">
+                    <div class="col-md-6">
+                      <div class="social">
+                        <a href="#0"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+                        <a href="#0"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#0"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                      </div>
+                    </div>
+                    <div class="col-md-6 text-right"><a href="#0" class="btn btn-outline-primary">ver propiedades</a></div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <?php include("includes/footer.php") ?>
+  <!-- Return to Top -->
+  <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+
+  <!-- Scripts -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/html5.min.js"></script>
+  <script src="assets/js/respond.min.js"></script>
+  <script src="assets/js/placeholders.min.js"></script>
+  <script src="assets/js/owl.carousel.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWmUapFYTBXV3IJL9ggjT9Z1wppCER55g&callback=initMap"></script>
+  <script src="assets/js/scripts.js"></script>
+</body>
+
+</html>
