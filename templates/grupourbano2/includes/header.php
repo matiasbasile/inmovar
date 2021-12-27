@@ -28,7 +28,7 @@
             <a class="nav-link" href="<?php echo mklink("web/vendedores") ?>">nosotros</a>
           </li>
         </ul>
-        <a href="#0" class="btn">contacto</a>
+        <!-- <a href="#0" class="btn">contacto</a> -->
         <div class="social">
           <?php if (!empty($empresa->facebook)) { ?>
             <a href="<?php echo $empresa->facebook ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a>

@@ -106,9 +106,35 @@
     }
 
     var tipo_propiedad = $(form).find(".filter_propiedad").val();
-    if(!isEmpty(localidad)) {
+    if(!isEmpty(tipo_propiedad)) {
       url +="tipo_propiedad=" + tipo_propiedad + "&" ;
     }
+
+    var filter_dormitorios = $(form).find(".filter_dormitorios").val();
+    if(!isEmpty(tipo_propiedad)) {
+      url +="dormitorios=" + filter_dormitorios + "&" ;
+    }
+
+    var filter_banios = $(form).find(".filter_banios").val();
+    if(!isEmpty(filter_banios)){
+      url += "banios=" + filter_banios + "&";
+    }
+
+    var filter_minimo = $(form).find(".filter_minimo").val();
+    if(!isEmpty(filter_minimo)){
+      url += "minimo="+ filter_minimo + "&";
+    }
+    var filter_maximo = $(form).find(".filter_maximo").val();
+    if(!isEmpty(filter_maximo)){
+      url += "maximo="+ filter_maximo + "&";
+    }
+    if ($("#styled-checkbox-1").is(":checked")) {
+      url += "apto_credito=" + 1 + "&";
+    }
+    if ($("#styled-checkbox-2").is(":checked")) {
+      url += "acepta_permuta=" + 1 + "&";
+    }
+
     url += "buscador=1";
 
     /* if ($("#precio_minimo").length > 0) {

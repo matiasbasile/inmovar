@@ -16,50 +16,7 @@ if (isset($get_params["per"])) {
   if ($get_params["per"] = 1) {
     $nombre_pagina = "permutas";
   }
-}
-function filter()
-{
-  global $vc_offset, $view, $vc_total_paginas, $vc_link, $vc_page, $id_tipo_operacion, $vc_orden, $vc_params; ?>
-  <div class="filter">
-    <?php if ($id_tipo_operacion <= 2) { ?>
-      <ul class="tab-buttons">
-        <li><a class="grid-view <?php echo (($view != 0) ? "active" : "") ?>" onclick="change_view(this)" href="javascript:void(0)"></a></li>
-        <li><a class="list-view <?php echo (($view == 0) ? "active" : "") ?>" onclick="change_view(this)" href="javascript:void(0)"></a></li>
-      </ul>
-    <?php } ?>
-    <div class="sort-by">
-      <label for="sort-by">Ordenar por:</label>
-      <select id="sort-by" name="orden" onchange="filtrar()">
-        <option <?php echo ($vc_orden == 2) ? "selected" : "" ?> value="2">Precio Menor a Mayor</option>
-        <option <?php echo ($vc_orden == 1) ? "selected" : "" ?> value="1">Precio Mayor a Menor</option>
-      </select>
-    </div>
-    <?php
-    if ($vc_total_paginas > 1) { ?>
-      <div class="pagination">
-        <?php if ($vc_page > 0) { ?>
-          <a class="prev" href="<?php echo mklink($vc_link . ($vc_page - 1) . "/" . $vc_params) ?>"></a>
-        <?php } ?>
-        <?php for ($i = 0; $i < $vc_total_paginas; $i++) { ?>
-          <?php if (abs($vc_page - $i) < 2) { ?>
-            <a class="<?php echo ($i == $vc_page) ? "active" : "" ?>" href="<?php echo mklink($vc_link . $i . "/" . $vc_params) ?>"><?php echo ($i + 1); ?></a>
-          <?php } ?>
-        <?php } ?>
-        <?php if ($vc_page < ($vc_total_paginas - 1)) { ?>
-          <a class="next" href="<?php echo mklink($vc_link . ($vc_page + 1) . "/" . $vc_params) ?>"></a>
-        <?php } ?>
-      </div>
-    <?php } ?>
-    <div class="present">
-      <label for="show">Mostrar:</label>
-      <select id="show" name="offset" onchange="filtrar()">
-        <option <?php echo ($vc_offset == 12) ? "selected" : "" ?> value="12">12</option>
-        <option <?php echo ($vc_offset == 24) ? "selected" : "" ?> value="24">24</option>
-        <option <?php echo ($vc_offset == 48) ? "selected" : "" ?> value="48">48</option>
-      </select>
-    </div>
-  </div>
-<?php } ?>
+} ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 
@@ -70,9 +27,19 @@ function filter()
 <body class="bg-gray">
   <?php include("includes/header.php");
   if (isset($_GET["buscador"]) && !empty($_GET["buscador"])) {
-    $listado = $propiedad_model->get_list(array("id_tipo_operacion" => $_GET["tipo_operacion"], "id_localidad" => $_GET["id_localidad"], "id_tipo_inmueble" => $_GET["tipo_propiedad"]));
+    $tipo_operacion = (isset($_GET["tipo_operacion"]) ? $_GET["tipo_operacion"] : 0);
+    $id_localidad = (isset($_GET["id_localidad"]) ? $_GET["id_localidad"] : 0);
+    $id_tipo_inmueble = (isset($_GET["id_tipo_inmueble"]) ? $_GET["id_tipo_inmueble"] : 0);
+    $minimo = (isset($_GET["minimo"]) ? $_GET["minimo"] : 0);
+    $maximo = (isset($_GET["maximo"]) ? $_GET["maximo"] : 0);
+    $banios = (isset($_GET["banios"]) ? $_GET["banios"] : 0);
+    $dormitorios = (isset($_GET["dormitorios"]) ? $_GET["dormitorios"] : 0);
+    $apto_credito = (isset($_GET["apto_credito"]) ? $_GET["apto_credito"] : 0);
+    $acepta_permuta = (isset($_GET["acepta_permuta"]) ? $_GET["acepta_permuta"] : 0);
+
+    $listado = $propiedad_model->get_list(array("id_tipo_operacion" => $tipo_operacion, "id_localidad" => $id_localidad, "id_tipo_inmueble" => $id_tipo_inmueble, "minimo" => $minimo, "maximo" => $maximo, "banios" => $banios, "dormitorios" => $dormitorios, "apto_banco" => $apto_credito, "acepta_permuta" => $acepta_permuta));
   } else if (isset($_GET["all"]) && !empty($_GET["all"])) {
-    $listado = $propiedad_model->get_list(array("offset"=>20));
+    $listado = $propiedad_model->get_list(array("offset" => 20));
   } else {
     if (isset($_GET["id_localidad"]) && !empty($_GET["id_localidad"])) {
       $listado = $propiedad_model->get_list(array("id_localidad" => $_GET["id_localidad"]));
@@ -80,6 +47,7 @@ function filter()
       $listado = $propiedad_model->get_list(array("id_tipo_operacion" => $_GET["id_tipo_operacion"]));
     }
   } ?>
+
   <!-- lising -->
   <section class="padding-default">
     <div class="container style-two">
@@ -97,7 +65,11 @@ function filter()
           <h2>Obras</h2>
           <h6>Se encontraron <b><?php echo sizeof($listado) ?></b> obras</h6>
         <?php } ?>
-        <?php if (isset($_GET["id_localidad"]) && !empty($_GET["id_localidad"])) { ?>
+        <?php if (isset($_GET["id_localidad"]) && !empty($_GET["id_localidad"]) && isset($_GET["buscador"]) != 1) { ?>
+          <h2>Propiedades</h2>
+          <h6>Se encontraron <b><?php echo sizeof($listado) ?></b> propiedades</h6>
+        <?php } ?>
+        <?php if (isset($_GET["buscador"]) && !empty($_GET["buscador"])) { ?>
           <h2>Propiedades</h2>
           <h6>Se encontraron <b><?php echo sizeof($listado) ?></b> propiedades</h6>
         <?php } ?>
@@ -109,22 +81,41 @@ function filter()
       <a href="#0" class="btn btn-primary btn-block mb-3 form-toggle style-two mt-5">AJUSTAR BÚSQUEDA</a>
       <div class="form-responsive mt-5">
         <div class="form-block">
-          <form>
-            <select class="form-control">
-              <option>DEPARTAMENTOS</option>
+          <form onsubmit="return filtrar(this)" method="get">
+            <select class="form-control filter_propiedad">
+              <option value="0">DEPARTAMENTOS</option>
+              <?php $tipo_propiedades = $propiedad_model->get_tipos_propiedades(); ?>
+              <?php foreach ($tipo_propiedades as $tipo) { ?>
+                <option value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
+              <?php } ?>
             </select>
-            <select class="form-control">
-              <option>EN LA PLATA</option>
+            <select class="form-control filter_localidad">
+              <option value="0">Localidad</option>
+              <?php $localidades = $propiedad_model->get_localidades(); ?>
+              <?php foreach ($localidades as $localidad) { ?>
+                <option value="<?php echo $localidad->id ?>"><?php echo $localidad->nombre ?></option>
+              <?php } ?>
             </select>
-            <select class="form-control">
-              <option>dormitorios</option>
+            <select class="form-control filter_dormitorios">
+              <option value="0">dormitorios</option>
+              <?php $dormitorios = $propiedad_model->get_dormitorios(); ?>
+              <?php foreach ($dormitorios as $dormitorio) { ?>
+                <option value="<?php echo $dormitorio->dormitorios; ?>"><?php echo $dormitorio->dormitorios ?></option>
+              <?php } ?>
             </select>
-            <select class="form-control">
-              <option>baños</option>
+            <select class="form-control filter_banios">
+              <option value="0">baños</option>
+              <?php $banios = $propiedad_model->get_banios(); ?>
+              <?php foreach ($banios as $banio) { ?>
+                <option value="<?php echo $banio->banios; ?>"><?php echo $banio->banios ?></option>
+              <?php } ?>
             </select>
-            <select class="form-control">
-              <option>precio</option>
-            </select>
+            <div class="inputs-with">
+              <input class="form-control filter_minimo" type="number" min="0" placeholder="Precio Minimo">
+            </div>
+            <div class="inputs-with">
+              <input class="form-control filter_maximo" type="number" min="0" placeholder="Precio Maximo">
+            </div>
             <button type="submit" class="btn btn-primary">BUSCAR</button>
           </form>
         </div>
@@ -354,6 +345,30 @@ function filter()
   <script src="assets/js/owl.carousel.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWmUapFYTBXV3IJL9ggjT9Z1wppCER55g&callback=initMap"></script>
   <script src="assets/js/scripts.js"></script>
+  <script>
+    function cargar() {
+      var url = "<?php echo mklink("propiedades") ?>";
+
+      url += "/?";
+     
+      url += "buscador=1";
+      $.ajax({
+        "url": "<?php echo mklink("propiedades/?") ?>",
+        "type": "post",
+        "dataType": "json",
+        "data": datos,
+        "success": function(r) {
+          if (r.error == 0) {
+            window.location.href = "<?php echo mklink("web/gracias/") ?>";
+          } else {
+            alert("Ocurrio un error al enviar su email. Disculpe las molestias");
+            $("#contacto_submit").removeAttr('disabled');
+            enviando = 0;
+          }
+        }
+      });
+    }
+  </script>
 </body>
 
 </html>
