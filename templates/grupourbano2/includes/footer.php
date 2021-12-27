@@ -32,7 +32,7 @@
     <div class="container">
       <?php if (!empty($empresa->logo)) { ?>
         <img src="<?php echo $empresa->logo ?>" alt="img">
-      <?php }else{ ?>
+      <?php } else { ?>
         <img src="assets/images/logo-white.png" alt="img">
       <?php } ?>
       <?php if (!empty($empresa->direccion_web)) { ?>
@@ -82,3 +82,44 @@
 <script src="assets/js/owl.carousel.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWmUapFYTBXV3IJL9ggjT9Z1wppCER55g&callback=initMap"></script>
 <script src="assets/js/scripts.js"></script>
+<script src="assets/js/flexslider.js"></script>
+<script src="assets/js/fancybox.js"></script>
+
+<script>
+  function filtrar(form) {
+    var submit_form = false;
+    if (form == undefined) {
+      submit_form = true;
+      form = $(".filter_form").first();
+    }
+    var url = "<?php echo mklink("propiedades") ?>";
+
+    url += "/?";
+    var tipo_operacion = $(form).find(".filter_tipo_operacion").val();
+    if (!isEmpty(tipo_operacion)) {
+      url += "tipo_operacion="+ tipo_operacion;
+    }
+
+    var localidad = $(form).find(".filter_localidad").val();
+    if (!isEmpty(localidad)) {
+      url +="&id_localidad="+localidad + "&";
+    }
+
+    var tipo_propiedad = $(form).find(".filter_propiedad").val();
+    if(!isEmpty(localidad)) {
+      url +="tipo_propiedad=" + tipo_propiedad + "&" ;
+    }
+    url += "buscador=1";
+
+    /* if ($("#precio_minimo").length > 0) {
+      var minimo = $("#precio_minimo").val().replace(".", "");
+      $("#precio_minimo_oculto").val(minimo);
+      var maximo = $("#precio_maximo").val().replace(".", "");
+      $("#precio_maximo_oculto").val(maximo);
+    } */
+    console.log(url);
+    setTimeout(function () {
+      location.href=url;
+    }, 300);
+  }
+</script>

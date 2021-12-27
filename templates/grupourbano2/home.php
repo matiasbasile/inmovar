@@ -22,37 +22,57 @@ include_once("includes/funciones.php");
   $slider = $web_model->get_slider();
   ?>
   <section class="banner">
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <!--  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
-        <?php
-        $c = 0;
-        foreach ($slider as $r) {
-        ?>
-          <li data-transition="fade" data-slotamount="7" data-masterspeed="1500">
-            <div class="carousel-item <?php echo ($c == 0 ? "active" : "") ?>" style="background: url(<?php echo $r->path ?>) no-repeat 50% 0; background-size: cover;"></div>
-          </li>
-        <?php
-          $c++;
-        }
-        ?>
+        <div class="carousel-item active" style="background: url(assets/images/banner1.jpg) no-repeat 50% 0; background-size: cover;"></div>
+        <div class="carousel-item" style="background: url(assets/images/banner1.jpg) no-repeat 50% 0; background-size: cover;"></div>
+        <div class="carousel-item" style="background: url(assets/images/banner1.jpg) no-repeat 50% 0; background-size: cover;"></div>
         <ol class="carousel-indicators">
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
       </div>
+    </div> -->
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <?php $c = 0; ?>
+        <?php foreach ($slider as $r) { ?>
+          <div class="carousel-item <?php echo ($c == 0 ? "active" : "") ?>" style="background: url(<?php echo $r->path ?>) no-repeat 50% 0; background-size: cover;"></div>
+          <?php $c++; ?>
+        <?php } ?>
+        <ol class="carousel-indicators">
+          <?php $c = 0; ?>
+          <?php foreach ($slider as $i) { ?>
+            <li data-target="#carouselExampleIndicators" data-slide-to="<?php echo $c ?>" class="<?php echo ($c == 0 ? "active" : "") ?>"></li>
+            <?php $c++; ?>
+          <?php } ?>
+        </ol>
+      </div>
     </div>
     <div class="carousel-caption">
       <div class="container">
-        <form>
-          <select class="form-control">
-            <option>En Venta</option>
+        <form onsubmit="return filtrar(this)" method="get">
+          <select class="form-control filter_tipo_operacion">
+            <option value="0">Operación</option>
+            <?php $tipo_operaciones = $propiedad_model->get_tipos_operaciones(); ?>
+            <?php foreach ($tipo_operaciones as $operaciones) { ?>
+              <option value="<?php echo $operaciones->id ?>"><?php echo $operaciones->nombre ?></option>
+            <?php } ?>
           </select>
-          <select class="form-control">
-            <option>DEPARTAMENTO</option>
+          <?php $tipo_propiedades = $propiedad_model->get_tipos_propiedades(); ?>
+          <select class="form-control filter_propiedad">
+            <option value="0">Propiedad</option>
+            <?php foreach ($tipo_propiedades as $tipo) { ?>
+              <option value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
+            <?php } ?>
           </select>
-          <select class="form-control">
-            <option>EN LA PLATA</option>
+          <select class="form-control filter_localidad">
+            <option value="0">Localidad</option>
+            <?php $localidades = $propiedad_model->get_localidades(); ?>
+            <?php foreach ($localidades as $localidad) { ?>
+              <option value="<?php echo $localidad->id ?>"><?php echo $localidad->nombre ?></option>
+            <?php } ?>
           </select>
           <button type="submit" class="btn btn-primary">BUSCAR</button>
         </form>
@@ -137,13 +157,17 @@ include_once("includes/funciones.php");
       <h5 class="text-center">Queres mudarte con tu familia a una nueva casa, estas por empezar a construir y necesitas un terreno o<br class="d-md-block d-none"> búscas comprar un departamento para estudiar? Tenemos las mejores opciones para ofrecerte:</h5>
     </div>
     <div class="row m-0 mt-5">
-      <div class="col-md-3 p-0 search-moment-list">
-        <div class="search-moment">
-          <span class="moment-icon"></span>
-          <a href="#0" class="btn btn-outline-primary stretched-link">Vengo a Estudiar</a>
+      <?php $categorias = $web_model->get_main_categories(array("offset" => 8, "limit" => 0));
+      foreach ($categorias as $cat) {
+        $categori = $web_model->get_categoria($cat->id); ?>
+        <div class="col-md-3 p-0 search-moment-list">
+          <div class="search-moment">
+            <span class="moment-icon" style="background:url(<?php echo $categori->path ?>)no-repeat 50% 0"></span>
+            <a href="<?php echo $categori->external_link ?>" class="btn btn-outline-primary stretched-link"><?php echo $categori->nombre ?></a>
+          </div>
         </div>
-      </div>
-      <div class="col-md-3 p-0 search-moment-list">
+      <?php } ?>
+      <!-- <div class="col-md-3 p-0 search-moment-list">
         <div class="search-moment">
           <span class="moment-icon"></span>
           <a href="#0" class="btn btn-outline-primary stretched-link">Me independizo</a>
@@ -184,7 +208,7 @@ include_once("includes/funciones.php");
           <span class="moment-icon"></span>
           <a href="#0" class="btn btn-outline-primary stretched-link">Inversión</a>
         </div>
-      </div>
+      </div> -->
     </div>
   </section>
 
@@ -298,7 +322,7 @@ include_once("includes/funciones.php");
         </div> -->
       </div>
       <div class="d-md-block mt-5 text-center">
-        <a href="#0" class="btn btn-outline-secondary">ver todos <i class="fa fa-chevron-right ml-3"></i></a>
+        <a href="<?php echo mklink("web/propiedades_listado/?all=1") ?>" class="btn btn-outline-secondary">ver todos <i class="fa fa-chevron-right ml-3"></i></a>
       </div>
     </section>
   <?php } ?>
@@ -337,7 +361,7 @@ include_once("includes/funciones.php");
         <?php } ?>
       </div>
       <div class="d-md-block mt-5 text-center">
-        <a href="#0" class="btn btn-outline-secondary">ver todos <i class="fa fa-chevron-right ml-3"></i></a>
+        <a href="<?php echo mklink("web/propiedades_listado/?all=1") ?>" class="btn btn-outline-secondary">ver todos <i class="fa fa-chevron-right ml-3"></i></a>
       </div>
     </section>
   <?php } ?>

@@ -15,8 +15,7 @@ include_once("includes/funciones.php");
 <body class="bg-gray">
   <?php include("includes/header.php") ?>
   <!-- lising -->
-  <?php $detalle = $propiedad_model->get($id);
-  ?>
+  <?php $detalle = $propiedad_model->get($id); ?>
   <section class="padding-default vendedores-list">
     <div class="container style-two">
       <div class="row">
@@ -31,7 +30,7 @@ include_once("includes/funciones.php");
                       <?php foreach ($detalle->images as $images) { ?>
                         <?php if ($count == 0) { ?>
                           <a href="<?php echo $images ?>" class="fancybox" data-fancybox-group="gallery"><img src="<?php echo $images ?>" alt="img"></a>
-                        <?php }else{ ?>
+                        <?php } else { ?>
                           <a href="<?php echo $images ?>" class="fancybox dn" data-fancybox-group="gallery"><img src="<?php echo $images ?>" alt="img"></a>
                         <?php } ?>
                         <?php $count++; ?>
@@ -47,7 +46,7 @@ include_once("includes/funciones.php");
                           <div class="d-block position-relative">
                             <img src="<?php echo $images ?>" alt="img">
                             <div class="img-listing-more">
-                              <p><a href="<?php echo $images ?>" class="fancybox" data-fancybox-group="gallery">+5 fotos más <br>para ver</a></p>
+                              <p><a href="<?php echo $images ?>" class="fancybox" data-fancybox-group="gallery">+ <?php echo sizeof($detalle->images) ?> fotos más <br>para ver</a></p>
                             </div>
                           </div>
                         <?php break;
@@ -138,8 +137,15 @@ include_once("includes/funciones.php");
           </div>
           <div class="img-list-btns">
             <div class="row">
-              <div class="col-md-4"><a href="#0" class="btn btn-primary btn-block"><i class="fa fa-video-camera mr-3" aria-hidden="true"></i> recorre la propiedad</a></div>
-              <div class="col-md-4"><a href="#0" class="btn btn-primary btn-block"><i class="fa fa-volume-up mr-3" aria-hidden="true"></i> escucha lo que te contamos</a></div>
+              <?php if ($detalle->video) { ?>
+                <div class="col-md-4"><a href="<?php echo $detalle->video ?>" class="btn btn-primary btn-block"><i class="fa fa-video-camera mr-3" aria-hidden="true"></i> recorre la propiedad</a></div>
+              <?php } ?>
+              <?php if ($detalle->audio) { ?>
+                <div class="col-md-4"><a onclick="repoducir_audio()" class="btn btn-primary btn-block"><i class="fa fa-volume-up mr-3" aria-hidden="true"></i> escucha lo que te contamos</a></div>
+                <audio class="audio" hidden>
+                  <source src="<?php echo $detalle->audio ?>" type="audio/mpeg">
+                </audio>
+              <?php } ?>
               <div class="col-md-4"><a href="#0" class="btn btn-primary btn-block"><i class="fa fa-calendar-check-o mr-3" aria-hidden="true"></i> solicita una visita</a></div>
             </div>
           </div>
@@ -154,7 +160,8 @@ include_once("includes/funciones.php");
               <div class="map mb-3"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10386.271346626505!2d-57.97525530191794!3d-34.919735337758624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a2e62dd769b9d7%3A0x8e5a62b28764b5ef!2sCatedral%20de%20La%20Plata!5e0!3m2!1sen!2sin!4v1637730397287!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
             <?php } ?>
             <h4>Más información</h4>
-            <?php if ($detalle->ambientes != 0) { ?>
+            <?php if ($detalle->ambientes == 0 && $detalle->dormitorios == 0 && $detalle->cocheras == 0 && $detalle->banios == 0) {
+            } else { ?>
               <h5>ambientes</h5>
               <ul>
                 <li><?php echo $detalle->ambientes ?> Ambientes</li>
@@ -163,32 +170,38 @@ include_once("includes/funciones.php");
                 <li><?php echo ($detalle->banios != 0 ? $detalle->banios . " Baños" : "") ?></li>
               </ul>
             <?php } ?>
-
-            <h5>Servicios</h5>
-            <ul>
-              <?php echo $detalle->servicios_aire_acondicionado != 0 ? "<li>" . $detalle->servicios_aire_acondicionado . " Aire Acondicionado</li>" : "" ?>
-              <?php echo $detalle->servicios_internet != 0 ? "<li>" . $detalle->servicios_internet . " WiFi</li>" : "" ?>
-              <?php echo $detalle->servicios_gas != 0 ? "<li>" . $detalle->servicios_gas . " Gas</li>" : "" ?>
-              <?php echo $detalle->servicios_cloacas != 0 ? "<li>" . $detalle->servicios_cloacas . " Cloacas</li>" : "" ?>
-              <?php echo $detalle->servicios_agua_corriente != 0 ? "<li>" . $detalle->servicios_agua_corriente . " Agua corriente</li>" : "" ?>
-              <?php echo $detalle->servicios_asfalto != 0 ? "<li>" . $detalle->servicios_asfalto . " Asfalto</li>" : "" ?>
-              <?php echo $detalle->servicios_electricidad != 0 ? "<li>" . $detalle->servicios_electricidad . " Electricidad</li>" : "" ?>
-              <?php echo $detalle->servicios_telefono != 0 ? "<li>" . $detalle->servicios_telefono . " Telefono</li>" : "" ?>
-              <?php echo $detalle->servicios_cable != 0 ? "<li>" . $detalle->servicios_cable . " Cable</li>" : "" ?>
-            </ul>
-            <h5>Amenities</h5>
-            <ul>
-              <?php echo $detalle->patio != 0 ? "<li>" . $detalle->patio . " Patio</li>" : "" ?>
-              <?php echo $detalle->terraza != 0 ? "<li>" . $detalle->terraza . " Terraza</li>" : "" ?>
-              <?php echo $detalle->parrilla != 0 ? "<li>" . $detalle->parrilla . " Parrilla</li>" : "" ?>
-              <?php echo $detalle->piscina != 0 ? "<li>" . $detalle->piscina . " Piscina</li>" : "" ?>
-              <?php echo $detalle->gimnasio != 0 ? "<li>" . $detalle->gimnasio . " Gimnasio</li>" : "" ?>
-              <?php echo $detalle->living_comedor != 0 ? "<li>" . $detalle->living_comedor . " Living comedor</li>" : "" ?>
-              <?php echo $detalle->lavadero != 0 ? "<li>" . $detalle->lavadero . " Lavadero</li>" : "" ?>
-              <?php echo $detalle->sala_juegos != 0 ? "<li>" . $detalle->sala_juegos . " Sala de juegos</li>" : "" ?>
-              <?php echo $detalle->balcon != 0 ? "<li>" . $detalle->balcon . " Balcon</li>" : "" ?>
-              <?php echo $detalle->ascensor != 0 ? "<li>" . $detalle->ascensor . " Ascensor</li>" : "" ?>
-            </ul>
+            <?php if ($detalle->servicios_aire_acondicionado == 0 && $detalle->servicios_internet == 0 && $detalle->servicios_gas == 0 && $detalle->servicios_cloacas == 0 && $detalle->servicios_agua_corriente == 0 && $detalle->servicios_asfalto == 0 && $detalle->servicios_electricidad == 0 && $detalle->servicios_telefono == 0 && $detalle->servicios_cable == 0) {
+            } else { ?>
+              <h5>Servicios</h5>
+              <ul>
+                <?php echo $detalle->servicios_aire_acondicionado != 0 ? "<li>" . $detalle->servicios_aire_acondicionado . " Aire Acondicionado</li>" : "" ?>
+                <?php echo $detalle->servicios_internet != 0 ? "<li>" . $detalle->servicios_internet . " WiFi</li>" : "" ?>
+                <?php echo $detalle->servicios_gas != 0 ? "<li>" . $detalle->servicios_gas . " Gas</li>" : "" ?>
+                <?php echo $detalle->servicios_cloacas != 0 ? "<li>" . $detalle->servicios_cloacas . " Cloacas</li>" : "" ?>
+                <?php echo $detalle->servicios_agua_corriente != 0 ? "<li>" . $detalle->servicios_agua_corriente . " Agua corriente</li>" : "" ?>
+                <?php echo $detalle->servicios_asfalto != 0 ? "<li>" . $detalle->servicios_asfalto . " Asfalto</li>" : "" ?>
+                <?php echo $detalle->servicios_electricidad != 0 ? "<li>" . $detalle->servicios_electricidad . " Electricidad</li>" : "" ?>
+                <?php echo $detalle->servicios_telefono != 0 ? "<li>" . $detalle->servicios_telefono . " Telefono</li>" : "" ?>
+                <?php echo $detalle->servicios_cable != 0 ? "<li>" . $detalle->servicios_cable . " Cable</li>" : "" ?>
+              </ul>
+            <?php } ?>
+            <?php if (
+              $detalle->patio == 0 && $detalle->terraza == 0 && $detalle->parrilla == 0 && $detalle->piscina == 0 && $detalle->gimnasio == 0 && $detalle->living_comedor == 0 && $detalle->lavadero == 0 && $detalle->sala_juegos == 0 && $detalle->balcon == 0 && $detalle->ascensor == 0 ) {
+            } else { ?>
+              <h5>Amenities</h5>
+              <ul>
+                <?php echo $detalle->patio != 0 ? "<li>" . $detalle->patio . " Patio</li>" : "" ?>
+                <?php echo $detalle->terraza != 0 ? "<li>" . $detalle->terraza . " Terraza</li>" : "" ?>
+                <?php echo $detalle->parrilla != 0 ? "<li>" . $detalle->parrilla . " Parrilla</li>" : "" ?>
+                <?php echo $detalle->piscina != 0 ? "<li>" . $detalle->piscina . " Piscina</li>" : "" ?>
+                <?php echo $detalle->gimnasio != 0 ? "<li>" . $detalle->gimnasio . " Gimnasio</li>" : "" ?>
+                <?php echo $detalle->living_comedor != 0 ? "<li>" . $detalle->living_comedor . " Living comedor</li>" : "" ?>
+                <?php echo $detalle->lavadero != 0 ? "<li>" . $detalle->lavadero . " Lavadero</li>" : "" ?>
+                <?php echo $detalle->sala_juegos != 0 ? "<li>" . $detalle->sala_juegos . " Sala de juegos</li>" : "" ?>
+                <?php echo $detalle->balcon != 0 ? "<li>" . $detalle->balcon . " Balcon</li>" : "" ?>
+                <?php echo $detalle->ascensor != 0 ? "<li>" . $detalle->ascensor . " Ascensor</li>" : "" ?>
+              </ul>
+            <?php } ?>
             <h5>adicionales</h5>
             <ul class="no-icon">
               <li>Apto Crédito: <span><?php echo $detalle->apto_banco == 1 ? "Si" : "No" ?></span></li>
@@ -196,6 +209,7 @@ include_once("includes/funciones.php");
             </ul>
             <h4>Documentación de la propiedad</h4>
             <div class="right-sidebar">
+              
               <h5>DOCUMENTACIÓN</h5>
               <div class="row">
                 <div class="col-md-9">
@@ -312,16 +326,6 @@ include_once("includes/funciones.php");
   <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
 
   <!-- Scripts -->
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/js/html5.min.js"></script>
-  <script src="assets/js/respond.min.js"></script>
-  <script src="assets/js/placeholders.min.js"></script>
-  <script src="assets/js/owl.carousel.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWmUapFYTBXV3IJL9ggjT9Z1wppCER55g&callback=initMap"></script>
-  <script src="assets/js/flexslider.js"></script>
-  <script src="assets/js/fancybox.js"></script>
-  <script src="assets/js/scripts.js"></script>
   <script type="text/javascript">
     //FANCYBOX SCRIPT
     $(function() {

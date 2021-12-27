@@ -16,7 +16,6 @@ include_once("includes/funciones.php");
 
   <!-- lising -->
   <?php $usuario = $usuario_model->get_list(); ?>
-  <?php print_r($usuario) ?>
   <section class="padding-default">
     <div class="container style-two">
       <div class="page-heading">
@@ -35,17 +34,19 @@ include_once("includes/funciones.php");
                     <p><?php echo $user->titulo ?><br class="d-none d-md-block"> Desarrollador Inmobiliario</p>
                     <h6><span>Col. 7342</span> - <span>Libro. XIII</span> - <span>Folio. 167</span></h6>
                     <div class="member-info">
+                      <?php if (!empty($user->telefono)){ ?>
                       <div class="row py-3">
                         <div class="col-md-3"><b>Fijo</b></div>
                         <div class="col-md-9 text-right">
-                          <p>0221 - 4271544 / 427-1545 Interno 307</p>
+                          <p><a href="tel:+<?php echo $user->telefono ?>"><?php echo $user->telefono ?></a></p>
                         </div>
                       </div>
+                      <?php } ?>
                       <?php if (!empty($user->celular)) { ?>
                         <div class="row border-top py-3">
                           <div class="col-md-3"><b>Móvil</b></div>
                           <div class="col-md-9 text-right">
-                            <p><?php echo $user->celular ?></p>
+                            <p><a href="tel:+<?php echo $user->celular ?>"><?php echo $user->celular ?></a></p>
                           </div>
                         </div>
                       <?php } ?>
@@ -53,7 +54,7 @@ include_once("includes/funciones.php");
                         <div class="row border-top py-3">
                           <div class="col-md-3"><b>Email</b></div>
                           <div class="col-md-9 text-right">
-                            <p><?php echo $user->email ?></p>
+                            <p><a href="mailto:<?php echo $user->email ?>"><?php echo $user->email ?></a></p>
                           </div>
                         </div>
                       <?php } ?>
@@ -71,7 +72,7 @@ include_once("includes/funciones.php");
                             <?php } ?>
                           </div>
                         </div>
-                        <div class="col-md-6 text-right"><a href="<?php echo mklink("web/propiedades_listado/?id_usuario=".$user->id) ?>" class="btn btn-outline-primary">ver propiedades</a></div>
+                        <div class="col-md-6 text-right"><a href="<?php echo mklink("web/vendedores_detalle/?id_usuario=".$user->id) ?>" class="btn btn-outline-primary">ver propiedades</a></div>
                       </div>
                     </div>
                   </div>
@@ -211,14 +212,7 @@ include_once("includes/funciones.php");
   <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
 
   <!-- Scripts -->
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/js/html5.min.js"></script>
-  <script src="assets/js/respond.min.js"></script>
-  <script src="assets/js/placeholders.min.js"></script>
-  <script src="assets/js/owl.carousel.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWmUapFYTBXV3IJL9ggjT9Z1wppCER55g&callback=initMap"></script>
-  <script src="assets/js/scripts.js"></script>
+ 
 </body>
 
 </html>

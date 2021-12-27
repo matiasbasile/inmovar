@@ -68,22 +68,43 @@ function filter()
 </head>
 
 <body class="bg-gray">
-  <?php include("includes/header.php") ?>
-
-  <?php if (isset($_GET["id_localidad"]) && !empty($_GET["id_localidad"])) { ?>
-    <?php $listado = $propiedad_model->get_list(array("id_localidad" => $_GET["id_localidad"])); ?>
-  <?php } else if (isset($_GET["id_tipo_operacion"]) && !empty($_GET["id_tipo_operacion"])) { ?>
-    <?php $listado = $propiedad_model->get_list(array("id_tipo_operacion" => $_GET["id_tipo_operacion"])); ?>
-  <?php } else if (isset($_GET["id_usuario"]) && !empty($_GET["id_usuario"])) { ?>
-    <?php $listado = $propiedad_model->get_list(array("id_usuario" => $_GET["id_usuario"])); ?>
-
-  <?php } ?>
+  <?php include("includes/header.php");
+  if (isset($_GET["buscador"]) && !empty($_GET["buscador"])) {
+    $listado = $propiedad_model->get_list(array("id_tipo_operacion" => $_GET["tipo_operacion"], "id_localidad" => $_GET["id_localidad"], "id_tipo_inmueble" => $_GET["tipo_propiedad"]));
+  } else if (isset($_GET["all"]) && !empty($_GET["all"])) {
+    $listado = $propiedad_model->get_list(array("offset"=>20));
+  } else {
+    if (isset($_GET["id_localidad"]) && !empty($_GET["id_localidad"])) {
+      $listado = $propiedad_model->get_list(array("id_localidad" => $_GET["id_localidad"]));
+    } else if (isset($_GET["id_tipo_operacion"]) && !empty($_GET["id_tipo_operacion"])) {
+      $listado = $propiedad_model->get_list(array("id_tipo_operacion" => $_GET["id_tipo_operacion"]));
+    }
+  } ?>
   <!-- lising -->
   <section class="padding-default">
     <div class="container style-two">
       <div class="page-heading">
-        <h2>Departamentos en Venta</h2>
-        <h6>Se encontraron <b><?php echo sizeof($listado) ?></b> departamentos</h6>
+        <?php if (isset($_GET["id_tipo_operacion"]) && !empty($_GET["id_tipo_operacion"]) && $_GET["id_tipo_operacion"] == 1) { ?>
+          <h2>Departamentos en Venta</h2>
+          <h6>Se encontraron <b><?php echo sizeof($listado) ?></b> departamentos</h6>
+        <?php } else if (isset($_GET["id_tipo_operacion"]) && !empty($_GET["id_tipo_operacion"]) && $_GET["id_tipo_operacion"] == 2) { ?>
+          <h2>Departamentos en Alquiler</h2>
+          <h6>Se encontraron <b><?php echo sizeof($listado) ?></b> departamentos</h6>
+        <?php } else if (isset($_GET["id_tipo_operacion"]) && !empty($_GET["id_tipo_operacion"]) && $_GET["id_tipo_operacion"] == 4) { ?>
+          <h2>Emprendimientos</h2>
+          <h6>Se encontraron <b><?php echo sizeof($listado) ?></b> emprendimientos</h6>
+        <?php } else if (isset($_GET["id_tipo_operacion"]) && !empty($_GET["id_tipo_operacion"]) && $_GET["id_tipo_operacion"] == 5) { ?>
+          <h2>Obras</h2>
+          <h6>Se encontraron <b><?php echo sizeof($listado) ?></b> obras</h6>
+        <?php } ?>
+        <?php if (isset($_GET["id_localidad"]) && !empty($_GET["id_localidad"])) { ?>
+          <h2>Propiedades</h2>
+          <h6>Se encontraron <b><?php echo sizeof($listado) ?></b> propiedades</h6>
+        <?php } ?>
+        <?php if (isset($_GET["all"]) && !empty($_GET["all"])) { ?>
+          <h2>Propiedades</h2>
+          <h6>Se encontraron <b><?php echo sizeof($listado) ?></b> propiedades</h6>
+        <?php } ?>
       </div>
       <a href="#0" class="btn btn-primary btn-block mb-3 form-toggle style-two mt-5">AJUSTAR BÚSQUEDA</a>
       <div class="form-responsive mt-5">

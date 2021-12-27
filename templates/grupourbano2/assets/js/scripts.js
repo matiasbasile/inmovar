@@ -143,3 +143,6 @@ $('#return-to-top').click(function() {      // When arrow is clicked
     $('.form-responsive').slideToggle();
   });
   
+  function repoducir_audio(){
+    $(".audio").play;
+  }
