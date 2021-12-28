@@ -37,7 +37,7 @@ if (isset($get_params["per"])) {
     $apto_credito = (isset($_GET["apto_credito"]) ? $_GET["apto_credito"] : 0);
     $acepta_permuta = (isset($_GET["acepta_permuta"]) ? $_GET["acepta_permuta"] : 0);
 
-    $listado = $propiedad_model->get_list(array("id_tipo_operacion" => $tipo_operacion, "id_localidad" => $id_localidad, "id_tipo_inmueble" => $id_tipo_inmueble, "minimo" => $minimo, "maximo" => $maximo, "banios" => $banios, "dormitorios" => $dormitorios, "apto_banco" => $apto_credito, "acepta_permuta" => $acepta_permuta));
+    $listado = $propiedad_model->get_list(array("id_tipo_operacion" => $tipo_operacion, "id_localidad" => $id_localidad, "id_tipo_inmueble" => $id_tipo_inmueble, "minimo" => $minimo, "maximo" => $maximo, "banios" => $banios, "dormitorios" => $dormitorios, "apto_banco" => $apto_credito, "acepta_permuta" => $acepta_permuta, 'activo' => 1, "limit" => 0, "offset" => 9));
   } else if (isset($_GET["all"]) && !empty($_GET["all"])) {
     $listado = $propiedad_model->get_list(array("offset" => 20));
   } else {
@@ -70,8 +70,8 @@ if (isset($get_params["per"])) {
           <h6>Se encontraron <b><?php echo sizeof($listado) ?></b> propiedades</h6>
         <?php } ?>
         <?php if (isset($_GET["buscador"]) && !empty($_GET["buscador"])) { ?>
-          <h2>Propiedades</h2>
-          <h6>Se encontraron <b><?php echo sizeof($listado) ?></b> propiedades</h6>
+          <h2>Propiedades asd</h2>
+          <h6>Se encontraron <b><?php echo count($listado) ?></b> propiedades</h6>
         <?php } ?>
         <?php if (isset($_GET["all"]) && !empty($_GET["all"])) { ?>
           <h2>Propiedades</h2>
@@ -142,7 +142,8 @@ if (isset($get_params["per"])) {
       </div>
 
       <div class="neighborhoods shadow-none style-two">
-        <div class="row m-0 my-5">
+        <div class="row m-0 my-5 propiedades">
+          <?php $cont = 0; ?>
           <?php foreach ($listado as $propiedad) { ?>
             <div class="col-md-4 p-0 neighborhoods-list">
               <a href="<?php echo mklink($propiedad->link) ?>">
@@ -187,6 +188,7 @@ if (isset($get_params["per"])) {
                 </div>
               </a>
             </div>
+            <?php $cont++ ?>
           <?php } ?>
           <!-- <div class="col-md-4 p-0 neighborhoods-list">
             <div class="img-block">
@@ -326,7 +328,7 @@ if (isset($get_params["per"])) {
         </div>
       </div>
       <div class="d-block mt-5">
-        <a href="#0" class="btn btn-primary btn-block btn-lg">ver más propiedades para tu búsqueda</a>
+        <a onclick="cargar()" class="btn btn-primary btn-block btn-lg">ver más propiedades para tu búsqueda</a>
       </div>
     </div>
   </section>
@@ -346,25 +348,41 @@ if (isset($get_params["per"])) {
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWmUapFYTBXV3IJL9ggjT9Z1wppCER55g&callback=initMap"></script>
   <script src="assets/js/scripts.js"></script>
   <script>
-    function cargar() {
-      var url = "<?php echo mklink("propiedades") ?>";
+    window.limit = 9;
+    window.marca = true;
 
-      url += "/?";
-     
-      url += "buscador=1";
+    function cargar() {
+      var search = window.location.search;
+      search = search.slice(1);
+      search = search.split("&");
+      var data = {};
+      search.forEach(element => {
+        var nuevoArray = element.split("=");
+        data[nuevoArray[0]] = nuevoArray[1];
+      });
+
+      window.limit += 9;
+      data['id_empresa'] = ID_EMPRESA;
+      data['limit'] = window.limit;
+      data['offset'] = 0;
+      console.log(data);
+
       $.ajax({
-        "url": "<?php echo mklink("propiedades/?") ?>",
+        "url": "/admin/propiedades/function/get_propiedades",
         "type": "post",
+        "data": data,
         "dataType": "json",
-        "data": datos,
         "success": function(r) {
-          if (r.error == 0) {
-            window.location.href = "<?php echo mklink("web/gracias/") ?>";
-          } else {
-            alert("Ocurrio un error al enviar su email. Disculpe las molestias");
-            $("#contacto_submit").removeAttr('disabled');
-            enviando = 0;
-          }
+          console.log(r);
+          var propiedades = document.querySelector(".propiedades");
+          r.forEach(element => {
+            if (window.marca == true) {
+              propiedades.innerHTML = element;
+              window.marca = false;
+            } else {
+              propiedades.innerHTML += element;
+            }
+          });
         }
       });
     }

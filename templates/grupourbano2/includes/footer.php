@@ -111,7 +111,7 @@
     }
 
     var filter_dormitorios = $(form).find(".filter_dormitorios").val();
-    if(!isEmpty(tipo_propiedad)) {
+    if(!isEmpty(filter_dormitorios)) {
       url +="dormitorios=" + filter_dormitorios + "&" ;
     }
 
