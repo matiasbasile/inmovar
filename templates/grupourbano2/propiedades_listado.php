@@ -376,12 +376,7 @@ if (isset($get_params["per"])) {
           console.log(r);
           var propiedades = document.querySelector(".propiedades");
           r.forEach(element => {
-            if (window.marca == true) {
-              propiedades.innerHTML = element;
-              window.marca = false;
-            } else {
-              propiedades.innerHTML += element;
-            }
+            propiedades.innerHTML += element;
           });
         }
       });
