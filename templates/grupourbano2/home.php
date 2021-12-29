@@ -4,7 +4,7 @@ $nombre_pagina = "home";
 include_once("includes/funciones.php");
 ?>
 <!DOCTYPE html>
-<html dir="ltr" lang="en-US">
+<html dir="ltr" lang="es">
 
 <head>
 
@@ -113,37 +113,45 @@ include_once("includes/funciones.php");
       </div>
       <div class="col-md-3 p-0">
         <div class="img-block">
-          <img src="assets/images/zone01.jpg" alt="img" />
+          <?php $t = $web_model->get_text("zona-1-img","assets/images/zone01.jpg"); ?>
+          <img class="editable editable-img" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" src="<?php echo $t->plain_text ?>" alt="img" />
           <div class="zone-info">
-            <h4>La Plata</h4>
-            <a href="<?php echo mklink("web/propiedades_listado/?id_localidad=513") ?>" class="btn btn-white">Ver Propiedades</a>
+            <?php $t = $web_model->get_text("zona-1-link","La Plata"); ?>
+            <h4 class="editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" src="<?php echo $t->plain_text ?>"><?php echo $t->plain_text ?></h4>
+            <a href="<?php echo $t->link ?>" class="btn btn-white">Ver Propiedades</a>
           </div>
         </div>
       </div>
       <div class="col-md-3 p-0">
         <div class="img-block">
-          <img src="assets/images/zone02.jpg" alt="img" />
+          <?php $t = $web_model->get_text("zona-2-img","assets/images/zone02.jpg"); ?>
+          <img class="editable editable-img" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" src="<?php echo $t->plain_text ?>" alt="img" />
           <div class="zone-info">
-            <h4>Gonnet</h4>
-            <a href="<?php echo mklink("web/propiedades_listado/?id_localidad=396") ?>" class="btn btn-white">Ver Propiedades</a>
+            <?php $t = $web_model->get_text("zona-2-link","Gonnet"); ?>
+            <h4 class="editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" src="<?php echo $t->plain_text ?>"><?php echo $t->plain_text ?></h4>
+            <a href="<?php echo $t->link ?>" class="btn btn-white">Ver Propiedades</a>
           </div>
         </div>
       </div>
       <div class="col-md-3 p-0">
         <div class="img-block">
-          <img src="assets/images/zone03.jpg" alt="img" />
+          <?php $t = $web_model->get_text("zona-3-img","assets/images/zone03.jpg"); ?>
+          <img class="editable editable-img" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" src="<?php echo $t->plain_text ?>" alt="img" />
           <div class="zone-info">
-            <h4>City Bell</h4>
-            <a href="<?php echo mklink("web/propiedades_listado/?id_localidad=205") ?>" class="btn btn-white">Ver Propiedades</a>
+            <?php $t = $web_model->get_text("zona-3-link","City Bell"); ?>
+            <h4 class="editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" src="<?php echo $t->plain_text ?>"><?php echo $t->plain_text ?></h4>
+            <a href="<?php echo $t->link ?>" class="btn btn-white">Ver Propiedades</a>
           </div>
         </div>
       </div>
       <div class="col-md-3 p-0">
         <div class="img-block">
-          <img src="assets/images/zone04.jpg" alt="img" />
+          <?php $t = $web_model->get_text("zona-4-img","assets/images/zone04.jpg"); ?>
+          <img class="editable editable-img" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" src="<?php echo $t->plain_text ?>" alt="img" />
           <div class="zone-info">
-            <h4>Costa Atlántica</h4>
-            <a href="<?php echo mklink("web/propiedades_listado/?id_localidad=396") ?>" class="btn btn-white">Ver Propiedades</a>
+            <?php $t = $web_model->get_text("zona-4-link","Costa Atlántica"); ?>
+            <h4 class="editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" src="<?php echo $t->plain_text ?>"><?php echo $t->plain_text ?></h4>
+            <a href="<?php echo $t->link ?>" class="btn btn-white">Ver Propiedades</a>
           </div>
         </div>
       </div>
@@ -225,7 +233,7 @@ include_once("includes/funciones.php");
           <div class="col-md-4 p-0 neighborhoods-list">
             <a href="<?php echo mklink($destacadas->link) ?>">
               <div class="img-block">
-                <img src="<?php echo '/admin/' . $destacadas->path ?> " alt="img">
+                <img src="<?php echo $destacadas->imagen ?> " alt="img">
                 <div class="neighborhoods-top">
                   <?php if (!empty($destacadas->direccion_completa)) { ?>
                     <p><?php echo $destacadas->direccion_completa ?></p>
@@ -322,7 +330,7 @@ include_once("includes/funciones.php");
         </div> -->
       </div>
       <div class="d-md-block mt-5 text-center">
-        <a href="<?php echo mklink("web/propiedades_listado/?all=1") ?>" class="btn btn-outline-secondary">ver todos <i class="fa fa-chevron-right ml-3"></i></a>
+        <a href="<?php echo mklink("propiedades/") ?>" class="btn btn-outline-secondary">ver todos <i class="fa fa-chevron-right ml-3"></i></a>
       </div>
     </section>
   <?php } ?>
@@ -341,7 +349,7 @@ include_once("includes/funciones.php");
         <?php foreach ($countries as $countri) { ?>
           <div class="col-md-3 work-list">
             <div class="img-block">
-              <a href="<?php echo mklink($countri->link) ?>" class="stretched-link"><img src="<?php echo "/admin/" . $countri->path; ?>"></a>
+              <a href="<?php echo mklink($countri->link) ?>" class="stretched-link"><img src="<?php echo $countri->imagen; ?>"></a>
               <div class="work-tags"><?php echo $countri->tipo_inmueble ?></div>
               <?php if ($countri->publica_precio == 1) { ?>
                 <div class="work-price"><?php echo $countri->moneda; ?> <?php echo $countri->precio_final; ?></div>
@@ -361,7 +369,7 @@ include_once("includes/funciones.php");
         <?php } ?>
       </div>
       <div class="d-md-block mt-5 text-center">
-        <a href="<?php echo mklink("web/propiedades_listado/?all=1") ?>" class="btn btn-outline-secondary">ver todos <i class="fa fa-chevron-right ml-3"></i></a>
+        <a href="<?php echo mklink("propiedades/") ?>" class="btn btn-outline-secondary">ver todos <i class="fa fa-chevron-right ml-3"></i></a>
       </div>
     </section>
   <?php } ?>

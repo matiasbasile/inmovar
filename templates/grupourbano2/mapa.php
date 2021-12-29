@@ -7,13 +7,13 @@ include_once("includes/init.php");
 include_once("includes/funciones.php");
 $nombre_pagina = "mapa";
 
-$propiedades = extract($propiedad_model->get_variables(array(
+extract($propiedad_model->get_variables(array(
   "offset" => 9999999
 )));
 print_r($vc_listado);
 ?>
 <!DOCTYPE html>
-<html dir="ltr" lang="en-US">
+<html dir="ltr" lang="es">
 
 <head>
   <?php include("includes/head.php"); ?>

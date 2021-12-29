@@ -4,7 +4,7 @@ $nombre_pagina = "Nosotros";
 include_once("includes/funciones.php");
 ?>
 <!DOCTYPE html>
-<html dir="ltr" lang="en-US">
+<html dir="ltr" lang="es">
 
 <head>
   <?php include("includes/head.php"); ?>
