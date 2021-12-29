@@ -86,87 +86,6 @@ include_once("includes/funciones.php");
                   </a>
                 </div>
               <?php } ?>
-              <!-- <div class="col-md-6 p-0 neighborhoods-list">
-                <div class="img-block">
-                  <img src="assets/images/img05.jpg" alt="img">
-                  <div class="neighborhoods-top">
-                    <p>22 1805, e/69 y 70. La Plata</p>
-                    <h4>U$S 140.000</h4>
-                  </div>
-                  <div class="neighborhoods-bottom">
-                    <div class="neighborhoods-info">
-                      <h6>2 Hab.</h6>
-                      <img src="assets/images/icon11.png" alt="img">
-                    </div>
-                    <div class="neighborhoods-info">
-                      <h6>2 Baños</h6>
-                      <img src="assets/images/icon12.png" alt="img">
-                    </div>
-                    <div class="neighborhoods-info">
-                      <h6>1 Auto</h6>
-                      <img src="assets/images/icon13.png" alt="img">
-                    </div>
-                    <div class="neighborhoods-info">
-                      <h6>813 m2</h6>
-                      <img src="assets/images/icon14.png" alt="img">
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 p-0 neighborhoods-list">
-                <div class="img-block">
-                  <img src="assets/images/img06.jpg" alt="img">
-                  <div class="neighborhoods-top">
-                    <p>22 1805, e/69 y 70. La Plata</p>
-                    <h4>U$S 140.000</h4>
-                  </div>
-                  <div class="neighborhoods-bottom">
-                    <div class="neighborhoods-info">
-                      <h6>2 Hab.</h6>
-                      <img src="assets/images/icon11.png" alt="img">
-                    </div>
-                    <div class="neighborhoods-info">
-                      <h6>2 Baños</h6>
-                      <img src="assets/images/icon12.png" alt="img">
-                    </div>
-                    <div class="neighborhoods-info">
-                      <h6>1 Auto</h6>
-                      <img src="assets/images/icon13.png" alt="img">
-                    </div>
-                    <div class="neighborhoods-info">
-                      <h6>813 m2</h6>
-                      <img src="assets/images/icon14.png" alt="img">
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 p-0 neighborhoods-list">
-                <div class="img-block">
-                  <img src="assets/images/img07.jpg" alt="img">
-                  <div class="neighborhoods-top">
-                    <p>22 1805, e/69 y 70. La Plata</p>
-                    <h4>U$S 140.000</h4>
-                  </div>
-                  <div class="neighborhoods-bottom">
-                    <div class="neighborhoods-info">
-                      <h6>2 Hab.</h6>
-                      <img src="assets/images/icon11.png" alt="img">
-                    </div>
-                    <div class="neighborhoods-info">
-                      <h6>2 Baños</h6>
-                      <img src="assets/images/icon12.png" alt="img">
-                    </div>
-                    <div class="neighborhoods-info">
-                      <h6>1 Auto</h6>
-                      <img src="assets/images/icon13.png" alt="img">
-                    </div>
-                    <div class="neighborhoods-info">
-                      <h6>813 m2</h6>
-                      <img src="assets/images/icon14.png" alt="img">
-                    </div>
-                  </div>
-                </div>
-              </div> -->
             </div>
           </div>
           <div class="page-heading">
@@ -175,42 +94,33 @@ include_once("includes/funciones.php");
           </div>
           <div class="form-block mt-5">
             <a href="#0" class="btn btn-primary btn-block mb-3 form-toggle style-two">AJUSTAR BÚSQUEDA</a>
-            <form class="form-responsive">
-              <select class="form-control">
-                <option>En Venta</option>
+            <form class="form-responsive" onsubmit="return filtrar(this)" method="get">
+              <select class="form-control filter_tipo_operacion">
+                <option value="0">Operación</option>
+                <?php $tipo_operaciones = $propiedad_model->get_tipos_operaciones(); ?>
+                <?php foreach ($tipo_operaciones as $operaciones) { ?>
+                  <option value="<?php echo $operaciones->id ?>"><?php echo $operaciones->nombre ?></option>
+                <?php } ?>
               </select>
-              <select class="form-control">
-                <option>DEPARTAMENTO</option>
+              <?php $tipo_propiedades = $propiedad_model->get_tipos_propiedades(); ?>
+              <select class="form-control filter_propiedad">
+                <option value="0">Propiedad</option>
+                <?php foreach ($tipo_propiedades as $tipo) { ?>
+                  <option value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
+                <?php } ?>
               </select>
-              <select class="form-control">
-                <option>EN LA PLATA</option>
+              <select class="form-control filter_localidad">
+                <option value="0">Localidad</option>
+                <?php $localidades = $propiedad_model->get_localidades(); ?>
+                <?php foreach ($localidades as $localidad) { ?>
+                  <option value="<?php echo $localidad->id ?>"><?php echo $localidad->nombre ?></option>
+                <?php } ?>
               </select>
               <button type="submit" class="btn btn-primary">BUSCAR</button>
             </form>
           </div>
         </div>
         <div class="col-md-3">
-          <!--    <div class="right-sidebar">
-            <div class="sidebar-img">
-              <img src="assets/images/user01.jpg" alt="img">
-              <div class="sidebar-logo"><img src="assets/images/logo-icon.jpg" alt="img"></div>
-            </div>
-            <h2>Patricia garcia</h2>
-            <h5>ventas</h5>
-            <div class="stars-rating">
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <p>(45 Comentarios)</p>
-            </div>
-            <div class="social">
-              <a href="#0"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-              <a href="#0"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-            </div>
-            <a href="#0" class="btn btn-primary btn-block"><i class="fa fa-phone mr-3" aria-hidden="true"></i> llamá a patricia</a>
-          </div> -->
           <?php if ($usuario->aparece_web != 0) { ?>
             <div class="right-sidebar">
               <?php if (!empty($usuario->path)) { ?>
@@ -225,14 +135,6 @@ include_once("includes/funciones.php");
               <?php if (!empty($usuario->cargo)) { ?>
                 <h5><?php echo $usuario->cargo ?></h5>
               <?php } ?>
-              <!-- <div class="stars-rating">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <p>(45 Comentarios)</p>
-                </div> -->
               <div class="social">
                 <?php if (!empty($usuario->facebook)) { ?>
                   <a href="<?php echo $usuario->facebook ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -250,7 +152,7 @@ include_once("includes/funciones.php");
             <div class="sidebar-arrow"><img src="assets/images/sidebar-arrow.png" alt="img"></div>
             <h2>comunicate ahora</h2>
             <h5 class="mb-3">por estas propiedades</h5>
-            <form>
+            <form onsubmit="enviar_contacto()">
               <div class="form-group">
                 <input type="email" class="form-control" placeholder="Nombre">
               </div>
@@ -283,7 +185,71 @@ include_once("includes/funciones.php");
   <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
 
   <!-- Scripts -->
- 
+  <script>
+    function enviar_contacto() {
+      if (enviando == 1) return;
+      var nombre = $("#contacto_nombre").val();
+      var email = $("#contacto_email").val();
+      var telefono = $("#contacto_telefono").val();
+      var mensaje = $("#contacto_mensaje").val();
+      var para = $("#contacto_para").val();
+      var id_propiedad = $("#contacto_propiedad").val();
+      var id_usuario = $("#contacto_id_usuario").val();
+      if (isEmpty(para)) para = "<?php echo $empresa->email ?>";
+
+      if (isEmpty(nombre) || nombre == "Nombre") {
+        alert("Por favor ingrese un nombre");
+        $("#contacto_nombre").focus();
+        return false;
+      }
+      if (!validateEmail(email)) {
+        alert("Por favor ingrese un email valido");
+        $("#contacto_email").focus();
+        return false;
+      }
+      if (isEmpty(telefono) || telefono == "Telefono") {
+        alert("Por favor ingrese un telefono");
+        $("#contacto_telefono").focus();
+        return false;
+      }
+      if (isEmpty(mensaje) || mensaje == "Mensaje") {
+        alert("Por favor ingrese un mensaje");
+        $("#contacto_mensaje").focus();
+        return false;
+      }
+
+      $("#contacto_submit").attr('disabled', 'disabled');
+      var datos = {
+        "nombre": nombre,
+        "email": email,
+        "mensaje": mensaje,
+        "telefono": telefono,
+        "para": para,
+        "id_propiedad": id_propiedad,
+        <?php if (isset($detalle) && $detalle->id_empresa != $empresa->id) { ?> "id_empresa_relacion": "<?php echo $detalle->id_empresa ?>",
+        <?php } ?> "id_usuario": id_usuario,
+        "id_empresa": ID_EMPRESA,
+        "id_origen": <?php echo (isset($id_origen) ? $id_origen : 1); ?>,
+      }
+      enviando = 1;
+      $.ajax({
+        "url": "https://app.inmovar.com/admin/consultas/function/enviar/",
+        "type": "post",
+        "dataType": "json",
+        "data": datos,
+        "success": function(r) {
+          if (r.error == 0) {
+            window.location.href = "<?php echo mklink("web/gracias/") ?>";
+          } else {
+            alert("Ocurrio un error al enviar su email. Disculpe las molestias");
+            $("#contacto_submit").removeAttr('disabled');
+            enviando = 0;
+          }
+        }
+      });
+      return false;
+    }
+  </script>
 </body>
 
 </html>

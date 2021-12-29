@@ -16,6 +16,7 @@ include_once("includes/funciones.php");
   <?php include("includes/header.php") ?>
   <!-- lising -->
   <?php $detalle = $propiedad_model->get($id); ?>
+  <?php var_dump($detalle); echo "asdad";?>
   <section class="padding-default vendedores-list">
     <div class="container style-two">
       <div class="row">
@@ -221,9 +222,9 @@ include_once("includes/funciones.php");
               <li>Apto Crédito: <span><?php echo $detalle->apto_banco == 1 ? "Si" : "No" ?></span></li>
               <li>Acepta Permuta: <span><?php echo $detalle->acepta_permuta == 1 ? "Si" : "No" ?></span></li>
             </ul>
+
             <h4>Documentación de la propiedad</h4>
             <div class="right-sidebar">
-
               <h5>DOCUMENTACIÓN</h5>
               <div class="row">
                 <div class="col-md-9">
@@ -356,7 +357,7 @@ include_once("includes/funciones.php");
             <div class="sidebar-arrow"><img src="assets/images/sidebar-arrow.png" alt="img"></div>
             <h2>comunicate ahora</h2>
             <h5 class="mb-3">por estas propiedades</h5>
-            <form>
+            <form onsubmit="enviar_contacto()">
               <div class="form-group">
                 <input id="contacto_nombre" type="text" class="form-control" placeholder="Nombre">
               </div>

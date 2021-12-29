@@ -22,18 +22,6 @@ include_once("includes/funciones.php");
   $slider = $web_model->get_slider();
   ?>
   <section class="banner">
-    <!--  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active" style="background: url(assets/images/banner1.jpg) no-repeat 50% 0; background-size: cover;"></div>
-        <div class="carousel-item" style="background: url(assets/images/banner1.jpg) no-repeat 50% 0; background-size: cover;"></div>
-        <div class="carousel-item" style="background: url(assets/images/banner1.jpg) no-repeat 50% 0; background-size: cover;"></div>
-        <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-      </div>
-    </div> -->
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
         <?php $c = 0; ?>
@@ -83,22 +71,36 @@ include_once("includes/funciones.php");
   <!-- Group Bertoia -->
   <section class="group-bertoia padding-default">
     <div class="container">
-      <h2 class="text-center">Grupo Urbano Bertoia Piñero</h2>
-      <h5 class="text-center">Somos la mejor opción para comprar o vender tu propiedad</h5>
+      <?php $t = $web_model->get_text("text1", "Grupo Urbano Bertoia Piñero"); ?>
+      <h2 class="text-center editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>"> <?php echo $t->plain_text ?> </h2>
+      <?php $t = $web_model->get_text("text2", "Somos la mejor opción para comprar o vender tu propiedad"); ?>
+      <h5 class="text-center editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>"> <?php echo $t->plain_text ?> </h5>
       <div class="media mt-5">
-        <img class="mr-4" src="assets/images/icon01.png" alt="img">
+        <?php $t = $web_model->get_text("icon-1-img", "assets/images/icon01.png"); ?>
+        <img class="mr-4 editable editable-img" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" src="<?php echo $t->plain_text ?>" alt="img" />
         <div class="media-body">
-          <h4 class="mt-0">Quiero Comprar</h4>
-          <p>Te ofrecemos la cartera de propiedades más grande de la ciudad para que puedas elegir entre más de 10 mil propiedades en venta en zona.</p>
-          <a href="#0" class="btn btn-outline-primary">comenzar <i class="fa fa-chevron-right ml-3"></i></a>
+          <?php $t = $web_model->get_text("text3", "Quiero Comprar"); ?>
+          <h4 class="editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>"> <?php echo $t->plain_text ?></h4>
+
+          <?php $t = $web_model->get_text("text4", "Te ofrecemos la cartera de propiedades más grande de la ciudad para que puedas elegir entre más de 10 mil propiedades en venta en zona."); ?>
+          <p class="editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>"> <?php echo $t->plain_text ?></p>
+
+          <?php $t = $web_model->get_text("text5", "comenzar"); ?>
+          <a href="#0" class="btn btn-outline-primary editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>"> <?php echo $t->plain_text ?> <i class="fa fa-chevron-right ml-3"></i></a>
         </div>
       </div>
       <div class="media mt-5">
-        <img class="mr-4" src="assets/images/icon02.png" alt="img">
+        <?php $t = $web_model->get_text("icon-2-img", "assets/images/icon02.png"); ?>
+        <img class="mr-4 editable editable-img" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" src="<?php echo $t->plain_text ?>" alt="img" />
         <div class="media-body">
-          <h4 class="mt-0">Quiero Vender</h4>
-          <p>Te ayudamos a vender tu propiedad más rápido generando contenido de calidad y promocionando en los portales y redes más populares.</p>
-          <a href="#0" class="btn btn-outline-primary">comenzar <i class="fa fa-chevron-right ml-3"></i></a>
+          <?php $t = $web_model->get_text("text6", "Quiero Vender"); ?>
+          <h4 class="editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>"> <?php echo $t->plain_text ?></h4>
+
+          <?php $t = $web_model->get_text("text7", "Te ayudamos a vender tu propiedad más rápido generando contenido de calidad y promocionando en los portales y redes más populares."); ?>
+          <p class="editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>"> <?php echo $t->plain_text ?></p>
+
+          <?php $t = $web_model->get_text("text8", "comenzar"); ?>
+          <a href="#0" class="btn btn-outline-primary editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>"> <?php echo $t->plain_text ?> <i class="fa fa-chevron-right ml-3"></i></a>
         </div>
       </div>
     </div>
@@ -108,15 +110,29 @@ include_once("includes/funciones.php");
   <section class="search-zone">
     <div class="row m-0">
       <div class="col-md-12 text-center">
-        <h2 class="d-block">Buscá por Zona</h2>
-        <h5 class="mb-4">Estas son algunas de las zonas más destacadas en La Plata</h5>
+        <?php $t = $web_model->get_text("text9", "Buscá por Zona"); ?>
+        <h2 class="d-block editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>"> <?php echo $t->plain_text ?></h2>
+
+        <?php $t = $web_model->get_text("text10", "Estas son algunas de las zonas más destacadas en La Plata"); ?>
+        <h5 class="mb-4 editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>"> <?php echo $t->plain_text ?></h5>
       </div>
       <div class="col-md-3 p-0">
         <div class="img-block">
-          <?php $t = $web_model->get_text("zona-1-img","assets/images/zone01.jpg"); ?>
+          <?php $t = $web_model->get_text("zona-1-img", "assets/images/zone01.jpg"); ?>
           <img class="editable editable-img" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" src="<?php echo $t->plain_text ?>" alt="img" />
           <div class="zone-info">
-            <?php $t = $web_model->get_text("zona-1-link","La Plata"); ?>
+            <?php $t = $web_model->get_text("zona-1-link", "La Plata"); ?>
+            <h4 class="editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></h4>
+            <a href="<?php echo $t->link ?>" class="btn btn-white">Ver Propiedades</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 p-0">
+        <div class="img-block">
+          <?php $t = $web_model->get_text("zona-2-img", "assets/images/zone02.jpg"); ?>
+          <img class="editable editable-img" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" src="<?php echo $t->plain_text ?>" alt="img" />
+          <div class="zone-info">
+            <?php $t = $web_model->get_text("zona-2-link", "Gonnet"); ?>
             <h4 class="editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" src="<?php echo $t->plain_text ?>"><?php echo $t->plain_text ?></h4>
             <a href="<?php echo $t->link ?>" class="btn btn-white">Ver Propiedades</a>
           </div>
@@ -124,33 +140,22 @@ include_once("includes/funciones.php");
       </div>
       <div class="col-md-3 p-0">
         <div class="img-block">
-          <?php $t = $web_model->get_text("zona-2-img","assets/images/zone02.jpg"); ?>
+          <?php $t = $web_model->get_text("zona-3-img", "assets/images/zone03.jpg"); ?>
           <img class="editable editable-img" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" src="<?php echo $t->plain_text ?>" alt="img" />
           <div class="zone-info">
-            <?php $t = $web_model->get_text("zona-2-link","Gonnet"); ?>
-            <h4 class="editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" src="<?php echo $t->plain_text ?>"><?php echo $t->plain_text ?></h4>
+            <?php $t = $web_model->get_text("zona-3-link", "City Bell"); ?>
+            <h4 class="editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></h4>
             <a href="<?php echo $t->link ?>" class="btn btn-white">Ver Propiedades</a>
           </div>
         </div>
       </div>
       <div class="col-md-3 p-0">
         <div class="img-block">
-          <?php $t = $web_model->get_text("zona-3-img","assets/images/zone03.jpg"); ?>
+          <?php $t = $web_model->get_text("zona-4-img", "assets/images/zone04.jpg"); ?>
           <img class="editable editable-img" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" src="<?php echo $t->plain_text ?>" alt="img" />
           <div class="zone-info">
-            <?php $t = $web_model->get_text("zona-3-link","City Bell"); ?>
-            <h4 class="editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" src="<?php echo $t->plain_text ?>"><?php echo $t->plain_text ?></h4>
-            <a href="<?php echo $t->link ?>" class="btn btn-white">Ver Propiedades</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 p-0">
-        <div class="img-block">
-          <?php $t = $web_model->get_text("zona-4-img","assets/images/zone04.jpg"); ?>
-          <img class="editable editable-img" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" src="<?php echo $t->plain_text ?>" alt="img" />
-          <div class="zone-info">
-            <?php $t = $web_model->get_text("zona-4-link","Costa Atlántica"); ?>
-            <h4 class="editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" src="<?php echo $t->plain_text ?>"><?php echo $t->plain_text ?></h4>
+            <?php $t = $web_model->get_text("zona-4-link", "Costa Atlántica"); ?>
+            <h4 class="editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></h4>
             <a href="<?php echo $t->link ?>" class="btn btn-white">Ver Propiedades</a>
           </div>
         </div>
@@ -161,8 +166,11 @@ include_once("includes/funciones.php");
   <!-- Search According -->
   <section class="group-bertoia padding-default d-block">
     <div class="container">
-      <h2 class="text-center">Buscá Según Tu Momento</h2>
-      <h5 class="text-center">Queres mudarte con tu familia a una nueva casa, estas por empezar a construir y necesitas un terreno o<br class="d-md-block d-none"> búscas comprar un departamento para estudiar? Tenemos las mejores opciones para ofrecerte:</h5>
+      <?php $t = $web_model->get_text("text11", "Buscá Según Tu Momento"); ?>
+      <h2 class="text-center editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>"> <?php echo $t->plain_text ?></h2>
+
+      <?php $t = $web_model->get_text("text12", "Queres mudarte con tu familia a una nueva casa, estas por empezar a construir y necesitas un terreno o<br class='d-md-block d-none'> búscas comprar un departamento para estudiar? Tenemos las mejores opciones para ofrecerte:"); ?>
+      <h5 class="text-center editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>"> <?php echo $t->plain_text ?></h5>
     </div>
     <div class="row m-0 mt-5">
       <?php $categorias = $web_model->get_main_categories(array("offset" => 8, "limit" => 0));
@@ -175,48 +183,6 @@ include_once("includes/funciones.php");
           </div>
         </div>
       <?php } ?>
-      <!-- <div class="col-md-3 p-0 search-moment-list">
-        <div class="search-moment">
-          <span class="moment-icon"></span>
-          <a href="#0" class="btn btn-outline-primary stretched-link">Me independizo</a>
-        </div>
-      </div>
-      <div class="col-md-3 p-0 search-moment-list">
-        <div class="search-moment">
-          <span class="moment-icon"></span>
-          <a href="#0" class="btn btn-outline-primary stretched-link">Ya Somos más</a>
-        </div>
-      </div>
-      <div class="col-md-3 p-0 search-moment-list">
-        <div class="search-moment border-right-none">
-          <span class="moment-icon"></span>
-          <a href="#0" class="btn btn-outline-primary stretched-link">Soy Emprendedor</a>
-        </div>
-      </div>
-      <div class="col-md-3 p-0 search-moment-list">
-        <div class="search-moment">
-          <span class="moment-icon"></span>
-          <a href="#0" class="btn btn-outline-primary stretched-link">Mi primer Depto</a>
-        </div>
-      </div>
-      <div class="col-md-3 p-0 search-moment-list">
-        <div class="search-moment">
-          <span class="moment-icon"></span>
-          <a href="#0" class="btn btn-outline-primary stretched-link">Mi casa</a>
-        </div>
-      </div>
-      <div class="col-md-3 p-0 search-moment-list">
-        <div class="search-moment">
-          <span class="moment-icon"></span>
-          <a href="#0" class="btn btn-outline-primary stretched-link">vamos a construir</a>
-        </div>
-      </div>
-      <div class="col-md-3 p-0 search-moment-list">
-        <div class="search-moment border-right-none">
-          <span class="moment-icon"></span>
-          <a href="#0" class="btn btn-outline-primary stretched-link">Inversión</a>
-        </div>
-      </div> -->
     </div>
   </section>
 
@@ -225,8 +191,11 @@ include_once("includes/funciones.php");
   <?php if (!empty($countries_destacadas)) { ?>
     <section class="neighborhoods padding-default">
       <div class="container text-center">
-        <h2>Especial Countries y Barrios Cerrados</h2>
-        <h5>Disfrutá de la seguridad y privacidad de vivir en un barrio cerrado y/o controlado. </h5>
+        <?php $t = $web_model->get_text("text13", "Especial Countries y Barrios Cerrados"); ?>
+        <h2 class="editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>"> <?php echo $t->plain_text ?></h2>
+
+        <?php $t = $web_model->get_text("text14", "Disfrutá de la seguridad y privacidad de vivir en un barrio cerrado y/o controlado."); ?>
+        <h5 class="editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>"> <?php echo $t->plain_text ?></h5>
       </div>
       <div class="row m-0 mt-5 pad-lr-50">
         <?php foreach ($countries_destacadas as $destacadas) { ?>
@@ -274,60 +243,6 @@ include_once("includes/funciones.php");
             </a>
           </div>
         <?php } ?>
-        <!--  <div class="col-md-4 p-0 neighborhoods-list">
-          <div class="img-block">
-            <img src="assets/images/img02.jpg" alt="img">
-            <div class="neighborhoods-top">
-              <p>22 1805, e/69 y 70. La Plata</p>
-              <h4>U$S 140.000</h4>
-            </div>
-            <div class="neighborhoods-bottom">
-              <div class="neighborhoods-info">
-                <h6>2 Hab.</h6>
-                <img src="assets/images/icon11.png" alt="img">
-              </div>
-              <div class="neighborhoods-info">
-                <h6>2 Baños</h6>
-                <img src="assets/images/icon12.png" alt="img">
-              </div>
-              <div class="neighborhoods-info">
-                <h6>1 Auto</h6>
-                <img src="assets/images/icon13.png" alt="img">
-              </div>
-              <div class="neighborhoods-info">
-                <h6>813 m2</h6>
-                <img src="assets/images/icon14.png" alt="img">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 p-0 neighborhoods-list">
-          <div class="img-block">
-            <img src="assets/images/img03.jpg" alt="img">
-            <div class="neighborhoods-top">
-              <p>22 1805, e/69 y 70. La Plata</p>
-              <h4>U$S 140.000</h4>
-            </div>
-            <div class="neighborhoods-bottom">
-              <div class="neighborhoods-info">
-                <h6>2 Hab.</h6>
-                <img src="assets/images/icon11.png" alt="img">
-              </div>
-              <div class="neighborhoods-info">
-                <h6>2 Baños</h6>
-                <img src="assets/images/icon12.png" alt="img">
-              </div>
-              <div class="neighborhoods-info">
-                <h6>1 Auto</h6>
-                <img src="assets/images/icon13.png" alt="img">
-              </div>
-              <div class="neighborhoods-info">
-                <h6>813 m2</h6>
-                <img src="assets/images/icon14.png" alt="img">
-              </div>
-            </div>
-          </div>
-        </div> -->
       </div>
       <div class="d-md-block mt-5 text-center">
         <a href="<?php echo mklink("propiedades/") ?>" class="btn btn-outline-secondary">ver todos <i class="fa fa-chevron-right ml-3"></i></a>
@@ -342,8 +257,11 @@ include_once("includes/funciones.php");
   <?php if (!empty($countries)) { ?>
     <section class="padding-default works">
       <div class="container text-center">
-        <h2>Especial Countries y Barrios Cerrados</h2>
-        <h5>Disfrutá de la seguridad y privacidad de vivir en un barrio cerrado y/o controlado. </h5>
+        <?php $t = $web_model->get_text("text15", "Especial Countries y Barrios Cerrados"); ?>
+        <h2 class="editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>"> <?php echo $t->plain_text ?></h2>
+
+        <?php $t = $web_model->get_text("text16", "Disfrutá de la seguridad y privacidad de vivir en un barrio cerrado y/o controlado."); ?>
+        <h5 class="editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>"> <?php echo $t->plain_text ?></h5>
       </div>
       <div class="row m-0 mt-5 pad-lr-50">
         <?php foreach ($countries as $countri) { ?>

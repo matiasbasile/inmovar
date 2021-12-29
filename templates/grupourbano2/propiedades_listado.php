@@ -4,11 +4,10 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 include_once("includes/init.php");
 include_once("includes/funciones.php");
-$propiedades = extract($propiedad_model->get_variables(array()));
+extract($propiedad_model->get_variables(array()));
 if (isset($get_params["test"])) echo $propiedad_model->get_sql();
 
 $tipos_op = $propiedad_model->get_tipos_operaciones();
-$id_tipo_operacion = ;
 if (isset($get_params["view"])) {
   $view = $get_params["view"];
 }
@@ -31,7 +30,6 @@ if (isset($get_params["per"])) {
   <section class="padding-default">
     <div class="container style-two">
       <div class="page-heading">
-
         <?php if ($vc_id_tipo_operacion == 1) { ?>
           <h2>Propiedades en Venta</h2>
           <h6>Se encontraron <b><?php echo $vc_total_resultados ?></b> propiedades</h6>
@@ -102,7 +100,7 @@ if (isset($get_params["per"])) {
                 <label for="styled-checkbox-1">Apto Crédito</label>
               </div>
               <div class="custom-check">
-                <input class="styled-checkbox" id="styled-checkbox-2" type="checkbox" value="value2" checked>
+                <input class="styled-checkbox" id="styled-checkbox-2" type="checkbox" value="value2" >
                 <label for="styled-checkbox-2">Acepta Permuta</label>
               </div>
             </div>
@@ -182,7 +180,7 @@ if (isset($get_params["per"])) {
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWmUapFYTBXV3IJL9ggjT9Z1wppCER55g&callback=initMap"></script>
   <script src="assets/js/scripts.js"></script>
   <script>
-    window.limit = 0;
+    window.limit = 12;
     window.marca = true;
 
     function cargar() {
@@ -195,13 +193,28 @@ if (isset($get_params["per"])) {
         data[nuevoArray[0]] = nuevoArray[1];
       });
 
-      window.limit += 9;
+      window.limit += 12;
       data['id_empresa'] = ID_EMPRESA;
       data['limit'] = window.limit;
-      data['offset'] = 9;
+      data['offset'] = 12;
       console.log(data);
-
       $.ajax({
+        "url": "<?php echo mklink("web/get_list/") ?>",
+        "type": "post",
+        "data": data,
+        "dataType": "html",
+        "success": function(r) {
+          console.log(r);
+          var propiedades = document.querySelector(".propiedades");
+          
+          propiedades.innerHTML += r;
+          /* var propiedades = document.querySelector(".propiedades");
+          r.forEach(element => {
+            propiedades.innerHTML += element;
+          }); */
+        }
+      });
+     /*  $.ajax({
         "url": "/admin/propiedades/function/get_propiedades",
         "type": "post",
         "data": data,
@@ -213,7 +226,7 @@ if (isset($get_params["per"])) {
             propiedades.innerHTML += element;
           });
         }
-      });
+      }); */
     }
   </script>
 </body>
