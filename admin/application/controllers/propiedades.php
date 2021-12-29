@@ -2877,7 +2877,8 @@ class Propiedades extends REST_Controller
         'dormitorios' => $dormitorios,
         'limit' => $limit,
         'offset' => $offset,
-        'active' => 1
+        'active' => 1,
+        'order_by' => "nombre"
       )
     );
     /* print_r($rest); */

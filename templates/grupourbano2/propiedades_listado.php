@@ -37,7 +37,7 @@ if (isset($get_params["per"])) {
     $apto_credito = (isset($_GET["apto_credito"]) ? $_GET["apto_credito"] : 0);
     $acepta_permuta = (isset($_GET["acepta_permuta"]) ? $_GET["acepta_permuta"] : 0);
 
-    $listado = $propiedad_model->get_list(array("id_tipo_operacion" => $tipo_operacion, "id_localidad" => $id_localidad, "id_tipo_inmueble" => $id_tipo_inmueble, "minimo" => $minimo, "maximo" => $maximo, "banios" => $banios, "dormitorios" => $dormitorios, "apto_banco" => $apto_credito, "acepta_permuta" => $acepta_permuta, 'activo' => 1, "limit" => 0, "offset" => 9));
+    $listado = $propiedad_model->get_list(array("order_by"=> "nombre","id_tipo_operacion" => $tipo_operacion, "id_localidad" => $id_localidad, "id_tipo_inmueble" => $id_tipo_inmueble, "minimo" => $minimo, "maximo" => $maximo, "banios" => $banios, "dormitorios" => $dormitorios, "apto_banco" => $apto_credito, "acepta_permuta" => $acepta_permuta, 'activo' => 1, "limit" => 0, "offset" => 9));
   } else if (isset($_GET["all"]) && !empty($_GET["all"])) {
     $listado = $propiedad_model->get_list(array("offset" => 20));
   } else {
@@ -348,7 +348,7 @@ if (isset($get_params["per"])) {
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWmUapFYTBXV3IJL9ggjT9Z1wppCER55g&callback=initMap"></script>
   <script src="assets/js/scripts.js"></script>
   <script>
-    window.limit = 9;
+    window.limit = 0;
     window.marca = true;
 
     function cargar() {
@@ -364,7 +364,7 @@ if (isset($get_params["per"])) {
       window.limit += 9;
       data['id_empresa'] = ID_EMPRESA;
       data['limit'] = window.limit;
-      data['offset'] = 0;
+      data['offset'] = 9;
       console.log(data);
 
       $.ajax({
