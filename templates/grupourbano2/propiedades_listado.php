@@ -125,7 +125,7 @@ if (isset($get_params["per"])) {
               <select class="form-control form-primary">
                 <option>propiedades destacadas</option>
               </select>
-              <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-map-marker mr-2" aria-hidden="true"></i> Ver en mapa</button>
+              <a href="<?php echo mklink("web/mapa") ?>" class="btn btn-primary btn-sm"><i class="fa fa-map-marker mr-2" aria-hidden="true"></i> Ver en mapa</a>
             </div>
             <div class="col-md-5 text-right">
               <div class="custom-check">

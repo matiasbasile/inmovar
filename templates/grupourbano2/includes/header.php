@@ -7,7 +7,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item  <?php echo ($_GET["id_tipo_operacion"] == 1 ? "active" : "") ?>">
+          <li class="nav-item  <?php echo (isset($_GET["id_tipo_operacion"]) == 1 ? "active" : "") ?>">
             <a class="nav-link" href="<?php echo mklink("web/propiedades_listado/?id_tipo_operacion=1") ?>">Ventas</a>
             <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="#0">Request an Offer</a>
@@ -15,13 +15,13 @@
               <a class="dropdown-item" href="#0">How it Works</a>
             </div> -->
           </li>
-          <li class="nav-item <?php echo ($_GET["id_tipo_operacion"] == 2 ? "active" : "") ?>">
+          <li class="nav-item <?php echo (isset($_GET["id_tipo_operacion"]) == 2 ? "active" : "") ?>">
             <a class="nav-link" href="<?php echo mklink("web/propiedades_listado/?id_tipo_operacion=2") ?>">alquileres</a>
           </li>
-          <li class="nav-item <?php echo ($_GET["id_tipo_operacion"] == 4 ? "active" : "") ?>">
+          <li class="nav-item <?php echo (isset($_GET["id_tipo_operacion"]) == 4 ? "active" : "") ?>">
             <a class="nav-link" href="<?php echo mklink("web/propiedades_listado/?id_tipo_operacion=4") ?>">emprendimientos</a>
           </li>
-          <li class="nav-item <?php echo ($_GET["id_tipo_operacion"] == 5 ? "active" : "") ?>">
+          <li class="nav-item <?php echo (isset($_GET["id_tipo_operacion"]) == 5 ? "active" : "") ?>">
             <a class="nav-link" href="<?php echo mklink("web/propiedades_listado/?id_tipo_operacion=5") ?>">obras</a>
           </li>
           <li class="nav-item">
