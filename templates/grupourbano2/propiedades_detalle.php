@@ -15,8 +15,13 @@ include_once("includes/funciones.php");
 <body class="bg-gray">
   <?php include("includes/header.php") ?>
   <!-- lising -->
-  <?php $detalle = $propiedad_model->get($id); ?>
-  <?php var_dump($detalle); echo "asdad";?>
+  
+  <?php 
+  $id_empresa = isset($get_params["em"]) ? $get_params["em"] : $empresa->id;
+  $detalle = $propiedad_model->get($id,array(
+    "id_empresa"=>$id_empresa,
+    "id_empresa_original"=>$empresa->id,
+  ));?>
   <section class="padding-default vendedores-list">
     <div class="container style-two">
       <div class="row">
