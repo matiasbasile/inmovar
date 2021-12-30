@@ -1539,3 +1539,6 @@ ul.dot-icon li span {
 .inputs-with{
   width: 15%;
 }
+#map{
+  height: 300px;
+}

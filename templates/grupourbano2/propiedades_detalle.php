@@ -15,13 +15,14 @@ include_once("includes/funciones.php");
 <body class="bg-gray">
   <?php include("includes/header.php") ?>
   <!-- lising -->
-  
-  <?php 
+
+  <?php
   $id_empresa = isset($get_params["em"]) ? $get_params["em"] : $empresa->id;
-  $detalle = $propiedad_model->get($id,array(
-    "id_empresa"=>$id_empresa,
-    "id_empresa_original"=>$empresa->id,
-  ));?>
+  $detalle = $propiedad_model->get($id, array(
+    "id_empresa" => $id_empresa,
+    "id_empresa_original" => $empresa->id,
+  )); ?>
+  <?php print_r($detalle); ?>
   <section class="padding-default vendedores-list">
     <div class="container style-two">
       <div class="row">
@@ -77,7 +78,7 @@ include_once("includes/funciones.php");
                   </div>
                   <?php if ($detalle->precio_porcentaje_anterior < 0.00 && $detalle->publica_precio == 1) { ?>
                     <div class="col-md-4 text-right">
-                      <h6 class="text-green text-16 m-0 p-0"><i class="fa fa-long-arrow-down mr-1" aria-hidden="true"></i> <b>Bajo de precio un <?php floatval($propiedad->precio_porcentaje_anterior * -1) ?>%%</b></h6>
+                      <h6 class="text-green text-16 m-0 p-0"><i class="fa fa-long-arrow-down mr-1" aria-hidden="true"></i> <b>Bajo de precio un <?php echo floatval($detalle->precio_porcentaje_anterior * -1) ?>%</b></h6>
                     </div>
                   <?php } ?>
                 </div>
@@ -105,7 +106,7 @@ include_once("includes/funciones.php");
                   </div>
                 </div>
               </div>
-              <div class="<?php ($detalle->ambientes == 0 && $detalle->banios == 0 && $detalle->cocheras == 0 && $detalle->superficie_cubierta == 0 && $detalle->superficie_semicubierta == 0 && $detalle->superficie_descubierta == 0 && $detalle->superficie_total == 0 ? "" : "amenities") ?>">
+              <div class="<?php echo ($detalle->ambientes == 0 && $detalle->banios == 0 && $detalle->cocheras == 0 && $detalle->superficie_cubierta == 0 && $detalle->superficie_semicubierta == 0 && $detalle->superficie_descubierta == 0 && $detalle->superficie_total == 0 ? "" : "amenities") ?>">
                 <?php if ($detalle->ambientes != 0) { ?>
                   <span><img src="assets/images/icon16.png" alt="img" class="mr-2"> <b>Habitaciones:</b> <?php echo $detalle->ambientes ?></span>
                 <?php } ?>
@@ -149,7 +150,7 @@ include_once("includes/funciones.php");
           <div class="img-list-btns">
             <div class="row">
               <?php if ($detalle->video) { ?>
-                <div class="col-md-4"><a href="<?php echo $detalle->video ?>" class="btn btn-primary btn-block"><i class="fa fa-video-camera mr-3" aria-hidden="true"></i> recorre la propiedad</a></div>
+                <div class="col-md-4"><a href="<?php echo $detalle->video_original ?>" class="btn btn-primary btn-block"><i class="fa fa-video-camera mr-3" aria-hidden="true"></i> recorre la propiedad</a></div>
               <?php } ?>
               <?php if ($detalle->audio) { ?>
                 <div class="col-md-4"><a onclick="repoducir_audio()" class="btn btn-primary btn-block"><i class="fa fa-volume-up mr-3" aria-hidden="true"></i> escucha lo que te contamos</a></div>
@@ -165,10 +166,11 @@ include_once("includes/funciones.php");
               <h4>Descripción de propiedad</h4>
               <?php echo $detalle->descripcion ?>
             <?php } ?>
-            <?php if (!empty($detalle->descripcion_ubicacion)) { ?>
+            <?php if (($detalle->latitud != 0) && ($detalle->longitud != 0)) { ?>
               <h4>Donde se encuentra</h4>
-              <p><?php echo $detalle->descripcion_ubicacion ?></p>
-              <div class="map mb-3"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10386.271346626505!2d-57.97525530191794!3d-34.919735337758624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a2e62dd769b9d7%3A0x8e5a62b28764b5ef!2sCatedral%20de%20La%20Plata!5e0!3m2!1sen!2sin!4v1637730397287!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
+              <div class="map mb-3">
+                <div class="tab-cont" id="map"></div>
+              </div>
             <?php } ?>
             <h4>Más información</h4>
             <?php if ($detalle->ambientes == 0 && $detalle->dormitorios == 0 && $detalle->cocheras == 0 && $detalle->banios == 0) {
@@ -227,77 +229,79 @@ include_once("includes/funciones.php");
               <li>Apto Crédito: <span><?php echo $detalle->apto_banco == 1 ? "Si" : "No" ?></span></li>
               <li>Acepta Permuta: <span><?php echo $detalle->acepta_permuta == 1 ? "Si" : "No" ?></span></li>
             </ul>
-
-            <h4>Documentación de la propiedad</h4>
-            <div class="right-sidebar">
-              <h5>DOCUMENTACIÓN</h5>
-              <div class="row">
-                <div class="col-md-9">
-                  <ul>
-                    <?php echo $detalle->servicios_escritura != 0 ? "<li>" . $detalle->servicios_escritura . " Escritura</li>" : "" ?>
-                    <?php echo $detalle->servicios_plano_obra != 0 ? "<li>" . $detalle->servicios_plano_obra . " Plano de Obra</li>" : "" ?>
-                    <?php echo $detalle->servicios_reglamento != 0 ? "<li>" . $detalle->servicios_reglamento . " Reglamento</li>" : "" ?>
-                    <?php echo $detalle->servicios_plano_ph != 0 ? "<li>" . $detalle->servicios_plano_ph . " Plano PH</li>" : "" ?>
-                  </ul>
+            <?php if ($detalle->servicios_escritura == 0 && $detalle->servicios_plano_obra == 0 && $detalle->servicios_reglamento == 0 && $detalle->servicios_plano_ph == 0 && $detalle->documentacion_escritura == 0 && $detalle->documentacion_estado_parcelario == 0 && $detalle->documentacion_impuesto == 0 && $detalle->documentacion_coti == 0) { ?>
+            <?php } else { ?>
+              <h4>Documentación de la propiedad</h4>
+              <div class="right-sidebar">
+                <h5>DOCUMENTACIÓN</h5>
+                <div class="row">
+                  <div class="col-md-9">
+                    <ul>
+                      <?php echo $detalle->servicios_escritura != 0 ? "<li>" . $detalle->servicios_escritura . " Escritura</li>" : "" ?>
+                      <?php echo $detalle->servicios_plano_obra != 0 ? "<li>" . $detalle->servicios_plano_obra . " Plano de Obra</li>" : "" ?>
+                      <?php echo $detalle->servicios_reglamento != 0 ? "<li>" . $detalle->servicios_reglamento . " Reglamento</li>" : "" ?>
+                      <?php echo $detalle->servicios_plano_ph != 0 ? "<li>" . $detalle->servicios_plano_ph . " Plano PH</li>" : "" ?>
+                    </ul>
+                  </div>
+                  <div class="col-md-3 text-right">
+                    <b>Verificado:</b> <span class="badge badge-success"><?php echo $detalle->servicios_fecha_chequeado != "0000-00-00" ? $detalle->servicios_fecha_chequeado : "No verificado" ?></span>
+                  </div>
                 </div>
-                <div class="col-md-3 text-right">
-                  <b>Verificado:</b> <span class="badge badge-success"><?php echo $detalle->servicios_fecha_chequeado != "0000-00-00" ? $detalle->servicios_fecha_chequeado : "No verificado" ?></span>
-                </div>
+                <ul class="dot-icon pb-0">
+                  <?php if ($detalle->documentacion_escritura != 0) { ?>
+                    <li>Escritura:
+                      <span>
+                        <?php if ($detalle->documentacion_escritura == 1) {
+                          echo "Compraventa";
+                        } elseif ($detalle->documentacion_escritura == 2) {
+                          echo "Donación";
+                        } elseif ($detalle->documentacion_escritura == 3) {
+                          echo "Parte Indivisa";
+                        } else {
+                          echo "Fidelcomiso";
+                        } ?>
+                      </span>
+                    </li>
+                  <?php } ?>
+                  <?php if ($detalle->documentacion_estado_parcelario != 0) { ?>
+                    <li>
+                      Estado Parcelario:
+                      <span>
+                        <?php if ($detalle->documentacion_estado_parcelario == 1) {
+                          echo "No lleva";
+                        } else {
+                          echo "Lleva";
+                        }
+                        ?>
+                      </span>
+                    </li>
+                  <?php } ?>
+                  <?php if ($detalle->documentacion_impuesto != 0) { ?>
+                    <li>Impuesto:
+                      <span>
+                        <?php if ($detalle->documentacion_impuesto == 1) {
+                          echo "Impuesto Transferencia de Inmuebles";
+                        } else {
+                          echo "Anticipo de Ganancias";
+                        }
+                        ?>
+                      </span>
+                    </li>
+                  <?php } ?>
+                  <?php if ($detalle->documentacion_coti != 0) { ?>
+                    <li>Coti:
+                      <span>
+                        <?php if ($detalle->documentacion_coti == 1) {
+                          echo "Corresponde";
+                        } else {
+                          echo "No Corresponde";
+                        } ?>
+                      </span>
+                    </li>
+                  <?php } ?>
+                </ul>
               </div>
-              <ul class="dot-icon pb-0">
-                <?php if ($detalle->documentacion_escritura != 0) { ?>
-                  <li>Escritura:
-                    <span>
-                      <?php if ($detalle->documentacion_escritura == 1) {
-                        echo "Compraventa";
-                      } elseif ($detalle->documentacion_escritura == 2) {
-                        echo "Donación";
-                      } elseif ($detalle->documentacion_escritura == 3) {
-                        echo "Parte Indivisa";
-                      } else {
-                        echo "Fidelcomiso";
-                      } ?>
-                    </span>
-                  </li>
-                <?php } ?>
-                <?php if ($detalle->documentacion_estado_parcelario != 0) { ?>
-                  <li>
-                    Estado Parcelario:
-                    <span>
-                      <?php if ($detalle->documentacion_estado_parcelario == 1) {
-                        echo "No lleva";
-                      } else {
-                        echo "Lleva";
-                      }
-                      ?>
-                    </span>
-                  </li>
-                <?php } ?>
-                <?php if ($detalle->documentacion_impuesto != 0) { ?>
-                  <li>Impuesto:
-                    <span>
-                      <?php if ($detalle->documentacion_impuesto == 1) {
-                        echo "Impuesto Transferencia de Inmuebles";
-                      } else {
-                        echo "Anticipo de Ganancias";
-                      }
-                      ?>
-                    </span>
-                  </li>
-                <?php } ?>
-                <?php if ($detalle->documentacion_coti != 0) { ?>
-                  <li>Coti:
-                    <span>
-                      <?php if ($detalle->documentacion_coti == 1) {
-                        echo "Corresponde";
-                      } else {
-                        echo "No Corresponde";
-                      } ?>
-                    </span>
-                  </li>
-                <?php } ?>
-              </ul>
-            </div>
+            <?php } ?>
             <?php if ($detalle->plazo_reserva == 0 && $detalle->plazo_boleto == 0 && $detalle->plazo_escritura == 0) {
             } else { ?>
               <div class="right-sidebar">
@@ -393,12 +397,41 @@ include_once("includes/funciones.php");
 
   <!-- Footer -->
   <?php include("includes/footer.php") ?>
+  <?php include_once("templates/comun/mapa_js.php"); ?>
 
   <!-- Return to Top -->
   <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
 
   <!-- Scripts -->
   <script type="text/javascript">
+    $(document).ready(function() {
+      <?php if (!empty($detalle->latitud) && !empty($detalle->longitud)) { ?>
+
+        /* if ($("#map").length == 0) return; */
+        var mymap = L.map('map').setView([<?php echo $detalle->latitud ?>, <?php echo $detalle->longitud ?>], 16);
+
+        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+          attribution: '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
+          tileSize: 512,
+          maxZoom: 18,
+          zoomOffset: -1,
+          id: 'mapbox/streets-v11',
+          accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
+        }).addTo(mymap);
+
+
+        var icono = L.icon({
+          iconUrl: 'images/map-place.png',
+          iconSize: [60, 60], // size of the icon
+          iconAnchor: [30, 30], // point of the icon which will correspond to marker's location
+        });
+
+        L.marker([<?php echo $detalle->latitud ?>, <?php echo $detalle->longitud ?>], {
+          icon: icono
+        }).addTo(mymap);
+
+      <?php } ?>
+    });
     //FANCYBOX SCRIPT
     $(function() {
       $(".fancybox").fancybox({
