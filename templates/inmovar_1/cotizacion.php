@@ -195,7 +195,7 @@ if ($empresa->id != 1633) {
     cotizaciones = JSON.parse(cotizaciones);
     $.each(cotizaciones, function(clave, valor) {
       if (valor.anios == plazo) {
-        var tasa_mensual = parseFloat(valor.taza) / 12;
+        var tasa_mensual = parseFloat(valor.taza / 100) / 12;
         console.log(valor);
 
         var valor_de_cuota = monto * (((1+tasa_mensual)^total_de_cuotas) * tasa_mensual) / (((1+tasa_mensual)^total_de_cuotas)-1);
