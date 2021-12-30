@@ -200,7 +200,9 @@ if ($empresa->id != 1633) {
         console.log("Tasa Mensual: "+tasa_mensual);
         console.log("Total de Cuotas: "+total_de_cuotas);
 
-        var valor_de_cuota = monto * (((1+tasa_mensual)^total_de_cuotas) * tasa_mensual) / (((1+tasa_mensual)^total_de_cuotas)-1);
+        var t = (1+tasa_mensual) ^ total_de_cuotas;
+        console.log(t);
+        var valor_de_cuota = monto * ((t * tasa_mensual) / (t - 1));
 
         //Metemos los datos en la view
         $(".cuota_inicial").html("$ "+Number(valor_de_cuota).format(0));
