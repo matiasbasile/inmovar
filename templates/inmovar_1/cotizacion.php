@@ -188,18 +188,18 @@ if ($empresa->id != 1633) {
 
   function calcular_datos() {
     var plazo = parseInt($(".plazo .btn-item.active").attr("data-value"));
+    var total_de_cuotas = plazo*12;
     var monto = $("#monto_maximo").val();
     monto = parseFloat(String(monto).replace(/\D/g,''));
     var cotizaciones = '<?php echo json_encode($cotizaciones['cotizaciones']); ?>';
     cotizaciones = JSON.parse(cotizaciones);
     $.each(cotizaciones, function(clave, valor) {
       if (valor.anios == plazo) {
+        var tasa_mensual = parseFloat(valor.taza) / 12;
         console.log(valor);
-        //Primero calculamos el total de las cuotas
-        var total_de_cuotas = plazo*12;
-        //Despues el valor anual total
-        var anual = parseFloat(monto)+parseFloat((monto/100*valor.taza));
-        var valor_de_cuota = anual/12;
+
+        var valor_de_cuota = monto * (((1+tasa_mensual)^total_de_cuotas) * tasa_mensual) / (((1+tasa_mensual)^total_de_cuotas)-1);
+
         //Metemos los datos en la view
         $(".cuota_inicial").html("$ "+Number(valor_de_cuota).format(0));
         $(".total_cuotas").html(total_de_cuotas+" ("+plazo+" Años)")
