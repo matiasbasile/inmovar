@@ -421,7 +421,7 @@ include_once("includes/funciones.php");
 
 
         var icono = L.icon({
-          iconUrl: 'images/map-place.png',
+          iconUrl: 'assets/images/map-place.png',
           iconSize: [60, 60], // size of the icon
           iconAnchor: [30, 30], // point of the icon which will correspond to marker's location
         });
