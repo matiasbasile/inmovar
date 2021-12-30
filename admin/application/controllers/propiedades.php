@@ -1,100 +1,114 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') or exit('No direct script access allowed');
 
-require APPPATH.'libraries/REST_Controller.php';
+require APPPATH . 'libraries/REST_Controller.php';
 
-class Propiedades extends REST_Controller {
+class Propiedades extends REST_Controller
+{
 
-  function __construct() {
+  function __construct()
+  {
     parent::__construct();
     $this->load->model('Propiedad_Model', 'modelo');
   }
 
-  function get_precios_propiedades() {
+  function get_precios_propiedades()
+  {
     $id_empresa = parent::get_post("id_empresa", parent::get_empresa());
     $fecha_desde = parent::get_post("fecha_desde", 0);
     $fecha_hasta = parent::get_post("fecha_hasta", 0);
     $id = parent::get_post("id", 0);
     $salida = $this->modelo->get_precios_propiedades(array(
-      "id_propiedad"=>$id,
-      "id_empresa"=>$id_empresa,
-      "fecha_desde"=>$fecha_desde,
-      "fecha_hasta"=>$fecha_hasta,
+      "id_propiedad" => $id,
+      "id_empresa" => $id_empresa,
+      "fecha_desde" => $fecha_desde,
+      "fecha_hasta" => $fecha_hasta,
     ));
     echo json_encode(array(
-      "error"=>0,
-      "salida"=>$salida,
+      "error" => 0,
+      "salida" => $salida,
     ));
   }
 
-  function guardar_visita_panel() {
+  function guardar_visita_panel()
+  {
     $id_empresa = parent::get_post("id_empresa", parent::get_empresa());
     $id_propiedad = parent::get_post("id_propiedad", 0);
     $id_inmobiliaria = parent::get_post("id_inmobiliaria", 0);
     $tipo = parent::get_post("tipo", 0);
 
-    if (empty($id_empresa) || empty($id_propiedad) || empty($id_inmobiliaria)) { echo json_encode(array("error"=>1)); exit(); }
+    if (empty($id_empresa) || empty($id_propiedad) || empty($id_inmobiliaria)) {
+      echo json_encode(array("error" => 1));
+      exit();
+    }
 
     $fecha = date("Y-m-d");
     $hora = date("H:i:s");
     $sql = "SELECT 1 FROM visitas_panel WHERE id_empresa = '$id_empresa' AND id_propiedad = '$id_propiedad' AND tipo = '$tipo' ";
-    $sql.= "AND id_inmobiliaria = '$id_inmobiliaria' AND DATE_FORMAT(fecha,'%Y-%m-%d') = '$fecha' ";
-    if ($this->db->query($sql)->num_rows()>0) { echo json_encode(array("error"=>1)); exit(); }
+    $sql .= "AND id_inmobiliaria = '$id_inmobiliaria' AND DATE_FORMAT(fecha,'%Y-%m-%d') = '$fecha' ";
+    if ($this->db->query($sql)->num_rows() > 0) {
+      echo json_encode(array("error" => 1));
+      exit();
+    }
 
     $sql = "INSERT INTO visitas_panel (id_empresa, id_propiedad, id_inmobiliaria, fecha, tipo) VALUES ";
-    $sql.= "('$id_empresa', '$id_propiedad', '$id_inmobiliaria', '$fecha $hora', '$tipo') ";
+    $sql .= "('$id_empresa', '$id_propiedad', '$id_inmobiliaria', '$fecha $hora', '$tipo') ";
     $this->db->query($sql);
-    echo json_encode(array("error"=>0));
+    echo json_encode(array("error" => 0));
   }
 
-  function arreglar_hash() {
+  function arreglar_hash()
+  {
     $sql = "UPDATE inm_propiedades SET hash = MD5(CONCAT(id,id_empresa)) ";
     $this->db->query($sql);
     echo "TERMINO";
   }
 
-  function arreglar_codigos_cero() {
+  function arreglar_codigos_cero()
+  {
     $id_empresa = parent::get_empresa();
     $sql = "SELECT * FROM inm_propiedades ";
-    $sql.= "WHERE id_empresa = $id_empresa ";
-    $sql.= "AND (codigo = 0 OR codigo = '') ";
+    $sql .= "WHERE id_empresa = $id_empresa ";
+    $sql .= "AND (codigo = 0 OR codigo = '') ";
     $q = $this->db->query($sql);
-    foreach($q->result() as $r) {
+    foreach ($q->result() as $r) {
       $codigo = $this->modelo->next(array(
-        "id_empresa"=>$id_empresa,
+        "id_empresa" => $id_empresa,
       ));
       $sql = "UPDATE inm_propiedades SET codigo = '$codigo' ";
-      $sql.= "WHERE id_empresa = $id_empresa AND id = $r->id ";
+      $sql .= "WHERE id_empresa = $id_empresa AND id = $r->id ";
       $this->db->query($sql);
     }
     echo "TERMINO";
   }
 
   // Esta funcion es un helper que baja las imagenes que estan en una URL del servidor
-  function bajar_imagenes_url() {
+  function bajar_imagenes_url()
+  {
     $id_empresa = 1164;
     $this->load->helper("file_helper");
     $this->load->model("Propiedad_Model");
     $list = $this->Propiedad_Model->buscar(array(
-      "id_empresa"=>$id_empresa,
-      "limit"=>0,
-      "offset"=>999999,
-      "buscar_imagenes"=>1,
+      "id_empresa" => $id_empresa,
+      "limit" => 0,
+      "offset" => 999999,
+      "buscar_imagenes" => 1,
     ));
-    $ok=0; $fail=0;
-    foreach($list["results"] as $propiedad) {
+    $ok = 0;
+    $fail = 0;
+    foreach ($list["results"] as $propiedad) {
       $sql = "SELECT * FROM inm_propiedades_images WHERE id_empresa = $id_empresa AND id_propiedad = $propiedad->id ";
       $q = $this->db->query($sql);
-      foreach($q->result() as $r) {
-        $ss = explode("/",$r->path);
+      foreach ($q->result() as $r) {
+        $ss = explode("/", $r->path);
         $file = end($ss);
         $file = "uploads/$id_empresa/propiedades/$file";
-        grab_image($r->path,$file);
+        grab_image($r->path, $file);
         if (file_exists($file)) {
           $sql = "UPDATE inm_propiedades_images SET path = '$file' WHERE id = $r->id AND id_propiedad = $propiedad->id AND id_empresa = $id_empresa ";
           $this->db->query($sql);
           $ok++;
         } else {
-          echo $file."<br/>";
+          echo $file . "<br/>";
           $fail++;
         }
       }
@@ -102,11 +116,12 @@ class Propiedades extends REST_Controller {
     echo "BAJADAS: $ok | ERRORES: $fail";
   }
 
-  function arreglar_imagenes() {
+  function arreglar_imagenes()
+  {
     $cantidad = 0;
     $sql = "SELECT * FROM inm_propiedades WHERE path != '' ";
     $q = $this->db->query($sql);
-    foreach($q->result() as $r) {
+    foreach ($q->result() as $r) {
       $sql = "SELECT * FROM inm_propiedades_images WHERE id_propiedad = $r->id AND id_empresa = $r->id_empresa AND path = '$r->path' ";
       $qq = $this->db->query($sql);
       if ($qq->num_rows() == 0) {
@@ -121,47 +136,49 @@ class Propiedades extends REST_Controller {
     echo "TERMINO $cantidad";
   }
 
-  function arreglar_imagenes_repetidas() {
+  function arreglar_imagenes_repetidas()
+  {
     $sql = "";
-    $sql.= "DELETE t1 FROM inm_propiedades_images t1 ";
-    $sql.= "INNER JOIN inm_propiedades_images t2 ";
-    $sql.= "WHERE  ";
-    $sql.= "t1.id < t2.id AND  ";
-    $sql.= "t1.path = t2.path AND ";
-    $sql.= "t1.id_propiedad = t2.id_propiedad AND ";
-    $sql.= "t1.id_empresa = t2.id_empresa ";
+    $sql .= "DELETE t1 FROM inm_propiedades_images t1 ";
+    $sql .= "INNER JOIN inm_propiedades_images t2 ";
+    $sql .= "WHERE  ";
+    $sql .= "t1.id < t2.id AND  ";
+    $sql .= "t1.path = t2.path AND ";
+    $sql .= "t1.id_propiedad = t2.id_propiedad AND ";
+    $sql .= "t1.id_empresa = t2.id_empresa ";
     $q = $this->db->query($sql);
     echo "TERMINO";
   }
 
-  function arreglar_nombres($id_empresa = 0) {
+  function arreglar_nombres($id_empresa = 0)
+  {
 
     $sql = "SELECT * FROM inm_propiedades WHERE 1=1 ";
-    if (!empty($id_empresa)) $sql.= "AND id_empresa = $id_empresa ";
+    if (!empty($id_empresa)) $sql .= "AND id_empresa = $id_empresa ";
     $q = $this->db->query($sql);
-    foreach($q->result() as $data) {
+    foreach ($q->result() as $data) {
       $tipo_inmueble = "";
       $q = $this->db->query("SELECT * FROM inm_tipos_inmueble WHERE id = $data->id_tipo_inmueble");
       if ($q->num_rows() > 0) {
-        $ti = $q->row();  
+        $ti = $q->row();
         $tipo_inmueble = $ti->nombre;
       }
-      
+
       $tipo_operacion = "";
       $q = $this->db->query("SELECT * FROM inm_tipos_operacion WHERE id = $data->id_tipo_operacion");
       if ($q->num_rows() > 0) {
-        $ti = $q->row();  
+        $ti = $q->row();
         $tipo_operacion = $ti->nombre;
       }
 
       $localidad = "";
       $q = $this->db->query("SELECT * FROM com_localidades WHERE id = $data->id_localidad");
       if ($q->num_rows() > 0) {
-        $ti = $q->row();  
+        $ti = $q->row();
         $localidad = $ti->nombre;
       }
 
-      $data->nombre = $tipo_inmueble." en ".$tipo_operacion.((!empty($localidad)) ? " en ".$localidad : "");    
+      $data->nombre = $tipo_inmueble . " en " . $tipo_operacion . ((!empty($localidad)) ? " en " . $localidad : "");
 
       $sql = "UPDATE inm_propiedades SET nombre = '$data->nombre' WHERE id_empresa = $data->id_empresa AND id = $data->id ";
       $this->db->query($sql);
@@ -169,22 +186,24 @@ class Propiedades extends REST_Controller {
     echo "TERMINO";
   }
 
-  function contar_visita() {
-    $id_empresa = parent::get_get("e",0);
-    $id_empresa_propiedad = parent::get_get("ep",0);
-    $id_propiedad = parent::get_get("p",0);
-    $id_cliente = parent::get_get("c",0);
+  function contar_visita()
+  {
+    $id_empresa = parent::get_get("e", 0);
+    $id_empresa_propiedad = parent::get_get("ep", 0);
+    $id_propiedad = parent::get_get("p", 0);
+    $id_cliente = parent::get_get("c", 0);
     $sql = "INSERT INTO inm_propiedades_visitas (id_empresa,id_propiedad,id_cliente,stamp,id_empresa_propiedad) VALUES(";
-    $sql.= " ? , ? , ? ,NOW(), ?)";
-    $this->db->query($sql, array($id_empresa,$id_propiedad,$id_cliente,$id_empresa_propiedad));
-    echo json_encode(array("error"=>0));
+    $sql .= " ? , ? , ? ,NOW(), ?)";
+    $this->db->query($sql, array($id_empresa, $id_propiedad, $id_cliente, $id_empresa_propiedad));
+    echo json_encode(array("error" => 0));
   }
 
-  function bloquear_en_web() {
+  function bloquear_en_web()
+  {
     $id_empresa = parent::get_empresa();
     $id_propiedad = parent::get_get("id_propiedad");
     $id_empresa_propiedad = parent::get_get("id_empresa_propiedad");
-    $bloqueo = parent::get_get("bloqueo",0);
+    $bloqueo = parent::get_get("bloqueo", 0);
     if ($bloqueo == 0) {
       $sql = "DELETE FROM inm_propiedades_bloqueadas WHERE id_empresa = $id_empresa AND id_propiedad = $id_propiedad AND id_empresa_propiedad = $id_empresa_propiedad ";
     } else {
@@ -192,41 +211,42 @@ class Propiedades extends REST_Controller {
     }
     $this->db->query($sql);
     echo json_encode(array(
-      "error"=>0,
+      "error" => 0,
     ));
   }
 
-  function crear_video() {
+  function crear_video()
+  {
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
     $id_empresa = parent::get_empresa();
     $id = parent::get_get("id");
-    $propiedad = $this->modelo->get($id,array(
-      "id_empresa"=>$id_empresa,
+    $propiedad = $this->modelo->get($id, array(
+      "id_empresa" => $id_empresa,
     ));
 
     // Borramos todo lo que haya en la carpeta temporal de la empresa
     $this->load->helper("file_helper");
-    require APPPATH.'libraries/SimpleImage.php';
+    require APPPATH . 'libraries/SimpleImage.php';
     $dir = "/home/ubuntu/data/admin/uploads/$id_empresa/temporal/";
     empty_directory($dir);
 
     // El primer paso, tenemos que normalizar todas las fotos a 800x600
     $images = array();
-    $i=0;
-    foreach($propiedad->images as $img) {
-      if (strpos($img,"http://")===FALSE) {
+    $i = 0;
+    foreach ($propiedad->images as $img) {
+      if (strpos($img, "http://") === FALSE) {
         $s = explode("/", $img);
         $dest = end($s);
-        $filename = $dir.$dest;
+        $filename = $dir . $dest;
         copy($img, $filename);
 
         // Redimensionamos las fotos a 800x600
         $simple = new SimpleImage();
         $simple->load($filename);
-        $simple->resize(800,600);
+        $simple->resize(800, 600);
         $simple->save($filename);
         $images[] = $filename;
         $i++;
@@ -235,63 +255,65 @@ class Propiedades extends REST_Controller {
 
     // Segundo paso, creamos el comando que vamos a ejecutar
     $cmd = 'ffmpeg -y ';
-    foreach($images as $img) $cmd.= '-loop 1 -i '.$img.' ';
-    $cmd.= '-filter_complex "';
-    for($i=0;$i<sizeof($images);$i++) {
-      $cmd.= '['.$i.':v]trim=duration=6,fade=t=in:st=0:d=1,fade=t=out:st=5:d=1,setsar=1:1[v'.$i.']; ';
+    foreach ($images as $img) $cmd .= '-loop 1 -i ' . $img . ' ';
+    $cmd .= '-filter_complex "';
+    for ($i = 0; $i < sizeof($images); $i++) {
+      $cmd .= '[' . $i . ':v]trim=duration=6,fade=t=in:st=0:d=1,fade=t=out:st=5:d=1,setsar=1:1[v' . $i . ']; ';
     }
-    for($i=0;$i<sizeof($images);$i++) {
-      $cmd.= "[v".$i."]";
+    for ($i = 0; $i < sizeof($images); $i++) {
+      $cmd .= "[v" . $i . "]";
     }
-    $cmd.= ' concat=n='.sizeof($images).':v=1:a=0,setsar=1:1[v]" -map "[v]" -aspect 16:9 -r 24 '.$dir."slide.mp4";
-    echo $cmd."\n";
+    $cmd .= ' concat=n=' . sizeof($images) . ':v=1:a=0,setsar=1:1[v]" -map "[v]" -aspect 16:9 -r 24 ' . $dir . "slide.mp4";
+    echo $cmd . "\n";
     shell_exec($cmd);
-    
+
     // Creamos un archivo de lista con 100 veces lo mismo
     $s = "";
-    for($i=0;$i<100;$i++) $s.= "file '".$dir."slide.mp4' \n";
-    file_put_contents($dir."list.txt", $s);
+    for ($i = 0; $i < 100; $i++) $s .= "file '" . $dir . "slide.mp4' \n";
+    file_put_contents($dir . "list.txt", $s);
 
     $cmd = "ffmpeg -y ";
-    $cmd.= "-f concat -i ".$dir."list.txt ";
-    $cmd.= '-i /home/ubuntu/data/admin/uploads/'.$id_empresa.'/brand.png -filter_complex "overlay=0:0" ';
-    $cmd.= '-i /home/ubuntu/data/admin/uploads/'.$id_empresa.'/test.mp3 -c:a copy ';
-    $cmd.= '-shortest '.$dir.'salida.mp4 ';
-    echo $cmd."\n";
+    $cmd .= "-f concat -i " . $dir . "list.txt ";
+    $cmd .= '-i /home/ubuntu/data/admin/uploads/' . $id_empresa . '/brand.png -filter_complex "overlay=0:0" ';
+    $cmd .= '-i /home/ubuntu/data/admin/uploads/' . $id_empresa . '/test.mp3 -c:a copy ';
+    $cmd .= '-shortest ' . $dir . 'salida.mp4 ';
+    echo $cmd . "\n";
     shell_exec($cmd);
-    
+
     echo "TERMINO";
   }
 
-  function invitar_colega() {
+  function invitar_colega()
+  {
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
-    $id_empresa = parent::get_post("id_empresa",parent::get_empresa());
+    $id_empresa = parent::get_post("id_empresa", parent::get_empresa());
     $email = parent::get_post("email");
     $inmobiliaria = parent::get_post("inmobiliaria");
     $this->load->model("Empresa_Model");
     $this->load->model("Email_Template_Model");
     $empresa = $this->Empresa_Model->get_min($id_empresa);
     $empresa->nombre = ucwords(strtolower($empresa->nombre));
-    require_once APPPATH.'libraries/Mandrill/Mandrill.php';
-    $template = $this->Email_Template_Model->get_by_key("invitacion",118);
+    require_once APPPATH . 'libraries/Mandrill/Mandrill.php';
+    $template = $this->Email_Template_Model->get_by_key("invitacion", 118);
     $template->nombre = str_replace("{{nombre}}", $empresa->nombre, $template->nombre);
     $body = str_replace("{{nombre}}", $empresa->nombre, $template->texto);
     $body = str_replace("{{inmobiliaria}}", $inmobiliaria, $body);
-    $bcc_array = array("basile.matias99@gmail.com","misticastudio@gmail.com");
+    $bcc_array = array("basile.matias99@gmail.com", "misticastudio@gmail.com");
     mandrill_send(array(
-      "to"=>$email,
-      "subject"=>$template->nombre,
-      "from"=>"no-reply@varcreative.com",
-      "from_name"=>"Inmovar",
-      "body"=>$body,
-      "bcc"=>$bcc_array,
-    ));  
-    echo json_encode(array("error"=>0));
+      "to" => $email,
+      "subject" => $template->nombre,
+      "from" => "no-reply@varcreative.com",
+      "from_name" => "Inmovar",
+      "body" => $body,
+      "bcc" => $bcc_array,
+    ));
+    echo json_encode(array("error" => 0));
   }
 
-  function exportar_calendario($id_empresa) {
+  function exportar_calendario($id_empresa)
+  {
 
     // Dependiendo del dominio es el ID_EMPRESA
     /*
@@ -301,64 +323,65 @@ class Propiedades extends REST_Controller {
     if ($empresa === FALSE) exit();
     $id_empresa = $empresa->id;
     */
-    require_once APPPATH.'libraries/icalendar/zapcallib.php';
+    require_once APPPATH . 'libraries/icalendar/zapcallib.php';
 
-    require_once APPPATH.'libraries/icalendar/zapcallib.php';
+    require_once APPPATH . 'libraries/icalendar/zapcallib.php';
     $sql = "SELECT * FROM inm_propiedades_reservas WHERE id_empresa = $id_empresa AND id_cliente != 0 AND fecha_desde != '0000-00-00' AND fecha_hasta != '0000-00-00' ";
     $q = $this->db->query($sql);
     $icalobj = new ZCiCal();
-    foreach($q->result() as $r) {
+    foreach ($q->result() as $r) {
       $eventobj = new ZCiCalNode("VEVENT", $icalobj->curnode);
-      $eventobj->addNode(new ZCiCalDataNode("DTSTART:".ZCiCal::fromSqlDateTime($r->fecha_desde." 08:00:00")));
-      $eventobj->addNode(new ZCiCalDataNode("DTEND:".ZCiCal::fromSqlDateTime($r->fecha_hasta." 08:00:00")));
-      $eventobj->addNode(new ZCiCalDataNode("UID:".$r->id_empresa."-".$r->id."@varcreative.com"));
+      $eventobj->addNode(new ZCiCalDataNode("DTSTART:" . ZCiCal::fromSqlDateTime($r->fecha_desde . " 08:00:00")));
+      $eventobj->addNode(new ZCiCalDataNode("DTEND:" . ZCiCal::fromSqlDateTime($r->fecha_hasta . " 08:00:00")));
+      $eventobj->addNode(new ZCiCalDataNode("UID:" . $r->id_empresa . "-" . $r->id . "@varcreative.com"));
       $eventobj->addNode(new ZCiCalDataNode("DTSTAMP:" . ZCiCal::fromSqlDateTime()));
     }
     echo $icalobj->export();
   }
 
-  function sincronizar_calendario() {
+  function sincronizar_calendario()
+  {
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
-    $id = parent::get_get("id",0);
-    $id_empresa = parent::get_get("id_empresa",0);
+    $id = parent::get_get("id", 0);
+    $id_empresa = parent::get_get("id_empresa", 0);
     // Tenemos que sincronizar una propiedad en particular
     if ($id_empresa != 0 && $id != 0) {
-      $propiedad = $this->modelo->get($id,array(
-        "id_empresa"=>$id_empresa
+      $propiedad = $this->modelo->get($id, array(
+        "id_empresa" => $id_empresa
       ));
       if (empty($propiedad->links_ical)) {
         echo json_encode(array(
-          "error"=>1,
-          "mensaje"=>"No hay links de calendarios definidos."
+          "error" => 1,
+          "mensaje" => "No hay links de calendarios definidos."
         ));
         exit();
       }
       $lineas = explode("\n", $propiedad->links_ical);
-      foreach($lineas as $linea) {
+      foreach ($lineas as $linea) {
         if (empty($linea)) continue;
         $this->modelo->sincronizar_calendario(array(
-          "id_propiedad"=>$id,
-          "link"=>$linea,
-          "id_empresa"=>$id_empresa,
+          "id_propiedad" => $id,
+          "link" => $linea,
+          "id_empresa" => $id_empresa,
         ));
       }
-      echo json_encode(array("error"=>0));
+      echo json_encode(array("error" => 0));
 
-    // Tenemos que sincronizar todas las propiedades
+      // Tenemos que sincronizar todas las propiedades
     } else if ($id_empresa == 0 && $id == 0) {
       $sql = "SELECT id, id_empresa, links_ical FROM inm_propiedades ";
-      $sql.= "WHERE links_ical != '' ";
+      $sql .= "WHERE links_ical != '' ";
       $q = $this->db->query($sql);
-      foreach($q->result() as $propiedad) {
+      foreach ($q->result() as $propiedad) {
         $lineas = explode("\n", $propiedad->links_ical);
-        foreach($lineas as $linea) {
+        foreach ($lineas as $linea) {
           if (empty($linea)) continue;
           $this->modelo->sincronizar_calendario(array(
-            "id_propiedad"=>$propiedad->id,
-            "link"=>$linea,
-            "id_empresa"=>$propiedad->id_empresa,
+            "id_propiedad" => $propiedad->id,
+            "link" => $linea,
+            "id_empresa" => $propiedad->id_empresa,
           ));
         }
         echo "Sincronizo [$linea] ID: [$propiedad->id] <br/>";
@@ -366,8 +389,9 @@ class Propiedades extends REST_Controller {
     }
   }
 
-  function obtenerCiudad($lat,$lon) {
-    return 'https://nominatim.openstreetmap.org/reverse?format=json&lat='.$lat.'&lon='.$lon;
+  function obtenerCiudad($lat, $lon)
+  {
+    return 'https://nominatim.openstreetmap.org/reverse?format=json&lat=' . $lat . '&lon=' . $lon;
     /*
     $c = curl_init($url);
     curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
@@ -381,62 +405,67 @@ class Propiedades extends REST_Controller {
     */
   }
 
-  function compartir_red_multiple() {
+  function compartir_red_multiple()
+  {
     $id_empresa = parent::get_empresa();
-    $ids = parent::get_post("ids","");
-    $compartir = parent::get_post("compartir",0);
+    $ids = parent::get_post("ids", "");
+    $compartir = parent::get_post("compartir", 0);
     $sql = "UPDATE inm_propiedades SET compartida = '$compartir' ";
-    $sql.= "WHERE id_empresa = $id_empresa AND id IN ($ids) ";
+    $sql .= "WHERE id_empresa = $id_empresa AND id IN ($ids) ";
     $this->db->query($sql);
-    echo json_encode(array("error"=>0));
-  }  
+    echo json_encode(array("error" => 0));
+  }
 
 
-  function buscar_etiqueta() {
+  function buscar_etiqueta()
+  {
     $id_empresa = parent::get_empresa();
     $nombre = $this->input->get("term");
     $sql = "SELECT * ";
-    $sql.= "FROM inm_etiquetas ";
-    $sql.= "WHERE nombre LIKE '%$nombre%' ";
-    $sql.= "AND id_empresa = $id_empresa ";
+    $sql .= "FROM inm_etiquetas ";
+    $sql .= "WHERE nombre LIKE '%$nombre%' ";
+    $sql .= "AND id_empresa = $id_empresa ";
     $q = $this->db->query($sql);
     $resultado = array();
-    foreach($q->result() as $r) {
+    foreach ($q->result() as $r) {
       $rr = new stdClass();
       $rr->id = $r->nombre;
       $rr->text = $r->nombre;
       $resultado[] = $rr;
     }
     echo json_encode($resultado);
-  }   
+  }
 
   // USADO EN UPLOAD MULTIPLE DE LA GALERIA DE FOTOS
-  function upload_images($id_empresa = 0) {
+  function upload_images($id_empresa = 0)
+  {
     $id_empresa = (empty($id_empresa)) ? $this->get_empresa() : $id_empresa;
     return parent::upload_images(array(
-      "id_empresa"=>$id_empresa,
-      "clave_width"=>"propiedad_galeria_image_width",
-      "clave_height"=>"propiedad_galeria_image_height",
-      "upload_dir"=>"uploads/$id_empresa/propiedades/",
+      "id_empresa" => $id_empresa,
+      "clave_width" => "propiedad_galeria_image_width",
+      "clave_height" => "propiedad_galeria_image_height",
+      "upload_dir" => "uploads/$id_empresa/propiedades/",
     ));
   }
 
-	function compartir($id) {
-			
-		$propiedad = $this->modelo->get($id);
-		$descripcion = $propiedad->localidad;
-		$link = parent::mklink($propiedad->link);
-		$titulo = $propiedad->nombre;
-		$imagen = parent::mklink("uploads/$propiedad->path");
-		$this->load->view("compartir_fb",array(
-			"link"=>$link,
-			"titulo"=>$titulo,
-			"path"=>$imagen,
-			"descripcion"=>$descripcion,
-		));
-	}
+  function compartir($id)
+  {
 
-  function save_file() {
+    $propiedad = $this->modelo->get($id);
+    $descripcion = $propiedad->localidad;
+    $link = parent::mklink($propiedad->link);
+    $titulo = $propiedad->nombre;
+    $imagen = parent::mklink("uploads/$propiedad->path");
+    $this->load->view("compartir_fb", array(
+      "link" => $link,
+      "titulo" => $titulo,
+      "path" => $imagen,
+      "descripcion" => $descripcion,
+    ));
+  }
+
+  function save_file()
+  {
     /*
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
@@ -447,31 +476,32 @@ class Propiedades extends REST_Controller {
     $id_empresa = $this->get_empresa();
     if (!isset($_FILES['path']) || empty($_FILES['path'])) {
       echo json_encode(array(
-        "error"=>1,
-        "mensaje"=>"No se ha enviado ningun archivo."
+        "error" => 1,
+        "mensaje" => "No se ha enviado ningun archivo."
       ));
       return;
     }
     // Primero copiamos el archivo
-    $filename = filename($_FILES["path"]["name"],"-");
+    $filename = filename($_FILES["path"]["name"], "-");
     $path = "uploads/$id_empresa/propiedades/";
-    $filename = rename_if_exists($path,$filename);
-    @move_uploaded_file($_FILES["path"]["tmp_name"],$path.$filename);
+    $filename = rename_if_exists($path, $filename);
+    @move_uploaded_file($_FILES["path"]["tmp_name"], $path . $filename);
     // Si es una imagen, lo redimensionamos
     if (is_image($filename)) {
       resize(array(
-        "dir"=>$path,
-        "filename"=>$filename,
+        "dir" => $path,
+        "filename" => $filename,
       ));
     }
     echo json_encode(array(
-      "path"=>$path.$filename,
-      "error"=>0,
+      "path" => $path . $filename,
+      "error" => 0,
     ));
-  }   
+  }
 
 
-  function qr($id = 0) {
+  function qr($id = 0)
+  {
     $config = array();
 
     // Empresa
@@ -480,99 +510,102 @@ class Propiedades extends REST_Controller {
 
     // Formato de salida
     $output = ($this->input->get("output") !== FALSE) ? strtolower($this->input->get("output")) : "png";
-    
+
     // Obtenemos la propiedad
-    $propiedad = $this->modelo->get($id,$config);
+    $propiedad = $this->modelo->get($id, $config);
     if ($propiedad === FALSE) {
-      echo "No existe la propiedad con ID $id."; exit();
+      echo "No existe la propiedad con ID $id.";
+      exit();
     }
 
     $link = "PHP QR Code :)";
-    require APPPATH.'libraries/phpqrcode/qrlib.php';
+    require APPPATH . 'libraries/phpqrcode/qrlib.php';
 
     // Dependiendo el formato de salida
     if ($output == "png") {
       header('Content-Type: image/png');
       QRcode::png($link);
-    //} else if ($output == "svg") {
+      //} else if ($output == "svg") {
       //header('Content-type: image/svg+xml');
       //echo QRcode::svg($link);
     }
   }
-    
-	/**
-	 * ESTA FUNCION LA USAN LOS CLIENTES DE LA EMPRESA PARA VER LAS FICHAS
-	 */
-	function ficha($hash = "") {
 
-		$this->load->helper("fecha_helper");
-		$propiedad = $this->modelo->get_by_hash($hash);
-		
-		$this->load->model("Empresa_Model");
+  /**
+   * ESTA FUNCION LA USAN LOS CLIENTES DE LA EMPRESA PARA VER LAS FICHAS
+   */
+  function ficha($hash = "")
+  {
+
+    $this->load->helper("fecha_helper");
+    $propiedad = $this->modelo->get_by_hash($hash);
+
+    $this->load->model("Empresa_Model");
     $dominio = strtolower($_SERVER["HTTP_HOST"]);
     $dominio = str_replace("www.", "", $dominio);
     if ($dominio == "app.inmovar.com") {
       $id_empresa = $propiedad->id_empresa;
     } else {
       $id_empresa_dominio = $this->Empresa_Model->get_id_empresa_by_dominio($dominio);
-      $id_empresa = ($id_empresa_dominio != 0) ? $id_empresa_dominio : $propiedad->id_empresa;      
+      $id_empresa = ($id_empresa_dominio != 0) ? $id_empresa_dominio : $propiedad->id_empresa;
     }
-		$empresa = $this->Empresa_Model->get($id_empresa);
-		
-		$header = $this->load->view("reports/propiedad/header",null,true);
-		
-		$this->load->model("Web_Configuracion_Model");
-		$web_conf = $this->Web_Configuracion_Model->get($id_empresa);
-		$empresa = (object) array_merge((array) $empresa, (array) $web_conf);
-		
-		//$tpl = $empresa->config["template_propiedad"];
-  	$tpl = "modelo1";
-		
-		// Indicamos que el cliente vio la factura
-		//$this->db->query("UPDATE facturas SET visto = visto + 1 WHERE id = $factura->id");
-		
-		$datos = array(
-			"propiedad"=>$propiedad,
-			"empresa"=>$empresa,
-			"header"=>$header,
-			"folder"=>"/application/views/reports/propiedad/$tpl/blue",
-		);
-		$this->load->view("reports/propiedad/$tpl/ficha.php",$datos);
-		
-	}
+    $empresa = $this->Empresa_Model->get($id_empresa);
 
-  function ver_ficha($id_empresa,$id,$id_empresa_vista = 0) {
+    $header = $this->load->view("reports/propiedad/header", null, true);
+
+    $this->load->model("Web_Configuracion_Model");
+    $web_conf = $this->Web_Configuracion_Model->get($id_empresa);
+    $empresa = (object) array_merge((array) $empresa, (array) $web_conf);
+
+    //$tpl = $empresa->config["template_propiedad"];
+    $tpl = "modelo1";
+
+    // Indicamos que el cliente vio la factura
+    //$this->db->query("UPDATE facturas SET visto = visto + 1 WHERE id = $factura->id");
+
+    $datos = array(
+      "propiedad" => $propiedad,
+      "empresa" => $empresa,
+      "header" => $header,
+      "folder" => "/application/views/reports/propiedad/$tpl/blue",
+    );
+    $this->load->view("reports/propiedad/$tpl/ficha.php", $datos);
+  }
+
+  function ver_ficha($id_empresa, $id, $id_empresa_vista = 0)
+  {
 
     $this->load->helper("fecha_helper");
-    $propiedad = $this->modelo->get($id,array(
-      "id_empresa"=>$id_empresa,
+    $propiedad = $this->modelo->get($id, array(
+      "id_empresa" => $id_empresa,
     ));
-    
+
     $this->load->model("Empresa_Model");
     if ($id_empresa_vista == 0) $id_empresa_vista = $id_empresa;
     $empresa = $this->Empresa_Model->get($id_empresa_vista);
-    
-    $header = $this->load->view("reports/propiedad/header",null,true);
-    
+
+    $header = $this->load->view("reports/propiedad/header", null, true);
+
     $this->load->model("Web_Configuracion_Model");
     $web_conf = $this->Web_Configuracion_Model->get($id_empresa_vista);
     $empresa = (object) array_merge((array) $empresa, (array) $web_conf);
-    
-    $tpl = "modelo1";    
+
+    $tpl = "modelo1";
     $datos = array(
-      "propiedad"=>$propiedad,
-      "empresa"=>$empresa,
-      "header"=>$header,
-      "folder"=>"/application/views/reports/propiedad/$tpl/blue",
+      "propiedad" => $propiedad,
+      "empresa" => $empresa,
+      "header" => $header,
+      "folder" => "/application/views/reports/propiedad/$tpl/blue",
     );
-    $this->load->view("reports/propiedad/$tpl/ficha.php",$datos);
+    $this->load->view("reports/propiedad/$tpl/ficha.php", $datos);
   }
-    
-  function save_image($dir="",$filename="") {
+
+  function save_image($dir = "", $filename = "")
+  {
     $id_empresa = $this->get_empresa();
     $dir = "uploads/$id_empresa/propiedades/";
     $filename = $this->input->post("file");
-    $res = parent::save_image($dir,$filename);
+    $res = parent::save_image($dir, $filename);
 
     if ($this->input->post("thumbnail_width") !== FALSE) {
       $resp = json_decode($res);
@@ -581,27 +614,29 @@ class Propiedades extends REST_Controller {
       $thumbnail_height = $this->input->post("thumbnail_height");
       if ($thumbnail_width != 0 && $thumbnail_height != 0) {
         parent::thumbnails(array(
-          "dir"=>$dir,
-          "preffix"=>"thumb_",
-          "filename"=>$filename,
-          "thumbnail_width"=>$thumbnail_width,
-          "thumbnail_height"=>$thumbnail_height,                
-          "tipo_redimension"=>2,
-        ));                
+          "dir" => $dir,
+          "preffix" => "thumb_",
+          "filename" => $filename,
+          "thumbnail_width" => $thumbnail_width,
+          "thumbnail_height" => $thumbnail_height,
+          "tipo_redimension" => 2,
+        ));
       }
-    }        
+    }
     echo $res;
   }
-    
-  function next() {
+
+  function next()
+  {
     $codigo = $this->modelo->next();
     echo json_encode(array(
-      "codigo"=>$codigo
+      "codigo" => $codigo
     ));
   }
-    
-  function duplicar($id) {
-      
+
+  function duplicar($id)
+  {
+
     $this->load->helper("fecha_helper");
     $this->load->helper("file_helper");
 
@@ -615,8 +650,8 @@ class Propiedades extends REST_Controller {
     $propiedad = $this->modelo->get($id);
     if ($propiedad === FALSE) {
       echo json_encode(array(
-        "error"=>1,
-        "mensaje"=>"No se encuentra la propiedad con ID: $id",
+        "error" => 1,
+        "mensaje" => "No se encuentra la propiedad con ID: $id",
       ));
       return;
     }
@@ -631,54 +666,54 @@ class Propiedades extends REST_Controller {
     $impuestos = (isset($array->impuestos)) ? $array->impuestos : array();
 
     $propiedad->fecha_publicacion = (!empty($propiedad->fecha_publicacion)) ? fecha_mysql($propiedad->fecha_publicacion) : date("Y-m-d");
-    
+
     $propiedad->id = 0;
     $propiedad->codigo = $this->modelo->next(); // Ponemos el siguiente codigo
     $propiedad->link = ""; // Como el link tiene el ID, se tiene que generar de vuelta
     $propiedad->argenprop_habilitado = 0;
     $propiedad->argenprop_url = "";
-    
+
     $insert_id = $this->modelo->insert($propiedad);
-	  $hash = md5($insert_id);
-      
+    $hash = md5($insert_id);
+
     // Actualizamos el link
-    $propiedad->link = "propiedad/".filename($propiedad->nombre,"-",0)."-".$insert_id."/";
+    $propiedad->link = "propiedad/" . filename($propiedad->nombre, "-", 0) . "-" . $insert_id . "/";
     $this->db->query("UPDATE inm_propiedades SET link = '$propiedad->link', hash = '$hash' WHERE id = $insert_id AND id_empresa = $propiedad->id_empresa");
-    
+
     // Actualizamos los productos relacionados
-    $i=1;
-    foreach($relacionados as $p) {
-      $this->db->insert("inm_propiedades_relacionados",array(
-        "id_propiedad"=>$insert_id,
-        "id_relacion"=>$p->id,
-        "id_rubro"=>0,
-        "destacado"=>$p->destacado,
-        "orden"=>$i,
+    $i = 1;
+    foreach ($relacionados as $p) {
+      $this->db->insert("inm_propiedades_relacionados", array(
+        "id_propiedad" => $insert_id,
+        "id_relacion" => $p->id,
+        "id_rubro" => 0,
+        "destacado" => $p->destacado,
+        "orden" => $i,
       ));
       $i++;
     }
 
-    $i=1;
-    foreach($departamentos as $p) {
-      $this->db->insert("inm_departamentos",array(
-        "id_propiedad"=>$insert_id,
-        "nombre"=>$p->nombre,
-        "texto"=>$p->texto,
-        "piso"=>$p->piso,
-        "id_empresa"=>$p->id_empresa,
-        "disponible"=>$p->disponible,
-        "orden"=>$p->orden,
+    $i = 1;
+    foreach ($departamentos as $p) {
+      $this->db->insert("inm_departamentos", array(
+        "id_propiedad" => $insert_id,
+        "nombre" => $p->nombre,
+        "texto" => $p->texto,
+        "piso" => $p->piso,
+        "id_empresa" => $p->id_empresa,
+        "disponible" => $p->disponible,
+        "orden" => $p->orden,
       ));
       $id_departamento = $this->db->insert_id();
       // Insertamos las fotos del departamento
-      $j=0;
-      foreach($p->images_dptos as $f) {
-        $this->db->insert("inm_departamentos_images",array(
-          "id_propiedad"=>$insert_id,
-          "id_departamento"=>$id_departamento,
-          "path"=>$f,
-          "id_empresa"=>$p->id_empresa,
-          "orden"=>$j,
+      $j = 0;
+      foreach ($p->images_dptos as $f) {
+        $this->db->insert("inm_departamentos_images", array(
+          "id_propiedad" => $insert_id,
+          "id_departamento" => $id_departamento,
+          "path" => $f,
+          "id_empresa" => $p->id_empresa,
+          "orden" => $j,
         ));
         $j++;
       }
@@ -686,30 +721,30 @@ class Propiedades extends REST_Controller {
     }
 
     // Guardamos las imagenes
-    $k=0;
-    foreach($images as $im) {
+    $k = 0;
+    foreach ($images as $im) {
       $this->db->query("INSERT INTO inm_propiedades_images (plano,id_empresa,id_propiedad,path,orden) VALUES(0,$propiedad->id_empresa,$insert_id,'$im',$k)");
       $k++;
     }
-    $k=0;
-    foreach($images_meli as $im) {
+    $k = 0;
+    foreach ($images_meli as $im) {
       $sql = "INSERT INTO inm_propiedades_images_meli (id_empresa,id_propiedad,path,orden";
-      $sql.= ") VALUES( ";
-      $sql.= "$propiedad->id_empresa,$insert_id,'$im',$k)";
+      $sql .= ") VALUES( ";
+      $sql .= "$propiedad->id_empresa,$insert_id,'$im',$k)";
       $this->db->query($sql);
       $k++;
     }
-    
+
     // Guardamos los planos
-    $k=0;
-    foreach($planos as $im) {
+    $k = 0;
+    foreach ($planos as $im) {
       $this->db->query("INSERT INTO inm_propiedades_images (plano,id_empresa,id_propiedad,path,orden) VALUES(1,$propiedad->id_empresa,$insert_id,'$im',$k)");
       $k++;
     }
 
     // Guardamos los precios
     $this->db->query("DELETE FROM inm_propiedades_precios WHERE id_propiedad = $insert_id AND id_empresa = $propiedad->id_empresa");
-    foreach($temporada as $im) {
+    foreach ($temporada as $im) {
       $desde = fecha_mysql($im->fecha_desde);
       $hasta = fecha_mysql($im->fecha_hasta);
       $this->db->query("INSERT INTO inm_propiedades_precios (id_empresa,id_propiedad,promocion,fecha_desde,fecha_hasta,precio_finde,precio_semana,precio_mes,nombre,minimo_dias_reserva,precio) VALUES($propiedad->id_empresa,$insert_id,0,'$desde','$hasta',$im->precio_finde,$im->precio_semana,$im->precio_mes,'$im->nombre',$im->minimo_dias_reserva,$im->precio)");
@@ -717,31 +752,32 @@ class Propiedades extends REST_Controller {
 
     // Guardamos los impuestos
     $this->db->query("DELETE FROM inm_propiedades_impuestos WHERE id_propiedad = $insert_id AND id_empresa = $propiedad->id_empresa");
-    $k=0;
-    foreach($impuestos as $im) {
+    $k = 0;
+    foreach ($impuestos as $im) {
       $this->db->query("INSERT INTO inm_propiedades_impuestos (id_empresa,id_propiedad,nombre,tipo,monto,orden) VALUES($propiedad->id_empresa,$insert_id,'$im->nombre','$im->tipo','$im->monto',$k)");
       $k++;
     }
-    
+
     // Actualizamos las relaciones
     echo json_encode(array(
-      "id"=>$insert_id
+      "id" => $insert_id
     ));
   }
 
   // INSERT O UPDATE USANDO LA API
-  function upsert() {
+  function upsert()
+  {
     try {
 
       // Ponemos todo en la variable array
       $array = new stdClass();
-      foreach($_POST as $key => $value) {
+      foreach ($_POST as $key => $value) {
         $array->{$key} = $value;
       }
 
       // Campos obligatorios
-      $obligatorios = array("api_key","id_tipo_operacion","codigo","id_tipo_inmueble","id_pais","id_provincia","id_departamento","id_localidad");
-      foreach($obligatorios as $campo) {
+      $obligatorios = array("api_key", "id_tipo_operacion", "codigo", "id_tipo_inmueble", "id_pais", "id_provincia", "id_departamento", "id_localidad");
+      foreach ($obligatorios as $campo) {
         // Si no esta definido, o vino vacio
         if (!isset($array->{$campo}) || (isset($array->{$campo}) && empty($array->{$campo}))) {
           throw new Exception("$campo no encontrado.");
@@ -757,8 +793,8 @@ class Propiedades extends REST_Controller {
       $array->id_empresa = $empresa->id;
 
       // Buscamos la propiedad por codigo
-      $p = $this->modelo->get_by_codigo($array->codigo,array(
-        "id_empresa"=>$empresa->id
+      $p = $this->modelo->get_by_codigo($array->codigo, array(
+        "id_empresa" => $empresa->id
       ));
       if (empty($p)) $array->id = 0;
       else $array->id = $p->id;
@@ -791,106 +827,109 @@ class Propiedades extends REST_Controller {
       if (!isset($array->piso)) $array->piso = "";
       if (!isset($array->numero)) $array->numero = "";
       if (!isset($array->moneda)) $array->moneda = 'U$S';
-  
+
       $id = $this->modelo->save($array);
 
       echo json_encode(array(
-        "id"=>$id,
-        "error"=>0,
+        "id" => $id,
+        "error" => 0,
       ));
-      
-    } catch(Exception $e) {
+    } catch (Exception $e) {
       $this->send_error($e->getMessage());
     }
-  }  
-    
-  function update($id) {
+  }
+
+  function update($id)
+  {
     try {
       $array = $this->parse_put();
-      $array->id = $id;  
+      $array->id = $id;
       $array->id_empresa = parent::get_empresa();
       $id = $this->modelo->save($array);
       echo json_encode(array(
-        "id"=>$id,
-        "error"=>0,
+        "id" => $id,
+        "error" => 0,
       ));
-    } catch(Exception $e) {
+    } catch (Exception $e) {
       $this->send_error($e->getMessage());
     }
   }
-    
+
   // INSERT
-  function insert() {
+  function insert()
+  {
     try {
-      $array = $this->parse_put();      
+      $array = $this->parse_put();
       $array->id_empresa = parent::get_empresa();
       $insert_id = $this->modelo->save($array);
       echo json_encode(array(
-        "id"=>$insert_id,
-        "error"=>0,
+        "id" => $insert_id,
+        "error" => 0,
       ));
-    } catch(Exception $e) {
+    } catch (Exception $e) {
       $this->send_error($e->getMessage());
     }
   }
-    
-    
-  function get_by_codigo($codigo='') {
+
+
+  function get_by_codigo($codigo = '')
+  {
     $id_empresa = parent::get_empresa();
     $sql = "SELECT A.*, ";
-    $sql.= "IF(A.fecha_publicacion='0000-00-00','',DATE_FORMAT(A.fecha_publicacion,'%d/%m/%Y')) AS fecha_publicacion, ";
-    $sql.= "IF(P.nombre IS NULL,'',P.nombre) AS propietario, ";
-    $sql.= "IF(TE.nombre IS NULL,'',TE.nombre) AS tipo_estado, ";
-    $sql.= "IF(TI.nombre IS NULL,'',TI.nombre) AS tipo_inmueble, ";
-    $sql.= "IF(X.nombre IS NULL,'',X.nombre) AS tipo_operacion, ";
-    $sql.= "IF(L.nombre IS NULL,'',L.nombre) AS localidad ";
-    $sql.= "FROM inm_propiedades A ";
-    $sql.= "LEFT JOIN inm_tipos_estado TE ON (A.id_tipo_estado = TE.id) ";
-    $sql.= "LEFT JOIN inm_tipos_inmueble TI ON (A.id_tipo_inmueble = TI.id) ";
-    $sql.= "LEFT JOIN inm_tipos_operacion X ON (A.id_tipo_operacion = X.id) ";
-    $sql.= "LEFT JOIN clientes P ON (A.id_propietario = P.id AND A.id_empresa = P.id_empresa) ";
-    $sql.= "LEFT JOIN com_localidades L ON (A.id_localidad = L.id) ";
-    $sql.= "WHERE A.activo = 1 ";
-    $sql.= "AND A.codigo = '$codigo' ";
-    $sql.= "AND id_empresa = $id_empresa ";
-    $sql.= "LIMIT 0,1 ";
+    $sql .= "IF(A.fecha_publicacion='0000-00-00','',DATE_FORMAT(A.fecha_publicacion,'%d/%m/%Y')) AS fecha_publicacion, ";
+    $sql .= "IF(P.nombre IS NULL,'',P.nombre) AS propietario, ";
+    $sql .= "IF(TE.nombre IS NULL,'',TE.nombre) AS tipo_estado, ";
+    $sql .= "IF(TI.nombre IS NULL,'',TI.nombre) AS tipo_inmueble, ";
+    $sql .= "IF(X.nombre IS NULL,'',X.nombre) AS tipo_operacion, ";
+    $sql .= "IF(L.nombre IS NULL,'',L.nombre) AS localidad ";
+    $sql .= "FROM inm_propiedades A ";
+    $sql .= "LEFT JOIN inm_tipos_estado TE ON (A.id_tipo_estado = TE.id) ";
+    $sql .= "LEFT JOIN inm_tipos_inmueble TI ON (A.id_tipo_inmueble = TI.id) ";
+    $sql .= "LEFT JOIN inm_tipos_operacion X ON (A.id_tipo_operacion = X.id) ";
+    $sql .= "LEFT JOIN clientes P ON (A.id_propietario = P.id AND A.id_empresa = P.id_empresa) ";
+    $sql .= "LEFT JOIN com_localidades L ON (A.id_localidad = L.id) ";
+    $sql .= "WHERE A.activo = 1 ";
+    $sql .= "AND A.codigo = '$codigo' ";
+    $sql .= "AND id_empresa = $id_empresa ";
+    $sql .= "LIMIT 0,1 ";
     $q = $this->db->query($sql);
-    if ($q->num_rows()>0) {
+    if ($q->num_rows() > 0) {
       $row = $q->row();
       echo json_encode(array(
-        "error"=>0,
-        "propiedad"=>$row,
+        "error" => 0,
+        "propiedad" => $row,
       ));
     } else {
       echo json_encode(array(
-        "error"=>1,
-        "mensaje"=>"No existe una propiedad con el codigo: '$codigo'"
+        "error" => 1,
+        "mensaje" => "No existe una propiedad con el codigo: '$codigo'"
       ));
     }
   }
-    
-  function get_by_descripcion() {
+
+  function get_by_descripcion()
+  {
     $id_empresa = parent::get_empresa();
     $descripcion = $this->input->get("term");
     $sql = "SELECT A.*, ";
-    $sql.= "IF(A.fecha_publicacion='0000-00-00','',DATE_FORMAT(A.fecha_publicacion,'%d/%m/%Y')) AS fecha_publicacion, ";
-    $sql.= "IF(P.nombre IS NULL,'',P.nombre) AS propietario, ";
-    $sql.= "IF(TE.nombre IS NULL,'',TE.nombre) AS tipo_estado, ";
-    $sql.= "IF(TI.nombre IS NULL,'',TI.nombre) AS tipo_inmueble, ";
-    $sql.= "IF(X.nombre IS NULL,'',X.nombre) AS tipo_operacion, ";
-    $sql.= "IF(L.nombre IS NULL,'',L.nombre) AS localidad ";
-    $sql.= "FROM inm_propiedades A ";
-    $sql.= "LEFT JOIN inm_tipos_estado TE ON (A.id_tipo_estado = TE.id) ";
-    $sql.= "LEFT JOIN inm_tipos_inmueble TI ON (A.id_tipo_inmueble = TI.id) ";
-    $sql.= "LEFT JOIN inm_tipos_operacion X ON (A.id_tipo_operacion = X.id) ";
-    $sql.= "LEFT JOIN clientes P ON (A.id_propietario = P.id AND A.id_empresa = P.id_empresa) ";
-    $sql.= "LEFT JOIN com_localidades L ON (A.id_localidad = L.id) ";
-    $sql.= "WHERE A.activo = 1 ";
-    $sql.= "AND A.nombre LIKE '%$descripcion%' ";
-    $sql.= "AND A.id_empresa = '$id_empresa' ";
+    $sql .= "IF(A.fecha_publicacion='0000-00-00','',DATE_FORMAT(A.fecha_publicacion,'%d/%m/%Y')) AS fecha_publicacion, ";
+    $sql .= "IF(P.nombre IS NULL,'',P.nombre) AS propietario, ";
+    $sql .= "IF(TE.nombre IS NULL,'',TE.nombre) AS tipo_estado, ";
+    $sql .= "IF(TI.nombre IS NULL,'',TI.nombre) AS tipo_inmueble, ";
+    $sql .= "IF(X.nombre IS NULL,'',X.nombre) AS tipo_operacion, ";
+    $sql .= "IF(L.nombre IS NULL,'',L.nombre) AS localidad ";
+    $sql .= "FROM inm_propiedades A ";
+    $sql .= "LEFT JOIN inm_tipos_estado TE ON (A.id_tipo_estado = TE.id) ";
+    $sql .= "LEFT JOIN inm_tipos_inmueble TI ON (A.id_tipo_inmueble = TI.id) ";
+    $sql .= "LEFT JOIN inm_tipos_operacion X ON (A.id_tipo_operacion = X.id) ";
+    $sql .= "LEFT JOIN clientes P ON (A.id_propietario = P.id AND A.id_empresa = P.id_empresa) ";
+    $sql .= "LEFT JOIN com_localidades L ON (A.id_localidad = L.id) ";
+    $sql .= "WHERE A.activo = 1 ";
+    $sql .= "AND A.nombre LIKE '%$descripcion%' ";
+    $sql .= "AND A.id_empresa = '$id_empresa' ";
     $q = $this->db->query($sql);
     $resultado = array();
-    foreach($q->result() as $r) {
+    foreach ($q->result() as $r) {
       $rr = new stdClass();
       $rr->id = $r->codigo;
       $rr->value = $r->codigo;
@@ -898,36 +937,37 @@ class Propiedades extends REST_Controller {
       $resultado[] = $rr;
     }
     echo json_encode($resultado);
-  }    
-    
-    
+  }
+
+
   /**
    *  Obtenemos los datos de un propiedad en particular
    */
-  function get($id) {
+  function get($id)
+  {
     $id_empresa = parent::get_empresa();
     // Obtenemos el listado
     if ($id == "index") {
       $sql = "SELECT A.*, ";
-      $sql.= "IF(A.fecha_publicacion='0000-00-00','',DATE_FORMAT(A.fecha_publicacion,'%d/%m/%Y')) AS fecha_publicacion, ";
-      $sql.= "IF(P.nombre IS NULL,'',P.nombre) AS propietario, ";
-      $sql.= "IF(TE.nombre IS NULL,'',TE.nombre) AS tipo_estado, ";
-      $sql.= "IF(TI.nombre IS NULL,'',TI.nombre) AS tipo_inmueble, ";
-      $sql.= "IF(X.nombre IS NULL,'',X.nombre) AS tipo_operacion, ";
-      $sql.= "IF(L.nombre IS NULL,'',L.nombre) AS localidad ";
-      $sql.= "FROM inm_propiedades A ";
-      $sql.= "LEFT JOIN inm_tipos_estado TE ON (A.id_tipo_estado = TE.id) ";
-      $sql.= "LEFT JOIN inm_tipos_inmueble TI ON (A.id_tipo_inmueble = TI.id) ";
-      $sql.= "LEFT JOIN inm_tipos_operacion X ON (A.id_tipo_operacion = X.id) ";
-      $sql.= "LEFT JOIN clientes P ON (A.id_propietario = P.id AND A.id_empresa = P.id_empresa) ";
-      $sql.= "LEFT JOIN com_localidades L ON (A.id_localidad = L.id) ";
-      $sql.= "WHERE A.activo = 1 AND A.id_empresa = '$id_empresa' ";
-      $sql.= "ORDER BY A.nombre ASC ";
+      $sql .= "IF(A.fecha_publicacion='0000-00-00','',DATE_FORMAT(A.fecha_publicacion,'%d/%m/%Y')) AS fecha_publicacion, ";
+      $sql .= "IF(P.nombre IS NULL,'',P.nombre) AS propietario, ";
+      $sql .= "IF(TE.nombre IS NULL,'',TE.nombre) AS tipo_estado, ";
+      $sql .= "IF(TI.nombre IS NULL,'',TI.nombre) AS tipo_inmueble, ";
+      $sql .= "IF(X.nombre IS NULL,'',X.nombre) AS tipo_operacion, ";
+      $sql .= "IF(L.nombre IS NULL,'',L.nombre) AS localidad ";
+      $sql .= "FROM inm_propiedades A ";
+      $sql .= "LEFT JOIN inm_tipos_estado TE ON (A.id_tipo_estado = TE.id) ";
+      $sql .= "LEFT JOIN inm_tipos_inmueble TI ON (A.id_tipo_inmueble = TI.id) ";
+      $sql .= "LEFT JOIN inm_tipos_operacion X ON (A.id_tipo_operacion = X.id) ";
+      $sql .= "LEFT JOIN clientes P ON (A.id_propietario = P.id AND A.id_empresa = P.id_empresa) ";
+      $sql .= "LEFT JOIN com_localidades L ON (A.id_localidad = L.id) ";
+      $sql .= "WHERE A.activo = 1 AND A.id_empresa = '$id_empresa' ";
+      $sql .= "ORDER BY A.nombre ASC ";
       $q = $this->db->query($sql);
       $result = $q->result();
       echo json_encode(array(
-        "results"=>$result,
-        "total"=>sizeof($result)
+        "results" => $result,
+        "total" => sizeof($result)
       ));
     } else {
       $propiedad = $this->modelo->get($id);
@@ -935,20 +975,22 @@ class Propiedades extends REST_Controller {
     }
   }
 
-  function ver_propiedad($id,$id_empresa) {
+  function ver_propiedad($id, $id_empresa)
+  {
     $desde = parent::get_get("fecha_desde", "");
     $hasta = parent::get_get("fecha_hasta", "");
-    $propiedad = $this->modelo->get($id,array(
-      "id_empresa"=>$id_empresa,
-      "id_empresa_original"=>parent::get_empresa(),
-      "get_data"=>1,
-      "fecha_desde"=>$desde,
-      "fecha_hasta"=>$hasta,
+    $propiedad = $this->modelo->get($id, array(
+      "id_empresa" => $id_empresa,
+      "id_empresa_original" => parent::get_empresa(),
+      "get_data" => 1,
+      "fecha_desde" => $desde,
+      "fecha_hasta" => $hasta,
     ));
-    echo json_encode($propiedad);    
+    echo json_encode($propiedad);
   }
 
-  function imprimir_pdf($id_propiedad) {
+  function imprimir_pdf($id_propiedad)
+  {
 
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
@@ -959,42 +1001,42 @@ class Propiedades extends REST_Controller {
     $fecha_hasta = parent::get_get("fh");
     $fecha_desde = urldecode($fecha_desde);
     $fecha_hasta = urldecode($fecha_hasta);
-    $propiedad = $this->modelo->get($id_propiedad,array(
-      "fecha_desde"=>$fecha_desde,
-      "fecha_hasta"=>$fecha_hasta,
-      "id_empresa"=>$id_empresa,
-      "get_data"=>1,
-    ));    
+    $propiedad = $this->modelo->get($id_propiedad, array(
+      "fecha_desde" => $fecha_desde,
+      "fecha_hasta" => $fecha_hasta,
+      "id_empresa" => $id_empresa,
+      "get_data" => 1,
+    ));
     $this->load->model("Empresa_Model");
     $empresa = $this->Empresa_Model->get($id_empresa);
-    $header = $this->load->view("reports/propiedad/header.php",null,true);
+    $header = $this->load->view("reports/propiedad/header.php", null, true);
     $this->load->model("Web_Configuracion_Model");
     $web_conf = $this->Web_Configuracion_Model->get($id_empresa);
     $empresa = (object) array_merge((array) $empresa, (array) $web_conf);
 
     $datos = array(
-      "propiedad"=>$propiedad,
-      "header"=>$header,
-      "empresa"=>$empresa,
+      "propiedad" => $propiedad,
+      "header" => $header,
+      "empresa" => $empresa,
     );
-    $this->load->view("reports/propiedad/preview/preview.php",$datos);
-
+    $this->load->view("reports/propiedad/preview/preview.php", $datos);
   }
-    
-    
+
+
   /*
    *  Muestra todos los propiedades filtrando segun distintos parametros
    *  El resultado esta paginado
    */
-  function ver() {
-      
+  function ver()
+  {
+
     $limit = $this->input->get("limit");
-    $id_tipo_operacion = str_replace("-",",",parent::get_get("id_tipo_operacion",""));
-    $id_tipo_estado = str_replace("-",",",parent::get_get("id_tipo_estado",""));
-    $id_tipo_inmueble = str_replace("-",",",parent::get_get("id_tipo_inmueble",""));
-    $buscar_red = parent::get_get("buscar_red",0);
-    $buscar_red_empresa = parent::get_get("buscar_red_empresa",0);
-    $id_propietario = parent::get_get("id_propietario",0);
+    $id_tipo_operacion = str_replace("-", ",", parent::get_get("id_tipo_operacion", ""));
+    $id_tipo_estado = str_replace("-", ",", parent::get_get("id_tipo_estado", ""));
+    $id_tipo_inmueble = str_replace("-", ",", parent::get_get("id_tipo_inmueble", ""));
+    $buscar_red = parent::get_get("buscar_red", 0);
+    $buscar_red_empresa = parent::get_get("buscar_red_empresa", 0);
+    $id_propietario = parent::get_get("id_propietario", 0);
     $filter = $this->input->get("filter");
     $offset = $this->input->get("offset");
     $activo = $this->input->get("activo");
@@ -1006,7 +1048,7 @@ class Propiedades extends REST_Controller {
     $monto_tipo = ($this->input->get("monto_tipo") !== FALSE) ? $this->input->get("monto_tipo") : "igual";
     $monto_moneda = ($this->input->get("monto_moneda") !== FALSE) ? $this->input->get("monto_moneda") : "$";
     $id_usuario = ($this->input->get("id_usuario") !== FALSE) ? $this->input->get("id_usuario") : 0;
-    $id_localidad = str_replace("-",",",parent::get_get("id_localidad",""));
+    $id_localidad = str_replace("-", ",", parent::get_get("id_localidad", ""));
     $apto_banco = ($this->input->get("apto_banco") !== FALSE) ? $this->input->get("apto_banco") : 0;
     $acepta_permuta = ($this->input->get("acepta_permuta") !== FALSE) ? $this->input->get("acepta_permuta") : 0;
     $id_inmobiliaria = ($this->input->get("id_inmobiliaria") !== FALSE) ? $this->input->get("id_inmobiliaria") : 0;
@@ -1015,7 +1057,7 @@ class Propiedades extends REST_Controller {
     $filtro_inmovar = ($this->input->get("filtro_inmovar") !== FALSE) ? $this->input->get("filtro_inmovar") : -1;
     $filtro_inmobusquedas = ($this->input->get("filtro_inmobusquedas") !== FALSE) ? $this->input->get("filtro_inmobusquedas") : -1;
     $filtro_argenprop = ($this->input->get("filtro_argenprop") !== FALSE) ? $this->input->get("filtro_argenprop") : -1;
-    $activo = parent::get_get("activo",-1);
+    $activo = parent::get_get("activo", -1);
     $dormitorios = ($this->input->get("dormitorios") !== FALSE) ? $this->input->get("dormitorios") : "";
     $banios = ($this->input->get("banios") !== FALSE) ? $this->input->get("banios") : "";
     $cocheras = ($this->input->get("cocheras") !== FALSE) ? $this->input->get("cocheras") : "";
@@ -1023,7 +1065,7 @@ class Propiedades extends REST_Controller {
     $entre_calles = ($this->input->get("entre_calles") !== FALSE) ? $this->input->get("entre_calles") : "";
     $entre_calles_2 = ($this->input->get("entre_calles_2") !== FALSE) ? $this->input->get("entre_calles_2") : "";
     $id_empresa = ($this->input->get("id_empresa") !== FALSE) ? $this->input->get("id_empresa") : parent::get_empresa();
-    if (!empty($order_by) && !empty($order)) $order = $order_by." ".$order;
+    if (!empty($order_by) && !empty($order)) $order = $order_by . " " . $order;
     else $order = "";
 
     if (!is_numeric($monto)) $monto = "";
@@ -1033,39 +1075,39 @@ class Propiedades extends REST_Controller {
     $term = $this->input->get("term");
     if ($term !== FALSE) $filter = $term;
     $filter = trim($filter);
-      
+
     $conf = array(
-      "buscar_red"=>$buscar_red,
-      "buscar_red_empresa"=>$buscar_red_empresa,
-      "limit"=>$limit,
-      "offset"=>$offset,
-      "filter"=>$filter,
-      "order"=>$order,
-      "id_empresa"=>$id_empresa,
-      "id_tipo_operacion"=>$id_tipo_operacion,
-      "id_tipo_estado"=>$id_tipo_estado,
-      "id_tipo_inmueble"=>$id_tipo_inmueble,
-      "id_localidad"=>$id_localidad,
-      "dormitorios"=>$dormitorios,
-      "banios"=>$banios,
-      "cocheras"=>$cocheras,
-      "filtro_meli"=>$filtro_meli,
-      "filtro_olx"=>$filtro_olx,
-      "filtro_inmovar"=>$filtro_inmovar,
-      "filtro_inmobusquedas"=>$filtro_inmobusquedas,
-      "filtro_argenprop"=>$filtro_argenprop,
-      "activo"=>$activo,
-      "monto"=>$monto,
-      "monto_2"=>$monto_2,
-      "monto_moneda"=>$monto_moneda,
-      "apto_banco"=>$apto_banco,
-      "acepta_permuta"=>$acepta_permuta,
-      "calle"=>$calle,
-      "entre_calles"=>$entre_calles,
-      "entre_calles_2"=>$entre_calles_2,
-      "id_usuario"=>$id_usuario,
-      "id_propietario"=>$id_propietario,
-      "activo"=>$activo,
+      "buscar_red" => $buscar_red,
+      "buscar_red_empresa" => $buscar_red_empresa,
+      "limit" => $limit,
+      "offset" => $offset,
+      "filter" => $filter,
+      "order" => $order,
+      "id_empresa" => $id_empresa,
+      "id_tipo_operacion" => $id_tipo_operacion,
+      "id_tipo_estado" => $id_tipo_estado,
+      "id_tipo_inmueble" => $id_tipo_inmueble,
+      "id_localidad" => $id_localidad,
+      "dormitorios" => $dormitorios,
+      "banios" => $banios,
+      "cocheras" => $cocheras,
+      "filtro_meli" => $filtro_meli,
+      "filtro_olx" => $filtro_olx,
+      "filtro_inmovar" => $filtro_inmovar,
+      "filtro_inmobusquedas" => $filtro_inmobusquedas,
+      "filtro_argenprop" => $filtro_argenprop,
+      "activo" => $activo,
+      "monto" => $monto,
+      "monto_2" => $monto_2,
+      "monto_moneda" => $monto_moneda,
+      "apto_banco" => $apto_banco,
+      "acepta_permuta" => $acepta_permuta,
+      "calle" => $calle,
+      "entre_calles" => $entre_calles,
+      "entre_calles_2" => $entre_calles_2,
+      "id_usuario" => $id_usuario,
+      "id_propietario" => $id_propietario,
+      "activo" => $activo,
     );
     $r = $this->modelo->buscar($conf);
 
@@ -1074,12 +1116,12 @@ class Propiedades extends REST_Controller {
       echo json_encode($r);
     } else {
       $salida = array();
-      foreach($r["results"] as $row) {
+      foreach ($r["results"] as $row) {
         $rr = array();
         $rr["id"] = $row->id;
         $rr["value"] = $row->id;
         $rr["label"] = $row->nombre;
-        $rr["info"] = $row->calle." ".$row->altura." - ".$row->localidad;
+        $rr["info"] = $row->calle . " " . $row->altura . " - " . $row->localidad;
         $rr["path"] = $row->path;
         $salida[] = $rr;
       }
@@ -1087,18 +1129,19 @@ class Propiedades extends REST_Controller {
     }
   }
 
-  function diario_dia($id_empresa = 45) {
+  function diario_dia($id_empresa = 45)
+  {
 
     $inmuebles = array();
     $atributos = array();
     $fotos = array();
 
     $listado = $this->modelo->buscar(array(
-      "id_empresa"=>$id_empresa,
-      "id_tipo_estado"=>1,
-      "activo"=>1,
+      "id_empresa" => $id_empresa,
+      "id_tipo_estado" => 1,
+      "activo" => 1,
     ));
-    foreach($listado["results"] as $r) {
+    foreach ($listado["results"] as $r) {
 
       $linea = array();
 
@@ -1110,7 +1153,7 @@ class Propiedades extends REST_Controller {
 
       $linea[] = $r->id;
       $linea[] = $r->nombre;
-      $linea[] = ($r->publica_precio == 1) ? "Si":"No";
+      $linea[] = ($r->publica_precio == 1) ? "Si" : "No";
       $linea[] = $r->precio_final;
       $linea[] = $r->latitud;
       $linea[] = $r->longitud;
@@ -1135,20 +1178,20 @@ class Propiedades extends REST_Controller {
       $inmuebles[] = $linea_s;
 
       // Foto de portada
-      $fotos[] = $r->id.","."https://app.inmovar.com/admin/".$r->path.",S";
+      $fotos[] = $r->id . "," . "https://app.inmovar.com/admin/" . $r->path . ",S";
       // Mas fotos
       $sql = "SELECT AI.* FROM inm_propiedades_images AI ";
-      $sql.= "WHERE AI.id_propiedad = $r->id AND AI.id_empresa = $id_empresa ORDER BY AI.orden ASC";
+      $sql .= "WHERE AI.id_propiedad = $r->id AND AI.id_empresa = $id_empresa ORDER BY AI.orden ASC";
       $q_img = $this->db->query($sql);
-      foreach($q_img->result() as $img) {
-        if ($img->plano == 1) $fotos[] = $r->id.","."https://app.inmovar.com/admin/".$img->path.",N";
+      foreach ($q_img->result() as $img) {
+        if ($img->plano == 1) $fotos[] = $r->id . "," . "https://app.inmovar.com/admin/" . $img->path . ",N";
       }
 
       // Atributos
-      if ($r->banios > 0) $atributos[] = $r->id.",Baños,".$r->banios;
-      if ($r->cocheras > 0) $atributos[] = $r->id.",Cocheras,".$r->cocheras;
-      if ($r->dormitorios > 0) $atributos[] = $r->id.",Dormitorios,".$r->dormitorios;
-      if ($r->nuevo == 1) $atributos[] = $r->id.",Nueva,Si";
+      if ($r->banios > 0) $atributos[] = $r->id . ",Baños," . $r->banios;
+      if ($r->cocheras > 0) $atributos[] = $r->id . ",Cocheras," . $r->cocheras;
+      if ($r->dormitorios > 0) $atributos[] = $r->id . ",Dormitorios," . $r->dormitorios;
+      if ($r->nuevo == 1) $atributos[] = $r->id . ",Nueva,Si";
     }
 
     $inmuebles_s = implode("\n", $inmuebles);
@@ -1161,26 +1204,27 @@ class Propiedades extends REST_Controller {
 
     $zip = new ZipArchive();
     if ($zip->open("$base/admin/uploads/$id_empresa/inmuebles.zip", ZIPARCHIVE::CREATE) != TRUE) {
-      die ("Could not open archive");
+      die("Could not open archive");
     }
-    $zip->addFile("$base/admin/uploads/$id_empresa/inmuebles.txt","inmuebles.txt");
-    $zip->addFile("$base/admin/uploads/$id_empresa/inmuebles_fotos.txt","inmuebles_fotos.txt");
-    $zip->addFile("$base/admin/uploads/$id_empresa/inmuebles_atributos.txt","inmuebles_atributos.txt");
+    $zip->addFile("$base/admin/uploads/$id_empresa/inmuebles.txt", "inmuebles.txt");
+    $zip->addFile("$base/admin/uploads/$id_empresa/inmuebles_fotos.txt", "inmuebles_fotos.txt");
+    $zip->addFile("$base/admin/uploads/$id_empresa/inmuebles_atributos.txt", "inmuebles_atributos.txt");
     $zip->close();
 
-    header("Content-type: application/zip"); 
+    header("Content-type: application/zip");
     header("Content-Disposition: attachment; filename=inmuebles.zip");
     header("Content-length: " . filesize("$base/admin/uploads/$id_empresa/inmuebles.zip"));
-    header("Pragma: no-cache"); 
-    header("Expires: 0"); 
+    header("Pragma: no-cache");
+    header("Expires: 0");
     readfile("uploads/$id_empresa/inmuebles.zip");
   }
 
-  private function limpiar_campo($str) {
+  private function limpiar_campo($str)
+  {
     $str = str_replace("&", "", $str);
     $str = str_replace("´", "", $str);
     $str = strip_tags($str);
-    $str = html_entity_decode($str,ENT_QUOTES);
+    $str = html_entity_decode($str, ENT_QUOTES);
     $str = str_replace("\n", " ", $str);
     $str = str_replace("\"", "", $str);
     $str = str_replace("'", "", $str);
@@ -1190,16 +1234,20 @@ class Propiedades extends REST_Controller {
     return $str;
   }
 
-  function procesar_olx() {
+  function procesar_olx()
+  {
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
     try {
-      $archivo_olx = file_get_contents("https://production-feeds.s3.amazonaws.com/feedFiles/3ebc3e1edfddd975f36d206f3acd4ada.csv");  
+      $archivo_olx = file_get_contents("https://production-feeds.s3.amazonaws.com/feedFiles/3ebc3e1edfddd975f36d206f3acd4ada.csv");
       $array = explode("\n", $archivo_olx);
-      $i=0;
-      foreach($array as $linea) {
-        if ($i==0) { $i++; continue; }
+      $i = 0;
+      foreach ($array as $linea) {
+        if ($i == 0) {
+          $i++;
+          continue;
+        }
         $campos = explode(",", $linea);
         $id_unico = str_replace("\"", "", $campos[0]);
         $id_olx = str_replace("\"", "", $campos[1]);
@@ -1207,46 +1255,47 @@ class Propiedades extends REST_Controller {
         $actualizado = str_replace("\"", "", $campos[3]);
 
         // El ID esta formado de derecha a izquierda, por el ID y el ID_EMPRESA
-        if (strlen($id_unico)>8) {
-          $id = (int)substr($id_unico,-8);
-          $id_empresa = (int)substr($id_unico,0,-8);
+        if (strlen($id_unico) > 8) {
+          $id = (int)substr($id_unico, -8);
+          $id_empresa = (int)substr($id_unico, 0, -8);
 
           $sql = "UPDATE inm_propiedades SET ";
-          $sql.= " olx_id = '$id_olx', ";
-          $sql.= " olx_creado = '$creado', ";
-          $sql.= " olx_creado = '$actualizado' ";
-          $sql.= "WHERE id = '$id' AND id_empresa = $id_empresa ";
+          $sql .= " olx_id = '$id_olx', ";
+          $sql .= " olx_creado = '$creado', ";
+          $sql .= " olx_creado = '$actualizado' ";
+          $sql .= "WHERE id = '$id' AND id_empresa = $id_empresa ";
           $this->db->query($sql);
-          echo $id_olx."<br/>";
+          echo $id_olx . "<br/>";
         }
         $i++;
       }
-    } catch(Exception $e) {
+    } catch (Exception $e) {
       print_r($e);
     }
   }
 
-  function exportar_olx() {
+  function exportar_olx()
+  {
 
     $salida = "";
     $this->load->model("Empresa_Model");
     $listado = $this->modelo->buscar(array(
-      "id_empresa"=>-1, // Todas las empresas
-      "activo"=>1,
-      "id_tipo_estado"=>1,
-      "olx_habilitado"=>1,
+      "id_empresa" => -1, // Todas las empresas
+      "activo" => 1,
+      "id_tipo_estado" => 1,
+      "olx_habilitado" => 1,
     ));
 
     foreach ($listado["results"] as $l) {
 
       $empresa = $this->Empresa_Model->get($l->id_empresa);
 
-      $propiedad = $this->modelo->get($l->id,array(
-        "id_empresa"=>$l->id_empresa,
+      $propiedad = $this->modelo->get($l->id, array(
+        "id_empresa" => $l->id_empresa,
       ));
 
       $texto = $this->limpiar_campo($l->texto);
-      $titulo = $this->limpiar_campo($empresa->nombre." | ".$l->nombre);
+      $titulo = $this->limpiar_campo($empresa->nombre . " | " . $l->nombre);
 
       // GRUPO URBANO
       if ($l->id_empresa == 45) {
@@ -1260,67 +1309,78 @@ class Propiedades extends REST_Controller {
       // Si no tiene alguno de estos campos, directamente salteamos la propiedad
       if (empty($titulo) || empty($texto) || empty($l->path)) continue;
 
-      $id_unico = (int)(str_pad($l->id_empresa, 8, "0", STR_PAD_LEFT).str_pad($l->id, 8, "0", STR_PAD_LEFT));
+      $id_unico = (int)(str_pad($l->id_empresa, 8, "0", STR_PAD_LEFT) . str_pad($l->id, 8, "0", STR_PAD_LEFT));
 
       $linea = "";
-      $linea .= '"'.$id_unico.'";';
-      $linea .= '"'.$titulo.'";';
-      $linea .= '"'.$texto.'";';
-      $linea .= '"'.$this->limpiar_campo($empresa->email).'";';
-      $linea .= '"'.$this->limpiar_campo($empresa->telefono).'";';
-      $linea .= '"'.$this->limpiar_campo($empresa->nombre).'";';
-      $linea .= '"'."www.olx.com.ar".'";';
-      $linea .= '"'."buenosaires.olx.com.ar".'";';
+      $linea .= '"' . $id_unico . '";';
+      $linea .= '"' . $titulo . '";';
+      $linea .= '"' . $texto . '";';
+      $linea .= '"' . $this->limpiar_campo($empresa->email) . '";';
+      $linea .= '"' . $this->limpiar_campo($empresa->telefono) . '";';
+      $linea .= '"' . $this->limpiar_campo($empresa->nombre) . '";';
+      $linea .= '"' . "www.olx.com.ar" . '";';
+      $linea .= '"' . "buenosaires.olx.com.ar" . '";';
 
       //if ($empresa->id_localidad == 513) {  
-        $linea .= '"'."laplata.olx.com.ar".'";';
+      $linea .= '"' . "laplata.olx.com.ar" . '";';
       //}
       /*BARRIO ES OPCIONAL, COMPLETAMOS VACIO */
-      $linea .= '"";'; 
+      $linea .= '"";';
 
-      $linea .= '"'.$l->latitud.'";'; 
-      $linea .= '"'.$l->longitud.'";'; 
+      $linea .= '"' . $l->latitud . '";';
+      $linea .= '"' . $l->longitud . '";';
 
       /*SI ES ALQUILER(363) O VENTA() */
-      if ($l->id_tipo_operacion == 1) { $tipo_operacion = 367;} 
-      elseif ($l->id_tipo_operacion) { $tipo_operacion = 363 ;}
+      if ($l->id_tipo_operacion == 1) {
+        $tipo_operacion = 367;
+      } elseif ($l->id_tipo_operacion) {
+        $tipo_operacion = 363;
+      }
 
-      $linea .= '"'.$tipo_operacion.'";';
+      $linea .= '"' . $tipo_operacion . '";';
 
       // Tenemos 8 campos de texto en total
-      $linea .= '"'.'https://app.inmovar.com/admin/'.($l->path).'";';
-      for($j=0;$j<7;$j++) {
+      $linea .= '"' . 'https://app.inmovar.com/admin/' . ($l->path) . '";';
+      for ($j = 0; $j < 7; $j++) {
         if (isset($propiedad->images[$j])) {
           $path = $propiedad->images[$j];
-          $linea.= '"'.'https://app.inmovar.com/admin/'.($path).'";';
+          $linea .= '"' . 'https://app.inmovar.com/admin/' . ($path) . '";';
         } else {
-          $linea.= '"";';
+          $linea .= '"";';
         }
       }
 
       /*PRECIO ENTERO */
-      $linea .= '"'.round($l->precio_final,0,2).'";';
+      $linea .= '"' . round($l->precio_final, 0, 2) . '";';
 
       /*TIPO MONEDA ID PESO ARG(26), DOLAR ARG(11) */
-      if ($l->moneda == 'U$S') { $moneda = 11; }
-      else { $moneda = 26; }
-      $linea .= '"'.$moneda.'";';
+      if ($l->moneda == 'U$S') {
+        $moneda = 11;
+      } else {
+        $moneda = 26;
+      }
+      $linea .= '"' . $moneda . '";';
 
       /*DIRECCION EXACTA OPCIONAL */
-      $linea .= '"'.$this->limpiar_campo($l->calle." ".$l->altura).'";'; 
+      $linea .= '"' . $this->limpiar_campo($l->calle . " " . $l->altura) . '";';
 
       /*AÑADIMOS DATOS PARA INMUEBLES*/
-      $linea .= '"'.$l->dormitorios.'";';
-      $linea .= '"'.$l->banios.'";';
-      $linea .= '"'.(($l->superficie_total < 10) ? 10 : $l->superficie_total).'";';
+      $linea .= '"' . $l->dormitorios . '";';
+      $linea .= '"' . $l->banios . '";';
+      $linea .= '"' . (($l->superficie_total < 10) ? 10 : $l->superficie_total) . '";';
       /*OLX SOLO ADMITE casas(1), deptos(2), ph(3), otros(4) */
 
-      if ($l->id_tipo_inmueble==1) {$id_tipo_inmueble = 1 ;} /* si es casa 1 */
-      elseif ($l->id_tipo_inmueble==2) {$id_tipo_inmueble =2;} /* si es depto 2 */
-      elseif ($l->id_tipo_inmueble==3) {$id_tipo_inmueble = 3;} /* si es ph 3 */
-      else {$id_tipo_inmueble=4;};/* si es otro 4 */
-      
-      $linea .= '"'.$id_tipo_inmueble.'";';
+      if ($l->id_tipo_inmueble == 1) {
+        $id_tipo_inmueble = 1;
+      } /* si es casa 1 */ elseif ($l->id_tipo_inmueble == 2) {
+        $id_tipo_inmueble = 2;
+      } /* si es depto 2 */ elseif ($l->id_tipo_inmueble == 3) {
+        $id_tipo_inmueble = 3;
+      } /* si es ph 3 */ else {
+        $id_tipo_inmueble = 4;
+      };/* si es otro 4 */
+
+      $linea .= '"' . $id_tipo_inmueble . '";';
 
       //if ($l->nuevo ==0) {$antiguedad = 7;} /* en construccion */
       //elseif ($l->nuevo==1) {$antiguedad = 8;} /* si es a estrenar */
@@ -1336,13 +1396,13 @@ class Propiedades extends REST_Controller {
     }
 
     $enc = '"ID";"TITLE";"DESCRIPTION";"CONTACT_EMAIL";"CONTACT_PHONE";"CONTACT_NAME";';
-    $enc.= '"LOCATION_COUNTRY";"LOCATION_STATE";"LOCATION_CITY";"LOCATION_NEIGHBORHOOD";';
-    $enc.= '"LOCATION_LATITUD";"LOCATION_LONGITUDE";"CATEGORY";';
-    $enc.= '"IMAGE_URL";"IMAGE_URL";"IMAGE_URL";"IMAGE_URL";"IMAGE_URL";"IMAGE_URL";"IMAGE_URL";"IMAGE_URL";';
-    $enc.= '"PRICE";"PRICE_CURRENCY";"EXACT_ADDRESS";';
-    $enc.= '"APARTMENT_BEDROOMS";"APARTMENT_BATHROOMS";"APARTMENT_SURFACE";"APARTMENT_TYPE";';
-    $enc.= "\n";
-    $salida = $enc.$salida;
+    $enc .= '"LOCATION_COUNTRY";"LOCATION_STATE";"LOCATION_CITY";"LOCATION_NEIGHBORHOOD";';
+    $enc .= '"LOCATION_LATITUD";"LOCATION_LONGITUDE";"CATEGORY";';
+    $enc .= '"IMAGE_URL";"IMAGE_URL";"IMAGE_URL";"IMAGE_URL";"IMAGE_URL";"IMAGE_URL";"IMAGE_URL";"IMAGE_URL";';
+    $enc .= '"PRICE";"PRICE_CURRENCY";"EXACT_ADDRESS";';
+    $enc .= '"APARTMENT_BEDROOMS";"APARTMENT_BATHROOMS";"APARTMENT_SURFACE";"APARTMENT_TYPE";';
+    $enc .= "\n";
+    $salida = $enc . $salida;
 
     header('Content-Type: application/csv');
     header('Content-Disposition: attachment; filename=propiedades.csv');
@@ -1352,26 +1412,28 @@ class Propiedades extends REST_Controller {
 
   // Esta funcion procesa el archivo que procesa inmobusqueda (el link se guarda en la configuracion)
   // para obtener los links de donde se subieron las propiedades
-  function procesar_inmobusquedas() {
+  function procesar_inmobusquedas()
+  {
     $urls = array();
     $sql = "SELECT id_empresa, url_inmobusqueda FROM web_configuracion ";
-    $sql.= "WHERE url_inmobusqueda != '' ";
+    $sql .= "WHERE url_inmobusqueda != '' ";
     $q = $this->db->query($sql);
-    foreach($q->result() as $r) {
+    foreach ($q->result() as $r) {
       $file = file_get_contents($r->url_inmobusqueda);
       if (empty($file)) continue;
       $json = json_decode($file);
-      $this->db->query("UPDATE inm_propiedades SET inmobusquedas_url = '' WHERE id_empresa = ".$r->id_empresa);
-      foreach($json->ids as $item) {
-        $sql = "UPDATE inm_propiedades SET inmobusquedas_url = '".$item->idinmobusqueda."' WHERE id_empresa = '".$r->id_empresa."' AND codigo = '".$item->id."' ";
-        echo $sql."<br/>";
+      $this->db->query("UPDATE inm_propiedades SET inmobusquedas_url = '' WHERE id_empresa = " . $r->id_empresa);
+      foreach ($json->ids as $item) {
+        $sql = "UPDATE inm_propiedades SET inmobusquedas_url = '" . $item->idinmobusqueda . "' WHERE id_empresa = '" . $r->id_empresa . "' AND codigo = '" . $item->id . "' ";
+        echo $sql . "<br/>";
         $this->db->query($sql);
       }
     }
     echo "TERMINO";
   }
 
-  function exportar_inmobusquedas() {
+  function exportar_inmobusquedas()
+  {
 
     // Dependiendo del dominio es el ID_EMPRESA
     $this->load->model("Empresa_Model");
@@ -1381,25 +1443,25 @@ class Propiedades extends REST_Controller {
 
     $this->load->model("Propiedad_Model");
     $propiedades = $this->Propiedad_Model->buscar(array(
-      "id_empresa"=>$empresa->id,
-      "id_tipo_estado"=>1, // Estado Activo
-      "activo"=>1,
-      "filtro_inmobusquedas"=>3, // Todas (activas y pendientes)
-      "buscar_imagenes"=>1,
-      "offset"=>999999,
+      "id_empresa" => $empresa->id,
+      "id_tipo_estado" => 1, // Estado Activo
+      "activo" => 1,
+      "filtro_inmobusquedas" => 3, // Todas (activas y pendientes)
+      "buscar_imagenes" => 1,
+      "offset" => 999999,
     ));
 
-    require APPPATH.'libraries/SimpleXMLExtended.php';
+    require APPPATH . 'libraries/SimpleXMLExtended.php';
     $xml = new SimpleXMLExtended("<xml/>");
     if (sizeof($propiedades["results"]) > 0) {
       $avisos = $xml->addChild("AVISOS");
-      foreach($propiedades["results"] as $p) {
+      foreach ($propiedades["results"] as $p) {
 
         if ($p->precio_final == 0) continue;
         if ($p->id_localidad == 0) continue;
-        
+
         $aviso = $avisos->addChild("AVISO");
-        
+
         $id = $aviso->addChild("ID");
         $id->addCDATA($p->codigo);
 
@@ -1431,10 +1493,10 @@ class Propiedades extends REST_Controller {
         $tipo_operacion->addCDATA($id_tipo_operacion);
 
         $precio = $aviso->addChild("PRECIO");
-        $precio->addCDATA(round($p->precio_final),0);
+        $precio->addCDATA(round($p->precio_final), 0);
 
         $moneda = $aviso->addChild("MONEDA");
-        $moneda->addCDATA(($p->moneda == '$')?1:0);
+        $moneda->addCDATA(($p->moneda == '$') ? 1 : 0);
 
         $publica_precio = $aviso->addChild("PUBLICARPRECIO");
         $publica_precio->addCDATA($p->publica_precio);
@@ -1479,7 +1541,7 @@ class Propiedades extends REST_Controller {
 
         $latitud = $aviso->addChild("LATITUD");
         $latitud->addCDATA($p->latitud);
-        
+
         $longitud = $aviso->addChild("LONGITUD");
         $longitud->addCDATA($p->longitud);
 
@@ -1535,7 +1597,7 @@ class Propiedades extends REST_Controller {
           $p->ubicacion_en_planta = 1;  // Contrafrente
         } else if ($p->ubicacion_departamento == "I") {
           $p->ubicacion_en_planta = 3;  // Interno
-        }      
+        }
         $ubicacion_en_planta->addCDATA($p->ubicacion_en_planta);
 
         $orientacion = $aviso->addChild("ORIENTACION");
@@ -1546,7 +1608,7 @@ class Propiedades extends REST_Controller {
           $p->orientacion = 1;  // Contrafrente
         } else if ($p->ubicacion_departamento == "I") {
           $p->orientacion = 3;  // Interno
-        }      
+        }
         $orientacion->addCDATA($p->orientacion);
 
         $servicios_gas = $aviso->addChild("SERVICIOS_GAS");
@@ -1573,12 +1635,12 @@ class Propiedades extends REST_Controller {
         $apto_profesional = $aviso->addChild("APTOPROFESIONAL");
         $apto_profesional->addCDATA($p->apto_profesional);
 
-        if (sizeof($p->images)>0) {
+        if (sizeof($p->images) > 0) {
           $imagenes = $aviso->addChild("IMAGENES");
-          foreach($p->images as $img) {
+          foreach ($p->images as $img) {
             $image = $imagenes->addChild("IMAGEN_URL");
-            $img = ((strpos($img, "http://") === 0 || strpos($img, "https://") === 0) ? $img : "https://app.inmovar.com/admin/".$img);
-            if (strpos($img, "?t=")>0) {
+            $img = ((strpos($img, "http://") === 0 || strpos($img, "https://") === 0) ? $img : "https://app.inmovar.com/admin/" . $img);
+            if (strpos($img, "?t=") > 0) {
               $ex = explode("?t=", $img);
               $img = $ex[0];
             }
@@ -1593,14 +1655,15 @@ class Propiedades extends REST_Controller {
 
   // IMPORTACION DE PROPIEDADES DE TOKKO BROKERS
   // Esta funcion se ejecuta en un cronjob
-  function importar_tokko($id_empresa = 0) {
+  function importar_tokko($id_empresa = 0)
+  {
     set_time_limit(0);
     try {
-      include_once APPPATH.'libraries/tokko/api.php';
+      include_once APPPATH . 'libraries/tokko/api.php';
       // Buscamos todas las empresas que tengan la importacion automatica de TOKKO
       $sql = "SELECT id_empresa, tokko_apikey FROM web_configuracion ";
-      $sql.= "WHERE tokko_apikey != '' AND tokko_importacion = 1 ";
-      if (!empty($id_empresa)) $sql.= "AND id_empresa = $id_empresa ";
+      $sql .= "WHERE tokko_apikey != '' AND tokko_importacion = 1 ";
+      if (!empty($id_empresa)) $sql .= "AND id_empresa = $id_empresa ";
       $q = $this->db->query($sql);
       $this->load->model("Propiedad_Model");
       $this->load->helper("file_helper");
@@ -1608,47 +1671,47 @@ class Propiedades extends REST_Controller {
       $cant_insert = 0;
       $errores = array();
       $this->load->model("Log_Model");
-      foreach($q->result() as $emp) {
+      foreach ($q->result() as $emp) {
         $id_empresa = $emp->id_empresa;
         $auth = new TokkoAuth($emp->tokko_apikey);
-        $search = new TokkoSearch($auth,array(
-          "operation_types"=>0,
-          "property_types"=>0,
-          "price_from"=>0,
-          "price_to"=>9999999999,
+        $search = new TokkoSearch($auth, array(
+          "operation_types" => 0,
+          "property_types" => 0,
+          "price_from" => 0,
+          "price_to" => 9999999999,
         ));
         $search->do_search();
         $properties = $search->get_properties();
-        if (sizeof($properties)>0) {
+        if (sizeof($properties) > 0) {
           // Limpiamos todas las propiedades que esten sincronizadas con Tokko
           // Porque las que no vienen en el array es porque se deshabilitaron del otro lado
           $sql = "UPDATE inm_propiedades ";
-          $sql.= "SET activo = 0 ";
-          $sql.= "WHERE id_empresa = $id_empresa ";
-          $sql.= "AND tokko_id != '' ";
-          $sql.= "AND tokko_url != '' ";
+          $sql .= "SET activo = 0 ";
+          $sql .= "WHERE id_empresa = $id_empresa ";
+          $sql .= "AND tokko_id != '' ";
+          $sql .= "AND tokko_url != '' ";
           $this->db->query($sql);
         }
 
         $this->Log_Model->imprimir(array(
-          "append"=>0, // Asi limpiamos el archivo de log
-          "id_empresa"=>$id_empresa,
-          "file"=>date("Ymd")."_importacion_tokko.txt",
-          "texto"=>"CANTIDAD DE PROPIEDADES A IMPORTAR: ".sizeof($properties)."\n\n",
+          "append" => 0, // Asi limpiamos el archivo de log
+          "id_empresa" => $id_empresa,
+          "file" => date("Ymd") . "_importacion_tokko.txt",
+          "texto" => "CANTIDAD DE PROPIEDADES A IMPORTAR: " . sizeof($properties) . "\n\n",
         ));
 
         foreach ($properties as $property) {
 
           $this->Log_Model->imprimir(array(
-            "id_empresa"=>$id_empresa,
-            "file"=>date("Ymd")."_importacion_tokko.txt",
-            "texto"=>print_r($property,TRUE)."\n\n",
+            "id_empresa" => $id_empresa,
+            "file" => date("Ymd") . "_importacion_tokko.txt",
+            "texto" => print_r($property, TRUE) . "\n\n",
           ));
 
           $property->id_empresa = $id_empresa;
           $p = new stdClass();
           $p->nombre = $property->get_field("publication_title");
-          
+
           $p->codigo = $property->get_field("reference_code");
           $p->codigo = preg_replace("/[^0-9.]/", "", $p->codigo);
 
@@ -1674,12 +1737,12 @@ class Propiedades extends REST_Controller {
           $p->activo = 1;
 
           // Limpiamos la descripcion para que no tenga informacion de la Inmobiliaria
-          $p->texto = str_replace("------------------------ Dacal Bienes Raíces (0221) 421-3888/1112 (011) 4342-3951","",$p->texto);
+          $p->texto = str_replace("------------------------ Dacal Bienes Raíces (0221) 421-3888/1112 (011) 4342-3951", "", $p->texto);
 
           // TAGS
           $tags = $property->get_field("tags");
-          if (sizeof($tags)>0) {
-            foreach($tags as $t) {
+          if (sizeof($tags) > 0) {
+            foreach ($tags as $t) {
               if ($t->name == "Agua Corriente") $p->servicios_agua_corriente = 1;
               else if ($t->name == "Cloaca") $p->servicios_cloacas = 1;
               else if ($t->name == "Gas Natural") $p->servicios_gas = 1;
@@ -1701,7 +1764,7 @@ class Propiedades extends REST_Controller {
           // PRECIO
           $p->publica_precio = 1;
           $p->precio_final = 0;
-          foreach($operacion->prices as $precio) {
+          foreach ($operacion->prices as $precio) {
             if ($precio->price > 0) {
               if ($precio->currency == "USD") $p->moneda = 'U$S';
               else $p->moneda = '$';
@@ -1721,7 +1784,7 @@ class Propiedades extends REST_Controller {
           else if ($tipo->name == "Oficina") $p->id_tipo_inmueble = 11;
           else if ($tipo->name == "Cochera") $p->id_tipo_inmueble = 13;
           else if ($tipo->name == "Fondo de Comercio") $p->id_tipo_inmueble = 10;
-          else if ($tipo->name == "Quinta") $p->id_tipo_inmueble = 5;        
+          else if ($tipo->name == "Quinta") $p->id_tipo_inmueble = 5;
           else if ($tipo->name == "Campo") $p->id_tipo_inmueble = 6;
           else if ($tipo->name == "Depósito") $p->id_tipo_inmueble = 18;
           else if ($tipo->name == "Edificio Comercial") $p->id_tipo_inmueble = 23;
@@ -1729,7 +1792,7 @@ class Propiedades extends REST_Controller {
           else if ($tipo->name == "Nave Industrial") $p->id_tipo_inmueble = 19;
           else {
             // Si no esta definica el tipo de propiedad, lo ponemos como error
-            $errores[] = "ERROR NO SE ENCUENTRA TIPO INMUEBLE: <br/>".$tipo->name."<br/>";
+            $errores[] = "ERROR NO SE ENCUENTRA TIPO INMUEBLE: <br/>" . $tipo->name . "<br/>";
           }
 
           // LOCALIDAD
@@ -1763,7 +1826,7 @@ class Propiedades extends REST_Controller {
           else if ($location->name == "Lisandro Olmos Etcheverry") $p->id_localidad = 674;
           else if ($location->name == "Guillermo E Hudson" || strpos($location->full_location, "Guillermo E Hudson") !== FALSE) $p->id_localidad = 431;
           else if ($location->name == "Coronel Brandsen" || strpos($location->full_location, "Coronel Brandsen") !== FALSE) $p->id_localidad = 231;
-          
+
           else if ($location->name == "Miami Beach") $p->id_localidad = 5500;
           else if ($location->name == "El Palmar") $p->id_localidad = 5511;
           else if (strpos(mb_strtolower($location->short_location), "palermo soho") !== FALSE) $p->id_localidad = 5482;
@@ -1799,10 +1862,10 @@ class Propiedades extends REST_Controller {
           else {
             // Sino buscamos por nombre
             $sql = "SELECT L.*, D.id_provincia, D.id AS id_departamento, P.id_pais ";
-            $sql.= " FROM com_localidades L ";
-            $sql.= " INNER JOIN com_departamentos D ON (L.id_departamento = D.id) ";
-            $sql.= " INNER JOIN com_provincias P ON (D.id_provincia = P.id) ";
-            $sql.= "WHERE L.nombre = '$location->name' LIMIT 0,1 ";
+            $sql .= " FROM com_localidades L ";
+            $sql .= " INNER JOIN com_departamentos D ON (L.id_departamento = D.id) ";
+            $sql .= " INNER JOIN com_provincias P ON (D.id_provincia = P.id) ";
+            $sql .= "WHERE L.nombre = '$location->name' LIMIT 0,1 ";
             $qq = $this->db->query($sql);
             if ($qq->num_rows() > 0) {
               $rr = $qq->row();
@@ -1815,14 +1878,14 @@ class Propiedades extends REST_Controller {
 
           // Si no se encontro una localidad, lo ponemos como error
           if (empty($p->id_localidad)) {
-            $errores[] = "ERROR NO SE ENCUENTRA LOCALIDAD: <br/>".$location->name."<br/>";
+            $errores[] = "ERROR NO SE ENCUENTRA LOCALIDAD: <br/>" . $location->name . "<br/>";
           } else {
             // Obtenemos los otros datos de la localidad para estar seguros de que completamos todos los datos de ubicacion en el panel
             $sql = "SELECT L.*, D.id_provincia, D.id AS id_departamento, P.id_pais ";
-            $sql.= " FROM com_localidades L ";
-            $sql.= " INNER JOIN com_departamentos D ON (L.id_departamento = D.id) ";
-            $sql.= " INNER JOIN com_provincias P ON (D.id_provincia = P.id) ";
-            $sql.= "WHERE L.id = $p->id_localidad LIMIT 0,1 ";
+            $sql .= " FROM com_localidades L ";
+            $sql .= " INNER JOIN com_departamentos D ON (L.id_departamento = D.id) ";
+            $sql .= " INNER JOIN com_provincias P ON (D.id_provincia = P.id) ";
+            $sql .= "WHERE L.id = $p->id_localidad LIMIT 0,1 ";
             $qq = $this->db->query($sql);
             if ($qq->num_rows() > 0) {
               $rr = $qq->row();
@@ -1834,21 +1897,21 @@ class Propiedades extends REST_Controller {
 
           $p->images = array();
           $images = $property->get_field("photos");
-          if (sizeof($images)>0) {
+          if (sizeof($images) > 0) {
             $ppal = $images[0];
             $p->path = $ppal->image;
-            foreach($images as $im) {
+            foreach ($images as $im) {
               if (empty($im->image)) continue;
               $p->images[] = $im->image;
             }
           }
 
           // Consultamos si la propiedad ya esta subida
-          $sql = "SELECT * FROM inm_propiedades WHERE tokko_id = '".$property->get_field("id")."' AND id_empresa = $id_empresa ";
+          $sql = "SELECT * FROM inm_propiedades WHERE tokko_id = '" . $property->get_field("id") . "' AND id_empresa = $id_empresa ";
           $q = $this->db->query($sql);
           $p->no_controlar_plan = 1;
           try {
-            if ($q->num_rows()>0) {
+            if ($q->num_rows() > 0) {
               $r = $q->row();
               $p->id = $r->id;
               $p->id_empresa = $id_empresa;
@@ -1871,34 +1934,33 @@ class Propiedades extends REST_Controller {
               $p->id = $this->Propiedad_Model->save($p);
               $cant_insert++;
             }
-
-          } catch(Exception $e) {
+          } catch (Exception $e) {
             $errores[] = $e->getMessage();
           }
-
         }
       }
-    } catch(Exception $e) {
+    } catch (Exception $e) {
       $errores[] = $e->getMessage();
     }
     // Si hay errores, nos lo mandamos por email
-    if (sizeof($errores)>0) {
+    if (sizeof($errores) > 0) {
       $body = implode("<br/>", $errores);
-      require_once APPPATH.'libraries/Mandrill/Mandrill.php';
+      require_once APPPATH . 'libraries/Mandrill/Mandrill.php';
       mandrill_send(array(
-        "to"=>"basile.matias99@gmail.com",
-        "subject"=>"ERROR IMPORTACION TOKKO",
-        "body"=>$body,
+        "to" => "basile.matias99@gmail.com",
+        "subject" => "ERROR IMPORTACION TOKKO",
+        "body" => $body,
       ));
     } else {
-      echo json_encode(array("error"=>0));
+      echo json_encode(array("error" => 0));
     }
   }
 
   // IMPORTACION DE PROFIT PARA MENACHO
-  function importar_profit($id_empresa = 541) {
+  function importar_profit($id_empresa = 541)
+  {
 
-    $fecha = date("Ymd");    
+    $fecha = date("Ymd");
     //$archivo = "uploads/$id_empresa/propiedades/propiedades_$fecha.xml";
     $archivo = "http://c1110070.ferozo.com/profit/propiedades_$fecha.xml";
     /*if (!file_exists($archivo)) {
@@ -1925,7 +1987,7 @@ class Propiedades extends REST_Controller {
     $cant_insert = 0;
     $cant_update = 0;
 
-    foreach($propiedades as $key => $propiedad) {
+    foreach ($propiedades as $key => $propiedad) {
 
       $p = new stdClass();
       $p->id_empresa = $id_empresa;
@@ -1986,7 +2048,7 @@ class Propiedades extends REST_Controller {
       }
 
       // Ej: Local en venta
-      $p->nombre = $propiedad->nombre_tipo_propiedad->__toString()." en ".$p->operacion;
+      $p->nombre = $propiedad->nombre_tipo_propiedad->__toString() . " en " . $p->operacion;
 
       $p->calle = utf8_encode($propiedad->calle->__toString());
       $p->altura = utf8_encode($propiedad->numero_calle->__toString());
@@ -2006,20 +2068,25 @@ class Propiedades extends REST_Controller {
       $p->fecha_publicacion = date("Y-m-d");
 
       $p->destacado = 0;
-      if (isset($propiedad->datos_enlace_propiedad->descripcion_destacada_propiedad)
-      && strtoupper($propiedad->datos_enlace_propiedad->descripcion_destacada_propiedad->__toString()) == "SI") {
+      if (
+        isset($propiedad->datos_enlace_propiedad->descripcion_destacada_propiedad)
+        && strtoupper($propiedad->datos_enlace_propiedad->descripcion_destacada_propiedad->__toString()) == "SI"
+      ) {
         $p->destacado = 1;
       }
 
       $p->publica_precio = 1;
-      if (isset($propiedad->datos_enlace_propiedad->descripcion_muestra_precio_web)
-      && strtoupper($propiedad->datos_enlace_propiedad->descripcion_muestra_precio_web->__toString()) == "NO") {
+      if (
+        isset($propiedad->datos_enlace_propiedad->descripcion_muestra_precio_web)
+        && strtoupper($propiedad->datos_enlace_propiedad->descripcion_muestra_precio_web->__toString()) == "NO"
+      ) {
         $p->publica_precio = 0;
       }
 
       $p->apto_banco = 0;
-      foreach($propiedad->campos_extra_propiedad->children() as $campo_extra) {
-        if (strtoupper($campo_extra->descripcion_tipo_campo_extra_propiedad->__toString()) == "APTO BANCO"
+      foreach ($propiedad->campos_extra_propiedad->children() as $campo_extra) {
+        if (
+          strtoupper($campo_extra->descripcion_tipo_campo_extra_propiedad->__toString()) == "APTO BANCO"
           && strtoupper($campo_extra->valor_campo_extra_propiedad->__toString()) == "SI"
         ) {
           $p->apto_banco = 1;
@@ -2027,18 +2094,18 @@ class Propiedades extends REST_Controller {
       }
 
       $images = array();
-      foreach($propiedad->multimedia_propiedad->children() as $archivo) {
+      foreach ($propiedad->multimedia_propiedad->children() as $archivo) {
         if (strtoupper($archivo->descripcion_tipo_archivo->__toString()) == "IMAGEN") {
           $cc = new stdClass();
           $cc->orden = (int)($archivo->orden_archivo->__toString());
-          $cc->archivo = "http://c1110070.ferozo.com/profit/".$archivo->nombre_archivo->__toString();
+          $cc->archivo = "http://c1110070.ferozo.com/profit/" . $archivo->nombre_archivo->__toString();
           $images[] = $cc;
         }
       }
 
-      usort($images,array('Propiedades','importar_profit_ordenar_images'));
+      usort($images, array('Propiedades', 'importar_profit_ordenar_images'));
 
-      if (sizeof($images)>0) {
+      if (sizeof($images) > 0) {
         $first = array_shift($images);
         $p->path = $first->archivo;
       }
@@ -2046,7 +2113,7 @@ class Propiedades extends REST_Controller {
       // Consultamos si la propiedad ya esta subida
       $sql = "SELECT * FROM inm_propiedades WHERE codigo = '$p->codigo' AND id_empresa = $id_empresa ";
       $q = $this->db->query($sql);
-      if ($q->num_rows()>0) {
+      if ($q->num_rows() > 0) {
         $r = $q->row();
         $p->id = $r->id;
         unset($p->destacado); // TODO: Arreglar esto de destacados despues
@@ -2057,7 +2124,7 @@ class Propiedades extends REST_Controller {
           $p->publica_precio = 0;
         }
         */
-        $this->Propiedad_Model->update($p->id,$p);
+        $this->Propiedad_Model->update($p->id, $p);
         $cant_update++;
       } else {
         $p->fecha_ingreso = date("Y-m-d");
@@ -2067,39 +2134,40 @@ class Propiedades extends REST_Controller {
 
       // Creamos el link
       $hash = md5($p->id);
-      $link = "propiedad/".filename($p->nombre,"-",0)."-".$p->id."/";
+      $link = "propiedad/" . filename($p->nombre, "-", 0) . "-" . $p->id . "/";
       $this->db->query("UPDATE inm_propiedades SET link = '$link', hash = '$hash' WHERE id = $p->id AND id_empresa = $id_empresa");
 
       // Guardamos las imagenes
-      if (sizeof($images)>0) {
+      if (sizeof($images) > 0) {
         $this->db->query("DELETE FROM inm_propiedades_images WHERE id_empresa = $id_empresa AND id_propiedad = $p->id ");
-        $k=0;
-        foreach($images as $im) {
+        $k = 0;
+        foreach ($images as $im) {
           if (empty($im->archivo)) continue;
           $this->db->query("INSERT INTO inm_propiedades_images (id_empresa,id_propiedad,path,orden) VALUES ($id_empresa,$p->id,'$im->archivo',$k) ");
           $k++;
         }
       }
-
     }
     echo "TERMINO CORRECTAMENTE<br/>";
     echo "INSERTADOS: $cant_insert<br/>";
     echo "ACTUALIZADOS: $cant_update";
   }
 
-  private static function importar_profit_ordenar_images($a,$b) {
+  private static function importar_profit_ordenar_images($a, $b)
+  {
     return ($a->orden >= $b->orden) ? 1 : -1;
   }
 
-  function resincronizar_argenprop() {
+  function resincronizar_argenprop()
+  {
     $sql = "SELECT * FROM inm_propiedades where argenprop_url != '' AND argenprop_habilitado = 1 and id_empresa = 280 and activo = 1 ";
     $q = $this->db->query($sql);
-    $i=0;
-    foreach($q->result() as $r) {
+    $i = 0;
+    foreach ($q->result() as $r) {
       $ch = curl_init();
-      curl_setopt($ch,CURLOPT_URL, 'https://app.inmovar.com/admin/propiedades/function/compartir_argenprop/?id_propiedad=$r->id');
-      curl_setopt($ch,CURLOPT_RETURNTRANSFER, 1);
-      curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, false);
+      curl_setopt($ch, CURLOPT_URL, 'https://app.inmovar.com/admin/propiedades/function/compartir_argenprop/?id_propiedad=$r->id');
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
       $result = curl_exec($ch);
       $i++;
     }
@@ -2107,28 +2175,30 @@ class Propiedades extends REST_Controller {
   }
 
   // DOCUMENTACION: https://inmuebles.atlassian.net/wiki/spaces/PUB/pages/39813313/3.5+Ejemplos
-  function compartir_argenprop() {
+  function compartir_argenprop()
+  {
     $id_empresa = parent::get_empresa();
     $id_propiedad = parent::get_get("id_propiedad");
     $salida = $this->modelo->compartir_argenprop(array(
-      "id_empresa"=>$id_empresa,
-      "id_propiedad"=>$id_propiedad,
+      "id_empresa" => $id_empresa,
+      "id_propiedad" => $id_propiedad,
     ));
     echo json_encode($salida);
   }
 
-  function suspender_argenprop() {
+  function suspender_argenprop()
+  {
 
     $this->load->model("Log_Model");
     $id_empresa = parent::get_empresa();
     $id_propiedad = parent::get_get("id_propiedad");
-    $propiedad = $this->modelo->get($id_propiedad,array(
-      "id_empresa"=>$id_empresa
+    $propiedad = $this->modelo->get($id_propiedad, array(
+      "id_empresa" => $id_empresa
     ));
     if (empty($propiedad)) {
       echo json_encode(array(
-        "error"=>1,
-        "mensaje"=>"No se encuentra la propiedad con ID: $id_propiedad",
+        "error" => 1,
+        "mensaje" => "No se encuentra la propiedad con ID: $id_propiedad",
       ));
       exit();
     }
@@ -2137,8 +2207,8 @@ class Propiedades extends REST_Controller {
     $web_conf = $this->Web_Configuracion_Model->get($id_empresa);
     if (empty($web_conf->argenprop_usuario) || empty($web_conf->argenprop_password) || empty($web_conf->argenprop_id_vendedor)) {
       echo json_encode(array(
-        "error"=>1,
-        "mensaje"=>"Falta configurar las credenciales de Argenprop. Por favor ingreselas en Configuracion / Avanzada / Integracion con Argenprop",
+        "error" => 1,
+        "mensaje" => "Falta configurar las credenciales de Argenprop. Por favor ingreselas en Configuracion / Avanzada / Integracion con Argenprop",
       ));
       exit();
     }
@@ -2148,7 +2218,7 @@ class Propiedades extends REST_Controller {
       'content-type' => 'application/x-www-form-urlencoded'
     );
 
-    $id_origen = $propiedad->id."_".$propiedad->id_empresa;
+    $id_origen = $propiedad->id . "_" . $propiedad->id_empresa;
     $usuario_argenprop = $web_conf->argenprop_usuario;
     $password_argenprop = $web_conf->argenprop_password;
     $id_vendedor = $web_conf->argenprop_id_vendedor;
@@ -2161,36 +2231,37 @@ class Propiedades extends REST_Controller {
     );
 
     $ch = curl_init();
-    curl_setopt($ch,CURLOPT_URL, 'https://www.inmuebles.clarin.com/Publicaciones/Suspender?contentType=json');
-    curl_setopt($ch,CURLOPT_POST, 1);
-    curl_setopt($ch,CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($ch,CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($ch,CURLOPT_POSTFIELDS, $fields);
+    curl_setopt($ch, CURLOPT_URL, 'https://www.inmuebles.clarin.com/Publicaciones/Suspender?contentType=json');
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
     $result = curl_exec($ch);
-    $this->Log_Model->imprimir(array("file"=>"argenprop.txt","id_empresa"=>$propiedad->id_empresa,"texto"=>"SUSPENDER: ".$result));
+    $this->Log_Model->imprimir(array("file" => "argenprop.txt", "id_empresa" => $propiedad->id_empresa, "texto" => "SUSPENDER: " . $result));
 
     // Actualizamos la tabla
     $sql = "UPDATE inm_propiedades SET argenprop_habilitado = 2 ";
-    $sql.= "WHERE id_empresa = $id_empresa AND id = $id_propiedad ";
+    $sql .= "WHERE id_empresa = $id_empresa AND id = $id_propiedad ";
     $this->db->query($sql);
     echo json_encode(array(
-      "error"=>0,
+      "error" => 0,
     ));
   }
 
-  function activar_argenprop() {
+  function activar_argenprop()
+  {
 
     $this->load->model("Log_Model");
     $id_empresa = parent::get_empresa();
     $id_propiedad = parent::get_get("id_propiedad");
-    $propiedad = $this->modelo->get($id_propiedad,array(
-      "id_empresa"=>$id_empresa
+    $propiedad = $this->modelo->get($id_propiedad, array(
+      "id_empresa" => $id_empresa
     ));
     if (empty($propiedad)) {
       echo json_encode(array(
-        "error"=>1,
-        "mensaje"=>"No se encuentra la propiedad con ID: $id_propiedad",
+        "error" => 1,
+        "mensaje" => "No se encuentra la propiedad con ID: $id_propiedad",
       ));
       exit();
     }
@@ -2199,8 +2270,8 @@ class Propiedades extends REST_Controller {
     $web_conf = $this->Web_Configuracion_Model->get($id_empresa);
     if (empty($web_conf->argenprop_usuario) || empty($web_conf->argenprop_password) || empty($web_conf->argenprop_id_vendedor)) {
       echo json_encode(array(
-        "error"=>1,
-        "mensaje"=>"Falta configurar las credenciales de Argenprop. Por favor ingreselas en Configuracion / Avanzada / Integracion con Argenprop",
+        "error" => 1,
+        "mensaje" => "Falta configurar las credenciales de Argenprop. Por favor ingreselas en Configuracion / Avanzada / Integracion con Argenprop",
       ));
       exit();
     }
@@ -2210,7 +2281,7 @@ class Propiedades extends REST_Controller {
       'content-type' => 'application/x-www-form-urlencoded'
     );
 
-    $id_origen = $propiedad->id."_".$propiedad->id_empresa;
+    $id_origen = $propiedad->id . "_" . $propiedad->id_empresa;
     $usuario_argenprop = $web_conf->argenprop_usuario;
     $password_argenprop = $web_conf->argenprop_password;
     $id_vendedor = $web_conf->argenprop_id_vendedor;
@@ -2223,36 +2294,37 @@ class Propiedades extends REST_Controller {
     );
 
     $ch = curl_init();
-    curl_setopt($ch,CURLOPT_URL, 'https://www.inmuebles.clarin.com/Publicaciones/Activar?contentType=json');
-    curl_setopt($ch,CURLOPT_POST, 1);
-    curl_setopt($ch,CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($ch,CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($ch,CURLOPT_POSTFIELDS, $fields);
+    curl_setopt($ch, CURLOPT_URL, 'https://www.inmuebles.clarin.com/Publicaciones/Activar?contentType=json');
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
     $result = curl_exec($ch);
-    $this->Log_Model->imprimir(array("file"=>"argenprop.txt","id_empresa"=>$id_empresa,"texto"=>"ACTIVAR: ".$result));
+    $this->Log_Model->imprimir(array("file" => "argenprop.txt", "id_empresa" => $id_empresa, "texto" => "ACTIVAR: " . $result));
 
     // Actualizamos la tabla
     $sql = "UPDATE inm_propiedades SET argenprop_habilitado = 1 ";
-    $sql.= "WHERE id_empresa = $id_empresa AND id = $id_propiedad ";
+    $sql .= "WHERE id_empresa = $id_empresa AND id = $id_propiedad ";
     $this->db->query($sql);
     echo json_encode(array(
-      "error"=>0,
+      "error" => 0,
     ));
   }
 
-  function eliminar_argenprop() {
+  function eliminar_argenprop()
+  {
 
     $this->load->model("Log_Model");
     $id_empresa = parent::get_empresa();
     $id_propiedad = parent::get_get("id_propiedad");
-    $propiedad = $this->modelo->get($id_propiedad,array(
-      "id_empresa"=>$id_empresa
+    $propiedad = $this->modelo->get($id_propiedad, array(
+      "id_empresa" => $id_empresa
     ));
     if (empty($propiedad)) {
       echo json_encode(array(
-        "error"=>1,
-        "mensaje"=>"No se encuentra la propiedad con ID: $id_propiedad",
+        "error" => 1,
+        "mensaje" => "No se encuentra la propiedad con ID: $id_propiedad",
       ));
       exit();
     }
@@ -2261,8 +2333,8 @@ class Propiedades extends REST_Controller {
     $web_conf = $this->Web_Configuracion_Model->get($id_empresa);
     if (empty($web_conf->argenprop_usuario) || empty($web_conf->argenprop_password) || empty($web_conf->argenprop_id_vendedor)) {
       echo json_encode(array(
-        "error"=>1,
-        "mensaje"=>"Falta configurar las credenciales de Argenprop. Por favor ingreselas en Configuracion / Avanzada / Integracion con Argenprop",
+        "error" => 1,
+        "mensaje" => "Falta configurar las credenciales de Argenprop. Por favor ingreselas en Configuracion / Avanzada / Integracion con Argenprop",
       ));
       exit();
     }
@@ -2272,7 +2344,7 @@ class Propiedades extends REST_Controller {
       'content-type' => 'application/x-www-form-urlencoded'
     );
 
-    $id_origen = $propiedad->id."_".$propiedad->id_empresa;
+    $id_origen = $propiedad->id . "_" . $propiedad->id_empresa;
     $usuario_argenprop = $web_conf->argenprop_usuario;
     $password_argenprop = $web_conf->argenprop_password;
     $id_vendedor = $web_conf->argenprop_id_vendedor;
@@ -2285,25 +2357,26 @@ class Propiedades extends REST_Controller {
     );
 
     $ch = curl_init();
-    curl_setopt($ch,CURLOPT_URL, 'https://www.inmuebles.clarin.com/Publicaciones/DarDeBaja?contentType=json');
-    curl_setopt($ch,CURLOPT_POST, 1);
-    curl_setopt($ch,CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($ch,CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($ch,CURLOPT_POSTFIELDS, $fields);
+    curl_setopt($ch, CURLOPT_URL, 'https://www.inmuebles.clarin.com/Publicaciones/DarDeBaja?contentType=json');
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
     $result = curl_exec($ch);
-    $this->Log_Model->imprimir(array("file"=>"argenprop.txt","id_empresa"=>$id_empresa,"texto"=>"ELIMINAR: ".$result));
+    $this->Log_Model->imprimir(array("file" => "argenprop.txt", "id_empresa" => $id_empresa, "texto" => "ELIMINAR: " . $result));
 
     // Actualizamos la tabla
     $sql = "UPDATE inm_propiedades SET argenprop_habilitado = 0, argenprop_url = '' ";
-    $sql.= "WHERE id_empresa = $id_empresa AND id = $id_propiedad ";
+    $sql .= "WHERE id_empresa = $id_empresa AND id = $id_propiedad ";
     $this->db->query($sql);
     echo json_encode(array(
-      "error"=>0,
+      "error" => 0,
     ));
-  }  
+  }
 
-  function importar_inmobusqueda() {
+  function importar_inmobusqueda()
+  {
 
     set_time_limit(0);
     ini_set('display_errors', 1);
@@ -2314,7 +2387,7 @@ class Propiedades extends REST_Controller {
     $errores = array();
     $cant_insert = 0;
     $this->load->helper("file_helper");
-    $this->load->helper("fecha_helper");    
+    $this->load->helper("fecha_helper");
 
     $this->db->query("DELETE FROM inm_propiedades WHERE id_empresa = $id_empresa");
     $this->db->query("DELETE FROM inm_propiedades_images WHERE id_empresa = $id_empresa");
@@ -2338,7 +2411,7 @@ class Propiedades extends REST_Controller {
 
       // Procesamos las lineas del archivo para encontrar la latitud y longitud
       $lineas = explode("\n", $html);
-      foreach($lineas as $l) {
+      foreach ($lineas as $l) {
         if (strpos($l, "center: [") !== FALSE) {
           $l = str_replace("center: [", "", $l);
           $l = str_replace("],", "", $l);
@@ -2361,10 +2434,10 @@ class Propiedades extends REST_Controller {
         $cc = explode("/", $imagen);
         $filename = end($cc);
         //grab_image($imagen,"../importar/inmobusqueda/cache/$filename");
-        $imagenes[] = "uploads/$id_empresa/propiedades/".$filename;
+        $imagenes[] = "uploads/$id_empresa/propiedades/" . $filename;
       }
 
-      $propiedad->path = (sizeof($imagenes)>0) ? $imagenes[0] : "";
+      $propiedad->path = (sizeof($imagenes) > 0) ? $imagenes[0] : "";
       $propiedad->nombre = "";
       $propiedad->superficie_total = "";
       $propiedad->direccion = "";
@@ -2374,21 +2447,21 @@ class Propiedades extends REST_Controller {
       // Buscamos el nombre
       $nodes = $finder->query("//div[contains(@class, 'nombresobreslide')]");
       foreach ($nodes as $node) {
-        $i=0;
-        foreach($node->childNodes as $c) {
-          if ($i==0) $propiedad->nombre = trim($c->textContent);
-          else if ($i==1) $propiedad->superficie_total = trim($c->textContent);
-          else if ($i==3) {
+        $i = 0;
+        foreach ($node->childNodes as $c) {
+          if ($i == 0) $propiedad->nombre = trim($c->textContent);
+          else if ($i == 1) $propiedad->superficie_total = trim($c->textContent);
+          else if ($i == 3) {
             // Direccion y precio
             $j = 0;
             if ($c->hasChildNodes()) {
-              foreach($c->childNodes as $cc) {
+              foreach ($c->childNodes as $cc) {
                 if ($j == 0) $propiedad->direccion = trim($cc->textContent);
                 else if ($j == 2) $propiedad->precio_final = trim($cc->textContent);
                 $j++;
               }
             }
-          } else if ($i==5) {
+          } else if ($i == 5) {
             // Ciudad
             $propiedad->ciudad = $c->textContent;
           }
@@ -2401,13 +2474,13 @@ class Propiedades extends REST_Controller {
       $nodes = $finder->query("//*[contains(@class, 'detalleizquierda')]");
       foreach ($nodes as $node) {
         $propiedad->atributos[] = array(
-          "propiedad"=>$node->textContent,
+          "propiedad" => $node->textContent,
         );
         $node->parentNode->removeChild($node);
       }
 
       $nodes = $finder->query("//*[contains(@class, 'detallederecha')]");
-      $i=0;
+      $i = 0;
       foreach ($nodes as $node) {
         $propiedad->atributos[$i]["valor"] = $node->textContent;
         $node->parentNode->removeChild($node);
@@ -2415,12 +2488,12 @@ class Propiedades extends REST_Controller {
       }
 
       $nodes = $finder->query("//*[contains(@class, 'descripcion')]");
-      $i=0;
+      $i = 0;
       $propiedad->texto = "";
       foreach ($nodes as $node) {
-        if ($i==1) { 
-          foreach($node->childNodes as $c) {
-            if ($c->nodeName == "#text") $propiedad->texto.= $c->textContent; 
+        if ($i == 1) {
+          foreach ($node->childNodes as $c) {
+            if ($c->nodeName == "#text") $propiedad->texto .= $c->textContent;
           }
           break;
         }
@@ -2429,7 +2502,7 @@ class Propiedades extends REST_Controller {
       $propiedad->texto = trim($propiedad->texto);
 
       // Si el titulo tiene la palabra Venta
-      if (strpos($propiedad->nombre, "Venta")>0) {
+      if (strpos($propiedad->nombre, "Venta") > 0) {
         $propiedad->compartida = 2;
         $propiedad->id_tipo_operacion = 1;
       } else $propiedad->id_tipo_operacion = 2;
@@ -2490,7 +2563,7 @@ class Propiedades extends REST_Controller {
       // La superficie total puede tener la cantidad de dormitorios tmb
       $subtitulo = explode("   ", $propiedad->superficie_total);
       $propiedad->dormitorios = "";
-      if (sizeof($subtitulo)>1) {
+      if (sizeof($subtitulo) > 1) {
         $propiedad->dormitorios = $subtitulo[0];
         $propiedad->dormitorios = str_replace(" Dorm", "", $propiedad->dormitorios);
         $propiedad->superficie_total = $subtitulo[1];
@@ -2655,10 +2728,10 @@ class Propiedades extends REST_Controller {
         // Sino buscamos por nombre
         $ciudad = mb_strtolower($propiedad->ciudad);
         $sql = "SELECT L.*, D.id_provincia, D.id AS id_departamento, P.id_pais ";
-        $sql.= " FROM com_localidades L ";
-        $sql.= " INNER JOIN com_departamentos D ON (L.id_departamento = D.id) ";
-        $sql.= " INNER JOIN com_provincias P ON (D.id_provincia = P.id) ";
-        $sql.= "WHERE L.nombre = '$ciudad' LIMIT 0,1 ";
+        $sql .= " FROM com_localidades L ";
+        $sql .= " INNER JOIN com_departamentos D ON (L.id_departamento = D.id) ";
+        $sql .= " INNER JOIN com_provincias P ON (D.id_provincia = P.id) ";
+        $sql .= "WHERE L.nombre = '$ciudad' LIMIT 0,1 ";
         $qq = $this->db->query($sql);
         if ($qq->num_rows() > 0) {
           $rr = $qq->row();
@@ -2681,11 +2754,11 @@ class Propiedades extends REST_Controller {
       $propiedad->superficie_cubierta = 0;
       $propiedad->ambientes = 0;
 
-      foreach($propiedad->atributos as $atributo) {
+      foreach ($propiedad->atributos as $atributo) {
         if ($atributo["propiedad"] == "Baños") {
           $propiedad->banios = $atributo["valor"];
         } else if ($atributo["propiedad"] == "Garage") {
-          if ($atributo["valor"] == "Si" || strlen($atributo["valor"])>2) $propiedad->cocheras = 1;
+          if ($atributo["valor"] == "Si" || strlen($atributo["valor"]) > 2) $propiedad->cocheras = 1;
         } else if ($atributo["propiedad"] == "Cloacas") {
           if ($atributo["valor"] == "Si") $propiedad->servicios_cloacas = 1;
         } else if ($atributo["propiedad"] == "Agua") {
@@ -2712,7 +2785,7 @@ class Propiedades extends REST_Controller {
         if ($q_loc->num_rows() > 0) {
           $localidad = $q_loc->row();
           $localidad->nombre = ucwords(mb_strtolower($localidad->nombre));
-          $propiedad->nombre = $propiedad->nombre." en ".$localidad->nombre;
+          $propiedad->nombre = $propiedad->nombre . " en " . $localidad->nombre;
         }
       } else {
         $errores[] = "COD: [$link] : No existe localidad $propiedad->ciudad.";
@@ -2723,63 +2796,64 @@ class Propiedades extends REST_Controller {
       $hash = md5($insert_id);
 
       // Actualizamos el link
-      $propiedad->link = "propiedad/".filename($propiedad->nombre,"-",0)."-".$insert_id."/";
+      $propiedad->link = "propiedad/" . filename($propiedad->nombre, "-", 0) . "-" . $insert_id . "/";
       $this->db->query("UPDATE inm_propiedades SET link = '$propiedad->link', hash='$hash' WHERE id = $insert_id AND id_empresa = $id_empresa");
 
       // INSERTAMOS LAS IMAGENES
-      $k=0;
-      foreach($imagenes as $im) {
+      $k = 0;
+      foreach ($imagenes as $im) {
         $this->db->query("INSERT INTO inm_propiedades_images (id_empresa,id_propiedad,path,orden,plano) VALUES($id_empresa,$insert_id,'$im',$k,0)");
         $k++;
       }
       $cant_insert++;
     }
-    foreach($errores as $error) {
-      echo $error."<br/>";
+    foreach ($errores as $error) {
+      echo $error . "<br/>";
     }
     echo "TERMINO $cant_insert";
   }
 
-  function get_data(){
+  function get_data()
+  {
     $salida = array();
     $id_empresa = parent::get_post("id_empresa");
     $propiedades = parent::get_post("propiedades");
 
     foreach ($propiedades as $s) {
-      $prop = $this->modelo->get($s['id'], array("id_empresa"=>$s['id_empresa']));
+      $prop = $this->modelo->get($s['id'], array("id_empresa" => $s['id_empresa']));
       $salida[] = $prop;
     }
 
     echo json_encode(array(
-      "error"=>0,
-      "propiedades"=>$salida,
+      "error" => 0,
+      "propiedades" => $salida,
     ));
   }
 
-  function get_plantilla(){
+  function get_plantilla()
+  {
     $salida = "";
     $id_empresa = parent::get_post("id_empresa");
     $plantilla = parent::get_post("plantilla");
 
-    if ($plantilla == "whatsapp"){
+    if ($plantilla == "whatsapp") {
       $this->load->model("Wpp_Templates_Model");
-      $template = $this->Wpp_Templates_Model->get_by_key("compartir-propiedad",$id_empresa);
+      $template = $this->Wpp_Templates_Model->get_by_key("compartir-propiedad", $id_empresa);
       if ($template !== FALSE) {
         $salida = $template->texto;
       }
     } else {
       $this->load->model("Email_Template_Model");
-      $template = $this->Email_Template_Model->get_by_key("compartir-propiedad",$id_empresa);
+      $template = $this->Email_Template_Model->get_by_key("compartir-propiedad", $id_empresa);
       if ($template !== FALSE) {
         $salida = $template->texto;
       }
     }
 
     echo json_encode(array(
-      "error"=>0,
-      "texto"=>$salida,
+      "error" => 0,
+      "texto" => $salida,
     ));
   }
 
-    
 }
