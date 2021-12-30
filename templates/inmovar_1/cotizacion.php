@@ -197,6 +197,8 @@ if ($empresa->id != 1633) {
       if (valor.anios == plazo) {
         var tasa_mensual = parseFloat(valor.taza / 100) / 12;
         console.log(valor);
+        console.log("Tasa Mensual: "+tasa_mensual);
+        console.log("Total de Cuotas: "+total_de_cuotas);
 
         var valor_de_cuota = monto * (((1+tasa_mensual)^total_de_cuotas) * tasa_mensual) / (((1+tasa_mensual)^total_de_cuotas)-1);
 
