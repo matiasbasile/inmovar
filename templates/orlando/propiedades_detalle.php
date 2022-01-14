@@ -15,8 +15,11 @@ $seo_keywords = (!empty($propiedad->seo_keywords)) ? ($propiedad->seo_keywords) 
 
 // Seteamos la cookie para indicar que el cliente ya entro a esta propiedad
 $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
-if ($propiedad === FALSE) {
+
+if (($propiedad === FALSE || !isset($propiedad->nombre) || $propiedad->activo == 0) && !isset($get_params["preview"])) {
+  header("HTTP/1.1 302 Moved Temporarily");
   header("Location:".mklink("/"));
+  exit();
 }
 ?> 
 <!DOCTYPE html>

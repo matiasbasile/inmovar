@@ -8,7 +8,13 @@ $propiedad = $propiedad_model->get($id,array(
   "buscar_relacionados"=>1,
   "buscar_relacionados_offset"=>6,
 ));
-if ($propiedad === FALSE || !isset($propiedad->nombre)) header("Location:".mklink("/"));
+
+if (($propiedad === FALSE || !isset($propiedad->nombre) || $propiedad->activo == 0) && !isset($get_params["preview"])) {
+  header("HTTP/1.1 302 Moved Temporarily");
+  header("Location:".mklink("/"));
+  exit();
+}
+
 $titulo_pagina = $propiedad->tipo_operacion_link;
 
 // Llenamos los parametros por defecto
