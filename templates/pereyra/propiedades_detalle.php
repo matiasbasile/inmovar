@@ -7,6 +7,12 @@ $propiedad = $propiedad_model->get($id,array(
   "id_empresa_original"=>$empresa->id,
 ));
 
+if (($propiedad === FALSE || !isset($propiedad->nombre) || $propiedad->activo == 0) && !isset($get_params["preview"])) {
+  header("HTTP/1.1 302 Moved Temporarily");
+  header("Location:".mklink("/"));
+  exit();
+}
+
 // Tomamos los datos de SEO
 $seo_title = (!empty($propiedad->seo_title)) ? ($propiedad->seo_title) : $empresa->seo_title;
 $seo_description = (!empty($propiedad->seo_description)) ? ($propiedad->seo_description) : $empresa->seo_description;

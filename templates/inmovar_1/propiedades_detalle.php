@@ -17,7 +17,12 @@ $propiedad = $propiedad_model->get($id,array(
   "id_empresa"=>$id_empresa,
   "id_empresa_original"=>$empresa->id,
 ));
-if ($propiedad === FALSE || !isset($propiedad->nombre)) header("Location:".mklink("/"));
+
+if (($propiedad === FALSE || !isset($propiedad->nombre) || $propiedad->activo == 0) && !isset($get_params["preview"])) {
+  header("HTTP/1.1 302 Moved Temporarily");
+  header("Location:".mklink("/"));
+  exit();
+}
 
 $dolar = $web_model->get_cotizacion_dolar();
 

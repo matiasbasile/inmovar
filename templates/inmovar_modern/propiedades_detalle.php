@@ -6,14 +6,17 @@ $propiedad = $propiedad_model->get($id,array(
 	"id_empresa"=>$id_empresa,
 	"id_empresa_original"=>$empresa->id,
 )); 
+
+if (($propiedad === FALSE || !isset($propiedad->nombre) || $propiedad->activo == 0) && !isset($get_params["preview"])) {
+  header("HTTP/1.1 302 Moved Temporarily");
+  header("Location:".mklink("/"));
+  exit();
+}
+
 $page_act = $propiedad->tipo_operacion_link;
 // Seteamos la cookie para indicar que el cliente ya entro a esta propiedad
 $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
-if ($propiedad === FALSE) {
-  header("Location:".mklink("/"));
-}
 ?> 
-
 <!DOCTYPE html>
 <html>
 <head>

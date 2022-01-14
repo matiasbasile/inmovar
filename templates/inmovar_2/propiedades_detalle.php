@@ -7,7 +7,13 @@ $propiedad = $propiedad_model->get($id,array(
   "buscar_relacionados_offset"=>4,
   "id_empresa"=>$id_empresa,
 ));
-if ($propiedad === FALSE || !isset($propiedad->nombre)) header("Location:".mklink("/"));
+
+if (($propiedad === FALSE || !isset($propiedad->nombre) || $propiedad->activo == 0) && !isset($get_params["preview"])) {
+  header("HTTP/1.1 302 Moved Temporarily");
+  header("Location:".mklink("/"));
+  exit();
+}
+
 if (!empty($titulo_pagina)) { $titulo_pagina = $propiedad->nombre; }
 $nombre_pagina = "detalle";
 $mostro_video = 0;

@@ -42,7 +42,6 @@ print_r($vc_listado);
   </section> -->
   <?php include("includes/footer.php"); ?>
   <?php include_once("templates/comun/mapa_js.php"); ?>
-  <?php print_r($vc_listado); ?>
   <script type="text/javascript">
     $(document).ready(function() {
 

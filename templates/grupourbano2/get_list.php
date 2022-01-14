@@ -6,26 +6,25 @@ include_once("includes/init.php");
 include_once("includes/funciones.php");
 /* extract($propiedad_model->get_variables(array())); */
 
-$id_localidad = isset($_POST['id_localidad']) ? $_POST["id_localidad"] : 0;
-$tipo_operacion = isset($_POST["ids_tipo_operacion"]) ? $_POST["ids_tipo_operacion"] : 0;
-$tipo_propiedad = isset($_POST["tp"]) ? $_POST["tp"] : 0;
-$dormitorios = isset($_POST["dm"]) ? $_POST["dm"] : 0;
-$limit = isset($_POST["limit"]) ? $_POST["limit"] : 0;
-$offset = isset($_POST["offset"]) ? $_POST["offset"] : 0;
-$acepta_permuta = isset($_POST["per"]) ? $_POST["per"] : 0;
-$maximo = isset($_POST["vc_maximo"]) ? $_POST["vc_maximo"] : 0;
-$minimo = isset($_POST["vc_minimo"]) ? $_POST["vc_minimo"] : 0;
-$banios = isset($_POST["bn"]) ? $_POST["bn"] : 0;
-$apto_credito = isset($_POST["banco"]) ? $_POST["banco"] : 0;
+$id_localidad = isset($_POST['id_localidad']) ? $_POST["id_localidad"] : "";
+$tipo_operacion = isset($_POST["ids_tipo_operacion"]) ? $_POST["ids_tipo_operacion"] : "";
+$tipo_propiedad = isset($_POST["tp"]) ? $_POST["tp"] : "";
+$dormitorios = isset($_POST["dm"]) ? $_POST["dm"] : "";
+$limit = isset($_POST["limit"]) ? $_POST["limit"] : "";
+$offset = isset($_POST["offset"]) ? $_POST["offset"] : "";
+$acepta_permuta = isset($_POST["per"]) ? $_POST["per"] : "";
+$maximo = isset($_POST["vc_maximo"]) ? $_POST["vc_maximo"] : "";
+$minimo = isset($_POST["vc_minimo"]) ? $_POST["vc_minimo"] : "";
+$banios = isset($_POST["bn"]) ? $_POST["bn"] : "";
+$apto_credito = isset($_POST["banco"]) ? $_POST["banco"] : "";
 
 
 $propiedades = $propiedad_model->get_list(
   array(
-    "id_empresa" => 1642,
     'limit' => $limit,
     'offset' => $offset,
     'id_localidad' => $id_localidad,
-    'tipo_operacion' => $tipo_operacion,
+    'id_tipo_operacion' => $tipo_operacion,
     'id_tipo_inmueble' => $tipo_propiedad,
     'dormitorios' => $dormitorios,
     'acepta_permuta' => $acepta_permuta,
@@ -35,10 +34,11 @@ $propiedades = $propiedad_model->get_list(
     'apto_banco' => $apto_credito,
   )
 );
+
 ?>
 <?php foreach ($propiedades as $propiedad) { ?>
   <div class="col-md-4 p-0 neighborhoods-list">
-    <a href="<?php echo mklink($propiedad->link) ?>">
+    <a href="<?php echo $propiedad->link_propiedad ?>">
       <div class="img-block">
         <img src="<?php echo $propiedad->imagen ?> " alt="img">
         <div class="neighborhoods-top">

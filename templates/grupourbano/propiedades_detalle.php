@@ -8,16 +8,9 @@ $propiedad = $propiedad_model->get($id,array(
   "id_empresa_original"=>$empresa->id,
 ));
 
-if (empty($propiedad)) {
-  // Si la propiedad no existe mas porque fue eliminada
-  header("HTTP/1.1 301 Moved Permanently");
-  header("Location: ".mklink("/"));
-  exit();
-}
-
-if ($propiedad->activo == 0) {
-  // Si la propiedad esta desactivada
-  header("Location: ".mklink("/"));
+if (($propiedad === FALSE || !isset($propiedad->nombre) || $propiedad->activo == 0) && !isset($get_params["preview"])) {
+  header("HTTP/1.1 302 Moved Temporarily");
+  header("Location:".mklink("/"));
   exit();
 }
 

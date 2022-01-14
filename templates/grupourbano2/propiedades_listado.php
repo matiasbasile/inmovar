@@ -4,7 +4,33 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 include_once("includes/init.php");
 include_once("includes/funciones.php");
-extract($propiedad_model->get_variables(array()));
+
+$id_localidad = !isset($_GET['id_localidad']) ? "" : $_GET["id_localidad"];
+$tipo_operacion = !isset($_GET["ids_tipo_operacion"]) ? "" : $_GET["ids_tipo_operacion"];
+$tipo_propiedad = !isset($_GET["tp"]) ? "" : $_GET["tp"];
+$dormitorios = !isset($_GET["dm"]) ? "" : $_GET["dm"];
+$limit = !isset($_GET["limit"]) ? "" : $_GET["limit"];
+$offset = !isset($_GET["offset"]) ? "" : $_GET["offset"];
+$acepta_permuta = !isset($_GET["per"]) ? "" : $_GET["per"];
+$maximo = !isset($_GET["vc_maximo"]) ? "" : $_GET["vc_maximo"];
+$minimo = !isset($_GET["vc_minimo"]) ? "" : $_GET["vc_minimo"];
+$banios = !isset($_GET["bn"]) ? "" : $_GET["bn"];
+$apto_credito = !isset($_GET["banco"]) ? "" : $_GET["banco"];
+
+$propiedades = extract($propiedad_model->get_variables(
+  array(
+    "id_empresa" => $empresa->id,
+    'id_localidad' => $id_localidad,
+    'ids_tipo_operacion' => $tipo_operacion,
+    'tp' => $tipo_propiedad,
+    'dm' => $dormitorios,
+    'per' => $acepta_permuta,
+    'vc_maximo' => $maximo,
+    'vc_minimo' => $minimo,
+    'bn' => $banios,
+    'banco' => $apto_credito
+  )
+));
 if (isset($get_params["test"])) echo $propiedad_model->get_sql();
 
 $tipos_op = $propiedad_model->get_tipos_operaciones();
@@ -30,18 +56,21 @@ if (isset($get_params["per"])) {
   <section class="padding-default">
     <div class="container style-two">
       <div class="page-heading">
-        <?php if ($vc_id_tipo_operacion == 1) { ?>
+        <?php if ($tipo_operacion == 1) { ?>
           <h2>Propiedades en Venta</h2>
           <h6>Se encontraron <b><?php echo $vc_total_resultados ?></b> propiedades</h6>
-        <?php } else if ($vc_id_tipo_operacion == 2) { ?>
+        <?php } else if ($tipo_operacion == 2) { ?>
           <h2>Propiedades en Alquiler</h2>
           <h6>Se encontraron <b><?php echo $vc_total_resultados ?></b> propiedades</h6>
-        <?php } else if ($vc_id_tipo_operacion == 4) { ?>
+        <?php } else if ($tipo_operacion == 4) { ?>
           <h2>Emprendimientos</h2>
           <h6>Se encontraron <b><?php echo $vc_total_resultados ?></b> emprendimientos</h6>
-        <?php } else if ($vc_id_tipo_operacion == 5) { ?>
+        <?php } else if ($tipo_operacion == 5) { ?>
           <h2>Obras</h2>
           <h6>Se encontraron <b><?php echo $vc_total_resultados ?></b> obras</h6>
+        <?php } else { ?>
+          <h2>Propiedades</h2>
+          <h6>Se encontraron <b><?php echo $vc_total_resultados ?></b> propiedades</h6>
         <?php } ?>
 
       </div>
@@ -100,7 +129,7 @@ if (isset($get_params["per"])) {
                 <label for="styled-checkbox-1">Apto Crédito</label>
               </div>
               <div class="custom-check">
-                <input class="styled-checkbox" id="styled-checkbox-2" type="checkbox" value="value2" >
+                <input class="styled-checkbox" id="styled-checkbox-2" type="checkbox" value="value2">
                 <label for="styled-checkbox-2">Acepta Permuta</label>
               </div>
             </div>
@@ -111,51 +140,100 @@ if (isset($get_params["per"])) {
       <div class="neighborhoods shadow-none style-two">
         <div class="row m-0 my-5 propiedades">
           <?php $cont = 0; ?>
+          <?php foreach ($vc_listado as $destacado) { ?>
+            <?php if ($destacado->destacado == 1) { ?>
+              <div class="col-md-4 p-0 neighborhoods-list">
+                <a href="<?php echo $destacado->link_propiedad ?>">
+                  <div class="img-block">
+                    <img src="<?php echo $destacado->imagen ?> " alt="img">
+                    <div class="neighborhoods-top">
+                      <?php if (!empty($destacado->calle)) { ?>
+                        <p><?php echo $destacado->calle . ", " . ($destacado->localidad != "" ? $destacado->localidad : "") ?></p>
+                      <?php } ?>
+                      <?php if ($destacado->publica_precio == 1) { ?>
+                        <h4><?php echo $destacado->moneda; ?> <?php echo $destacado->precio_final; ?></h4>
+                      <?php } else { ?>
+                        <h4>Consultar</h4>
+                      <?php } ?>
+                    </div>
+                    <div class="neighborhoods-bottom">
+                      <?php if ($destacado->ambientes != 0) { ?>
+                        <div class="neighborhoods-info">
+                          <h6><?php echo $destacado->ambientes ?> Hab.</h6>
+                          <img src="assets/images/icon11.png" alt="img">
+                        </div>
+                      <?php } ?>
+                      <?php if ($destacado->ambientes != 0) { ?>
+                        <div class="neighborhoods-info">
+                          <h6><?php echo $destacado->ambientes ?> Baños</h6>
+                          <img src="assets/images/icon12.png" alt="img">
+                        </div>
+                      <?php } ?>
+                      <?php if ($destacado->cocheras != 0) { ?>
+                        <div class="neighborhoods-info">
+                          <h6><?php echo $destacado->cocheras ?> Auto</h6>
+                          <img src="assets/images/icon13.png" alt="img">
+                        </div>
+                      <?php } ?>
+                      <?php if ($destacado->superficie_total != 0) { ?>
+                        <div class="neighborhoods-info">
+                          <h6><?php echo $destacado->superficie_total ?> m2</h6>
+                          <img src="assets/images/icon14.png" alt="img">
+                        </div>
+                      <?php } ?>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <?php $cont++ ?>
+            <?php } ?>
+          <?php } ?>
           <?php foreach ($vc_listado as $propiedad) { ?>
-            <div class="col-md-4 p-0 neighborhoods-list">
-              <a href="<?php echo mklink($propiedad->link) ?>">
-                <div class="img-block">
-                  <img src="<?php echo $propiedad->imagen ?> " alt="img">
-                  <div class="neighborhoods-top">
-                    <?php if (!empty($propiedad->calle)) { ?>
-                      <p><?php echo $propiedad->calle . ", " . ($propiedad->localidad != "" ? $propiedad->localidad : "") ?></p>
-                    <?php } ?>
-                    <?php if ($propiedad->publica_precio == 1) { ?>
-                      <h4><?php echo $propiedad->moneda; ?> <?php echo $propiedad->precio_final; ?></h4>
-                    <?php } else { ?>
-                      <h4>Consultar</h4>
-                    <?php } ?>
+            <?php if ($propiedad->destacado == 0) { ?>
+              <div class="col-md-4 p-0 neighborhoods-list">
+                <a href="<?php echo $propiedad->link_propiedad ?>">
+                  <div class="img-block">
+                    <img src="<?php echo $propiedad->imagen ?> " alt="img">
+                    <div class="neighborhoods-top">
+                      <?php if (!empty($propiedad->calle)) { ?>
+                        <p><?php echo $propiedad->calle . ", " . ($propiedad->localidad != "" ? $propiedad->localidad : "") ?></p>
+                      <?php } ?>
+                      <?php if ($propiedad->publica_precio == 1) { ?>
+                        <h4><?php echo $propiedad->moneda; ?> <?php echo $propiedad->precio_final; ?></h4>
+                      <?php } else { ?>
+                        <h4>Consultar</h4>
+                      <?php } ?>
+                    </div>
+                    <div class="neighborhoods-bottom">
+                      <?php if ($propiedad->ambientes != 0) { ?>
+                        <div class="neighborhoods-info">
+                          <h6><?php echo $propiedad->ambientes ?> Hab.</h6>
+                          <img src="assets/images/icon11.png" alt="img">
+                        </div>
+                      <?php } ?>
+                      <?php if ($propiedad->ambientes != 0) { ?>
+                        <div class="neighborhoods-info">
+                          <h6><?php echo $propiedad->ambientes ?> Baños</h6>
+                          <img src="assets/images/icon12.png" alt="img">
+                        </div>
+                      <?php } ?>
+                      <?php if ($propiedad->cocheras != 0) { ?>
+                        <div class="neighborhoods-info">
+                          <h6><?php echo $propiedad->cocheras ?> Auto</h6>
+                          <img src="assets/images/icon13.png" alt="img">
+                        </div>
+                      <?php } ?>
+                      <?php if ($propiedad->superficie_total != 0) { ?>
+                        <div class="neighborhoods-info">
+                          <h6><?php echo $propiedad->superficie_total ?> m2</h6>
+                          <img src="assets/images/icon14.png" alt="img">
+                        </div>
+                      <?php } ?>
+                    </div>
                   </div>
-                  <div class="neighborhoods-bottom">
-                    <?php if ($propiedad->ambientes != 0) { ?>
-                      <div class="neighborhoods-info">
-                        <h6><?php echo $propiedad->ambientes ?> Hab.</h6>
-                        <img src="assets/images/icon11.png" alt="img">
-                      </div>
-                    <?php } ?>
-                    <?php if ($propiedad->ambientes != 0) { ?>
-                      <div class="neighborhoods-info">
-                        <h6><?php echo $propiedad->ambientes ?> Baños</h6>
-                        <img src="assets/images/icon12.png" alt="img">
-                      </div>
-                    <?php } ?>
-                    <?php if ($propiedad->cocheras != 0) { ?>
-                      <div class="neighborhoods-info">
-                        <h6><?php echo $propiedad->cocheras ?> Auto</h6>
-                        <img src="assets/images/icon13.png" alt="img">
-                      </div>
-                    <?php } ?>
-                    <?php if ($propiedad->superficie_total != 0) { ?>
-                      <div class="neighborhoods-info">
-                        <h6><?php echo $propiedad->superficie_total ?> m2</h6>
-                        <img src="assets/images/icon14.png" alt="img">
-                      </div>
-                    <?php } ?>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <?php $cont++ ?>
+                </a>
+              </div>
+            <?php } ?>
           <?php } ?>
         </div>
       </div>
@@ -208,25 +286,8 @@ if (isset($get_params["per"])) {
           var propiedades = document.querySelector(".propiedades");
           
           propiedades.innerHTML += r;
-          /* var propiedades = document.querySelector(".propiedades");
-          r.forEach(element => {
-            propiedades.innerHTML += element;
-          }); */
         }
       });
-     /*  $.ajax({
-        "url": "/admin/propiedades/function/get_propiedades",
-        "type": "post",
-        "data": data,
-        "dataType": "json",
-        "success": function(r) {
-          console.log(r);
-          var propiedades = document.querySelector(".propiedades");
-          r.forEach(element => {
-            propiedades.innerHTML += element;
-          });
-        }
-      }); */
     }
   </script>
 </body>

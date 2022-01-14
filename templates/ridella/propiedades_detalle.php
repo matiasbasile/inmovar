@@ -10,6 +10,13 @@ $propiedad = $propiedad_model->get($id,array(
   "id_empresa"=>$id_empresa,
   "id_empresa_original"=>$empresa->id,
 ));
+
+if (($propiedad === FALSE || !isset($propiedad->nombre) || $propiedad->activo == 0) && !isset($get_params["preview"])) {
+  header("HTTP/1.1 302 Moved Temporarily");
+  header("Location:".mklink("/"));
+  exit();
+}
+
 if ($propiedad->id_tipo_operacion == 1) { $link_tipo_operacion = "ventas"; }
 elseif ($propiedad->id_tipo_operacion == 2){ $link_tipo_operacion = "alquileres" ;} 
 elseif ($propiedad->id_tipo_operacion == 4){ $link_tipo_operacion = "emprendimientos" ;} 
@@ -54,9 +61,6 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
 
 if ($propiedad->id_tipo_operacion == 1) $vc_moneda = "USD";
 else $vc_moneda = "$";
-if ($propiedad === FALSE) {
-  header("Location:".mklink("/"));
-}
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">

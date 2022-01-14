@@ -14,6 +14,13 @@ $propiedad_model = new Propiedad_Model($empresa->id,$conx);
 $propiedad = $propiedad_model->get($id,array(
   "buscar_total_visitas"=>1,
 ));
+
+if (($propiedad === FALSE || !isset($propiedad->nombre) || $propiedad->activo == 0) && !isset($get_params["preview"])) {
+  header("HTTP/1.1 302 Moved Temporarily");
+  header("Location:".mklink("/"));
+  exit();
+}
+
 if ($propiedad->id_tipo_operacion == 1 || $propiedad->id_tipo_operacion == 2) { 
 	include "includes_nuevo/detalle_nuevo.php"; 
 	?>

@@ -7,12 +7,17 @@ $propiedad = $propiedad_model->get($id,array(
   "id_empresa_original"=>$empresa->id,
 ));
 
+if (($propiedad === FALSE || !isset($propiedad->nombre) || $propiedad->activo == 0) && !isset($get_params["preview"])) {
+  header("HTTP/1.1 302 Moved Temporarily");
+  header("Location:".mklink("/"));
+  exit();
+}
+
 // Seteamos la cookie para indicar que el cliente ya entro a esta propiedad
 $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
 
 if ($propiedad->id_tipo_operacion == 1) $vc_moneda = "USD";
 else $vc_moneda = "$";
-if ($propiedad === FALSE || !isset($propiedad->nombre)) header("Location:".mklink("/"));
 ?>
 <!DOCTYPE html>
 <html>
