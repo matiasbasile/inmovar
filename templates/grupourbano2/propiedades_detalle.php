@@ -22,7 +22,6 @@ include_once("includes/funciones.php");
     "id_empresa" => $id_empresa,
     "id_empresa_original" => $empresa->id,
   )); ?>
-  <?php print_r($detalle); ?>
   <section class="padding-default vendedores-list">
     <div class="container style-two">
       <div class="row">
