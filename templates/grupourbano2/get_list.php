@@ -45,11 +45,7 @@ $propiedades = $propiedad_model->get_list(
           <?php if (!empty($propiedad->calle)) { ?>
             <p><?php echo $propiedad->calle . ", " . ($propiedad->localidad != "" ? $propiedad->localidad : "") ?></p>
           <?php } ?>
-          <?php if ($propiedad->publica_precio == 1) { ?>
-            <h4><?php echo $propiedad->moneda; ?> <?php echo $propiedad->precio_final; ?></h4>
-          <?php } else { ?>
-            <h4>Consultar</h4>
-          <?php } ?>
+          <h4><?php echo $propiedad->precio ?></h4>
         </div>
         <div class="neighborhoods-bottom">
           <?php if ($propiedad->ambientes != 0) { ?>
