@@ -200,11 +200,10 @@ if ($empresa->id != 1633) {
       }
     });
     $.ajax({
-      "url":"http://mberenguer.com.ar/wp-admin/admin-ajax.php",
+      "url":"/admin/creditos/function/obtener/",
       "dataType":"html",
       "type":"post",
       "data":{
-        "action":"calcular_cuotas_sistema_frances",
         "monto":monto,
         "tna":tasa,
         "cuotas":total_de_cuotas,
