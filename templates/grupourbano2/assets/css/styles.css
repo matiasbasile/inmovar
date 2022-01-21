@@ -1543,3 +1543,5 @@ ul.dot-icon li span {
 #map{
   height: 300px;
 }
+
+.neighborhoods-list .img-block img { height: 320px; }
