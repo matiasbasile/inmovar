@@ -251,7 +251,7 @@ include_once("includes/funciones.php");
   <?php } ?>
 
   <?php
-  $obras = $propiedad_model->get_list(array("id_tipo_operacion" => 5, "limit" => 0, "offset" => 6));
+  $obras = $propiedad_model->get_list(array("id_tipo_operacion" => 5, "limit" => 0, "offset" => 4, "destacado" => 1));
   ?>
   <!-- Work -->
   <?php if (!empty($obras)) { ?>
