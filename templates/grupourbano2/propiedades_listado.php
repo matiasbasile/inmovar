@@ -4,33 +4,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 include_once("includes/init.php");
 include_once("includes/funciones.php");
-
-$id_localidad = !isset($_GET['id_localidad']) ? "" : $_GET["id_localidad"];
-$tipo_operacion = !isset($_GET["ids_tipo_operacion"]) ? "" : $_GET["ids_tipo_operacion"];
-$tipo_propiedad = !isset($_GET["tp"]) ? "" : $_GET["tp"];
-$dormitorios = !isset($_GET["dm"]) ? "" : $_GET["dm"];
-$limit = !isset($_GET["limit"]) ? "" : $_GET["limit"];
-$offset = !isset($_GET["offset"]) ? "" : $_GET["offset"];
-$acepta_permuta = !isset($_GET["per"]) ? "" : $_GET["per"];
-$maximo = !isset($_GET["vc_maximo"]) ? "" : $_GET["vc_maximo"];
-$minimo = !isset($_GET["vc_minimo"]) ? "" : $_GET["vc_minimo"];
-$banios = !isset($_GET["bn"]) ? "" : $_GET["bn"];
-$apto_credito = !isset($_GET["banco"]) ? "" : $_GET["banco"];
-
-$propiedades = extract($propiedad_model->get_variables(
-  array(
-    "id_empresa" => $empresa->id,
-    'id_localidad' => $id_localidad,
-    'ids_tipo_operacion' => $tipo_operacion,
-    'tp' => $tipo_propiedad,
-    'dm' => $dormitorios,
-    'per' => $acepta_permuta,
-    'vc_maximo' => $maximo,
-    'vc_minimo' => $minimo,
-    'bn' => $banios,
-    'banco' => $apto_credito
-  )
-));
+$propiedades = extract($propiedad_model->get_variables());
 if (isset($get_params["test"])) echo $propiedad_model->get_sql();
 
 $tipos_op = $propiedad_model->get_tipos_operaciones();
@@ -56,16 +30,16 @@ if (isset($get_params["per"])) {
   <section class="padding-default">
     <div class="container style-two">
       <div class="page-heading">
-        <?php if ($tipo_operacion == 1) { ?>
+        <?php if ($vc_tipo_operacion == 1) { ?>
           <h2>Propiedades en Venta</h2>
           <h6>Se encontraron <b><?php echo $vc_total_resultados ?></b> propiedades</h6>
-        <?php } else if ($tipo_operacion == 2) { ?>
+        <?php } else if ($vc_tipo_operacion == 2) { ?>
           <h2>Propiedades en Alquiler</h2>
           <h6>Se encontraron <b><?php echo $vc_total_resultados ?></b> propiedades</h6>
-        <?php } else if ($tipo_operacion == 4) { ?>
+        <?php } else if ($vc_tipo_operacion == 4) { ?>
           <h2>Emprendimientos</h2>
           <h6>Se encontraron <b><?php echo $vc_total_resultados ?></b> emprendimientos</h6>
-        <?php } else if ($tipo_operacion == 5) { ?>
+        <?php } else if ($vc_tipo_operacion == 5) { ?>
           <h2>Obras</h2>
           <h6>Se encontraron <b><?php echo $vc_total_resultados ?></b> obras</h6>
         <?php } else { ?>
@@ -82,35 +56,35 @@ if (isset($get_params["per"])) {
               <option value="0">DEPARTAMENTOS</option>
               <?php $tipo_propiedades = $propiedad_model->get_tipos_propiedades(); ?>
               <?php foreach ($tipo_propiedades as $tipo) { ?>
-                <option value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
+                <option <?php echo ($vc_id_tipo_inmueble == $tipo->id)?"selected":"" ?> value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
               <?php } ?>
             </select>
             <select class="form-control filter_localidad">
               <option value="0">Localidad</option>
               <?php $localidades = $propiedad_model->get_localidades(); ?>
               <?php foreach ($localidades as $localidad) { ?>
-                <option value="<?php echo $localidad->id ?>"><?php echo $localidad->nombre ?></option>
+                <option <?php echo ($localidad->link == $vc_link_localidad)?"selected":"" ?> value="<?php echo $localidad->id ?>"><?php echo $localidad->nombre ?></option>
               <?php } ?>
             </select>
             <select class="form-control filter_dormitorios">
               <option value="0">dormitorios</option>
               <?php $dormitorios = $propiedad_model->get_dormitorios(); ?>
               <?php foreach ($dormitorios as $dormitorio) { ?>
-                <option value="<?php echo $dormitorio->dormitorios; ?>"><?php echo $dormitorio->dormitorios ?></option>
+                <option <?php echo ($vc_dormitorios == $dormitorio->dormitorios)?"selected":"" ?> value="<?php echo $dormitorio->dormitorios; ?>"><?php echo $dormitorio->dormitorios ?></option>
               <?php } ?>
             </select>
             <select class="form-control filter_banios">
               <option value="0">baños</option>
               <?php $banios = $propiedad_model->get_banios(); ?>
               <?php foreach ($banios as $banio) { ?>
-                <option value="<?php echo $banio->banios; ?>"><?php echo $banio->banios ?></option>
+                <option <?php echo ($vc_banios == $banio->banios)?"selected":"" ?> value="<?php echo $banio->banios; ?>"><?php echo $banio->banios ?></option>
               <?php } ?>
             </select>
             <div class="inputs-with">
-              <input class="form-control filter_minimo" type="number" min="0" placeholder="Precio Minimo">
+              <input class="form-control filter_minimo" type="number" value="<?php echo $vc_minimo ?>" min="0" placeholder="Precio Minimo">
             </div>
             <div class="inputs-with">
-              <input class="form-control filter_maximo" type="number" min="0" placeholder="Precio Maximo">
+              <input class="form-control filter_maximo" type="number" value="<?php echo $vc_maximo ?>" min="0" placeholder="Precio Maximo">
             </div>
             <button type="submit" class="btn btn-primary">BUSCAR</button>
           </form>
