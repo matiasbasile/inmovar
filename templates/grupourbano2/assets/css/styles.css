@@ -1544,7 +1544,4 @@ ul.dot-icon li span {
   height: 300px;
 }
 
-.neighborhoods-list .img-block > img { height: 50vh; }
-@media (max-width: 600px) {
-  .neighborhoods-list .img-block > img { height: 50vh; }
-}
+.adaptable-img { height: 50vh !important; }
