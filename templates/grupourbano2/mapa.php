@@ -10,7 +10,6 @@ $nombre_pagina = "mapa";
 extract($propiedad_model->get_variables(array(
   "offset" => 9999999
 )));
-print_r($vc_listado);
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="es">
