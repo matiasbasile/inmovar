@@ -193,23 +193,27 @@ if ($empresa->id != 1633) {
     monto = parseFloat(String(monto).replace(/\D/g,''));
     var cotizaciones = '<?php echo json_encode($cotizaciones['cotizaciones']); ?>';
     cotizaciones = JSON.parse(cotizaciones);
+    var tasa = 0;
     $.each(cotizaciones, function(clave, valor) {
       if (valor.anios == plazo) {
-        var tasa_mensual = parseFloat(valor.taza / 100) / 12;
-        console.log(valor);
-        console.log("Tasa Mensual: "+tasa_mensual);
-        console.log("Total de Cuotas: "+total_de_cuotas);
-
-        var t = Math.pow(1+tasa_mensual,total_de_cuotas);
-        console.log(t);
-        var valor_de_cuota = monto * ((t * tasa_mensual) / (t - 1));
-
-        //Metemos los datos en la view
-        $(".cuota_inicial").html("$ "+Number(valor_de_cuota).format(0));
-        $(".total_cuotas").html(total_de_cuotas+" ("+plazo+" Años)")
-        $(".texto_cotizacion").html(valor.texto);
+        tasa = parseFloat(valor.taza / 100);
       }
     });
+    $.ajax({
+      "url":"http://mberenguer.com.ar/wp-admin/admin-ajax.php",
+      "dataType":"html",
+      "type":"post",
+      "data":{
+        "action":"calcular_cuotas_sistema_frances",
+        "monto":monto,
+        "tna":tasa,
+        "cuotas":total_de_cuotas,
+      },
+      "success":function(r) {
+        var valor = $(r).find("tbody tr:first td:last").text();
+        alert(valor);
+      }
+    })
   }
 </script>
 </body>
