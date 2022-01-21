@@ -707,6 +707,7 @@ select option {
   margin: 0 auto;
 }
 .search-moment:hover .moment-icon {
+  filter: invert(40%) sepia(43%) saturate(3945%) hue-rotate(172deg) brightness(94%) contrast(106%);
   background: url(../images/icon03.png) no-repeat 50% -160px;
 }
 .search-moment-list:nth-child(2) .moment-icon {

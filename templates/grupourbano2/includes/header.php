@@ -1,4 +1,4 @@
-<header>
+<header class="<?php echo (isset($nombre_pagina) && $nombre_pagina == "home") ? "sticky-header" : "" ?>">
   <div class="container style-two">
     <nav class="navbar navbar-expand-lg">
       <a class="navbar-brand" href="<?php echo mklink("/"); ?> "><img src="assets/images/logo.png" alt="Lasa Papelera"></a>
