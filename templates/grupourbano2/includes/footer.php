@@ -35,9 +35,7 @@
       <?php } else { ?>
         <img src="assets/images/logo-white.png" alt="img">
       <?php } ?>
-      <?php if (!empty($empresa->direccion_web)) { ?>
-        <p class="mt-4"><?php echo $empresa->direccion_web ?></p>
-      <?php } ?>
+      <p class="mt-4">Bertoia Col. 7342 <span>|</span> Piñero Col. 7346</p>      
       <div class="social">
         <?php if (!empty($empresa->facebook)) { ?>
           <a target="_blank" href="<?php echo $empresa->facebook ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a>
