@@ -245,7 +245,7 @@ include_once("includes/funciones.php");
         <?php } ?>
       </div>
       <div class="d-md-block mt-5 text-center">
-        <a href="<?php echo mklink("propiedades/") ?>" class="btn btn-outline-secondary">ver todos <i class="fa fa-chevron-right ml-3"></i></a>
+        <a href="<?php echo mklink("propiedades/ventas/?tp=4") ?>" class="btn btn-outline-secondary">ver todos <i class="fa fa-chevron-right ml-3"></i></a>
       </div>
     </section>
   <?php } ?>
