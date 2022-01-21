@@ -202,7 +202,7 @@ include_once("includes/funciones.php");
           <div class="col-md-4 p-0 neighborhoods-list">
             <a href="<?php echo mklink($destacadas->link) ?>">
               <div class="img-block">
-                <img src="<?php echo $destacadas->imagen ?> " alt="img">
+                <img class="adaptable-img" src="<?php echo $destacadas->imagen ?> " alt="img">
                 <div class="neighborhoods-top">
                   <?php if (!empty($destacadas->direccion_completa)) { ?>
                     <p><?php echo $destacadas->direccion_completa ?></p>
@@ -263,7 +263,9 @@ include_once("includes/funciones.php");
         <?php foreach ($obras as $countri) { ?>
           <div class="col-md-3 work-list">
             <div class="img-block">
-              <a href="<?php echo mklink($countri->link) ?>" class="stretched-link"><img src="<?php echo $countri->imagen; ?>"></a>
+              <a href="<?php echo mklink($countri->link) ?>" class="stretched-link">
+                <img class="adaptable-img" src="<?php echo $countri->imagen; ?>">
+              </a>
               <div class="work-tags"><?php echo $countri->tipo_inmueble ?></div>
               <div class="work-price"><?php echo $countri->precio ?></div>
             </div>
