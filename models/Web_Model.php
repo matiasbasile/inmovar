@@ -348,6 +348,7 @@ class Web_Model {
       $texto = html_entity_decode($row->texto_en,ENT_QUOTES);
       $row->plain_text_en = (strip_tags($texto,"<a><i><b><br>"));
       $row->plain_text_en = $this->encod($row->plain_text_en);
+      $row->id_empresa = $this->id_empresa;
       return $row;
     } else {
       // Devolvemos un objeto vacio
@@ -358,6 +359,7 @@ class Web_Model {
       $row->titulo = "";
       $row->clave = $clave;
       $row->link = $link_default;
+      $row->id_empresa = $this->id_empresa;
       $row->id = 0;
       return $row;
     }
