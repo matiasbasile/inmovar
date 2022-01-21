@@ -124,11 +124,7 @@ if (isset($get_params["per"])) {
                       <?php if (!empty($destacado->calle)) { ?>
                         <p><?php echo $destacado->calle . ", " . ($destacado->localidad != "" ? $destacado->localidad : "") ?></p>
                       <?php } ?>
-                      <?php if ($destacado->publica_precio == 1) { ?>
-                        <h4><?php echo $destacado->moneda; ?> <?php echo $destacado->precio_final; ?></h4>
-                      <?php } else { ?>
-                        <h4>Consultar</h4>
-                      <?php } ?>
+                      <h4><?php echo $destacado->precio ?></h4>
                     </div>
                     <div class="neighborhoods-bottom">
                       <?php if ($destacado->ambientes != 0) { ?>
@@ -172,11 +168,7 @@ if (isset($get_params["per"])) {
                       <?php if (!empty($propiedad->calle)) { ?>
                         <p><?php echo $propiedad->calle . ", " . ($propiedad->localidad != "" ? $propiedad->localidad : "") ?></p>
                       <?php } ?>
-                      <?php if ($propiedad->publica_precio == 1) { ?>
-                        <h4><?php echo $propiedad->moneda; ?> <?php echo $propiedad->precio_final; ?></h4>
-                      <?php } else { ?>
-                        <h4>Consultar</h4>
-                      <?php } ?>
+                      <h4><?php echo $propiedad->precio ?></h4>
                     </div>
                     <div class="neighborhoods-bottom">
                       <?php if ($propiedad->ambientes != 0) { ?>

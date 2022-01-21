@@ -94,11 +94,7 @@ include_once("includes/funciones.php");
                     </h6>
                   </div>
                   <div class="col-md-4 text-right">
-                    <?php if (!empty($detalle->publica_precio)) { ?>
-                      <h2 class="text-blue m-0 p-0"><?php echo $detalle->moneda . " " . $detalle->precio_final ?></h2>
-                    <?php } else { ?>
-                      <h2 class="text-blue m-0 p-0">Consultar</h2>
-                    <?php } ?>
+                    <h2 class="text-blue m-0 p-0"><?php echo $detalle->precio ?></h2>
                     <?php if ($detalle->valor_expensas != 0) { ?>
                       <p class="color-gray">+ <?php echo $detalle->moneda . " " . $detalle->valor_expensas ?> Expensas</p>
                     <?php } ?>

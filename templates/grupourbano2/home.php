@@ -207,11 +207,7 @@ include_once("includes/funciones.php");
                   <?php if (!empty($destacadas->direccion_completa)) { ?>
                     <p><?php echo $destacadas->direccion_completa ?></p>
                   <?php } ?>
-                  <?php if ($destacadas->publica_precio == 1) { ?>
-                    <h4><?php echo $destacadas->moneda; ?> <?php echo $destacadas->precio_final; ?></h4>
-                  <?php } else { ?>
-                    <h4>Consultar</h4>
-                  <?php } ?>
+                  <h4><?php echo $destacadas->precio ?></h4>
                 </div>
                 <div class="neighborhoods-bottom">
                   <?php if ($destacadas->ambientes != 0) { ?>
@@ -269,11 +265,7 @@ include_once("includes/funciones.php");
             <div class="img-block">
               <a href="<?php echo mklink($countri->link) ?>" class="stretched-link"><img src="<?php echo $countri->imagen; ?>"></a>
               <div class="work-tags"><?php echo $countri->tipo_inmueble ?></div>
-              <?php if ($countri->publica_precio == 1) { ?>
-                <div class="work-price"><?php echo $countri->moneda; ?> <?php echo $countri->precio_final; ?></div>
-              <?php } else { ?>
-                <div class="work-price">Consultar</div>
-              <?php } ?>
+              <div class="work-price"><?php echo $countri->precio ?></div>
             </div>
             <div class="work-info">
               <h6>
