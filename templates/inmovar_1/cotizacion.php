@@ -196,7 +196,7 @@ if ($empresa->id != 1633) {
     var tasa = 0;
     $.each(cotizaciones, function(clave, valor) {
       if (valor.anios == plazo) {
-        tasa = parseFloat(valor.taza / 100);
+        tasa = parseFloat(valor.taza);
       }
     });
     $.ajax({
@@ -210,7 +210,8 @@ if ($empresa->id != 1633) {
       },
       "success":function(r) {
         var valor = $(r).find("tbody tr:first td:last").text();
-        alert(valor);
+        $(".cuota_inicial").html(valor);
+        $(".total_cuotas").html(total_de_cuotas);
       }
     })
   }
