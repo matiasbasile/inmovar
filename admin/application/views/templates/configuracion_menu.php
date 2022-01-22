@@ -56,6 +56,14 @@
            Plantillas de Whatsapp
           </a>
         </li>
+        <% if (control.check("marcas")>0) { %>
+          <li>
+            <a class="<%= (id_modulo == "marcas")?"active":"" %>" href="app/#configuracion/marcas">
+              <span class="material-icons">arrow_forward_ios</span>
+              Logos
+            </a>
+          </li>
+        <% } %>
       </ul>
     </div>
     <div class="col-md-9">
