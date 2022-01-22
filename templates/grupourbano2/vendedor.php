@@ -1,7 +1,7 @@
 <?php
 include_once("includes/init.php");
-if (isset($_GET["id_usuario"]) && !empty($_GET["id_usuario"])) {
-  $id_usuario = intval($_GET["id_usuario"]);
+if (isset($_GET["id"]) && !empty($_GET["id"])) {
+  $id_usuario = intval($_GET["id"]);
   $usuario = $usuario_model->get($id_usuario);
   $listado = $propiedad_model->get_list(array("id_usuario" => $id_usuario));
 }
