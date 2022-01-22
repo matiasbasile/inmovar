@@ -174,7 +174,7 @@ select.form-control::-ms-expand {
 .btn-primary:hover, .btn-primary:focus {
   background-color: #403f41;
   border-color: #403f41;
-  color: #fff;
+  color: #fff !important;
 }
 .btn-outline-primary {
   background: none;
