@@ -83,7 +83,7 @@ function cargar() {
   data['page'] = window.page;
   data['offset'] = 12;
   data['id_localidad'] = "<?php echo $vc_id_localidad ?>";
-  data['tipo_operacion'] = "<?php echo $vc_tipo_operacion ?>";
+  data['tipo_operacion'] = "<?php echo $vc_link_tipo_operacion ?>";
   console.log(data);
   $.ajax({
     "url": "<?php echo mklink("web/get_list/") ?>",
