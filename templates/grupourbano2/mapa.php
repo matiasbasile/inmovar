@@ -4,7 +4,6 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 include_once("includes/init.php");
-include_once("includes/funciones.php");
 $nombre_pagina = "mapa";
 
 extract($propiedad_model->get_variables(array(
