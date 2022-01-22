@@ -3,7 +3,15 @@ function item($r) { ?>
   <div class="col-md-4 p-0 neighborhoods-list">
     <a href="<?php echo mklink($r->link) ?>">
       <div class="img-block">
-        <img class="adaptable-img" src="<?php echo $r->imagen ?> " alt="img">
+
+        <?php if (!empty($r->imagen)) { ?>
+          <img class="adaptable-img" src="<?php echo $r->imagen ?>" alt="<?php echo ($r->titulo); ?>" />
+        <?php } else if (!empty($empresa->no_imagen)) { ?>
+          <img class="adaptable-img" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->titulo); ?>" />
+        <?php } else { ?>
+          <img class="adaptable-img" src="assets/images/no-image-2.jpg" alt="<?php echo ($r->titulo); ?>" />
+        <?php } ?>
+        
         <div class="neighborhoods-top">
           <p><?php echo $r->direccion_completa.(!empty($r->direccion_completa)?". ":"").$r->localidad ?></p>
           <h4><?php echo $r->precio ?></h4>
