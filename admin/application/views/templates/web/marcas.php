@@ -1,38 +1,57 @@
 <script type="text/template" id="marcas_panel_template">
-  <div class="panel-heading oh">
-    <div class="row">
-      <div class="col-md-6 col-lg-3 sm-m-b">
-        <div class="search_container"></div>
-      </div>
-      <% if (control.check("marcas") > 1) { %>
-        <div class="col-md-6 col-lg-offset-3 col-lg-6 text-right">
-          <a class="btn btn-info btn-addon nuevo"><i class="fa fa-plus"></i>&nbsp;&nbsp;Nuevo&nbsp;&nbsp;</a>
+  <div class="panel panel-default db cp">
+    <div class="panel-body">
+      <div class="padder">
+        <div class="form-group mb0 clearfix expand-link cp">
+          <label class="control-label cp">
+            Logos
+          </label>
+          <div class="panel-description">
+            Edita distintos logos de socios, colaboradores, etc.
+          </div>
         </div>
-      <% } %>
+      </div>
+    </div>
+    <div class="panel-body expand" style="display:block">
+
+      <div class="panel-heading oh">
+        <div class="row">
+          <div class="col-md-6 col-lg-3 sm-m-b">
+            <div class="search_container"></div>
+          </div>
+          <% if (control.check("marcas") > 1) { %>
+            <div class="col-md-6 col-lg-offset-3 col-lg-6 text-right">
+              <a class="btn btn-info btn-addon nuevo"><i class="fa fa-plus"></i>&nbsp;&nbsp;Nuevo&nbsp;&nbsp;</a>
+            </div>
+          <% } %>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="b-a table-responsive">
+          <table id="marcas_table" class="table table-striped sortable m-b-none default footable">
+            <thead>
+              <tr>
+                <th style="width:20px;">
+                  <label class="i-checks m-b-none">
+                    <input class="esc sel_todos" type="checkbox"><i></i>
+                  </label>
+                </th>
+                <th class="w50 tac hidden-xs"></th>
+                <th class="sorting" data-sort-by="nombre">Nombre</th>
+                <% if (permiso > 1) { %>
+                  <th class="w100"></th>
+                <% } %>
+              </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot class="pagination_container hide-if-no-paging"></tfoot>
+          </table>
+        </div>
+      </div>
+
     </div>
   </div>
-  <div class="panel-body">
-    <div class="b-a table-responsive">
-      <table id="marcas_table" class="table table-striped sortable m-b-none default footable">
-        <thead>
-          <tr>
-            <th style="width:20px;">
-              <label class="i-checks m-b-none">
-                <input class="esc sel_todos" type="checkbox"><i></i>
-              </label>
-            </th>
-            <th class="w50 tac hidden-xs"></th>
-            <th class="sorting" data-sort-by="nombre">Nombre</th>
-            <% if (permiso > 1) { %>
-              <th class="w100"></th>
-            <% } %>
-          </tr>
-        </thead>
-        <tbody></tbody>
-        <tfoot class="pagination_container hide-if-no-paging"></tfoot>
-      </table>
-    </div>
-  </div>
+
 </script>
 
 
@@ -63,10 +82,12 @@
 </script>
 
 <script type="text/template" id="marcas_edit_panel_template">
+  <div class="modal-header">
+    <b>Cambiar estado de consulta</b>
+    <i class="pull-right cerrar_lightbox fs16 fa fa-times cp"></i>    
+  </div>
   <div class="modal-body">
-  
     <div class="padder">
-
       <div class="row">
         <div class="col-md-8">
           <div class="form-group">
