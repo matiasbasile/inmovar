@@ -126,6 +126,7 @@ $('#return-to-top').click(function() {      // When arrow is clicked
 });
 
  //flexslider script
+ /*
   $(window).load(function() {
     $('.main-slider').flexslider ({
       animation: 'slide',
@@ -147,6 +148,7 @@ $('#return-to-top').click(function() {      // When arrow is clicked
       asNavFor: '.main-slider'
     });
   });
+  */
 
   function repoducir_audio(){
     $(".audio").play;
