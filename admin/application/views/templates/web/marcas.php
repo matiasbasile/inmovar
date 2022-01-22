@@ -6,7 +6,7 @@
       </div>
       <% if (control.check("marcas") > 1) { %>
         <div class="col-md-6 col-lg-offset-3 col-lg-6 text-right">
-          <a class="btn btn-info btn-addon" href="app/#marca"><i class="fa fa-plus"></i>&nbsp;&nbsp;Nuevo&nbsp;&nbsp;</a>
+          <a class="btn btn-info btn-addon nuevo"><i class="fa fa-plus"></i>&nbsp;&nbsp;Nuevo&nbsp;&nbsp;</a>
         </div>
       <% } %>
     </div>
