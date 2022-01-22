@@ -81,63 +81,60 @@
 
 <script type="text/template" id="marcas_edit_panel_template">
   <div class="modal-header">
-    <b>Cambiar estado de consulta</b>
+    <b>Editar logo</b>
     <i class="pull-right cerrar_lightbox fs16 fa fa-times cp"></i>    
   </div>
   <div class="modal-body">
-    <div class="padder">
-      <div class="row">
-        <div class="col-md-8">
-          <div class="form-group">
-            <label class="control-label">Nombre</label>
-            <input type="text" <%= (!edicion)?"disabled":"" %> name="nombre" class="form-control" id="marcas_nombre" value="<%= nombre %>"/>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div class="form-group">
-            <label class="control-label">Orden</label>
-            <input <%= (!edicion)?"disabled":"" %> type="text" name="orden" class="form-control" id="marcas_orden" value="<%= orden %>"/>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div class="form-group">
-            <label class="control-label">Grupo</label>
-            <input <%= (!edicion)?"disabled":"" %> type="text" name="grupo" class="form-control" id="marcas_grupo" value="<%= grupo %>"/>
-          </div>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="form-group">
+          <label class="control-label">Nombre</label>
+          <input type="text" <%= (!edicion)?"disabled":"" %> name="nombre" class="form-control" id="marcas_nombre" value="<%= nombre %>"/>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-8">
-          <div class="form-group">
-            <label class="control-label">Link</label>
-            <input <%= (!edicion)?"disabled":"" %> type="text" name="link" class="form-control" id="marcas_link" value="<%= link %>"/>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="form-group">
-            <label class="control-label">Descuento</label>
-            <input <%= (!edicion)?"disabled":"" %> type="text" name="descuento" class="form-control" id="marcas_descuento" value="<%= descuento %>"/>
-          </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <label class="control-label">Orden</label>
+          <input <%= (!edicion)?"disabled":"" %> type="text" name="orden" class="form-control" id="marcas_orden" value="<%= orden %>"/>
         </div>
       </div>
-      
-      <?php
-      single_upload(array(
-        "name"=>"path",
-        "label"=>"Imagen",
-        "url"=>"/admin/marcas/function/save_image/",
-        "url_file"=>"/admin/marcas/function/save_file/",
-        "width"=>(isset($empresa->config["marca_image_width"]) ? $empresa->config["marca_image_width"] : 400),
-        "height"=>(isset($empresa->config["marca_image_height"]) ? $empresa->config["marca_image_height"] : 400),
-        "quality"=>(isset($empresa->config["marca_image_quality"]) ? $empresa->config["marca_image_quality"] : 0.92),
-      )); ?>                     
-      
+      <div class="col-md-2">
+        <div class="form-group">
+          <label class="control-label">Grupo</label>
+          <input <%= (!edicion)?"disabled":"" %> type="text" name="grupo" class="form-control" id="marcas_grupo" value="<%= grupo %>"/>
+        </div>
+      </div>
     </div>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="form-group">
+          <label class="control-label">Link</label>
+          <input <%= (!edicion)?"disabled":"" %> type="text" name="link" class="form-control" id="marcas_link" value="<%= link %>"/>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label class="control-label">Descuento</label>
+          <input <%= (!edicion)?"disabled":"" %> type="text" name="descuento" class="form-control" id="marcas_descuento" value="<%= descuento %>"/>
+        </div>
+      </div>
+    </div>
+    
+    <?php
+    single_upload(array(
+      "name"=>"path",
+      "label"=>"Imagen",
+      "url"=>"/admin/marcas/function/save_image/",
+      "url_file"=>"/admin/marcas/function/save_file/",
+      "width"=>(isset($empresa->config["marca_image_width"]) ? $empresa->config["marca_image_width"] : 400),
+      "height"=>(isset($empresa->config["marca_image_height"]) ? $empresa->config["marca_image_height"] : 400),
+      "quality"=>(isset($empresa->config["marca_image_quality"]) ? $empresa->config["marca_image_quality"] : 0.92),
+    )); ?>                     
+    
   </div>
   <div class="modal-footer">
     <% if (edicion) { %>
-      <button class="btn guardar btn-success">Guardar</button>
+      <button class="btn guardar btn-info">Guardar</button>
     <% } %>
   </div>
-
 </script>
