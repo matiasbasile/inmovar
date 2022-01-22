@@ -58,7 +58,7 @@
       this.model.bind("destroy",this.render,this);
       this.view = options.view;
       this.options = options;
-      this.permiso = this.options.permiso;
+      this.permiso = control.check("marcas");
       _.bindAll(this);
     },
     render: function() {
@@ -154,7 +154,7 @@
 
       var lista = this.collection;
       this.options = options;
-      this.permiso = this.options.permiso;
+      this.permiso = control.check("marcas");
 
       // Creamos la lista de paginacion
       var pagination = new app.mixins.PaginationView({
@@ -231,7 +231,7 @@
     render: function() {
       // Creamos un objeto para agregarle las otras propiedades que no son el modelo
       var edicion = false;
-      if (this.options.permiso > 1) edicion = true;
+      if (control.check("marcas") > 1) edicion = true;
       var obj = { edicion: edicion, id:this.model.id };
       // Extendemos el objeto creado con el modelo de datos
       $.extend(obj,this.model.toJSON());
@@ -273,105 +273,6 @@
     limpiar : function() {
       this.model = new app.models.Marca()
       this.render();
-    },
-
-  });
-
-})(app.views, app.models);
-
-
-
-// -------------------------------
-//   VISTA DEL PANEL DE EDICION
-// -------------------------------
-(function ( views, models ) {
-
-  views.MarcaMiniEditView = app.mixins.View.extend({
-
-    template: _.template($("#marcas_edit_mini_panel_template").html()),
-
-    myEvents: {
-      "click .guardar": "guardar",
-      "click .cerrar": "cerrar",
-      "keypress .tab":function(e) {
-        if (e.keyCode == 13) {
-          e.preventDefault();
-          $(e.currentTarget).parent().next().find(".tab").focus();
-        }
-      },
-      "keyup .tab":function(e) {
-        if (e.which == 27) this.cerrar();
-      },
-      "keypress .guardar":function(e) {
-        if (e.keyCode == 13) this.guardar();
-      },
-    },
-
-    initialize: function(options) {
-      this.options = options;
-      this.input = this.options.input;
-      this.onSave = this.options.onSave;
-      this.callback = this.options.callback;
-
-      _.bindAll(this);
-      this.render();
-    },
-
-    render: function() {
-      var self = this;
-      var obj = { id:this.model.id };
-      $.extend(obj,this.model.toJSON());
-
-      $(this.el).html(this.template(obj));
-
-      if (this.input != undefined) {
-        // Seteamos lo que tiene el input de referencia
-        $(this.el).find("#marcas_mini_nombre").val($(this.input).val().trim());
-      }
-
-      return this;
-    },
-
-    focus: function() {
-      $(this.el).find("#marcas_mini_nombre").focus();
-    },
-
-    validar: function() {
-      var self = this;
-      try {
-        validate_input("marcas_mini_nombre",IS_EMPTY,"Por favor, ingrese un nombre.");
-        return true;
-      } catch(e) {
-        return false;
-      }
-    },
-
-    guardar: function() {
-      var self = this;
-      if (this.validar()) {
-        if (this.model.id == null) {
-          this.model.set({id:0});
-        }
-        this.model.save({
-          "id_empresa":ID_EMPRESA,
-          "nombre":$("#marcas_mini_nombre").val(),
-          "activo":1,
-        },{
-          success: function(model,response) {
-            if (response.error == 1) {
-              show(response.mensaje);
-            } else {
-              if (typeof self.onSave != "undefined") self.onSave(model);
-              if (typeof self.callback != "undefined") self.callback(model.id);
-              self.cerrar();
-            }
-          }
-        });
-      }
-    },
-
-    cerrar: function() {
-      $(this.el).parents(".customcomplete").remove();
     },
 
   });
