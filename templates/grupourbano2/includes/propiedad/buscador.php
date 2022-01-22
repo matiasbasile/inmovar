@@ -2,6 +2,13 @@
 <form onsubmit="return filtrar(this)" method="get" class="form-responsive mt-5">
   <div class="form-block">
     <div class="form">
+      <select class="form-control filter_tipo_operacion">
+        <option value="0">OPERACIÓN</option>
+        <?php $tipos_op = $propiedad_model->get_tipos_operaciones(); ?>
+        <?php foreach ($tipos_op as $tipo) { ?>
+          <option <?php echo ($vc_tipo_operacion == $tipo->id)?"selected":"" ?> value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
+        <?php } ?>
+      </select>      
       <select class="form-control filter_propiedad" name="tp">
         <option value="0">DEPARTAMENTOS</option>
         <?php $tipo_propiedades = $propiedad_model->get_tipos_propiedades(); ?>
@@ -9,7 +16,6 @@
           <option <?php echo ($vc_id_tipo_inmueble == $tipo->id)?"selected":"" ?> value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
         <?php } ?>
       </select>
-      <?php echo "[$vc_link_localidad]" ?>
       <select class="form-control filter_localidad">
         <option value="0">Localidad</option>
         <?php $localidades = $propiedad_model->get_localidades(); ?>
