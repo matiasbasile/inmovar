@@ -1,5 +1,10 @@
 <?php
 include_once("includes/init.php");
+if (isset($_GET["id_usuario"]) && !empty($_GET["id_usuario"])) {
+  $id_usuario = intval($_GET["id_usuario"]);
+  $usuario = $usuario_model->get($id_usuario);
+  $listado = $propiedad_model->get_list(array("id_usuario" => $id_usuario));
+}
 $nombre_pagina = "nosotros";
 ?>
 <!DOCTYPE html>
@@ -10,11 +15,6 @@ $nombre_pagina = "nosotros";
 <body class="bg-gray">
 <?php include("includes/header.php") ?>
 
-<!-- lising -->
-<?php if (isset($_GET["id_usuario"]) && !empty($_GET["id_usuario"])) { ?>
-  <?php $usuario = $usuario_model->get($_GET["id_usuario"]); ?>
-  <?php $listado = $propiedad_model->get_list(array("id_usuario" => $_GET["id_usuario"])); ?>
-<?php } ?>
 <section class="padding-default vendedores-list">
   <div class="container style-two">
     <div class="row">
@@ -37,51 +37,12 @@ $nombre_pagina = "nosotros";
         </div>
         <div class="neighborhoods shadow-none style-two">
           <div class="row m-0 my-5">
-            <?php foreach ($listado  as $propiedad) { ?>
-              <div class="col-md-6 p-0 neighborhoods-list">
-                <a href="<?php echo mklink($propiedad->link) ?>">
-                  <div class="img-block">
-                    <img src="<?php echo '/admin/' . $propiedad->path ?> " alt="img">
-                    <div class="neighborhoods-top">
-                      <?php if (!empty($propiedad->direccion_completa)) { ?>
-                        <p><?php echo $propiedad->direccion_completa ?></p>
-                      <?php } ?>
-                      <?php if ($propiedad->publica_precio == 1) { ?>
-                        <h4><?php echo $propiedad->moneda; ?> <?php echo $propiedad->precio_final; ?></h4>
-                      <?php } else { ?>
-                        <h4>Consultar</h4>
-                      <?php } ?>
-                    </div>
-                    <div class="neighborhoods-bottom">
-                      <?php if ($propiedad->ambientes != 0) { ?>
-                        <div class="neighborhoods-info">
-                          <h6><?php echo $propiedad->ambientes ?> Hab.</h6>
-                          <img src="assets/images/icon11.png" alt="img">
-                        </div>
-                      <?php } ?>
-                      <?php if ($propiedad->ambientes != 0) { ?>
-                        <div class="neighborhoods-info">
-                          <h6><?php echo $propiedad->ambientes ?> Baños</h6>
-                          <img src="assets/images/icon12.png" alt="img">
-                        </div>
-                      <?php } ?>
-                      <?php if ($propiedad->cocheras != 0) { ?>
-                        <div class="neighborhoods-info">
-                          <h6><?php echo $propiedad->cocheras ?> Auto</h6>
-                          <img src="assets/images/icon13.png" alt="img">
-                        </div>
-                      <?php } ?>
-                      <?php if ($propiedad->superficie_total != 0) { ?>
-                        <div class="neighborhoods-info">
-                          <h6><?php echo $propiedad->superficie_total ?> m2</h6>
-                          <img src="assets/images/icon14.png" alt="img">
-                        </div>
-                      <?php } ?>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            <?php } ?>
+            <?php 
+            foreach ($listado  as $propiedad) { 
+              item($propiedad,array(
+                "clase"=>"col-md-6 p-0 neighborhoods-list",
+              ));
+            } ?>
           </div>
         </div>
         <div class="page-heading">
