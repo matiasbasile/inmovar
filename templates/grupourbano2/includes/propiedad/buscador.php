@@ -9,6 +9,7 @@
           <option <?php echo ($vc_id_tipo_inmueble == $tipo->id)?"selected":"" ?> value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
         <?php } ?>
       </select>
+      <?php echo $vc_link_localidad ?>
       <select class="form-control filter_localidad">
         <option value="0">Localidad</option>
         <?php $localidades = $propiedad_model->get_localidades(); ?>
