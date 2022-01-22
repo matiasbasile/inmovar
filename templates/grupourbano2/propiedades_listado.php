@@ -95,6 +95,7 @@ function cargar() {
     "dataType": "html",
     "success": function(r) {
       var propiedades = document.querySelector(".propiedades");
+      console.log(propiedades);
       if (isEmpty(propiedades)) {
         $("#cargarMas").hide();
       } else {
