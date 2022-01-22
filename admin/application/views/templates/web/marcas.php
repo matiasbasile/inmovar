@@ -14,7 +14,7 @@
     </div>
     <div class="panel-body expand" style="display:block">
 
-      <div class="oh">
+      <div class="oh mb20">
         <div class="row">
           <div class="col-md-6 col-lg-3 sm-m-b">
             <div class="search_container"></div>
