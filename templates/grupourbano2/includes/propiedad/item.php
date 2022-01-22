@@ -5,9 +5,7 @@ function item($r) { ?>
       <div class="img-block">
         <img class="adaptable-img" src="<?php echo $r->imagen ?> " alt="img">
         <div class="neighborhoods-top">
-          <?php if (!empty($r->direccion_completa)) { ?>
-            <p><?php echo $r->direccion_completa ?></p>
-          <?php } ?>
+          <p><?php echo $r->direccion_completa.(!empty($r->direccion_completa)?". ":"").$r->localidad ?></p>
           <h4><?php echo $r->precio ?></h4>
         </div>
         <div class="neighborhoods-bottom">
