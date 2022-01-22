@@ -279,7 +279,7 @@ class Propiedad_Model {
 
     // propiedades/localidad/tipo_operacion/?parametros..
    
-    $link_tipo_operacion = "";
+    $link_tipo_operacion = isset($config["link_tipo_operacion"]) ? $config["link_tipo_operacion"] : "";
     $vc_id_tipo_operacion = 0;
     if (isset($params[1]) && $no_analizar_url == 0) {
       // Si el parametro es numero, es un numero de pagina

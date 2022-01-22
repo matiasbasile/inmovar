@@ -5,13 +5,13 @@ function item($r) { ?>
       <div class="img-block">
 
         <?php if (!empty($r->imagen)) { ?>
-          <img class="adaptable-img" src="<?php echo $r->imagen ?>" alt="<?php echo ($r->titulo); ?>" />
+          <img class="adaptable-img" src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre); ?>" />
         <?php } else if (!empty($empresa->no_imagen)) { ?>
-          <img class="adaptable-img" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->titulo); ?>" />
+          <img class="adaptable-img" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->nombre); ?>" />
         <?php } else { ?>
-          <img class="adaptable-img" src="assets/images/no-image-2.jpg" alt="<?php echo ($r->titulo); ?>" />
+          <img class="adaptable-img" src="assets/images/no-image-2.jpg" alt="<?php echo ($r->nombre); ?>" />
         <?php } ?>
-        
+
         <div class="neighborhoods-top">
           <p><?php echo $r->direccion_completa.(!empty($r->direccion_completa)?". ":"").$r->localidad ?></p>
           <h4><?php echo $r->precio ?></h4>
