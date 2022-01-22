@@ -140,7 +140,11 @@ $('#return-to-top').click(function() {      // When arrow is clicked
   });
 
   $('.form-toggle').click(function(){
-    $('.form-responsive').slideToggle();
+    if ($('.form-responsive').is(":visible")) {
+      $('.form-responsive').slideUp();  
+    } else {
+      $('.form-responsive').slideDown();  
+    }
   });
   
   function repoducir_audio(){
