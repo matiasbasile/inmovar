@@ -287,7 +287,7 @@ include_once("includes/funciones.php");
   <?php } ?>
 
   <!-- Sponsars -->
-  <?php $marcas = $articulo_model->get_marcas(array("grupo" => 1)) ?>
+  <?php $marcas = $articulo_model->get_marcas() ?>
   <?php if (!empty($marcas)) { ?>
     <section class="sponsars padding-default">
       <div class="container">
