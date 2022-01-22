@@ -74,7 +74,7 @@ $nombre_pagina = "nosotros";
                             <?php } ?>
                           </div>
                         </div>
-                        <div class="col-md-6 text-right"><a href="<?php echo mklink("web/vendedores_detalle/?id_usuario=".$user->id) ?>" class="btn btn-outline-primary">ver propiedades</a></div>
+                        <div class="col-md-6 text-right"><a href="<?php echo mklink("web/vendedor/?id=".$user->id) ?>" class="btn btn-outline-primary">ver propiedades</a></div>
                       </div>
                     </div>
                   </div>

@@ -1,6 +1,7 @@
 <?php 
-function item($r) { ?>
-  <div class="col-md-4 p-0 neighborhoods-list">
+function item($r,$config = array()) { 
+  $clase = isset($config["clase"]) ? $config["clase"] : "col-md-4 p-0 neighborhoods-list" ?>
+  <div class="<?php echo $clase ?>">
     <a href="<?php echo mklink($r->link) ?>">
       <div class="img-block">
 
