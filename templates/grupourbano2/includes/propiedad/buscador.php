@@ -6,7 +6,7 @@
         <option value="0">OPERACIÓN</option>
         <?php $tipos_op = $propiedad_model->get_tipos_operaciones(); ?>
         <?php foreach ($tipos_op as $tipo) { ?>
-          <option <?php echo ($vc_tipo_operacion == $tipo->link)?"selected":"" ?> value="<?php echo $tipo->link ?>"><?php echo $tipo->nombre ?></option>
+          <option <?php echo ($vc_link_tipo_operacion == $tipo->link)?"selected":"" ?> value="<?php echo $tipo->link ?>"><?php echo $tipo->nombre ?></option>
         <?php } ?>
       </select>      
       <select class="form-control filter_propiedad" name="tp">
