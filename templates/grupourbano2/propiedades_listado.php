@@ -65,10 +65,12 @@ if (isset($get_params["per"])) {
 <?php include("includes/footer.php") ?>
 
 <script>
-window.page = 1;
+window.enviando = 0;
+window.page = 0;
 window.marca = true;
 
 function cargar() {
+  if (window.enviando == 1) return;
   var search = window.location.search;
   search = search.slice(1);
   search = search.split("&");
@@ -79,24 +81,30 @@ function cargar() {
   });
 
   window.page++;
+  window.enviando = 1;
   data['id_empresa'] = ID_EMPRESA;
   data['page'] = window.page;
   data['offset'] = 12;
   data['id_localidad'] = "<?php echo $vc_id_localidad ?>";
   data['tipo_operacion'] = "<?php echo $vc_link_tipo_operacion ?>";
+  $("#cargarMas").text("buscando...");
   $.ajax({
     "url": "<?php echo mklink("web/get_list/") ?>",
     "type": "get",
     "data": data,
     "dataType": "html",
     "success": function(r) {
-      console.log(r);
       var propiedades = document.querySelector(".propiedades");
       if (isEmpty(propiedades)) {
         $("#cargarMas").remove();
       } else {
         propiedades.innerHTML += r;
+        $("#cargarMas").text("ver más propiedades para tu búsqueda");
       }
+      window.enviando = 0;
+    },
+    "error":function() {
+      window.enviando = 0;
     }
   });
 }
