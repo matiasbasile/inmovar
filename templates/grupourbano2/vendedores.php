@@ -14,7 +14,10 @@ $nombre_pagina = "nosotros";
   <?php include("includes/header.php") ?>
 
   <!-- lising -->
-  <?php $usuario = $usuario_model->get_list(); ?>
+  <?php 
+  $usuario = $usuario_model->get_list(array(
+    "offset"=>999999
+  )); ?>
   <section class="padding-default">
     <div class="container style-two">
       <div class="page-heading">
