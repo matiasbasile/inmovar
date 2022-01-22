@@ -84,66 +84,67 @@
 <script src="assets/js/fancybox.js"></script>
 
 <script>
-  function filtrar(form) {
-    var submit_form = false;
-    if (form == undefined) {
-      submit_form = true;
-      form = $(".filter_form").first();
-    }
-    var url = "<?php echo mklink("propiedades") ?>";
-
-    url += "/?";
-    var tipo_operacion = $(form).find(".filter_tipo_operacion").val();
-    if (!isEmpty(tipo_operacion)) {
-      url += "ids_tipo_operacion=" + tipo_operacion + "&";
-    }
-
-    var localidad = $(form).find(".filter_localidad").val();
-    if (!isEmpty(localidad)) {
-      url += "id_localidad=" + localidad + "&";
-    }
-
-    var tipo_propiedad = $(form).find(".filter_propiedad").val();
-    if (!isEmpty(tipo_propiedad)) {
-      url += "tp=" + tipo_propiedad + "&";
-    }
-
-    var filter_dormitorios = $(form).find(".filter_dormitorios").val();
-    if (!isEmpty(filter_dormitorios)) {
-      url += "dm=" + filter_dormitorios + "&";
-    }
-
-    var filter_banios = $(form).find(".filter_banios").val();
-    if (!isEmpty(filter_banios)) {
-      url += "bn=" + filter_banios + "&";
-    }
-
-    var filter_minimo = $(form).find(".filter_minimo").val();
-    if (!isEmpty(filter_minimo)) {
-      url += "vc_minimo=" + filter_minimo + "&";
-    }
-    var filter_maximo = $(form).find(".filter_maximo").val();
-    if (!isEmpty(filter_maximo)) {
-      url += "vc_maximo=" + filter_maximo + "&";
-    } 
-    if ($("#styled-checkbox-1").is(":checked")) {
-      url += "banco=" + 1 + "&";
-    }
-    if ($("#styled-checkbox-2").is(":checked")) {
-      url += "per=" + 1 + "&";
-    }
-
-    /* if ($("#precio_minimo").length > 0) {
-      var minimo = $("#precio_minimo").val().replace(".", "");
-      $("#precio_minimo_oculto").val(minimo);
-      var maximo = $("#precio_maximo").val().replace(".", "");
-      $("#precio_maximo_oculto").val(maximo);
-    } */
-    console.log(url);
-    setTimeout(function() {
-      location.href = url;
-    }, 300);
+function filtrar(form) {
+  var submit_form = false;
+  if (form == undefined) {
+    submit_form = true;
+    form = $(".filter_form").first();
   }
+  var url = "<?php echo mklink("propiedades/") ?>";
+
+  var tipo_operacion = $(form).find(".filter_tipo_operacion").val();
+  if (!isEmpty(tipo_operacion)) {
+    url+=tipo_operacion+"/";
+  }
+  
+  var localidad = $(form).find(".filter_localidad").val();
+  if (!isEmpty(localidad)) {
+    url+=localidad+"/";
+  }
+
+  url += "?";
+
+  var tipo_propiedad = $(form).find(".filter_propiedad").val();
+  if (!isEmpty(tipo_propiedad)) {
+    url += "tp=" + tipo_propiedad + "&";
+  }
+
+  var filter_dormitorios = $(form).find(".filter_dormitorios").val();
+  if (!isEmpty(filter_dormitorios)) {
+    url += "dm=" + filter_dormitorios + "&";
+  }
+
+  var filter_banios = $(form).find(".filter_banios").val();
+  if (!isEmpty(filter_banios)) {
+    url += "bn=" + filter_banios + "&";
+  }
+
+  var filter_minimo = $(form).find(".filter_minimo").val();
+  if (!isEmpty(filter_minimo)) {
+    url += "vc_minimo=" + filter_minimo + "&";
+  }
+  var filter_maximo = $(form).find(".filter_maximo").val();
+  if (!isEmpty(filter_maximo)) {
+    url += "vc_maximo=" + filter_maximo + "&";
+  } 
+  if ($("#styled-checkbox-1").is(":checked")) {
+    url += "banco=" + 1 + "&";
+  }
+  if ($("#styled-checkbox-2").is(":checked")) {
+    url += "per=" + 1 + "&";
+  }
+
+  /* if ($("#precio_minimo").length > 0) {
+    var minimo = $("#precio_minimo").val().replace(".", "");
+    $("#precio_minimo_oculto").val(minimo);
+    var maximo = $("#precio_maximo").val().replace(".", "");
+    $("#precio_maximo_oculto").val(maximo);
+  } */
+  console.log(url);
+  setTimeout(function() {
+    location.href = url;
+  }, 300);
+}
 
   function enviar_newsletter() {
     var email = $("#newsletter_email").val();
