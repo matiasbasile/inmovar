@@ -23,7 +23,16 @@ $(document).ready(function() {
     }
   });
 
-  $(document).ready(function() {
+$(document).ready(function() {
+
+  $('.form-toggle').click(function(){
+    if ($('.form-responsive').is(":visible")) {
+      $('.form-responsive').slideUp();  
+    } else {
+      $('.form-responsive').slideDown();  
+    }
+  });
+
 $(window).scroll(function() {
 
    var st = $(this).scrollTop(); 
@@ -139,14 +148,6 @@ $('#return-to-top').click(function() {      // When arrow is clicked
     });
   });
 
-  $('.form-toggle').click(function(){
-    if ($('.form-responsive').is(":visible")) {
-      $('.form-responsive').slideUp();  
-    } else {
-      $('.form-responsive').slideDown();  
-    }
-  });
-  
   function repoducir_audio(){
     $(".audio").play;
   }
