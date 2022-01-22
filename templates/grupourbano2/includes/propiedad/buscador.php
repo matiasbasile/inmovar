@@ -13,7 +13,7 @@
         <option value="0">Localidad</option>
         <?php $localidades = $propiedad_model->get_localidades(); ?>
         <?php foreach ($localidades as $localidad) { ?>
-          <option <?php echo ($localidad->link == $vc_link_localidad)?"selected":"" ?> value="<?php echo $localidad->id ?>"><?php echo $localidad->nombre ?></option>
+          <option <?php echo ($localidad->link == $vc_link_localidad)?"selected":"" ?> value="<?php echo $localidad->link ?>"><?php echo $localidad->nombre ?></option>
         <?php } ?>
       </select>
       <select class="form-control filter_dormitorios" name="dm">
