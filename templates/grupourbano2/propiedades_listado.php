@@ -96,7 +96,7 @@ function cargar() {
     "success": function(r) {
       var propiedades = document.querySelector(".propiedades");
       if (isEmpty(propiedades)) {
-        $("#cargarMas").remove();
+        $("#cargarMas").hide();
       } else {
         propiedades.innerHTML += r;
         $("#cargarMas").text("ver más propiedades para tu búsqueda");
