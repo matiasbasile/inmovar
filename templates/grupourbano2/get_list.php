@@ -42,9 +42,7 @@ $propiedades = $propiedad_model->get_list(
       <div class="img-block">
         <img src="<?php echo $propiedad->imagen ?> " alt="img">
         <div class="neighborhoods-top">
-          <?php if (!empty($propiedad->calle)) { ?>
-            <p><?php echo $propiedad->calle . ", " . ($propiedad->localidad != "" ? $propiedad->localidad : "") ?></p>
-          <?php } ?>
+          <p><?php echo $propiedad->direccion_completa ?></p>
           <h4><?php echo $propiedad->precio ?></h4>
         </div>
         <div class="neighborhoods-bottom">

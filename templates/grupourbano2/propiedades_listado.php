@@ -46,9 +46,8 @@ if (isset($get_params["per"])) {
           <h2>Propiedades</h2>
           <h6>Se encontraron <b><?php echo $vc_total_resultados ?></b> propiedades</h6>
         <?php } ?>
-
       </div>
-      <a href="#0" class="btn btn-primary btn-block mb-3 form-toggle style-two mt-5">AJUSTAR BÚSQUEDA</a>
+      <a href="javascript:void(0)" rel="nofollow" class="btn btn-primary btn-block mb-3 form-toggle style-two mt-5">AJUSTAR BÚSQUEDA</a>
       <div class="form-responsive mt-5">
         <div class="form-block">
           <form onsubmit="return filtrar(this)" method="get">
@@ -121,9 +120,7 @@ if (isset($get_params["per"])) {
                   <div class="img-block">
                     <img src="<?php echo $destacado->imagen ?> " alt="img">
                     <div class="neighborhoods-top">
-                      <?php if (!empty($destacado->calle)) { ?>
-                        <p><?php echo $destacado->calle . ", " . ($destacado->localidad != "" ? $destacado->localidad : "") ?></p>
-                      <?php } ?>
+                      <p><?php echo $destacado->direccion_completa ?></p>
                       <h4><?php echo $destacado->precio ?></h4>
                     </div>
                     <div class="neighborhoods-bottom">
@@ -165,9 +162,7 @@ if (isset($get_params["per"])) {
                   <div class="img-block">
                     <img src="<?php echo $propiedad->imagen ?> " alt="img">
                     <div class="neighborhoods-top">
-                      <?php if (!empty($propiedad->calle)) { ?>
-                        <p><?php echo $propiedad->calle . ", " . ($propiedad->localidad != "" ? $propiedad->localidad : "") ?></p>
-                      <?php } ?>
+                      <p><?php echo $propiedad->direccion_completa ?></p>
                       <h4><?php echo $propiedad->precio ?></h4>
                     </div>
                     <div class="neighborhoods-bottom">
