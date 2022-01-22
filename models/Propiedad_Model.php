@@ -301,6 +301,8 @@ class Propiedad_Model {
     }    
 
     $link_localidad = "";
+    $vc_id_localidad = 0;
+
     if (isset($params[2]) && $no_analizar_url == 0) {
       // Si el parametro es numero, es un numero de pagina
       if (is_numeric($params[2])) {
@@ -308,6 +310,14 @@ class Propiedad_Model {
       } else {
         $link_localidad = ($params[2] == "todas" || $params[2] == "todos") ? "" : $params[2];
         $vc_link.= (empty($link_localidad) ? "todas" : $link_localidad)."/";
+      }
+    } else if (isset($config["id_localidad"])) {
+      $vc_id_localidad = intval($config["id_localidad"]);
+      $sql = "SELECT * FROM com_localidades WHERE id = $vc_id_localidad ";
+      $q_localidad = mysqli_query($this->conx,$sql);
+      if (mysqli_num_rows($q_localidad)>0) {
+        $departamento = mysqli_fetch_object($q_localidad);
+        $vc_id_departamento = $departamento->id_departamento;
       }
     }
 
@@ -318,6 +328,7 @@ class Propiedad_Model {
       $q_localidad = mysqli_query($this->conx,$sql);
       if (mysqli_num_rows($q_localidad)>0) {
         $departamento = mysqli_fetch_object($q_localidad);
+        $vc_id_localidad = $departamento->id;
         $vc_id_departamento = $departamento->id_departamento;
       }
     }
@@ -327,6 +338,8 @@ class Propiedad_Model {
     // Si el ultimo parametro es un numero de pagina
     if (isset($params[3]) && is_numeric($params[3]) && $no_analizar_url == 0) {
       $page = (int)$params[3];
+    } else if (isset($config["page"])) {
+      $page = (int)$config["page"];
     }
 
     $orden = (isset($config["orden"]) ? $config["orden"] : 2); // Por defecto mas baratos
@@ -384,6 +397,7 @@ class Propiedad_Model {
         "filter"=>$filter,
         "banios"=>$banios,
         "link_localidad"=>$link_localidad,
+        "id_localidad"=>$vc_id_localidad,
         "id_tipo_inmueble"=>$id_tipo_inmueble,
         "id_departamento"=>$vc_id_departamento,
         "link_tipo_operacion"=>$link_tipo_operacion,
@@ -461,6 +475,7 @@ class Propiedad_Model {
 
     try {
       $this->set_session(array(
+        "vc_id_localidad"=>$vc_id_localidad,
         "vc_link_localidad"=>$link_localidad,
         "vc_link_tipo_operacion"=>$link_tipo_operacion,
         "vc_id_tipo_inmueble"=>$id_tipo_inmueble,
@@ -490,6 +505,7 @@ class Propiedad_Model {
       "vc_offset"=>$offset,
       "vc_codigo"=>$codigo,
       "vc_link_localidad"=>$link_localidad,
+      "vc_id_localidad"=>$vc_id_localidad,
       "vc_id_tipo_inmueble"=>$id_tipo_inmueble,
       "vc_id_departamento"=>$vc_id_departamento,
       "vc_link_tipo_operacion"=>$link_tipo_operacion,
