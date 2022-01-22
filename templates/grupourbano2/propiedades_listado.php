@@ -57,7 +57,7 @@ if (isset($get_params["per"])) {
       </div>
     </div>
     <div class="d-block mt-5">
-      <a onclick="cargar()" class="btn btn-primary btn-block btn-lg">ver más propiedades para tu búsqueda</a>
+      <a onclick="cargar()" id="cargarMas" class="btn btn-primary btn-block btn-lg">ver más propiedades para tu búsqueda</a>
     </div>
   </div>
 </section>
@@ -65,7 +65,7 @@ if (isset($get_params["per"])) {
 <?php include("includes/footer.php") ?>
 
 <script>
-window.limit = 12;
+window.page = 1;
 window.marca = true;
 
 function cargar() {
@@ -78,10 +78,12 @@ function cargar() {
     data[nuevoArray[0]] = nuevoArray[1];
   });
 
-  window.limit += 12;
+  window.page++;
   data['id_empresa'] = ID_EMPRESA;
-  data['limit'] = window.limit;
+  data['page'] = window.page;
   data['offset'] = 12;
+  data['id_localidad'] = "<?php echo $vc_id_localidad ?>";
+  data['ids_tipo_operacion'] = "<?php echo $vc_id_tipo_operacion ?>";
   console.log(data);
   $.ajax({
     "url": "<?php echo mklink("web/get_list/") ?>",
@@ -91,8 +93,11 @@ function cargar() {
     "success": function(r) {
       console.log(r);
       var propiedades = document.querySelector(".propiedades");
-      
-      propiedades.innerHTML += r;
+      if (isEmpty(propiedades)) {
+        $("#cargarMas").remove();
+      } else {
+        propiedades.innerHTML += r;
+      }
     }
   });
 }
