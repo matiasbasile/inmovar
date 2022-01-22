@@ -264,7 +264,7 @@
           "path":$("#hidden_path").val(),
         },{
           success: function(model,response) {
-            location.href="app/#marcas";
+            location.reload();
           }
         });
       }
