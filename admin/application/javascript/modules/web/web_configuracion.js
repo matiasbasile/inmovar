@@ -184,7 +184,6 @@
       } else if (self.model.get("id_modulo") == "marcas") {
         var v = new app.views.MarcasTableView({
           collection: new app.collections.Marcas(),
-          permiso: permiso
         }); 
         self.$("#configuracion_content").html(v.el);   
 
