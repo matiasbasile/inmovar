@@ -293,7 +293,6 @@ class Propiedad_Model {
     $tipo_operacion = ucwords(strtolower(str_replace("-", " ", $link_tipo_operacion)));
     if (!empty($link_tipo_operacion)) {
       $sql = "SELECT * FROM inm_tipos_operacion WHERE link = '$link_tipo_operacion' ";
-      if ($this->id_empresa == 1651) echo $sql;
       $q_tipo_operacion = mysqli_query($this->conx,$sql);
       if (mysqli_num_rows($q_tipo_operacion)>0) {
         $top = mysqli_fetch_object($q_tipo_operacion);
