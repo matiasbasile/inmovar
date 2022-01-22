@@ -204,20 +204,8 @@ if (isset($get_params["per"])) {
   </div>
 </section>
 
-<!-- Footer -->
 <?php include("includes/footer.php") ?>
-<!-- Return to Top -->
-<a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
 
-<!-- Scripts -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/bootstrap.bundle.min.js"></script>
-<script src="assets/js/html5.min.js"></script>
-<script src="assets/js/respond.min.js"></script>
-<script src="assets/js/placeholders.min.js"></script>
-<script src="assets/js/owl.carousel.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWmUapFYTBXV3IJL9ggjT9Z1wppCER55g&callback=initMap"></script>
-<script src="assets/js/scripts.js"></script>
 <script>
   window.limit = 12;
   window.marca = true;
