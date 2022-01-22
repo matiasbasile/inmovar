@@ -26,11 +26,11 @@ $slider = $web_model->get_slider();
           <option value="0">Operación</option>
           <?php $tipo_operaciones = $propiedad_model->get_tipos_operaciones(); ?>
           <?php foreach ($tipo_operaciones as $operaciones) { ?>
-            <option value="<?php echo $operaciones->id ?>"><?php echo $operaciones->nombre ?></option>
+            <option value="<?php echo $operaciones->link ?>"><?php echo $operaciones->nombre ?></option>
           <?php } ?>
         </select>
         <?php $tipo_propiedades = $propiedad_model->get_tipos_propiedades(); ?>
-        <select class="form-control filter_propiedad">
+        <select class="form-control filter_propiedad" name="tp">
           <option value="0">Propiedad</option>
           <?php foreach ($tipo_propiedades as $tipo) { ?>
             <option value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
@@ -40,7 +40,7 @@ $slider = $web_model->get_slider();
           <option value="0">Localidad</option>
           <?php $localidades = $propiedad_model->get_localidades(); ?>
           <?php foreach ($localidades as $localidad) { ?>
-            <option value="<?php echo $localidad->id ?>"><?php echo $localidad->nombre ?></option>
+            <option value="<?php echo $localidad->link ?>"><?php echo $localidad->nombre ?></option>
           <?php } ?>
         </select>
         <button type="submit" class="btn btn-primary">BUSCAR</button>
