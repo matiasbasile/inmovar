@@ -20,7 +20,7 @@ if (($propiedad === FALSE || !isset($propiedad->nombre) || $propiedad->activo ==
 $seo_title = (!empty($propiedad->seo_title)) ? ($propiedad->seo_title) : $empresa->seo_title;
 $seo_description = (!empty($propiedad->seo_description)) ? ($propiedad->seo_description) : $empresa->seo_description;
 $seo_keywords = (!empty($propiedad->seo_keywords)) ? ($propiedad->seo_keywords) : $empresa->seo_keywords;
-
+$nombre_pagina = $propiedad->tipo_operacion_link;
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="es">
