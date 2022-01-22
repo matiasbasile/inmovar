@@ -14,7 +14,7 @@
     </div>
     <div class="panel-body expand" style="display:block">
 
-      <div class="panel-heading oh">
+      <div class="oh">
         <div class="row">
           <div class="col-md-6 col-lg-3 sm-m-b">
             <div class="search_container"></div>
@@ -26,27 +26,25 @@
           <% } %>
         </div>
       </div>
-      <div class="panel-body">
-        <div class="b-a table-responsive">
-          <table id="marcas_table" class="table table-striped sortable m-b-none default footable">
-            <thead>
-              <tr>
-                <th style="width:20px;">
-                  <label class="i-checks m-b-none">
-                    <input class="esc sel_todos" type="checkbox"><i></i>
-                  </label>
-                </th>
-                <th class="w50 tac hidden-xs"></th>
-                <th class="sorting" data-sort-by="nombre">Nombre</th>
-                <% if (permiso > 1) { %>
-                  <th class="w100"></th>
-                <% } %>
-              </tr>
-            </thead>
-            <tbody></tbody>
-            <tfoot class="pagination_container hide-if-no-paging"></tfoot>
-          </table>
-        </div>
+      <div class="table-responsive">
+        <table id="marcas_table" class="table table-striped sortable m-b-none default footable">
+          <thead>
+            <tr>
+              <th style="width:20px;">
+                <label class="i-checks m-b-none">
+                  <input class="esc sel_todos" type="checkbox"><i></i>
+                </label>
+              </th>
+              <th class="w50 tac hidden-xs"></th>
+              <th class="sorting" data-sort-by="nombre">Nombre</th>
+              <% if (permiso > 1) { %>
+                <th class="w100"></th>
+              <% } %>
+            </tr>
+          </thead>
+          <tbody></tbody>
+          <tfoot class="pagination_container hide-if-no-paging"></tfoot>
+        </table>
       </div>
 
     </div>
