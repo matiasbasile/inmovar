@@ -37,12 +37,8 @@
           <option <?php echo ($vc_banios == $banio->banios)?"selected":"" ?> value="<?php echo $banio->banios; ?>"><?php echo $banio->banios ?></option>
         <?php } ?>
       </select>
-      <div class="inputs-with">
-        <input name="vc_minimo" class="form-control filter_minimo" type="number" value="<?php echo $vc_minimo ?>" min="0" placeholder="Precio Minimo">
-      </div>
-      <div class="inputs-with">
-        <input name="vc_maximo" class="form-control filter_maximo" type="number" value="<?php echo $vc_maximo ?>" min="0" placeholder="Precio Maximo">
-      </div>
+      <input name="vc_minimo" class="form-control filter_minimo" type="number" value="<?php echo $vc_minimo ?>" min="0" placeholder="Precio Minimo">
+      <input name="vc_maximo" class="form-control filter_maximo" type="number" value="<?php echo $vc_maximo ?>" min="0" placeholder="Precio Maximo">
       <button type="submit" class="btn btn-primary">BUSCAR</button>
     </div>
   </div>
