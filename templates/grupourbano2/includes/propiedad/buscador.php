@@ -52,11 +52,11 @@
       </div>
       <div class="col-md-5 text-right">
         <div class="custom-check">
-          <input class="styled-checkbox" id="styled-checkbox-1" type="checkbox" name="banco" value="1">
+          <input class="styled-checkbox" id="styled-checkbox-1" <?php echo ($vc_apto_banco == 1)?"checked":"" ?> type="checkbox" name="banco" value="1">
           <label for="styled-checkbox-1">Apto Crédito</label>
         </div>
         <div class="custom-check">
-          <input class="styled-checkbox" id="styled-checkbox-2" type="checkbox" name="per" value="1">
+          <input class="styled-checkbox" id="styled-checkbox-2" <?php echo ($vc_acepta_permuta == 1)?"checked":"" ?> type="checkbox" name="per" value="1">
           <label for="styled-checkbox-2">Acepta Permuta</label>
         </div>
       </div>
