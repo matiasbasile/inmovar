@@ -3,14 +3,7 @@ include_once("includes/init.php");
 $propiedades = extract($propiedad_model->get_variables());
 if (isset($get_params["test"])) echo $propiedad_model->get_sql();
 $nombre_pagina = $vc_link_tipo_operacion;
-if (isset($get_params["view"])) {
-  $view = $get_params["view"];
-}
-if (isset($get_params["per"])) {
-  if ($get_params["per"] = 1) {
-    $nombre_pagina = "permutas";
-  }
-} ?>
+?>
 <!DOCTYPE html>
 <html dir="ltr" lang="es">
 
