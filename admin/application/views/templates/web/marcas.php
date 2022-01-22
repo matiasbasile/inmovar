@@ -60,7 +60,7 @@
     </label>
   </td>
   <td class="ver hidden-xs">
-    <% if (!isEmpty(path)) { %><img src="/sistema/<%= path %>" class="customcomplete-image"/><% } %>
+    <% if (!isEmpty(path)) { %><img src="/admin/<%= path %>" class="customcomplete-image"/><% } %>
   </td>
   <td class="ver"><span class='text-info'><%= nombre %></span></td>
   <% if (permiso > 1) { %>
@@ -125,8 +125,8 @@
       single_upload(array(
         "name"=>"path",
         "label"=>"Imagen",
-        "url"=>"/sistema/marcas/function/save_image/",
-        "url_file"=>"/sistema/marcas/function/save_file/",
+        "url"=>"/admin/marcas/function/save_image/",
+        "url_file"=>"/admin/marcas/function/save_file/",
         "width"=>(isset($empresa->config["marca_image_width"]) ? $empresa->config["marca_image_width"] : 400),
         "height"=>(isset($empresa->config["marca_image_height"]) ? $empresa->config["marca_image_height"] : 400),
         "quality"=>(isset($empresa->config["marca_image_quality"]) ? $empresa->config["marca_image_quality"] : 0.92),
