@@ -1,14 +1,9 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 include_once("includes/init.php");
-$nombre_pagina = "mapa";
-
 extract($propiedad_model->get_variables(array(
   "offset" => 9999999
 )));
+$nombre_pagina = $vc_link_tipo_operacion;
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="es">

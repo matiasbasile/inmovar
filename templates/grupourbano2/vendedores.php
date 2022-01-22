@@ -1,7 +1,6 @@
 <?php
 include_once("includes/init.php");
-$nombre_pagina = "Nosotros";
-include_once("includes/funciones.php");
+$nombre_pagina = "nosotros";
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="es">
@@ -206,13 +205,7 @@ include_once("includes/funciones.php");
     </div>
   </section>
 
-  <!-- Footer -->
   <?php include("includes/footer.php") ?>
-  <!-- Return to Top -->
-  <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
-
-  <!-- Scripts -->
  
 </body>
-
 </html>
