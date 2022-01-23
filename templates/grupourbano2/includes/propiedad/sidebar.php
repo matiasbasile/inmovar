@@ -42,7 +42,7 @@
     <input type="hidden" name="id_propiedad" id="contacto_propiedad" value="<?php echo (isset($propiedad) ? $propiedad->id : 0) ?>" />
     <div class="sidebar-arrow"><img src="assets/images/sidebar-arrow.png" alt="img"></div>
     <h2>comunicate ahora</h2>
-    <h5 class="mb-3">por estas propiedades</h5>
+    <h5 class="mb-3">por esta propiedad</h5>
     <form onsubmit="enviar_contacto()">
       <div class="form-group">
         <input id="contacto_nombre" type="text" class="form-control" placeholder="Nombre">
@@ -54,7 +54,7 @@
         <input id="contacto_email" type="email" class="form-control" placeholder="Email">
       </div>
       <div class="form-group">
-        <textarea id="contacto_mensaje" class="form-control" placeholder="Estoy interesado en Departamento en Venta en La Plata en 60 e/ 20 y 21, Piso 1 Depto 5, La Plata"></textarea>
+        <textarea id="contacto_mensaje" class="form-control" value="Estoy interesado en <?php echo $propiedad->nombre ?> [COD: <?php echo $propiedad->codigo ?>]."></textarea>
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-success btn-block"><i class="fa fa-whatsapp mr-3" aria-hidden="true"></i> enviar por whatsapp</button>
