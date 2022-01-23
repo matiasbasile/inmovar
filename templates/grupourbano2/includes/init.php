@@ -14,6 +14,7 @@ $articulo_model = new Articulo_Model($empresa->id,$conx);
 include_once("models/Usuario_Model.php");
 $usuario_model = new Usuario_Model($empresa->id,$conx);
 
+include_once("admin/application/helpers/fecha_helper.php");
 include_once("funciones.php");
 include_once("propiedad/item.php");
 ?>

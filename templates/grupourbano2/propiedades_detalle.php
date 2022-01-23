@@ -102,7 +102,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
                   </div>
                   <div class="col-md-4 text-right">
                     <h2 class="text-blue m-0 p-0"><?php echo $propiedad->precio ?></h2>
-                    <?php if ($propiedad->valor_expensas != 0) { ?>
+                    <?php if ($propiedad->valor_expensas != 0 && $propiedad->publica_precio == 1) { ?>
                       <p class="color-gray">+ <?php echo $propiedad->moneda . " " . $propiedad->valor_expensas ?> Expensas</p>
                     <?php } ?>
                   </div>
@@ -245,7 +245,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
                     </ul>
                   </div>
                   <div class="col-md-3 text-right">
-                    <b>Verificado:</b> <span class="badge badge-success"><?php echo $propiedad->servicios_fecha_chequeado != "0000-00-00" ? $propiedad->servicios_fecha_chequeado : "No verificado" ?></span>
+                    <b>Verificado:</b> <span class="badge badge-success"><?php echo $propiedad->servicios_fecha_chequeado != "0000-00-00" ? fecha_es($propiedad->servicios_fecha_chequeado) : "No verificado" ?></span>
                   </div>
                 </div>
                 <ul class="dot-icon pb-0">
