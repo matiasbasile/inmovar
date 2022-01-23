@@ -168,9 +168,9 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
             </div>
           </div>
           <div class="info-details">
-            <?php if (!empty($propiedad->descripcion)) { ?>
+            <?php if (!empty($propiedad->texto)) { ?>
               <h4>Descripción de propiedad</h4>
-              <?php echo $propiedad->descripcion ?>
+              <?php echo $propiedad->texto ?>
             <?php } ?>
             <?php if (($propiedad->latitud != 0) && ($propiedad->longitud != 0)) { ?>
               <h4>Donde se encuentra</h4>
