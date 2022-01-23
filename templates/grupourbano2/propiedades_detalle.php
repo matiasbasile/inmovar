@@ -17,6 +17,9 @@ if (($propiedad === FALSE || !isset($propiedad->nombre) || $propiedad->activo ==
   exit();
 }
 
+// Seteamos la cookie para indicar que el cliente ya entro a esta propiedad
+$propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
+
 // Tomamos los datos de SEO
 $seo_title = (!empty($propiedad->seo_title)) ? ($propiedad->seo_title) : $empresa->seo_title;
 $seo_description = (!empty($propiedad->seo_description)) ? ($propiedad->seo_description) : $empresa->seo_description;
