@@ -183,46 +183,46 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
               <h5>ambientes</h5>
               <ul>
                 <?php if ($propiedad->ambientes != 0) { ?>
-                  <li> <?php echo $propiedad->ambientes ?> Ambientes</li>
+                  <li><?php echo ($propiedad->ambientes == 1) ? "1 Ambiente" : $propiedad->ambientes." ambientes" ?></li>
                 <?php } ?>
                 <?php if ($propiedad->dormitorios != 0) { ?>
-                  <li><?php echo $propiedad->dormitorios ?> Dormitorios</li>
+                  <li><?php echo ($propiedad->dormitorios == 1) ? "1 Dormitorio" : $propiedad->dormitorios." dormitorios" ?></li>
                 <?php } ?>
                 <?php if ($propiedad->cocheras != 0) { ?>
-                  <li><?php echo $propiedad->cocheras != 0 ?> Cochera</li>
+                  <li><?php echo ($propiedad->cocheras == 1) ? "Cochera" : $propiedad->cocheras." cocheras" ?></li>
                 <?php } ?>
                 <?php if ($propiedad->banios != 0) { ?>
-                  <li><?php echo $propiedad->banios != 0 ?> Baños</li>
+                  <li><?php echo ($propiedad->banios == 1) ? "Baño" : $propiedad->banios." baños" ?></li>
                 <?php } ?>
               </ul>
             <?php } ?>
             <?php if (!($propiedad->servicios_aire_acondicionado == 0 && $propiedad->servicios_internet == 0 && $propiedad->servicios_gas == 0 && $propiedad->servicios_cloacas == 0 && $propiedad->servicios_agua_corriente == 0 && $propiedad->servicios_asfalto == 0 && $propiedad->servicios_electricidad == 0 && $propiedad->servicios_telefono == 0 && $propiedad->servicios_cable == 0)) { ?>
               <h5>Servicios</h5>
               <ul>
-                <?php echo $propiedad->servicios_aire_acondicionado != 0 ? "<li>" . $propiedad->servicios_aire_acondicionado . " Aire Acondicionado</li>" : "" ?>
-                <?php echo $propiedad->servicios_internet != 0 ? "<li>" . $propiedad->servicios_internet . " WiFi</li>" : "" ?>
-                <?php echo $propiedad->servicios_gas != 0 ? "<li>" . $propiedad->servicios_gas . " Gas</li>" : "" ?>
-                <?php echo $propiedad->servicios_cloacas != 0 ? "<li>" . $propiedad->servicios_cloacas . " Cloacas</li>" : "" ?>
-                <?php echo $propiedad->servicios_agua_corriente != 0 ? "<li>" . $propiedad->servicios_agua_corriente . " Agua corriente</li>" : "" ?>
-                <?php echo $propiedad->servicios_asfalto != 0 ? "<li>" . $propiedad->servicios_asfalto . " Asfalto</li>" : "" ?>
-                <?php echo $propiedad->servicios_electricidad != 0 ? "<li>" . $propiedad->servicios_electricidad . " Electricidad</li>" : "" ?>
-                <?php echo $propiedad->servicios_telefono != 0 ? "<li>" . $propiedad->servicios_telefono . " Telefono</li>" : "" ?>
-                <?php echo $propiedad->servicios_cable != 0 ? "<li>" . $propiedad->servicios_cable . " Cable</li>" : "" ?>
+                <?php echo $propiedad->servicios_aire_acondicionado != 0 ? "<li>Aire Acondicionado</li>" : "" ?>
+                <?php echo $propiedad->servicios_internet != 0 ? "<li>WiFi</li>" : "" ?>
+                <?php echo $propiedad->servicios_gas != 0 ? "<li>Gas</li>" : "" ?>
+                <?php echo $propiedad->servicios_cloacas != 0 ? "<li>Cloacas</li>" : "" ?>
+                <?php echo $propiedad->servicios_agua_corriente != 0 ? "<li>Agua corriente</li>" : "" ?>
+                <?php echo $propiedad->servicios_asfalto != 0 ? "<li>Asfalto</li>" : "" ?>
+                <?php echo $propiedad->servicios_electricidad != 0 ? "<li>Electricidad</li>" : "" ?>
+                <?php echo $propiedad->servicios_telefono != 0 ? "<li>Teléfono</li>" : "" ?>
+                <?php echo $propiedad->servicios_cable != 0 ? "<li>TV Cable</li>" : "" ?>
               </ul>
             <?php } ?>
             <?php if (!($propiedad->patio == 0 && $propiedad->terraza == 0 && $propiedad->parrilla == 0 && $propiedad->piscina == 0 && $propiedad->gimnasio == 0 && $propiedad->living_comedor == 0 && $propiedad->lavadero == 0 && $propiedad->sala_juegos == 0 && $propiedad->balcon == 0 && $propiedad->ascensor == 0)) { ?>
               <h5>Amenities</h5>
               <ul>
-                <?php echo $propiedad->patio != 0 ? "<li>" . $propiedad->patio . " Patio</li>" : "" ?>
-                <?php echo $propiedad->terraza != 0 ? "<li>" . $propiedad->terraza . " Terraza</li>" : "" ?>
-                <?php echo $propiedad->parrilla != 0 ? "<li>" . $propiedad->parrilla . " Parrilla</li>" : "" ?>
-                <?php echo $propiedad->piscina != 0 ? "<li>" . $propiedad->piscina . " Piscina</li>" : "" ?>
-                <?php echo $propiedad->gimnasio != 0 ? "<li>" . $propiedad->gimnasio . " Gimnasio</li>" : "" ?>
-                <?php echo $propiedad->living_comedor != 0 ? "<li>" . $propiedad->living_comedor . " Living comedor</li>" : "" ?>
-                <?php echo $propiedad->lavadero != 0 ? "<li>" . $propiedad->lavadero . " Lavadero</li>" : "" ?>
-                <?php echo $propiedad->sala_juegos != 0 ? "<li>" . $propiedad->sala_juegos . " Sala de juegos</li>" : "" ?>
-                <?php echo $propiedad->balcon != 0 ? "<li>" . $propiedad->balcon . " Balcon</li>" : "" ?>
-                <?php echo $propiedad->ascensor != 0 ? "<li>" . $propiedad->ascensor . " Ascensor</li>" : "" ?>
+                <?php echo $propiedad->patio != 0 ? "<li>Patio</li>" : "" ?>
+                <?php echo $propiedad->terraza != 0 ? "<li>Terraza</li>" : "" ?>
+                <?php echo $propiedad->parrilla != 0 ? "<li>Parrilla</li>" : "" ?>
+                <?php echo $propiedad->piscina != 0 ? "<li>Piscina</li>" : "" ?>
+                <?php echo $propiedad->gimnasio != 0 ? "<li>Gimnasio</li>" : "" ?>
+                <?php echo $propiedad->living_comedor != 0 ? "<li>Living comedor</li>" : "" ?>
+                <?php echo $propiedad->lavadero != 0 ? "<li>Lavadero</li>" : "" ?>
+                <?php echo $propiedad->sala_juegos != 0 ? "<li>Sala de juegos</li>" : "" ?>
+                <?php echo $propiedad->balcon != 0 ? "<li>Balcón</li>" : "" ?>
+                <?php echo $propiedad->ascensor != 0 ? "<li>Ascensor</li>" : "" ?>
               </ul>
             <?php } ?>
             <h5>adicionales</h5>
