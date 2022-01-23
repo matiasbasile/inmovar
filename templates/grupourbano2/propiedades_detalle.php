@@ -174,6 +174,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
             <?php } ?>
             <?php if (($propiedad->latitud != 0) && ($propiedad->longitud != 0)) { ?>
               <h4>Donde se encuentra</h4>
+              <p><?php echo $propiedad->direccion_completa.((!empty($propiedad->direccion_completa)) ? ". " : "").$propiedad->localidad ?></p>
               <div class="map mb-3">
                 <div class="tab-cont" id="map"></div>
               </div>
