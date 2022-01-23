@@ -41,44 +41,42 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
       <div class="row">
         <div class="col-md-9">
           <div class="row">
-            <?php if (isset($propiedad)) { ?>
-              <?php if (sizeof($propiedad->images) > 0) { ?>
-                <div class="col-md-12 order-lg-2 mb-4 mb-lg-0">
-                  <div class="img-listing">
-                    <div class="row">
-                      <div class="col-md-9">
-                        <?php $count = 0; ?>
-                        <?php foreach ($propiedad->images as $images) { ?>
-                          <?php if ($count == 0) { ?>
-                            <a href="<?php echo $images ?>" class="fancybox" data-fancybox-group="gallery"><img src="<?php echo $images ?>" alt="img"></a>
-                          <?php } else { ?>
-                            <a href="<?php echo $images ?>" class="fancybox dn" data-fancybox-group="gallery"><img src="<?php echo $images ?>" alt="img"></a>
-                          <?php } ?>
-                          <?php $count++; ?>
+            <?php if (sizeof($propiedad->images) > 0) { ?>
+              <div class="col-md-12 order-lg-2 mb-4 mb-lg-0">
+                <div class="img-listing">
+                  <div class="row">
+                    <div class="col-md-9">
+                      <?php $count = 0; ?>
+                      <?php foreach ($propiedad->images as $images) { ?>
+                        <?php if ($count == 0) { ?>
+                          <a href="<?php echo $images ?>" class="fancybox" data-fancybox-group="gallery"><img src="<?php echo $images ?>" alt="img"></a>
+                        <?php } else { ?>
+                          <a href="<?php echo $images ?>" class="fancybox dn" data-fancybox-group="gallery"><img src="<?php echo $images ?>" alt="img"></a>
                         <?php } ?>
-                        <a href="assets/images/img10.jpg" data-fancybox-group="gallery" class="fancybox view-more-photos"><i class="fa fa-camera" aria-hidden="true"></i> See Photos</a>
-                      </div>
-                      <div class="col-md-3 mobile-hide">
-                        <?php $cantidad = sizeof($propiedad->images); ?>
-                        <?php $count = 0; ?>
-                        <?php foreach ($propiedad->images as $images) { ?>
-                          <div class="d-block mb-4"><a href="<?php echo $images ?>" class="fancybox" data-fancybox-group="gallery"><img src="<?php echo $images ?>" alt="img"></a></div>
-                          <?php if ($count == 1) { ?>
-                            <div class="d-block position-relative">
-                              <img src="<?php echo $images ?>" alt="img">
-                              <div class="img-listing-more">
-                                <p><a href="<?php echo $images ?>" class="fancybox" data-fancybox-group="gallery">+ <?php echo sizeof($propiedad->images) ?> fotos más <br>para ver</a></p>
-                              </div>
+                        <?php $count++; ?>
+                      <?php } ?>
+                      <a href="assets/images/img10.jpg" data-fancybox-group="gallery" class="fancybox view-more-photos"><i class="fa fa-camera" aria-hidden="true"></i> See Photos</a>
+                    </div>
+                    <div class="col-md-3 mobile-hide">
+                      <?php $cantidad = sizeof($propiedad->images); ?>
+                      <?php $count = 0; ?>
+                      <?php foreach ($propiedad->images as $images) { ?>
+                        <div class="d-block mb-4"><a href="<?php echo $images ?>" class="fancybox" data-fancybox-group="gallery"><img src="<?php echo $images ?>" alt="img"></a></div>
+                        <?php if ($count == 1) { ?>
+                          <div class="d-block position-relative">
+                            <img src="<?php echo $images ?>" alt="img">
+                            <div class="img-listing-more">
+                              <p><a href="<?php echo $images ?>" class="fancybox" data-fancybox-group="gallery">+ <?php echo sizeof($propiedad->images) ?> fotos más <br>para ver</a></p>
                             </div>
-                          <?php break;
-                          } ?>
-                          <?php $count++; ?>
-                        <?php } ?>
-                      </div>
+                          </div>
+                        <?php break;
+                        } ?>
+                        <?php $count++; ?>
+                      <?php } ?>
                     </div>
                   </div>
                 </div>
-              <?php } ?>
+              </div>
             <?php } ?>
 
             <div class="col-md-12">
@@ -235,8 +233,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
               <li>Apto Crédito: <span><?php echo $propiedad->apto_banco == 1 ? "Si" : "No" ?></span></li>
               <li>Acepta Permuta: <span><?php echo $propiedad->acepta_permuta == 1 ? "Si" : "No" ?></span></li>
             </ul>
-            <?php if ($propiedad->servicios_escritura == 0 && $propiedad->servicios_plano_obra == 0 && $propiedad->servicios_reglamento == 0 && $propiedad->servicios_plano_ph == 0 && $propiedad->documentacion_escritura == 0 && $propiedad->documentacion_estado_parcelario == 0 && $propiedad->documentacion_impuesto == 0 && $propiedad->documentacion_coti == 0) { ?>
-            <?php } else { ?>
+            <?php if (!($propiedad->servicios_escritura == 0 && $propiedad->servicios_plano_obra == 0 && $propiedad->servicios_reglamento == 0 && $propiedad->servicios_plano_ph == 0 && $propiedad->documentacion_escritura == 0 && $propiedad->documentacion_estado_parcelario == 0 && $propiedad->documentacion_impuesto == 0 && $propiedad->documentacion_coti == 0)) { ?>
               <h4>Documentación de la propiedad</h4>
               <div class="right-sidebar">
                 <h5>DOCUMENTACIÓN</h5>
@@ -308,8 +305,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
                 </ul>
               </div>
             <?php } ?>
-            <?php if ($propiedad->plazo_reserva == 0 && $propiedad->plazo_boleto == 0 && $propiedad->plazo_escritura == 0) {
-            } else { ?>
+            <?php if (!($propiedad->plazo_reserva == 0 && $propiedad->plazo_boleto == 0 && $propiedad->plazo_escritura == 0)) { ?>
               <div class="right-sidebar">
                 <h5>forma de operación</h5>
                 <ul class="dot-icon pb-0">
@@ -327,76 +323,9 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
             <?php } ?>
           </div>
         </div>
-        <div class="col-md-3">
-          <?php if ($propiedad->id_usuario != 0) { ?>
-            <?php $usuario = $usuario_model->get($propiedad->id_usuario); ?>
-            <?php if ($usuario->aparece_web != 0) { ?>
-              <div class="right-sidebar">
-                <?php if (!empty($usuario->path)) { ?>
-                  <div class="sidebar-img">
-                    <img src="<?php echo $usuario->path ?>" alt="img">
-                    <div class="sidebar-logo"><img src="assets/images/logo-icon.jpg" alt="img"></div>
-                  </div>
-                <?php } ?>
-                <?php if (!empty($usuario->nombre)) { ?>
-                  <h2><?php echo $usuario->nombre ?></h2>
-                <?php } ?>
-                <?php if (!empty($usuario->cargo)) { ?>
-                  <h5><?php echo $usuario->cargo ?></h5>
-                <?php } ?>
-                <!-- <div class="stars-rating">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <p>(45 Comentarios)</p>
-                </div> -->
-                <div class="social">
-                  <?php if (!empty($usuario->facebook)) { ?>
-                    <a href="<?php echo $usuario->facebook ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                  <?php } ?>
-                  <?php if (!empty($usuario->instagram)) { ?>
-                    <a href="<?php echo $usuario->instagram ?>"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                  <?php } ?>
-                </div>
-                <?php $nombre = explode(" ", $usuario->nombre) ?>
-                <a href="tel:<?php echo $usuario->telefono ?>" class="btn btn-primary btn-block"><i class="fa fa-phone mr-3" aria-hidden="true"></i> llamá a <?php echo $nombre[0] ?></a>
-              </div>
-            <?php } ?>
-          <?php } ?>
-          <div class="right-sidebar">
-            <input type="hidden" name="para" id="contacto_para" value="<?php echo (isset($contacto_para) ? $contacto_para : $empresa->email) ?>" />
-            <input type="hidden" name="id_usuario" id="contacto_id_usuario" value="<?php echo (isset($id_usuario) ? $id_usuario : 0) ?>" />
-            <input type="hidden" name="id_propiedad" id="contacto_propiedad" value="<?php echo (isset($propiedad) ? $propiedad->id : 0) ?>" />
-            <div class="sidebar-arrow"><img src="assets/images/sidebar-arrow.png" alt="img"></div>
-            <h2>comunicate ahora</h2>
-            <h5 class="mb-3">por estas propiedades</h5>
-            <form onsubmit="enviar_contacto()">
-              <div class="form-group">
-                <input id="contacto_nombre" type="text" class="form-control" placeholder="Nombre">
-              </div>
-              <div class="form-group">
-                <input id="contacto_telefono" type="number" class="form-control" placeholder="WhatsApp (sin 0 ni 15)">
-              </div>
-              <div class="form-group">
-                <input id="contacto_email" type="email" class="form-control" placeholder="Email">
-              </div>
-              <div class="form-group">
-                <textarea id="contacto_mensaje" class="form-control" placeholder="Estoy interesado en Departamento en Venta en La Plata en 60 e/ 20 y 21, Piso 1 Depto 5, La Plata"></textarea>
-              </div>
-              <div class="form-group">
-                <button type="submit" class="btn btn-success btn-block"><i class="fa fa-whatsapp mr-3" aria-hidden="true"></i> enviar por whatsapp</button>
-              </div>
-              <div class="form-group mb-0">
-                <button type="submit" class="btn btn-secondary btn-block"><i class="fa fa-envelope-o mr-3" aria-hidden="true"></i> enviar por email</button>
-              </div>
-            </form>
-          </div>
-          <div class="d-block">
-            <a href="" onClick="history.go(-1); return false;" class="btn btn-outline-secondary btn-block style-two"><i class="fa fa-undo mr-3" aria-hidden="true"></i> regresar a los resultados</a>
-          </div>
-        </div>
+
+        <?php include("includes/propiedad/sidebar.php"); ?>
+        
       </div>
     </div>
   </section>
@@ -455,70 +384,6 @@ $(function() {
     }
   });
 });
-
-function enviar_contacto() {
-  if (enviando == 1) return;
-  var nombre = $("#contacto_nombre").val();
-  var email = $("#contacto_email").val();
-  var telefono = $("#contacto_telefono").val();
-  var mensaje = $("#contacto_mensaje").val();
-  var para = $("#contacto_para").val();
-  var id_propiedad = $("#contacto_propiedad").val();
-  var id_usuario = $("#contacto_id_usuario").val();
-  if (isEmpty(para)) para = "<?php echo $empresa->email ?>";
-
-  if (isEmpty(nombre) || nombre == "Nombre") {
-    alert("Por favor ingrese un nombre");
-    $("#contacto_nombre").focus();
-    return false;
-  }
-  if (!validateEmail(email)) {
-    alert("Por favor ingrese un email valido");
-    $("#contacto_email").focus();
-    return false;
-  }
-  if (isEmpty(telefono) || telefono == "Telefono") {
-    alert("Por favor ingrese un telefono");
-    $("#contacto_telefono").focus();
-    return false;
-  }
-  if (isEmpty(mensaje) || mensaje == "Mensaje") {
-    alert("Por favor ingrese un mensaje");
-    $("#contacto_mensaje").focus();
-    return false;
-  }
-
-  $("#contacto_submit").attr('disabled', 'disabled');
-  var datos = {
-    "nombre": nombre,
-    "email": email,
-    "mensaje": mensaje,
-    "telefono": telefono,
-    "para": para,
-    "id_propiedad": id_propiedad,
-    <?php if (isset($propiedad) && $propiedad->id_empresa != $empresa->id) { ?> "id_empresa_relacion": "<?php echo $propiedad->id_empresa ?>",
-    <?php } ?> "id_usuario": id_usuario,
-    "id_empresa": ID_EMPRESA,
-    "id_origen": <?php echo (isset($id_origen) ? $id_origen : 1); ?>,
-  }
-  enviando = 1;
-  $.ajax({
-    "url": "/admin/consultas/function/enviar/",
-    "type": "post",
-    "dataType": "json",
-    "data": datos,
-    "success": function(r) {
-      if (r.error == 0) {
-        window.location.href = "<?php echo mklink("web/gracias/") ?>";
-      } else {
-        alert("Ocurrio un error al enviar su email. Disculpe las molestias");
-        $("#contacto_submit").removeAttr('disabled');
-        enviando = 0;
-      }
-    }
-  });
-  return false;
-}
 </script>
 
 <?php 
