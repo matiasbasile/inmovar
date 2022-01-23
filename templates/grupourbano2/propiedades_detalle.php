@@ -8,6 +8,7 @@ $id_empresa = isset($get_params["em"]) ? $get_params["em"] : $empresa->id;
 $propiedad = $propiedad_model->get($id, array(
   "id_empresa" => $id_empresa,
   "id_empresa_original" => $empresa->id,
+  "buscar_total_visitas"=>1,
 ));
 
 if (($propiedad === FALSE || !isset($propiedad->nombre) || $propiedad->activo == 0) && !isset($get_params["preview"])) {
