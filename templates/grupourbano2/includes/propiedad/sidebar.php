@@ -1,40 +1,51 @@
+<?php 
+// Si no tiene asignado un usuario, tenemos que asignarle aleatoriamente uno
+if (empty($propiedad->id_usuario)) {
+  $usuarios = $usuario_model->get_list(array(
+    "activo"=>1,
+    "offset"=>99999,
+    "aparece_web"=>1,
+  ));
+  $rand = array_rand($usuarios);
+  $usuario = $usuarios[$rand];
+  $propiedad->id_usuario = $usuario->id;
+}
+?>
 <div class="col-md-3">
-  <?php if ($propiedad->id_usuario != 0) { ?>
-    <?php $usuario = $usuario_model->get($propiedad->id_usuario); ?>
-    <?php if ($usuario->aparece_web != 0) { ?>
-      <div class="right-sidebar">
-        <?php if (!empty($usuario->path)) { ?>
-          <div class="sidebar-img">
-            <img src="<?php echo $usuario->path ?>" alt="img">
-            <div class="sidebar-logo"><img src="assets/images/logo-icon.jpg" alt="img"></div>
-          </div>
-        <?php } ?>
-        <?php if (!empty($usuario->nombre)) { ?>
-          <h2><?php echo $usuario->nombre ?></h2>
-        <?php } ?>
-        <?php if (!empty($usuario->cargo)) { ?>
-          <h5><?php echo $usuario->cargo ?></h5>
-        <?php } ?>
-        <!-- <div class="stars-rating">
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <p>(45 Comentarios)</p>
-        </div> -->
-        <div class="social">
-          <?php if (!empty($usuario->facebook)) { ?>
-            <a href="<?php echo $usuario->facebook ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-          <?php } ?>
-          <?php if (!empty($usuario->instagram)) { ?>
-            <a href="<?php echo $usuario->instagram ?>"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-          <?php } ?>
+  <?php $usuario = $usuario_model->get($propiedad->id_usuario); ?>
+  <?php if ($usuario->aparece_web != 0) { ?>
+    <div class="right-sidebar">
+      <?php if (!empty($usuario->path)) { ?>
+        <div class="sidebar-img">
+          <img src="<?php echo $usuario->path ?>" alt="img">
+          <div class="sidebar-logo"><img src="assets/images/logo-icon.jpg" alt="img"></div>
         </div>
-        <?php $nombre = explode(" ", $usuario->nombre) ?>
-        <a href="tel:<?php echo $usuario->telefono ?>" class="btn btn-primary btn-block"><i class="fa fa-phone mr-3" aria-hidden="true"></i> llamá a <?php echo $nombre[0] ?></a>
+      <?php } ?>
+      <?php if (!empty($usuario->nombre)) { ?>
+        <h2><?php echo $usuario->nombre ?></h2>
+      <?php } ?>
+      <?php if (!empty($usuario->cargo)) { ?>
+        <h5><?php echo $usuario->cargo ?></h5>
+      <?php } ?>
+      <!-- <div class="stars-rating">
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <p>(45 Comentarios)</p>
+      </div> -->
+      <div class="social">
+        <?php if (!empty($usuario->facebook)) { ?>
+          <a href="<?php echo $usuario->facebook ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+        <?php } ?>
+        <?php if (!empty($usuario->instagram)) { ?>
+          <a href="<?php echo $usuario->instagram ?>"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+        <?php } ?>
       </div>
-    <?php } ?>
+      <?php $nombre = explode(" ", $usuario->nombre) ?>
+      <a href="tel:<?php echo $usuario->telefono ?>" class="btn btn-primary btn-block"><i class="fa fa-phone mr-3" aria-hidden="true"></i> llamá a <?php echo $nombre[0] ?></a>
+    </div>
   <?php } ?>
   <div class="right-sidebar">
     <input type="hidden" name="para" id="contacto_para" value="<?php echo (isset($contacto_para) ? $contacto_para : $empresa->email) ?>" />
