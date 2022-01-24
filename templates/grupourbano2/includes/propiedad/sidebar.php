@@ -4,9 +4,8 @@ if (empty($propiedad->id_usuario)) {
   $usuarios = $usuario_model->get_list(array(
     "activo"=>1,
     "offset"=>99999,
-    "aparece_web"=>1,
+    "recibe_notificaciones"=>1,
   ));
-  print_r($usuarios);
   $rand = array_rand($usuarios);
   $usuario = $usuarios[$rand];
   $propiedad->id_usuario = $usuario->id;
@@ -14,7 +13,7 @@ if (empty($propiedad->id_usuario)) {
 ?>
 <div class="col-md-3">
   <?php $usuario = $usuario_model->get($propiedad->id_usuario); ?>
-  <?php if ($usuario->aparece_web != 0) { ?>
+  <?php if ($usuario->recibe_notificaciones != 0) { ?>
     <div class="right-sidebar">
       <?php if (!empty($usuario->path)) { ?>
         <div class="sidebar-img">
