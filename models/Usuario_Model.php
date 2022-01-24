@@ -240,6 +240,7 @@ class Usuario_Model {
     $limit = isset($config["limit"]) ? $config["limit"] : 0;
     $offset = isset($config["offset"]) ? $config["offset"] : 6;
     $activo = isset($config["activo"]) ? $config["activo"] : 1;
+    $aparece_web = isset($config["aparece_web"]) ? $config["aparece_web"] : -1;
     $id_perfil = isset($config["id_perfil"]) ? $config["id_perfil"] : 0;
     $usar_get = isset($config["usar_get"]) ? $config["usar_get"] : 0;
     $id_localidad = isset($config["id_localidad"]) ? $config["id_localidad"] : 0;
@@ -275,6 +276,7 @@ class Usuario_Model {
     $sql.= "WHERE 1=1 ";
     $sql.= "AND A.id_empresa = $this->id_empresa ";
     if ($activo != -1) $sql.= "AND A.activo = $activo ";
+    if ($aparece_web != -1) $sql.= "AND A.aparece_web = $aparece_web ";
     if (!empty($id_perfil)) $sql.= "AND A.id_perfiles = $id_perfil ";
     if (!empty($id_localidad)) $sql.= "AND EXISTS (SELECT * FROM turnos_servicios TS WHERE A.id_empresa = TS.id_empresa AND A.id = TS.id_usuario AND TS.id_localidad = $id_localidad ) ";
 
