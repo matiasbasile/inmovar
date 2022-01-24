@@ -6,6 +6,7 @@ if (empty($propiedad->id_usuario)) {
     "offset"=>99999,
     "aparece_web"=>1,
   ));
+  print_r($usuarios);
   $rand = array_rand($usuarios);
   $usuario = $usuarios[$rand];
   $propiedad->id_usuario = $usuario->id;
