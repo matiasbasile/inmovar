@@ -49,13 +49,13 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
                       <?php $count = 0; ?>
                       <?php foreach ($propiedad->images as $images) { ?>
                         <?php if ($count == 0) { ?>
-                          <a href="<?php echo $images ?>" class="fancybox adaptable-img-detail" data-fancybox-group="gallery"><img src="<?php echo $images ?>" alt="img"></a>
+                          <a href="<?php echo $images ?>" class="fancybox" data-fancybox-group="gallery"><img class="adaptable-img-detail" src="<?php echo $images ?>" alt="img"></a>
                         <?php } else { ?>
-                          <a href="<?php echo $images ?>" class="fancybox adaptable-img-detail dn" data-fancybox-group="gallery"><img src="<?php echo $images ?>" alt="img"></a>
+                          <a href="<?php echo $images ?>" class="fancybox dn" data-fancybox-group="gallery"><img class="adaptable-img-detail" src="<?php echo $images ?>" alt="img"></a>
                         <?php } ?>
                         <?php $count++; ?>
                       <?php } ?>
-                      <a href="assets/images/img10.jpg" data-fancybox-group="gallery" class="fancybox view-more-photos"><i class="fa fa-camera" aria-hidden="true"></i> See Photos</a>
+                      <a class="view-more-photos"><i class="fa fa-camera" aria-hidden="true"></i> Ver más</a>
                     </div>
                     <div class="col-md-3 mobile-hide">
                       <?php $cantidad = sizeof($propiedad->images); ?>
