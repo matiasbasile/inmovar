@@ -912,7 +912,11 @@ class Propiedad_Model {
     
     // Formamos el precio (si se debe mostrar o no)
     if ($p->publica_precio == 1) {
-      $p->precio = $p->moneda." ".number_format($p->precio_final,0,"",".");
+      if ($p->precio_final == 0) {
+        $p->precio = "Consultar";
+      } else {
+        $p->precio = $p->moneda." ".number_format($p->precio_final,0,"",".");
+      }
     } else {
       $p->precio = "Consultar";
     }

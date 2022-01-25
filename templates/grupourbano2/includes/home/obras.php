@@ -17,7 +17,7 @@ if (!empty($obras)) { ?>
               <img class="adaptable-img-2" src="<?php echo $countri->imagen; ?>">
             </a>
             <div class="work-tags"><?php echo $countri->tipo_inmueble ?></div>
-            <div class="work-price"><?php echo (empty($countri->precio) ? "Consultar" : $countri->precio) ?></div>
+            <div class="work-price"><?php echo $countri->precio ?></div>
           </div>
           <div class="work-info">
             <h6>
