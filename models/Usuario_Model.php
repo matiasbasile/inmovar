@@ -350,12 +350,7 @@ class Usuario_Model {
   private function encoding($e) {
     $e->nombre = $this->encod($e->nombre);
     $e->cargo = $this->encod($e->cargo);
-
-    if (isset($e->celular)) {
-      preg_match_all('/\d+/', $e->celular, $matches);  
-      $e->celular_f = $matches[0];
-    }
-    
+    $e->celular_f = preg_replace('/[^0-9]/', '', $e->celular);
     return $e;
   }
 
