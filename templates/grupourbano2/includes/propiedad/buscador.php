@@ -1,6 +1,7 @@
 <a href="javascript:void(0)" rel="nofollow" class="btn btn-primary btn-block mb-3 form-toggle style-two mt-5">AJUSTAR BÚSQUEDA</a>
 <form onsubmit="return filtrar(this)" method="get" class="form-responsive mt-5">
   <div class="form-block">
+    <input type="hidden" class="base_url" value="<?php echo mklink("propiedades/") ?>" />
     <div class="form">
       <select class="form-control filter_tipo_operacion">
         <option value="0">OPERACIÓN</option>
@@ -45,10 +46,14 @@
   <div class="page-heading mt-5">
     <div class="row justify-content-between">
       <div class="col-md-7">
-        <select class="form-control form-primary">
-          <option>propiedades destacadas</option>
+        <select name="orden" class="form-control form-primary">
+          <option <?php echo($vc_orden == 4)?"selected":"" ?> value="destacados">Propiedades Destacadas</option>
+          <option <?php echo($vc_orden == 2)?"selected":"" ?> value="barato">Precio Menor a Mayor</option>
+          <option <?php echo($vc_orden == 1)?"selected":"" ?> value="caro">Precio Mayor a Menor</option>
         </select>
-        <a href="<?php echo mklink("web/mapa") ?>" class="btn btn-primary btn-sm"><i class="fa fa-map-marker mr-2" aria-hidden="true"></i> Ver en mapa</a>
+        <a onclick="buscar_mapa(this)" href="javascript:void(0)" rel="nofollow" class="btn btn-primary btn-sm">
+          <i class="fa fa-map-marker mr-2" aria-hidden="true"></i> Ver en mapa
+        </a>
       </div>
       <div class="col-md-5 text-right">
         <div class="custom-check">
