@@ -122,7 +122,7 @@ function validar() {
 function enviar_whatsapp() {
   try {
     var datos = validar();
-    datos.id_origen = 1;
+    datos.id_origen = 27;
     $.ajax({
       "url": "/admin/consultas/function/enviar/",
       "type": "post",
