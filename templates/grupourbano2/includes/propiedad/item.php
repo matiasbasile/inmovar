@@ -26,7 +26,7 @@ function item($r,$config = array()) {
           <?php } ?>
           <?php if ($r->ambientes != 0) { ?>
             <div class="neighborhoods-info">
-              <h6><?php echo $r->ambientes ?> Baños</h6>
+              <h6><?php echo (!empty($r->ambientes)) ? $r->ambientes : "-" ?> Baños</h6>
               <img src="assets/images/icon12.png" alt="img">
             </div>
           <?php } ?>

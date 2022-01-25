@@ -1,32 +1,35 @@
 <?php  ?>
 <footer>
-  <div class="footer-top padding-default">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3">
-          <h5>VENTAS Y ALQUILERES</h5>
-          <p><a href="#0"><i class="fa fa-phone mr-2" aria-hidden="true"></i> (0221) 427-1544 /45</a></p>
-          <p><a href="#0"><i class="fa fa-envelope-o mr-2"></i> info@grupo-urbano.com.ar</a></p>
-        </div>
-        <div class="col-md-3">
-          <h5>ADMINISTRACIÓN </h5>
-          <p><i class="fa fa-whatsapp mr-2" aria-hidden="true"></i> +54 (221) 463-7615</p>
-          <p><i class="fa fa-envelope-o mr-2"></i> administracion@grupo-urbano.com.ar</p>
-        </div>
-        <div class="col-md-3">
-          <h5>CONSORCIOS</h5>
-          <p><i class="fa fa-whatsapp mr-2" aria-hidden="true"></i> +54 (221) 463-7615</p>
-          <p><i class="fa fa-whatsapp mr-2" aria-hidden="true"></i> +54 (221) 437-6487 (Urgencias)</p>
-          <p><i class="fa fa-envelope-o mr-2"></i> consorcios@grupo-urbano.com.ar</p>
-        </div>
-        <div class="col-md-3">
-          <h5>DESARROLLOS</h5>
-          <p><i class="fa fa-whatsapp mr-2" aria-hidden="true"></i> +54 (221) 637-2369</p>
-          <p><i class="fa fa-envelope-o mr-2"></i> pablog@grupo-urbano.com.ar</p>
+
+  <?php if (isset($nombre_pagina) && $nombre_pagina == "home") { ?>
+    <div class="footer-top padding-default">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <h5>VENTAS Y ALQUILERES</h5>
+            <p><a rel="nofollow" href="tel:5492214271544"><i class="fa fa-phone mr-2" aria-hidden="true"></i> (0221) 427-1544 /45</a></p>
+            <p><a rel="nofollow" href="mailto:info@grupo-urbano.com.ar"><i class="fa fa-envelope-o mr-2"></i> info@grupo-urbano.com.ar</a></p>
+          </div>
+          <div class="col-md-3">
+            <h5>ADMINISTRACIÓN </h5>
+            <p><a rel="nofollow" href="tel:5492214637615"><i class="fa fa-whatsapp mr-2" aria-hidden="true"></i> +54 (221) 463-7615</a></p>
+            <p><a rel="nofollow" href="mailto:administracion@grupo-urbano.com.ar"><i class="fa fa-envelope-o mr-2"></i> administracion@grupo-urbano.com.ar</a></p>
+          </div>
+          <div class="col-md-3">
+            <h5>CONSORCIOS</h5>
+            <p><a rel="nofollow" href="tel:5492214637615"><i class="fa fa-whatsapp mr-2" aria-hidden="true"></i> +54 (221) 463-7615</a></p>
+            <p><a rel="nofollow" href="tel:5492214376487"><i class="fa fa-whatsapp mr-2" aria-hidden="true"></i> +54 (221) 437-6487 (Urgencias)</a></p>
+            <p><a rel="nofollow" href="mailto:consorcios@grupo-urbano.com.ar"><i class="fa fa-envelope-o mr-2"></i> consorcios@grupo-urbano.com.ar</a></p>
+          </div>
+          <div class="col-md-3">
+            <h5>DESARROLLOS</h5>
+            <p><a rel="nofollow" href="tel:5492216372369"><i class="fa fa-whatsapp mr-2" aria-hidden="true"></i> +54 (221) 637-2369</a></p>
+            <p><a rel="nofollow" href="mailto:pablog@grupo-urbano.com.ar"><i class="fa fa-envelope-o mr-2"></i> pablog@grupo-urbano.com.ar</a></p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  <?php } ?>
 
   <div class="footer-center padding-default">
     <div class="container">
