@@ -324,7 +324,20 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
           </div>
         </div>
 
-        <?php include("includes/propiedad/sidebar.php"); ?>
+        <?php 
+        // Si no tiene asignado un usuario, tenemos que asignarle aleatoriamente uno
+        if (empty($propiedad->id_usuario)) {
+          $usuarios = $usuario_model->get_list(array(
+            "activo"=>1,
+            "offset"=>99999,
+            "recibe_notificaciones"=>1,
+          ));
+          $rand = array_rand($usuarios);
+          $usuario = $usuarios[$rand];
+          $propiedad->id_usuario = $usuario->id;
+        }
+        $usuario = $usuario_model->get($propiedad->id_usuario);
+        include("includes/propiedad/sidebar.php"); ?>
         
       </div>
     </div>

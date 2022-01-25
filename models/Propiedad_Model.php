@@ -355,6 +355,7 @@ class Propiedad_Model {
     $desde = isset($config["desde"]) ? $config["desde"] : "";
     $hasta = isset($config["hasta"]) ? $config["hasta"] : "";
     $personas = isset($config["personas"]) ? $config["personas"] : 0;
+    $id_usuario = isset($config["id_usuario"]) ? $config["id_usuario"] : 0;
     $ids_tipo_operacion = isset($config["ids_tipo_operacion"]) ? $config["ids_tipo_operacion"] : array();
 
     $view = isset($get_params["view"]) ? $get_params["view"] : 0;
@@ -423,6 +424,7 @@ class Propiedad_Model {
         "antiguedad"=>$antiguedad,
         "ids_tipo_operacion"=>$ids_tipo_operacion,
         "order_empresa"=>$order_empresa,
+        "id_usuario"=>$id_usuario,
       );
 
       if ($moneda == "USD") {

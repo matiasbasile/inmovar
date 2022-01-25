@@ -1,18 +1,4 @@
-<?php 
-// Si no tiene asignado un usuario, tenemos que asignarle aleatoriamente uno
-if (empty($propiedad->id_usuario)) {
-  $usuarios = $usuario_model->get_list(array(
-    "activo"=>1,
-    "offset"=>99999,
-    "recibe_notificaciones"=>1,
-  ));
-  $rand = array_rand($usuarios);
-  $usuario = $usuarios[$rand];
-  $propiedad->id_usuario = $usuario->id;
-}
-?>
 <div class="col-md-3">
-  <?php $usuario = $usuario_model->get($propiedad->id_usuario); ?>
   <?php if ($usuario->recibe_notificaciones != 0) { ?>
     <div class="right-sidebar">
       <?php if (!empty($usuario->path)) { ?>
@@ -44,7 +30,7 @@ if (empty($propiedad->id_usuario)) {
         <?php } ?>
       </div>
       <?php $nombre = explode(" ", $usuario->nombre) ?>
-      <a href="tel:<?php echo $usuario->telefono ?>" class="btn btn-primary btn-block"><i class="fa fa-phone mr-3" aria-hidden="true"></i> llamá a <?php echo $nombre[0] ?></a>
+      <a href="tel:<?php echo $usuario->celular_f ?>" class="btn btn-primary btn-block"><i class="fa fa-phone mr-3" aria-hidden="true"></i> llamá a <?php echo $nombre[0] ?></a>
     </div>
   <?php } ?>
   <div class="right-sidebar">
