@@ -51,7 +51,7 @@ $nombre_pagina = "nosotros";
         </div>
         <div class="form-block mt-5">
           <a href="#0" class="btn btn-primary btn-block mb-3 form-toggle style-two">AJUSTAR BÚSQUEDA</a>
-          <form onsubmit="return filtrar(this)" method="get">
+          <form class="form" onsubmit="return filtrar(this)" method="get">
             <input type="hidden" class="base_url" value="<?php echo mklink("propiedades/") ?>" />
             <select class="form-control filter_tipo_operacion">
               <option value="0">Operación</option>
