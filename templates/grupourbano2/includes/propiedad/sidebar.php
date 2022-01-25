@@ -52,9 +52,11 @@
       <div class="form-group">
         <textarea id="contacto_mensaje" class="form-control">Estoy interesado en <?php echo $propiedad->nombre ?> [COD: <?php echo $propiedad->codigo ?>].</textarea>
       </div>
-      <div class="form-group">
-        <button onclick="enviar_whatsapp()" type="button" class="btn contacto_submit btn-success btn-block"><i class="fa fa-whatsapp mr-3" aria-hidden="true"></i> enviar por whatsapp</button>
-      </div>
+      <?php if (!empty($usuario->celular_f)) { ?>
+        <div class="form-group">
+          <button onclick="enviar_whatsapp()" type="button" class="btn contacto_submit btn-success btn-block"><i class="fa fa-whatsapp mr-3" aria-hidden="true"></i> enviar por whatsapp</button>
+        </div>
+      <?php } ?>
       <div class="form-group mb-0">
         <button onclick="enviar_email()" type="button" class="btn contacto_submit btn-secondary btn-block"><i class="fa fa-envelope-o mr-3" aria-hidden="true"></i> enviar por email</button>
       </div>
