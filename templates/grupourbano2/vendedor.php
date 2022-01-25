@@ -77,60 +77,9 @@ $nombre_pagina = "nosotros";
           </form>
         </div>
       </div>
-      <div class="col-md-3">
-        <?php if ($usuario->aparece_web != 0) { ?>
-          <div class="right-sidebar">
-            <?php if (!empty($usuario->path)) { ?>
-              <div class="sidebar-img">
-                <img src="<?php echo $usuario->path ?>" alt="img">
-                <div class="sidebar-logo"><img src="assets/images/logo-icon.jpg" alt="img"></div>
-              </div>
-            <?php } ?>
-            <?php if (!empty($usuario->nombre)) { ?>
-              <h2><?php echo $usuario->nombre ?></h2>
-            <?php } ?>
-            <?php if (!empty($usuario->cargo)) { ?>
-              <h5><?php echo $usuario->cargo ?></h5>
-            <?php } ?>
-            <div class="social">
-              <?php if (!empty($usuario->facebook)) { ?>
-                <a href="<?php echo $usuario->facebook ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-              <?php } ?>
-              <?php if (!empty($usuario->instagram)) { ?>
-                <a href="<?php echo $usuario->instagram ?>"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-              <?php } ?>
-            </div>
-            <?php $nombre = explode(" ", $usuario->nombre) ?>
-            <a href="tel:<?php echo $usuario->telefono ?>" class="btn btn-primary btn-block"><i class="fa fa-phone mr-3" aria-hidden="true"></i> llamá a <?php echo $nombre[0] ?></a>
-          </div>
-        <?php } ?>
 
-        <div class="right-sidebar">
-          <div class="sidebar-arrow"><img src="assets/images/sidebar-arrow.png" alt="img"></div>
-          <h2>comunicate ahora</h2>
-          <h5 class="mb-3">por estas propiedades</h5>
-          <form onsubmit="enviar_contacto()">
-            <div class="form-group">
-              <input type="email" class="form-control" placeholder="Nombre">
-            </div>
-            <div class="form-group">
-              <input type="email" class="form-control" placeholder="WhatsApp (sin 0 ni 15)">
-            </div>
-            <div class="form-group">
-              <input type="email" class="form-control" placeholder="Email">
-            </div>
-            <div class="form-group">
-              <textarea class="form-control" placeholder="Escribir mensaje"></textarea>
-            </div>
-            <div class="form-group">
-              <button type="submit" class="btn btn-success btn-block"><i class="fa fa-whatsapp mr-3" aria-hidden="true"></i> enviar por whatsapp</button>
-            </div>
-            <div class="form-group mb-0">
-              <button type="submit" class="btn btn-secondary btn-block"><i class="fa fa-envelope-o mr-3" aria-hidden="true"></i> enviar por email</button>
-            </div>
-          </form>
-        </div>
-      </div>
+      <?php include("includes/propiedad/sidebar.php"); ?>
+
     </div>
   </div>
 </section>
@@ -146,7 +95,7 @@ $nombre_pagina = "nosotros";
     var mensaje = $("#contacto_mensaje").val();
     var para = $("#contacto_para").val();
     var id_propiedad = $("#contacto_propiedad").val();
-    var id_usuario = $("#contacto_id_usuario").val();
+    var id_usuario = "<?php echo $usuario->id ?>";
     if (isEmpty(para)) para = "<?php echo $empresa->email ?>";
 
     if (isEmpty(nombre) || nombre == "Nombre") {
