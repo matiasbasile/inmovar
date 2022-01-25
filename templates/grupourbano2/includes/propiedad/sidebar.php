@@ -85,12 +85,17 @@ function validar() {
     $("#contacto_email").focus();
     throw false;
   }
-  if (isEmpty(telefono) || telefono == "Telefono") {
+  if (isEmpty(telefono)) {
     alert("Por favor ingrese un telefono");
     $("#contacto_telefono").focus();
     throw false;
   }
-  if (isEmpty(mensaje) || mensaje == "Mensaje") {
+  if (telefono.length != 10) {
+    alert("Por favor ingrese su numero de telefono sin 0 ni 15.");
+    $("#contacto_telefono").focus();
+    throw false;    
+  }
+  if (isEmpty(mensaje)) {
     alert("Por favor ingrese un mensaje");
     $("#contacto_mensaje").focus();
     throw false;
