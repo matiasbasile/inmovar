@@ -88,9 +88,8 @@
 
 <script>
 function buscar_mapa(form) {
-  alert("anda");
-  $(form).find(".base_url").val("<?php echo mklink("mapa/") ?>");
-  $(form).submit();
+  $(form).parents("form").first().find(".base_url").val("<?php echo mklink("mapa/") ?>");
+  $(form).parents("form").first().submit();
 }
 
 function filtrar(form) {
