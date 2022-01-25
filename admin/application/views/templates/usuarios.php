@@ -155,6 +155,32 @@
               </div>
             </div>
           </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Facebook</label>
+                <div class="">
+                  <input type="text" name="facebook" class="form-control" id="facebook" value="<%= facebook %>"/>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Instagram</label>
+                <div class="">
+                  <input type="text" name="instagram" class="form-control" id="instagram" value="<%= instagram %>"/>
+                </div>
+              </div>
+            </div>          
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Linkedin</label>
+                <div class="">
+                  <input type="text" name="linkedin" class="form-control" id="linkedin" value="<%= linkedin %>"/>
+                </div>
+              </div>
+            </div>          
+          </div>
 
           <div class="row">
             <div class="col-md-6">
