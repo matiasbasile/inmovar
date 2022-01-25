@@ -49,9 +49,9 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
                       <?php $count = 0; ?>
                       <?php foreach ($propiedad->images as $images) { ?>
                         <?php if ($count == 0) { ?>
-                          <a href="<?php echo $images ?>" class="fancybox" data-fancybox-group="gallery"><img src="<?php echo $images ?>" alt="img"></a>
+                          <a href="<?php echo $images ?>" class="fancybox adaptable-img-detail" data-fancybox-group="gallery"><img src="<?php echo $images ?>" alt="img"></a>
                         <?php } else { ?>
-                          <a href="<?php echo $images ?>" class="fancybox dn" data-fancybox-group="gallery"><img src="<?php echo $images ?>" alt="img"></a>
+                          <a href="<?php echo $images ?>" class="fancybox adaptable-img-detail dn" data-fancybox-group="gallery"><img src="<?php echo $images ?>" alt="img"></a>
                         <?php } ?>
                         <?php $count++; ?>
                       <?php } ?>
@@ -61,10 +61,10 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
                       <?php $cantidad = sizeof($propiedad->images); ?>
                       <?php $count = 0; ?>
                       <?php foreach ($propiedad->images as $images) { ?>
-                        <div class="d-block mb-4"><a href="<?php echo $images ?>" class="fancybox" data-fancybox-group="gallery"><img src="<?php echo $images ?>" alt="img"></a></div>
+                        <div class="d-block mb-4"><a href="<?php echo $images ?>" class="fancybox" data-fancybox-group="gallery"><img class="adaptable-img-detail-2" src="<?php echo $images ?>" alt="img"></a></div>
                         <?php if ($count == 1) { ?>
                           <div class="d-block position-relative">
-                            <img src="<?php echo $images ?>" alt="img">
+                            <img src="<?php echo $images ?>" class="adaptable-img-detail-2" alt="img">
                             <div class="img-listing-more">
                               <p><a href="<?php echo $images ?>" class="fancybox" data-fancybox-group="gallery">+ <?php echo sizeof($propiedad->images) ?> fotos más <br>para ver</a></p>
                             </div>
