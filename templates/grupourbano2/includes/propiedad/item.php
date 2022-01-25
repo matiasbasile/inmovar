@@ -18,30 +18,22 @@ function item($r,$config = array()) {
           <h4><?php echo $r->precio ?></h4>
         </div>
         <div class="neighborhoods-bottom">
-          <?php if ($r->ambientes != 0) { ?>
-            <div class="neighborhoods-info">
-              <h6><?php echo $r->ambientes ?> Hab.</h6>
-              <img src="assets/images/icon11.png" alt="img">
-            </div>
-          <?php } ?>
-          <?php if ($r->ambientes != 0) { ?>
-            <div class="neighborhoods-info">
-              <h6><?php echo (!empty($r->ambientes)) ? $r->ambientes : "-" ?> Baños</h6>
-              <img src="assets/images/icon12.png" alt="img">
-            </div>
-          <?php } ?>
-          <?php if ($r->cocheras != 0) { ?>
-            <div class="neighborhoods-info">
-              <h6><?php echo $r->cocheras ?> Auto</h6>
-              <img src="assets/images/icon13.png" alt="img">
-            </div>
-          <?php } ?>
-          <?php if ($r->superficie_total != 0) { ?>
-            <div class="neighborhoods-info">
-              <h6><?php echo $r->superficie_total ?> m2</h6>
-              <img src="assets/images/icon14.png" alt="img">
-            </div>
-          <?php } ?>
+          <div class="neighborhoods-info">
+            <h6><?php echo (!empty($r->ambientes)) ? $r->ambientes : "-" ?> Hab.</h6>
+            <img src="assets/images/icon11.png" alt="img">
+          </div>
+          <div class="neighborhoods-info">
+            <h6><?php echo (!empty($r->ambientes)) ? $r->ambientes : "-" ?> Baños</h6>
+            <img src="assets/images/icon12.png" alt="img">
+          </div>
+          <div class="neighborhoods-info">
+            <h6><?php echo (!empty($r->cocheras)) ? $r->cocheras : "-" ?> Auto</h6>
+            <img src="assets/images/icon13.png" alt="img">
+          </div>
+          <div class="neighborhoods-info">
+            <h6><?php echo (!empty($r->superficie_total)) ? $r->superficie_total : "-" ?> m2</h6>
+            <img src="assets/images/icon14.png" alt="img">
+          </div>
         </div>
       </div>
     </a>
