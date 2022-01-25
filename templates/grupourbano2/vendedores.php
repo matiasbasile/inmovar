@@ -33,8 +33,12 @@ $nombre_pagina = "nosotros";
                   <div class="team-member-img"><img src="<?php echo $user->path ?>" alt="img"></div>
                   <div class="team-member-info">
                     <h3><?php echo $user->nombre ?></h3>
-                    <p><?php echo $user->titulo ?><br class="d-none d-md-block"> Desarrollador Inmobiliario</p>
-                    <h6><span>Col. 7342</span> - <span>Libro. XIII</span> - <span>Folio. 167</span></h6>
+                    <?php if (!empty($user->titulo)) { ?>
+                      <p><?php echo $user->titulo ?></p>
+                    <?php } ?>
+                    <?php if (!empty($user->cargo)) { ?>
+                      <h6><span><?php echo $user->cargo ?></span></h6>
+                    <?php } ?>
                     <div class="member-info">
                       <?php if (!empty($user->telefono)){ ?>
                       <div class="row py-3">
