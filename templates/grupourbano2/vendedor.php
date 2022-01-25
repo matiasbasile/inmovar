@@ -50,7 +50,7 @@ $nombre_pagina = "nosotros";
           <h6>Realizá una búsqueda en más de <b>10.000</b> propiedades a la venta</h6>
         </div>
         <div class="form-block mt-5">
-          <a href="#0" class="btn btn-primary btn-block mb-3 form-toggle style-two">AJUSTAR BÚSQUEDA</a>
+          <a href="javascript:void(0)" rel="nofollow" class="btn btn-primary btn-block mb-3 form-toggle style-two">AJUSTAR BÚSQUEDA</a>
           <form class="form" onsubmit="return filtrar(this)" method="get">
             <input type="hidden" class="base_url" value="<?php echo mklink("propiedades/") ?>" />
             <select class="form-control filter_tipo_operacion">
