@@ -4,7 +4,7 @@
       <?php if (!empty($usuario->path)) { ?>
         <div class="sidebar-img">
           <a href="<?php echo mklink("web/vendedor/?id=".$usuario->id) ?>">
-            <img src="<?php echo $usuario->path ?>" alt="img">
+            <img class="w100p" src="<?php echo $usuario->path ?>" alt="img">
           </a>
           <div class="sidebar-logo"><img src="assets/images/logo-icon.jpg" alt="img"></div>
         </div>
