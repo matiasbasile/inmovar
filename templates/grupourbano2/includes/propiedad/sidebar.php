@@ -50,7 +50,7 @@
         <input id="contacto_email" type="email" class="form-control" placeholder="Email">
       </div>
       <div class="form-group">
-        <textarea id="contacto_mensaje" class="form-control" value="Estoy interesado en <?php echo $propiedad->nombre ?> [COD: <?php echo $propiedad->codigo ?>]."></textarea>
+        <textarea id="contacto_mensaje" class="form-control">Estoy interesado en <?php echo $propiedad->nombre ?> [COD: <?php echo $propiedad->codigo ?>].</textarea>
       </div>
       <div class="form-group">
         <button onclick="enviar_whatsapp()" type="button" class="btn contacto_submit btn-success btn-block"><i class="fa fa-whatsapp mr-3" aria-hidden="true"></i> enviar por whatsapp</button>
