@@ -36,13 +36,10 @@
     </div>
   <?php } ?>
   <div class="right-sidebar">
-    <input type="hidden" name="para" id="contacto_para" value="<?php echo (isset($contacto_para) ? $contacto_para : $empresa->email) ?>" />
-    <input type="hidden" name="id_usuario" id="contacto_id_usuario" value="<?php echo (isset($id_usuario) ? $id_usuario : 0) ?>" />
-    <input type="hidden" name="id_propiedad" id="contacto_propiedad" value="<?php echo (isset($propiedad) ? $propiedad->id : 0) ?>" />
     <div class="sidebar-arrow"><img src="assets/images/sidebar-arrow.png" alt="img"></div>
     <h2>comunicate ahora</h2>
     <h5 class="mb-3">por esta propiedad</h5>
-    <form onsubmit="enviar_contacto()">
+    <form onsubmit="return false">
       <div class="form-group">
         <input id="contacto_nombre" type="text" class="form-control" placeholder="Nombre">
       </div>
@@ -56,10 +53,10 @@
         <textarea id="contacto_mensaje" class="form-control" value="Estoy interesado en <?php echo $propiedad->nombre ?> [COD: <?php echo $propiedad->codigo ?>]."></textarea>
       </div>
       <div class="form-group">
-        <button type="submit" class="btn btn-success btn-block"><i class="fa fa-whatsapp mr-3" aria-hidden="true"></i> enviar por whatsapp</button>
+        <button onclick="enviar_whatsapp()" type="button" class="btn contacto_submit btn-success btn-block"><i class="fa fa-whatsapp mr-3" aria-hidden="true"></i> enviar por whatsapp</button>
       </div>
       <div class="form-group mb-0">
-        <button type="submit" class="btn btn-secondary btn-block"><i class="fa fa-envelope-o mr-3" aria-hidden="true"></i> enviar por email</button>
+        <button onclick="enviar_email()" type="button" class="btn contacto_submit btn-secondary btn-block"><i class="fa fa-envelope-o mr-3" aria-hidden="true"></i> enviar por email</button>
       </div>
     </form>
   </div>
@@ -69,72 +66,113 @@
 </div>
 <script>
 window.enviando = 0;
-function enviar_contacto() {
-  if (window.enviando == 1) return;
+function validar() {
+  if (window.enviando == 1) throw false;
   var nombre = $("#contacto_nombre").val();
   var email = $("#contacto_email").val();
   var telefono = $("#contacto_telefono").val();
   var mensaje = $("#contacto_mensaje").val();
-  var para = $("#contacto_para").val();
-  var id_propiedad = $("#contacto_propiedad").val();
-  var id_usuario = $("#contacto_id_usuario").val();
-  if (isEmpty(para)) para = "<?php echo $empresa->email ?>";
 
   if (isEmpty(nombre) || nombre == "Nombre") {
     alert("Por favor ingrese un nombre");
     $("#contacto_nombre").focus();
-    return false;
+    throw false;
   }
   if (!validateEmail(email)) {
     alert("Por favor ingrese un email valido");
     $("#contacto_email").focus();
-    return false;
+    throw false;
   }
   if (isEmpty(telefono) || telefono == "Telefono") {
     alert("Por favor ingrese un telefono");
     $("#contacto_telefono").focus();
-    return false;
+    throw false;
   }
   if (isEmpty(mensaje) || mensaje == "Mensaje") {
     alert("Por favor ingrese un mensaje");
     $("#contacto_mensaje").focus();
-    return false;
+    throw false;
   }
 
-  $("#contacto_submit").attr('disabled', 'disabled');
+  $(".contacto_submit").attr('disabled', 'disabled');
+  window.enviando = 1;
   var datos = {
     "nombre": nombre,
     "email": email,
     "mensaje": mensaje,
     "telefono": telefono,
-    "para": para,
-    "id_propiedad": id_propiedad,
+    "id_propiedad": "<?php echo (isset($propiedad) ? $propiedad->id : 0) ?>",
     <?php if (isset($propiedad) && $propiedad->id_empresa != $empresa->id) { ?> 
       "id_empresa_relacion": "<?php echo $propiedad->id_empresa ?>",
     <?php } ?> 
-    "id_usuario": id_usuario,
+    "para": "<?php echo ( (isset($usuario->email) && !empty($usuario->email)) ? $usuario->email : $empresa->email) ?>",
+    "id_usuario": "<?php echo (isset($usuario->id) ? $usuario->id : 0) ?>",
     "id_empresa": ID_EMPRESA,
-    "id_origen": <?php echo (isset($id_origen) ? $id_origen : 1); ?>,
   }
-  window.enviando = 1;
-  $.ajax({
-    "url": "/admin/consultas/function/enviar/",
-    "type": "post",
-    "dataType": "json",
-    "data": datos,
-    "success": function(r) {
-      if (r.error == 0) {
-        window.location.href = "<?php echo mklink("web/gracias/") ?>";
-      } else {
-        alert("Ocurrio un error al enviar su email. Disculpe las molestias");
-        $("#contacto_submit").removeAttr('disabled');
+  return datos;
+}
+
+function enviar_whatsapp() {
+  try {
+    var datos = validar();
+    datos.id_origen = 1;
+    $.ajax({
+      "url": "/admin/consultas/function/enviar/",
+      "type": "post",
+      "dataType": "json",
+      "data": datos,
+      "success": function(r) {
+        if (r.error == 0) {
+          var url = "https://wa.me/"+<?php echo $usuario->celular_f ?>;
+          url+= "?text="+encodeURIComponent(datos.mensaje);
+          var open = window.open(url,"_blank");
+          if (open == null || typeof(open)=='undefined') {
+            // Si se bloqueo el popup, se redirecciona
+            location.href = url;
+          }
+        } else {
+          alert("Ocurrio un error al enviar su email. Disculpe las molestias");
+          $(".contacto_submit").removeAttr('disabled');
+        }
+        window.enviando = 0;
+      },
+      "error":function() {
+        $(".contacto_submit").removeAttr('disabled');
+        window.enviando = 0;
       }
-      window.enviando = 0;
-    },
-    "error":function() {
-      window.enviando = 0;
-    }
-  });
-  return false;
+    });
+  } catch(e) {
+    $(".contacto_submit").removeAttr('disabled');
+    console.log(e);
+  }
+}
+
+function enviar_email() {
+  try {
+    var datos = validar();
+    datos.id_origen = 1;
+    $.ajax({
+      "url": "/admin/consultas/function/enviar/",
+      "type": "post",
+      "dataType": "json",
+      "data": datos,
+      "success": function(r) {
+        if (r.error == 0) {
+          window.location.href = "<?php echo mklink("web/gracias/") ?>";
+        } else {
+          alert("Ocurrio un error al enviar su email. Disculpe las molestias");
+          $(".contacto_submit").removeAttr('disabled');
+        }
+        window.enviando = 0;
+      },
+      "error":function() {
+        $(".contacto_submit").removeAttr('disabled');
+        window.enviando = 0;
+      }
+    });
+  } catch(e) {
+    $(".contacto_submit").removeAttr('disabled');
+    console.log(e);
+  }
 }
 </script>
