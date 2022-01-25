@@ -12,18 +12,18 @@
           </div>
           <div class="col-md-3">
             <h5>ADMINISTRACIÓN </h5>
-            <p><a rel="nofollow" href="tel:5492214637615"><i class="fa fa-whatsapp mr-2" aria-hidden="true"></i> +54 (221) 463-7615</a></p>
+            <p><a rel="nofollow" href="https://wa.me/5492214637615"><i class="fa fa-whatsapp mr-2" aria-hidden="true"></i> +54 (221) 463-7615</a></p>
             <p><a rel="nofollow" href="mailto:administracion@grupo-urbano.com.ar"><i class="fa fa-envelope-o mr-2"></i> administracion@grupo-urbano.com.ar</a></p>
           </div>
           <div class="col-md-3">
             <h5>CONSORCIOS</h5>
-            <p><a rel="nofollow" href="tel:5492214637615"><i class="fa fa-whatsapp mr-2" aria-hidden="true"></i> +54 (221) 463-7615</a></p>
-            <p><a rel="nofollow" href="tel:5492214376487"><i class="fa fa-whatsapp mr-2" aria-hidden="true"></i> +54 (221) 437-6487 (Urgencias)</a></p>
+            <p><a rel="nofollow" href="https://wa.me/5492214637615"><i class="fa fa-whatsapp mr-2" aria-hidden="true"></i> +54 (221) 463-7615</a></p>
+            <p><a rel="nofollow" href="https://wa.me/5492214376487"><i class="fa fa-whatsapp mr-2" aria-hidden="true"></i> +54 (221) 437-6487 (Urgencias)</a></p>
             <p><a rel="nofollow" href="mailto:consorcios@grupo-urbano.com.ar"><i class="fa fa-envelope-o mr-2"></i> consorcios@grupo-urbano.com.ar</a></p>
           </div>
           <div class="col-md-3">
             <h5>DESARROLLOS</h5>
-            <p><a rel="nofollow" href="tel:5492216372369"><i class="fa fa-whatsapp mr-2" aria-hidden="true"></i> +54 (221) 637-2369</a></p>
+            <p><a rel="nofollow" href="https://wa.me/5492216372369"><i class="fa fa-whatsapp mr-2" aria-hidden="true"></i> +54 (221) 637-2369</a></p>
             <p><a rel="nofollow" href="mailto:pablog@grupo-urbano.com.ar"><i class="fa fa-envelope-o mr-2"></i> pablog@grupo-urbano.com.ar</a></p>
           </div>
         </div>
