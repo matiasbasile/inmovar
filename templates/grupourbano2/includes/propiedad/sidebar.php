@@ -30,7 +30,9 @@
         <?php } ?>
       </div>
       <?php $nombre = explode(" ", $usuario->nombre) ?>
-      <a href="tel:<?php echo $usuario->celular_f ?>" class="btn btn-primary btn-block"><i class="fa fa-phone mr-3" aria-hidden="true"></i> llamá a <?php echo $nombre[0] ?></a>
+      <?php if (!empty($usuario->celular_f)) { ?>
+        <a href="tel:<?php echo $usuario->celular_f ?>" class="btn btn-primary btn-block"><i class="fa fa-phone mr-3" aria-hidden="true"></i> llamá a <?php echo $nombre[0] ?></a>
+      <?php } ?>
     </div>
   <?php } ?>
   <div class="right-sidebar">
