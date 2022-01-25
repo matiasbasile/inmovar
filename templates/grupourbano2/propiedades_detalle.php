@@ -162,7 +162,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
                 </audio>
               <?php } ?>
               <div class="col-md-4">
-                <a href="#0" class="btn btn-primary btn-block">
+                <a href="javascript:void(0)" rel="nofollow" onclick="solicitar_visita()" class="btn btn-primary btn-block">
                   <i class="fa fa-calendar-check-o mr-3" aria-hidden="true"></i> 
                   solicita una visita
                 </a>
@@ -352,6 +352,10 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
 
 <!-- Scripts -->
 <script type="text/javascript">
+function solicitar_visita() {
+  $("#contacto_nombre").focus();
+}
+
 $(document).ready(function() {
   <?php if (!empty($propiedad->latitud) && !empty($propiedad->longitud)) { ?>
 
