@@ -87,8 +87,13 @@
 <script src="assets/js/fancybox.js"></script>
 
 <script>
+function buscar_mapa(form) {
+  $(form).find(".base_url").val("<?php echo mklink("mapa/") ?>");
+  $(form).submit();
+}
+
 function filtrar(form) {
-  var url = "<?php echo mklink("propiedades/") ?>";
+  var url = $(form).find(".base_url").val();
   var tipo_operacion = $(form).find(".filter_tipo_operacion").val();
   if (!isEmpty(tipo_operacion)) {
     url+=tipo_operacion+"/";
