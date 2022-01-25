@@ -68,7 +68,11 @@
 
     paginator_core: {
       url: "usuarios/"
-    }
+    },
+
+    paginator_ui: {
+      perPage: 999999,
+    },    
     
   });
 
