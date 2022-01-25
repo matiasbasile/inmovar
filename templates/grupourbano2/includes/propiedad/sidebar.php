@@ -165,7 +165,8 @@ function enviar_email() {
       "data": datos,
       "success": function(r) {
         if (r.error == 0) {
-          window.location.href = "<?php echo mklink("web/gracias/") ?>";
+          alert("Su consulta ha sido enviada correctamente. Nos pondremos en contacto a la mayor brevedad!");
+          location.reload();
         } else {
           alert("Ocurrio un error al enviar su email. Disculpe las molestias");
           $(".contacto_submit").removeAttr('disabled');
