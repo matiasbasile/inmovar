@@ -450,7 +450,7 @@ $(document).ready(function(){
 
    
 </script>
-<?php } /*?>
+<?php } ?>
 <script type="text/javascript">
 function submit_buscador_propiedades() {
   // Cargamos el offset y el orden en este formulario
@@ -458,7 +458,7 @@ function submit_buscador_propiedades() {
   $("#sidebar_offset").val($("#ordenador_offset").val());
   $("#form_propiedades").submit();
 }
-
+/*
 function onsubmit_buscador_propiedades() { 
   var link = (($("input[name='tipo_busqueda']:checked").val() == "mapa") ? "<?php echo mklink("mapa/")?>" : "<?php echo mklink("propiedades/")?>");
   var tipo_operacion = $("#tipo_operacion").val();
@@ -468,6 +468,7 @@ function onsubmit_buscador_propiedades() {
   $("#form_propiedades").attr("action",link);
   return true;
 }
+*/
 </script>
 <?php 
 // Creamos el codigo de seguimiento para registrar la visita
@@ -478,4 +479,4 @@ echo $propiedad_model->tracking_code(array(
 ));
 ?>
 </body>
-</html>*/?>
+</html>
