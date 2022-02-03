@@ -26,12 +26,9 @@ $titulo_pagina = $propiedad->tipo_operacion_link;
 $vc_link_tipo_operacion = $propiedad->tipo_operacion_link;
 $vc_link_localidad = $propiedad->localidad_link;
 $vc_id_tipo_inmueble = $propiedad->id_tipo_inmueble;
-/*
 $vc_precio_maximo = $propiedad_model->get_precio_maximo(array(
-"id_tipo_operacion"=>$propiedad->id_tipo_operacion,
+  "id_tipo_operacion"=>$propiedad->id_tipo_operacion,
 ));
-*/
-$vc_precio_maximo = 0;
 $vc_maximo = $vc_precio_maximo;
 
 // Tomamos los datos de SEO
@@ -44,7 +41,6 @@ $cookie_hide_lightbox = 0; //(isset($_COOKIE['hide_lightbox'])) ? $_COOKIE['hide
 
 // Seteamos la cookie para indicar que el cliente ya entro a esta propiedad
 $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
-print_r($propiedad);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -412,7 +408,7 @@ print_r($propiedad);
   </div><!-- end container -->
 </section>
 
-<?php include "includes/footer.php" ?>
+<?php /*include "includes/footer.php" ?>
 <?php include "includes/scripts.php" ?>
 <script type="text/javascript">
 
@@ -482,4 +478,4 @@ echo $propiedad_model->tracking_code(array(
 ));
 ?>
 </body>
-</html>
+</html>*/ ?>
