@@ -13,13 +13,11 @@ $propiedad = $propiedad_model->get($id,array(
   "buscar_relacionados"=>1,
   "buscar_relacionados_offset"=>6,
 ));
-/*
 if (($propiedad === FALSE || !isset($propiedad->nombre) || $propiedad->activo == 0) && !isset($get_params["preview"])) {
   header("HTTP/1.1 302 Moved Temporarily");
   header("Location:".mklink("/"));
   exit();
 }
-*/
 
 $page_active = $propiedad->tipo_operacion_link;
 $titulo_pagina = $propiedad->tipo_operacion_link;
@@ -38,11 +36,12 @@ $seo_title = ((!empty($propiedad->seo_title)) ? $propiedad->seo_title : ucwords(
 $seo_description = (!empty($propiedad->seo_description)) ? $propiedad->seo_description : $empresa->seo_description;
 $seo_keywords = (!empty($propiedad->seo_keywords)) ? $propiedad->seo_keywords : $empresa->seo_keywords;
 
-$cookie_id_cliente = (isset($_COOKIE['idc'])) ? $_COOKIE['idc'] : 0;
-$cookie_hide_lightbox = (isset($_COOKIE['hide_lightbox'])) ? $_COOKIE['hide_lightbox'] : 0;
+$cookie_id_cliente = 0; //(isset($_COOKIE['idc'])) ? $_COOKIE['idc'] : 0;
+$cookie_hide_lightbox = 0; //(isset($_COOKIE['hide_lightbox'])) ? $_COOKIE['hide_lightbox'] : 0;
 
 // Seteamos la cookie para indicar que el cliente ya entro a esta propiedad
 $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
+print_r($propiedad);
 ?>
 <!DOCTYPE html>
 <html lang="en">
