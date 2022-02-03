@@ -450,9 +450,9 @@ $(document).ready(function(){
 
    
 </script>
-<?php } ?>
+<?php } /*?>
 <script type="text/javascript">
-  /*
+
 function submit_buscador_propiedades() {
   // Cargamos el offset y el orden en este formulario
   $("#sidebar_orden").val($("#ordenador_orden").val());
@@ -469,9 +469,10 @@ function onsubmit_buscador_propiedades() {
   $("#form_propiedades").attr("action",link);
   return true;
 }
-*/
 </script>
+
 <?php 
+*/
 // Creamos el codigo de seguimiento para registrar la visita
 echo $propiedad_model->tracking_code(array(
   "id_propiedad"=>$propiedad->id,
