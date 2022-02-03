@@ -39,6 +39,7 @@
         </select>
       </div>
 
+      <?php /*
       <div id="sidebar_precios" class="form-block border">
         <div class="form-group">
           <style type="text/css">
@@ -72,6 +73,7 @@
             </div>
 
           </div>
+          */ ?>
 
           <div class="form-block border">
             <label for="property-type">Dirección</label>
