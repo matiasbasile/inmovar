@@ -422,7 +422,7 @@ $(document).ready(function(){
 });
 <?php } ?>
 </script>
-<?php /*include_once("templates/comun/mapa_js.php"); ?>
+<?php include_once("templates/comun/mapa_js.php"); ?>
 <script type="text/javascript" src="js/jquery.fancybox.min.js"></script>
 
 <?php if ($propiedad->latitud != 0 && $propiedad->longitud != 0) { ?>
@@ -471,6 +471,7 @@ $(document).ready(function(){
 </script>
 <?php 
 // Creamos el codigo de seguimiento para registrar la visita
+/*
 echo $propiedad_model->tracking_code(array(
   "id_propiedad"=>$propiedad->id,
   "id_empresa_compartida"=>$id_empresa,
