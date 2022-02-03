@@ -408,8 +408,8 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
   </div><!-- end container -->
 </section>
 
-<?php /*include "includes/footer.php" ?>
-<?php include "includes/scripts.php" ?>
+<?php include "includes/footer.php" ?>
+<?php /*include "includes/scripts.php" ?>
 <script type="text/javascript">
 
 <?php if (sizeof($propiedad->relacionados)>0) { ?>
