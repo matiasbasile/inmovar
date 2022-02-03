@@ -450,7 +450,7 @@ $(document).ready(function(){
 
    
 </script>
-<?php } ?>
+<?php }/* ?>
 <script type="text/javascript">
   function submit_buscador_propiedades() {
     // Cargamos el offset y el orden en este formulario
@@ -471,7 +471,6 @@ $(document).ready(function(){
 </script>
 <?php 
 // Creamos el codigo de seguimiento para registrar la visita
-/*
 echo $propiedad_model->tracking_code(array(
   "id_propiedad"=>$propiedad->id,
   "id_empresa_compartida"=>$id_empresa,
