@@ -409,7 +409,7 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
 </section>
 
 <?php include "includes/footer.php" ?>
-<?php /*include "includes/scripts.php" ?>
+<?php include "includes/scripts.php" ?>
 <script type="text/javascript">
 
 <?php if (sizeof($propiedad->relacionados)>0) { ?>
@@ -422,7 +422,7 @@ $(document).ready(function(){
 });
 <?php } ?>
 </script>
-<?php include_once("templates/comun/mapa_js.php"); ?>
+<?php /*include_once("templates/comun/mapa_js.php"); ?>
 <script type="text/javascript" src="js/jquery.fancybox.min.js"></script>
 
 <?php if ($propiedad->latitud != 0 && $propiedad->longitud != 0) { ?>
