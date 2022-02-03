@@ -45,7 +45,6 @@ $cookie_hide_lightbox = 0; //(isset($_COOKIE['hide_lightbox'])) ? $_COOKIE['hide
 // Seteamos la cookie para indicar que el cliente ya entro a esta propiedad
 $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
 print_r($propiedad);
-exit();
 ?>
 <!DOCTYPE html>
 <html lang="en">
