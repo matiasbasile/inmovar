@@ -91,7 +91,7 @@
       <label>Valor Desde</label><br/>
       <div class="row">
         <div class="col-xs-5 pr0">
-          <select id="moneda_precio_minimo" onchange="cambiar_moneda_precio_minimo()" name="m">
+          <select class="form-control" id="moneda_precio_minimo" onchange="cambiar_moneda_precio_minimo()" name="m">
             <option <?php echo (isset($vc_moneda) && $vc_moneda == "ars")?"selected":"" ?> value="ARS">$</option>
             <option <?php echo (isset($vc_moneda) && $vc_moneda == "USD")?"selected":"" ?> value="USD">USD</option>
           </select>
@@ -105,7 +105,7 @@
       <label>Valor Hasta</label><br/>
       <div class="row">
         <div class="col-xs-5 pr0">
-          <select id="moneda_precio_maximo" onchange="cambiar_moneda_precio_maximo()">
+          <select class="form-control" id="moneda_precio_maximo" onchange="cambiar_moneda_precio_maximo()">
             <option <?php echo (isset($vc_moneda) && $vc_moneda == "ars")?"selected":"" ?> value="ARS">$</option>
             <option <?php echo (isset($vc_moneda) && $vc_moneda == "USD")?"selected":"" ?> value="USD">USD</option>
           </select>
