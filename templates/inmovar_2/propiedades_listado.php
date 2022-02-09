@@ -5,6 +5,7 @@ extract($propiedad_model->get_variables());
 $nombre_pagina = "listado";
 $titulo_pagina = $vc_link_tipo_operacion;
 $page_active = $vc_link_tipo_operacion;
+$cotizacion_dolar = $propiedad_model->get_dolar();
 ?>
 <!DOCTYPE html>
 <html lang="es">
