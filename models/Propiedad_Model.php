@@ -384,9 +384,11 @@ class Propiedad_Model {
     if (!is_numeric($offset)) $offset = 12;
 
     $vc_minimo = (isset($get_params["vc_minimo"])) ? filter_var($get_params["vc_minimo"],FILTER_SANITIZE_STRING) : 0;
+    $vc_minimo = str_replace(".", "", $vc_minimo);
     if ($vc_minimo == "undefined" || empty($vc_minimo)) $vc_minimo = 0;
 
     $vc_maximo = (isset($get_params["vc_maximo"])) ? filter_var($get_params["vc_maximo"],FILTER_SANITIZE_STRING) : 0;
+    $vc_maximo = str_replace(".", "", $vc_maximo);
     if ($vc_maximo == "undefined" || empty($vc_maximo)) $vc_maximo = 0;
 
     if (!empty($codigo)) {
