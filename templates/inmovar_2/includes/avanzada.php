@@ -88,7 +88,7 @@
     </div>
 
     <div class="row">
-      <?php $divisor = (($vc_tipo_operacion == "ventas" && isset($cotizacion_dolar)) ? $cotizacion_dolar : 1); ?>
+      <?php $divisor = (($vc_link_tipo_operacion == "ventas" && isset($cotizacion_dolar)) ? $cotizacion_dolar : 1); ?>
       <?php $bloque = $vc_precio_maximo / 20; ?>
       <div class="col-sm-6">
         <div class="form-group">
