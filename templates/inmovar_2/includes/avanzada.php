@@ -87,35 +87,34 @@
       </div>
     </div>
 
-    <div class="row">
-      <?php $divisor = (($vc_link_tipo_operacion == "ventas" && isset($cotizacion_dolar)) ? $cotizacion_dolar : 1); ?>
-      <?php $bloque = $vc_precio_maximo / 20; ?>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label>Minimo</label><br/>
-          <select class="selectpicker search-fields" name="minimo">
-            <?php 
-            $cont = 0;
-            for($i=0;$i<=20;$i++) { ?>
-              <option <?php echo (isset($vc_minimo) && $vc_minimo == $cont) ? "selected":"" ?> value="<?php echo $cont ?>"><?php echo (($divisor>1)?"USD":"$")." ".number_format($cont / $divisor,0,",",".") ?></option>
-            <?php $cont = $cont + $bloque; } ?>
+    <div class="form-group" id="buscador-precio-minimo">
+      <label>Valor Desde</label><br/>
+      <div class="row">
+        <div class="col-xs-5 pr0">
+          <select id="moneda_precio_minimo" onchange="cambiar_moneda_precio_minimo()" name="m">
+            <option <?php echo (isset($vc_moneda) && $vc_moneda == "ars")?"selected":"" ?> value="ARS">$</option>
+            <option <?php echo (isset($vc_moneda) && $vc_moneda == "USD")?"selected":"" ?> value="USD">USD</option>
           </select>
         </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label>Maximo</label><br/>
-          <select class="selectpicker search-fields" name="maximo">
-            <?php 
-            $cont = 0;
-            for($i=0;$i<=20;$i++) { ?>
-              <option <?php echo (isset($vc_maximo) && $vc_maximo == $cont) ? "selected":"" ?> value="<?php echo $cont ?>"><?php echo (($divisor>1)?"USD":"$")." ".number_format($cont / $divisor,0,",",".") ?></option>
-            <?php $cont = $cont + $bloque; } ?>
-          </select>
+        <div class="col-xs-7 pl0">
+          <input class="form-control" placeholder="Precio Minimo" id="precio_minimo" type="text" name="vc_minimo" value="<?php echo (isset($vc_minimo) ? (($vc_minimo == 0)?"":$vc_minimo) : "") ?>"/>
         </div>
       </div>
     </div>
-
+    <div class="form-group" id="buscador-precio-maximo">
+      <label>Valor Hasta</label><br/>
+      <div class="row">
+        <div class="col-xs-5 pr0">
+          <select id="moneda_precio_maximo" onchange="cambiar_moneda_precio_maximo()">
+            <option <?php echo (isset($vc_moneda) && $vc_moneda == "ars")?"selected":"" ?> value="ARS">$</option>
+            <option <?php echo (isset($vc_moneda) && $vc_moneda == "USD")?"selected":"" ?> value="USD">USD</option>
+          </select>
+        </div>
+        <div class="col-xs-7 pl0">
+          <input class="form-control" placeholder="Precio Maximo" id="precio_maximo" type="text" name="vc_maximo" value="<?php echo (isset($vc_maximo) ? (($vc_maximo == 0)?"":$vc_maximo) : "") ?>"/>
+        </div>
+      </div>
+    </div>
     <div class="checkbox checkbox-theme checkbox-circle">
       <input id="checkbox1" <?php echo (isset($vc_apto_banco) && $vc_apto_banco == 1) ? "checked":"" ?> type="checkbox" value="1" name="banco">
       <label for="checkbox1">
@@ -135,6 +134,14 @@
 </div>
 
 <script type="text/javascript">
+function cambiar_moneda_precio_minimo() {
+  var v = $("#moneda_precio_minimo").val();
+  $("#moneda_precio_maximo").val(v);
+}
+function cambiar_moneda_precio_maximo() {
+  var v = $("#moneda_precio_maximo").val();
+  $("#moneda_precio_minimo").val(v);
+}
 function enviar_buscador_propiedades() {
   var link = "<?php echo mklink("propiedades/")?>";
   if ($("#checkboxMap").is(":checked")) {
