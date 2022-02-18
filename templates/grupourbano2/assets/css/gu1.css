@@ -240,7 +240,7 @@ input[type="checkbox"]:checked + label{background:url(../images/enable-checkbox1
 .go-top a:hover{background-image:url(../images/arrow7.png); background-color:#349ce8;}
 
 /* MAIN WRAPPER CSS */
-.main-wrapper{float:left; width:100%; padding:45px 0;}
+.main-wrapper{width:100%; padding:45px 0;overflow: hidden;}
 .main-wrapper .section-title{padding-bottom:15px; margin-bottom:40px;}
 .main-wrapper .section-title big{font-size:32px; font-family: 'Lato', sans-serif; font-weight: bold;}
 .main-wrapper .property-list{margin-bottom:30px;}
