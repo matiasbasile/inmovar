@@ -25,8 +25,11 @@ $breadcrumb = array(
 <head>
 <?php include("includes/head.php"); ?>
 <link rel="stylesheet" type="text/css" href="assets/css/gu1.css?v=3">
+<style type="text/css">
+#contacto_page header .container.style-two { width: 100%; max-width: none; }
+</style>
 </head>
-<body class="bg-gray">
+<body id="contacto_page" class="bg-gray">
   
 <?php include("includes/header.php"); ?>
 
