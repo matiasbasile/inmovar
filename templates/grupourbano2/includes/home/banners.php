@@ -15,7 +15,7 @@
         <p class="editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>"> <?php echo $t->plain_text ?></p>
 
         <?php $t = $web_model->get_text("text5", "comenzar"); ?>
-        <a href="#0" class="btn btn-outline-primary editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>"> <?php echo $t->plain_text ?> <i class="fa fa-chevron-right ml-3"></i></a>
+        <a href="<?php echo mklink("propiedades/ventas/") ?>" class="btn btn-outline-primary editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>"> <?php echo $t->plain_text ?> <i class="fa fa-chevron-right ml-3"></i></a>
       </div>
     </div>
     <div class="media mt-5">
@@ -29,7 +29,7 @@
         <p class="editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>"> <?php echo $t->plain_text ?></p>
 
         <?php $t = $web_model->get_text("text8", "comenzar"); ?>
-        <a href="#0" class="btn btn-outline-primary editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>"> <?php echo $t->plain_text ?> <i class="fa fa-chevron-right ml-3"></i></a>
+        <a href="<?php echo mklink("contacto/") ?>" class="btn btn-outline-primary editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>"> <?php echo $t->plain_text ?> <i class="fa fa-chevron-right ml-3"></i></a>
       </div>
     </div>
   </div>
