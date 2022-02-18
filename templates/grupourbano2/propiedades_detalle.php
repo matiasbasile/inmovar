@@ -105,7 +105,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
                   <div class="col-md-4 text-right">
                     <h2 class="text-blue m-0 p-0"><?php echo $propiedad->precio ?></h2>
                     <?php if ($propiedad->valor_expensas != 0 && $propiedad->publica_precio == 1) { ?>
-                      <p class="color-gray">+ <?php echo $propiedad->moneda . " " . $propiedad->valor_expensas ?> Expensas</p>
+                      <p class="color-gray">+ <?php echo " $" . number_format($propiedad->valor_expensas,0,",",".") ?> Expensas</p>
                     <?php } ?>
                   </div>
                 </div>
