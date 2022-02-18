@@ -228,8 +228,6 @@ input[type="checkbox"]:checked + label{background:url(../images/enable-checkbox1
 .newsletter input[type="email"]{width:68%; font-size:15px; border:none; font-family:'LatoItalic'; border-radius:5px 0 0 5px; -webkit-border-radius:5px 0 0 5px;}
 .newsletter .btn{float:left; width:32%; height:46px; padding:10px; font-size:14px; border-radius:0 5px 5px 0; -webkit-border-radius:0 5px 5px 0;}
 .newsletter form{float:left; width:100%; padding:15px 0 35px;}
-.social{float:left; width:100%;}
-.social a{float:left; margin-right:10px;}
 
 /* COPYRIGHT CSS */
 .copyright{float:left; width:100%; padding:40px 0; position:relative; background:#131c26; color:#616870;}

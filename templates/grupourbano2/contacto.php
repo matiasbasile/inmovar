@@ -24,7 +24,7 @@ $breadcrumb = array(
 <html dir="ltr" lang="en-US">
 <head>
 <?php include("includes/head.php"); ?>
-<link rel="stylesheet" type="text/css" href="assets/css/gu1.css?v=3">
+<link rel="stylesheet" type="text/css" href="assets/css/gu1.css?v=4">
 <style type="text/css">
 #contacto_page header .container.style-two { width: 100%; max-width: none; }
 </style>
