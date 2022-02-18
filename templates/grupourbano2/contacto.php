@@ -26,7 +26,7 @@ $breadcrumb = array(
 <?php include("includes/head.php"); ?>
 <link rel="stylesheet" type="text/css" href="assets/css/gu1.css">
 </head>
-<body>
+<body class="bg-gray">
   
 <?php include("includes/header.php"); ?>
 
