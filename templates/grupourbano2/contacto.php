@@ -30,16 +30,12 @@ $breadcrumb = array(
   
 <?php include("includes/header.php"); ?>
 
-<section class="main-wrapper">
+<section class="main-wrapper oh">
   <div class="container">
     <div class="contact">
       <div class="border-box">
         <div class="box-space">
           <div id="map"></div>
-          <div class="section-title"><big>contacto</big></div>
-          <?php if (!empty($empresa->texto_contacto)) { ?>
-            <?php echo html_entity_decode($empresa->texto_contacto,ENT_QUOTES); ?>
-          <?php } ?>
         </div>
         <div class="info-title">formulario de consulta</div>
         <div class="box-space">
