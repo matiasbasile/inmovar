@@ -27,6 +27,7 @@ $breadcrumb = array(
 <link rel="stylesheet" type="text/css" href="assets/css/gu1.css?v=3">
 <style type="text/css">
 #contacto_page header .container.style-two { width: 100%; max-width: none; }
+.navbar-collapse { flex-grow: 0; }
 </style>
 </head>
 <body id="contacto_page" class="bg-gray">
