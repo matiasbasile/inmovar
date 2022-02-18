@@ -943,8 +943,8 @@ class Propiedad_Model {
         $p->video = str_replace("https://www.youtube.com/watch?v=", "", $p->video);
         $p->video = str_replace("https://youtu.be/", "", $p->video);
         $p->video_path = "https://img.youtube.com/vi/".$p->video."/0.jpg";
-        $p->video = '<iframe width="100%" height="400" src="https://www.youtube.com/embed/'.$p->video.'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
         $p->youtube_embed = "https://www.youtube.com/embed/".$p->video;
+        $p->video = '<iframe width="100%" height="400" src="https://www.youtube.com/embed/'.$p->video.'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
 
         // ALARO PUEDE TENER MAS DE UN VIDEO
         if ($p->id_empresa == 1575) {
