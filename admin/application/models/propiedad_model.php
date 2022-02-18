@@ -941,7 +941,9 @@ class Propiedad_Model extends Abstract_Model {
     $status = isset($data->status) ? $data->status : "";    
 
     if (isset($data->valido_hasta)) $data->valido_hasta = fecha_mysql($data->valido_hasta);
-    $data->fecha_ingreso = date("Y-m-d");
+    if ( (is_null($id)) || ($id == 0)) {
+      $data->fecha_ingreso = date("Y-m-d");
+    }
     $data->fecha_publicacion = (!empty($data->fecha_publicacion)) ? fecha_mysql($data->fecha_publicacion) : date("Y-m-d");
     $data->codigo = isset($data->codigo) ? $data->codigo : "";
     $data->codigo = trim($data->codigo);
