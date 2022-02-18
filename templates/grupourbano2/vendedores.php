@@ -16,7 +16,8 @@ $nombre_pagina = "nosotros";
   <!-- lising -->
   <?php 
   $usuario = $usuario_model->get_list(array(
-    "offset"=>999999
+    "offset"=>999999,
+    "order_by"=>"A.dni ASC",
   )); ?>
   <section class="padding-default">
     <div class="container style-two">
