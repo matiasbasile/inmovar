@@ -27,13 +27,13 @@
       <select class="form-control filter_dormitorios" name="dm">
         <?php $dormitorios = $propiedad_model->get_dormitorios(); ?>
         <?php foreach ($dormitorios as $dormitorio) { ?>
-          <option <?php echo ($vc_dormitorios == $dormitorio->dormitorios)?"selected":"" ?> value="<?php echo $dormitorio->dormitorios; ?>"><?php echo $dormitorio->dormitorios ?></option>
+          <option <?php echo ($vc_dormitorios == $dormitorio->dormitorios)?"selected":"" ?> value="<?php echo $dormitorio->dormitorios; ?>"><?php echo (($dormitorio->dormitorios == 0) ? "DORMITORIOS" : $dormitorio->dormitorios) ?></option>
         <?php } ?>
       </select>
       <select class="form-control filter_banios" name="bn">
         <?php $banios = $propiedad_model->get_banios(); ?>
         <?php foreach ($banios as $banio) { ?>
-          <option <?php echo ($vc_banios == $banio->banios)?"selected":"" ?> value="<?php echo $banio->banios; ?>"><?php echo $banio->banios ?></option>
+          <option <?php echo ($vc_banios == $banio->banios)?"selected":"" ?> value="<?php echo $banio->banios; ?>"><?php echo (($banio->banios == 0) ? "BAÑOS" : $banio->banios) ?></option>
         <?php } ?>
       </select>
       <input name="vc_minimo" class="form-control filter_minimo" type="number" value="<?php echo (empty($vc_minimo) ? "" : $vc_minimo) ?>" min="0" placeholder="Precio Minimo">
