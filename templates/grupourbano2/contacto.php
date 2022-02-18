@@ -24,7 +24,7 @@ $breadcrumb = array(
 <html dir="ltr" lang="en-US">
 <head>
 <?php include("includes/head.php"); ?>
-<link rel="stylesheet" type="text/css" href="https://www.grupo-urbano.com.ar/templates/grupourbano/css/main.css">
+<link rel="stylesheet" type="text/css" href="assets/css/gu1.css">
 </head>
 <body>
   
