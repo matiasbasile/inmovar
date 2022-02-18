@@ -153,7 +153,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
           <div class="img-list-btns">
             <div class="row">
               <?php if ($propiedad->video) { ?>
-                <div class="col-md-4"><a href="<?php echo $propiedad->video_original ?>" data-fancybox-group="gallery2" class="fancybox btn btn-primary btn-block"><i class="fa fa-video-camera mr-3" aria-hidden="true"></i> recorre la propiedad</a></div>
+                <div class="col-md-4"><a href="<?php echo $propiedad->video_original ?>" data-fancybox-group="gallery2" class="fancybox fancybox-iframe btn btn-primary btn-block"><i class="fa fa-video-camera mr-3" aria-hidden="true"></i> recorre la propiedad</a></div>
               <?php } ?>
               <?php if ($propiedad->audio) { ?>
                 <div class="col-md-4"><a onclick="repoducir_audio()" class="btn btn-primary btn-block"><i class="fa fa-volume-up mr-3" aria-hidden="true"></i> escucha lo que te contamos</a></div>
