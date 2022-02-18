@@ -25,7 +25,7 @@
         <?php } ?>
       </select>
       <select class="form-control filter_dormitorios" name="dm">
-        <?php $dormitorios = $propiedad_model->get_dormitorios(); ?>
+        <?php $dormitorios = $propiedad_model->get_dormitorios(); print_r($dormitorios); ?>
         <?php foreach ($dormitorios as $dormitorio) { ?>
           <?php if ($vc_dormitorios == 0) { ?>
             <option value="0">dormitorios</option>
