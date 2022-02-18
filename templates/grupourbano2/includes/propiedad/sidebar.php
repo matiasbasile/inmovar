@@ -25,10 +25,10 @@
       </div> -->
       <div class="social">
         <?php if (!empty($usuario->facebook)) { ?>
-          <a href="<?php echo $usuario->facebook ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+          <a target="_blank" href="<?php echo $usuario->facebook ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a>
         <?php } ?>
         <?php if (!empty($usuario->instagram)) { ?>
-          <a href="<?php echo $usuario->instagram ?>"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+          <a target="_blank" href="<?php echo $usuario->instagram ?>"><i class="fa fa-instagram" aria-hidden="true"></i></a>
         <?php } ?>
       </div>
       <?php $nombre = explode(" ", $usuario->nombre) ?>
