@@ -9,7 +9,7 @@
 
 <div class="clienapp_container" style="display:<%= (habilitar_clienapp == 0)?"none":"block" %>">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-4 dn">
         <div class="form-group">
           <label class="control-label">Código de país por defecto</label>
           <select class="form-control" name="clienapp_prefijo" id="clienapp_prefijo" name="clienapp_prefijo">
@@ -253,7 +253,7 @@
           </select>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 dn">
         <label class="control-label">Cantidad de digitos del telefono</label>
         <input type="text" class="form-control" id="clienapp_largo_telefono" name="clienapp_largo_telefono" value="<%= clienapp_largo_telefono %>"/>
       </div>
