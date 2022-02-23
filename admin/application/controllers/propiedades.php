@@ -1653,6 +1653,20 @@ class Propiedades extends REST_Controller
     print($xml->asXML());
   }
 
+  function get_tokko_properties($config = array()) {
+    $api_key = $config["api_key"];
+    $limit = 1000;
+    $offset = 0;
+    $url = "https://tokkobroker.com/api/v1/property/?lang=es_ar&format=json&limit=".$limit."&offset=".$offset."&key=".$api_key;
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    $result = curl_exec($ch);
+    $salida = json_encode($result);
+    return $salida->objects;
+  }
+
   // IMPORTACION DE PROPIEDADES DE TOKKO BROKERS
   // Esta funcion se ejecuta en un cronjob
   function importar_tokko($id_empresa = 0)
@@ -1673,7 +1687,13 @@ class Propiedades extends REST_Controller
       $this->load->model("Log_Model");
       foreach ($q->result() as $emp) {
         $id_empresa = $emp->id_empresa;
-        $auth = new TokkoAuth($emp->tokko_apikey);
+
+        $properties = $this->get_tokko_properties(array(
+          "api_key"=>$emp->tokko_apikey,
+        ));
+
+        /*
+        $auth = new TokkoAuth();
         $search = new TokkoSearch($auth, array(
           "operation_types" => 0,
           "property_types" => 0,
@@ -1682,6 +1702,7 @@ class Propiedades extends REST_Controller
         ));
         $search->do_search();
         $properties = $search->get_properties();
+        */
         if (sizeof($properties) > 0) {
           // Limpiamos todas las propiedades que esten sincronizadas con Tokko
           // Porque las que no vienen en el array es porque se deshabilitaron del otro lado
@@ -1710,29 +1731,29 @@ class Propiedades extends REST_Controller
 
           $property->id_empresa = $id_empresa;
           $p = new stdClass();
-          $p->nombre = $property->get_field("publication_title");
+          $p->nombre = $property->publication_title;
 
-          $p->codigo = $property->get_field("reference_code");
+          $p->codigo = $property->reference_code;
           $p->codigo = preg_replace("/[^0-9.]/", "", $p->codigo);
 
           $p->id_tipo_estado = 1; // Disponible
-          $p->calle = $property->get_field("real_address");
+          $p->calle = $property->real_address;
           $p->altura = "";
           $p->piso = "";
           $p->numero = "";
-          $p->banios = $property->get_field("bathroom_amount");
-          $p->texto = $property->get_field("description");
-          $p->latitud = $property->get_field("geo_lat");
-          $p->longitud = $property->get_field("geo_long");
-          $p->tokko_id = $property->get_field("id");
-          $p->tokko_url = $property->get_field("public_url");
-          $p->dormitorios = $property->get_field("suite_amount");
-          $p->ambientes = $property->get_field("room_amount");
-          $p->cocheras = $property->get_field("parking_lot_amount");
-          $p->superficie_cubierta = $property->get_field("roofed_surface");
-          $p->superficie_semicubierta = $property->get_field("semiroofed_surface");
-          $p->superficie_descubierta = $property->get_field("unroofed_surface");
-          $p->superficie_total = $property->get_field("total_surface");
+          $p->banios = $property->bathroom_amount;
+          $p->texto = $property->description;
+          $p->latitud = $property->geo_lat;
+          $p->longitud = $property->geo_long;
+          $p->tokko_id = $property->id;
+          $p->tokko_url = $property->public_url;
+          $p->dormitorios = $property->suite_amount;
+          $p->ambientes = $property->room_amount;
+          $p->cocheras = $property->parking_lot_amount;
+          $p->superficie_cubierta = $property->roofed_surface;
+          $p->superficie_semicubierta = $property->semiroofed_surface;
+          $p->superficie_descubierta = $property->unroofed_surface;
+          $p->superficie_total = $property->total_surface;
           $p->zoom = 17;
           $p->activo = 1;
 
@@ -1740,7 +1761,7 @@ class Propiedades extends REST_Controller
           $p->texto = str_replace("------------------------ Dacal Bienes Raíces (0221) 421-3888/1112 (011) 4342-3951", "", $p->texto);
 
           // TAGS
-          $tags = $property->get_field("tags");
+          $tags = $property->tags;
           if (sizeof($tags) > 0) {
             foreach ($tags as $t) {
               if ($t->name == "Agua Corriente") $p->servicios_agua_corriente = 1;
@@ -1756,7 +1777,7 @@ class Propiedades extends REST_Controller
           }
 
           // ID_TIPO_OPERACION
-          $operations = $property->get_field("operations");
+          $operations = $property->operations;
           $operacion = $operations[0];
           if ($operacion->operation_type == "Venta") $p->id_tipo_operacion = 1;
           else if ($operacion->operation_type == "Alquiler") $p->id_tipo_operacion = 2;
@@ -1773,7 +1794,7 @@ class Propiedades extends REST_Controller
           }
 
           // TIPO PROPIEDAD
-          $tipo = $property->get_field("type");
+          $tipo = $property->type;
           $p->id_tipo_inmueble = 0;
           if ($tipo->name == "Departamento") $p->id_tipo_inmueble = 2;
           else if ($tipo->name == "Casa") $p->id_tipo_inmueble = 1;
@@ -1796,7 +1817,7 @@ class Propiedades extends REST_Controller
           }
 
           // LOCALIDAD
-          $location = $property->get_field("location");
+          $location = $property->location;
           $p->id_localidad = 0;
           $p->id_departamento = 0;
           $p->id_provincia = 1;
@@ -1898,7 +1919,7 @@ class Propiedades extends REST_Controller
           }
 
           $p->images = array();
-          $images = $property->get_field("photos");
+          $images = $property->photos;
           if (sizeof($images) > 0) {
             $ppal = $images[0];
             $p->path = $ppal->image;
@@ -1909,7 +1930,7 @@ class Propiedades extends REST_Controller
           }
 
           // Consultamos si la propiedad ya esta subida
-          $sql = "SELECT * FROM inm_propiedades WHERE tokko_id = '" . $property->get_field("id") . "' AND id_empresa = $id_empresa ";
+          $sql = "SELECT * FROM inm_propiedades WHERE tokko_id = '" . $property->id . "' AND id_empresa = $id_empresa ";
           $q = $this->db->query($sql);
           $p->no_controlar_plan = 1;
           try {
