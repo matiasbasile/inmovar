@@ -1664,7 +1664,7 @@ class Propiedades extends REST_Controller
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $result = curl_exec($ch);
-    $salida = json_encode($result);
+    $salida = json_decode($result);
 
     $this->load->model("Log_Model");
     $this->Log_Model->imprimir(array(
