@@ -41,6 +41,9 @@ $nombre_pagina = $vc_link_tipo_operacion;
         <h6>Se encontraron <b><?php echo $vc_total_resultados ?></b> propiedades</h6>
       <?php } ?>
     </div>
+
+    <?php include("includes/propiedad/buscador.php"); ?>
+    
     <div id="mapa" style="width:100%; height:700px"></div>
   </div>
 </section>
