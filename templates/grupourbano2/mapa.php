@@ -42,8 +42,10 @@ $nombre_pagina = $vc_link_tipo_operacion;
       <?php } ?>
     </div>
 
-    <?php include("includes/propiedad/buscador.php"); ?>
-    
+    <?php 
+    $buscador_mapa = true;
+    include("includes/propiedad/buscador.php"); ?>
+
     <div id="mapa" style="width:100%; height:700px"></div>
   </div>
 </section>
