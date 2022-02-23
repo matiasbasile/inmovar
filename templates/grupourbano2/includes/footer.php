@@ -98,8 +98,7 @@ function buscar_listado(form) {
 
 function cambiar_checkboxes(e) {
   var form = $(e).parents("form");
-  console.log(form);
-  filtrar(form);
+  $(form).submit();
 }
 
 function filtrar(form) {
