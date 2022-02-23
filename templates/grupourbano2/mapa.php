@@ -17,77 +17,103 @@ $nombre_pagina = $vc_link_tipo_operacion;
   </style>
 </head>
 
-<body id="mapa_page">
-  <?php include("includes/header.php"); ?>
-    
-  <div id="mapa" style="width:100%; height:700px"></div>
-  <!-- MAIN WRAPPER -->
-  <!--  <section id="searchbar" class="our-clients">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 primary">
-          <div class="row">
-            <?php /* include_once("includes/searchbar.php"); */ ?>
-          </div>
-        </div>
+<body class="bg-gray">
+
+<?php include("includes/header.php"); ?>
+
+<section class="padding-default">
+  <div class="container style-two">
+    <div class="page-heading">
+      <?php if ($vc_tipo_operacion == 1) { ?>
+        <h2>Propiedades en Venta</h2>
+        <h6>Se encontraron <b><?php echo $vc_total_resultados ?></b> propiedades</h6>
+      <?php } else if ($vc_tipo_operacion == 2) { ?>
+        <h2>Propiedades en Alquiler</h2>
+        <h6>Se encontraron <b><?php echo $vc_total_resultados ?></b> propiedades</h6>
+      <?php } else if ($vc_tipo_operacion == 4) { ?>
+        <h2>Emprendimientos</h2>
+        <h6>Se encontraron <b><?php echo $vc_total_resultados ?></b> emprendimientos</h6>
+      <?php } else if ($vc_tipo_operacion == 5) { ?>
+        <h2>Obras</h2>
+        <h6>Se encontraron <b><?php echo $vc_total_resultados ?></b> obras</h6>
+      <?php } else { ?>
+        <h2>Propiedades</h2>
+        <h6>Se encontraron <b><?php echo $vc_total_resultados ?></b> propiedades</h6>
+      <?php } ?>
+    </div>
+
+    <div id="mapa" style="width:100%; height:700px"></div>
+
+    <div class="neighborhoods shadow-none style-two">
+      <div class="row m-0 my-5 propiedades">
+        <?php $cont = 0; ?>
+        <?php 
+        foreach ($vc_listado as $r) { 
+          item($r);
+        } ?>
       </div>
     </div>
-  </section> -->
-  <?php include("includes/footer.php"); ?>
-  <?php include_once("templates/comun/mapa_js.php"); ?>
-  <script type="text/javascript">
-    $(document).ready(function() {
+    <div class="d-block mt-5">
+      <a onclick="cargar()" id="cargarMas" class="btn btn-primary btn-block btn-lg">ver más propiedades para tu búsqueda</a>
+    </div>
+  </div>
+</section>
+
+<?php include("includes/footer.php") ?>
+
+<?php include_once("templates/comun/mapa_js.php"); ?>
+<script type="text/javascript">
+$(document).ready(function() {
+
+  var mymap = L.map('mapa').setView([<?php echo $empresa->latitud ?>, <?php echo $empresa->longitud ?>], 15);
+  L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+    attribution: '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
+    tileSize: 512,
+    maxZoom: 18,
+    zoomOffset: -1,
+    id: 'mapbox/streets-v11',
+    accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
+  }).addTo(mymap);
 
 
-      var mymap = L.map('mapa').setView([<?php echo $empresa->latitud ?>, <?php echo $empresa->longitud ?>], 15);
-      L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-        attribution: '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
-        tileSize: 512,
-        maxZoom: 18,
-        zoomOffset: -1,
-        id: 'mapbox/streets-v11',
-        accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
-      }).addTo(mymap);
+  mymap.fitBounds([
+    <?php foreach ($vc_listado as $p) {
+      if (isset($p->latitud) && isset($p->longitud) && !empty($p->latitud) && !empty($p->longitud)) {  ?>[<?php echo $p->latitud ?>, <?php echo $p->longitud ?>],
+      <?php } ?>
+    <?php } ?>
+  ]);
 
+  /*var icono = L.icon({
+    iconUrl: 'images/map-place.png',
+    iconSize: [60, 60], // size of the icon
+    iconAnchor: [30, 30], // point of the icon which will correspond to marker's location
+  });*/
 
-      mymap.fitBounds([
-        <?php foreach ($vc_listado as $p) {
-          if (isset($p->latitud) && isset($p->longitud) && !empty($p->latitud) && !empty($p->longitud)) {  ?>[<?php echo $p->latitud ?>, <?php echo $p->longitud ?>],
-          <?php } ?>
-        <?php } ?>
-      ]);
+  <?php $i = 0;
+  foreach ($vc_listado as $p) {
+    if (isset($p->latitud) && isset($p->longitud) && !empty($p->latitud) && !empty($p->longitud)) { ?>
+      var contentString<?php echo $i; ?> = '<div id="content">' +
+        '<div style="padding: 0px;">' +
+        <?php if (!empty($p->link_propiedad)) { ?> '<a href=\"<?php echo $p->link_propiedad ?>\">' + <?php } ?> '<h4 style="font-size:20px;margin:5px 0px"><?php echo ($p->nombre) ?></h4>' +
+        '<p style="font-size:16px;color:#222;margin:0px;"><?php echo ($p->direccion_completa . " | " . $p->localidad) ?></p>' +
+        <?php if (!empty($p->link_propiedad)) { ?> '</a>' + <?php } ?>
+      <?php if (!empty($p->link_propiedad)) { ?> '<a href=\"<?php echo $p->link_propiedad ?>\">' + <?php } ?> '<img width=\"200\" src=\"<?php echo $p->imagen ?>\"/>' +
+        <?php if (!empty($p->link_propiedad)) { ?> '</a>' + <?php } ?> '</div>' +
+        '</div>';
 
-      /*var icono = L.icon({
-        iconUrl: 'images/map-place.png',
-        iconSize: [60, 60], // size of the icon
-        iconAnchor: [30, 30], // point of the icon which will correspond to marker's location
-      });*/
+        var marker<?php echo $i; ?> = L.marker([<?php echo $p->latitud ?>, <?php echo $p->longitud ?>], {
+          //icon: icono
+        });
+        marker<?php echo $i; ?>.addTo(mymap);
 
-      <?php $i = 0;
-      foreach ($vc_listado as $p) {
-        if (isset($p->latitud) && isset($p->longitud) && !empty($p->latitud) && !empty($p->longitud)) { ?>
-          var contentString<?php echo $i; ?> = '<div id="content">' +
-            '<div style="padding: 0px;">' +
-            <?php if (!empty($p->link_propiedad)) { ?> '<a href=\"<?php echo $p->link_propiedad ?>\">' + <?php } ?> '<h4 style="font-size:20px;margin:5px 0px"><?php echo ($p->nombre) ?></h4>' +
-            '<p style="font-size:16px;color:#222;margin:0px;"><?php echo ($p->direccion_completa . " | " . $p->localidad) ?></p>' +
-            <?php if (!empty($p->link_propiedad)) { ?> '</a>' + <?php } ?>
-          <?php if (!empty($p->link_propiedad)) { ?> '<a href=\"<?php echo $p->link_propiedad ?>\">' + <?php } ?> '<img width=\"200\" src=\"<?php echo $p->imagen ?>\"/>' +
-            <?php if (!empty($p->link_propiedad)) { ?> '</a>' + <?php } ?> '</div>' +
-            '</div>';
+        marker<?php echo $i; ?>.bindPopup(contentString<?php echo $i; ?>);
 
-            var marker<?php echo $i; ?> = L.marker([<?php echo $p->latitud ?>, <?php echo $p->longitud ?>], {
-              //icon: icono
-            });
-            marker<?php echo $i; ?>.addTo(mymap);
+      <?php } ?>
+    <?php $i++;
+  } ?>
 
-            marker<?php echo $i; ?>.bindPopup(contentString<?php echo $i; ?>);
-
-          <?php } ?>
-        <?php $i++;
-      } ?>
-
-    });
-  </script>
+});
+</script>
 </body>
 
 </html>
