@@ -1655,6 +1655,7 @@ class Propiedades extends REST_Controller
 
   function get_tokko_properties($config = array()) {
     $api_key = $config["api_key"];
+    $id_empresa = $config["id_empresa"];
     $limit = 1000;
     $offset = 0;
     $url = "https://tokkobroker.com/api/v1/property/?lang=es_ar&format=json&limit=".$limit."&offset=".$offset."&key=".$api_key;
@@ -1664,6 +1665,15 @@ class Propiedades extends REST_Controller
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $result = curl_exec($ch);
     $salida = json_encode($result);
+
+    $this->load->model("Log_Model");
+    $this->Log_Model->imprimir(array(
+      "append" => 0, // Asi limpiamos el archivo de log
+      "id_empresa" => $id_empresa,
+      "file" => date("Ymd") . "_importacion_tokko.txt",
+      "texto" => $salida . "\n\n",
+    ));
+
     return $salida->objects;
   }
 
@@ -1690,6 +1700,7 @@ class Propiedades extends REST_Controller
 
         $properties = $this->get_tokko_properties(array(
           "api_key"=>$emp->tokko_apikey,
+          "id_empresa"=>$id_empresa,
         ));
 
         /*
@@ -1715,7 +1726,6 @@ class Propiedades extends REST_Controller
         }
 
         $this->Log_Model->imprimir(array(
-          "append" => 0, // Asi limpiamos el archivo de log
           "id_empresa" => $id_empresa,
           "file" => date("Ymd") . "_importacion_tokko.txt",
           "texto" => "CANTIDAD DE PROPIEDADES A IMPORTAR: " . sizeof($properties) . "\n\n",
