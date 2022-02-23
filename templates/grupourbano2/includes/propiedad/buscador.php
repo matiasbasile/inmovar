@@ -1,7 +1,7 @@
 <a href="javascript:void(0)" rel="nofollow" class="btn btn-primary btn-block mb-3 form-toggle style-two mt-5">AJUSTAR BÚSQUEDA</a>
 <form onsubmit="return filtrar(this)" method="get" class="form-responsive mt-5">
   <div class="form-block">
-    <input type="hidden" class="base_url" value="<?php echo mklink("propiedades/") ?>" />
+    <input type="hidden" class="base_url" value="<?php echo (isset($buscador_mapa) ? mklink("mapa/") : mklink("propiedades/")) ?>" />
     <div class="form">
       <select class="form-control filter_tipo_operacion">
         <option value="0">OPERACIÓN</option>
