@@ -1,4 +1,3 @@
-<?php  ?>
 <footer>
 
   <?php if (isset($nombre_pagina) && $nombre_pagina == "home") { ?>
@@ -95,6 +94,10 @@ function buscar_mapa(form) {
 function buscar_listado(form) {
   $(form).parents("form").first().find(".base_url").val("<?php echo mklink("propiedades/") ?>");
   $(form).parents("form").first().submit();
+}
+
+function cambiar_checkboxes(form) {
+  filtrar(form);
 }
 
 function filtrar(form) {
