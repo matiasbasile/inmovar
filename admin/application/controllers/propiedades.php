@@ -1671,7 +1671,7 @@ class Propiedades extends REST_Controller
       "append" => 0, // Asi limpiamos el archivo de log
       "id_empresa" => $id_empresa,
       "file" => date("Ymd") . "_importacion_tokko.txt",
-      "texto" => $salida . "\n\n",
+      "texto" => print_r($salida->objects,TRUE) . "\n\n",
     ));
 
     return $salida->objects;
