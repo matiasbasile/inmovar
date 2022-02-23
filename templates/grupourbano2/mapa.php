@@ -41,21 +41,7 @@ $nombre_pagina = $vc_link_tipo_operacion;
         <h6>Se encontraron <b><?php echo $vc_total_resultados ?></b> propiedades</h6>
       <?php } ?>
     </div>
-
     <div id="mapa" style="width:100%; height:700px"></div>
-
-    <div class="neighborhoods shadow-none style-two">
-      <div class="row m-0 my-5 propiedades">
-        <?php $cont = 0; ?>
-        <?php 
-        foreach ($vc_listado as $r) { 
-          item($r);
-        } ?>
-      </div>
-    </div>
-    <div class="d-block mt-5">
-      <a onclick="cargar()" id="cargarMas" class="btn btn-primary btn-block btn-lg">ver más propiedades para tu búsqueda</a>
-    </div>
   </div>
 </section>
 
