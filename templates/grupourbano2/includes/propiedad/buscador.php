@@ -49,9 +49,15 @@
           <option <?php echo($vc_orden == 2)?"selected":"" ?> value="barato">Precio Menor a Mayor</option>
           <option <?php echo($vc_orden == 1)?"selected":"" ?> value="caro">Precio Mayor a Menor</option>
         </select>
-        <a onclick="buscar_mapa(this)" href="javascript:void(0)" rel="nofollow" class="btn btn-primary btn-sm">
-          <i class="fa fa-map-marker mr-2" aria-hidden="true"></i> Ver en mapa
-        </a>
+        <?php if (isset($buscador_mapa)) { ?>
+          <a onclick="buscar_mapa(this)" href="javascript:void(0)" rel="nofollow" class="btn btn-primary btn-sm">
+            <i class="fa fa-map-marker mr-2" aria-hidden="true"></i> Ver listado
+          </a>
+        <?php } else { ?>
+          <a onclick="buscar_mapa(this)" href="javascript:void(0)" rel="nofollow" class="btn btn-primary btn-sm">
+            <i class="fa fa-map-marker mr-2" aria-hidden="true"></i> Ver en mapa
+          </a>
+        <?php } ?>
       </div>
       <div class="col-md-5 text-right">
         <div class="custom-check">
