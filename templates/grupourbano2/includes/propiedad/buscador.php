@@ -50,7 +50,7 @@
           <option <?php echo($vc_orden == 1)?"selected":"" ?> value="caro">Precio Mayor a Menor</option>
         </select>
         <?php if (isset($buscador_mapa)) { ?>
-          <a onclick="buscar_mapa(this)" href="javascript:void(0)" rel="nofollow" class="btn btn-primary btn-sm">
+          <a onclick="buscar_listado(this)" href="javascript:void(0)" rel="nofollow" class="btn btn-primary btn-sm">
             <i class="fa fa-map-marker mr-2" aria-hidden="true"></i> Ver listado
           </a>
         <?php } else { ?>
