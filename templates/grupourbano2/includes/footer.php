@@ -92,6 +92,11 @@ function buscar_mapa(form) {
   $(form).parents("form").first().submit();
 }
 
+function buscar_listado(form) {
+  $(form).parents("form").first().find(".base_url").val("<?php echo mklink("propiedades/") ?>");
+  $(form).parents("form").first().submit();
+}
+
 function filtrar(form) {
   var url = $(form).find(".base_url").val();
   var tipo_operacion = $(form).find(".filter_tipo_operacion").val();
