@@ -29,20 +29,18 @@ $breadcrumb = array(
   
 <?php include("includes/header.php"); ?>
 
-<section class="main-wrapper oh">
-  <div class="container style-two">
-    <div class="page-heading">
-      <h2>formulario de consulta</h2>
-    </div>
-    <div class="form">
-      <div class="row">
-        <?php include("includes/form_contacto.php"); ?>
-      </div>
+<div class="container style-two">
+  <div class="page-heading">
+    <h2>formulario de consulta</h2>
+  </div>
+  <div class="form">
+    <div class="row">
+      <?php include("includes/form_contacto.php"); ?>
     </div>
   </div>
-</section>
+</div>
 <?php include("includes/footer.php"); ?>
-<?php include_once("templates/comun/mapa_js.php"); ?>
+
 <script type="text/javascript">
     //OWL CAROUSEL(2) SCRIPT
 jQuery(document).ready(function ($) {
