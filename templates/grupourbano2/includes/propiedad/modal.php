@@ -12,12 +12,12 @@
         <input id="visita_email" type="email" class="form-control" placeholder="Email">
       </div>
       <div class="row">
-        <div class="col-xs-6">
+        <div class="col-6">
           <div class="form-group">
             <input id="visita_fecha" type="date" class="form-control" placeholder="Fecha">
           </div>
         </div>
-        <div class="col-xs-6">
+        <div class="col-6">
           <div class="form-group">
             <input id="visita_hora" type="time" class="form-control" placeholder="Hora">
           </div>
