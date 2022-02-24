@@ -181,6 +181,11 @@ function enviar_contacto() {
     $("#contacto_telefono").focus();
     return false;          
   }
+  if (isEmpty(localidad)) {
+    alert("Por favor ingrese una localidad");
+    $("#contacto_localidad").focus();
+    return false;
+  }
   if (isEmpty(mensaje)) {
     alert("Por favor ingrese un mensaje");
     $("#contacto_mensaje").focus();
