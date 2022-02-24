@@ -69,8 +69,8 @@ $breadcrumb = array(
     <div class="row">
       <div class="col-md-4">
         <div class="form-group">
-          <label class="label-control" for="contacto_dormitorios">Tipo de Propiedad</label>
-          <select class="form-control" id="contacto_dormitorios">
+          <label class="label-control" for="contacto_tipo_propiedad">Tipo de Propiedad</label>
+          <select class="form-control" id="contacto_tipo_propiedad">
             <?php $tipo_propiedades = $propiedad_model->get_tipos_propiedades(array("mostrar_todos"=>1)); ?>
             <?php foreach ($tipo_propiedades as $tipo) { ?>
               <option value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
@@ -96,8 +96,8 @@ $breadcrumb = array(
       </div>
       <div class="col-md-4">
         <div class="form-group">
-          <label class="label-control" for="contacto_dormitorios">Baños</label>
-          <select class="form-control" id="contacto_dormitorios">
+          <label class="label-control" for="contacto_banios">Baños</label>
+          <select class="form-control" id="contacto_banios">
             <option>-</option>
             <option>1</option>
             <option>2</option>
@@ -111,21 +111,19 @@ $breadcrumb = array(
         </div>
       </div>
     </div>
-      <div class="row">
+    <div class="row">
       <div class="col-md-12">
         <div class="form-group">
           <label class="label-control" for="contacto_mensaje">Comentarios *</label>
           <textarea id="contacto_mensaje" class="form-control"></textarea>
         </div>
       </div>
-    </div>
-
-
-      <div class="col-md-12">
-        <input type="submit" id="contacto_submit" value="enviar" class="btn btn-blue" />
+      <div class="col-md-12 tac">
+        <input type="submit" id="contacto_submit" value="enviar" class="btn btn-primary" />
       </div>
     </div>
 
+  </div>
 </div>
 <?php include("includes/footer.php"); ?>
 
