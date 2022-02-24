@@ -30,20 +30,20 @@ $breadcrumb = array(
 <?php include("includes/header.php"); ?>
 
 <div class="container style-two">
-  <div class="page-heading">
-    <h2>Información de Contacto</h2>
-  </div>
   <div class="form">
+    <div class="page-heading">
+      <h2>Información de Contacto</h2>
+    </div>
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <label class="label-control" id="contacto_nombre">Nombre *</label>
+          <label class="label-control" for="contacto_nombre">Nombre *</label>
           <input type="text" id="contacto_nombre" class="form-control" />
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
-          <label class="label-control" id="contacto_apellido">Apellido *</label>
+          <label class="label-control" for="contacto_apellido">Apellido *</label>
           <input type="text" id="contacto_apellido" class="form-control" />
         </div>
       </div>
@@ -51,29 +51,76 @@ $breadcrumb = array(
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <label class="label-control" id="contacto_email">Email *</label>
+          <label class="label-control" for="contacto_email">Email *</label>
           <input type="email" id="contacto_email" class="form-control" />
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
-          <label class="label-control" id="contacto_telefono">Teléfono *</label>
+          <label class="label-control" for="contacto_telefono">Teléfono *</label>
           <input type="tel" id="contacto_telefono" class="form-control" />
         </div>
       </div>
     </div>
     <div class="col-md-12">
       <div class="form-group">
-        <label class="label-control" id="contacto_mensaje">Comentarios *</label>
+        <label class="label-control" for="contacto_mensaje">Comentarios *</label>
         <textarea id="contacto_mensaje" class="form-control"></textarea>
       </div>
     </div>
+
+    <div class="page-heading">
+      <h2>Información de la Propiedad</h2>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label class="label-control" for="contacto_dormitorios">Tipo de Propiedad</label>
+          <select class="form-control" id="contacto_dormitorios">
+            <?php $tipo_propiedades = $propiedad_model->get_tipos_propiedades(array("mostrar_todos"=>1)); ?>
+            <?php foreach ($tipo_propiedades as $tipo) { ?>
+              <option value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
+            <?php } ?>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label class="label-control" for="contacto_dormitorios">Dormitorios</label>
+          <select class="form-control" id="contacto_dormitorios">
+            <option>-</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>Más de 7</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label class="label-control" for="contacto_dormitorios">Baños</label>
+          <select class="form-control" id="contacto_dormitorios">
+            <option>-</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>Más de 7</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
     <div class="col-md-12">
       <input type="submit" id="contacto_submit" value="enviar" class="btn btn-blue" />
     </div>
-  </div>
-  <div class="page-heading">
-    <h2>Información de la Propiedad</h2>
   </div>
 
 </div>
