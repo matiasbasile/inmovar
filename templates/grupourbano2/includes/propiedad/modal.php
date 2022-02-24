@@ -11,11 +11,23 @@
       <div class="form-group">
         <input id="visita_email" type="email" class="form-control" placeholder="Email">
       </div>
+      <div class="row">
+        <div class="col-xs-6">
+          <div class="form-group">
+            <input id="visita_fecha" type="date" class="form-control" placeholder="Fecha">
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <div class="form-group">
+            <input id="visita_hora" type="time" class="form-control" placeholder="Hora">
+          </div>
+        </div>
+      </div>
       <div class="form-group">
         <textarea id="visita_mensaje" class="form-control">Estoy interesado en <?php echo $propiedad->nombre ?> [COD: <?php echo $propiedad->codigo ?>].</textarea>
       </div>
       <div class="form-group mb-0">
-        <button onclick="enviar_visita()" type="button" class="btn visita_submit btn-secondary btn-block"><i class="fa fa-envelope-o mr-3" aria-hidden="true"></i> enviar por email</button>
+        <button onclick="enviar_visita()" type="button" class="btn visita_submit btn-secondary btn-block">enviar</button>
       </div>
     </form>
   </div>
