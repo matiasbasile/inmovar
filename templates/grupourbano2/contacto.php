@@ -156,7 +156,7 @@ function enviar_contacto() {
   var telefono = $("#contacto_telefono").val();
   var mensaje = $("#contacto_mensaje").val();
   var asunto = $("#contacto_asunto").val();
-  var tipo_propiedad = $("#contacto_tipo_propiedad").val();
+  var tipo_propiedad = $("#contacto_tipo_propiedad option:selected").text();
   var dormitorios = $("#contacto_dormitorios").val();
   var banios = $("#contacto_banios").val();
   var localidad = $("#contacto_localidad").val();
