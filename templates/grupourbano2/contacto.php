@@ -191,12 +191,13 @@ function enviar_contacto() {
     $("#contacto_mensaje").focus();
     return false;              
   }
-  mensaje = "Localidad: "+localidad+"\n"+"Tipo: "+tipo_propiedad+"\n"+"Dormitorios: "+dormitorios+"\n"+"Baños: "+banios+"\n"+"Mensaje: "  +mensaje;
+  var v = "Localidad: "+localidad+"\nTipo: "+tipo_propiedad+"\nDormitorios: "+dormitorios+"\nBaños: "+banios+"\nMensaje: "+mensaje;
   $("#contacto_submit").attr('disabled', 'disabled');
   var datos = {
+    "para":"<?php echo $empresa->email ?>",
     "nombre":nombre+" "+apellido,
     "email":email,
-    "mensaje":mensaje,
+    "mensaje":v,
     "telefono":telefono,
     "asunto":"Quiero Vender",
     "id_empresa":ID_EMPRESA,
