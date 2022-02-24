@@ -32,7 +32,7 @@ $breadcrumb = array(
 <div class="container style-two">
   <div class="form">
     <div class="page-heading">
-      <h2>Información de Contacto</h2>
+      <h2>Datos de Contacto</h2>
     </div>
     <div class="row">
       <div class="col-md-6">
@@ -64,7 +64,7 @@ $breadcrumb = array(
     </div>
 
     <div class="page-heading">
-      <h2>Información de la Propiedad</h2>
+      <h2>Datos de Propiedad</h2>
     </div>
     <div class="row">
       <div class="col-md-4">
