@@ -211,7 +211,7 @@ function enviar_contacto() {
     "data":datos,
     "success":function(r){
       if (r.error == 0) {
-        window.location.href = "<?php echo mklink ("web/gracias/") ?>";
+        alert("Muchas gracias por enviar tu consulta. Nos comunicaremos a la mayor brevedad posible.");
       } else {
         alert("Ocurrio un error al enviar su email. Disculpe las molestias");
         $("#contacto_submit").removeAttr('disabled');
