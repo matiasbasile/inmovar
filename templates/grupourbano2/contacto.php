@@ -143,18 +143,23 @@ var enviando = 0;
 function enviar_contacto() {
   if (enviando == 1) return;
   var nombre = $("#contacto_nombre").val();
+  var apellido = $("#contacto_apellido").val();
   var email = $("#contacto_email").val();
   var telefono = $("#contacto_telefono").val();
   var mensaje = $("#contacto_mensaje").val();
   var asunto = $("#contacto_asunto").val();
-  var para = $("#contacto_para").val();
-  var id_propiedad = $("#contacto_propiedad").val();
-  var id_usuario = $("#contacto_id_usuario").val();
-  if (isEmpty(para)) para = "<?php echo $empresa->email ?>";
+  var tipo_propiedad = $("#contacto_tipo_propiedad").val();
+  var dormitorios = $("#contacto_dormitorios").val();
+  var banios = $("#contacto_banios").val();
   
-  if (isEmpty(nombre) || nombre == "Nombre") {
+  if (isEmpty(nombre)) {
     alert("Por favor ingrese un nombre");
     $("#contacto_nombre").focus();
+    return false;          
+  }
+  if (isEmpty(apellido)) {
+    alert("Por favor ingrese un apellido");
+    $("#contacto_apellido").focus();
     return false;          
   }
   if (!validateEmail(email)) {
@@ -162,32 +167,26 @@ function enviar_contacto() {
     $("#contacto_email").focus();
     return false;          
   }
-  if (isEmpty(telefono) || telefono == "Telefono") {
+  if (isEmpty(telefono)) {
     alert("Por favor ingrese un telefono");
     $("#contacto_telefono").focus();
     return false;          
   }
-  if (isEmpty(mensaje) || mensaje == "Mensaje") {
+  if (isEmpty(mensaje)) {
     alert("Por favor ingrese un mensaje");
     $("#contacto_mensaje").focus();
     return false;              
-  }    
-    
+  }
+  mensaje = "Tipo: "+tipo_propiedad+"\n"+"Dormitorios: "+dormitorios+"\n"+"Baños: "+banios+"\n"+"Mensaje: "  +mensaje;
   $("#contacto_submit").attr('disabled', 'disabled');
   var datos = {
-    "nombre":nombre,
+    "nombre":nombre+" "+apellido,
     "email":email,
     "mensaje":mensaje,
     "telefono":telefono,
-    "asunto":asunto,
-    "para":para,
-    "id_propiedad":id_propiedad,
-    <?php if (isset($propiedad) && $propiedad->id_empresa != $empresa->id) { ?>
-      "id_empresa_relacion":"<?php echo $propiedad->id_empresa ?>",
-    <?php } ?>
-    "id_usuario":id_usuario,
+    "asunto":"Quiero Vender",
     "id_empresa":ID_EMPRESA,
-    "id_origen":<?php echo(isset($id_origen) ? $id_origen : 1); ?>,
+    "id_origen":1,
   }
   enviando = 1;
   $.ajax({
