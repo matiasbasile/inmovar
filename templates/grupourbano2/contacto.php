@@ -63,7 +63,7 @@ $breadcrumb = array(
       </div>
     </div>
 
-    <div class="page-heading">
+    <div class="page-heading mt30">
       <h2>Datos de Propiedad</h2>
     </div>
     <div class="row">
