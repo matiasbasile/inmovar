@@ -1550,3 +1550,5 @@ ul.dot-icon li span {
 
 .adaptable-img-detail { height: 100%; width: 100%; aspect-ratio: 400 / 299; object-fit: cover; }
 .adaptable-img-detail-2 { height: 100%; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+
+#contacto_page .form-control { background-color: white; }

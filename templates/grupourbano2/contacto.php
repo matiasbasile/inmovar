@@ -47,15 +47,16 @@ $breadcrumb = array(
     <div class="row">
       <div class="col-md-6">
         <label class="label-control" id="contacto_email">Email *</label>
-        <input type="email" id="contacto_email" />
+        <input type="email" id="contacto_email" class="form-control" />
       </div>
       <div class="col-md-6">
         <label class="label-control" id="contacto_telefono">Teléfono *</label>
-        <input type="tel" id="contacto_telefono" />
+        <input type="tel" id="contacto_telefono" class="form-control" />
       </div>
     </div>
     <div class="col-md-12">
-      <textarea id="contacto_mensaje" placeholder="Consulta"></textarea>
+      <label class="label-control" id="contacto_mensaje">Comentarios *</label>
+      <textarea id="contacto_mensaje" class="form-control"></textarea>
     </div>
     <div class="col-md-12">
       <input type="submit" id="contacto_submit" value="enviar" class="btn btn-blue" />
