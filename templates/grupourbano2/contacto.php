@@ -67,7 +67,13 @@ $breadcrumb = array(
       <h2>Datos de Propiedad</h2>
     </div>
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="label-control" for="contacto_localidad">Localidad *</label>
+          <input type="tel" id="contacto_localidad" class="form-control" />
+        </div>
+      </div>      
+      <div class="col-md-6">
         <div class="form-group">
           <label class="label-control" for="contacto_tipo_propiedad">Tipo de Propiedad</label>
           <select class="form-control" id="contacto_tipo_propiedad">
@@ -78,7 +84,9 @@ $breadcrumb = array(
           </select>
         </div>
       </div>
-      <div class="col-md-4">
+    </div>
+    <div class="row">
+      <div class="col-md-6">
         <div class="form-group">
           <label class="label-control" for="contacto_dormitorios">Dormitorios</label>
           <select class="form-control" id="contacto_dormitorios">
@@ -94,7 +102,7 @@ $breadcrumb = array(
           </select>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-6">
         <div class="form-group">
           <label class="label-control" for="contacto_banios">Baños</label>
           <select class="form-control" id="contacto_banios">
@@ -151,6 +159,7 @@ function enviar_contacto() {
   var tipo_propiedad = $("#contacto_tipo_propiedad").val();
   var dormitorios = $("#contacto_dormitorios").val();
   var banios = $("#contacto_banios").val();
+  var localidad = $("#contacto_localidad").val();
   
   if (isEmpty(nombre)) {
     alert("Por favor ingrese un nombre");
@@ -177,7 +186,7 @@ function enviar_contacto() {
     $("#contacto_mensaje").focus();
     return false;              
   }
-  mensaje = "Tipo: "+tipo_propiedad+"\n"+"Dormitorios: "+dormitorios+"\n"+"Baños: "+banios+"\n"+"Mensaje: "  +mensaje;
+  mensaje = "Localidad: "+localidad+"\n"+"Tipo: "+tipo_propiedad+"\n"+"Dormitorios: "+dormitorios+"\n"+"Baños: "+banios+"\n"+"Mensaje: "  +mensaje;
   $("#contacto_submit").attr('disabled', 'disabled');
   var datos = {
     "nombre":nombre+" "+apellido,
