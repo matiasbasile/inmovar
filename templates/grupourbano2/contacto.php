@@ -24,30 +24,19 @@ $breadcrumb = array(
 <html dir="ltr" lang="en-US">
 <head>
 <?php include("includes/head.php"); ?>
-<link rel="stylesheet" type="text/css" href="assets/css/gu1.css?v=4">
-<style type="text/css">
-#contacto_page header .container.style-two { width: 100%; max-width: none; }
-</style>
 </head>
 <body id="contacto_page" class="bg-gray">
   
 <?php include("includes/header.php"); ?>
 
 <section class="main-wrapper oh">
-  <div class="container">
-    <div class="contact">
-      <div class="border-box">
-        <div class="box-space">
-          <div id="map"></div>
-        </div>
-        <div class="info-title">formulario de consulta</div>
-        <div class="box-space">
-          <div class="form">
-            <div class="row">
-              <?php include("includes/form_contacto.php"); ?>
-            </div>
-          </div>
-        </div>
+  <div class="container style-two">
+    <div class="page-heading">
+      <h2>formulario de consulta</h2>
+    </div>
+    <div class="form">
+      <div class="row">
+        <?php include("includes/form_contacto.php"); ?>
       </div>
     </div>
   </div>
@@ -65,32 +54,6 @@ $(".owl-carouselmarcas").owlCarousel({
       itemsMobile : [639,1],
     });
 });
-//MAP SCRIPT
-$(document).ready(function(){
-
-  var mymap = L.map('map').setView([<?php echo $empresa->latitud ?>,<?php echo $empresa->longitud ?>], <?php echo $empresa->zoom ?>);
-
-  L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-    attribution: '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
-    tileSize: 512,
-    maxZoom: 18,
-    zoomOffset: -1,
-    id: 'mapbox/streets-v11',
-    accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
-  }).addTo(mymap);
-
-
-  var icono = L.icon({
-    iconUrl: 'assets/images/map-place.png',
-    iconSize:     [60, 60], // size of the icon
-    iconAnchor:   [30, 30], // point of the icon which will correspond to marker's location
-  });
-
-  L.marker([<?php echo $empresa->latitud ?>,<?php echo $empresa->longitud ?>],{
-    icon: icono
-  }).addTo(mymap);
-
-});  
 </script>
 
 </body>
