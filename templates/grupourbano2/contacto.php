@@ -30,7 +30,7 @@ $breadcrumb = array(
 <?php include("includes/header.php"); ?>
 
 <div class="container">
-  <div class="form">
+  <form onsubmit="return enviar_contacto()" class="form">
     <div class="page-heading">
       <h2>Datos de Contacto</h2>
     </div>
@@ -131,7 +131,7 @@ $breadcrumb = array(
       </div>
     </div>
 
-  </div>
+  </form>
 </div>
 <?php include("includes/footer.php"); ?>
 
