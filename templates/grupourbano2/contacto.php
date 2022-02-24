@@ -36,27 +36,37 @@ $breadcrumb = array(
   <div class="form">
     <div class="row">
       <div class="col-md-6">
-        <label class="label-control" id="contacto_nombre">Nombre *</label>
-        <input type="text" id="contacto_nombre" class="form-control" />
+        <div class="form-group">
+          <label class="label-control" id="contacto_nombre">Nombre *</label>
+          <input type="text" id="contacto_nombre" class="form-control" />
+        </div>
       </div>
       <div class="col-md-6">
-        <label class="label-control" id="contacto_apellido">Apellido *</label>
-        <input type="text" id="contacto_apellido" class="form-control" />
+        <div class="form-group">
+          <label class="label-control" id="contacto_apellido">Apellido *</label>
+          <input type="text" id="contacto_apellido" class="form-control" />
+        </div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-6">
-        <label class="label-control" id="contacto_email">Email *</label>
-        <input type="email" id="contacto_email" class="form-control" />
+        <div class="form-group">
+          <label class="label-control" id="contacto_email">Email *</label>
+          <input type="email" id="contacto_email" class="form-control" />
+        </div>
       </div>
       <div class="col-md-6">
-        <label class="label-control" id="contacto_telefono">Teléfono *</label>
-        <input type="tel" id="contacto_telefono" class="form-control" />
+        <div class="form-group">
+          <label class="label-control" id="contacto_telefono">Teléfono *</label>
+          <input type="tel" id="contacto_telefono" class="form-control" />
+        </div>
       </div>
     </div>
     <div class="col-md-12">
-      <label class="label-control" id="contacto_mensaje">Comentarios *</label>
-      <textarea id="contacto_mensaje" class="form-control"></textarea>
+      <div class="form-group">
+        <label class="label-control" id="contacto_mensaje">Comentarios *</label>
+        <textarea id="contacto_mensaje" class="form-control"></textarea>
+      </div>
     </div>
     <div class="col-md-12">
       <input type="submit" id="contacto_submit" value="enviar" class="btn btn-blue" />
