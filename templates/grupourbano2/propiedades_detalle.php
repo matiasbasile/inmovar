@@ -344,6 +344,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
   </section>
 
 <!-- Footer -->
+<?php include("includes/propiedad/modal.php") ?>
 <?php include("includes/footer.php") ?>
 <?php include_once("templates/comun/mapa_js.php"); ?>
 
@@ -353,7 +354,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
 <!-- Scripts -->
 <script type="text/javascript">
 function solicitar_visita() {
-  $("#contacto_nombre").focus();
+  $("#visita-modal").modal();
 }
 
 $(document).ready(function() {
