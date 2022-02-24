@@ -29,7 +29,7 @@ $breadcrumb = array(
   
 <?php include("includes/header.php"); ?>
 
-<div class="container style-two">
+<div class="container">
   <div class="form">
     <div class="page-heading">
       <h2>Datos de Contacto</h2>
@@ -118,8 +118,8 @@ $breadcrumb = array(
           <textarea id="contacto_mensaje" class="form-control"></textarea>
         </div>
       </div>
-      <div class="col-md-12 tac">
-        <input type="submit" id="contacto_submit" value="enviar" class="btn btn-primary" />
+      <div class="col-md-12 tac mt40">
+        <input type="submit" id="contacto_submit" value="enviar" class="btn btn-primary btn-block" />
       </div>
     </div>
 
