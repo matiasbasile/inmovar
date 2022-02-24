@@ -1555,4 +1555,4 @@ ul.dot-icon li span {
 #contacto_page .page-heading { border-bottom: none; }
 #contacto_page .form { padding-top: 60px; padding-bottom: 60px; }
 
-.estrella {  }
+.estrella {position: absolute;top: 16px;right: 10px;width: 36px;height: 36px;opacity: 1 !important;z-index: 99; }

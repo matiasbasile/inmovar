@@ -3,12 +3,10 @@ function item($r,$config = array()) {
   $clase = isset($config["clase"]) ? $config["clase"] : "col-md-4 p-0 neighborhoods-list" ?>
   <div class="<?php echo $clase ?>">
     <a href="<?php echo mklink($r->link) ?>">
+      <?php if ($r->destacado == 1) { ?>
+        <img src="assets/images/estrella.png" class="estrella" alt="Propiedad Destacada" />
+      <?php } ?>
       <div class="img-block">
-
-        <?php if ($r->destacado == 1) { ?>
-          <img src="assets/images/estrella.png" class="estrella" alt="Propiedad Destacada" />
-        <?php } ?>
-
         <?php if (!empty($r->imagen)) { ?>
           <img class="adaptable-img" src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre); ?>" />
         <?php } else if (!empty($empresa->no_imagen)) { ?>
