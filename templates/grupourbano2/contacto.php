@@ -62,12 +62,6 @@ $breadcrumb = array(
         </div>
       </div>
     </div>
-    <div class="col-md-12">
-      <div class="form-group">
-        <label class="label-control" for="contacto_mensaje">Comentarios *</label>
-        <textarea id="contacto_mensaje" class="form-control"></textarea>
-      </div>
-    </div>
 
     <div class="page-heading">
       <h2>Información de la Propiedad</h2>
@@ -117,11 +111,20 @@ $breadcrumb = array(
         </div>
       </div>
     </div>
-
-    <div class="col-md-12">
-      <input type="submit" id="contacto_submit" value="enviar" class="btn btn-blue" />
+      <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label class="label-control" for="contacto_mensaje">Comentarios *</label>
+          <textarea id="contacto_mensaje" class="form-control"></textarea>
+        </div>
+      </div>
     </div>
-  </div>
+
+
+      <div class="col-md-12">
+        <input type="submit" id="contacto_submit" value="enviar" class="btn btn-blue" />
+      </div>
+    </div>
 
 </div>
 <?php include("includes/footer.php"); ?>
