@@ -1572,6 +1572,6 @@ ul.dot-icon li span {
 #visita-modal form {padding: 30px;background-color: white;max-width: 600px;margin-left: auto;margin-right: auto; }
 
 @media (max-width: 768px) {
-  .form-block form { padding:15px 15px 0; }
+  .form-block form { padding:15px 15px 0; background-color: white; }
   .form-responsive .form-control { flex: 1 1 100% !important; margin-bottom: 15px !important; }
 }
