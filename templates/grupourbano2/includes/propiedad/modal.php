@@ -1,7 +1,7 @@
 <div id="visita-modal" class="modal">
   <div class="modal-body">
     <form onsubmit="return false">
-      <i class="fa fa-times cerrar_modal fs18 fr"></i>
+      <i class="fa fa-times cerrar_modal fs22 fr mt10 cp"></i>
       <h2>Solicitar una visita</h2>
       <div class="form-group">
         <input id="visita_nombre" type="text" class="form-control" placeholder="Nombre">
@@ -34,9 +34,6 @@
   </div>
 </div>
 <script>
-function cerrar_modal() {
-  $(".modal").modal("hide")
-}
 function enviar_visita() {
   if (window.enviando == 1) return false;
   var nombre = $("#visita_nombre").val();

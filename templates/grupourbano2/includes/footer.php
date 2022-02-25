@@ -86,6 +86,12 @@
 <script src="assets/js/fancybox.js"></script>
 
 <script>
+$(document).ready(function(){
+  $(".cerrar_modal").click(function(){
+    $(".modal").modal("hide")
+  });
+});
+
 function buscar_mapa(form) {
   $(form).parents("form").first().find(".base_url").val("<?php echo mklink("mapa/") ?>");
   $(form).parents("form").first().submit();
