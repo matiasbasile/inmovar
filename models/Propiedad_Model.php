@@ -342,7 +342,9 @@ class Propiedad_Model {
       $page = (int)$config["page"];
     }
 
-    $orden = (isset($config["orden"]) ? $config["orden"] : 2); // Por defecto mas baratos
+    // Por defecto mas baratos
+    $orden_defecto = (isset($config["orden_default"]) ? $config["orden_default"] : 2);
+    $orden = (isset($config["orden"]) ? $config["orden"] : $orden_defecto);
     if (isset($get_params['orden'])) {
       if ($get_params['orden']=='nuevo') $orden = -1;
       elseif ($get_params['orden']=='barato') $orden = 2;
