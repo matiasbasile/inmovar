@@ -77,6 +77,7 @@ function cargar() {
   window.enviando = 1;
   data['id_empresa'] = ID_EMPRESA;
   data['page'] = window.page;
+  data['order'] = "<?php echo $vc_orden ?>";
   data['offset'] = 12;
   data['id_localidad'] = "<?php echo $vc_id_localidad ?>";
   data['tipo_operacion'] = "<?php echo $vc_link_tipo_operacion ?>";
