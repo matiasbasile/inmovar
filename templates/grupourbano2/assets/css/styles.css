@@ -1570,3 +1570,7 @@ ul.dot-icon li span {
 }
 .fs32 { font-size: 32px !important; }
 #visita-modal form {padding: 30px;background-color: white;max-width: 600px;margin-left: auto;margin-right: auto; }
+
+@media (max-width: 768px) {
+  .form-responsive .form-control { flex: 1 1 100% !important; }
+}
