@@ -52,7 +52,8 @@
         <input id="contacto_email" type="email" class="form-control" placeholder="Email">
       </div>
       <div class="form-group">
-        <textarea id="contacto_mensaje" class="form-control">Estoy interesado en <?php echo $propiedad->nombre ?> [COD: <?php echo $propiedad->codigo ?>].</textarea>
+        <?php $mensaje = (isset($mensaje_placeholder) ? $mensaje_placeholder : "Estoy interesado en $propiedad->nombre [COD: $propiedad->codigo].") ?>
+        <textarea id="contacto_mensaje" class="form-control"><?php echo $mensaje ?></textarea>
       </div>
       <?php if (!empty($usuario->celular_f)) { ?>
         <div class="form-group">

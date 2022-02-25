@@ -79,7 +79,9 @@ $nombre_pagina = "nosotros";
         </div>
       </div>
 
-      <?php include("includes/propiedad/sidebar.php"); ?>
+      <?php 
+      $mensaje_placeholder = "Escribir mensaje a ".$usuario->nombre;
+      include("includes/propiedad/sidebar.php"); ?>
 
     </div>
   </div>
