@@ -1290,6 +1290,9 @@ class Propiedad_Model {
         $sql.= "ORDER BY $order_by_empresa A.id ASC ";
       } else if ($order == 7) {
         $sql.= "ORDER BY $order_by_empresa A.fecha_publicacion DESC ";
+      } else if ($order == 8) {
+        // Usado en la nueva pagina de grupo urbano
+        $sql.= "ORDER BY IF(A.id_empresa = $this->id_empresa,0,1) ASC, A.destacado DESC, A.precio_final ASC ";
       } else if ($order == 9) {
         $sql.= "ORDER BY A.score DESC ";
       } else {
