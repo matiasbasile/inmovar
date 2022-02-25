@@ -11,7 +11,7 @@
 <link href="assets/css/owl.carousel.min.css" rel="stylesheet" type="text/css" media="all">
 <link href="assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
 <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all">
-<link href="assets/css/styles.css?v=6" rel="stylesheet" type="text/css" media="all">
+<link href="assets/css/styles.css?v=7" rel="stylesheet" type="text/css" media="all">
 <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" media="all">
 
 <?php include "templates/comun/post_head.php" ?>
