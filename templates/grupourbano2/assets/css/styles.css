@@ -1568,4 +1568,5 @@ ul.dot-icon li span {
 @media (max-width: 600px) {
   .estrella { display: none; }
 }
+.fs32 { font-size: 32px !important; }
 #visita-modal form {padding: 30px;background-color: white;max-width: 600px;margin-left: auto;margin-right: auto; }
