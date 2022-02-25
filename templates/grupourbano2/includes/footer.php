@@ -84,6 +84,7 @@
 <script src="assets/js/scripts.js?v=1"></script>
 <script src="assets/js/flexslider.js"></script>
 <script src="assets/js/fancybox.js"></script>
+<script src="/admin/resources/js/moment.min.js"></script>
 
 <script>
 $(document).ready(function(){

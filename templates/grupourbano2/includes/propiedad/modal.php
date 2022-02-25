@@ -63,12 +63,22 @@ function enviar_visita() {
     $("#visita_email").focus();
     return false;
   }
+  if (isEmpty(fecha)) {
+    alert("Por favor ingrese una fecha");
+    $("#visita_fecha").focus();
+    return false;
+  }
+  if (isEmpty(hora)) {
+    alert("Por favor ingrese una hora");
+    $("#visita_hora").focus();
+    return false;
+  }
   if (isEmpty(mensaje)) {
     alert("Por favor ingrese un mensaje");
     $("#visita_mensaje").focus();
     return false;
   }
-  var m = "Fecha: "+fecha+" "+hora+"\nMensaje: "+mensaje;
+  var m = "Fecha: "+moment(fecha).format("DD/MM/YYYY")+" "+hora+"\nMensaje: "+mensaje;
   $(".visita_submit").attr('disabled', 'disabled');
   window.enviando = 1;
   var datos = {
