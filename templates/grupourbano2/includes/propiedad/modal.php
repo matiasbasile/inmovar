@@ -1,8 +1,8 @@
 <div id="visita-modal" class="modal">
   <div class="modal-body">
     <form onsubmit="return false">
+      <i class="fa fa-times cerrar_modal fs18 fr"></i>
       <h2>Solicitar una visita</h2>
-      <i class="fa fa-times cerrar_modal fr"></i>
       <div class="form-group">
         <input id="visita_nombre" type="text" class="form-control" placeholder="Nombre">
       </div>
