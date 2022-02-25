@@ -84,6 +84,7 @@ function enviar_visita() {
   var datos = {
     "nombre": nombre,
     "email": email,
+    "asunto":"Interesado en Visita",
     "mensaje": m,
     "telefono": telefono,
     "id_propiedad": "<?php echo (isset($propiedad) ? $propiedad->id : 0) ?>",
