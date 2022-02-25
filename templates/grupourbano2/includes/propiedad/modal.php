@@ -2,6 +2,7 @@
   <div class="modal-body">
     <form onsubmit="return false">
       <h2>Solicitar una visita</h2>
+      <i class="fa fa-times cerrar_modal fr"></i>
       <div class="form-group">
         <input id="visita_nombre" type="text" class="form-control" placeholder="Nombre">
       </div>
@@ -33,11 +34,16 @@
   </div>
 </div>
 <script>
+function cerrar_modal() {
+  $(".modal").modal("hide")
+}
 function enviar_visita() {
   if (window.enviando == 1) return false;
   var nombre = $("#visita_nombre").val();
   var email = $("#visita_email").val();
   var telefono = $("#visita_telefono").val();
+  var fecha = $("#visita_fecha").val();
+  var hora = $("#visita_hora").val();
   var mensaje = $("#visita_mensaje").val();
 
   if (isEmpty(nombre) || nombre == "Nombre") {
