@@ -68,13 +68,13 @@ function enviar_visita() {
     $("#visita_mensaje").focus();
     return false;
   }
-
+  var m = "Fecha: "+fecha+" "+hora+"\nMensaje: "+mensaje;
   $(".visita_submit").attr('disabled', 'disabled');
   window.enviando = 1;
   var datos = {
     "nombre": nombre,
     "email": email,
-    "mensaje": mensaje,
+    "mensaje": m,
     "telefono": telefono,
     "id_propiedad": "<?php echo (isset($propiedad) ? $propiedad->id : 0) ?>",
     <?php if (isset($propiedad) && $propiedad->id_empresa != $empresa->id) { ?> 
