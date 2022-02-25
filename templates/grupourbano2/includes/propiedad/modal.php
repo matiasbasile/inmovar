@@ -78,7 +78,7 @@ function enviar_visita() {
     $("#visita_mensaje").focus();
     return false;
   }
-  var m = "Fecha: "+moment(fecha).format("DD/MM/YYYY")+" "+hora+"\nMensaje: "+mensaje;
+  var m = "Interesado en Visita\nFecha: "+moment(fecha).format("DD/MM/YYYY")+" "+hora+"\nMensaje: "+mensaje;
   $(".visita_submit").attr('disabled', 'disabled');
   window.enviando = 1;
   var datos = {
