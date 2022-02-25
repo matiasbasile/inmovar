@@ -72,10 +72,10 @@ $nombre_pagina = "nosotros";
                               <a href="https://api.whatsapp.com/send?phone=<?php echo $user->celular ?>"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
                             <?php } ?>
                             <?php if (!empty($user->facebook)){ ?>
-                            <a href="<?php echo $user->facebook ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                              <a target="_blank" href="<?php echo $user->facebook ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                             <?php } ?>
                             <?php if (!empty($user->instagram)){ ?>
-                            <a href="<?php echo $user->instagram ?>"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                              <a target="_blank" href="<?php echo $user->instagram ?>"><i class="fa fa-instagram" aria-hidden="true"></i></a>
                             <?php } ?>
                           </div>
                         </div>
