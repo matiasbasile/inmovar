@@ -14,7 +14,7 @@
         <div class="zone-info">
           <?php $t = $web_model->get_text("zona-1-link", "La Plata"); ?>
           <h4 class="editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></h4>
-          <a href="<?php echo $t->link ?>" class="btn btn-white">Ver Propiedades</a>
+          <a href="<?php echo mklink("la-plata/") ?>" class="btn btn-white">Ver Propiedades</a>
         </div>
       </div>
     </div>
