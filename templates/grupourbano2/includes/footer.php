@@ -94,7 +94,13 @@ $(document).ready(function(){
 
   $(".tag_buscador").click(function(e){
     var id = $(e.currentTarget).data("field");
-    $("#"+id).val(0);
+    if (id == "styled-checkbox-1") {
+      $("#styled-checkbox-1").prop("checked",false);
+    } else if (id == "styled-checkbox-2") {
+      $("#styled-checkbox-1").prop("checked",false);
+    } else {    
+      $("#"+id).val(0);
+    }
     $("#form_buscador").submit();
   })
 
