@@ -50,9 +50,26 @@ class REST_Controller extends CI_Controller {
     if ($value === FALSE) return $default;
     else return ($value);
   }
+
+  private function prevent_upload() {
+    // En todos los uploads se llama a esta funcion primero
+    // Tenemos que ver si nos llega un FILE, y siempre corroborar que no sea un archivo .php
+    if (isset($_FILES) && !empty($_FILES) && sizeof($_FILES)>0) {
+      $this->load->helper("file_helper");
+      foreach($_FILES as $key => $file) {
+        $filename = $file["name"];
+        $extension = get_extension($filename);
+        if ($extension == "php" || $extension == "sh") {
+          $this->send_error("Error en el tipo de archivo.");
+          exit();
+        }
+      }
+    }    
+  }
   
   // EL ID DE LA EMPRESA ES SETEADO CUANDO SE LOGUEA EN EL ADMINISTRADOR
   function get_empresa() {
+    $this->prevent_upload();
     if ($this->id_empresa != null) {
       return $this->id_empresa;
     } else if (!isset($_SESSION["id_empresa"])) {
