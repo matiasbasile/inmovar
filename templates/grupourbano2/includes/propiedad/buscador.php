@@ -38,7 +38,7 @@
       </select>
 
       <select class="form-control" id="filter_rango_precios">
-        <option data-min="0" data-max="0">-</option>
+        <option data-min="0" data-max="0">PRECIO</option>
         <?php if ($vc_link_tipo_operacion == "alquileres") { ?>
           <option data-min="0" data-max="25000">$ 0 - 25.000</option>
           <option data-min="25000" data-max="50000">$ 25.000 - 50.000</option>
