@@ -94,7 +94,7 @@
       </div>
     </div>
 
-    <div class="pt20 pb20">
+    <div class="pt30">
       <?php if ($vc_link_tipo_operacion == "alquileres") { ?>
         <?php if (isset($vc_maximo) && $vc_maximo == 25000) { ?><span class="tag_buscador" data-field="precio">$ 0 - 25.000 <i class="fa fa-times"></i></span><?php } ?>
         <?php if (isset($vc_maximo) && $vc_maximo == 50000) { ?><span class="tag_buscador" data-field="precio">$ 25.000 - 50.000 <i class="fa fa-times"></i></span><?php } ?>
