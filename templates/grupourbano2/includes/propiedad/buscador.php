@@ -10,27 +10,27 @@
           <option <?php echo ($vc_link_tipo_operacion == $tipo->link)?"selected":"" ?> value="<?php echo $tipo->link ?>"><?php echo $tipo->nombre ?></option>
         <?php } ?>
       </select>      
-      <select class="form-control filter_propiedad" name="tp">
+      <select id="filter_propiedad" class="form-control filter_propiedad" name="tp">
         <option value="0">DEPARTAMENTOS</option>
         <?php $tipo_propiedades = $propiedad_model->get_tipos_propiedades(); ?>
         <?php foreach ($tipo_propiedades as $tipo) { ?>
           <option <?php echo ($vc_id_tipo_inmueble == $tipo->id)?"selected":"" ?> value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
         <?php } ?>
       </select>
-      <select class="form-control filter_localidad">
+      <select id="filter_localidad" class="form-control filter_localidad">
         <option value="0">Localidad</option>
         <?php $localidades = $propiedad_model->get_localidades(); ?>
         <?php foreach ($localidades as $localidad) { ?>
           <option <?php echo ($localidad->link == $vc_link_localidad)?"selected":"" ?> value="<?php echo $localidad->link ?>"><?php echo $localidad->nombre ?></option>
         <?php } ?>
       </select>
-      <select class="form-control filter_dormitorios" name="dm">
+      <select id="filter_dormitorios" class="form-control filter_dormitorios" name="dm">
         <?php $dormitorios = $propiedad_model->get_dormitorios(); ?>
         <?php foreach ($dormitorios as $dormitorio) { ?>
           <option <?php echo ($vc_dormitorios == $dormitorio->dormitorios)?"selected":"" ?> value="<?php echo $dormitorio->dormitorios; ?>"><?php echo (($dormitorio->dormitorios == 0) ? "DORMITORIOS" : $dormitorio->dormitorios) ?></option>
         <?php } ?>
       </select>
-      <select class="form-control filter_banios" name="bn">
+      <select id="filter_banios" class="form-control filter_banios" name="bn">
         <?php $banios = $propiedad_model->get_banios(); ?>
         <?php foreach ($banios as $banio) { ?>
           <option <?php echo ($vc_banios == $banio->banios)?"selected":"" ?> value="<?php echo $banio->banios; ?>"><?php echo (($banio->banios == 0) ? "BAÑOS" : $banio->banios) ?></option>
@@ -113,6 +113,19 @@
         <?php if (isset($vc_maximo) && $vc_maximo == 300000) { ?><span class="tag_buscador" data-field="filter_rango_precios">U$S 200.000 - 300.000 <i class="fa fa-times"></i></span><?php } ?>
         <?php if (isset($vc_maximo) && $vc_maximo == 999999) { ?><span class="tag_buscador" data-field="filter_rango_precios">Más de U$S 300.000 <i class="fa fa-times"></i></span><?php } ?>
       <?php } ?>      
+
+      <?php if (!empty($vc_banios)) { ?>
+        <span class="tag_buscador" data-field="filter_banios"><?php echo $vc_banios.(($vc_banios > 1)?" Baños":" Baño") ?> <i class="fa fa-times"></i></span>
+      <?php } ?>
+
+      <?php if (!empty($vc_dormitorios)) { ?>
+        <span class="tag_buscador" data-field="filter_dormitorios"><?php echo $vc_dormitorios.(($vc_banios > 1)?" Dormitorios":" Dormitorio") ?> <i class="fa fa-times"></i></span>
+      <?php } ?>
+
+      <?php if (!empty($vc_nombre_localidad)) { ?>
+        <span class="tag_buscador" data-field="filter_localidad"><?php echo $vc_nombre_localidad ?> <i class="fa fa-times"></i></span>
+      <?php } ?>
+
     </div>
 
   </div>

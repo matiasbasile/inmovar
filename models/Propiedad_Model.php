@@ -301,6 +301,7 @@ class Propiedad_Model {
     }    
 
     $link_localidad = "";
+    $vc_nombre_localidad = "";
     $vc_id_localidad = 0;
 
     if (isset($params[2]) && $no_analizar_url == 0) {
@@ -328,6 +329,7 @@ class Propiedad_Model {
       $q_localidad = mysqli_query($this->conx,$sql);
       if (mysqli_num_rows($q_localidad)>0) {
         $departamento = mysqli_fetch_object($q_localidad);
+        $vc_nombre_localidad = $departamento->nombre;
         $vc_id_localidad = $departamento->id;
         $vc_id_departamento = $departamento->id_departamento;
       }
@@ -512,6 +514,7 @@ class Propiedad_Model {
       "vc_codigo"=>$codigo,
       "vc_link_localidad"=>$link_localidad,
       "vc_id_localidad"=>$vc_id_localidad,
+      "vc_nombre_localidad"=>$vc_nombre_localidad,
       "vc_id_tipo_inmueble"=>$id_tipo_inmueble,
       "vc_id_departamento"=>$vc_id_departamento,
       "vc_link_tipo_operacion"=>$link_tipo_operacion,
