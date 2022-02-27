@@ -124,10 +124,8 @@ function filtrar(form) {
 
   var minimo = $("#filter_rango_precios option:selected").data("min");
   var maximo = $("#filter_rango_precios option:selected").data("max");
-  if (minimo > 0 && maximo > 0) {
-    $("#filter_minimo").val(minimo);
-    $("#filter_maximo").val(maximo);
-  }
+  $("#filter_minimo").val(minimo);
+  $("#filter_maximo").val(maximo);
 
   $(form).attr("action",url);
 }
