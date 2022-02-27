@@ -396,6 +396,15 @@ if ( $nombre_pagina == "ficha") {
     if (file_exists($dir_template."construccion.php")) include($dir_template."construccion.php");
     else go_404();
 
+  // GRUPO URBANO
+  } else if ($nombre_pagina == "la-plata") {
+    // Propiedades en Venta de La Plata
+    $config_grupo = array(
+      "link_tipo_operacion"=>"ventas",
+      "id_localidad"=>513
+    );
+    include($dir_template."propiedades_listado.php");
+
   } else {
 
     // Primero buscamos si ya tiene el ID
