@@ -397,7 +397,7 @@ if ( $nombre_pagina == "ficha") {
     else go_404();
 
   // GRUPO URBANO
-  } else if ($empresa->id == 1651 && $nombre_pagina == "la-plata") {
+  } else if ($nombre_pagina == "la-plata") {
     // Propiedades en Venta de La Plata
     $config_grupo = array(
       "link_tipo_operacion"=>"ventas",
