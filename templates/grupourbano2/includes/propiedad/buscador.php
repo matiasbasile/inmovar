@@ -96,22 +96,22 @@
 
     <div class="pt20 pb20">
       <?php if ($vc_link_tipo_operacion == "alquileres") { ?>
-        <?php if (isset($vc_maximo) && $vc_maximo == 25000) { ?><span class="tag_buscador" data-field="precio">$ 0 - 25.000 <i class="fa fa-times"></i></span>
-        <?php if (isset($vc_maximo) && $vc_maximo == 50000) { ?><span class="tag_buscador" data-field="precio">$ 25.000 - 50.000 <i class="fa fa-times"></i></span>
-        <?php if (isset($vc_maximo) && $vc_maximo == 75000) { ?><span class="tag_buscador" data-field="precio">$ 50.000 - 75.000 <i class="fa fa-times"></i></span>
-        <?php if (isset($vc_maximo) && $vc_maximo == 100000) { ?><span class="tag_buscador" data-field="precio">$ 75.000 - 100.000 <i class="fa fa-times"></i></span>
-        <?php if (isset($vc_maximo) && $vc_maximo == 150000) { ?><span class="tag_buscador" data-field="precio">$ 100.000 - 150.000 <i class="fa fa-times"></i></span>
-        <?php if (isset($vc_maximo) && $vc_maximo == 999999) { ?><span class="tag_buscador" data-field="precio">Más de $ 300.000 <i class="fa fa-times"></i></span>
+        <?php if (isset($vc_maximo) && $vc_maximo == 25000) { ?><span class="tag_buscador" data-field="precio">$ 0 - 25.000 <i class="fa fa-times"></i></span><?php } ?>
+        <?php if (isset($vc_maximo) && $vc_maximo == 50000) { ?><span class="tag_buscador" data-field="precio">$ 25.000 - 50.000 <i class="fa fa-times"></i></span><?php } ?>
+        <?php if (isset($vc_maximo) && $vc_maximo == 75000) { ?><span class="tag_buscador" data-field="precio">$ 50.000 - 75.000 <i class="fa fa-times"></i></span><?php } ?>
+        <?php if (isset($vc_maximo) && $vc_maximo == 100000) { ?><span class="tag_buscador" data-field="precio">$ 75.000 - 100.000 <i class="fa fa-times"></i></span><?php } ?>
+        <?php if (isset($vc_maximo) && $vc_maximo == 150000) { ?><span class="tag_buscador" data-field="precio">$ 100.000 - 150.000 <i class="fa fa-times"></i></span><?php } ?>
+        <?php if (isset($vc_maximo) && $vc_maximo == 999999) { ?><span class="tag_buscador" data-field="precio">Más de $ 300.000 <i class="fa fa-times"></i></span><?php } ?>
       <?php } else { ?>
-        <?php if (isset($vc_maximo) && $vc_maximo == 25000) { ?><span class="tag_buscador" data-field="precio">U$S 0 - 25.000 <i class="fa fa-times"></i></span>
-        <?php if (isset($vc_maximo) && $vc_maximo == 50000) { ?><span class="tag_buscador" data-field="precio">U$S 25.000 - 50.000 <i class="fa fa-times"></i></span>
-        <?php if (isset($vc_maximo) && $vc_maximo == 75000) { ?><span class="tag_buscador" data-field="precio">U$S 50.000 - 75.000 <i class="fa fa-times"></i></span>
-        <?php if (isset($vc_maximo) && $vc_maximo == 100000) { ?><span class="tag_buscador" data-field="precio">U$S 75.000 - 100.000 <i class="fa fa-times"></i></span>
-        <?php if (isset($vc_maximo) && $vc_maximo == 125000) { ?><span class="tag_buscador" data-field="precio">U$S 100.000 - 125.000 <i class="fa fa-times"></i></span>
-        <?php if (isset($vc_maximo) && $vc_maximo == 150000) { ?><span class="tag_buscador" data-field="precio">U$S 125.000 - 150.000 <i class="fa fa-times"></i></span>
-        <?php if (isset($vc_maximo) && $vc_maximo == 200000) { ?><span class="tag_buscador" data-field="precio">U$S 150.000 - 200.000 <i class="fa fa-times"></i></span>
-        <?php if (isset($vc_maximo) && $vc_maximo == 300000) { ?><span class="tag_buscador" data-field="precio">U$S 200.000 - 300.000 <i class="fa fa-times"></i></span>
-        <?php if (isset($vc_maximo) && $vc_maximo == 999999) { ?><span class="tag_buscador" data-field="precio">Más de U$S 300.000 <i class="fa fa-times"></i></span>
+        <?php if (isset($vc_maximo) && $vc_maximo == 25000) { ?><span class="tag_buscador" data-field="precio">U$S 0 - 25.000 <i class="fa fa-times"></i></span><?php } ?>
+        <?php if (isset($vc_maximo) && $vc_maximo == 50000) { ?><span class="tag_buscador" data-field="precio">U$S 25.000 - 50.000 <i class="fa fa-times"></i></span><?php } ?>
+        <?php if (isset($vc_maximo) && $vc_maximo == 75000) { ?><span class="tag_buscador" data-field="precio">U$S 50.000 - 75.000 <i class="fa fa-times"></i></span><?php } ?>
+        <?php if (isset($vc_maximo) && $vc_maximo == 100000) { ?><span class="tag_buscador" data-field="precio">U$S 75.000 - 100.000 <i class="fa fa-times"></i></span><?php } ?>
+        <?php if (isset($vc_maximo) && $vc_maximo == 125000) { ?><span class="tag_buscador" data-field="precio">U$S 100.000 - 125.000 <i class="fa fa-times"></i></span><?php } ?>
+        <?php if (isset($vc_maximo) && $vc_maximo == 150000) { ?><span class="tag_buscador" data-field="precio">U$S 125.000 - 150.000 <i class="fa fa-times"></i></span><?php } ?>
+        <?php if (isset($vc_maximo) && $vc_maximo == 200000) { ?><span class="tag_buscador" data-field="precio">U$S 150.000 - 200.000 <i class="fa fa-times"></i></span><?php } ?>
+        <?php if (isset($vc_maximo) && $vc_maximo == 300000) { ?><span class="tag_buscador" data-field="precio">U$S 200.000 - 300.000 <i class="fa fa-times"></i></span><?php } ?>
+        <?php if (isset($vc_maximo) && $vc_maximo == 999999) { ?><span class="tag_buscador" data-field="precio">Más de U$S 300.000 <i class="fa fa-times"></i></span><?php } ?>
       <?php } ?>      
     </div>
 
