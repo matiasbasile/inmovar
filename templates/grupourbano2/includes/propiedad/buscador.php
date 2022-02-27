@@ -12,8 +12,10 @@
       </select>      
       <select id="filter_propiedad" class="form-control filter_propiedad" name="tp">
         <option value="0">DEPARTAMENTOS</option>
+        <?php $vc_tipo_inmueble = ""; ?>
         <?php $tipo_propiedades = $propiedad_model->get_tipos_propiedades(); ?>
         <?php foreach ($tipo_propiedades as $tipo) { ?>
+          <?php if ($vc_id_tipo_inmueble == $tipo->id) $vc_tipo_inmueble = $tipo->nombre; ?>
           <option <?php echo ($vc_id_tipo_inmueble == $tipo->id)?"selected":"" ?> value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
         <?php } ?>
       </select>
@@ -94,7 +96,24 @@
       </div>
     </div>
 
-    <div class="pt30">
+    <div class="pt30">   
+
+      <?php if (!empty($vc_tipo_inmueble)) { ?>
+        <span class="tag_buscador" data-field="filter_propiedad"><?php echo $vc_tipo_inmueble ?> <i class="fa fa-times"></i></span>
+      <?php } ?>
+
+      <?php if (!empty($vc_nombre_localidad)) { ?>
+        <span class="tag_buscador" data-field="filter_localidad"><?php echo $vc_nombre_localidad ?> <i class="fa fa-times"></i></span>
+      <?php } ?>
+
+      <?php if (!empty($vc_dormitorios)) { ?>
+        <span class="tag_buscador" data-field="filter_dormitorios"><?php echo $vc_dormitorios.(($vc_banios > 1)?" Dormitorios":" Dormitorio") ?> <i class="fa fa-times"></i></span>
+      <?php } ?>
+
+      <?php if (!empty($vc_banios)) { ?>
+        <span class="tag_buscador" data-field="filter_banios"><?php echo $vc_banios.(($vc_banios > 1)?" Baños":" Baño") ?> <i class="fa fa-times"></i></span>
+      <?php } ?>
+
       <?php if ($vc_link_tipo_operacion == "alquileres") { ?>
         <?php if (isset($vc_maximo) && $vc_maximo == 25000) { ?><span class="tag_buscador" data-field="filter_rango_precios">$ 0 - 25.000 <i class="fa fa-times"></i></span><?php } ?>
         <?php if (isset($vc_maximo) && $vc_maximo == 50000) { ?><span class="tag_buscador" data-field="filter_rango_precios">$ 25.000 - 50.000 <i class="fa fa-times"></i></span><?php } ?>
@@ -112,18 +131,6 @@
         <?php if (isset($vc_maximo) && $vc_maximo == 200000) { ?><span class="tag_buscador" data-field="filter_rango_precios">U$S 150.000 - 200.000 <i class="fa fa-times"></i></span><?php } ?>
         <?php if (isset($vc_maximo) && $vc_maximo == 300000) { ?><span class="tag_buscador" data-field="filter_rango_precios">U$S 200.000 - 300.000 <i class="fa fa-times"></i></span><?php } ?>
         <?php if (isset($vc_maximo) && $vc_maximo == 999999) { ?><span class="tag_buscador" data-field="filter_rango_precios">Más de U$S 300.000 <i class="fa fa-times"></i></span><?php } ?>
-      <?php } ?>      
-
-      <?php if (!empty($vc_banios)) { ?>
-        <span class="tag_buscador" data-field="filter_banios"><?php echo $vc_banios.(($vc_banios > 1)?" Baños":" Baño") ?> <i class="fa fa-times"></i></span>
-      <?php } ?>
-
-      <?php if (!empty($vc_dormitorios)) { ?>
-        <span class="tag_buscador" data-field="filter_dormitorios"><?php echo $vc_dormitorios.(($vc_banios > 1)?" Dormitorios":" Dormitorio") ?> <i class="fa fa-times"></i></span>
-      <?php } ?>
-
-      <?php if (!empty($vc_nombre_localidad)) { ?>
-        <span class="tag_buscador" data-field="filter_localidad"><?php echo $vc_nombre_localidad ?> <i class="fa fa-times"></i></span>
       <?php } ?>
 
     </div>

@@ -281,6 +281,7 @@ class Propiedad_Model {
    
     $link_tipo_operacion = isset($config["link_tipo_operacion"]) ? $config["link_tipo_operacion"] : "";
     $vc_id_tipo_operacion = 0;
+    $vc_nombre_operacion = "";
     if (isset($params[1]) && $no_analizar_url == 0) {
       // Si el parametro es numero, es un numero de pagina
       if (is_numeric($params[1])) {
@@ -297,6 +298,7 @@ class Propiedad_Model {
       if (mysqli_num_rows($q_tipo_operacion)>0) {
         $top = mysqli_fetch_object($q_tipo_operacion);
         $vc_id_tipo_operacion = $top->id;
+        $vc_nombre_operacion = $top->nombre;
       }
     }    
 
@@ -319,6 +321,7 @@ class Propiedad_Model {
       if (mysqli_num_rows($q_localidad)>0) {
         $departamento = mysqli_fetch_object($q_localidad);
         $vc_id_departamento = $departamento->id_departamento;
+        $vc_nombre_localidad = $departamento->nombre;
       }
     }
 
@@ -519,6 +522,7 @@ class Propiedad_Model {
       "vc_id_departamento"=>$vc_id_departamento,
       "vc_link_tipo_operacion"=>$link_tipo_operacion,
       "vc_tipo_operacion"=>$tipo_operacion,
+      "vc_nombre_operacion"=>$vc_nombre_operacion,
       "vc_id_tipo_operacion"=>$vc_id_tipo_operacion,
       "vc_tiene_cochera"=>$tiene_cochera,
       "vc_tiene_balcon"=>$tiene_balcon,
