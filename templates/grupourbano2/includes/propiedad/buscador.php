@@ -36,8 +36,31 @@
           <option <?php echo ($vc_banios == $banio->banios)?"selected":"" ?> value="<?php echo $banio->banios; ?>"><?php echo (($banio->banios == 0) ? "BAÑOS" : $banio->banios) ?></option>
         <?php } ?>
       </select>
-      <input name="vc_minimo" class="form-control filter_minimo" type="number" value="<?php echo (empty($vc_minimo) ? "" : $vc_minimo) ?>" min="0" placeholder="Precio Minimo">
-      <input name="vc_maximo" class="form-control filter_maximo" type="number" value="<?php echo (empty($vc_maximo) ? "" : $vc_maximo) ?>" min="0" placeholder="Precio Maximo">
+
+      <select class="form-control" id="filter_rango_precios">
+        <option data-min="0" data-max="0">-</option>
+        <?php if ($vc_link_tipo_operacion == "alquileres") { ?>
+          <option data-min="0" data-max="25000">$ 0 - 25.000</option>
+          <option data-min="25000" data-max="50000">$ 25.000 - 50.000</option>
+          <option data-min="50000" data-max="75000">$ 50.000 - 75.000</option>
+          <option data-min="75000" data-max="100000">$ 75.000 - 100.000</option>
+          <option data-min="100000" data-max="150000">$ 100.000 - 150.000</option>
+          <option data-min="150000" data-max="999999">Más de $ 300.000</option>
+        <?php } else { ?>
+          <option data-min="0" data-max="25000">U$S 0 - 25.000</option>
+          <option data-min="25000" data-max="50000">U$S 25.000 - 50.000</option>
+          <option data-min="50000" data-max="75000">U$S 50.000 - 75.000</option>
+          <option data-min="75000" data-max="100000">U$S 75.000 - 100.000</option>
+          <option data-min="100000" data-max="125000">U$S 100.000 - 125.000</option>
+          <option data-min="125000" data-max="150000">U$S 125.000 - 150.000</option>
+          <option data-min="150000" data-max="200000">U$S 150.000 - 200.000</option>
+          <option data-min="200000" data-max="300000">U$S 200.000 - 300.000</option>
+          <option data-min="300000" data-max="999999">Más de U$S 300.000</option>
+        <?php } ?>
+      </select>
+      <input type="hidden" id="filter_moneda" name="m" value="<?php echo (!empty($vc_moneda) ? $vc_moneda : ($vc_link_tipo_operacion == "alquileres" ? "ARS" : "USD")) ?>">
+      <input name="vc_minimo" id="filter_minimo" class="form-control filter_minimo" type="hidden" value="<?php echo (empty($vc_minimo) ? "" : $vc_minimo) ?>" min="0" placeholder="Precio Minimo">
+      <input name="vc_maximo" id="filter_maximo" class="form-control filter_maximo" type="hidden" value="<?php echo (empty($vc_maximo) ? "" : $vc_maximo) ?>" min="0" placeholder="Precio Maximo">
       <button type="submit" class="btn btn-primary">BUSCAR</button>
     </div>
   </div>
