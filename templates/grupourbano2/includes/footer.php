@@ -91,6 +91,13 @@ $(document).ready(function(){
   $(".cerrar_modal").click(function(){
     $(".modal").modal("hide")
   });
+
+  $(".tag_buscador").click(function(e){
+    var id = $(e.currentTarget).data("field");
+    $("#"+id).val(0);
+    $("#form_buscador").submit();
+  })
+
 });
 
 function buscar_mapa(form) {
