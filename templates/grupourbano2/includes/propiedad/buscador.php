@@ -133,11 +133,11 @@
         <?php if (isset($vc_maximo) && $vc_maximo == 999999) { ?><span class="tag_buscador" data-field="filter_rango_precios">Más de U$S 300.000 <i class="fa fa-times"></i></span><?php } ?>
       <?php } ?>
 
-      <?php if ($vc_acepta_permuta == 1) { ?>
+      <?php if ($vc_apto_banco == 1) { ?>
         <span class="tag_buscador" data-field="styled-checkbox-1">Apto Crédito <i class="fa fa-times"></i></span>
       <?php } ?>
 
-      <?php if ($vc_apto_banco == 1) { ?>
+      <?php if ($vc_acepta_permuta == 1) { ?>
         <span class="tag_buscador" data-field="styled-checkbox-2">Acepta Permuta <i class="fa fa-times"></i></span>
       <?php } ?>
 
