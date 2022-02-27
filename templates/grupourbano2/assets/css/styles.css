@@ -1575,3 +1575,6 @@ ul.dot-icon li span {
   .form-responsive .form { padding:15px 15px; background-color: white; }
   .form-responsive .form-control { flex: 1 1 100% !important; margin-bottom: 15px !important; }
 }
+
+.tag_buscador { display: inline-block; padding: 8px 12px; font-size: 14px; }
+.tag_buscador .fa-times {  }
