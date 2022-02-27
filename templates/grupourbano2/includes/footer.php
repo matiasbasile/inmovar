@@ -97,7 +97,7 @@ $(document).ready(function(){
     if (id == "styled-checkbox-1") {
       $("#styled-checkbox-1").prop("checked",false);
     } else if (id == "styled-checkbox-2") {
-      $("#styled-checkbox-1").prop("checked",false);
+      $("#styled-checkbox-2").prop("checked",false);
     } else {    
       $("#"+id).val(0);
     }
