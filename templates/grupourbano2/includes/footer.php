@@ -113,11 +113,22 @@ function filtrar(form) {
   var tipo_operacion = $(form).find(".filter_tipo_operacion").val();
   if (!isEmpty(tipo_operacion)) {
     url+=tipo_operacion+"/";
+  } else {
+    alert("Seleccione un tipo de operación.");
+    return false;
   }
   var localidad = $(form).find(".filter_localidad").val();
   if (!isEmpty(localidad)) {
     url+=localidad+"/";
   }
+
+  var minimo = $("#filter_rango_precios").data("min");
+  var maximo = $("#filter_rango_precios").data("max");
+  if (minimo != 0 && maximo != 0) {
+    $("#filter_minimo").val(minimo);
+    $("#filter_maximo").val(maximo);
+  }
+
   $(form).attr("action",url);
 }
 
