@@ -11,7 +11,7 @@
         <?php } ?>
       </select>      
       <select id="filter_propiedad" class="form-control filter_propiedad" name="tp">
-        <option value="0">DEPARTAMENTOS</option>
+        <option value="0">PROPIEDAD</option>
         <?php $vc_tipo_inmueble = ""; ?>
         <?php $tipo_propiedades = $propiedad_model->get_tipos_propiedades(); ?>
         <?php foreach ($tipo_propiedades as $tipo) { ?>
