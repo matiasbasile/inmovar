@@ -21,11 +21,11 @@ function item($r,$config = array()) {
         </div>
         <div class="neighborhoods-bottom">
           <div class="neighborhoods-info">
-            <h6><?php echo (!empty($r->ambientes)) ? $r->ambientes : "-" ?> Hab.</h6>
+            <h6><?php echo (!empty($r->dormitorios)) ? $r->dormitorios : "-" ?> Hab.</h6>
             <img src="assets/images/icon11.png" alt="img">
           </div>
           <div class="neighborhoods-info">
-            <h6><?php echo (!empty($r->ambientes)) ? $r->ambientes : "-" ?> Baños</h6>
+            <h6><?php echo (!empty($r->banios)) ? $r->banios : "-" ?> Baños</h6>
             <img src="assets/images/icon12.png" alt="img">
           </div>
           <div class="neighborhoods-info">
