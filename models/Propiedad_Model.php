@@ -365,7 +365,7 @@ class Propiedad_Model {
     $hasta = isset($config["hasta"]) ? $config["hasta"] : "";
     $personas = isset($config["personas"]) ? $config["personas"] : 0;
     $id_usuario = isset($config["id_usuario"]) ? $config["id_usuario"] : 0;
-    $ids_tipo_operacion = isset($config["ids_tipo_operacion"]) ? $config["ids_tipo_operacion"] : array();
+    $ids_tipo_operacion = isset($config["ids_tipo_operacion"]) ? $config["ids_tipo_operacion"] : "";
     $in_ids_localidades = isset($config["in_ids_localidades"]) ? $config["in_ids_localidades"] : "";
     $in_ids_tipo_inmueble = isset($config["in_ids_tipo_inmueble"]) ? $config["in_ids_tipo_inmueble"] : "";
     $in_dormitorios = isset($config["in_dormitorios"]) ? $config["in_dormitorios"] : "";
