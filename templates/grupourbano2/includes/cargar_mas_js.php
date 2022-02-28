@@ -26,6 +26,9 @@ function cargar() {
   data['vc_in_ids_localidades'] = "<?php echo $vc_in_ids_localidades ?>";
   data['vc_in_ids_tipo_inmueble'] = "<?php echo $vc_in_ids_tipo_inmueble ?>";
   data['vc_in_dormitorios'] = "<?php echo $vc_in_dormitorios ?>";
+  <?php if ($nombre_pagina == "nosotros") { ?>
+    data['id_usuario'] = "<?php echo $id_usuario ?>";
+  <?php } ?>
   $("#cargarMas").text("buscando...");
   $.ajax({
     "url": "<?php echo mklink("web/get_list/") ?>",

@@ -10,6 +10,7 @@ $vc_in_ids_localidades = isset($_GET["vc_in_ids_localidades"]) ? ($_GET["vc_in_i
 $vc_in_ids_tipo_inmueble = isset($_GET["vc_in_ids_tipo_inmueble"]) ? ($_GET["vc_in_ids_tipo_inmueble"]) : "";
 $vc_in_dormitorios = isset($_GET["vc_in_dormitorios"]) ? ($_GET["vc_in_dormitorios"]) : "";
 $page = isset($_GET["page"]) ? intval($_GET["page"]) : 0;
+$id_usuario = isset($_GET["id_usuario"]) ? intval($_GET["id_usuario"]) : 0;
 $order = isset($_GET["order"]) ? intval($_GET["order"]) : 8;
 $offset = isset($_GET["offset"]) ? intval($_GET["offset"]) : 12;
 extract($propiedad_model->get_variables(array(
@@ -17,6 +18,7 @@ extract($propiedad_model->get_variables(array(
   "link_tipo_operacion"=>$link_tipo_operacion,
   "no_analizar_url"=>1,
   "page"=>$page,
+  "id_usuario"=>$id_usuario,
   "order"=>$order,
   "offset"=>$offset,
   "ids_tipo_operacion"=>$vc_ids_tipo_operacion,
