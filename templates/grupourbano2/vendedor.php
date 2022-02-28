@@ -39,7 +39,11 @@ $nombre_pagina = "nosotros";
                 <option <?php echo($vc_orden == 2)?"selected":"" ?> value="2">Precio Menor a Mayor</option>
                 <option <?php echo($vc_orden == 1)?"selected":"" ?> value="1">Precio Mayor a Menor</option>
               </select>
-              <a onclick="javascript:void(0)" rel="nofollow" onclick="enviar_form_vendedor()" class="btn btn-primary btn-sm"><i class="fa fa-map-marker mr-2" aria-hidden="true"></i> Ver en mapa</a>
+              <?php if ($tipo_busqueda == "listado") { ?>
+                <a onclick="javascript:void(0)" rel="nofollow" onclick="mostrar_mapa_vendedor()" class="btn btn-primary btn-sm"><i class="fa fa-map-marker mr-2" aria-hidden="true"></i> Ver en mapa</a>
+              <?php } else { ?>
+                <a onclick="javascript:void(0)" rel="nofollow" onclick="mostrar_listado_vendedor()" class="btn btn-primary btn-sm"><i class="fa fa-map-marker mr-2" aria-hidden="true"></i> Ver en listado</a>
+              <?php } ?>
             </div>
           </div>
         </div>
@@ -71,7 +75,7 @@ $nombre_pagina = "nosotros";
           <form id="form_vendedor" class="form" onsubmit="return filtrar(this)" method="get">
             <input type="hidden" class="base_url" value="<?php echo mklink("propiedades/") ?>" />
             <input type="hidden" name="orden" value="<?php echo $vc_orden ?>" id="form_vendedor_orden" />
-            <input type="hidden" name="tipo_busqueda" value="<?php echo $tipo_busqueda ?>" />
+            <input type="hidden" name="tipo_busqueda" id="tipo_busqueda" value="<?php echo $tipo_busqueda ?>" />
             <input type="hidden" name="id" value="<?php echo $id_usuario ?>" />
             <select class="form-control filter_tipo_operacion">
               <option value="0">Operación</option>
@@ -120,6 +124,16 @@ function enviar_form_vendedor() {
   $("#form_vendedor_orden").val($("#ordenar_form_vendedor").val());
   $(".base_url").val("<?php echo mklink("web/vendedor/") ?>");
   $("#form_vendedor").submit();
+}
+
+function mostrar_mapa_vendedor() {
+  $("#tipo_busqueda").val("mapa");
+  enviar_form_vendedor();
+}
+
+function mostrar_listado_vendedor() {
+  $("#tipo_busqueda").val("listado");
+  enviar_form_vendedor();
 }
 
 function enviar_contacto() {
