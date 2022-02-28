@@ -399,6 +399,7 @@ if ( $nombre_pagina == "ficha") {
   // GRUPO URBANO
   } else if ($nombre_pagina == "la-plata") {
     // Propiedades en Venta de La Plata
+    echo "ANDA";
     $config_grupo = array(
       "link_tipo_operacion"=>"ventas",
       "id_localidad"=>513
