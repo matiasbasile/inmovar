@@ -72,6 +72,7 @@ $nombre_pagina = "nosotros";
             <input type="hidden" class="base_url" value="<?php echo mklink("propiedades/") ?>" />
             <input type="hidden" name="orden" value="<?php echo $vc_orden ?>" id="form_vendedor_orden" />
             <input type="hidden" name="tipo_busqueda" value="<?php echo $tipo_busqueda ?>" />
+            <input type="hidden" name="id" value="<?php echo $id_usuario ?>" />
             <select class="form-control filter_tipo_operacion">
               <option value="0">Operación</option>
               <?php $tipo_operaciones = $propiedad_model->get_tipos_operaciones(); ?>
@@ -117,7 +118,7 @@ include_once("includes/cargar_mas_js.php");
 
 function enviar_form_vendedor() {
   $("#form_vendedor_orden").val($("#ordenar_form_vendedor").val());
-  $(".base_url").val("<?php echo mklink("web/vendedor/")."?id=".$id_usuario ?>");
+  $(".base_url").val("<?php echo mklink("web/vendedor/") ?>");
   $("#form_vendedor").submit();
 }
 
