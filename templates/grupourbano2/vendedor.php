@@ -5,6 +5,7 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
   $id_usuario = intval($_GET["id"]);
   $usuario = $usuario_model->get($id_usuario);
   extract($propiedad_model->get_variables(array("id_usuario" => $id_usuario)));
+  if (isset($get_params["test"])) echo $propiedad_model->get_sql();
   print_r($vc_listado);
 }
 $nombre_pagina = "nosotros";
