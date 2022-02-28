@@ -431,7 +431,7 @@ if ( $nombre_pagina == "ficha") {
 
   } else if ($nombre_pagina == "vengo-a-estudiar") {
     $config_grupo = array(
-      "link_tipo_operacion"=>"alquiler",
+      "link_tipo_operacion"=>"alquileres",
       "id_localidad"=>513,
       "in_ids_tipo_inmueble"=>"2,14", // Depto / Monoambiente
       "in_dormitorios"=>"1,2",
@@ -440,7 +440,7 @@ if ( $nombre_pagina == "ficha") {
 
   } else if ($nombre_pagina == "me-independizo") {
     $config_grupo = array(
-      "link_tipo_operacion"=>"alquiler",
+      "link_tipo_operacion"=>"alquileres",
       "id_localidad"=>513,
       "in_ids_tipo_inmueble"=>"2", // Depto / Monoambiente
       "in_dormitorios"=>"1,2",
@@ -449,7 +449,7 @@ if ( $nombre_pagina == "ficha") {
 
   } else if ($nombre_pagina == "ya-somos-mas") {
     $config_grupo = array(
-      "link_tipo_operacion"=>"alquiler",
+      "link_tipo_operacion"=>"alquileres",
       "id_localidad"=>513,
       "in_ids_tipo_inmueble"=>"1,2,15", // Depto / Duplex / Casas
       "in_dormitorios"=>"1,2,3",
@@ -458,7 +458,7 @@ if ( $nombre_pagina == "ficha") {
 
   } else if ($nombre_pagina == "soy-emprendedor") {
     $config_grupo = array(
-      "link_tipo_operacion"=>"alquiler",
+      "link_tipo_operacion"=>"alquileres",
       "id_localidad"=>513,
       "in_ids_tipo_inmueble"=>"9", // Local
     );
