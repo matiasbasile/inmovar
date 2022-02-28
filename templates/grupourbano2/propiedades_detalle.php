@@ -62,7 +62,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
                       <?php $count = 0; ?>
                       <?php foreach ($propiedad->images as $images) { ?>
                         <div class="d-block mb-4"><a href="<?php echo $images ?>" class="fancybox" data-fancybox-group="gallery"><img class="adaptable-img-detail-2" src="<?php echo $images ?>" alt="img"></a></div>
-                        <?php if ($count == 1) { ?>
+                        <?php if ($count == 2) { ?>
                           <div class="d-block position-relative">
                             <img src="<?php echo $images ?>" class="adaptable-img-detail-2" alt="img">
                             <div class="img-listing-more">
