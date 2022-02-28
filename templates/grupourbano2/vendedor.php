@@ -51,7 +51,7 @@ $nombre_pagina = "nosotros";
                 ));
               } ?>
             </div>
-            <div class="d-block mt-5">
+            <div class="d-block mt-5 mb40">
               <a onclick="cargar()" id="cargarMas" class="btn btn-primary btn-block btn-lg">ver más propiedades para tu búsqueda</a>
             </div>
           <?php } else { ?>
