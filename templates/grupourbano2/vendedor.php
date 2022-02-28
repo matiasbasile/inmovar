@@ -41,21 +41,23 @@ $nombre_pagina = "nosotros";
           </div>
         </div>
         <div class="neighborhoods shadow-none style-two">
-          <div class="row m-0 my-5 propiedades">
-            <?php 
-            if ($tipo_busqueda == "listado") {
-              foreach ($vc_listado  as $propiedad) { 
+          
+          <?php 
+          if ($tipo_busqueda == "listado") { ?>
+            <div class="row m-0 my-5 propiedades">
+              <?php foreach ($vc_listado  as $propiedad) { 
                 item($propiedad,array(
                   "clase"=>"col-md-6 p-0 neighborhoods-list",
                 ));
               } ?>
-              <div class="d-block mt-5">
-                <a onclick="cargar()" id="cargarMas" class="btn btn-primary btn-block btn-lg">ver más propiedades para tu búsqueda</a>
-              </div>
-            <?php } else { ?>
-              <div id="mapa" style="width:100%; height:700px"></div>
-            <?php } ?>
-          </div>
+            </div>
+            <div class="d-block mt-5">
+              <a onclick="cargar()" id="cargarMas" class="btn btn-primary btn-block btn-lg">ver más propiedades para tu búsqueda</a>
+            </div>
+          <?php } else { ?>
+            <div id="mapa" style="width:100%; height:700px"></div>
+          <?php } ?>
+          
         </div>
         <div class="page-heading">
           <h2>Buscá más en Grupo Urbano</h2>
