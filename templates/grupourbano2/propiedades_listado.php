@@ -2,6 +2,7 @@
 include_once("includes/init.php");
 if (!isset($config_grupo)) $config_grupo = array();
 $config_grupo["orden_default"] = 8; 
+print_r($config_grupo);
 $propiedades = extract($propiedad_model->get_variables($config_grupo));
 if (isset($get_params["test"])) echo $propiedad_model->get_sql();
 $nombre_pagina = $vc_link_tipo_operacion;
