@@ -429,6 +429,74 @@ if ( $nombre_pagina == "ficha") {
     );
     include($dir_template."propiedades_listado.php");
 
+  } else if ($nombre_pagina == "vengo-a-estudiar") {
+    $config_grupo = array(
+      "link_tipo_operacion"=>"alquiler",
+      "id_localidad"=>513,
+      "in_ids_tipo_inmueble"=>"2,14", // Depto / Monoambiente
+      "in_dormitorios"=>"1,2",
+    );
+    include($dir_template."propiedades_listado.php");
+
+  } else if ($nombre_pagina == "me-independizo") {
+    $config_grupo = array(
+      "link_tipo_operacion"=>"alquiler",
+      "id_localidad"=>513,
+      "in_ids_tipo_inmueble"=>"2", // Depto / Monoambiente
+      "in_dormitorios"=>"1,2",
+    );
+    include($dir_template."propiedades_listado.php");
+
+  } else if ($nombre_pagina == "ya-somos-mas") {
+    $config_grupo = array(
+      "link_tipo_operacion"=>"alquiler",
+      "id_localidad"=>513,
+      "in_ids_tipo_inmueble"=>"1,2,15", // Depto / Duplex / Casas
+      "in_dormitorios"=>"1,2,3",
+    );
+    include($dir_template."propiedades_listado.php");
+
+  } else if ($nombre_pagina == "soy-emprendedor") {
+    $config_grupo = array(
+      "link_tipo_operacion"=>"alquiler",
+      "id_localidad"=>513,
+      "in_ids_tipo_inmueble"=>"9", // Local
+    );
+    include($dir_template."propiedades_listado.php");
+
+  } else if ($nombre_pagina == "mi-primer-depto") {
+    $config_grupo = array(
+      "link_tipo_operacion"=>"ventas",
+      "id_localidad"=>513,
+      "in_ids_tipo_inmueble"=>"2,14", // Depto / Monoambiente
+    );
+    include($dir_template."propiedades_listado.php");
+
+  } else if ($nombre_pagina == "mi-casa") {
+    $config_grupo = array(
+      "link_tipo_operacion"=>"ventas",
+      "id_localidad"=>513,
+      "in_ids_tipo_inmueble"=>"1,2,15", // Depto / Duplex / Casas
+    );
+    include($dir_template."propiedades_listado.php");
+
+  } else if ($nombre_pagina == "vamos-a-construir") {
+    $config_grupo = array(
+      "link_tipo_operacion"=>"ventas",
+      "id_localidad"=>513,
+      "in_ids_tipo_inmueble"=>"7", // Lotes
+    );
+    include($dir_template."propiedades_listado.php");
+
+  } else if ($nombre_pagina == "inversion") {
+    $config_grupo = array(
+      "link_tipo_operacion"=>"ventas",
+      "id_localidad"=>513,
+      "in_ids_operaciones"=>"1,5", // Venta / Obras
+      "in_ids_tipo_inmueble"=>"2,14", // Depto / Monoambiente
+    );
+    include($dir_template."propiedades_listado.php");
+
   } else {
 
     // Primero buscamos si ya tiene el ID
