@@ -1,9 +1,10 @@
 <?php
 include_once("includes/init.php");
+$tipo_busqueda = isset($get_params["tipo_busqueda"]) ? $get_params["tipo_busqueda"] : "listado";
 if (isset($_GET["id"]) && !empty($_GET["id"])) {
   $id_usuario = intval($_GET["id"]);
   $usuario = $usuario_model->get($id_usuario);
-  $listado = $propiedad_model->get_list(array("id_usuario" => $id_usuario));
+  extract($propiedad_model->get_variables(array("id_usuario" => $id_usuario)));
 }
 $nombre_pagina = "nosotros";
 ?>
@@ -22,7 +23,7 @@ $nombre_pagina = "nosotros";
         <div class="page-heading">
           <?php $nombre = explode(" ", $usuario->nombre) ?>
           <h2>Propiedades de <?php echo $nombre[0] ?></h2>
-          <h6>Se encontraron <b><?php echo sizeof($listado) ?></b> propiedades</h6>
+          <h6>Se encontraron <b><?php echo $vc_total_resultados ?></b> propiedades</h6>
         </div>
         <div class="mt-4">
           <div class="row">
@@ -36,13 +37,20 @@ $nombre_pagina = "nosotros";
           </div>
         </div>
         <div class="neighborhoods shadow-none style-two">
-          <div class="row m-0 my-5">
+          <div class="row m-0 my-5 propiedades">
             <?php 
-            foreach ($listado  as $propiedad) { 
-              item($propiedad,array(
-                "clase"=>"col-md-6 p-0 neighborhoods-list",
-              ));
-            } ?>
+            if ($tipo_busqueda == "listado") {
+              foreach ($vc_listado  as $propiedad) { 
+                item($propiedad,array(
+                  "clase"=>"col-md-6 p-0 neighborhoods-list",
+                ));
+              } ?>
+              <div class="d-block mt-5">
+                <a onclick="cargar()" id="cargarMas" class="btn btn-primary btn-block btn-lg">ver más propiedades para tu búsqueda</a>
+              </div>
+            <?php } else { ?>
+              <div id="mapa" style="width:100%; height:700px"></div>
+            <?php } ?>
           </div>
         </div>
         <div class="page-heading">
@@ -53,6 +61,7 @@ $nombre_pagina = "nosotros";
           <a href="javascript:void(0)" rel="nofollow" class="btn btn-primary btn-block mb-3 form-toggle style-two">AJUSTAR BÚSQUEDA</a>
           <form class="form" onsubmit="return filtrar(this)" method="get">
             <input type="hidden" class="base_url" value="<?php echo mklink("propiedades/") ?>" />
+            <input type="hidden" name="tipo_busqueda" value="<?php echo $tipo_busqueda ?>" />
             <select class="form-control filter_tipo_operacion">
               <option value="0">Operación</option>
               <?php $tipo_operaciones = $propiedad_model->get_tipos_operaciones(); ?>
@@ -87,72 +96,77 @@ $nombre_pagina = "nosotros";
   </div>
 </section>
 
-<?php include("includes/footer.php") ?>
+<?php 
+include("includes/footer.php");
+include_once("templates/comun/mapa_js.php"); 
+include_once("includes/mapa_js.php");
+include_once("includes/cargar_mas_js.php");
+?>
 
 <script>
-  function enviar_contacto() {
-    if (enviando == 1) return;
-    var nombre = $("#contacto_nombre").val();
-    var email = $("#contacto_email").val();
-    var telefono = $("#contacto_telefono").val();
-    var mensaje = $("#contacto_mensaje").val();
-    var para = $("#contacto_para").val();
-    var id_propiedad = $("#contacto_propiedad").val();
-    var id_usuario = "<?php echo $usuario->id ?>";
-    if (isEmpty(para)) para = "<?php echo $empresa->email ?>";
+function enviar_contacto() {
+  if (enviando == 1) return;
+  var nombre = $("#contacto_nombre").val();
+  var email = $("#contacto_email").val();
+  var telefono = $("#contacto_telefono").val();
+  var mensaje = $("#contacto_mensaje").val();
+  var para = $("#contacto_para").val();
+  var id_propiedad = $("#contacto_propiedad").val();
+  var id_usuario = "<?php echo $usuario->id ?>";
+  if (isEmpty(para)) para = "<?php echo $empresa->email ?>";
 
-    if (isEmpty(nombre) || nombre == "Nombre") {
-      alert("Por favor ingrese un nombre");
-      $("#contacto_nombre").focus();
-      return false;
-    }
-    if (!validateEmail(email)) {
-      alert("Por favor ingrese un email valido");
-      $("#contacto_email").focus();
-      return false;
-    }
-    if (isEmpty(telefono) || telefono == "Telefono") {
-      alert("Por favor ingrese un telefono");
-      $("#contacto_telefono").focus();
-      return false;
-    }
-    if (isEmpty(mensaje) || mensaje == "Mensaje") {
-      alert("Por favor ingrese un mensaje");
-      $("#contacto_mensaje").focus();
-      return false;
-    }
-
-    $("#contacto_submit").attr('disabled', 'disabled');
-    var datos = {
-      "nombre": nombre,
-      "email": email,
-      "mensaje": mensaje,
-      "telefono": telefono,
-      "para": para,
-      "id_propiedad": id_propiedad,
-      <?php if (isset($detalle) && $detalle->id_empresa != $empresa->id) { ?> "id_empresa_relacion": "<?php echo $detalle->id_empresa ?>",
-      <?php } ?> "id_usuario": id_usuario,
-      "id_empresa": ID_EMPRESA,
-      "id_origen": <?php echo (isset($id_origen) ? $id_origen : 1); ?>,
-    }
-    enviando = 1;
-    $.ajax({
-      "url": "https://app.inmovar.com/admin/consultas/function/enviar/",
-      "type": "post",
-      "dataType": "json",
-      "data": datos,
-      "success": function(r) {
-        if (r.error == 0) {
-          window.location.href = "<?php echo mklink("web/gracias/") ?>";
-        } else {
-          alert("Ocurrio un error al enviar su email. Disculpe las molestias");
-          $("#contacto_submit").removeAttr('disabled');
-          enviando = 0;
-        }
-      }
-    });
+  if (isEmpty(nombre) || nombre == "Nombre") {
+    alert("Por favor ingrese un nombre");
+    $("#contacto_nombre").focus();
     return false;
   }
+  if (!validateEmail(email)) {
+    alert("Por favor ingrese un email valido");
+    $("#contacto_email").focus();
+    return false;
+  }
+  if (isEmpty(telefono) || telefono == "Telefono") {
+    alert("Por favor ingrese un telefono");
+    $("#contacto_telefono").focus();
+    return false;
+  }
+  if (isEmpty(mensaje) || mensaje == "Mensaje") {
+    alert("Por favor ingrese un mensaje");
+    $("#contacto_mensaje").focus();
+    return false;
+  }
+
+  $("#contacto_submit").attr('disabled', 'disabled');
+  var datos = {
+    "nombre": nombre,
+    "email": email,
+    "mensaje": mensaje,
+    "telefono": telefono,
+    "para": para,
+    "id_propiedad": id_propiedad,
+    <?php if (isset($detalle) && $detalle->id_empresa != $empresa->id) { ?> "id_empresa_relacion": "<?php echo $detalle->id_empresa ?>",
+    <?php } ?> "id_usuario": id_usuario,
+    "id_empresa": ID_EMPRESA,
+    "id_origen": <?php echo (isset($id_origen) ? $id_origen : 1); ?>,
+  }
+  enviando = 1;
+  $.ajax({
+    "url": "https://app.inmovar.com/admin/consultas/function/enviar/",
+    "type": "post",
+    "dataType": "json",
+    "data": datos,
+    "success": function(r) {
+      if (r.error == 0) {
+        window.location.href = "<?php echo mklink("web/gracias/") ?>";
+      } else {
+        alert("Ocurrio un error al enviar su email. Disculpe las molestias");
+        $("#contacto_submit").removeAttr('disabled');
+        enviando = 0;
+      }
+    }
+  });
+  return false;
+}
 </script>
 </body>
 </html>
