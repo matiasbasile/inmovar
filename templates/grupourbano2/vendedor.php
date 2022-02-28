@@ -4,7 +4,10 @@ $tipo_busqueda = isset($get_params["tipo_busqueda"]) ? $get_params["tipo_busqued
 if (isset($_GET["id"]) && !empty($_GET["id"])) {
   $id_usuario = intval($_GET["id"]);
   $usuario = $usuario_model->get($id_usuario);
-  extract($propiedad_model->get_variables(array("id_usuario" => $id_usuario)));
+  extract($propiedad_model->get_variables(array(
+    "id_usuario" => $id_usuario,
+    "link_tipo_operacion" => "todas",
+  )));
   if (isset($get_params["test"])) echo $propiedad_model->get_sql();
   print_r($vc_listado);
 }
