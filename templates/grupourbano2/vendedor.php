@@ -40,9 +40,9 @@ $nombre_pagina = "nosotros";
                 <option <?php echo($vc_orden == 1)?"selected":"" ?> value="1">Precio Mayor a Menor</option>
               </select>
               <?php if ($tipo_busqueda == "listado") { ?>
-                <a onclick="javascript:void(0)" rel="nofollow" onclick="mostrar_mapa_vendedor()" class="btn btn-primary btn-sm"><i class="fa fa-map-marker mr-2" aria-hidden="true"></i> Ver en mapa</a>
+                <a href="javascript:void(0)" rel="nofollow" onclick="mostrar_mapa_vendedor()" class="btn btn-primary btn-sm"><i class="fa fa-map-marker mr-2" aria-hidden="true"></i> Ver en mapa</a>
               <?php } else { ?>
-                <a onclick="javascript:void(0)" rel="nofollow" onclick="mostrar_listado_vendedor()" class="btn btn-primary btn-sm"><i class="fa fa-map-marker mr-2" aria-hidden="true"></i> Ver en listado</a>
+                <a href="javascript:void(0)" rel="nofollow" onclick="mostrar_listado_vendedor()" class="btn btn-primary btn-sm"><i class="fa fa-map-marker mr-2" aria-hidden="true"></i> Ver en listado</a>
               <?php } ?>
             </div>
           </div>
