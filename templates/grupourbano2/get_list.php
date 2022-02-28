@@ -19,10 +19,10 @@ extract($propiedad_model->get_variables(array(
   "page"=>$page,
   "order"=>$order,
   "offset"=>$offset,
-  "vc_ids_tipo_operacion"=>$vc_ids_tipo_operacion,
-  "vc_in_ids_localidades"=>$vc_in_ids_localidades,
-  "vc_in_ids_tipo_inmueble"=>$vc_in_ids_tipo_inmueble,
-  "vc_in_dormitorios"=>$vc_in_dormitorios,
+  "ids_tipo_operacion"=>$vc_ids_tipo_operacion,
+  "in_ids_localidades"=>$vc_in_ids_localidades,
+  "in_ids_tipo_inmueble"=>$vc_in_ids_tipo_inmueble,
+  "in_dormitorios"=>$vc_in_dormitorios,
 )));
 foreach ($vc_listado as $propiedad) { 
   item($propiedad);
