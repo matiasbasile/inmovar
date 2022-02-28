@@ -321,7 +321,7 @@ class Propiedad_Model {
       if (mysqli_num_rows($q_localidad)>0) {
         $departamento = mysqli_fetch_object($q_localidad);
         $vc_id_localidad = $departamento->id;
-        $vc_link_localidad = $departamento->link;
+        $link_localidad = $departamento->link;
         $vc_id_departamento = $departamento->id_departamento;
         $vc_nombre_localidad = $departamento->nombre;
       }
