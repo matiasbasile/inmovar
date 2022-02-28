@@ -1,11 +1,11 @@
 <?php
 include_once("includes/init.php");
 $tipo_busqueda = isset($get_params["tipo_busqueda"]) ? $get_params["tipo_busqueda"] : "listado";
-echo $tipo_busqueda;
 if (isset($_GET["id"]) && !empty($_GET["id"])) {
   $id_usuario = intval($_GET["id"]);
   $usuario = $usuario_model->get($id_usuario);
   extract($propiedad_model->get_variables(array("id_usuario" => $id_usuario)));
+  print_r($vc_listado);
 }
 $nombre_pagina = "nosotros";
 ?>
