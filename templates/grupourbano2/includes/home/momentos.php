@@ -13,7 +13,7 @@
       <div class="col-md-3 p-0 search-moment-list">
         <div class="search-moment">
           <span class="moment-icon" style="background:url(<?php echo $categori->path ?>)no-repeat 50% 0"></span>
-          <a href="<?php echo $categori->external_link ?>" class="btn btn-outline-primary stretched-link"><?php echo $categori->nombre ?></a>
+          <a href="<?php echo mklink($categori->external_link) ?>" class="btn btn-outline-primary stretched-link"><?php echo $categori->nombre ?></a>
         </div>
       </div>
     <?php } ?>

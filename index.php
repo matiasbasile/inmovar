@@ -399,10 +399,33 @@ if ( $nombre_pagina == "ficha") {
   // GRUPO URBANO
   } else if ($nombre_pagina == "la-plata") {
     // Propiedades en Venta de La Plata
-    echo "ANDA";
     $config_grupo = array(
       "link_tipo_operacion"=>"ventas",
       "id_localidad"=>513
+    );
+    include($dir_template."propiedades_listado.php");
+
+  } else if ($nombre_pagina == "gonnet") {
+    // Propiedades en Venta de Gonnet
+    $config_grupo = array(
+      "link_tipo_operacion"=>"ventas",
+      "id_localidad"=>396
+    );
+    include($dir_template."propiedades_listado.php");
+
+  } else if ($nombre_pagina == "city-bell") {
+    // Propiedades en Venta de City Bell
+    $config_grupo = array(
+      "link_tipo_operacion"=>"ventas",
+      "id_localidad"=>205
+    );
+    include($dir_template."propiedades_listado.php");
+
+  } else if ($nombre_pagina == "costa-atlantica") {
+    // Propiedades en Venta de Mar del Plata, Villa Gesell
+    $config_grupo = array(
+      "link_tipo_operacion"=>"ventas",
+      "id_localidad"=>"600,951"
     );
     include($dir_template."propiedades_listado.php");
 

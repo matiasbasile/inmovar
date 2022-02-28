@@ -364,6 +364,7 @@ class Propiedad_Model {
     $personas = isset($config["personas"]) ? $config["personas"] : 0;
     $id_usuario = isset($config["id_usuario"]) ? $config["id_usuario"] : 0;
     $ids_tipo_operacion = isset($config["ids_tipo_operacion"]) ? $config["ids_tipo_operacion"] : array();
+    $in_ids_localidades = isset($config["in_ids_localidades"]) ? $config["in_ids_localidades"] : "";
 
     $view = isset($get_params["view"]) ? $get_params["view"] : 0;
     $tiene_balcon = isset($get_params["balcon"]) ? $get_params["balcon"] : 0;
@@ -406,6 +407,7 @@ class Propiedad_Model {
       $config_list = array(
         "filter"=>$filter,
         "banios"=>$banios,
+        "in_ids_localidades"=>$in_ids_localidades,
         "link_localidad"=>$link_localidad,
         "id_localidad"=>$vc_id_localidad,
         "id_tipo_inmueble"=>$id_tipo_inmueble,
@@ -1073,6 +1075,7 @@ class Propiedad_Model {
     $tipo_operacion = isset($config["tipo_operacion"]) ? $config["tipo_operacion"] : "";
     $id_tipo_inmueble = isset($config["id_tipo_inmueble"]) ? intval($config["id_tipo_inmueble"]) : 0;
     $in_ids_tipo_inmueble = isset($config["in_ids_tipo_inmueble"]) ? intval($config["in_ids_tipo_inmueble"]) : 0;
+    $in_ids_localidades = isset($config["in_ids_localidades"]) ? $config["in_ids_localidades"] : "";
     $link_tipo_inmueble = isset($config["link_tipo_inmueble"]) ? $config["link_tipo_inmueble"] : "";
     $id_tipo_estado = isset($config["id_tipo_estado"]) ? intval($config["id_tipo_estado"]) : 0;
     $id_propietario = isset($config["id_propietario"]) ? intval($config["id_propietario"]) : 0;
@@ -1232,6 +1235,7 @@ class Propiedad_Model {
     }
     
     if (!empty($in_ids_tipo_inmueble)) $sql.= "AND A.id_tipo_inmueble IN ($in_ids_tipo_inmueble) ";
+    if (!empty($in_ids_localidades)) $sql.= "AND A.id_localidad IN ($in_ids_localidades) ";
 
     if (!empty($id_tipo_estado)) $sql.= "AND A.id_tipo_estado = $id_tipo_estado ";
     if (!empty($id_propietario)) $sql.= "AND A.id_propietario = $id_propietario ";
