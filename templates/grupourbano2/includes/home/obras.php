@@ -3,10 +3,10 @@ $obras = $propiedad_model->get_list(array("id_tipo_operacion" => 5, "limit" => 0
 if (!empty($obras)) { ?>
   <section class="padding-default works">
     <div class="container text-center">
-      <?php $t = $web_model->get_text("text15", "Especial Obras en Construcción"); ?>
+      <?php $t = $web_model->get_text("text15", "Obras y Desarrollos Propios"); ?>
       <h2 class="editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>"> <?php echo $t->plain_text ?></h2>
 
-      <?php $t = $web_model->get_text("text16", "Disfrutá de la seguridad y privacidad de vivir en un barrio cerrado y/o controlado."); ?>
+      <?php $t = $web_model->get_text("text16", "Conocé nuestros proyectos destacados en obra y construcción."); ?>
       <h5 class="editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>"> <?php echo $t->plain_text ?></h5>
     </div>
     <div class="row m-0 mt-5 pad-lr-50">
