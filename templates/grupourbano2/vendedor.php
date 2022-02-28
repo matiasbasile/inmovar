@@ -6,7 +6,7 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
   $usuario = $usuario_model->get($id_usuario);
   extract($propiedad_model->get_variables(array(
     "id_usuario" => $id_usuario,
-    "link_tipo_operacion" => "todas",
+    "no_analizar_url" => 1,
   )));
   if (isset($get_params["test"])) echo $propiedad_model->get_sql();
   print_r($vc_listado);
