@@ -117,6 +117,7 @@ include_once("includes/cargar_mas_js.php");
 
 function enviar_form_vendedor() {
   $("#form_vendedor_orden").val($("#ordenar_form_vendedor").val());
+  $(".base_url").val("<?php echo mklink("web/vendedor/")."?id=".$id_usuario ?>");
   $("#form_vendedor").submit();
 }
 
