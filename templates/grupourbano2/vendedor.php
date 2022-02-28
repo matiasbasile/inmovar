@@ -62,7 +62,7 @@ $nombre_pagina = "nosotros";
               <a onclick="cargar()" id="cargarMas" class="btn btn-primary btn-block btn-lg">ver más propiedades para tu búsqueda</a>
             </div>
           <?php } else { ?>
-            <div id="mapa" style="width:100%; height:700px"></div>
+            <div id="mapa" style="width:100%; height:700px; margin-top: 40px; margin-bottom: 40px;"></div>
           <?php } ?>
           
         </div>
