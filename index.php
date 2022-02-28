@@ -425,7 +425,7 @@ if ( $nombre_pagina == "ficha") {
     // Propiedades en Venta de Mar del Plata, Villa Gesell
     $config_grupo = array(
       "link_tipo_operacion"=>"ventas",
-      "id_localidad"=>"600,951"
+      "in_ids_localidades"=>"600,951"
     );
     include($dir_template."propiedades_listado.php");
 
