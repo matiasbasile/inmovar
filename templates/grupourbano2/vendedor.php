@@ -7,6 +7,7 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
   extract($propiedad_model->get_variables(array(
     "id_usuario" => $id_usuario,
     "no_analizar_url" => 1,
+    "orden_default" => 8,
   )));
   if (isset($get_params["test"])) echo $propiedad_model->get_sql();
 }
@@ -33,10 +34,12 @@ $nombre_pagina = "nosotros";
           <div class="row">
             <div class="col-md-8">
               <p class="mt-1 text-18">Ordenar propiedades por:</p>
-              <select class="form-control form-primary">
-                <option>propiedades destacadas</option>
+              <select id="ordenar_form_vendedor" onchange="enviar_form_vendedor()" class="form-control form-primary">
+                <option <?php echo($vc_orden == 8)?"selected":"" ?> value="8">Propiedades Destacadas</option>
+                <option <?php echo($vc_orden == 2)?"selected":"" ?> value="2">Precio Menor a Mayor</option>
+                <option <?php echo($vc_orden == 1)?"selected":"" ?> value="1">Precio Mayor a Menor</option>
               </select>
-              <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-map-marker mr-2" aria-hidden="true"></i> Ver en mapa</button>
+              <a onclick="javascript:void(0)" rel="nofollow" onclick="enviar_form_vendedor()" class="btn btn-primary btn-sm"><i class="fa fa-map-marker mr-2" aria-hidden="true"></i> Ver en mapa</a>
             </div>
           </div>
         </div>
@@ -65,8 +68,9 @@ $nombre_pagina = "nosotros";
         </div>
         <div class="form-block mt-5">
           <a href="javascript:void(0)" rel="nofollow" class="btn btn-primary btn-block mb-3 form-toggle style-two">AJUSTAR BÚSQUEDA</a>
-          <form class="form" onsubmit="return filtrar(this)" method="get">
+          <form id="form_vendedor" class="form" onsubmit="return filtrar(this)" method="get">
             <input type="hidden" class="base_url" value="<?php echo mklink("propiedades/") ?>" />
+            <input type="hidden" name="orden" value="<?php echo $vc_orden ?>" id="form_vendedor_orden" />
             <input type="hidden" name="tipo_busqueda" value="<?php echo $tipo_busqueda ?>" />
             <select class="form-control filter_tipo_operacion">
               <option value="0">Operación</option>
@@ -110,6 +114,12 @@ include_once("includes/cargar_mas_js.php");
 ?>
 
 <script>
+
+function enviar_form_vendedor() {
+  $("#form_vendedor_orden").val($("#ordenar_form_vendedor").val());
+  $("#form_vendedor").submit();
+}
+
 function enviar_contacto() {
   if (enviando == 1) return;
   var nombre = $("#contacto_nombre").val();
