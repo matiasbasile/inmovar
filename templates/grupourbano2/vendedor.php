@@ -9,7 +9,6 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
     "no_analizar_url" => 1,
   )));
   if (isset($get_params["test"])) echo $propiedad_model->get_sql();
-  print_r($vc_listado);
 }
 $nombre_pagina = "nosotros";
 ?>
