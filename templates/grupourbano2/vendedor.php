@@ -113,8 +113,10 @@ $nombre_pagina = "nosotros";
 
 <?php 
 include("includes/footer.php");
-include_once("templates/comun/mapa_js.php"); 
-include_once("includes/mapa_js.php");
+if ($tipo_busqueda == "mapa") {
+  include_once("templates/comun/mapa_js.php"); 
+  include_once("includes/mapa_js.php");
+}
 include_once("includes/cargar_mas_js.php");
 ?>
 
