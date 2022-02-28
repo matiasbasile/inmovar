@@ -548,6 +548,10 @@ class Propiedad_Model {
       "vc_link"=>$vc_link,
       "vc_view"=>$view,
       "vc_esta_buscando"=>$vc_esta_buscando,
+      "vc_ids_tipo_operacion"=>$ids_tipo_operacion,
+      "vc_in_ids_localidades"=>$in_ids_localidades,
+      "vc_in_ids_tipo_inmueble"=>$in_ids_tipo_inmueble,
+      "vc_in_dormitorios"=>$in_dormitorios,
     );
   }
 

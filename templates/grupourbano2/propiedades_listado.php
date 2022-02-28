@@ -81,6 +81,10 @@ function cargar() {
   data['offset'] = 12;
   data['id_localidad'] = "<?php echo $vc_id_localidad ?>";
   data['tipo_operacion'] = "<?php echo $vc_link_tipo_operacion ?>";
+  data['vc_ids_tipo_operacion'] = "<?php echo $vc_ids_tipo_operacion ?>";
+  data['vc_in_ids_localidades'] = "<?php echo $vc_in_ids_localidades ?>";
+  data['vc_in_ids_tipo_inmueble'] = "<?php echo $vc_in_ids_tipo_inmueble ?>";
+  data['vc_in_dormitorios'] = "<?php echo $vc_in_dormitorios ?>";
   $("#cargarMas").text("buscando...");
   $.ajax({
     "url": "<?php echo mklink("web/get_list/") ?>",
