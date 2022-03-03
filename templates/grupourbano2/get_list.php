@@ -28,7 +28,7 @@ extract($propiedad_model->get_variables(array(
 )));
 foreach ($vc_listado as $propiedad) { 
   item($propiedad,array(
-    "clase"=>((!empty($id_usuario)) ? "col-md-6 p-0 neighborhoods-list" : ""),
+    "clase"=>((!empty($id_usuario)) ? "col-md-6 p-0 neighborhoods-list" : "col-md-4 p-0 neighborhoods-list"),
   ));
 }
 ?>
