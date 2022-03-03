@@ -41,7 +41,7 @@ function cargar() {
         $("#cargarMas").hide();
       } else {
         propiedades.innerHTML += r;
-        if ($(r).find(".neighborhoods-list").length < 12)  {
+        if ($("<div/>").append(r).find(".neighborhoods-list").length < 12)  {
           $("#cargarMas").hide();
         } else {
           $("#cargarMas").text("ver más propiedades para tu búsqueda");
