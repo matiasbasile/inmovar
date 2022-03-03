@@ -4,7 +4,6 @@
     <input type="hidden" class="base_url" value="<?php echo (isset($buscador_mapa) ? mklink("mapa/") : mklink("propiedades/")) ?>" />
     <div class="form">
       <select class="form-control filter_tipo_operacion">
-        <option value="0">OPERACIÓN</option>
         <?php $tipos_op = $propiedad_model->get_tipos_operaciones(array(
           "id_empresa"=>$empresa->id,
           "solo_propias"=>1,
