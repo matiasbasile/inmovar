@@ -25,7 +25,11 @@ $slider = $web_model->get_slider();
         <input type="hidden" class="base_url" value="<?php echo mklink("propiedades/") ?>" />
         <select class="form-control filter_tipo_operacion">
           <option value="0">Operación</option>
-          <?php $tipo_operaciones = $propiedad_model->get_tipos_operaciones(); ?>
+          <?php $tipo_operaciones = $propiedad_model->get_tipos_operaciones(array(
+            "id_empresa"=>$empresa->id,
+            "solo_propias"=>1,
+            "mostrar_todos"=>0,
+          )); ?>
           <?php foreach ($tipo_operaciones as $operaciones) { ?>
             <option value="<?php echo $operaciones->link ?>"><?php echo $operaciones->nombre ?></option>
           <?php } ?>
