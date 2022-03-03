@@ -2,7 +2,7 @@
 function item($r,$config = array()) { 
   $clase = isset($config["clase"]) ? $config["clase"] : "col-md-4 p-0 neighborhoods-list" ?>
   <div class="<?php echo $clase ?>">
-    <a href="<?php echo mklink($r->link) ?>">
+    <a href="<?php echo $r->link_propiedad ?>">
       <?php if ($r->destacado == 1) { ?>
         <img src="assets/images/estrella.png" class="estrella" alt="Propiedad Destacada" />
       <?php } ?>
