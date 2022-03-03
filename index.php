@@ -468,7 +468,7 @@ if ( $nombre_pagina == "ficha") {
     $config_grupo = array(
       "link_tipo_operacion"=>"ventas",
       "id_localidad"=>513,
-      "in_ids_tipo_inmueble"=>"2,14", // Depto / Monoambiente
+      "id_tipo_inmueble"=>2, // Depto / Monoambiente
     );
     include($dir_template."propiedades_listado.php");
 
@@ -484,7 +484,7 @@ if ( $nombre_pagina == "ficha") {
     $config_grupo = array(
       "link_tipo_operacion"=>"ventas",
       "id_localidad"=>513,
-      "in_ids_tipo_inmueble"=>"7", // Lotes
+      "id_tipo_inmueble"=>7, // Lotes
     );
     include($dir_template."propiedades_listado.php");
 
