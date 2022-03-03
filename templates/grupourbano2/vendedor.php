@@ -58,9 +58,11 @@ $nombre_pagina = "nosotros";
                 ));
               } ?>
             </div>
-            <div class="d-block mt-5 mb40">
-              <a onclick="cargar()" id="cargarMas" class="btn btn-primary btn-block btn-lg">ver más propiedades para tu búsqueda</a>
-            </div>
+            <?php if ($vc_total_resultados > $vc_offset) { ?>
+              <div class="d-block mt-5 mb40">
+                <a onclick="cargar()" id="cargarMas" class="btn btn-primary btn-block btn-lg">ver más propiedades para tu búsqueda</a>
+              </div>
+            <?php } ?>
           <?php } else { ?>
             <div id="mapa" style="width:100%; height:700px; margin-top: 40px; margin-bottom: 40px;"></div>
           <?php } ?>
