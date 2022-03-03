@@ -5,7 +5,10 @@
     <div class="form">
       <select class="form-control filter_tipo_operacion">
         <option value="0">OPERACIÓN</option>
-        <?php $tipos_op = $propiedad_model->get_tipos_operaciones(); ?>
+        <?php $tipos_op = $propiedad_model->get_tipos_operaciones(array(
+          "id_empresa"=>$empresa->id,
+          "mostrar_todos"=>0,
+        )); ?>
         <?php foreach ($tipos_op as $tipo) { ?>
           <option <?php echo ($vc_link_tipo_operacion == $tipo->link)?"selected":"" ?> value="<?php echo $tipo->link ?>"><?php echo $tipo->nombre ?></option>
         <?php } ?>
