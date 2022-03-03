@@ -111,9 +111,9 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
                   </div>
                 </div>
               </div>
-              <div class="<?php echo ($propiedad->ambientes == 0 && $propiedad->banios == 0 && $propiedad->cocheras == 0 && $propiedad->superficie_cubierta == 0 && $propiedad->superficie_semicubierta == 0 && $propiedad->superficie_descubierta == 0 && $propiedad->superficie_total == 0 ? "" : "amenities") ?>">
-                <?php if ($propiedad->ambientes != 0) { ?>
-                  <span><img src="assets/images/icon16.png" alt="img" class="mr-2"> <b>Habitaciones:</b> <?php echo $propiedad->ambientes ?></span>
+              <div class="<?php echo ($propiedad->dormitorios == 0 && $propiedad->banios == 0 && $propiedad->cocheras == 0 && $propiedad->superficie_cubierta == 0 && $propiedad->superficie_semicubierta == 0 && $propiedad->superficie_descubierta == 0 && $propiedad->superficie_total == 0 ? "" : "amenities") ?>">
+                <?php if ($propiedad->dormitorios != 0) { ?>
+                  <span><img src="assets/images/icon16.png" alt="img" class="mr-2"> <b>Habitaciones:</b> <?php echo $propiedad->dormitorios ?></span>
                 <?php } ?>
                 <?php if ($propiedad->banios != 0) { ?>
                   <span><img src="assets/images/icon17.png" alt="img" class="mr-2"> <b>Baños:</b><?php echo $propiedad->banios ?></span>
