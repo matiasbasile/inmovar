@@ -7,6 +7,7 @@
         <option value="0">OPERACIÓN</option>
         <?php $tipos_op = $propiedad_model->get_tipos_operaciones(array(
           "id_empresa"=>$empresa->id,
+          "solo_propias"=>1,
           "mostrar_todos"=>0,
         )); ?>
         <?php foreach ($tipos_op as $tipo) { ?>

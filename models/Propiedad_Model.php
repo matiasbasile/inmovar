@@ -1440,12 +1440,17 @@ class Propiedad_Model {
     $emp_comp = implode(",", $empresas_compartida);
 
     $mostrar_todos = isset($config["mostrar_todos"]) ? $config["mostrar_todos"] : 0;
+    $solo_propias = isset($config["solo_propias"]) ? $config["solo_propias"] : 0;
     if ($mostrar_todos == 0) {
       $sql = "SELECT DISTINCT L.nombre, L.link, L.id ";
       $sql.= "FROM inm_propiedades P ";
       $sql.= "INNER JOIN inm_tipos_operacion L ON (P.id_tipo_operacion = L.id) ";
-      $sql.= "WHERE P.id_empresa IN ($emp_comp) ";
-      $sql.= "AND P.activo = 1 ";
+      $sql.= "WHERE P.activo = 1 ";
+      if ($solo_propias == 1) {
+        $sql.= "AND P.id_empresa = $id_empresa ";
+      } else {
+        $sql.= "AND P.id_empresa IN ($emp_comp) ";
+      }
       $sql.= "ORDER BY L.nombre ASC";      
     } else {
       $sql = "SELECT nombre, link, id FROM inm_tipos_operacion ";
