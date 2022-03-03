@@ -57,8 +57,8 @@
           <p><b>&copy; <?php echo $empresa->razon_social ?></b> - Todos Los Derechos Reservados</p>
         </div>
         <div class="col-md-3 text-right">
-          <a href="https://www.inmovar.com/" class="mr-3"><img src="assets/images/inmover-logo.png" alt="img"></a>
-          <a href="https://www.misticastudio.com/"><img src="assets/images/mistica-logo.png" alt="img"></a>
+          <a target="_blank" href="https://www.inmovar.com/" class="mr-3"><img src="assets/images/inmover-logo.png" alt="img"></a>
+          <a target="_blank" href="https://www.misticastudio.com/"><img src="assets/images/mistica-logo.png" alt="img"></a>
         </div>
       </div>
     </div>
