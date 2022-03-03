@@ -1451,7 +1451,7 @@ class Propiedad_Model {
       } else {
         $sql.= "AND P.id_empresa IN ($emp_comp) ";
       }
-      $sql.= "ORDER BY L.nombre ASC";      
+      $sql.= "ORDER BY L.id ASC";      
     } else {
       $sql = "SELECT nombre, link, id FROM inm_tipos_operacion ";
       $sql.= "WHERE id_empresa IN ($emp_comp) ";
