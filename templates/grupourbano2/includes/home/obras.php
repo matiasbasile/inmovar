@@ -1,5 +1,11 @@
 <?php
-$obras = $propiedad_model->get_list(array("id_tipo_operacion" => 5, "limit" => 0, "offset" => 4, "destacado" => 1));
+$obras = $propiedad_model->get_list(array(
+  "id_tipo_operacion" => 5, 
+  "limit" => 0, 
+  "offset" => 4, 
+  "destacado" => 1,
+  "solo_propias" => 1,
+));
 if (!empty($obras)) { ?>
   <section class="padding-default works">
     <div class="container text-center">
