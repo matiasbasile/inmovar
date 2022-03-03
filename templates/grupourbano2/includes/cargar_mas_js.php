@@ -41,7 +41,12 @@ function cargar() {
         $("#cargarMas").hide();
       } else {
         propiedades.innerHTML += r;
-        $("#cargarMas").text("ver más propiedades para tu búsqueda");
+        if ($(r).find(".neighborhoods-list").length < 12)  {
+          $("#cargarMas").hide();
+        } else {
+          $("#cargarMas").text("ver más propiedades para tu búsqueda");
+          $("#cargarMas").show();
+        }
       }
       window.enviando = 0;
     },
