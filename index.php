@@ -442,7 +442,7 @@ if ( $nombre_pagina == "ficha") {
     $config_grupo = array(
       "link_tipo_operacion"=>"alquileres",
       "id_localidad"=>513,
-      "in_ids_tipo_inmueble"=>"2", // Depto / Monoambiente
+      "id_tipo_inmueble"=>2, // Depto
       "in_dormitorios"=>"1,2",
     );
     include($dir_template."propiedades_listado.php");
