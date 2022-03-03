@@ -460,7 +460,7 @@ if ( $nombre_pagina == "ficha") {
     $config_grupo = array(
       "link_tipo_operacion"=>"alquileres",
       "id_localidad"=>513,
-      "in_ids_tipo_inmueble"=>"9", // Local
+      "id_tipo_inmueble"=>9, // Local
     );
     include($dir_template."propiedades_listado.php");
 

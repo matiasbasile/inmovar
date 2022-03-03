@@ -378,7 +378,7 @@ class Propiedad_Model {
     $tiene_contrafrente = isset($get_params["tiene_contrafrente"]) ? $get_params["tiene_contrafrente"] : 0;
     $tiene_interno = isset($get_params["tiene_interno"]) ? $get_params["tiene_interno"] : 0;
 
-    $id_tipo_inmueble = isset($get_params["tp"]) ? $get_params["tp"] : "";
+    $id_tipo_inmueble = isset($get_params["tp"]) ? $get_params["tp"] : (isset($config["id_tipo_inmueble"]) ? $config["id_tipo_inmueble"] : "");
     $apto_banco = isset($get_params["banco"]) ? $get_params["banco"] : 0;
     $pint = isset($get_params["pint"]) ? $get_params["pint"] : 0;
     $video = isset($get_params["video"]) ? $get_params["video"] : 0;
