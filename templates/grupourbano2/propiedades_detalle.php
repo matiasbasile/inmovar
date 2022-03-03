@@ -332,6 +332,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
             "activo"=>1,
             "offset"=>99999,
             "recibe_notificaciones"=>1,
+            "in_perfiles"=>(($propiedad->id_tipo_operacion == 2) ? "1807" : "106,105"),
           ));
           $rand = array_rand($usuarios);
           $usuario = $usuarios[$rand];

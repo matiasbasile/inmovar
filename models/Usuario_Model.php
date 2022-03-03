@@ -243,6 +243,7 @@ class Usuario_Model {
     $aparece_web = isset($config["aparece_web"]) ? $config["aparece_web"] : -1;
     $recibe_notificaciones = isset($config["recibe_notificaciones"]) ? $config["recibe_notificaciones"] : -1;
     $id_perfil = isset($config["id_perfil"]) ? $config["id_perfil"] : 0;
+    $in_perfiles = isset($config["in_perfiles"]) ? $config["in_perfiles"] : "";
     $usar_get = isset($config["usar_get"]) ? $config["usar_get"] : 0;
     $id_localidad = isset($config["id_localidad"]) ? $config["id_localidad"] : 0;
     $order_by = isset($config["order_by"]) ? $config["order_by"] : "A.id DESC ";
@@ -280,6 +281,7 @@ class Usuario_Model {
     if ($aparece_web != -1) $sql.= "AND A.aparece_web = $aparece_web ";
     if ($recibe_notificaciones != -1) $sql.= "AND A.recibe_notificaciones = $recibe_notificaciones ";
     if (!empty($id_perfil)) $sql.= "AND A.id_perfiles = $id_perfil ";
+    if (!empty($in_perfiles)) $sql.= "AND A.id_perfiles IN ($in_perfiles) ";
     if (!empty($id_localidad)) $sql.= "AND EXISTS (SELECT * FROM turnos_servicios TS WHERE A.id_empresa = TS.id_empresa AND A.id = TS.id_usuario AND TS.id_localidad = $id_localidad ) ";
 
     if (sizeof($obras_sociales)>0) {
