@@ -18,7 +18,7 @@ extract($propiedad_model->get_variables(array(
   "link_tipo_operacion"=>$link_tipo_operacion,
   "no_analizar_url"=>1,
   "page"=>$page,
-  //"id_usuario"=>$id_usuario,
+  "id_usuario"=>$id_usuario,
   "order"=>$order,
   "offset"=>$offset,
   "ids_tipo_operacion"=>$vc_ids_tipo_operacion,
