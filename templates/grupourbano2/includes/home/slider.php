@@ -24,28 +24,27 @@ $slider = $web_model->get_slider();
       <form onsubmit="return filtrar(this)" method="get">
         <input type="hidden" class="base_url" value="<?php echo mklink("propiedades/") ?>" />
         <select class="form-control filter_tipo_operacion">
-          <option value="0">Operación</option>
           <?php $tipo_operaciones = $propiedad_model->get_tipos_operaciones(array(
             "id_empresa"=>$empresa->id,
             "solo_propias"=>1,
             "mostrar_todos"=>0,
           )); ?>
           <?php foreach ($tipo_operaciones as $operaciones) { ?>
-            <option value="<?php echo $operaciones->link ?>"><?php echo $operaciones->nombre ?></option>
+            <option <?php echo ($operaciones->id == 1)?"selected":"" ?> value="<?php echo $operaciones->link ?>"><?php echo $operaciones->nombre ?></option>
           <?php } ?>
         </select>
         <?php $tipo_propiedades = $propiedad_model->get_tipos_propiedades(); ?>
         <select class="form-control filter_propiedad" name="tp">
           <option value="0">Propiedad</option>
           <?php foreach ($tipo_propiedades as $tipo) { ?>
-            <option value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
+            <option <?php echo ($tipo->id == 2)?"selected":"" ?> value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
           <?php } ?>
         </select>
         <select class="form-control filter_localidad">
           <option value="0">Localidad</option>
           <?php $localidades = $propiedad_model->get_localidades(); ?>
           <?php foreach ($localidades as $localidad) { ?>
-            <option value="<?php echo $localidad->link ?>"><?php echo $localidad->nombre ?></option>
+            <option <?php echo ($localidad->id == 513)?"selected":"" ?> value="<?php echo $localidad->link ?>"><?php echo $localidad->nombre ?></option>
           <?php } ?>
         </select>
         <button type="submit" class="btn btn-primary">BUSCAR</button>
