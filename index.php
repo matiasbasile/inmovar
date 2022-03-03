@@ -452,7 +452,7 @@ if ( $nombre_pagina == "ficha") {
       "link_tipo_operacion"=>"alquileres",
       "id_localidad"=>513,
       "in_ids_tipo_inmueble"=>"1,2,15", // Depto / Duplex / Casas
-      "in_dormitorios"=>"1,2,3",
+      "in_dormitorios"=>"2,3",
     );
     include($dir_template."propiedades_listado.php");
 
