@@ -32,11 +32,7 @@
 
   <div class="footer-center padding-default">
     <div class="container">
-      <?php if (!empty($empresa->logo)) { ?>
-        <img src="<?php echo $empresa->logo ?>" alt="img">
-      <?php } else { ?>
-        <img src="assets/images/logo-white.png" alt="img">
-      <?php } ?>
+      <img src="assets/images/logo-white.png" alt="img">
       <p class="mt-4">Bertoia Col. 7342 <span>|</span> Piñero Col. 7346</p>      
       <div class="social">
         <?php if (!empty($empresa->facebook)) { ?>
