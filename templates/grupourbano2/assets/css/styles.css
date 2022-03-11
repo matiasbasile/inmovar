@@ -1584,14 +1584,15 @@ ul.dot-icon li span {
 .ribbon {
   position: absolute;
   z-index: 3;
-  left: -30px;
-  top: 15px;
+  top: 0px;
+  right: 0px;
   height: 120px;
   width: 120px;
   text-align: center;
   margin: auto;
   bottom: inherit;
   right: inherit;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 }
