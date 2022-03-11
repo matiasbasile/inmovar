@@ -13,7 +13,7 @@ function item($r,$config = array()) {
         <?php } else if (!empty($empresa->no_imagen)) { ?>
           <img class="adaptable-img" src="/admin/<?php echo $empresa->no_imagen ?>" alt="<?php echo ($r->nombre); ?>" />
         <?php } else { ?>
-          <img class="adaptable-img" src="assets/images/no-image-2.jpg" alt="<?php echo ($r->nombre); ?>" />
+          <img class="adaptable-img" src="assets/images/logoagua.jpg" alt="<?php echo ($r->nombre); ?>" />
         <?php } ?>
 
         <div class="neighborhoods-top">
