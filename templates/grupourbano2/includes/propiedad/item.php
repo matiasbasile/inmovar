@@ -7,6 +7,13 @@ function item($r,$config = array()) {
       <?php if ($r->destacado == 1 && $r->id_empresa == $empresa->id) { ?>
         <img src="assets/images/estrella.png" class="estrella" alt="Propiedad Destacada" />
       <?php } ?>
+
+      <?php if ($r->id_tipo_estado == 4) { ?>
+        <figure class="ribbon reservado">Reservado</figure>
+      <?php } else if ($r->id_tipo_estado == 3) { ?>
+        <figure class="ribbon vendido">Vendido</figure>
+      <?php } ?>
+
       <div class="img-block">
         <?php if (!empty($r->imagen)) { ?>
           <img class="adaptable-img" src="<?php echo $r->imagen ?>" alt="<?php echo ($r->nombre); ?>" />

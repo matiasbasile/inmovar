@@ -1578,3 +1578,26 @@ ul.dot-icon li span {
 
 .tag_buscador { text-transform: uppercase; display: inline-block; padding: 8px 12px; font-size: 16px; background-color: #a8a8a8;color: white; }
 .tag_buscador .fa-times {background-color: white;display: inline-block;padding: 3px;border-radius: 100%;color: #a8a8a8;font-size: 14px;height: 20px;width: 20px;text-align: center;margin-left: 10px;position: relative;top: -2px;cursor: pointer; }
+
+
+
+.ribbon {
+  position: absolute;
+  z-index: 3;
+  left: -30px;
+  top: 15px;
+  height: 120px;
+  width: 120px;
+  text-align: center;
+  margin: auto;
+  bottom: inherit;
+  right: inherit;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.ribbon.vendido {
+  background-image: url("../images/vendido.png");
+}
+.ribbon.reservado {
+  background-image: url("../images/reservado.png");
+}
