@@ -9,9 +9,9 @@ function item($r,$config = array()) {
       <?php } ?>
 
       <?php if ($r->id_tipo_estado == 4) { ?>
-        <figure class="ribbon reservado">Reservado</figure>
+        <div class="ribbon reservado"></div>
       <?php } else if ($r->id_tipo_estado == 3) { ?>
-        <figure class="ribbon vendido">Vendido</figure>
+        <div class="ribbon vendido"></div>
       <?php } ?>
 
       <div class="img-block">
