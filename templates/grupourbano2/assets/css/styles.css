@@ -1593,6 +1593,7 @@ ul.dot-icon li span {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  z-index: 199;
 }
 .ribbon.vendido {
   background-image: url("../images/vendido.png");
