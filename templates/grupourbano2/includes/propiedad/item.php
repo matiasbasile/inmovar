@@ -1,5 +1,6 @@
 <?php 
 function item($r,$config = array()) { 
+  global $empresa;
   $clase = isset($config["clase"]) ? $config["clase"] : "col-md-4 p-0 neighborhoods-list" ?>
   <div class="<?php echo $clase ?>">
     <a href="<?php echo $r->link_propiedad ?>">
