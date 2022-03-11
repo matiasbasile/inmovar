@@ -3,7 +3,7 @@ function item($r,$config = array()) {
   $clase = isset($config["clase"]) ? $config["clase"] : "col-md-4 p-0 neighborhoods-list" ?>
   <div class="<?php echo $clase ?>">
     <a href="<?php echo $r->link_propiedad ?>">
-      <?php if ($r->destacado == 1) { ?>
+      <?php if ($r->destacado == 1 && $r->id_empresa == $empresa->id) { ?>
         <img src="assets/images/estrella.png" class="estrella" alt="Propiedad Destacada" />
       <?php } ?>
       <div class="img-block">
