@@ -65,6 +65,14 @@ class Usuario_Model extends Abstract_Model {
     if ($this->db->table_exists('com_usuarios_images')) {
       $this->db->query("DELETE FROM com_usuarios_images WHERE id_empresa = $id_empresa AND id_usuario = $id ");
     }
+
+    // Limpiamos todas las referencias de las propiedades
+    $sql = "UPDATE inm_propiedades ";
+    $sql.= "SET id_usuario = 0 ";
+    $sql.= "WHERE id_empresa = $id_empresa ";
+    $sql.= "AND id_usuario = $id ";
+    $this->db->query($sql);
+
     parent::delete($id);
   }
 
