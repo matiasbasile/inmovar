@@ -327,7 +327,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
 
         <?php 
         // Si no tiene asignado un usuario, tenemos que asignarle aleatoriamente uno
-        if (empty($propiedad->id_usuario)) {
+        if (empty($propiedad->id_usuario) || $propiedad->id_empresa != $empresa->id) {
           $usuarios = $usuario_model->get_list(array(
             "activo"=>1,
             "offset"=>99999,
