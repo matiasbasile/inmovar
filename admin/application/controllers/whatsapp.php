@@ -88,6 +88,7 @@ class Whatsapp extends CI_Controller {
       $u->path = (empty($user->path)) ? "https://app.inmovar.com/admin/resources/images/a0.jpg" : "https://app.inmovar.com/admin/".$user->path;
       $u->cargo = $user->cargo;
       $u->celular = preg_replace("/[^0-9]/", "", $user->celular);
+      if (empty($u->celular)) continue;
       if (sizeof($user->horarios) == 0) {
         $u->disponible = 1;
       } else {
