@@ -346,7 +346,7 @@ class Facturas extends REST_Controller {
     // TODO: Los unicos parametros permitidos por el momento son:
     // custom_6 = Estado de envio
     // id_tipo_estado
-    if (!($attribute == "custom_6" || $attribute == "tipo_pago" || $attribute == "id_tipo_estado")) parent::send_error("Error en el parametro attribute.");
+    if (!($attribute == "custom_6" || $attribute == "tipo_pago" || $attribute == "id_tipo_estado" || $attribute == "enviado_wpp" || $attribute == "enviado_email")) parent::send_error("Error en el parametro attribute.");
 
     $sql = "UPDATE facturas SET $attribute = '$value' ";
     if ($attribute == "tipo_pago")  {

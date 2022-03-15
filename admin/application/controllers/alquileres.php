@@ -9,6 +9,40 @@ class Alquileres extends REST_Controller {
     $this->load->model('Alquiler_Model', 'modelo');
   }
 
+  function enviar_email_alquiler() {
+
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
+    $email = parent::get_post("email", "");
+    $link = parent::get_post("link", "");
+    $nombre = parent::get_post("nombre", "");
+    $id_empresa = parent::get_post("id_empresa", parent::get_empresa());
+    $this->load->model("Email_Template_Model");
+    require_once APPPATH.'libraries/Mandrill/Mandrill.php';
+
+    $template = $this->Email_Template_Model->get_by_key("envio-alquiler-email",$id_empresa);
+    $body = $template->texto;
+    $body = str_replace("{{nombre}}", $nombre, $body);
+    $body = str_replace("{{link}}", $link, $body);
+
+    $bcc_array = array();
+    $bcc_array[] = "basile.matias99@gmail.com";
+
+    mandrill_send(array(
+      "to"=>$email,
+      "from"=>"no-reply@varcreative.com",
+      "subject"=>$template->nombre,
+      "body"=>$body,
+      "bcc"=>$bcc_array,
+    ));   
+
+    echo json_encode(array(
+      "error"=>0,
+    ));
+  }
+
   // ENVIAMOS LOS EMAILS DE LOS CUPONES DE PAGO DE LOS ALQUILERES
   function enviar_emails() {
 
@@ -325,9 +359,10 @@ class Alquileres extends REST_Controller {
     $id_propiedad = ($this->input->get("id_propiedad") === FALSE) ? 0 : $this->input->get("id_propiedad");
     $estado = ($this->input->get("estado") === FALSE) ? -1 : $this->input->get("estado");
 
-    $sql = "SELECT SQL_CALC_FOUND_ROWS C.nombre AS cliente, F.id, F.pago, C.telefono, C.celular, F.hash, F.id_punto_venta, ";
+    $sql = "SELECT SQL_CALC_FOUND_ROWS C.nombre AS cliente, F.id, F.pago, C.telefono, C.celular, F.hash, F.id_punto_venta, C.email, ";
     $sql.= " F.comprobante, C.id AS id_cliente, DATE_FORMAT(F.fecha,'%d/%m/%Y') AS fecha, ";
     $sql.= " AC.pagada, AC.corresponde_a, A.id AS id_alquiler, AC.id AS id_cuota, ";
+    $sql.= " F.enviado_email, F.enviado_wpp, ";
     $sql.= " DATE_FORMAT(AC.vencimiento,'%d/%m/%Y') AS vencimiento, AC.monto, AC.expensa, (AC.monto+AC.expensa) AS total, ";
     $sql.= " P.nombre AS propiedad, CONCAT(P.calle,' ',P.altura,' ',P.piso,' ',P.numero) AS direccion ";
     $sql.= "FROM facturas F ";

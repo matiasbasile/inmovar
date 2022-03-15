@@ -487,6 +487,8 @@
       <% if (pagada == 0) { %>
         <button class="btn btn-info agregar_pago">Cobrar</button>
         <button class="btn btn-default imprimir_cupon_pago"><i class="fa fa-print"></i></button>
+        <button class="btn btn-default enviar_cupon_wpp <%= (enviado_wpp == 1) ? 'btn-success' : '' %>"><i class="fa fa-whatsapp"></i></button>
+        <button class="btn btn-default enviar_cupon_email <%= (enviado_email == 1) ? 'btn-warning' : '' %>"><i class="fa fa-envelope"></i></button>
       <% } else { %>
         <button class="btn btn-default imprimir"><i class="fa fa-print"></i></button>
       <% } %>
