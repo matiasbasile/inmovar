@@ -44,7 +44,7 @@ function cargar() {
         if ($("<div/>").append(r).find(".property.shadow-hover").length < 12)  {
           $("#cargarMas").hide();
         } else {
-          $("#cargarMas").text("ver más propiedades para tu búsqueda");
+          $("#cargarMas").text("Ver más propiedades para tu búsqueda");
           $("#cargarMas").show();
         }
       }
