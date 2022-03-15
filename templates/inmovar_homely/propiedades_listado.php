@@ -46,73 +46,46 @@ $page_active = $vc_link_tipo_operacion;
         <div class="clear"></div>
       </div><!-- end property listing header -->
       
-      <div class="row">
+      <div class="row propiedades">
         
       <?php foreach ($vc_listado as $p) {  ?>
-        <div class="col-lg-6 col-md-6">
-            <div class="property shadow-hover">
-              <a href="<?php echo $p->link_propiedad ?>" class="property-img">
-                <div class="img-fade"></div>
-                <div class="property-tag button alt featured"><?php echo $p->tipo_operacion?></div>
-                <div class="property-tag button alt featured left"><?php echo $p->tipo_estado ?></div>  
-                <div class="property-tag button status"><?php echo $p->tipo_inmueble ?></div>
-                <div class="property-price"><?php echo $p->precio ?></div>
-                <div class="property-color-bar"></div>
-                <div class="">
-                  <?php if (!empty($p->imagen)) { ?>
-                    <img src="<?php echo $p->imagen ?>" class="mi-img-responsive" alt="<?php echo ($p->nombre); ?>" />
-                  <?php } else if (!empty($empresa->no_imagen)) { ?>
-                    <img src="/admin/<?php echo $empresa->no_imagen ?>" class="mi-img-responsive" alt="<?php echo ($p->nombre); ?>" />
-                  <?php } else { ?>
-                    <img src="images/logo.png" alt="<?php echo ($p->nombre); ?>" />
-                  <?php } ?>
-                </div>
-              </a>
-              <div class="property-content">
-                <div class="property-title">
-                <h4><a href="<?php echo $p->link_propiedad ?>"><?php echo ucwords(strtolower($p->nombre)) ?></a></h4>
-                  <p class="property-address"><i class="fa fa-map-marker icon"></i><?php echo $p->direccion_completa.". ".$p->localidad ?> <br> Código: <?php echo $p->codigo ?></p>
-                </div>
-                <table class="property-details">
-                  <tr>
-                    <td><i class="fa fa-bed"></i> <?php echo empty($p->dormitorios) ? "-" : $p->dormitorios?> Dorm</td>
-                    <td><i class="fa fa-shower"></i> <?php echo (empty($p->banios)) ? "-" : $p->banios ?> Baño<?php echo ($p->banios > 1)?"s":""?></td>
-                    <td><i class="fa fa-expand"></i> <?php echo (empty($p->superficie_total)) ? "-" : $p->superficie_total ?> m<sup>2</sup></td>
-                  </tr>
-                </table>
-              </div>
-            </div>
-          </div>
-        <?php } ?>
+        <?php item($p); ?>
+      <?php } ?>
         
       </div><!-- end row -->
       <!-- end row -->
-   <?php if ($vc_total_paginas > 1) {  ?>
-      
+    <?php if ($empresa->id != 1555) { ?>
+      <?php if ($vc_total_paginas > 1) {  ?>
+        
 
-      <div class="pagination">
-        <div class="center">
-          <ul>
-            <?php if ($vc_page > 0) { ?>
-              <li><a href="<?php echo mklink ($vc_link.($vc_page-1)."/".$vc_params ) ?>" class="button small grey"><i class="fa fa-angle-left"></i></a></li>
-            <?php } ?>
-            <?php for($i=0;$i<$vc_total_paginas;$i++) { ?>
-              <?php if (abs($vc_page-$i)<3) { ?>
-                <?php if ($i == $vc_page) { ?>
-                  <li class="current"><a class="button small grey"><?php echo $i+1 ?></a></li>
-                <?php } else { ?>
-                  <li><a href="<?php echo mklink ($vc_link.$i."/".$vc_params ) ?>" class="button small grey"><?php echo $i+1 ?></a></li>
+        <div class="pagination">
+          <div class="center">
+            <ul>
+              <?php if ($vc_page > 0) { ?>
+                <li><a href="<?php echo mklink ($vc_link.($vc_page-1)."/".$vc_params ) ?>" class="button small grey"><i class="fa fa-angle-left"></i></a></li>
+              <?php } ?>
+              <?php for($i=0;$i<$vc_total_paginas;$i++) { ?>
+                <?php if (abs($vc_page-$i)<3) { ?>
+                  <?php if ($i == $vc_page) { ?>
+                    <li class="current"><a class="button small grey"><?php echo $i+1 ?></a></li>
+                  <?php } else { ?>
+                    <li><a href="<?php echo mklink ($vc_link.$i."/".$vc_params ) ?>" class="button small grey"><?php echo $i+1 ?></a></li>
+                  <?php } ?>
                 <?php } ?>
               <?php } ?>
-            <?php } ?>
-            <?php if ($vc_page < $vc_total_paginas-1) { ?>
-              <li><a href="<?php echo mklink ($vc_link.($vc_page+1)."/".$vc_params ) ?>" class="button small grey"><i class="fa fa-angle-right"></i></a></li>
-            <?php } ?>
-          </ul>
+              <?php if ($vc_page < $vc_total_paginas-1) { ?>
+                <li><a href="<?php echo mklink ($vc_link.($vc_page+1)."/".$vc_params ) ?>" class="button small grey"><i class="fa fa-angle-right"></i></a></li>
+              <?php } ?>
+            </ul>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
+      <?php } ?><!-- pagination -->
+    <?php } else { ?>
+      <div class="d-block mt-5">
+        <a onclick="cargar()" id="cargarMas" class="btn btn-primary btn-block btn-lg button alt w100p">Ver más propiedades para tu búsqueda</a>
       </div>
-    <?php } ?><!-- pagination -->
+    <?php } ?> 
     
     </div><!-- end listing -->
     <div class="col-lg-4 col-md-4 sidebar">
@@ -126,6 +99,7 @@ $page_active = $vc_link_tipo_operacion;
 <!-- JavaScript file links -->
 <?php include "includes/footer.php"?>
 <?php include "includes/scripts.php"?>
+<?php if ($empresa->id == 1555) include("includes/cargar_mas_js.php"); ?>
 <script type="text/javascript">
 function submit_buscador_propiedades() {
   // Cargamos el offset y el orden en este formulario
