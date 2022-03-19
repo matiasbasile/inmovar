@@ -825,6 +825,77 @@
       "click .modificar_pagos":"modificar_pagos",
       "click .imprimir":"imprimir",
       "click .imprimir_cupon_pago":"imprimir_cupon_pago",
+      "click .enviar_cupon_wpp":function(e){
+        var self = this;
+        var telefono = this.model.get("celular");
+        if (isEmpty(telefono)) {
+          if (confirm("ERROR: El cliente no tiene celular cargado. Desea editarlo?")) {
+            location.href = "app/#cliente/"+this.model.get("id_cliente");
+          }
+          return;
+        }
+        if (telefono.length != 10) {
+          if (confirm("ERROR: El formato de telefono del cliente es incorrecto. Debe ser sin 0 ni 15. Desea editarlo?")) {
+            location.href = "app/#cliente/"+this.model.get("id_cliente");
+          }
+          return;
+        }
+        telefono = "549"+telefono;
+        var link = "http://app.inmovar.com/admin/alquileres/function/cupon_pago/"+ID_EMPRESA+"/"+self.model.id+"/0";
+        var link_completo = 'Hola '+this.model.get("cliente")+', te enviamos el cupon de pago del alquiler de este mes: '+link;
+        var salida = "https://wa.me/"+telefono+"?text="+encodeURIComponent(link_completo);
+        $(e.currentTarget).addClass("btn-success");
+        self.change_property({
+          "table":"facturas",
+          "attribute":"enviado_wpp",
+          "value":1,
+          "id":self.model.id,
+          //"success":function(){
+            //self.render();
+          //}
+        });
+        window.open(salida,"_blank");   
+      },
+      "click .enviar_cupon_email":function(e){
+        var self = this;
+        var email = self.model.get("email");
+        var nombre = self.model.get("cliente");
+        email = "matuschettino@gmail.com";
+        if (isEmpty(email)) {
+          if (confirm("ERROR: El cliente no tiene email cargado. Desea editarlo?")) {
+            location.href = "app/#cliente/"+this.model.get("id_cliente");
+          }
+          return;
+        }
+        $(e.currentTarget).addClass("btn-warning");
+
+        var link = "http://app.inmovar.com/admin/alquileres/function/cupon_pago/"+ID_EMPRESA+"/"+self.model.id+"/0";
+        $.ajax({
+          "url":"alquileres/function/enviar_email_alquiler",
+          "type":"post",
+          "dataType":"json",
+          "data":{
+            "email": email,
+            "link": link,
+            "nombre": nombre,
+            "id_empresa": ID_EMPRESA,
+          },
+          "success":function(r) {
+            if (r.error == 0) {
+              self.change_property({
+                "table":"facturas",
+                "attribute":"enviado_email",
+                "value":1,
+                "id":self.model.id,
+                //"success":function(){
+                  //self.render();
+                //}
+              });              
+            }
+          }
+        });
+
+      },
       "click .ver_contrato":"ver_contrato",
       "keyup .radio":function(e) {
         if (e.which == 13) { this.seleccionar(); }
