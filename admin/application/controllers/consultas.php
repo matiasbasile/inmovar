@@ -240,7 +240,7 @@ class Consultas extends REST_Controller {
           "from_name"=>$empresa->nombre,
           "subject"=>$asunto,
           "body"=>$texto,
-          "bcc"=>$bcc_array,
+          //"bcc"=>$bcc_array,
         ));
       }
     }
