@@ -50,6 +50,7 @@ $cotizacion_dolar = $propiedad_model->get_dolar();
                         <option <?php echo ($vc_orden == 2) ? "selected" : "" ?> value="2">Precio menor a mayor</option>
                         <option <?php echo ($vc_orden == 1) ? "selected" : "" ?> value="1">Precio mayor a menor nuevos</option>
                         <option <?php echo ($vc_orden == 5) ? "selected" : "" ?> value="5">&Uacute;ltimos</option>
+                        <option <?php echo ($vc_orden == 4) ? "selected" : "" ?> value="4">Destacadas</option>
                       </select>
                     </form>
                   </div>

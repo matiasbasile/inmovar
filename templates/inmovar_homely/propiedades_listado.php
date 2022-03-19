@@ -41,6 +41,7 @@ $page_active = $vc_link_tipo_operacion;
           <select onchange="submit_buscador_propiedades()" id="ordenador_orden" name="orden" class="ht-field listing-sort__field">
             <option value="barato" <?php echo ($vc_orden == 2)?"selected":""  ?> >Precio (Menor a mayor)</option>
             <option value="caro" <?php echo ($vc_orden == 1)?"selected":""  ?> >Precio (Mayor a menor)</option>
+            <option value="destacadas" <?php echo ($vc_orden == 4)?"selected":""  ?> >Destacadas</option>
           </select>
         </form>
         <div class="clear"></div>
