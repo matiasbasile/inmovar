@@ -17,7 +17,7 @@
     <select id="tipo_operacion" class="filter_tipo_operacion">
       <?php $filter_tipos_operacion = $propiedad_model->get_tipos_operaciones();
       foreach($filter_tipos_operacion as $r) { ?>
-        <option <?php echo (isset($vc_id_tipo_operacion) == $r->id) ? "selected":"" ?> value="<?php echo $r->link ?>"><?php echo $r->nombre ?></option>
+        <option <?php echo (isset($vc_id_tipo_operacion) && $vc_id_tipo_operacion == $r->id) ? "selected":"" ?> value="<?php echo $r->link ?>"><?php echo $r->nombre ?></option>
       <?php } ?>
     </select>
   </div><!-- /.form-group -->
