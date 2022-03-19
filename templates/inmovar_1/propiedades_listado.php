@@ -41,6 +41,7 @@ if (isset($_GET["test"])) print_r($vc_listado);
                     <select id="orden_select" onchange="enviar_orden()" name="orden">
                       <option <?php echo ($vc_orden == 2 ) ? "selected" : "" ?> value="barato">Precio menor a mayor</option>
                       <option <?php echo ($vc_orden == 1 ) ? "selected" : "" ?> value="caro">Precio mayor a menor</option>
+                      <option <?php echo ($vc_orden == 4 ) ? "selected" : "" ?> value="destacados">Destacadas</option>
                     </select>
                   </div>
                 </div>
