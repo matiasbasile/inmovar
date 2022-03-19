@@ -3,7 +3,7 @@ include("includes/init.php");
 $get_params["offset"] = 10;
 extract($propiedad_model->get_variables());
 $nombre_pagina = $vc_link_tipo_operacion;
-if (isset($get_params["test"])) $propiedad_model->get_sql();
+if (isset($get_params["test"])) echo $propiedad_model->get_sql();
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
