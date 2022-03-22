@@ -22,8 +22,6 @@ if (!empty($obras)) { ?>
             <a href="<?php echo mklink($countri->link) ?>" class="stretched-link">
               <img class="adaptable-img-2" src="<?php echo $countri->imagen; ?>">
             </a>
-            <div class="work-tags"><?php echo $countri->tipo_inmueble ?></div>
-            <div class="work-price"><?php echo $countri->precio ?></div>
           </div>
           <div class="work-info">
             <h6>
