@@ -75,7 +75,7 @@ $titulo_pagina = "Inicio";
         <div class="search-area-inner">
           <div class="search-contents ">
 
-            <form onsubmit="enviar_buscador_propiedades()" id="form_propiedades">
+            <form id="form_propiedades" class="buscador-home" onsubmit="return enviar_buscador_propiedades()" method="GET">
               <div class="row">
                 <div class="col-md-6">
                   <div class="row">
