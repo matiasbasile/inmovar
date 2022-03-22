@@ -559,29 +559,54 @@ class Consultas extends REST_Controller {
 
       // Si estamos consultando por una propiedad
       // pero el origen no es whatsapp
-      if (!empty($id_propiedad) && !($id_origen == 30 || $id_origen == 31)) {
-        $this->load->model("Propiedad_Model");
-        $propiedad = $this->Propiedad_Model->get($id_propiedad,array(
-          "id_empresa"=>$id_empresa_relacion
-        ));
-        // Si no estamos definiendo un usuario desde la web, tenemos que poner el asignado en la propiedad
-        if (empty($id_usuario)) $id_usuario = $propiedad->id_usuario;
+      if ($id_empresa == 45) {
+        // Ya nos viene de la vista exactamente a quien tenemos que mandarle
+        $para = array($para);
+      } else {
+        if (!empty($id_propiedad) && !($id_origen == 30 || $id_origen == 31)) {
+          $this->load->model("Propiedad_Model");
+          $propiedad = $this->Propiedad_Model->get($id_propiedad,array(
+            "id_empresa"=>$id_empresa_relacion
+          ));
+          // Si no estamos definiendo un usuario desde la web, tenemos que poner el asignado en la propiedad
+          if (empty($id_usuario)) $id_usuario = $propiedad->id_usuario;
 
-        // Dependiendo de la configuracion
-        $this->load->model("Web_Configuracion_Model");
-        $web = $this->Web_Configuracion_Model->get($id_empresa);
-        
-        // Se tiene que enviar solo al usuario de la propiedad asignada
-        if (isset($web->crm_notificar_usuario_propiedad) && $web->crm_notificar_usuario_propiedad == 1) {
+          // Dependiendo de la configuracion
+          $this->load->model("Web_Configuracion_Model");
+          $web = $this->Web_Configuracion_Model->get($id_empresa);
+          
+          // Se tiene que enviar solo al usuario de la propiedad asignada
+          if (isset($web->crm_notificar_usuario_propiedad) && $web->crm_notificar_usuario_propiedad == 1) {
 
-          // Si es una propiedad de la misma empresa (no una de la RED)
-          if ($propiedad->id_empresa == $id_empresa) {
+            // Si es una propiedad de la misma empresa (no una de la RED)
+            if ($propiedad->id_empresa == $id_empresa) {
 
-            if (isset($propiedad->usuario_email) && !empty($propiedad->usuario_email)) {
-              // Si tiene seteado un usuario, le mandamos a ese
-              $para = array($propiedad->usuario_email);
-              $id_usuario = $propiedad->id_usuario;
+              if (isset($propiedad->usuario_email) && !empty($propiedad->usuario_email)) {
+                // Si tiene seteado un usuario, le mandamos a ese
+                $para = array($propiedad->usuario_email);
+                $id_usuario = $propiedad->id_usuario;
 
+              } else {
+
+                // En caso de que la propiedad no tenga usuario asignado
+                if (isset($web->crm_enviar_emails_usuarios) && $web->crm_enviar_emails_usuarios == 0) {
+                  $para = array($empresa->email);
+                  $id_usuario = 0;
+
+                } else if (isset($web->crm_enviar_emails_usuarios) && $web->crm_enviar_emails_usuarios == 1) {
+                  // Entonces tenemos que elegir aleatoriamente uno
+                  $this->load->model("Usuario_Model");
+                  $aleatorio = $this->Usuario_Model->get_random(array(
+                    "id_empresa"=>$id_empresa,
+                  ));
+                  if ($aleatorio !== FALSE) {
+                    $para = array($aleatorio->email);
+                    $id_usuario = $aleatorio->id;
+                  }
+                }
+              }
+
+            // Se esta consultando por una propiedad compartida
             } else {
 
               // En caso de que la propiedad no tenga usuario asignado
@@ -600,35 +625,15 @@ class Consultas extends REST_Controller {
                   $id_usuario = $aleatorio->id;
                 }
               }
+
             }
-
-          // Se esta consultando por una propiedad compartida
-          } else {
-
-            // En caso de que la propiedad no tenga usuario asignado
-            if (isset($web->crm_enviar_emails_usuarios) && $web->crm_enviar_emails_usuarios == 0) {
-              $para = array($empresa->email);
-              $id_usuario = 0;
-
-            } else if (isset($web->crm_enviar_emails_usuarios) && $web->crm_enviar_emails_usuarios == 1) {
-              // Entonces tenemos que elegir aleatoriamente uno
-              $this->load->model("Usuario_Model");
-              $aleatorio = $this->Usuario_Model->get_random(array(
-                "id_empresa"=>$id_empresa,
-              ));
-              if ($aleatorio !== FALSE) {
-                $para = array($aleatorio->email);
-                $id_usuario = $aleatorio->id;
-              }
-            }
-
           }
-        }
 
-        // Se tiene que mandar tambien al email de la inmobiliaria
-        if (isset($web->crm_notificar_inmobiliaria) && $web->crm_notificar_inmobiliaria == 1) {
-          $para[] = $empresa->email;
-        }        
+          // Se tiene que mandar tambien al email de la inmobiliaria
+          if (isset($web->crm_notificar_inmobiliaria) && $web->crm_notificar_inmobiliaria == 1) {
+            $para[] = $empresa->email;
+          }        
+        }
       }
       
       if ($contacto === FALSE) {
