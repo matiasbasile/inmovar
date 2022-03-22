@@ -74,7 +74,7 @@ $titulo_pagina = "Inicio";
       <div class="container">
         <div class="search-area-inner">
           <div class="search-contents ">
-            <!--
+
             <form onsubmit="enviar_buscador_propiedades()" id="form_propiedades">
               <div class="row">
                 <div class="col-md-6">
@@ -159,7 +159,7 @@ $titulo_pagina = "Inicio";
                 </div>
               </div>
             </form>            
-            -->
+            <!--
             <form id="form_propiedades" class="buscador-home" onsubmit="return enviar_buscador_propiedades()" method="GET">
               <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -202,7 +202,7 @@ $titulo_pagina = "Inicio";
                 </div>
               </div>
             </form>
-            
+            -->
           </div>
         </div>
       </div>
