@@ -4651,3 +4651,5 @@ all and (min-width: 992px) and (-webkit-transform-3d) {
 .recently-properties .property img { height: 200px; object-fit: cover; }
 #lista .property img { object-fit: cover; }
 .main-title-h2 { text-transform: uppercase; font-weight: 900; }
+
+.buscador-home input[type="text"] { height: 44px; }
