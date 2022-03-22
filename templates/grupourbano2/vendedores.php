@@ -79,7 +79,14 @@ $nombre_pagina = "nosotros";
                             <?php } ?>
                           </div>
                         </div>
-                        <div class="col-md-6 text-right"><a href="<?php echo mklink("web/vendedor/?id=".$user->id) ?>" class="btn btn-outline-primary">ver propiedades</a></div>
+                        <?php 
+                        $propiedades = $propiedad_model->get_list(array(
+                          "solo_contar"=>1,
+                          "id_usuario"=>$user->id,
+                        ));
+                        if ($propiedades > 0) { ?>
+                          <div class="col-md-6 text-right"><a href="<?php echo mklink("web/vendedor/?id=".$user->id) ?>" class="btn btn-outline-primary">ver propiedades</a></div>
+                        <?php } ?>
                       </div>
                     </div>
                   </div>
