@@ -141,7 +141,7 @@ $titulo_pagina = "Inicio";
                       </div>
                     </div>                                    
                     <div class="col-md-3">
-                      <div class="form-group">
+                      <div class="form-group mb10">
                         <label>Código</label>
                         <input type="text" class="form-control mb5" name="cod"/>
                       </div>
