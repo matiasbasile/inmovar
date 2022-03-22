@@ -26,6 +26,9 @@ function item($r,$config = array()) {
         <?php } ?>
 
         <div class="neighborhoods-top">
+          <?php if ($r->id_tipo_operacion == 5) { ?>
+            <p><?php echo $r->nombre ?></p>
+          <?php } ?>
           <p><?php echo $r->direccion_completa.(!empty($r->direccion_completa)?". ":"").$r->localidad ?></p>
           <?php if ($r->id_tipo_operacion != 5) { ?>
             <h4><?php echo $r->precio ?></h4>
