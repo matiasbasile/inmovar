@@ -273,7 +273,7 @@ class Propiedad_Model {
     global $params;
     global $get_params;
     @session_start();
-    $page = isset($config["page"]) ? intval($config["page"]) ? 0;
+    $page = isset($config["page"]) ? intval($config["page"]) : 0;
     $vc_link = "propiedades/";
     $no_analizar_url = isset($config["no_analizar_url"]) ? $config["no_analizar_url"] : 0;
 
