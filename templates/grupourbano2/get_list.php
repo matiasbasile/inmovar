@@ -19,7 +19,7 @@ extract($propiedad_model->get_variables(array(
   "no_analizar_url"=>1,
   "page"=>$page,
   "id_usuario"=>$id_usuario,
-  "order"=>$order,
+  "orden"=>$order,
   "offset"=>$offset,
   "ids_tipo_operacion"=>$vc_ids_tipo_operacion,
   "in_ids_localidades"=>$vc_in_ids_localidades,
