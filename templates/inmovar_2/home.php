@@ -82,7 +82,7 @@ $titulo_pagina = "Inicio";
                     <div class="col-md-4">
                       <div class="filter-item">
                         <label>Tipo de Operación</label>
-                        <select id="tipo_operacion" >
+                        <select id="tipo_operacion" class="selectpicker search-fields" data-live-search="true" data-live-search-placeholder="Buscar" >
                           <?php $tipos_operaciones = $propiedad_model->get_tipos_operaciones() ?>
                           <option value="todas">Todas</option>
                           <?php foreach ($tipos_operaciones as $tp) { ?>
@@ -94,7 +94,7 @@ $titulo_pagina = "Inicio";
                     <div class="col-md-4">
                       <div class="filter-item">
                         <label>Localidad</label>
-                        <select id="localidad">
+                        <select id="localidad" class="selectpicker search-fields" data-live-search="true" data-live-search-placeholder="Buscar">
                           <?php $localidades = $propiedad_model->get_localidades() ?>
                           <option value="todas">Todas</option>
                           <?php foreach ($localidades as $l) { ?>
@@ -106,7 +106,7 @@ $titulo_pagina = "Inicio";
                     <div class="col-md-4">
                       <div class="filter-item">
                         <label>Tipo de Propiedad</label>
-                        <select id="tp" name="tp">
+                        <select id="tp" name="tp" class="selectpicker search-fields" data-live-search="true" data-live-search-placeholder="Buscar">
                           <?php $tipos_propiedades = $propiedad_model->get_tipos_propiedades() ?>
                           <option value="">Todas</option>
                           <?php foreach ($tipos_propiedades as $tp) { ?>
@@ -128,7 +128,7 @@ $titulo_pagina = "Inicio";
                     <div class="col-md-3">
                       <div class="filter-item">
                         <label>Dormitorios</label>
-                        <select name="dm" class="form-control">
+                        <select name="dm" class="selectpicker search-fields" data-live-search="true" data-live-search-placeholder="Buscar">
                           <?php $dormitorios = $propiedad_model->get_dormitorios() ?>
                           <option value="">-</option>
                           <option value="99">Monoambiente</option>
