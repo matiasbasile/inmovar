@@ -24,7 +24,7 @@ if (!empty($obras)) { ?>
             </a>
           </div>
           <div class="work-info">
-            <h6><?php echo $countri->nombre ?></h6>
+            <h6><span><?php echo $countri->nombre ?></span></h6>
             <p><?php echo $countri->direccion_completa ?></p>
           </div>
         </div>
