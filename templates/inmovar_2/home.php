@@ -80,7 +80,7 @@ $titulo_pagina = "Inicio";
                 <div class="col-md-6">
                   <div class="row">
                     <div class="col-md-4">
-                      <div class="filter-item">
+                      <div class="form-group">
                         <label>Tipo de Operación</label>
                         <select id="tipo_operacion" class="selectpicker search-fields" data-live-search="true" data-live-search-placeholder="Buscar" >
                           <?php $tipos_operaciones = $propiedad_model->get_tipos_operaciones() ?>
@@ -92,7 +92,7 @@ $titulo_pagina = "Inicio";
                       </div>
                     </div>
                     <div class="col-md-4">
-                      <div class="filter-item">
+                      <div class="form-group">
                         <label>Localidad</label>
                         <select id="localidad" class="selectpicker search-fields" data-live-search="true" data-live-search-placeholder="Buscar">
                           <?php $localidades = $propiedad_model->get_localidades() ?>
@@ -104,7 +104,7 @@ $titulo_pagina = "Inicio";
                       </div>
                     </div>
                     <div class="col-md-4">
-                      <div class="filter-item">
+                      <div class="form-group">
                         <label>Tipo de Propiedad</label>
                         <select id="tp" name="tp" class="selectpicker search-fields" data-live-search="true" data-live-search-placeholder="Buscar">
                           <?php $tipos_propiedades = $propiedad_model->get_tipos_propiedades() ?>
@@ -120,13 +120,13 @@ $titulo_pagina = "Inicio";
                 <div class="col-md-6">
                   <div class="row">
                     <div class="col-md-3">
-                      <div class="filter-item">
+                      <div class="form-group">
                         <label>Direcci&oacute;n</label>
                         <input type="text" class="form-control" name="calle"/>
                       </div>
                     </div>                                    
                     <div class="col-md-3">
-                      <div class="filter-item">
+                      <div class="form-group">
                         <label>Dormitorios</label>
                         <select name="dm" class="selectpicker search-fields" data-live-search="true" data-live-search-placeholder="Buscar">
                           <?php $dormitorios = $propiedad_model->get_dormitorios() ?>
@@ -141,7 +141,7 @@ $titulo_pagina = "Inicio";
                       </div>
                     </div>                                    
                     <div class="col-md-3">
-                      <div class="filter-item">
+                      <div class="form-group">
                         <label>Código</label>
                         <input type="text" class="form-control mb5" name="cod"/>
                       </div>
@@ -151,8 +151,7 @@ $titulo_pagina = "Inicio";
                       </div>                    
                     </div>
                     <div class="col-md-3">
-                      <div class="filter-item">
-                        <label class="label-submit">Enviar</label><br>
+                      <div class="form-group">
                         <button class="search-button">Buscar</button>
                       </div>
                     </div>
