@@ -24,11 +24,7 @@ if (!empty($obras)) { ?>
             </a>
           </div>
           <div class="work-info">
-            <h6>
-              <?php echo ($countri->dormitorios != 0 ? "<span>" . $countri->dormitorios . " Hab </span>" : "") ?>
-              <?php echo ($countri->cocheras != 0 ? "<span>" . $countri->cocheras . " Cochera </span>" : "") ?>
-              <?php echo ($countri->superficie_total != 0 ? "<span>" . $countri->superficie_total . " m2 </span>" : "") ?>
-            </h6>
+            <h6><?php echo $countri->nombre ?></h6>
             <p><?php echo $countri->direccion_completa ?></p>
           </div>
         </div>
