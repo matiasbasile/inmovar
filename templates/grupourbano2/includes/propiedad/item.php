@@ -5,7 +5,7 @@ function item($r,$config = array()) {
   <div class="<?php echo $clase ?>">
     <a target="_blank" href="<?php echo $r->link_propiedad ?>">
 
-      <?php if ($r->id_tipo_operacion != 5) ?>
+      <?php if ($r->id_tipo_operacion != 5) { ?>
         <?php if ($r->destacado == 1 && $r->id_empresa == $empresa->id) { ?>
           <img src="assets/images/estrella.png" class="estrella" alt="Propiedad Destacada" />
         <?php } ?>
@@ -27,12 +27,12 @@ function item($r,$config = array()) {
 
         <div class="neighborhoods-top">
           <p><?php echo $r->direccion_completa.(!empty($r->direccion_completa)?". ":"").$r->localidad ?></p>
-          <?php if ($r->id_tipo_operacion != 5) ?>
+          <?php if ($r->id_tipo_operacion != 5) { ?>
             <h4><?php echo $r->precio ?></h4>
           <?php } ?>
         </div>
 
-        <?php if ($r->id_tipo_operacion != 5) ?>
+        <?php if ($r->id_tipo_operacion != 5) { ?>
           <div class="neighborhoods-bottom">
             <div class="neighborhoods-info">
               <h6><?php echo (!empty($r->dormitorios)) ? $r->dormitorios : "-" ?> Hab.</h6>
