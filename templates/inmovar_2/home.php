@@ -74,7 +74,94 @@ $titulo_pagina = "Inicio";
       <div class="container">
         <div class="search-area-inner">
           <div class="search-contents ">
-          <form id="form_propiedades" class="buscador-home" onsubmit="return enviar_buscador_propiedades()" method="GET">
+
+            <form onsubmit="enviar_buscador_propiedades()" id="form_propiedades">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="filter-item">
+                        <label>Tipo de Operación</label>
+                        <select id="tipo_operacion" >
+                          <?php $tipos_operaciones = $propiedad_model->get_tipos_operaciones() ?>
+                          <option value="todas">Todas</option>
+                          <?php foreach ($tipos_operaciones as $tp) { ?>
+                            <option value="<?php echo $tp->link ?>"><?php echo $tp->nombre ?></option>
+                          <?php } ?>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="filter-item">
+                        <label>Localidad</label>
+                        <select id="localidad">
+                          <?php $localidades = $propiedad_model->get_localidades() ?>
+                          <option value="todas">Todas</option>
+                          <?php foreach ($localidades as $l) { ?>
+                            <option value="<?php echo $l->link ?>"><?php echo $l->nombre ?></option>
+                          <?php } ?>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="filter-item">
+                        <label>Tipo de Propiedad</label>
+                        <select id="tp" name="tp">
+                          <?php $tipos_propiedades = $propiedad_model->get_tipos_propiedades() ?>
+                          <option value="">Todas</option>
+                          <?php foreach ($tipos_propiedades as $tp) { ?>
+                            <option value="<?php echo $tp->id ?>" ><?php echo $tp->nombre ?></option>
+                          <?php } ?>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <div class="filter-item">
+                        <label>Direcci&oacute;n</label>
+                        <input type="text" class="form-control" name="calle"/>
+                      </div>
+                    </div>                                    
+                    <div class="col-md-3">
+                      <div class="filter-item">
+                        <label>Dormitorios</label>
+                        <select name="dm" class="form-control">
+                          <?php $dormitorios = $propiedad_model->get_dormitorios() ?>
+                          <option value="">-</option>
+                          <option value="99">Monoambiente</option>
+                          <?php foreach ($dormitorios as $dm) { ?>
+                            <?php if ($dm->dormitorios != 0) {  ?>
+                              <option value="<?php echo $dm->dormitorios ?>"><?php echo $dm->dormitorios ?></option>
+                            <?php } ?>
+                          <?php } ?>
+                        </select>
+                      </div>
+                    </div>                                    
+                    <div class="col-md-3">
+                      <div class="filter-item">
+                        <label>Código</label>
+                        <input type="text" class="form-control mb5" name="cod"/>
+                      </div>
+                      <div class="mb10 cb w100p oh">
+                        <input id="apto_banco" class="border fl" type="checkbox" <?php echo (!empty($vc_apto_banco))?"checked":"" ?> name="banco" value="1">
+                        <label class="fl" for="apto_banco">Apto Crédito</label>
+                      </div>                    
+                    </div>
+                    <div class="col-md-3">
+                      <div class="filter-item">
+                        <label class="label-submit">Enviar</label><br>
+                        <button class="search-button">Buscar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>            
+            <!--
+            <form id="form_propiedades" class="buscador-home" onsubmit="return enviar_buscador_propiedades()" method="GET">
               <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                   <div class="form-group">
@@ -116,6 +203,7 @@ $titulo_pagina = "Inicio";
                 </div>
               </div>
             </form>
+            -->
           </div>
         </div>
       </div>
