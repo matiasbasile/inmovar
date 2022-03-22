@@ -30,7 +30,11 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
 <html dir="ltr" lang="es">
 
 <head>
-  <?php include("includes/head.php"); ?>
+<?php include("includes/head.php"); ?>
+<meta property="og:type" content="website" />
+<meta property="og:title" content="<?php echo ($propiedad->nombre); ?>" />
+<meta property="og:description" content="<?php echo str_replace("\n","",(strip_tags(html_entity_decode($propiedad->texto,ENT_QUOTES)))); ?>" />
+<meta property="og:image" content="<?php echo $propiedad->imagen_full ?>"/>
 </head>
 
 <body class="bg-gray">
