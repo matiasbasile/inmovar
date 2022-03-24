@@ -610,7 +610,7 @@ $titulo_pagina = "Inicio";
     $("#orden_form").submit();
   }
   function enviar_buscador_propiedades() {
-    var link = $("#tipo_operacion").val();
+    var link = "<?php echo mklink("propiedades/") ?>";
     var tipo_operacion = $("#tipo_operacion").val();
     var localidad = $("#localidad").val();
     link = link + tipo_operacion + "/" + localidad + "/";
