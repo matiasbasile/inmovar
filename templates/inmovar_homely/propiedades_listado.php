@@ -119,6 +119,7 @@ function onsubmit_buscador_propiedades() {
   $("#precio_minimo_oculto").val(minimo);
   var maximo = $("#precio_maximo").val().replace(".","");
   $("#precio_maximo_oculto").val(maximo);
+  alert(link);
   $("#form_propiedades").attr("action",link);
   return true;
 }
