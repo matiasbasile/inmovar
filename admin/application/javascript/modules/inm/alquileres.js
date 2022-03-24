@@ -805,13 +805,13 @@
         var telefono = this.model.get("celular");
         if (isEmpty(telefono)) {
           if (confirm("ERROR: El cliente no tiene celular cargado. Desea editarlo?")) {
-            location.href = "app/#cliente/"+this.model.get("id_cliente");
+            location.href = "app/#clientes/"+this.model.get("id_cliente");
           }
           return;
         }
         if (telefono.length != 10) {
           if (confirm("ERROR: El formato de telefono del cliente es incorrecto. Debe ser sin 0 ni 15. Desea editarlo?")) {
-            location.href = "app/#cliente/"+this.model.get("id_cliente");
+            location.href = "app/#clientes/"+this.model.get("id_cliente");
           }
           return;
         }
@@ -830,13 +830,13 @@
         var telefono = this.model.get("celular");
         if (isEmpty(telefono)) {
           if (confirm("ERROR: El cliente no tiene celular cargado. Desea editarlo?")) {
-            location.href = "app/#cliente/"+this.model.get("id_cliente");
+            location.href = "app/#clientes/"+this.model.get("id_cliente");
           }
           return;
         }
         if (telefono.length != 10) {
           if (confirm("ERROR: El formato de telefono del cliente es incorrecto. Debe ser sin 0 ni 15. Desea editarlo?")) {
-            location.href = "app/#cliente/"+this.model.get("id_cliente");
+            location.href = "app/#clientes/"+this.model.get("id_cliente");
           }
           return;
         }
@@ -860,10 +860,9 @@
         var self = this;
         var email = self.model.get("email");
         var nombre = self.model.get("cliente");
-        email = "matuschettino@gmail.com";
         if (isEmpty(email)) {
           if (confirm("ERROR: El cliente no tiene email cargado. Desea editarlo?")) {
-            location.href = "app/#cliente/"+this.model.get("id_cliente");
+            location.href = "app/#clientes/"+this.model.get("id_cliente");
           }
           return;
         }

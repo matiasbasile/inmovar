@@ -22,6 +22,9 @@ class Alquileres extends REST_Controller {
     $this->load->model("Email_Template_Model");
     require_once APPPATH.'libraries/Mandrill/Mandrill.php';
 
+    $this->load->model("Empresa_Model");
+    $empresa = $this->Empresa_Model->get($id_empresa);
+
     $template = $this->Email_Template_Model->get_by_key("envio-alquiler-email",$id_empresa);
     $body = $template->texto;
     $body = str_replace("{{nombre}}", $nombre, $body);
@@ -32,7 +35,7 @@ class Alquileres extends REST_Controller {
 
     mandrill_send(array(
       "to"=>$email,
-      "from"=>"no-reply@varcreative.com",
+      "from_name"=>$empresa->nombre,
       "subject"=>$template->nombre,
       "body"=>$body,
       "bcc"=>$bcc_array,
