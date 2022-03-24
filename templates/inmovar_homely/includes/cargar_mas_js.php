@@ -29,7 +29,7 @@ function cargar() {
   <?php /* if ($nombre_pagina == "nosotros") { ?>
     data['id_usuario'] = "<?php echo $id_usuario ?>";
   <?php } */?>
-  $("#cargarMas").text("buscando...");
+  $("#cargarMas").text("Buscando...");
   $.ajax({
     "url": "<?php echo mklink("web/get_list/") ?>",
     "type": "get",

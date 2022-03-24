@@ -5,7 +5,7 @@ extract($propiedad_model->get_variables());
 $page_active = $vc_link_tipo_operacion;
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <?php include "includes/head.php" ?>
   </head>
