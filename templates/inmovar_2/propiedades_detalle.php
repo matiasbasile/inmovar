@@ -17,7 +17,7 @@ if (($propiedad === FALSE || !isset($propiedad->nombre) || $propiedad->activo ==
 if (!empty($titulo_pagina)) { $titulo_pagina = $propiedad->nombre; }
 $nombre_pagina = "detalle";
 $mostro_video = 0;
-if (!empty($propiedad->path)) $propiedad->images = array_merge(array($propiedad->imagen),$propiedad->images);
+if (!empty($propiedad->path) && $empresa->id != 1405) $propiedad->images = array_merge(array($propiedad->imagen),$propiedad->images);
 
 if ($propiedad->id_tipo_operacion == 1) $vc_moneda = "USD";
 else $vc_moneda = "$";
