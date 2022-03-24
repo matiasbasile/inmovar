@@ -107,7 +107,8 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no
                   <div class="carousel-inner">
                     <?php if (!empty($propiedad->images)) {  ?>
                       <?php $i=0; 
-                      foreach ($propiedad->images as $img) { $i++; ?>
+                      foreach ($propiedad->images as $img) { 
+                        $i++; ?>
                         <div class="item <?php echo ($i==1) ? "active" : "" ?>">
                           <a class="pr oh" data-fancybox="gallery" href="<?php echo $img ?>">
                             <img src="<?php echo $img ?>" class="thumb-preview" alt="<?php echo $propiedad->nombre ?>">
@@ -116,19 +117,19 @@ if (empty($imagen_ppal)) $imagen_ppal = current_url(TRUE)."/admin/".$empresa->no
                             <?php } ?>
                           </a>
                         </div>
-                        <a class="left carousel-control" href="#carousel-custom" role="button" data-slide="prev">
-                          <span class="slider-mover-left no-bg" aria-hidden="true">
-                            <i class="fa fa-angle-left"></i>
-                          </span>
-                          <span class="sr-only">Siguiente</span>
-                        </a>
-                        <a class="right carousel-control" href="#carousel-custom" role="button" data-slide="next">
-                          <span class="slider-mover-right no-bg" aria-hidden="true">
-                            <i class="fa fa-angle-right"></i>
-                          </span>
-                          <span class="sr-only">Anterior</span>
-                        </a>
                       <?php } ?>
+                      <a class="left carousel-control" href="#carousel-custom" role="button" data-slide="prev">
+                        <span class="slider-mover-left no-bg" aria-hidden="true">
+                          <i class="fa fa-angle-left"></i>
+                        </span>
+                        <span class="sr-only">Siguiente</span>
+                      </a>
+                      <a class="right carousel-control" href="#carousel-custom" role="button" data-slide="next">
+                        <span class="slider-mover-right no-bg" aria-hidden="true">
+                          <i class="fa fa-angle-right"></i>
+                        </span>
+                        <span class="sr-only">Anterior</span>
+                      </a>
                     <?php } else if (!empty($propiedad->imagen)) { ?>
                       <div class="item active">
                         <a data-fancybox="gallery" href="<?php echo $propiedad->imagen ?>">
