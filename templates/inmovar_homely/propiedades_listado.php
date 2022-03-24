@@ -115,11 +115,10 @@ function onsubmit_buscador_propiedades() {
   var localidad = $("#localidad").val();
   var tp = $("#tp").val();
   link = link + tipo_operacion + "/" + localidad + "/<?php echo $vc_params?>";
-  var minimo = $("#precio_minimo").val().replace(".","");
-  $("#precio_minimo_oculto").val(minimo);
-  var maximo = $("#precio_maximo").val().replace(".","");
-  $("#precio_maximo_oculto").val(maximo);
-  alert(link);
+  //var minimo = $("#precio_minimo").val().replace(".","");
+  //$("#precio_minimo_oculto").val(minimo);
+  //var maximo = $("#precio_maximo").val().replace(".","");
+  //$("#precio_maximo_oculto").val(maximo);
   $("#form_propiedades").attr("action",link);
   return true;
 }
