@@ -885,6 +885,7 @@
               <option <%= (documentacion_escritura == 2) ? 'selected' : '' %> value="2">Donación</option>  
               <option <%= (documentacion_escritura == 3) ? 'selected' : '' %> value="3">Parte Indivisa</option>  
               <option <%= (documentacion_escritura == 4) ? 'selected' : '' %> value="4">Fidelcomiso</option>  
+              <option <%= (documentacion_escritura == 5) ? 'selected' : '' %> value="5">Tracto Abreviado</option>  
             </select>
           </div>
           <div class="col-md-2">

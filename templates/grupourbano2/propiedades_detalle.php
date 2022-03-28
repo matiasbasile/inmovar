@@ -265,8 +265,10 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
                           echo "Donación";
                         } elseif ($propiedad->documentacion_escritura == 3) {
                           echo "Parte Indivisa";
-                        } else {
+                        } elseif ($propiedad->documentacion_escritura == 4) {
                           echo "Fidelcomiso";
+                        } elseif ($propiedad->documentacion_escritura == 5) {
+                          echo "Tracto Abreviado";
                         } ?>
                       </span>
                     </li>

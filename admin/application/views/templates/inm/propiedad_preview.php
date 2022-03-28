@@ -502,6 +502,7 @@
                       <% if (documentacion_escritura == 2) { documentacion_texto = "Donación" } %>
                       <% if (documentacion_escritura == 3) { documentacion_texto = "Parte Indivisa" } %>
                       <% if (documentacion_escritura == 4) { documentacion_texto = "Fidelcomiso" } %>
+                      <% if (documentacion_escritura == 5) { documentacion_texto = "Tracto Abreviado" } %>
                       <b>Documentación:</b> <%= documentacion_texto %>
                     </div>
                   <% } %>
