@@ -186,6 +186,11 @@
       custom_3: "",
       custom_4: "",
       custom_5: "",
+      custom_6: "",
+      custom_7: "",
+      custom_8: "",
+      custom_9: "",
+      custom_10: "",
     },
   });
       
