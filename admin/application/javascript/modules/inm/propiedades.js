@@ -182,6 +182,10 @@
       gimnasio: 0,
       data_graficos: [],
       custom_1: "",
+      custom_2: "",
+      custom_3: "",
+      custom_4: "",
+      custom_5: "",
     },
   });
       
