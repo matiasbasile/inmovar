@@ -181,6 +181,7 @@
       accesible: 0,
       gimnasio: 0,
       data_graficos: [],
+      custom_1: "",
     },
   });
       
