@@ -133,7 +133,7 @@ function enviar_whatsapp() {
       "data": datos,
       "success": function(r) {
         if (r.error == 0) {
-          var url = "https://wa.me/"+<?php echo $usuario->celular_f ?>;
+          var url = "https://wa.me/"+"<?php echo isset($usuario->celular_f) ? $usuario->celular_f : ''  ?>";
           url+= "?text="+encodeURIComponent(datos.mensaje);
           var open = window.open(url,"_blank");
           if (open == null || typeof(open)=='undefined') {

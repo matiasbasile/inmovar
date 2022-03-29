@@ -13,6 +13,61 @@ class Consultas extends REST_Controller {
   }
 
 
+  function get_email_imap() {
+
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+    
+    $id_empresa = 45;
+    $connection = imap_open('{c1040339.ferozo.com:993/imap/ssl}INBOX', 'portales@grupo-urbano.com.ar', 'Portal221805') or die('Cannot connect to Gmail: ' . imap_last_error());
+    $emailData = imap_search($connection, 'ALL');
+    //$emailData = imap_search($connection, 'ALL'); //Toma emails no leidos !!!!CAMBIAR ALL POR UNSEEN
+    echo "llega";
+    exit;
+    if (empty($emailData)) return;
+
+    foreach ($emailData as $emailIdent) { //Leer emails
+      $i=0;
+      $overview = imap_fetch_overview($connection, $emailIdent, 0);
+      $structure = imap_fetchstructure($connection, $emailIdent);
+      $message = imap_fetchbody($connection, $emailIdent, '1');
+      if($structure->encoding == 3) {
+        $message = imap_base64($message);
+      } else if($structure->encoding == 4) {
+        $message = imap_qprint($message);
+      }
+      //$messageExcerpt = substr($message, 0, 300); Por si se quiere mostrar X caracteres
+
+      // Datos de los usuarios
+      $text = $message;//trim(quoted_printable_decode($message)); 
+      $to = $overview[$i]->to;
+      $fecha = date("Y-m-d H:i:s", strtotime($overview[$i]->date));
+      $titulo = $overview[$i]->subject;
+      $from = $overview[$i]->from;
+      if (strstr($from, "<")) {
+        //Si el mail no tiene nombre de usuario quito las <, si no lo muestro tal como es
+        $from = strstr($from, "<");
+        $from=str_replace("<", "", $from);
+        $from=str_replace(">", "", $from);
+      }
+      echo $from."<br>";
+      /*
+      if ($from != "noresponder@eldia.com") continue;
+
+      // ANALISIS DE VIVIENDAS EL DIA
+      $this->load->model("Consulta_Model");
+      $this->load->model("Diario_El_Dia_Model");
+      $this->load->model("Propiedad_Model");
+      $consulta = @$this->Diario_El_Dia_Model->parse_email($text);*/
+    }
+    echo "TERMINO";
+
+  }
+
+
+
+
   function actualizar_tipo_cliente() {
     $id_empresa = parent::get_post("id_empresa", parent::get_empresa());
     $id_cliente = parent::get_post("id_cliente", 0);

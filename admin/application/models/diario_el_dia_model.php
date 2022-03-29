@@ -6,8 +6,8 @@ class Diario_El_Dia_Model extends CI_Model {
 	function parse_email($texto_email) {
 
 		// Cargamos las librerias
-		include_once '/home/ubuntu/inmovar/admin/application/libraries/Text/inline_function.php';
-
+		//include_once '/home/ubuntu/inmovar/admin/application/libraries/Text/inline_function.php';
+		include_once '/admin/application/libraries/Text/inline_function.php';
 		// Este es el template utilizado que tiene los placeholders donde se va a extraer informacion
 		$template = <<<XML
 ID Viviendas.ElDia.com.ar de la Propiedad sobre la que se consulta: {{id}}<br><br>Codigo de la Propiedad en la Inmobiliaria: Codigo de la Propiedad Inmobiliaria: {{codigo}}<br><br>La propiedad puede ser consultada {{link}}<br><br>Operacion: '{{operacion}}'<br><br>Direccion: {{direccion}}<br><br>Quien Realiza la Consulta: <br><br>Apellido y Nombre: {{nombre}}<br><br>Telefono: {{telefono}}<br><br>Mail: {{email}}<br><br>La consulta realizada es: <br><p>{{mensaje}}</p><br/>      
