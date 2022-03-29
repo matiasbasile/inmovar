@@ -37,12 +37,12 @@ class Diario_El_Dia_Model extends CI_Model {
 		    		$original = $items_ori[$i];
 		    		$final = $items_final[$i];
 		    		//echo $original." ".$final;
-						$consulta = $this->add_propiedad($consulta, $original, $final);
+						$consulta = $this->add_objeto($consulta, $original, $final);
 		    	}
 
 		    } else {
 			    // Vamos llenando el objeto
-		    	$consulta = $this->add_propiedad($consulta, $original, $final);
+		    	$consulta = $this->add_objeto($consulta, $original, $final);
 		    }
 		  }
 		}
@@ -50,7 +50,7 @@ class Diario_El_Dia_Model extends CI_Model {
 	}
 
 
-	function add_propiedad($obj, $original, $final) {
+	function add_objeto($obj, $original, $final) {
     if ($original == "{{titulo}}") $obj->titulo = $final;
     else if ($original == "{{precio}}") $obj->precio = $final;
     else if ($original == "{{sup_cubierta}}") $obj->sup_cubierta = $final;
