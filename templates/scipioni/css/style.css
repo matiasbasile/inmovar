@@ -554,7 +554,7 @@ input[type=checkbox]:checked+label:before {
     position: absolute;
     top: 45%;
     z-index: 5;
-    background: #24303c;
+    background: #413f40;
     display: inline-block;
     text-align: center
 }
@@ -777,7 +777,7 @@ input[type=checkbox]:checked+label:before {
     font-size: 24px;
     margin: 0 0 10px;
     font-weight: 400;
-    color: #24303c;
+    color: #413f40;
     font-family: "Roboto";
 }
 .main-title-2 h2 span, .main-title-2 h3 span, .main-title-2 h4 span,
@@ -842,7 +842,7 @@ input[type=submit] {
     text-decoration: none;
     font-size: 20px;
     font-weight: 500;
-    color: #24303c !important;
+    color: #413f40 !important;
 }
 .property-content .title a:hover {
     color: #4a4747
@@ -3326,7 +3326,7 @@ mark {
 }
 .heading-properties h3 span { font-weight: 500; }
 .heading-properties .codigo { font-size: 16px; }
-.heading-properties .codigo b { font-weight: bold; color: #24303c; }
+.heading-properties .codigo b { font-weight: bold; color: #413f40; }
 .detail-slider-full {
     background: #fff;
     padding: 20px 20px 10px
@@ -4609,19 +4609,19 @@ all and (min-width: 992px) and (-webkit-transform-3d) {
 .recently-properties .property img { height: 280px; object-fit: cover; }
 #lista .property img { object-fit: cover; }
 
-.titulo-propiedad { font-size: 28px; color: #24303c; margin-top: 0px; margin-bottom: 15px; }
+.titulo-propiedad { font-size: 28px; color: #413f40; margin-top: 0px; margin-bottom: 15px; }
 
-.sidebar-avanzada { background-color: #24303c; padding-top: 30px; padding-bottom: 10px; }
+.sidebar-avanzada { background-color: #413f40; padding-top: 30px; padding-bottom: 10px; }
 .sidebar-avanzada .main-title-2 h4 { color:white; text-transform: uppercase; font-size: 22px; font-family: 'Roboto', sans-serif; font-weight: bold; margin-bottom: 0px; }
 .sidebar-avanzada .form-group label { font-size: 16px; font-family: 'Work Sans', sans-serif; font-weight: 600; color: white; margin-bottom: 10px; }
 .sidebar-avanzada .checkbox label { color: white; font-size: 15px; font-family: 'Work Sans', sans-serif; font-weight: normal; padding-left: 7px; }
-.sidebar-avanzada .checkbox label::before { background-color: #24303c; border-color: white; }
+.sidebar-avanzada .checkbox label::before { background-color: #413f40; border-color: white; }
 .sidebar-avanzada .checkbox-theme input[type="checkbox"]:checked + label::before { background-color: rgb(114,194,183) }
 .sidebar-avanzada input[type=checkbox]:checked+label:before { content: " " }
 .sidebar-avanzada .busqueda-codigo input[type="text"] { background-color: transparent; border: solid 2px white; color: white; }
 .sidebar-avanzada .search-button { background-color: #72c2b7; margin-top: 0px; }
 
-.social-media { background-color: #24303c; padding-top: 30px; padding-bottom: 30px; }
+.social-media { background-color: #413f40; padding-top: 30px; padding-bottom: 30px; }
 .social-media .main-title-2 { margin-bottom: 15px; }
 .social-media .main-title-2 h4 { color:white; text-transform: uppercase; font-size: 22px; font-family: 'Roboto', sans-serif; font-weight: bold; margin-bottom: 0px; }
 .social-media .social-list li a { color:#cfd5d8; background-color: #3a4957 }
@@ -4630,7 +4630,7 @@ all and (min-width: 992px) and (-webkit-transform-3d) {
 .big-icon { font-size: 20px; color: #72c2b7; }
 .precio_final { color:#72c2b7; font-size: 18px; font-weight: 500; margin-bottom: 5px; }
 
-.body .main-title h2 { color: #24303c; font-size: 30px; font-weight: 900; }
+.body .main-title h2 { color: #413f40; font-size: 30px; font-weight: 900; }
 
 .main-footer { padding-top: 20px; padding-bottom: 40px; font-size: 16px; }
 .footer-info { text-align: center; color: white; }
@@ -4721,13 +4721,13 @@ all and (min-width: 992px) and (-webkit-transform-3d) {
 }
 
 .links-listado a.media { text-decoration: none; display: block; padding: 5px; background-color: white; }
-.links-listado .media .media-body h4 { color: #24303c; font-weight: 600; padding: 25px 10px 20px 20px; margin: 0px; }
-.links-listado .media:hover { background-color: #24303c; text-decoration: none; }
+.links-listado .media .media-body h4 { color: #413f40; font-weight: 600; padding: 25px 10px 20px 20px; margin: 0px; }
+.links-listado .media:hover { background-color: #413f40; text-decoration: none; }
 .links-listado .media:hover .media-body h4 { color: white; }
 
 .favoritos a { position: relative; }
 .favoritos a.active .fa { color: #72c2b7; }
-.favoritos a.active span { background-color: #24303c; color: white; font-size: 10px; border-radius: 100%; display: block; width: 16px; line-height: 16px; height: 16px; position: absolute; top: 14px; right: 10px; }
+.favoritos a.active span { background-color: #413f40; color: white; font-size: 10px; border-radius: 100%; display: block; width: 16px; line-height: 16px; height: 16px; position: absolute; top: 14px; right: 10px; }
 
 .btn-white { border: solid 2px white; border-radius: 5px; line-height: 36px; background-color: transparent; display: block; text-align: center; height: 48px; }
 .btn-white i { color: white; font-size: 20px; line-height: 20px; }
