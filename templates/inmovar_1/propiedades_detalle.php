@@ -408,6 +408,16 @@ else $vc_moneda = "$";
                     </div>
                   </section>
                 <?php } ?>
+
+                <?php if (!empty($propiedad->pint)) {  ?>
+                  <section id="video-presentation">
+                    <header><h2>Recorrido 3D</h2></header>
+                    <div class="video">
+                      <?php echo $propiedad->pint ?>
+                    </div>
+                  </section>
+                <?php }?>
+
                 <section id="video-presentation">
                   <header><h2>Consulta por esta propiedad</h2></header>
                   <?php include("includes/form_contacto.php"); ?>
