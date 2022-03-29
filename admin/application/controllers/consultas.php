@@ -20,12 +20,9 @@ class Consultas extends REST_Controller {
     
     $id_empresa = 45;
     $connection = imap_open('{c1040339.ferozo.com:993/imap/ssl}INBOX', 'portales@grupo-urbano.com.ar', 'Portal221805', OP_READONLY) or die('Cannot connect to Gmail: ' . imap_last_error());
-    print_r($connection);
     $emailData = imap_search($connection, 'ALL');
     //$emailData = imap_search($connection, 'ALL'); //Toma emails no leidos !!!!CAMBIAR ALL POR UNSEEN
-    echo "lleg";
     if (empty($emailData)) return;
-    echo "llega2";
     foreach ($emailData as $emailIdent) { //Leer emails
       $i=0;
       $overview = imap_fetch_overview($connection, $emailIdent, 0);
@@ -50,15 +47,16 @@ class Consultas extends REST_Controller {
         $from=str_replace("<", "", $from);
         $from=str_replace(">", "", $from);
       }
-      echo $from."<br>";
-      /*
-      if ($from != "noresponder@eldia.com") continue;
+      if ($from != "noresponder@argenprop.com") continue;
 
+      echo $text."<br>";
       // ANALISIS DE VIVIENDAS EL DIA
-      $this->load->model("Consulta_Model");
+      /*$this->load->model("Consulta_Model");*/
       $this->load->model("Diario_El_Dia_Model");
       $this->load->model("Propiedad_Model");
-      $consulta = @$this->Diario_El_Dia_Model->parse_email($text);*/
+      $consulta = @$this->Diario_El_Dia_Model->parse_all_email($text);
+      print_r($consulta);
+      exit;
     }
     echo "TERMINO";
 
