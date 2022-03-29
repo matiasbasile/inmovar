@@ -4,7 +4,7 @@
     <div class="footer-info">
       <div>
         <a class="logo-footer" href="<?php echo mklink("/") ?>">
-          <img src="images/scipioni.png" alt="<?php echo $empresa->nombre ?>"/>
+          <img src="images/logo.png" alt="<?php echo $empresa->nombre ?>"/>
         </a>
       </div>
       <div class="row">

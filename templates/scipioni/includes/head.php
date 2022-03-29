@@ -19,7 +19,7 @@
 <link rel="stylesheet" type="text/css"  href="css/dropzone.css">
 
 <!-- Custom stylesheet -->
-<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/style.css?v=1">
 <style type="text/css">
 <?php
 $c1 = $empresa->color_principal;

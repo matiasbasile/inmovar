@@ -8,7 +8,7 @@ $categorias_paginas = $entrada_model->get_subcategorias(0); ?>
 <header class="main-header">
   <div class="container">
     <a href="<?php echo mklink ("/") ?>" class="logo1">
-      <img src="images/scipioni.png" alt="Scipioni Propiedades">
+      <img src="images/logo.png" alt="Scipioni Propiedades">
     </a>        
     <nav class="navbar navbar-default">
       <div class="navbar-header">
