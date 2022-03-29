@@ -413,7 +413,7 @@ else $vc_moneda = "$";
                   <section id="video-presentation">
                     <header><h2>Recorrido 3D</h2></header>
                     <div class="video">
-                      <?php echo $propiedad->pint ?>
+                      <iframe width="100%" height="500" src="<?php echo $propiedad->pint ?>"></iframe>
                     </div>
                   </section>
                 <?php }?>
