@@ -577,13 +577,6 @@ iframe { width: 100% !important }
 <script type="text/javascript">
 <?php 
 $para = $empresa->email;
-if ($propiedad->id_tipo_operacion == 1 || $propiedad->id_tipo_operacion == 4) {
-  // Ventas y Emprendimientos
-  $para = "ventas@menacho.com.ar";
-} else if ($propiedad->id_tipo_operacion == 2) {
-  // Alquileres
-  $para = "alquileres@menacho.com.ar";
-}
 ?>
 
 function enviar_contacto() {

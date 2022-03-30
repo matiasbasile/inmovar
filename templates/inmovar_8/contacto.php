@@ -132,14 +132,6 @@
   var telefono = $("#contacto_telefono").val();
   var para = "<?php echo $empresa->email ?>";
   asunto = asunto.toUpperCase();
-  if (asunto == "TASACIONES") {
-    para = "tasaciones@menacho.com.ar";
-  } else if (asunto == "VENTAS" || asunto == "EMPRENDIMIENTOS") {
-    para = "ventas@menacho.com.ar";
-  } else if (asunto == "ALQUILERES") {
-    para = "alquileres@menacho.com.ar";
-  }
-  console.log(para);
   
   if (isEmpty(nombre) || nombre == "Nombre") {
       alert("Por favor ingrese un nombre");
@@ -166,7 +158,6 @@
     "asunto":"CONTACTO POR: "+asunto,
     "telefono":telefono,
     "id_empresa":ID_EMPRESA,
-    "bcc":"basile.matias99@gmail.com",
   }
   $.ajax({
     "url":"https://app.inmovar.com/admin/consultas/function/enviar/",
