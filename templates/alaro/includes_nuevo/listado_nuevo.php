@@ -266,6 +266,11 @@ $empresa->telefono_num_2 = preg_replace($regex, '', $empresa->telefono_2);
           $link_propiedad = (isset($p->pertenece_red) && $p->pertenece_red == 1) ? mklink($p->link)."&em=".$p->id_empresa : mklink($p->link); ?>          
           <div class="col-xl-4 col-lg-6 col-md-6">
             <div class="product-list-item">
+
+              <?php if (!empty($p->tipo_estado)) { ?>
+                <div class="cartel-home"><?php echo $p->tipo_estado ?></div>
+              <?php } ?>
+              
               <div class="product-img">
                 <a href="<?php echo ($p->link_propiedad) ?>"><img class="cover-home" src="/admin/<?php echo $p->path ?>" alt="Product"></a>
               </div>
