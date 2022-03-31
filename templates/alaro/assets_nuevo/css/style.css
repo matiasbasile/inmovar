@@ -1526,9 +1526,10 @@ video { width: auto; min-width: 100%; height: auto; min-height: 100%; }
   font-size: 18px;
   padding:5px;
   text-align: center;
-  width: 50%;
-  background-color: red;
-  margin-top: 30px;
-  margin-left: 175px;
+  background-color: #e8131b;
+  text-transform: uppercase;
+  top: 40px;
+  right: -80px;  
+  width: 310px;
   transform: rotate(45deg)
 }
