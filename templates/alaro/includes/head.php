@@ -4,7 +4,7 @@
 <meta name="description" content="<?php echo (isset($seo_description)) ? (html_entity_decode($seo_description,ENT_QUOTES)) : (html_entity_decode($empresa->seo_description,ENT_QUOTES)); ?>">
 <meta name="keywords" content="<?php echo (isset($seo_keywords)) ? (html_entity_decode($seo_keywords,ENT_QUOTES)) : (html_entity_decode($empresa->seo_keywords,ENT_QUOTES)); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-<link href="css/style.css?v=2" type="text/css" media="all" rel="stylesheet" />
+<link href="css/style.css?v=3" type="text/css" media="all" rel="stylesheet" />
 <link href="css/slider.css?v=1" type="text/css" media="all" rel="stylesheet" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css?v=1">
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css?v=1" media="all">
