@@ -56,7 +56,7 @@ $empresa->telefono_num_2 = preg_replace($regex, '', $empresa->telefono_2);
 <html dir="ltr" lang="en-US">
 <head>
   <?php include "head_new.php" ?>
-  <link href="assets_nuevo/css/cartel.css?v=1" type="text/css" media="all" rel="stylesheet" />
+  <link href="css/cartel.css?v=1" type="text/css" media="all" rel="stylesheet" />
   <style type="text/css">
     .edit {
     margin: 0 30px;
