@@ -1,0 +1,14 @@
+.product-list-item { position: relative; overflow: hidden; }
+.cartel-home{
+  position: absolute;
+  color: white;
+  font-size: 18px;
+  padding:5px;
+  text-align: center;
+  background-color: #e8131b;
+  text-transform: uppercase;
+  top: 40px;
+  right: -80px;  
+  width: 310px;
+  transform: rotate(45deg)
+}
