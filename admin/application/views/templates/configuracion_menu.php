@@ -282,6 +282,61 @@
       </div>
     </div>
   <% } %>
+
+  <% if (VOLVER_SUPERADMIN == 1) { %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="padder">
+          <div class="form-group mb0 clearfix expand-link cp">
+            <label class="control-label cp">
+              Email
+            </label>
+            <div class="panel-description">
+              Sincronice las propiedades desde su Email
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body expand">
+        <div class="padder">
+
+
+          <div class="form-group">
+            <h4>Inmobusqueda</h4>
+            <div class="checkbox">
+              <label class="i-checks">
+                <input type="checkbox" id="web_seo_habilitar_integracion_inmobusqueda" name="habilitar_integracion_inmobusqueda" <%= (habilitar_integracion_inmobusqueda == 1) ? 'checked' : '' %>><i></i> 
+                Habilitar Integracion Inmobusqueda
+              </label>
+            </div>                    
+          </div>                          
+
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-4">
+                <label class="control-label">Servidor de Email</label>
+                <input type="text" class="form-control" name="servidor_email_inmobusqueda" value="<%= servidor_email_inmobusqueda %>" />   
+              </div>
+              <div class="col-md-4">
+                <label class="control-label">Email</label>
+                <input type="text" class="form-control" name="email_inmobusqueda" value="<%= email_inmobusqueda %>" />   
+              </div>    
+              <div class="col-md-4">
+                <label class="control-label">Contraseña del Servidor</label>
+                <input type="text" class="form-control" name="password_inmobusqueda" value="<%= password_inmobusqueda %>" />   
+              </div>             
+            </div>
+          </div>
+
+          <div class="clearfix">
+            <button class="btn fr btn-info guardar"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  <% } %>
+
   
 </script>
 

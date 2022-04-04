@@ -18,84 +18,97 @@ class Consultas extends REST_Controller {
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
     
-    $id_empresa = 45;
-    $connection = imap_open('{c1040339.ferozo.com:993/imap/ssl}INBOX', 'portales@grupo-urbano.com.ar', 'Portal221805', OP_READONLY) or die('Cannot connect to Gmail: ' . imap_last_error());
-    $emailData = imap_search($connection, 'ALL');
-    //$emailData = imap_search($connection, 'ALL'); //Toma emails no leidos !!!!CAMBIAR ALL POR UNSEEN
-    if (empty($emailData)) return;
-    foreach ($emailData as $emailIdent) { //Leer emails
-      $i=0;
-      $overview = imap_fetch_overview($connection, $emailIdent, 0);
-      $structure = imap_fetchstructure($connection, $emailIdent);
-      $message = imap_fetchbody($connection, $emailIdent, '1');
-      if($structure->encoding == 3) {
-        $message = imap_base64($message);
-      } else if($structure->encoding == 4) {
-        $message = imap_qprint($message);
+    
+    $sql = "SELECT habilitar_integracion_inmobusqueda, email_inmobusqueda, ";
+    $sql.= "servidor_email_inmobusqueda, password_inmobusqueda ";
+    $sql.= "FROM web_configuracion ";
+    $sql.= "WHERE habilitar_integracion_inmobusqueda = 1 ";
+    $q = $this->db->query($sql);
+
+
+    foreach ($q->result() as $res) {
+
+      if (empty($res->email_inmobusqueda) || empty($res->servidor_email_inmobusqueda) || empty($res->password_inmobusqueda)) continue;
+
+      $connection = imap_open('{c1040339.ferozo.com:993/imap/ssl}INBOX', 'portales@grupo-urbano.com.ar', 'Portal221805', OP_READONLY) or die('Cannot connect to Gmail: ' . imap_last_error());
+      $emailData = imap_search($connection, 'ALL');
+      //$emailData = imap_search($connection, 'ALL'); //Toma emails no leidos !!!!CAMBIAR ALL POR UNSEEN
+      if (empty($emailData)) return;
+      foreach ($emailData as $emailIdent) { //Leer emails
+        $i=0;
+        $overview = imap_fetch_overview($connection, $emailIdent, 0);
+        $structure = imap_fetchstructure($connection, $emailIdent);
+        $message = imap_fetchbody($connection, $emailIdent, '1');
+        if($structure->encoding == 3) {
+          $message = imap_base64($message);
+        } else if($structure->encoding == 4) {
+          $message = imap_qprint($message);
+        }
+        //$messageExcerpt = substr($message, 0, 300); Por si se quiere mostrar X caracteres
+
+        // Datos de los usuarios
+        $text = trim(quoted_printable_decode($message)); 
+        $to = $overview[$i]->to;
+        $fecha = date("Y-m-d H:i:s", strtotime($overview[$i]->date));
+        $titulo = $overview[$i]->subject;
+        $from = $overview[$i]->from;
+        if (strstr($from, "<")) {
+          //Si el mail no tiene nombre de usuario quito las <, si no lo muestro tal como es
+          $from = strstr($from, "<");
+          $from=str_replace("<", "", $from);
+          $from=str_replace(">", "", $from);
+        }
+        if ($from != "noresponder@argenprop.com") continue;
+
+        //echo "<br><br><br><br>".($text)."<br><br><br><br>";
+        // ANALISIS DE VIVIENDAS EL DIA
+        
+        $this->load->model("Importacion_Email_Model");
+        $this->load->model("Propiedad_Model");
+        $this->load->model("Consulta_Model");
+        $this->load->model("Cliente_Model");
+        $data = @$this->Importacion_Email_Model->parse_all_email($text);
+
+        
+        $cliente = new stdClass();
+        $cliente->id = 0;
+        $cliente->id_empresa = $id_empresa;
+        $cliente->nombre = isset($data->nombre) ? $data->nombre: 'Sin Nombre';
+        $cliente->email = $data->email;
+        $cliente->password = md5(1);
+        if (isset($data->telefono)) $cliente->telefono = $data->telefono;
+        $cliente->fecha_inicial = date("Y-m-d");
+        $cliente->fecha_ult_operacion = date("Y-m-d H:i:s");
+        $cliente->tipo = 1; // 1 = Contacto
+        $cliente->activo = 1; // El cliente esta activo por defecto   
+        $id_cliente = $this->Cliente_Model->insert($cliente);
+
+
+        //Generamos la consulta de registro
+        $consulta = new stdClass();
+        $consulta->id = 0;
+        $consulta->id_contacto = $id_cliente;
+        $consulta->fecha = date("Y-m-d H:i:s");
+        $consulta->asunto = "Nuevo usuario";
+        $consulta->id_origen = 20;
+        $id_consulta = $this->Consulta_Model->save($consulta);
+
+        $consulta = new stdClass();
+        $consulta->id = 0;
+        $consulta->id_contacto = $id_cliente;
+        $consulta->fecha = date("Y-m-d H:i:s");
+        $consulta->asunto = trim($data->titulo);
+        $consulta->id_empresa = $id_empresa;
+        $consulta->texto = trim($data->mensaje." "."<br>Titulo: ".trim($data->titulo)."<br>Precio ".$data->precio."<br>Operacion: ".$data->tipo_operacion);
+        $id_consulta = $this->Consulta_Model->save($consulta);
+
+        echo "ID CONSULTA-> ".$id_consulta."<br>";
+
+        //Si la consulta no tiene un codigo de propiedad, hacemos una consulta al aire
+        //Sin ID propiedad pero con el nombre de esta
       }
-      //$messageExcerpt = substr($message, 0, 300); Por si se quiere mostrar X caracteres
-
-      // Datos de los usuarios
-      $text = trim(quoted_printable_decode($message)); 
-      $to = $overview[$i]->to;
-      $fecha = date("Y-m-d H:i:s", strtotime($overview[$i]->date));
-      $titulo = $overview[$i]->subject;
-      $from = $overview[$i]->from;
-      if (strstr($from, "<")) {
-        //Si el mail no tiene nombre de usuario quito las <, si no lo muestro tal como es
-        $from = strstr($from, "<");
-        $from=str_replace("<", "", $from);
-        $from=str_replace(">", "", $from);
-      }
-      if ($from != "noresponder@argenprop.com") continue;
-
-      //echo "<br><br><br><br>".($text)."<br><br><br><br>";
-      // ANALISIS DE VIVIENDAS EL DIA
-      
-      $this->load->model("Importacion_Email_Model");
-      $this->load->model("Propiedad_Model");
-      $this->load->model("Consulta_Model");
-      $this->load->model("Cliente_Model");
-      $data = @$this->Importacion_Email_Model->parse_all_email($text);
-
-      
-      $cliente = new stdClass();
-      $cliente->id = 0;
-      $cliente->id_empresa = $id_empresa;
-      $cliente->nombre = isset($data->nombre) ? $data->nombre: 'Sin Nombre';
-      $cliente->email = $data->email;
-      $cliente->password = md5(1);
-      if (isset($data->telefono)) $cliente->telefono = $data->telefono;
-      $cliente->fecha_inicial = date("Y-m-d");
-      $cliente->fecha_ult_operacion = date("Y-m-d H:i:s");
-      $cliente->tipo = 1; // 1 = Contacto
-      $cliente->activo = 1; // El cliente esta activo por defecto   
-      $id_cliente = $this->Cliente_Model->insert($cliente);
-
-
-      //Generamos la consulta de registro
-      $consulta = new stdClass();
-      $consulta->id = 0;
-      $consulta->id_contacto = $id_cliente;
-      $consulta->fecha = date("Y-m-d H:i:s");
-      $consulta->asunto = "Nuevo usuario";
-      $consulta->id_origen = 20;
-      $id_consulta = $this->Consulta_Model->save($consulta);
-
-      $consulta = new stdClass();
-      $consulta->id = 0;
-      $consulta->id_contacto = $id_cliente;
-      $consulta->fecha = date("Y-m-d H:i:s");
-      $consulta->asunto = trim($data->titulo);
-      $consulta->id_empresa = $id_empresa;
-      $consulta->texto = trim($data->mensaje." "."<br>Titulo: ".trim($data->titulo)."<br>Precio ".$data->precio."<br>Operacion: ".$data->tipo_operacion);
-      $id_consulta = $this->Consulta_Model->save($consulta);
-
-      echo "ID CONSULTA-> ".$id_consulta."<br>";
-
-      //Si la consulta no tiene un codigo de propiedad, hacemos una consulta al aire
-      //Sin ID propiedad pero con el nombre de esta
     }
+
     echo "TERMINO";
 
   }
