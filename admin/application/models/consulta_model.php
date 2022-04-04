@@ -587,6 +587,7 @@ class Consulta_Model extends Abstract_Model {
     $sql.= "LIMIT $limit, $offset";
     $sql2 = $sql;
     
+
     $q = $this->db->query($sql);
     $q_total = $this->db->query("SELECT FOUND_ROWS() AS total");
     $total = $q_total->row();
@@ -619,6 +620,7 @@ class Consulta_Model extends Abstract_Model {
         "tipo"=>0, // Consultas recibidas
         "not_ids_origen"=>$this->get_not_origenes_listado(),
       ));
+
       if (sizeof($consultas["results"])>0) {
         $rr = $consultas["results"][0];
         $res->id_consulta = $rr->id_consulta;

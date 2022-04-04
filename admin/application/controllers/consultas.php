@@ -36,7 +36,7 @@ class Consultas extends REST_Controller {
       //$messageExcerpt = substr($message, 0, 300); Por si se quiere mostrar X caracteres
 
       // Datos de los usuarios
-      $text = $message;//trim(quoted_printable_decode($message)); 
+      $text = trim(quoted_printable_decode($message)); 
       $to = $overview[$i]->to;
       $fecha = date("Y-m-d H:i:s", strtotime($overview[$i]->date));
       $titulo = $overview[$i]->subject;
@@ -49,14 +49,50 @@ class Consultas extends REST_Controller {
       }
       if ($from != "noresponder@argenprop.com") continue;
 
-      echo $text."<br>";
+      //echo "<br><br><br><br>".($text)."<br><br><br><br>";
       // ANALISIS DE VIVIENDAS EL DIA
-      /*$this->load->model("Consulta_Model");*/
-      $this->load->model("Diario_El_Dia_Model");
+      
+      $this->load->model("Importacion_Email_Model");
       $this->load->model("Propiedad_Model");
-      $consulta = @$this->Diario_El_Dia_Model->parse_all_email($text);
-      print_r($consulta)."<br>";
-      exit;
+      $this->load->model("Consulta_Model");
+      $this->load->model("Cliente_Model");
+      $data = @$this->Importacion_Email_Model->parse_all_email($text);
+
+      
+      $cliente = new stdClass();
+      $cliente->id = 0;
+      $cliente->id_empresa = $id_empresa;
+      $cliente->nombre = isset($data->nombre) ? $data->nombre: 'Sin Nombre';
+      $cliente->email = $data->email;
+      $cliente->password = md5(1);
+      if (isset($data->telefono)) $cliente->telefono = $data->telefono;
+      $cliente->fecha_inicial = date("Y-m-d");
+      $cliente->fecha_ult_operacion = date("Y-m-d H:i:s");
+      $cliente->tipo = 1; // 1 = Contacto
+      $cliente->activo = 1; // El cliente esta activo por defecto   
+      $id_cliente = $this->Cliente_Model->insert($cliente);
+
+
+      //Generamos la consulta de registro
+      $consulta = new stdClass();
+      $consulta->id = 0;
+      $consulta->id_contacto = $id_cliente;
+      $consulta->fecha = date("Y-m-d H:i:s");
+      $consulta->asunto = "Nuevo usuario";
+      $consulta->id_origen = 20;
+      $id_consulta = $this->Consulta_Model->save($consulta);
+
+      $consulta = new stdClass();
+      $consulta->id = 0;
+      $consulta->id_contacto = $id_cliente;
+      $consulta->fecha = date("Y-m-d H:i:s");
+      $consulta->asunto = trim($data->titulo);
+      $consulta->id_empresa = $id_empresa;
+      $consulta->texto = trim($data->mensaje." "."<br>Titulo: ".trim($data->titulo)."<br>Precio ".$data->precio."<br>Operacion: ".$data->tipo_operacion);
+      $id_consulta = $this->Consulta_Model->save($consulta);
+
+      echo "ID CONSULTA-> ".$id_consulta."<br>";
+
       //Si la consulta no tiene un codigo de propiedad, hacemos una consulta al aire
       //Sin ID propiedad pero con el nombre de esta
     }
