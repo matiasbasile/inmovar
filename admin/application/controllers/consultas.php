@@ -56,6 +56,7 @@ class Consultas extends REST_Controller {
       $this->load->model("Propiedad_Model");
       $consulta = @$this->Diario_El_Dia_Model->parse_all_email($text);
       print_r($consulta)."<br>";
+      exit;
       //Si la consulta no tiene un codigo de propiedad, hacemos una consulta al aire
       //Sin ID propiedad pero con el nombre de esta
     }
