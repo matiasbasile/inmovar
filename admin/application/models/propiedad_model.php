@@ -912,7 +912,10 @@ class Propiedad_Model extends Abstract_Model {
           $this->db->query($sql);
         }
       }
-    } 
+    //Si el ID es 0:
+    } else {
+      $data->fecha_ingreso = date("Y-m-d");
+    }
 
     $this->load->helper("file_helper");
     $this->load->helper("fecha_helper");    
@@ -941,9 +944,6 @@ class Propiedad_Model extends Abstract_Model {
     $status = isset($data->status) ? $data->status : "";    
 
     if (isset($data->valido_hasta)) $data->valido_hasta = fecha_mysql($data->valido_hasta);
-    if ( (is_null($id)) || ($id == 0)) {
-      $data->fecha_ingreso = date("Y-m-d");
-    }
     $data->fecha_publicacion = (!empty($data->fecha_publicacion)) ? fecha_mysql($data->fecha_publicacion) : date("Y-m-d");
     $data->codigo = isset($data->codigo) ? $data->codigo : "";
     $data->codigo = trim($data->codigo);
@@ -1193,6 +1193,8 @@ class Propiedad_Model extends Abstract_Model {
         throw new Exception("El codigo '$data->codigo' ya existe en otra propiedad.");
       }      
     }
+
+
     $s = parent::update($id,$data);
 
     if (isset($data->argenprop_url) && !empty($data->argenprop_url)) {
