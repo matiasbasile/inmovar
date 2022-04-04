@@ -82,7 +82,7 @@ error_reporting(E_ALL); ?>
   						<div class="label-text"><?php foreach ($p->etiquetas as $etiq) { echo $etiq->nombre ; } ?></div>
   					<?php } ?>
   					<?php if (!empty($p->tipo_estado)) { ?>
-  						<div class="cartel-home"><?php echo $p->tipo_estado ?></div>
+  						<div class="cartel-home"><?php echo str_replace(" ", "<br/>", $p->tipo_estado) ?></div>
   					<?php } ?>
   					<div class="overlay-info">
   						<div class="center-content">

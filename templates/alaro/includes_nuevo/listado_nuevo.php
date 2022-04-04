@@ -269,7 +269,7 @@ $empresa->telefono_num_2 = preg_replace($regex, '', $empresa->telefono_2);
             <div class="product-list-item">
 
               <?php if (!empty($p->tipo_estado)) { ?>
-                <div class="cartel-home"><?php echo $p->tipo_estado ?></div>
+                <div class="cartel-home"><?php echo str_replace(" ", "<br/>", $p->tipo_estado) ?></div>
               <?php } ?>
 
               <div class="product-img">
