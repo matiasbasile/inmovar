@@ -73,6 +73,13 @@ class Consulta_Model extends Abstract_Model {
     parent::__construct("crm_consultas","id","fecha DESC");
   }
 
+  function verificar_consulta_by_message($message_id) {
+    $sql = "SELECT * FROM crm_consultas WHERE message_id = '$message_id' ";
+    $q = $this->db->query($sql);
+    if ($q->num_rows() == 0) return 1;
+    else return 0;
+  }
+
   // Esta funcion 
   function mover_estado($conf = array()) {
     $id_empresa = isset($conf["id_empresa"]) ? $conf["id_empresa"] : parent::get_empresa();

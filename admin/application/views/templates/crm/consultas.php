@@ -562,6 +562,7 @@
             <div class="dtc vam">
               <span class="h4"><%= asunto %></span>
               <br/><span class="text-muted fs14"><%= propiedad_direccion %> | <%= propiedad_ciudad %></span>
+              <br/><span class="text-muted fs14"><%= texto %></span>
               <% if (id_empresa_relacion != id_empresa) { %>
                 <span class="label bg-danger m-l-sm">Red</span>
               <% } %>

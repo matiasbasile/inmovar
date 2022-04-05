@@ -19,8 +19,7 @@ class Consultas extends REST_Controller {
     error_reporting(E_ALL);
     
     
-    $sql = "SELECT habilitar_integracion_inmobusqueda, email_inmobusqueda, ";
-    $sql.= "servidor_email_inmobusqueda, password_inmobusqueda ";
+    $sql = "SELECT * ";
     $sql.= "FROM web_configuracion ";
     $sql.= "WHERE habilitar_integracion_inmobusqueda = 1 ";
     $q = $this->db->query($sql);
@@ -29,8 +28,10 @@ class Consultas extends REST_Controller {
     foreach ($q->result() as $res) {
 
       if (empty($res->email_inmobusqueda) || empty($res->servidor_email_inmobusqueda) || empty($res->password_inmobusqueda)) continue;
+      $id_empresa = $res->id_empresa;
 
-      $connection = imap_open('{c1040339.ferozo.com:993/imap/ssl}INBOX', 'portales@grupo-urbano.com.ar', 'Portal221805', OP_READONLY) or die('Cannot connect to Gmail: ' . imap_last_error());
+
+      $connection = imap_open("{".$res->servidor_email_inmobusqueda."}INBOX", "$res->email_inmobusqueda", "$res->password_inmobusqueda", OP_READONLY) or die('Cannot connect to Gmail: ' . imap_last_error());
       $emailData = imap_search($connection, 'ALL');
       //$emailData = imap_search($connection, 'ALL'); //Toma emails no leidos !!!!CAMBIAR ALL POR UNSEEN
       if (empty($emailData)) return;
@@ -58,54 +59,74 @@ class Consultas extends REST_Controller {
           $from=str_replace("<", "", $from);
           $from=str_replace(">", "", $from);
         }
+
+
+
         if ($from != "noresponder@argenprop.com") continue;
-
         //echo "<br><br><br><br>".($text)."<br><br><br><br>";
-        // ANALISIS DE VIVIENDAS EL DIA
-        
-        $this->load->model("Importacion_Email_Model");
-        $this->load->model("Propiedad_Model");
         $this->load->model("Consulta_Model");
-        $this->load->model("Cliente_Model");
-        $data = @$this->Importacion_Email_Model->parse_all_email($text);
+        $res = $this->Consulta_Model->verificar_consulta_by_message($overview[$i]->message_id);
+          
+        if ($res == 1) {
+          $this->load->model("Importacion_Email_Model");
+          $this->load->model("Propiedad_Model");
+          $this->load->model("Cliente_Model");
+          $data = @$this->Importacion_Email_Model->parse_all_email($text);
 
-        
-        $cliente = new stdClass();
-        $cliente->id = 0;
-        $cliente->id_empresa = $id_empresa;
-        $cliente->nombre = isset($data->nombre) ? $data->nombre: 'Sin Nombre';
-        $cliente->email = $data->email;
-        $cliente->password = md5(1);
-        if (isset($data->telefono)) $cliente->telefono = $data->telefono;
-        $cliente->fecha_inicial = date("Y-m-d");
-        $cliente->fecha_ult_operacion = date("Y-m-d H:i:s");
-        $cliente->tipo = 1; // 1 = Contacto
-        $cliente->activo = 1; // El cliente esta activo por defecto   
-        $id_cliente = $this->Cliente_Model->insert($cliente);
+          
 
 
-        //Generamos la consulta de registro
-        $consulta = new stdClass();
-        $consulta->id = 0;
-        $consulta->id_contacto = $id_cliente;
-        $consulta->fecha = date("Y-m-d H:i:s");
-        $consulta->asunto = "Nuevo usuario";
-        $consulta->id_origen = 20;
-        $id_consulta = $this->Consulta_Model->save($consulta);
 
-        $consulta = new stdClass();
-        $consulta->id = 0;
-        $consulta->id_contacto = $id_cliente;
-        $consulta->fecha = date("Y-m-d H:i:s");
-        $consulta->asunto = trim($data->titulo);
-        $consulta->id_empresa = $id_empresa;
-        $consulta->texto = trim($data->mensaje." "."<br>Titulo: ".trim($data->titulo)."<br>Precio ".$data->precio."<br>Operacion: ".$data->tipo_operacion);
-        $id_consulta = $this->Consulta_Model->save($consulta);
 
-        echo "ID CONSULTA-> ".$id_consulta."<br>";
+          //Antes de crear un cliente, tendria que verificar si hay alguno con el mismo email
 
-        //Si la consulta no tiene un codigo de propiedad, hacemos una consulta al aire
-        //Sin ID propiedad pero con el nombre de esta
+          $c = $this->Cliente_Model->get_by_email(trim($data->email), $id_empresa);
+          //Si no existe el cliente se lo creamos
+          if ($c === FALSE) {
+            $cliente = new stdClass();
+            $cliente->id = 0;
+            $cliente->id_empresa = $id_empresa;
+            $cliente->nombre = isset($data->nombre) ? trim($data->nombre): 'Sin Nombre';
+            $cliente->email = trim($data->email);
+            $cliente->password = md5(1);
+            if (isset($data->telefono)) $cliente->telefono = $data->telefono;
+            $cliente->fecha_inicial = date("Y-m-d");
+            $cliente->fecha_ult_operacion = date("Y-m-d H:i:s");
+            $cliente->tipo = 1; // 1 = Contacto
+            $cliente->activo = 1; // El cliente esta activo por defecto   
+            $id_cliente = $this->Cliente_Model->insert($cliente);   
+          } else {
+            $id_cliente = $c->id;
+          }
+
+
+          //Generamos la consulta de registro
+          $consulta = new stdClass();
+          $consulta->id = 0;
+          $consulta->id_contacto = $id_cliente;
+          $consulta->fecha = date("Y-m-d H:i:s");
+          $consulta->asunto = "Nuevo usuario";
+          $consulta->id_origen = 20;
+          $id_consulta = $this->Consulta_Model->save($consulta);
+
+          $consulta = new stdClass();
+          $consulta->id = 0;
+          $consulta->id_contacto = $id_cliente;
+          $consulta->fecha = date("Y-m-d H:i:s");
+          $consulta->asunto = trim($data->titulo);
+          $consulta->id_empresa = $id_empresa;
+          $consulta->id_origen = 28;
+          $consulta->message_id = $overview[$i]->message_id;
+          $consulta->texto = trim(trim($data->mensaje)." "."<br>Titulo: ".trim($data->titulo)."<br>Precio ".$data->precio."<br>Operacion: ".$data->tipo_operacion);
+          $id_consulta = $this->Consulta_Model->save($consulta);
+
+          echo "ID CONSULTA-> ".$id_consulta."<br>";
+          //Si la consulta no tiene un codigo de propiedad, hacemos una consulta al aire
+          //Sin ID propiedad pero con el nombre de esta
+        } else {
+          echo "RECHAZADA-> ".$overview[$i]->message_id."<br>";
+        }
+
       }
     }
 
