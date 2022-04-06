@@ -18,18 +18,15 @@ class Consultas extends REST_Controller {
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
     
-    
     $sql = "SELECT * ";
     $sql.= "FROM web_configuracion ";
     $sql.= "WHERE habilitar_integracion_inmobusqueda = 1 ";
     $q = $this->db->query($sql);
 
-
     foreach ($q->result() as $res) {
 
       if (empty($res->email_inmobusqueda) || empty($res->servidor_email_inmobusqueda) || empty($res->password_inmobusqueda)) continue;
       $id_empresa = $res->id_empresa;
-
 
       $connection = imap_open("{".$res->servidor_email_inmobusqueda."}INBOX", "$res->email_inmobusqueda", "$res->password_inmobusqueda", OP_READONLY) or die('Cannot connect to Gmail: ' . imap_last_error());
       $emailData = imap_search($connection, 'ALL');
@@ -60,8 +57,6 @@ class Consultas extends REST_Controller {
           $from=str_replace(">", "", $from);
         }
 
-
-
         if ($from != "noresponder@argenprop.com") continue;
         //echo "<br><br><br><br>".($text)."<br><br><br><br>";
         $this->load->model("Consulta_Model");
@@ -72,11 +67,6 @@ class Consultas extends REST_Controller {
           $this->load->model("Propiedad_Model");
           $this->load->model("Cliente_Model");
           $data = @$this->Importacion_Email_Model->parse_all_email($text);
-
-          
-
-
-
 
           //Antes de crear un cliente, tendria que verificar si hay alguno con el mismo email
 
@@ -89,7 +79,7 @@ class Consultas extends REST_Controller {
             $cliente->nombre = isset($data->nombre) ? trim($data->nombre): 'Sin Nombre';
             $cliente->email = trim($data->email);
             $cliente->password = md5(1);
-            if (isset($data->telefono)) $cliente->telefono = $data->telefono;
+            if (isset($data->telefono)) $cliente->telefono = trim($data->telefono);
             $cliente->fecha_inicial = date("Y-m-d");
             $cliente->fecha_ult_operacion = date("Y-m-d H:i:s");
             $cliente->tipo = 1; // 1 = Contacto
@@ -122,7 +112,7 @@ class Consultas extends REST_Controller {
           //Si la consulta no tiene un codigo de propiedad, hacemos una consulta al aire
           //Sin ID propiedad pero con el nombre de esta
         } else {
-          echo "RECHAZADA-> ".$overview[$i]->message_id."<br>";
+          echo "RECHAZADA YA EXISTE-> ".$overview[$i]->message_id."<br>";
         }
 
       }
