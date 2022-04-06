@@ -95,19 +95,17 @@ class Consultas extends REST_Controller {
             $cliente->tipo = 1; // 1 = Contacto
             $cliente->activo = 1; // El cliente esta activo por defecto   
             $id_cliente = $this->Cliente_Model->insert($cliente);   
+            //Generamos la consulta de registro
+            $consulta = new stdClass();
+            $consulta->id = 0;
+            $consulta->id_contacto = $id_cliente;
+            $consulta->fecha = date("Y-m-d H:i:s");
+            $consulta->asunto = "Nuevo usuario";
+            $consulta->id_origen = 20;
+            $id_consulta = $this->Consulta_Model->save($consulta);
           } else {
             $id_cliente = $c->id;
           }
-
-
-          //Generamos la consulta de registro
-          $consulta = new stdClass();
-          $consulta->id = 0;
-          $consulta->id_contacto = $id_cliente;
-          $consulta->fecha = date("Y-m-d H:i:s");
-          $consulta->asunto = "Nuevo usuario";
-          $consulta->id_origen = 20;
-          $id_consulta = $this->Consulta_Model->save($consulta);
 
           $consulta = new stdClass();
           $consulta->id = 0;
