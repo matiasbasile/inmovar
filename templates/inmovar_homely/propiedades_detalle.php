@@ -357,10 +357,10 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
         <?php include("includes/form_contacto.php"); ?>
       </div>
     </div><!-- end col -->
-    <?php exit(); ?>
+    
     <div class="col-lg-4 col-md-4 sidebar">
       <?php include "includes/sidebar.php" ?>
-
+<?php exit(); ?>
       <?php if (sizeof($propiedad->relacionados)>0) { ?>
         <div class="widget widget-sidebar sidebar-properties">
           <div class="widget-content box">          
