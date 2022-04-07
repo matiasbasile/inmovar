@@ -103,7 +103,7 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
     </div><!-- end slider wrap -->
   </div><!-- end property gallery -->
 </section>
-<?php exit(); ?>
+
 <section class="module no-padding-top">
   <div class="container">
   
@@ -357,7 +357,7 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
         <?php include("includes/form_contacto.php"); ?>
       </div>
     </div><!-- end col -->
-    
+    <?php exit(); ?>
     <div class="col-lg-4 col-md-4 sidebar">
       <?php include "includes/sidebar.php" ?>
 
