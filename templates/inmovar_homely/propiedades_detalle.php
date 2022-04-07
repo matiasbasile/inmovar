@@ -13,7 +13,6 @@ $propiedad = $propiedad_model->get($id,array(
   "buscar_relacionados"=>1,
   "buscar_relacionados_offset"=>6,
 ));
-print_r($propiedad); exit();
 if (($propiedad === FALSE || !isset($propiedad->nombre) || $propiedad->activo == 0) && !isset($get_params["preview"])) {
   header("HTTP/1.1 302 Moved Temporarily");
   header("Location:".mklink("/"));
@@ -42,6 +41,7 @@ $cookie_hide_lightbox = 0; //(isset($_COOKIE['hide_lightbox'])) ? $_COOKIE['hide
 
 // Seteamos la cookie para indicar que el cliente ya entro a esta propiedad
 $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
+print_r($propiedad); exit();
 ?>
 <!DOCTYPE html>
 <html lang="en">
