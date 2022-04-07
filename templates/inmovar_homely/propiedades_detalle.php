@@ -13,6 +13,7 @@ $propiedad = $propiedad_model->get($id,array(
   "buscar_relacionados"=>1,
   "buscar_relacionados_offset"=>6,
 ));
+print_r($propiedad); exit();
 if (($propiedad === FALSE || !isset($propiedad->nombre) || $propiedad->activo == 0) && !isset($get_params["preview"])) {
   header("HTTP/1.1 302 Moved Temporarily");
   header("Location:".mklink("/"));
