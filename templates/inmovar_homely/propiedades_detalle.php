@@ -103,7 +103,7 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
     </div><!-- end slider wrap -->
   </div><!-- end property gallery -->
 </section>
-
+<?php exit(); ?>
 <section class="module no-padding-top">
   <div class="container">
   
