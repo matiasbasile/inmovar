@@ -20,13 +20,19 @@ class Consultas extends REST_Controller {
     
     $sql = "SELECT * ";
     $sql.= "FROM web_configuracion ";
-    $sql.= "WHERE habilitar_integracion_inmobusqueda = 1 ";
+    $sql.= "WHERE habilitar_integracion_inmobusqueda = 1 OR habilitar_integracion_inmobusqueda = 1";
     $q = $this->db->query($sql);
 
     foreach ($q->result() as $res) {
 
       if (empty($res->email_inmobusqueda) || empty($res->servidor_email_inmobusqueda) || empty($res->password_inmobusqueda)) continue;
       $id_empresa = $res->id_empresa;
+
+
+      //Cargamos el array de emails
+      $array_email = array();
+      if ($res->habilitar_integracion_inmobusqueda == 1) $array_email[] = "notificaciones@inmobusqueda.com";
+      if ($res->habilitar_integracion_argenprop == 1) $array_email[] = "noresponder@argenprop.com";
 
       $connection = imap_open("{".$res->servidor_email_inmobusqueda."}INBOX", "$res->email_inmobusqueda", "$res->password_inmobusqueda", OP_READONLY) or die('Cannot connect to Gmail: ' . imap_last_error());
       $emailData = imap_search($connection, 'ALL');
@@ -57,8 +63,8 @@ class Consultas extends REST_Controller {
           $from=str_replace(">", "", $from);
         }
 
-        if ($from != "noresponder@argenprop.com") continue;
-        //echo "<br><br><br><br>".($text)."<br><br><br><br>";
+
+        if (!in_array($from, $array_email)) continue;
         $this->load->model("Consulta_Model");
         $res = $this->Consulta_Model->verificar_consulta_by_message($overview[$i]->message_id);
           
@@ -66,9 +72,14 @@ class Consultas extends REST_Controller {
           $this->load->model("Importacion_Email_Model");
           $this->load->model("Propiedad_Model");
           $this->load->model("Cliente_Model");
-          $data = @$this->Importacion_Email_Model->parse_all_email($text);
-
+          
+          $data = @$this->Importacion_Email_Model->parse_all_email($text, $from);
           //Antes de crear un cliente, tendria que verificar si hay alguno con el mismo email
+          //Hacemos una validacion con el email 
+          if (!isset($data->email) || empty($data->email) || strpos($data->email, "@") === false) {
+            echo "RECHAZADA FALTA DE EMAIL-> ".$overview[$i]->message_id."<br>";
+            continue;
+          }
 
           $c = $this->Cliente_Model->get_by_email(trim($data->email), $id_empresa);
           //Si no existe el cliente se lo creamos
@@ -105,7 +116,12 @@ class Consultas extends REST_Controller {
           $consulta->id_empresa = $id_empresa;
           $consulta->id_origen = 28;
           $consulta->message_id = $overview[$i]->message_id;
-          $consulta->texto = trim(trim($data->mensaje)." "."<br>Titulo: ".trim($data->titulo)."<br>Precio ".$data->precio."<br>Operacion: ".$data->tipo_operacion);
+          if ($from == "noresponder@argenprop.com") {
+            $consulta->texto = trim(trim($data->mensaje)." "."<br>Titulo: ".trim($data->titulo)."<br>Precio ".$data->precio."<br>Operacion: ".$data->tipo_operacion);
+          } elseif ($from == "notificaciones@inmobusqueda.com") {
+            $consulta->texto = trim(trim($data->mensaje)." "."<br>Titulo: ".trim($data->titulo));
+          }
+          
           $id_consulta = $this->Consulta_Model->save($consulta);
 
           echo "ID CONSULTA-> ".$id_consulta."<br>";

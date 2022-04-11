@@ -4,16 +4,31 @@ class Importacion_Email_Model extends CI_Model {
   
   // Parsea el email
 
-  function parse_all_email($texto_email) {
+  function parse_all_email($texto_email, $from_email) {
     // Cargamos las librerias
-    //include_once '/home/ubuntu/inmovar/admin/application/libraries/Text/inline_function.php';
-    include_once 'C:\xampp\inmovar\admin\application\libraries\Text\inline_function.php';
+    include_once '/home/ubuntu/inmovar/admin/application/libraries/Text/inline_function.php';
+    //include_once 'C:\xampp\inmovar\admin\application\libraries\Text\inline_function.php';
     // Este es el template utilizado que tiene los placeholders donde se va a extraer informacion
-    $template = <<<XML
-      * Has recibido una consulta de un interesado: * {{titulo}} $ {{precio}} {{sup_cubierta}} m² sup. cubierta 
-      {{dormitorios}} Dormitorios {{tipo_dpto}} en {{tipo_operacion}} en La Plata... Ver propiedad 
-      Nombre: {{nombre}} Interesado: {{email}} Teléfono: {{telefono}} Mensaje: {{mensaje}} Responder mensaje servicio brindado por
-    XML;
+
+    if ($from_email == "noresponder@argenprop.com") {
+      $template = <<<XML
+        * Has recibido una consulta de un interesado: * {{titulo}} $ {{precio}} {{sup_cubierta}} m² sup. cubierta 
+        {{dormitorios}} Dormitorios {{tipo_dpto}} en {{tipo_operacion}} en La Plata... Ver propiedad 
+        Nombre: {{nombre}} Interesado: {{email}} Teléfono: {{telefono}} Mensaje: {{mensaje}} Responder mensaje servicio brindado por
+      XML;
+    } elseif ($from_email == "notificaciones@inmobusqueda.com") {
+      $template = <<<XML
+        InmoBusqueda Consulta por {{codigo_propiedad}} , ( id interno : ) 
+        Ver Ficha {{tipo_dpto}} en {{tipo_operacion}} , {{titulo}} 
+        Estado de su cuenta Debe Marzo / Esperando pago Abril 
+        Consulta : {{mensaje}} Nombre : {{nombre}} E-mail : {{email}}
+        Contacto : Atención Este es un mensaje generado automaticamente por InmoBusqueda por la solicitud de más información por parte de un visitante sobre una de sus propiedades dentro del portal. 
+        Las consultas pueden ser enviadas por cualquier persona que vea su propiedad y pueden contener datos falsos o erroneos de parte del visitante, 
+        verifique la consulta y los datos de contacto del visitante con cuidado. 
+        bisListadeCompras.com Lista de compras para Android
+      XML;
+    }
+
     $template = str_replace("<br>", " ", $template);
     $texto_email = str_replace("<br>", " ", $texto_email);
     $hlines1 = explode(" ",$template);
@@ -37,6 +52,7 @@ class Importacion_Email_Model extends CI_Model {
         $original = str_replace(" Responder mensaje", "", $original);
         //Del final
         $final = str_replace(" Respondermensaje ", "", $final);
+
         if (strpos($original, " ") !== false) {
           $res = $this->filtrar_nuevo_array($final, $original);
           
@@ -70,6 +86,7 @@ class Importacion_Email_Model extends CI_Model {
     else if ($original == "{{telefono}}") $obj->telefono = $final;
     else if ($original == "{{mensaje}}") $obj->mensaje = $final;  
     else if ($original == "{{nombre}}") $obj->nombre = $final;     
+    else if ($original == "{{codigo_propiedad}}") $obj->codigo_propiedad = $final;  
 
     return $obj;
   }

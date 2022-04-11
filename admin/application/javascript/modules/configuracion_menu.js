@@ -262,6 +262,7 @@
             "inmobusqueda_diario":(self.$("#web_seo_inmobusqueda_diario").is(":checked") ? 1 : 0),
             "inmobusqueda_diario_fotos":(self.$("#web_seo_inmobusqueda_diario_fotos").is(":checked") ? 1 : 0),
             "habilitar_integracion_inmobusqueda":(self.$("#web_seo_habilitar_integracion_inmobusqueda").is(":checked") ? 1 : 0),
+            "habilitar_integracion_argenprop":(self.$("#web_seo_habilitar_integracion_argenprop").is(":checked") ? 1 : 0),
           });
         }
         return true;

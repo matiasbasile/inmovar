@@ -301,15 +301,6 @@
         <div class="padder">
 
 
-          <div class="form-group">
-            <h4>Inmobusqueda</h4>
-            <div class="checkbox">
-              <label class="i-checks">
-                <input type="checkbox" id="web_seo_habilitar_integracion_inmobusqueda" name="habilitar_integracion_inmobusqueda" <%= (habilitar_integracion_inmobusqueda == 1) ? 'checked' : '' %>><i></i> 
-                Habilitar Integracion Inmobusqueda
-              </label>
-            </div>                    
-          </div>                          
 
           <div class="form-group">
             <div class="row">
@@ -327,6 +318,26 @@
               </div>             
             </div>
           </div>
+
+          <div class="form-group">
+            <h4>Argenprop</h4>
+            <div class="checkbox">
+              <label class="i-checks">
+                <input type="checkbox" id="web_seo_habilitar_integracion_argenprop" name="habilitar_integracion_argenprop" <%= (habilitar_integracion_argenprop == 1) ? 'checked' : '' %>><i></i> 
+                Habilitar Integracion Argenprop
+              </label>
+            </div>                    
+          </div>  
+
+          <div class="form-group">
+            <h4>Inmobusqueda</h4>
+            <div class="checkbox">
+              <label class="i-checks">
+                <input type="checkbox" id="web_seo_habilitar_integracion_inmobusqueda" name="habilitar_integracion_inmobusqueda" <%= (habilitar_integracion_inmobusqueda == 1) ? 'checked' : '' %>><i></i> 
+                Habilitar Integracion Inmobusqueda
+              </label>
+            </div>                    
+          </div>                          
 
           <div class="clearfix">
             <button class="btn fr btn-info guardar"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
