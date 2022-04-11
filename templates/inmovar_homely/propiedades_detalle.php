@@ -351,7 +351,6 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
       </div><!-- end location -->
     <?php }?>
       <!-- end agent -->
-
       <div class="widget property-single-item property-location comment-form">
         <h4><span>Consultar por propiedad</span></h4><hr class="divisorline">
         <?php include("includes/form_contacto.php"); ?>
@@ -359,6 +358,7 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
     </div><!-- end col -->
     
     <div class="col-lg-4 col-md-4 sidebar">
+
       <?php include "includes/sidebar.php" ?>
 
       <?php if (sizeof($propiedad->relacionados)>0) { ?>
