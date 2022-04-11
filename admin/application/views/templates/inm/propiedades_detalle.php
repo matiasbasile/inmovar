@@ -78,7 +78,7 @@
                 <div class="form-group">
                   <label class="control-label">Asignado a</label>
                   <div class="input-group">
-                    <select <%= (!edicion)?"disabled":"" %> id="propiedad_usuarios" class="form-control">
+                    <select <%= (!edicion)?"disabled":"" %> <%= (ID_EMPRESA == 45 && (PERFIL == 106 || PERFIL == 1807) && id != undefined) ? "disabled" : '' %> id="propiedad_usuarios" class="form-control">
                       <option value="0">Seleccione</option>
                       <% for(var i=0;i< window.usuarios.models.length;i++) { %>
                         <% var o = window.usuarios.models[i]; %>
