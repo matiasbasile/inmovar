@@ -11,6 +11,7 @@
   $entrada_model = new Entrada_Model($empresa->id,$conx);
   include_once("models/Articulo_Model.php");
   $articulo_model = new Articulo_Model($empresa->id,$conx);
+  $empresa->telefono_f = preg_replace("/[^0-9]/", "", $empresa->telefono);
   ?>
 
   <?php include "templates/comun/pre_head.php" ?>
@@ -26,6 +27,7 @@
   <link rel="stylesheet" href="assets/css/owl.theme.default.css">
   <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
   <link rel="stylesheet" href="assets/css/carousel.css">
+  <link rel="stylesheet" href="assets/css/fancybox.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"></script>
   <title>Contacto</title>
@@ -48,27 +50,27 @@
       <hr class="divider">
       <p class="text-center">¡Solicitá asesoramiento ahora!</p>
 
-      <form onsubmit="return enviar_contacto()">
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <input type="text" class="form-control" id="contacto_nombre" placeholder="Nombre completo">
-          </div>
-          <div class="col-md-6 mb-3">
-            <input type="number" class="form-control" id="contacto_telefono" placeholder="Whatsapp (sin 0 ni 15)">
-          </div>
-          <div class="col-md-12 mb-3">
-            <input type="email" class="form-control" id="contacto_email" placeholder="Email">
-          </div>
-          <div class="col-md-12 mb-2">
-            <div class="input-group mb-2">
-              <textarea class="form-control" id="contacto_mensaje" placeholder="Mensaje"></textarea>
-            </div>
-          </div>
-          <div class="col-md-12 mb-3">
-            <button type="submit" class="btn btn-primary btn-block btn-lg text-uppercase boton-consulta" id="contacto_submit"><i class="fa-brands fa-whatsapp wsp-icon"></i>Enviar consulta</button>
+      
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <input type="text" class="form-control" id="contacto_nombre" placeholder="Nombre completo">
+        </div>
+        <div class="col-md-6 mb-3">
+          <input type="number" class="form-control" id="contacto_telefono" placeholder="Whatsapp (sin 0 ni 15)">
+        </div>
+        <div class="col-md-12 mb-3">
+          <input type="email" class="form-control" id="contacto_email" placeholder="Email">
+        </div>
+        <div class="col-md-12 mb-2">
+          <div class="input-group mb-2">
+            <textarea class="form-control" id="contacto_mensaje" placeholder="Mensaje"></textarea>
           </div>
         </div>
-      </form>
+        <div class="col-md-12 mb-3">
+          <button onclick="enviar_contacto()" class="btn btn-primary btn-block btn-lg text-uppercase boton-consulta" id="contacto_submit"><i class="fa-brands fa-whatsapp wsp-icon"></i>Enviar consulta</button>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -84,9 +86,11 @@
       <div class="row">
         <div class="col-md-6 mb-3">
           <div class="carta">
-            <div class="carta-img-cont">
-              <img src="assets/img/foto1.png" class="img-rounded">
-            </div>
+            <a data-fancybox="gallery" data-src="assets/img/foto1.png">
+              <div class="carta-img-cont">
+                <img src="assets/img/foto1.png" class="img-rounded">
+              </div>
+            </a>
             <div>
               <h4 class="text-center text-uppercase">9 lotes exclusivos</h4>
               <p class="text-center">Cuenta con 9 lotes de 400m2 en propiedad horizontal</p>
@@ -95,9 +99,11 @@
         </div>
         <div class="col-md-6 mb-3">
           <div class="carta">
-            <div class="carta-img-cont">
-              <img src="assets/img/imagen2.jpg" class="img-rounded">
-            </div>
+            <a data-fancybox="gallery" data-src="assets/img/imagen2.jpg">
+              <div class="carta-img-cont">
+                <img src="assets/img/imagen2.jpg" class="img-rounded">
+              </div>
+            </a>
             <div>
               <h4 class="text-center text-uppercase">Barrio cerrado boutique</h4>
               <p class="text-center">Es un barrio cerrado dentro de un concepto de baja escala</p>
@@ -106,9 +112,11 @@
         </div>
         <div class="col-md-6 mb-3">
           <div class="carta">
-            <div class="carta-img-cont">
-              <img src="assets/img/imagen3.jpg" class="img-rounded">
-            </div>
+            <a data-fancybox="gallery" data-src="assets/img/imagen3.jpg">
+              <div class="carta-img-cont">
+                <img src="assets/img/imagen3.jpg" class="img-rounded">
+              </div>
+            </a>
             <div>
               <h4 class="text-center text-uppercase">9 lotes exclusivos</h4>
               <p class="text-center">Cuenta con 9 lotes de 400m2 en propiedad horizontal</p>
@@ -117,9 +125,11 @@
         </div>
         <div class="col-md-6 mb-3">
           <div class="carta">
-            <div class="carta-img-cont">
-              <img src="assets/img/imagen4.jpg" class="img-rounded">
-            </div>
+            <a data-fancybox="gallery" data-src="assets/img/imagen4.jpg">
+              <div class="carta-img-cont">
+                <img src="assets/img/imagen4.jpg" class="img-rounded">
+              </div>
+            </a>
             <div>
               <h4 class="text-center text-uppercase">Barrio cerrado boutique</h4>
               <p class="text-center">Es un barrio cerrado dentro de un concepto de baja escala</p>
@@ -219,6 +229,7 @@
 
   <script src="assets/js/jquery.js"></script>
   <script src="assets/js/popper.min.js"></script>
+  <script src="assets/js/fancybox.js"></script>
   <script src="assets/js/bootstrap.min.js"></script>
   <script src="assets/js/slick.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
@@ -300,7 +311,12 @@
         "data":datos,
         "success":function(r){
           if (r.error == 0) {
-            alert("Su mensaje ha sido enviado correctamente.");
+            var url = "https://wa.me/"+"<?php echo $empresa->telefono_f; ?>";
+            url+= "?text="+encodeURIComponent(mensaje);
+            var open = window.open(url,"_blank");
+            if (open == null || typeof(open)=='undefined') {
+              location.href = url;
+            }
           } else {
             alert("Ocurrio un error al enviar su email. Disculpe las molestias");
             $("#contacto_submit").removeAttr('disabled');
