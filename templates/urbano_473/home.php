@@ -86,7 +86,7 @@
       <div class="row">
         <div class="col-md-6 mb-3">
           <div class="carta">
-            <a data-fancybox="gallery" data-src="assets/img/foto1.png">
+            <a data-fancybox="gallery" data-src="assets/img/foto1.png" data-caption="9 lotes exclusivos.&lt;br /&gt;Cuenta con 9 lotes de 400m2 en propiedad horizontal">
               <div class="carta-img-cont">
                 <img src="assets/img/foto1.png" class="img-rounded">
               </div>
@@ -99,7 +99,7 @@
         </div>
         <div class="col-md-6 mb-3">
           <div class="carta">
-            <a data-fancybox="gallery" data-src="assets/img/imagen2.jpg">
+            <a data-fancybox="gallery" data-src="assets/img/imagen2.jpg" data-caption="Barrio cerrado boutique.&lt;br /&gt;Es un barrio cerrado dentro de un concepto de baja escala">
               <div class="carta-img-cont">
                 <img src="assets/img/imagen2.jpg" class="img-rounded">
               </div>
@@ -112,7 +112,7 @@
         </div>
         <div class="col-md-6 mb-3">
           <div class="carta">
-            <a data-fancybox="gallery" data-src="assets/img/imagen3.jpg">
+            <a data-fancybox="gallery" data-src="assets/img/imagen3.jpg" data-caption="9 lotes exclusivos.&lt;br /&gt;Cuenta con 9 lotes de 400m2 en propiedad horizontal">
               <div class="carta-img-cont">
                 <img src="assets/img/imagen3.jpg" class="img-rounded">
               </div>
@@ -125,7 +125,7 @@
         </div>
         <div class="col-md-6 mb-3">
           <div class="carta">
-            <a data-fancybox="gallery" data-src="assets/img/imagen4.jpg">
+            <a data-fancybox="gallery" data-src="assets/img/imagen4.jpg" data-caption="Barrio cerrado boutique.&lt;br /&gt;Es un barrio cerrado dentro de un concepto de baja escala">
               <div class="carta-img-cont">
                 <img src="assets/img/imagen4.jpg" class="img-rounded">
               </div>
