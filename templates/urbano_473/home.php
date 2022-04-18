@@ -45,33 +45,34 @@
         <div class="mouse-wheel"></div>
       </a>
     </div>
-    <div class="form-contacto" id="lanzamiento_preventa">
-      <h4 class="text-center">Lanzamiento preventa</h4>
-      <hr class="divider">
-      <p class="text-center">¡Solicitá asesoramiento ahora!</p>
+      <div class="form-contacto" id="lanzamiento_preventa">
+        <div class="container">
+          <h4 class="text-center">Lanzamiento preventa</h4>
+          <hr class="divider">
+          <p class="text-center">¡Solicitá asesoramiento ahora!</p>
 
-      
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <input type="text" class="form-control" id="contacto_nombre" placeholder="Nombre completo">
-        </div>
-        <div class="col-md-6 mb-3">
-          <input type="number" class="form-control" id="contacto_telefono" placeholder="Whatsapp (sin 0 ni 15)">
-        </div>
-        <div class="col-md-12 mb-3">
-          <input type="email" class="form-control" id="contacto_email" placeholder="Email">
-        </div>
-        <div class="col-md-12 mb-2">
-          <div class="input-group mb-2">
-            <textarea class="form-control" id="contacto_mensaje" placeholder="Mensaje"></textarea>
+          
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <input type="text" class="form-control" id="contacto_nombre" placeholder="Nombre completo">
+            </div>
+            <div class="col-md-6 mb-3">
+              <input type="number" class="form-control" id="contacto_telefono" placeholder="Whatsapp (sin 0 ni 15)">
+            </div>
+            <div class="col-md-12 mb-3">
+              <input type="email" class="form-control" id="contacto_email" placeholder="Email">
+            </div>
+            <div class="col-md-12 mb-2">
+              <div class="input-group mb-2">
+                <textarea class="form-control" id="contacto_mensaje" placeholder="Mensaje"></textarea>
+              </div>
+            </div>
+            <div class="col-md-12 mb-3">
+              <button onclick="enviar_contacto()" class="btn btn-primary btn-block btn-lg text-uppercase boton-consulta" id="contacto_submit"><i class="fa-brands fa-whatsapp wsp-icon"></i>Enviar consulta</button>
+            </div>
           </div>
         </div>
-        <div class="col-md-12 mb-3">
-          <button onclick="enviar_contacto()" class="btn btn-primary btn-block btn-lg text-uppercase boton-consulta" id="contacto_submit"><i class="fa-brands fa-whatsapp wsp-icon"></i>Enviar consulta</button>
-        </div>
       </div>
-
-    </div>
   </section>
 
   <!-- Sobre nosotros -->
@@ -141,44 +142,48 @@
   </section>
 
   <!-- Slider -->
-  <section class="owl-carousel owl-theme owl-carousel3 slider-section">
-    <div class="item">
-      <div class="carta-slider">
-        <div class="carta-fondo">
-          <img src="assets/img/asfalto.png" class="asfalto-img">
-          <p>Asfalto</p>
+  <section style="background-color: #ededed">
+    <div class="container">
+      <div class="owl-carousel owl-theme owl-carousel3 slider-section">
+        <div class="item">
+          <div class="carta-slider">
+            <div class="carta-fondo">
+              <img src="assets/img/asfalto.png" class="asfalto-img">
+              <p>Asfalto</p>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="carta-slider">
-        <div class="carta-fondo">
-          <img src="assets/img/luz.png" id="img2">
-          <p>Luz eléctrica</p>
+        <div class="item">
+          <div class="carta-slider">
+            <div class="carta-fondo">
+              <img src="assets/img/luz.png" id="img2">
+              <p>Luz eléctrica</p>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="carta-slider">
-        <div class="carta-fondo">
-          <img src="assets/img/agua.png" id="img3">
-          <p>Agua corriente</p>
+        <div class="item">
+          <div class="carta-slider">
+            <div class="carta-fondo">
+              <img src="assets/img/agua.png" id="img3">
+              <p>Agua corriente</p>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="carta-slider">
-        <div class="carta-fondo">
-          <img src="assets/img/cam-seguridad.png" id="img4">
-          <p>Cámaras de seguridad</p>
+        <div class="item">
+          <div class="carta-slider">
+            <div class="carta-fondo">
+              <img src="assets/img/cam-seguridad.png" id="img4">
+              <p>Cámaras de seguridad</p>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="carta-slider">
-        <div class="carta-fondo">
-          <img src="assets/img/asfalto.png" class="asfalto-img">
-          <p>Asfalto</p>
+        <div class="item">
+          <div class="carta-slider">
+            <div class="carta-fondo">
+              <img src="assets/img/asfalto.png" class="asfalto-img">
+              <p>Asfalto</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -186,22 +191,24 @@
 
 
   <section class="ubicacion">
-    <h4>Ubicación</h4>
-    <hr class="divider">
-    <p>Se encuentra en 473 e/30 y 31, City Bell. Se destaca por su cercanía al centro de la ciudad <br>
-      y estar ubicado en un lugar en plena expanción y desarrollo.
-    </p>
-    <div class="row">
-      <div class="col-md-6">
-        <div id="map_canvas"></div>
-      </div>
-      <div class="col-md-6">
-        <div class="owl-carousel owl-theme owl-carousel1">
-          <?php foreach ($slider as $s) { ?>
-            <div class="item">
-              <img src="<?php echo $s->path; ?>">
-            </div>
-          <?php } ?>
+    <div class="container">
+      <h4>Ubicación</h4>
+      <hr class="divider">
+      <p>Se encuentra en 473 e/30 y 31, City Bell. Se destaca por su cercanía al centro de la ciudad <br>
+        y estar ubicado en un lugar en plena expanción y desarrollo.
+      </p>
+      <div class="row">
+        <div class="col-md-6">
+          <div id="map_canvas"></div>
+        </div>
+        <div class="col-md-6">
+          <div class="owl-carousel owl-theme owl-carousel1">
+            <?php foreach ($slider as $s) { ?>
+              <div class="item">
+                <img src="<?php echo $s->path; ?>">
+              </div>
+            <?php } ?>
+          </div>
         </div>
       </div>
     </div>
