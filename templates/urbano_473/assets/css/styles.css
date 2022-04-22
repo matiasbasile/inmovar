@@ -19,11 +19,11 @@ hr.divider {border-top: 0.8vh solid #4293d4; width: 5%; margin: 1.5vh auto 3vh a
 
 .form-contacto{width: 100%;background-color: #2d2d2d;padding: 5vh;}
 .form-contacto h4{color: #fff;text-transform: uppercase;text-align: center;font-size: 5vh;}
-.form-contacto p{font-size: 3.5vh;color: #fff;text-align: center;margin-bottom: 3vh;}
+.form-contacto p{font-size: 3vh;color: #fff;text-align: center;margin-bottom: 3vh;}
 
 .sobre-nosotros{background-color: #ffff;width: 100%;}
 .sobre-nosotros-titulo h4{color: #2d2d2d;text-transform: uppercase;text-align: center;font-size: 5vh;font-weight: 700;}
-.sobre-nosotros-titulo p{font-size: 3.5vh;color: #2d2d2d;text-align: center;font-style: italic;margin-bottom: 3vh;}
+.sobre-nosotros-titulo p{font-size: 3vh;color: #2d2d2d;text-align: center;margin-bottom: 6vh;}
 
 .carta img{width: 100%;object-fit: cover;aspect-ratio: 16 / 9;}
 .carta-img-cont {position: relative;}
