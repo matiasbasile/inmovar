@@ -15,7 +15,7 @@ $empresa->telefono_f = preg_replace("/[^0-9]/", "", $empresa->telefono);
 include "templates/comun/pre_head.php" ?>
 <?php $slider = $web_model->get_slider(); ?>  
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/styles.css?v=5">
+<link rel="stylesheet" href="assets/css/styles.css?v=6">
 <link rel="stylesheet" href="assets/css/slick.css">
 <link rel="stylesheet" href="assets/css/slick-theme.css">
 <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
