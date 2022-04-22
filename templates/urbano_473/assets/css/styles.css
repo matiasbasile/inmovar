@@ -68,11 +68,9 @@ footer p{color: #b6b6b6;font-size: 2vh;}
 @media (max-width: 768px){
   #map_canvas{height: 300px;margin-bottom: 3.5vh;}
   #lanzamiento{font-size: 40px;}
-  /*
   .banner-contacto h1{padding-top: 3vh;font-size: 24px;}
   .banner-contacto h4{font-size: 22px;}
   .banner-contacto p{font-size: 16px;}
-  */
   .form-contacto h4{font-size: 3.5vh;}
   .form-contacto p{font-size: 3vh;}
   .lanzamiento h1{font-size: 50px;line-height: 40px;}
