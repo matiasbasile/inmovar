@@ -18,11 +18,11 @@ hr.divider {border-top: 5px solid #4293d4;width: 50px;margin: 1rem auto;}
 
 .form-contacto{width: 100%;background-color: #2d2d2d;padding: 5vh;}
 .form-contacto h4{color: #fff;text-transform: uppercase;text-align: center;font-size: 5vh;}
-.form-contacto p{font-size: 4vh;color: #fff;text-align: center;}
+.form-contacto p{font-size: 3.5vh;color: #fff;text-align: center;}
 
 .sobre-nosotros{background-color: #ffff;width: 100%;}
-.sobre-nosotros-titulo h4{color: #2d2d2d;text-transform: uppercase;text-align: center;font-size: 26px;font-weight: 700;}
-.sobre-nosotros-titulo p{font-size: 20px;color: #2d2d2d;text-align: center;font-style: italic;}
+.sobre-nosotros-titulo h4{color: #2d2d2d;text-transform: uppercase;text-align: center;font-size: 5vh;font-weight: 700;}
+.sobre-nosotros-titulo p{font-size: 3.5vh;color: #2d2d2d;text-align: center;font-style: italic;}
 
 .carta img{width: 100%;object-fit: cover;aspect-ratio: 16 / 9;}
 .carta-img-cont {position: relative;}
@@ -31,24 +31,24 @@ hr.divider {border-top: 5px solid #4293d4;width: 50px;margin: 1rem auto;}
 .carta p{color: #2d2d2d;padding-top: 1rem;}
 .cartas img{height: 350px;width: 100%;object-fit: cover;}
 
-.slider-section{background-color: #ededed;padding: 3rem;}
+.slider-section{background-color: #ededed;padding: 6vh;}
 .carta-slider{background-color: #ffff;height: 250px;padding-top: 1rem;}
 .carta-fondo{position: relative;width: 160px;height: 160px;border-radius: 50%;background-color: rgb(65, 147, 212);margin: 0 auto;}
 .carta-fondo img{object-fit: none;width: 100%;height: 160px;}
-.carta-fondo p{text-transform: uppercase;text-align: center;font-family: 'Lato-Regular';font-weight: bold;margin-top: 20px;}
-.carta-fondo h4{margin-top: 20px !important;text-transform: uppercase !important;color: #2d2d2d !important;}
+.carta-fondo p{text-transform: uppercase;text-align: center;font-family: 'Lato-Regular';font-weight: bold;margin-top: 3.5vh;}
+.carta-fondo h4{margin-top: 3.5vh !important;text-transform: uppercase !important;color: #2d2d2d !important;}
 .carta-slider h4{text-transform: uppercase;color: #2d2d2d;text-align: center;padding: 1rem;}
 .carta-slider:hover{background-color: #4193d4;cursor: pointer;color: #fff;}
 .carta-slider:hover .carta-fondo {background-color: #fff;}
 
-.ubicacion{background-color: #ffff;padding: 3rem;}
-.ubicacion h4{font-size: 26px;text-align: center;color: #2d2d2d;text-transform: uppercase;font-weight: bold;}
-.ubicacion p{text-align: center;font-size: 18px;}
+.ubicacion{background-color: #ffff;padding: 6vh;}
+.ubicacion h4{font-size: 5vh;text-align: center;color: #2d2d2d;text-transform: uppercase;font-weight: bold;}
+.ubicacion p{text-align: center;font-size: 3vh;}
 
 .lanzamiento{background-color: #4293d4;padding: 1rem;}
 .lanzamiento h1{color: #ffff;text-transform: uppercase;text-align: center;font-size: 80px;line-height: 70px;}
 #lanzamiento{-webkit-text-stroke:1px #ffff;-webkit-text-fill-color:transparent;}
-.lanzamiento p{color: #ffff;text-align: center;font-size: 30px;margin-bottom: 20px;}
+.lanzamiento p{color: #ffff;text-align: center;font-size: 30px;margin-bottom: 3.5vh;}
 .boton-lanzamiento{display: inline-block; border: 2px solid #ffff;background-color: transparent;color: #ffff;padding: 0.5rem 11rem;cursor: pointer;text-transform: uppercase;}
 .boton-lanzamiento:hover{background-color: #ffff;color: #4293d4;text-transform: uppercase;text-decoration: none;}
 
@@ -64,7 +64,7 @@ footer p{color: #b6b6b6;}
 #map_canvas{height: 100%;}
 
 @media (max-width: 768px){
-  #map_canvas{height: 300px;margin-bottom: 20px;}
+  #map_canvas{height: 300px;margin-bottom: 3.5vh;}
 
   #lanzamiento{font-size: 40px;}
 
@@ -73,10 +73,10 @@ footer p{color: #b6b6b6;}
   .banner-contacto h4{font-size: 22px;}
   .banner-contacto p{font-size: 16px;}
 
-  .form-contacto h4{font-size: 20px;}
-  .form-contacto p{font-size: 18px;}
+  .form-contacto h4{font-size: 3.5vh;}
+  .form-contacto p{font-size: 3vh;}
 
   .lanzamiento h1{font-size: 50px;line-height: 40px;}
-  .lanzamiento p{font-size: 18px; margin-bottom: 5px;}
+  .lanzamiento p{font-size: 3vh; margin-bottom: 5px;}
   .boton-lanzamiento{padding: 0.5rem 1rem;}
 }
