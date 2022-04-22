@@ -52,10 +52,8 @@ include "templates/comun/pre_head.php" ?>
           <div class="col-md-12 mb-3">
             <input type="email" class="form-control" id="contacto_email" placeholder="Email">
           </div>
-          <div class="col-md-12 mb-2">
-            <div class="input-group mb-2">
-              <textarea class="form-control" id="contacto_mensaje" placeholder="Mensaje"></textarea>
-            </div>
+          <div class="col-md-12 mb-3">
+            <textarea class="form-control" id="contacto_mensaje" placeholder="Mensaje"></textarea>
           </div>
           <div class="col-md-12 mb-3">
             <button onclick="enviar_contacto()" class="btn btn-primary btn-block btn-lg text-uppercase boton-consulta" id="contacto_submit"><i class="fa-brands fa-whatsapp wsp-icon"></i>Enviar consulta</button>
