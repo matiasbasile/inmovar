@@ -19,17 +19,17 @@ hr.divider {border-top: 0.8vh solid #4293d4; width: 5%; margin: 1.5vh auto 3vh a
 .banner-contacto .mouse-icon .mouse-wheel{position: absolute;width: 1px;height: 15px;border: 1px solid #ffffff;border-radius: 10px;top: 6px;left: 13px;}
 
 .form-contacto{width: 100%;background-color: #2d2d2d;padding: 5vh;}
-.form-contacto h4{color: #fff;text-transform: uppercase;text-align: center;font-size: 5vh;}
+.form-contacto h4{color: #fff;text-transform: uppercase;text-align: center;font-size: 5vh;font-weight: bolder;}
 .form-contacto p{font-size: 3vh;color: #fff;text-align: center;margin-bottom: 3vh;}
 
 .sobre-nosotros{background-color: #ffff;width: 100%;}
-.sobre-nosotros-titulo h4{color: #2d2d2d;text-transform: uppercase;text-align: center;font-size: 5vh;font-weight: 700;}
+.sobre-nosotros-titulo h4{color: #2d2d2d;text-transform: uppercase;text-align: center;font-size: 5vh;font-weight: bolder;}
 .sobre-nosotros-titulo p{font-size: 3vh;color: #2d2d2d;text-align: center;margin-bottom: 6vh;}
 
-.carta img{width: 100%;object-fit: cover;aspect-ratio: 16 / 9;}
+.carta img{width: 100%;object-fit: cover;aspect-ratio: 16 / 9;border-radius: 1%;}
 .carta-img-cont {position: relative;}
 .carta-img-cont:hover:after{cursor: pointer;content: " ";position: absolute;top: 0;right: 0;left: 0;bottom: 0;background-image: url('../img/icono-suma.png');background-size: 50px;background-position: center;background-color: #4193d4;background-repeat: no-repeat;opacity: 0.7;z-index: 10;}
-.carta h4{color: #2d2d2d;text-transform: uppercase;padding-top: 3vh;font-size: 4vh;}
+.carta h4{color: #2d2d2d;text-transform: uppercase;padding-top: 3vh;font-size: 4vh;font-weight: bolder;}
 .carta p{color: #2d2d2d;padding-top: 1vh;font-size: 3vh;margin-bottom: 2vh;}
 .cartas img{width: 100%;object-fit: cover;aspect-ratio: 1 / 1}
 
@@ -44,11 +44,11 @@ hr.divider {border-top: 0.8vh solid #4293d4; width: 5%; margin: 1.5vh auto 3vh a
 .carta-slider:hover .carta-fondo {background-color: #fff;}
 
 .ubicacion{background-color: #ffff;padding: 6vh;}
-.ubicacion h4{font-size: 5vh;text-align: center;color: #2d2d2d;text-transform: uppercase;font-weight: bold;}
-.ubicacion p{text-align: center;font-size: 3vh;margin-bottom: 2.5vh;}
+.ubicacion h4{font-size: 5vh;text-align: center;color: #2d2d2d;text-transform: uppercase;font-weight: bolder;}
+.ubicacion p{text-align: center;font-size: 2.5vh;margin-bottom: 6vh;}
 
 .lanzamiento{background-color: #4293d4;padding: 5vh;}
-.lanzamiento h1{color: #ffff;text-transform: uppercase;text-align: center;font-size: 9vh;line-height: 1;font-weight: bolder;}
+.lanzamiento h1{font-family: 'Lato-Black';color: #ffff;text-transform: uppercase;text-align: center;font-size: 9vh;line-height: 1;font-weight: bolder;}
 #lanzamiento{-webkit-text-stroke:1px #ffff;-webkit-text-fill-color:transparent;}
 .lanzamiento p{color: #ffff;text-align: center;font-size: 3vh;margin-bottom: 3.5vh;}
 .boton-lanzamiento{display: inline-block; border: 2px solid #ffff;background-color: transparent;color: #ffff;padding: 1vh 13vh;cursor: pointer;text-transform: uppercase;font-weight: 500;font-size: 2.5vh;}
