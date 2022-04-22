@@ -64,7 +64,7 @@ include "templates/comun/pre_head.php" ?>
   </section>
 
   <section class="mt-5 sobre-nosotros" id="sobre_nosotros_section">
-    <div class="">
+    <div class="container">
       <div class="sobre-nosotros-titulo">
         <h4>Sobre urbano 473</h4>
         <hr class="divider">
