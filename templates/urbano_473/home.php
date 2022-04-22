@@ -15,7 +15,7 @@ $empresa->telefono_f = preg_replace("/[^0-9]/", "", $empresa->telefono);
 include "templates/comun/pre_head.php" ?>
 <?php $slider = $web_model->get_slider(); ?>  
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/styles.css?v=15">
+<link rel="stylesheet" href="assets/css/styles.css?v=16">
 <link rel="stylesheet" href="assets/css/slick.css">
 <link rel="stylesheet" href="assets/css/slick-theme.css">
 <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
@@ -134,40 +134,40 @@ include "templates/comun/pre_head.php" ?>
           <div class="carta-slider">
             <div class="carta-fondo">
               <img src="assets/img/asfalto.png" class="asfalto-img">
-              <p>Asfalto</p>
             </div>
+            <p>Asfalto</p>
           </div>
         </div>
         <div class="item">
           <div class="carta-slider">
             <div class="carta-fondo">
               <img src="assets/img/luz.png" id="img2">
-              <p>Luz eléctrica</p>
             </div>
+            <p>Luz eléctrica</p>
           </div>
         </div>
         <div class="item">
           <div class="carta-slider">
             <div class="carta-fondo">
               <img src="assets/img/agua.png" id="img3">
-              <p>Agua corriente</p>
             </div>
+            <p>Agua corriente</p>
           </div>
         </div>
         <div class="item">
           <div class="carta-slider">
             <div class="carta-fondo">
               <img src="assets/img/cam-seguridad.png" id="img4">
-              <p>Cámaras de seguridad</p>
             </div>
+            <p>Cámaras de seguridad</p>
           </div>
         </div>
         <div class="item">
           <div class="carta-slider">
             <div class="carta-fondo">
               <img src="assets/img/asfalto.png" class="asfalto-img">
-              <p>Asfalto</p>
             </div>
+            <p>Asfalto</p>
           </div>
         </div>
       </div>
