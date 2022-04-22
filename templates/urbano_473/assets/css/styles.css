@@ -6,7 +6,7 @@
 html {scroll-behavior: smooth;}
 body { font-family: 'Lato-Regular'; }
 
-hr.divider {border-top: 0.8vh solid #4293d4; width: 5%; margin: 1.5vh auto 3vh auto;}
+hr.divider {border-top: 0.8vh solid #4293d4; width: 5%; margin: 1.5vh auto 3vh auto;min-width: 80px;}
 .btn { padding: 1vh; font-size: 2.8vh; font-weight: bolder; }
 
 .container { max-width: 100% !important; }
@@ -68,13 +68,14 @@ footer p{color: #b6b6b6;font-size: 2vh;}
 @media (max-width: 768px){
   #map_canvas{height: 300px;margin-bottom: 3.5vh;}
   #lanzamiento{font-size: 40px;}
-  .banner-contacto h1{padding-top: 3vh;font-size: 24px;}
-  .banner-contacto h4{font-size: 22px;}
-  .banner-contacto p{font-size: 16px;}
+  .banner-contacto h1{padding-top: 3vh;font-size: 54px;}
+  .banner-contacto h4{font-size: 28px;}
+  .banner-contacto p{font-size: 26px;}
   .form-contacto h4{font-size: 3.5vh;}
   .form-contacto p{font-size: 3vh;}
   .lanzamiento h1{font-size: 50px;line-height: 40px;}
   .lanzamiento p{font-size: 3vh; margin-bottom: 5px;}
   .boton-lanzamiento{padding: 1vh 3vh;}
+  .ubicacion, .form-contacto { padding: 3vh; }
 }
 .owl-carousel .nav-button { top:36% }
