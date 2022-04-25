@@ -161,41 +161,51 @@ include "templates/comun/pre_head.php" ?>
         <div class="item">
           <div class="carta-slider">
             <div class="carta-fondo">
-              <img src="assets/img/asfalto.png" class="asfalto-img">
+              <?php $t = $web_model->get_text("car-1-imagen","assets/img/asfalto.png"); ?>
+              <img src="<?php echo $t->plain_text ?>" class="editable editable-img" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
             </div>
-            <p>Asfalto</p>
+            <?php $t2 = $web_model->get_text("car-1-texto","Asfalto"); ?>
+            <p class="text-center editable" data-id="<?php echo $t2->id ?>" data-clave="<?php echo $t2->clave ?>"><?php echo $t2->plain_text ?></p>
           </div>
         </div>
         <div class="item">
           <div class="carta-slider">
             <div class="carta-fondo">
-              <img src="assets/img/luz.png" id="img2">
+              <?php $t = $web_model->get_text("car-2-imagen","assets/img/luz.png"); ?>
+              <img id="img2" src="<?php echo $t->plain_text ?>" class="editable editable-img" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
             </div>
-            <p>Luz eléctrica</p>
+            <?php $t2 = $web_model->get_text("car-2-texto","Luz eléctrica"); ?>
+            <p class="text-center editable" data-id="<?php echo $t2->id ?>" data-clave="<?php echo $t2->clave ?>"><?php echo $t2->plain_text ?></p>
           </div>
         </div>
         <div class="item">
           <div class="carta-slider">
             <div class="carta-fondo">
-              <img src="assets/img/agua.png" id="img3">
+              <?php $t = $web_model->get_text("car-3-imagen","assets/img/agua.png"); ?>
+              <img id="img3" src="<?php echo $t->plain_text ?>" class="editable editable-img" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
             </div>
-            <p>Agua corriente</p>
+            <?php $t2 = $web_model->get_text("car-3-texto","Agua corriente"); ?>
+            <p class="text-center editable" data-id="<?php echo $t2->id ?>" data-clave="<?php echo $t2->clave ?>"><?php echo $t2->plain_text ?></p>
           </div>
         </div>
         <div class="item">
           <div class="carta-slider">
             <div class="carta-fondo">
-              <img src="assets/img/cam-seguridad.png" id="img4">
+              <?php $t = $web_model->get_text("car-4-imagen","assets/img/cam-seguridad.png"); ?>
+              <img id="img4" src="<?php echo $t->plain_text ?>" class="editable editable-img" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
             </div>
-            <p>Cámaras de seguridad</p>
+            <?php $t2 = $web_model->get_text("car-4-texto","Cámaras de seguridad"); ?>
+            <p class="text-center editable" data-id="<?php echo $t2->id ?>" data-clave="<?php echo $t2->clave ?>"><?php echo $t2->plain_text ?></p>
           </div>
         </div>
         <div class="item">
           <div class="carta-slider">
             <div class="carta-fondo">
-              <img src="assets/img/asfalto.png" class="asfalto-img">
+              <?php $t = $web_model->get_text("car-5-imagen","assets/img/asfalto.png"); ?>
+              <img src="<?php echo $t->plain_text ?>" class="editable editable-img" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>">
             </div>
-            <p>Asfalto</p>
+            <?php $t2 = $web_model->get_text("car-5-texto","Asfalto"); ?>
+            <p class="text-center editable" data-id="<?php echo $t2->id ?>" data-clave="<?php echo $t2->clave ?>"><?php echo $t2->plain_text ?></p>
           </div>
         </div>
       </div>
