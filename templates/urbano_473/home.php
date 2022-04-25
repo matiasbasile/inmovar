@@ -104,9 +104,9 @@ include "templates/comun/pre_head.php" ?>
           $t2 = $web_model->get_text("caracteristica-2-2","Cuenta con 9 lotes de 400m2 en propiedad horizontal");
           ?>          
           <div class="carta">
-            <a data-fancybox="gallery" data-src="<?php echo $t->plain_text ?>" data-caption="<?php echo $t1->plain_text ?>&lt;br /&gt;<?php echo $t2->plain_text ?>">
+            <a class="editable editable-img" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" data-fancybox="gallery" data-src="<?php echo $t->plain_text ?>" data-caption="<?php echo $t1->plain_text ?>&lt;br /&gt;<?php echo $t2->plain_text ?>">
               <div class="carta-img-cont">
-                <img src="<?php echo $t->plain_text ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="img-rounded editable editable-img">
+                <img src="<?php echo $t->plain_text ?>" class="img-rounded">
               </div>
             </a>
             <div>
@@ -122,9 +122,9 @@ include "templates/comun/pre_head.php" ?>
           $t2 = $web_model->get_text("caracteristica-3-2","Cuenta con 9 lotes de 400m2 en propiedad horizontal");
           ?>                    
           <div class="carta">
-            <a data-fancybox="gallery" data-src="<?php echo $t->plain_text ?>" data-caption="<?php echo $t1->plain_text ?>&lt;br /&gt;<?php echo $t2->plain_text ?>">
+            <a class="editable editable-img" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" data-fancybox="gallery" data-src="<?php echo $t->plain_text ?>" data-caption="<?php echo $t1->plain_text ?>&lt;br /&gt;<?php echo $t2->plain_text ?>">
               <div class="carta-img-cont">
-                <img src="<?php echo $t->plain_text ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="img-rounded editable editable-img">
+                <img src="<?php echo $t->plain_text ?>" class="img-rounded">
               </div>
             </a>
             <div>
@@ -140,9 +140,9 @@ include "templates/comun/pre_head.php" ?>
           $t2 = $web_model->get_text("caracteristica-4-2","Es un barrio cerrado dentro de un concepto de baja escala");
           ?>                    
           <div class="carta">
-            <a data-fancybox="gallery" data-src="<?php echo $t->plain_text ?>" data-caption="<?php echo $t1->plain_text ?>&lt;br /&gt;<?php echo $t2->plain_text ?>">
+            <a class="editable editable-img" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" data-fancybox="gallery" data-src="<?php echo $t->plain_text ?>" data-caption="<?php echo $t1->plain_text ?>&lt;br /&gt;<?php echo $t2->plain_text ?>">
               <div class="carta-img-cont">
-                <img src="<?php echo $t->plain_text ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="img-rounded editable editable-img">
+                <img src="<?php echo $t->plain_text ?>" class="img-rounded">
               </div>
             </a>
             <div>
