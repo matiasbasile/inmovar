@@ -30,9 +30,16 @@ include "templates/comun/pre_head.php" ?>
 <body>
   <section>
     <div class="banner-contacto">
-      <h1>Urbano 473</h1>
-      <h4>473 E/30 y 31, City Bell</h4>
-      <p>Pensado para familias que buscan seguridad, <br> priorizando la cercanía de la ciudad</p>
+
+      <?php $t = $web_model->get_text("arriba-titulo","Urbano 473"); ?>
+      <h1 data-id="<?php echo $t->id?>" data-clave="<?php echo $t->clave ?>" class="editable"><?php echo $t->plain_text ?></h1>
+
+      <?php $t = $web_model->get_text("arriba-subtitulo","473 E/30 y 31, City Bell"); ?>
+      <h4 data-id="<?php echo $t->id?>" data-clave="<?php echo $t->clave ?>" class="editable"><?php echo $t->plain_text ?></h4>
+
+      <?php $t = $web_model->get_text("arriba-desc","Pensado para familias que buscan seguridad, <br> priorizando la cercanía de la ciudad."); ?>
+      <p data-id="<?php echo $t->id?>" data-clave="<?php echo $t->clave ?>" class="editable"><?php echo $t->plain_text ?></p>
+
       <a href="<?php echo mklink('/')?>#sobre_nosotros_section" class="mouse-icon">
         <div class="mouse-wheel"></div>
       </a>
@@ -68,58 +75,79 @@ include "templates/comun/pre_head.php" ?>
       <div class="sobre-nosotros-titulo">
         <h4>Sobre urbano 473</h4>
         <hr class="divider">
-        <p>Pensado para familias que buscan seguridad, <br> priorizando la cercanía de la ciudad</p>
+        <?php $t = $web_model->get_text("sobre-desc","Pensado para familias que buscan seguridad, <br> priorizando la cercanía de la ciudad."); ?>
+        <p data-id="<?php echo $t->id?>" data-clave="<?php echo $t->clave ?>" class="editable"><?php echo $t->plain_text ?></p>
       </div>
       <div class="row">
         <div class="col-md-6 mb-3">
+          <?php 
+          $t = $web_model->get_text("caracteristica-1-imagen","assets/img/foto1.png");
+          $t1 = $web_model->get_text("caracteristica-1-1","9 lotes exclusivos");
+          $t2 = $web_model->get_text("caracteristica-1-2","Cuenta con 9 lotes de 400m2 en propiedad horizontal");
+          ?>
           <div class="carta">
-            <a data-fancybox="gallery" data-src="assets/img/foto1.png" data-caption="9 lotes exclusivos.&lt;br /&gt;Cuenta con 9 lotes de 400m2 en propiedad horizontal">
+            <a data-fancybox="gallery" data-src="<?php echo $t->plain_text ?>" data-caption="<?php echo $t1->plain_text ?>&lt;br /&gt;<?php echo $t2->plain_text ?>">
               <div class="carta-img-cont">
-                <img src="assets/img/foto1.png" class="img-rounded">
+                <img src="<?php echo $t->plain_text ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="img-rounded editable editable-img">
               </div>
             </a>
             <div>
-              <h4 class="text-center text-uppercase">9 lotes exclusivos</h4>
-              <p class="text-center">Cuenta con 9 lotes de 400m2 en propiedad horizontal</p>
+              <h4 class="text-center text-uppercase editable" data-id="<?php echo $t1->id ?>" data-clave="<?php echo $t1->clave ?>"><?php echo $t1->plain_text ?></h4>
+              <p class="text-center editable" data-id="<?php echo $t2->id ?>" data-clave="<?php echo $t2->clave ?>"><?php echo $t2->plain_text ?></p>
             </div>
           </div>
         </div>
         <div class="col-md-6 mb-3">
+          <?php 
+          $t = $web_model->get_text("caracteristica-2-imagen","assets/img/imagen2.jpg");
+          $t1 = $web_model->get_text("caracteristica-2-1","9 lotes exclusivos");
+          $t2 = $web_model->get_text("caracteristica-2-2","Cuenta con 9 lotes de 400m2 en propiedad horizontal");
+          ?>          
           <div class="carta">
-            <a data-fancybox="gallery" data-src="assets/img/imagen2.jpg" data-caption="Barrio cerrado boutique.&lt;br /&gt;Es un barrio cerrado dentro de un concepto de baja escala">
+            <a data-fancybox="gallery" data-src="<?php echo $t->plain_text ?>" data-caption="<?php echo $t1->plain_text ?>&lt;br /&gt;<?php echo $t2->plain_text ?>">
               <div class="carta-img-cont">
-                <img src="assets/img/imagen2.jpg" class="img-rounded">
+                <img src="<?php echo $t->plain_text ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="img-rounded editable editable-img">
               </div>
             </a>
             <div>
-              <h4 class="text-center text-uppercase">Barrio cerrado boutique</h4>
-              <p class="text-center">Es un barrio cerrado dentro de un concepto de baja escala</p>
+              <h4 class="text-center text-uppercase editable" data-id="<?php echo $t1->id ?>" data-clave="<?php echo $t1->clave ?>"><?php echo $t1->plain_text ?></h4>
+              <p class="text-center editable" data-id="<?php echo $t2->id ?>" data-clave="<?php echo $t2->clave ?>"><?php echo $t2->plain_text ?></p>
             </div>
           </div>
         </div>
         <div class="col-md-6 mb-3">
+          <?php 
+          $t = $web_model->get_text("caracteristica-3-imagen","assets/img/imagen2.jpg");
+          $t1 = $web_model->get_text("caracteristica-3-1","9 lotes exclusivos");
+          $t2 = $web_model->get_text("caracteristica-3-2","Cuenta con 9 lotes de 400m2 en propiedad horizontal");
+          ?>                    
           <div class="carta">
-            <a data-fancybox="gallery" data-src="assets/img/imagen3.jpg" data-caption="9 lotes exclusivos.&lt;br /&gt;Cuenta con 9 lotes de 400m2 en propiedad horizontal">
+            <a data-fancybox="gallery" data-src="<?php echo $t->plain_text ?>" data-caption="<?php echo $t1->plain_text ?>&lt;br /&gt;<?php echo $t2->plain_text ?>">
               <div class="carta-img-cont">
-                <img src="assets/img/imagen3.jpg" class="img-rounded">
+                <img src="<?php echo $t->plain_text ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="img-rounded editable editable-img">
               </div>
             </a>
             <div>
-              <h4 class="text-center text-uppercase">9 lotes exclusivos</h4>
-              <p class="text-center">Cuenta con 9 lotes de 400m2 en propiedad horizontal</p>
+              <h4 class="text-center text-uppercase editable" data-id="<?php echo $t1->id ?>" data-clave="<?php echo $t1->clave ?>"><?php echo $t1->plain_text ?></h4>
+              <p class="text-center editable" data-id="<?php echo $t2->id ?>" data-clave="<?php echo $t2->clave ?>"><?php echo $t2->plain_text ?></p>
             </div>
           </div>
         </div>
         <div class="col-md-6 mb-3">
+          <?php 
+          $t = $web_model->get_text("caracteristica-4-imagen","assets/img/imagen4.jpg");
+          $t1 = $web_model->get_text("caracteristica-4-1","Barrio cerrado boutique");
+          $t2 = $web_model->get_text("caracteristica-4-2","Es un barrio cerrado dentro de un concepto de baja escala");
+          ?>                    
           <div class="carta">
-            <a data-fancybox="gallery" data-src="assets/img/imagen4.jpg" data-caption="Barrio cerrado boutique.&lt;br /&gt;Es un barrio cerrado dentro de un concepto de baja escala">
+            <a data-fancybox="gallery" data-src="<?php echo $t->plain_text ?>" data-caption="<?php echo $t1->plain_text ?>&lt;br /&gt;<?php echo $t2->plain_text ?>">
               <div class="carta-img-cont">
-                <img src="assets/img/imagen4.jpg" class="img-rounded">
+                <img src="<?php echo $t->plain_text ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" class="img-rounded editable editable-img">
               </div>
             </a>
             <div>
-              <h4 class="text-center text-uppercase">Barrio cerrado boutique</h4>
-              <p class="text-center">Es un barrio cerrado dentro de un concepto de baja escala</p>
+              <h4 class="text-center text-uppercase editable" data-id="<?php echo $t1->id ?>" data-clave="<?php echo $t1->clave ?>"><?php echo $t1->plain_text ?></h4>
+              <p class="text-center editable" data-id="<?php echo $t2->id ?>" data-clave="<?php echo $t2->clave ?>"><?php echo $t2->plain_text ?></p>
             </div>
           </div>
         </div>
@@ -178,9 +206,8 @@ include "templates/comun/pre_head.php" ?>
     <div class="">
       <h4>Ubicación</h4>
       <hr class="divider">
-      <p>Se encuentra en 473 e/30 y 31, City Bell. Se destaca por su cercanía al centro de la ciudad <br>
-        y estar ubicado en un lugar en plena expanción y desarrollo.
-      </p>
+      <?php $t = $web_model->get_text("ubicacion-desc","Se encuentra en 473 e/30 y 31, City Bell. Se destaca por su cercanía al centro de la ciudad <br>y estar ubicado en un lugar en plena expanción y desarrollo."); ?>
+      <p data-id="<?php echo $t->id?>" data-clave="<?php echo $t->clave ?>" class="editable"><?php echo $t->plain_text ?></p>
       <div class="row">
         <div class="col-md-6">
           <div id="map_canvas"></div>
@@ -204,7 +231,8 @@ include "templates/comun/pre_head.php" ?>
         <h1 id="lanzamiento">Lanzamiento</h1>
       </div>
       <h1>Pre-venta</h1>
-      <p>Obtené asesoramiento personalizado</p>
+      <?php $t = $web_model->get_text("lanzamiento-desc","Obtené asesoramiento personalizado"); ?>
+      <p data-id="<?php echo $t->id?>" data-clave="<?php echo $t->clave ?>" class="editable"><?php echo $t->plain_text ?></p>
       <div class="text-center">
         <a class="boton-lanzamiento" href="<?php echo mklink('/') ?>#lanzamiento_preventa">¡Solicitá asesoramiento ahora!</a>
       </div>
