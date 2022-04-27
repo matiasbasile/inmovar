@@ -574,4 +574,4 @@ input[type=submit] {
 
 .search-area { background: <?php echo $c1 ?>; }
 .buscador-home label { color: white; }
-.property .button, input[type=submit] { background-color: <?php echo $c2 ?>; }
+.property .button, input[type=submit] { background-color: <?php echo $c2 ?> !important; }
