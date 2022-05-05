@@ -73,7 +73,8 @@ include "templates/comun/pre_head.php" ?>
   <section class="mt-5 sobre-nosotros" id="sobre_nosotros_section">
     <div class="container">
       <div class="sobre-nosotros-titulo">
-        <h4>Sobre urbano 473</h4>
+        <h4>Sobre</h4>
+        <h4>Urbano 473</h4>
         <hr class="divider">
         <?php $t = $web_model->get_text("sobre-desc","Pensado para familias que buscan seguridad, <br> priorizando la cercanía de la ciudad."); ?>
         <p data-id="<?php echo $t->id?>" data-clave="<?php echo $t->clave ?>" class="editable"><?php echo $t->plain_text ?></p>
