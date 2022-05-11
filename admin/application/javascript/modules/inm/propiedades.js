@@ -167,6 +167,7 @@
       links_ical: "",
 
       de_prueba: 0, // Indica si son propiedades cargadas de prueba
+      es_oferta: 0, // Indica si la propiedad esta en oferta
 
       acepta_financiacion: 0,
       parrilla: 0,
@@ -2671,6 +2672,7 @@
           "publica_precio":(self.$("#propiedad_publica_precio").val()),
           "fecha_publicacion":((self.$("#propiedad_fecha_publicacion").length > 0) ? self.$("#propiedad_fecha_publicacion").val() : ""),
           "apto_banco":(self.$("#propiedad_apto_banco").is(":checked") ? 1 : 0),
+          "es_oferta":(self.$("#propiedad_es_oferta").is(":checked") ? 1 : 0),
           "acepta_permuta":permuta,
           "publica_altura":((self.$("#propiedad_publica_altura").length > 0) ? (self.$("#propiedad_publica_altura").is(":checked")?1:0) : 0),
           "superficie_total":self.$("#propiedad_superficie_total").val(),

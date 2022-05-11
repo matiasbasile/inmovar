@@ -369,6 +369,7 @@ class Propiedad_Model {
     $in_ids_localidades = isset($config["in_ids_localidades"]) ? $config["in_ids_localidades"] : "";
     $in_ids_tipo_inmueble = isset($config["in_ids_tipo_inmueble"]) ? $config["in_ids_tipo_inmueble"] : "";
     $in_dormitorios = isset($config["in_dormitorios"]) ? $config["in_dormitorios"] : "";
+    $es_oferta = isset($config["es_oferta"]) ? $config["es_oferta"] : 0;
 
     $view = isset($get_params["view"]) ? $get_params["view"] : 0;
     $tiene_balcon = isset($get_params["balcon"]) ? $get_params["balcon"] : 0;
@@ -442,6 +443,7 @@ class Propiedad_Model {
         "ids_tipo_operacion"=>$ids_tipo_operacion,
         "order_empresa"=>$order_empresa,
         "id_usuario"=>$id_usuario,
+        "es_oferta"=>$es_oferta,
       );
 
       if ($moneda == "USD") {
@@ -552,6 +554,7 @@ class Propiedad_Model {
       "vc_in_ids_localidades"=>$in_ids_localidades,
       "vc_in_ids_tipo_inmueble"=>$in_ids_tipo_inmueble,
       "vc_in_dormitorios"=>$in_dormitorios,
+      "vc_es_oferta"=>$es_oferta,
     );
   }
 
@@ -1072,6 +1075,7 @@ class Propiedad_Model {
     $offset = isset($config["offset"]) ? intval($config["offset"]) : 6;
     $activo = isset($config["activo"]) ? intval($config["activo"]) : 1;
     $mostrar_home = isset($config["mostrar_home"]) ? intval($config["mostrar_home"]) : -1;
+    $es_oferta = isset($config["es_oferta"]) ? intval($config["es_oferta"]) : -1;
     $destacado = isset($config["destacado"]) ? intval($config["destacado"]) : -1; // -1 = No se tiene en cuenta el parametro
     $filter = isset($config["filter"]) ? $config["filter"] : "";
     $codigo = isset($config["codigo"]) ? ($config["codigo"]) : 0;
@@ -1214,6 +1218,7 @@ class Propiedad_Model {
     }
     if ($activo != -1) $sql.= "AND A.activo = $activo ";
     if ($mostrar_home != -1) $sql.= "AND A.mostrar_home = $mostrar_home ";
+    if ($es_oferta != -1) $sql.= "AND A.es_oferta = $es_oferta ";
     if ($destacado == 0) $sql.= "AND A.destacado = 0 ";
     else if ($destacado == 1) $sql.= "AND A.destacado > 0 ";
     if ($antiguedad != 0) $sql.= "AND A.nuevo = $antiguedad ";

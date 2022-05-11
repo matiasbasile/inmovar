@@ -297,6 +297,14 @@ if ( $nombre_pagina == "ficha") {
     if (file_exists($dir_template."gracias.php")) include($dir_template."gracias.php");
     else go_404();
 
+  } else if ($nombre_pagina == "ofertas" || $nombre_pagina == "oportunidades") {
+    if (file_exists($dir_template."propiedades_listado.php")) {
+      $buscar_ofertas = 1;
+      include($dir_template."propiedades_listado.php");
+    } else  {
+      go_404();
+    }
+
   } else if ($nombre_pagina == "pagina") {
     $id = substr($ultimo,strrpos($ultimo,"-")+1); // Obtenemos el ID del ultimo parametro
     if (file_exists($dir_template.$empresa->template_pagina.".php")) include($dir_template.$empresa->template_pagina.".php");

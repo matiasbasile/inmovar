@@ -195,6 +195,16 @@
               </label>
             </div>
           </div>
+
+          <div class="col-md-2">
+            <div class="form-group">
+              <label class="i-checks">
+                <input <%= (!edicion)?"disabled":"" %> type="checkbox" id="propiedad_es_oferta" name="es_oferta" class="checkbox" value="1" <%= (es_oferta == 1)?"checked":"" %> >
+                <i></i> Oportunidad / Oferta
+              </label>
+            </div>
+          </div>
+
         </div> 
         <div class="permutas_div <%= (acepta_permuta == 1)?"":"dn" %>">
           <div class="row">
