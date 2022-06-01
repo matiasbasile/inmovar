@@ -14,7 +14,7 @@ if (isset($params[1])) {
   if ($params[1] == "proyectos-finalizados") {
     $get_params["offset"] = 999;
     extract($propiedad_model->get_variables(array(
-      "orden"=>7
+      "orden"=>5
     )));
     if (isset($get_params["test"])) echo $propiedad_model->get_sql();
     $vc_total_resultados = sizeof($vc_listado);
