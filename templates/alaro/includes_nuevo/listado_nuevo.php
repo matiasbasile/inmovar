@@ -13,6 +13,7 @@ if (isset($params[1])) {
 if (isset($params[1])) {
   if ($params[1] == "proyectos-finalizados") {
     $get_params["offset"] = 999;
+    echo "1";
     extract($propiedad_model->get_variables(array(
       "order"=>7
     )));
