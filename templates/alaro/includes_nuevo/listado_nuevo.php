@@ -16,6 +16,7 @@ if (isset($params[1])) {
     extract($propiedad_model->get_variables(array(
       "orden"=>7
     )));
+    if (isset($get_params["test"])) echo $propiedad_model->get_sql();
     $vc_total_resultados = sizeof($vc_listado);
   }
 }
