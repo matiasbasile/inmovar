@@ -957,6 +957,8 @@ class Propiedad_Model {
     $p->nombre = $this->encod($p->nombre);
     if (isset($p->codigo_completo) && !empty($p->codigo_completo)) $p->codigo = $p->codigo_completo;
 
+    if ($p->id_empresa == 1575) $p->tipo_estado = "Nuevo Proyecto";
+
     $p->videos = array();
 
     $p->youtube_embed = "";
