@@ -369,7 +369,7 @@ class Propiedad_Model {
     $in_ids_localidades = isset($config["in_ids_localidades"]) ? $config["in_ids_localidades"] : "";
     $in_ids_tipo_inmueble = isset($config["in_ids_tipo_inmueble"]) ? $config["in_ids_tipo_inmueble"] : "";
     $in_dormitorios = isset($config["in_dormitorios"]) ? $config["in_dormitorios"] : "";
-    $es_oferta = isset($config["es_oferta"]) ? $config["es_oferta"] : 0;
+    $es_oferta = isset($config["es_oferta"]) ? $config["es_oferta"] : -1;
 
     $view = isset($get_params["view"]) ? $get_params["view"] : 0;
     $tiene_balcon = isset($get_params["balcon"]) ? $get_params["balcon"] : 0;
