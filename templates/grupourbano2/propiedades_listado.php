@@ -4,7 +4,10 @@ if (!isset($config_grupo)) $config_grupo = array();
 $config_grupo["orden_default"] = 8; 
 
 // Si tiene el flag de ofertas
-if (isset($buscar_ofertas)) $config_grupo["es_oferta"] = 1;
+if (isset($buscar_ofertas)) {
+  $config_grupo["solo_propias"] = 1;
+  $config_grupo["es_oferta"] = 1;
+}
 
 $propiedades = extract($propiedad_model->get_variables($config_grupo));
 if (isset($get_params["test"])) echo $propiedad_model->get_sql();
