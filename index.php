@@ -409,7 +409,8 @@ if ( $nombre_pagina == "ficha") {
     // Propiedades en Venta de La Plata
     $config_grupo = array(
       "link_tipo_operacion"=>"ventas",
-      "id_localidad"=>513
+      "id_localidad"=>513,
+      "solo_propias"=>1,
     );
     include($dir_template."propiedades_listado.php");
 
@@ -417,7 +418,8 @@ if ( $nombre_pagina == "ficha") {
     // Propiedades en Venta de Gonnet
     $config_grupo = array(
       "link_tipo_operacion"=>"ventas",
-      "id_localidad"=>396
+      "id_localidad"=>396,
+      "solo_propias"=>1,
     );
     include($dir_template."propiedades_listado.php");
 
@@ -425,7 +427,8 @@ if ( $nombre_pagina == "ficha") {
     // Propiedades en Venta de City Bell
     $config_grupo = array(
       "link_tipo_operacion"=>"ventas",
-      "id_localidad"=>205
+      "id_localidad"=>205,
+      "solo_propias"=>1,
     );
     include($dir_template."propiedades_listado.php");
 
@@ -433,7 +436,8 @@ if ( $nombre_pagina == "ficha") {
     // Propiedades en Venta de Mar del Plata, Villa Gesell
     $config_grupo = array(
       "link_tipo_operacion"=>"ventas",
-      "in_ids_localidades"=>"600,951"
+      "in_ids_localidades"=>"600,951",
+      "solo_propias"=>1,
     );
     include($dir_template."propiedades_listado.php");
 
@@ -443,6 +447,7 @@ if ( $nombre_pagina == "ficha") {
       "id_localidad"=>513,
       "id_tipo_inmueble"=>2, // Depto / Monoambiente
       "in_dormitorios"=>"1,2",
+      "solo_propias"=>1,
     );
     include($dir_template."propiedades_listado.php");
 
@@ -452,6 +457,7 @@ if ( $nombre_pagina == "ficha") {
       "id_localidad"=>513,
       "id_tipo_inmueble"=>2, // Depto
       "in_dormitorios"=>"1,2",
+      "solo_propias"=>1,
     );
     include($dir_template."propiedades_listado.php");
 
@@ -461,6 +467,7 @@ if ( $nombre_pagina == "ficha") {
       "id_localidad"=>513,
       "id_tipo_inmueble"=>2, // Depto
       "in_dormitorios"=>"2,3",
+      "solo_propias"=>1,
     );
     include($dir_template."propiedades_listado.php");
 
@@ -469,6 +476,7 @@ if ( $nombre_pagina == "ficha") {
       "link_tipo_operacion"=>"alquileres",
       "id_localidad"=>513,
       "id_tipo_inmueble"=>9, // Local
+      "solo_propias"=>1,
     );
     include($dir_template."propiedades_listado.php");
 
@@ -477,6 +485,7 @@ if ( $nombre_pagina == "ficha") {
       "link_tipo_operacion"=>"ventas",
       "id_localidad"=>513,
       "id_tipo_inmueble"=>2, // Depto / Monoambiente
+      "solo_propias"=>1,
     );
     include($dir_template."propiedades_listado.php");
 
@@ -485,6 +494,7 @@ if ( $nombre_pagina == "ficha") {
       "link_tipo_operacion"=>"ventas",
       "id_localidad"=>513,
       "id_tipo_inmueble"=>1, // Casa
+      "solo_propias"=>1,
     );
     include($dir_template."propiedades_listado.php");
 
@@ -493,6 +503,7 @@ if ( $nombre_pagina == "ficha") {
       "link_tipo_operacion"=>"ventas",
       "id_localidad"=>513,
       "id_tipo_inmueble"=>7, // Lotes
+      "solo_propias"=>1,
     );
     include($dir_template."propiedades_listado.php");
 
@@ -502,6 +513,7 @@ if ( $nombre_pagina == "ficha") {
       "id_localidad"=>513,
       "in_ids_operaciones"=>"1,5", // Venta / Obras
       "id_tipo_inmueble"=>2, // Depto / Monoambiente
+      "solo_propias"=>1,
     );
     include($dir_template."propiedades_listado.php");
 
