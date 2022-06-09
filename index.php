@@ -486,6 +486,7 @@ if ( $nombre_pagina == "ficha") {
       "id_localidad"=>513,
       "id_tipo_inmueble"=>2, // Depto / Monoambiente
       "solo_propias"=>1,
+      "dm"=>1, //1 Dormitorio
     );
     include($dir_template."propiedades_listado.php");
 
@@ -493,7 +494,7 @@ if ( $nombre_pagina == "ficha") {
     $config_grupo = array(
       "link_tipo_operacion"=>"ventas",
       "id_localidad"=>513,
-      "id_tipo_inmueble"=>1, // Casa
+      "in_ids_tipo_inmueble"=>"1,15", // Casa / Duplex
       "solo_propias"=>1,
     );
     include($dir_template."propiedades_listado.php");
@@ -501,7 +502,7 @@ if ( $nombre_pagina == "ficha") {
   } else if ($nombre_pagina == "vamos-a-construir") {
     $config_grupo = array(
       "link_tipo_operacion"=>"ventas",
-      "id_localidad"=>513,
+      //"id_localidad"=>513, //Cambio Marcelo 09/06/2022
       "id_tipo_inmueble"=>7, // Lotes
       "solo_propias"=>1,
     );
@@ -511,9 +512,10 @@ if ( $nombre_pagina == "ficha") {
     $config_grupo = array(
       "link_tipo_operacion"=>"ventas",
       "id_localidad"=>513,
-      "in_ids_operaciones"=>"1,5", // Venta / Obras
+      "in_ids_operaciones"=>"1,4,5", // Venta / Emprendimientos / Obras
       "id_tipo_inmueble"=>2, // Depto / Monoambiente
       "solo_propias"=>1,
+      "dm"=>1, //1 Dormitorio"
     );
     include($dir_template."propiedades_listado.php");
 
