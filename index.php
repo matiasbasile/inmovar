@@ -486,7 +486,7 @@ if ( $nombre_pagina == "ficha") {
       "id_localidad"=>513,
       "id_tipo_inmueble"=>2, // Depto / Monoambiente
       "solo_propias"=>1,
-      "dm"=>1, //1 Dormitorio
+      "in_dormitorios"=>"1", //1 Dormitorio
     );
     include($dir_template."propiedades_listado.php");
 
@@ -515,7 +515,7 @@ if ( $nombre_pagina == "ficha") {
       "in_ids_operaciones"=>"1,4,5", // Venta / Emprendimientos / Obras
       "id_tipo_inmueble"=>2, // Depto / Monoambiente
       "solo_propias"=>1,
-      "dm"=>1, //1 Dormitorio"
+      "in_dormitorios"=>"1", //1 Dormitorio
     );
     include($dir_template."propiedades_listado.php");
 
