@@ -555,6 +555,7 @@ class Propiedad_Model {
       "vc_in_ids_tipo_inmueble"=>$in_ids_tipo_inmueble,
       "vc_in_dormitorios"=>$in_dormitorios,
       "vc_es_oferta"=>$es_oferta,
+      "vc_solo_propias"=>$config["solo_propias"],
     );
   }
 
