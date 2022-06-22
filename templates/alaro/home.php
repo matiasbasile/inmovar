@@ -20,6 +20,12 @@ error_reporting(E_ALL); ?>
 		<div class="swiper-wrapper">
 			<?php foreach ($slides as $s) {  ?>
 				<div class="swiper-slide">
+          <img class="img-cover" src="<?php echo $s->path ?>"
+            <?php if (!empty($s->path_movil)) { ?>
+              srcset="<?php echo $s->path_movil ?> 768w"
+              size="(max-width: 768px) 768w"
+            <?php } ?>
+          />
           <div style="background: url(<?php echo $s->background ?>); background-size: cover">
   					<div class="heading-wrap">
   						<div class="table-container">
