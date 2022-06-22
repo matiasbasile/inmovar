@@ -203,6 +203,9 @@ class Web_Model {
       if (!empty($row->path)) {
         $row->path = ((strpos($row->path,"http://")===FALSE)) ? "/admin/".$row->path : $row->path;
       }
+      if (!empty($row->path_movil)) {
+        $row->path_movil = ((strpos($row->path_movil,"http://")===FALSE)) ? "/admin/".$row->path_movil : $row->path_movil;
+      }
       if (!empty($row->path_2)) {
         $row->path_2 = ((strpos($row->path_2,"http://")===FALSE)) ? "/admin/".$row->path_2 : $row->path_2;
       }
