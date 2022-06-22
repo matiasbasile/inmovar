@@ -1160,6 +1160,12 @@
             </label>
             <textarea name="codigo_seguimiento" id="propiedad_codigo_seguimiento" class="form-control"><%= codigo_seguimiento %></textarea>
           </div>
+          <% if (VOLVER_SUPERADMIN == 1) { %>
+            <div class="form-group">
+              <label class="control-label">Link</label>
+              <input type="text" name="link" id="propiedad_link" value="<%= link %>" class="form-control"/>
+            </div>
+          <% } %>
         </div>
       </div>
     </div>
