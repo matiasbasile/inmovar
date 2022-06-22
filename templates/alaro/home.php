@@ -7,6 +7,10 @@ error_reporting(E_ALL); ?>
 <html dir="ltr" lang="en-US">
 <head>
 	<?PHP include "includes_nuevo/head.php" ?>
+<style type="text/css">
+.swiper-slide { position: relative; }
+.swiper-slide .img-cover { position: absolute; width: 100%; height: 100%; display: block; object-fit: cover; }
+</style>
 </head>
 <body class="loading">
 
