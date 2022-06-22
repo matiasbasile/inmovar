@@ -26,27 +26,25 @@ error_reporting(E_ALL); ?>
               size="(max-width: 768px) 768w"
             <?php } ?>
           />
-          <div style="background: url(<?php echo $s->background ?>); background-size: cover">
-  					<div class="heading-wrap">
-  						<div class="table-container">
-  							<div class="align-container">
-  								<div class="container">
-  									<div class="slide-caption">
-  										<div class="sub-heading"><?php echo $s->linea_1 ?></div>
-  										<div class="heading"><?php echo $s->linea_2 ?></div>
-  										<p><?php echo $s->linea_3 ?></p>
-  										<?php if (!empty($s->link_1)) {  ?>
-  											<div class="clearfix">
-  												<a class="btn btn-black" href="<?php echo $s->link_1 ?>"><?php echo $s->texto_link_1 ?></a>
-  												<?php if (!empty($s->link_2)) {  ?><a class="btn btn-red" href="<?php echo $s->link_2 ?>"><?php echo $s->texto_link_2 ?></a><?php } ?>
-  											</div>
-  										<?php } ?>
-  									</div>
-  								</div>
-  							</div>
-  						</div>
-  					</div>
-          </div>
+					<div class="heading-wrap">
+						<div class="table-container">
+							<div class="align-container">
+								<div class="container">
+									<div class="slide-caption">
+										<div class="sub-heading"><?php echo $s->linea_1 ?></div>
+										<div class="heading"><?php echo $s->linea_2 ?></div>
+										<p><?php echo $s->linea_3 ?></p>
+										<?php if (!empty($s->link_1)) {  ?>
+											<div class="clearfix">
+												<a class="btn btn-black" href="<?php echo $s->link_1 ?>"><?php echo $s->texto_link_1 ?></a>
+												<?php if (!empty($s->link_2)) {  ?><a class="btn btn-red" href="<?php echo $s->link_2 ?>"><?php echo $s->texto_link_2 ?></a><?php } ?>
+											</div>
+										<?php } ?>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			<?php } ?>
 		</div>
