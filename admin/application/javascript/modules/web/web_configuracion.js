@@ -1441,6 +1441,7 @@
         this.model.save({
             //"texto_1":cktext,
             "path":$("#hidden_path").val(),
+            "path_movil":$("#hidden_path_movil").val(),
             "path_2":$("#hidden_path_2").val(),
             "texto_link_1":$("#web_slider_texto_link_1").val(),
             "texto_link_2":$("#web_slider_texto_link_2").val(),
