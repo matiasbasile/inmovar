@@ -26,8 +26,8 @@ error_reporting(E_ALL); ?>
 				<div class="swiper-slide">
           <img class="img-cover" src="<?php echo $s->path ?>"
             <?php if (!empty($s->path_movil)) { ?>
-              srcset="<?php echo $s->path_movil ?> 768w, <?php echo $s->path ?> 1024w"
-              size="(max-width: 768px) 768px, (min-width: 769px) 1024px"
+              srcset="<?php echo $s->path_movil ?> 968w, <?php echo $s->path ?> 1024w"
+              size="(max-width: 968px) 968px, (min-width: 969px) 1024px"
             <?php } ?>
           />
 					<div class="heading-wrap">
