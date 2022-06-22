@@ -25,7 +25,7 @@
       <img src="assets_nuevo/images/logo1.png" alt="Logo" /></a>
     <?php } ?>
   </div>
-  <a href="javascript:void(0);" onClick="$('.header-right').slideToggle();" class="dots-toggle"><span></span> <span></span> <span></span></a>
+  <a href="javascript:void(0);" class="dots-toggle"><span></span> <span></span> <span></span></a>
   <div class="header-right">
     <nav>
       <ul>
@@ -44,7 +44,7 @@
       </ul>
     </nav>
   </div>
-  <a href="javascript:void(0);" class="toggle-menu"><span></span> <span></span> <span></span></a>
+  <a href="$('.header-right').slideToggle();" class="toggle-menu"><span></span> <span></span> <span></span></a>
 </header>
 
 <div class="slide-popup">

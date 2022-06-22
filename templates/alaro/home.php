@@ -448,10 +448,10 @@ error_reporting(E_ALL); ?>
   		$('html').click(function(e) {
   			$('html').removeClass('sidebar-open');
   		});
-  		$('.toggle-menu,.slide-popup').click(function(e) {
+  		$('.dots-toggle,.slide-popup').click(function(e) {
   			event.stopPropagation();
   		});
-  		$('.toggle-menu').click(function() {
+  		$('.dots-toggle').click(function() {
   			$('html').addClass('sidebar-open');
   		});
 
