@@ -27,7 +27,7 @@ error_reporting(E_ALL); ?>
           <img class="img-cover" src="<?php echo $s->path ?>"
             <?php if (!empty($s->path_movil)) { ?>
               srcset="<?php echo $s->path_movil ?> 768w"
-              size="(max-width: 768px) 768w"
+              size="(max-width: 768px) 768px"
             <?php } ?>
           />
 					<div class="heading-wrap">
