@@ -19,7 +19,7 @@ error_reporting(E_ALL); ?>
 	<section class="swiper-container fadeslides keyboard" data-autoplay="true">
 		<div class="swiper-wrapper">
 			<?php foreach ($slides as $s) {  ?>
-				<div class="swiper-slide" style="background: url(<?php echo $s->path ?>); background-size: cover">
+				<div class="swiper-slide" style="background: url(<?php echo $s->background ?>); background-size: cover">
 					<div class="heading-wrap">
 						<div class="table-container">
 							<div class="align-container">

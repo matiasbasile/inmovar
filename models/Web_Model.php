@@ -234,6 +234,13 @@ class Web_Model {
       }
       $row->texto_link_1 = $this->encod($row->texto_link_1);
       $row->texto_link_2 = $this->encod($row->texto_link_2);
+
+      // SI TIENE IMAGEN MOVIL, TENEMOS QUE USAR IMAGE-SET
+      $row->background = $row->path;
+      if (!empty($row->path_movil)) {
+        $row->background = "image-set( url($row->path_movil) 768w, url($row->path) 20480w )";
+      }
+
       $salida[] = $row;
     }
     return $salida;
