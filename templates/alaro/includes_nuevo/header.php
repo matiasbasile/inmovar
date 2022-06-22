@@ -25,7 +25,7 @@
       <img src="assets_nuevo/images/logo1.png" alt="Logo" /></a>
     <?php } ?>
   </div>
-  <a href="javascript:void(0);" onClick="$('html').removeClass('sidebar-open');" class="dots-toggle"><span></span> <span></span> <span></span></a>
+  <a href="javascript:void(0);" onClick="$('.header-right').slideToggle();" class="dots-toggle"><span></span> <span></span> <span></span></a>
   <div class="header-right">
     <nav>
       <ul>
@@ -48,7 +48,7 @@
 </header>
 
 <div class="slide-popup">
-  <a class="cloose" href="javascript:void(0)" onclick="$('.header-right').slideToggle();"><i class="fa fa-close"></i></a>
+  <a class="cloose" href="javascript:void(0)" onclick="$('html').removeClass('sidebar-open');"><i class="fa fa-close"></i></a>
   <h3>Sobre Nosotros</h3>
   <ul class="menu">
     <li>
@@ -91,66 +91,66 @@
   </div>
 </div>
 <script type="text/javascript">
-          function enviar_contacto_header() {
+function enviar_contacto_header() {
 
-            var nombre = jQuery("#contacto_nombre").val();
-            var email = jQuery("#contacto_email").val();
-            var mensaje = jQuery("#contacto_mensaje").val();
-            var telefono = jQuery("#contacto_telefono").val();
+  var nombre = jQuery("#contacto_nombre").val();
+  var email = jQuery("#contacto_email").val();
+  var mensaje = jQuery("#contacto_mensaje").val();
+  var telefono = jQuery("#contacto_telefono").val();
 
-            if (isEmpty(nombre) || nombre == "Nombre") {
-              alert("Por favor ingrese un nombre");
-              jQuery("#contacto_nombre").focus();
-              return false;          
-            }
+  if (isEmpty(nombre) || nombre == "Nombre") {
+    alert("Por favor ingrese un nombre");
+    jQuery("#contacto_nombre").focus();
+    return false;          
+  }
 
-            if (isEmpty(apellido) || apellido == "Apellido") {
-              alert("Por favor ingrese un apellido");
-              jQuery("#contacto_apellido").focus();
-              return false;          
-            }
+  if (isEmpty(apellido) || apellido == "Apellido") {
+    alert("Por favor ingrese un apellido");
+    jQuery("#contacto_apellido").focus();
+    return false;          
+  }
 
 
-            if (isEmpty(telefono) || telefono == "telefono") {
-              alert("Por favor ingrese un telefono");
-              jQuery("#contacto_telefono").focus();
-              return false;          
-            }
+  if (isEmpty(telefono) || telefono == "telefono") {
+    alert("Por favor ingrese un telefono");
+    jQuery("#contacto_telefono").focus();
+    return false;          
+  }
 
-            if (!validateEmail(email)) {
-              alert("Por favor ingrese un email valido");
-              jQuery("#contacto_email").focus();
-              return false;          
-            }
-            if (isEmpty(mensaje) || mensaje == "Mensaje") {
-              alert("Por favor ingrese un mensaje");
-              jQuery("#contacto_mensaje").focus();
-              return false;              
-            }    
-            jQuery("#contacto_submit").attr('disabled', 'disabled');
-            var datos = {
-              "para":"<?php echo $empresa->email ?>",
-              "nombre":nombre,
-              "telefono":telefono,
-              "email":email,
-              "asunto":"Consulta desde web",
-              "mensaje":mensaje,
-              "id_empresa":ID_EMPRESA,
-            }
-            jQuery.ajax({
-              "url":"/admin/consultas/function/enviar/",
-              "type":"post",
-              "dataType":"json",
-              "data":datos,
-              "success":function(r){
-                if (r.error == 0) {
-                  alert("Muchas gracias por contactarse con nosotros. Le responderemos a la mayor brevedad!");
-                } else {
-                  alert("Ocurrio un error al enviar su email. Disculpe las molestias");
-                  jQuery("#contacto_submit").removeAttr('disabled');
-                }
-              }
-            });
-            return false;
-          }
-        </script>
+  if (!validateEmail(email)) {
+    alert("Por favor ingrese un email valido");
+    jQuery("#contacto_email").focus();
+    return false;          
+  }
+  if (isEmpty(mensaje) || mensaje == "Mensaje") {
+    alert("Por favor ingrese un mensaje");
+    jQuery("#contacto_mensaje").focus();
+    return false;              
+  }    
+  jQuery("#contacto_submit").attr('disabled', 'disabled');
+  var datos = {
+    "para":"<?php echo $empresa->email ?>",
+    "nombre":nombre,
+    "telefono":telefono,
+    "email":email,
+    "asunto":"Consulta desde web",
+    "mensaje":mensaje,
+    "id_empresa":ID_EMPRESA,
+  }
+  jQuery.ajax({
+    "url":"/admin/consultas/function/enviar/",
+    "type":"post",
+    "dataType":"json",
+    "data":datos,
+    "success":function(r){
+      if (r.error == 0) {
+        alert("Muchas gracias por contactarse con nosotros. Le responderemos a la mayor brevedad!");
+      } else {
+        alert("Ocurrio un error al enviar su email. Disculpe las molestias");
+        jQuery("#contacto_submit").removeAttr('disabled');
+      }
+    }
+  });
+  return false;
+}
+</script>
