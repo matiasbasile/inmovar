@@ -25,7 +25,7 @@
       <img src="assets_nuevo/images/logo1.png" alt="Logo" /></a>
     <?php } ?>
   </div>
-  <a href="javascript:void(0);" onClick="$('.header-right').slideToggle();" class="dots-toggle"><span></span> <span></span> <span></span></a>
+  <a href="javascript:void(0);" onClick="$('html').removeClass('sidebar-open');" class="dots-toggle"><span></span> <span></span> <span></span></a>
   <div class="header-right">
     <nav>
       <ul>
@@ -48,7 +48,7 @@
 </header>
 
 <div class="slide-popup">
-  <a class="cloose" href="javascript:void(0)" onclick="$('html').removeClass('sidebar-open');"><i class="fa fa-close"></i></a>
+  <a class="cloose" href="javascript:void(0)" onclick="$('.header-right').slideToggle();"><i class="fa fa-close"></i></a>
   <h3>Sobre Nosotros</h3>
   <ul class="menu">
     <li>
