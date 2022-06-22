@@ -992,6 +992,7 @@
       linea_4_pt:"",
       linea_5_pt:"",
       video: "",
+      path_movil: "",
     }
   });
     

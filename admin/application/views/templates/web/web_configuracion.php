@@ -1549,6 +1549,17 @@ if (!empty($empresa->path_template)) {
       )); ?>        
     <% } %>
 
+    <?php 
+    single_upload(array(
+      "name"=>"path_movil",
+      "label"=>"Imagen para Celular",
+      "url"=>"/admin/web_slider/function/save_image/",
+      "url_file"=>"/admin/web_slider/function/save_file/",
+      "width"=>(isset($empresa->config["slider_movil_home_image_width"]) ? $empresa->config["slider_movil_home_image_width"] : 512),
+      "height"=>(isset($empresa->config["slider_movil_home_image_height"]) ? $empresa->config["slider_movil_home_image_height"] : 1024),
+      "quality"=>(isset($empresa->config["slider_movil_home_image_quality"]) ? $empresa->config["slider_movil_home_image_quality"] : 0.92),
+    )); ?>
+
     <div class="form-group lang-control">
       <div class="clearfix">
         <label class="control-label m-t-xs">
