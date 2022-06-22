@@ -238,7 +238,7 @@ class Web_Model {
       // SI TIENE IMAGEN MOVIL, TENEMOS QUE USAR IMAGE-SET
       $row->background = $row->path;
       if (!empty($row->path_movil)) {
-        $row->background = "image-set( url($row->path_movil) 768w )";
+        $row->background = "image-set( url($row->path_movil) 768w, url($row->path) 20480w )";
       }
 
       $salida[] = $row;
