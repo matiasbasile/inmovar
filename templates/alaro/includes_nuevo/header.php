@@ -44,7 +44,7 @@
       </ul>
     </nav>
   </div>
-  <a href="$('.header-right').slideToggle();" class="toggle-menu"><span></span> <span></span> <span></span></a>
+  <a href="javascript:void(0);" onclick="$('.header-right').slideToggle();" class="toggle-menu"><span></span> <span></span> <span></span></a>
 </header>
 
 <div class="slide-popup">
