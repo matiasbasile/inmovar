@@ -73,7 +73,15 @@
   <div class="page-heading mt-5">
     <div class="row justify-content-between">
       <div class="col-md-7">
-        <select onchange="cambiar_checkboxes(this)" name="orden" class="form-control form-primary">
+        <?php 
+        // Si estoy en un link especial de grupo urbano, llamamos a otra funcion
+        if (isset($config_grupo)) {
+          $funcion = "order_solo()";
+        } else {
+          $funcion = "cambiar_checkboxes(this)";
+        }
+        ?>
+        <select onchange="<?php echo $funcion ?>" name="orden" class="form-control form-primary">
           <option <?php echo($vc_orden == 8)?"selected":"" ?> value="8">Propiedades Destacadas</option>
           <option <?php echo($vc_orden == 2)?"selected":"" ?> value="2">Precio Menor a Mayor</option>
           <option <?php echo($vc_orden == 1)?"selected":"" ?> value="1">Precio Mayor a Menor</option>
@@ -90,11 +98,11 @@
       </div>
       <div class="col-md-5 text-right">
         <div class="custom-check">
-          <input onchange="cambiar_checkboxes(this)" class="styled-checkbox" id="styled-checkbox-1" <?php echo ($vc_apto_banco == 1)?"checked":"" ?> type="checkbox" name="banco" value="1">
+          <input onchange="<?php echo $funcion ?>" class="styled-checkbox" id="styled-checkbox-1" <?php echo ($vc_apto_banco == 1)?"checked":"" ?> type="checkbox" name="banco" value="1">
           <label for="styled-checkbox-1">Apto Crédito</label>
         </div>
         <div class="custom-check">
-          <input onchange="cambiar_checkboxes(this)" class="styled-checkbox" id="styled-checkbox-2" <?php echo ($vc_acepta_permuta == 1)?"checked":"" ?> type="checkbox" name="per" value="1">
+          <input onchange="<?php echo $funcion ?>" class="styled-checkbox" id="styled-checkbox-2" <?php echo ($vc_acepta_permuta == 1)?"checked":"" ?> type="checkbox" name="per" value="1">
           <label for="styled-checkbox-2">Acepta Permuta</label>
         </div>
       </div>

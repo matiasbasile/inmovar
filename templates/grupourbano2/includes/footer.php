@@ -117,6 +117,11 @@ function cambiar_checkboxes(e) {
   $(form).submit();
 }
 
+function order_solo() {
+  var orden = $("#form_buscador select[name=orden]").val();
+  location.href = "<?php echo current_url() ?>"+"?orden="+orden;
+}
+
 function filtrar(form) {
   var url = $(form).find(".base_url").val();
   var tipo_operacion = $(form).find(".filter_tipo_operacion").val();
