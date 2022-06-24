@@ -122,8 +122,8 @@ function order_solo() {
   var base = "<?php echo current_url(FALSE,TRUE) ?>";
   base += (base.substr(-1) == "/") ? "" : "/";
   base += "?orden="+orden;
-  if ($("#styled-checkbox-1").is("checked")) base += "&banco=1";
-  if ($("#styled-checkbox-2").is("checked")) base += "&per=1";
+  if ($("#styled-checkbox-1").is(":checked")) base += "&banco=1";
+  if ($("#styled-checkbox-2").is(":checked")) base += "&per=1";
   location.href = base;
 }
 
