@@ -119,7 +119,7 @@ function cambiar_checkboxes(e) {
 
 function order_solo() {
   var orden = $("#form_buscador select[name=orden]").val();
-  location.href = "<?php echo current_url() ?>"+"?orden="+orden;
+  location.href = "<?php echo current_url() ?>"+"/?orden="+orden;
 }
 
 function filtrar(form) {
