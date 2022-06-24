@@ -119,9 +119,13 @@ function cambiar_checkboxes(e) {
 
 function order_solo() {
   var orden = $("#form_buscador select[name=orden]").val();
+  var apto_credito = 
   var base = "<?php echo current_url(FALSE,TRUE) ?>";
   base += (base.substr(-1) == "/") ? "" : "/";
-  location.href = base + "?orden="+orden;
+  base += "?orden="+orden;
+  if ($("#styled-checkbox-1").is("checked")) base += "&banco=1";
+  if ($("#styled-checkbox-2").is("checked")) base += "&per=1";
+  location.href = base;
 }
 
 function filtrar(form) {
