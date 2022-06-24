@@ -493,7 +493,6 @@ if ( $nombre_pagina == "ficha") {
   } else if ($nombre_pagina == "mi-casa") {
     $config_grupo = array(
       "link_tipo_operacion"=>"ventas",
-      "id_localidad"=>513,
       "in_ids_tipo_inmueble"=>"1,15", // Casa / Duplex
       "solo_propias"=>1,
     );
