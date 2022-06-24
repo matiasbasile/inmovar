@@ -121,7 +121,7 @@ function order_solo() {
   var orden = $("#form_buscador select[name=orden]").val();
   var base = "<?php echo current_url(FALSE,TRUE) ?>";
   base += (base.substr(-1) == "/") ? "" : "/";
-  location.href = +"?orden="+orden;
+  location.href = base + "?orden="+orden;
 }
 
 function filtrar(form) {
