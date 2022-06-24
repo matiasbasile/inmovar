@@ -105,6 +105,16 @@
         <span class="tag_buscador" data-field="filter_propiedad"><?php echo $vc_tipo_inmueble ?> <i class="fa fa-times"></i></span>
       <?php } ?>
 
+      <?php if (!empty($vc_in_ids_tipo_inmueble)) {
+        $ids_tipo_inmueble = explode(",", $vc_in_ids_tipo_inmueble);
+        foreach($ids_tipo_inmueble as $iti) {
+          $sql = "SELECT nombre FROM inm_tipos_inmueble WHERE id = '$iti' ";
+          $qq = mysqli_query($conx,$sql);
+          $rr = mysqli_fetch_object($qq); ?>
+          <span class="tag_buscador" data-field="filter_propiedad"><?php echo $rr->nombre ?> <i class="fa fa-times"></i></span>
+        <?php } ?>
+      <?php } ?>
+
       <?php if (!empty($vc_nombre_localidad)) { ?>
         <span class="tag_buscador" data-field="filter_localidad"><?php echo $vc_nombre_localidad ?> <i class="fa fa-times"></i></span>
       <?php } ?>
