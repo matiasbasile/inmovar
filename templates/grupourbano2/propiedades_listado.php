@@ -9,7 +9,7 @@ if (isset($buscar_ofertas)) {
   $config_grupo["es_oferta"] = 1;
 }
 
-$propiedades = extract($propiedad_model->get_variables($config_grupo));
+extract($propiedad_model->get_variables($config_grupo));
 if (isset($get_params["test"])) echo $propiedad_model->get_sql();
 $nombre_pagina = $vc_link_tipo_operacion;
 ?>
