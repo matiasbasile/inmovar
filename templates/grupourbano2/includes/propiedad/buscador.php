@@ -123,8 +123,8 @@
         <span class="tag_buscador" data-field="filter_dormitorios"><?php echo $vc_dormitorios.(($vc_banios > 1)?" Dormitorios":" Dormitorio") ?> <i class="fa fa-times"></i></span>
       <?php } ?>
 
-      <?php if (!empty($in_dormitorios)) {
-        $dormitorios_array = explode(",", $in_dormitorios);
+      <?php if (!empty($vc_in_dormitorios)) {
+        $dormitorios_array = explode(",", $vc_in_dormitorios);
         foreach($dormitorios_array as $iti) { ?>
           <span class="tag_buscador" data-field="filter_dormitorios"><?php echo $iti ?> <i class="fa fa-times"></i></span>
         <?php } ?>
