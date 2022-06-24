@@ -120,13 +120,13 @@
       <?php } ?>
 
       <?php if (!empty($vc_dormitorios)) { ?>
-        <span class="tag_buscador" data-field="filter_dormitorios"><?php echo $vc_dormitorios.(($vc_banios > 1)?" Dormitorios":" Dormitorio") ?> <i class="fa fa-times"></i></span>
+        <span class="tag_buscador" data-field="filter_dormitorios"><?php echo $vc_dormitorios.(($vc_dormitorios > 1)?" Dormitorios":" Dormitorio") ?> <i class="fa fa-times"></i></span>
       <?php } ?>
 
       <?php if (!empty($vc_in_dormitorios)) {
         $dormitorios_array = explode(",", $vc_in_dormitorios);
         foreach($dormitorios_array as $iti) { ?>
-          <span class="tag_buscador" data-field="filter_dormitorios"><?php echo $iti ?> <i class="fa fa-times"></i></span>
+          <span class="tag_buscador" data-field="filter_dormitorios"><?php echo $iti.(($iti > 1)?" Dormitorios":" Dormitorio") ?> <i class="fa fa-times"></i></span>
         <?php } ?>
       <?php } ?>
 
