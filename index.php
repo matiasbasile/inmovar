@@ -511,7 +511,7 @@ if ( $nombre_pagina == "ficha") {
     $config_grupo = array(
       "link_tipo_operacion"=>"ventas",
       "id_localidad"=>513,
-      "in_ids_operaciones"=>"1,4,5", // Venta / Emprendimientos / Obras
+      "ids_tipo_operacion"=>"1,4,5", // Venta / Emprendimientos / Obras
       "in_ids_tipo_inmueble"=>"2", // Depto / Monoambiente
       "solo_propias"=>1,
       "in_dormitorios"=>"1", //1 Dormitorio
