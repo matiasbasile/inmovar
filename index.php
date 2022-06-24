@@ -514,7 +514,7 @@ if ( $nombre_pagina == "ficha") {
       "ids_tipo_operacion"=>"1,4,5", // Venta / Emprendimientos / Obras
       "in_ids_tipo_inmueble"=>"2", // Depto / Monoambiente
       "solo_propias"=>1,
-      "in_dormitorios"=>"1", //1 Dormitorio
+      //"in_dormitorios"=>"1", //1 Dormitorio
     );
     include($dir_template."propiedades_listado.php");
 
