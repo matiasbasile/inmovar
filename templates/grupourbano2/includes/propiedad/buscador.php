@@ -2,6 +2,7 @@
 <form id="form_buscador" onsubmit="return filtrar(this)" method="get" class="form-responsive mt-5">
   <div class="form-block">
     <input type="hidden" class="base_url" value="<?php echo (isset($buscador_mapa) ? mklink("mapa/") : mklink("propiedades/")) ?>" />
+    <input type="hidden" name="propias" value="<?php echo (isset($config_grupo["solo_propias"]) ? $config_grupo["solo_propias"] : 0) ?>" />
     <div class="form">
       <select class="form-control filter_tipo_operacion">
         <?php $tipos_op = $propiedad_model->get_tipos_operaciones(array(

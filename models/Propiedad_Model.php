@@ -472,6 +472,7 @@ class Propiedad_Model {
       }
     }
     if (isset($config["moneda"])) $config_list["moneda"] = $config["moneda"];
+    if (isset($get_params["propias"])) $config_list["solo_propias"] = intval($get_params["propias"]);
     if (isset($config["solo_propias"])) $config_list["solo_propias"] = $config["solo_propias"];
 
     // Si es obras o emprendimientos, son solo propios
