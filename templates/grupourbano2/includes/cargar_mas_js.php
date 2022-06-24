@@ -27,6 +27,7 @@ function cargar() {
   data['vc_in_ids_tipo_inmueble'] = "<?php echo $vc_in_ids_tipo_inmueble ?>";
   data['vc_in_dormitorios'] = "<?php echo $vc_in_dormitorios ?>";
   data['vc_solo_propias'] = "<?php echo $vc_solo_propias ?>";
+  data['vc_es_oferta'] = "<?php echo (isset($buscar_ofertas)) ? "1" : "0" ?>";
   <?php if ($nombre_pagina == "nosotros") { ?>
     data['id_usuario'] = "<?php echo $id_usuario ?>";
   <?php } ?>
