@@ -40,7 +40,7 @@ $cookie_id_cliente = 0; //(isset($_COOKIE['idc'])) ? $_COOKIE['idc'] : 0;
 $cookie_hide_lightbox = 0; //(isset($_COOKIE['hide_lightbox'])) ? $_COOKIE['hide_lightbox'] : 0;
 
 // Seteamos la cookie para indicar que el cliente ya entro a esta propiedad
-$propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
+//$propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
 ?>
 <!DOCTYPE html>
 <html lang="en">
