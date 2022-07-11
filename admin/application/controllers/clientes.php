@@ -1078,8 +1078,7 @@ class Clientes extends REST_Controller {
       $limit = $this->input->get("limit");
       $offset = $this->input->get("offset");
       $buscar_respuesta = ($this->input->get("buscar_respuesta") !== FALSE) ? $this->input->get("buscar_respuesta") : 0;
-
-      $r = $this->modelo->buscar(array(
+      $conf = array(
         "filter"=>$filter,
         "codigo_propiedad"=>$codigo_propiedad,
         "order"=>$order_by.$order,
@@ -1097,7 +1096,9 @@ class Clientes extends REST_Controller {
         "custom_5"=>$custom_5,
         "desde"=>$desde,
         "hasta"=>$hasta,
-      ));
+      );
+      print_r($conf); exit();
+      $r = $this->modelo->buscar($conf);
       echo json_encode($r);
 
     } else {
