@@ -89,6 +89,10 @@
         "inquilinos": "ver_inquilinos",
         "propietarios": "ver_propietarios",
 
+        "cliente": "ver_cliente",
+        "inquilino": "ver_inquilino",
+        "propietario": "ver_propietario",
+
         "versiones_db": "ver_versiones_db",
         "version_db": "ver_version_db",
         "version_db/:id": "ver_version_db",
@@ -394,6 +398,33 @@
           });
         }
       },
+      ver_cliente: function(id) {
+        var self = this;
+        if (id == undefined) {
+          var edit = new app.views.ClienteEditView({
+            model: new app.models.Clientes({
+              "custom_3":"1",
+            }),
+            permiso: 3,
+          });
+          this.mostrar({
+            "top" : edit.el,
+          });
+        } else {
+          var cliente = new app.models.Clientes({ "id": id });
+          cliente.fetch({
+            "success":function() {
+              var edit = new app.views.ClienteEditView({
+                model: cliente,
+                permiso: 3
+              });
+              self.mostrar({
+                "top" : edit.el,
+              });
+            }
+          });
+        }
+      },
 
       ver_inquilinos: function() {
         var clientes = new app.collections.Clientes();
@@ -411,6 +442,33 @@
           });
         }
       },
+      ver_inquilino: function(id) {
+        var self = this;
+        if (id == undefined) {
+          var edit = new app.views.ClienteEditView({
+            model: new app.models.Clientes({
+              "custom_4":"1",
+            }),
+            permiso: 3,
+          });
+          this.mostrar({
+            "top" : edit.el,
+          });
+        } else {
+          var inquilino = new app.models.Clientes({ "id": id });
+          inquilino.fetch({
+            "success":function() {
+              var edit = new app.views.ClienteEditView({
+                model: inquilino,
+                permiso: 3
+              });
+              self.mostrar({
+                "top" : edit.el,
+              });
+            }
+          });
+        }
+      },
 
       ver_propietarios: function() {
         var clientes = new app.collections.Clientes();
@@ -425,6 +483,33 @@
           });    
           this.mostrar({
             "top" : view.el,
+          });
+        }
+      },
+      ver_propietario: function(id) {
+        var self = this;
+        if (id == undefined) {
+          var edit = new app.views.ClienteEditView({
+            model: new app.models.Clientes({
+              "custom_5":"1",
+            }),
+            permiso: 3,
+          });
+          this.mostrar({
+            "top" : edit.el,
+          });
+        } else {
+          var propietario = new app.models.Clientes({ "id": id });
+          propietario.fetch({
+            "success":function() {
+              var edit = new app.views.ClienteEditView({
+                model: propietario,
+                permiso: 3
+              });
+              self.mostrar({
+                "top" : edit.el,
+              });
+            }
           });
         }
       },

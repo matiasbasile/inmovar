@@ -1098,7 +1098,6 @@ class Clientes extends REST_Controller {
         "hasta"=>$hasta,
       );
       $r = $this->modelo->buscar($conf);
-      print_r($r);
       echo json_encode($r);
 
     } else {

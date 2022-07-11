@@ -24,10 +24,22 @@
         </div>
         <div class="col-md-6 col-xs-4 tar">
           <% if (permiso > 1) { %>
-            <a href="app/#clientes/0" class="btn btn-info">
-              <span class="material-icons show-xs">add</span>
-              <span class="hidden-xs">&nbsp;&nbsp;Nuevo Contacto&nbsp;&nbsp;</span>
-            </a>
+            <% if (window.clientes_custom_3 == 1) { %>
+              <a href="app/#cliente" class="btn btn-info">
+                <span class="material-icons show-xs">add</span>
+                <span class="hidden-xs">&nbsp;&nbsp;Nuevo Contacto&nbsp;&nbsp;</span>
+              </a>
+            <% } else if (window.clientes_custom_4 == 1) { %>
+              <a href="app/#inquilino" class="btn btn-info">
+                <span class="material-icons show-xs">add</span>
+                <span class="hidden-xs">&nbsp;&nbsp;Nuevo Inquilino&nbsp;&nbsp;</span>
+              </a>
+            <% } else if (window.clientes_custom_5 == 1) { %>
+              <a href="app/#propietario" class="btn btn-info">
+                <span class="material-icons show-xs">add</span>
+                <span class="hidden-xs">&nbsp;&nbsp;Nuevo Propietario&nbsp;&nbsp;</span>
+              </a>
+            <% } %>
           <% } %>
         </div>
       </div>
