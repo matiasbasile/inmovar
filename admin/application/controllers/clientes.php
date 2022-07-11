@@ -1061,6 +1061,10 @@ class Clientes extends REST_Controller {
     // Obtenemos el listado
     if ($id == "index") {
 
+      ini_set('display_errors', 1);
+      ini_set('display_startup_errors', 1);
+      error_reporting(E_ALL);
+
       $order_by = ($this->input->get("order_by") !== FALSE) ? $this->input->get("order_by")." " : "";
       $order = ($this->input->get("order") !== FALSE) ? $this->input->get("order") : "";
       $filter = ($this->input->get("term") !== FALSE) ? urldecode($this->input->get("term")) : "";
