@@ -1097,8 +1097,8 @@ class Clientes extends REST_Controller {
         "desde"=>$desde,
         "hasta"=>$hasta,
       );
-      print_r($conf); exit();
       $r = $this->modelo->buscar($conf);
+      print_r($r);
       echo json_encode($r);
 
     } else {
