@@ -401,7 +401,7 @@
       ver_cliente: function(id) {
         var self = this;
         if (id == undefined || id == 0) {
-          var edit = new app.views.ClienteEditView({
+          var edit = new app.views.ClientesEditView({
             model: new app.models.Clientes({
               "custom_3":"1",
             }),
@@ -414,7 +414,7 @@
           var cliente = new app.models.Clientes({ "id": id });
           cliente.fetch({
             "success":function() {
-              var edit = new app.views.ClienteEditView({
+              var edit = new app.views.ClientesEditView({
                 model: cliente,
                 permiso: 3
               });
@@ -445,7 +445,7 @@
       ver_inquilino: function(id) {
         var self = this;
         if (id == undefined || id == 0) {
-          var edit = new app.views.ClienteEditView({
+          var edit = new app.views.ClientesEditView({
             model: new app.models.Clientes({
               "custom_4":"1",
             }),
@@ -458,7 +458,7 @@
           var inquilino = new app.models.Clientes({ "id": id });
           inquilino.fetch({
             "success":function() {
-              var edit = new app.views.ClienteEditView({
+              var edit = new app.views.ClientesEditView({
                 model: inquilino,
                 permiso: 3
               });
@@ -489,7 +489,7 @@
       ver_propietario: function(id) {
         var self = this;
         if (id == undefined || id == 0) {
-          var edit = new app.views.ClienteEditView({
+          var edit = new app.views.ClientesEditView({
             model: new app.models.Clientes({
               "custom_5":"1",
             }),
@@ -502,7 +502,7 @@
           var propietario = new app.models.Clientes({ "id": id });
           propietario.fetch({
             "success":function() {
-              var edit = new app.views.ClienteEditView({
+              var edit = new app.views.ClientesEditView({
                 model: propietario,
                 permiso: 3
               });
