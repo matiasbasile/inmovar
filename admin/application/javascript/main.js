@@ -400,7 +400,7 @@
       },
       ver_cliente: function(id) {
         var self = this;
-        if (id == undefined) {
+        if (id == undefined || id == 0) {
           var edit = new app.views.ClienteEditView({
             model: new app.models.Clientes({
               "custom_3":"1",
@@ -444,7 +444,7 @@
       },
       ver_inquilino: function(id) {
         var self = this;
-        if (id == undefined) {
+        if (id == undefined || id == 0) {
           var edit = new app.views.ClienteEditView({
             model: new app.models.Clientes({
               "custom_4":"1",
@@ -487,9 +487,8 @@
         }
       },
       ver_propietario: function(id) {
-        alert("ANDA");
         var self = this;
-        if (id == undefined) {
+        if (id == undefined || id == 0) {
           var edit = new app.views.ClienteEditView({
             model: new app.models.Clientes({
               "custom_5":"1",
