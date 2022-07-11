@@ -5,6 +5,9 @@ require_once("abstract_model.php");
 class Cliente_Model extends Abstract_Model {
 
 	function __construct() {
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
 		parent::__construct("clientes","id","nombre ASC");
 	}
 
