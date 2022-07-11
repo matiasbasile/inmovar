@@ -89,9 +89,9 @@
         "inquilinos": "ver_inquilinos",
         "propietarios": "ver_propietarios",
 
-        "cliente": "ver_cliente",
-        "inquilino": "ver_inquilino",
-        "propietario": "ver_propietario",
+        "cliente/:id": "ver_cliente",
+        "inquilino/:id": "ver_inquilino",
+        "propietario/:id": "ver_propietario",
 
         "versiones_db": "ver_versiones_db",
         "version_db": "ver_version_db",
