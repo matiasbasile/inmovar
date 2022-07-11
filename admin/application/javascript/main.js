@@ -487,6 +487,7 @@
         }
       },
       ver_propietario: function(id) {
+        alert("ANDA");
         var self = this;
         if (id == undefined) {
           var edit = new app.views.ClienteEditView({
