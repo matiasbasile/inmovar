@@ -1144,6 +1144,8 @@ class Propiedades extends REST_Controller
     foreach ($listado["results"] as $r) {
 
       $linea = array();
+      // Las OBRAS no se comparten
+      if ($r->id_tipo_operacion == 5) continue;
 
       // Reemplazamos las comas, para que no haya errores de campos
       $r->nombre = str_replace(",", "", $r->nombre);
