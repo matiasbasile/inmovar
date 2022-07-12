@@ -78,47 +78,24 @@ class Emails_Templates extends REST_Controller {
     ));
   }  
 
-  function notificar_milling() {
+  function arreglar_interesados() {
+    $sql = "SELECT * FROM empresas ";
+    $q = $this->db->query($sql);
 
-    $id_empresa = parent::get_empresa();
-    $this->load->model("Empresa_Model");
-    $empresa = $this->Empresa_Model->get($id_empresa);
-    $this->load->model("Cliente_Model");
-    require_once APPPATH.'libraries/Mandrill/Mandrill.php';
+    // German Pachioni
+    $template_modelo = $this->modelo->get_by_key("email-interesado",1634);
 
-    // Obtenemos los contactos que se suscribieron a digital
-    $contactos = $this->Cliente_Model->buscar(array(
-      "id_empresa"=>$id_empresa,
-      "tipo"=>2,
-    ));
-    $template = $this->modelo->get_by_key("notificacion",$id_empresa);
-    if ($template === FALSE) {
-      echo json_encode(array(
-        "error"=>1,
-        "mensaje"=>"No existe un template para la notificacion",
-      ));
-      exit();
+    foreach($q->result() as $r) {
+      $template = $this->modelo->get_by_key("email-interesado",$r->id);
+      if ($template === FALSE) {
+        $data->id = 0;
+        $data->clave = $template_modelo->clave;
+        $data->texto = $template_modelo->texto;
+        $data->nombre = $template_modelo->nombre;
+        $data->id_empresa = $r->id;
+        $this->db->insert("crm_emails_templates",$data);
+        echo "INSERTO $r->id <br/>";
+      }
     }
-    $cantidad = 0;
-    foreach($contactos["results"] as $c) {
-
-      $body = $template->texto;
-      $body = str_replace("{{nombre}}",$c->nombre,$body);
-      $body = str_replace("'", "\"", $body);
-      
-      mandrill_send(array(
-        "to"=>$c->email,
-        "from"=>"no-reply@varcreative.com",
-        "from_name"=>$empresa->nombre,
-        "subject"=>$template->nombre,
-        "body"=>$body,
-      ));
-      $cantidad++;
-    }
-    echo json_encode(array(
-      "error"=>0,
-      "cantidad"=>$cantidad,
-    ));
   }
-    
 }

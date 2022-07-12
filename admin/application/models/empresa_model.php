@@ -915,6 +915,7 @@ class Empresa_Model extends Abstract_Model {
       "not_entradas",
       "web_slider",
       "web_textos",
+      "crm_emails_templates",
     );
     if (empty($vendedores)) {
       $vendedores[] = $marcelo;
