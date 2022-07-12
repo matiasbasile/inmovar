@@ -118,7 +118,7 @@ class Contactos extends REST_Controller {
         "subject"=>$asunto,
         "body"=>$body,
         "reply_to"=>$empresa->email,
-        //"bcc"=>$bcc_array,
+        "bcc"=>$bcc_array,
       ));
     }
     echo json_encode(array("error"=>0));
