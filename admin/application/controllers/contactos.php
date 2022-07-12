@@ -96,7 +96,7 @@ class Contactos extends REST_Controller {
         $body = str_replace("{{propiedad_precio}}",$propiedad->moneda." ".number_format($propiedad->precio_final,0,".",","),$body);
       }
 
-      $body = str_replace("{{empresa_nombre}}",utf8_encode($empresa->razon_social),$body);
+      $body = str_replace("{{empresa_nombre}}",utf8_decode($empresa->razon_social),$body);
       if (isset($empresa->config["logo_1"]) && !empty($empresa->config["logo_1"])) {
         $body = str_replace("{{empresa_logo}}","https://app.inmovar.com/admin/".$empresa->config["logo_1"],$body);
       }
@@ -104,7 +104,7 @@ class Contactos extends REST_Controller {
       $telefono = $empresa->telefono;
       $telefono = preg_replace("/[^0-9]/", "", $telefono);
       $body = str_replace("{{empresa_telefono_link}}",$telefono,$body);
-      $body = str_replace("{{empresa_direccion}}",utf8_encode($empresa->direccion),$body);
+      $body = str_replace("{{empresa_direccion}}",utf8_decode($empresa->direccion),$body);
       $body = str_replace("{{empresa_email}}",$empresa->email,$body);
 
       $propiedad_link = "https://app.inmovar.com/admin/contactos/function/registrar_interes_email/?e=".$propiedad->id_empresa."&p=".$propiedad->id."&c=".$id_cliente."&x=".$id_consulta;
