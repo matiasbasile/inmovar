@@ -424,6 +424,16 @@
 	.info-details ul li {
 		padding-bottom: 5px;
 	}
+
+	#solicitar-visita{
+		font-size: 25px !important;
+		margin-bottom: 10px !important;
+	}
+
+	.cerrar_modal {
+		font-size: 20px !important;
+	}
+
 }
 @media screen and (max-width: 499px) {
 	.form-control.form-primary {

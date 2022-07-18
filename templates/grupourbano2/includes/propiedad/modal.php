@@ -2,7 +2,7 @@
   <div class="modal-body">
     <form onsubmit="return false">
       <i class="fa fa-times cerrar_modal fs22 fr mt10 cp"></i>
-      <h2 class="fs32">Solicitar una visita</h2>
+      <h2 class="fs32" id="solicitar-visita">Solicitar una visita</h2>
       <div class="form-group">
         <input id="visita_nombre" type="text" class="form-control" placeholder="Nombre">
       </div>
@@ -13,12 +13,12 @@
         <input id="visita_email" type="email" class="form-control" placeholder="Email">
       </div>
       <div class="row">
-        <div class="col-6">
+        <div class="col-12">
           <div class="form-group">
             <input id="visita_fecha" type="date" class="form-control" placeholder="Fecha">
           </div>
         </div>
-        <div class="col-6">
+        <div style="display: none;" class="col-6">
           <div class="form-group">
             <input id="visita_hora" type="time" class="form-control" placeholder="Hora">
           </div>
