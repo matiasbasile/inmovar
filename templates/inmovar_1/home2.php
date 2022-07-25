@@ -143,41 +143,6 @@ $tipo_operacion->id = 0;
       <?php } ?>
     <?php } ?>
 
-
-    <!-- Search Box -->
-    <div class="my-search-box">
-      <div class="container text-center">
-        <form onsubmit="return filtrar(this)" method="get" role="form" id="form_propiedades">
-          <?php $t = $web_model->get_text("titulo-slider", "Te ayudamos a vivir mejor") ?>
-          <h2 class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></h2>
-          <div class="col-md-3 p10">
-            <?php $tipos_operaciones = $propiedad_model->get_tipos_operaciones() ?>
-            <select id="tipo_operacion" class="my-select">
-              <?php $filter_tipos_operacion = $propiedad_model->get_tipos_operaciones();
-              foreach ($filter_tipos_operacion as $r) { ?>
-                <option <?php echo ($nombre_pagina == $r->link) ? "selected" : "" ?> value="<?php echo $r->link ?>"><?php echo $r->nombre ?></option>
-              <?php } ?>
-            </select>
-          </div>
-          <div class="col-md-3 p10">
-            <select class="my-select" name="tp">
-              <option value="0">Tipo de Propiedad</option>
-              <?php $filter_tipos_propiedades = $propiedad_model->get_tipos_propiedades();
-              foreach ($filter_tipos_propiedades as $r) { ?>
-                <option <?php echo (isset($vc_id_tipo_inmueble) && $vc_id_tipo_inmueble == $r->id) ? "selected" : "" ?> value="<?php echo $r->id ?>"><?php echo $r->nombre ?></option>
-              <?php } ?>
-            </select>
-          </div>
-          <div class="col-md-4 p10">
-            <input class="my-select" style="padding: 9px" type="text" name="cod" placeholder="Buscar por código" name="">
-          </div>
-          <div class="col-md-2 p10">
-            <button type="submit" class="my-select button">BUSCAR</button>
-          </div>
-        </form>
-      </div>
-    </div>
-
     <!-- Search Box -->
     <div class="my-search-box">
       <div class="container text-center">
