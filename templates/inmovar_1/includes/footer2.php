@@ -1,3 +1,12 @@
+<style>
+    .footer_newtitle {
+        text-align: center !important;
+        color: rgb(26, 49, 70) !important;
+        font-family: 'Roboto' !important;
+        font-weight: 600 !important;
+    }
+</style>
+
 <footer id="page-footer">
     <div class="inner">
         <?php if ($empresa->comp_footer_grande == 1) { ?>
@@ -13,7 +22,7 @@
                             <article>
                                 <h3 class="footer_newtitle">Oficina comercial</h3>
                                 <p>Bourdin Bienes Raíces</p>
-                                <?php if(!empty($empresa_direccion)) { ?>
+                                <?php if (!empty($empresa_direccion)) { ?>
                                     <p><?php echo $empresa_direccion ?></p>
                                 <?php  } ?>
                             </article>
