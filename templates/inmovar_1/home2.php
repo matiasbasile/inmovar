@@ -48,7 +48,7 @@ $slider = $web_model->get_slider(array(
 .tipo_operacion_btn:last-child { border-top-right-radius: 5px; border-bottom-right-radius: 5px; }
 #form_propiedades { overflow: hidden; display: block; background-color: white; padding: 5px; border-radius: 5px; }
 #form_propiedades select.my-select,
-#form_propiedades select.input[type=text] { background-color: transparent !important; border: none !important; box-shadow: none !important }
+#form_propiedades input[type=text].my-select { background-color: transparent !important; border: none !important; box-shadow: none !important }
 </style>
 </head>
 
