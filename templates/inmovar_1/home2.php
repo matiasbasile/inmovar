@@ -463,7 +463,7 @@ $tipo_operacion->id = 0;
     */ ?>
     </div>
     <!-- end Page Content -->
-    <?php include("includes/footer2.php"); ?>
+    <?php include("includes/footer.php"); ?>
   </div>
   <script type="text/javascript" src="assets/js/custom.js?g=<?php echo rand(0, 999) ?>"></script>
   <div id="overlay"></div>
