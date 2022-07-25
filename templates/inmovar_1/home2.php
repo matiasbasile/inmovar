@@ -39,6 +39,7 @@ $tipo_operacion->id = 0;
       background: url('<?php echo $s->path ?>') no-repeat center top/cover;
     }
 
+<<<<<<< HEAD
     <?php $x++;
           }  ?>
   </style>
@@ -71,6 +72,29 @@ $tipo_operacion->id = 0;
       width: 2px;
     }
   </style>
+=======
+/* Backgorund Images */
+ <?php 
+$slider = $web_model->get_slider(array(
+  "clave"=>"slider_1",
+  )); ?>
+<?php $x=1;foreach ($slider as $s) { ?>
+.slide:<?php echo ($x==1)?"first-child":"nth-child(".$x.")" ?> {
+  background: url('<?php echo $s->path ?>') no-repeat
+    center top/cover;
+}
+<?php  $x++; }  ?>
+.my-search-box { top: 50%; }
+.tipo_operacion_btn { font-size: 14px; cursor: pointer; display: inline-block; padding: 8px 12px; background-color: white; color: var(--c1); }
+.tipo_operacion_btn.active, .tipo_operacion_btn:hover { color: white; background-color: var(--c1); }
+.tipo_operacion_btn:first-child { border-top-left-radius: 5px; border-bottom-left-radius: 5px; }
+.tipo_operacion_btn:last-child { border-top-right-radius: 5px; border-bottom-right-radius: 5px; }
+#form_propiedades { overflow: hidden; display: block; background-color: white; padding: 5px; border-radius: 5px; }
+#form_propiedades select.my-select,
+#form_propiedades input[type=text].my-select { background-color: transparent !important; border: none !important; box-shadow: none !important }
+#form_propiedades .button { border: none !important; }
+</style>
+>>>>>>> db06fc59639e382bddedebd0c0fb3d93e056570f
 </head>
 
 <body class="page-homepage navigation-fixed-top page-slider page-slider-search-box" id="page-top" data-spy="scroll" data-target=".navigation" data-offset="90">
@@ -137,6 +161,7 @@ $tipo_operacion->id = 0;
     </div>
 
 
+<<<<<<< HEAD
     <!-- Page Content -->
     <div id="page-content">
       <div class="contact1">
@@ -154,6 +179,46 @@ $tipo_operacion->id = 0;
               <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
               <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
           </div>
+=======
+
+  <!-- Search Box -->
+  <div class="my-search-box">
+    <div class="container text-center">
+
+      <div class="tal mb5">
+        <a class="tipo_operacion_btn active" onclick="filtrar_tipo_operacion(this)" data-link="ventas" href="javascript:void(0)">Comprar</a><a class="tipo_operacion_btn " onclick="filtrar_tipo_operacion(this)" data-link="alquileres" href="javascript:void(0)">Alquilar</a>
+      </div>
+
+      <form onsubmit="return filtrar(this)" method="get" role="form" id="form_propiedades">
+        <input type="hidden" value="" id="tipo_operacion" value="ventas" />
+        <div class="col-md-6 p10">
+          <input class="my-select" style="padding: 9px" type="text" name="cod" placeholder="Buscar por código" name="">
+        </div>        
+        <div class="col-md-5 p10">
+          <select class="my-select" name="tp">
+            <option value="0">Tipo de Propiedad</option>
+            <?php $filter_tipos_propiedades = $propiedad_model->get_tipos_propiedades();
+            foreach($filter_tipos_propiedades as $r) { ?>
+              <option <?php echo (isset($vc_id_tipo_inmueble) && $vc_id_tipo_inmueble == $r->id) ? "selected":"" ?> value="<?php echo $r->id ?>"><?php echo $r->nombre ?></option>
+            <?php } ?>
+          </select>  
+        </div>
+        <div class="col-md-1 p10">
+          <button type="submit" class="my-select button"><i class="fa fa-search"></i></button>
+        </div>
+      </form>
+    </div>  
+  </div>
+  
+
+  <!-- Page Content -->
+  <div id="page-content">
+    <section id="banner">
+      <div class="block has-dark-background background-color-default-darker center text-banner">
+        <div class="container">
+          <?php $t = $web_model->get_text("home-banner-titulo"); ?>
+          <h1 data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" class="editable no-bottom-margin no-border"><?php echo $t->plain_text ?></h1>
+>>>>>>> db06fc59639e382bddedebd0c0fb3d93e056570f
         </div>
       </div>
       <section id="banner">
@@ -477,6 +542,7 @@ $tipo_operacion->id = 0;
       }
     });
 
+<<<<<<< HEAD
     // Auto slide
     if (auto) {
       // Run next slide at interval time
@@ -492,6 +558,31 @@ $tipo_operacion->id = 0;
       return true;
     }
   </script>
+=======
+// Auto slide
+if (auto) {
+  // Run next slide at interval time
+  slideInterval = setInterval(nextSlide, intervalTime);
+}
+
+</script>
+<script>
+function filtrar_tipo_operacion(e) {
+  var t = $(e).data("link");
+  $(".tipo_operacion_btn").removeClass("active");
+  $("#tipo_operacion").val(t);
+  $(e).addClass("active");
+}
+
+function filtrar() { 
+  var link = "<?php echo mklink("propiedades/")?>";
+  var tipo_operacion = $("#tipo_operacion").val();
+  link = link + tipo_operacion + "/";
+  $("#form_propiedades").attr("action",link);
+  return true;
+}
+</script>
+>>>>>>> db06fc59639e382bddedebd0c0fb3d93e056570f
 </body>
 
 </html>
