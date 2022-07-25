@@ -198,16 +198,14 @@ $tipo_operacion->id = 0;
       <div class="contact1">
         <div class="row" style="padding: 1rem;">
           <div class="col-xs-6 col-md-2 contact1-first-col">
-            <p class="atention_p">
-              <i class="fa fa-user mr5" aria-hidden="true"></i>
-              Atención al Cliente <span class="vertical"></span>
-            </p>
+            <p class="atention_p" style="margin-top: 1rem;"><i class="fa fa-user" aria-hidden="true"></i>
+              Atención al Cliente <span class="vertical"></span></p>
           </div>
           <div class="col-xs-6 col-md-8">
-            <p class="ventas_p"><i class="fa fa-phone" aria-hidden="true"></i>Ventas / Alquileres</p>
+            <p class="ventas_p"><i class="fa fa-phone" aria-hidden="true"></i> Ventas / Alquileres</p>
             <p class="ventas_p" style="line-height: 0;"><?php echo $empresa->telefono ?></p>
           </div>
-          <div class="col-xs-12 col-md-2 col-iconos text-center" style="margin-top: 1rem;">
+          <div class="col-xs-12 col-md-2 col-iconos text-center">
             <?php if (!empty($empresa->facebook)) { ?>
               <a target="_blank" href="<?php echo $empresa->facebook ?>" style="margin-right: 5px;"><i class="fa fa-facebook" aria-hidden="true"></i>
             <?php } ?>
