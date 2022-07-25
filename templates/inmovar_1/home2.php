@@ -46,7 +46,7 @@ $slider = $web_model->get_slider(array(
 .tipo_operacion_btn.active { color: white; background-color: var(--c1); }
 .tipo_operacion_btn:first-child { border-top-left-radius: 5px; border-bottom-left-radius: 5px; }
 .tipo_operacion_btn:last-child { border-top-right-radius: 5px; border-bottom-right-radius: 5px; }
-#form_propiedades { display: block; background-color: white; padding: 5px; border-radius: 5px; }
+#form_propiedades { overflow: hidden; display: block; background-color: white; padding: 5px; border-radius: 5px; }
 </style>
 </head>
 
@@ -81,7 +81,7 @@ $slider = $web_model->get_slider(array(
   <div class="my-search-box">
     <div class="container text-center">
 
-      <div class="">
+      <div class="tal ">
         <a class="tipo_operacion_btn active" onclick="filtrar_tipo_operacion(this)" data-link="ventas" href="javascript:void(0)">Comprar</a>
         <a class="tipo_operacion_btn " onclick="filtrar_tipo_operacion(this)" data-link="alquileres" href="javascript:void(0)">Alquilar</a>
       </div>
