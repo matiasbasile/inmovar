@@ -131,6 +131,9 @@ $tipo_operacion->id = 0;
       color: #fff;
       opacity: 1 !important;
     }
+    @media screen and (max-width: 768px) {
+      .atention_p, .ventas_p { text-align: center; }
+    }
 
   </style>
 </head>
