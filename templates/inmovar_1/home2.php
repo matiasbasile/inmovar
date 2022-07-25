@@ -47,7 +47,7 @@ $slider = $web_model->get_slider(array(
 .tipo_operacion_btn:first-child { border-top-left-radius: 5px; border-bottom-left-radius: 5px; }
 .tipo_operacion_btn:last-child { border-top-right-radius: 5px; border-bottom-right-radius: 5px; }
 #form_propiedades { overflow: hidden; display: block; background-color: white; padding: 5px; border-radius: 5px; }
-#form_propiedades .my-select { background-color: transparent !important; border: none !important; }
+#form_propiedades .my-select { background-color: transparent !important; border: none !important; box-shadow: none !important }
 </style>
 </head>
 
@@ -101,7 +101,7 @@ $slider = $web_model->get_slider(array(
           </select>  
         </div>
         <div class="col-md-1 p10">
-          <button type="submit" class="my-select button"><i class="fa fa-search"></i></button>
+          <button type="submit" class="button"><i class="fa fa-search"></i></button>
         </div>
       </form>
     </div>  
