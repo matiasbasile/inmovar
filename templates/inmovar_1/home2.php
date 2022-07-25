@@ -89,7 +89,7 @@ $slider = $web_model->get_slider(array(
       </div>
 
       <form onsubmit="return filtrar(this)" method="get" role="form" id="form_propiedades">
-        <input type="hidden" value="" id="tipo_operacion" />
+        <input type="hidden" value="" id="tipo_operacion" value="ventas" />
         <div class="col-md-6 p10">
           <input class="my-select" style="padding: 9px" type="text" name="cod" placeholder="Buscar por código" name="">
         </div>        
