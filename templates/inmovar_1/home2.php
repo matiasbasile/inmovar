@@ -49,6 +49,7 @@ $slider = $web_model->get_slider(array(
 #form_propiedades { overflow: hidden; display: block; background-color: white; padding: 5px; border-radius: 5px; }
 #form_propiedades select.my-select,
 #form_propiedades input[type=text].my-select { background-color: transparent !important; border: none !important; box-shadow: none !important }
+#form_propiedades .button { border: none !important; }
 </style>
 </head>
 
