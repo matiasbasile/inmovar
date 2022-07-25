@@ -4,6 +4,24 @@
         color: rgb(26, 49, 70) !important;
         font-family: 'Roboto' !important;
         font-weight: 600 !important;
+        margin-bottom: 0px !important;
+    }
+
+    h3 {
+        margin-bottom: 0px !important;
+    }
+
+    .footer_newtitlebold {
+        opacity: 1 !important;
+        font-weight: 700;
+        font-family: 'Roboto';
+        text-align: center;
+    }
+
+    @media(max-width: 768px) {
+        .footer_newtitle {
+            margin-top: 50px !important;
+        }
     }
 </style>
 
@@ -21,9 +39,9 @@
                         <div class="col-md-4">
                             <article>
                                 <h3 class="footer_newtitle">Oficina comercial</h3>
-                                <p>Bourdin Bienes Raíces</p>
+                                <p class="footer_newtitlebold">Bourdin Bienes Raíces</p>
                                 <?php if (!empty($empresa_direccion)) { ?>
-                                    <p><?php echo $empresa_direccion ?></p>
+                                    <p class="text-center"><?php echo $empresa_direccion ?></p>
                                 <?php  } ?>
                             </article>
                         </div>
@@ -34,7 +52,7 @@
                                     <?php echo $empresa->telefono ?><br>
                                 <?php } ?>
                                 <?php if (!empty($empresa->email)) { ?>
-                                    <a href="mailto:<?php echo $empresa->email ?>">
+                                    <a class="text-center" href="mailto:<?php echo $empresa->email ?>">
                                         <?php echo $empresa->email ?>
                                     </a>
                                 <?php } ?>
