@@ -98,10 +98,14 @@ $tipo_operacion->id = 0;
     }
 
     .contact1 a {
-      color: #163a60;
+      color: white;
       background-color: #0647b4;
+      display: inline-block;
+      width: 36px;
+      height: 36px;
       padding: 5px 10px;
       border-radius: 100%;
+      text-align: center;
     }
 
     .contact1 p span:after {
@@ -198,13 +202,19 @@ $tipo_operacion->id = 0;
               Atención al Cliente <span class="vertical"></span></p>
           </div>
           <div class="col-xs-6 col-md-8">
-            <p class="ventas_p"><i class="fa fa-phone" aria-hidden="true"></i>VentasAlquileres</p>
-            <p class="ventas_p" style="line-height: 0;">(221) 777 7777</p>
+            <p class="ventas_p"><i class="fa fa-phone" aria-hidden="true"></i>Ventas / Alquileres</p>
+            <p class="ventas_p" style="line-height: 0;"><?php echo $empresa->telefono ?></p>
           </div>
           <div class="col-xs-12 col-md-2 col-iconos text-center" style="margin-top: 1rem;">
-            <a href="#" style="margin-right: 5px;"><i class="fa fa-facebook" aria-hidden="true"></i>
-              <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-              <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+            <?php if (!empty($empresa->facebook)) { ?>
+              <a target="_blank" href="<?php echo $empresa->facebook ?>" style="margin-right: 5px;"><i class="fa fa-facebook" aria-hidden="true"></i>
+            <?php } ?>
+            <?php if (!empty($empresa->linkedin)) { ?>
+              <a target="_blank" href="<?php echo $empresa->linkedin ?>"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+            <?php } ?>
+            <?php if (!empty($empresa->instagram)) { ?>
+              <a target="_blank" href="<?php echo $empresa->instagram ?>"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+            <?php } ?>
           </div>
         </div>
       </div>
