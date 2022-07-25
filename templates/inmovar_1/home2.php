@@ -101,7 +101,7 @@ $tipo_operacion->id = 0;
       color: #163a60;
       background-color: #0647b4;
       padding: 5px 10px;
-      border-radius: 50%;
+      border-radius: 100%;
     }
 
     .contact1 p span:after {
@@ -113,6 +113,21 @@ $tipo_operacion->id = 0;
       height: 100%;
       width: 2px;
     }
+
+    .atention_p {
+      font-family: 'Roboto';
+      font-weight: 500;
+      color: #fff;
+      opacity: 1 !important;
+    }
+
+    .ventas_p {
+      font-family: 'Roboto';
+      font-weight: 700;
+      color: #fff;
+      opacity: 1 !important;
+    }
+
   </style>
 </head>
 
@@ -179,14 +194,14 @@ $tipo_operacion->id = 0;
       <div class="contact1">
         <div class="row" style="padding: 1rem;">
           <div class="col-xs-6 col-md-2 contact1-first-col">
-            <p style="margin-top: 1rem;"><i class="fa fa-user" aria-hidden="true"></i>
+            <p class="atention_p" style="margin-top: 1rem;"><i class="fa fa-user" aria-hidden="true"></i>
               Atención al Cliente <span class="vertical"></span></p>
           </div>
           <div class="col-xs-6 col-md-8">
-            <p><i class="fa fa-phone" aria-hidden="true"></i>VentasAlquileres</p>
-            <p style="line-height: 0;">(221) 777 7777</p>
+            <p class="ventas_p"><i class="fa fa-phone" aria-hidden="true"></i>VentasAlquileres</p>
+            <p class="ventas_p" style="line-height: 0;">(221) 777 7777</p>
           </div>
-          <div class="col-xs-12 col-md-2 col-iconos" style="margin-top: 1rem;">
+          <div class="col-xs-12 col-md-2 col-iconos text-center" style="margin-top: 1rem;">
             <a href="#" style="margin-right: 5px;"><i class="fa fa-facebook" aria-hidden="true"></i>
               <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
               <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
@@ -448,7 +463,7 @@ $tipo_operacion->id = 0;
     */ ?>
     </div>
     <!-- end Page Content -->
-    <?php include("includes/footer.php"); ?>
+    <?php include("includes/footer2.php"); ?>
   </div>
   <script type="text/javascript" src="assets/js/custom.js?g=<?php echo rand(0, 999) ?>"></script>
   <div id="overlay"></div>
@@ -519,6 +534,7 @@ $tipo_operacion->id = 0;
       // Run next slide at interval time
       slideInterval = setInterval(nextSlide, intervalTime);
     }
+
     function filtrar_tipo_operacion(e) {
       var t = $(e).data("link");
       $(".tipo_operacion_btn").removeClass("active");
@@ -535,4 +551,5 @@ $tipo_operacion->id = 0;
     }
   </script>
 </body>
+
 </html>
