@@ -27,62 +27,15 @@ $tipo_operacion->id = 0;
 <html lang="en-US">
 
 <head>
-  <?php include("includes/head.php"); ?>
-  <link rel="stylesheet" type="text/css" href="assets/css/slider-full.css">
-  <style type="text/css">
-    /* Backgorund Images */
-    <?php
-    $slider = $web_model->get_slider(array(
-      "clave" => "slider_1",
-    )); ?><?php $x = 1;
-          foreach ($slider as $s) { ?>.slide:<?php echo ($x == 1) ? "first-child" : "nth-child(" . $x . ")" ?> {
-      background: url('<?php echo $s->path ?>') no-repeat center top/cover;
-    }
-
-<<<<<<< HEAD
-    <?php $x++;
-          }  ?>
-  </style>
-
-  <style>
-    .contact1 {
-      background: #013858;
-      color: #fff;
-      box-shadow: 0 4px 8px 0 rgb(26 49 70 / 20%), 0 6px 20px 0 rgb(0 0 0 / 59%);
-    }
-
-    .contact1-first-col {
-      padding-left: 3rem;
-    }
-
-    .contact1 a {
-      color: #163a60;
-      background-color: #0647b4;
-      padding: 5px 10px;
-      border-radius: 50%;
-    }
-
-    .contact1 p span:after {
-      content: "";
-      position: absolute;
-      background-color: #012445;
-      top: 0;
-      right: 15px;
-      height: 100%;
-      width: 2px;
-    }
-  </style>
-=======
-/* Backgorund Images */
- <?php 
+<?php include("includes/head.php"); ?>
+<link rel="stylesheet" type="text/css" href="assets/css/slider-full.css">
+<style type="text/css">
+<?php
 $slider = $web_model->get_slider(array(
-  "clave"=>"slider_1",
-  )); ?>
-<?php $x=1;foreach ($slider as $s) { ?>
-.slide:<?php echo ($x==1)?"first-child":"nth-child(".$x.")" ?> {
-  background: url('<?php echo $s->path ?>') no-repeat
-    center top/cover;
-}
+  "clave" => "slider_1",
+)); ?><?php $x = 1;
+foreach ($slider as $s) { ?>
+  .slide:<?php echo ($x == 1) ? "first-child" : "nth-child(" . $x . ")" ?> { background: url('<?php echo $s->path ?>') no-repeat center top/cover; }
 <?php  $x++; }  ?>
 .my-search-box { top: 50%; }
 .tipo_operacion_btn { font-size: 14px; cursor: pointer; display: inline-block; padding: 8px 12px; background-color: white; color: var(--c1); }
@@ -93,8 +46,33 @@ $slider = $web_model->get_slider(array(
 #form_propiedades select.my-select,
 #form_propiedades input[type=text].my-select { background-color: transparent !important; border: none !important; box-shadow: none !important }
 #form_propiedades .button { border: none !important; }
+.contact1 {
+  background: #013858;
+  color: #fff;
+  box-shadow: 0 4px 8px 0 rgb(26 49 70 / 20%), 0 6px 20px 0 rgb(0 0 0 / 59%);
+}
+
+.contact1-first-col {
+  padding-left: 3rem;
+}
+
+.contact1 a {
+  color: #163a60;
+  background-color: #0647b4;
+  padding: 5px 10px;
+  border-radius: 50%;
+}
+
+.contact1 p span:after {
+  content: "";
+  position: absolute;
+  background-color: #012445;
+  top: 0;
+  right: 15px;
+  height: 100%;
+  width: 2px;
+}
 </style>
->>>>>>> db06fc59639e382bddedebd0c0fb3d93e056570f
 </head>
 
 <body class="page-homepage navigation-fixed-top page-slider page-slider-search-box" id="page-top" data-spy="scroll" data-target=".navigation" data-offset="90">
