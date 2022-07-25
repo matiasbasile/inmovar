@@ -81,9 +81,8 @@ $slider = $web_model->get_slider(array(
   <div class="my-search-box">
     <div class="container text-center">
 
-      <div class="tal ">
-        <a class="tipo_operacion_btn active" onclick="filtrar_tipo_operacion(this)" data-link="ventas" href="javascript:void(0)">Comprar</a>
-        <a class="tipo_operacion_btn " onclick="filtrar_tipo_operacion(this)" data-link="alquileres" href="javascript:void(0)">Alquilar</a>
+      <div class="tal mb5">
+        <a class="tipo_operacion_btn active" onclick="filtrar_tipo_operacion(this)" data-link="ventas" href="javascript:void(0)">Comprar</a><a class="tipo_operacion_btn " onclick="filtrar_tipo_operacion(this)" data-link="alquileres" href="javascript:void(0)">Alquilar</a>
       </div>
 
       <form onsubmit="return filtrar(this)" method="get" role="form" id="form_propiedades">
