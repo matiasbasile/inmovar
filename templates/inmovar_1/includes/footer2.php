@@ -4,7 +4,7 @@
         color: rgb(26, 49, 70) !important;
         font-family: 'Roboto' !important;
         font-weight: 600 !important;
-        margin-bottom: 0px !important;
+        margin-bottom: 10px !important;
     }
 
     h3 {
@@ -16,6 +16,7 @@
         font-weight: 700;
         font-family: 'Roboto';
         text-align: center;
+        margin-top: 10px;
     }
 
     @media(max-width: 768px) {
@@ -45,14 +46,14 @@
                                 <?php  } ?>
                             </article>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 text-center">
                             <article>
                                 <h3 class="footer_newtitle">Contacto</h3>
                                 <?php if (!empty($empresa->telefono)) { ?>
                                     <?php echo $empresa->telefono ?><br>
                                 <?php } ?>
                                 <?php if (!empty($empresa->email)) { ?>
-                                    <a class="text-center" href="mailto:<?php echo $empresa->email ?>">
+                                    <a href="mailto:<?php echo $empresa->email ?>">
                                         <?php echo $empresa->email ?>
                                     </a>
                                 <?php } ?>
