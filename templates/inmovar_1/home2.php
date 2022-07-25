@@ -200,14 +200,7 @@ $tipo_operacion->id = 0;
             <h1 data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" class="editable no-bottom-margin no-border"><?php echo $t->plain_text ?></h1>
           </div>
         </div>
-        <section id="banner">
-          <div class="block has-dark-background background-color-default-darker center text-banner">
-            <div class="container">
-              <?php $t = $web_model->get_text("home-banner-titulo"); ?>
-              <h1 data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" class="editable no-bottom-margin no-border"><?php echo $t->plain_text ?></h1>
-            </div>
-          </div>
-        </section><!-- /#banner -->
+        <!-- /#banner -->
         <section id="our-services" class="block">
           <div class="container">
             <?php $t = $web_model->get_text("home-servicios-titulo"); ?>
