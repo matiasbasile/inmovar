@@ -6,7 +6,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <?php if (!empty($empresa->logo_1)) { ?>
-                                <img src="/admin/<?php echo $empresa->logo_1 ?>" alt="<?php echo ($empresa->nombre) ?>" class="w-100">
+                                <img src="/admin/<?php echo $empresa->logo_1 ?>" alt="<?php echo ($empresa->nombre) ?>" style="width: 100%;">
                             <?php } ?>
                         </div>
                         <div class="col-md-4">
