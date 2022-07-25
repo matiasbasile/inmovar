@@ -101,9 +101,9 @@ $tipo_operacion->id = 0;
       color: white;
       background-color: #0647b4;
       display: inline-block;
-      width: 36px;
-      height: 36px;
-      padding: 5px 10px;
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
       border-radius: 100%;
       text-align: center;
     }
@@ -198,8 +198,10 @@ $tipo_operacion->id = 0;
       <div class="contact1">
         <div class="row" style="padding: 1rem;">
           <div class="col-xs-6 col-md-2 contact1-first-col">
-            <p class="atention_p" style="margin-top: 1rem;"><i class="fa fa-user" aria-hidden="true"></i>
-              Atención al Cliente <span class="vertical"></span></p>
+            <p class="atention_p">
+              <i class="fa fa-user mr5" aria-hidden="true"></i>
+              Atención al Cliente <span class="vertical"></span>
+            </p>
           </div>
           <div class="col-xs-6 col-md-8">
             <p class="ventas_p"><i class="fa fa-phone" aria-hidden="true"></i>Ventas / Alquileres</p>
