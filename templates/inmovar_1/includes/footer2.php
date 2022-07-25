@@ -41,8 +41,8 @@
               <article>
                 <h3 class="footer_newtitle">Oficina comercial</h3>
                 <p class="footer_newtitlebold">Bourdin Bienes Raíces</p>
-                <?php if (!empty($empresa_direccion)) { ?>
-                  <p class="text-center"><?php echo $empresa_direccion ?></p>
+                <?php if (!empty($empresa->direccion)) { ?>
+                  <p class="text-center"><?php echo $empresa->direccion ?></p>
                 <?php  } ?>
               </article>
             </div>
