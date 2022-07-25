@@ -42,7 +42,11 @@ $slider = $web_model->get_slider(array(
 }
 <?php  $x++; }  ?>
 
-
+.tipo_operacion_btn { font-size: 16px; cursor: pointer; display: inline-block; padding: 10px; background-color: white; color: var(--c1); }
+.tipo_operacion_btn.active { color: white; background-color: var(--c1); }
+.tipo_operacion_btn:first-child { border-top-left-radius: 5px; border-bottom-left-radius: 5px; }
+.tipo_operacion_btn:last-child { border-top-right-radius: 5px; border-bottom-right-radius: 5px; }
+#form_propiedades { display: block; background-color: white; padding: 5px; border-radius: 5px; }
 </style>
 </head>
 
@@ -76,19 +80,18 @@ $slider = $web_model->get_slider(array(
   <!-- Search Box -->
   <div class="my-search-box">
     <div class="container text-center">
+
+      <div class="">
+        <a class="tipo_operacion_btn active" onclick="filtrar_tipo_operacion(this)" data-link="ventas" href="javascript:void(0)">Comprar</a>
+        <a class="tipo_operacion_btn " onclick="filtrar_tipo_operacion(this)" data-link="alquileres" href="javascript:void(0)">Alquilar</a>
+      </div>
+
       <form onsubmit="return filtrar(this)" method="get" role="form" id="form_propiedades">
-        <?php $t = $web_model->get_text("titulo-slider","Te ayudamos a vivir mejor") ?>
-        <h2 class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>"><?php echo $t->plain_text ?></h2>
-        <div class="col-md-3 p10">
-          <?php $tipos_operaciones = $propiedad_model->get_tipos_operaciones()?>
-          <select id="tipo_operacion" class="my-select">
-            <?php $filter_tipos_operacion = $propiedad_model->get_tipos_operaciones();
-            foreach($filter_tipos_operacion as $r) { ?>
-              <option <?php echo ($nombre_pagina == $r->link) ? "selected":"" ?> value="<?php echo $r->link ?>"><?php echo $r->nombre ?></option>
-            <?php } ?>
-          </select>    
-        </div>
-        <div class="col-md-3 p10">
+        <input type="hidden" value="" id="tipo_operacion" />
+        <div class="col-md-6 p10">
+          <input class="my-select" style="padding: 9px" type="text" name="cod" placeholder="Buscar por código" name="">
+        </div>        
+        <div class="col-md-5 p10">
           <select class="my-select" name="tp">
             <option value="0">Tipo de Propiedad</option>
             <?php $filter_tipos_propiedades = $propiedad_model->get_tipos_propiedades();
@@ -97,11 +100,8 @@ $slider = $web_model->get_slider(array(
             <?php } ?>
           </select>  
         </div>
-        <div class="col-md-4 p10">
-          <input class="my-select" style="padding: 9px" type="text" name="cod" placeholder="Buscar por código" name="">
-        </div>
-        <div class="col-md-2 p10">
-          <button type="submit" class="my-select button">BUSCAR</button>
+        <div class="col-md-1 p10">
+          <button type="submit" class="my-select button"><i class="fa fa-search"></i></button>
         </div>
       </form>
     </div>  
@@ -429,6 +429,13 @@ if (auto) {
 
 </script>
 <script>
+function filtrar_tipo_operacion(e) {
+  var t = $(e).data("link");
+  $(".tipo_operacion_btn").removeClass("active");
+  $("#tipo_operacion").val(t);
+  $(e).addClass("active");
+}
+
 function filtrar() { 
   var link = "<?php echo mklink("propiedades/")?>";
   var tipo_operacion = $("#tipo_operacion").val();
