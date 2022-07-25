@@ -41,7 +41,7 @@ $slider = $web_model->get_slider(array(
     center top/cover;
 }
 <?php  $x++; }  ?>
-
+.my-search-box { top: 50%; }
 .tipo_operacion_btn { font-size: 14px; cursor: pointer; display: inline-block; padding: 8px 12px; background-color: white; color: var(--c1); }
 .tipo_operacion_btn.active, .tipo_operacion_btn:hover { color: white; background-color: var(--c1); }
 .tipo_operacion_btn:first-child { border-top-left-radius: 5px; border-bottom-left-radius: 5px; }
