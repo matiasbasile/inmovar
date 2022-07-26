@@ -314,7 +314,7 @@ $tipo_operacion->id = 0;
                     <?php foreach ($destacadas as $r) {
                       $ids_destacadas[] = $r->id; ?>
                       <div class="col-md-3 col-sm-6">
-                        <div class="property">
+                        <div class="property mb30">
                           <a href="<?php echo $r->link_propiedad ?>">
                             <div class="property-image">
                               <?php if ($r->id_tipo_estado == 2) { ?>
@@ -386,7 +386,7 @@ $tipo_operacion->id = 0;
                 <div class="row">
                   <?php foreach ($ultimas as $r) { ?>
                     <div class="col-md-3 col-sm-6">
-                      <div class="property">
+                      <div class="property mb30">
                         <a href="<?php echo $r->link_propiedad ?>">
                           <div class="property-image">
                             <?php if ($r->id_tipo_estado == 2) { ?>
