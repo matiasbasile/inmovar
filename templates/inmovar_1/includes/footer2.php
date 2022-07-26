@@ -33,7 +33,9 @@
         <div class="container">
           <div class="row">
             <div class="col-md-4">
-              <?php if (!empty($empresa->logo_1)) { ?>
+              <?php if ($empresa->id == 1518) { ?>
+                <img src="assets/img/logofooter.jpg" alt="<?php echo ($empresa->nombre) ?>" style="width: 100%;">
+              <?php } else if (!empty($empresa->logo_1)) { ?>
                 <img src="/admin/<?php echo $empresa->logo_1 ?>" alt="<?php echo ($empresa->nombre) ?>" style="width: 100%;">
               <?php } ?>
             </div>

@@ -200,25 +200,27 @@ $tipo_operacion->id = 0;
 
       <?php if ($empresa->id == 1518) { ?>
         <div class="contact1">
-          <div class="row" style="padding: 1rem;">
-            <div class="col-xs-12 col-md-2 contact1-first-col">
-              <p class="atention_p" style="margin-top: 1rem;"><i class="fa fa-user" aria-hidden="true"></i>
-                Atención al Cliente <span class="vertical"></span></p>
-            </div>
-            <div class="col-xs-12 col-md-8">
-              <p class="ventas_p"><i class="fa fa-phone" aria-hidden="true"></i> Ventas / Alquileres</p>
-              <p class="ventas_p" style="line-height: 0;"><?php echo $empresa->telefono ?></p>
-            </div>
-            <div class="col-xs-12 col-md-2 col-iconos text-center">
-              <?php if (!empty($empresa->facebook)) { ?>
-                <a target="_blank" href="<?php echo $empresa->facebook ?>" style="margin-right: 5px;"><i class="fa fa-facebook" aria-hidden="true"></i>
-              <?php } ?>
-              <?php if (!empty($empresa->linkedin)) { ?>
-                <a target="_blank" href="<?php echo $empresa->linkedin ?>"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-              <?php } ?>
-              <?php if (!empty($empresa->instagram)) { ?>
-                <a target="_blank" href="<?php echo $empresa->instagram ?>"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-              <?php } ?>
+          <div class="container">
+            <div class="row" style="padding: 1rem;">
+              <div class="col-xs-12 col-md-2 contact1-first-col">
+                <p class="atention_p" style="margin-top: 1rem;"><i class="fa fa-user" aria-hidden="true"></i>
+                  Atención al Cliente <span class="vertical"></span></p>
+              </div>
+              <div class="col-xs-12 col-md-8">
+                <p class="ventas_p"><i class="fa fa-phone" aria-hidden="true"></i> Ventas / Alquileres</p>
+                <p class="ventas_p" style="line-height: 0;"><?php echo $empresa->telefono ?></p>
+              </div>
+              <div class="col-xs-12 col-md-2 col-iconos text-center">
+                <?php if (!empty($empresa->facebook)) { ?>
+                  <a target="_blank" href="<?php echo $empresa->facebook ?>" style="margin-right: 5px;"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                <?php } ?>
+                <?php if (!empty($empresa->linkedin)) { ?>
+                  <a target="_blank" href="<?php echo $empresa->linkedin ?>"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                <?php } ?>
+                <?php if (!empty($empresa->instagram)) { ?>
+                  <a target="_blank" href="<?php echo $empresa->instagram ?>"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                <?php } ?>
+              </div>
             </div>
           </div>
         </div>
