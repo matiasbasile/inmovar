@@ -137,6 +137,7 @@ $tipo_operacion->id = 0;
     @media screen and (max-width: 768px) {
       .atention_p, .ventas_p { text-align: center; }
       .ventas_p { line-height: 3rem; }
+      .contact1 a { margin-top: 10px; }
     }
 
   </style>
