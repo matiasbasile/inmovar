@@ -249,7 +249,7 @@ $tipo_operacion->id = 0;
                       <h3 data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" class="editable"><?php echo $t->plain_text ?></h3>
                     </header>
                     <?php $t = $web_model->get_text("home-servicios-1-texto"); ?>
-                    <p data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" class="editable"><?php echo $t->plain_text ?></p>
+                    <p data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" class="editable mt10"><?php echo $t->plain_text ?></p>
                     <?php if (!empty($t->link)) { ?>
                       <a href="<?php echo $t->link ?>" class="link-arrow">Ver m&aacute;s</a>
                     <?php } ?>
@@ -265,7 +265,7 @@ $tipo_operacion->id = 0;
                       <h3 data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" class="editable"><?php echo $t->plain_text ?></h3>
                     </header>
                     <?php $t = $web_model->get_text("home-servicios-2-texto"); ?>
-                    <p data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" class="editable"><?php echo $t->plain_text ?></p>
+                    <p data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" class="editable mt10"><?php echo $t->plain_text ?></p>
                     <?php if (!empty($t->link)) { ?>
                       <a href="<?php echo $t->link ?>" class="link-arrow">Ver m&aacute;s</a>
                     <?php } ?>
@@ -281,7 +281,7 @@ $tipo_operacion->id = 0;
                       <h3 data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" class="editable"><?php echo $t->plain_text ?></h3>
                     </header>
                     <?php $t = $web_model->get_text("home-servicios-3-texto"); ?>
-                    <p data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" class="editable"><?php echo $t->plain_text ?></p>
+                    <p data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" class="editable mt10"><?php echo $t->plain_text ?></p>
                     <?php if (!empty($t->link)) { ?>
                       <a href="<?php echo $t->link ?>" class="link-arrow">Ver m&aacute;s</a>
                     <?php } ?>
