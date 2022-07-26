@@ -574,6 +574,7 @@ $tipo_operacion->id = 0;
       var link = "<?php echo mklink("propiedades/") ?>";
       var tipo_operacion = $("#tipo_operacion").val();
       link = link + tipo_operacion + "/";
+      link = $("#localidad").val() + "/";
       $("#form_propiedades").attr("action", link);
       return true;
     }
