@@ -117,6 +117,9 @@ $tipo_operacion->id = 0;
       height: 100%;
       width: 2px;
     }
+    @media (max-width: 768px) {
+      .contact1 p span:after { display: none; }
+    }
 
     .atention_p {
       font-family: 'Roboto';
