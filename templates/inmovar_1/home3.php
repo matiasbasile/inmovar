@@ -135,7 +135,8 @@ $tipo_operacion->id = 0;
       opacity: 1 !important;
     }
     @media screen and (max-width: 768px) {
-      .atention_p, .ventas_p { text-align: center; line-height: 3rem; }
+      .atention_p, .ventas_p { text-align: center; }
+      .ventas_p { line-height: 3rem; }
     }
 
   </style>
