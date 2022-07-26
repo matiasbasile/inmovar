@@ -6,11 +6,6 @@
     font-weight: 600 !important;
     margin-bottom: 10px !important;
   }
-
-  h3 {
-    margin-bottom: 0px !important;
-  }
-
   .footer_newtitlebold {
     opacity: 1 !important;
     font-weight: 700;
