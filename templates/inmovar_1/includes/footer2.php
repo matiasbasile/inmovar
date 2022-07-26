@@ -18,6 +18,9 @@
     text-align: left;
     margin-top: 10px;
   }
+  footer article {
+    text-align: left;
+  }
 
   @media(max-width: 768px) {
     .footer_newtitle {
