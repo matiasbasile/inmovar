@@ -181,7 +181,13 @@ $tipo_operacion->id = 0;
         <form onsubmit="return filtrar(this)" method="get" role="form" id="form_propiedades">
           <input type="hidden" value="" id="tipo_operacion" value="ventas" />
           <div class="col-md-6 p10">
-            <input class="my-select" style="padding: 9px" type="text" name="cod" placeholder="Buscar por código" name="">
+            <select id="localidad" class="my-select">
+              <option value="0">Buscar por ubicación</option>
+              <?php $filter_localidades = $propiedad_model->get_localidades();
+              foreach($filter_localidades as $r) { ?>
+                <option <?php echo (isset($vc_link_localidad) && $vc_link_localidad == $r->link) ? "selected":"" ?> value="<?php echo $r->link ?>"><?php echo $r->nombre ?></option>
+              <?php } ?>
+            </select>
           </div>
           <div class="col-md-5 p10">
             <select class="my-select" name="tp">
