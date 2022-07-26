@@ -299,7 +299,7 @@ $tipo_operacion->id = 0;
         <?php if ($empresa->comp_destacados == 1) {
           $ids_destacadas = array();
           $destacadas = $propiedad_model->destacadas(array(
-            "offset" => 4,
+            "offset" => 8,
           ));
           if (sizeof($destacadas) > 0) { ?>
             <section id="price-drop" class="block">
@@ -373,7 +373,7 @@ $tipo_operacion->id = 0;
         <?php if ($empresa->comp_ultimos == 1) { ?>
 
           <?php $ultimas = $propiedad_model->ultimas(array(
-            "offset" => 4,
+            "offset" => 8,
             //"not_in"=>$ids_destacadas,
           ));
           if (sizeof($ultimas) > 0) { ?>
