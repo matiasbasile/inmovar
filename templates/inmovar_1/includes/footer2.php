@@ -1,6 +1,6 @@
 <style>
   .footer_newtitle {
-    text-align: center !important;
+    text-align: left !important;
     color: rgb(26, 49, 70) !important;
     font-family: 'Roboto' !important;
     font-weight: 600 !important;
@@ -15,7 +15,7 @@
     opacity: 1 !important;
     font-weight: 700;
     font-family: 'Roboto';
-    text-align: center;
+    text-align: left;
     margin-top: 10px;
   }
 
