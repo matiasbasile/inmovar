@@ -1121,19 +1121,23 @@ class Clientes extends REST_Controller {
     if (empty($array->fecha_ult_operacion)) $array->fecha_ult_operacion = date("Y-m-d H:i:s");
     if (isset($array->fecha_vencimiento)) $array->fecha_vencimiento = fecha_mysql($array->fecha_vencimiento);
     $array->id_empresa = $id_empresa;
-    $array->cuit = str_replace("-","",$array->cuit);
-    $array->cuit = str_replace(" ","",$array->cuit);
+    if (isset($array->cuit)) {
+      $array->cuit = str_replace("-","",$array->cuit);
+      $array->cuit = str_replace(" ","",$array->cuit);
+    }
 
     // Controlamos si el codigo ya existe
-    $codigo = trim($array->codigo);
-    if (!empty($codigo)) {
-      $q = $this->db->query("SELECT * FROM clientes WHERE codigo = '$array->codigo' AND id_empresa = $id_empresa");
-      if ($q->num_rows()>0) {
-        echo json_encode(array(
-          "error"=>1,
-          "mensaje"=>"ERROR: Ya existe un cliente con el codigo $array->codigo."
-          ));
-        return;
+    if (isset($array->codigo)) {
+      $codigo = trim($array->codigo);
+      if (!empty($codigo)) {
+        $q = $this->db->query("SELECT * FROM clientes WHERE codigo = '$array->codigo' AND id_empresa = $id_empresa");
+        if ($q->num_rows()>0) {
+          echo json_encode(array(
+            "error"=>1,
+            "mensaje"=>"ERROR: Ya existe un cliente con el codigo $array->codigo."
+            ));
+          return;
+        }
       }
     }
 
@@ -1152,7 +1156,7 @@ class Clientes extends REST_Controller {
     }
     */
 
-    $etiquetas = $array->etiquetas;
+    $etiquetas = isset($array->etiquetas) ? $array->etiquetas : array();
     unset($array->etiquetas);
 
     // Dependiendo de la configuracion del sistema, si es LOCAL o NO
