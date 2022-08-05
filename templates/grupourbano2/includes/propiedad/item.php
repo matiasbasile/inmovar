@@ -11,7 +11,7 @@ function item($r,$config = array()) {
         <?php } ?>
         <?php if($r->pertenece_red == 1) { ?>
           <img src="assets/images/inmovar.png" class="inmovar_red" alt="Red Inmovar" />
-          <div id="#inmovar_red_msg">Esta propiedad pertenece a Inmovar.</div>
+          <div id="#inmovar_red_msg">Propiedades de la RED INMOVAR.</div>
         <?php  } ?>
         <?php if ($r->id_tipo_estado == 4) { ?>
           <div class="ribbon reservado"></div>

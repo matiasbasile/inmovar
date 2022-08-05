@@ -2085,7 +2085,31 @@ ul.dot-icon li span {
 }
 
 #inmovar_red_msg {
-  display: none !important;
+  display: block;
+  background: #333333;
+  color: white;
+  height: 60px;
+  padding: 20px;
+  width: 300px;
+  border-radius: 5px;
+  position: relative;
+}
+
+#inmovar_red_msg::after {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 30px;
+  border-top: 0px solid #333333;
+  border-right: 2px solid #333333;
+  border-bottom: 2px solid #333333;
+  border-left: 0px solid #333333;
+  top: 100%;
+  left: 50%;
+  margin-left: -25px;
+  transform: rotate(45deg);
+  margin-top: -25px;
+  background: #333333;
 }
 
 .inmovar_red hover ~ #inmovar_red_msg {
