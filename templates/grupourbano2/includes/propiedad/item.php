@@ -10,7 +10,7 @@ function item($r,$config = array()) {
           <img src="assets/images/estrella.png" class="estrella" alt="Propiedad Destacada" />
         <?php } ?>
         <?php if($r->pertenece_red == 1) { ?>
-          <img src="assets/images/inmovar.png" data-toggle="tooltip" data-placement="top" title="Tooltip on top" class="inmovar_red" alt="Red Inmovar" />
+          <img src="assets/images/inmovar.png" data-toggle="tooltip" data-placement="top" title="Propiedades de la RED INMOVAR" class="inmovar_red" alt="Red Inmovar" />
           <!-- <div id="inmovar_red_msg">Propiedades de la RED INMOVAR.</div> -->
         <?php  } ?>
         <?php if ($r->id_tipo_estado == 4) { ?>

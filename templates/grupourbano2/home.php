@@ -26,5 +26,6 @@ $nombre_pagina = "home";
   <?php include("includes/home/marcas.php"); ?>
 
   <?php include("includes/footer.php"); ?>
+
 </body>
 </html>

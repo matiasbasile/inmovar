@@ -33,7 +33,7 @@
   <div class="footer-center padding-default">
     <div class="container">
       <img src="assets/images/logo-white.png" alt="img">
-      <p class="mt-4">Bertoia Col. 7342 <span>|</span> Piñero Col. 7346</p>      
+      <p class="mt-4">Bertoia Col. 7342 <span>|</span> Piñero Col. 7346</p>
       <div class="social">
         <?php if (!empty($empresa->facebook)) { ?>
           <a target="_blank" href="<?php echo $empresa->facebook ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -83,106 +83,114 @@
 <script src="/admin/resources/js/moment.min.js"></script>
 
 <script>
-$(document).ready(function(){
-  $(".cerrar_modal").click(function(){
-    $(".modal").modal("hide")
-  });
+  $(document).ready(function() {
+    $(".cerrar_modal").click(function() {
+      $(".modal").modal("hide")
+    });
 
-  $(".tag_buscador").click(function(e){
-    var id = $(e.currentTarget).data("field");
-    if (id == "styled-checkbox-1") {
-      $("#styled-checkbox-1").prop("checked",false);
-    } else if (id == "styled-checkbox-2") {
-      $("#styled-checkbox-2").prop("checked",false);
-    } else {    
-      $("#"+id).val(0);
-    }
-    $("#form_buscador").submit();
-  })
-
-});
-
-function buscar_mapa(form) {
-  $(form).parents("form").first().find(".base_url").val("<?php echo mklink("mapa/") ?>");
-  $(form).parents("form").first().submit();
-}
-
-function buscar_listado(form) {
-  $(form).parents("form").first().find(".base_url").val("<?php echo mklink("propiedades/") ?>");
-  $(form).parents("form").first().submit();
-}
-
-function cambiar_checkboxes(e) {
-  var form = $(e).parents("form");
-  $(form).submit();
-}
-
-function order_solo() {
-  var orden = $("#form_buscador select[name=orden]").val();
-  var base = "<?php echo current_url(FALSE,TRUE) ?>";
-  base += (base.substr(-1) == "/") ? "" : "/";
-  base += "?orden="+orden;
-  if ($("#styled-checkbox-1").is(":checked")) base += "&banco=1";
-  if ($("#styled-checkbox-2").is(":checked")) base += "&per=1";
-  location.href = base;
-}
-
-function filtrar(form) {
-  var url = $(form).find(".base_url").val();
-  var tipo_operacion = $(form).find(".filter_tipo_operacion").val();
-  if (!isEmpty(tipo_operacion)) {
-    url+=tipo_operacion+"/";
-  } else {
-    alert("Seleccione un tipo de operación.");
-    return false;
-  }
-  var localidad = $(form).find(".filter_localidad").val();
-  if (!isEmpty(localidad)) {
-    url+=localidad+"/";
-  }
-
-  var minimo = $("#filter_rango_precios option:selected").data("min");
-  var maximo = $("#filter_rango_precios option:selected").data("max");
-  $("#filter_minimo").val(minimo);
-  $("#filter_maximo").val(maximo);
-
-  $(form).attr("action",url);
-}
-
-function enviar_newsletter() {
-  var email = $("#newsletter_email").val();
-  if (!validateEmail(email)) {
-    alert("Por favor ingrese un email valido.");
-    $("#newsletter_email").focus();
-    return false;
-  }
-
-  $("#newsletter_submit").attr('disabled', 'disabled');
-  var datos = {
-    "email": email,
-    "mensaje": "Registro a Newsletter",
-    "asunto": "Registro a Newsletter",
-    "para": "<?php echo $empresa->email ?>",
-    "id_empresa": ID_EMPRESA,
-    "id_origen": 2,
-  }
-  $.ajax({
-    "url": "https://app.inmovar.com/admin/consultas/function/enviar/",
-    "type": "post",
-    "dataType": "json",
-    "data": datos,
-    "success": function(r) {
-      if (r.error == 0) {
-        alert("Muchas gracias por registrarse a nuestro newsletter!");
-        location.reload();
+    $(".tag_buscador").click(function(e) {
+      var id = $(e.currentTarget).data("field");
+      if (id == "styled-checkbox-1") {
+        $("#styled-checkbox-1").prop("checked", false);
+      } else if (id == "styled-checkbox-2") {
+        $("#styled-checkbox-2").prop("checked", false);
       } else {
-        alert("Ocurrio un error al enviar su email. Disculpe las molestias");
-        $("#newsletter_submit").removeAttr('disabled');
+        $("#" + id).val(0);
       }
-    }
+      $("#form_buscador").submit();
+    })
+
   });
-  return false;
-}
+
+  function buscar_mapa(form) {
+    $(form).parents("form").first().find(".base_url").val("<?php echo mklink("mapa/") ?>");
+    $(form).parents("form").first().submit();
+  }
+
+  function buscar_listado(form) {
+    $(form).parents("form").first().find(".base_url").val("<?php echo mklink("propiedades/") ?>");
+    $(form).parents("form").first().submit();
+  }
+
+  function cambiar_checkboxes(e) {
+    var form = $(e).parents("form");
+    $(form).submit();
+  }
+
+  function order_solo() {
+    var orden = $("#form_buscador select[name=orden]").val();
+    var base = "<?php echo current_url(FALSE, TRUE) ?>";
+    base += (base.substr(-1) == "/") ? "" : "/";
+    base += "?orden=" + orden;
+    if ($("#styled-checkbox-1").is(":checked")) base += "&banco=1";
+    if ($("#styled-checkbox-2").is(":checked")) base += "&per=1";
+    location.href = base;
+  }
+
+  function filtrar(form) {
+    var url = $(form).find(".base_url").val();
+    var tipo_operacion = $(form).find(".filter_tipo_operacion").val();
+    if (!isEmpty(tipo_operacion)) {
+      url += tipo_operacion + "/";
+    } else {
+      alert("Seleccione un tipo de operación.");
+      return false;
+    }
+    var localidad = $(form).find(".filter_localidad").val();
+    if (!isEmpty(localidad)) {
+      url += localidad + "/";
+    }
+
+    var minimo = $("#filter_rango_precios option:selected").data("min");
+    var maximo = $("#filter_rango_precios option:selected").data("max");
+    $("#filter_minimo").val(minimo);
+    $("#filter_maximo").val(maximo);
+
+    $(form).attr("action", url);
+  }
+
+  function enviar_newsletter() {
+    var email = $("#newsletter_email").val();
+    if (!validateEmail(email)) {
+      alert("Por favor ingrese un email valido.");
+      $("#newsletter_email").focus();
+      return false;
+    }
+
+    $("#newsletter_submit").attr('disabled', 'disabled');
+    var datos = {
+      "email": email,
+      "mensaje": "Registro a Newsletter",
+      "asunto": "Registro a Newsletter",
+      "para": "<?php echo $empresa->email ?>",
+      "id_empresa": ID_EMPRESA,
+      "id_origen": 2,
+    }
+    $.ajax({
+      "url": "https://app.inmovar.com/admin/consultas/function/enviar/",
+      "type": "post",
+      "dataType": "json",
+      "data": datos,
+      "success": function(r) {
+        if (r.error == 0) {
+          alert("Muchas gracias por registrarse a nuestro newsletter!");
+          location.reload();
+        } else {
+          alert("Ocurrio un error al enviar su email. Disculpe las molestias");
+          $("#newsletter_submit").removeAttr('disabled');
+        }
+      }
+    });
+    return false;
+  }
 </script>
+
+
+<script>
+  $(function() {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+
 
 <?php include("templates/comun/clienapp.php") ?>
