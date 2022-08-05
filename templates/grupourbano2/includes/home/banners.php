@@ -1,4 +1,4 @@
-<section class="group-bertoia padding-default">
+<section class="group-bertoia padding-default d-none">
   <div class="container">
     <?php $t = $web_model->get_text("text1", "Grupo Urbano Bertoia Piñero"); ?>
     <h2 class="text-center editable" data-id="<?php echo $t->id ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>"> <?php echo $t->plain_text ?> </h2>

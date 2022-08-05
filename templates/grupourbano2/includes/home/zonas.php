@@ -1,4 +1,4 @@
-<section class="search-zone">
+<section class="search-zone d-none">
   <div class="row m-0">
     <div class="col-md-12 text-center">
       <?php $t = $web_model->get_text("text9", "Buscá por Zona"); ?>
