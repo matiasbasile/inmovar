@@ -9,6 +9,9 @@ function item($r,$config = array()) {
         <?php if ($r->destacado == 1 && $r->id_empresa == $empresa->id) { ?>
           <img src="assets/images/estrella.png" class="estrella" alt="Propiedad Destacada" />
         <?php } ?>
+        <?php if($r->pertenece_red == 1) { ?>
+          <img src="assets/images/inmovar.png" class="inmovar_red" alt="Red Inmovar" />
+        <?php  } ?>
         <?php if ($r->id_tipo_estado == 4) { ?>
           <div class="ribbon reservado"></div>
         <?php } else if ($r->id_tipo_estado == 3) { ?>

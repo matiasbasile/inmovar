@@ -15,6 +15,9 @@
               <a class="dropdown-item" href="#0">How it Works</a>
             </div> -->
           </li>
+          <li class="nav-item <?php echo ($nombre_pagina == "ofertas" ? "active" : "") ?>">
+            <a class="nav-link" href="<?php echo mklink("ofertas/") ?>">ofertas</a>
+          </li>
           <li class="nav-item <?php echo ($nombre_pagina == "alquileres" ? "active" : "") ?>">
             <a class="nav-link" href="<?php echo mklink("propiedades/alquileres/") ?>">alquileres</a>
           </li>
@@ -23,9 +26,6 @@
           </li>
           <li class="nav-item <?php echo ($nombre_pagina == "obras" ? "active" : "") ?>">
             <a class="nav-link" href="<?php echo mklink("propiedades/obras/") ?>">obras</a>
-          </li>
-          <li class="nav-item <?php echo ($nombre_pagina == "ofertas" ? "active" : "") ?>">
-            <a class="nav-link" href="<?php echo mklink("ofertas/") ?>">ofertas</a>
           </li>
           <li class="nav-item <?php echo ($nombre_pagina == "nosotros" ? "active" : "") ?>">
             <a class="nav-link" href="<?php echo mklink("web/vendedores") ?>">nosotros</a>
