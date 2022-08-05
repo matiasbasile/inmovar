@@ -2085,12 +2085,12 @@ ul.dot-icon li span {
 }
 
 #inmovar_red_msg {
-  display: none;
+  display: none !important;
 }
 
 .inmovar_red hover ~ #inmovar_red_msg {
-  display: block;
-  transition: all .4s;
+  display: block !important;
+  transition: all .4s !important;
 }
 
 
