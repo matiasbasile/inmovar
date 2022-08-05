@@ -187,9 +187,11 @@
 
 
 <script>
-  $(document.ready(function(){
-    $('[data-toggle="tooltip"]').tooltip()
-  }) 
+  $(document).ready(function() {
+    $("body").tooltip({
+      selector: '[data-toggle=tooltip]'
+    });
+  });
 </script>
 
 
