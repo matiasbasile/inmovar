@@ -2072,16 +2072,16 @@ ul.dot-icon li span {
 }
 
 .inmovar_red {
-  position: absolute;
-  top: 16px;
-  right: 10px;
-  width: 36px;
-  height: 36px;
+  position: absolute !important;
+  top: 16px !important;
+  right: 10px !important;
+  width: 36px !important;
+  height: 36px !important;
   opacity: 1 !important;
-  z-index: 99;
-  background-color: #0000005e;
-  padding: 7px;
-  border-radius: 100%;
+  z-index: 99 !important;
+  background-color: #0000005e !important;
+  padding: 7px !important;
+  border-radius: 100% !important;
 }
 
 .fs32 {
