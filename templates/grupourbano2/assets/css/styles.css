@@ -2084,6 +2084,16 @@ ul.dot-icon li span {
   border-radius: 100% !important;
 }
 
+#inmovar_red_msg {
+  display: none;
+}
+
+.inmovar_red hover ~ #inmovar_red_msg {
+  display: block;
+  transition: all .4s;
+}
+
+
 .fs32 {
   font-size: 32px !important;
 }
