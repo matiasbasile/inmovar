@@ -2085,31 +2085,25 @@ ul.dot-icon li span {
 }
 
 #inmovar_red_msg {
-  display: block;
   background: #333333;
-  color: white;
-  height: 60px;
-  padding: 20px;
-  width: 300px;
-  border-radius: 5px;
   position: relative;
+  width: 150px;
+  border-radius: 5px;
+  text-align: center;
+  color: white;
+  padding: 10px;
 }
 
-#inmovar_red_msg::after {
+#inmovar_red_msg::before {
   content: "";
   position: absolute;
-  width: 50px;
-  height: 30px;
-  border-top: 0px solid #333333;
-  border-right: 2px solid #333333;
-  border-bottom: 2px solid #333333;
-  border-left: 0px solid #333333;
-  top: 100%;
+  bottom: -9px;
   left: 50%;
-  margin-left: -25px;
+  margin-left: -9px;
+  width: 18px;
+  height: 18px;
+  background: white;
   transform: rotate(45deg);
-  margin-top: -25px;
-  background: #333333;
 }
 
 /* .inmovar_red hover ~ #inmovar_red_msg {
