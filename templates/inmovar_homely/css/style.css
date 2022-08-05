@@ -1871,6 +1871,7 @@ object-fit: contain !important; height: 400px !important; width: 100% !important
 
 .slider-property-gallery img { height: 600px; object-fit: cover; width: 100%; }
 .slider-property-gallery { position: relative; }
+.slider-property-gallery::before { content: " "; background-color: #000; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: .5;}
 .slider-property-gallery:after { 
 	background: rgba(0,0,0,0);
 	background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 65%, rgba(0,0,0,0.8) 100%);
