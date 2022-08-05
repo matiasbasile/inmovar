@@ -2112,11 +2112,10 @@ ul.dot-icon li span {
   background: #333333;
 }
 
-.inmovar_red hover ~ #inmovar_red_msg {
+/* .inmovar_red hover ~ #inmovar_red_msg {
   display: block !important;
   transition: all .4s !important;
-}
-
+} */
 
 .fs32 {
   font-size: 32px !important;
