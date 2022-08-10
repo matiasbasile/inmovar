@@ -2067,7 +2067,7 @@ ul.dot-icon li span {
 
 @media (max-width: 600px) {
   .estrella {
-    display: none;
+    display: block;
   }
 }
 
