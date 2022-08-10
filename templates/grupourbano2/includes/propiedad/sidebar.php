@@ -65,7 +65,7 @@
       </div>
     </form>
   </div>
-  <div class="d-block">
+  <div class="d-none">
     <a href="javascript:void(0)" rel="nofollow" onClick="history.go(-1); return false;" class="btn btn-outline-secondary btn-block style-two"><i class="fa fa-undo mr-3" aria-hidden="true"></i> regresar a los resultados</a>
   </div>
 </div>
