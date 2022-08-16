@@ -460,7 +460,7 @@ class Propiedad_Model {
 
       } else {
         // Si es en ALQUILERES, buscamos en pesos
-        if (strtolower($link_tipo_operacion) == "ventas") {
+        if (strtolower($link_tipo_operacion) == "alquileres") {
           $config_list["minimo"] = $vc_minimo;
           $config_list["maximo"] = $vc_maximo;
           $moneda = "$";
