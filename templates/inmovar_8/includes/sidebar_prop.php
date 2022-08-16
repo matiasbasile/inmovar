@@ -157,38 +157,56 @@
         </div>
         <div class="form-group">
           <label>Precio Minimo</label>
-          <?php $divisor = (($vc_link_tipo_operacion == "alquileres") ? 1 : (isset($cotizacion_dolar) ? $cotizacion_dolar : 1)); ?>
+          <?php $divisor = (() ? 1 : (isset($cotizacion_dolar) ? $cotizacion_dolar : 1)); ?>
           <?php $bloque = $vc_precio_maximo / 20; ?>
           <select class="form-control-white" name="vc_minimo">
-            <?php 
-            $cont = 0;
-            for($i=0;$i<=20;$i++) { ?>
-              <option <?php echo (isset($vc_minimo) && $vc_minimo == $cont) ? "selected":"" ?> value="<?php echo $cont ?>"><?php echo (($divisor>1)?"USD":"$")." ".number_format($cont / $divisor,0) ?></option>
-            <?php $cont = $cont + $bloque; } ?>
+            <?php if ($vc_link_tipo_operacion == "alquileres") { ?>
+              <option <?php echo (isset($vc_minimo) && $vc_minimo == 0) ? "selected":"" ?> value="0">$ 0</option>
+              <option <?php echo (isset($vc_minimo) && $vc_minimo == 25000) ? "selected":"" ?> value="25000">$ 25000</option>
+              <option <?php echo (isset($vc_minimo) && $vc_minimo == 50000) ? "selected":"" ?> value="50000">$ 50000</option>
+              <option <?php echo (isset($vc_minimo) && $vc_minimo == 100000) ? "selected":"" ?> value="100000">$ 100000</option>
+              <option <?php echo (isset($vc_minimo) && $vc_minimo == 150000) ? "selected":"" ?> value="150000">$ 150000</option>
+              <option <?php echo (isset($vc_minimo) && $vc_minimo == 200000) ? "selected":"" ?> value="200000">$ 200000</option>
+              <option <?php echo (isset($vc_minimo) && $vc_minimo == 300000) ? "selected":"" ?> value="300000">$ 300000</option>
+              <option <?php echo (isset($vc_minimo) && $vc_minimo == 500000) ? "selected":"" ?> value="500000">$ 500000</option>
+              <option <?php echo (isset($vc_minimo) && $vc_minimo == 1000000) ? "selected":"" ?> value="1000000">$ 1000000</option>
+            <?php } else { ?>
+              <option <?php echo (isset($vc_minimo) && $vc_minimo == 0) ? "selected":"" ?> value="0">USD 0</option>
+              <option <?php echo (isset($vc_minimo) && $vc_minimo == 25000) ? "selected":"" ?> value="25000">USD 25000</option>
+              <option <?php echo (isset($vc_minimo) && $vc_minimo == 50000) ? "selected":"" ?> value="50000">USD 50000</option>
+              <option <?php echo (isset($vc_minimo) && $vc_minimo == 100000) ? "selected":"" ?> value="100000">USD 100000</option>
+              <option <?php echo (isset($vc_minimo) && $vc_minimo == 150000) ? "selected":"" ?> value="150000">USD 150000</option>
+              <option <?php echo (isset($vc_minimo) && $vc_minimo == 200000) ? "selected":"" ?> value="200000">USD 200000</option>
+              <option <?php echo (isset($vc_minimo) && $vc_minimo == 300000) ? "selected":"" ?> value="300000">USD 300000</option>
+              <option <?php echo (isset($vc_minimo) && $vc_minimo == 500000) ? "selected":"" ?> value="500000">USD 500000</option>
+              <option <?php echo (isset($vc_minimo) && $vc_minimo == 1000000) ? "selected":"" ?> value="1000000">USD 1000000</option>
+            <?php } ?>
           </select>
           <label>Precio Maximo</label>
           <select class="form-control-white" name="vc_maximo">
-            <?php 
-            $cont = 0;
-            for($i=0;$i<=20;$i++) { ?>
-              <option <?php echo (isset($vc_maximo) && $vc_maximo == $cont) ? "selected":"" ?> value="<?php echo $cont ?>"><?php echo (($divisor>1)?"USD":"$")." ".number_format($cont / $divisor,0) ?></option>
-            <?php $cont = $cont + $bloque; } ?>
+            <?php if ($vc_link_tipo_operacion == "alquileres") { ?>
+              <option <?php echo (isset($vc_maximo) && $vc_maximo == 0) ? "selected":"" ?> value="0">$ 0</option>
+              <option <?php echo (isset($vc_maximo) && $vc_maximo == 25000) ? "selected":"" ?> value="25000">$ 25000</option>
+              <option <?php echo (isset($vc_maximo) && $vc_maximo == 50000) ? "selected":"" ?> value="50000">$ 50000</option>
+              <option <?php echo (isset($vc_maximo) && $vc_maximo == 100000) ? "selected":"" ?> value="100000">$ 100000</option>
+              <option <?php echo (isset($vc_maximo) && $vc_maximo == 150000) ? "selected":"" ?> value="150000">$ 150000</option>
+              <option <?php echo (isset($vc_maximo) && $vc_maximo == 200000) ? "selected":"" ?> value="200000">$ 200000</option>
+              <option <?php echo (isset($vc_maximo) && $vc_maximo == 300000) ? "selected":"" ?> value="300000">$ 300000</option>
+              <option <?php echo (isset($vc_maximo) && $vc_maximo == 500000) ? "selected":"" ?> value="500000">$ 500000</option>
+              <option <?php echo (isset($vc_minimo) && $vc_minimo == 1000000) ? "selected":"" ?> value="1000000">$ 1000000</option>
+            <?php } else { ?>
+              <option <?php echo (isset($vc_maximo) && $vc_maximo == 0) ? "selected":"" ?> value="0">USD 0</option>
+              <option <?php echo (isset($vc_maximo) && $vc_maximo == 25000) ? "selected":"" ?> value="25000">USD 25000</option>
+              <option <?php echo (isset($vc_maximo) && $vc_maximo == 50000) ? "selected":"" ?> value="50000">USD 50000</option>
+              <option <?php echo (isset($vc_maximo) && $vc_maximo == 100000) ? "selected":"" ?> value="100000">USD 100000</option>
+              <option <?php echo (isset($vc_maximo) && $vc_maximo == 150000) ? "selected":"" ?> value="150000">USD 150000</option>
+              <option <?php echo (isset($vc_maximo) && $vc_maximo == 200000) ? "selected":"" ?> value="200000">USD 200000</option>
+              <option <?php echo (isset($vc_maximo) && $vc_maximo == 300000) ? "selected":"" ?> value="300000">USD 300000</option>
+              <option <?php echo (isset($vc_maximo) && $vc_maximo == 500000) ? "selected":"" ?> value="500000">USD 500000</option>
+              <option <?php echo (isset($vc_minimo) && $vc_minimo == 1000000) ? "selected":"" ?> value="1000000">USD 1000000</option>
+            <?php } ?>            
           </select>
         </div>
-        <?php /*
-        <div class="price_range">
-          <div class="extra-controls form-inline">
-            <div class="form-group">
-              <p>Precio:</p>
-              <span>$</span> <input type="text" name="" class="js-input-from" value="<?php echo (isset($vc_vc_minimo)) ? $vc_minimo : 0 ?>" />
-              <span>$</span><input type="text" name="vc_maximo" class="js-input-to" value="<?php echo (isset($vc_maximo)) ? $vc_maximo : $vc_precio_maximo ?>" />
-            </div>
-          </div>
-          <div class="range-slider">
-            <input type="text" class="js-range-slider" value="" data-min="0" data-max="<?php echo $vc_precio_maximo ?>" data-from="<?php echo $vc_minimo ?>" data-to="<?php echo $vc_maximo ?>" />
-          </div>
-        </div>
-        */ ?>
         <div class="por_div">
           <label>Busqueda por codigo</label>
           <input class="form-control-white" type="text" name="cod" placeholder="<?php echo (isset($vc_codigo) && !empty($vc_codigo))?$vc_codigo:"Ingrese codigo" ?>">
