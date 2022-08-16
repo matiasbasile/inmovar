@@ -157,8 +157,6 @@
         </div>
         <div class="form-group">
           <label>Precio Minimo</label>
-          <?php $divisor = (() ? 1 : (isset($cotizacion_dolar) ? $cotizacion_dolar : 1)); ?>
-          <?php $bloque = $vc_precio_maximo / 20; ?>
           <select class="form-control-white" name="vc_minimo">
             <?php if ($vc_link_tipo_operacion == "alquileres") { ?>
               <option <?php echo (isset($vc_minimo) && $vc_minimo == 0) ? "selected":"" ?> value="0">$ 0</option>
