@@ -616,6 +616,7 @@ class Propiedad_Model {
     $sql.= "FROM inm_propiedades P ";
     $sql.= "LEFT JOIN inm_tipos_operacion TIPO_OP ON (P.id_tipo_operacion = TIPO_OP.id) ";
     $sql.= "WHERE P.id_empresa IN ($emp_comp) ";
+    $sql.= "AND P.activo = 1 ";
     $sql.= 'AND P.moneda = "U$S" ';
     if ($publica_precio == 1) $sql.= "AND P.publica_precio = 1 ";
     if ($id_tipo_operacion != 0) $sql.= "AND P.id_tipo_operacion = ".$id_tipo_operacion;
@@ -628,6 +629,7 @@ class Propiedad_Model {
     $sql.= "FROM inm_propiedades P ";
     $sql.= "LEFT JOIN inm_tipos_operacion TIPO_OP ON (P.id_tipo_operacion = TIPO_OP.id) ";
     $sql.= "WHERE P.id_empresa IN ($emp_comp) ";
+    $sql.= "AND P.activo = 1 ";
     $sql.= 'AND P.moneda = "$" ';
     if ($publica_precio == 1) $sql.= "AND P.publica_precio = 1 ";
     if ($id_tipo_operacion != 0) $sql.= "AND P.id_tipo_operacion = ".$id_tipo_operacion;
