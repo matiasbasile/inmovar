@@ -459,15 +459,15 @@ class Propiedad_Model {
         $config_list["moneda"] = "ARS";
 
       } else {
-        // Si es en VENTAS, directamente buscamos en dolares
+        // Si es en ALQUILERES, buscamos en pesos
         if (strtolower($link_tipo_operacion) == "ventas") {
-          $config_list["minimo_usd"] = $vc_minimo;
-          $config_list["maximo_usd"] = $vc_maximo;
-          $moneda = "USD";
-        } else {
           $config_list["minimo"] = $vc_minimo;
           $config_list["maximo"] = $vc_maximo;
           $moneda = "$";
+        } else {
+          $config_list["minimo_usd"] = $vc_minimo;
+          $config_list["maximo_usd"] = $vc_maximo;
+          $moneda = "USD";
         }
       }
     }
