@@ -144,6 +144,9 @@ nav ul li a:hover, nav ul li.active a { font-family: 'Lato-Bold'; border-color: 
 	background-color: #000;
 	border-radius: 30px;
 }
+@media (max-width: 768px) {
+	.dots-toggle { margin-right: 0px; margin-top: 0px; margin-left: 40px; }
+}
 
 /* TOP CAROUSEL CSS */
 .top-carousel { position: absolute; top: 85px; left: 0; z-index: 99; width: 100%; background: rgba(255, 255, 255, 0.7); padding: 20px 0; display: none; }
