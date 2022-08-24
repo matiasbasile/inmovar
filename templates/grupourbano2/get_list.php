@@ -40,4 +40,7 @@ foreach ($vc_listado as $propiedad) {
     "clase"=>((!empty($id_usuario)) ? "col-md-6 p-0 neighborhoods-list" : "col-md-4 p-0 neighborhoods-list"),
   ));
 }
+if ($id_usuario == 3579) {
+  echo $propiedad_model->get_sql();
+}
 ?>
