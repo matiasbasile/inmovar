@@ -132,9 +132,9 @@ nav ul li a:hover, nav ul li.active a { font-family: 'Lato-Bold'; border-color: 
 	justify-content: center;
 	float: right;
 	width: 15px;
-	margin-left: auto;
-	margin-right: 90px;
-	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 105px;
+	margin-top: 18px;
 }
 .dots-toggle span {
 	display: inline-block;
@@ -1293,9 +1293,6 @@ video { width: auto; min-width: 100%; height: auto; min-height: 100%; }
 	.toggle-menu {
     width: 60px;
     padding: 17px 15px;
-	}
-	.dots-toggle {
-		margin-right: 75px;
 	}
 	.swiper-container {
 		height: 500px;
