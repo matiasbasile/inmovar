@@ -1,6 +1,10 @@
 <?php
 include("includes/init.php");
 $get_params["offset"] = 10;
+$config_variables = array();
+if ($empresa->id == 161) {
+  $config_variables["orden_default"] = 8; 
+}
 extract($propiedad_model->get_variables());
 $nombre_pagina = $vc_link_tipo_operacion;
 if (isset($get_params["test"])) echo $propiedad_model->get_sql();
