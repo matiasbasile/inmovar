@@ -23,7 +23,6 @@ class Dashboard extends REST_Controller {
       return;
     }
     $bcc_array = array(
-      "florencia@inmovar.com",
       "basile.matias99@gmail.com",
       "misticastudio@gmail.com",
     );

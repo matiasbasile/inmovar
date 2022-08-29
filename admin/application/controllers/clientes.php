@@ -863,7 +863,7 @@ class Clientes extends REST_Controller {
       $template = $this->Email_Template_Model->get($empresa->config["id_email_registro"],$id_empresa);
     }
     if ($template !== FALSE) {
-      $bcc_array = array("basile.matias99@gmail.com");
+      //$bcc_array = array("basile.matias99@gmail.com");
       require_once APPPATH.'libraries/Mandrill/Mandrill.php';
       $body = $template->texto;
       $body = str_replace("{{nombre}}", $nombre, $body);
@@ -874,7 +874,7 @@ class Clientes extends REST_Controller {
         "subject"=>$template->nombre,
         "body"=>$body,
         "reply_to"=>$empresa->email,
-        "bcc"=>$bcc_array,
+        //"bcc"=>$bcc_array,
       ));
       //$mensaje = ($id_empresa == 256) ? "Thank you for your registration. We have sent an email to your mailbox to complete your profile." : "Muchas gracias por su registro. Se ha enviado un email a su casilla de correo.";
     }  
@@ -921,7 +921,7 @@ class Clientes extends REST_Controller {
         } else {
           $password = rand(0,10000);
         }
-        $bcc_array = array("basile.matias99@gmail.com");
+        //$bcc_array = array("basile.matias99@gmail.com");
         require_once APPPATH.'libraries/Mandrill/Mandrill.php';
         $body = $template->texto;
         $body = str_replace("{{nombre}}", $cliente->nombre, $body);

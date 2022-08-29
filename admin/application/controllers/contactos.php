@@ -56,7 +56,7 @@ class Contactos extends REST_Controller {
       ));
       exit();
     }
-    $bcc_array = array("basile.matias99@gmail.com");
+    //$bcc_array = array("basile.matias99@gmail.com");
     $empresa = $this->Empresa_Model->get($id_empresa);
     $dominio = (isset($empresa->dominios) && sizeof($empresa->dominios)>0) ? $empresa->dominios[0] : "app.inmovar.com/sandbox";
     $propiedad = $this->Propiedad_Model->get_by_id($id_propiedad);
@@ -118,7 +118,7 @@ class Contactos extends REST_Controller {
         "subject"=>$asunto,
         "body"=>$body,
         "reply_to"=>$empresa->email,
-        "bcc"=>$bcc_array,
+        //"bcc"=>$bcc_array,
       ));
     }
     echo json_encode(array("error"=>0));

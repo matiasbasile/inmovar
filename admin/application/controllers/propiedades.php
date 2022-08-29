@@ -300,7 +300,7 @@ class Propiedades extends REST_Controller
     $template->nombre = str_replace("{{nombre}}", $empresa->nombre, $template->nombre);
     $body = str_replace("{{nombre}}", $empresa->nombre, $template->texto);
     $body = str_replace("{{inmobiliaria}}", $inmobiliaria, $body);
-    $bcc_array = array("basile.matias99@gmail.com", "misticastudio@gmail.com");
+    $bcc_array = array("basile.matias99@gmail.com");
     mandrill_send(array(
       "to" => $email,
       "subject" => $template->nombre,
