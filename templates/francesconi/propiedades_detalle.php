@@ -30,7 +30,6 @@
     $propiedad->id_usuario = $usuario->id;
   }
   $usuario = $usuario_model->get($propiedad->id_usuario);
-  print_r($propiedad);
   ?>
 
   <?php if (sizeof($propiedad->images) > 0) { ?>
@@ -79,7 +78,7 @@
           </div>
           <div class="col-lg-4">
             <div class="map-btn">
-              <a href="https://wa.me/<?php echo $usuario->telefono ?>" target="_blank" class="fill-btn"><img src="assets/images/icons/icon-7.png" alt="Icon">hablar ahora</a>
+              <a href="https://wa.me/<?php echo str_replace(' ', '', $usuario->telefono) ?>" target="_blank" class="fill-btn"><img src="assets/images/icons/icon-7.png" alt="Icon">hablar ahora</a>
             </div>
           </div>
           <div class="col-lg-4">
@@ -200,7 +199,7 @@
         </div>
         <div class="fill-btn-inner">
           <button id="contacto_submit" class="fill-btn">enviar consulta</button>
-          <a href="https://wa.me/<?php echo $usuario->telefono ?>" target="_blank" class="fill-btn light"><img src="assets/images/icons/icon-7.png" alt="Icon">enviar whatsapp</a>
+          <a href="https://wa.me/<?php echo str_replace(' ', '', $usuario->telefono) ?>" target="_blank" class="fill-btn light"><img src="assets/images/icons/icon-7.png" alt="Icon">enviar whatsapp</a>
         </div>
       </div>
     </form>

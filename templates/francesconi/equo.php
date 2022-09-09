@@ -74,7 +74,7 @@
                   <div class="fran-socials">
                     <ul>
                       <?php if (!empty($e->telefono)) { ?>
-                        <li><a href="tel:<?php echo $e->telefono ?>"><img src="assets/images/icons/icon-20.png" alt="Icon"><?php echo $e->telefono ?></a></li>
+                        <li><a href="tel:<?php echo $e->telefono ?>"><img src="assets/images/icons/icon-20.png" alt="Icon"><?php echo "+" . $e->telefono ?></a></li>
                       <?php } ?>
                       <?php if (!empty($e->email)) { ?>
                         <li><a href="mailto:<?php echo $e->email ?>"><img src="assets/images/icons/icon-21.png" alt="Icon"><span><?php echo $e->email ?></span></a></li>
