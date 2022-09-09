@@ -14,7 +14,6 @@ extract($propiedad_model->get_variables($config_grupo));
 if (isset($get_params["test"])) echo $propiedad_model->get_sql();
 $nombre_pagina = $vc_link_tipo_operacion;
 
-
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
@@ -29,6 +28,11 @@ $nombre_pagina = $vc_link_tipo_operacion;
   <?php include 'includes/header.php' ?>
 
   <!-- Equipo Banner -->
+  <?php $propiedades = $propeidad_model->get_list(array(
+    "order_by" => 1,
+
+  )) ?>
+  <?php print_r($propiedades) ?>
   <section class="equipo-banner">
     <div class="container">
       <div class="equipo-content">
