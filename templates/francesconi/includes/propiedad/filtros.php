@@ -10,7 +10,7 @@
           )); ?>
           <?php vc_listado[0]->tipo_operacion ?>
           <?php foreach ($tipos_op as $tipo) { ?>
-           <option <?php echo ($vc_link_tipo_operacion == $tipo->link)?"selected":"" ?> value="<?php echo $tipo->link ?>"><?php echo $tipo->nombre ?></option>
+            <option <?php echo ($vc_listado[0]->tipo_operacion == $tipo->nombre) ? "selected" : "" ?> value="<?php echo $tipo->link ?>"><?php echo $tipo->nombre ?></option>
           <?php } ?>
         </select>
       </div>
