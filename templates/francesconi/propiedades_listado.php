@@ -46,7 +46,7 @@ $nombre_pagina = $vc_link_tipo_operacion;
       <div class="mis-content">
         <h2 class="small-title">PROPIEDADES EN <?php echo $vc_listado[0]->tipo_operacion?> <span><?php echo $vc_total_resultados ?> Resultados de búsqueda</span></h2>
       </div>
-      <?php include 'includes/filtros.php' ?>
+      <?php include 'includes/propiedad/filtros.php' ?>
       <div class="comprar-info">
         <div class="row align-items-center">
           <div class="col-lg-4">
