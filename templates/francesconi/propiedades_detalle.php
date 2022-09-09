@@ -19,7 +19,21 @@
   ));
 
   $propiedad = $propiedad_model->get($propiedades->id);
+  if (empty($propiedad->id_usuario) || $propiedad->id_empresa != $empresa->id) {
+    $usuarios = $usuario_model->get_list(array(
+      "activo" => 1,
+      "offset" => 99999,
+      "recibe_notificaciones" => 1,
+    ));
+    $rand = array_rand($usuarios);
+    $usuario = $usuarios[$rand];
+    $propiedad->id_usuario = $usuario->id;
+  }
+  $usuario = $usuario_model->get($propiedad->id_usuario);
   print_r($propiedad);
+  echo "<pre>";
+  var_dump($usuario);
+  echo "</pre>";
   ?>
   <section class="map-section magnific-gallery">
     <div class="swiper-container map-slider">
@@ -55,7 +69,7 @@
     <div class="container">
       <div class="noved-inner">
         <h2 class="color-title"><?php echo $propiedad->precio ?></h2>
-        <h3 class="small-title"><?php echo $propiedad->direccion ?> <span><?php echo $propiedad->nombre ?></span></h3>
+        <h3 class="small-title"><?php echo $propiedad->direccion_completa ?> <span><?php echo $propiedad->nombre ?></span></h3>
         <div class="mis-link">
           <ul>
             <li><?php echo $propiedad->superficie_total ?> m2</li>
@@ -83,18 +97,18 @@
           </div>
           <div class="col-lg-4">
             <div class="map-link">
-              <p>Código: <span>7346-2293</span></p>
+              <p>Código: <span><?php echo $propiedad->codigo ?></span></p>
             </div>
           </div>
         </div>
       </div>
       <div class="description-content">
         <h4>DESCRIPCIÓN</h4>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.</p>
+        <p><?php echo $propiedad->texto ?></p>
       </div>
       <div class="description-content frist">
         <h4>ubicación</h4>
-        <p>Ruta 11 y 655 FINCAS LA SOÑADA</p>
+        <p><?php echo $propiedad->direccion_completa ?></p>
       </div>
     </div>
   </section>
@@ -114,15 +128,6 @@
           <li><a href="#0">Gimnasio Parrilla PiscinaVigilancia</a></li>
           <li><a href="#0">Sala de Juegos Lavadero Living Comedor Terraza</a></li>
           <li><a href="#0">Accesible Balcon Patio</a></li>
-        </ul>
-      </div>
-      <div class="description-content second">
-        <h4>SUPERFICIES</h4>
-        <ul>
-          <li><a href="#0">Cubierta <span>285</span></a></li>
-          <li><a href="#0">Descubierta <span>0</span></a></li>
-          <li><a href="#0">Semicubierta <span>0</span></a></li>
-          <li><a href="#0">Total <span>285</span></a></li>
         </ul>
       </div>
       <div class="description-content second">
