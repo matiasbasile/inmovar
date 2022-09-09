@@ -32,7 +32,6 @@ $nombre_pagina = $vc_link_tipo_operacion;
     "order_by" => 1,
 
   )) ?>
-  <?php print_r($propiedades) ?>
   <section class="equipo-banner">
     <div class="container">
       <div class="equipo-content">
