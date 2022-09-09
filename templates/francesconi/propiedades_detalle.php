@@ -11,8 +11,12 @@
 
 <!-- Map Section -->
 <?php
-  $propiedad = $propiedad_model->get($id);
+  $propiedad = $propiedad_model->get($id, array(
+    "id_empresa_original" => $empresa->id,
+    "buscar_total_visitas"=>1,
+  ));
 ?>
+<?php print_r($propiedad) ?>
 <section class="map-section magnific-gallery">
   <div class="swiper-container map-slider">
     <div class="swiper-wrapper">
