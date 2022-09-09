@@ -73,6 +73,7 @@
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/swiper-bundle.min.js"></script>
 <script src="assets/js/script.js"></script>
+<script src="/admin/resources/js/moment.min.js"></script>
 
 <script>
   function enviar_contacto() {
@@ -157,3 +158,5 @@
     $(form).submit();
   }
 </script>
+
+<?php include("templates/comun/clienapp.php") ?>
