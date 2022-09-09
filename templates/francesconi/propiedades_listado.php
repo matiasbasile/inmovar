@@ -28,11 +28,10 @@ $nombre_pagina = $vc_link_tipo_operacion;
   <?php include 'includes/header.php' ?>
 
   <!-- Equipo Banner -->
-  <?php print_r($vc_listado) ?>
   <section class="equipo-banner">
     <div class="container">
       <div class="equipo-content">
-        <?php if ($vc_tipo_operacion == 1) { ?>
+        <?php if ($vc_listado[0]->id_tipo_operacion == 1) { ?>
           <h1 class="banner-title">comprar</h1>
         <?php } else { ?>
           <h1 class="banner-title">alquilar</h1>
@@ -45,7 +44,7 @@ $nombre_pagina = $vc_link_tipo_operacion;
   <section class="equipo-mis">
     <div class="container">
       <div class="mis-content">
-        <h2 class="small-title">PROPIEDADES EN <?php echo $vc_nombre_operacion ?> <span><?php echo $vc_total_resultados ?>Resultados de búsqueda</span></h2>
+        <h2 class="small-title">PROPIEDADES EN <?php echo $vc_listado[0]->tipo_operacion?> <span><?php echo $vc_total_resultados ?> Resultados de búsqueda</span></h2>
       </div>
       <div class="comprar-inner">
         <div class="row">
@@ -136,9 +135,15 @@ $nombre_pagina = $vc_link_tipo_operacion;
               <div class="col-lg-4 col-md-6">
                 <div class="noved-card">
                   <div class="noved-warp">
-                    <span><img src="assets/images/icons/icon-15.png" alt="Icon"></span>
+                    <span>
+                      <a href="<?php echo $p->link_propiedad ?>">
+                        <img src="assets/images/icons/icon-15.png" alt="Icon">
+                      </a>
+                    </span>
                     <a href="#0" class="fill-btn">solidarias</a>
-                    <img src="<?php echo $p->imagen ?>" alt="<?php echo $p->nombre?>">
+                    <a href="<?php echo $p->link_propiedad ?>">
+                      <img src="<?php echo $p->imagen ?>" alt="<?php echo $p->nombre?>">
+                    </a>
                   </div>
                   <div class="noved-inner">
                     <h2 class="color-title"><?php echo $p->precio ?></h2>
