@@ -36,7 +36,11 @@ $nombre_pagina = $vc_link_tipo_operacion;
   <section class="equipo-banner">
     <div class="container">
       <div class="equipo-content">
-        <h1 class="banner-title">comprar</h1>
+        <?php if ($propiedades[0]->id_tipo_operacion == 1) { ?>
+          <h1 class="banner-title">comprar</h1>
+        <?php } else { ?>
+          <h1 class="banner-title">alquilar</h1>
+        <?php } ?>
       </div>
     </div>
   </section>
@@ -45,7 +49,7 @@ $nombre_pagina = $vc_link_tipo_operacion;
   <section class="equipo-mis">
     <div class="container">
       <div class="mis-content">
-        <h2 class="small-title">PROPIEDADES EN VENTA <span>200 Resultados de búsqueda</span></h2>
+        <h2 class="small-title">PROPIEDADES EN <?php echo $propiedades[0]->tipo_operacion ?> <span><?php echo count($propiedades) ?> Resultados de búsqueda</span></h2>
       </div>
       <div class="comprar-inner">
         <div class="row">
