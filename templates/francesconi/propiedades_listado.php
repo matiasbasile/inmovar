@@ -28,7 +28,6 @@ $nombre_pagina = $vc_link_tipo_operacion;
   <?php include 'includes/header.php' ?>
 
   <!-- Equipo Banner -->
-  <?php print_r($vc_link_tipo_operacion) ?>
   <section class="equipo-banner">
     <div class="container">
       <div class="equipo-content">
@@ -41,11 +40,19 @@ $nombre_pagina = $vc_link_tipo_operacion;
     </div>
   </section>
 
+  <?php $tipos_op = $propiedad_model->get_tipos_operaciones(array(
+    "id_empresa" => $empresa->id,
+    "solo_propias" => 1,
+    "mostrar_todos" => 0,
+  )); ?>
+
+  <?php print_r($tipos_op) ?>
+
   <!-- Equipo Mis -->
   <section class="equipo-mis">
     <div class="container">
       <div class="mis-content">
-        <h2 class="small-title">PROPIEDADES EN <?php echo $vc_listado[0]->tipo_operacion?> <span><?php echo $vc_total_resultados ?> Resultados de búsqueda</span></h2>
+        <h2 class="small-title">PROPIEDADES EN <?php echo $vc_listado[0]->tipo_operacion ?> <span><?php echo $vc_total_resultados ?> Resultados de búsqueda</span></h2>
       </div>
       <?php include 'includes/propiedad/filtros.php' ?>
       <div class="comprar-info">
@@ -95,7 +102,7 @@ $nombre_pagina = $vc_link_tipo_operacion;
                     </span>
                     <a href="#0" class="fill-btn">solidarias</a>
                     <a href="<?php echo $p->link_propiedad ?>">
-                      <img src="<?php echo $p->imagen ?>" alt="<?php echo $p->nombre?>">
+                      <img src="<?php echo $p->imagen ?>" alt="<?php echo $p->nombre ?>">
                     </a>
                   </div>
                   <div class="noved-inner">
