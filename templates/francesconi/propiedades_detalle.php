@@ -31,38 +31,25 @@
   }
   $usuario = $usuario_model->get($propiedad->id_usuario);
   print_r($propiedad);
-  echo "<pre>";
-  var_dump($usuario);
-  echo "</pre>";
   ?>
-  <section class="map-section magnific-gallery">
-    <div class="swiper-container map-slider">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <a href="assets/images/map-img-1.png"><img src="assets/images/map-img-1.png" alt="Gallery"></a>
+
+  <?php if (sizeof($propiedad->images) > 0) { ?>
+    <section class="map-section magnific-gallery">
+      <div class="swiper-container map-slider">
+        <div class="swiper-wrapper">
+          <?php foreach ($propiedad->images as $img) { ?>
+            <div class="swiper-slide">
+              <a href="<?php echo $img ?>"><img src="<?php echo $img ?>" alt="Gallery"></a>
+            </div>
+          <?php } ?>
         </div>
-        <div class="swiper-slide">
-          <a href="assets/images/map-img-2.png"><img src="assets/images/map-img-2.png" alt="Gallery"></a>
-        </div>
-        <div class="swiper-slide">
-          <a href="assets/images/map-img-3.png"><img src="assets/images/map-img-3.png" alt="Gallery"></a>
-        </div>
-        <div class="swiper-slide">
-          <a href="assets/images/map-img-1.png"><img src="assets/images/map-img-1.png" alt="Gallery"></a>
-        </div>
-        <div class="swiper-slide">
-          <a href="assets/images/map-img-2.png"><img src="assets/images/map-img-2.png" alt="Gallery"></a>
-        </div>
-        <div class="swiper-slide">
-          <a href="assets/images/map-img-3.png"><img src="assets/images/map-img-3.png" alt="Gallery"></a>
-        </div>
+        <div class="swiper-pagination"></div>
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev swiper-button-white"></div>
+        <div class="swiper-button-next swiper-button-white"></div>
       </div>
-      <div class="swiper-pagination"></div>
-      <!-- If we need navigation buttons -->
-      <div class="swiper-button-prev swiper-button-white"></div>
-      <div class="swiper-button-next swiper-button-white"></div>
-    </div>
-  </section>
+    </section>
+  <?php } ?>
 
   <!-- Map Ruta -->
   <section class="map-ruta">
@@ -83,10 +70,10 @@
         <div class="row">
           <div class="col-lg-4">
             <div class="map-info">
-              <img src="assets/images/map-img-4.png" alt="Map">
+              <img src="<?php echo $usuario->path ?>" alt="Map">
               <div class="map-content">
                 <p>Vendedor asignado</p>
-                <span>Juan Pedro Martinez</span>
+                <span><?php echo $usuario->nombre ?></span>
               </div>
             </div>
           </div>
@@ -124,44 +111,46 @@
       <div class="description-content">
         <h4>SERVICIOS</h4>
         <ul>
-          <li><a href="#0">Electricidad Agua Corriente Cloacas Aire</a></li>
-          <li><a href="#0">Gimnasio Parrilla PiscinaVigilancia</a></li>
-          <li><a href="#0">Sala de Juegos Lavadero Living Comedor Terraza</a></li>
-          <li><a href="#0">Accesible Balcon Patio</a></li>
+          <li>
+            <a href="javascript:void(0);"><?php echo $propiedad->servicio_electricidad == 1 ? 'Electricidad' : '' ?> <?php echo $propiedad->servicios_agua_corriente == 1 ? 'Agua Corriente' : '' ?> <?php echo $propiedad->servicios_cloacas == 1 ? 'Cloacas' : '' ?>  <?php echo $propiedad->servicios_aire_acondicionado == 1 ? 'Aire' : '' ?></a>
+          </li>
+          <li><a href="javascript:void(0);">Gimnasio Parrilla PiscinaVigilancia</a></li>
+          <li><a href="javascript:void(0);">Sala de Juegos Lavadero Living Comedor Terraza</a></li>
+          <li><a href="javascript:void(0);">Accesible Balcon Patio</a></li>
         </ul>
       </div>
       <div class="description-content second">
         <h4>SUPERFICIES</h4>
         <ul>
-          <li><a href="#0">Cubierta <span>285</span></a></li>
-          <li><a href="#0">Descubierta <span>0</span></a></li>
-          <li><a href="#0">Semicubierta <span>0</span></a></li>
-          <li><a href="#0">Total <span>285</span></a></li>
+          <li><a href="javascript:void(0);">Cubierta <span><?php echo $propiedad->superficie_cubierta ?></span></a></li>
+          <li><a href="javascript:void(0);">Descubierta <span><?php echo $propiedad->superficie_descubierta ?></span></a></li>
+          <li><a href="javascript:void(0);">Semicubierta <span><?php echo $propiedad->superficie_semicubierta ?></span></a></li>
+          <li><a href="javascript:void(0);">Total <span><?php echo $propiedad->superficie_total ?></span></a></li>
         </ul>
       </div>
       <div class="description-content second-1">
         <h4>AMBIENTES</h4>
         <ul>
-          <li><a href="#0">Dormitorio <br>Living Comedor</a></li>
-          <li><a href="#0">Baño <br>Cochera</a></li>
-          <li><a href="#0">Patio <br>Balcón</a></li>
-          <li><a href="#0">Terraza</a></li>
+          <li><a href="javascript:void(0);">Dormitorio <?php echo $propiedad->dormitorios ?> <br>Living Comedor <?php echo $propiedad->living_comedor ?></a></li>
+          <li><a href="javascript:void(0);">Baño <?php echo $propiedad->banios ?> <br>Cochera <?php echo $propiedad->cocheras ?></a></li>
+          <li><a href="javascript:void(0);">Patio <?php echo $propiedad->patio ?> <br>Balcón <?php echo $propiedad->balcon ?></a></li>
+          <li><a href="javascript:void(0);">Terraza <?php echo $propiedad->terraza ?></a></li>
         </ul>
       </div>
       <div class="description-content second">
         <h4>ADICIONALES</h4>
         <ul>
-          <li><a href="#0">Apto Crédito <span>No</span></a></li>
-          <li><a href="#0">Permuta <span>No</span></a></li>
-          <li><a href="#0">Expensas <span>$3.500</span></a></li>
+          <li><a href="javascript:void(0);">Apto Crédito <span><?php echo $propiedad->apto_banco == 0 ? 'No' : 'Sí' ?></span></a></li>
+          <li><a href="javascript:void(0);">Permuta <span><?php echo $propiedad->acepta_permuta == 0 ? 'No' : 'Sí' ?></span></a></li>
+          <li><a href="javascript:void(0);">Expensas <span>$<?php echo $propiedad->valor_expensas ?></span></a></li>
         </ul>
       </div>
       <div class="description-content second-3">
         <h4>reporte</h4>
         <ul>
-          <li><a href="#0" class="lite"><img src="assets/images/icons/icon-22.png">Bajo de precio un 4.76%</a></li>
-          <li><a href="#0">Publicado hace <span>115</span> días</a></li>
-          <li><a href="#0"><img src="assets/images/icons/icon-23.png"><span>137</span>personas vieron esta propiedad en los últimos 30 días</a></li>
+          <li><a href="javascript:void(0);" class="lite"><img src="assets/images/icons/icon-22.png">Bajo de precio un 4.76%</a></li>
+          <li><a href="javascript:void(0);">Publicado hace <span>115</span> días</a></li>
+          <li><a href="javascript:void(0);"><img src="assets/images/icons/icon-23.png"><span>137</span>personas vieron esta propiedad en los últimos 30 días</a></li>
         </ul>
       </div>
     </div>
