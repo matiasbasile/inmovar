@@ -1,4 +1,5 @@
 <?php include 'includes/init.php' ?>
+<?php extract($propiedad_model->get_variables()); ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 
@@ -20,6 +21,7 @@
     </div>
   </section>
 
+  <?php print_r($vc_listado) ?>
   <!-- Equipo Mis -->
   <section class="equipo-mis">
     <div class="container">
@@ -133,116 +135,6 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-4 col-md-6">
-              <div class="noved-card">
-                <div class="noved-warp">
-                  <span><img src="assets/images/icons/icon-15.png" alt="Icon"></span>
-                  <a href="#0" class="fill-btn">solidarias</a>
-                  <img src="assets/images/mis-2.png" alt="Noved">
-                </div>
-                <div class="noved-inner">
-                  <h2 class="color-title">USD 135.000</h2>
-                  <p>Casa en Venta en Nueva Hermosura, La Plata</p>
-                  <h5>Ruta 11 y 655 FINCAS LA SOÑADA</h5>
-                  <div class="mis-link">
-                    <ul>
-                      <li>156 m2</li>
-                      <li><a href="#0"><img src="assets/images/icons/icon-16.png" alt="Icon">3</a></li>
-                      <li><a href="#0"><img src="assets/images/icons/icon-17.png" alt="Icon">2</a></li>
-                      <li><a href="#0"><img src="assets/images/icons/icon-18.png" alt="Icon">1</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-              <div class="noved-card">
-                <div class="noved-warp">
-                  <span><img src="assets/images/icons/icon-15.png" alt="Icon"></span>
-                  <a href="#0" class="fill-btn">solidarias</a>
-                  <img src="assets/images/mis-3.png" alt="Noved">
-                </div>
-                <div class="noved-inner">
-                  <h2 class="color-title">USD 135.000</h2>
-                  <p>Casa en Venta en Nueva Hermosura, La Plata</p>
-                  <h5>Ruta 11 y 655 FINCAS LA SOÑADA</h5>
-                  <div class="mis-link">
-                    <ul>
-                      <li>156 m2</li>
-                      <li><a href="#0"><img src="assets/images/icons/icon-16.png" alt="Icon">3</a></li>
-                      <li><a href="#0"><img src="assets/images/icons/icon-17.png" alt="Icon">2</a></li>
-                      <li><a href="#0"><img src="assets/images/icons/icon-18.png" alt="Icon">1</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-              <div class="noved-card">
-                <div class="noved-warp">
-                  <span><img src="assets/images/icons/icon-15.png" alt="Icon"></span>
-                  <a href="#0" class="fill-btn">solidarias</a>
-                  <img src="assets/images/mis-4.png" alt="Noved">
-                </div>
-                <div class="noved-inner">
-                  <h2 class="color-title">USD 135.000</h2>
-                  <p>Casa en Venta en Nueva Hermosura, La Plata</p>
-                  <h5>Ruta 11 y 655 FINCAS LA SOÑADA</h5>
-                  <div class="mis-link">
-                    <ul>
-                      <li>156 m2</li>
-                      <li><a href="#0"><img src="assets/images/icons/icon-16.png" alt="Icon">3</a></li>
-                      <li><a href="#0"><img src="assets/images/icons/icon-17.png" alt="Icon">2</a></li>
-                      <li><a href="#0"><img src="assets/images/icons/icon-18.png" alt="Icon">1</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-              <div class="noved-card">
-                <div class="noved-warp">
-                  <span><img src="assets/images/icons/icon-15.png" alt="Icon"></span>
-                  <a href="#0" class="fill-btn">solidarias</a>
-                  <img src="assets/images/mis-5.png" alt="Noved">
-                </div>
-                <div class="noved-inner">
-                  <h2 class="color-title">USD 135.000</h2>
-                  <p>Casa en Venta en Nueva Hermosura, La Plata</p>
-                  <h5>Ruta 11 y 655 FINCAS LA SOÑADA</h5>
-                  <div class="mis-link">
-                    <ul>
-                      <li>156 m2</li>
-                      <li><a href="#0"><img src="assets/images/icons/icon-16.png" alt="Icon">3</a></li>
-                      <li><a href="#0"><img src="assets/images/icons/icon-17.png" alt="Icon">2</a></li>
-                      <li><a href="#0"><img src="assets/images/icons/icon-18.png" alt="Icon">1</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-              <div class="noved-card">
-                <div class="noved-warp">
-                  <span><img src="assets/images/icons/icon-15.png" alt="Icon"></span>
-                  <a href="#0" class="fill-btn">solidarias</a>
-                  <img src="assets/images/mis-6.png" alt="Noved">
-                </div>
-                <div class="noved-inner">
-                  <h2 class="color-title">USD 135.000</h2>
-                  <p>Casa en Venta en Nueva Hermosura, La Plata</p>
-                  <h5>Ruta 11 y 655 FINCAS LA SOÑADA</h5>
-                  <div class="mis-link">
-                    <ul>
-                      <li>156 m2</li>
-                      <li><a href="#0"><img src="assets/images/icons/icon-16.png" alt="Icon">3</a></li>
-                      <li><a href="#0"><img src="assets/images/icons/icon-17.png" alt="Icon">2</a></li>
-                      <li><a href="#0"><img src="assets/images/icons/icon-18.png" alt="Icon">1</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -251,51 +143,7 @@
   </section>
 
   <!-- Francesconi Nuster -->
-  <section class="francesconi-nuster">
-    <div class="container">
-      <h3 class="sub-title">nuestra comunidad</h3>
-      <div class="swiper-container nuestra-slider">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <div class="nuster-inner">
-              <a href="#0"><img src="assets/images/icons/icon-10.png" alt="Icon"></a>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="nuster-inner">
-              <a href="#0"><img src="assets/images/icons/icon-11.png" alt="Icon"></a>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="nuster-inner">
-              <a href="#0"><img src="assets/images/icons/icon-12.png" alt="Icon"></a>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="nuster-inner">
-              <a href="#0"><img src="assets/images/icons/icon-13.png" alt="Icon"></a>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="nuster-inner">
-              <a href="#0"><img src="assets/images/icons/icon-14.png" alt="Icon"></a>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="nuster-inner">
-              <a href="#0"><img src="assets/images/icons/icon-12.png" alt="Icon"></a>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="nuster-inner">
-              <a href="#0"><img src="assets/images/icons/icon-13.png" alt="Icon"></a>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-pagination"></div>
-      </div>
-    </div>
-  </section>
+  <?php include 'includes/home/secondary_slider.php' ?>
 
   <!-- Francesconi Footer -->
   <?php include 'includes/footer.php' ?>
