@@ -70,7 +70,7 @@
         <div class="row">
           <div class="col-lg-4">
             <div class="map-info">
-              <img src="<?php echo $usuario->path ?>" alt="Map">
+              <img src="<?php echo $usuario->path ?>" style="height: 79px; width: 79px; border-radius: 100%;" alt="Map">
               <div class="map-content">
                 <p>Vendedor asignado</p>
                 <span><?php echo $usuario->nombre ?></span>
@@ -112,7 +112,7 @@
         <h4>SERVICIOS</h4>
         <ul>
           <li>
-            <a href="javascript:void(0);"><?php echo $propiedad->servicio_electricidad == 1 ? 'Electricidad' : '' ?> <?php echo $propiedad->servicios_agua_corriente == 1 ? 'Agua Corriente' : '' ?> <?php echo $propiedad->servicios_cloacas == 1 ? 'Cloacas' : '' ?>  <?php echo $propiedad->servicios_aire_acondicionado == 1 ? 'Aire' : '' ?></a>
+            <a href="javascript:void(0);"><?php echo $propiedad->servicios_electricidad == 1 ? 'Electricidad' : '' ?> <?php echo $propiedad->servicios_agua_corriente == 1 ? 'Agua Corriente' : '' ?> <?php echo $propiedad->servicios_cloacas == 1 ? 'Cloacas' : '' ?>  <?php echo $propiedad->servicios_aire_acondicionado == 1 ? 'Aire' : '' ?></a>
           </li>
           <li><a href="javascript:void(0);">Gimnasio Parrilla PiscinaVigilancia</a></li>
           <li><a href="javascript:void(0);">Sala de Juegos Lavadero Living Comedor Terraza</a></li>
