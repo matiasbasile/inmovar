@@ -16,7 +16,7 @@
     "buscar_total_visitas"=>1,
   ));
 ?>
-<?php print_r($propiedad) ?>
+<?php print_r($propiedad->id) ?>
 <section class="map-section magnific-gallery">
   <div class="swiper-container map-slider">
     <div class="swiper-wrapper">
