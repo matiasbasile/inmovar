@@ -40,8 +40,6 @@ $nombre_pagina = $vc_link_tipo_operacion;
     </div>
   </section>
 
-  <?php print_r($vc_listado) ?>
-
   <!-- Equipo Mis -->
   <section class="equipo-mis">
     <form id="form_buscador" onsubmit="return filtrar(this)" method="get">
