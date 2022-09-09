@@ -45,7 +45,7 @@ $nombre_pagina = $vc_link_tipo_operacion;
   <section class="equipo-mis">
     <div class="container">
       <div class="mis-content">
-        <h2 class="small-title">PROPIEDADES EN <?php echo $propiedades[0]->tipo_operacion ?> <span><?php echo count($propiedades) ?> Resultados de búsqueda</span></h2>
+        <h2 class="small-title">PROPIEDADES EN <?php echo $vc_nombre_operacion ?> <span><?php echo $vc_total_resultados ?>Resultados de búsqueda</span></h2>
       </div>
       <div class="comprar-inner">
         <div class="row">
