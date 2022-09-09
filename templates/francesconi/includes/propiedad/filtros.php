@@ -16,19 +16,23 @@
     </div>
     <div class="col-lg-2">
       <div class="select-inner">
-        <select id="country" class="round" name="tipo de propiedad">
-          <option value="australia">tipo de propiedad</option>
-          <option value="canada">tipo de propiedad</option>
-          <option value="usa">tipo de propiedad</option>
+        <select id="filter_propiedad" class="round filter_propiedad" name="tipo de propiedad">
+          <?php $vc_tipo_inmueble = ""; ?>
+          <?php $tipo_propiedades = $propiedad_model->get_tipos_propiedades(); ?>
+          <?php foreach ($tipo_propiedades as $tipo) { ?>
+            <?php if ($vc_listado[0]->id_tipo_inmueble == $tipo->id) $vc_listado[0]->tipo_inmueble = $tipo->nombre; ?>
+            <option <?php echo ($vc_listado[0]->id_tipo_inmueble == $tipo->id) ? "selected" : "" ?> value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
+          <?php } ?>
         </select>
       </div>
     </div>
     <div class="col-lg-2">
       <div class="select-inner">
-        <select id="country" class="round" name="habitaciones">
-          <option value="australia">habitaciones</option>
-          <option value="canada">habitaciones</option>
-          <option value="usa">habitaciones</option>
+        <select id="filter_dormitorios" class="round filter_dormitorios" name="habitaciones">
+          <?php $dormitorios = $propiedad_model->get_dormitorios(); ?>
+          <?php foreach ($dormitorios as $dormitorio) { ?>
+            <option <?php echo ($vc_listado[0]->dormitorios == $dormitorio->dormitorios) ? "selected" : "" ?> value="<?php echo $dormitorio->dormitorios; ?>"><?php echo (($dormitorio->dormitorios == 0) ? "DORMITORIOS" : $dormitorio->dormitorios) ?></option>
+          <?php } ?>
         </select>
       </div>
     </div>
