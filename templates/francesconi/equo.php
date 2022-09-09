@@ -25,7 +25,8 @@
     "aparece_web" => 1,
     "order_by" => 1
   )) ?>
-  <?php $categoria = $entrada_model->get_categorias(1670) ?>
+  <?php $categoria = $entrada_model->get_categorias(1662) ?>
+  <?php print_r($categoria) ?>
   <section class="equo-con">
     <div class="container">
       <div class="equo-con-title">
