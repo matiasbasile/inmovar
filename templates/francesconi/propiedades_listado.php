@@ -29,14 +29,10 @@ $nombre_pagina = $vc_link_tipo_operacion;
 
   <!-- Equipo Banner -->
   <?php print_r($vc_listado) ?>
-  <?php $propiedades = $propiedad_model->get_list(array(
-    "order_by" => 1,
-
-  )) ?>
   <section class="equipo-banner">
     <div class="container">
       <div class="equipo-content">
-        <?php if ($propiedades[0]->id_tipo_operacion == 1) { ?>
+        <?php if ($vc_tipo_operacion == 1) { ?>
           <h1 class="banner-title">comprar</h1>
         <?php } else { ?>
           <h1 class="banner-title">alquilar</h1>
@@ -136,13 +132,13 @@ $nombre_pagina = $vc_link_tipo_operacion;
         </div>
         <div class="mis-inner">
           <div class="row">
-            <?php foreach ($propiedades as $p) { ?>
+            <?php foreach ($vc_listado as $p) { ?>
               <div class="col-lg-4 col-md-6">
                 <div class="noved-card">
                   <div class="noved-warp">
                     <span><img src="assets/images/icons/icon-15.png" alt="Icon"></span>
                     <a href="#0" class="fill-btn">solidarias</a>
-                    <img src="assets/images/mis-1.png" alt="Noved">
+                    <img src="<?php echo $p->imagen ?>" alt="<?php echo $p->nombre?>">
                   </div>
                   <div class="noved-inner">
                     <h2 class="color-title"><?php echo $p->precio ?></h2>
