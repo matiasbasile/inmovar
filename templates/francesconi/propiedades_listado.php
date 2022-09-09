@@ -47,7 +47,7 @@ $nombre_pagina = $vc_link_tipo_operacion;
   )); ?>
 
   <?php print_r($tipos_op) ?>
-
+  <?php print_r($vc_listado[0]->tipo_operacion) ?>
   <!-- Equipo Mis -->
   <section class="equipo-mis">
     <div class="container">
