@@ -28,7 +28,7 @@ $nombre_pagina = $vc_link_tipo_operacion;
   <?php include 'includes/header.php' ?>
 
   <!-- Equipo Banner -->
-  <?php echo $vc_link_tipo_operacion ?>
+  <?php print_r($vc_link_tipo_operacion) ?>
   <section class="equipo-banner">
     <div class="container">
       <div class="equipo-content">
