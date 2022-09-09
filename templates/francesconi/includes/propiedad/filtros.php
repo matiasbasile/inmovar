@@ -8,9 +8,9 @@
             "solo_propias" => 1,
             "mostrar_todos" => 0,
           )); ?>
-          <option value="australia">venta</option>
-          <option value="canada">venta</option>
-          <option value="usa">venta</option>
+          <?php foreach ($tipos_op as $tipo) { ?>
+           <option <?php echo ($vc_link_tipo_operacion == $tipo->link)?"selected":"" ?> value="<?php echo $tipo->link ?>"><?php echo $tipo->nombre ?></option>
+          <?php } ?>
         </select>
       </div>
     </div>

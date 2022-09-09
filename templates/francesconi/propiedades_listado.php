@@ -46,55 +46,7 @@ $nombre_pagina = $vc_link_tipo_operacion;
       <div class="mis-content">
         <h2 class="small-title">PROPIEDADES EN <?php echo $vc_listado[0]->tipo_operacion?> <span><?php echo $vc_total_resultados ?> Resultados de búsqueda</span></h2>
       </div>
-      <div class="comprar-inner">
-        <div class="row">
-          <div class="col-lg-2">
-            <div class="select-inner">
-              <select id="country" class="round" name="venta">
-                <option value="australia">venta</option>
-                <option value="canada">venta</option>
-                <option value="usa">venta</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-lg-2">
-            <div class="select-inner">
-              <select id="country" class="round" name="tipo de propiedad">
-                <option value="australia">tipo de propiedad</option>
-                <option value="canada">tipo de propiedad</option>
-                <option value="usa">tipo de propiedad</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-lg-2">
-            <div class="select-inner">
-              <select id="country" class="round" name="habitaciones">
-                <option value="australia">habitaciones</option>
-                <option value="canada">habitaciones</option>
-                <option value="usa">habitaciones</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-lg-2">
-            <div class="select-inner">
-              <select id="country" class="round" name="baños">
-                <option value="australia">baños</option>
-                <option value="canada">baños</option>
-                <option value="usa">baños</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-lg-2">
-            <div class="select-inner">
-              <select id="country" class="round" name="precio">
-                <option value="australia">precio</option>
-                <option value="canada">precio</option>
-                <option value="usa">precio</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </div>
+      <?php include 'includes/filtros.php' ?>
       <div class="comprar-info">
         <div class="row align-items-center">
           <div class="col-lg-4">
