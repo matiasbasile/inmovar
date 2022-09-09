@@ -2,7 +2,7 @@
   <a href="<?php echo mklink("/") ?>" class="logo"><img src="assets/images/header-logo.png" alt="Logo"></a>
   <nav>
     <ul>
-      <li class="dropdown"><a href="#0">ALQUILAR <img src="assets/images/icons/down-arrow.png" alt="Arrow"></a>
+      <li class="dropdown"><a href="<?php echo mklink("propiedades/alquileres") ?>">ALQUILAR <img src="assets/images/icons/down-arrow.png" alt="Arrow"></a>
         <ul class="dropdown-menu">
           <li><a href="#0" class="dropdown-item">casas</a></li>
           <li><a href="#0" class="dropdown-item">departamentos</a></li>

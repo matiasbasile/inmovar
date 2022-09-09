@@ -208,6 +208,36 @@
   <!-- Francesconi Footer -->
   <?php include 'includes/footer.php' ?>
   <?php include_once("templates/comun/mapa_js.php"); ?>
+  <script>
+    $(document).ready(function() {
+      <?php if (!empty($propiedad->latitud) && !empty($propiedad->longitud)) { ?>
+
+        /* if ($("#map").length == 0) return; */
+        var mymap = L.map('map').setView([<?php echo $propiedad->latitud ?>, <?php echo $propiedad->longitud ?>], 16);
+
+        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+          attribution: '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
+          tileSize: 512,
+          maxZoom: 18,
+          zoomOffset: -1,
+          id: 'mapbox/streets-v11',
+          accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
+        }).addTo(mymap);
+
+
+        var icono = L.icon({
+          iconUrl: 'assets/images/map-place.png',
+          iconSize: [60, 60], // size of the icon
+          iconAnchor: [30, 30], // point of the icon which will correspond to marker's location
+        });
+
+        L.marker([<?php echo $propiedad->latitud ?>, <?php echo $propiedad->longitud ?>], {
+          icon: icono
+        }).addTo(mymap);
+
+      <?php } ?>
+    });
+  </script>
 
 </body>
 

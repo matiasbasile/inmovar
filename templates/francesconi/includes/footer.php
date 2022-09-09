@@ -26,18 +26,22 @@
     <div class="footer-inner">
       <div class="row">
         <div class="col-lg-3">
-          <a href="#0" class="header-logo"><img src="assets/images/header-logo.png" alt="Logo"></a>
+          <a href="<?php echo mklink("/") ?>" class="header-logo"><img src="assets/images/header-logo.png" alt="Logo"></a>
         </div>
         <div class="col-lg-3">
           <div class="footer-link">
             <h5>dirección</h5>
-            <p>58 nº 825 11 y 12 - La Plata, Buenos Aires</p>
+            <?php if (!empty($empresa->ciudad) && (!empty($empresa->direccion))) { ?>
+              <p><?php echo $empresa->direccion ?> - <?php echo $empresa->ciudad ?></p>
+            <?php } ?>
           </div>
         </div>
         <div class="col-lg-3">
           <div class="footer-link">
             <h5>dirección</h5>
-            <p>58 nº 825 11 y 12 - La Plata, Buenos Aires</p>
+            <?php if (!empty($empresa->ciudad) && (!empty($empresa->direccion))) { ?>
+              <p><?php echo $empresa->direccion ?> - <?php echo $empresa->ciudad ?></p>
+            <?php } ?>
           </div>
         </div>
         <div class="col-lg-3">
