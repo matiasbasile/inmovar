@@ -8,7 +8,6 @@
             "solo_propias" => 1,
             "mostrar_todos" => 0,
           )); ?>
-          <?php vc_listado[0]->tipo_operacion ?>
           <?php foreach ($tipos_op as $tipo) { ?>
             <option <?php echo ($vc_listado[0]->tipo_operacion == $tipo->nombre) ? "selected" : "" ?> value="<?php echo $tipo->link ?>"><?php echo $tipo->nombre ?></option>
           <?php } ?>

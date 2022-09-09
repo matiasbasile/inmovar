@@ -40,11 +40,7 @@ $nombre_pagina = $vc_link_tipo_operacion;
     </div>
   </section>
 
-  <?php $tipos_op = $propiedad_model->get_tipos_operaciones(array(
-    "id_empresa" => $empresa->id,
-    "solo_propias" => 1,
-    "mostrar_todos" => 0,
-  )); ?>
+  <?php print_r($vc_listado) ?>
 
   <!-- Equipo Mis -->
   <section class="equipo-mis">
