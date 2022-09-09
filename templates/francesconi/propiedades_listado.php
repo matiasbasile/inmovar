@@ -28,6 +28,7 @@ $nombre_pagina = $vc_link_tipo_operacion;
   <?php include 'includes/header.php' ?>
 
   <!-- Equipo Banner -->
+  <?php print_r($vc_listado) ?>
   <?php $propiedades = $propiedad_model->get_list(array(
     "order_by" => 1,
 
