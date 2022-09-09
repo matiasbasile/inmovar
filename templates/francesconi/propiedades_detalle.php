@@ -8,10 +8,6 @@
 
 <body>
 
-  <!-- Francesconi Header Equipo -->
-  <?php include 'includes/header.php' ?>
-
-  <!-- Map Section -->
   <?php
   $propiedades = $propiedad_model->get($id, array(
     "id_empresa_original" => $empresa->id,
@@ -31,6 +27,8 @@
   }
   $usuario = $usuario_model->get($propiedad->id_usuario);
   ?>
+
+  <?php include 'includes/header.php' ?>
 
   <?php if (sizeof($propiedad->images) > 0) { ?>
     <section class="map-section magnific-gallery">
