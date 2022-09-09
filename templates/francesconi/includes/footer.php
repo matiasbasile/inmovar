@@ -140,3 +140,20 @@
     return false;
   }
 </script>
+
+<script>
+  function order_solo() {
+    var orden = $("#form_buscador select[name=orden]").val();
+    var base = "<?php echo current_url(FALSE, TRUE) ?>";
+    base += (base.substr(-1) == "/") ? "" : "/";
+    base += "?orden=" + orden;
+    if ($("#styled-checkbox-1").is(":checked")) base += "&banco=1";
+    if ($("#styled-checkbox-2").is(":checked")) base += "&per=1";
+    location.href = base;
+  }
+
+  function cambiar_checkboxes(e) {
+    var form = $(e).parents("form");
+    $(form).submit();
+  }
+</script>
