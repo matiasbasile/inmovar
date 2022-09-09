@@ -41,7 +41,6 @@ $nombre_pagina = $vc_link_tipo_operacion;
     </div>
   </section>
 
-  <?php print_r($vc_listado) ?>
   <!-- Equipo Mis -->
   <section class="equipo-mis">
     <div class="container">
@@ -133,28 +132,30 @@ $nombre_pagina = $vc_link_tipo_operacion;
         </div>
         <div class="mis-inner">
           <div class="row">
-            <div class="col-lg-4 col-md-6">
-              <div class="noved-card">
-                <div class="noved-warp">
-                  <span><img src="assets/images/icons/icon-15.png" alt="Icon"></span>
-                  <a href="#0" class="fill-btn">solidarias</a>
-                  <img src="assets/images/mis-1.png" alt="Noved">
-                </div>
-                <div class="noved-inner">
-                  <h2 class="color-title">USD 135.000</h2>
-                  <p>Casa en Venta en Nueva Hermosura, La Plata</p>
-                  <h5>Ruta 11 y 655 FINCAS LA SOÑADA</h5>
-                  <div class="mis-link">
-                    <ul>
-                      <li>156 m2</li>
-                      <li><a href="#0"><img src="assets/images/icons/icon-16.png" alt="Icon">3</a></li>
-                      <li><a href="#0"><img src="assets/images/icons/icon-17.png" alt="Icon">2</a></li>
-                      <li><a href="#0"><img src="assets/images/icons/icon-18.png" alt="Icon">1</a></li>
-                    </ul>
+            <?php foreach ($propiedades as $p) { ?>
+              <div class="col-lg-4 col-md-6">
+                <div class="noved-card">
+                  <div class="noved-warp">
+                    <span><img src="assets/images/icons/icon-15.png" alt="Icon"></span>
+                    <a href="#0" class="fill-btn">solidarias</a>
+                    <img src="assets/images/mis-1.png" alt="Noved">
+                  </div>
+                  <div class="noved-inner">
+                    <h2 class="color-title"><?php echo $p->precio ?></h2>
+                    <p><?php echo $p->nombre ?></p>
+                    <h5><?php echo $p->direccion_completa ?></h5>
+                    <div class="mis-link">
+                      <ul>
+                        <li><?php echo $p->superficie_total ?> m2</li>
+                        <li><a href="javascript:void(0);"><img src="assets/images/icons/icon-16.png" alt="Icon"><?php echo $p->dormitorios ?></a></li>
+                        <li><a href="javascript:void(0);"><img src="assets/images/icons/icon-17.png" alt="Icon"><?php echo $p->banios ?></a></li>
+                        <li><a href="javascript:void(0);"><img src="assets/images/icons/icon-18.png" alt="Icon"><?php echo $p->cocheras ?></a></li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            <?php } ?>
           </div>
         </div>
       </div>
