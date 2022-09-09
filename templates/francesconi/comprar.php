@@ -1,5 +1,9 @@
 <?php include 'includes/init.php' ?>
-<?php extract($propiedad_model->get_variables()); ?>
+<?php 
+  if (!isset($config_grupo)) $config_grupo = array();
+  $config_grupo["orden_default"] = 8; 
+?>
+<?php extract($propiedad_model->get_variables($config_grupo)); ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 
