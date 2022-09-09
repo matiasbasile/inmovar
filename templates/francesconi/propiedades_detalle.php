@@ -115,7 +115,7 @@
             <a href="javascript:void(0);"><?php echo $propiedad->servicios_electricidad == 1 ? 'Electricidad' : '' ?> <?php echo $propiedad->servicios_agua_corriente == 1 ? 'Agua Corriente' : '' ?> <?php echo $propiedad->servicios_cloacas == 1 ? 'Cloacas' : '' ?> <?php echo $propiedad->servicios_aire_acondicionado == 1 ? 'Aire' : '' ?></a>
           </li>
           <li><a href="javascript:void(0);"><?php echo $propiedad->gimnasio == 1 ? 'Gimnasio' : '' ?> <?php echo $propiedad->parrilla == 1 ? 'Parrilla' : '' ?> <?php echo $propiedad->piscina == 1 ? 'Piscina' : '' ?> <?php echo $propiedad->vigilancia == 1 ? 'vigilancia' : '' ?></a></li>
-          <li><a href="javascript:void(0);"><?php echo $propiedad->sala_juegos == 1 ? 'Sala de Juegos' : '' ?> <?php echo $propiedad->Lavadero == 1 ? 'Lavadero' : '' ?> <?php echo $propiedad->living_comedor == 1 ? 'Living Comedor' : '' ?> <?php echo $propiedad->terraza == 1 ? 'Terraza' : '' ?></a></li>
+          <li><a href="javascript:void(0);"><?php echo $propiedad->sala_juegos == 1 ? 'Sala de Juegos' : '' ?> <?php echo $propiedad->lavadero == 1 ? 'Lavadero' : '' ?> <?php echo $propiedad->living_comedor == 1 ? 'Living Comedor' : '' ?> <?php echo $propiedad->terraza == 1 ? 'Terraza' : '' ?></a></li>
           <li><a href="javascript:void(0);"><?php echo $propiedad->accesible == 1 ? 'Accesible' : '' ?> <?php echo $propiedad->balcon == 1 ? 'Balcón' : '' ?> <?php echo $propiedad->patio == 1 ? 'Patio' : '' ?></a></li>
         </ul>
       </div>
@@ -157,14 +157,14 @@
             ?>
             <a href="javascript:void(0);">Publicado hace <span><?php echo $intvl->days ?></span> días</a>
           </li>
-          <li><a href="javascript:void(0);"><img src="assets/images/icons/icon-23.png"><span><?php echo $propiedad->total_visitas ?></span>personas vieron esta propiedad en los últimos 30 días</a></li>
+          <li><a href="javascript:void(0);"><img src="assets/images/icons/icon-23.png"><span><?php echo $propiedad->total_visitas ?></span> personas vieron esta propiedad en los últimos 30 días</a></li>
         </ul>
       </div>
     </div>
   </section>
 
   <!-- Ros Section -->
-  <section class="ros-section">
+  <section class="ros-section map">
     <form onsubmit="return enviar_contacto()">
       <div class="container">
         <div class="ros-content">
@@ -174,17 +174,17 @@
         <div class="ros-inner">
           <div class="row">
             <div class="col-lg-6">
-              <input type="text" id="contacto_nombre" name="Nombre" placeholder="Nombre *">
+              <input type="text" name="Nombre" id="contacto_nombre" placeholder="Nombre *">
             </div>
             <div class="col-lg-6">
-              <input type="text" id="contacto_email" name="Email" placeholder="Email">
+              <input type="email" name="Email" id="contacto_email" placeholder="Email">
             </div>
             <div class="col-lg-6">
-              <input type="text" id="contacto_telefono" name="Telefono" placeholder="Whatsapp (sin 0 ni 15) *">
+              <input type="text" name="Telefono" id="contacto_telefono" placeholder="Whatsapp (sin 0 ni 15) *">
             </div>
             <div class="col-lg-6">
               <div class="select-inner">
-                <select id="contacto_asunto" class="round" name="venta">
+                <select id="country" class="round" id="contacto_asunto" name="venta">
                   <option value="australia">venta</option>
                   <option value="canada">venta</option>
                   <option value="usa">venta</option>
@@ -192,13 +192,13 @@
               </div>
             </div>
             <div class="col-lg-12">
-              <textarea id="contacto_mensaje">Mensaje</textarea>
+              <textarea id="contacto_mensaje" name="Nombre">Mensaje</textarea>
             </div>
           </div>
         </div>
         <div class="fill-btn-inner">
           <button id="contacto_submit" class="fill-btn">enviar consulta</button>
-          <a href="https//wa.me/<?php echo $usuario->telefono ?>" class="fill-btn light"><img src="assets/images/icons/icon-7.png" alt="Icon">enviar whatsapp</a>
+          <a href="https://wa.me/<?php echo $usuario->telefono ?>" class="fill-btn light"><img src="assets/images/icons/icon-7.png" alt="Icon">enviar whatsapp</a>
         </div>
       </div>
     </form>
