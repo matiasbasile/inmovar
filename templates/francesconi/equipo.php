@@ -10,7 +10,7 @@
 
   <!-- Francesconi Header Equipo -->
 
-  <?php include 'includes/header.php' ?>
+  <?php include 'includes/headerequipo.php' ?>
 
   <!-- Equipo Banner -->
   <section class="equipo-banner">

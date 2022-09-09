@@ -28,7 +28,7 @@
   $usuario = $usuario_model->get($propiedad->id_usuario);
   ?>
 
-  <?php include 'includes/header.php' ?>
+  <?php include 'includes/headerequipo.php' ?>
 
   <?php if (sizeof($propiedad->images) > 0) { ?>
     <section class="map-section magnific-gallery">
