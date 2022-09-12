@@ -32,7 +32,11 @@ $mes_month = array(
           <div class="col-lg-4 col-sm-6">
             <div class="noved-card">
               <div class="noved-warp">
-                <span><img src="assets/images/icons/icon-15.png" alt="Icon"></span>
+                <span>
+                  <a href="<?php echo mklink($n->link) ?>">
+                    <img src="assets/images/icons/icon-15.png" alt="Icon">
+                  </a>
+                </span>
                 <a href="#0" class="fill-btn">solidarias</a>
                 <a href="<?php echo mklink($n->link) ?>">
                   <img src="<?php echo $n->path ?>" alt="Noved">

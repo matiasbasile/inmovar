@@ -1118,7 +1118,7 @@ ul {
 }
 
 .noved-inner h3:hover {
-	background-color: var(--brand-clrbg);
+	color: var(--brand-clrbg);
 	transition: all .3s;
 	text-decoration: none;
 	cursor: pointer;
