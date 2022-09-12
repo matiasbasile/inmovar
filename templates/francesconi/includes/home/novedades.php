@@ -43,7 +43,7 @@ $mes_month = array(
                 <h3><?php echo $n->titulo ?></h3>
                 <?php
                 $fecha = str_replace('/', '-', $n->fecha);
-                $mes =  $mes_month[date('F', strtotime($fecha))]
+                $mes =  $mes_month[date('n', strtotime($fecha))]
                 ?>
                 <h5><small><?php echo $n->dia; ?></small><?php echo $mes ?> del <?php echo $n->anio; ?></h5>
                 <p>
