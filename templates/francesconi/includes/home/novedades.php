@@ -28,14 +28,13 @@ $mes_month = array(
         <h3 class="small-title">novedades</h3>
       </div>
       <div class="row">
-        <?php print_r($novedades) ?>
         <?php foreach ($novedades as $n) { ?>
           <div class="col-lg-4 col-sm-6">
             <div class="noved-card">
               <div class="noved-warp">
                 <span><img src="assets/images/icons/icon-15.png" alt="Icon"></span>
                 <a href="#0" class="fill-btn">solidarias</a>
-                <a href="<?php echo $n->link ?>">
+                <a href="<?php echo mklink($n->link) ?>">
                   <img src="<?php echo $n->path ?>" alt="Noved">
                 </a>
               </div>
