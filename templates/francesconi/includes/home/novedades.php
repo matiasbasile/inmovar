@@ -28,6 +28,7 @@
         <h3 class="small-title">novedades</h3>
       </div>
       <div class="row">
+        <?php print_r($novedades) ?>
         <?php foreach ($novedades as $n) { ?>
           <div class="col-lg-4 col-sm-6">
             <div class="noved-card">
