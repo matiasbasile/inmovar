@@ -4,6 +4,22 @@
   "order_by" => 1
 )); 
 ?>
+<?php
+  $mes_month = array(
+    'January'=>'Enero',
+    'February'=>'Febrero',
+    'March'=>'Marzo',
+    'April'=>'Abril',
+    'May'=>'Mayo',
+    'June'=>'Junio',
+    'July'=>'Julio',
+    'August' => 'Agosto',
+    'September' => 'Septiembre',
+    'October' => 'Octubre',
+    'November' => 'Noviembre',
+    'December' => 'Diciembre',
+    );
+?>
 <?php if (!empty($novedades)) { ?>
   <section class="francesconi-noved">
     <div class="container">
@@ -25,13 +41,13 @@
               <div class="noved-inner">
                 <h3><?php echo $n->titulo ?></h3>
                 <?php 
-                  setlocale(LC_TIME, 'spanish');
                   $orderdate = explode('/', $n->fecha);
                   $month = $orderdate[1];
                   $day   = $orderdate[0];
                   $year  = $orderdate[2];
+                  $mes =  $mes_month[date('F', strtotime($n->fecha))]
                 ?>
-                <h5><small><?php echo $day; ?></small><?php echo date("F", strtotime($n->fecha_original)); ?> del <?php echo $year; ?></h5>
+                <h5><small><?php echo $day; ?></small><?php echo $mes ?> del <?php echo $year; ?></h5>
                 <p>
                   <?php echo $n->plain_text ?></p>
               </div>
