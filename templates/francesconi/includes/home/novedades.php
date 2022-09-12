@@ -1,4 +1,4 @@
-<?php $novedades = $entrada->model->get_list(array(
+<?php $novedades = $entrada_model->get_list(array(
   "from_link_categoria" => "novedades",
   "offset" => 3
 )) ?>
