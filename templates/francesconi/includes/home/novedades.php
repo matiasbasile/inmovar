@@ -58,7 +58,7 @@ $mes_month = array(
           </div>
         <?php } ?>
       </div>
-      <a href="<?php echo mklink("entradas/")  ?>" class="border-btn">ver todas</a>
+      <a href="<?php echo mklink("entradas/novedades")  ?>" class="border-btn">ver todas</a>
     </div>
   </section>
 <?php } ?>

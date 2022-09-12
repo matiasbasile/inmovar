@@ -30,6 +30,17 @@ $mes_month = array(
     }
 
     <?php } ?>
+    
+    
+    .equipo-mis .fill-btn {
+      min-width: 120px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--brand-clr1);
+      background-color: var(--brand-clrbg);
+    }
   </style>
 </head>
 
