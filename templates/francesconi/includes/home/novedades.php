@@ -17,12 +17,14 @@
               <div class="noved-warp">
                 <span><img src="assets/images/icons/icon-15.png" alt="Icon"></span>
                 <a href="#0" class="fill-btn">solidarias</a>
-                <img src="assets/images/noved-1.png" alt="Noved">
+                <img src="<?php echo $n->path ?>" alt="Noved">
               </div>
               <div class="noved-inner">
-                <h3>Inmuebles: regateo en medio <br>del derrumbe de precios</h3>
-                <h5><small>02</small>Junio del 2022</h5>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.</p>
+                <h3><?php echo $n->titulo ?></h3>
+                <h5><?php echo $n->fecha ?></h5>
+                <!-- <h5><small>02</small>Junio del 2022</h5> -->
+                <p>
+                  <?php echo $n->plain_text ?></p>
               </div>
             </div>
           </div>
