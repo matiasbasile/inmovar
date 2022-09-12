@@ -26,13 +26,12 @@
                 <h5><?php echo $n->fecha ?></h5>
                 <?php 
                   $orderdate = explode('/', $n->fecha);
-                  $month = $orderdate[0];
-                  $day   = $orderdate[1];
+                  $month = $orderdate[1];
+                  $day   = $orderdate[0];
                   $year  = $orderdate[2];
                   echo $day . $month . $year;                  
                 ?>
-                <h5></h5>
-                <!-- <h5><small>02</small>Junio del 2022</h5> -->
+                <h5><small><?php echo $day ?></small>Junio del <?php echo $year ?></h5>
                 <p>
                   <?php echo $n->plain_text ?></p>
               </div>
