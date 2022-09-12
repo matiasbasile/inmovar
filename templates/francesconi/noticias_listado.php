@@ -54,7 +54,19 @@ extract($entrada_model->get_variables());
                       </a>
                     </div>
                     <div class="noved-inner">
-                      <p><?php echo $p->titulo ?></p>
+                      <h2 class="color-title"><?php echo $p->titulo ?></h2>
+                      <div class="noved-inner">
+                        <a href="<?php echo mklink($n->link) ?>" class="noved-redirect">
+                          <h3><?php echo $n->titulo ?></h3>
+                        </a>
+                        <?php
+                        $fecha = str_replace('/', '-', $n->fecha);
+                        $mes =  $mes_month[date('n', strtotime($fecha))]
+                        ?>
+                        <h5><small><?php echo $n->dia; ?></small><?php echo $mes ?> del <?php echo $n->anio; ?></h5>
+                        <p>
+                          <?php echo $n->plain_text ?></p>
+                      </div>
                     </div>
                   </div>
                 </div>
