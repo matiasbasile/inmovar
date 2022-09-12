@@ -32,14 +32,14 @@ $mes_month = array(
     <?php } ?>
     
     
-    .equipo-mis .fill-btn {
+    .equipo-mis .fill-btn-solidarias{
       min-width: 120px;
       font-size: 12px;
       font-weight: 600;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: var(--brand-clr1);
-      background-color: var(--brand-clrbg);
+      color: var(--brand-clr1) !important;
+      background-color: var(--brand-clrbg) !important;
     }
   </style>
 </head>
@@ -76,7 +76,7 @@ $mes_month = array(
                           <img src="assets/images/icons/icon-15.png" alt="Icon">
                         </a>
                       </span>
-                      <a href="#0" class="fill-btn">solidarias</a>
+                      <a href="#0" class="fill-btn fill-btn-solidarias">solidarias</a>
                       <a href="<?php echo mklink($p->link) ?>">
                         <img src="<?php echo $p->path ?>" alt="<?php echo $p->titulo ?>">
                       </a>
