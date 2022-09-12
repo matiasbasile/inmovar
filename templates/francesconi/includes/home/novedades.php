@@ -1,7 +1,9 @@
 <?php $novedades = $entrada_model->get_list(array(
   "from_link_categoria" => "novedades",
-  "offset" => 3
-)) ?>
+  "offset" => 3,
+  "order_by" => 1
+)); 
+?>
 <?php print_r($novedades) ?>
 <?php if (!empty($novedades)) { ?>
   <section class="francesconi-noved">
@@ -22,6 +24,14 @@
               <div class="noved-inner">
                 <h3><?php echo $n->titulo ?></h3>
                 <h5><?php echo $n->fecha ?></h5>
+                <?php 
+                  $orderdate = explode('/', $n->fecha);
+                  $month = $orderdate[0];
+                  $day   = $orderdate[1];
+                  $year  = $orderdate[2];
+                  echo $day . $month . $year;                  
+                ?>
+                <h5></h5>
                 <!-- <h5><small>02</small>Junio del 2022</h5> -->
                 <p>
                   <?php echo $n->plain_text ?></p>
