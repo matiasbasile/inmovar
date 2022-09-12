@@ -25,12 +25,13 @@
               <div class="noved-inner">
                 <h3><?php echo $n->titulo ?></h3>
                 <?php 
+                  setlocale(LC_TIME, 'spanish');
                   $orderdate = explode('/', $n->fecha);
                   $month = $orderdate[1];
                   $day   = $orderdate[0];
                   $year  = $orderdate[2];
                 ?>
-                <h5><small><?php echo $day ?></small><?php echo date("F", strtotime($n->fecha_original)); ?> del <?php echo $year ?></h5>
+                <h5><small><?php echo $day; ?></small><?php echo date("F", strtotime($n->fecha_original)); ?> del <?php echo $year; ?></h5>
                 <p>
                   <?php echo $n->plain_text ?></p>
               </div>
