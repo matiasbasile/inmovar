@@ -50,11 +50,11 @@ extract($entrada_model->get_variables());
                       </span>
                       <a href="#0" class="fill-btn">solidarias</a>
                       <a href="<?php echo mklink($p->link) ?>">
-                        <img src="<?php echo $p->path ?>" alt="<?php echo $p->nombre ?>">
+                        <img src="<?php echo $p->path ?>" alt="<?php echo $p->titulo ?>">
                       </a>
                     </div>
                     <div class="noved-inner">
-                      <p><?php echo $p->nombre ?></p>
+                      <p><?php echo $p->titulo ?></p>
                     </div>
                   </div>
                 </div>
