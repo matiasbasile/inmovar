@@ -27,6 +27,9 @@ $nombre_pagina = $vc_link_tipo_operacion;
   <!-- Francesconi Header Equipo -->
   <?php include 'includes/headerequipo.php' ?>
 
+  <?php echo $vc_link_tipo_operacion ?>
+  <?php echo $vc_tipo_operacion ?>
+  <?php echo $vc_listado->banios ?>
   <!-- Equipo Banner -->
   <section class="equipo-banner">
     <div class="container">
