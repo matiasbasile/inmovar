@@ -20,7 +20,7 @@
           </ul>
         </li>
         <li><a href="javascript:void(0);">VENDER </a></li>
-        <li><a href="javascript:void(0);">Equipo </a></li>
+        <li><a href="<?php echo mklink("web/equo") ?>">Equipo </a></li>
       </ul>
       <a href="javascript:void(0);" class="toggle-icon"><span></span></a>
     </nav>
