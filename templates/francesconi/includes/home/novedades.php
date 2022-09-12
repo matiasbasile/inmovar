@@ -37,7 +37,7 @@ $mes_month = array(
                     <img src="assets/images/icons/icon-15.png" alt="Icon">
                   </a>
                 </span>
-                <a href="#0" class="fill-btn">solidarias</a>
+                <a href="#0" class="fill-btn"><?php echo $n->categoria ?></a>
                 <a href="<?php echo mklink($n->link) ?>">
                   <img src="<?php echo $n->path ?>" alt="Noved">
                 </a>
