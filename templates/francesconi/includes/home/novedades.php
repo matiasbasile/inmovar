@@ -39,7 +39,9 @@ $mes_month = array(
                 </a>
               </div>
               <div class="noved-inner">
-                <h3><?php echo $n->titulo ?></h3>
+                <a href="<?php echo mklink($n->link) ?>" class="noved-redirect">
+                  <h3><?php echo $n->titulo ?></h3>
+                </a>
                 <?php
                 $fecha = str_replace('/', '-', $n->fecha);
                 $mes =  $mes_month[date('n', strtotime($fecha))]

@@ -1116,6 +1116,14 @@ ul {
 	display: inline-block;
 	padding-top: 50px;
 }
+
+.noved-redirect:hover {
+	background-color: var(--brand-clrbg);
+	transition: all .3s;
+	text-decoration: none;
+	cursor: pointer;
+}
+
 .mis-inner [class*="col-"]:first-child {
 	width: 100% !important;
 }
