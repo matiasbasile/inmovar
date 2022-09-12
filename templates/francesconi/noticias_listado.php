@@ -3,7 +3,22 @@
 
 extract($entrada_model->get_variables());
 
+$mes_month = array(
+  1 => 'Enero',
+  2 => 'Febrero',
+  3 => 'Marzo',
+  4 => 'Abril',
+  5 => 'Mayo',
+  6 => 'Junio',
+  7 => 'Julio',
+  8 => 'Agosto',
+  9 => 'Septiembre',
+  10 => 'Octubre',
+  11 => 'Noviembre',
+  12 => 'Diciembre',
+);
 ?>
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 
@@ -19,6 +34,8 @@ extract($entrada_model->get_variables());
 </head>
 
 <body>
+
+
 
   <!-- Francesconi Header Equipo -->
   <?php include 'includes/headerequipo.php' ?>
@@ -54,18 +71,18 @@ extract($entrada_model->get_variables());
                       </a>
                     </div>
                     <div class="noved-inner">
-                      <h2 class="color-title"><?php echo $p->titulo ?></h2>
+                      <a href="<?php echo mklink($n->link) ?>" class="noved-redirect">
+                        <h2 class="noved-redirect"><?php echo $p->titulo ?></h2>
+                      </a>
                       <div class="noved-inner">
-                        <a href="<?php echo mklink($n->link) ?>" class="noved-redirect">
-                          <h3><?php echo $n->titulo ?></h3>
-                        </a>
                         <?php
-                        $fecha = str_replace('/', '-', $n->fecha);
+                        $fecha = str_replace('/', '-', $p->fecha);
                         $mes =  $mes_month[date('n', strtotime($fecha))]
                         ?>
-                        <h5><small><?php echo $n->dia; ?></small><?php echo $mes ?> del <?php echo $n->anio; ?></h5>
+                        <h5><small><?php echo $p->dia; ?></small><?php echo $mes ?> del <?php echo $p->anio; ?></h5>
                         <p>
-                          <?php echo $n->plain_text ?></p>
+                          <?php echo $p->plain_text ?>
+                        </p>
                       </div>
                     </div>
                   </div>
