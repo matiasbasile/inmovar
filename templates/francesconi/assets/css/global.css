@@ -1117,8 +1117,7 @@ ul {
 	padding-top: 50px;
 }
 .mis-inner [class*="col-"]:first-child {
-	flex: 0 0 auto;
-	width: 33.33333333% !important;
+	width: 100% !important;
 }
 .mis-inner .noved-inner {
 	padding: 35px 0 0;
