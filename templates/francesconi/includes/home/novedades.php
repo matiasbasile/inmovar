@@ -2,23 +2,23 @@
   "from_link_categoria" => "novedades",
   "offset" => 3,
   "order_by" => 1
-)); 
+));
 ?>
 <?php
-  $mes_month = array(
-    'January'=>'Enero',
-    'February'=>'Febrero',
-    'March'=>'Marzo',
-    'April'=>'Abril',
-    'May'=>'Mayo',
-    'June'=>'Junio',
-    'July'=>'Julio',
-    'August' => 'Agosto',
-    'September' => 'Septiembre',
-    'October' => 'Octubre',
-    'November' => 'Noviembre',
-    'December' => 'Diciembre',
-    );
+$mes_month = array(
+  1 => 'Enero',
+  2 => 'Febrero',
+  3 => 'Marzo',
+  4 => 'Abril',
+  5 => 'Mayo',
+  6 => 'Junio',
+  7 => 'Julio',
+  8 => 'Agosto',
+  9 => 'Septiembre',
+  10 => 'Octubre',
+  11 => 'Noviembre',
+  12 => 'Diciembre',
+);
 ?>
 <?php if (!empty($novedades)) { ?>
   <section class="francesconi-noved">
@@ -41,14 +41,11 @@
               </div>
               <div class="noved-inner">
                 <h3><?php echo $n->titulo ?></h3>
-                <?php 
-                  $orderdate = explode('/', $n->fecha);
-                  $month = $orderdate[1];
-                  $day   = $orderdate[0];
-                  $year  = $orderdate[2];
-                  $mes =  $mes_month[date('F', strtotime($n->fecha))]
+                <?php
+                $fecha = str_replace('/', '-', $n->fecha);
+                echo $fecha;
                 ?>
-                <h5><small><?php echo $day; ?></small><?php echo $mes ?> del <?php echo $year; ?></h5>
+                <h5><small><?php echo $n->dia; ?></small><?php echo $mes ?> del <?php echo $n->anio; ?></h5>
                 <p>
                   <?php echo $n->plain_text ?></p>
               </div>
