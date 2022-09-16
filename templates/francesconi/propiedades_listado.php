@@ -48,7 +48,6 @@ $nombre_pagina = $vc_link_tipo_operacion;
   </section>
 
   <!-- Equipo Mis -->
-  <?php print_r($vc_listado) ?>
   <section class="equipo-mis">
     <form id="form_buscador" onsubmit="return filtrar(this)" method="get">
       <div class="container">
@@ -111,7 +110,7 @@ $nombre_pagina = $vc_link_tipo_operacion;
                       <?php if ($p->es_oferta == 1) { ?>
                         <a href="javascript:void(0);" class="fill-btn">oportunidades</a>
                       <?php }else{ ?>
-                        <a href="javascript:void(0);" class="fill-btn"><?php echo $p->categoria ?></a>
+                        <a href="javascript:void(0);" class="fill-btn">solidarias</a>
                       <?php } ?>
                       <a href="<?php echo $p->link_propiedad ?>">
                         <img src="<?php echo $p->imagen ?>" alt="<?php echo $p->nombre ?>">
