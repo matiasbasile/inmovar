@@ -805,7 +805,9 @@ class Cliente_Model extends Abstract_Model {
       }
 
       if ($get_telefonos == 1){
-        $row->nombre = $row->nombre." ".$row->apellido." | ".$row->telefono;
+        //Linea deprecada que genera error ya que el obj apellido no existe
+        //$row->nombre = $row->nombre." ".$row->apellido." | ".$row->telefono;
+        $row->nombre = $row->nombre." | ".$row->telefono;
       }
 
       $salida[] = $row;
