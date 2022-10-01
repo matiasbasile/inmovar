@@ -55,7 +55,7 @@ while (($empresa = mysqli_fetch_object($q)) !== NULL) {
     $errores[] = $empresa->nombre." ".$e->getMessage();
   }
 }
-
+/*
 if (sizeof($errores)>0) {
   $body = implode("<br/>", $errores);
   mandrill_send(array(
@@ -66,4 +66,5 @@ if (sizeof($errores)>0) {
     "body"=>$body,
   ));  
 }
+*/
 ?>
