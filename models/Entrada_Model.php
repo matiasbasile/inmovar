@@ -733,7 +733,9 @@ class Entrada_Model {
 			$sql.= "AND EXISTS (SELECT * FROM not_entradas_etiquetas EE WHERE A.id = EE.id_entrada AND A.id_empresa = EE.id_empresa AND EE.id_etiqueta IN ($ids_etiquetas)) ";
 		}
 		if (!empty($link_etiqueta)) {
+      /*
 			$sql.= "AND EXISTS (SELECT * FROM not_entradas_etiquetas EE INNER JOIN not_etiquetas E ON (EE.id_etiqueta = E.id AND EE.id_empresa = E.id_empresa) WHERE A.id = EE.id_entrada AND A.id_empresa = EE.id_empresa AND E.link = '$link_etiqueta') ";
+      */
 		}
     if (!empty($from_id_categoria)) {
       // A partir de una categoria padre, tomamos todas las subcategorias y buscamos
