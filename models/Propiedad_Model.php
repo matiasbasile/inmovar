@@ -1076,7 +1076,7 @@ class Propiedad_Model {
   function get_list($config = array()) {
 
     $limit = isset($config["limit"]) ? intval($config["limit"]) : 0;
-    $order = isset($config["order"]) ? intval($config["order"]) : 0;
+    $order = isset($config["order"]) ? intval($config["order"]) : 8;
     $order_by = isset($config["order_by"]) ? $config["order_by"] : "";
     $offset = isset($config["offset"]) ? intval($config["offset"]) : 6;
     $activo = isset($config["activo"]) ? intval($config["activo"]) : 1;
