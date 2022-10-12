@@ -1,32 +1,50 @@
-<?php include 'includes/init.php' ?>
+<?php 
+include 'includes/init.php';
+
+$propiedades = $propiedad_model->get($id, array(
+  "id_empresa_original" => $empresa->id,
+  "buscar_total_visitas" => 1,
+));
+
+$propiedad = $propiedad_model->get($propiedades->id);
+
+if (($propiedad === FALSE || !isset($propiedad->nombre) || $propiedad->activo == 0) && !isset($get_params["preview"])) {
+  header("HTTP/1.1 302 Moved Temporarily");
+  header("Location:".mklink("/"));
+  exit();
+}
+
+if (empty($propiedad->id_usuario) || $propiedad->id_empresa != $empresa->id) {
+  $usuarios = $usuario_model->get_list(array(
+    "activo" => 1,
+    "offset" => 99999,
+    "recibe_notificaciones" => 1,
+  ));
+  $rand = array_rand($usuarios);
+  $usuario = $usuarios[$rand];
+  $propiedad->id_usuario = $usuario->id;
+}
+$usuario = $usuario_model->get($propiedad->id_usuario);
+
+// Seteamos la cookie para indicar que el cliente ya entro a esta propiedad
+$propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
+
+// Tomamos los datos de SEO
+$seo_title = (!empty($propiedad->seo_title)) ? ($propiedad->seo_title) : $empresa->seo_title;
+$seo_description = (!empty($propiedad->seo_description)) ? ($propiedad->seo_description) : $empresa->seo_description;
+$seo_keywords = (!empty($propiedad->seo_keywords)) ? ($propiedad->seo_keywords) : $empresa->seo_keywords;
+$nombre_pagina = $propiedad->tipo_operacion_link;
+?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
-
 <head>
-  <?php include 'includes/head.php' ?>
+<?php include 'includes/head.php' ?>
+<meta property="og:type" content="website" />
+<meta property="og:title" content="<?php echo ($propiedad->nombre); ?>" />
+<meta property="og:description" content="<?php echo str_replace("\n","",(strip_tags(html_entity_decode($propiedad->texto,ENT_QUOTES)))); ?>" />
+<meta property="og:image" content="<?php echo $propiedad->imagen_full ?>"/>
 </head>
-
 <body>
-
-  <?php
-  $propiedades = $propiedad_model->get($id, array(
-    "id_empresa_original" => $empresa->id,
-    "buscar_total_visitas" => 1,
-  ));
-
-  $propiedad = $propiedad_model->get($propiedades->id);
-  if (empty($propiedad->id_usuario) || $propiedad->id_empresa != $empresa->id) {
-    $usuarios = $usuario_model->get_list(array(
-      "activo" => 1,
-      "offset" => 99999,
-      "recibe_notificaciones" => 1,
-    ));
-    $rand = array_rand($usuarios);
-    $usuario = $usuarios[$rand];
-    $propiedad->id_usuario = $usuario->id;
-  }
-  $usuario = $usuario_model->get($propiedad->id_usuario);
-  ?>
 
   <?php include 'includes/header.php' ?>
 
@@ -154,7 +172,14 @@
       <div class="description-content second-3">
         <h4>reporte</h4>
         <ul>
-          <li><a href="javascript:void(0);" class="lite"><img src="assets/images/icons/icon-22.png">Bajo de precio un 4.76%</a></li>
+          <?php if ($propiedad->precio_porcentaje_anterior < 0.00 && $propiedad->publica_precio == 1) { ?>
+            <li>
+              <a href="javascript:void(0);" class="lite">
+                <img src="assets/images/icons/icon-22.png">
+                Bajo de precio un <?php echo floatval($propiedad->precio_porcentaje_anterior * -1) ?>%
+              </a>
+            </li>
+          <?php } ?>
           <li>
             <?php
             $actual = new DateTime();
@@ -243,6 +268,15 @@
       <?php } ?>
     });
   </script>
+
+<?php 
+// Creamos el codigo de seguimiento para registrar la visita
+echo $propiedad_model->tracking_code(array(
+  "id_propiedad"=>$propiedad->id,
+  "id_empresa_compartida"=>$id_empresa,
+  "id_empresa"=>$empresa->id,
+));
+?>
 
 </body>
 
