@@ -5,5 +5,5 @@
 <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Arapey:ital@0;1&display=swap" rel="stylesheet">
 <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all">
-<link rel="stylesheet" type="text/css" href="assets/css/global.css">
+<link rel="stylesheet" type="text/css" href="assets/css/global.css?v=1">
 <?php include "templates/comun/post_head.php" ?>

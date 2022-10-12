@@ -1849,9 +1849,6 @@ ul {
 	justify-content: space-between;
 	width: 100%;
 }
-.map-services .description-content li {
-	max-width: 100px;
-}
 .map-services .description-content li a {
 	font-size: 16px;
 	font-weight: 400;

@@ -140,15 +140,25 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
         <h4>SERVICIOS</h4>
         <ul>
           <li>
-            <a href="javascript:void(0);"><?php echo ($propiedad->servicios_electricidad == 1) ? 'Electricidad' : '' ?> <?php echo $propiedad->servicios_agua_corriente == 1 ? 'Agua Corriente' : '' ?> <?php echo $propiedad->servicios_cloacas == 1 ? 'Cloacas' : '' ?> <?php echo $propiedad->servicios_aire_acondicionado == 1 ? 'Aire' : '' ?></a>
+            <a href="javascript:void(0);">
+              <?php echo ($propiedad->servicios_electricidad == 1) ? 'Electricidad<br/>' : '' ?> 
+              <?php echo ($propiedad->gimnasio == 1) ? 'Gimnasio<br/>' : '' ?> 
+            </a>
           </li>
-          <li><a href="javascript:void(0);"><?php echo ($propiedad->gimnasio == 1) ? 'Gimnasio' : '' ?> <?php echo $propiedad->parrilla == 1 ? 'Parrilla' : '' ?> <?php echo $propiedad->piscina == 1 ? 'Piscina' : '' ?> <?php echo $propiedad->vigilancia == 1 ? 'vigilancia' : '' ?></a></li>
-          <li><a href="javascript:void(0);"><?php echo ($propiedad->sala_juegos == 1) ? 'Sala de Juegos' : '' ?> <?php echo $propiedad->lavadero == 1 ? 'Lavadero' : '' ?> <?php echo $propiedad->living_comedor == 1 ? 'Living Comedor' : '' ?> <?php echo $propiedad->terraza == 1 ? 'Terraza' : '' ?></a></li>
           <li>
             <a href="javascript:void(0);">
-              <?php echo ($propiedad->accesible == 1) ? 'Accesible' : '' ?> 
-              <?php echo $propiedad->balcon == 1 ? 'Balcón' : '' ?> 
-              <?php echo $propiedad->patio == 1 ? 'Patio' : '' ?>
+              <?php echo $propiedad->servicios_agua_corriente == 1 ? 'Agua Corriente' : '' ?> 
+              <?php echo $propiedad->vigilancia == 1 ? 'Vigilancia<br/>' : '' ?>              
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);">
+              <?php echo $propiedad->servicios_cloacas == 1 ? 'Cloacas' : '' ?> 
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);">
+              <?php echo $propiedad->servicios_aire_acondicionado == 1 ? 'Aire Acondicionado' : '' ?>
             </a>
           </li>
         </ul>
@@ -201,8 +211,14 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
               <?php if ($propiedad->banios > 0) { ?>
                 Baños: <span><?php echo $propiedad->banios ?></span><br>
               <?php } ?>
+              <?php if ($propiedad->accesible == 1) { ?>
+                Baño Accesible: <span>Sí</span><br/>
+              <?php } ?>
               <?php if ($propiedad->banios > 0) { ?>
-                Cocheras: <span><?php echo $propiedad->cocheras ?></span>
+                Cocheras: <span><?php echo $propiedad->cocheras ?></span><br/>
+              <?php } ?>
+              <?php if ($propiedad->piscina > 0) { ?>
+                Piscina: <span>Sí</span><br/>
               <?php } ?>
             </a>
           </li>
@@ -212,14 +228,23 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
                 Patio: <span>Sí</span><br/>
               <?php } ?>
               <?php if ($propiedad->balcon == 1) { ?>
-                Balcón: <span>Sí</span>
+                Balcón: <span>Sí</span><br/>
+              <?php } ?>
+              <?php if ($propiedad->parrilla == 1) { ?>
+                Parrilla: <span>Sí</span><br/>
               <?php } ?>
             </a>
           </li>
           <li>
             <a href="javascript:void(0);">
               <?php if ($propiedad->terraza == 1) { ?>
-                Terraza: <span>Sí</span>
+                Terraza: <span>Sí</span><br/>
+              <?php } ?>
+              <?php if ($propiedad->lavadero == 1) { ?>
+                Lavadero: <span>Sí</span><br/>
+              <?php } ?>
+              <?php if ($propiedad->sala_juegos == 1) { ?>
+                Sala de Juegos: <span>Sí</span><br/>
               <?php } ?>
             </a>
           </li>
