@@ -147,6 +147,21 @@
 </script>
 
 <script>
+  function buscar_mapa(form) {
+    $(form).parents("form").first().find(".base_url").val("<?php echo mklink("mapa/") ?>");
+    $(form).parents("form").first().submit();
+  }
+
+  function buscar_listado(form) {
+    $(form).parents("form").first().find(".base_url").val("<?php echo mklink("propiedades/") ?>");
+    $(form).parents("form").first().submit();
+  }
+
+  function cambiar_checkboxes(e) {
+    var form = $(e).parents("form");
+    $(form).submit();
+  }
+
   function order_solo() {
     var orden = $("#form_buscador select[name=orden]").val();
     var base = "<?php echo current_url(FALSE, TRUE) ?>";
@@ -157,9 +172,22 @@
     location.href = base;
   }
 
-  function cambiar_checkboxes(e) {
-    var form = $(e).parents("form");
-    $(form).submit();
+  function filtrar(form) {
+    var url = $(form).find(".base_url").val();
+    var tipo_operacion = $(form).find(".filter_tipo_operacion").val();
+    url += tipo_operacion + "/";
+    /*
+    var localidad = $(form).find(".filter_localidad").val();
+    if (!isEmpty(localidad)) {
+      url += localidad + "/";
+    }
+    */
+    var minimo = $("#filter_rango_precios option:selected").data("min");
+    var maximo = $("#filter_rango_precios option:selected").data("max");
+    $("#filter_minimo").val(minimo);
+    $("#filter_maximo").val(maximo);
+
+    $(form).attr("action", url);
   }
 </script>
 
