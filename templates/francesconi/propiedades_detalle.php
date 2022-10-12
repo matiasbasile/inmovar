@@ -53,7 +53,10 @@
     <div class="container">
       <div class="noved-inner">
         <h2 class="color-title"><?php echo $propiedad->precio ?></h2>
-        <h3 class="small-title"><?php echo $propiedad->direccion_completa ?> <span><?php echo $propiedad->nombre ?></span></h3>
+        <h3 class="small-title">
+          <?php echo $propiedad->direccion_completa ?> 
+          <span><?php echo $propiedad->nombre ?></span>
+        </h3>
         <div class="mis-link">
           <ul>
             <li><?php echo $propiedad->superficie_total ?> m2</li>
@@ -66,18 +69,22 @@
       <div class="map-inner">
         <div class="row">
           <div class="col-lg-4">
-            <div class="map-info">
-              <img src="<?php echo $usuario->path ?>" style="height: 79px; width: 79px; border-radius: 100%;" alt="Map">
-              <div class="map-content">
-                <p>Vendedor asignado</p>
-                <span><?php echo $usuario->nombre ?></span>
+            <?php if (!empty($propiedad->id_usuario)) { ?>
+              <div class="map-info">
+                <img src="<?php echo $usuario->path ?>" style="height: 79px; width: 79px; border-radius: 100%;" alt="Map">
+                <div class="map-content">
+                  <p>Vendedor asignado</p>
+                  <span><?php echo $usuario->nombre ?></span>
+                </div>
               </div>
-            </div>
+            <?php } ?>
           </div>
           <div class="col-lg-4">
-            <div class="map-btn">
-              <a href="https://wa.me/<?php echo str_replace(' ', '', $usuario->telefono) ?>" target="_blank" class="fill-btn"><img src="assets/images/icons/icon-7.png" alt="Icon">hablar ahora</a>
-            </div>
+            <?php if (!empty($propiedad->id_usuario)) { ?>
+              <div class="map-btn">
+                <a href="https://wa.me/<?php echo str_replace(' ', '', $usuario->telefono) ?>" target="_blank" class="fill-btn"><img src="assets/images/icons/icon-7.png" alt="Icon">hablar ahora</a>
+              </div>
+            <?php } ?>
           </div>
           <div class="col-lg-4">
             <div class="map-link">
@@ -88,7 +95,7 @@
       </div>
       <div class="description-content">
         <h4>DESCRIPCIÓN</h4>
-        <p><?php echo $propiedad->texto ?></p>
+        <?php echo $propiedad->texto ?>
       </div>
       <div class="description-content frist">
         <h4>ubicación</h4>
