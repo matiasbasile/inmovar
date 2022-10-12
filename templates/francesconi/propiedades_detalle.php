@@ -142,13 +142,11 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
           <li>
             <a href="javascript:void(0);">
               <?php echo ($propiedad->servicios_electricidad == 1) ? 'Electricidad<br/>' : '' ?> 
-              <?php echo ($propiedad->gimnasio == 1) ? 'Gimnasio<br/>' : '' ?> 
             </a>
           </li>
           <li>
             <a href="javascript:void(0);">
               <?php echo $propiedad->servicios_agua_corriente == 1 ? 'Agua Corriente' : '' ?> 
-              <?php echo $propiedad->vigilancia == 1 ? 'Vigilancia<br/>' : '' ?>              
             </a>
           </li>
           <li>
@@ -203,6 +201,12 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
               Dormitorios: <span><?php echo $propiedad->dormitorios ?></span><br>
               <?php if ($propiedad->living_comedor == 1) { ?>
                 Living Comedor: <span>Sí</span>
+              <?php } ?>
+              <?php if ($propiedad->gimnasio == 1) { ?>
+                Gimnasio: <span>Sí</span><br/>
+              <?php } ?>
+              <?php if ($propiedad->vigilancia == 1) { ?>
+                Vigilancia: <span>Sí</span><br/>
               <?php } ?>
             </a>
           </li>
