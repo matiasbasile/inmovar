@@ -38,10 +38,16 @@ if (isset($get_params["test"])) echo $propiedad_model->get_sql();
       <div class="row align-items-center">
         <div class="col-lg-6">
           <div class="sobre-warp">
-            <img src="assets/images/sobre-1.png" alt="Sobre">
+
+            <?php if (!empty($usuario->path)) { ?>
+              <img src="<?php echo $usuario->path ?>" alt="Fran">
+            <?php } ?>
+
             <div class="sobre-content">
-              <h3>Fernando francesconi</h3>
-              <p>Asesor de Ventas</p>
+              <h3><?php echo $usuario->nombre ?></h3>
+              <?php if (!empty($usuario->cargo)) { ?>
+                <p><?php echo $usuario->cargo ?></p>
+              <?php } ?>
               <ul>
                 <li><a href="#0"><img src="assets/images/icons/facebook.png" alt="Facebook"></a></li>
                 <li><a href="#0"><img src="assets/images/icons/insta.png" alt="Instagram"></a></li>
