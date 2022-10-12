@@ -21,7 +21,9 @@ function item($p) { ?>
         <h5><?php echo $p->direccion_completa ?></h5>
         <div class="mis-link">
           <ul>
-            <li><?php echo $p->superficie_total ?> m2</li>
+            <?php if (!empty($p->superficie_total)) { ?>
+              <li><?php echo $p->superficie_total ?> m2</li>
+            <?php } ?>
             <li><a href="javascript:void(0);"><img src="assets/images/icons/icon-16.png" alt="Icon"><?php echo $p->dormitorios ?></a></li>
             <li><a href="javascript:void(0);"><img src="assets/images/icons/icon-17.png" alt="Icon"><?php echo $p->banios ?></a></li>
             <li><a href="javascript:void(0);"><img src="assets/images/icons/icon-18.png" alt="Icon"><?php echo $p->cocheras ?></a></li>
