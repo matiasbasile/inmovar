@@ -9,7 +9,7 @@
             "mostrar_todos" => 0,
           )); ?>
           <?php foreach ($tipos_op as $tipo) { ?>
-            <option <?php echo ($vc_link_tipo_operacion == $tipo->nombre) ? "selected" : "" ?> value="<?php echo $tipo->link ?>"><?php echo $tipo->nombre ?></option>
+            <option <?php echo ($vc_link_tipo_operacion == $tipo->link) ? "selected" : "" ?> value="<?php echo $tipo->link ?>"><?php echo $tipo->nombre ?></option>
           <?php } ?>
         </select>
       </div>
@@ -17,10 +17,8 @@
     <div class="col-lg-2">
       <div class="select-inner">
         <select id="filter_propiedad" class="round filter_propiedad" name="tipo de propiedad">
-          <?php $vc_tipo_inmueble = ""; ?>
           <?php $tipo_propiedades = $propiedad_model->get_tipos_propiedades(); ?>
           <?php foreach ($tipo_propiedades as $tipo) { ?>
-            <?php if ($vc_id_tipo_inmueble == $tipo->id) $vc_tipo_inmueble = $tipo->nombre; ?>
             <option <?php echo ($vc_id_tipo_inmueble == $tipo->id) ? "selected" : "" ?> value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
           <?php } ?>
         </select>
@@ -29,9 +27,12 @@
     <div class="col-lg-2">
       <div class="select-inner">
         <select id="filter_dormitorios" class="round filter_dormitorios" name="habitaciones">
+          <option value="0">HABITACIONES</option>
           <?php $dormitorios = $propiedad_model->get_dormitorios(); ?>
           <?php foreach ($dormitorios as $dormitorio) { ?>
-            <option <?php echo ($vc_listado[0]->dormitorios == $dormitorio->dormitorios) ? "selected" : "" ?> value="<?php echo $dormitorio->dormitorios; ?>"><?php echo (($dormitorio->dormitorios == 0) ? "DORMITORIOS" : $dormitorio->dormitorios) ?></option>
+            <option <?php echo ($vc_dormitorios == $dormitorio->dormitorios) ? "selected" : "" ?> value="<?php echo $dormitorio->dormitorios; ?>">
+              <?php echo $dormitorio->dormitorios ?>
+            </option>
           <?php } ?>
         </select>
       </div>
@@ -39,9 +40,12 @@
     <div class="col-lg-2">
       <div class="select-inner">
         <select id="filter_banios" class="round filter_banios" name="baños">
+          <option value="0">BAÑOS</option>
           <?php $banios = $propiedad_model->get_banios(); ?>
           <?php foreach ($banios as $banio) { ?>
-            <option <?php echo ($vc_listado[0]->banios == $banio->banios) ? "selected" : "" ?> value="<?php echo $banio->banios; ?>"><?php echo (($banio->banios == 0) ? "BAÑOS" : $banio->banios) ?></option>
+            <option <?php echo ($vc_banios == $banio->banios) ? "selected" : "" ?> value="<?php echo $banio->banios; ?>">
+              <?php echo $banio->banios ?>
+            </option>
           <?php } ?>
         </select>
       </div>
