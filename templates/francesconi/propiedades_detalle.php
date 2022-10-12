@@ -1,12 +1,12 @@
 <?php 
 include 'includes/init.php';
 
-$propiedades = $propiedad_model->get($id, array(
+$id_empresa = isset($get_params["em"]) ? $get_params["em"] : $empresa->id;
+$propiedad = $propiedad_model->get($id, array(
+  "id_empresa" => $id_empresa,
   "id_empresa_original" => $empresa->id,
-  "buscar_total_visitas" => 1,
+  "buscar_total_visitas"=>1,
 ));
-
-$propiedad = $propiedad_model->get($propiedades->id);
 
 if (($propiedad === FALSE || !isset($propiedad->nombre) || $propiedad->activo == 0) && !isset($get_params["preview"])) {
   header("HTTP/1.1 302 Moved Temporarily");
@@ -198,7 +198,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
               </a>
             </li>
           <?php } ?>
-          
+
         </ul>
       </div>
     </div>
