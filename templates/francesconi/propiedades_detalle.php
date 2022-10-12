@@ -145,15 +145,38 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
           <li><a href="javascript:void(0);"><?php echo $propiedad->accesible == 1 ? 'Accesible' : '' ?> <?php echo $propiedad->balcon == 1 ? 'Balcón' : '' ?> <?php echo $propiedad->patio == 1 ? 'Patio' : '' ?></a></li>
         </ul>
       </div>
-      <div class="description-content second">
-        <h4>SUPERFICIES</h4>
-        <ul>
-          <li><a href="javascript:void(0);">Cubierta <span><?php echo $propiedad->superficie_cubierta ?></span></a></li>
-          <li><a href="javascript:void(0);">Descubierta <span><?php echo $propiedad->superficie_descubierta ?></span></a></li>
-          <li><a href="javascript:void(0);">Semicubierta <span><?php echo $propiedad->superficie_semicubierta ?></span></a></li>
-          <li><a href="javascript:void(0);">Total <span><?php echo $propiedad->superficie_total ?></span></a></li>
-        </ul>
-      </div>
+
+      <?php if ($propiedad->superficie_total != 0) { ?>
+        <div class="description-content second">
+          <h4>SUPERFICIES</h4>
+          <ul>
+            <li>
+              <a href="javascript:void(0);">
+                Cubierta 
+                <span><?php echo ($propiedad->superficie_cubierta != 0) ? $propiedad->superficie_cubierta : "-" ?></span>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">
+                Descubierta 
+                <span><?php echo ($propiedad->superficie_descubierta != 0) ? $propiedad->superficie_descubierta : "-" ?></span>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">
+                Semicubierta 
+                <span><?php echo ($propiedad->superficie_semicubierta != 0) ? $propiedad->superficie_semicubierta : "-" ?></span>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">
+                Total 
+                <span><?php echo ($propiedad->superficie_total != 0) ? $propiedad->superficie_total : "-" ?></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      <?php } ?>
       <div class="description-content second-1">
         <h4>AMBIENTES</h4>
         <ul>
@@ -168,7 +191,9 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
         <ul>
           <li><a href="javascript:void(0);">Apto Crédito <span><?php echo $propiedad->apto_banco == 0 ? 'No' : 'Sí' ?></span></a></li>
           <li><a href="javascript:void(0);">Permuta <span><?php echo $propiedad->acepta_permuta == 0 ? 'No' : 'Sí' ?></span></a></li>
-          <li><a href="javascript:void(0);">Expensas <span>$<?php echo $propiedad->valor_expensas ?></span></a></li>
+          <?php if ($propiedad->valor_expensas != 0) { ?>
+            <li><a href="javascript:void(0);">Expensas <span>$<?php echo $propiedad->valor_expensas ?></span></a></li>
+          <?php } ?>
         </ul>
       </div>
       <div class="description-content second-3">
