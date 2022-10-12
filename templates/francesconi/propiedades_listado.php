@@ -21,10 +21,8 @@ $nombre_pagina = $vc_link_tipo_operacion;
 <head>
   <?php include 'includes/head.php' ?>
   <style>
-    <?php if (sizeof($vc_listado) == 1) { ?>.mis-inner [class*="col-"]:first-child {
-      width: 100% !important;
-    }
-
+    <?php if (sizeof($vc_listado) == 1) { ?>
+      .mis-inner [class*="col-"]:first-child { width: 100% !important; }
     <?php } ?>
   </style>
 </head>
@@ -38,11 +36,7 @@ $nombre_pagina = $vc_link_tipo_operacion;
   <section class="equipo-banner">
     <div class="container">
       <div class="equipo-content">
-        <?php if ($vc_listado[0]->id_tipo_operacion == 1) { ?>
-          <h1 class="banner-title">comprar</h1>
-        <?php } else { ?>
-          <h1 class="banner-title">alquilar</h1>
-        <?php } ?>
+        <h1 class="banner-title"><?php echo $vc_nombre_operacion ?></h1>
       </div>
     </div>
   </section>
