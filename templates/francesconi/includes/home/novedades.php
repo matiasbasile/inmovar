@@ -35,10 +35,8 @@ $mes_month = array(
                 <span>
                   <img src="assets/images/icons/icon-15.png" alt="Icon">
                 </span>
-                <a href="javascript:void(0)" class="fill-btn"><?php echo $n->categoria ?></a>
-                <a href="javascript:void(0)">
-                  <img src="<?php echo $n->path ?>" alt="Noved">
-                </a>
+                <span class="fill-btn"><?php echo $n->categoria ?></span>
+                <img src="<?php echo $n->path ?>" alt="Noved">
               </a>
               <div class="noved-inner">
                 <a href="<?php echo mklink($n->link) ?>" class="noved-redirect">
