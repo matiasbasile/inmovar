@@ -188,7 +188,17 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
             ?>
             <a href="javascript:void(0);">Publicado hace <span><?php echo $intvl->days ?></span> días</a>
           </li>
-          <li><a href="javascript:void(0);"><img src="assets/images/icons/icon-23.png"><span><?php echo $propiedad->total_visitas ?></span> personas vieron esta propiedad en los últimos 30 días</a></li>
+
+          <?php if ($propiedad->total_visitas > 0) { ?>
+            <li>
+              <a href="javascript:void(0);">
+                <img src="assets/images/icons/icon-23.png">
+                <span><?php echo $propiedad->total_visitas ?></span> 
+                personas vieron esta propiedad en los últimos 30 días
+              </a>
+            </li>
+          <?php } ?>
+          
         </ul>
       </div>
     </div>
