@@ -209,7 +209,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
           <li>
             <a href="javascript:void(0);">
               <?php if ($propiedad->patio == 1) { ?>
-                Patio: <span>Sí</span>
+                Patio: <span>Sí</span><br/>
               <?php } ?>
               <?php if ($propiedad->balcon == 1) { ?>
                 Balcón: <span>Sí</span>
