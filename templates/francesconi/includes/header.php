@@ -1,5 +1,12 @@
-<header class="francesconi-header <?php echo (isset($clase_header) ? $clase_header : "equipo") ?>">
-  <a href="<?php echo mklink("/") ?>" class="logo"><img src="assets/images/header-logo.png" alt="Logo"></a>
+<?php $clase_header = (isset($clase_header) ? $clase_header : "equipo"); ?>
+<header class="francesconi-header <?php echo $clase_header ?>">
+  <a href="<?php echo mklink("/") ?>" class="logo">
+    <?php if ($clase_header == "") { ?>
+      <img src="assets/images/header-logo.png" alt="Logo">
+    <?php } else { ?>
+      <img src="assets/images/header-logo-1.png" alt="Logo">
+    <?php } ?>
+  </a>
   <nav>
     <ul>
       <li class="dropdown"><a href="<?php echo mklink("propiedades/alquileres") ?>">ALQUILAR <img src="assets/images/icons/down-arrow.png" alt="Arrow"></a>
