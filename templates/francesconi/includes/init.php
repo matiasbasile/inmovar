@@ -15,4 +15,5 @@ $regex = sprintf('~[^%s]++~i', $conservar); // case insensitive
 $empresa->telefono_num = preg_replace($regex, '', $empresa->telefono);
 $empresa->telefono_num_2 = preg_replace($regex, '', $empresa->telefono_2);
 include_once("propiedad/item.php");
+include_once("entrada/item.php");
 ?>
