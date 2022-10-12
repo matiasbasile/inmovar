@@ -188,17 +188,56 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
       <div class="description-content second-1">
         <h4>AMBIENTES</h4>
         <ul>
-          <li><a href="javascript:void(0);">Dormitorio <?php echo $propiedad->dormitorios ?> <br>Living Comedor <?php echo $propiedad->living_comedor ?></a></li>
-          <li><a href="javascript:void(0);">Baño <?php echo $propiedad->banios ?> <br>Cochera <?php echo $propiedad->cocheras ?></a></li>
-          <li><a href="javascript:void(0);">Patio <?php echo $propiedad->patio ?> <br>Balcón <?php echo $propiedad->balcon ?></a></li>
-          <li><a href="javascript:void(0);">Terraza <?php echo $propiedad->terraza ?></a></li>
+          <li>
+            <a href="javascript:void(0);">
+              Dormitorios: <span><?php echo $propiedad->dormitorios ?></span><br>
+              <?php if ($propiedad->living_comedor == 1) { ?>
+                Living Comedor: <span>Sí</span>
+              <?php } ?>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);">
+              <?php if ($propiedad->banios > 0) { ?>
+                Baños: <span><?php echo $propiedad->banios ?></span><br>
+              <?php } ?>
+              <?php if ($propiedad->banios > 0) { ?>
+                Cocheras: <span><?php echo $propiedad->cocheras ?></span>
+              <?php } ?>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);">
+              <?php if ($propiedad->patio == 1) { ?>
+                Patio: <span>Sí</span>
+              <?php } ?>
+              <?php if ($propiedad->balcon == 1) { ?>
+                Balcón: <span>Sí</span>
+              <?php } ?>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);">
+              <?php if ($propiedad->terraza == 1) { ?>
+                Terraza: <span>Sí</span>
+              <?php } ?>
+            </a>
+          </li>
         </ul>
       </div>
       <div class="description-content second">
         <h4>ADICIONALES</h4>
         <ul>
-          <li><a href="javascript:void(0);">Apto Crédito <span><?php echo $propiedad->apto_banco == 0 ? 'No' : 'Sí' ?></span></a></li>
-          <li><a href="javascript:void(0);">Permuta <span><?php echo $propiedad->acepta_permuta == 0 ? 'No' : 'Sí' ?></span></a></li>
+          <li>
+            <a href="javascript:void(0);">
+              Apto Crédito <span><?php echo $propiedad->apto_banco == 0 ? 'No' : 'Sí' ?></span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);">
+              Permuta <span><?php echo $propiedad->acepta_permuta == 0 ? 'No' : 'Sí' ?></span>
+            </a>
+          </li>
           <?php if ($propiedad->valor_expensas != 0) { ?>
             <li><a href="javascript:void(0);">Expensas <span>$<?php echo $propiedad->valor_expensas ?></span></a></li>
           <?php } ?>
