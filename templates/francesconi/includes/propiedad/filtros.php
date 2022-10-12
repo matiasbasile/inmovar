@@ -55,7 +55,7 @@
       </div>
       <div class="col-lg-2">
         <div class="select-inner">
-          <select id="filter_rango_precios" class="round" name="precio">
+          <select id="filter_rango_precios" class="round">
             <option data-min="0" data-max="0">PRECIO</option>
             <?php if ($vc_link_tipo_operacion == "alquileres") { ?>
               <option <?php echo (isset($vc_maximo) && $vc_maximo == 25000) ? "selected" : "" ?> data-min="0" data-max="25000">$ 0 - 25.000</option>
