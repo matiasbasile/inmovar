@@ -1,4 +1,4 @@
-<header class="francesconi-header">
+<header class="francesconi-header <?php echo (isset($clase_header) ? $clase_header : "") ?>">
   <a href="<?php echo mklink("/") ?>" class="logo"><img src="assets/images/header-logo.png" alt="Logo"></a>
   <nav>
     <ul>
