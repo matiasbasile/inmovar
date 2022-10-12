@@ -147,9 +147,9 @@
 </script>
 
 <script>
-  function buscar_mapa(form) {
-    $(form).parents("form").first().find(".base_url").val("<?php echo mklink("mapa/") ?>");
-    $(form).parents("form").first().submit();
+  function buscar_mapa() {
+    $("#form_buscador").find(".base_url").val("<?php echo mklink("mapa/") ?>");
+    $("#form_buscador").submit();
   }
 
   function buscar_listado(form) {

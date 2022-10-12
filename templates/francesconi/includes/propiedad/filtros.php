@@ -110,7 +110,7 @@
     </div>
     <div class="col-lg-4">
       <div class="comprar-btns">
-        <a href="javascript:void(0)" onclick="" class="border-btn">ver en mapa</a>
+        <a href="javascript:void(0)" onclick="buscar_mapa()" class="border-btn">ver en mapa</a>
         <button type="submit" class="fill-btn">buscar</button>
       </div>
     </div>
