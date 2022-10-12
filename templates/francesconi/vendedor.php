@@ -49,9 +49,15 @@ if (isset($get_params["test"])) echo $propiedad_model->get_sql();
                 <p><?php echo $usuario->cargo ?></p>
               <?php } ?>
               <ul>
-                <li><a href="#0"><img src="assets/images/icons/facebook.png" alt="Facebook"></a></li>
-                <li><a href="#0"><img src="assets/images/icons/insta.png" alt="Instagram"></a></li>
-                <li><a href="#0"><img src="assets/images/icons/play.png" alt="Play"></a></li>
+                <?php if (!empty($usuario->facebook)) { ?>
+                  <li><a target="_blank" href="<?php echo $usuario->facebook ?>"><img src="assets/images/icons/facebook.png" alt="Facebook"></a></li>
+                <?php } ?>
+                <?php if (!empty($usuario->instagram)) { ?>
+                  <li><a target="_blank" href="<?php echo $usuario->instagram ?>"><img src="assets/images/icons/insta.png" alt="Instagram"></a></li>
+                <?php } ?>
+                <?php if (!empty($usuario->linkedin)) { ?>
+                  <li><a target="_blank" href="<?php echo $usuario->linkedin ?>"><img src="assets/images/icons/play.png" alt="Play"></a></li>
+                <?php } ?>
               </ul>
             </div>
           </div>
@@ -59,7 +65,7 @@ if (isset($get_params["test"])) echo $propiedad_model->get_sql();
         <div class="col-lg-6">
           <div class="sobre-text">
             <h5>sobre mí</h5>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.</p>
+            <p><?php echo $usuario->titulo ?></p>
           </div>
         </div>
       </div>
