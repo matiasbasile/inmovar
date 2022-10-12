@@ -73,7 +73,7 @@
                   </a>
                 <?php } ?>
                 <div class="fran-content">
-                  <h3><a href="<?php echo mklink("web/vendedor/")."?id=".$e->id ?>"><?php echo $e->titulo ?></a></h3>
+                  <h3><a href="<?php echo mklink("web/vendedor/")."?id=".$e->id ?>"><?php echo $e->nombre ?></a></h3>
                   <?php if (!empty($e->cargo)) { ?>
                     <p><?php echo $e->cargo ?></p>
                   <?php } ?>
