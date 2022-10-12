@@ -83,7 +83,7 @@
 </div>
 
 <div class="row align-items-center">
-  <div class="col-lg-4">
+  <div class="col-lg-3">
     <?php
     // Si estoy en un link especial de grupo urbano, llamamos a otra funcion
     if (isset($config_grupo)) {
@@ -99,7 +99,7 @@
       </select>
     </div>
   </div>
-  <div class="col-lg-4">
+  <div class="col-lg-5">
     <div class="check-inner">
       <div class="check-form">
         <div class="custom-control custom-checkbox custom-checkbox-green">
