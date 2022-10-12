@@ -1,4 +1,3 @@
-
 <?php include "templates/comun/pre_head.php" ?>
 <!-- Plugins CSS -->
 <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">

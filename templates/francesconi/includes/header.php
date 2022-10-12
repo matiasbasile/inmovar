@@ -4,22 +4,22 @@
     <ul>
       <li class="dropdown"><a href="<?php echo mklink("propiedades/alquileres") ?>">ALQUILAR <img src="assets/images/icons/down-arrow.png" alt="Arrow"></a>
         <ul class="dropdown-menu">
-          <li><a href="#0" class="dropdown-item">casas</a></li>
-          <li><a href="#0" class="dropdown-item">departamentos</a></li>
-          <li><a href="#0" class="dropdown-item">terrenos</a></li>
-          <li><a href="#0" class="dropdown-item">locales</a></li>
+          <li><a href="<?php echo mklink("propiedades/alquileres/?tp=1") ?>" class="dropdown-item">casas</a></li>
+          <li><a href="<?php echo mklink("propiedades/alquileres/?tp=2") ?>" class="dropdown-item">departamentos</a></li>
+          <li><a href="<?php echo mklink("propiedades/alquileres/?tp=7") ?>" class="dropdown-item">terrenos</a></li>
+          <li><a href="<?php echo mklink("propiedades/alquileres/?tp=9") ?>" class="dropdown-item">locales</a></li>
         </ul>
       </li>
       <li class="dropdown"><a href="<?php echo mklink("propiedades/ventas") ?>">COMPRAR <img src="assets/images/icons/down-arrow.png" alt="Arrow"></a>
         <ul class="dropdown-menu">
-          <li><a href="#0" class="dropdown-item">casas</a></li>
-          <li><a href="#0" class="dropdown-item">departamentos</a></li>
-          <li><a href="#0" class="dropdown-item">terrenos</a></li>
-          <li><a href="#0" class="dropdown-item">locales</a></li>
+          <li><a href="<?php echo mklink("propiedades/ventas/?tp=1") ?>" class="dropdown-item">casas</a></li>
+          <li><a href="<?php echo mklink("propiedades/ventas/?tp=2") ?>" class="dropdown-item">departamentos</a></li>
+          <li><a href="<?php echo mklink("propiedades/ventas/?tp=7") ?>" class="dropdown-item">terrenos</a></li>
+          <li><a href="<?php echo mklink("propiedades/ventas/?tp=9") ?>" class="dropdown-item">locales</a></li>
         </ul>
       </li>
       <li><a href="#0">VENDER </a></li>
-      <li><a href="<?php echo mklink("web/equo") ?>">Equipo </a></li>
+      <li><a href="<?php echo mklink("web/equipo") ?>">Equipo </a></li>
     </ul>
     <a href="javascript:void(0);" class="toggle-icon"><span></span></a>
   </nav>
