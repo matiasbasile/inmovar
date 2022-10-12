@@ -67,10 +67,16 @@
           <?php foreach ($usuarios as $e) { ?>
             <div class="col-xl-3 col-md-6">
               <div class="fran-card">
-                <img src="<?php echo $e->path ?>" alt="Fran">
+                <?php if (!empty($e->path)) { ?>
+                  <a href="<?php echo mklink("web/vendedor/")."?id=".$e->id ?>">
+                    <img src="<?php echo $e->path ?>" alt="Fran">
+                  </a>
+                <?php } ?>
                 <div class="fran-content">
-                  <h3><?php echo $e->titulo ?></h3>
-                  <p><?php echo $e->cargo ?></p>
+                  <h3><a href="<?php echo mklink("web/vendedor/")."?id=".$e->id ?>"><?php echo $e->titulo ?></a></h3>
+                  <?php if (!empty($e->cargo)) { ?>
+                    <p><?php echo $e->cargo ?></p>
+                  <?php } ?>
                   <div class="fran-socials">
                     <ul>
                       <?php if (!empty($e->telefono)) { ?>
@@ -90,51 +96,10 @@
     </section>
   <?php } ?>
 
-  <!-- Ros Section -->
-  <section class="ros-section">
-    <form onsubmit="return enviar_contacto()">
-      <div class="container">
-        <div class="ros-content">
-          <h3 class="color-title">Fernando francesconi</h3>
-          <h4 class="small-title">nosotros</h4>
-        </div>
-        <div class="ros-inner">
-          <div class="row">
-            <div class="col-lg-6">
-              <input type="text" id="contacto_nombre" name="Nombre" placeholder="Nombre *">
-            </div>
-            <div class="col-lg-6">
-              <input type="text" id="contacto_email" name="Email" placeholder="Email">
-            </div>
-            <div class="col-lg-6">
-              <input type="text" id="contacto_telefono" name="Telefono" placeholder="Whatsapp (sin 0 ni 15) *">
-            </div>
-            <div class="col-lg-6">
-              <div class="select-inner">
-                <select id="contacto_asunto" class="round" name="venta">
-                  <option value="australia">venta</option>
-                  <option value="canada">venta</option>
-                  <option value="usa">venta</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-lg-12">
-              <textarea id="contacto_mensaje">Mensaje</textarea>
-            </div>
-          </div>
-        </div>
-        <div class="fill-btn-inner">
-          <button id="contacto_submit" class="fill-btn">enviar consulta</button>
-        </div>
-      </div>
-    </form>
-  </section>
-
-  <!-- Francesconi Nuster -->
+  <?php include 'includes/contacto.php' ?>
 
   <?php include 'includes/home/secondary_slider.php' ?>
 
-  <!-- Francesconi Footer -->
   <?php include 'includes/footer.php' ?>
 
 </body>

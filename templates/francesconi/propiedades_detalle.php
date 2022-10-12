@@ -307,50 +307,14 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
     </div>
   </section>
 
-  <!-- Ros Section -->
-  <section class="ros-section map">
-    <form onsubmit="return enviar_contacto()">
-      <div class="container">
-        <div class="ros-content">
-          <h3 class="color-title">Fernando francesconi</h3>
-          <h4 class="small-title">nosotros</h4>
-        </div>
-        <div class="ros-inner">
-          <div class="row">
-            <div class="col-lg-6">
-              <input type="text" name="Nombre" id="contacto_nombre" placeholder="Nombre *">
-            </div>
-            <div class="col-lg-6">
-              <input type="email" name="Email" id="contacto_email" placeholder="Email">
-            </div>
-            <div class="col-lg-6">
-              <input type="text" name="Telefono" id="contacto_telefono" placeholder="Whatsapp (sin 0 ni 15) *">
-            </div>
-            <div class="col-lg-6">
-              <div class="select-inner">
-                <select id="country" class="round" id="contacto_asunto" name="venta">
-                  <option value="australia">venta</option>
-                  <option value="canada">venta</option>
-                  <option value="usa">venta</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-lg-12">
-              <textarea id="contacto_mensaje" name="Nombre">Mensaje</textarea>
-            </div>
-          </div>
-        </div>
-        <div class="fill-btn-inner">
-          <button id="contacto_submit" class="fill-btn">enviar consulta</button>
-          <a href="https://wa.me/<?php echo str_replace(' ', '', $usuario->telefono) ?>" target="_blank" class="fill-btn light"><img src="assets/images/icons/icon-7.png" alt="Icon">enviar whatsapp</a>
-        </div>
-      </div>
-    </form>
-  </section>
+  <?php 
+  $habilitar_whatsapp = 1;
+  include 'includes/contacto.php'; ?>
 
-  <!-- Francesconi Footer -->
   <?php include 'includes/footer.php' ?>
+
   <?php include_once("templates/comun/mapa_js.php"); ?>
+  
   <script>
     $(document).ready(function() {
       <?php if (!empty($propiedad->latitud) && !empty($propiedad->longitud)) { ?>
