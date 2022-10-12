@@ -1,4 +1,5 @@
 <form id="form_buscador" onsubmit="return filtrar(this)" method="get">
+  <input type="hidden" class="base_url" value="<?php echo (isset($buscador_mapa) ? mklink("mapa/") : mklink("propiedades/")) ?>" />
   <div class="comprar-inner">
     <div class="row">
       <div class="col-lg-2">
