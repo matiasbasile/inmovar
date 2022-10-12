@@ -13,7 +13,7 @@
       </a>
       <?php
       $fecha = str_replace('/', '-', $n->fecha);
-      $mes =  $mes_month[date('n', strtotime($fecha))]
+      $mes =  get_mes(date('m', strtotime($fecha)));
       ?>
       <h5><small><?php echo $n->dia; ?></small><?php echo $mes ?> del <?php echo $n->anio; ?></h5>
       <p><?php echo $n->plain_text ?></p>
