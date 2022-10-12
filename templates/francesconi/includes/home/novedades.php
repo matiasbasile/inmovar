@@ -31,17 +31,15 @@ $mes_month = array(
         <?php foreach ($novedades as $n) { ?>
           <div class="col-lg-4 col-sm-6">
             <div class="noved-card">
-              <div class="noved-warp">
+              <a href="<?php echo mklink($n->link) ?>" class="noved-warp">
                 <span>
-                  <a href="<?php echo mklink($n->link) ?>">
-                    <img src="assets/images/icons/icon-15.png" alt="Icon">
-                  </a>
+                  <img src="assets/images/icons/icon-15.png" alt="Icon">
                 </span>
-                <a href="#0" class="fill-btn"><?php echo $n->categoria ?></a>
-                <a href="<?php echo mklink($n->link) ?>">
+                <a href="javascript:void(0)" class="fill-btn"><?php echo $n->categoria ?></a>
+                <a href="javascript:void(0)">
                   <img src="<?php echo $n->path ?>" alt="Noved">
                 </a>
-              </div>
+              </a>
               <div class="noved-inner">
                 <a href="<?php echo mklink($n->link) ?>" class="noved-redirect">
                   <h3><?php echo $n->titulo ?></h3>

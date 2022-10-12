@@ -14,7 +14,7 @@
             <h3 class="small-title"><?php echo $sobre->titulo ?></h3>
             <p><?php echo $sobre->plain_text ?></p>
             <div class="cuento-info">
-              <a href="<?php echo mklink("web/equo") ?>" class="border-btn">conocenos</a>
+              <a href="<?php echo mklink("web/equipo") ?>" class="border-btn">conocenos</a>
               <p>matrícula: <span>1234.5678</span></p>
             </div>
           </div>
