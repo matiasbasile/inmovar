@@ -1,17 +1,15 @@
 <form id="form_buscador" onsubmit="return filtrar(this)" method="get">
   <input type="hidden" class="base_url" value="<?php echo (isset($buscador_mapa) ? mklink("mapa/") : mklink("propiedades/")) ?>" />
+  <input type="hidden" id="tipo_operacion" class="filter_tipo_operacion" value="<?php echo $vc_link_tipo_operacion ?>">
   <div class="comprar-inner">
     <div class="row">
       <div class="col-lg-2">
         <div class="select-inner">
-          <select id="tipo_operacion" class="round filter_tipo_operacion">
-            <?php $tipos_op = $propiedad_model->get_tipos_operaciones(array(
-              "id_empresa" => $empresa->id,
-              "solo_propias" => 1,
-              "mostrar_todos" => 0,
-            )); ?>
-            <?php foreach ($tipos_op as $tipo) { ?>
-              <option <?php echo ($vc_link_tipo_operacion == $tipo->link) ? "selected" : "" ?> value="<?php echo $tipo->link ?>"><?php echo $tipo->nombre ?></option>
+          <select id="filter_localidad" class="form-control filter_localidad">
+            <option value="0">Localidad</option>
+            <?php $localidades = $propiedad_model->get_localidades(); ?>
+            <?php foreach ($localidades as $localidad) { ?>
+              <option <?php echo ($localidad->link == $vc_link_localidad)?"selected":"" ?> value="<?php echo $localidad->link ?>"><?php echo $localidad->nombre ?></option>
             <?php } ?>
           </select>
         </div>

@@ -176,12 +176,10 @@
     var url = $(form).find(".base_url").val();
     var tipo_operacion = $(form).find(".filter_tipo_operacion").val();
     url += tipo_operacion + "/";
-    /*
     var localidad = $(form).find(".filter_localidad").val();
     if (!isEmpty(localidad)) {
       url += localidad + "/";
     }
-    */
     var minimo = $("#filter_rango_precios option:selected").data("min");
     var maximo = $("#filter_rango_precios option:selected").data("max");
     $("#filter_minimo").val(minimo);
