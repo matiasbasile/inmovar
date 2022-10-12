@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col-lg-2">
         <div class="select-inner">
-          <select id="filter_localidad" class="form-control filter_localidad">
+          <select id="filter_localidad" class="round filter_localidad">
             <option value="0">Localidad</option>
             <?php $localidades = $propiedad_model->get_localidades(); ?>
             <?php foreach ($localidades as $localidad) { ?>
