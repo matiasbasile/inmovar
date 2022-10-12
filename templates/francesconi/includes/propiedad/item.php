@@ -10,8 +10,6 @@ function item($p) { ?>
         </span>
         <?php if ($p->es_oferta == 1) { ?>
           <a href="javascript:void(0);" class="fill-btn">oportunidades</a>
-        <?php }else{ ?>
-          <a href="javascript:void(0);" class="fill-btn">solidarias</a>
         <?php } ?>
         <a href="<?php echo $p->link_propiedad ?>">
           <img src="<?php echo $p->imagen ?>" alt="<?php echo $p->nombre ?>">
