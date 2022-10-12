@@ -77,10 +77,12 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
         </h3>
         <div class="mis-link">
           <ul>
-            <li><?php echo $propiedad->superficie_total ?> m2</li>
-            <li><a href="javascript:void(0);"><img src="assets/images/icons/icon-16.png" alt="Icon"><?php echo $propiedad->dormitorios ?></a></li>
-            <li><a href="javascript:void(0);"><img src="assets/images/icons/icon-17.png" alt="Icon"><?php echo $propiedad->banios ?></a></li>
-            <li><a href="javascript:void(0);"><img src="assets/images/icons/icon-18.png" alt="Icon"><?php echo $propiedad->cocheras ?></a></li>
+            <?php if ($propiedad->superficie_total != 0) { ?>
+              <li><?php echo $propiedad->superficie_total ?> m2</li>
+            <?php } ?>
+            <li><a href="javascript:void(0);"><img src="assets/images/icons/icon-16.png" alt="Icon"><?php echo ($propiedad->dormitorios != 0) ? $propiedad->dormitorios : "-" ?></a></li>
+            <li><a href="javascript:void(0);"><img src="assets/images/icons/icon-17.png" alt="Icon"><?php echo ($propiedad->banios != 0) ? $propiedad->banios : "-" ?></a></li>
+            <li><a href="javascript:void(0);"><img src="assets/images/icons/icon-18.png" alt="Icon"><?php echo ($propiedad->cocheras != 0) ? $propiedad->cocheras : "-" ?></a></li>
           </ul>
         </div>
       </div>
