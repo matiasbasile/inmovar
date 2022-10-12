@@ -54,7 +54,9 @@ $nombre_pagina = $vc_link_tipo_operacion;
         <div class="mis-content">
           <h2 class="small-title">PROPIEDADES EN <?php echo $vc_listado[0]->tipo_operacion ?> <span><?php echo $vc_total_resultados ?> Resultados de búsqueda</span></h2>
         </div>
+        
         <?php include 'includes/propiedad/filtros.php' ?>
+        
         <div class="comprar-info">
           <div class="row align-items-center">
             <div class="col-lg-4">
@@ -97,55 +99,23 @@ $nombre_pagina = $vc_link_tipo_operacion;
             </div>
           </div>
           <div class="mis-inner">
-            <div class="row">
+            <div class="row propiedades">
               <?php foreach ($vc_listado as $p) { ?>
-                <div class="col-lg-4 col-md-6">
-                  <div class="noved-card">
-                    <div class="noved-warp">
-                      <span>
-                        <a href="<?php echo $p->link_propiedad ?>">
-                          <img src="assets/images/icons/icon-15.png" alt="Icon">
-                        </a>
-                      </span>
-                      <?php if ($p->es_oferta == 1) { ?>
-                        <a href="javascript:void(0);" class="fill-btn">oportunidades</a>
-                      <?php }else{ ?>
-                        <a href="javascript:void(0);" class="fill-btn">solidarias</a>
-                      <?php } ?>
-                      <a href="<?php echo $p->link_propiedad ?>">
-                        <img src="<?php echo $p->imagen ?>" alt="<?php echo $p->nombre ?>">
-                      </a>
-                    </div>
-                    <div class="noved-inner">
-                      <h2 class="color-title"><?php echo $p->precio ?></h2>
-                      <p><?php echo $p->nombre ?></p>
-                      <h5><?php echo $p->direccion_completa ?></h5>
-                      <div class="mis-link">
-                        <ul>
-                          <li><?php echo $p->superficie_total ?> m2</li>
-                          <li><a href="javascript:void(0);"><img src="assets/images/icons/icon-16.png" alt="Icon"><?php echo $p->dormitorios ?></a></li>
-                          <li><a href="javascript:void(0);"><img src="assets/images/icons/icon-17.png" alt="Icon"><?php echo $p->banios ?></a></li>
-                          <li><a href="javascript:void(0);"><img src="assets/images/icons/icon-18.png" alt="Icon"><?php echo $p->cocheras ?></a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <?php item($p); ?>
               <?php } ?>
             </div>
           </div>
         </div>
-        <a href="#0" class="fill-btn">ver más propiedades</a>
+        <a onclick="cargar()" id="cargarMas" class="fill-btn">ver más propiedades</a>
       </div>
     </form>
   </section>
 
-  <!-- Francesconi Nuster -->
   <?php include 'includes/home/secondary_slider.php' ?>
 
-  <!-- Francesconi Footer -->
   <?php include 'includes/footer.php' ?>
 
-</body>
+  <?php include 'includes/cargar_mas_js.php' ?>
 
+</body>
 </html>
