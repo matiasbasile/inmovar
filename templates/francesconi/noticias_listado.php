@@ -49,7 +49,7 @@ $mes_month = array(
 
 
   <!-- Francesconi Header Equipo -->
-  <?php include 'includes/headerequipo.php' ?>
+  <?php include 'includes/header.php' ?>
 
   <!-- Equipo Banner -->
   <section class="equipo-banner">

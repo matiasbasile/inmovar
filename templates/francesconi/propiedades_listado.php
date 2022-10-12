@@ -32,7 +32,7 @@ $nombre_pagina = $vc_link_tipo_operacion;
 <body>
 
   <!-- Francesconi Header Equipo -->
-  <?php include 'includes/headerequipo.php' ?>
+  <?php include 'includes/header.php' ?>
 
   <!-- Equipo Banner -->
   <section class="equipo-banner">
