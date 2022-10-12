@@ -1,6 +1,17 @@
-<?php include 'includes/init.php' ?>
+<?php 
+include 'includes/init.php';
+$id_usuario = (isset($_GET["id"]) && !empty($_GET["id"])) ? intval($_GET["id"]) : 0;
+$usuario = $usuario_model->get($id_usuario);
+
+extract($propiedad_model->get_variables(array(
+  "id_usuario" => $id_usuario,
+  "no_analizar_url" => 1,
+  "orden_default" => 8,
+)));
+if (isset($get_params["test"])) echo $propiedad_model->get_sql();
+?>
 <!DOCTYPE html>
-<html dir="ltr" lang="en-US">
+<html dir="ltr" lang="es">
 
 <head>
   <?php include 'includes/head.php' ?>
@@ -53,149 +64,27 @@
   <section class="equipo-mis">
     <div class="container">
       <div class="mis-content">
-        <h2 class="small-title">mis propiedades <span>12 propiedades</span></h2>
+        <h2 class="small-title">mis propiedades <span><?php echo $vc_total_resultados ?> propiedades</span></h2>
       </div>
       <div class="mis-inner">
         <div class="row">
-          <div class="col-lg-4 col-md-6">
-            <div class="noved-card">
-              <div class="noved-warp">
-                <span><img src="assets/images/icons/icon-15.png" alt="Icon"></span>
-                <a href="#0" class="fill-btn">solidarias</a>
-                <img src="assets/images/mis-1.png" alt="Noved">
-              </div>
-              <div class="noved-inner">
-                <h2 class="color-title">USD 135.000</h2>
-                <p>Casa en Venta en Nueva Hermosura, La Plata</p>
-                <h5>Ruta 11 y 655 FINCAS LA SOÑADA</h5>
-                <div class="mis-link">
-                  <ul>
-                    <li>156 m2</li>
-                    <li><a href="#0"><img src="assets/images/icons/icon-16.png" alt="Icon">3</a></li>
-                    <li><a href="#0"><img src="assets/images/icons/icon-17.png" alt="Icon">2</a></li>
-                    <li><a href="#0"><img src="assets/images/icons/icon-18.png" alt="Icon">1</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="noved-card">
-              <div class="noved-warp">
-                <span><img src="assets/images/icons/icon-15.png" alt="Icon"></span>
-                <a href="#0" class="fill-btn">solidarias</a>
-                <img src="assets/images/mis-2.png" alt="Noved">
-              </div>
-              <div class="noved-inner">
-                <h2 class="color-title">USD 135.000</h2>
-                <p>Casa en Venta en Nueva Hermosura, La Plata</p>
-                <h5>Ruta 11 y 655 FINCAS LA SOÑADA</h5>
-                <div class="mis-link">
-                  <ul>
-                    <li>156 m2</li>
-                    <li><a href="#0"><img src="assets/images/icons/icon-16.png" alt="Icon">3</a></li>
-                    <li><a href="#0"><img src="assets/images/icons/icon-17.png" alt="Icon">2</a></li>
-                    <li><a href="#0"><img src="assets/images/icons/icon-18.png" alt="Icon">1</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="noved-card">
-              <div class="noved-warp">
-                <span><img src="assets/images/icons/icon-15.png" alt="Icon"></span>
-                <a href="#0" class="fill-btn">solidarias</a>
-                <img src="assets/images/mis-3.png" alt="Noved">
-              </div>
-              <div class="noved-inner">
-                <h2 class="color-title">USD 135.000</h2>
-                <p>Casa en Venta en Nueva Hermosura, La Plata</p>
-                <h5>Ruta 11 y 655 FINCAS LA SOÑADA</h5>
-                <div class="mis-link">
-                  <ul>
-                    <li>156 m2</li>
-                    <li><a href="#0"><img src="assets/images/icons/icon-16.png" alt="Icon">3</a></li>
-                    <li><a href="#0"><img src="assets/images/icons/icon-17.png" alt="Icon">2</a></li>
-                    <li><a href="#0"><img src="assets/images/icons/icon-18.png" alt="Icon">1</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="noved-card">
-              <div class="noved-warp">
-                <span><img src="assets/images/icons/icon-15.png" alt="Icon"></span>
-                <a href="#0" class="fill-btn">solidarias</a>
-                <img src="assets/images/mis-4.png" alt="Noved">
-              </div>
-              <div class="noved-inner">
-                <h2 class="color-title">USD 135.000</h2>
-                <p>Casa en Venta en Nueva Hermosura, La Plata</p>
-                <h5>Ruta 11 y 655 FINCAS LA SOÑADA</h5>
-                <div class="mis-link">
-                  <ul>
-                    <li>156 m2</li>
-                    <li><a href="#0"><img src="assets/images/icons/icon-16.png" alt="Icon">3</a></li>
-                    <li><a href="#0"><img src="assets/images/icons/icon-17.png" alt="Icon">2</a></li>
-                    <li><a href="#0"><img src="assets/images/icons/icon-18.png" alt="Icon">1</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="noved-card">
-              <div class="noved-warp">
-                <span><img src="assets/images/icons/icon-15.png" alt="Icon"></span>
-                <a href="#0" class="fill-btn">solidarias</a>
-                <img src="assets/images/mis-5.png" alt="Noved">
-              </div>
-              <div class="noved-inner">
-                <h2 class="color-title">USD 135.000</h2>
-                <p>Casa en Venta en Nueva Hermosura, La Plata</p>
-                <h5>Ruta 11 y 655 FINCAS LA SOÑADA</h5>
-                <div class="mis-link">
-                  <ul>
-                    <li>156 m2</li>
-                    <li><a href="#0"><img src="assets/images/icons/icon-16.png" alt="Icon">3</a></li>
-                    <li><a href="#0"><img src="assets/images/icons/icon-17.png" alt="Icon">2</a></li>
-                    <li><a href="#0"><img src="assets/images/icons/icon-18.png" alt="Icon">1</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="noved-card">
-              <div class="noved-warp">
-                <span><img src="assets/images/icons/icon-15.png" alt="Icon"></span>
-                <a href="#0" class="fill-btn">solidarias</a>
-                <img src="assets/images/mis-6.png" alt="Noved">
-              </div>
-              <div class="noved-inner">
-                <h2 class="color-title">USD 135.000</h2>
-                <p>Casa en Venta en Nueva Hermosura, La Plata</p>
-                <h5>Ruta 11 y 655 FINCAS LA SOÑADA</h5>
-                <div class="mis-link">
-                  <ul>
-                    <li>156 m2</li>
-                    <li><a href="#0"><img src="assets/images/icons/icon-16.png" alt="Icon">3</a></li>
-                    <li><a href="#0"><img src="assets/images/icons/icon-17.png" alt="Icon">2</a></li>
-                    <li><a href="#0"><img src="assets/images/icons/icon-18.png" alt="Icon">1</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
+          <?php foreach ($vc_listado  as $propiedad) { 
+            item($propiedad);
+          } ?>
         </div>
+
+        <?php if ($vc_total_resultados > $vc_offset) { ?>
+          <div class="d-block mt-5 mb40">
+            <a onclick="cargar()" id="cargarMas" class="btn btn-primary btn-block btn-lg">ver más propiedades para tu búsqueda</a>
+          </div>
+        <?php } ?>
+
       </div>
     </div>
   </section>
 
-  <!-- Francesconi Footer -->
   <?php include 'includes/footer.php' ?>
+  <?php include("includes/cargar_mas_js.php"); ?>
 
 </body>
 
