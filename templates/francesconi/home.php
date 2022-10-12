@@ -8,7 +8,9 @@
 
 <body>
   <!-- Francesconi Header -->
-  <?php include 'includes/header.php' ?>
+  <?php 
+  $clase_header = "";
+  include 'includes/header.php' ?>
   <!-- Francesconi Banner -->
   <?php include 'includes/home/main_slider.php' ?>
   <!-- Francesconi Ceunto -->

@@ -9,9 +9,7 @@
 <body>
 
   <!-- Francesconi Header Equipo -->
-  <?php 
-  $clase_header = "equipo";
-  include 'includes/header.php'; ?>
+  <?php include 'includes/header.php'; ?>
 
   <!-- Equipo Banner Equo -->
   <section class="equipo-banner equo">
