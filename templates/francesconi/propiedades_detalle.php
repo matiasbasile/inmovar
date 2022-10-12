@@ -308,13 +308,13 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
   </section>
 
   <?php 
-  $habilitar_whatsapp = 1;
+  $contacto_whatsapp = preg_replace("/[^0-9]/", "",$usuario->telefono);
   include 'includes/contacto.php'; ?>
 
   <?php include 'includes/footer.php' ?>
 
   <?php include_once("templates/comun/mapa_js.php"); ?>
-  
+
   <script>
     $(document).ready(function() {
       <?php if (!empty($propiedad->latitud) && !empty($propiedad->longitud)) { ?>

@@ -1,4 +1,4 @@
-<section class="ros-section <?php echo (isset($habilitar_whatsapp)) ? "map" : "" ?>">
+<section class="ros-section <?php echo (isset($contacto_whatsapp)) ? "map" : "" ?>">
   <form onsubmit="return enviar_contacto()">
     <div class="container">
       <div class="ros-content">
@@ -32,8 +32,8 @@
       </div>
       <div class="fill-btn-inner">
         <button id="contacto_submit" class="fill-btn">enviar consulta</button>
-        <?php if (isset($habilitar_whatsapp)) { ?>
-          <a href="https://wa.me/<?php echo str_replace(' ', '', $usuario->telefono) ?>" target="_blank" class="fill-btn light"><img src="assets/images/icons/icon-7.png" alt="Icon">enviar whatsapp</a>
+        <?php if (isset($contacto_whatsapp)) { ?>
+          <a href="https://wa.me/<?php echo $contacto_whatsapp ?>" target="_blank" class="fill-btn light"><img src="assets/images/icons/icon-7.png" alt="Icon">enviar whatsapp</a>
         <?php } ?>
       </div>
     </div>
