@@ -29,7 +29,7 @@
           <div class="col-lg-6">
             <div class="con-warp">
               <?php $t = $web_model->get_text("equipo_imagen"); ?>
-              <img class="editable editable-img" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $t->id_empresa ?>" src="<?php echo $t->path ?>" alt="Con">
+              <img class="editable editable-img" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $t->id_empresa ?>" src="<?php echo $t->plain_text ?>" alt="Con">
             </div>
           </div>
           <div class="col-lg-6">
