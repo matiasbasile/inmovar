@@ -86,7 +86,7 @@
                   <?php } ?>
                   <div class="fran-socials">
                     <ul>
-                      <?php if (!empty($e->telefono)) { ?>
+                      <?php if (!empty($e->celular)) { ?>
                         <li><a href="https://wa.me/<?php echo $e->celular_f ?>"><img src="assets/images/icons/icon-20.png" alt="Icon"><?php echo "+" . $e->celular ?></a></li>
                       <?php } ?>
                       <?php if (!empty($e->email)) { ?>
