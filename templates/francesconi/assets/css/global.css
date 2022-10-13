@@ -734,6 +734,9 @@ ul {
 .permuta-inner {
 	padding-top: 50px;
 }
+.permuta-inner .permuta-info {
+  display: block;
+}
 .permuta-inner .permuta-info img {
 	height: 115px;
 }
