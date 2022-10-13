@@ -15,7 +15,7 @@
             <p><?php echo $sobre->plain_text ?></p>
             <div class="cuento-info">
               <a href="<?php echo mklink("web/equipo") ?>" class="border-btn">conocenos</a>
-              <p>matrícula: <span>1234.5678</span></p>
+              <p>matrícula: <span><?php echo $empresa->codigo ?></span></p>
             </div>
           </div>
         </div>
