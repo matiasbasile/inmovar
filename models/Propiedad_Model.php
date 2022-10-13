@@ -384,6 +384,7 @@ class Propiedad_Model {
     $pint = isset($get_params["pint"]) ? $get_params["pint"] : 0;
     $video = isset($get_params["video"]) ? $get_params["video"] : 0;
     $acepta_permuta = isset($get_params["per"]) ? $get_params["per"] : 0;
+    $tipo_propiedad_permuta = isset($get_params["tper"]) ? intval($get_params["tper"]) : 0;
     $moneda = isset($get_params["m"]) ? $get_params["m"] : "";
     $dormitorios = isset($get_params["dm"]) ? $get_params["dm"] : "";
     $antiguedad = isset($get_params["antiguedad"]) ? $get_params["antiguedad"] : "";
@@ -444,6 +445,7 @@ class Propiedad_Model {
         "order_empresa"=>$order_empresa,
         "id_usuario"=>$id_usuario,
         "es_oferta"=>$es_oferta,
+        "tipo_propiedad_permuta"=>$tipo_propiedad_permuta,
       );
 
       if ($moneda == "USD") {
@@ -557,6 +559,7 @@ class Propiedad_Model {
       "vc_in_dormitorios"=>$in_dormitorios,
       "vc_es_oferta"=>$es_oferta,
       "vc_solo_propias"=>isset($config["solo_propias"]) ? $config["solo_propias"] : 0,
+      "vc_tipo_propiedad_permuta"=>$tipo_propiedad_permuta,
     );
   }
 
@@ -1110,6 +1113,7 @@ class Propiedad_Model {
     $not_in = isset($config["not_in"]) ? $config["not_in"] : array();
     $in = isset($config["in"]) ? $config["in"] : array();
     $banios = isset($config["banios"]) ? intval($config["banios"]) : 0;
+    $tipo_propiedad_permuta = isset($config["tipo_propiedad_permuta"]) ? intval($config["tipo_propiedad_permuta"]) : 0;
     $cocheras = isset($config["cocheras"]) ? intval($config["cocheras"]) : 0;
     $maximo = isset($config["maximo"]) ? floatval($config["maximo"]) : 0;
     $minimo = isset($config["minimo"]) ? floatval($config["minimo"]) : 0;
@@ -1297,6 +1301,15 @@ class Propiedad_Model {
       $sql.= "  SELECT 1 FROM inm_propiedades_etiquetas PET ";
       $sql.= "  INNER JOIN inm_etiquetas INM_ET ON (PET.id_empresa = INM_ET.id_empresa AND PET.id_etiqueta = INM_ET.id) ";
       $sql.= "  WHERE PET.id_propiedad = A.id AND PET.id_empresa = A.id_empresa AND INM_ET.link = '$tiene_etiqueta_link' ";
+      $sql.= ") ";
+    }
+
+    // Tipo de propiedad que acepta permuta
+    if (!empty($tipo_propiedad_permuta)) {
+      $sql.= "AND EXISTS (";
+      $sql.= " SELECT 1 FROM inm_propiedades_permutas PP ";
+      $sql.= " WHERE PP.id_empresa = A.id_empresa AND PP.id_propiedad = A.id ";
+      $sql.= " AND PP.id_tipo_inmueble = $tipo_propiedad_permuta ";
       $sql.= ") ";
     }
 

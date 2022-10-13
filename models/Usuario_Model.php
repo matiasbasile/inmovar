@@ -353,6 +353,7 @@ class Usuario_Model {
     $e->nombre = $this->encod($e->nombre);
     $e->cargo = $this->encod($e->cargo);
     $e->celular_f = preg_replace('/[^0-9]/', '', $e->celular);
+    $e->telefono_f = preg_replace('/[^0-9]/', '', $e->telefono);
     return $e;
   }
 
