@@ -72,6 +72,11 @@ else $vc_moneda = "$";
 <script>const ID_EMPRESA_RELACION = "<?php echo $id_empresa ?>";</script>
 <style type="text/css">
   .fluid-width-video-wrapper { padding-top: 100% !important }
+    #chat_user_form_2_celular {
+      padding: 10px 0px 10px 3px !important;
+      box-shadow: 0px 1px 1px rgb(0 0 0 / 20%) inset !important;
+      margin-left: 5px !important;
+    }
 </style>
 </head>
 <body class="page-sub-page page-property-detail" id="page-top">

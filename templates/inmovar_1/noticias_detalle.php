@@ -54,13 +54,6 @@ $entrada->mostrar_me_gusta = 1;
 
 <head>
   <?php include("includes/head.php"); ?>
-  <style>
-    #chat_user_form_2_celular {
-      padding: 10px 0px 10px 3px;
-      box-shadow: 0px 1px 1px rgb(0 0 0 / 20%) inset;
-      margin-left: 5px;
-    }
-  </style>
 </head>
 
 <body class="page-sub-page page-legal" id="page-top">
