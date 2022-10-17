@@ -4,7 +4,7 @@
     <?php if ($clase_header == "") { ?>
       <img src="assets/images/header-logo.png" alt="Logo">
     <?php } else { ?>
-      <img src="assets/images/header-logo-1.png" alt="Logo">
+      <img src="assets/images/header-logo-2.png" alt="Logo">
     <?php } ?>
   </a>
   <nav>
