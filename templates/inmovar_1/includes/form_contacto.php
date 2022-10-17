@@ -47,7 +47,7 @@
           <?php include 'prefijo_localidades.php' ?>
         </div>
         <div class="chat_user_form_row_6">
-          <input type="text" id="chat_user_form_2_celular" value="<?php echo isset($_SESSION["telefono"]) ? $_SESSION["telefono"] : "" ?>"" class="chat_user_form_input chat_user_form_2_celular" placeholder="Teléfono">
+          <input type="text" id="contacto_telefono" value="<?php echo isset($_SESSION["telefono"]) ? $_SESSION["telefono"] : "" ?>"" class="chat_user_form_input chat_user_form_2_celular" placeholder="Teléfono">
         </div>
       </div>
         <!-- <input class="form-control" type="tel" id="contacto_telefono" value="<?php echo isset($_SESSION["telefono"]) ? $_SESSION["telefono"] : "" ?>" placeholder="Tel&eacute;fono" /> -->
@@ -77,6 +77,8 @@ function enviar_contacto() {
   if (enviando == 1) return;
   var nombre = $("#contacto_nombre").val();
   var email = $("#contacto_email").val();
+  //En este caso fax es la caracteristica
+  var fax = $("#contacto_fax").val();
   var telefono = $("#contacto_telefono").val();
   var mensaje = $("#contacto_mensaje").val();
   var asunto = $("#contacto_asunto").val();
@@ -98,6 +100,19 @@ function enviar_contacto() {
     $("#contacto_telefono").focus();
     return false;      
   }
+
+  if (isEmpty(fax)){
+    alert("Por favor, seleccione su característica");
+    $("#contacto_fax").focus();
+    return false;
+  }
+
+  if(!isTelephone(telefono)){
+    alert("Por favor ingrese el telefono, sin 0 ni 15");
+    $("#contacto_telefono").focus();
+    return false;
+  }
+
   if (isEmpty(mensaje) || mensaje == "Mensaje") {
     alert("Por favor ingrese un mensaje");
     $("#contacto_mensaje").focus();
@@ -110,6 +125,7 @@ function enviar_contacto() {
     "nombre":nombre,
     "email":email,
     "mensaje":mensaje,
+    "fax": fax,
     "telefono":telefono,
     "asunto":asunto,
     "id_propiedad":id_propiedad,

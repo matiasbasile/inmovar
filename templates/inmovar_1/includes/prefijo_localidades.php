@@ -1,4 +1,4 @@
-<select class="chat_user_form_select chat_user_form_2_prefijo prefijo_localidades">
+<select class="chat_user_form_select chat_user_form_2_prefijo prefijo_localidades" id="contacto_fax">
   <option value="376">AD (+376)</option>
   <option value="971">AE (+971)</option>
   <option value="93">AF (+93)</option>
