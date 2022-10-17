@@ -161,3 +161,9 @@
 @keyframes scaleUpTo {
   to { opacity: 0; transform: scale(1.5); }
 }
+
+.prejifo_localidades {
+  padding: 10px 0px 10px 3px !important;
+  box-shadow: 0px 1px 1px rgb(0 0 0 / 20%) inset !important;
+  margin-left: 5px !important;
+}

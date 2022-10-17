@@ -83,12 +83,6 @@ else $vc_moneda = "$";
     .fluid-width-video-wrapper {
       padding-top: 100% !important
     }
-
-    #chat_user_form_2_prefijo {
-      padding: 10px 0px 10px 3px !important;
-      box-shadow: 0px 1px 1px rgb(0 0 0 / 20%) inset !important;
-      margin-left: 5px !important;
-    }
   </style>
 </head>
 
