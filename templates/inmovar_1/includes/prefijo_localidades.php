@@ -8,7 +8,7 @@
   <option value="374">AM (+374)</option>
   <option value="599">AN (+599)</option>
   <option value="244">AO (+244)</option>
-  <option value="549">AR (+54)</option>
+  <option value="549" selected>AR (+54)</option>
   <option value="1684">AS (+1 684)</option>
   <option value="43">AT (+43)</option>
   <option value="61">AU (+61)</option>
