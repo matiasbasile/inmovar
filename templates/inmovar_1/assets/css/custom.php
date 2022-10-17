@@ -6115,7 +6115,7 @@ input[type="checkbox"]:checked + label:before, input[type="radio"]:checked + lab
 }
 
 .btn-cotizacion { font-size: 15px; color: <?php echo $c2 ?> !important; padding: 10px 15px; border-radius: 5px; font-weight: bold; margin-top: 10px; }
-.prejifo_localidades {
+.prefijo_localidades {
       padding: 10px 0px 10px 3px !important;
       box-shadow: 0px 1px 1px rgb(0 0 0 / 20%) inset !important;
       margin-left: 5px !important;
