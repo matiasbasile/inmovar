@@ -1,3 +1,12 @@
+<style>
+  #chat_user_form_2_celular{
+    padding: 10px 0px 10px 3px;
+    box-shadow: 0px 1px 1px rgb(0 0 0 / 20%) inset;
+    margin-left: 5px;
+  }
+</style>
+
+
 <form class="clearfix" onsubmit="return enviar_contacto()">
   <div class="row">
     <input type="hidden" name="id_propiedad" id="contacto_propiedad" value="<?php echo (isset($propiedad) ? $propiedad->id : 0) ?>"/>
