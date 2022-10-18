@@ -96,3 +96,13 @@ h4 { margin-top: 5px; margin-bottom: 0; }
 @media (max-width: 767px) {
     .item { margin-bottom: 60px; }
 }
+
+.chat_user_form_row_4 {
+  float: left;
+  width: 40%;
+}
+
+.chat_user_form_row_6 {
+  float: left;
+  width: 60%;
+}
