@@ -83,6 +83,17 @@ else $vc_moneda = "$";
     .fluid-width-video-wrapper {
       padding-top: 100% !important
     }
+
+    .chat_user_form_row_4 {
+      float: left;
+      width: 40%;
+    }
+
+    .chat_user_form_row6{
+      float: left;
+      width: 60%;
+    }
+
   </style>
 </head>
 
