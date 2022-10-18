@@ -222,18 +222,18 @@ if (!empty($propiedad->imagen)) $propiedad->images = array_merge(array($propieda
                     <?php } ?>
                   </div>
 
-                  <?php if (!empty($propiedad->pint)) { ?>
-                    <div class="col-xs-12">
-                      <div class="detail_video">
-                        <iframe width="100%" height="500" class="mb40" src="<?php echo $propiedad->pint ?>"></iframe>
-                      </div>
-                    </div>
-                  <?php } ?>
-
                   <?php if (!empty($propiedad->video)) {  ?>
                     <div class="col-xs-12">
                       <div class="detail_video">
                         <?php echo $propiedad->video ?>
+                      </div>
+                    </div>
+                  <?php } ?>
+
+                  <?php if (!empty($propiedad->pint)) { ?>
+                    <div class="col-xs-12">
+                      <div class="detail_video">
+                        <iframe width="100%" height="500" class="mb40" src="<?php echo $propiedad->pint ?>"></iframe>
                       </div>
                     </div>
                   <?php } ?>
