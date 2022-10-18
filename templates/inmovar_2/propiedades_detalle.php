@@ -63,6 +63,16 @@ $vc_precio_maximo = $propiedad_model->get_precio_maximo(array(
   <script>
     const ID_EMPRESA_RELACION = "<?php echo $id_empresa ?>";
   </script>
+
+  <style>
+    @media(max-width:768px){
+      .chat_user_form_row_4 {
+        margin-top: -15px;
+        margin-bottom: 15px;
+      }
+    }
+  </style>
+
 </head>
 
 <body class="detalle">
@@ -154,7 +164,7 @@ $vc_precio_maximo = $propiedad_model->get_precio_maximo(array(
             </div>
 
             <?php if (!empty($propiedad->video) && $mostro_video == 0) {  ?>
-              <div class="inside-properties sidebar-widget">
+              <div class="inside-properties sidebar-widget" style="padding: 0px;">
                 <div class="main-title-2">
                   <h1><span>Video</span></h1>
                 </div>
@@ -708,14 +718,14 @@ $vc_precio_maximo = $propiedad_model->get_precio_maximo(array(
             </form>
           </div>
 
-          <?php if (!empty($propiedad->video) && $mostro_video == 0) {  ?>
+          <!-- <?php if (!empty($propiedad->video) && $mostro_video == 0) {  ?>
             <div class="inside-properties sidebar-widget">
               <div class="main-title-2">
                 <h1><span>Video</span></h1>
               </div>
               <?php echo $propiedad->video ?>
             </div>
-          <?php } ?>
+          <?php } ?> -->
         </div>
         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
           <!-- Sidebar start -->
