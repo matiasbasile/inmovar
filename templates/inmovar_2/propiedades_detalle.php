@@ -172,7 +172,7 @@ $vc_precio_maximo = $propiedad_model->get_precio_maximo(array(
               </div>
             <?php } ?>
 
-            <?php if (!empty($propiedad->video)) {  ?>
+            <?php if (!empty($propiedad->pint)) {  ?>
               <div class="properties-description mrg-btm-40">
                 <div class="main-title-2">
                   <h1><span>Recorrido 360</span></h1>
