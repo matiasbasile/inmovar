@@ -58,6 +58,13 @@
       $("#contacto_email").focus();
       return false;
     }
+
+    if (isEmpty(telefono) || telefono == "Telefono") {
+      alert("Por favor ingrese un telefono");
+      $("#contacto_telefono").focus();
+      return false;
+    }
+
     if (isEmpty(fax)) {
       alert("Por favor, seleccione su característica");
       $("#contacto_fax").focus();
@@ -65,10 +72,11 @@
     }
   
     if (telefono.length > 10) {
-      alert("Por favor controle el numero de telefono. Debe ingresarlo completo con la caracteristica sin 0 ni 15.");
+      alert("Por favor ingrese el telefono, sin 0 ni 15");
       $("#contacto_telefono").focus();
       return false;
     }
+
 
     if (isEmpty(mensaje) || mensaje == "Mensaje") {
       alert("Por favor ingrese un mensaje");
@@ -82,7 +90,7 @@
       "nombre": nombre,
       "email": email,
       "mensaje": mensaje,
-      "fax":fax,
+      "fax": fax,
       "telefono": telefono,
       "asunto": asunto,
       "id_propiedad": id_propiedad,
