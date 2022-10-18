@@ -177,7 +177,7 @@ $vc_precio_maximo = $propiedad_model->get_precio_maximo(array(
                 <div class="main-title-2">
                   <h1><span>Recorrido 360</span></h1>
                 </div>
-                <?php echo $propiedad->pint ?>
+                <iframe src="<?php echo $propiedad->pint ?>" frameborder="0"></iframe>
               </div>
             <?php } ?>
 
