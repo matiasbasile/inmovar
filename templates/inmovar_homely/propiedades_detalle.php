@@ -159,7 +159,7 @@ $cookie_hide_lightbox = 0; //(isset($_COOKIE['hide_lightbox'])) ? $_COOKIE['hide
             <span>Recorrido 360</span><hr class="divisorline">
             <div class="divider-fade"></div>
           </h4>
-          <?php echo $propiedad->pint ?>
+          <iframe src="<?php echo $propiedad->pint ?>" frameborder="0"></iframe>
         </div>
       <?php } ?>
 
