@@ -223,7 +223,7 @@ if (!empty($propiedad->imagen)) $propiedad->images = array_merge(array($propieda
                   </div>
 
                   <?php if (!empty($propiedad->video)) {  ?>
-                    <div class="col-xs-12">
+                    <div class="col-xs-12 mb40 mt40">
                       <div class="detail_video">
                         <?php echo $propiedad->video ?>
                       </div>
