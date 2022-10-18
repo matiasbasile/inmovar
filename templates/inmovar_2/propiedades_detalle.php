@@ -153,6 +153,15 @@ $vc_precio_maximo = $propiedad_model->get_precio_maximo(array(
               </div>
             </div>
 
+            <?php if (!empty($propiedad->video) && $mostro_video == 0) {  ?>
+              <div class="inside-properties sidebar-widget">
+                <div class="main-title-2">
+                  <h1><span>Video</span></h1>
+                </div>
+                <?php echo $propiedad->video ?>
+              </div>
+            <?php } ?>
+
             <?php if (!empty($propiedad->texto)) { ?>
               <div class="properties-description mrg-btm-40 ">
                 <div class="main-title-2">
