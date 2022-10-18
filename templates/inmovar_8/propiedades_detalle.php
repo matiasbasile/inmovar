@@ -67,9 +67,15 @@ if (!empty($propiedad->imagen)) $propiedad->images = array_merge(array($propieda
     }
 
     @media screen and (max-width: 767px) {
+
+      html{
+        overflow-x: hidden;
+      }
+
       .info_content li {
         width: 45%;
       }
+
     }
   </style>
 </head>
