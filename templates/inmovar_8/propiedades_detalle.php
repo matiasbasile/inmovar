@@ -148,7 +148,7 @@ if (!empty($propiedad->imagen)) $propiedad->images = array_merge(array($propieda
 
                 <div class="details_gallery">
 
-                  <?php if (!empty($propiedad->pint)) { ?>
+                  <!-- <?php if (!empty($propiedad->pint)) { ?>
                     <div class="col-xs-12">
                       <div class="detail_video">
                         <iframe width="100%" height="500" class="mb40" src="<?php echo $propiedad->pint ?>"></iframe>
@@ -162,7 +162,7 @@ if (!empty($propiedad->imagen)) $propiedad->images = array_merge(array($propieda
                         <?php echo $propiedad->video ?>
                       </div>
                     </div>
-                  <?php } ?>
+                  <?php } ?> -->
 
                   <div class="row">
 
@@ -221,8 +221,26 @@ if (!empty($propiedad->imagen)) $propiedad->images = array_merge(array($propieda
                       </div>
                     <?php } ?>
                   </div>
+
+                  <?php if (!empty($propiedad->pint)) { ?>
+                    <div class="col-xs-12">
+                      <div class="detail_video">
+                        <iframe width="100%" height="500" class="mb40" src="<?php echo $propiedad->pint ?>"></iframe>
+                      </div>
+                    </div>
+                  <?php } ?>
+
+                  <?php if (!empty($propiedad->video)) {  ?>
+                    <div class="col-xs-12">
+                      <div class="detail_video">
+                        <?php echo $propiedad->video ?>
+                      </div>
+                    </div>
+                  <?php } ?>
+
                 </div>
               </div>
+
               <div class="info_content">
                 <h4 class="heading_info marg_heading">Informacion general</h4>
                 <p><?php echo $propiedad->texto ?></p>
@@ -347,7 +365,7 @@ if (!empty($propiedad->imagen)) $propiedad->images = array_merge(array($propieda
                             <?php include 'includes/prefijo_localidades.php' ?>
                           </div>
                           <div class="chat_user_form_row_6">
-                            <input type="text" id="contacto_telefono" value="<?php echo isset($_SESSION["telefono"]) ? $_SESSION["telefono"] : "" ?>"" class="form-control chat_user_form_input chat_user_form_2_celular" placeholder="Teléfono">
+                            <input type="text" id="contacto_telefono" value="<?php echo isset($_SESSION["telefono"]) ? $_SESSION["telefono"] : "" ?>"" class=" form-control chat_user_form_input chat_user_form_2_celular" placeholder="Teléfono">
                           </div>
                         </div>
                         <!-- <input class="form-control" id="contacto_telefono" placeholder="Telefono*" type="text"> -->
