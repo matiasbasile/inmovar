@@ -344,7 +344,7 @@ if (!empty($propiedad->imagen)) $propiedad->images = array_merge(array($propieda
                       <div class="form-group col-md-6">
                         <div class="chat_user_form_row">
                           <div class="chat_user_form_row_4">
-                            <?php include 'prefijo_localidades.php' ?>
+                            <?php include 'includes/prefijo_localidades.php' ?>
                           </div>
                           <div class="chat_user_form_row_6">
                             <input type="text" id="contacto_telefono" value="<?php echo isset($_SESSION["telefono"]) ? $_SESSION["telefono"] : "" ?>"" class=" chat_user_form_input chat_user_form_2_celular" placeholder="Teléfono">
