@@ -199,25 +199,17 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
           <li>
             <a href="javascript:void(0);">
               Dormitorios: <span><?php echo $propiedad->dormitorios ?></span><br>
-               Living Comedor <?php echo ($propiedad->living_comedor == 1)  ? $propiedad->living_comedor : "-" ?> <span>Sí</span>
-              Gimnasio <?php echo ($propiedad->gimnasio == 1)  ? $propiedad->gimnasio : "-" ?> <span>Sí</span>
-              Vigilancia <?php echo ($propiedad->vigilancia == 1)  ? $propiedad->vigilancia : "-" ?> <span>Sí</span>
+              Living Comedor: <span> <?php echo ($propiedad->living_comedor == 1)  ? $propiedad->living_comedor : "-" ?></span><br>
+              Gimnasio: <span>  <?php echo ($propiedad->gimnasio == 1)  ? $propiedad->gimnasio : "-" ?> </span><br>
+              Vigilancia: <span> <?php echo ($propiedad->vigilancia == 1)  ? $propiedad->vigilancia : "-" ?> </span><br>
             </a>
           </li>
           <li>
             <a href="javascript:void(0);">
-              <?php if ($propiedad->banios > 0) { ?>
-                Baños: <span><?php echo $propiedad->banios ?></span><br>
-              <?php } ?>
-              <?php if ($propiedad->accesible == 1) { ?>
-                Baño Accesible: <span>Sí</span><br/>
-              <?php } ?>
-              <?php if ($propiedad->banios > 0) { ?>
-                Cocheras: <span><?php echo $propiedad->cocheras ?></span><br/>
-              <?php } ?>
-              <?php if ($propiedad->piscina > 0) { ?>
-                Piscina: <span>Sí</span><br/>
-              <?php } ?>
+              Baños: <span> <?php echo ($propiedad->banios == 1)  ? $propiedad->banios : "-" ?></span><br>
+              Baño Accesible: <span> <?php echo ($propiedad->accesible == 1)  ? "Sí" : "-" ?></span><br>
+              Cocheras: <span> <?php echo ($propiedad->cocheras == 1)  ? $propiedad->cocheras : "-" ?></span><br>
+              Piscina: <span> <?php echo ($propiedad->piscina == 1)  ? "Sí" : "-" ?></span><br>
             </a>
           </li>
           <li>
