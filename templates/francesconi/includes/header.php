@@ -25,7 +25,9 @@
           <li><a href="<?php echo mklink("propiedades/ventas/?tp=9") ?>" class="dropdown-item">locales</a></li>
         </ul>
       </li>
-      <li><a href="#0">VENDER </a></li>
+      <li><a href="<?php echo mklink("propiedades/oportunidades") ?>"></a>OPORTUNIDADES</li>
+      <li><a href="<?php echo mklink("propiedades/permutas") ?>"></a>PERMUTAS</li>
+      <li><a href="javascript:void(0);">VENDER </a></li>
       <li><a href="<?php echo mklink("web/equipo") ?>">Equipo </a></li>
     </ul>
     <a href="javascript:void(0);" class="toggle-icon"><span></span></a>
@@ -39,8 +41,8 @@
     <a href="#0" class="toggle-logo"><img src="assets/images/header-logo.png" alt="Logo"></a>
     <ul>
       <li><a href="<?php echo mklink("/") ?>"><img src="assets/images/icons/icon-8.png" alt="Right Arrow"> inicio</a></li>
-      <li><a href="#0"><img src="assets/images/icons/icon-8.png" alt="Right Arrow"> Trabajo</a></li>
-      <li><a href="#0"><img src="assets/images/icons/icon-8.png" alt="Right Arrow"> Compra/Venta</a></li>
+      <li><a href="<?php echo mklink("propiedades/novedades") ?>"><img src="assets/images/icons/icon-8.png" alt="Right Arrow"> NOVEDADES</a></li>
+      <li><a href="<?php echo mklink("web/contacto") ?>"><img src="assets/images/icons/icon-8.png" alt="Right Arrow"> CONTACTO</a></li>
     </ul>
     <div class="menu-inner">
       <ul>
