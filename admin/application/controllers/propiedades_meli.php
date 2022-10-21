@@ -383,6 +383,7 @@ class Propiedades_Meli extends REST_Controller {
         $this->configuracion->ml_access_token = $refresh['body']->access_token;
         $this->configuracion->expires_in = time() + $refresh['body']->expires_in;
         $this->configuracion->refresh_token = $refresh['body']->refresh_token;
+        print_r($this->configuracion);
         $this->guardar_tokens(array(
           "access_token"=>$this->configuracion->ml_access_token,
           "expires_in"=>$this->configuracion->expires_in,
