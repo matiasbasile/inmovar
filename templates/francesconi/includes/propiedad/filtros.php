@@ -6,7 +6,7 @@
       <div class="col-lg-2">
         <div class="select-inner">
           <select id="filter_localidad" class="round filter_localidad">
-            <option value="0">Localidad</option>
+            <option value="la-plata">La Plata</option>
             <?php $localidades = $propiedad_model->get_localidades(); ?>
             <?php foreach ($localidades as $localidad) { ?>
               <option <?php echo ($localidad->link == $vc_link_localidad)?"selected":"" ?> value="<?php echo $localidad->link ?>"><?php echo $localidad->nombre ?></option>
