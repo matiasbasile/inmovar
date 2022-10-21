@@ -452,6 +452,12 @@ class Propiedades_Meli extends REST_Controller {
     $sql.= " id_empresa = $id_empresa ";
     $sql.= "WHERE id_empresa = $id_empresa ";
     $this->db->query($sql);
+
+    // Insertamos en la tabla de logs
+    $ahora = date("Y-m-d H:i:s");
+    $sql = "INSERT INTO ml_tokens (id_empresa, fecha, ml_access_token, ml_refresh_token, ml_expires_in) VALUES (";
+    $sql.= " '$id_empresa', '$ahora', '$access_token', '$refresh_token', '$expires_in' )";
+    $this->db->query($sql);
   }
 
   function predecir_categoria() {
