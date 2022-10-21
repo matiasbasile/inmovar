@@ -29,10 +29,7 @@ $mes_month = array(
       width: 100% !important;
     }
 
-    <?php } ?>
-    
-    
-    .equipo-mis .fill-btn-solidarias{
+    <?php } ?>.equipo-mis .fill-btn-solidarias {
       min-width: 120px;
       font-size: 12px;
       font-weight: 600;
@@ -64,6 +61,37 @@ $mes_month = array(
   <section class="equipo-mis">
     <form id="form_buscador" onsubmit="return filtrar(this)" method="get">
       <div class="container">
+        <div class="mis-content">
+          <h2 class="small-title">
+            NOVEDADES EN <span>
+              <?php echo $vc_total_resultados ?> Resultados de búsqueda</span>
+          </h2>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="select-inner">
+            <select id="filter_categoria" class="round filter_categoria">
+            <!-- <?php foreach ($tipo_propiedades as $tipo) { ?>
+              <option <?php echo ($vc_id_tipo_inmueble == $tipo->id) ? "selected" : "" ?> value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
+            <?php } ?> -->
+            </select>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="select-inner">
+            <select id="filter_categoria" class="round filter_categoria">
+            <!-- <?php foreach ($tipo_propiedades as $tipo) { ?>
+              <option <?php echo ($vc_id_tipo_inmueble == $tipo->id) ? "selected" : "" ?> value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
+            <?php } ?> -->
+            </select>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <button type="submit" class="fill-btn">buscar</button>
+        </div>
+
         <div class="comprar-info">
           <div class="mis-inner">
             <div class="row">
@@ -102,7 +130,9 @@ $mes_month = array(
             </div>
           </div>
         </div>
-        <a href="#0" class="fill-btn">ver más</a>
+        <div class="text-center">
+          <a href="javascript:void(0);" class="fill-btn">ver más</a>
+        </div>
       </div>
     </form>
   </section>
