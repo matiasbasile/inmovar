@@ -12,7 +12,7 @@ function item($p) { ?>
           <a href="javascript:void(0);" class="fill-btn">oportunidades</a>
         <?php } ?>
         <a href="<?php echo $p->link_propiedad ?>">
-          <img src="<?php echo $p->imagen ?>" alt="<?php echo $p->nombre ?>">
+          <img src="<?php echo $p->imagen ?>" alt="<?php echo $p->nombre ?>" class="noved_img">
         </a>
       </div>
       <div class="noved-inner">
