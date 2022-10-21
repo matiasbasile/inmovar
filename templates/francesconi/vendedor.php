@@ -16,7 +16,7 @@ if (isset($get_params["test"])) echo $propiedad_model->get_sql();
 <head>
   <?php include 'includes/head.php' ?>
   <style>
-    .sobre-warp img{
+    .sobre-warp-path{
       height: 177px;
       width: 177px;
       border-radius: 50%;
@@ -56,7 +56,7 @@ if (isset($get_params["test"])) echo $propiedad_model->get_sql();
         <div class="col-lg-6">
           <div class="sobre-warp">
             <?php if (!empty($usuario->path)) { ?>
-              <img src="<?php echo $usuario->path ?>" alt="Fran">
+              <img class="sobre-warp-path" src="<?php echo $usuario->path ?>" alt="Fran">
             <?php } ?>
 
             <div class="sobre-content">
