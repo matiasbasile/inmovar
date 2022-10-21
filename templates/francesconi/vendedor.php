@@ -23,11 +23,11 @@ if (isset($get_params["test"])) echo $propiedad_model->get_sql();
     }
 
     .mis-inner [class*="col-"]:first-child {
-      width: auto;
+      width: auto !important;
     }
 
     <?php if ($vc_total_resultados == 1) { ?>.noved_img {
-      height: auto;
+      height: auto !important;
     }
 
     <?php } ?>
