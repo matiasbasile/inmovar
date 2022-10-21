@@ -199,15 +199,9 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
           <li>
             <a href="javascript:void(0);">
               Dormitorios: <span><?php echo $propiedad->dormitorios ?></span><br>
-              <?php if ($propiedad->living_comedor == 1) { ?>
-                Living Comedor: <span>Sí</span>
-              <?php } ?>
-              <?php if ($propiedad->gimnasio == 1) { ?>
-                Gimnasio: <span>Sí</span><br/>
-              <?php } ?>
-              <?php if ($propiedad->vigilancia == 1) { ?>
-                Vigilancia: <span>Sí</span><br/>
-              <?php } ?>
+              <?php echo ($propiedad->living_comedor == 1)  ? $propiedad->living_comedor : "-" ?> <span>Sí</span>
+              <?php echo ($propiedad->gimnasio == 1)  ? $propiedad->gimnasio : "-" ?> <span>Sí</span>
+              <?php echo ($propiedad->vigilancia == 1)  ? $propiedad->vigilancia : "-" ?> <span>Sí</span>
             </a>
           </li>
           <li>
