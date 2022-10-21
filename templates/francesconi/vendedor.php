@@ -16,7 +16,7 @@ if (isset($get_params["test"])) echo $propiedad_model->get_sql();
 <head>
   <?php include 'includes/head.php' ?>
   <style>
-    .sobre-warp {
+    .sobre-warp img{
       height: 177px;
       width: 177px;
       border-radius: 50%;
