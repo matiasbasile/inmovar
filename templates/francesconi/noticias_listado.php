@@ -38,6 +38,11 @@ $mes_month = array(
       color: var(--brand-clr1) !important;
       background-color: var(--brand-clrbg) !important;
     }
+
+    select{
+      margin: 0px !important;
+    }
+
   </style>
 </head>
 
@@ -71,7 +76,7 @@ $mes_month = array(
         <div class="comprar-inner">
           <div class="row align-items-center">
             <div class="col-lg-2">
-              <label for="">FILTRAR POR CATEGORÍA</label>
+              <label for="" style="font-weight: bold;">FILTRAR POR CATEGORÍA:</label>
             </div>
             <div class="col-lg-2">
               <div class="select-inner">
@@ -86,7 +91,7 @@ $mes_month = array(
             </div>
             <div class="col-lg-2">
               <div>
-                <label for="">ORDENAR POR</label>
+                <label for="" style="font-weight: bold;">ORDENAR POR:</label>
               </div>
             </div>
             <div class="col-lg-2">
@@ -102,7 +107,7 @@ $mes_month = array(
             </div>
             <div class="col-lg-4">
               <div>
-                <button type="submit" class="fill-btn">buscar</button>
+                <button type="submit" class="fill-btn" class="w-100">filtrar</button>
               </div>
             </div>
           </div>
