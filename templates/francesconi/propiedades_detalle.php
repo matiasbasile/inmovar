@@ -1,16 +1,16 @@
-<?php 
+<?php
 include 'includes/init.php';
 
 $id_empresa = isset($get_params["em"]) ? $get_params["em"] : $empresa->id;
 $propiedad = $propiedad_model->get($id, array(
   "id_empresa" => $id_empresa,
   "id_empresa_original" => $empresa->id,
-  "buscar_total_visitas"=>1,
+  "buscar_total_visitas" => 1,
 ));
 
 if (($propiedad === FALSE || !isset($propiedad->nombre) || $propiedad->activo == 0) && !isset($get_params["preview"])) {
   header("HTTP/1.1 302 Moved Temporarily");
-  header("Location:".mklink("/"));
+  header("Location:" . mklink("/"));
   exit();
 }
 
@@ -27,7 +27,7 @@ if (empty($propiedad->id_usuario) || $propiedad->id_empresa != $empresa->id) {
 $usuario = $usuario_model->get($propiedad->id_usuario);
 
 // Seteamos la cookie para indicar que el cliente ya entro a esta propiedad
-$propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
+$propiedad_model->set_tracking_cookie(array("id_propiedad" => $propiedad->id));
 
 // Tomamos los datos de SEO
 $seo_title = (!empty($propiedad->seo_title)) ? ($propiedad->seo_title) : $empresa->seo_title;
@@ -37,13 +37,15 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
+
 <head>
-<?php include 'includes/head.php' ?>
-<meta property="og:type" content="website" />
-<meta property="og:title" content="<?php echo ($propiedad->nombre); ?>" />
-<meta property="og:description" content="<?php echo str_replace("\n","",(strip_tags(html_entity_decode($propiedad->texto,ENT_QUOTES)))); ?>" />
-<meta property="og:image" content="<?php echo $propiedad->imagen_full ?>"/>
+  <?php include 'includes/head.php' ?>
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="<?php echo ($propiedad->nombre); ?>" />
+  <meta property="og:description" content="<?php echo str_replace("\n", "", (strip_tags(html_entity_decode($propiedad->texto, ENT_QUOTES)))); ?>" />
+  <meta property="og:image" content="<?php echo $propiedad->imagen_full ?>" />
 </head>
+
 <body>
 
   <?php include 'includes/header.php' ?>
@@ -72,7 +74,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
       <div class="noved-inner">
         <h2 class="color-title"><?php echo $propiedad->precio ?></h2>
         <h3 class="small-title">
-          <?php echo $propiedad->direccion_completa ?> 
+          <?php echo $propiedad->direccion_completa ?>
           <span><?php echo $propiedad->nombre ?></span>
         </h3>
         <div class="mis-link">
@@ -141,17 +143,17 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
         <ul>
           <li>
             <a href="javascript:void(0);">
-              <?php echo ($propiedad->servicios_electricidad == 1) ? 'Electricidad<br/>' : '' ?> 
+              <?php echo ($propiedad->servicios_electricidad == 1) ? 'Electricidad<br/>' : '' ?>
             </a>
           </li>
           <li>
             <a href="javascript:void(0);">
-              <?php echo $propiedad->servicios_agua_corriente == 1 ? 'Agua Corriente' : '' ?> 
+              <?php echo $propiedad->servicios_agua_corriente == 1 ? 'Agua Corriente' : '' ?>
             </a>
           </li>
           <li>
             <a href="javascript:void(0);">
-              <?php echo $propiedad->servicios_cloacas == 1 ? 'Cloacas' : '' ?> 
+              <?php echo $propiedad->servicios_cloacas == 1 ? 'Cloacas' : '' ?>
             </a>
           </li>
           <li>
@@ -168,25 +170,25 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
           <ul>
             <li>
               <a href="javascript:void(0);">
-                Cubierta 
+                Cubierta
                 <span><?php echo ($propiedad->superficie_cubierta != 0) ? $propiedad->superficie_cubierta : "-" ?></span>
               </a>
             </li>
             <li>
               <a href="javascript:void(0);">
-                Descubierta 
+                Descubierta
                 <span><?php echo ($propiedad->superficie_descubierta != 0) ? $propiedad->superficie_descubierta : "-" ?></span>
               </a>
             </li>
             <li>
               <a href="javascript:void(0);">
-                Semicubierta 
+                Semicubierta
                 <span><?php echo ($propiedad->superficie_semicubierta != 0) ? $propiedad->superficie_semicubierta : "-" ?></span>
               </a>
             </li>
             <li>
               <a href="javascript:void(0);">
-                Total 
+                Total
                 <span><?php echo ($propiedad->superficie_total != 0) ? $propiedad->superficie_total : "-" ?></span>
               </a>
             </li>
@@ -200,8 +202,8 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
             <a href="javascript:void(0);">
               Dormitorios: <span><?php echo $propiedad->dormitorios ?></span><br>
               Living Comedor: <span> <?php echo ($propiedad->living_comedor == 1)  ? $propiedad->living_comedor : "-" ?></span><br>
-              Gimnasio: <span>  <?php echo ($propiedad->gimnasio == 1)  ? $propiedad->gimnasio : "-" ?> </span><br>
-              Vigilancia: <span> <?php echo ($propiedad->vigilancia == 1)  ? $propiedad->vigilancia : "-" ?> </span><br>
+              Gimnasio: <span> <?php echo ($propiedad->gimnasio == 1)  ? "Sí" : "-" ?> </span><br>
+              Vigilancia: <span> <?php echo ($propiedad->vigilancia == 1)  ? "Sí" : "-" ?> </span><br>
             </a>
           </li>
           <li>
@@ -214,28 +216,16 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
           </li>
           <li>
             <a href="javascript:void(0);">
-              <?php if ($propiedad->patio == 1) { ?>
-                Patio: <span>Sí</span><br/>
-              <?php } ?>
-              <?php if ($propiedad->balcon == 1) { ?>
-                Balcón: <span>Sí</span><br/>
-              <?php } ?>
-              <?php if ($propiedad->parrilla == 1) { ?>
-                Parrilla: <span>Sí</span><br/>
-              <?php } ?>
+              Patio: <span> <?php echo ($propiedad->patio == 1)  ? "Sí" : "-" ?></span><br>
+              Balcón: <span> <?php echo ($propiedad->balcon == 1)  ? "Sí" : "-" ?></span><br>
+              Parrila: <span> <?php echo ($propiedad->parrilla == 1)  ? "Sí" : "-" ?></span><br>
             </a>
           </li>
           <li>
             <a href="javascript:void(0);">
-              <?php if ($propiedad->terraza == 1) { ?>
-                Terraza: <span>Sí</span><br/>
-              <?php } ?>
-              <?php if ($propiedad->lavadero == 1) { ?>
-                Lavadero: <span>Sí</span><br/>
-              <?php } ?>
-              <?php if ($propiedad->sala_juegos == 1) { ?>
-                Sala de Juegos: <span>Sí</span><br/>
-              <?php } ?>
+              Terraza: <span> <?php echo ($propiedad->terraza == 1)  ? "Sí" : "-" ?></span><br>
+              Lavadero: <span> <?php echo ($propiedad->lavadero == 1)  ? "Sí" : "-" ?></span><br>
+              Sala de Juegos: <span> <?php echo ($propiedad->sala_juegos == 1)  ? "Sí" : "-" ?></span><br>
             </a>
           </li>
         </ul>
@@ -255,6 +245,8 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
           </li>
           <?php if ($propiedad->valor_expensas != 0) { ?>
             <li><a href="javascript:void(0);">Expensas <span>$<?php echo $propiedad->valor_expensas ?></span></a></li>
+          <?php }else{ ?>
+            <li><a href="javascript:void(0);">Expensas <span>$<?php echo "-" ?></span></a></li>
           <?php } ?>
         </ul>
       </div>
@@ -282,7 +274,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
             <li>
               <a href="javascript:void(0);">
                 <img src="assets/images/icons/icon-23.png">
-                <span><?php echo $propiedad->total_visitas ?></span> 
+                <span><?php echo $propiedad->total_visitas ?></span>
                 personas vieron esta propiedad en los últimos 30 días
               </a>
             </li>
@@ -293,8 +285,8 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
     </div>
   </section>
 
-  <?php 
-  $contacto_whatsapp = preg_replace("/[^0-9]/", "",$usuario->telefono);
+  <?php
+  $contacto_whatsapp = preg_replace("/[^0-9]/", "", $usuario->telefono);
   include 'includes/contacto.php'; ?>
 
   <?php include 'includes/footer.php' ?>
@@ -332,18 +324,18 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
     });
   </script>
 
-<?php 
-// Creamos el codigo de seguimiento para registrar la visita
-echo $propiedad_model->tracking_code(array(
-  "id_propiedad"=>$propiedad->id,
-  "id_empresa_compartida"=>$id_empresa,
-  "id_empresa"=>$empresa->id,
-));
-?>
+  <?php
+  // Creamos el codigo de seguimiento para registrar la visita
+  echo $propiedad_model->tracking_code(array(
+    "id_propiedad" => $propiedad->id,
+    "id_empresa_compartida" => $id_empresa,
+    "id_empresa" => $empresa->id,
+  ));
+  ?>
 
-<script type="text/javascript">
-  $(".fancybox").fancybox();
-</script>
+  <script type="text/javascript">
+    $(".fancybox").fancybox();
+  </script>
 
 </body>
 
