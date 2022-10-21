@@ -390,6 +390,7 @@ class Propiedades_Meli extends REST_Controller {
           "id_empresa"=>$id_empresa,
         ));
       } catch (Exception $e) {
+        echo $e->getMessage(); exit();
         parent::send_error($e->getMessage());
         return;
       }
