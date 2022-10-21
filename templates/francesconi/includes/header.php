@@ -25,8 +25,8 @@
           <li><a href="<?php echo mklink("propiedades/ventas/?tp=9") ?>" class="dropdown-item">locales</a></li>
         </ul>
       </li>
-      <li><a href="<?php echo mklink("propiedades/oportunidades") ?>"></a>OPORTUNIDADES</li>
-      <li><a href="<?php echo mklink("propiedades/permutas") ?>"></a>PERMUTAS</li>
+      <li><a href="<?php echo mklink("propiedades/oportunidades") ?>">OPORTUNIDADES</a></li>
+      <li><a href="<?php echo mklink("propiedades/permutas") ?>">PERMUTAS</a></li>
       <li><a href="javascript:void(0);">VENDER </a></li>
       <li><a href="<?php echo mklink("web/equipo") ?>">Equipo </a></li>
     </ul>
