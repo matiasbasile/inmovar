@@ -1,4 +1,4 @@
-<?php 
+<?php
 include 'includes/init.php';
 $id_usuario = (isset($_GET["id"]) && !empty($_GET["id"])) ? intval($_GET["id"]) : 0;
 $usuario = $usuario_model->get($id_usuario);
@@ -15,6 +15,23 @@ if (isset($get_params["test"])) echo $propiedad_model->get_sql();
 
 <head>
   <?php include 'includes/head.php' ?>
+  <style>
+    .sobre-warp {
+      height: 177px;
+      width: 177px;
+      border-radius: 50%;
+    }
+
+    .mis-inner [class*="col-"]:first-child {
+      width: auto;
+    }
+
+    <?php if ($vc_total_resultados == 1) { ?>.noved_img {
+      height: auto;
+    }
+
+    <?php } ?>
+  </style>
 </head>
 
 <body>
@@ -38,7 +55,6 @@ if (isset($get_params["test"])) echo $propiedad_model->get_sql();
       <div class="row align-items-center">
         <div class="col-lg-6">
           <div class="sobre-warp">
-
             <?php if (!empty($usuario->path)) { ?>
               <img src="<?php echo $usuario->path ?>" alt="Fran">
             <?php } ?>
@@ -57,6 +73,9 @@ if (isset($get_params["test"])) echo $propiedad_model->get_sql();
                 <?php } ?>
                 <?php if (!empty($usuario->linkedin)) { ?>
                   <li><a target="_blank" href="<?php echo $usuario->linkedin ?>"><img src="assets/images/icons/play.png" alt="Play"></a></li>
+                <?php } ?>
+                <?php if (!empty($usuario->telefono)) { ?>
+                  <li><a target="_blank" href="https://wa.me/<?php echo $usuario->telefono ?>"><img src="assets/images/icons/icon-20.png" alt="Play"></a></li>
                 <?php } ?>
               </ul>
             </div>
@@ -80,7 +99,7 @@ if (isset($get_params["test"])) echo $propiedad_model->get_sql();
       </div>
       <div class="mis-inner">
         <div class="row">
-          <?php foreach ($vc_listado  as $propiedad) { 
+          <?php foreach ($vc_listado  as $propiedad) {
             item($propiedad);
           } ?>
         </div>
