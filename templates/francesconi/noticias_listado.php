@@ -70,11 +70,11 @@ $mes_month = array(
 
         <div class="comprar-inner">
           <div class="row align-items-center">
-            <div class="col-lg-4">
+            <div class="col-lg-2">
+              <label for="">FILTRAR POR CATEGORÍA</label>
+            </div>
+            <div class="col-lg-2">
               <div class="select-inner">
-                <!-- <div>
-                  <label for="">FILTRAR POR CATEGORÍA</label>
-                </div> -->
                 <select id="filter_localidad" class="round filter_localidad">
                   <option value="la-plata">La Plata</option>
                   <?php $localidades = $propiedad_model->get_localidades(); ?>
@@ -84,11 +84,13 @@ $mes_month = array(
                 </select>
               </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-2">
+              <div>
+                <label for="">ORDENAR POR</label>
+              </div>
+            </div>
+            <div class="col-lg-2">
               <div class="select-inner">
-                <!-- <div>
-                  <label for="">ORDENAR POR</label>
-                </div> -->
                 <select id="filter_propiedad" class="round filter_propiedad" name="tp">
                   <option value="0">TIPO DE PROPIEDAD</option>
                   <?php $tipo_propiedades = $propiedad_model->get_tipos_propiedades(); ?>
