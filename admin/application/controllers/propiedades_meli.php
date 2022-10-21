@@ -361,15 +361,16 @@ class Propiedades_Meli extends REST_Controller {
 
   function connect() {
 
-    $id_empresa = parent::get_empresa();
-    $this->load->model("Web_Configuracion_Model");
-    $this->configuracion = $this->Web_Configuracion_Model->get($id_empresa);
+    try {
+      $id_empresa = parent::get_empresa();
+      $this->load->model("Web_Configuracion_Model");
+      $this->configuracion = $this->Web_Configuracion_Model->get($id_empresa);
 
-    $this->meli = new Meli(ML_APP_ID, ML_APP_SECRET, $this->configuracion->ml_access_token, $this->configuracion->ml_refresh_token);
+      $this->meli = new Meli(ML_APP_ID, ML_APP_SECRET, $this->configuracion->ml_access_token, $this->configuracion->ml_refresh_token);
 
-    // Debemos controlar si el access token sigue siendo valido
-    if($this->configuracion->ml_expires_in < time()) {
-      try {
+      // Debemos controlar si el access token sigue siendo valido
+      if($this->configuracion->ml_expires_in < time()) {
+        
         // Refrescamos el access token
         $refresh = $this->meli->refreshAccessToken();
         if (isset($refresh["error"])) {
@@ -390,11 +391,11 @@ class Propiedades_Meli extends REST_Controller {
           "refresh_token"=>$this->configuracion->refresh_token,
           "id_empresa"=>$id_empresa,
         ));
-      } catch (Exception $e) {
-        echo $e->getMessage(); exit();
-        parent::send_error($e->getMessage());
-        return;
       }
+    } catch (Exception $e) {
+      echo $e->getMessage(); exit();
+      parent::send_error($e->getMessage());
+      return;
     }
   }
   
