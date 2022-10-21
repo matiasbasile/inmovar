@@ -365,6 +365,7 @@ class Propiedades_Meli extends REST_Controller {
       $id_empresa = parent::get_empresa();
       $this->load->model("Web_Configuracion_Model");
       $this->configuracion = $this->Web_Configuracion_Model->get($id_empresa);
+      print_r($this->configuracion); exit();
 
       $this->meli = new Meli(ML_APP_ID, ML_APP_SECRET, $this->configuracion->ml_access_token, $this->configuracion->ml_refresh_token);
 
