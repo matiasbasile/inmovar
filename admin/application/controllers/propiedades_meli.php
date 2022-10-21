@@ -367,7 +367,6 @@ class Propiedades_Meli extends REST_Controller {
       $this->configuracion = $this->Web_Configuracion_Model->get($id_empresa);
 
       $this->meli = new Meli(ML_APP_ID, ML_APP_SECRET, $this->configuracion->ml_access_token, $this->configuracion->ml_refresh_token);
-      print_r($this->meli); exit();
 
       // Debemos controlar si el access token sigue siendo valido
       if($this->configuracion->ml_expires_in < time()) {
@@ -385,7 +384,6 @@ class Propiedades_Meli extends REST_Controller {
         $this->configuracion->ml_access_token = $refresh['body']->access_token;
         $this->configuracion->expires_in = time() + $refresh['body']->expires_in;
         $this->configuracion->refresh_token = $refresh['body']->refresh_token;
-        print_r($this->configuracion);
         $this->guardar_tokens(array(
           "access_token"=>$this->configuracion->ml_access_token,
           "expires_in"=>$this->configuracion->expires_in,
@@ -394,7 +392,6 @@ class Propiedades_Meli extends REST_Controller {
         ));
       }
     } catch (Exception $e) {
-      echo $e->getMessage(); exit();
       parent::send_error($e->getMessage());
       return;
     }
