@@ -75,7 +75,8 @@ if (isset($get_params["test"])) echo $propiedad_model->get_sql();
                   <li><a target="_blank" href="<?php echo $usuario->linkedin ?>"><img src="assets/images/icons/play.png" alt="Play"></a></li>
                 <?php } ?>
                 <?php if (!empty($usuario->celular)) { ?>
-                  <li><a target="_blank" href="https://wa.me/<?php echo trim($usuario->celular) ?>"><img src="assets/images/icons/icon-20.png" alt="Play"></a></li>
+                  <?php $celu = str_replace(' ', '', $usuario->celular) ?>
+                  <li><a target="_blank" href="https://wa.me/<?php echo $celular ?>"><img src="assets/images/icons/icon-20.png" alt="Play"></a></li>
                 <?php } ?>
               </ul>
             </div>
