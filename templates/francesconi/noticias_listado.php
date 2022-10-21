@@ -63,33 +63,36 @@ $mes_month = array(
       <div class="container">
         <div class="mis-content">
           <h2 class="small-title">
-            NOVEDADES EN <span>
+            NOVEDADES <span>
               <?php echo $vc_total_resultados ?> Resultados de búsqueda</span>
           </h2>
         </div>
 
-        <div class="col-lg-4">
-          <div class="select-inner">
-            <select id="filter_categoria" class="round filter_categoria">
-            <!-- <?php foreach ($tipo_propiedades as $tipo) { ?>
-              <option <?php echo ($vc_id_tipo_inmueble == $tipo->id) ? "selected" : "" ?> value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
-            <?php } ?> -->
-            </select>
+        <div class="comprar-inner">
+          <div class="row">
+            <div class="col-lg-2">
+              <div class="select-inner">
+                <select id="filter_localidad" class="round filter_localidad">
+                  <option value="la-plata">La Plata</option>
+                  <?php $localidades = $propiedad_model->get_localidades(); ?>
+                  <?php foreach ($localidades as $localidad) { ?>
+                    <option <?php echo ($localidad->link == $vc_link_localidad) ? "selected" : "" ?> value="<?php echo $localidad->link ?>"><?php echo $localidad->nombre ?></option>
+                  <?php } ?>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-2">
+              <div class="select-inner">
+                <select id="filter_propiedad" class="round filter_propiedad" name="tp">
+                  <option value="0">TIPO DE PROPIEDAD</option>
+                  <?php $tipo_propiedades = $propiedad_model->get_tipos_propiedades(); ?>
+                  <?php foreach ($tipo_propiedades as $tipo) { ?>
+                    <option <?php echo ($vc_id_tipo_inmueble == $tipo->id) ? "selected" : "" ?> value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
+                  <?php } ?>
+                </select>
+              </div>
+            </div>
           </div>
-        </div>
-
-        <div class="col-lg-4">
-          <div class="select-inner">
-            <select id="filter_categoria" class="round filter_categoria">
-            <!-- <?php foreach ($tipo_propiedades as $tipo) { ?>
-              <option <?php echo ($vc_id_tipo_inmueble == $tipo->id) ? "selected" : "" ?> value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
-            <?php } ?> -->
-            </select>
-          </div>
-        </div>
-
-        <div class="col-lg-4">
-          <button type="submit" class="fill-btn">buscar</button>
         </div>
 
         <div class="comprar-info">
