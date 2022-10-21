@@ -364,6 +364,7 @@ class Propiedades_Meli extends REST_Controller {
     try {
       $id_empresa = parent::get_empresa();
       $this->load->model("Web_Configuracion_Model");
+      $this->load->model("Log_Model");
       $this->configuracion = $this->Web_Configuracion_Model->get($id_empresa);
 
       $this->meli = new Meli(ML_APP_ID, ML_APP_SECRET, $this->configuracion->ml_access_token, $this->configuracion->ml_refresh_token);
@@ -371,25 +372,66 @@ class Propiedades_Meli extends REST_Controller {
       // Debemos controlar si el access token sigue siendo valido
       if($this->configuracion->ml_expires_in < time()) {
         
+        $this->Log_Model->imprimir(array(
+          "id_empresa"=>$id_empresa,
+          "file"=>"meli.txt",
+          "texto"=>"Vencio ML. Comenzamos refresh token"
+        ));
+
         // Refrescamos el access token
         $refresh = $this->meli->refreshAccessToken();
+
+        $this->Log_Model->imprimir(array(
+          "id_empresa"=>$id_empresa,
+          "file"=>"meli.txt",
+          "texto"=>"Refresh Token: ".print_r($refresh, TRUE),
+        ));
+
         if (isset($refresh["error"])) {
           parent::send_error($refresh["error"]);
           return;
         }
+
+        $this->Log_Model->imprimir(array(
+          "id_empresa"=>$id_empresa,
+          "file"=>"meli.txt",
+          "texto"=>"Paso 1",
+        ));
+
         if (isset($refresh['body']->error)) {
           parent::send_error($refresh["body"]->message);
           return;          
         }
+
+        $this->Log_Model->imprimir(array(
+          "id_empresa"=>$id_empresa,
+          "file"=>"meli.txt",
+          "texto"=>"Paso 2",
+        ));
+
         $this->configuracion->ml_access_token = $refresh['body']->access_token;
         $this->configuracion->expires_in = time() + $refresh['body']->expires_in;
         $this->configuracion->refresh_token = $refresh['body']->refresh_token;
+
+        $this->Log_Model->imprimir(array(
+          "id_empresa"=>$id_empresa,
+          "file"=>"meli.txt",
+          "texto"=>"Intentamos guardar",
+        ));
+
         $this->guardar_tokens(array(
           "access_token"=>$this->configuracion->ml_access_token,
           "expires_in"=>$this->configuracion->expires_in,
           "refresh_token"=>$this->configuracion->refresh_token,
           "id_empresa"=>$id_empresa,
         ));
+
+        $this->Log_Model->imprimir(array(
+          "id_empresa"=>$id_empresa,
+          "file"=>"meli.txt",
+          "texto"=>"Finalizamos guardar",
+        ));
+
       }
     } catch (Exception $e) {
       parent::send_error($e->getMessage());
