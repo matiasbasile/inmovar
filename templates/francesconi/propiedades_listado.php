@@ -63,7 +63,9 @@ $nombre_pagina = $vc_link_tipo_operacion;
             </div>
           </div>
         </div>
-        <a onclick="cargar()" id="cargarMas" class="fill-btn">ver más propiedades</a>
+        <div class="text-center">
+          <a onclick="cargar()" id="cargarMas" class="fill-btn">ver más propiedades</a>
+        </div>
       </div>
     </form>
   </section>
