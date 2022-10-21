@@ -153,6 +153,16 @@ $cookie_hide_lightbox = 0; //(isset($_COOKIE['hide_lightbox'])) ? $_COOKIE['hide
         </div>
       <?php } ?>
 
+      <?php if (!empty($propiedad->pint)) { ?>
+        <div class="widget property-single-item property-video">
+          <h4>
+            <span>Recorrido 360</span><hr class="divisorline">
+            <div class="divider-fade"></div>
+          </h4>
+          <iframe height="500" src="<?php echo $propiedad->pint ?>" frameborder="0"></iframe>
+        </div>
+      <?php } ?>
+
       <?php $array = explode (";;;",$propiedad->caracteristicas) ?>
         <div class="widget property-single-item property-amenities">
           <h4>
