@@ -54,7 +54,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
         <div class="swiper-wrapper">
           <?php foreach ($propiedad->images as $img) { ?>
             <div class="swiper-slide">
-              <a href="<?php echo $img ?>"><img src="<?php echo $img ?>" alt="Gallery"></a>
+              <a class="fancybox" data-fancybox="gallery" href="<?php echo $img ?>"><img src="<?php echo $img ?>" class="noved_img" alt="Gallery"></a>
             </div>
           <?php } ?>
         </div>
@@ -354,6 +354,10 @@ echo $propiedad_model->tracking_code(array(
   "id_empresa"=>$empresa->id,
 ));
 ?>
+
+<script type="text/javascript">
+  $(".fancybox").fancybox();
+</script>
 
 </body>
 
