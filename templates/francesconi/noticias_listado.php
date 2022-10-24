@@ -123,7 +123,7 @@ $mes_month = array(
             </div>
             <div class="col-lg-2 margins">
               <div class="select-inner">
-                <select class="round" name="fecha">
+                <select class="round" name="fecha" id="fecha">
                   <option value="reciente" <?php echo $selectedOption == 'reciente' ? 'selected' : ''; ?>>MÁS NUEVAS A MÁS VIEJAS</option>
                   <option value="antigua" <?php echo $selectedOption == 'antigua' ? 'selected' : ''; ?>>MÁS VIEJAS A MÁS NUEVAS</option>
                 </select>
