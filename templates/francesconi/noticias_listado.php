@@ -101,7 +101,7 @@ $mes_month = array(
         </div>
 
         <div class="comprar-inner">
-          <form action="#">
+          <form method="post" action="<?php echo mklink("entradas/" . basename($url)) ?>">
             <div class="row align-items-center">
               <div class="col-lg-2">
                 <label for="" style="font-weight: bold;">FILTRAR POR CATEGORÍA:</label>
