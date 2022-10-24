@@ -1,8 +1,10 @@
 <?php include 'includes/init.php' ?>
 <?php
 
+$fecha = isset($_POST["fecha"]) ? $_POST["fecha"] : "";
+
 $orden = 1;
-$selectedOption = isset($_POST['fecha']);
+$selectedOption = ($_POST['fecha']);
 if ($selectedOption === 'antigua') {
   $orden = 2;
 } else {
@@ -122,7 +124,7 @@ $mes_month = array(
               </div>
               <div class="col-lg-2 margins">
                 <div class="select-inner">
-                  <select id="filter_propiedad" class="round filter_propiedad" name="fecha">
+                  <select class="round filter_propiedad" name="fecha">
                     <option value="reciente" <?php echo $selectedOption == 'reciente' ? 'selected' : ''; ?>>MÁS NUEVAS A MÁS VIEJAS</option>
                     <option value="antigua" <?php echo $selectedOption == 'antigua' ? 'selected' : ''; ?>>MÁS VIEJAS A MÁS NUEVAS</option>
                   </select>
