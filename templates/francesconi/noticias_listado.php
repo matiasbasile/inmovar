@@ -44,11 +44,12 @@ $mes_month = array(
       border-bottom: 0 !important;
     }
 
-    .margins{position: static;}
+    .margins{position: relative;left: -40px;}
+
     .equipo-mis .fill-btn {width: 100% !important; padding: 10px !important;}
 
     @media(max-width: 768px){
-      .margins{position: relative;left: -40px;}
+      .margins{position: static;}
     }
 
   </style>
