@@ -1,7 +1,17 @@
 <?php include 'includes/init.php' ?>
 <?php
 
-extract($entrada_model->get_variables());
+$orden = 1;
+$selectedOption = $_POST['fecha'];
+if ($selectedOption === 'antigua') {
+  $orden = 2;
+} else {
+  $orden = 1;
+}
+
+extract($entrada_model->get_variables(array(
+  "order" => $orden
+)));
 
 $mes_month = array(
   1 => 'Enero',
@@ -17,6 +27,7 @@ $mes_month = array(
   11 => 'Noviembre',
   12 => 'Diciembre',
 );
+
 ?>
 
 <!DOCTYPE html>
@@ -44,14 +55,21 @@ $mes_month = array(
       border-bottom: 0 !important;
     }
 
-    .margins{position: relative;left: -40px;}
-
-    .equipo-mis .fill-btn {width: 100% !important; padding: 10px !important;}
-
-    @media(max-width: 768px){
-      .margins{position: static;}
+    .margins {
+      position: relative;
+      left: -40px;
     }
 
+    .equipo-mis .fill-btn {
+      width: 100% !important;
+      padding: 10px !important;
+    }
+
+    @media(max-width: 768px) {
+      .margins {
+        position: static;
+      }
+    }
   </style>
 </head>
 
@@ -83,41 +101,40 @@ $mes_month = array(
         </div>
 
         <div class="comprar-inner">
-          <div class="row align-items-center">
-            <div class="col-lg-2">
-              <label for="" style="font-weight: bold;">FILTRAR POR CATEGORÍA:</label>
-            </div>
-            <div class="col-lg-2 margins">
-              <div class="select-inner">
-                <select id="filter_localidad" class="round filter_localidad">
-                  <option value="la-plata">La Plata</option>
-                  <?php $localidades = $propiedad_model->get_localidades(); ?>
-                  <?php foreach ($localidades as $localidad) { ?>
-                    <option <?php echo ($localidad->link == $vc_link_localidad) ? "selected" : "" ?> value="<?php echo $localidad->link ?>"><?php echo $localidad->nombre ?></option>
-                  <?php } ?>
-                </select>
+          <form action="#">
+            <div class="row align-items-center">
+              <div class="col-lg-2">
+                <label for="" style="font-weight: bold;">FILTRAR POR CATEGORÍA:</label>
+              </div>
+              <div class="col-lg-2 margins">
+                <div class="select-inner">
+                  <select id="filter_localidad" class="round filter_localidad">
+                    <option value="la-plata">La Plata</option>
+                    <?php $localidades = $propiedad_model->get_localidades(); ?>
+                    <?php foreach ($localidades as $localidad) { ?>
+                      <option <?php echo ($localidad->link == $vc_link_localidad) ? "selected" : "" ?> value="<?php echo $localidad->link ?>"><?php echo $localidad->nombre ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <label for="" style="font-weight: bold;">ORDENAR POR:</label>
+              </div>
+              <div class="col-lg-2 margins">
+                <div class="select-inner">
+                  <select id="filter_propiedad" class="round filter_propiedad" name="fecha">
+                    <option value="reciente" <?php echo $selectedOption == 'reciente' ? 'selected' : ''; ?>>MÁS NUEVAS A MÁS VIEJAS</option>
+                    <option value="antigua" <?php echo $selectedOption == 'antigua' ? 'selected' : ''; ?>>MÁS VIEJAS A MÁS NUEVAS</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <div>
+                  <button type="submit" class="fill-btn" class="w-100">filtrar</button>
+                </div>
               </div>
             </div>
-            <div class="col-lg-2">
-              <label for="" style="font-weight: bold;">ORDENAR POR:</label>
-            </div>
-            <div class="col-lg-2 margins">
-              <div class="select-inner">
-                <select id="filter_propiedad" class="round filter_propiedad" name="tp">
-                  <option value="0">TIPO DE PROPIEDAD</option>
-                  <?php $tipo_propiedades = $propiedad_model->get_tipos_propiedades(); ?>
-                  <?php foreach ($tipo_propiedades as $tipo) { ?>
-                    <option <?php echo ($vc_id_tipo_inmueble == $tipo->id) ? "selected" : "" ?> value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
-                  <?php } ?>
-                </select>
-              </div>
-            </div>
-            <div class="col-lg-2">
-              <div>
-                <button type="submit" class="fill-btn" class="w-100">filtrar</button>
-              </div>
-            </div>
-          </div>
+          </form>
         </div>
 
         <div class="comprar-info">
