@@ -2,7 +2,7 @@
 <?php
 
 $orden = 1;
-$selectedOption = $_POST['fecha'];
+$selectedOption = isset($_POST['fecha']);
 if ($selectedOption === 'antigua') {
   $orden = 2;
 } else {
