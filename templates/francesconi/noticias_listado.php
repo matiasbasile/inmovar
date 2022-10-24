@@ -39,10 +39,9 @@ $mes_month = array(
       background-color: var(--brand-clrbg) !important;
     }
 
-    select{
+    select {
       margin: 0px !important;
     }
-
   </style>
 </head>
 
@@ -75,10 +74,8 @@ $mes_month = array(
 
         <div class="comprar-inner">
           <div class="row align-items-center">
-            <div class="col-lg-2">
+            <div class="col-lg-5">
               <label for="" style="font-weight: bold;">FILTRAR POR CATEGORÍA:</label>
-            </div>
-            <div class="col-lg-2">
               <div class="select-inner">
                 <select id="filter_localidad" class="round filter_localidad">
                   <option value="la-plata">La Plata</option>
@@ -89,23 +86,21 @@ $mes_month = array(
                 </select>
               </div>
             </div>
-            <div class="col-lg-2">
+            <div class="col-lg-5">
               <div>
                 <label for="" style="font-weight: bold;">ORDENAR POR:</label>
+                <div class="select-inner">
+                  <select id="filter_propiedad" class="round filter_propiedad" name="tp">
+                    <option value="0">TIPO DE PROPIEDAD</option>
+                    <?php $tipo_propiedades = $propiedad_model->get_tipos_propiedades(); ?>
+                    <?php foreach ($tipo_propiedades as $tipo) { ?>
+                      <option <?php echo ($vc_id_tipo_inmueble == $tipo->id) ? "selected" : "" ?> value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
               </div>
             </div>
             <div class="col-lg-2">
-              <div class="select-inner">
-                <select id="filter_propiedad" class="round filter_propiedad" name="tp">
-                  <option value="0">TIPO DE PROPIEDAD</option>
-                  <?php $tipo_propiedades = $propiedad_model->get_tipos_propiedades(); ?>
-                  <?php foreach ($tipo_propiedades as $tipo) { ?>
-                    <option <?php echo ($vc_id_tipo_inmueble == $tipo->id) ? "selected" : "" ?> value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
-                  <?php } ?>
-                </select>
-              </div>
-            </div>
-            <div class="col-lg-4">
               <div>
                 <button type="submit" class="fill-btn" class="w-100">filtrar</button>
               </div>
