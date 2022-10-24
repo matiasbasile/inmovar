@@ -90,8 +90,6 @@ $mes_month = array(
     </div>
   </section>
 
-  <?php $categorias = $entrada_model->get_categorias(0) ?>
-  <?php print_r($categorias) ?>
   <!-- Equipo Mis -->
   <section class="equipo-mis">
     <div class="container">
