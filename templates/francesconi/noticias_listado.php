@@ -103,32 +103,34 @@ $mes_month = array(
       <div class="comprar-inner">
         <form method="post" action="<?php echo mklink("entradas/" . basename($url)) ?>">
           <div class="row align-items-center">
-            <div class="col-lg-6">
-              <div>
-                <label for="" style="font-weight: bold;">FILTRAR POR CATEGORÍA:</label>
-                <div class="select-inner">
-                  <select class="round">
-                    <option value="la-plata">La Plata</option>
-                    <?php $localidades = $propiedad_model->get_localidades(); ?>
-                    <?php foreach ($localidades as $localidad) { ?>
-                      <option <?php echo ($localidad->link == $vc_link_localidad) ? "selected" : "" ?> value="<?php echo $localidad->link ?>"><?php echo $localidad->nombre ?></option>
-                    <?php } ?>
-                  </select>
-                </div>
+            <div class="col-lg-2">
+              <label for="" style="font-weight: bold;">FILTRAR POR CATEGORÍA:</label>
+            </div>
+            <div class="col-lg-2 margins">
+              <div class="select-inner">
+                <select class="round">
+                  <option value="la-plata">La Plata</option>
+                  <?php $localidades = $propiedad_model->get_localidades(); ?>
+                  <?php foreach ($localidades as $localidad) { ?>
+                    <option <?php echo ($localidad->link == $vc_link_localidad) ? "selected" : "" ?> value="<?php echo $localidad->link ?>"><?php echo $localidad->nombre ?></option>
+                  <?php } ?>
+                </select>
               </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-2">
+              <label for="" style="font-weight: bold;">ORDENAR POR:</label>
+            </div>
+            <div class="col-lg-2 margins">
+              <div class="select-inner">
+                <select class="round" name="fecha" id="fecha">
+                  <option value="reciente" <?php echo $fecha == 'reciente' ? 'selected' : ''; ?>>MÁS NUEVAS A MÁS VIEJAS</option>
+                  <option value="antigua" <?php echo $fecha == 'antigua' ? 'selected' : ''; ?>>MÁS VIEJAS A MÁS NUEVAS</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-2">
               <div>
-                <label for="" style="font-weight: bold;">ORDENAR POR:</label>
-                <div class="select-inner">
-                  <select class="round" name="fecha" id="fecha">
-                    <option value="reciente" <?php echo $fecha == 'reciente' ? 'selected' : ''; ?>>MÁS NUEVAS A MÁS VIEJAS</option>
-                    <option value="antigua" <?php echo $fecha == 'antigua' ? 'selected' : ''; ?>>MÁS VIEJAS A MÁS NUEVAS</option>
-                  </select>
-                </div>
-                <div>
-                  <button type="submit" class="fill-btn" class="w-100">filtrar</button>
-                </div>
+                <button type="submit" class="fill-btn" class="w-100">filtrar</button>
               </div>
             </div>
           </div>
