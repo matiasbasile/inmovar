@@ -41,7 +41,16 @@ $mes_month = array(
 
     select {
       margin: 0px !important;
+      border-bottom: 0 !important;
     }
+
+    .margins{position: static;}
+    .equipo-mis .fill-btn {width: 100% !important; padding: 10px !important;}
+
+    @media(max-width: 768px){
+      .margins{position: relative;left: -40px;}
+    }
+
   </style>
 </head>
 
