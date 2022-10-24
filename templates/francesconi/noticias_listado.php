@@ -87,7 +87,7 @@ $mes_month = array(
             <div class="col-lg-2">
               <label for="" style="font-weight: bold;">FILTRAR POR CATEGORÍA:</label>
             </div>
-            <div class="col-lg-2">
+            <div class="col-lg-2 margins">
               <div class="select-inner">
                 <select id="filter_localidad" class="round filter_localidad">
                   <option value="la-plata">La Plata</option>
@@ -101,7 +101,7 @@ $mes_month = array(
             <div class="col-lg-2">
               <label for="" style="font-weight: bold;">ORDENAR POR:</label>
             </div>
-            <div class="col-lg-2">
+            <div class="col-lg-2 margins">
               <div class="select-inner">
                 <select id="filter_propiedad" class="round filter_propiedad" name="tp">
                   <option value="0">TIPO DE PROPIEDAD</option>
