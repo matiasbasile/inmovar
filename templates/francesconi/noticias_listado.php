@@ -4,7 +4,6 @@
 $fecha = isset($_POST["fecha"]) ? $_POST["fecha"] : "";
 
 $orden = 1;
-$selectedOption = ($_POST['fecha']);
 if ($fecha === 'antigua') {
   $orden = 2;
 } else {
