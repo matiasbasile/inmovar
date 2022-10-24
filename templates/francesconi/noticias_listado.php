@@ -74,26 +74,24 @@ $mes_month = array(
 
         <div class="comprar-inner">
           <div class="row align-items-center">
-            <div class="col-lg-5">
-              <div class="row">
-                <div class="col-lg-6">
-                  <label for="" style="font-weight: bold;">FILTRAR POR CATEGORÍA:</label>
-                </div>
-                <div class="col-lg-6">
-                  <div class="select-inner">
-                    <select id="filter_localidad" class="round filter_localidad">
-                      <option value="la-plata">La Plata</option>
-                      <?php $localidades = $propiedad_model->get_localidades(); ?>
-                      <?php foreach ($localidades as $localidad) { ?>
-                        <option <?php echo ($localidad->link == $vc_link_localidad) ? "selected" : "" ?> value="<?php echo $localidad->link ?>"><?php echo $localidad->nombre ?></option>
-                      <?php } ?>
-                    </select>
-                  </div>
-                </div>
+            <div class="col-lg-2">
+              <label for="" style="font-weight: bold;">FILTRAR POR CATEGORÍA:</label>
+            </div>
+            <div class="col-lg-2">
+              <div class="select-inner">
+                <select id="filter_localidad" class="round filter_localidad">
+                  <option value="la-plata">La Plata</option>
+                  <?php $localidades = $propiedad_model->get_localidades(); ?>
+                  <?php foreach ($localidades as $localidad) { ?>
+                    <option <?php echo ($localidad->link == $vc_link_localidad) ? "selected" : "" ?> value="<?php echo $localidad->link ?>"><?php echo $localidad->nombre ?></option>
+                  <?php } ?>
+                </select>
               </div>
             </div>
-            <div class="col-lg-5">
+            <div class="col-lg-2">
               <label for="" style="font-weight: bold;">ORDENAR POR:</label>
+            </div>
+            <div class="col-lg-2">
               <div class="select-inner">
                 <select id="filter_propiedad" class="round filter_propiedad" name="tp">
                   <option value="0">TIPO DE PROPIEDAD</option>
