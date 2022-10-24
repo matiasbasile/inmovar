@@ -5,7 +5,7 @@ $fecha = isset($_POST["fecha"]) ? $_POST["fecha"] : "";
 
 $orden = 1;
 $selectedOption = ($_POST['fecha']);
-if ($selectedOption === 'antigua') {
+if ($fecha === 'antigua') {
   $orden = 2;
 } else {
   $orden = 1;
@@ -124,8 +124,8 @@ $mes_month = array(
             <div class="col-lg-2 margins">
               <div class="select-inner">
                 <select class="round" name="fecha" id="fecha">
-                  <option value="reciente" <?php echo $selectedOption == 'reciente' ? 'selected' : ''; ?>>MÁS NUEVAS A MÁS VIEJAS</option>
-                  <option value="antigua" <?php echo $selectedOption == 'antigua' ? 'selected' : ''; ?>>MÁS VIEJAS A MÁS NUEVAS</option>
+                  <option value="reciente" <?php echo $fecha == 'reciente' ? 'selected' : ''; ?>>MÁS NUEVAS A MÁS VIEJAS</option>
+                  <option value="antigua" <?php echo $fecha == 'antigua' ? 'selected' : ''; ?>>MÁS VIEJAS A MÁS NUEVAS</option>
                 </select>
               </div>
             </div>
