@@ -81,8 +81,6 @@ $mes_month = array(
   <!-- Francesconi Header Equipo -->
   <?php include 'includes/header.php' ?>
 
-  <?php $categorias = $entrada_model->get_categorias(0) ?>
-  <?php print_r($categorias) ?>
   <!-- Equipo Banner -->
   <section class="equipo-banner">
     <div class="container">
