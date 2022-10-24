@@ -93,95 +93,93 @@ $mes_month = array(
 
   <!-- Equipo Mis -->
   <section class="equipo-mis">
-    <form id="form_buscador" onsubmit="return filtrar(this)" method="get">
-      <div class="container">
-        <div class="mis-content">
-          <h2 class="small-title">
-            NOVEDADES <span>
-              <?php echo $vc_total_resultados ?> Resultados de búsqueda</span>
-          </h2>
-        </div>
+    <div class="container">
+      <div class="mis-content">
+        <h2 class="small-title">
+          NOVEDADES <span>
+            <?php echo $vc_total_resultados ?> Resultados de búsqueda</span>
+        </h2>
+      </div>
 
-        <div class="comprar-inner">
-          <form method="post" action="<?php echo mklink("entradas/" . basename($url)) ?>">
-            <div class="row align-items-center">
-              <div class="col-lg-2">
-                <label for="" style="font-weight: bold;">FILTRAR POR CATEGORÍA:</label>
-              </div>
-              <div class="col-lg-2 margins">
-                <div class="select-inner">
-                  <select id="filter_localidad" class="round filter_localidad">
-                    <option value="la-plata">La Plata</option>
-                    <?php $localidades = $propiedad_model->get_localidades(); ?>
-                    <?php foreach ($localidades as $localidad) { ?>
-                      <option <?php echo ($localidad->link == $vc_link_localidad) ? "selected" : "" ?> value="<?php echo $localidad->link ?>"><?php echo $localidad->nombre ?></option>
-                    <?php } ?>
-                  </select>
-                </div>
-              </div>
-              <div class="col-lg-2">
-                <label for="" style="font-weight: bold;">ORDENAR POR:</label>
-              </div>
-              <div class="col-lg-2 margins">
-                <div class="select-inner">
-                  <select class="round filter_propiedad" name="fecha">
-                    <option value="reciente" <?php echo $selectedOption == 'reciente' ? 'selected' : ''; ?>>MÁS NUEVAS A MÁS VIEJAS</option>
-                    <option value="antigua" <?php echo $selectedOption == 'antigua' ? 'selected' : ''; ?>>MÁS VIEJAS A MÁS NUEVAS</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-lg-2">
-                <div>
-                  <button type="submit" class="fill-btn" class="w-100">filtrar</button>
-                </div>
+      <div class="comprar-inner">
+        <form method="post" action="<?php echo mklink("entradas/" . basename($url)) ?>">
+          <div class="row align-items-center">
+            <div class="col-lg-2">
+              <label for="" style="font-weight: bold;">FILTRAR POR CATEGORÍA:</label>
+            </div>
+            <div class="col-lg-2 margins">
+              <div class="select-inner">
+                <select id="filter_localidad" class="round filter_localidad">
+                  <option value="la-plata">La Plata</option>
+                  <?php $localidades = $propiedad_model->get_localidades(); ?>
+                  <?php foreach ($localidades as $localidad) { ?>
+                    <option <?php echo ($localidad->link == $vc_link_localidad) ? "selected" : "" ?> value="<?php echo $localidad->link ?>"><?php echo $localidad->nombre ?></option>
+                  <?php } ?>
+                </select>
               </div>
             </div>
-          </form>
-        </div>
+            <div class="col-lg-2">
+              <label for="" style="font-weight: bold;">ORDENAR POR:</label>
+            </div>
+            <div class="col-lg-2 margins">
+              <div class="select-inner">
+                <select class="round" name="fecha">
+                  <option value="reciente" <?php echo $selectedOption == 'reciente' ? 'selected' : ''; ?>>MÁS NUEVAS A MÁS VIEJAS</option>
+                  <option value="antigua" <?php echo $selectedOption == 'antigua' ? 'selected' : ''; ?>>MÁS VIEJAS A MÁS NUEVAS</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-2">
+              <div>
+                <button type="submit" class="fill-btn" class="w-100">filtrar</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
 
-        <div class="comprar-info">
-          <div class="mis-inner">
-            <div class="row">
-              <?php foreach ($vc_listado as $p) { ?>
-                <div class="col-lg-4 col-md-6">
-                  <div class="noved-card">
-                    <div class="noved-warp">
-                      <span>
-                        <a href="<?php echo mklink($p->link) ?>">
-                          <img src="assets/images/icons/icon-15.png" alt="Icon">
-                        </a>
-                      </span>
-                      <a href="#0" class="fill-btn fill-btn-solidarias">solidarias</a>
+      <div class="comprar-info">
+        <div class="mis-inner">
+          <div class="row">
+            <?php foreach ($vc_listado as $p) { ?>
+              <div class="col-lg-4 col-md-6">
+                <div class="noved-card">
+                  <div class="noved-warp">
+                    <span>
                       <a href="<?php echo mklink($p->link) ?>">
-                        <img src="<?php echo $p->path ?>" alt="<?php echo $p->titulo ?>">
+                        <img src="assets/images/icons/icon-15.png" alt="Icon">
                       </a>
-                    </div>
+                    </span>
+                    <a href="#0" class="fill-btn fill-btn-solidarias">solidarias</a>
+                    <a href="<?php echo mklink($p->link) ?>">
+                      <img src="<?php echo $p->path ?>" alt="<?php echo $p->titulo ?>">
+                    </a>
+                  </div>
+                  <div class="noved-inner">
+                    <a href="<?php echo mklink($n->link) ?>" class="noved-redirect">
+                      <h2 class="noved-redirect"><?php echo $p->titulo ?></h2>
+                    </a>
                     <div class="noved-inner">
-                      <a href="<?php echo mklink($n->link) ?>" class="noved-redirect">
-                        <h2 class="noved-redirect"><?php echo $p->titulo ?></h2>
-                      </a>
-                      <div class="noved-inner">
-                        <?php
-                        $fecha = str_replace('/', '-', $p->fecha);
-                        $mes =  $mes_month[date('n', strtotime($fecha))]
-                        ?>
-                        <h5><small><?php echo $p->dia; ?></small><?php echo $mes ?> del <?php echo $p->anio; ?></h5>
-                        <p>
-                          <?php echo $p->plain_text ?>
-                        </p>
-                      </div>
+                      <?php
+                      $fecha = str_replace('/', '-', $p->fecha);
+                      $mes =  $mes_month[date('n', strtotime($fecha))]
+                      ?>
+                      <h5><small><?php echo $p->dia; ?></small><?php echo $mes ?> del <?php echo $p->anio; ?></h5>
+                      <p>
+                        <?php echo $p->plain_text ?>
+                      </p>
                     </div>
                   </div>
                 </div>
-              <?php } ?>
-            </div>
+              </div>
+            <?php } ?>
           </div>
         </div>
-        <div class="text-center">
-          <a href="javascript:void(0);" class="fill-btn">ver más</a>
-        </div>
       </div>
-    </form>
+      <div class="text-center">
+        <a href="javascript:void(0);" class="fill-btn">ver más</a>
+      </div>
+    </div>
   </section>
 
   <!-- Francesconi Nuster -->
