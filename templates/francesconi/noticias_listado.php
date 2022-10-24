@@ -90,6 +90,8 @@ $mes_month = array(
     </div>
   </section>
 
+  <?php $categorias = $entrada_model->get_categorias(0) ?>
+  <?php print_r($categorias) ?>
   <!-- Equipo Mis -->
   <section class="equipo-mis">
     <div class="container">
@@ -108,7 +110,7 @@ $mes_month = array(
             </div>
             <div class="col-lg-2 margins">
               <div class="select-inner">
-                <select id="filter_localidad" class="round filter_localidad">
+                <select class="round">
                   <option value="la-plata">La Plata</option>
                   <?php $localidades = $propiedad_model->get_localidades(); ?>
                   <?php foreach ($localidades as $localidad) { ?>
