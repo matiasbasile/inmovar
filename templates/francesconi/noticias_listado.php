@@ -74,7 +74,7 @@ $mes_month = array(
 
         <div class="comprar-inner">
           <div class="row align-items-center">
-            <div class="col-lg-4">
+            <div class="col-lg-5">
               <label for="" style="font-weight: bold;">FILTRAR POR CATEGORÍA:</label>
               <div class="select-inner">
                 <select id="filter_localidad" class="round filter_localidad">
@@ -86,7 +86,7 @@ $mes_month = array(
                 </select>
               </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-5">
               <label for="" style="font-weight: bold;">ORDENAR POR:</label>
               <div class="select-inner">
                 <select id="filter_propiedad" class="round filter_propiedad" name="tp">
@@ -98,7 +98,7 @@ $mes_month = array(
                 </select>
               </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-2">
               <div>
                 <button type="submit" class="fill-btn" class="w-100">filtrar</button>
               </div>
