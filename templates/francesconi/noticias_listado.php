@@ -3,6 +3,7 @@
 
 $fecha = isset($_POST["fecha"]) ? $_POST["fecha"] : "";
 $categoria = isset($_POST["categoria"]) ? $_POST["categoria"] : "";
+echo "CATEGORIA: ".$categoria;
 $orden = 1;
 if ($fecha === 'antigua') {
   $orden = 2;
@@ -136,7 +137,7 @@ $mes_month = array(
                     ?>
 
                     <?php foreach ($aux as $vc) { ?>
-                      <option <?php echo $vc == $categoria ? "selected" : "" ?> value="<?php echo strtolower($vc) ?>"><?php echo strtolower ($vc) ?></option>
+                      <option <?php echo ($vc == $categoria) ? "selected" : "" ?> value="<?php echo strtolower($vc) ?>"><?php echo strtolower ($vc) ?></option>
                     <?php } ?>
                   </select>
                 </div>
