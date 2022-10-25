@@ -6,10 +6,12 @@ include_once("includes/init.php");
 $page = isset($_GET["page"]) ? intval($_GET["page"]) : 0;
 $offset = isset($_GET["offset"]) ? intval($_GET["offset"]) : 2;
 $categoria = isset($_GET["categoria"]) ? $_GET["categoria"] : "";
+$categoria = isset($_GET["order_by"]) ? $_GET["order_by"] : "";
 $config = array(
   "page" => $page,
   "offset" => $offset,
   "from_link_categoria" => $categoria,
+  "order_by" => $orden,
 );
 
 $mas_entradas = $entrada_model->get_list($config);
