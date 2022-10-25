@@ -123,10 +123,9 @@ $mes_month = array(
                 <label for="" style="font-weight: bold;">FILTRAR POR CATEGORÍA:</label>
                 <div class="select-inner">
                   <select class="round" name="categoria" id="categoria">
-                    <?php $categorias = $entrada_model->get_list(array(
-                      "from_link_categoria" => strtolower($categoria)
-                    )) ?>
-                    <?php print_r($categorias) ?>
+                    <?php $categorias = $entrada_model->get_list(array("from_link_categoria" => strtolower($categoria))) ?>
+                    <?php $categorias2 = $entrada_model->get_categorias(0) ?>
+                    <?php print_r($categorias2) ?>
                     <?php foreach ($categorias as $vc) { ?>
                       <option <?php echo $vc->categoria == $categoria ? "selected" : "" ?> value="<?php echo $vc->categoria ?>"><?php echo $vc->categoria ?></option>
                     <?php } ?>
