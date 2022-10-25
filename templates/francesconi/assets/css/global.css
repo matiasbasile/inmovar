@@ -1197,7 +1197,7 @@ ul {
 .comprar-inner {
 	padding-top: 70px;
 }
-.comprar-inner [class*="col-"]:first-child {
+/* .comprar-inner [class*="col-"]:first-child {
 	flex: 0 0 auto;
 	width: 23.667%;
 }
@@ -1216,7 +1216,7 @@ ul {
 .comprar-inner [class*="col-"]:nth-child(5) {
 	flex: 0 0 auto;
 	width: 17.667%;
-}
+} */
 .comprar-inner .select-inner input, select {
 	padding: 20px 0;
 	font-size: 16px;

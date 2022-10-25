@@ -118,9 +118,11 @@ $mes_month = array(
               <div class="d-flex align-items-center">
                 <label for="" style="font-weight: bold;">FILTRAR POR CATEGORÍA:</label>
                 <div class="select-inner">
-                  <?php foreach ($vc_listado as $vc) { ?>
-                    <option <?php echo ($vc->categoria == $categoria) ? "selected" : "" ?> value="<?php echo $vc->categoria ?>"><?php echo $vc->categoria ?></option>
-                  <?php } ?>
+                  <select class="round" name="categoria" id="categoria">
+                    <?php foreach ($vc_listado as $vc) { ?>
+                      <option <?php echo ($vc->categoria == $categoria) ? "selected" : "" ?> value="<?php echo $vc->categoria ?>"><?php echo $vc->categoria ?></option>
+                    <?php } ?>
+                  </select>
                 </div>
               </div>
             </div>
