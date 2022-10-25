@@ -19,7 +19,7 @@ function cargar() {
   data['id_empresa'] = ID_EMPRESA;
   data['page'] = window.page;
   data['offset'] = 2;
-  date['categoria'] = "<?php echo strtolower($categoria) ?>"
+  date['categoria'] = "<?php echo $vc_link_categoria ?>"
   $("#cargarMas").text("buscando...");
   $.ajax({
     "url": "<?php echo mklink("web/get_list_entradas/") ?>",
