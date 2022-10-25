@@ -13,10 +13,6 @@ $config = array(
 );
 
 $mas_entradas = $entrada_model->get_list($config);
-print_r($mas_entradas);
-echo json_decode($mas_entradas);
-echo json_encode($mas_entradas);
-echo $mas_entradas;
 
 foreach ($mas_entradas as $ent) { ?>
   <div class="col-lg-4 col-md-6">
