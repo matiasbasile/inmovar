@@ -148,8 +148,8 @@ $mes_month = array(
                 <label for="" style="font-weight: bold;">ORDENAR POR:</label>
                 <div class="select-inner">
                   <select class="round" name="fecha" id="fecha">
-                    <option <?php echo $fecha == "reciente" ? "selected" : "" ?> value="<?php echo $fecha ?>" >MÁS NUEVAS A MÁS VIEJAS</option>
-                    <option <?php echo $fecha == "antigua" ? "selected" : "" ?> value="<?php echo $fecha ?>">MÁS VIEJAS A MÁS NUEVAS</option>
+                    <option value="reciente">MÁS NUEVAS A MÁS VIEJAS</option>
+                    <option value="antigua">MÁS VIEJAS A MÁS NUEVAS</option>
                   </select>
                 </div>
               </div>
