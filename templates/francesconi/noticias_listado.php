@@ -11,7 +11,8 @@ if ($fecha === 'antigua') {
 }
 
 extract($entrada_model->get_variables(array(
-  "order" => $orden
+  "order" => $orden,
+  "offset" => 2,
 )));
 
 $mes_month = array(
