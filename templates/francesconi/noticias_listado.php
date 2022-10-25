@@ -138,11 +138,10 @@ $mes_month = array(
                           array_push($aux, $cat->nombre);
                         }
                       }
-                      print_r($aux);
                     ?>
 
-                    <?php foreach ($categorias as $vc) { ?>
-                      <option <?php echo $vc->nombre == $categoria ? "selected" : "" ?> value="<?php echo $vc->nombre ?>"><?php echo $vc->nombre ?></option>
+                    <?php foreach ($aux as $vc) { ?>
+                      <option <?php echo $vc == $categoria ? "selected" : "" ?> value="<?php echo $vc ?>"><?php echo $vc ?></option>
                     <?php } ?>
                   </select>
                 </div>
