@@ -214,10 +214,14 @@ $mes_month = array(
   <?php include 'includes/footer.php' ?>
 
   <script>
-    $('#filter-form').submit(function() {
+    $('#filter-form').submit(function(e) {
+      console.log("llega form submit");
       var link = <?php echo mklink("entradas/") ?>
       link += $("#categoria").val().toLowerCase(); 
       $('#filter-form').attr('action', link);
+      console.log(link);
+      e.preventDefault();
+      return false;
     });
 
 
