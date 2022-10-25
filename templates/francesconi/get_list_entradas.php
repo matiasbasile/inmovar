@@ -10,12 +10,9 @@ $fecha = isset($_POST["fecha"]) ? $_POST["fecha"] : "";
 $orden = 1;
 if ($fecha === 'antigua') {
   $orden = 2;
+  $order_by = "A.fecha ASC ";
 } else {
   $orden = 1;
-}
-if ($orden == 2){
-  $order_by = "A.fecha ASC ";
-}else{
   $order_by = "A.fecha DESC ";
 }
 
