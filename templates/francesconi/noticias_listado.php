@@ -164,7 +164,7 @@ $mes_month = array(
 
       <div class="comprar-info">
         <div class="mis-inner">
-          <div class="row">
+          <div class="row propiedades">
             <?php foreach ($vc_listado as $p) { ?>
               <div class="col-lg-4 col-md-6">
                 <div class="noved-card">
@@ -201,7 +201,7 @@ $mes_month = array(
         </div>
       </div>
       <div class="text-center">
-        <a href="javascript:void(0);" class="fill-btn">ver más</a>
+        <a onclick="cargar()" id="cargarMas" class="fill-btn">ver más</a>
       </div>
     </div>
   </section>
@@ -211,6 +211,8 @@ $mes_month = array(
 
   <!-- Francesconi Footer -->
   <?php include 'includes/footer.php' ?>
+
+  <?php include 'includes/cargar_mas_entradas_js.php' ?>
 
   <script>
     $('#filter-form').submit(function(e) {
