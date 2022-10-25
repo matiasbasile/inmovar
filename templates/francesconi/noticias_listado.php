@@ -220,8 +220,6 @@ $mes_month = array(
       link += $("#categoria").val().toLowerCase(); 
       $('#filter-form').attr('action', link);
       console.log(link);
-      e.preventDefault();
-      return false;
     });
 
 
