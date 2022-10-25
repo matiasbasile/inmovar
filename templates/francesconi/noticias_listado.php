@@ -126,6 +126,7 @@ $mes_month = array(
                     <?php $categorias = $entrada_model->get_list(array(
                       "from_link_categoria" => strtolower($categoria)
                     )) ?>
+                    <?php print_r($categorias) ?>
                     <?php foreach ($categorias as $vc) { ?>
                       <option <?php echo $vc->categoria == $categoria ? "selected" : "" ?> value="<?php echo $vc->categoria ?>"><?php echo $vc->categoria ?></option>
                     <?php } ?>
