@@ -13,11 +13,17 @@ if ($fecha === 'antigua') {
 } else {
   $orden = 1;
 }
+if ($orden == 2){
+  $order_by = "A.fecha ASC ";
+}else{
+  $order_by = "A.fecha DESC ";
+}
+
 $config = array(
   "page" => $page,
   "offset" => $offset,
   "from_link_categoria" => $categoria,
-  "order_by" => $orden,
+  "order_by" => $order_by,
 );
 
 $mas_entradas = $entrada_model->get_list($config);
