@@ -4,7 +4,7 @@
 $fecha = isset($_POST["fecha"]) ? $_POST["fecha"] : "";
 $categoria = isset($_POST["categoria"]) ? $_POST["categoria"] : "";
 
-$action;
+$action = "";
 
 if ($categoria) {
   $categoria = strtolower($categoria);
