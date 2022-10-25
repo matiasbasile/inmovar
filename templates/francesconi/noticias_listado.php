@@ -119,7 +119,7 @@ $mes_month = array(
 
       <?php $cat_link = strtolower($categoria) ?>
       <div class="comprar-inner">
-        <form method="post" action="<?php echo mklink("entradas/$cat_link") ?>">
+        <form id="filter-form" method="post" action="<?php echo mklink("entradas/$cat_link") ?>">
           <div class="row align-items-center">
             <div class="col-lg-5">
               <div class="d-md-flex align-items-center">
@@ -212,6 +212,16 @@ $mes_month = array(
 
   <!-- Francesconi Footer -->
   <?php include 'includes/footer.php' ?>
+
+  <script>
+    $('#filter-form').submit(function() {
+      var link = <?php echo mklink("entradas/") ?>
+      link += $("#categoria").val().toLowerCase(); 
+      $('#filter-form').attr('action', link);
+    });
+
+
+  </script>
 
 </body>
 
