@@ -4,7 +4,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 include_once("includes/init.php");
 $page = isset($_GET["page"]) ? intval($_GET["page"]) : 0;
-$offset = isset($_GET["offset"]) ? intval($_GET["offset"]) : 2;
+$offset = isset($_GET["offset"]) ? intval($_GET["offset"]) : 6;
 $categoria = isset($_GET["categoria"]) ? $_GET["categoria"] : "";
 $fecha = isset($_POST["fecha"]) ? $_POST["fecha"] : "";
 $orden = 1;

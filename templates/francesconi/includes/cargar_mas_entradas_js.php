@@ -18,7 +18,7 @@ function cargar() {
   window.enviando = 1;
   data['id_empresa'] = ID_EMPRESA;
   data['page'] = window.page;
-  data['offset'] = 2;
+  data['offset'] = 6;
   data['categoria'] = "<?php echo $vc_link_categoria ?>"
   data['fecha'] = "<?php echo $fecha ?>"
   $("#cargarMas").text("buscando...");
