@@ -131,11 +131,13 @@ $mes_month = array(
                     )) ?>
 
                     <?php $aux = array() ?>
+                    <?php $aux = ['nombre' => 'value']; ?>
 
                     <?php
                       foreach ($categorias as $cat) {
                         if($cat->nombre != "Sobre mi" && $cat->nombre != "Equipo"){
                           array_push($aux, $cat->nombre);
+                          $aux['nombre'] = $cat->nombre;
                         }
                       }
                       print_r($aux);
