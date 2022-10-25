@@ -124,7 +124,7 @@ $mes_month = array(
                 <div class="select-inner">
                   <select class="round" name="categoria" id="categoria">
                     <?php $categorias = $entrada_model->get_list(array("from_link_categoria" => strtolower($categoria))) ?>
-                    <?php $categorias2 = $entrada_model->get_categorias(0) ?>
+                    <?php $categorias2 = $entrada_model->get_subcategorias(0) ?>
                     <?php print_r($categorias2) ?>
                     <?php foreach ($categorias as $vc) { ?>
                       <option <?php echo $vc->categoria == $categoria ? "selected" : "" ?> value="<?php echo $vc->categoria ?>"><?php echo $vc->categoria ?></option>
