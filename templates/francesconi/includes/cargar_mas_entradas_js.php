@@ -30,16 +30,13 @@ function cargar() {
       var propiedades = document.querySelector(".propiedades");
       if (isEmpty(r)) {
         $("#cargarMas").hide();
-        console.log(r);
       } else {
         propiedades.innerHTML += r;
         if ($("<div/>").append(r).find(".neighborhoods-list").length < 12)  {
           $("#cargarMas").hide();
-          console.log(r);
         } else {
           $("#cargarMas").text("ver más entradas para tu búsqueda");
           $("#cargarMas").show();
-          console.log(r);
         }
       }
       window.enviando = 0;

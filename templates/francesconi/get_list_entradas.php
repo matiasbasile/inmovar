@@ -14,6 +14,21 @@ $config = array(
 
 $mas_entradas = $entrada_model->get_list($config);
 
+$mes_month = array(
+  1 => 'Enero',
+  2 => 'Febrero',
+  3 => 'Marzo',
+  4 => 'Abril',
+  5 => 'Mayo',
+  6 => 'Junio',
+  7 => 'Julio',
+  8 => 'Agosto',
+  9 => 'Septiembre',
+  10 => 'Octubre',
+  11 => 'Noviembre',
+  12 => 'Diciembre',
+);
+
 foreach ($mas_entradas as $ent) { ?>
   <div class="col-lg-4 col-md-6">
     <div class="noved-card">
