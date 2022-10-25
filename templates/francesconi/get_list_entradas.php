@@ -9,7 +9,7 @@ $categoria = isset($_GET["categoria"]) ? $_GET["categoria"] : "";
 $config = array(
   "page" => $page,
   "offset" => $offset,
-  "categoria" => $categoria,
+  "from_link_categoria" => strtolower($categoria),
 );
 
 $mas_entradas = $entrada_model->get_list($config);
