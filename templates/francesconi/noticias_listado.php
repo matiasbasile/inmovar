@@ -115,10 +115,9 @@ $mes_month = array(
         </h2>
       </div>
 
-      <!-- https://app.inmovar.com/sandbox/1683/entradas/novedades -->
-
+      <?php $cat_link = strtolower($categoria) ?>
       <div class="comprar-inner">
-        <form method="post" action="<?php echo !$categoria == "" ? mklink("entradas/$categoria") : mklink("entradas/") ?>">
+        <form method="post" action="<?php echo !$categoria == "" ? mklink("entradas/$cat_link") : mklink("entradas/") ?>">
           <div class="row align-items-center">
             <div class="col-lg-5">
               <div class="d-md-flex align-items-center">
@@ -126,6 +125,7 @@ $mes_month = array(
                 <div class="select-inner">
                   <select class="round" name="categoria" id="categoria">
                     <?php $categorias = $entrada_model->get_subcategorias(0) ?>
+                    <?php print_r($categorias) ?>
                     <?php foreach ($categorias as $vc) { ?>
                       <option <?php echo $vc->nombre == $categoria ? "selected" : "" ?> value="<?php echo $vc->nombre ?>"><?php echo $vc->nombre ?></option>
                     <?php } ?>
