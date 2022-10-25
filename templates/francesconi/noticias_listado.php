@@ -125,6 +125,7 @@ $mes_month = array(
                 <div class="select-inner">
                   <select class="round" name="categoria" id="categoria">
                     <?php $categorias = $entrada_model->get_subcategorias(0) ?>
+                    <?php print_r($cateogiras) ?>
                     <?php foreach ($categorias as $vc) { ?>
                       <option <?php echo $vc->nombre == $categoria ? "selected" : "" ?> value="<?php echo $vc->nombre ?>"><?php echo $vc->nombre ?></option>
                     <?php } ?>
