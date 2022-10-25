@@ -1,16 +1,8 @@
 <?php include 'includes/init.php' ?>
 <?php
 
-$fecha = isset($_POST["fecha"]) ? $_POST["fecha"] : "";
-$categoria = isset($_POST["categoria"]) ? $_POST["categoria"] : "";
-
-$action = "";
-
-if ($categoria) {
-  $categoria = strtolower($categoria);
-  $action = mklink("entradas/$categoria");
-}
-
+$fecha = isset($_GET["fecha"]) ? $_GET["fecha"] : "";
+$categoria = isset($_GET["categoria"]) ? $_GET["categoria"] : "";
 $orden = 1;
 if ($fecha === 'antigua') {
   $orden = 2;
@@ -126,7 +118,7 @@ $mes_month = array(
 
       <?php $cat_link = strtolower($categoria) ?>
       <div class="comprar-inner">
-        <form method="post" action="<?php echo $action ?>">
+        <form method="get" action="<?php echo mklink("entradas/$cat_link") ?>">
           <div class="row align-items-center">
             <div class="col-lg-5">
               <div class="d-md-flex align-items-center">
