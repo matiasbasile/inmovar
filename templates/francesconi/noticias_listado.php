@@ -134,7 +134,7 @@ $mes_month = array(
 
                     <?php
                       foreach ($categorias as $cat) {
-                        if($cat->nombre != "Sobre mi"){
+                        if($cat->nombre != "Sobre mi" && $cat->nombre != "Equipo"){
                           array_push($aux, $cat->nombre);
                         }
                       }
