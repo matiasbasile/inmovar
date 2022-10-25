@@ -82,7 +82,9 @@ $mes_month = array(
         position: static;
       }
 
-      select{margin-left: 0px !important;}
+      select {
+        margin-left: 0px !important;
+      }
 
 
     }
@@ -124,9 +126,18 @@ $mes_month = array(
                 <label for="" style="font-weight: bold;">FILTRAR POR CATEGORÍA:</label>
                 <div class="select-inner">
                   <select class="round" name="categoria" id="categoria">
-                    <?php $categorias = $entrada_model->get_subcategorias(0,array(
+                    <?php $categorias = $entrada_model->get_subcategorias(0, array(
                       "not_in" => array("1679, 1680")
                     )) ?>
+
+                    <?php
+                    $val = "Equipo";
+                    $key = array_search($val, $categorias, true);
+                    if ($key !== false) {
+                      array_splice($categorias, $key, 1);
+                    }
+                    ?>
+
                     <?php print_r($categorias) ?>
                     <?php foreach ($categorias as $vc) { ?>
                       <option <?php echo $vc->nombre == $categoria ? "selected" : "" ?> value="<?php echo $vc->nombre ?>"><?php echo $vc->nombre ?></option>
