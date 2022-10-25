@@ -6,7 +6,13 @@ include_once("includes/init.php");
 $page = isset($_GET["page"]) ? intval($_GET["page"]) : 0;
 $offset = isset($_GET["offset"]) ? intval($_GET["offset"]) : 2;
 $categoria = isset($_GET["categoria"]) ? $_GET["categoria"] : "";
-$orden = isset($_GET["order_by"]) ? $_GET["order_by"] : "";
+$fecha = isset($_POST["fecha"]) ? $_POST["fecha"] : "";
+$orden = 1;
+if ($fecha === 'antigua') {
+  $orden = 2;
+} else {
+  $orden = 1;
+}
 $config = array(
   "page" => $page,
   "offset" => $offset,

@@ -20,7 +20,7 @@ function cargar() {
   data['page'] = window.page;
   data['offset'] = 2;
   data['categoria'] = "<?php echo $vc_link_categoria ?>"
-  data['order'] = "<?php echo $orden ?>"
+  data['fecha'] = "<?php echo $fecha ?>"
   $("#cargarMas").text("buscando...");
   $.ajax({
     "url": "<?php echo mklink("web/get_list_entradas/") ?>",
