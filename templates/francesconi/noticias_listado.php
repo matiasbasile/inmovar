@@ -2,6 +2,7 @@
 <?php
 
 $fecha = isset($_POST["fecha"]) ? $_POST["fecha"] : "";
+$categoria = isset($_POST["categoria"]) ? $_POST["categoria"] : "";
 
 $orden = 1;
 if ($fecha === 'antigua') {
@@ -66,6 +67,16 @@ $mes_month = array(
       padding: 10px !important;
     }
 
+    select {
+      margin: 0px !important;
+      border-bottom: 0 !important;
+      margin-left: 20px !important;
+    }
+
+    .select-inner {
+      width: 50%;
+    }
+
     @media(max-width: 768px) {
       .margins {
         position: static;
@@ -101,36 +112,32 @@ $mes_month = array(
       </div>
 
       <div class="comprar-inner">
-        <form method="post" action="<?php echo mklink("entradas/" . basename($url)) ?>">
+        <form method="post" action="https://app.inmovar.com/sandbox/1683/entradas/novedades">
           <div class="row align-items-center">
-            <div class="col-lg-2">
-              <label for="" style="font-weight: bold;">FILTRAR POR CATEGORÍA:</label>
-            </div>
-            <div class="col-lg-2 margins">
-              <div class="select-inner">
-                <select class="round">
-                  <option value="la-plata">La Plata</option>
-                  <?php $localidades = $propiedad_model->get_localidades(); ?>
-                  <?php foreach ($localidades as $localidad) { ?>
-                    <option <?php echo ($localidad->link == $vc_link_localidad) ? "selected" : "" ?> value="<?php echo $localidad->link ?>"><?php echo $localidad->nombre ?></option>
+            <div class="col-lg-5">
+              <div class="d-flex align-items-center">
+                <label for="" style="font-weight: bold;">FILTRAR POR CATEGORÍA:</label>
+                <div class="select-inner">
+                  <?php foreach ($vc_listado as $vc) { ?>
+                    <option <?php echo ($vc->categoria == $categoria) ? "selected" : "" ?> value="<?php echo $vc->categoria ?>"><?php echo $vc->categoria ?></option>
                   <?php } ?>
-                </select>
+                </div>
               </div>
             </div>
-            <div class="col-lg-2">
-              <label for="" style="font-weight: bold;">ORDENAR POR:</label>
-            </div>
-            <div class="col-lg-2 margins">
-              <div class="select-inner">
-                <select class="round" name="fecha" id="fecha">
-                  <option value="reciente" <?php echo $fecha == 'reciente' ? 'selected' : ''; ?>>MÁS NUEVAS A MÁS VIEJAS</option>
-                  <option value="antigua" <?php echo $fecha == 'antigua' ? 'selected' : ''; ?>>MÁS VIEJAS A MÁS NUEVAS</option>
-                </select>
+            <div class="col-lg-5">
+              <div class="d-flex align-items-center">
+                <label for="" style="font-weight: bold;">ORDENAR POR:</label>
+                <div class="select-inner">
+                  <select class="round" name="fecha" id="fecha">
+                    <option value="reciente">MÁS NUEVAS A MÁS VIEJAS</option>
+                    <option value="antigua">MÁS VIEJAS A MÁS NUEVAS</option>
+                  </select>
+                </div>
               </div>
             </div>
             <div class="col-lg-2">
               <div>
-                <button type="submit" class="fill-btn" class="w-100">filtrar</button>
+                <button type="submit" class="fill-btn">filtrar</button>
               </div>
             </div>
           </div>
