@@ -119,19 +119,15 @@ $mes_month = array(
 
       <?php $cat_link = strtolower($categoria) ?>
       <div class="comprar-inner">
-        <form method="post" action="<?php echo $categoria == "" ? mklink("entradas/") : mklink("entradas/$cat_link") ?>">
+        <form method="post" action="<?php echo mklink("entradas/$cat_link") ?>">
           <div class="row align-items-center">
             <div class="col-lg-5">
               <div class="d-md-flex align-items-center">
                 <label for="" style="font-weight: bold;">FILTRAR POR CATEGORÍA:</label>
                 <div class="select-inner">
                   <select class="round" name="categoria" id="categoria">
-                    <?php $categorias = $entrada_model->get_subcategorias(0, array(
-                      "not_in" => array("1679, 1680")
-                    )) ?>
-
+                    <?php $categorias = $entrada_model->get_subcategorias(0) ?>
                     <?php $aux = array() ?>
-
                     <?php
                       foreach ($categorias as $cat) {
                         if($cat->nombre != "Sobre mi" && $cat->nombre != "Equipo"){
