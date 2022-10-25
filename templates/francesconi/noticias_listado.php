@@ -81,6 +81,10 @@ $mes_month = array(
       .margins {
         position: static;
       }
+
+      select{margin-left: 0px !important;}
+
+      
     }
   </style>
 </head>
@@ -115,7 +119,7 @@ $mes_month = array(
         <form method="post" action="https://app.inmovar.com/sandbox/1683/entradas/novedades">
           <div class="row align-items-center">
             <div class="col-lg-5">
-              <div class="d-flex align-items-center">
+              <div class="d-md-flex align-items-center">
                 <label for="" style="font-weight: bold;">FILTRAR POR CATEGORÍA:</label>
                 <div class="select-inner">
                   <select class="round" name="categoria" id="categoria">
@@ -127,7 +131,7 @@ $mes_month = array(
               </div>
             </div>
             <div class="col-lg-5">
-              <div class="d-flex align-items-center">
+              <div class="d-md-flex align-items-center">
                 <label for="" style="font-weight: bold;">ORDENAR POR:</label>
                 <div class="select-inner">
                   <select class="round" name="fecha" id="fecha">
