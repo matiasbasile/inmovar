@@ -136,7 +136,7 @@ $mes_month = array(
                     ?>
 
                     <?php foreach ($aux as $vc) { ?>
-                      <option <?php echo $vc == $categoria ? "selected" : "" ?> value="<?php echo $vc ?>"><?php echo $vc ?></option>
+                      <option <?php echo $vc == $categoria ? "selected" : "" ?> value="<?php echo strtolower($vc) ?>"><?php echo strtolower ($vc) ?></option>
                     <?php } ?>
                   </select>
                 </div>
