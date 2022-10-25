@@ -125,7 +125,6 @@ $mes_month = array(
                 <div class="select-inner">
                   <select class="round" name="categoria" id="categoria">
                     <?php $categorias = $entrada_model->get_subcategorias(0) ?>
-                    <?php print_r($categorias) ?>
                     <?php foreach ($categorias as $vc) { ?>
                       <option <?php echo $vc->nombre == $categoria ? "selected" : "" ?> value="<?php echo $vc->nombre ?>"><?php echo $vc->nombre ?></option>
                     <?php } ?>
@@ -165,7 +164,7 @@ $mes_month = array(
                         <img src="assets/images/icons/icon-15.png" alt="Icon">
                       </a>
                     </span>
-                    <a href="#0" class="fill-btn fill-btn-solidarias"><?php echo $vc->categoria ?></a>
+                    <a href="#0" class="fill-btn fill-btn-solidarias"><?php echo $p->categoria ?></a>
                     <a href="<?php echo mklink($p->link) ?>">
                       <img src="<?php echo $p->path ?>" alt="<?php echo $p->titulo ?>">
                     </a>
