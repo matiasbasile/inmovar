@@ -3,7 +3,6 @@
 
 $fecha = isset($_POST["fecha"]) ? $_POST["fecha"] : "";
 $categoria = isset($_POST["categoria"]) ? $_POST["categoria"] : "";
-echo "CATEGORIA: ".$categoria;
 $orden = 1;
 if ($fecha === 'antigua') {
   $orden = 2;
@@ -215,14 +214,10 @@ $mes_month = array(
 
   <script>
     $('#filter-form').submit(function(e) {
-      console.log("llega form submit");
       var link = '<?php echo mklink("entradas/") ?>';
       link += $("#categoria").val().toLowerCase(); 
       $('#filter-form').attr('action', link);
-      console.log(link);
     });
-
-
   </script>
 
 </body>
