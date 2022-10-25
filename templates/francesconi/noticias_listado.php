@@ -216,7 +216,7 @@ $mes_month = array(
   <script>
     $('#filter-form').submit(function(e) {
       console.log("llega form submit");
-      var link = <?php echo mklink("entradas/") ?>
+      var link = '<?php echo mklink("entradas/") ?>';
       link += $("#categoria").val().toLowerCase(); 
       $('#filter-form').attr('action', link);
       console.log(link);
