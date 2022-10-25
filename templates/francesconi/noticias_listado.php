@@ -2,7 +2,7 @@
 <?php
 
 $fecha = isset($_POST["fecha"]) ? $_POST["fecha"] : "";
-$categoria = isset($_GET["categoria"]) ? $_GET["categoria"] : "";
+$categoria = isset($_POST["categoria"]) ? $_POST["categoria"] : "";
 
 $orden = 1;
 if ($fecha === 'antigua') {
