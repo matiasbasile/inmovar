@@ -84,7 +84,7 @@ $mes_month = array(
 
       select{margin-left: 0px !important;}
 
-      
+
     }
   </style>
 </head>
@@ -123,8 +123,11 @@ $mes_month = array(
                 <label for="" style="font-weight: bold;">FILTRAR POR CATEGORÍA:</label>
                 <div class="select-inner">
                   <select class="round" name="categoria" id="categoria">
-                    <?php foreach ($vc_listado as $vc) { ?>
-                      <option <?php echo ($vc->categoria == $categoria) ? "selected" : "" ?> value="<?php echo $vc->categoria ?>"><?php echo $vc->categoria ?></option>
+                    <?php $categorias = $entrada_model->get_list(array(
+                      "from_link_categoria" => strtolower($categoria)
+                    )) ?>
+                    <?php foreach ($categorias as $vc) { ?>
+                      <option <?php echo $vc->categoria == $categoria ? "selected" : "" ?> value="<?php echo $vc->categoria ?>"><?php echo $vc->categoria ?></option>
                     <?php } ?>
                   </select>
                 </div>
@@ -162,7 +165,7 @@ $mes_month = array(
                         <img src="assets/images/icons/icon-15.png" alt="Icon">
                       </a>
                     </span>
-                    <a href="#0" class="fill-btn fill-btn-solidarias">solidarias</a>
+                    <a href="#0" class="fill-btn fill-btn-solidarias"><?php echo $vc->categoria ?></a>
                     <a href="<?php echo mklink($p->link) ?>">
                       <img src="<?php echo $p->path ?>" alt="<?php echo $p->titulo ?>">
                     </a>
