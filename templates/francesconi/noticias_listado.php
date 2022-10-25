@@ -130,15 +130,17 @@ $mes_month = array(
                       "not_in" => array("1679, 1680")
                     )) ?>
 
+                    <?php $aux = array() ?>
+
                     <?php
-                    $val = "Equipo";
-                    $key = array_search($val, $categorias, true);
-                    if ($key !== false) {
-                      array_splice($categorias, $key, 1);
-                    }
+                      foreach ($categorias as $cat) {
+                        if($cat->nombre != "Sobre mi"){
+                          array_push($aux, $cat->nombre);
+                        }
+                      }
+                      print_r($aux);
                     ?>
 
-                    <?php print_r($categorias) ?>
                     <?php foreach ($categorias as $vc) { ?>
                       <option <?php echo $vc->nombre == $categoria ? "selected" : "" ?> value="<?php echo $vc->nombre ?>"><?php echo $vc->nombre ?></option>
                     <?php } ?>
