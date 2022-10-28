@@ -23,7 +23,8 @@ $config = array(
   "order_by" => $order_by,
 );
 
-$mas_entradas = $entrada_model->get_list(array($config));
+// $mas_entradas = $entrada_model->get_list(array($config));
+extract($propiedad_model->get_variables($config));
 
 $mes_month = array(
   1 => 'Enero',
@@ -40,7 +41,7 @@ $mes_month = array(
   12 => 'Diciembre',
 );
 
-foreach ($mas_entradas as $ent) { ?>
+foreach ($vc_listado as $ent) { ?>
   <div class="col-lg-4 col-md-6">
     <div class="noved-card">
       <div class="noved-warp">
