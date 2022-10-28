@@ -129,15 +129,15 @@ $mes_month = array(
                     <?php $categorias = $entrada_model->get_subcategorias(0) ?>
                     <?php $aux = array() ?>
                     <?php
-                      foreach ($categorias as $cat) {
-                        if($cat->nombre != "Sobre mi" && $cat->nombre != "Equipo"){
-                          array_push($aux, $cat->nombre);
-                        }
+                    foreach ($categorias as $cat) {
+                      if ($cat->nombre != "Sobre mi" && $cat->nombre != "Equipo") {
+                        array_push($aux, $cat->nombre);
                       }
+                    }
                     ?>
 
                     <?php foreach ($aux as $vc) { ?>
-                      <option <?php echo (strtolower($vc) == strtolower($categoria)) ? "selected" : "" ?> value="<?php echo strtolower($vc) ?>"><?php echo strtolower ($vc) ?></option>
+                      <option <?php echo (strtolower($vc) == strtolower($categoria)) ? "selected" : "" ?> value="<?php echo strtolower($vc) ?>"><?php echo strtolower($vc) ?></option>
                     <?php } ?>
                   </select>
                 </div>
@@ -201,9 +201,11 @@ $mes_month = array(
           </div>
         </div>
       </div>
-      <div class="text-center">
-        <button onclick="cargar()" id="cargarMas" class="fill-btn">ver más</button>
-      </div>
+      <?php if (sizeof($vc_listado) < 6) { ?>
+        <div class="text-center">
+          <button onclick="cargar()" id="cargarMas" class="fill-btn">ver más</button>
+        </div>
+      <?php } ?>
     </div>
   </section>
 
@@ -218,7 +220,7 @@ $mes_month = array(
   <script>
     $('#filter-form').submit(function(e) {
       var link = '<?php echo mklink("entradas/") ?>';
-      link += $("#categoria").val().toLowerCase(); 
+      link += $("#categoria").val().toLowerCase();
       $('#filter-form').attr('action', link);
     });
   </script>
