@@ -1,6 +1,6 @@
 <script>
-window.enviando = 1;
-window.page = 0;
+window.enviando = 0;
+window.page = 1;
 window.marca = true;
 
 function cargar() {
