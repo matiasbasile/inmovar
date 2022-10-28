@@ -201,7 +201,7 @@ $mes_month = array(
           </div>
         </div>
       </div>
-      <?php if (sizeof($vc_listado) < 6) { ?>
+      <?php if (sizeof($vc_listado) > 6) { ?>
         <div class="text-center">
           <button onclick="cargar()" id="cargarMas" class="fill-btn">ver más</button>
         </div>
