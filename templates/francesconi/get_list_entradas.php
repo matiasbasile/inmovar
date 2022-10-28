@@ -23,14 +23,7 @@ $config = array(
   "order_by" => $order_by,
 );
 
-$mas_entradas = $entrada_model->get_list(array(
-  "page" => $page,
-  "offset" => $offset,
-  "from_link_categoria" => $categoria,
-  "order_by" => $order_by,
-));
-
-print_r($mas_entradas);
+$mas_entradas = $entrada_model->get_list(array($config));
 
 $mes_month = array(
   1 => 'Enero',
