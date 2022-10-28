@@ -41,8 +41,6 @@ $mes_month = array(
   12 => 'Diciembre',
 );
 
-print_r($vc_listado);
-
 foreach ($vc_listado as $ent) { ?>
   <div class="col-lg-4 col-md-6">
     <div class="noved-card">
