@@ -25,7 +25,6 @@ $config = array(
 
 // $mas_entradas = $entrada_model->get_list(array($config));
 extract($entrada_model->get_variables($config));
-echo "Categoria: " . $categoria;
 $mes_month = array(
   1 => 'Enero',
   2 => 'Febrero',
@@ -40,6 +39,9 @@ $mes_month = array(
   11 => 'Noviembre',
   12 => 'Diciembre',
 );
+
+echo "Categoria: " . $categoria;
+
 
 foreach ($vc_listado as $ent) { ?>
   <div class="col-lg-4 col-md-6">
