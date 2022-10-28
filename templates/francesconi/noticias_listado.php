@@ -112,7 +112,7 @@ $mes_month = array(
     <div class="container">
       <div class="mis-content">
         <h2 class="small-title">
-          NOVEDADES <span>
+          <?php echo $vc_listado[0]->categoria ?> <span>
             <?php echo $vc_total_resultados ?> Resultados de búsqueda</span>
         </h2>
       </div>
@@ -148,8 +148,8 @@ $mes_month = array(
                 <label for="" style="font-weight: bold;">ORDENAR POR:</label>
                 <div class="select-inner">
                   <select class="round" name="fecha" id="fecha">
-                    <option value="" <?php echo ($fecha == "reciente") ? "selected" : "" ?>>MÁS NUEVAS A MÁS VIEJAS</option>
-                    <option value="" <?php echo ($fecha == "antigua") ? "selected" : "" ?>>MÁS VIEJAS A MÁS NUEVAS</option>
+                    <option value="reciente" <?php echo ($fecha == "reciente") ? "selected" : "" ?>>MÁS NUEVAS A MÁS VIEJAS</option>
+                    <option value="antigua" <?php echo ($fecha == "antigua") ? "selected" : "" ?>>MÁS VIEJAS A MÁS NUEVAS</option>
                   </select>
                 </div>
               </div>

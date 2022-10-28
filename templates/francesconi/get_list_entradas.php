@@ -29,6 +29,7 @@ $mas_entradas = $entrada_model->get_list(array(
   "from_link_categoria" => $categoria,
   "order" => $order_by,
 ));
+
 $mes_month = array(
   1 => 'Enero',
   2 => 'Febrero',
