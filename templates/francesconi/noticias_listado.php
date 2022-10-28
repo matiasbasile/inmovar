@@ -137,7 +137,7 @@ $mes_month = array(
                     ?>
 
                     <?php foreach ($aux as $vc) { ?>
-                      <option <?php echo ($vc == $categoria) ? "selected" : "" ?> value="<?php echo strtolower($vc) ?>"><?php echo strtolower ($vc) ?></option>
+                      <option <?php echo (strtolower($vc) == strtolower($categoria)) ? "selected" : "" ?> value="<?php echo strtolower($vc) ?>"><?php echo strtolower ($vc) ?></option>
                     <?php } ?>
                   </select>
                 </div>
@@ -181,7 +181,7 @@ $mes_month = array(
                     </a>
                   </div>
                   <div class="noved-inner">
-                    <a href="<?php echo mklink($n->link) ?>" class="noved-redirect">
+                    <a href="<?php echo mklink($p->link) ?>" class="noved-redirect">
                       <h2 class="noved-redirect"><?php echo $p->titulo ?></h2>
                     </a>
                     <div class="noved-inner">
