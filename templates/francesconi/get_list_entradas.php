@@ -20,11 +20,10 @@ $config = array(
   "page" => $page,
   "offset" => $offset,
   "from_link_categoria" => $categoria,
-  "order" => $orden,
+  "order" => $order_by,
 );
 
-// $mas_entradas = $entrada_model->get_list(array($config));
-extract($entrada_model->get_variables($config));
+$mas_entradas = $entrada_model->get_list(array($config));
 $mes_month = array(
   1 => 'Enero',
   2 => 'Febrero',
