@@ -1,5 +1,5 @@
 <script>
-window.enviando = 0;
+window.enviando = 1;
 window.page = 0;
 window.marca = true;
 

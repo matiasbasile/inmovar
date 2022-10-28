@@ -3,7 +3,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 include_once("includes/init.php");
-$page = isset($_GET["page"]) ? intval($_GET["page"]) : 0;
+$page = isset($_GET["page"]) ? intval($_GET["page"]) : 1;
 $offset = isset($_GET["offset"]) ? intval($_GET["offset"]) : 6;
 $categoria = isset($_GET["categoria"]) ? $_GET["categoria"] : "";
 $fecha = isset($_POST["fecha"]) ? $_POST["fecha"] : "";
@@ -16,16 +16,10 @@ if ($fecha === 'antigua') {
   $order_by = "A.fecha DESC ";
 }
 
-$config = array(
-  "page" => $page,
-  "offset" => $offset,
-  "from_link_categoria" => $categoria,
-  "order" => $order_by,
-);
-
 $mas_entradas = $entrada_model->get_list(array(
   "page" => $page,
-  "offset" => $offset,
+  "offset" => $page * $offset,
+  "limit" => ($$page * $offset-6),
   "from_link_categoria" => $categoria,
   "order" => $order_by,
 ));
