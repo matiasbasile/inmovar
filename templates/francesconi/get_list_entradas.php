@@ -40,9 +40,6 @@ $mes_month = array(
   12 => 'Diciembre',
 );
 
-echo "Categoria: " . $categoria;
-
-
 foreach ($vc_listado as $ent) { ?>
   <div class="col-lg-4 col-md-6">
     <div class="noved-card">
