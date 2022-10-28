@@ -25,6 +25,7 @@ $config = array(
 
 // $mas_entradas = $entrada_model->get_list(array($config));
 extract($entrada_model->get_variables($config));
+echo "Categoria: " . $categoria;
 
 $mes_month = array(
   1 => 'Enero',

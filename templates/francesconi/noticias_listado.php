@@ -201,7 +201,7 @@ $mes_month = array(
           </div>
         </div>
       </div>
-      <div class="text-center <?php echo $vc_total_resultados>6 ? "" : "d-none" ?>">
+      <div class="text-center">
         <button onclick="cargar()" id="cargarMas" class="fill-btn">ver más</button>
       </div>
     </div>
