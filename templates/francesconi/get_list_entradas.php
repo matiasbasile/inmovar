@@ -20,7 +20,7 @@ $config = array(
   "page" => $page,
   "offset" => $offset,
   "from_link_categoria" => $categoria,
-  "order_by" => $order_by,
+  "order" => $orden,
 );
 
 // $mas_entradas = $entrada_model->get_list(array($config));
