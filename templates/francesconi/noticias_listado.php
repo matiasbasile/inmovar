@@ -202,7 +202,7 @@ $mes_month = array(
         </div>
       </div>
       <div class="text-center">
-        <a onclick="cargar()" id="cargarMas" class="fill-btn">ver más</a>
+        <button onclick="cargar()" id="cargarMas" class="fill-btn">ver más</button>
       </div>
     </div>
   </section>
