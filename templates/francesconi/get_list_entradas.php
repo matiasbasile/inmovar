@@ -23,7 +23,7 @@ $config = array(
   "order" => $order_by,
 );
 
-$mas_entradas = $entrada_model->get_list(array($config));
+$mas_entradas = $entrada_model->get_list($config);
 $mes_month = array(
   1 => 'Enero',
   2 => 'Febrero',
