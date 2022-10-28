@@ -39,7 +39,7 @@ $mes_month = array(
   12 => 'Diciembre',
 );
 
-foreach ($vc_listado as $ent) { ?>
+foreach ($mas_entradas as $ent) { ?>
   <div class="col-lg-4 col-md-6">
     <div class="noved-card">
       <div class="noved-warp">
