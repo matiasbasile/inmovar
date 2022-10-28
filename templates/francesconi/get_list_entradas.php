@@ -19,7 +19,7 @@ if ($fecha === 'antigua') {
 $mas_entradas = $entrada_model->get_list(array(
   "page" => $page,
   "offset" => $page * $offset,
-  "limit" => ($$page * $offset-6),
+  "limit" => ($page * $offset-6),
   "from_link_categoria" => $categoria,
   "order" => $order_by,
 ));
