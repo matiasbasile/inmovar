@@ -24,7 +24,7 @@ $config = array(
 );
 
 // $mas_entradas = $entrada_model->get_list(array($config));
-extract($propiedad_model->get_variables($config));
+extract($entrada_model->get_variables($config));
 
 $mes_month = array(
   1 => 'Enero',
