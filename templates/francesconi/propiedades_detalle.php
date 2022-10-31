@@ -136,6 +136,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
   </section>
 
   <!-- Map Services -->
+  <?php print_r($servicios) ?>
   <section class="map-services">
     <div class="container">
       <div class="description-content">
@@ -153,12 +154,37 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
           </li>
           <li>
             <a href="javascript:void(0);">
+              <?php echo $propiedad->servicios_asfalto == 1 ? 'Asfalto' : '' ?>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);">
+              <?php echo $propiedad->servicios_gas == 1 ? 'Gas Natural' : '' ?>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);">
               <?php echo $propiedad->servicios_cloacas == 1 ? 'Cloacas' : '' ?>
             </a>
           </li>
           <li>
             <a href="javascript:void(0);">
               <?php echo $propiedad->servicios_aire_acondicionado == 1 ? 'Aire Acondicionado' : '' ?>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);">
+              <?php echo $propiedad->servicios_cable == 1 ? 'TV Cable' : '' ?>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);">
+              <?php echo $propiedad->servicios_telefono == 1 ? 'Teléfono' : '' ?>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);">
+              <?php echo $propiedad->servicios_internet == 1 ? 'WiFi' : '' ?>
             </a>
           </li>
         </ul>
