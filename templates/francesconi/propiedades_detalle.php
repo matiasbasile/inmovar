@@ -136,7 +136,6 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
   </section>
 
   <!-- Map Services -->
-  <?php print_r($propiedad) ?>
   <section class="map-services">
     <div class="container">
       <div class="description-content">
@@ -361,6 +360,13 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
 
   <script type="text/javascript">
     $(".fancybox").fancybox();
+
+    let services = document.querySelector(".description-content");
+    let ul = document.querySelector("ul");
+    if(ul.children.length === 0){
+      services.style.display = "none";
+    }
+
   </script>
 
 </body>
