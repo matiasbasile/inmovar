@@ -186,7 +186,7 @@ $mes_month = array(
                   </div>
                   <div class="noved-inner">
                     <a href="<?php echo mklink($p->link) ?>" class="noved-redirect">
-                      <h2 class="noved-redirect"><?php echo $p->titulo ?></h2>
+                      <h3 class="noved-redirect"><?php echo $p->titulo ?></h3>
                     </a>
                     <div class="noved-inner">
                       <?php
