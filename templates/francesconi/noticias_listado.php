@@ -76,17 +76,6 @@ $mes_month = array(
       width: 50%;
     }
 
-    .btn-categorias {
-      padding: 10px 22px !important;
-      min-width: 120px;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--brand-clr1);
-      background-color: var(--brand-clrbg);
-    }
-
     @media(max-width: 768px) {
       .margins {
         position: static;
@@ -192,7 +181,7 @@ $mes_month = array(
                     <span>
                       <img src="assets/images/icons/icon-15.png" alt="Icon">
                     </span>
-                    <b class="btn-categorias"><?php echo $p->categoria ?></b>
+                    <b class="fill-btn"><?php echo $p->categoria ?></b>
                     <img src="<?php echo $p->path ?>" alt="Noved">
                   </a>
                   <div class="noved-inner">
