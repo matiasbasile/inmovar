@@ -428,16 +428,22 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="form-group">
               <label class="control-label"><?php echo lang(array("es"=>"Teléfono","en"=>"Phone ")) ?></label>
               <input type="text" name="telefono_web" class="form-control" value="<%= telefono_web %>"/>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="form-group">
               <label class="control-label"><?php echo lang(array("es"=>"Teléfono 2","en"=>"Phone two")) ?></label>
               <input type="text" name="telefono_2" class="form-control" value="<%= telefono_2 %>"/>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label"><?php echo lang(array("es"=>"Teléfono 3","en"=>"Phone two")) ?></label>
+              <input type="text" name="telefono_3" class="form-control" value="<%= telefono_3 %>"/>
             </div>
           </div>
         </div>
