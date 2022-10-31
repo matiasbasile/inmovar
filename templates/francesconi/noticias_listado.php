@@ -54,7 +54,6 @@ $mes_month = array(
 
     select {
       margin: 0px !important;
-      border-bottom: 0 !important;
     }
 
     .margins {
@@ -69,7 +68,6 @@ $mes_month = array(
 
     select {
       margin: 0px !important;
-      border-bottom: 0 !important;
       margin-left: 20px !important;
     }
 

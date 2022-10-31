@@ -4,6 +4,24 @@
 
 <head>
   <?php include 'includes/head.php' ?>
+
+  <style>
+
+    .fran-card img {
+      width: 296px;
+      height: 276px;
+      object-fit: fill;
+    }
+
+    @media(max-width:768px){
+      .fran-card img {
+        max-width: 100%;
+        object-fit: cover;
+      }
+    }
+
+  </style>
+
 </head>
 
 <body>
