@@ -64,6 +64,7 @@ $mes_month = array(
     #cargarMas, #filtrar-btn{
       width: 100% !important;
       padding: 10px !important;
+      max-width: 0px;
     }
 
     select {
