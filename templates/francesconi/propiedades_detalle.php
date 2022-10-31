@@ -196,25 +196,25 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
             <li>
               <a href="javascript:void(0);">
                 Cubierta
-                <span><?php echo ($propiedad->superficie_cubierta != 0) ? $propiedad->superficie_cubierta : "-" ?></span>
+                <span><?php echo ($propiedad->superficie_cubierta != 0) ? $propiedad->superficie_cubierta : " " ?></span>
               </a>
             </li>
             <li>
               <a href="javascript:void(0);">
                 Descubierta
-                <span><?php echo ($propiedad->superficie_descubierta != 0) ? $propiedad->superficie_descubierta : "-" ?></span>
+                <span><?php echo ($propiedad->superficie_descubierta != 0) ? $propiedad->superficie_descubierta : " " ?></span>
               </a>
             </li>
             <li>
               <a href="javascript:void(0);">
                 Semicubierta
-                <span><?php echo ($propiedad->superficie_semicubierta != 0) ? $propiedad->superficie_semicubierta : "-" ?></span>
+                <span><?php echo ($propiedad->superficie_semicubierta != 0) ? $propiedad->superficie_semicubierta : " " ?></span>
               </a>
             </li>
             <li>
               <a href="javascript:void(0);">
                 Total
-                <span><?php echo ($propiedad->superficie_total != 0) ? $propiedad->superficie_total : "-" ?></span>
+                <span><?php echo ($propiedad->superficie_total != 0) ? $propiedad->superficie_total : " " ?></span>
               </a>
             </li>
           </ul>
@@ -226,31 +226,31 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
           <li>
             <a href="javascript:void(0);">
               Dormitorios: <span><?php echo $propiedad->dormitorios ?></span><br>
-              Living Comedor: <span> <?php echo ($propiedad->living_comedor == 1)  ? $propiedad->living_comedor : "-" ?></span><br>
-              Gimnasio: <span> <?php echo ($propiedad->gimnasio == 1)  ? "Sí" : "-" ?> </span><br>
-              Vigilancia: <span> <?php echo ($propiedad->vigilancia == 1)  ? "Sí" : "-" ?> </span><br>
+              Living Comedor: <span> <?php echo ($propiedad->living_comedor == 1)  ? $propiedad->living_comedor : " " ?></span><br>
+              Gimnasio: <span> <?php echo ($propiedad->gimnasio == 1)  ? "Sí" : " " ?> </span><br>
+              Vigilancia: <span> <?php echo ($propiedad->vigilancia == 1)  ? "Sí" : " " ?> </span><br>
             </a>
           </li>
           <li>
             <a href="javascript:void(0);">
-              Baños: <span> <?php echo ($propiedad->banios == 1)  ? $propiedad->banios : "-" ?></span><br>
-              Baño Accesible: <span> <?php echo ($propiedad->accesible == 1)  ? "Sí" : "-" ?></span><br>
-              Cocheras: <span> <?php echo ($propiedad->cocheras == 1)  ? $propiedad->cocheras : "-" ?></span><br>
-              Piscina: <span> <?php echo ($propiedad->piscina == 1)  ? "Sí" : "-" ?></span><br>
+              Baños: <span> <?php echo ($propiedad->banios == 1)  ? $propiedad->banios : " " ?></span><br>
+              Baño Accesible: <span> <?php echo ($propiedad->accesible == 1)  ? "Sí" : " " ?></span><br>
+              Cocheras: <span> <?php echo ($propiedad->cocheras == 1)  ? $propiedad->cocheras : " " ?></span><br>
+              Piscina: <span> <?php echo ($propiedad->piscina == 1)  ? "Sí" : " " ?></span><br>
             </a>
           </li>
           <li>
             <a href="javascript:void(0);">
-              Patio: <span> <?php echo ($propiedad->patio == 1)  ? "Sí" : "-" ?></span><br>
-              Balcón: <span> <?php echo ($propiedad->balcon == 1)  ? "Sí" : "-" ?></span><br>
-              Parrila: <span> <?php echo ($propiedad->parrilla == 1)  ? "Sí" : "-" ?></span><br>
+              Patio: <span> <?php echo ($propiedad->patio == 1)  ? "Sí" : " " ?></span><br>
+              Balcón: <span> <?php echo ($propiedad->balcon == 1)  ? "Sí" : " " ?></span><br>
+              Parrila: <span> <?php echo ($propiedad->parrilla == 1)  ? "Sí" : " " ?></span><br>
             </a>
           </li>
           <li>
             <a href="javascript:void(0);">
-              Terraza: <span> <?php echo ($propiedad->terraza == 1)  ? "Sí" : "-" ?></span><br>
-              Lavadero: <span> <?php echo ($propiedad->lavadero == 1)  ? "Sí" : "-" ?></span><br>
-              Sala de Juegos: <span> <?php echo ($propiedad->sala_juegos == 1)  ? "Sí" : "-" ?></span><br>
+              Terraza: <span> <?php echo ($propiedad->terraza == 1)  ? "Sí" : " " ?></span><br>
+              Lavadero: <span> <?php echo ($propiedad->lavadero == 1)  ? "Sí" : " " ?></span><br>
+              Sala de Juegos: <span> <?php echo ($propiedad->sala_juegos == 1)  ? "Sí" : " " ?></span><br>
             </a>
           </li>
         </ul>
@@ -271,7 +271,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
           <?php if ($propiedad->valor_expensas != 0) { ?>
             <li><a href="javascript:void(0);">Expensas <span>$<?php echo $propiedad->valor_expensas ?></span></a></li>
           <?php }else{ ?>
-            <li><a href="javascript:void(0);">Expensas <span>$<?php echo "-" ?></span></a></li>
+            <li><a href="javascript:void(0);">Expensas <span>$<?php echo " " ?></span></a></li>
           <?php } ?>
         </ul>
       </div>
