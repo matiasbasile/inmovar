@@ -220,6 +220,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
           </ul>
         </div>
       <?php } ?>
+      <?php print_r($propiedad) ?>
       <div class="description-content second-1">
         <h4>AMBIENTES</h4>
         <ul>
