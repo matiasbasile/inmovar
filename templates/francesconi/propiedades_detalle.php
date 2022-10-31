@@ -274,9 +274,11 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
         </ul> -->
         <ul>
           <?php foreach ($ambientes as $key => $value) { ?>
-            <li class="<?php echo $value == 1 ? 'd-none' : "" ?>">
-              <a href="javascript:void(0);"><?php echo $value == 1 ? $key : "" ?></a>
-            </li>
+            <?php if ($value == 1) { ?>
+              <li>
+                <a href="javascript:void(0);"><?php echo $key ?></a>
+              </li>
+            <?php } ?>
           <?php } ?>
         </ul>
       </div>
