@@ -62,7 +62,7 @@ $mes_month = array(
       left: -40px;
     }
 
-    .equipo-mis .fill-btn {
+    #cargarMas, #filtrar-btn{
       width: 100% !important;
       padding: 10px !important;
     }
@@ -156,7 +156,7 @@ $mes_month = array(
             </div>
             <div class="col-lg-2">
               <div>
-                <button type="submit" class="fill-btn">filtrar</button>
+                <button type="submit" id="filtrar-btn" class="fill-btn">filtrar</button>
               </div>
             </div>
           </div>
