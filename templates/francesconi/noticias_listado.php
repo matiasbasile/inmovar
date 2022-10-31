@@ -43,7 +43,7 @@ $mes_month = array(
     }
 
     <?php } ?>.equipo-mis .fill-btn-solidarias {
-      min-width: 120px;
+      padding: 10px 22px !important;
       font-size: 12px;
       font-weight: 600;
       letter-spacing: 3px;
@@ -102,7 +102,7 @@ $mes_month = array(
   <section class="equipo-banner">
     <div class="container">
       <div class="equipo-content">
-        <h1 class="banner-title"><?php echo $vc_listado[0]->categoria ?></h1>
+        <h1 class="banner-title">novedades</h1>
       </div>
     </div>
   </section>
@@ -112,7 +112,7 @@ $mes_month = array(
     <div class="container">
       <div class="mis-content">
         <h2 class="small-title">
-          <?php echo $vc_listado[0]->categoria ?> <span>
+          novedades <span>
             <?php echo $vc_total_resultados ?> Resultados de búsqueda</span>
         </h2>
       </div>
