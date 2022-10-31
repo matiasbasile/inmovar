@@ -57,7 +57,7 @@
         {
           $res = str_replace(array(
             '"',
-            ',', ';', '<', '>', '(', ')', '-'
+            ',', ';', '+', '<', '>', '(', ')', '-'
           ), '', $tel);
           $string = str_replace(' ', '', $res);
           return $string;

@@ -1,4 +1,5 @@
 <?php $slider = $web_model->get_slider(array("clave"=>"slider_1")) ?>
+<?php print_r($slider) ?>
 <?php if (!empty($slider)) { ?>
   <section class="francesconi-banner">
     <div class="swiper-container hero-slider">
