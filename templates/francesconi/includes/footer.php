@@ -6,7 +6,7 @@
           <h5>alquileres</h5>
           <p>¿Estas alquilando o queres alquilar? Comunicate para que te ayudemos</p>
           <?php if(!empty($empresa->telefono_2)) { ?>
-           <a href="https://wa.me/<?php echo convertString($empresa->telefono_2) ?>" class="border-btn"><img src="assets/images/icons/icon-7.png" alt="Icon"><?php echo $empresa->telefono_2 ?></a>
+           <a href="https://wa.me/<?php echo convertString($empresa->telefono_2) ?>" class="border-btn" target="_blank" ><img src="assets/images/icons/icon-7.png" alt="Icon"><?php echo $empresa->telefono_2 ?></a>
           <?php } ?>
         </div>
       </div>
@@ -15,7 +15,7 @@
           <h5>ventas</h5>
           <p>¿Estas alquilando o queres alquilar? Comunicate para que te ayudemos</p>
           <?php if(!empty($empresa->telefono)) { ?>
-           <a href="https://wa.me/<?php echo convertString($empresa->telefono) ?>" class="border-btn"><img src="assets/images/icons/icon-7.png" alt="Icon"><?php echo $empresa->telefono ?></a>
+           <a href="https://wa.me/<?php echo convertString($empresa->telefono) ?>" class="border-btn" target="_blank"><img src="assets/images/icons/icon-7.png" alt="Icon"><?php echo $empresa->telefono ?></a>
           <?php } ?>
         </div>
       </div>
@@ -23,7 +23,7 @@
         <div class="footer-content">
           <h5>administración</h5>
           <p>¿Estas alquilando o queres alquilar? Comunicate para que te ayudemos</p>
-          <a href="#0" class="border-btn"><img src="assets/images/icons/icon-7.png" alt="Icon">+54 (221) 546-0441</a>
+          <a href="#0" class="border-btn"><img src="assets/images/icons/icon-7.png" alt="Icon" target="_blank">+54 (221) 546-0441</a>
         </div>
       </div>
     </div>
