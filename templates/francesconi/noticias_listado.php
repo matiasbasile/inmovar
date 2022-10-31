@@ -64,7 +64,6 @@ $mes_month = array(
     #cargarMas, #filtrar-btn{
       width: 100% !important;
       padding: 10px !important;
-      max-width: 0px;
     }
 
     select {
@@ -87,6 +86,10 @@ $mes_month = array(
       }
 
       .select-inner{width: 100%;}
+
+      #cargarMas, #filtrar-btn{
+        max-width: 100%;
+      }
 
     }
   </style>
@@ -145,7 +148,7 @@ $mes_month = array(
               </div>
             </div>
             <div class="col-lg-5">
-              <div class="d-md-flex align-items-center">
+              <div class="d-md-flex align-items-center mt-md-0 mt-4">
                 <label for="" style="font-weight: bold;">ORDENAR POR:</label>
                 <div class="select-inner">
                   <select class="round" name="fecha" id="fecha">
