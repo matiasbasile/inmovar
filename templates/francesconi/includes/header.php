@@ -64,10 +64,10 @@
         }
         ?>
         <?php if (!empty($empresa->telefono)) { ?>
-          <li><a href="https://wa.me/<?php convertString($empresa->telefono) ?>" target="_blank"><span>ventas</span><?php echo "+" . $empresa->telefono ?></a></li>
+          <li><a href="https://wa.me/<?php convertString($empresa->telefono) ?>" target="_blank"><span>ventas</span><?php echo $empresa->telefono ?></a></li>
         <?php } ?>
         <?php if (!empty($empresa->telefono_2)) { ?>
-          <li><a href="https://wa.me/<?php convertString($empresa->telefono_2) ?>" target="_blank"><span>alquileres</span><?php echo "+" . $empresa->telefono_2 ?></a></li>
+          <li><a href="https://wa.me/<?php convertString($empresa->telefono_2) ?>" target="_blank"><span>alquileres</span><?php echo $empresa->telefono_2 ?></a></li>
         <?php } ?>
         <li><a href="#0"><span>administración</span>+54 (221) 546-0441</a></li>
       </ul>
