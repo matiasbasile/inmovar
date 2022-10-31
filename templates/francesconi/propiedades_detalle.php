@@ -220,7 +220,6 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
           </ul>
         </div>
       <?php } ?>
-      <?php print_r($propiedad) ?>
       <?php
       $ambientes = array(
         $propiedad->dormitorios => "Dormitorios <br>",
