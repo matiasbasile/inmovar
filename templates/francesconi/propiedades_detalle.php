@@ -44,9 +44,48 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
   <meta property="og:title" content="<?php echo ($propiedad->nombre); ?>" />
   <meta property="og:description" content="<?php echo str_replace("\n", "", (strip_tags(html_entity_decode($propiedad->texto, ENT_QUOTES)))); ?>" />
   <meta property="og:image" content="<?php echo $propiedad->imagen_full ?>" />
+  <style>
+    ul {
+      display: block;
+    }
+  </style>
 </head>
 
 <body>
+
+  <?php
+
+  $ambientes = array(
+    "Dormitorios <br>" => $propiedad->dormitorios,
+    "Living Comedor <br>" => $propiedad->living_comedor,
+    "Gimnasio <br>" => $propiedad->gimnasio,
+    "Vigilancia <br>" => $propiedad->vigilancia,
+    "Baño <br>" => $propiedad->banios,
+    "Baño Accesible <br>" => $propiedad->accesible,
+    "Cocheras <br>" => $propiedad->cocheras,
+    "Piscina <br>" => $propiedad->piscina,
+    "Patio <br>" => $propiedad->patio,
+    "Balcón <br>" => $propiedad->balcon,
+    "Parrilla <br>" => $propiedad->parrilla,
+    "Terraza <br>" => $propiedad->terraza,
+    "Lavadero <br>" => $propiedad->lavadero,
+    "Sala de Juegos" => $propiedad->sala_juegos,
+  )
+  ?>
+
+  <?php
+  $servicios = array(
+    "Electricidad <br>" => $propiedad->servicios_electricidad,
+    "Agua Corriente <br>" => $propiedad->servicios_agua_corriente,
+    "Asfalto <br>" => $propiedad->servicios_asfalto,
+    "Gas Natural <br>" => $propiedad->servicios_gas,
+    "Cloacas <br>" => $propiedad->servicios_cloacas,
+    "Aire Acondicionado <br>" => $propiedad->servicios_aire_acondicionado,
+    "TV Cable <br>" => $propiedad->servicios_cabe,
+    "Teléfono <br>" => $propiedad->servicios_telefono,
+    "WiFi <br>" => $propiedad->servicios_internet,
+  );
+  ?>
 
   <?php include 'includes/header.php' ?>
 
@@ -141,51 +180,21 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
       <div class="description-content">
         <h4>SERVICIOS</h4>
         <ul>
-          <li>
-            <a href="javascript:void(0);">
-              <?php echo ($propiedad->servicios_electricidad == 1) ? 'Electricidad<br/>' : '' ?>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0);">
-              <?php echo $propiedad->servicios_agua_corriente == 1 ? 'Agua Corriente' : '' ?>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0);">
-              <?php echo $propiedad->servicios_asfalto == 1 ? 'Asfalto' : '' ?>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0);">
-              <?php echo $propiedad->servicios_gas == 1 ? 'Gas Natural' : '' ?>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0);">
-              <?php echo $propiedad->servicios_cloacas == 1 ? 'Cloacas' : '' ?>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0);">
-              <?php echo $propiedad->servicios_aire_acondicionado == 1 ? 'Aire Acondicionado' : '' ?>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0);">
-              <?php echo $propiedad->servicios_cable == 1 ? 'TV Cable' : '' ?>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0);">
-              <?php echo $propiedad->servicios_telefono == 1 ? 'Teléfono' : '' ?>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0);">
-              <?php echo $propiedad->servicios_internet == 1 ? 'WiFi' : '' ?>
-            </a>
-          </li>
+          <?php $k = 0; ?>
+          <?php foreach ($servicios as $key => $value) { ?>
+            <?php if ($value == 1) { ?>
+              <li>
+                <a href="javascript:void(0);"><?php echo $key ?></a>
+              </li>
+              <?php $k++; ?>
+            <?php } ?>
+
+            <?php if ($k == 4) { ?>
+              <?php $k = 0 ?>
+        </ul>
+        <ul>
+        <?php } ?>
+      <?php } ?>
         </ul>
       </div>
 
@@ -220,58 +229,8 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
           </ul>
         </div>
       <?php } ?>
-      <?php
-      $ambientes = array(
-        "Dormitorios <br>" => $propiedad->dormitorios,
-        "Living Comedor <br>" => $propiedad->living_comedor,
-        "Gimnasio <br>" => $propiedad->gimnasio,
-        "Vigilancia <br>" => $propiedad->vigilancia,
-        "Baño <br>" => $propiedad->banios,
-        "Baño Accesible <br>" => $propiedad->accesible,
-        "Cocheras <br>" => $propiedad->cocheras,
-        "Piscina <br>" => $propiedad->piscina,
-        "Patio <br>" => $propiedad->patio,
-        "Balcón <br>" => $propiedad->balcon,
-        "Parrilla <br>" => $propiedad->parrilla,
-        "Terraza <br>" => $propiedad->terraza,
-        "Lavadero <br>" => $propiedad->lavadero,
-        "Sala de Juegos" => $propiedad->sala_juegos,
-      )
-      ?>
       <div class="description-content second-1">
         <h4>AMBIENTES</h4>
-        <!-- <ul>
-          <li>
-            <a href="javascript:void(0);">
-              <?php echo $propiedad->dormitorios ?  "Dormitorios <br>" : "" ?>
-              <?php echo ($propiedad->living_comedor == 1)  ? "Living Comedor <br>" : " " ?>
-              <?php echo ($propiedad->gimnasio == 1)  ? "Gimnasio <br>" : " " ?>
-              <?php echo ($propiedad->vigilancia == 1)  ? "Vigilancia <br>" : " " ?>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0);">
-              <?php echo ($propiedad->banios == 1)  ? "Baño <br>" : " " ?>
-              <?php echo ($propiedad->accesible == 1)  ? "Baño Accesible <br>" : " " ?>
-              <?php echo ($propiedad->cocheras == 1)  ? "Cocheras <br>" : " " ?>
-              <?php echo ($propiedad->piscina == 1)  ? "Piscina <br>" : " " ?>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0);">
-              <?php echo ($propiedad->patio == 1)  ? "Patio <br>" : " " ?>
-              <?php echo ($propiedad->balcon == 1)  ? "Balcón <br>" : " " ?>
-              <?php echo ($propiedad->parrilla == 1)  ? "Parrilla <br>" : " " ?>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0);">
-              <?php echo ($propiedad->terraza == 1)  ? "Terraza <br>" : " " ?>
-              <?php echo ($propiedad->lavadero == 1)  ? "Lavadero" : " " ?>
-              <?php echo ($propiedad->sala_juegos == 1)  ? "Sala de Juegos" : " " ?>
-            </a>
-          </li>
-        </ul> -->
         <ul>
           <?php $i = 0; ?>
           <?php foreach ($ambientes as $key => $value) { ?>
@@ -284,10 +243,10 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
 
             <?php if ($i == 4) { ?>
               <?php $i = 0 ?>
-              </ul>
-              <ul>
-            <?php } ?>
-          <?php } ?>
+        </ul>
+        <ul>
+        <?php } ?>
+      <?php } ?>
         </ul>
       </div>
       <div class="description-content second">
