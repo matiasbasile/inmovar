@@ -77,9 +77,9 @@ $mes_month = array(
     }
 
     .btn-categoria {
-      background: #f23881;
-      color: #fff;
-      font-size: 12px;
+      background: #f23881 !important;
+      color: #fff !important;
+      font-size: 12px !important;
     }
 
     @media(max-width: 768px) {
