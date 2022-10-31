@@ -45,8 +45,8 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
   <meta property="og:description" content="<?php echo str_replace("\n", "", (strip_tags(html_entity_decode($propiedad->texto, ENT_QUOTES)))); ?>" />
   <meta property="og:image" content="<?php echo $propiedad->imagen_full ?>" />
   <style>
-    ul {
-      display: block;
+    .propiedades_servicios ul {
+      display: block !important;
     }
   </style>
 </head>
@@ -177,7 +177,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
   <!-- Map Services -->
   <section class="map-services">
     <div class="container">
-      <div class="description-content">
+      <div class="description-content propiedades_servicios">
         <h4>SERVICIOS</h4>
         <ul>
           <?php $k = 0; ?>
@@ -229,7 +229,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
           </ul>
         </div>
       <?php } ?>
-      <div class="description-content second-1">
+      <div class="description-content second-1 propiedades_servicios">
         <h4>AMBIENTES</h4>
         <ul>
           <?php $i = 0; ?>
