@@ -41,13 +41,17 @@
     <a href="#0" class="toggle-logo"><img src="assets/images/header-logo.png" alt="Logo"></a>
     <ul>
       <li><a href="<?php echo mklink("/") ?>"><img src="assets/images/icons/icon-8.png" alt="Right Arrow"> inicio</a></li>
-      <li><a href="<?php echo mklink("propiedades/novedades") ?>"><img src="assets/images/icons/icon-8.png" alt="Right Arrow"> NOVEDADES</a></li>
+      <li><a href="<?php echo mklink("entradas/novedades") ?>"><img src="assets/images/icons/icon-8.png" alt="Right Arrow"> NOVEDADES</a></li>
       <li><a href="<?php echo mklink("web/contacto") ?>"><img src="assets/images/icons/icon-8.png" alt="Right Arrow"> CONTACTO</a></li>
     </ul>
     <div class="menu-inner">
       <ul>
-        <li><a href="#0"><span>ventas</span>+54 (221) 546-0441</a></li>
-        <li><a href="#0"><span>alquileres</span>+54 (221) 546-0441</a></li>
+        <?php if(!empty($empresa->telefono_1)) { ?>
+          <li><a href="https://wa.me/<?php echo $empresa->telefono_1 ?>"><span>ventas</span>+54 (221) 546-0441</a></li>
+        <?php } ?>
+        <?php if(!empty($empresa->telefono_2)) { ?>
+          <li><a href="https://wa.me/<?php echo $empresa->telefono_2 ?>"><span>alquileres</span>+54 (221) 546-0441</a></li>
+        <?php } ?>
         <li><a href="#0"><span>administración</span>+54 (221) 546-0441</a></li>
       </ul>
     </div>
