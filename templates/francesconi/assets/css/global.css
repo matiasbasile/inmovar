@@ -883,6 +883,7 @@ ul {
 }
 .noved-warp img {
 	transition: all ease 0.5s;
+	aspect-ratio: 4 / 3;
 }
 .noved-warp:hover > img {
 	transform: scale(1.02);
@@ -1666,6 +1667,7 @@ ul {
 }
 .map-section .swiper-slide img {
 	width: 100%;
+	aspect-ratio: 4/3;
 }
 /* Map Ruta */
 .map-ruta {

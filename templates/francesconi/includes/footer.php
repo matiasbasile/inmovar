@@ -199,4 +199,16 @@
   $(".noved_img").height(maximo);
 </script> -->
 
+<script>
+  let img = document.querySelectorAll(".noved_img");
+  for (let i = 0; i < img.length; i++) {
+    if(img[i].height > 302){
+      img[i].style.objectFit = "cover";
+      img[i].style.height = 301;
+      img[i].style.width = "100%";
+    }
+  }
+</script>
+
+
 <?php include("templates/comun/clienapp.php") ?>
