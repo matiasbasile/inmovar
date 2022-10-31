@@ -178,24 +178,26 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
   <section class="map-services">
     <div class="container">
       <div class="description-content propiedades_servicios">
-        <h4>SERVICIOS</h4>
-        <ul>
-          <?php $k = 0; ?>
-          <?php foreach ($servicios as $key => $value) { ?>
-            <?php if ($value == 1) { ?>
-              <li>
-                <a href="javascript:void(0);"><?php echo $key ?></a>
-              </li>
-              <?php $k++; ?>
-            <?php } ?>
+        <div>
+          <h4>SERVICIOS</h4>
+          <ul>
+            <?php $k = 0; ?>
+            <?php foreach ($servicios as $key => $value) { ?>
+              <?php if ($value == 1) { ?>
+                <li>
+                  <a href="javascript:void(0);"><?php echo $key ?></a>
+                </li>
+                <?php $k++; ?>
+              <?php } ?>
 
-            <?php if ($k == 4) { ?>
-              <?php $k = 0 ?>
-        </ul>
-        <ul>
+              <?php if ($k == 4) { ?>
+                <?php $k = 0 ?>
+          </ul>
+          <ul>
+          <?php } ?>
         <?php } ?>
-      <?php } ?>
-        </ul>
+          </ul>
+        </div>
       </div>
 
       <?php if ($propiedad->superficie_total != 0) { ?>
