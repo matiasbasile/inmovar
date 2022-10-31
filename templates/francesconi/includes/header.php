@@ -69,7 +69,9 @@
         <?php if (!empty($empresa->telefono_2)) { ?>
           <li><a href="https://wa.me/<?php convertString($empresa->telefono_2) ?>" target="_blank"><span>alquileres</span><?php echo $empresa->telefono_2 ?></a></li>
         <?php } ?>
-        <li><a href="#0"><span>administración</span>+54 (221) 546-0441</a></li>
+        <?php if (!empty($empresa->whatsapp)) { ?>
+          <li><a href="https://wa.me/<?php convertString($empresa->whatsapp) ?>" target="_blank"><span>administración</span><?php echo $empresa->whatsapp ?></a></li>
+        <?php } ?>
       </ul>
     </div>
     <div class="small-menu">
