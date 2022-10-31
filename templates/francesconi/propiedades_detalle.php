@@ -221,9 +221,27 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
         </div>
       <?php } ?>
       <?php print_r($propiedad) ?>
+      <?php
+      $ambientes = array(
+        $propiedad->dormitorios => "Dormitorios <br>",
+        $propiedad->living_comedor => "Living Comedor <br>",
+        $propiedad->gimnasio => "Gimnasio <br>",
+        $propiedad->vigilancia => "Vigilancia <br>",
+        $propiedad->banios => "Baño <br>",
+        $propiedad->accesible => "Baño Accesible <br>",
+        $propiedad->cocheras => "Cocheras <br>",
+        $propiedad->piscina => "Piscina <br>",
+        $propiedad->patio => "Patio <br>",
+        $propiedad->balcon => "Balcón <br>",
+        $propiedad->parrilla => "Parrilla <br>",
+        $propiedad->terraza => "Terraza <br>",
+        $propiedad->lavadero => "Lavadero <br>",
+        $propiedad->sala_juegos => "Sala de Juegos",
+      )
+      ?>
       <div class="description-content second-1">
         <h4>AMBIENTES</h4>
-        <ul>
+        <!-- <ul>
           <li>
             <a href="javascript:void(0);">
               <?php echo $propiedad->dormitorios ?  "Dormitorios <br>" : "" ?>
@@ -254,6 +272,13 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
               <?php echo ($propiedad->sala_juegos == 1)  ? "Sala de Juegos" : " " ?>
             </a>
           </li>
+        </ul> -->
+        <ul>
+          <?php foreach ($ambientes as $key => $value) { ?>
+            <li>
+              <a href="javascript:void(0);"><?php echo $key == 1 ? $value : "" ?></a>
+            </li>
+          <?php } ?>
         </ul>
       </div>
       <div class="description-content second">
