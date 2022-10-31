@@ -225,10 +225,10 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
         <ul>
           <li>
             <a href="javascript:void(0);">
-             <?php echo $propiedad->dormitorios ?  "Dormitorios" : "" ?><br>
-             <?php echo ($propiedad->living_comedor == 1)  ? "Living Comedor" : " " ?><br>
-              Gimnasio: <span> <?php echo ($propiedad->gimnasio == 1)  ? "Gimnasio" : " " ?> </span><br>
-              Vigilancia: <span> <?php echo ($propiedad->vigilancia == 1)  ? "Vigilancia" : " " ?> </span><br>
+             <?php echo $propiedad->dormitorios ?  "Dormitorios <br>" : "" ?>
+             <?php echo ($propiedad->living_comedor == 1)  ? "Living Comedor <br>" : " " ?>
+             <?php echo ($propiedad->gimnasio == 1)  ? "Gimnasio <br>" : " " ?>
+             <?php echo ($propiedad->vigilancia == 1)  ? "Vigilancia <br>" : " " ?>
             </a>
           </li>
           <li>
