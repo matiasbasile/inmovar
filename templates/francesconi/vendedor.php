@@ -66,17 +66,17 @@ if (isset($get_params["test"])) echo $propiedad_model->get_sql();
               <?php } ?>
               <ul>
                 <?php if (!empty($usuario->facebook)) { ?>
-                  <li><a target="_blank" href="<?php echo $usuario->facebook ?>"><img src="assets/images/icons/facebook.png" alt="Facebook"></a></li>
+                  <li><a target="_blank" href="<?php echo $usuario->facebook ?>"><i class="fab fa-facebook-f"></i></a></li>
                 <?php } ?>
                 <?php if (!empty($usuario->instagram)) { ?>
-                  <li><a target="_blank" href="<?php echo $usuario->instagram ?>"><img src="assets/images/icons/insta.png" alt="Instagram"></a></li>
+                  <li><a target="_blank" href="<?php echo $usuario->instagram ?>"><i class="fab fa-instagram"></i></a></li>
                 <?php } ?>
                 <?php if (!empty($usuario->linkedin)) { ?>
-                  <li><a target="_blank" href="<?php echo $usuario->linkedin ?>"><img src="assets/images/icons/play.png" alt="Play"></a></li>
+                  <li><a target="_blank" href="<?php echo $usuario->linkedin ?>"><i class="fas fa-play"></i></a></li>
                 <?php } ?>
                 <?php if (!empty($usuario->celular)) { ?>
                   <?php $celu = str_replace(' ', '', $usuario->celular) ?>
-                  <li><a target="_blank" href="https://wa.me/<?php echo $celu ?>"><img src="assets/images/icons/wsp.png" alt="Play"></a></li>
+                  <li><a target="_blank" href="https://wa.me/<?php echo $celu ?>"><i class="fab fa-whatsapp"></i></a></li>
                 <?php } ?>
               </ul>
             </div>

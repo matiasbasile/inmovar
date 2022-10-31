@@ -7,4 +7,5 @@
 <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all">
 <link rel="stylesheet" type="text/css" href="assets/css/global.css?v=2">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <?php include "templates/comun/post_head.php" ?>
