@@ -1,11 +1,10 @@
 <?php $slider = $web_model->get_slider(array("clave"=>"slider_1")) ?>
-<?php print_r($slider) ?>
 <?php if (!empty($slider)) { ?>
   <section class="francesconi-banner">
     <div class="swiper-container hero-slider">
       <div class="swiper-wrapper">
         <?php foreach ($slider as $s) { ?>
-          <div class="swiper-slide" style="<?php echo $s['path'] ?>">
+          <div class="swiper-slide" style="background: url(<?php echo $s->path ?>);">
             <div class="container">
               <div class="banner-content">
                 <h1><?php echo $s->linea_1 ?></h1>
