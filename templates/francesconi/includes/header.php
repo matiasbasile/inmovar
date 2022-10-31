@@ -27,8 +27,8 @@
       </li>
       <li class="dropdown"><a href="<?php echo mklink("propiedades/barrios-cerrados") ?>">BARRIOS CERRADOS <img src="assets/images/icons/down-arrow.png" alt="Arrow"></a>
         <ul class="dropdown-menu">
-          <li><a href="<?php echo mklink("propiedades/ventas/?tp=7") ?>" class="dropdown-item">Lotes en countries</a></li>
-          <li><a href="<?php echo mklink("propiedades/ventas/?tp=1") ?>" class="dropdown-item">Casas en countries</a></li>
+          <li><a href="<?php echo mklink("propiedades/ventas/?tp=27") ?>" class="dropdown-item">Lotes en countries</a></li>
+          <li><a href="<?php echo mklink("propiedades/ventas/?tp=4") ?>" class="dropdown-item">Casas en countries</a></li>
         </ul>
       </li>
       <li><a href="<?php echo mklink("propiedades/oportunidades") ?>">OPORTUNIDADES</a></li>
