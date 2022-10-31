@@ -136,7 +136,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
   </section>
 
   <!-- Map Services -->
-  <?php print_r($servicios) ?>
+  <?php print_r($propiedad) ?>
   <section class="map-services">
     <div class="container">
       <div class="description-content">
