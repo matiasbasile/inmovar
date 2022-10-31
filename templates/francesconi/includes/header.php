@@ -25,6 +25,12 @@
           <li><a href="<?php echo mklink("propiedades/ventas/?tp=9") ?>" class="dropdown-item">locales</a></li>
         </ul>
       </li>
+      <li class="dropdown"><a href="<?php echo mklink("propiedades/barrios-cerrados") ?>">BARRIOS CERRADOS <img src="assets/images/icons/down-arrow.png" alt="Arrow"></a>
+        <ul class="dropdown-menu">
+          <li><a href="<?php echo mklink("propiedades/ventas/?tp=7") ?>" class="dropdown-item">Lotes en countries</a></li>
+          <li><a href="<?php echo mklink("propiedades/ventas/?tp=1") ?>" class="dropdown-item">Casas en countries</a></li>
+        </ul>
+      </li>
       <li><a href="<?php echo mklink("propiedades/oportunidades") ?>">OPORTUNIDADES</a></li>
       <li><a href="<?php echo mklink("propiedades/permutas") ?>">PERMUTAS</a></li>
       <li><a href="javascript:void(0);">VENDER </a></li>
@@ -58,10 +64,10 @@
         }
         ?>
         <?php if (!empty($empresa->telefono)) { ?>
-          <li><a href="https://wa.me/<?php echo "+" . convertString($empresa->telefono) ?>" target="_blank"><span>ventas</span><?php echo "+" . $empresa->telefono ?></a></li>
+          <li><a href="https://wa.me/<?php convertString($empresa->telefono) ?>" target="_blank"><span>ventas</span><?php echo "+" . $empresa->telefono ?></a></li>
         <?php } ?>
         <?php if (!empty($empresa->telefono_2)) { ?>
-          <li><a href="https://wa.me/<?php echo "+" . convertString($empresa->telefono_2) ?>" target="_blank"><span>alquileres</span><?php echo "+" . $empresa->telefono_2 ?></a></li>
+          <li><a href="https://wa.me/<?php convertString($empresa->telefono_2) ?>" target="_blank"><span>alquileres</span><?php echo "+" . $empresa->telefono_2 ?></a></li>
         <?php } ?>
         <li><a href="#0"><span>administración</span>+54 (221) 546-0441</a></li>
       </ul>
