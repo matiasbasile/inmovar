@@ -222,20 +222,20 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
       <?php } ?>
       <?php
       $ambientes = array(
-        $propiedad->dormitorios => "Dormitorios <br>",
-        $propiedad->living_comedor => "Living Comedor <br>",
-        $propiedad->gimnasio => "Gimnasio <br>",
-        $propiedad->vigilancia => "Vigilancia <br>",
-        $propiedad->banios => "Baño <br>",
-        $propiedad->accesible => "Baño Accesible <br>",
-        $propiedad->cocheras => "Cocheras <br>",
-        $propiedad->piscina => "Piscina <br>",
-        $propiedad->patio => "Patio <br>",
-        $propiedad->balcon => "Balcón <br>",
-        $propiedad->parrilla => "Parrilla <br>",
-        $propiedad->terraza => "Terraza <br>",
-        $propiedad->lavadero => "Lavadero <br>",
-        $propiedad->sala_juegos => "Sala de Juegos",
+        "Dormitorios <br>" => $propiedad->dormitorios,
+        "Living Comedor <br>" => $propiedad->living_comedor,
+        "Gimnasio <br>" => $propiedad->gimnasio,
+        "Vigilancia <br>" => $propiedad->vigilancia,
+        "Baño <br>" => $propiedad->banios,
+        "Baño Accesible <br>" => $propiedad->accesible,
+        "Cocheras <br>" => $propiedad->cocheras,
+        "Piscina <br>" => $propiedad->piscina,
+        "Patio <br>" => $propiedad->patio,
+        "Balcón <br>" => $propiedad->balcon,
+        "Parrilla <br>" => $propiedad->parrilla,
+        "Terraza <br>" => $propiedad->terraza,
+        "Lavadero <br>" => $propiedad->lavadero,
+        "Sala de Juegos" => $propiedad->sala_juegos,
       )
       ?>
       <div class="description-content second-1">
@@ -275,7 +275,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
         <ul>
           <?php foreach ($ambientes as $key => $value) { ?>
             <li>
-              <a href="javascript:void(0);"><?php echo $key == 1 ? $value : "" ?></a>
+              <a href="javascript:void(0);"><?php echo $value == 1 ? $key : "" ?></a>
             </li>
           <?php } ?>
         </ul>
