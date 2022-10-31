@@ -1072,6 +1072,8 @@ ul {
 	border-radius: 100%;
 	align-items: center;
 	justify-content: center;
+	color: #fff;
+	font-size: 24px;
 }
 .sobre-content ul li a:hover {
 	background-color: var(--brand-clrbg);
