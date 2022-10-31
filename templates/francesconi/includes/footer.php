@@ -23,7 +23,9 @@
         <div class="footer-content">
           <h5>administración</h5>
           <p>¿Estas alquilando o queres alquilar? Comunicate para que te ayudemos</p>
-          <a href="#0" class="border-btn"><img src="assets/images/icons/icon-7.png" alt="Icon" target="_blank">+54 (221) 546-0441</a>
+          <?php if(!empty($empresa->telefono_3)) { ?>
+           <a href="https://wa.me/<?php echo convertString($empresa->telefono_3) ?>" class="border-btn" target="_blank"><img src="assets/images/icons/icon-7.png" alt="Icon"><?php echo $empresa->telefono_3 ?></a>
+          <?php } ?>
         </div>
       </div>
     </div>

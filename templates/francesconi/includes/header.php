@@ -69,8 +69,8 @@
         <?php if (!empty($empresa->telefono_2)) { ?>
           <li><a href="https://wa.me/<?php convertString($empresa->telefono_2) ?>" target="_blank"><span>alquileres</span><?php echo $empresa->telefono_2 ?></a></li>
         <?php } ?>
-        <?php if (!empty($empresa->whatsapp)) { ?>
-          <li><a href="https://wa.me/<?php convertString($empresa->whatsapp) ?>" target="_blank"><span>administración</span><?php echo $empresa->whatsapp ?></a></li>
+        <?php if (!empty($empresa->telefono_3)) { ?>
+          <li><a href="https://wa.me/<?php convertString($empresa->telefono_3) ?>" target="_blank"><span>administración</span><?php echo $empresa->telefono_3 ?></a></li>
         <?php } ?>
       </ul>
     </div>
