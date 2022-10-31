@@ -1149,13 +1149,13 @@ ul {
 	line-height: 28px;
 	color: var(--brand-clrp);
 }
-.mis-inner .noved-inner h5 {
+/* .mis-inner .noved-inner h5 {
 	font-size: 18px;
 	font-weight: 600;
 	line-height: 28px;
 	text-transform: full-size-kana;
 	color: var(--brand-clrp);
-}
+} */
 .mis-inner .noved-inner .mis-link ul {
 	display: flex;
 	align-items: center;

@@ -61,7 +61,8 @@ $mes_month = array(
       left: -40px;
     }
 
-    #cargarMas, #filtrar-btn{
+    #cargarMas,
+    #filtrar-btn {
       width: 100% !important;
       padding: 10px !important;
     }
@@ -85,9 +86,12 @@ $mes_month = array(
         padding: 12px 0;
       }
 
-      .select-inner{width: 100%;}
+      .select-inner {
+        width: 100%;
+      }
 
-      #cargarMas, #filtrar-btn{
+      #cargarMas,
+      #filtrar-btn {
         max-width: 100%;
       }
 
@@ -133,15 +137,15 @@ $mes_month = array(
                     <?php $categorias = $entrada_model->get_subcategorias(0) ?>
                     <?php $aux = array() ?>
                     <?php
-                      foreach ($categorias as $cat) {
-                        if($cat->nombre != "Sobre mi" && $cat->nombre != "Equipo"){
-                          array_push($aux, $cat->nombre);
-                        }
+                    foreach ($categorias as $cat) {
+                      if ($cat->nombre != "Sobre mi" && $cat->nombre != "Equipo") {
+                        array_push($aux, $cat->nombre);
                       }
+                    }
                     ?>
 
                     <?php foreach ($aux as $vc) { ?>
-                      <option <?php echo (strtolower($vc) == strtolower($categoria)) ? "selected" : "" ?> value="<?php echo strtolower($vc) ?>"><?php echo strtolower ($vc) ?></option>
+                      <option <?php echo (strtolower($vc) == strtolower($categoria)) ? "selected" : "" ?> value="<?php echo strtolower($vc) ?>"><?php echo strtolower($vc) ?></option>
                     <?php } ?>
                   </select>
                 </div>
@@ -173,31 +177,23 @@ $mes_month = array(
             <?php foreach ($vc_listado as $p) { ?>
               <div class="col-lg-4 col-md-6">
                 <div class="noved-card">
-                  <div class="noved-warp">
+                  <a href="<?php echo mklink($p->link) ?>" class="noved-warp">
                     <span>
-                      <a href="<?php echo mklink($p->link) ?>">
-                        <img src="assets/images/icons/icon-15.png" alt="Icon">
-                      </a>
+                      <img src="assets/images/icons/icon-15.png" alt="Icon">
                     </span>
-                    <a href="#0" class="fill-btn fill-btn-solidarias"><?php echo $p->categoria ?></a>
-                    <a href="<?php echo mklink($p->link) ?>">
-                      <img src="<?php echo $p->path ?>" alt="<?php echo $p->titulo ?>">
-                    </a>
-                  </div>
+                    <b class="fill-btn"><?php echo $p->categoria ?></b>
+                    <img src="<?php echo $p->path ?>" alt="Noved">
+                  </a>
                   <div class="noved-inner">
                     <a href="<?php echo mklink($p->link) ?>" class="noved-redirect">
-                      <h3 class="noved-redirect"><?php echo $p->titulo ?></h3>
+                      <h3><?php echo $p->titulo ?></h3>
                     </a>
-                    <div class="noved-inner">
-                      <?php
-                      $fecha = str_replace('/', '-', $p->fecha);
-                      $mes =  $mes_month[date('n', strtotime($fecha))]
-                      ?>
-                      <h5><small><?php echo $p->dia; ?></small><?php echo $mes ?> del <?php echo $p->anio; ?></h5>
-                      <p>
-                        <?php echo $p->plain_text ?>
-                      </p>
-                    </div>
+                    <?php
+                    $fecha = str_replace('/', '-', $p->fecha);
+                    $mes =  get_mes(date('m', strtotime($fecha)));
+                    ?>
+                    <h5><small><?php echo $p->dia; ?></small><?php echo $mes ?> del <?php echo $p->anio; ?></h5>
+                    <p><?php echo $p->plain_text ?></p>
                   </div>
                 </div>
               </div>
@@ -222,7 +218,7 @@ $mes_month = array(
   <script>
     $('#filter-form').submit(function(e) {
       var link = '<?php echo mklink("entradas/") ?>';
-      link += $("#categoria").val().toLowerCase(); 
+      link += $("#categoria").val().toLowerCase();
       $('#filter-form').attr('action', link);
     });
   </script>
