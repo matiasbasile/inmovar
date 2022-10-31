@@ -47,21 +47,21 @@
     <div class="menu-inner">
       <ul>
         <?php
-        function convertString($telefono)
+        function convertString($tel)
         {
           $res = str_replace(array(
             '"',
             ',', ';', '<', '>', '(', ')', '-'
-          ), '', $telefono);
+          ), '', $tel);
           $string = str_replace(' ', '', $res);
           return $string;
         }
         ?>
-        <?php if (!empty($empresa->telefono_1)) { ?>
+        <?php if (!empty($empresa->telefono)) { ?>
           <li><a href="https://wa.me/<?php echo convertString($empresa->telefono) ?>" target="_blank"><span>ventas</span><?php echo "+" . $empresa->telefono_1 ?></a></li>
         <?php } ?>
         <?php if (!empty($empresa->telefono_2)) { ?>
-          <li><a href="https://wa.me/<?php echo convertString($empresa->telefono_1) ?>" target="_blank"><span>alquileres</span><?php echo "+" . $empresa->telefono_2 ?></a></li>
+          <li><a href="https://wa.me/<?php echo convertString($empresa->telefono_2) ?>" target="_blank"><span>alquileres</span><?php echo "+" . $empresa->telefono_2 ?></a></li>
         <?php } ?>
         <li><a href="#0"><span>administración</span>+54 (221) 546-0441</a></li>
       </ul>
