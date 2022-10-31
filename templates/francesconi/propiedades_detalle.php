@@ -81,7 +81,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
     "Gas Natural <br>" => $propiedad->servicios_gas,
     "Cloacas <br>" => $propiedad->servicios_cloacas,
     "Aire Acondicionado <br>" => $propiedad->servicios_aire_acondicionado,
-    "TV Cable <br>" => $propiedad->servicios_cabe,
+    "TV Cable <br>" => $propiedad->servicios_cable,
     "Teléfono <br>" => $propiedad->servicios_telefono,
     "WiFi <br>" => $propiedad->servicios_internet,
   );
