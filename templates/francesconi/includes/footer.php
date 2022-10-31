@@ -42,9 +42,9 @@
         </div>
         <div class="col-lg-3">
           <div class="footer-link">
-            <h5>dirección</h5>
-            <?php if (!empty($empresa->ciudad) && (!empty($empresa->direccion))) { ?>
-              <p><?php echo $empresa->direccion ?> - <?php echo $empresa->ciudad ?></p>
+            <h5>horarios</h5>
+            <?php if (!empty($empresa->horario)) { ?>
+              <p><?php echo $empresa->horario ?></p>
             <?php } ?>
           </div>
         </div>
