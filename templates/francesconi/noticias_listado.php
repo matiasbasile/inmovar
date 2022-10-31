@@ -82,8 +82,10 @@ $mes_month = array(
 
       select {
         margin-left: 0px !important;
+        padding: 12px 0;
       }
 
+      .select-inner{width: 100%;}
 
     }
   </style>

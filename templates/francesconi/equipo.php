@@ -17,6 +17,8 @@
       .fran-card .fran-img {
         max-width: 100%;
         object-fit: cover;
+        height: auto;
+        width: auto;
       }
     }
 
