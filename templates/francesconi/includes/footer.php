@@ -190,13 +190,13 @@
   }
 </script>
 
-<script>
+<!-- <script>
   var maximo = 0;
   $(".noved_img").each(function(i, e) {
     if ($(e).height() > maximo) maximo = $(e).height();
   });
   maximo = Math.ceil(maximo);
   $(".noved_img").height(maximo);
-</script>
+</script> -->
 
 <?php include("templates/comun/clienapp.php") ?>

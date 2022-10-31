@@ -3,7 +3,7 @@
   <input type="hidden" id="tipo_operacion" class="filter_tipo_operacion" value="<?php echo $vc_link_tipo_operacion ?>">
   <div class="comprar-inner">
     <div class="row">
-      <div class="col-lg-2">
+      <div class="col-lg-4">
         <div class="select-inner">
           <select id="filter_localidad" class="round filter_localidad">
             <option value="la-plata">La Plata</option>
