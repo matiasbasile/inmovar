@@ -7,14 +7,14 @@
 
   <style>
 
-    .fran-card img {
+    .fran-card .fran-img {
       width: 296px;
       height: 276px;
       object-fit: fill;
     }
 
     @media(max-width:768px){
-      .fran-card img {
+      .fran-card .fran-img {
         max-width: 100%;
         object-fit: cover;
       }
@@ -94,7 +94,7 @@
               <div class="fran-card">
                 <?php if (!empty($e->path)) { ?>
                   <a href="<?php echo mklink("web/vendedor/")."?id=".$e->id ?>">
-                    <img src="<?php echo $e->path ?>" alt="Fran">
+                    <img src="<?php echo $e->path ?>" alt="Fran" class="fran-img">
                   </a>
                 <?php } ?>
                 <div class="fran-content">
