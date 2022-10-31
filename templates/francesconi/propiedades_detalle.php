@@ -225,32 +225,32 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
         <ul>
           <li>
             <a href="javascript:void(0);">
-             <?php echo $propiedad->dormitorios ?  "Dormitorios <br>" : "" ?>
-             <?php echo ($propiedad->living_comedor == 1)  ? "Living Comedor <br>" : " " ?>
-             <?php echo ($propiedad->gimnasio == 1)  ? "Gimnasio <br>" : " " ?>
-             <?php echo ($propiedad->vigilancia == 1)  ? "Vigilancia <br>" : " " ?>
+              <?php echo $propiedad->dormitorios ?  "Dormitorios <br>" : "" ?>
+              <?php echo ($propiedad->living_comedor == 1)  ? "Living Comedor <br>" : " " ?>
+              <?php echo ($propiedad->gimnasio == 1)  ? "Gimnasio <br>" : " " ?>
+              <?php echo ($propiedad->vigilancia == 1)  ? "Vigilancia <br>" : " " ?>
             </a>
           </li>
           <li>
             <a href="javascript:void(0);">
-              Baños: <span> <?php echo ($propiedad->banios == 1)  ? $propiedad->banios : " " ?></span><br>
-              Baño Accesible: <span> <?php echo ($propiedad->accesible == 1)  ? "Sí" : " " ?></span><br>
-              Cocheras: <span> <?php echo ($propiedad->cocheras == 1)  ? $propiedad->cocheras : " " ?></span><br>
-              Piscina: <span> <?php echo ($propiedad->piscina == 1)  ? "Sí" : " " ?></span><br>
+              <?php echo ($propiedad->banios == 1)  ? "Baño <br>" : " " ?>
+              <?php echo ($propiedad->accesible == 1)  ? "Baño Accesible <br>" : " " ?>
+              <?php echo ($propiedad->cocheras == 1)  ? "Cocheras <br>" : " " ?>
+              <?php echo ($propiedad->piscina == 1)  ? "Piscina <br>" : " " ?>
             </a>
           </li>
           <li>
             <a href="javascript:void(0);">
-              Patio: <span> <?php echo ($propiedad->patio == 1)  ? "Sí" : " " ?></span><br>
-              Balcón: <span> <?php echo ($propiedad->balcon == 1)  ? "Sí" : " " ?></span><br>
-              Parrila: <span> <?php echo ($propiedad->parrilla == 1)  ? "Sí" : " " ?></span><br>
+              <?php echo ($propiedad->patio == 1)  ? "Patio <br>" : " " ?>
+              <?php echo ($propiedad->balcon == 1)  ? "Balcón <br>" : " " ?>
+              <?php echo ($propiedad->parrilla == 1)  ? "Parrilla <br>" : " " ?>
             </a>
           </li>
           <li>
             <a href="javascript:void(0);">
-              Terraza: <span> <?php echo ($propiedad->terraza == 1)  ? "Sí" : " " ?></span><br>
-              Lavadero: <span> <?php echo ($propiedad->lavadero == 1)  ? "Sí" : " " ?></span><br>
-              Sala de Juegos: <span> <?php echo ($propiedad->sala_juegos == 1)  ? "Sí" : " " ?></span><br>
+              <?php echo ($propiedad->terraza == 1)  ? "Terraza <br>" : " " ?>
+              <?php echo ($propiedad->lavadero == 1)  ? "Lavadero" : " " ?>
+              <?php echo ($propiedad->sala_juegos == 1)  ? "Sala de Juegos" : " " ?>
             </a>
           </li>
         </ul>
@@ -270,7 +270,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
           </li>
           <?php if ($propiedad->valor_expensas != 0) { ?>
             <li><a href="javascript:void(0);">Expensas <span>$<?php echo $propiedad->valor_expensas ?></span></a></li>
-          <?php }else{ ?>
+          <?php } else { ?>
             <li><a href="javascript:void(0);">Expensas <span>$<?php echo " " ?></span></a></li>
           <?php } ?>
         </ul>
@@ -363,10 +363,9 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
 
     let services = document.querySelector(".description-content");
     let ul = document.querySelector("ul");
-    if(ul.children.length === 0){
+    if (ul.children.length === 0) {
       services.style.display = "none";
     }
-
   </script>
 
 </body>
