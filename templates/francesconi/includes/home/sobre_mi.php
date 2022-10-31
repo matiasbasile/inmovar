@@ -1,4 +1,4 @@
-<?php $sobre = $entrada_model->get(44819) ?>
+<?php $sobre = $entrada_model->get(44830) ?>
 <?php if (!empty($sobre)) { ?>
   <section class="francesconi-cuento">
     <div class="container">
