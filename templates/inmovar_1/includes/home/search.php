@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-md-3 col-md-offset-9 col-sm-4 col-sm-offset-8">
           <div class="search-box map">
-            <?php include("../buscador.php"); ?>
+            <?php include("includes/buscador.php"); ?>
           </div><!-- /.search-box.map -->
         </div><!-- /.col-md-3 -->
       </div><!-- /.row -->
