@@ -162,7 +162,7 @@
           <div class="col-md-3">
             <div class="form-group">
               <label class="control-label">Últ. actualización</label>
-              <input <%= (!edicion)?"disabled":"" %> type="date" name="fecha_publicacion" id="propiedad_fecha_publicacion" value="<%= fecha_publicacion %>" class="form-control"/>
+              <input <%= (!edicion)?"disabled":"" %> type="date" name="fecha_publicacion" id="propiedad_fecha_publicacion" value="<%= fecha_publicacion_f %>" class="form-control"/>
             </div>
           </div>            
         </div>          

@@ -69,6 +69,7 @@
       descripcion: "",
       fecha_ingreso: "",
       fecha_publicacion: "",
+      fecha_publicacion_f: "",
       precio_final: 0,
       activo: 1, // SIEMPRE ACTIVA
       nuevo: 0,

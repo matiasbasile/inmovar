@@ -1025,12 +1025,10 @@ class Entrada_Model {
 	 * Obtiene las ultimas entradas
 	 */
 	function ultimas($config = array()) {
-
 		$config["limit"] = isset($config["limit"]) ? $config["limit"] : 0;
 		$config["offset"] = isset($config["offset"]) ? $config["offset"] : 6;
 		$config["order"] = "A.fecha DESC ";
 		return $this->get_list($config);
-
 	}
 
 
