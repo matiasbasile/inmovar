@@ -44,7 +44,7 @@ extract($entrada_model->get_variables(array(
                 <div class="select-inner">
                   <select class="round" name="cat" id="categoria">
                     <option value="0">-</option>
-                    <?php $categorias = $entrada_model->get_subcategorias(1681) ?>
+                    <?php $categorias = $entrada_model->get_subcategorias(1681,array("not_in"=>"1679,1680")) ?>
                     <?php foreach ($categorias as $cat) { ?>
                       <option <?php echo ($cat->id == $vc_id_categoria) ? "selected" : "" ?> value="<?php echo $cat->id ?>"><?php echo strtolower($cat->nombre) ?></option>
                     <?php } ?>
