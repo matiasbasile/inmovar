@@ -2,19 +2,15 @@
 function item($p) { ?>
   <div class="col-lg-4 col-md-6">
     <div class="noved-card">
-      <div class="noved-warp">
+      <a href="<?php echo $p->link_propiedad ?>" class="noved-warp">
         <span>
-          <a href="<?php echo $p->link_propiedad ?>">
-            <img src="assets/images/icons/icon-15.png" alt="Icon">
-          </a>
+          <img src="assets/images/icons/icon-15.png" alt="Icon">
         </span>
         <?php if ($p->es_oferta == 1) { ?>
-          <a href="javascript:void(0);" class="fill-btn">oportunidades</a>
+          <span class="fill-btn">oportunidades</span>
         <?php } ?>
-        <a href="<?php echo $p->link_propiedad ?>">
-          <img src="<?php echo $p->imagen ?>" alt="<?php echo $p->nombre ?>" class="noved_img">
-        </a>
-      </div>
+        <img src="<?php echo $p->imagen ?>" alt="<?php echo $p->nombre ?>" class="noved_img">
+      </a>
       <div class="noved-inner">
         <h2 class="color-title"><?php echo $p->precio ?></h2>
         <p><?php echo $p->nombre ?></p>
