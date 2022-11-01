@@ -526,11 +526,13 @@ class Entrada_Model {
     $fija = isset($config["fija"]) ? $config["fija"] : -1;
     $link_padre = isset($config["link_padre"]) ? $config["link_padre"] : "";
 		$lang = isset($config["lang"]) ? str_replace("es", "",$config["lang"]) : "";
+    $not_in = isset($config["not_in"]) ? $config["not_in"] : "";
 
 		$sql = "SELECT * ";
 		if (!empty($lang)) $sql.= ", nombre_$lang AS nombre ";
 		$sql.= "FROM not_categorias A ";
 		$sql.= "WHERE A.id_empresa = $this->id_empresa ";
+    if (!empty($not_in)) $sql.= "AND A.id NOT IN ($not_in) ";
     if (!empty($link_padre)) {
       $cat_padre = $this->get_categoria_by_nombre($link_padre);
       if ($cat_padre !== FALSE) $sql.= "AND A.id_padre = $cat_padre->id ";  

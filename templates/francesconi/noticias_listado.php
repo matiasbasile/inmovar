@@ -1,35 +1,8 @@
 <?php 
 include 'includes/init.php';
-
-$fecha = isset($_POST["fecha"]) ? $_POST["fecha"] : "";
-$categoria = isset($_POST["categoria"]) ? $_POST["categoria"] : "";
-$orden = 1;
-if ($fecha === 'antigua') {
-  $orden = 2;
-} else {
-  $orden = 1;
-}
-
 extract($entrada_model->get_variables(array(
-  "order" => $orden,
   "offset" => 6,
 )));
-
-$mes_month = array(
-  1 => 'Enero',
-  2 => 'Febrero',
-  3 => 'Marzo',
-  4 => 'Abril',
-  5 => 'Mayo',
-  6 => 'Junio',
-  7 => 'Julio',
-  8 => 'Agosto',
-  9 => 'Septiembre',
-  10 => 'Octubre',
-  11 => 'Noviembre',
-  12 => 'Diciembre',
-);
-
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="es">
@@ -64,25 +37,16 @@ $mes_month = array(
 
       <?php $cat_link = strtolower($categoria) ?>
       <div class="comprar-inner">
-        <form id="filter-form" method="post" action="<?php echo mklink("entradas/$cat_link") ?>">
+        <form id="filter-form" method="get" action="<?php echo mklink("entradas/$cat_link") ?>">
           <div class="row align-items-center">
             <div class="col-lg-5">
               <div class="d-md-flex align-items-center">
                 <label for="" style="font-weight: bold;">FILTRAR POR CATEGORÍA:</label>
                 <div class="select-inner">
                   <select class="round" name="categoria" id="categoria">
-                    <?php $categorias = $entrada_model->get_subcategorias(0) ?>
-                    <?php $aux = array() ?>
-                    <?php
-                    foreach ($categorias as $cat) {
-                      if ($cat->nombre != "Sobre mi" && $cat->nombre != "Equipo") {
-                        array_push($aux, $cat->nombre);
-                      }
-                    }
-                    ?>
-
-                    <?php foreach ($aux as $vc) { ?>
-                      <option <?php echo (strtolower($vc) == strtolower($categoria)) ? "selected" : "" ?> value="<?php echo strtolower($vc) ?>"><?php echo strtolower($vc) ?></option>
+                    <?php $categorias = $entrada_model->get_subcategorias(0,array("not_in"=>"1679,1680")) ?>
+                    <?php foreach ($categorias as $cat) { ?>
+                      <option <?php echo (strtolower($cat->titulo) == strtolower($categoria)) ? "selected" : "" ?> value="<?php echo $cat->id ?>"><?php echo strtolower($cat->titulo) ?></option>
                     <?php } ?>
                   </select>
                 </div>
@@ -92,9 +56,9 @@ $mes_month = array(
               <div class="d-md-flex align-items-center mt-md-0 mt-4">
                 <label for="" style="font-weight: bold;">ORDENAR POR:</label>
                 <div class="select-inner">
-                  <select class="round" name="fecha" id="fecha">
-                    <option value="reciente" <?php echo ($fecha == "reciente") ? "selected" : "" ?>>MÁS NUEVAS A MÁS VIEJAS</option>
-                    <option value="antigua" <?php echo ($fecha == "antigua") ? "selected" : "" ?>>MÁS VIEJAS A MÁS NUEVAS</option>
+                  <select class="round" name="order" id="fecha">
+                    <option value="0" <?php echo ($vc_order == 0) ? "selected" : "" ?>>MÁS NUEVAS A MÁS VIEJAS</option>
+                    <option value="3" <?php echo ($vc_order == 3) ? "selected" : "" ?>>MÁS VIEJAS A MÁS NUEVAS</option>
                   </select>
                 </div>
               </div>
