@@ -10,7 +10,7 @@ if ($empresa->comp_destacados == 1) {
       <div class="container">
         <header class="section-title">
           <h2>Propiedades Destacadas</h2>
-          <a href="<?php echo mklink("propiedades/"); ?>" class="link-arrow">Ver todas</a>
+          <a href="<?php echo mklink("propiedades/?orden=destacados"); ?>" class="link-arrow">Ver todas</a>
         </header>
         <div class="row">
           <?php if (sizeof($destacadas)>0) { ?>
