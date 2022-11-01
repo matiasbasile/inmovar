@@ -1119,7 +1119,7 @@ ul {
 	color: var(--brand-clr2);
 }
 .mis-inner {
-	display: inline-block;
+	display: block;
 	padding-top: 50px;
 }
 
