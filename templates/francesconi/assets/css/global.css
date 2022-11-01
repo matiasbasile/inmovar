@@ -1263,10 +1263,6 @@ ul {
 	text-transform: uppercase;
 	color: #242424;
 }
-.comprar-info [class*="col-"]:first-child {
-	flex: 0 0 auto;
-	width: 23.667%;
-}
 .check-inner {
 	display: flex;
 	align-items: center;
@@ -2238,9 +2234,6 @@ ul {
 	.noved-content {
 		padding-bottom: 20px;
 	}
-	.mis-inner [class*="col-"]:first-child {
-		width: 50% !important;
-	}
 	.custom-control label {
 		font-size: 14px;
 	}
@@ -2465,9 +2458,6 @@ ul {
 	}
 	.comprar-info .select-inner input, select {
 		padding: 12px 0;
-	}
-	.mis-inner [class*="col-"]:first-child {
-		width: 100% !important;
 	}
 	.sobre-warp {
 		flex-direction: column;
