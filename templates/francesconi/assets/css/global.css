@@ -886,6 +886,7 @@ ul {
 .noved-warp .noved_img {
 	transition: all ease 0.5s;
 	aspect-ratio: 4 / 3;
+  min-height: 267px;
 }
 .noved-warp:hover > img {
 	transform: scale(1.02);
