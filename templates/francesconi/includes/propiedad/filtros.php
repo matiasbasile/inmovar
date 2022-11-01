@@ -85,7 +85,7 @@
   <div class="row align-items-center">
     <div class="col-lg-3">
       <div class="select-inner">
-        <select onchange="filtrar()" id="country" name="orden" class="round">
+        <select onchange="enviar_filtrar()" id="country" name="orden" class="round">
           <option value="8" <?php echo ($vc_orden == 8) ? "selected" : "" ?>>Propiedades Destacadas</option>
           <option value="2" <?php echo ($vc_orden == 2) ? "selected" : "" ?>>precio de menor a mayor</option>
           <option value="1" <?php echo ($vc_orden == 1) ? "selected" : "" ?>>precio de mayor a menor</option>

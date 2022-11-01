@@ -179,6 +179,11 @@
     location.href = base;
   }
 
+  function enviar_filtrar() {
+    var f = document.getElementById("form_buscador");
+    filtrar(f);
+  }
+
   function filtrar(form) {
     var url = $(form).find(".base_url").val();
     var tipo_operacion = $(form).find(".filter_tipo_operacion").val();
