@@ -1683,6 +1683,9 @@ class Propiedades extends REST_Controller
   // Esta funcion se ejecuta en un cronjob
   function importar_tokko($id_empresa = 0)
   {
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
     set_time_limit(0);
     try {
       include_once APPPATH . 'libraries/tokko/api.php';
