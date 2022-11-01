@@ -2641,3 +2641,64 @@ ul {
 		max-width: 100%;
 	}
 }
+
+.noticias .equipo-mis .fill-btn-solidarias {
+  padding: 10px 22px !important;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--brand-clr1) !important;
+  background-color: var(--brand-clrbg) !important;
+}
+
+.noticias select {
+  margin: 0px !important;
+}
+
+.noticias .margins {
+  position: relative;
+  left: -40px;
+}
+
+.noticias #cargarMas,
+.noticias #filtrar-btn {
+  width: 100% !important;
+  padding: 10px !important;
+}
+
+.noticias select {
+  margin: 0px !important;
+  margin-left: 20px !important;
+}
+
+.noticias .select-inner {
+  width: 50%;
+}
+
+.noticias .btn-categoria {
+  background: #f23881 !important;
+  color: #fff !important;
+  font-size: 12px !important;
+}
+
+@media(max-width: 768px) {
+  .noticias .margins {
+    position: static;
+  }
+
+  .noticias select {
+    margin-left: 0px !important;
+    padding: 12px 0;
+  }
+
+  .noticias .select-inner {
+    width: 100%;
+  }
+
+  .noticias #cargarMas,
+  .noticias #filtrar-btn {
+    max-width: 100%;
+  }
+
+}

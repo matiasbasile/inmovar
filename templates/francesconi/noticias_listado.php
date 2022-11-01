@@ -1,5 +1,5 @@
-<?php include 'includes/init.php' ?>
-<?php
+<?php 
+include 'includes/init.php';
 
 $fecha = isset($_POST["fecha"]) ? $_POST["fecha"] : "";
 $categoria = isset($_POST["categoria"]) ? $_POST["categoria"] : "";
@@ -31,83 +31,14 @@ $mes_month = array(
 );
 
 ?>
-
 <!DOCTYPE html>
-<html dir="ltr" lang="en-US">
+<html dir="ltr" lang="es">
 
 <head>
   <?php include 'includes/head.php' ?>
-  <style>
-    <?php if (sizeof($vc_listado) == 1) { ?>.mis-inner [class*="col-"]:first-child {
-      width: 100% !important;
-    }
-
-    <?php } ?>.equipo-mis .fill-btn-solidarias {
-      padding: 10px 22px !important;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--brand-clr1) !important;
-      background-color: var(--brand-clrbg) !important;
-    }
-
-    select {
-      margin: 0px !important;
-    }
-
-    .margins {
-      position: relative;
-      left: -40px;
-    }
-
-    #cargarMas,
-    #filtrar-btn {
-      width: 100% !important;
-      padding: 10px !important;
-    }
-
-    select {
-      margin: 0px !important;
-      margin-left: 20px !important;
-    }
-
-    .select-inner {
-      width: 50%;
-    }
-
-    .btn-categoria {
-      background: #f23881 !important;
-      color: #fff !important;
-      font-size: 12px !important;
-    }
-
-    @media(max-width: 768px) {
-      .margins {
-        position: static;
-      }
-
-      select {
-        margin-left: 0px !important;
-        padding: 12px 0;
-      }
-
-      .select-inner {
-        width: 100%;
-      }
-
-      #cargarMas,
-      #filtrar-btn {
-        max-width: 100%;
-      }
-
-    }
-  </style>
 </head>
 
-<body>
-
-
+<body class="noticias">
 
   <!-- Francesconi Header Equipo -->
   <?php include 'includes/header.php' ?>
