@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col-lg-4">
         <div class="select-inner">
-          <select id="filter_localidad" class="round filter_localidad">
+          <select onchange="enviar_filtrar()" id="filter_localidad" class="round filter_localidad">
             <option value="">LOCALIDAD</option>
             <?php $localidades = $propiedad_model->get_localidades(); ?>
             <?php foreach ($localidades as $localidad) { ?>
@@ -16,7 +16,7 @@
       </div>
       <div class="col-lg-2">
         <div class="select-inner">
-          <select id="filter_propiedad" class="round filter_propiedad" name="tp">
+          <select onchange="enviar_filtrar()" id="filter_propiedad" class="round filter_propiedad" name="tp">
             <option value="0">TIPO DE PROPIEDAD</option>
             <?php $tipo_propiedades = $propiedad_model->get_tipos_propiedades(); ?>
             <?php foreach ($tipo_propiedades as $tipo) { ?>
@@ -27,7 +27,7 @@
       </div>
       <div class="col-lg-2">
         <div class="select-inner">
-          <select id="filter_dormitorios" class="round filter_dormitorios" name="dm">
+          <select onchange="enviar_filtrar()" id="filter_dormitorios" class="round filter_dormitorios" name="dm">
             <option value="0">HABITACIONES</option>
             <?php $dormitorios = $propiedad_model->get_dormitorios(); ?>
             <?php foreach ($dormitorios as $dormitorio) { ?>
@@ -40,7 +40,7 @@
       </div>
       <div class="col-lg-2">
         <div class="select-inner">
-          <select id="filter_banios" class="round filter_banios" name="bn">
+          <select onchange="enviar_filtrar()" id="filter_banios" class="round filter_banios" name="bn">
             <option value="0">BAÑOS</option>
             <?php $banios = $propiedad_model->get_banios(); ?>
             <?php foreach ($banios as $banio) { ?>
@@ -53,7 +53,7 @@
       </div>
       <div class="col-lg-2">
         <div class="select-inner">
-          <select id="filter_rango_precios" class="round">
+          <select onchange="enviar_filtrar()" id="filter_rango_precios" class="round">
             <option data-min="0" data-max="0">PRECIO</option>
             <?php if ($vc_link_tipo_operacion == "alquileres") { ?>
               <option <?php echo (isset($vc_maximo) && $vc_maximo == 25000) ? "selected" : "" ?> data-min="0" data-max="25000">$ 0 - 25.000</option>
@@ -85,7 +85,7 @@
   <div class="row align-items-center">
     <div class="col-lg-3">
       <div class="select-inner">
-        <select onchange="filtrar()" id="country" name="orden" class="round">
+        <select onchange="enviar_filtrar()" id="country" name="orden" class="round">
           <option value="8" <?php echo ($vc_orden == 8) ? "selected" : "" ?>>Propiedades Destacadas</option>
           <option value="2" <?php echo ($vc_orden == 2) ? "selected" : "" ?>>precio de menor a mayor</option>
           <option value="1" <?php echo ($vc_orden == 1) ? "selected" : "" ?>>precio de mayor a menor</option>

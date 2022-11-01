@@ -179,6 +179,10 @@
     location.href = base;
   }
 
+  function enviar_filtrar() {
+    filtrar();
+  }
+
   function filtrar() {
     var form = $("#form_buscador");
     var url = $(form).find(".base_url").val();
@@ -192,8 +196,8 @@
     var maximo = $("#filter_rango_precios option:selected").data("max");
     $("#filter_minimo").val(minimo);
     $("#filter_maximo").val(maximo);
-
     $(form).attr("action", url);
+    return true;
   }
 </script>
 
