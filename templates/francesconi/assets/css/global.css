@@ -120,7 +120,9 @@ ul {
 	line-height: 32px;
 	text-transform: uppercase;
 	letter-spacing: 6px;
-	color: var(--brand-clrbg);
+}
+.color-title a {
+  color: var(--brand-clrbg);
 }
 .small-title {
 	position: relative;
