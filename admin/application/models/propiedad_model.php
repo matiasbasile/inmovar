@@ -956,7 +956,6 @@ class Propiedad_Model extends Abstract_Model {
     if (!isset($data->id_propietario) || is_null($data->id_propietario)) $data->id_propietario = 0;
 
     $tipo_inmueble = "";
-    if (empty($data->id_tipo_inmueble)) continue;
     $q = $this->db->query("SELECT * FROM inm_tipos_inmueble WHERE id = $data->id_tipo_inmueble");
     if ($q->num_rows() > 0) {
       $ti = $q->row();  
@@ -964,7 +963,6 @@ class Propiedad_Model extends Abstract_Model {
     }
     
     $tipo_operacion = "";
-    if (empty($data->id_tipo_operacion)) continue;
     $q = $this->db->query("SELECT * FROM inm_tipos_operacion WHERE id = $data->id_tipo_operacion");
     if ($q->num_rows() > 0) {
       $ti = $q->row();  
@@ -972,7 +970,6 @@ class Propiedad_Model extends Abstract_Model {
     }
 
     $localidad = "";
-    if (empty($data->id_localidad)) continue;
     $q = $this->db->query("SELECT * FROM com_localidades WHERE id = $data->id_localidad");
     if ($q->num_rows() > 0) {
       $ti = $q->row();  
