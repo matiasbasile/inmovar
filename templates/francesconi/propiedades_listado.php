@@ -20,11 +20,6 @@ $nombre_pagina = $vc_link_tipo_operacion;
 
 <head>
   <?php include 'includes/head.php' ?>
-  <style>
-    <?php if (sizeof($vc_listado) == 1) { ?>
-      .mis-inner [class*="col-"]:first-child { width: 100% !important; }
-    <?php } ?>
-  </style>
 </head>
 
 <body>
