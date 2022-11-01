@@ -1,5 +1,7 @@
 <?php if ($empresa->comp_ultimos == 1) { 
-  $ultimas = $propiedad_model->ultimas(array("offset"=>6));
+  $ultimas = $propiedad_model->ultimas(array(
+    "offset"=>6,
+  ));
   if (sizeof($ultimas)>0) { ?>
     <div class="mb50 recently-properties chevron-icon">
       <div class="container">

@@ -1655,7 +1655,7 @@ class Propiedad_Model {
     $config["limit"] = isset($config["limit"]) ? $config["limit"] : 0;
     $config["offset"] = isset($config["offset"]) ? $config["offset"] : 6;
     $config["solo_propias"] = 1;
-    //$config["order"] = "A.fecha_ingreso DESC ";
+    $config["order"] = 7;
     return $this->get_list($config);
   }
 
