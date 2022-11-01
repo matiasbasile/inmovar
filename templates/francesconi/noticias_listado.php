@@ -43,6 +43,7 @@ extract($entrada_model->get_variables(array(
                 <label for="" style="font-weight: bold;">FILTRAR POR CATEGORÍA:</label>
                 <div class="select-inner">
                   <select class="round" name="cat" id="categoria">
+                    <option value="0">-</option>
                     <?php $categorias = $entrada_model->get_subcategorias(1681) ?>
                     <?php foreach ($categorias as $cat) { ?>
                       <option <?php echo ($cat->id == $vc_id_categoria) ? "selected" : "" ?> value="<?php echo $cat->id ?>"><?php echo strtolower($cat->nombre) ?></option>
