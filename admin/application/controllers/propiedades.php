@@ -1687,57 +1687,57 @@ class Propiedades extends REST_Controller
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
     set_time_limit(0);
-    try {
-      include_once APPPATH . 'libraries/tokko/api.php';
-      // Buscamos todas las empresas que tengan la importacion automatica de TOKKO
-      $sql = "SELECT id_empresa, tokko_apikey FROM web_configuracion ";
-      $sql .= "WHERE tokko_apikey != '' AND tokko_importacion = 1 ";
-      if (!empty($id_empresa)) $sql .= "AND id_empresa = $id_empresa ";
-      $q = $this->db->query($sql);
-      $this->load->model("Propiedad_Model");
-      $this->load->helper("file_helper");
-      $cant_update = 0;
-      $cant_insert = 0;
-      $errores = array();
-      $this->load->model("Log_Model");
-      foreach ($q->result() as $emp) {
-        $id_empresa = $emp->id_empresa;
+    
+    $errores = array();
+    include_once APPPATH . 'libraries/tokko/api.php';
+    // Buscamos todas las empresas que tengan la importacion automatica de TOKKO
+    $sql = "SELECT id_empresa, tokko_apikey FROM web_configuracion ";
+    $sql .= "WHERE tokko_apikey != '' AND tokko_importacion = 1 ";
+    if (!empty($id_empresa)) $sql .= "AND id_empresa = $id_empresa ";
+    $q = $this->db->query($sql);
+    $this->load->model("Propiedad_Model");
+    $this->load->helper("file_helper");
+    $cant_update = 0;
+    $cant_insert = 0;
+    $this->load->model("Log_Model");
+    foreach ($q->result() as $emp) {
+      $id_empresa = $emp->id_empresa;
 
-        $properties = $this->get_tokko_properties(array(
-          "api_key"=>$emp->tokko_apikey,
-          "id_empresa"=>$id_empresa,
-        ));
+      $properties = $this->get_tokko_properties(array(
+        "api_key"=>$emp->tokko_apikey,
+        "id_empresa"=>$id_empresa,
+      ));
 
-        /*
-        $auth = new TokkoAuth();
-        $search = new TokkoSearch($auth, array(
-          "operation_types" => 0,
-          "property_types" => 0,
-          "price_from" => 0,
-          "price_to" => 9999999999,
-        ));
-        $search->do_search();
-        $properties = $search->get_properties();
-        */
-        if (sizeof($properties) > 0) {
-          // Limpiamos todas las propiedades que esten sincronizadas con Tokko
-          // Porque las que no vienen en el array es porque se deshabilitaron del otro lado
-          $sql = "UPDATE inm_propiedades ";
-          $sql .= "SET activo = 0 ";
-          $sql .= "WHERE id_empresa = $id_empresa ";
-          $sql .= "AND tokko_id != '' ";
-          $sql .= "AND tokko_url != '' ";
-          $this->db->query($sql);
-        }
+      /*
+      $auth = new TokkoAuth();
+      $search = new TokkoSearch($auth, array(
+        "operation_types" => 0,
+        "property_types" => 0,
+        "price_from" => 0,
+        "price_to" => 9999999999,
+      ));
+      $search->do_search();
+      $properties = $search->get_properties();
+      */
+      if (sizeof($properties) > 0) {
+        // Limpiamos todas las propiedades que esten sincronizadas con Tokko
+        // Porque las que no vienen en el array es porque se deshabilitaron del otro lado
+        $sql = "UPDATE inm_propiedades ";
+        $sql .= "SET activo = 0 ";
+        $sql .= "WHERE id_empresa = $id_empresa ";
+        $sql .= "AND tokko_id != '' ";
+        $sql .= "AND tokko_url != '' ";
+        $this->db->query($sql);
+      }
 
-        $this->Log_Model->imprimir(array(
-          "id_empresa" => $id_empresa,
-          "file" => date("Ymd") . "_importacion_tokko.txt",
-          "texto" => "CANTIDAD DE PROPIEDADES A IMPORTAR: " . sizeof($properties) . "\n\n",
-        ));
+      $this->Log_Model->imprimir(array(
+        "id_empresa" => $id_empresa,
+        "file" => date("Ymd") . "_importacion_tokko.txt",
+        "texto" => "CANTIDAD DE PROPIEDADES A IMPORTAR: " . sizeof($properties) . "\n\n",
+      ));
 
-        foreach ($properties as $property) {
-
+      foreach ($properties as $property) {
+        try {
           $this->Log_Model->imprimir(array(
             "id_empresa" => $id_empresa,
             "file" => date("Ymd") . "_importacion_tokko.txt",
@@ -1794,8 +1794,14 @@ class Propiedades extends REST_Controller
           // ID_TIPO_OPERACION
           $operations = $property->operations;
           $operacion = $operations[0];
-          if ($operacion->operation_type == "Venta") $p->id_tipo_operacion = 1;
-          else if ($operacion->operation_type == "Alquiler") $p->id_tipo_operacion = 2;
+          if ($operacion->operation_type == "Venta") {
+            $p->id_tipo_operacion = 1;
+          } else if ($operacion->operation_type == "Alquiler") {
+            $p->id_tipo_operacion = 2;
+          } else {
+            // OTRO TIPO DE OPERACION, POR EL MOMENTO NO LA PERMITIMOS
+            continue;
+          }
 
           // PRECIO
           $p->publica_precio = 1;
@@ -1871,29 +1877,6 @@ class Propiedades extends REST_Controller
           else if (strpos(mb_strtolower($location->short_location), "flores sur") !== FALSE) $p->id_localidad = 5478;
           else if (strpos(mb_strtolower($location->short_location), "palermo hollywood") !== FALSE) $p->id_localidad = 5482;
 
-          /*
-          else if (strpos(mb_strtolower($location->short_location), "villa lila") !== FALSE) $p->id_localidad = 5499;
-          else if (strpos(mb_strtolower($location->short_location), "mar de las pampas") !== FALSE) $p->id_localidad = 5499;
-          else if (strpos(mb_strtolower($location->short_location), "costa del este") !== FALSE) $p->id_localidad = 5499;
-          else if (strpos(mb_strtolower($location->short_location), "centro") !== FALSE) $p->id_localidad = 5499;
-          else if (strpos(mb_strtolower($location->short_location), "punta ballena") !== FALSE) $p->id_localidad = 5499;
-          else if (strpos(mb_strtolower($location->short_location), "botanico") !== FALSE) $p->id_localidad = 5499;
-          else if (strpos(mb_strtolower($location->short_location), "hollywood") !== FALSE) $p->id_localidad = 5499;
-          else if (strpos(mb_strtolower($location->short_location), "carlos keen") !== FALSE) $p->id_localidad = 5499;
-          else if (strpos(mb_strtolower($location->short_location), "abril club de campo") !== FALSE) $p->id_localidad = 5499;
-          else if (strpos(mb_strtolower($location->short_location), "brickell") !== FALSE) $p->id_localidad = 5499;
-          else if (strpos(mb_strtolower($location->short_location), "hallandale") !== FALSE) $p->id_localidad = 5499;
-          else if (strpos(mb_strtolower($location->short_location), "jose ferrari") !== FALSE) $p->id_localidad = 5499;
-          else if (strpos(mb_strtolower($location->short_location), "club el carmen") !== FALSE) $p->id_localidad = 5499;
-          else if (strpos(mb_strtolower($location->short_location), "centro (capital federal)") !== FALSE) $p->id_localidad = 5499;
-          else if (strpos(mb_strtolower($location->short_location), "microcentro") !== FALSE) $p->id_localidad = 5499;
-          else if (strpos(mb_strtolower($location->short_location), "cordón") !== FALSE) $p->id_localidad = 5499;
-          else if (strpos(mb_strtolower($location->short_location), "villa libertador san martin") !== FALSE) $p->id_localidad = 5499;
-          else if (strpos(mb_strtolower($location->short_location), "colonia del sacramento") !== FALSE) $p->id_localidad = 5499;
-          else if (strpos(mb_strtolower($location->short_location), "congreso") !== FALSE) $p->id_localidad = 5499;
-          else if (strpos(mb_strtolower($location->short_location), "pereyra") !== FALSE) $p->id_localidad = 5499;
-          */
-
           // Si no se encuentra el nombre exacto, pero la ubicacion completa contiene el nombre de La Plata
           else if (strpos($location->full_location, "La Plata") !== FALSE) $p->id_localidad = 513;
 
@@ -1948,38 +1931,36 @@ class Propiedades extends REST_Controller
           $sql = "SELECT * FROM inm_propiedades WHERE tokko_id = '" . $property->id . "' AND id_empresa = $id_empresa ";
           $q = $this->db->query($sql);
           $p->no_controlar_plan = 1;
-          try {
-            if ($q->num_rows() > 0) {
-              $r = $q->row();
-              $p->id = $r->id;
-              $p->id_empresa = $id_empresa;
-              $p->no_controlar_codigo = 1;
-              $this->Propiedad_Model->save($p);
-              $cant_update++;
-            } else {
-              $p->fecha_ingreso = date("Y-m-d");
-              $p->fecha_publicacion = date("Y-m-d");
-              $p->id_empresa = $id_empresa;
-              // Si se inserta la primera vez, si es venta ya va compartida a la red
-              if ($p->id_tipo_operacion == 1) $p->compartida = 2;
+          
+          if ($q->num_rows() > 0) {
+            $r = $q->row();
+            $p->id = $r->id;
+            $p->id_empresa = $id_empresa;
+            $p->no_controlar_codigo = 1;
+            $this->Propiedad_Model->save($p);
+            $cant_update++;
+          } else {
+            $p->fecha_ingreso = date("Y-m-d");
+            $p->fecha_publicacion = date("Y-m-d");
+            $p->id_empresa = $id_empresa;
+            // Si se inserta la primera vez, si es venta ya va compartida a la red
+            if ($p->id_tipo_operacion == 1) $p->compartida = 2;
 
-              // Problema: El codigo de tokko es alfanumerico, y al convertirse en int da 0
-              // $p->codigo_tokko = $p->codigo;
-              // $p->codigo = $this->Propiedad_Model->next(array(
-              //   "id_empresa"=>$id_empresa,
-              // ));
+            // Problema: El codigo de tokko es alfanumerico, y al convertirse en int da 0
+            // $p->codigo_tokko = $p->codigo;
+            // $p->codigo = $this->Propiedad_Model->next(array(
+            //   "id_empresa"=>$id_empresa,
+            // ));
 
-              $p->id = $this->Propiedad_Model->save($p);
-              $cant_insert++;
-            }
-          } catch (Exception $e) {
-            $errores[] = $e->getMessage();
+            $p->id = $this->Propiedad_Model->save($p);
+            $cant_insert++;
           }
+        } catch (Exception $e) {
+          $errores[] = $e->getMessage();
         }
-      }
-    } catch (Exception $e) {
-      $errores[] = $e->getMessage();
-    }
+      } // Fin FOR propiedades
+    } // Fin FOR empresas
+
     // Si hay errores, nos lo mandamos por email
     if (sizeof($errores) > 0) {
       $body = implode("<br/>", $errores);
