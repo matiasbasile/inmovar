@@ -2674,7 +2674,7 @@
           "apto_banco":(self.$("#propiedad_apto_banco").is(":checked") ? 1 : 0),
           "es_oferta":(self.$("#propiedad_es_oferta").is(":checked") ? 1 : 0),
           "acepta_permuta":permuta,
-          "publica_altura":((self.$("#propiedad_publica_altura").length > 0) ? (self.$("#propiedad_publica_altura").is(":checked")?1:0) : 0),
+          "publica_altura":((self.$("#propiedad_publica_altura").length > 0) ? self.$("#propiedad_publica_altura").val() : 0),
           "superficie_total":self.$("#propiedad_superficie_total").val(),
           "archivo": (self.$("#hidden_archivo").length > 0) ? $(self.el).find("#hidden_archivo").val() : "",
           "audio": (self.$("#hidden_audio").length > 0) ? $(self.el).find("#hidden_audio").val() : "",
