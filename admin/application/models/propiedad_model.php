@@ -949,8 +949,10 @@ class Propiedad_Model extends Abstract_Model {
     $data->codigo = trim($data->codigo);
 
     // La primera foto del array es la imagen principal
-    if (sizeof($images)>0) $data->path = $images[0];
-    $data->path = str_replace(" / ", "/", $data->path);
+    if (sizeof($images)>0) {
+      $data->path = $images[0];
+      $data->path = str_replace(" / ", "/", $data->path);
+    }
 
     // Si no tiene propietario asignado
     if (!isset($data->id_propietario) || is_null($data->id_propietario)) $data->id_propietario = 0;
