@@ -12,8 +12,8 @@ function item($p) { ?>
         <img src="<?php echo $p->imagen ?>" alt="<?php echo $p->nombre ?>" class="noved_img">
       </a>
       <div class="noved-inner">
-        <h2 class="color-title"><?php echo $p->precio ?></h2>
-        <p><?php echo $p->nombre ?></p>
+        <h2 class="color-title"><a href="<?php echo $p->link_propiedad ?>"><?php echo $p->precio ?></a></h2>
+        <p><a href="<?php echo $p->link_propiedad ?>"><?php echo $p->nombre ?></a></p>
         <h5><?php echo $p->direccion_completa ?></h5>
         <div class="mis-link">
           <ul>
