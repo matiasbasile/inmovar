@@ -116,14 +116,6 @@ extract($entrada_model->get_variables(array(
 
   <?php include 'includes/cargar_mas_entradas_js.php' ?>
 
-  <script>
-    $('#filter-form').submit(function(e) {
-      var link = '<?php echo mklink("entradas/") ?>';
-      link += $("#categoria").val().toLowerCase();
-      $('#filter-form').attr('action', link);
-    });
-  </script>
-
 </body>
 
 </html>
