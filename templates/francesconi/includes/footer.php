@@ -180,7 +180,7 @@
   }
 
   function enviar_filtrar() {
-    filtrar();
+    $("#form_buscador").submit();
   }
 
   function filtrar() {
