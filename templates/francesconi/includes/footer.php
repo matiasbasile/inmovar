@@ -179,12 +179,8 @@
     location.href = base;
   }
 
-  function enviar_filtrar() {
-    var f = document.getElementById("form_buscador");
-    filtrar(f);
-  }
-
-  function filtrar(form) {
+  function filtrar() {
+    var form = $("#form_buscador");
     var url = $(form).find(".base_url").val();
     var tipo_operacion = $(form).find(".filter_tipo_operacion").val();
     url += tipo_operacion + "/";

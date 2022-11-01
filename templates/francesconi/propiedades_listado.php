@@ -38,31 +38,29 @@ $nombre_pagina = $vc_link_tipo_operacion;
 
   <!-- Equipo Mis -->
   <section class="equipo-mis">
-    <form id="form_buscador" onsubmit="return filtrar(this)" method="get">
-      <div class="container">
-        <div class="mis-content">
-          <h2 class="small-title">
-            PROPIEDADES EN <?php echo $vc_nombre_operacion ?> <span>
-            <?php echo $vc_total_resultados ?> Resultados de búsqueda</span>
-          </h2>
-        </div>
-        
-        <?php include 'includes/propiedad/filtros.php' ?>
-        
-        <div class="comprar-info">
-          <div class="mis-inner">
-            <div class="row propiedades">
-              <?php foreach ($vc_listado as $p) { ?>
-                <?php item($p); ?>
-              <?php } ?>
-            </div>
+    <div class="container">
+      <div class="mis-content">
+        <h2 class="small-title">
+          PROPIEDADES EN <?php echo $vc_nombre_operacion ?> <span>
+          <?php echo $vc_total_resultados ?> Resultados de búsqueda</span>
+        </h2>
+      </div>
+      
+      <?php include 'includes/propiedad/filtros.php' ?>
+      
+      <div class="comprar-info">
+        <div class="mis-inner">
+          <div class="row propiedades">
+            <?php foreach ($vc_listado as $p) { ?>
+              <?php item($p); ?>
+            <?php } ?>
           </div>
         </div>
-        <div class="text-center">
-          <a onclick="cargar()" id="cargarMas" class="fill-btn">ver más propiedades</a>
-        </div>
       </div>
-    </form>
+      <div class="text-center">
+        <a onclick="cargar()" id="cargarMas" class="fill-btn">ver más propiedades</a>
+      </div>
+    </div>
   </section>
 
   <?php include 'includes/home/secondary_slider.php' ?>
