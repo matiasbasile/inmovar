@@ -4,6 +4,7 @@ if ($empresa->comp_destacados == 1) {
   $destacadas = $propiedad_model->destacadas(array(
     "offset"=>8,
     "solo_propias"=>1,
+    "order"=>7,
   ));
   if (sizeof($destacadas)>0) { ?>
     <section id="price-drop" class="block">
