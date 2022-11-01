@@ -35,18 +35,17 @@ extract($entrada_model->get_variables(array(
         </h2>
       </div>
 
-      <?php $cat_link = strtolower($categoria) ?>
       <div class="comprar-inner">
-        <form id="filter-form" method="get" action="<?php echo mklink("entradas/$cat_link") ?>">
+        <form id="filter-form" method="get" action="<?php echo mklink("entradas/") ?>">
           <div class="row align-items-center">
             <div class="col-lg-5">
               <div class="d-md-flex align-items-center">
                 <label for="" style="font-weight: bold;">FILTRAR POR CATEGORÍA:</label>
                 <div class="select-inner">
-                  <select class="round" name="categoria" id="categoria">
+                  <select class="round" name="cat" id="categoria">
                     <?php $categorias = $entrada_model->get_subcategorias(0,array("not_in"=>"1679,1680")) ?>
                     <?php foreach ($categorias as $cat) { ?>
-                      <option <?php echo (strtolower($cat->titulo) == strtolower($categoria)) ? "selected" : "" ?> value="<?php echo $cat->id ?>"><?php echo strtolower($cat->titulo) ?></option>
+                      <option <?php echo ($cat->id == $vc_id_categoria) ? "selected" : "" ?> value="<?php echo $cat->id ?>"><?php echo strtolower($cat->titulo) ?></option>
                     <?php } ?>
                   </select>
                 </div>
