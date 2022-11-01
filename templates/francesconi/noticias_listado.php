@@ -2,6 +2,7 @@
 include 'includes/init.php';
 extract($entrada_model->get_variables(array(
   "offset" => 6,
+  "redirect" => 0,
 )));
 ?>
 <!DOCTYPE html>
