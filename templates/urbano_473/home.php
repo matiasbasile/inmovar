@@ -29,7 +29,8 @@ include "templates/comun/pre_head.php" ?>
 </head>
 <body>
   <section>
-    <div class="banner-contacto">
+    <?php $banner = $entrada_model->get(44831) ?>
+    <div class="banner-contacto" style="<?php echo "/admin/" . $entrada->path ?>">
 
       <?php $t = $web_model->get_text("arriba-titulo","Urbano 473"); ?>
       <h1 data-id="<?php echo $t->id?>" data-clave="<?php echo $t->clave ?>" class="editable"><?php echo $t->plain_text ?></h1>
@@ -73,8 +74,7 @@ include "templates/comun/pre_head.php" ?>
   <section class="mt-5 sobre-nosotros" id="sobre_nosotros_section">
     <div class="container">
       <div class="sobre-nosotros-titulo">
-        <h4>Sobre</h4>
-        <h4>Urbano 473</h4>
+        <h4>OBRA U CANTILO</h4>
         <hr class="divider">
         <?php $t = $web_model->get_text("sobre-desc","Pensado para familias que buscan seguridad, <br> priorizando la cercanía de la ciudad."); ?>
         <p data-id="<?php echo $t->id?>" data-clave="<?php echo $t->clave ?>" class="editable"><?php echo $t->plain_text ?></p>
@@ -242,10 +242,10 @@ include "templates/comun/pre_head.php" ?>
         <h1 id="lanzamiento">Lanzamiento</h1>
       </div>
       <h1>Pre-venta</h1>
-      <?php $t = $web_model->get_text("lanzamiento-desc","Obtené asesoramiento personalizado"); ?>
+      <?php $t = $web_model->get_text("lanzamiento-desc","Obtené la carpeta del proyecto con precio y formas de pago"); ?>
       <p data-id="<?php echo $t->id?>" data-clave="<?php echo $t->clave ?>" class="editable"><?php echo $t->plain_text ?></p>
       <div class="text-center">
-        <a class="boton-lanzamiento" href="<?php echo mklink('/') ?>#lanzamiento_preventa">¡Solicitá asesoramiento ahora!</a>
+        <a class="boton-lanzamiento" href="<?php echo mklink('/') ?>#lanzamiento_preventa">¡DESCARGAR CARPETA DEL PROYECTO!</a>
       </div>
     </div>
   </section>
