@@ -8,7 +8,7 @@
 <body>
   <section>
     <?php $banner = $entrada_model->get(44831) ?>
-    <div class="banner-contacto" style="<?php echo "/admin/" . $banner->path ?>">
+    <div class="banner-contacto" style="<?php echo  $banner->path ?>">
     <div class="banner-contacto">
       <?php $t = $web_model->get_text("arriba-titulo","Urbano 473"); ?>
       <h1 data-id="<?php echo $t->id?>" data-clave="<?php echo $t->clave ?>" class="editable"><?php echo $t->plain_text ?></h1>
