@@ -53,7 +53,7 @@
 }
 
 .izquierda{
-  margin-top: 40px !important;
+  /* margin-top: 40px !important; */
   background-color: #313132 !important;
   font-size: 27px !important;
   color: #fff !important;
@@ -63,13 +63,18 @@
 }
 
 .derecha{
-  margin-top: 40px !important;
+  /* margin-top: 40px !important; */
   background-color: #313132 !important;
   font-size: 27px !important;
   color: #fff !important;
   border-radius: 50% !important;
   left: 95% !important;
 }
+
+.owl-theme .owl-nav [class*=owl-] {
+  top: 90px !important;
+}
+
 
 @media (min-height: 768px){
   .derecha .izquierda{
