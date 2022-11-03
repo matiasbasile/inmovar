@@ -1,32 +1,10 @@
+<?php include 'includes/init.php' ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<?php 
-include_once("models/Propiedad_Model.php");
-$propiedad_model = new Propiedad_Model($empresa->id,$conx);
-include_once("models/Web_Model.php");
-$web_model = new Web_Model($empresa->id,$conx);
-include_once("models/Entrada_Model.php");
-$entrada_model = new Entrada_Model($empresa->id,$conx);
-include_once("models/Articulo_Model.php");
-$articulo_model = new Articulo_Model($empresa->id,$conx);
-$empresa->telefono_f = preg_replace("/[^0-9]/", "", $empresa->telefono);
-
-include "templates/comun/pre_head.php" ?>
-<?php $slider = $web_model->get_slider(); ?>  
-<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/styles.css?v=20">
-<link rel="stylesheet" href="assets/css/slick.css">
-<link rel="stylesheet" href="assets/css/slick-theme.css">
-<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-<link rel="stylesheet" href="assets/css/owl.theme.default.css">
-<link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
-<link rel="stylesheet" href="assets/css/carousel.css">
-<link rel="stylesheet" href="assets/css/fancybox.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"></script>
-<?php include "templates/comun/post_head.php" ?>
+  <?php include 'includes/head.php' ?>
 </head>
+<?php $slider = $web_model->get_slider(); ?>  
 <body>
   <section>
     <?php $banner = $entrada_model->get(44831) ?>
