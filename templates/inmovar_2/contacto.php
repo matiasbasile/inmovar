@@ -82,7 +82,25 @@ $titulo_pagina = "Contacto"; ?>
                 </div>
                 <div class="media-body">
                   <h4>Dirección</h4>
-                  <p><?php echo $empresa->direccion ?></p>
+                  <p>
+                    <?php echo $empresa->direccion ?>
+                    <?php echo (!empty($empresa->ciudad)) ? " - ".$empresa->ciudad : "" ?>
+                    <?php echo (!empty($empresa->codigo_postal)) ? " (".$empresa->codigo_postal.") " : "" ?>                      
+                  </p>
+                  <?php if (!empty($empresa->direccion_2)) { ?>
+                    <p>
+                      <?php echo $empresa->direccion_2 ?>
+                      <?php echo (!empty($empresa->ciudad_2)) ? " - ".$empresa->ciudad_2 : "" ?>
+                      <?php echo (!empty($empresa->codigo_postal_2)) ? " (".$empresa->codigo_postal_2.") " : "" ?>                        
+                    </p>
+                  <?php } ?>
+                  <?php if (!empty($empresa->direccion_3)) { ?>
+                    <p>
+                      <?php echo $empresa->direccion_3 ?>
+                      <?php echo (!empty($empresa->ciudad_3)) ? " - ".$empresa->ciudad_3 : "" ?>
+                      <?php echo (!empty($empresa->codigo_postal_3)) ? " (".$empresa->codigo_postal_3.") " : "" ?>
+                    </p>
+                  <?php } ?>
                 </div>
               </div>
             <?php } ?>
