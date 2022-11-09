@@ -409,6 +409,13 @@ class Empresa_Model extends Abstract_Model {
       $row->email = $web_configuracion->email; // IMPORTANTE
       $row->telefono_web = $web_configuracion->telefono_web;
       $row->codigo_postal = $web_configuracion->codigo_postal;
+      $row->direccion_2 = $web_configuracion->direccion_2;
+      $row->ciudad_2 = $web_configuracion->ciudad_2;
+      $row->codigo_postal_2 = $web_configuracion->codigo_postal_2;
+      $row->direccion_3 = $web_configuracion->direccion_3;
+      $row->ciudad_3 = $web_configuracion->ciudad_3;
+      $row->codigo_postal_3 = $web_configuracion->codigo_postal_3;
+
       $row->config["favicon"] = $web_configuracion->favicon;
       $row->config["telefono_2"] = $web_configuracion->telefono_2;
       $row->config["no_imagen"] = $web_configuracion->no_imagen;
@@ -468,12 +475,6 @@ class Empresa_Model extends Abstract_Model {
       if (isset($web_configuracion->booking)) $row->config["booking"] = $web_configuracion->booking;
       if (isset($web_configuracion->pagina_en_construccion)) $row->config["pagina_en_construccion"] = $web_configuracion->pagina_en_construccion;
       if (isset($web_configuracion->pagina_en_construccion_imagen)) $row->config["pagina_en_construccion_imagen"] = $web_configuracion->pagina_en_construccion_imagen;
-      if (isset($web_configuracion->direccion_2)) $row->config["direccion_2"] = $web_configuracion->direccion_2;
-      if (isset($web_configuracion->ciudad_2)) $row->config["ciudad_2"] = $web_configuracion->ciudad_2;
-      if (isset($web_configuracion->codigo_postal_2)) $row->config["codigo_postal_2"] = $web_configuracion->codigo_postal_2;
-      if (isset($web_configuracion->direccion_3)) $row->config["direccion_3"] = $web_configuracion->direccion_3;
-      if (isset($web_configuracion->ciudad_3)) $row->config["ciudad_3"] = $web_configuracion->ciudad_3;
-      if (isset($web_configuracion->codigo_postal_3)) $row->config["codigo_postal_3"] = $web_configuracion->codigo_postal_3;
 
     } else {
       // Valores de configuracion por defecto (Ej: PYMVAR no tiene web_configuracion pero algunos parametros por defecto son necesarios)
