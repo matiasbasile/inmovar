@@ -97,7 +97,6 @@ $titulo_pagina = "Contacto"; ?>
                   <i class="fa fa-map-marker"></i>
                 </div>
                 <div class="media-body">
-                  <h4>Dirección</h4>                    
                   <p>
                     <?php echo $empresa->direccion_2 ?>
                     <?php echo (!empty($empresa->ciudad_2)) ? "<br/>".$empresa->ciudad_2 : "" ?>
@@ -112,8 +111,7 @@ $titulo_pagina = "Contacto"; ?>
                 <div class="media-left">
                   <i class="fa fa-map-marker"></i>
                 </div>
-                <div class="media-body">
-                  <h4>Dirección</h4>                    
+                <div class="media-body">         
                   <p>
                     <?php echo $empresa->direccion_3 ?>
                     <?php echo (!empty($empresa->ciudad_3)) ? "<br/>".$empresa->ciudad_3 : "" ?>
