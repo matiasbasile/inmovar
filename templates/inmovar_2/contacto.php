@@ -84,26 +84,45 @@ $titulo_pagina = "Contacto"; ?>
                   <h4>Dirección</h4>
                   <p>
                     <?php echo $empresa->direccion ?>
-                    <?php echo (!empty($empresa->ciudad)) ? " - ".$empresa->ciudad : "" ?>
+                    <?php echo (!empty($empresa->ciudad)) ? "<br/>".$empresa->ciudad : "" ?>
                     <?php echo (!empty($empresa->codigo_postal)) ? " (".$empresa->codigo_postal.") " : "" ?>                      
                   </p>
-                  <?php if (!empty($empresa->direccion_2)) { ?>
-                    <p>
-                      <?php echo $empresa->direccion_2 ?>
-                      <?php echo (!empty($empresa->ciudad_2)) ? " - ".$empresa->ciudad_2 : "" ?>
-                      <?php echo (!empty($empresa->codigo_postal_2)) ? " (".$empresa->codigo_postal_2.") " : "" ?>                        
-                    </p>
-                  <?php } ?>
-                  <?php if (!empty($empresa->direccion_3)) { ?>
-                    <p>
-                      <?php echo $empresa->direccion_3 ?>
-                      <?php echo (!empty($empresa->ciudad_3)) ? " - ".$empresa->ciudad_3 : "" ?>
-                      <?php echo (!empty($empresa->codigo_postal_3)) ? " (".$empresa->codigo_postal_3.") " : "" ?>
-                    </p>
-                  <?php } ?>
                 </div>
               </div>
             <?php } ?>
+                  
+            <?php if (!empty($empresa->direccion_2)) { ?>
+              <div class="media">
+                <div class="media-left">
+                  <i class="fa fa-map-marker"></i>
+                </div>
+                <div class="media-body">
+                  <h4>Dirección</h4>                    
+                  <p>
+                    <?php echo $empresa->direccion_2 ?>
+                    <?php echo (!empty($empresa->ciudad_2)) ? "<br/>".$empresa->ciudad_2 : "" ?>
+                    <?php echo (!empty($empresa->codigo_postal_2)) ? " (".$empresa->codigo_postal_2.") " : "" ?>                        
+                  </p>
+                </div>
+              </div>
+            <?php } ?>
+
+            <?php if (!empty($empresa->direccion_3)) { ?>
+              <div class="media">
+                <div class="media-left">
+                  <i class="fa fa-map-marker"></i>
+                </div>
+                <div class="media-body">
+                  <h4>Dirección</h4>                    
+                  <p>
+                    <?php echo $empresa->direccion_3 ?>
+                    <?php echo (!empty($empresa->ciudad_3)) ? "<br/>".$empresa->ciudad_3 : "" ?>
+                    <?php echo (!empty($empresa->codigo_postal_3)) ? " (".$empresa->codigo_postal_3.") " : "" ?>
+                  </p>
+                </div>
+              </div>
+            <?php } ?>
+            
             <div class="media">
               <div class="media-left">
                 <i class="fa fa-phone"></i>
