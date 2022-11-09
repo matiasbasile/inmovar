@@ -86,6 +86,11 @@
       cotizaciones_minimo: 0,
       cotizaciones_maximo: 0,
       cotizaciones_porcentaje_sueldo: "",
+      telefono_3: "",
+      ciudad_2: "",
+      codigo_postal_2: "",
+      ciudad_3: "",
+      codigo_postal_3: "",
     }
   });
 	    
