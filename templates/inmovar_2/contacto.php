@@ -86,30 +86,6 @@ $titulo_pagina = "Contacto"; ?>
                 </div>
               </div>
             <?php } ?>
-
-            <?php if (!empty($empresa->direccion_2)) {  ?>
-              <div class="media">
-                <div class="media-left">
-                  <i class="fa fa-map-marker"></i>
-                </div>
-                <div class="media-body">
-                  <h4>Dirección</h4>
-                  <p><?php echo $empresa->direccion_2 ?></p>
-                </div>
-              </div>
-            <?php } ?>
-
-            <?php if (!empty($empresa->direccion_3)) {  ?>
-              <div class="media">
-                <div class="media-left">
-                  <i class="fa fa-map-marker"></i>
-                </div>
-                <div class="media-body">
-                  <h4>Dirección</h4>
-                  <p><?php echo $empresa->direccion_3 ?></p>
-                </div>
-              </div>
-            <?php } ?>
             <div class="media">
               <div class="media-left">
                 <i class="fa fa-phone"></i>

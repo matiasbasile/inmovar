@@ -22,20 +22,22 @@
                   <?php echo $empresa->direccion ?>
                   <?php echo (!empty($empresa->ciudad)) ? " - ".$empresa->ciudad : "" ?>
                   <?php echo (!empty($empresa->codigo_postal)) ? " (".$empresa->codigo_postal.") " : "" ?>
-
-                  <?php if (!empty($empresa->direccion_2)) { ?>
-                    <br/>
-                    <?php echo $empresa->direccion_2 ?>
-                    <?php echo (!empty($empresa->ciudad_2)) ? " - ".$empresa->ciudad_2 : "" ?>
-                    <?php echo (!empty($empresa->codigo_postal_2)) ? " (".$empresa->codigo_postal_2.") " : "" ?>
-                  <?php } ?>
-
-                  <?php if (!empty($empresa->direccion_3)) { ?>
-                    <br/>
-                    <?php echo $empresa->direccion_3 ?>
-                    <?php echo (!empty($empresa->ciudad_3)) ? " - ".$empresa->ciudad_3 : "" ?>
-                    <?php echo (!empty($empresa->codigo_postal_3)) ? " (".$empresa->codigo_postal_3.") " : "" ?>
-                  <?php } ?>
+                </li>
+              <?php } ?>
+              <?php if (!empty($empresa->direccion_2)) { ?>
+                <li>
+                  <i class="fa fa-map-marker"></i>
+                  <?php echo $empresa->direccion_2 ?>
+                  <?php echo (!empty($empresa->ciudad_2)) ? " - ".$empresa->ciudad_2 : "" ?>
+                  <?php echo (!empty($empresa->codigo_postal_2)) ? " (".$empresa->codigo_postal_2.") " : "" ?>
+                </li>
+              <?php } ?>
+              <?php if (!empty($empresa->direccion_3)) { ?>
+                <li>
+                  <i class="fa fa-map-marker"></i>
+                  <?php echo $empresa->direccion_3 ?>
+                  <?php echo (!empty($empresa->ciudad_3)) ? " - ".$empresa->ciudad_3 : "" ?>
+                  <?php echo (!empty($empresa->codigo_postal_3)) ? " (".$empresa->codigo_postal_3.") " : "" ?>
                 </li>
               <?php } ?>
               <?php if (!empty($empresa->email)) { ?>
