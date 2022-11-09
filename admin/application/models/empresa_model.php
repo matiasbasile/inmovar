@@ -532,8 +532,14 @@ class Empresa_Model extends Abstract_Model {
     if (isset($data->whatsapp)) $sql.= " whatsapp = '$data->whatsapp', ";
     if (isset($data->email)) $sql.= " email = '$data->email', ";
     if (isset($data->direccion_web)) $sql.= " direccion_web = '$data->direccion_web', ";
+    if (isset($data->direccion_2)) $sql.= " direccion_2 = '$data->direccion_2', ";
+    if (isset($data->direccion_3)) $sql.= " direccion_3 = '$data->direccion_3', ";
     if (isset($data->codigo_postal)) $sql.= " codigo_postal = '$data->codigo_postal', ";
+    if (isset($data->codigo_postal_2)) $sql.= " codigo_postal_2 = '$data->codigo_postal_2', ";
+    if (isset($data->codigo_postal_3)) $sql.= " codigo_postal_3 = '$data->codigo_postal_3', ";
     if (isset($data->ciudad)) $sql.= " ciudad = '$data->ciudad', ";
+    if (isset($data->ciudad_2)) $sql.= " ciudad_2 = '$data->ciudad_2', ";
+    if (isset($data->ciudad_3)) $sql.= " ciudad_3 = '$data->ciudad_3', ";
     if (isset($data->telefono_web)) $sql.= " telefono_web = '$data->telefono_web', ";
     if (isset($data->telefono_2)) $sql.= " telefono_2 = '$data->telefono_2', ";
     $sql.= " id_empresa = $id ";
