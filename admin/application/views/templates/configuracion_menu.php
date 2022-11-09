@@ -392,24 +392,69 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <label class="control-label"><?php echo lang(array("es"=>"Dirección","en"=>"Address")) ?></label>
-          <input type="text" name="direccion_web" class="form-control" value="<%= direccion_web %>"/>
-        </div>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label"><?php echo lang(array("es"=>"Dirección","en"=>"Address")) ?></label>
+              <input type="text" name="direccion_web" class="form-control" value="<%= direccion_web %>"/>
+            </div>
+          </div>
+          <div class="col-md-4">
             <div class="form-group">
               <label class="control-label"><?php echo lang(array("es"=>"Ciudad","en"=>"City")) ?></label>
               <input type="text" name="ciudad" class="form-control" value="<%= ciudad %>"/>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="form-group">
               <label class="control-label"><?php echo lang(array("es"=>"Código Postal","en"=>"Postal Code")) ?></label>
               <input type="text" name="codigo_postal" class="form-control" value="<%= codigo_postal %>"/>
             </div>
           </div>
         </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label"><?php echo lang(array("es"=>"Dirección 2","en"=>"Address 2")) ?></label>
+              <input type="text" name="direccion_2" class="form-control" value="<%= direccion_2 %>"/>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label"><?php echo lang(array("es"=>"Ciudad","en"=>"City")) ?></label>
+              <input type="text" name="ciudad_2" class="form-control" value="<%= ciudad_2 %>"/>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label"><?php echo lang(array("es"=>"Código Postal","en"=>"Postal Code")) ?></label>
+              <input type="text" name="codigo_postal_2" class="form-control" value="<%= codigo_postal_2 %>"/>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label"><?php echo lang(array("es"=>"Dirección 3","en"=>"Address 3")) ?></label>
+              <input type="text" name="direccion_3" class="form-control" value="<%= direccion_3 %>"/>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label"><?php echo lang(array("es"=>"Ciudad","en"=>"City")) ?></label>
+              <input type="text" name="ciudad_3" class="form-control" value="<%= ciudad_3 %>"/>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label"><?php echo lang(array("es"=>"Código Postal","en"=>"Postal Code")) ?></label>
+              <input type="text" name="codigo_postal_3" class="form-control" value="<%= codigo_postal_3 %>"/>
+            </div>
+          </div>
+        </div>
+
         <div class="row">
           <div class="col-md-4">
             <div class="form-group">
