@@ -83,6 +83,12 @@ $titulo_pagina = "Contacto"; ?>
                 <div class="media-body">
                   <h4>Dirección</h4>
                   <p><?php echo $empresa->direccion ?></p>
+                  <?php if (!empty($empresa->direccion_2)) { ?>
+                    <p><?php echo $empresa->direccion_2 ?></p>
+                  <?php } ?>
+                  <?php if (!empty($empresa->direccion_3)) { ?>
+                    <p><?php echo $empresa->direccion_3 ?></p>
+                  <?php } ?>
                 </div>
               </div>
             <?php } ?>

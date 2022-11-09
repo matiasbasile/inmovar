@@ -403,14 +403,30 @@
         <div class="form-group">
           <label class="control-label"><?php echo lang(array("es"=>"Email","en"=>"Email address")) ?></label>
           <input type="text" name="email" class="form-control" value="<%= email %>"/>
-        </div>        
-        <div class="form-group">
-          <label class="control-label"><?php echo lang(array("es"=>"Dirección","en"=>"Address")) ?></label>
-          <div class="input-group">
-            <input type="text" name="direccion_web" class="form-control" value="<%= direccion_web %>"/>
-            <span class="input-group-btn">
-              <button class="btn btn-default mostrar_ubicacion">Ubicar en el Mapa</button>
-            </span>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label"><?php echo lang(array("es"=>"Dirección","en"=>"Address")) ?></label>
+              <div class="input-group">
+                <input type="text" name="direccion_web" class="form-control" value="<%= direccion_web %>"/>
+                <span class="input-group-btn">
+                  <button class="btn btn-default mostrar_ubicacion">Ubicar en el Mapa</button>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label"><?php echo lang(array("es"=>"Direccion 2","en"=>"Address 2")) ?></label>
+              <input type="text" name="direccion_2" class="form-control" value="<%= direccion_2 %>"/>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label"><?php echo lang(array("es"=>"Direccion 3","en"=>"Address 3")) ?></label>
+              <input type="text" name="direccion_3" class="form-control" value="<%= direccion_3 %>"/>
+            </div>
           </div>
         </div>
         <div class="row">

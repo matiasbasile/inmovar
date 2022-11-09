@@ -22,6 +22,8 @@
                   <?php echo $empresa->direccion ?>
                   <?php echo (!empty($empresa->ciudad)) ? " - ".$empresa->ciudad : "" ?>
                   <?php echo (!empty($empresa->codigo_postal)) ? " (".$empresa->codigo_postal.") " : "" ?>
+                  <?php echo (!empty($empresa->direccion_2)) ? "<br/>".$empresa->direccion_2 : "" ?>
+                  <?php echo (!empty($empresa->direccion_3)) ? "<br/>".$empresa->direccion_3 : "" ?>
                 </li>
               <?php } ?>
               <?php if (!empty($empresa->email)) { ?>
