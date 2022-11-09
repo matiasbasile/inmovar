@@ -2718,16 +2718,6 @@
         }
 
         if (id_tipo_operacion == 3) {
-          // Es un alquiler temporario, tenemos que guardar ademas otras cosas
-          this.model.set({
-            "moneda":self.$("#propiedad_precios_temporal_monedas").val(),
-            //"publica_precio":(self.$("#propiedad_precios_temporal_publica_precio").is(":checked")?1:0),
-            "precio_final":self.$("#propiedad_precios_temporal_precio_final").val(),
-            "propiedad_capacidad_maxima":self.$("#propiedad_capacidad_maxima").val(),
-            "capacidad_maxima_menores":self.$("#propiedad_capacidad_maxima_menores").val(),
-            "habitacion_compartida":(self.$("#propiedad_habitacion_compartida").is(":checked")?1:0),
-          });
-
           // Guardamos los precios
           var precios = new Array();
           $("#propiedad_temporada_tabla tbody tr").each(function(i,e){
