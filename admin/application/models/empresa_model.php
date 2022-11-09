@@ -386,45 +386,7 @@ class Empresa_Model extends Abstract_Model {
       }
     }
 
-
-    // Si es RESTOVAR
     $row->categorias = array();
-    if ($row->id_proyecto == 10) {
-      $q = $this->db->query("SELECT * FROM delivery_configuracion WHERE id_empresa = $id ");
-      if ($q->num_rows()>0) {
-        $delivery_configuracion = $q->result_array();
-        $row = (object) array_merge((array) $row, $delivery_configuracion[0]);
-        unset($row->id_empresa);
-      }
-
-      // Obtenemos las categorias
-      $sql = "SELECT E.nombre FROM delivery_categorias_empresas EE INNER JOIN delivery_categorias E ON (EE.id_categoria = E.id) ";
-      $sql.= "WHERE EE.id_empresa = $id ORDER BY EE.orden ASC";
-      $q = $this->db->query($sql);
-      foreach($q->result() as $r) {
-        $row->categorias[] = $r->nombre;
-      }
-
-    // Si es COLVAR
-    } else if ($row->id_proyecto == 5) {
-      $q = $this->db->query("SELECT * FROM aca_configuracion WHERE id_empresa = $id ");
-      if ($q->num_rows()>0) {
-        $aca_configuracion = $q->result_array();
-        $row = (object) array_merge((array) $row, $aca_configuracion[0]);
-        unset($row->id_empresa);
-      }
-
-    // Si es MANTENIMIENTO
-    } else if ($row->id_proyecto == 13) {
-
-      $q = $this->db->query("SELECT * FROM mant_configuracion WHERE id_empresa = $id ");
-      if ($q->num_rows()>0) {
-        $mant_configuracion = $q->result_array();
-        $row = (object) array_merge((array) $row, $mant_configuracion[0]);
-        unset($row->id_empresa);
-      }
-
-    }
 
     // tipo_empresa:
     // 0 = Ninguna
@@ -506,6 +468,12 @@ class Empresa_Model extends Abstract_Model {
       if (isset($web_configuracion->booking)) $row->config["booking"] = $web_configuracion->booking;
       if (isset($web_configuracion->pagina_en_construccion)) $row->config["pagina_en_construccion"] = $web_configuracion->pagina_en_construccion;
       if (isset($web_configuracion->pagina_en_construccion_imagen)) $row->config["pagina_en_construccion_imagen"] = $web_configuracion->pagina_en_construccion_imagen;
+      if (isset($web_configuracion->direccion_2)) $row->config["direccion_2"] = $web_configuracion->direccion_2;
+      if (isset($web_configuracion->ciudad_2)) $row->config["ciudad_2"] = $web_configuracion->ciudad_2;
+      if (isset($web_configuracion->codigo_postal_2)) $row->config["codigo_postal_2"] = $web_configuracion->codigo_postal_2;
+      if (isset($web_configuracion->direccion_3)) $row->config["direccion_3"] = $web_configuracion->direccion_3;
+      if (isset($web_configuracion->ciudad_3)) $row->config["ciudad_3"] = $web_configuracion->ciudad_3;
+      if (isset($web_configuracion->codigo_postal_3)) $row->config["codigo_postal_3"] = $web_configuracion->codigo_postal_3;
 
     } else {
       // Valores de configuracion por defecto (Ej: PYMVAR no tiene web_configuracion pero algunos parametros por defecto son necesarios)
