@@ -392,7 +392,7 @@ window.onload = function () {
               </li>
             <?php } ?>
             <?php if ($perfil != -1) { ?>
-              <li><a href="app/#mi_cuenta">Estado de cuenta</a></li>
+              <!--<li><a href="app/#mi_cuenta">Estado de cuenta</a></li>-->
               <li><a href="app/#precios">Planes</a></li>
               <li class="divider"></li>
             <?php } ?>
