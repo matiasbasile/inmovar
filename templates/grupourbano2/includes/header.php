@@ -27,8 +27,8 @@
           <li class="nav-item <?php echo ($nombre_pagina == "obras" ? "active" : "") ?>">
             <a class="nav-link" href="<?php echo mklink("propiedades/obras/") ?>">obras</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0);">Licitaciones</a>
+          <li class="nav-item <?php echo ($nombre_pagina == "licitaciones" ? "active" : "") ?>">
+            <a class="nav-link" href="<?php echo mklink("propiedades/licitaciones/") ?>">Licitaciones</a>
           </li>
           <li class="nav-item <?php echo ($nombre_pagina == "nosotros" ? "active" : "") ?>">
             <a class="nav-link" href="<?php echo mklink("web/vendedores") ?>">nosotros</a>

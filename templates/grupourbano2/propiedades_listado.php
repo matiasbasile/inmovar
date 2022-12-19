@@ -39,7 +39,10 @@ $nombre_pagina = $vc_link_tipo_operacion;
       <?php } else if ($vc_tipo_operacion == 5) { ?>
         <h2>Obras</h2>
         <h6>Se encontraron <b><?php echo $vc_total_resultados ?></b> obras</h6>
-      <?php } else { ?>
+      <?php } else if ($vc_tipo_operacion == 16) { ?>
+        <h2>Obras</h2>
+        <h6>Se encontraron <b><?php echo $vc_total_resultados ?></b> licitaciones</h6>
+      <?php } else  { ?>
         <h2>Propiedades</h2>
         <h6>Se encontraron <b><?php echo $vc_total_resultados ?></b> propiedades</h6>
       <?php } ?>
