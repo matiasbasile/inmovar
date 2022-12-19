@@ -31,7 +31,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
 
 <head>
 <?php include("includes/head.php"); ?>
-<?php include "../comun/og.php" ?>
+<?php include "templates/comun/og.php" ?>
 
 </head>
 

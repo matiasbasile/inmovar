@@ -55,7 +55,7 @@ else $vc_moneda = "$";
 <html lang="en-US">
 <head>
 <?php include("includes/head.php"); ?>
-<?php include "../comun/og.php" ?>
+<?php include "templates/comun/og.php" ?>
 <script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
 <script>const ID_EMPRESA_RELACION = "<?php echo $id_empresa ?>";</script>
 <style type="text/css">

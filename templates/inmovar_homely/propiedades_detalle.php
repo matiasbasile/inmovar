@@ -46,7 +46,7 @@ $cookie_hide_lightbox = 0; //(isset($_COOKIE['hide_lightbox'])) ? $_COOKIE['hide
 <html lang="en">
 <head>
 <?php include "includes/head.php" ?>
-<?php include "../comun/og.php" ?>
+<?php include "templates/comun/og.php" ?>
 <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.min.css">
 <script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
 <script>const ID_EMPRESA_RELACION = "<?php echo $id_empresa ?>";</script>

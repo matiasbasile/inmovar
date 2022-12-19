@@ -26,7 +26,7 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
 <html lang="es">
 <head>
 <?php include "includes/head.php" ?>
-<?php include "../comun/og.php" ?>
+<?php include "templates/comun/og.php" ?>
 
 <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.min.css"/>
 <script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>

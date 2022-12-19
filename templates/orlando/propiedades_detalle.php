@@ -33,7 +33,7 @@ if (($propiedad === FALSE || !isset($propiedad->nombre) || $propiedad->activo ==
 .youtube iframe { width: 100%; height: 600px }
 @media screen and (max-width: 1449px) { .youtube iframe { width: 100%; height: 300px } }
 </style>
-<?php include "../comun/og.php" ?>
+<?php include "templates/comun/og.php" ?>
 <script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
 <script>const ID_EMPRESA_RELACION = "<?php echo $id_empresa ?>";</script>
 </head>

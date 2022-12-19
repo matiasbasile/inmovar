@@ -44,7 +44,7 @@ if (!empty($propiedad->imagen)) $propiedad->images = array_merge(array($propieda
 
 <head>
   <?php include "includes/head.php" ?>
-  <?php include "../comun/og.php" ?>
+  <?php include "templates/comun/og.php" ?>
   <script>
     const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";
   </script>

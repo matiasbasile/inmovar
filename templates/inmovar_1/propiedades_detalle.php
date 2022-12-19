@@ -65,7 +65,7 @@ else $vc_moneda = "$";
 
 <head>
   <?php include("includes/head.php"); ?>
-  <?php include "../comun/og.php" ?>
+  <?php include "templates/comun/og.php" ?>
 
   <script>
     const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";
