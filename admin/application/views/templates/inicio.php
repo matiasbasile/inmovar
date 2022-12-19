@@ -254,7 +254,7 @@
                     $<strike><%= Number(plan.precio_sin_dto).format(0) %></strike>
                   <% } %>
                   <div class="tac fs18">
-                    <span>Hasta Diciembre 2021<br>Válido solo para cuentas nuevas</span>
+                    <span>Difundí tus propiedades ahora</span>
                   </div>
                 </div>
               </div>
@@ -288,9 +288,9 @@
                 </div>
                 <div class="tac fs18">
                   <% if (plan.precio_anual == 0) { %>
-                    <span style="color:#0dd384">Hasta Diciembre 2021</span>
+                    <span style="color:#0dd384">15 días de prueba gratis</span>
                   <% } else { %>
-                    <span style="color:#0dd384">Hasta Diciembre 2021<br>Válido solo para cuentas nuevas</span>
+                    <span style="color:#0dd384">15 días de prueba gratis<br>Válido solo para cuentas nuevas</span>
                   <% } %>
                 </div>
               </div>
