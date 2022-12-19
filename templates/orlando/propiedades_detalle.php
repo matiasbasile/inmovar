@@ -36,7 +36,7 @@ if (($propiedad === FALSE || !isset($propiedad->nombre) || $propiedad->activo ==
 <meta property="og:type" content="website" />
 <meta property="og:title" content="<?php echo ($propiedad->nombre); ?>" />
 <meta property="og:description" content="<?php echo str_replace("\n","",$propiedad->plain_text); ?>" />
-<meta property="og:image" content="<?php echo $propiedad->imagen_full ?>"/>
+<meta property="og:image" content="<?php echo current_url() . ((!empty($propiedad->imagen_full)) ? $propiedad->imagen_full : $empresa->no_imagen); ?>" />
 <script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
 <script>const ID_EMPRESA_RELACION = "<?php echo $id_empresa ?>";</script>
 </head>

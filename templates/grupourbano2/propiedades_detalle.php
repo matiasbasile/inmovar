@@ -34,7 +34,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
 <meta property="og:type" content="website" />
 <meta property="og:title" content="<?php echo ($propiedad->nombre); ?>" />
 <meta property="og:description" content="<?php echo str_replace("\n","",(strip_tags(html_entity_decode($propiedad->texto,ENT_QUOTES)))); ?>" />
-<meta property="og:image" content="<?php echo $propiedad->imagen_full ?>"/>
+<meta property="og:image" content="<?php echo current_url() . ((!empty($propiedad->imagen_full)) ? $propiedad->imagen_full : $empresa->no_imagen); ?>" />
 </head>
 
 <body class="bg-gray">
