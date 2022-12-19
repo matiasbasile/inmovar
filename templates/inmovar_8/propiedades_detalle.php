@@ -44,11 +44,7 @@ if (!empty($propiedad->imagen)) $propiedad->images = array_merge(array($propieda
 
 <head>
   <?php include "includes/head.php" ?>
-  <meta property="og:url" content="<?php echo current_url(); ?>" />
-  <meta property="og:type" content="article" />
-  <meta property="og:title" content="<?php echo $propiedad->nombre; ?>" />
-  <meta property="og:description" content="<?php echo $propiedad->direccion_completa; ?>" />
-  <meta property="og:image" content="<?php echo current_url() . ((!empty($propiedad->imagen)) ? $propiedad->imagen : $empresa->no_imagen); ?>" />
+  <?php include "../comun/og.php" ?>
   <script>
     const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";
   </script>

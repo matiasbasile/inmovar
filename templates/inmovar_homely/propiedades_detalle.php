@@ -46,11 +46,7 @@ $cookie_hide_lightbox = 0; //(isset($_COOKIE['hide_lightbox'])) ? $_COOKIE['hide
 <html lang="en">
 <head>
 <?php include "includes/head.php" ?>
-<meta property="og:url" content="<?php echo current_url(); ?>" />
-<meta property="og:type" content="article" />
-<meta property="og:title" content="<?php echo $propiedad->nombre; ?>" />
-<meta property="og:description" content="<?php echo $propiedad->direccion_completa; ?>" />
-<meta property="og:image" content="<?php echo current_url() . ((!empty($propiedad->imagen)) ? $propiedad->imagen : $empresa->no_imagen); ?>" />
+<?php include "../comun/og.php" ?>
 <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.min.css">
 <script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
 <script>const ID_EMPRESA_RELACION = "<?php echo $id_empresa ?>";</script>

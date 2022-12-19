@@ -48,10 +48,7 @@ else $vc_moneda = "$";
 <html dir="ltr" lang="en-US">
 <head>
 <?php include("includes/head.php"); ?>
-<meta property="og:type" content="website" />
-<meta property="og:title" content="<?php echo ($propiedad->nombre); ?>" />
-<meta property="og:description" content="<?php echo str_replace("\n","",(strip_tags(html_entity_decode($propiedad->texto,ENT_QUOTES)))); ?>" />
-<meta property="og:image" content="<?php echo current_url() . ((!empty($propiedad->imagen_full)) ? $propiedad->imagen_full : $empresa->no_imagen); ?>" />
+<?php include "../comun/og.php" ?>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />

@@ -21,11 +21,7 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad"=>$propiedad->id));
 <html>
 <head>
 <?php include "includes/head.php" ?>
-<meta property="og:url" content="<?php echo current_url(); ?>" />
-<meta property="og:type" content="article" />
-<meta property="og:title" content="<?php echo $propiedad->nombre; ?>" />
-<meta property="og:description" content="<?php echo $direccion; ?>" />
-<meta property="og:image" content="<?php echo current_url() . ((!empty($propiedad->imagen)) ? $propiedad->imagen : $empresa->no_imagen); ?>" />
+<?php include "../comun/og.php" ?>
 <script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
 <script>const ID_EMPRESA_RELACION = "<?php echo $id_empresa ?>";</script>
 </head>

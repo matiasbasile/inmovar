@@ -54,15 +54,8 @@ else $vc_moneda = "$";
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-<meta property="og:url" content="<?php echo current_url(); ?>" />
-<meta property="og:type" content="website" />
-<meta property="og:description" content="<?php echo $propiedad->seo_description; ?>" />
-<meta property="og:site_name" content="<?php echo $empresa->nombre ?>">
-<meta property="og:title" content="<?php echo $propiedad->seo_title ?>" />
-<meta property="og:image" content="<?php echo current_url() . ((!empty($propiedad->imagen)) ? $propiedad->imagen : $empresa->no_imagen); ?>" />
-<meta property="og:image:width" content="800"/>
-<meta property="og:image:height" content="600"/>
 <?php include("includes/head.php"); ?>
+<?php include "../comun/og.php" ?>
 <script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
 <script>const ID_EMPRESA_RELACION = "<?php echo $id_empresa ?>";</script>
 <style type="text/css">

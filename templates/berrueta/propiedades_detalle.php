@@ -51,10 +51,7 @@ else $vc_moneda = "$";
 <html dir="ltr" lang="en-US">
 <head>
 <?php include("includes/head.php"); ?>
-<meta property="og:type" content="website" />
-<meta property="og:title" content="<?php echo $propiedad->nombre; ?>" />
-<meta property="og:description" content="<?php echo str_replace("\n","",(strip_tags(html_entity_decode($propiedad->texto,ENT_QUOTES)))); ?>" />
-<meta property="og:image" content="<?php echo current_url() . ((!empty($propiedad->imagen)) ? $propiedad->imagen : $empresa->no_imagen); ?>" />
+<?php include "../comun/og.php" ?>
 <script>const ID_PROPIEDAD = "<?php echo $propiedad->id ?>";</script>
 <script>const ID_EMPRESA_RELACION = "<?php echo $id_empresa ?>";</script>
 <style>
