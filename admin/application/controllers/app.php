@@ -2,7 +2,7 @@
 
 class App extends CI_Controller { 
 
-  function __construct() {
+  function __construct() { 
     parent::__construct();
   }
   
