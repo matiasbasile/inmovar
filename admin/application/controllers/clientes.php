@@ -4,7 +4,7 @@ require APPPATH.'libraries/REST_Controller.php';
 
 class Clientes extends REST_Controller {
 
-  function __construct() {
+  function __construct() { 
     parent::__construct();
     $this->load->model('Cliente_Model', 'modelo');
   }
