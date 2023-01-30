@@ -85,6 +85,7 @@
 <script src="assets/js/swiper-bundle.min.js"></script>
 <script src="assets/js/script.js"></script>
 <script src="/admin/resources/js/moment.min.js"></script>
+<?php include_once("frontend/comun/mapa_js.php"); ?>
 
 <script>
   function enviar_contacto() {
@@ -151,6 +152,35 @@
     });
     return false;
   }
+</script>
+
+<script>
+  //MAP SCRIPT
+  $(document).ready(function() {
+
+    var mymap = L.map('map1').setView([<?php echo $empresa->latitud ?>, <?php echo $empresa->longitud ?>], <?php echo $empresa->zoom ?>);
+
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+      attribution: '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
+      tileSize: 512,
+      maxZoom: 18,
+      zoomOffset: -1,
+      id: 'mapbox/streets-v11',
+      accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
+    }).addTo(mymap);
+
+
+    var icono = L.icon({
+      iconUrl: 'assets/images/pin-map.png',
+      iconSize: [25, 25], // size of the icon
+      iconAnchor: [30, 30], // point of the icon which will correspond to marker's location
+    });
+
+    L.marker([<?php echo $empresa->latitud ?>, <?php echo $empresa->longitud ?>], {
+      icon: icono
+    }).addTo(mymap);
+
+  });
 </script>
 
 <script>
