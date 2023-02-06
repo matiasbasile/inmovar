@@ -85,7 +85,7 @@
 <script src="assets/js/swiper-bundle.min.js"></script>
 <script src="assets/js/script.js"></script>
 <script src="/admin/resources/js/moment.min.js"></script>
-<?php include_once("frontend/comun/mapa_js.php"); ?>
+<?php include_once("templates/comun/mapa_js.php"); ?>
 
 <script>
   function enviar_contacto() {
