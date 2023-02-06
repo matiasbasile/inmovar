@@ -24,9 +24,10 @@
 
   <div id="#map1"></div>
 
-  <div>
+  <div class="container">
     <h4 class="text-uppercase">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto eveniet maiores ut impedit ea earum</h4>
     <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, vitae. Architecto aliquam adipisci, deleniti officia voluptates velit eaque labore vero autem facilis ex iusto earum reiciendis totam ab temporibus nam!
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, vitae. Architecto aliquam adipisci, deleniti officia voluptates velit eaque labore vero autem facilis ex iusto earum reiciendis totam ab temporibus nam!
     </p>
   </div>
