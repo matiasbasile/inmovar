@@ -2706,3 +2706,22 @@ ul {
 #map1{
 	height: 450px;
 }
+
+.contacto-title{
+	font-size: 18px;
+}
+
+.contacto-descripcion{
+	font-size: 16px;
+}
+
+@media(max-width:768px){
+	.contacto-title{
+		font-size: 15px;
+	}
+
+	#contacto-container{
+		margin: 20px 0px;
+	}
+
+}

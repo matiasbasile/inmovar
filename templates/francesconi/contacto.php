@@ -4,6 +4,11 @@
 
 <head>
   <?php include 'includes/head.php' ?>
+  <style>
+    .equo-con-title{
+      padding: 50px 30px 30px 30px;;
+    }
+  </style>
 </head>
 
 <body>
@@ -24,9 +29,9 @@
 
   <div id="#map1"></div>
 
-  <div class="container">
-    <h4 class="text-uppercase">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto eveniet maiores ut impedit ea earum</h4>
-    <p>
+  <div class="container" id="contacto-container">
+    <h4 class="text-uppercase text-center contacto-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto eveniet maiores ut impedit ea earum</h4>
+    <p class="contacto-descripcion">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, vitae. Architecto aliquam adipisci, deleniti officia voluptates velit eaque labore vero autem facilis ex iusto earum reiciendis totam ab temporibus nam!
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, vitae. Architecto aliquam adipisci, deleniti officia voluptates velit eaque labore vero autem facilis ex iusto earum reiciendis totam ab temporibus nam!
     </p>
