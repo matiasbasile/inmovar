@@ -2713,6 +2713,8 @@ ul {
 
 .contacto-descripcion{
 	font-size: 16px;
+	text-align: center;
+	margin-bottom: 30px;
 }
 
 @media(max-width:768px){

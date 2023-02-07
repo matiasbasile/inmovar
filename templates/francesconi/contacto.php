@@ -27,7 +27,7 @@
     <h3 class="small-title">equipo</h3>
   </div>
 
-  <div id="#map1"></div>
+  <div id="map1"></div>
 
   <div class="container" id="contacto-container">
     <h4 class="text-uppercase text-center contacto-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto eveniet maiores ut impedit ea earum</h4>
