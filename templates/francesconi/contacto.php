@@ -26,7 +26,7 @@
 
   <div id="map1"></div>
 
-  <?php $entrada = $entrada->entrada_model->get(44833) ?>
+  <?php $entrada = $entrada_model->get(44833) ?>
 
   <?php if (!empty($entrada)) { ?>
     <div class="container" id="contacto-container">

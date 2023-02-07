@@ -10,6 +10,8 @@ $entrada = $entrada_model->get($id); ?>
 
 <body>
 
+  <?php include 'includes/header.php' ?>
+
   <?php if (sizeof($entrada->images) > 0) { ?>
     <section class="map-section magnific-gallery">
       <div class="swiper-container map-slider">
@@ -33,14 +35,6 @@ $entrada = $entrada_model->get($id); ?>
       </div>
     </div>
   <?php } ?>
-
-  <div class="container">
-    <?php if (!empty($entrada)) { ?>
-      <div>
-        <img src="<?php echo $entrada->path ?>" alt="img-venta">
-      </div>
-    <?php } ?>
-  </div>
 
   <?php if (!empty($entrada)) { ?>
     <div class="container" id="contacto-container">
@@ -92,6 +86,11 @@ $entrada = $entrada_model->get($id); ?>
   </section>
 
   <?php include 'includes/footer.php' ?>
+
+  <script>
+    $(".fancybox").fancybox();
+  </script>
+
 </body>
 
 </html>
