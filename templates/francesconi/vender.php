@@ -23,6 +23,8 @@
     </div>
   </section>
 
+  <?php $entrada = $entrada_model->get(44834) ?>
+
   <div class="container">
     <?php if (!empty($entrada)) { ?>
       <div>
@@ -31,7 +33,6 @@
     <?php } ?>
   </div>
 
-  <?php $entrada = $entrada_model->get(44834) ?>
   <?php if (!empty($entrada)) { ?>
     <div class="container" id="contacto-container">
       <h4 class="text-uppercase text-center contacto-title"><?php echo $entrada->titulo ?></h4>

@@ -30,7 +30,7 @@ $entrada = $entrada_model->get($id); ?>
     </section>
   <?php } else { ?>
     <div class="container">
-      <div>
+      <div class="mb-5 text-center">
         <img src="<?php echo $entrada->path ?>" alt="img-venta">
       </div>
     </div>
