@@ -1,38 +1,27 @@
-<?php include 'includes/init.php';
-$entrada = $entrada_model->get($id); ?>
-
+<?php include 'includes/init.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <?php include 'includes/head.php' ?>
+  <style>
+    .equo-con-title {
+      padding: 50px 30px 30px 30px;
+      ;
+    }
+  </style>
 </head>
 
 <body>
+  <?php include 'includes/header.php' ?>
 
-  <?php if (sizeof($entrada->images) > 0) { ?>
-    <section class="map-section magnific-gallery">
-      <div class="swiper-container map-slider">
-        <div class="swiper-wrapper">
-          <?php foreach ($entrada->images as $img) { ?>
-            <div class="swiper-slide">
-              <a class="fancybox" data-fancybox="gallery" href="<?php echo $img ?>"><img src="<?php echo $img ?>" class="noved_img" alt="Gallery"></a>
-            </div>
-          <?php } ?>
-        </div>
-        <div class="swiper-pagination"></div>
-        <!-- If we need navigation buttons -->
-        <div class="swiper-button-prev swiper-button-white"></div>
-        <div class="swiper-button-next swiper-button-white"></div>
-      </div>
-    </section>
-  <?php } else { ?>
+  <section class="equipo-banner equo">
     <div class="container">
-      <div>
-        <img src="<?php echo $entrada->path ?>" alt="img-venta">
+      <div class="equipo-content">
+        <h1 class="banner-title">vender</h1>
       </div>
     </div>
-  <?php } ?>
+  </section>
 
   <div class="container">
     <?php if (!empty($entrada)) { ?>
@@ -42,6 +31,7 @@ $entrada = $entrada_model->get($id); ?>
     <?php } ?>
   </div>
 
+  <?php $entrada = $entrada->entrada_model->get(44834) ?>
   <?php if (!empty($entrada)) { ?>
     <div class="container" id="contacto-container">
       <h4 class="text-uppercase text-center contacto-title"><?php echo $entrada->titulo ?></h4>
@@ -92,6 +82,7 @@ $entrada = $entrada_model->get($id); ?>
   </section>
 
   <?php include 'includes/footer.php' ?>
+
 </body>
 
 </html>

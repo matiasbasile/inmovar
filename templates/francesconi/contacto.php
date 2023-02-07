@@ -5,8 +5,9 @@
 <head>
   <?php include 'includes/head.php' ?>
   <style>
-    .equo-con-title{
-      padding: 50px 30px 30px 30px;;
+    .equo-con-title {
+      padding: 50px 30px 30px 30px;
+      ;
     }
   </style>
 </head>
@@ -22,20 +23,19 @@
     </div>
   </section>
 
-  <div class="equo-con-title">
-    <h2 class="color-title" style="color: #f23881;">conoce a nuestro</h2>
-    <h3 class="small-title">equipo</h3>
-  </div>
 
   <div id="map1"></div>
 
-  <div class="container" id="contacto-container">
-    <h4 class="text-uppercase text-center contacto-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto eveniet maiores ut impedit ea earum</h4>
-    <p class="contacto-descripcion">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, vitae. Architecto aliquam adipisci, deleniti officia voluptates velit eaque labore vero autem facilis ex iusto earum reiciendis totam ab temporibus nam!
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, vitae. Architecto aliquam adipisci, deleniti officia voluptates velit eaque labore vero autem facilis ex iusto earum reiciendis totam ab temporibus nam!
-    </p>
-  </div>
+  <?php $entrada = $entrada->entrada_model->get(44833) ?>
+
+  <?php if (!empty($entrada)) { ?>
+    <div class="container" id="contacto-container">
+      <h4 class="text-uppercase text-center contacto-title"><?php echo $entrada->titulo ?></h4>
+      <p class="contacto-descripcion">
+        <?php echo $entrada->plain_text ?>
+      </p>
+    </div>
+  <?php } ?>
 
   <section class="ros-section ">
     <form onsubmit="return enviar_contacto()">
