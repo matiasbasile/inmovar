@@ -27,7 +27,7 @@
 
   <div class="container">
     <?php if (!empty($entrada)) { ?>
-      <div>
+      <div class="mt-3 text-center">
         <img src="<?php echo $entrada->path ?>" alt="img-venta">
       </div>
     <?php } ?>
