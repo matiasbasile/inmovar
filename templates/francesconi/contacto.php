@@ -28,14 +28,44 @@
 
   <?php $entrada = $entrada_model->get(44833) ?>
 
-  <?php if (!empty($entrada)) { ?>
-    <div class="container" id="contacto-container">
-      <h4 class="text-uppercase text-center contacto-title"><?php echo $entrada->titulo ?></h4>
-      <p class="contacto-descripcion">
-        <?php echo $entrada->plain_text ?>
-      </p>
+  <section class="equo-con">
+    <div class="container">
+      <div class="con-inner">
+        <div class="row g-0">
+          <div class="col-lg-6">
+            <?php if (!empty($entrada)) { ?>
+              <div class="con-warp">
+                <img src="<?php echo $entrada->path ?>" alt="Con">
+              </div>
+            <?php } ?>
+          </div>
+          <div class="col-lg-6">
+            <div class="con-content">
+              <div>
+                <?php $t = $web_model->get_text("equipo_texto_1", "somos una inmobiliaria joven"); ?>
+                <h3 class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $t->id_empresa ?>">
+                  <?php echo $t->plain_text ?>
+                </h3>
+                <h4>francesconi</h4>
+                <?php $t = $web_model->get_text("equipo_texto_2", "Más de 10 años trabajando juntos"); ?>
+                <p class="editable" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" data-id_empresa="<?php echo $t->id_empresa ?>">
+                  <?php echo $t->plain_text ?>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="con-text">
+          <?php if (!empty($entrada->titulo)) { ?>
+            <h3><?php echo $entrada->titulo ?></h3>
+          <?php } ?>
+          <?php if (!empty($entrada->plain_text)) { ?>
+            <p><?php echo $entrada->plain_text ?></p>
+          <?php } ?>
+        </div>
+      </div>
     </div>
-  <?php } ?>
+  </section>
 
   <section class="ros-section ">
     <form onsubmit="return enviar_contacto()">
