@@ -18,9 +18,14 @@ $entrada = $entrada_model->get($id); ?>
         <h1 class="banner-title">novedades</h1>
       </div>
     </div>
-    <div class="equo-con-title">
-      <h2 class="color-title">novedades</h2>
-      <h3 class="small-title"><?php echo $entrada->titulo ?></h3>
+  </section>
+  
+  <section class="equo-con">
+    <div class="container">    
+      <div class="equo-con-title">
+        <h2 class="color-title">novedades</h2>
+        <h3 class="small-title"><?php echo $entrada->titulo ?></h3>
+      </div>
     </div>
   </section> 
 
