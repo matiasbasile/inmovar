@@ -896,6 +896,8 @@ class Propiedad_Model extends Abstract_Model {
 
   function save($data) {
 
+    $no_controlar_codigo = (isset($data->no_controlar_codigo) ? $data->no_controlar_codigo : 0);
+
     if (isset($data->id) && $data->id != 0) { //Si ya tiene ID
       $sql = "SELECT precio_final FROM inm_propiedades where id = $data->id AND id_empresa = $data->id_empresa ";
       $q = $this->db->query($sql);
@@ -955,7 +957,7 @@ class Propiedad_Model extends Abstract_Model {
     }
 
     // Si no tiene propietario asignado
-    if (!isset($data->id_propietario) || is_null($data->id_propietario)) $data->id_propietario = 0;
+    if ((!isset($data->id_propietario) || is_null($data->id_propietario)) && $no_controlar_codigo == 0) $data->id_propietario = 0;
 
     $tipo_inmueble = "";
     $q = $this->db->query("SELECT * FROM inm_tipos_inmueble WHERE id = $data->id_tipo_inmueble");
@@ -1051,76 +1053,83 @@ class Propiedad_Model extends Abstract_Model {
       if ($publicado) $this->update_publicacion_mercadolibre($id);
       
       // Propiedades relacionadas
-      $this->db->query("DELETE FROM inm_propiedades_relacionados WHERE id_propiedad = $id AND id_empresa = $id_empresa");
-      $i=1;
-      foreach($productos_relacionados as $p) {
-        $this->db->insert("inm_propiedades_relacionados",array(
-          "id_propiedad"=>$id,
-          "id_relacion"=>$p->id,
-          "id_rubro"=>0,
-          "destacado"=>$p->destacado,
-          "orden"=>$i,
-        ));
-        $i++;
+      if ($no_controlar_codigo == 0) {
+        $this->db->query("DELETE FROM inm_propiedades_relacionados WHERE id_propiedad = $id AND id_empresa = $id_empresa");
+        $i=1;
+        foreach($productos_relacionados as $p) {
+          $this->db->insert("inm_propiedades_relacionados",array(
+            "id_propiedad"=>$id,
+            "id_relacion"=>$p->id,
+            "id_rubro"=>0,
+            "destacado"=>$p->destacado,
+            "orden"=>$i,
+          ));
+          $i++;
+        }
       }
 
       // Actualizamos los departamentos
-      $this->db->query("DELETE FROM inm_departamentos WHERE id_propiedad = $id AND id_empresa = $id_empresa");
-      $this->db->query("DELETE FROM inm_departamentos_images WHERE id_propiedad = $id AND id_empresa = $id_empresa");
-      $i=1;
-      foreach($departamentos as $p) {
-        $this->db->insert("inm_departamentos",array(
-          "id_propiedad"=>$id,
-          "nombre"=>$p->nombre,
-          "texto"=>$p->texto,
-          "piso"=>$p->piso,
-          "id_empresa"=>$p->id_empresa,
-          "disponible"=>$p->disponible,
-          "orden"=>$p->orden,
-        ));
-        $id_departamento = $this->db->insert_id();
-        // Insertamos las fotos del departamento
-        $j=0;
-        foreach($p->images_dptos as $f) {
-          $this->db->insert("inm_departamentos_images",array(
+      if ($no_controlar_codigo == 0) {
+        $this->db->query("DELETE FROM inm_departamentos WHERE id_propiedad = $id AND id_empresa = $id_empresa");
+        $this->db->query("DELETE FROM inm_departamentos_images WHERE id_propiedad = $id AND id_empresa = $id_empresa");
+        $i=1;
+        foreach($departamentos as $p) {
+          $this->db->insert("inm_departamentos",array(
             "id_propiedad"=>$id,
-            "id_departamento"=>$id_departamento,
-            "path"=>$f,
+            "nombre"=>$p->nombre,
+            "texto"=>$p->texto,
+            "piso"=>$p->piso,
             "id_empresa"=>$p->id_empresa,
-            "orden"=>$j,
+            "disponible"=>$p->disponible,
+            "orden"=>$p->orden,
           ));
-          $j++;
+          $id_departamento = $this->db->insert_id();
+          // Insertamos las fotos del departamento
+          $j=0;
+          foreach($p->images_dptos as $f) {
+            $this->db->insert("inm_departamentos_images",array(
+              "id_propiedad"=>$id,
+              "id_departamento"=>$id_departamento,
+              "path"=>$f,
+              "id_empresa"=>$p->id_empresa,
+              "orden"=>$j,
+            ));
+            $j++;
+          }
+          $i++;
         }
-        $i++;
       }
 
       // Actualizamos los gastos
-      $this->db->query("DELETE FROM inm_propiedades_gastos WHERE id_propiedad = $id AND id_empresa = $id_empresa");
-      foreach($gastos as $p) {
-        $this->db->insert("inm_propiedades_gastos",array(
-          "id_propiedad"=>$id,
-          "path"=>$p->path,
-          "descripcion"=>$p->descripcion,
-          "fecha"=>$p->fecha,
-          "id_empresa"=>$p->id_empresa,
-          "concepto"=>$p->concepto,
-          "monto"=>$p->monto,
-        ));
+      if ($no_controlar_codigo == 0) {
+        $this->db->query("DELETE FROM inm_propiedades_gastos WHERE id_propiedad = $id AND id_empresa = $id_empresa");
+        foreach($gastos as $p) {
+          $this->db->insert("inm_propiedades_gastos",array(
+            "id_propiedad"=>$id,
+            "path"=>$p->path,
+            "descripcion"=>$p->descripcion,
+            "fecha"=>$p->fecha,
+            "id_empresa"=>$p->id_empresa,
+            "concepto"=>$p->concepto,
+            "monto"=>$p->monto,
+          ));
+        }
       }
 
-
-      $this->db->query("DELETE FROM inm_propiedades_permutas WHERE id_propiedad = $id AND id_empresa = $id_empresa");
-      foreach($permutas as $p) {
-        $this->db->insert("inm_propiedades_permutas",array(
-          "id_propiedad"=>$id,
-          "id_empresa"=>$p->id_empresa,
-          "banios"=>$p->banios,
-          "dormitorios"=>$p->dormitorios,
-          "cocheras"=>$p->cocheras,
-          "precio_maximo"=>$p->precio_maximo,
-          "id_localidad"=>$p->id_localidad,
-          "id_tipo_inmueble"=>$p->id_tipo_inmueble,
-        ));
+      if ($no_controlar_codigo == 0) {
+        $this->db->query("DELETE FROM inm_propiedades_permutas WHERE id_propiedad = $id AND id_empresa = $id_empresa");
+        foreach($permutas as $p) {
+          $this->db->insert("inm_propiedades_permutas",array(
+            "id_propiedad"=>$id,
+            "id_empresa"=>$p->id_empresa,
+            "banios"=>$p->banios,
+            "dormitorios"=>$p->dormitorios,
+            "cocheras"=>$p->cocheras,
+            "precio_maximo"=>$p->precio_maximo,
+            "id_localidad"=>$p->id_localidad,
+            "id_tipo_inmueble"=>$p->id_tipo_inmueble,
+          ));
+        }
       }
           
       // Guardamos las imagenes
@@ -1151,19 +1160,21 @@ class Propiedad_Model extends Abstract_Model {
       }
 
       // Guardamos los precios
-      $this->db->query("DELETE FROM inm_propiedades_precios WHERE id_propiedad = $id AND id_empresa = $data->id_empresa");
-      foreach($temporada as $im) {
-        $desde = fecha_mysql($im->fecha_desde);
-        $hasta = fecha_mysql($im->fecha_hasta);
-        $this->db->query("INSERT INTO inm_propiedades_precios (id_empresa,id_propiedad,promocion,fecha_desde,fecha_hasta,precio_finde,precio_semana,precio_mes,nombre,minimo_dias_reserva,precio) VALUES($data->id_empresa,$id,0,'$desde','$hasta',$im->precio_finde,$im->precio_semana,$im->precio_mes,'$im->nombre',$im->minimo_dias_reserva,$im->precio)");
-      }
+      if ($no_controlar_codigo == 0) {
+        $this->db->query("DELETE FROM inm_propiedades_precios WHERE id_propiedad = $id AND id_empresa = $data->id_empresa");
+        foreach($temporada as $im) {
+          $desde = fecha_mysql($im->fecha_desde);
+          $hasta = fecha_mysql($im->fecha_hasta);
+          $this->db->query("INSERT INTO inm_propiedades_precios (id_empresa,id_propiedad,promocion,fecha_desde,fecha_hasta,precio_finde,precio_semana,precio_mes,nombre,minimo_dias_reserva,precio) VALUES($data->id_empresa,$id,0,'$desde','$hasta',$im->precio_finde,$im->precio_semana,$im->precio_mes,'$im->nombre',$im->minimo_dias_reserva,$im->precio)");
+        }
 
-      // Guardamos los impuestos
-      $this->db->query("DELETE FROM inm_propiedades_impuestos WHERE id_propiedad = $id AND id_empresa = $data->id_empresa");
-      $k=0;
-      foreach($impuestos as $im) {
-        $this->db->query("INSERT INTO inm_propiedades_impuestos (id_empresa,id_propiedad,nombre,tipo,monto,orden) VALUES($data->id_empresa,$id,'$im->nombre','$im->tipo','$im->monto',$k)");
-        $k++;
+        // Guardamos los impuestos
+        $this->db->query("DELETE FROM inm_propiedades_impuestos WHERE id_propiedad = $id AND id_empresa = $data->id_empresa");
+        $k=0;
+        foreach($impuestos as $im) {
+          $this->db->query("INSERT INTO inm_propiedades_impuestos (id_empresa,id_propiedad,nombre,tipo,monto,orden) VALUES($data->id_empresa,$id,'$im->nombre','$im->tipo','$im->monto',$k)");
+          $k++;
+        }
       }
 
       // Si se inserta una nueva propiedad, buscamos si choca con alguna otra en la red

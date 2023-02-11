@@ -1936,6 +1936,8 @@ class Propiedades extends REST_Controller
             $r = $q->row();
             $p->id = $r->id;
             $p->id_empresa = $id_empresa;
+            $p->es_oferta = $r->es_oferta;
+            $p->id_usuario = $r->id_usuario;
             $p->no_controlar_codigo = 1;
             $this->Propiedad_Model->save($p);
             $cant_update++;

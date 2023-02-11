@@ -58,7 +58,7 @@ $entrada = $entrada_model->get($id); ?>
       <?php if (!empty($entrada->subtitulo)) { ?>
         <h4 class="text-uppercase text-center contacto-title"><?php echo $entrada->subtitulo ?></h4>
       <?php } ?>
-      <div class="contacto-descripcion mb40">
+      <div class="contacto-descripcion mb-5">
         <?php echo $entrada->plain_text ?>
       </div>
     </div>
