@@ -74,36 +74,38 @@ $(window).scroll(function(){
 });
 
 //Map slider Swiper Slider Script
-var swiper = new Swiper(".map-slider", {
-  slidesPerView: 3,
-  spaceBetween: 30,
-  navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
+if ($(".map-slider").length > 0) {
+  var swiper = new Swiper(".map-slider", {
+    slidesPerView: 3,
+    spaceBetween: 30,
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
     },
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
-  breakpoints: {
-    320: {
-      slidesPerView: 1,
-      spaceBetween: 0,
+    breakpoints: {
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 0,
+      },
+      640: {
+        slidesPerView: 2,
+        spaceBetween: 0,
+      },
+      768: {
+        slidesPerView: 3,
+        spaceBetween: 0,
+      },
+      1199: {
+        slidesPerView: 3,
+        spaceBetween: 0,
+      },
     },
-    640: {
-      slidesPerView: 2,
-      spaceBetween: 0,
-    },
-    768: {
-      slidesPerView: 3,
-      spaceBetween: 0,
-    },
-    1199: {
-      slidesPerView: 3,
-      spaceBetween: 0,
-    },
-  },
-});
+  });
+}
 
 if ($('.magnific-gallery').length > 0) {
   $('.magnific-gallery').magnificPopup({
