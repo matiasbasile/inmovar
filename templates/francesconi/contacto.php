@@ -23,14 +23,20 @@
     </div>
   </section>
 
-
-  <div id="map1"></div>
-
   <?php $entrada = $entrada_model->get(44833) ?>
 
   <section class="equo-con">
     <div class="container">
+
+      <div class="equo-con-title">
+        <h2 class="color-title">contactese con nosotros</h2>
+        <h3 class="small-title">contacto</h3>
+      </div>
+
       <div class="con-inner">
+
+        <div id="map1"></div>
+        
         <div class="row g-0">
           <div class="col-lg-6">
             <?php if (!empty($entrada)) { ?>
