@@ -28,7 +28,11 @@
 
   <section class="equo-con">
     <div class="container">
-      <div class="con-inner">
+      <div class="equo-con-title">
+        <h2 class="color-title">Francesconi Inmobiliaria</h2>
+        <h3 class="small-title">vender</h3>
+      </div>
+      <div class="con-inner">        
         <div class="row g-0">
           <div class="col-lg-6">
             <?php if (!empty($entrada)) { ?>
