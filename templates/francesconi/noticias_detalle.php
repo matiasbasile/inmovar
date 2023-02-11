@@ -19,7 +19,7 @@ $entrada = $entrada_model->get($id); ?>
       </div>
     </div>
   </section>
-  
+
   <section class="equo-con">
     <div class="container">    
       <div class="equo-con-title">
@@ -55,10 +55,12 @@ $entrada = $entrada_model->get($id); ?>
 
   <?php if (!empty($entrada)) { ?>
     <div class="container" id="contacto-container">
-      <h4 class="text-uppercase text-center contacto-title"><?php echo $entrada->titulo ?></h4>
-      <p class="contacto-descripcion">
+      <?php if (!empty($entrada->subtitulo)) { ?>
+        <h4 class="text-uppercase text-center contacto-title"><?php echo $entrada->subtitulo ?></h4>
+      <?php } ?>
+      <div class="contacto-descripcion mb40">
         <?php echo $entrada->plain_text ?>
-      </p>
+      </div>
     </div>
   <?php } ?>
   <section class="ros-section ">
