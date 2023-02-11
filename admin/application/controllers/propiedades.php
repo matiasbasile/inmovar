@@ -1939,12 +1939,14 @@ class Propiedades extends REST_Controller
             $p->es_oferta = $r->es_oferta;
             $p->id_usuario = $r->id_usuario;
             $p->no_controlar_codigo = 1;
+            $p->fecha_importacion = date("Y-m-d H:i:s");
             $this->Propiedad_Model->save($p);
             $cant_update++;
           } else {
             $p->fecha_ingreso = date("Y-m-d");
             $p->fecha_publicacion = date("Y-m-d");
             $p->id_empresa = $id_empresa;
+            $p->fecha_importacion = date("Y-m-d H:i:s");
             // Si se inserta la primera vez, si es venta ya va compartida a la red
             if ($p->id_tipo_operacion == 1) $p->compartida = 2;
 
