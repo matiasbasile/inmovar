@@ -12,6 +12,18 @@ $entrada = $entrada_model->get($id); ?>
 
   <?php include 'includes/header.php' ?>
 
+  <section class="equipo-banner equo">
+    <div class="container">
+      <div class="equipo-content">
+        <h1 class="banner-title">novedades</h1>
+      </div>
+    </div>
+    <div class="equo-con-title">
+      <h2 class="color-title">novedades</h2>
+      <h3 class="small-title"><?php echo $entrada->titulo ?></h3>
+    </div>
+  </section> 
+
   <?php if (sizeof($entrada->images) > 0) { ?>
     <section class="map-section magnific-gallery">
       <div class="swiper-container map-slider">
