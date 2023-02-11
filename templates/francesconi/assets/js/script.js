@@ -105,8 +105,8 @@ var swiper = new Swiper(".map-slider", {
   },
 });
 
-
-$('.magnific-gallery').magnificPopup({
+if ($('.magnific-gallery').length > 0) {
+  $('.magnific-gallery').magnificPopup({
     delegate: 'a',
     type: 'image',
     tLoading: 'Loading image #%curr%...',
@@ -116,3 +116,4 @@ $('.magnific-gallery').magnificPopup({
       navigateByImgClick: true,
     },
   });
+}

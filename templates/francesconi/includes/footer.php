@@ -83,7 +83,7 @@
 <script src="assets/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
 <script src="assets/js/swiper-bundle.min.js"></script>
-<script src="assets/js/script.js"></script>
+<script src="assets/js/script.js?v=1"></script>
 <script src="/admin/resources/js/moment.min.js"></script>
 <?php include_once("templates/comun/mapa_js.php"); ?>
 

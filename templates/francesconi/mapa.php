@@ -42,7 +42,6 @@ $nombre_pagina = $vc_link_tipo_operacion;
 <?php include("includes/footer.php") ?>
 
 <?php 
-include_once("templates/comun/mapa_js.php"); 
 include_once("includes/mapa_js.php");
 ?>
 </body>
