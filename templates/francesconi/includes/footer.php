@@ -5,8 +5,8 @@
         <div class="footer-content">
           <h5>alquileres</h5>
           <p>¿Estas alquilando o queres alquilar? Comunicate para que te ayudemos</p>
-          <?php if(!empty($empresa->telefono_2)) { ?>
-           <a href="https://wa.me/<?php echo convertString($empresa->telefono_2) ?>" class="border-btn" target="_blank" ><img src="assets/images/icons/icon-7.png" alt="Icon"><?php echo $empresa->telefono_2 ?></a>
+          <?php if(!empty($empresa->whatsapp)) { ?>
+           <a href="https://wa.me/<?php echo convertString($empresa->whatsapp) ?>" class="border-btn" target="_blank" ><img src="assets/images/icons/icon-7.png" alt="Icon"><?php echo $empresa->whatsapp ?></a>
           <?php } ?>
         </div>
       </div>
@@ -14,8 +14,8 @@
         <div class="footer-content">
           <h5>ventas</h5>
           <p>¿Estas alquilando o queres alquilar? Comunicate para que te ayudemos</p>
-          <?php if(!empty($empresa->telefono)) { ?>
-           <a href="https://wa.me/<?php echo convertString($empresa->telefono) ?>" class="border-btn" target="_blank"><img src="assets/images/icons/icon-7.png" alt="Icon"><?php echo $empresa->telefono ?></a>
+          <?php if(!empty($empresa->telefono_web)) { ?>
+           <a href="https://wa.me/<?php echo convertString($empresa->telefono_web) ?>" class="border-btn" target="_blank"><img src="assets/images/icons/icon-7.png" alt="Icon"><?php echo $empresa->telefono_web ?></a>
           <?php } ?>
         </div>
       </div>
@@ -23,8 +23,8 @@
         <div class="footer-content">
           <h5>administración</h5>
           <p>¿Estas alquilando o queres alquilar? Comunicate para que te ayudemos</p>
-          <?php if(!empty($empresa->telefono_3)) { ?>
-           <a href="https://wa.me/<?php echo convertString($empresa->telefono_3) ?>" class="border-btn" target="_blank"><img src="assets/images/icons/icon-7.png" alt="Icon"><?php echo $empresa->telefono_3 ?></a>
+          <?php if(!empty($empresa->telefono_2)) { ?>
+           <a href="https://wa.me/<?php echo convertString($empresa->telefono_2) ?>" class="border-btn" target="_blank"><img src="assets/images/icons/icon-7.png" alt="Icon"><?php echo $empresa->telefono_2 ?></a>
           <?php } ?>
         </div>
       </div>
