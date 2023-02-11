@@ -25,9 +25,11 @@ $nombre_pagina = $vc_link_tipo_operacion;
 </section>
 
 <section class="pb0">
-  <?php 
-  $buscador_mapa = true;
-  include 'includes/propiedad/filtros.php'; ?>
+  <div class="container">  
+    <?php 
+    $buscador_mapa = true;
+    include 'includes/propiedad/filtros.php'; ?>
+  </div>
   <div id="mapa" class="mt40" style="width:100%; height:700px"></div>
 </section>
 
