@@ -57,8 +57,7 @@ $nombre_pagina = $vc_link_tipo_operacion;
           </div>
         </div>
       </div>
-      <?php echo $vc_total_paginas ?>
-      <div class="text-center <?php echo ($vc_total_paginas == 1) ? 'd-none' : '' ?>">
+      <div class="text-center <?php echo ($vc_total_paginas > 1) ? '' : 'd-none' ?>">
         <a onclick="cargar()" id="cargarMas" class="fill-btn">ver más propiedades</a>
       </div>
     </div>
