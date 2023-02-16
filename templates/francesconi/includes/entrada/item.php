@@ -16,7 +16,7 @@
       $mes =  get_mes(date('m', strtotime($fecha)));
       ?>
       <h5><small><?php echo $n->dia; ?></small><?php echo $mes ?> del <?php echo $n->anio; ?></h5>
-      <p><?php echo $n->plain_text ?></p>
+      <p><?php echo $n->descripcion ?></p>
     </div>
   </div>
 <?php } ?>
