@@ -27,16 +27,8 @@
 
   <section class="equo-con">
     <div class="container">
-
-      <div class="equo-con-title">
-        <h2 class="color-title">contactese con nosotros</h2>
-        <h3 class="small-title">contacto</h3>
-      </div>
-
       <div class="con-inner">
-
         <div id="map1"></div>
-
         <div class="con-text">
           <?php if (!empty($entrada->titulo)) { ?>
             <h3><?php echo $entrada->titulo ?></h3>
