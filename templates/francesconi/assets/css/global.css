@@ -3179,12 +3179,6 @@ select {
 		font-size: 22px;
 		line-height: 33px;
 	}
-
-	.map-services .description-content li,
-	.map-services .description-content li {
-		width: 100%;
-		max-width: 100%;
-	}
 }
 
 .noticias .equipo-mis .fill-btn-solidarias {
@@ -3283,4 +3277,10 @@ select {
 		text-align: justify;
 	}
 
+}
+
+@media (min-width:768px) {
+  .propiedades_servicios ul {
+    display: block !important;
+  }	
 }
