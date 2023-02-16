@@ -371,7 +371,10 @@ class Propiedad_Model {
     $in_dormitorios = isset($config["in_dormitorios"]) ? $config["in_dormitorios"] : "";
     $es_oferta = isset($config["es_oferta"]) ? $config["es_oferta"] : -1;
 
-    if ($link_tipo_operacion == "oportunidades") $config["es_oferta"] = 1;
+    if ($link_tipo_operacion == "oportunidades") {
+      echo "ANDA";
+      $config["es_oferta"] = 1;
+    }
 
     $view = isset($get_params["view"]) ? $get_params["view"] : 0;
     $tiene_balcon = isset($get_params["balcon"]) ? $get_params["balcon"] : 0;
