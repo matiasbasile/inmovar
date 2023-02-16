@@ -14,6 +14,7 @@ extract($propiedad_model->get_variables($config_grupo));
 if (isset($get_params["test"])) echo $propiedad_model->get_sql();
 $nombre_pagina = $vc_link_tipo_operacion;
 
+if ($get_params["tp"] == "27" || $get_params["tp"] == "4") $vc_nombre_operacion = "Barrios Cerrados";
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
