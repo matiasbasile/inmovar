@@ -95,7 +95,7 @@ extract($entrada_model->get_variables(array(
                     $mes =  get_mes(date('m', strtotime($fecha)));
                     ?>
                     <h5><small><?php echo $p->dia; ?></small><?php echo $mes ?> del <?php echo $p->anio; ?></h5>
-                    <p><?php echo $p->plain_text ?></p>
+                    <p><?php echo $p->descripcion ?></p>
                   </div>
                 </div>
               </div>
