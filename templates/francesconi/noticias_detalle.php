@@ -30,7 +30,7 @@ $entrada = $entrada_model->get($id); ?>
   </section> 
 
   <?php if (sizeof($entrada->images) > 0) { ?>
-    <section class="map-section magnific-gallery">
+    <section class="map-section magnific-gallery mt30">
       <div class="swiper-container map-slider">
         <div class="swiper-wrapper">
           <?php foreach ($entrada->images as $img) { ?>
@@ -46,7 +46,7 @@ $entrada = $entrada_model->get($id); ?>
       </div>
     </section>
   <?php } else { ?>
-    <div class="container">
+    <div class="container mt30">
       <div class="mb-5 text-center">
         <img src="<?php echo $entrada->path ?>" alt="img-venta">
       </div>
