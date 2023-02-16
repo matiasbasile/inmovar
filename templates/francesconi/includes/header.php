@@ -64,10 +64,10 @@
         }
         ?>
         <?php if (!empty($empresa->whatsapp)) { ?>
-          <li><a href="https://wa.me/<?php echo convertString($empresa->whatsapp) ?>" target="_blank"><span>ventas</span><?php echo $empresa->whatsapp ?></a></li>
+          <li><a href="https://wa.me/<?php echo convertString($empresa->whatsapp) ?>" target="_blank"><span>alquileres</span><?php echo $empresa->whatsapp ?></a></li>
         <?php } ?>
         <?php if (!empty($empresa->telefono_web)) { ?>
-          <li><a href="https://wa.me/<?php echo convertString($empresa->telefono_web) ?>" target="_blank"><span>alquileres</span><?php echo $empresa->telefono_web ?></a></li>
+          <li><a href="https://wa.me/<?php echo convertString($empresa->telefono_web) ?>" target="_blank"><span>ventas</span><?php echo $empresa->telefono_web ?></a></li>
         <?php } ?>
         <?php if (!empty($empresa->telefono_2)) { ?>
           <li><a href="https://wa.me/<?php echo convertString($empresa->telefono_2) ?>" target="_blank"><span>administración</span><?php echo $empresa->telefono_2 ?></a></li>
