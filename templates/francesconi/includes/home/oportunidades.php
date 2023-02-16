@@ -7,7 +7,7 @@
       <div class="oport-info">
         <?php $t = $web_model->get_text("oportunidad", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.") ?>
         <p class="editable" data-id_empresa='<?php echo $t->id_empresa ?>' data-clave='<?php echo $t->clave ?>' data-id='<?php echo $t->id ?>'><?php echo $t->plain_text ?></p>
-        <a href="<?php echo mklink("oportunidades/") ?>" class="border-btn">ver oportunidades</a>
+        <a href="<?php echo mklink("propiedades/oportunidades/") ?>" class="border-btn">ver oportunidades</a>
       </div>
     </div>
   </div>
