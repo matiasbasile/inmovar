@@ -371,8 +371,6 @@ class Propiedad_Model {
     $in_dormitorios = isset($config["in_dormitorios"]) ? $config["in_dormitorios"] : "";
     $es_oferta = isset($config["es_oferta"]) ? $config["es_oferta"] : -1;
 
-    if ($link_tipo_operacion == "oportunidades") $es_oferta = 1;
-
     $view = isset($get_params["view"]) ? $get_params["view"] : 0;
     $tiene_balcon = isset($get_params["balcon"]) ? $get_params["balcon"] : 0;
     $tiene_cochera = isset($get_params["cochera"]) ? $get_params["cochera"] : 0;
@@ -406,6 +404,9 @@ class Propiedad_Model {
     $vc_maximo = (isset($get_params["vc_maximo"])) ? filter_var($get_params["vc_maximo"],FILTER_SANITIZE_STRING) : 0;
     $vc_maximo = str_replace(".", "", $vc_maximo);
     if ($vc_maximo == "undefined" || empty($vc_maximo)) $vc_maximo = 0;
+
+    if ($link_tipo_operacion == "oportunidades") $es_oferta = 1;
+    else if ($link_tipo_operacion == "permutas") $acepta_permuta = 1;
 
     if (!empty($codigo)) {
       $config_list = array(
