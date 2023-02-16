@@ -414,6 +414,10 @@ class Propiedad_Model {
       $link_tipo_operacion = "";
       $acepta_permuta = 1;
       $vc_nombre_operacion = "Permutas";
+    else if ($link_tipo_operacion == "barrios-cerrados") {
+      $link_tipo_operacion = "";
+      $in_ids_tipo_inmueble = "4";
+      $vc_nombre_operacion = "Barrios Cerrados";
     }
 
     if (!empty($codigo)) {
