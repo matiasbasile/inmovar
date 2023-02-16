@@ -27,7 +27,7 @@
 
   <section class="equo-con">
     <div class="container">
-      <div class="con-inner">
+      <div class="con-inner pt0">
         <div id="map1"></div>
         <div class="con-text">
           <?php if (!empty($entrada->titulo)) { ?>

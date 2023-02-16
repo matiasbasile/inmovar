@@ -28,7 +28,7 @@
 
   <section class="equo-con">
     <div class="container">
-      <div class="con-inner">        
+      <div class="con-inner pt0">        
         <div class="row g-0">
           <div class="col-lg-6">
             <?php if (!empty($entrada)) { ?>
