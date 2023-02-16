@@ -408,10 +408,12 @@ class Propiedad_Model {
     if ($link_tipo_operacion == "oportunidades") {
       $link_tipo_operacion = "";
       $es_oferta = 1;
+      $vc_nombre_operacion = "Oportunidades";
     }
     else if ($link_tipo_operacion == "permutas") {
       $link_tipo_operacion = "";
       $acepta_permuta = 1;
+      $vc_nombre_operacion = "Permutas";
     }
 
     if (!empty($codigo)) {
