@@ -3110,13 +3110,15 @@ select {
 
 @media screen and (max-width: 479px) {
 	.cuento-inner .cuento-info {
-		flex-direction: column;
+		flex-direction: row;
 		align-items: flex-start;
 	}
 
 	.cuento-inner .cuento-info p {
 		margin-top: 15px;
 		margin-left: 0;
+		width: 100%;
+		text-align: center;
 	}
 
 	.oport-inner .sub-title {
