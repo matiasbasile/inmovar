@@ -3057,6 +3057,7 @@ select {
 	.francesconi-banner .swiper-slide {
 		height: 500px;
 		background-size: cover !important;
+		background-position: center !important;
 	}
 
 	.comprar-btns {
