@@ -471,7 +471,7 @@
           <div class="col-md-4">
             <div class="form-group">
               <label class="control-label"><?php echo lang(array("es"=>"Teléfono 2","en"=>"Phone two")) ?></label>
-              <input type="text" name="telefono_2" class="form-control" value="<%= telefono_2 %>"/>
+              <input type="text" name="telefono_2" class="form-control" value="<%= config.telefono_2 %>"/>
             </div>
           </div>
         </div>        
