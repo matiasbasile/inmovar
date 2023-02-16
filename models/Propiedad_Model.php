@@ -405,8 +405,14 @@ class Propiedad_Model {
     $vc_maximo = str_replace(".", "", $vc_maximo);
     if ($vc_maximo == "undefined" || empty($vc_maximo)) $vc_maximo = 0;
 
-    if ($link_tipo_operacion == "oportunidades") $es_oferta = 1;
-    else if ($link_tipo_operacion == "permutas") $acepta_permuta = 1;
+    if ($link_tipo_operacion == "oportunidades") {
+      $link_tipo_operacion = "";
+      $es_oferta = 1;
+    }
+    else if ($link_tipo_operacion == "permutas") {
+      $link_tipo_operacion = "";
+      $acepta_permuta = 1;
+    }
 
     if (!empty($codigo)) {
       $config_list = array(
