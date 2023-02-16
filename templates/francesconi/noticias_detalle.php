@@ -23,7 +23,7 @@ $entrada = $entrada_model->get($id); ?>
   <section class="equo-con">
     <div class="container">    
       <div class="equo-con-title">
-        <h2 class="color-title">novedades</h2>
+        <h2 class="color-title"><?php echo fecha_full($entrada->fecha) ?></h2>
         <h3 class="small-title"><?php echo $entrada->titulo ?></h3>
       </div>
     </div>
