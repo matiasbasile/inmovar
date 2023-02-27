@@ -3,11 +3,9 @@ admin/uploads/*
 importar/
 instalacion/
 backup/
-admin/application/config/*
 importacion/
 importar/
 admin/logs/*
-admin/params.php
 *.txt
 *.log
 *.sql
