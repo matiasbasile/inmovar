@@ -43,7 +43,7 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = (isset($_SERVER["SERVER_DB"]) ? $_SERVER["SERVER_DB"] : "localhost");
 $db['default']['username'] = (isset($_SERVER["USER_DB"]) ? $_SERVER["USER_DB"] : "root");
-$db['default']['password'] = (isset($_SERVER["PASSWORD_DB"]) ? $_SERVER["PASSWORD_DB"] : "varcreative1805");
+$db['default']['password'] = (isset($_SERVER["PASSWORD_DB"]) ? $_SERVER["PASSWORD_DB"] : "");
 $db['default']['database'] = (isset($_SERVER["DATABASE"]) ? $_SERVER["DATABASE"] : "inmovar");
 $db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = '';

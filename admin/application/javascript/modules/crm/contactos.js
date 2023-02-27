@@ -226,6 +226,7 @@
         "fax":self.model.get("fax"),
         "celular":self.model.get("celular"),
         "telefono":self.model.get("telefono"),
+        "nombre_cliente": self.model.get("nombre"),
       });
       modelo.on("remove",this.actualizar_consultas,this);
       this.editor = new app.views.CrearConsultaTimeline({

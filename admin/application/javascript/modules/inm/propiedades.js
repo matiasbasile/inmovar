@@ -3784,12 +3784,113 @@
           }
         });
       },
+
+      "click .nueva_visita": function(e) {
+        var self = this;
+        var view = new app.views.NuevaVisitaView({
+          model: new app.models.Contacto(),
+          id_propiedad: self.model.id,
+          view: self,
+        });            
+        crearLightboxHTML({
+          "html":view.el,
+          "width":550,
+          "height":140,
+          "escapable":false,
+        });        
+      },
+      
       "click .editar":function() {
         $('.modal:last').modal('hide');
         location.href="app/#propiedades/"+this.model.id;
       },
       "click #cerrar_preview":function(){
         $('.modal:last').modal('hide');
+      },
+      "click .propiedad_sigue_activa": function(e) {
+        var self = this;
+        e.stopPropagation();
+        e.preventDefault();
+        if (confirm("¿Estas seguro que la propiedad sigue activa?")) {        
+          self.model.set({
+            "pronto_a_vencer": 0,
+          });
+          this.change_property({
+            "table":"inm_propiedades",
+            "url":"propiedades/function/change_property/",
+            "attribute":"fecha_vencimiento",
+            "value":moment().add(3, "months").format("YYYY-MM-DD"),
+            "id":self.model.id,
+            "success":function(){
+              self.render();
+            }
+          });
+          return false;
+        }
+      },
+      "click .propiedad_desactivar": function(e) {
+        var self = this;
+        e.stopPropagation();
+        e.preventDefault();
+
+        if (confirm("¿Estas seguro que desea desactivar la propiedad?")) {     
+
+          self.model.set({
+            "pronto_a_vencer": 0,
+            "activo": 0,
+          });
+
+          var self = this;
+          var propiedad = new app.models.PropiedadDesactivar({
+            "id_propiedad": self.model.id,
+            "id_empresa": ID_EMPRESA,
+            "id_usuario": ID_USUARIO,
+          });
+          var view = new app.views.PropiedadDesactivar({
+            model: propiedad,
+          });
+          crearLightboxHTML({
+            "html":view.el,
+            "width":600,
+            "height":500,
+            "escapable": false,
+            "callback":function() {
+              self.render();
+            }
+          });  
+          return false;
+        }
+      },
+      "click .propiedad_volver_activar": function(e) {
+        var self = this;
+        e.stopPropagation();
+        e.preventDefault();
+        if (confirm("¿Estas seguro que quieres activar la propiedad?")) {        
+          self.model.set({
+            "pronto_a_vencer": 0,
+            "activo": 1,
+          });
+
+          this.change_property({
+            "table":"inm_propiedades",
+            "url":"propiedades/function/change_property/",
+            "attribute":"fecha_vencimiento",
+            "value":moment().add(3, "months").format("YYYY-MM-DD"),
+            "id":self.model.id,
+          });
+
+          this.change_property({
+            "table":"inm_propiedades",
+            "url":"propiedades/function/change_property/",
+            "attribute":"activo",
+            "value":1,
+            "id":self.model.id,
+            "success":function(){
+              self.render();
+            }
+          });
+          return false;
+        }
       },
       "click .enviar":"enviar",
       "click .enviar_whatsapp":"enviar_whatsapp",

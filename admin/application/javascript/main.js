@@ -99,7 +99,9 @@
 
         "novedades": "ver_novedades",
         "novedad": "ver_novedad",
-        "novedad/:id": "ver_novedad",        
+        "novedad/:id": "ver_novedad",  
+
+        "agenda": "ver_agenda",      
 
         // Funcionamiento de ABM General
         '': 'router',
@@ -311,6 +313,21 @@
           }
         }                
       },
+
+      ver_agenda: function() {
+        var permiso = 1
+        if (PERFIL == -1 || PERFIL > 1) {
+          var compania = new app.models.AbstractModel();
+          var view = new app.views.AgendaCalendarioView({
+            model: compania,
+            permiso: permiso
+          });
+          this.mostrar({
+            "top" : view.el,
+          });
+        }   
+      },
+
 
       ver_facturacion: function(id) {
         if (ID_EMPRESA == 1) {

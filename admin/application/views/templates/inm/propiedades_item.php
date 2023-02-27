@@ -40,6 +40,13 @@
     <br/><span class="text-info"><%= tipo_estado %></span>
   <% } %>
   <br/>Cod. <%= codigo_completo %>
+
+  <% if (id_empresa == ID_EMPRESA && pronto_a_vencer == 1 && activo == 1) { %>
+    <br><span class="text-warning">La propiedad esta por vencer.</span>
+  <% } else if (id_empresa == ID_EMPRESA && pronto_a_vencer == 2) { %>
+    <br><span class="text-danger">La propiedad ha vencido.</span>
+  <% } %> 
+
 </td>
 <td class="<%= clase %> data">
   <% if (ambientes > 0) { %><%= ambientes %> Amb.<br/><% } %>

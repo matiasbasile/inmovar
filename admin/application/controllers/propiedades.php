@@ -11,6 +11,10 @@ class Propiedades extends REST_Controller
     $this->load->model('Propiedad_Model', 'modelo');
   }
 
+  function desactivar_vencidas() {
+    $this->modelo->desactivar_vencidas();
+  }
+
   function get_precios_propiedades()
   {
     $id_empresa = parent::get_post("id_empresa", parent::get_empresa());

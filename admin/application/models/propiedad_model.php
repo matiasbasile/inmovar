@@ -5,7 +5,22 @@ require_once("abstract_model.php");
 class Propiedad_Model extends Abstract_Model {
   
   function __construct() {
+
     parent::__construct("inm_propiedades","id");
+  }
+
+  function desactivar_vencidas() {
+    //En vez de llamar a la funcion buscar, que tiene muchos parametros
+    //Y no siemrpe me va a traer los correctos
+    //Yo simplemente hago un sql de toda la base de datos
+    $hoy = date("Y-m-d");
+    $sql = "UPDATE inm_propiedades ";
+    $sql.= "SET ";
+    $sql.= "activo = 0 ";
+    $sql.= "WHERE ";
+    $sql.= "(fecha_vencimiento <= '$hoy' AND fecha_vencimiento != '0000-00-00') ";
+    $sql.= "AND activo = 1 ";
+    $this->db->query($sql);
   }
 
   function obtener_propiedades_similares($config = array()) {
@@ -788,9 +803,27 @@ class Propiedad_Model extends Abstract_Model {
     $q_total = $this->db->query($sql);
     $r_total = $q_total->row();
     $total_todas = $r_total->total;
-
+    $hoy = date("Y-m-d");
     $salida = array();
     foreach($q->result() as $r) {
+
+      //0 Sin vencer
+      //1 A 1 mes de vencer
+      //2 Vencida
+      $r->pronto_a_vencer = 0;
+
+      if (!empty($r->fecha_vencimiento) && $r->fecha_vencimiento != "0000-00-00") {  
+
+        $datediff = strtotime($r->fecha_vencimiento) - strtotime($hoy);
+        $dias_para_vencimiento = round($datediff / (60 * 60 * 24));
+
+        if ($dias_para_vencimiento >= 1 && $dias_para_vencimiento <= 31) {
+          $r->pronto_a_vencer = 1;
+        } else if ($dias_para_vencimiento <= 0) {
+          $r->pronto_a_vencer = 2;
+        }
+
+      }
 
       if ($buscar_imagenes == 1) {
         $sql = "SELECT AI.* FROM inm_propiedades_images AI ";
@@ -917,6 +950,7 @@ class Propiedad_Model extends Abstract_Model {
     //Si el ID es 0:
     } else {
       $data->fecha_ingreso = date("Y-m-d");
+      $data->fecha_vencimiento = date("Y-m-d", strtotime($data->fecha_ingreso." +3 months"));
     }
 
     $this->load->helper("file_helper");
@@ -1377,6 +1411,8 @@ class Propiedad_Model extends Abstract_Model {
     $get_data = isset($config["get_data"]) ? $config["get_data"] : 0;
     $fecha_desde = isset($config["fecha_desde"]) ? $config["fecha_desde"] : "";
     $fecha_hasta = isset($config["fecha_hasta"]) ? $config["fecha_hasta"] : "";
+    $hoy = date("Y-m-d");
+
     // Obtenemos los datos del propiedad
     $id = (int)$id;
     $sql = "SELECT A.*, ";
@@ -1650,6 +1686,22 @@ class Propiedad_Model extends Abstract_Model {
       if ($qqq->num_rows() > 0) $propiedad->bloqueado_web = 1;
     } else {
       $propiedad->permiso_web = 1;
+    }
+
+
+    $propiedad->pronto_a_vencer = 0;
+
+    if (!empty($propiedad->fecha_vencimiento) && $propiedad->fecha_vencimiento != "0000-00-00") {  
+
+      $datediff = strtotime($propiedad->fecha_vencimiento) - strtotime($hoy);
+      $dias_para_vencimiento = round($datediff / (60 * 60 * 24));
+
+      if ($dias_para_vencimiento >= 1 && $dias_para_vencimiento <= 31) {
+        $propiedad->pronto_a_vencer = 1;
+      } else if ($dias_para_vencimiento <= 0) {
+        $propiedad->pronto_a_vencer = 2;
+      }
+
     }
 
     return $propiedad;

@@ -237,7 +237,12 @@
       */ ?>
       <li>
         <a id="tab_link_nota" href="#tab_nota" role="tab" data-toggle="tab"><i class="fa fa-file-text text-muted"></i> Nota</a>
-      </li>      
+      </li>  
+
+      <li>
+        <a href="javascript:void(0)" class="nueva_visita"><i class="fa fa-home text-muted"></i> Visita</a>
+      </li>  
+
     </ul>
     <div class="tab-content">
       <div id="tab1" class="tab-pane panel-body <%= (active_tab=='tab1')?'active':'' %>">
@@ -623,6 +628,8 @@
         <i title="Personal" class="fa fa-user"></i>
       <% } else if (id_origen == 50) { %>
         <i title="Búsqueda" class="fa fa-search"></i>
+      <% } else if (id_origen == 41) { %>
+        <i title="Visita" class="fa fa-home"></i>
       <% } else { %>
         <i class="fa fa-user"></i>
       <% } %>
@@ -645,6 +652,8 @@
               escribió por Facebook
             <% } else if (id_origen == 27) { %>
               escribió por Whatsapp
+            <% } else if (id_origen == 41) { %>
+              visitará:
             <% } else { %>
               <?php echo lang(array("es"=>"escribió","en"=>"wrote")); ?><%= (id_referencia != 0) ? " por:":":" %>
             <% } %>
@@ -768,4 +777,80 @@
 
     </div>
   <% } %>
+</script>
+
+<script type="text/template" id="nueva_visita_edit_template">
+  <div class="modal-header">
+    <b>Nueva Visita</b>
+    <i class="pull-right cerrar_lightbox fs16 fa fa-times cp"></i>
+  </div>
+  <form class="modal-body" autocomplete="off">
+    <div class="row">
+      <div class="col-md-6">    
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" placeholder="Nombre y Apellido" autocomplete="off" id="nueva_visita_nombre" name="nombre" class="form-control"/>
+        </div>
+      </div>
+      <div class="col-md-6">    
+        <div class="form-group">
+          <label>Email</label>
+          <input type="text" placeholder="Email" id="nueva_visita_email" name="email" class="form-control"/>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Celular</label>
+          <div class="input-group">
+            <span class="input-group-btn">
+              <select class="form-control w100" id="nueva_visita_telefono_prefijo" name="fax">
+                <?php include("application/views/templates/custom/paises.php"); ?>
+              </select>
+            </span>        
+            <input type="text" placeholder="Celular" id="nueva_visita_telefono" name="telefono" class="form-control"/>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label>Fecha de la Visita</label>
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" placeholder="Fecha" id="nueva_visita_fecha" value="<%= fecha %>" class="form-control" name="fecha_ult_operacion"/>
+            <span class="input-group-btn">
+              <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="fa fa-calendar"></i></button>
+            </span>        
+          </div>
+        </div>
+      </div>    
+    </div>
+    <div class="form-group">
+      <label>Propiedad</label>
+      <div class="input-group">
+        <input type="text" disabled placeholder="Interesado en propiedad..." autocomplete="off" id="nueva_visita_propiedad" class="form-control"/>
+        <span class="input-group-btn">
+          <button data-toggle="tooltip" title="Buscar propiedades" tabindex="-1" type="button" class="btn btn-default buscar_propiedades"><i class="fa fa-search"></i></button>
+        </span>        
+      </div>
+    </div>      
+    <div class="form-group">
+      <label>Comentarios</label>
+      <textarea id="nueva_visita_texto" name="texto" class="form-control" placeholder="Comentarios sobre la visita..."></textarea>
+    </div>
+
+    <div class="form-group dn">
+      <div class="checkbox">
+        <label class="i-checks">
+          <input type="checkbox" id="nueva_visita_notificacion"><i></i> 
+          <span class="propietario_nombre dib ml5">Notificar al propietario.</span>
+        </label>
+      </div>                    
+    </div>  
+
+  </form>
+  <div class="modal-footer clearfix">
+    <button class="btn guardar pull-right btn-info">Guardar</button>
+  </div>
+</div>
 </script>

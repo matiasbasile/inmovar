@@ -15,73 +15,77 @@
 <div class='modal-content propiedad-preview'>
   <div class='modal-body'>
     <div class="row pl10 pr10">
+
+      <div class="col-md-12 pl5 pr5">
+        <ul class="nav nav-tabs nav-tabs-2" role="tablist">
+          <li class="active">
+            <a id="propiedad_preview_1_link" href="#propiedad_preview_tab1" class="oh buscar_todos" role="tab" data-toggle="tab">
+              <i class="material-icons">image</i>
+              <span class="hidden-xs m-l-xs">Im&aacute;genes</span>
+            </a>
+          </li>
+          <li>
+            <a id="propiedad_preview_2_link" class="oh" href="#propiedad_preview_tab2" role="tab" data-toggle="tab">
+              <i class="material-icons">room</i>
+              <span class="hidden-xs m-l-xs">Ubicaci&oacute;n</span>
+            </a>
+          </li>
+          <% if(!isEmpty(nota_publica) || !isEmpty(nota_privada)) { %>
+            <li>
+              <a id="propiedad_preview_4_link" class="oh" href="#propiedad_preview_tab4" role="tab" data-toggle="tab">
+                <i class="material-icons">event_note</i>
+                <span class="hidden-xs m-l-xs">Notas</span>
+              </a>
+            </li>
+          <% } %>
+
+          <% if (id_empresa != ID_EMPRESA) { %>
+            <li>
+              <a id="propiedad_preview_3_link" class="oh" href="#propiedad_preview_tab3" role="tab" data-toggle="tab">
+                <i class="material-icons">share</i>
+                <span class="hidden-xs m-l-xs">Datos de la Red</span>
+              </a>
+            </li>
+          <% } %>
+
+          <% if (id_empresa == ID_EMPRESA) { %>
+            <li class="">
+              <a id="propiedad_preview_5_link" href="#propiedad_preview_tab5" class="oh buscar_todos" role="tab" data-toggle="tab">
+                <i class="material-icons">schedule</i>
+                <span class="hidden-xs m-l-xs"> Reportes</span>
+              </a>
+            </li>
+          <% } %>
+
+          <% if (id_empresa == ID_EMPRESA) { %>
+            <li class="">
+              <a id="propiedad_preview_6_link" href="#propiedad_preview_tab6" class="oh buscar_precios_grafico" role="tab" data-toggle="tab">
+                <i class="material-icons">attach_money</i>
+                <span class="hidden-xs m-l-xs">Precios</span>
+              </a>
+            </li>
+          <% } %>
+
+          <% if (VOLVER_SUPERADMIN == 1) { %>
+            <li class="">
+              <a id="propiedad_preview_7_link" href="#propiedad_preview_tab7" class="oh" role="tab" data-toggle="tab">
+                <i class="material-icons">store</i>
+                <span class="hidden-xs m-l-xs">Relacionadas</span>
+              </a>
+            </li>
+          <% } %>
+
+          <li class="show-xs-dib fr" id="cerrar_preview" style="float: right !important;">
+            <a href="javascript:void" class="oh" style="background-color: transparent !important; border-color: transparent !important; padding-right: 0px !important">
+              <i class="material-icons mr0">close</i>
+            </a>
+          </li>
+        </ul>
+      </div>
+
       <div class="col-md-6 pl5 pr5">
         <div class="">
           <div class="tab-container mb0">
-            <ul class="nav nav-tabs nav-tabs-2" role="tablist">
-              <li class="active">
-                <a id="propiedad_preview_1_link" href="#propiedad_preview_tab1" class="oh buscar_todos" role="tab" data-toggle="tab">
-                  <i class="material-icons">image</i>
-                  <span class="hidden-xs m-l-xs">Im&aacute;genes</span>
-                </a>
-              </li>
-              <li>
-                <a id="propiedad_preview_2_link" class="oh" href="#propiedad_preview_tab2" role="tab" data-toggle="tab">
-                  <i class="material-icons">room</i>
-                  <span class="hidden-xs m-l-xs">Ubicaci&oacute;n</span>
-                </a>
-              </li>
-              <% if(!isEmpty(nota_publica) || !isEmpty(nota_privada)) { %>
-                <li>
-                  <a id="propiedad_preview_4_link" class="oh" href="#propiedad_preview_tab4" role="tab" data-toggle="tab">
-                    <i class="material-icons">event_note</i>
-                    <span class="hidden-xs m-l-xs">Notas</span>
-                  </a>
-                </li>
-              <% } %>
-
-              <% if (id_empresa != ID_EMPRESA) { %>
-                <li>
-                  <a id="propiedad_preview_3_link" class="oh" href="#propiedad_preview_tab3" role="tab" data-toggle="tab">
-                    <i class="material-icons">share</i>
-                    <span class="hidden-xs m-l-xs">Datos de la Red</span>
-                  </a>
-                </li>
-              <% } %>
-
-              <% if (id_empresa == ID_EMPRESA) { %>
-                <li class="">
-                  <a id="propiedad_preview_5_link" href="#propiedad_preview_tab5" class="oh buscar_todos" role="tab" data-toggle="tab">
-                    <i class="material-icons">schedule</i>
-                    <span class="hidden-xs m-l-xs"> Reportes</span>
-                  </a>
-                </li>
-              <% } %>
-
-              <% if (id_empresa == ID_EMPRESA) { %>
-                <li class="">
-                  <a id="propiedad_preview_6_link" href="#propiedad_preview_tab6" class="oh buscar_precios_grafico" role="tab" data-toggle="tab">
-                    <i class="material-icons">attach_money</i>
-                    <span class="hidden-xs m-l-xs">Precios</span>
-                  </a>
-                </li>
-              <% } %>
-
-              <% if (VOLVER_SUPERADMIN == 1) { %>
-                <li class="">
-                  <a id="propiedad_preview_7_link" href="#propiedad_preview_tab7" class="oh" role="tab" data-toggle="tab">
-                    <i class="material-icons">store</i>
-                    <span class="hidden-xs m-l-xs">Relacionadas</span>
-                  </a>
-                </li>
-              <% } %>
-
-              <li class="show-xs-dib fr" id="cerrar_preview" style="float: right !important;">
-                <a href="javascript:void" class="oh" style="background-color: transparent !important; border-color: transparent !important; padding-right: 0px !important">
-                  <i class="material-icons mr0">close</i>
-                </a>
-              </li>
-            </ul>
             <div class="tab-content" style="overflow: auto;max-height: 562px;">
 
               <div id="propiedad_preview_tab1" class="tab-pane active">
@@ -179,7 +183,7 @@
 
               <div id="propiedad_preview_tab5" class="tab-pane">
 
-                <div class="row fixed-grafico">
+                <div class="row">
                   <div class="col-md-4">
                     <div class="form-group">
                       <label class="control-label">Fecha desde</label>
@@ -202,14 +206,14 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-4 mt20 tar">
+                  <div class="col-md-4 mt20 tar mb10">
                     <button class="btn btn-info imprimir_reporte">Imprimir PDF</button>
                   </div>
                 </div>
 
                 <div class="row">
       		        <div class="col-sm-12">
-      					    <div class="block panel padder-v item bg-info mb0" style="height: 105px; margin-top: 70px;">
+      					    <div class="block panel padder-v item bg-info mb0" style="height: 105px;">
       						  	<div class="h1 font-thin text-white h1 m-t-md total_visitas tac mt10">0</div>
       						  	<span class="text-muted text-md tac db">Vistas</span>
       						  </div>
@@ -280,7 +284,7 @@
 
               <div id="propiedad_preview_tab6" class="tab-pane">
 
-                <div class="row fixed-grafico">
+                <div class="row">
                   <div class="col-md-4">
                     <div class="form-group">
                       <label class="control-label">Fecha desde</label>
@@ -306,7 +310,7 @@
                 </div>
 
 
-                <div class="h250" style="width: 540px;margin-top: 100px;" id="historial_precios_bar"></div>
+                <div class="h250" style="width: 540px;" id="historial_precios_bar"></div>
               </div>
 
               <div id="propiedad_preview_tab7" class="tab-pane">
@@ -373,6 +377,21 @@
           <div class="panel-body">
             <div class="padder">
 
+              <% if (id_empresa == ID_EMPRESA && pronto_a_vencer == 1 && activo == 1) { %>
+                <div class="alert-item bg-war mb10">
+                  La propiedad esta por vencer
+                  <span class="db mt5">¿Esta propiedad sigue activa?</span>
+                  <a href="javascript:void(0)" class="btn btn-success mt5 propiedad_sigue_activa">Sigue Activa</a>
+                  <a href="javascript:void(0)" class="btn btn-danger mt5 ml10 propiedad_desactivar">Desactivar Propiedad</a>
+                </div>
+              <% } else if (id_empresa == ID_EMPRESA && pronto_a_vencer == 2) { %>
+
+                <div class="alert-item bg-red mb10">
+                  La propiedad ha vencido. No se mostrara en la web.<br>
+                  <a href="javascript:void(0)" class="btn btn-success mt5 propiedad_volver_activar">Activar propiedad</a>
+                </div>
+              <% } %> 
+
               <div class="clearfix">
                 <% if (!isEmpty(codigo)) { %>
                   <b>C&oacute;digo:</b> <span><%= codigo_completo %></span> 
@@ -425,7 +444,7 @@
 
             </div>
           </div>
-          <div class="panel-body expand db">
+          <div class="panel-body expand db" style="max-height: 290px; overflow-x: auto;">
             <div class="padder">
               <div class="subtitulo">Informaci&oacute;n B&aacute;sica</div>
               <div class="propiedad_preview_texto"><%= texto %></div>
@@ -574,6 +593,7 @@
               <button class="btn btn-default mr5 ver_ficha btn-addon"><i class="icon fa fa-file text-muted-2"></i>Ver Ficha</button>
               <% if (id_empresa == ID_EMPRESA) { %>
                 <button class="btn btn-default mr5 editar btn-addon"><i class="icon fa fa-pencil"></i>Editar</button>
+                <button class="btn btn-default mr5 nueva_visita btn-addon"><i class="icon fa fa-home"></i>Nueva Visita</button>
               <% } %>
             </div>
           </div>

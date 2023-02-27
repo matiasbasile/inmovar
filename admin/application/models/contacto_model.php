@@ -21,6 +21,7 @@ class Contacto_Model extends Abstract_Model {
     $id_empresa_propiedad = (isset($data->id_empresa_propiedad)) ? $data->id_empresa_propiedad : $data->id_empresa;
     $texto = (isset($data->texto)) ? $data->texto : "";
     $asunto = (isset($data->asunto)) ? $data->asunto : "";
+    $notificar_propietario = (isset($data->notificar_propietario)) ? $data->notificar_propietario : 0;
     $fecha_ult_operacion = (isset($data->fecha_ult_operacion)) ? $data->fecha_ult_operacion : date("d/m/Y H:i:s");
     $data->fecha_ult_operacion = fecha_mysql($fecha_ult_operacion);
 
@@ -44,6 +45,7 @@ class Contacto_Model extends Abstract_Model {
       $id = $id_contacto;
     }
     // Tambien tenemos que insertar la consulta
+    
     if (!empty($id_usuario)) {
       $this->load->model("Consulta_Model");
       $consulta = new stdClass();
@@ -59,6 +61,64 @@ class Contacto_Model extends Abstract_Model {
       $consulta->id_empresa_relacion = $id_empresa_propiedad;
       $this->Consulta_Model->insert($consulta);
     }
+
+
+
+    //Visita
+    if ($id_origen == 41) {
+
+      require_once APPPATH.'libraries/Mandrill/Mandrill.php';
+      $this->load->model("Email_Template_Model");
+
+      $this->load->model("Propiedad_Model");
+      $cliente = $this->get($id_contacto);
+      $propiedad = $this->Propiedad_Model->get($id_propiedad);
+
+      $this->load->helper("fecha_helper");
+
+      $template = $this->Email_Template_Model->get_by_key("nueva-visita-contacto",$data->id_empresa);
+      if (!isset($template->texto)) {
+        $template = new stdClass();
+        $template->nombre = "¡Nueva visita!";
+        $template->texto = "{{nombre_contacto}}, se agendó una visita para la propiedad ubicada en {{direccion_propiedad}} a las {{fecha_hora}}.";
+      }
+      $body = $template->texto;
+      $body = str_replace("{{nombre_contacto}}",$cliente->nombre,$body);
+      $body = str_replace("{{direccion_propiedad}}",$propiedad->calle." ".$propiedad->altura." | ".$propiedad->localidad,$body);
+      $body = str_replace("{{fecha_hora}}",fecha_es($fecha_ult_operacion),$body);
+      
+      mandrill_send(array(
+        "from_name"=>"Inmovar",
+        "to"=>$cliente->email,
+        "subject"=>$template->nombre,
+        "body"=>$body,
+      ));
+
+      if (isset($notificar_propietario) && !empty($notificar_propietario) && $propiedad->id_propietario != 0) {
+
+        $template = $this->Email_Template_Model->get_by_key("nueva-visita-propietario",$data->id_empresa);
+        if (!isset($template->texto)) {
+          $template = new stdClass();
+          $template->nombre = "¡Nueva visita!";
+          $template->texto = "{{nombre_propietario}}, {{nombre_contacto} agendó una visita para la propiedad ubicada en {{direccion_propiedad}} a las {{fecha_hora}}.";
+        }
+        $body = $template->texto;
+        $body = str_replace("{{nombre_propietario}}",$propiedad->propietario,$body);
+        $body = str_replace("{{nombre_contacto}}",$cliente->nombre,$body);
+        $body = str_replace("{{direccion_propiedad}}",$propiedad->calle." ".$propiedad->altura." | ".$propiedad->localidad,$body);
+        $body = str_replace("{{fecha_hora}}",fecha_es($fecha_ult_operacion),$body);
+
+        mandrill_send(array(
+          "from_name"=>"Inmovar",
+          "to"=>$propiedad->propietario_email,
+          "subject"=>$template->nombre,
+          "body"=>$body,
+        ));
+
+      }
+
+    }
+
 
     return $id;
   }
@@ -125,7 +185,7 @@ class Contacto_Model extends Abstract_Model {
         $row->propiedad_nombre = $respuesta->propiedad_nombre;
         $row->propiedad_id_tipo_operacion = $respuesta->propiedad_id_tipo_operacion;
         $row->propiedad_tipo_operacion = $respuesta->propiedad_tipo_operacion;
-        $row->propiedad_codigo = $respuesta->propiedad_codigo;
+        $row->propiedad_codigo = isset($respuesta->propiedad_codigo) ? $respuesta->propiedad_codigo : 0 ;
       } else {
         $row->respondido = 0;
         $row->id_consulta = 0;

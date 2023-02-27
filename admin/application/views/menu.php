@@ -95,6 +95,13 @@ function modulo_habilitado($permisos,$modulo) {
                 <a href="app/#consultas" class=""><i class="material-icons md-22">directions_run</i><span>Seguimiento</span></a>
               </li>
             <?php } ?>
+
+            <?php if (modulo_habilitado($permisos,"agenda")>0) { ?>
+              <li>
+                <a href="app/#agenda" class=""><i class="material-icons md-22">calendar_month</i><span>Agenda</span></a>
+              </li>
+            <?php } ?>
+
             <?php if (modulo_habilitado($permisos,"propiedades")>0) { ?>
               <li>
                 <a href="app/#propiedades" class=""><i class="material-icons md-22">home</i><span>Propiedades</span></a>

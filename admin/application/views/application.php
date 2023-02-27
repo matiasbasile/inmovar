@@ -155,6 +155,7 @@ if (file_exists("application/views/templates/inm/propiedades.php")) include_once
 if (file_exists("application/views/templates/inm/busquedas.php")) include_once ("application/views/templates/inm/busquedas.php");
 if (file_exists("application/views/templates/inm/permisos_red.php")) include_once ("application/views/templates/inm/permisos_red.php");
 if (file_exists("application/views/templates/inm/alquileres.php")) include_once ("application/views/templates/inm/alquileres.php");
+if (file_exists("application/views/templates/inm/agenda.php")) include_once ("application/views/templates/inm/agenda.php");
 if (file_exists("application/views/templates/novedades.php")) include_once ("application/views/templates/novedades.php");
 include_once ("application/views/templates/cajas.php");
 include_once ("application/views/templates/cajas_movimientos.php");

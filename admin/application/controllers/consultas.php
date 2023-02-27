@@ -12,6 +12,46 @@ class Consultas extends REST_Controller {
     $this->load->model('Consulta_Model', 'modelo');
   }
 
+  function get_calendar() {
+
+    $fecha_desde = $this->input->get("start");
+    $fecha_hasta = $this->input->get("end");
+    $salida = array();
+    $id_origen = parent::get_get("id_origen",0);
+    $id_empresa = parent::get_get("id_empresa",parent::get_empresa());
+
+    $sql = "SELECT CC.*, ";
+    $sql.= "IF (P.calle is NULL, '', P.calle) as propiedad_calle, ";
+    $sql.= "IF (P.altura is NULL, '', P.altura) as propiedad_altura ";
+    $sql.= "FROM crm_consultas CC ";
+    $sql.= "LEFT JOIN inm_propiedades P ON (P.id = CC.id_referencia AND P.id_empresa = CC.id_empresa) ";
+    $sql.= "WHERE CC.fecha >= '$fecha_desde' ";
+    $sql.= "AND '$fecha_hasta' >= CC.fecha ";
+    if ($id_origen != 0) $sql.= "AND CC.id_origen = '$id_origen'" ;
+    if ($id_empresa != 0) $sql.= "AND CC.id_empresa = '$id_empresa'" ;
+
+    $query = $this->db->query($sql);
+
+    foreach($query->result() as $m) {
+      //$m->title = $m->titulo;
+      $m->allDay = true;
+      $m->start = $m->fecha;
+      //$m->end = $m->fecha;
+      $m->resourceId = $m->id;
+
+      if ($id_origen == 41) $m->title = "Visita a ".$m->propiedad_calle." ".$m->propiedad_altura;
+
+      $m->backgroundColor = "#1d36c2";
+      $m->borderColor = "#1d36c2";
+
+
+      $salida[] = $m;
+    }
+
+    echo json_encode($salida);
+
+  }
+
 
   function actualizar_tipo_cliente() {
     $id_empresa = parent::get_post("id_empresa", parent::get_empresa());

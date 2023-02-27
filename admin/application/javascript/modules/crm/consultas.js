@@ -511,6 +511,20 @@
   app.views.CrearConsultaTimeline = app.mixins.View.extend({
     template: _.template($("#crear_consulta_timeline_template").html()),
     myEvents: {
+      "click .nueva_visita": function(e) {
+        var self = this;
+        var view = new app.views.NuevaVisitaView({
+          model: new app.models.Contacto(),
+          id_cliente: self.model.get("id_contacto"),
+          view: self,
+        });            
+        crearLightboxHTML({
+          "html":view.el,
+          "width":550,
+          "height":140,
+          "escapable":false,
+        });        
+      },
       "click .cargar_plantilla":"cargar_plantilla",
       "click .enviar_whatsapp":"enviar_whatsapp",
       "click .guardar_plantilla":"guardar_plantilla",
@@ -1147,5 +1161,210 @@
       $('[data-toggle="tooltip"]').tooltip();
       return this;
     },
+  });
+})(app);
+
+(function ( app ) {
+
+  app.views.NuevaVisitaView = app.mixins.View.extend({
+
+    template: _.template($("#nueva_visita_edit_template").html()),
+        
+    myEvents: {
+      "click .guardar": "guardar",
+      "click #nueva_visita_propiedad":"buscar_propiedades",
+      "click .buscar_propiedades":"buscar_propiedades",
+      "click .id_origen":function(e){
+        var clase = "btn-info";
+        this.$(".id_origen.active").removeClass(clase);
+        this.$(".id_origen").removeClass("active");
+        var id_origen = $(e.currentTarget).data("id_origen");
+        $(e.currentTarget).addClass("active");
+        $(e.currentTarget).addClass(clase);
+      },
+    },
+
+    initialize: function(options) {
+      var self = this;
+      this.options = options;
+      _.bindAll(this);
+      this.view = this.options.view;
+      this.id_cliente = (this.options.id_cliente !== undefined) ? this.options.id_cliente : 0;
+      this.id_propiedad = (this.options.id_propiedad !== undefined) ? this.options.id_propiedad : 0;
+      
+      var edicion = false;
+      if (this.options.permiso > 1) edicion = true;
+      var obj = { "edicion": edicion,"id":this.model.id }
+      _.extend(obj,this.model.toJSON());
+      $(this.el).html(this.template(obj));
+      this.guardando = 0;
+      this.render();
+    },
+      
+    render: function() {
+        
+      var self = this;
+      var fecha = this.model.get("fecha");
+      if (isEmpty(fecha)) fecha = new Date();
+      createtimepicker($(this.el).find("#nueva_visita_fecha"),fecha);            
+      
+      var input = this.$("#nueva_visita_nombre");
+      $(input).customcomplete({
+        "url":"clientes/function/get_by_nombre/",
+        "form":null,
+        "hideNoResults":true,
+        "width":"300px",
+        "onSelect":function(item){
+          var cliente = new app.models.Contacto({"id":item.id});
+          cliente.fetch({
+            "success":function(){
+              self.seleccionar_cliente(cliente);
+            },
+          });
+        }
+      });
+
+      if (self.id_cliente !== 0) {
+        var cliente = new app.models.Contacto({"id":self.id_cliente});
+        cliente.fetch({
+          "success":function(){
+            self.seleccionar_cliente(cliente);
+          },
+        });        
+      }
+
+      if (self.id_propiedad !== 0) {
+        var propiedad = new app.models.Propiedades({"id":self.id_propiedad});
+        propiedad.fetch({
+          "success":function(){
+            window.propiedad_seleccionado = propiedad;
+            self.seleccionar_propiedad();
+          },
+        });            
+      }
+
+      setTimeout(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+      },100);
+    },
+
+    buscar_propiedades: function() {
+      var self = this;
+      var view = new app.views.PropiedadesTableView({
+        "collection":new app.collections.Propiedades(),
+        "vista_busqueda":true,
+      });
+      crearLightboxHTML({
+        "html":view.el,
+        "width":1000,
+        "height":140,
+        "callback":function() {
+          self.seleccionar_propiedad();
+        }
+      });
+    },
+
+    seleccionar_propiedad: function() {
+      if (typeof window.propiedad_seleccionado == "undefined") return;
+      this.$("#nueva_visita_propiedad").val(window.propiedad_seleccionado.get("titulo"));
+      this.model.set({
+        "id_propiedad":window.propiedad_seleccionado.id,
+        "id_empresa_propiedad":window.propiedad_seleccionado.get("id_empresa"),
+      });
+
+      if (window.propiedad_seleccionado.get("id_propietario") != 0) {       
+        this.$(".propietario_nombre").parent().parent().parent().removeClass("dn");
+        this.$(".propietario_nombre").text("Notificar al propietario: "+window.propiedad_seleccionado.get("propietario"));
+      }
+    },
+
+    seleccionar_cliente: function(r) {
+      var self = this;
+      // Seteamos el cliente
+      self.model.set({
+        "id_contacto":r.id,
+        "nombre":r.get("nombre"),
+        "email":r.get("email"),
+        "telefono":r.get("telefono"),
+      });
+      self.$("#nueva_visita_nombre").val(r.get("nombre"));
+      self.$("#nueva_visita_email").val(r.get("email"));
+      self.$("#nueva_visita_telefono").val(r.get("telefono"));
+
+      // Para cerrar el customcomplete que se abre
+      setTimeout(function(){
+        self.$('#nueva_visita_nombre').trigger(jQuery.Event('keyup', {which: 27}));
+      },500);                
+    },
+    
+    validar: function() {
+      try {
+        var self = this;
+        var nombre = self.$("#nueva_visita_nombre").val();
+        if (isEmpty(nombre)) {
+          alert("Por favor ingrese un nombre");
+          self.$("#nueva_visita_nombre").focus();
+          return false;
+        }
+
+        var fecha = self.$("#nueva_visita_fecha").val();
+        if (isEmpty(fecha)) {
+          alert("Por favor ingrese una fecha");
+          self.$("#nueva_visita_fecha").focus();
+          return false;
+        }
+
+        var propiedad = self.$("#nueva_visita_propiedad").val();
+        if (propiedad == "" || propiedad == 0) {
+          alert ("Por favor ingrese una propiedad");
+          return false;
+        }
+
+        this.model.set({
+          "fecha_ult_operacion":fecha,
+          "texto":self.$("#nueva_visita_texto").val(),
+          "asunto":propiedad,
+          "fax":self.$("#nueva_visita_telefono_prefijo").val(),
+          "notificar_propietario": self.$("#nueva_visita_notificacion").is(":checked") ? 1 : 0,
+          "tipo":1,
+        });
+
+        //Una visita siempre es de origen 41
+        this.model.set({
+          "id_origen":41,
+        });      
+
+        return true;
+      } catch(e) {
+        console.log(e)
+        return false;
+      }
+    },
+
+    guardar:function() {
+      var self = this;
+      if (this.validar() && this.guardando == 0) {
+        this.guardando = 1;
+        if (this.model.id == null) {
+          this.model.set({id:0});
+        }
+        this.model.save({},{
+          success: function(model,response) {
+            self.guardando = 0;
+            if (response.error == 1) {
+              show(response.mensaje);
+              return;
+            } else {
+              $('.modal').modal('hide');
+              location.href = "app/#contacto_acciones/"+self.model.id;
+            }
+          },
+          error: function() {
+            self.guardando = 0;
+          },
+        });
+      }     
+    },
+      
   });
 })(app);
