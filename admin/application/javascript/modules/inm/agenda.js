@@ -5,6 +5,10 @@
 		template: _.template($("#agenda_calendario_view").html()),
 
 		myEvents: {
+      "change .buscar": function(e) {
+        var self = this;
+        setTimeout(self.ver_calendario, 100);
+      },
 		},
 
 
@@ -46,6 +50,7 @@
             data: {
               "id_origen":41,
               "id_empresa": ID_EMPRESA,
+              "id_usuario": (typeof SOLO_USUARIO != "undefined" && SOLO_USUARIO == 1 && ID_EMPRESA != 224) ? ID_USUARIO : self.$("#agenda_id_usuario").val(),
             },
           }],
           eventClick: function (calEvent, jsEvent, view) {
@@ -54,47 +59,23 @@
             var self = this;
 
             $.ajax({
-              "url":"consultas/function/get",
+              "url":"consultas/function/get_consulta",
               "dataType":"json",
               "data":{
                 "id":calEvent.id,
+                "id_empresa": ID_EMPRESA,
               },
               "type":"post",
-              "success":function(r){
-                var compania = new app.models.Noticia({
-                  "id": r.id,
-                  "titulo": r.titulo,
-                  "sector": r.sector,
-                  "origen": r.origen,
-                  "idioma": r.idioma,
-                  "titulo": r.titulo,
-                  "publicacion_es": r.fecha_publicacion_es,
-                  "hora_es": r.hora_es,
-                  "hora_en": r.hora_en,
-                  "traducido_es": r.traducido_es,
-                  "traducido_en": r.traducido_en,
-                  "traducido_pt": r.traducido_pt,
-                  "revisado_es": r.revisado_es,
-                  "revisado_en": r.revisado_en,
-                  "revisado_pt": r.revisado_pt,
-                  "replicado_linkedin": r.replicado_linkedin,
-                  "replicado_twitter": r.replicado_twitter,
-                  "replicado_facebook": r.replicado_facebook,
-                  "replicado_instagram": r.replicado_instagram,
-                  "archivo_word": r.archivo_word,
-                  "archivo_word_dos": r.archivo_word_dos,
-                  "url": r.url,
-                  "fuente": r.fuente,
-                  "observaciones": r.observaciones,
-                  "publicar_red": r.publicar_red,
-                  "publicar_web": r.publicar_web,
-                  "donde_publicar": r.donde_publicar,
-                });
-
+              "success":function(r) {
+                r.fecha = r.fecha+" "+r.hora;
+                r.id_consulta = r.id;
+                r.id = 0;
+                r.editar_consulta = 1;
                 var view = new app.views.NuevaVisitaView({
-                  model: new app.models.Contacto({
-                    "fecha": parseDate,
-                  }),
+                  model: new app.models.Contacto(r),
+                  id_cliente: r.id_contacto,
+                  id_propiedad: r.id_referencia,
+                  mostrar_usuarios: 1,
                   view: self,
                 });            
                 crearLightboxHTML({
@@ -102,6 +83,9 @@
                   "width":550,
                   "height":140,
                   "escapable":false,
+                  "callback": function() {
+                    setTimeout(that.ver_calendario, 80);
+                  },
                 });  
                 return false;
               },

@@ -12,23 +12,34 @@ class Consultas extends REST_Controller {
     $this->load->model('Consulta_Model', 'modelo');
   }
 
+  function get_consulta() {
+    $id = parent::get_post("id", 0);
+    $id_empresa = parent::get_post("id_empresa", parent::get_empresa());
+    $output = $this->modelo->get($id);
+    echo json_encode($output);
+  }
+
   function get_calendar() {
 
     $fecha_desde = $this->input->get("start");
     $fecha_hasta = $this->input->get("end");
     $salida = array();
     $id_origen = parent::get_get("id_origen",0);
+    $id_usuario = parent::get_get("id_usuario",-1);
     $id_empresa = parent::get_get("id_empresa",parent::get_empresa());
 
     $sql = "SELECT CC.*, ";
     $sql.= "IF (P.calle is NULL, '', P.calle) as propiedad_calle, ";
-    $sql.= "IF (P.altura is NULL, '', P.altura) as propiedad_altura ";
+    $sql.= "IF (P.altura is NULL, '', P.altura) as propiedad_altura, ";
+    $sql.= "IF (U.nombre is NULL, 'Sin Asignar', U.nombre) as usuario_nombre ";
     $sql.= "FROM crm_consultas CC ";
     $sql.= "LEFT JOIN inm_propiedades P ON (P.id = CC.id_referencia AND P.id_empresa = CC.id_empresa) ";
+    $sql.= "LEFT JOIN com_usuarios U ON (U.id = CC.id_usuario AND U.id_empresa = CC.id_empresa) ";
     $sql.= "WHERE CC.fecha >= '$fecha_desde' ";
     $sql.= "AND '$fecha_hasta' >= CC.fecha ";
     if ($id_origen != 0) $sql.= "AND CC.id_origen = '$id_origen'" ;
     if ($id_empresa != 0) $sql.= "AND CC.id_empresa = '$id_empresa'" ;
+    if ($id_usuario > -1) $sql.= "AND CC.id_usuario = '$id_usuario'" ;
 
     $query = $this->db->query($sql);
 
@@ -39,7 +50,7 @@ class Consultas extends REST_Controller {
       //$m->end = $m->fecha;
       $m->resourceId = $m->id;
 
-      if ($id_origen == 41) $m->title = "Visita a ".$m->propiedad_calle." ".$m->propiedad_altura;
+      if ($id_origen == 41) $m->title = $m->usuario_nombre." - Visita a ".$m->propiedad_calle." ".$m->propiedad_altura;
 
       $m->backgroundColor = "#1d36c2";
       $m->borderColor = "#1d36c2";

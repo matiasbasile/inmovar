@@ -20,6 +20,9 @@
       id_propiedad: 0,
       id_empresa: ID_EMPRESA,
       id_usuario: ID_USUARIO,
+      //Ver si debo editar la consulta
+      editar_consulta: 0,
+      id_consulta: 0,
     }
   });
 	  

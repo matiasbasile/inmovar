@@ -124,9 +124,9 @@
       <div class="cb oh mt5">
         <span class="material-icons fs16 fl mr5">person</span>
         <select style="background-color:transparent;border:none;padding:0px;font-size:13px;margin-top:2px" class="no-model usuario_asignado fl">
+          <option value="0">Sin asignar</option>
           <% for (var i=0; i< usuarios.length; i++) { %>
             <% var u = usuarios.models[i] %>
-            <option value="0">Sin asignar</option>
             <option <%= (u.id == id_usuario)?"selected":"" %> value="<%= u.id %>"><%= u.get("nombre") %></option>
           <% } %>
         </select>
@@ -836,7 +836,7 @@
     </div>      
     <div class="form-group">
       <label>Comentarios</label>
-      <textarea id="nueva_visita_texto" name="texto" class="form-control" placeholder="Comentarios sobre la visita..."></textarea>
+      <textarea id="nueva_visita_texto" name="texto" class="form-control" placeholder="Comentarios sobre la visita..."><%= texto %></textarea>
     </div>
 
     <div class="form-group dn">
@@ -847,6 +847,21 @@
         </label>
       </div>                    
     </div>  
+
+    <% if (mostrar_usuarios == 1) { %>
+
+      <div class="form-group">
+        <label>Usuario que hara la visita</label>
+        <select class="form-control" id="nueva_visita_usuario">
+          <option value="0">Sin asignar</option>
+          <% for (var i=0; i< usuarios.length; i++) { %>
+            <% var u = usuarios.models[i] %>
+            <option <%= (u.id == id_usuario)?"selected":"" %> value="<%= u.id %>"><%= u.get("nombre") %></option>
+          <% } %>          
+        </select>
+      </div> 
+
+    <% } %>
 
   </form>
   <div class="modal-footer clearfix">

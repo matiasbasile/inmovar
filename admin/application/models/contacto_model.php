@@ -10,6 +10,7 @@ class Contacto_Model extends Abstract_Model {
 
   // Se esta creando un nuevo contacto desde el panel de control
   function insert($data) {
+
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
@@ -18,11 +19,14 @@ class Contacto_Model extends Abstract_Model {
     $id_contacto = (isset($data->id_contacto)) ? $data->id_contacto : 0;
     $id_origen = (isset($data->id_origen)) ? $data->id_origen : 0;
     $id_usuario = (isset($data->id_usuario)) ? $data->id_usuario : 0;
+    $editar_consulta = (isset($data->editar_consulta)) ? $data->editar_consulta : 0;
+    $id_consulta = (isset($data->id_consulta)) ? $data->id_consulta : 0;
     $id_empresa_propiedad = (isset($data->id_empresa_propiedad)) ? $data->id_empresa_propiedad : $data->id_empresa;
     $texto = (isset($data->texto)) ? $data->texto : "";
     $asunto = (isset($data->asunto)) ? $data->asunto : "";
     $notificar_propietario = (isset($data->notificar_propietario)) ? $data->notificar_propietario : 0;
     $fecha_ult_operacion = (isset($data->fecha_ult_operacion)) ? $data->fecha_ult_operacion : date("d/m/Y H:i:s");
+
     $data->fecha_ult_operacion = fecha_mysql($fecha_ult_operacion);
 
     // Consultamos la fecha de vencimiento de acuerdo a la configuracion del tipo de consulta
@@ -40,13 +44,26 @@ class Contacto_Model extends Abstract_Model {
 
     if ($id_contacto == 0) {
       $id = parent::insert($data);
+      $id_contacto = $id;
     } else {
       parent::update($id_contacto,$data);
       $id = $id_contacto;
     }
     // Tambien tenemos que insertar la consulta
     
-    if (!empty($id_usuario)) {
+    if ($editar_consulta == 1 && $id_consulta > 0) {
+      $sql = "UPDATE crm_consultas ";
+      $sql.= "SET ";
+      $sql.= "fecha = '$data->fecha_ult_operacion', ";
+      $sql.= "texto = '$texto', ";
+      $sql.= "id_origen = '$id_origen', ";
+      $sql.= "id_usuario = '$id_usuario', ";
+      $sql.= "id_contacto = '$id_contacto', ";
+      $sql.= "id_referencia = '$id_propiedad', ";
+      $sql.= "id_empresa = '$data->id_empresa' ";
+      $sql.= "WHERE id = '$id_consulta' ";
+      $this->db->query($sql);
+    } elseif (!empty($id_usuario)) {
       $this->load->model("Consulta_Model");
       $consulta = new stdClass();
       $consulta->tipo = 0; // Entrada
@@ -63,8 +80,8 @@ class Contacto_Model extends Abstract_Model {
     }
 
 
-
     //Visita
+    
     if ($id_origen == 41) {
 
       require_once APPPATH.'libraries/Mandrill/Mandrill.php';
@@ -124,6 +141,7 @@ class Contacto_Model extends Abstract_Model {
   }
 
 	function get($id,$id_empresa = 0,$config = array()) {
+
 		if (empty($id)) return FALSE;
 		if ($id_empresa == 0) $id_empresa = parent::get_empresa();
 
@@ -147,6 +165,7 @@ class Contacto_Model extends Abstract_Model {
     if (!empty($id_sucursal)) $sql.= "AND C.id_sucursal = $id_sucursal ";
 		$query = $this->db->query($sql);
 		$row = $query->row(); 
+
     if ($row !== FALSE) {
       $this->load->model("Consulta_Model");
       $res = $this->Consulta_Model->buscar_consultas(array(

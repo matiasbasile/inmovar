@@ -445,9 +445,10 @@ class Consulta_Model extends Abstract_Model {
     $sql.= "LEFT JOIN com_usuarios EM_U ON (EM_U.id = EM.id_usuario AND C.id_empresa = EM_U.id_empresa) ";    
     $sql.= "WHERE C.id = $id ";
     $sql.= "AND C.id_empresa = $id_empresa ";
+
     $q = $this->db->query($sql);
     $row = $q->row();
-    if ($row !== FALSE) {
+    if ($row !== FALSE && isset($row->texto)) {
       $row->texto = nl2br($row->texto);
       $row->texto_respuesta = nl2br($row->texto_respuesta);
     }

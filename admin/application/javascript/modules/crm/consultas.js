@@ -1191,10 +1191,10 @@
       this.view = this.options.view;
       this.id_cliente = (this.options.id_cliente !== undefined) ? this.options.id_cliente : 0;
       this.id_propiedad = (this.options.id_propiedad !== undefined) ? this.options.id_propiedad : 0;
-      
+      this.mostrar_usuarios = (this.options.mostrar_usuarios !== undefined) ? this.options.mostrar_usuarios : 0;
       var edicion = false;
       if (this.options.permiso > 1) edicion = true;
-      var obj = { "edicion": edicion,"id":this.model.id }
+      var obj = { "edicion": edicion,"id":this.model.id,"mostrar_usuarios": this.mostrar_usuarios }
       _.extend(obj,this.model.toJSON());
       $(this.el).html(this.template(obj));
       this.guardando = 0;
@@ -1333,6 +1333,14 @@
         this.model.set({
           "id_origen":41,
         });      
+
+        if (this.$("#nueva_visita_usuario").length > 0) {
+
+          this.model.set({
+            "id_usuario":self.$("#nueva_visita_usuario").val(),
+          });      
+
+        }
 
         return true;
       } catch(e) {
