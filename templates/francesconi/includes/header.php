@@ -47,13 +47,13 @@
     <a href="#0" class="toggle-logo"><img src="assets/images/header-logo.png" alt="Logo"></a>
     <ul>
       <li><a href="<?php echo mklink("/") ?>"><img src="assets/images/icons/icon-8.png" alt="Right Arrow"> inicio</a></li>
-      <li><a href="<?php echo mklink("propiedades/alquileres") ?>"><img src="assets/images/icons/icon-8.png" alt="Right Arrow"> ALQUILAR</a></li>
-      <li><a href="<?php echo mklink("propiedades/ventas") ?>"><img src="assets/images/icons/icon-8.png" alt="Right Arrow"> COMPRAR</a></li>
-      <li><a href="<?php echo mklink("propiedades/barrios-cerrados") ?>"><img src="assets/images/icons/icon-8.png" alt="Right Arrow"> BARRIOS CERRADOS</a></li>
-      <li><a href="<?php echo mklink("propiedades/oportunidades") ?>"><img src="assets/images/icons/icon-8.png" alt="Right Arrow"> OPORTUNIDADES</a></li>
-      <li><a href="<?php echo mklink("propiedades/permutas") ?>"><img src="assets/images/icons/icon-8.png" alt="Right Arrow"> PERMUTAS</a></li>
-      <li><a href="<?php echo mklink("web/vender") ?>"><img src="assets/images/icons/icon-8.png" alt="Right Arrow"> VENDER</a></li>
-      <li><a href="<?php echo mklink("web/equipo") ?>"><img src="assets/images/icons/icon-8.png" alt="Right Arrow"> EQUIPO</a></li>
+      <li class="d-md-none d-block" ><a href="<?php echo mklink("propiedades/alquileres") ?>"><img src="assets/images/icons/icon-8.png" alt="Right Arrow"> ALQUILAR</a></li>
+      <li class="d-md-none d-block" ><a href="<?php echo mklink("propiedades/ventas") ?>"><img src="assets/images/icons/icon-8.png" alt="Right Arrow"> COMPRAR</a></li>
+      <li class="d-md-none d-block" ><a href="<?php echo mklink("propiedades/barrios-cerrados") ?>"><img src="assets/images/icons/icon-8.png" alt="Right Arrow"> BARRIOS CERRADOS</a></li>
+      <li class="d-md-none d-block" ><a href="<?php echo mklink("propiedades/oportunidades") ?>"><img src="assets/images/icons/icon-8.png" alt="Right Arrow"> OPORTUNIDADES</a></li>
+      <li class="d-md-none d-block" ><a href="<?php echo mklink("propiedades/permutas") ?>"><img src="assets/images/icons/icon-8.png" alt="Right Arrow"> PERMUTAS</a></li>
+      <li class="d-md-none d-block" ><a href="<?php echo mklink("web/vender") ?>"><img src="assets/images/icons/icon-8.png" alt="Right Arrow"> VENDER</a></li>
+      <li class="d-md-none d-block" ><a href="<?php echo mklink("web/equipo") ?>"><img src="assets/images/icons/icon-8.png" alt="Right Arrow"> EQUIPO</a></li>
       <li><a href="<?php echo mklink("entradas/novedades") ?>"><img src="assets/images/icons/icon-8.png" alt="Right Arrow"> NOVEDADES</a></li>
       <li><a href="<?php echo mklink("web/contacto") ?>"><img src="assets/images/icons/icon-8.png" alt="Right Arrow"> CONTACTO</a></li>
     </ul>
