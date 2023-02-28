@@ -51,20 +51,34 @@ class Contacto_Model extends Abstract_Model {
     }
     // Tambien tenemos que insertar la consulta
     
+    $this->load->model("Consulta_Model");
     if ($editar_consulta == 1 && $id_consulta > 0) {
+
+      $consulta_anterior = $this->Consulta_Model->get($id_consulta);
+
       $sql = "UPDATE crm_consultas ";
       $sql.= "SET ";
       $sql.= "fecha = '$data->fecha_ult_operacion', ";
       $sql.= "texto = '$texto', ";
       $sql.= "id_origen = '$id_origen', ";
-      $sql.= "id_usuario = '$id_usuario', ";
       $sql.= "id_contacto = '$id_contacto', ";
       $sql.= "id_referencia = '$id_propiedad', ";
       $sql.= "id_empresa = '$data->id_empresa' ";
       $sql.= "WHERE id = '$id_consulta' ";
       $this->db->query($sql);
+
+      if ($consulta_anterior->id_usuario != $id_usuario) {      
+
+        $this->Consulta_Model->editar_usuario_asignado(array(
+          "id_empresa"=>$data->id_empresa,
+          "ids"=>array($id_consulta),
+          "id_usuario_asignado"=>$id_usuario,
+          "id_contacto"=>$id_contacto,
+        ));
+      } 
+
+
     } elseif (!empty($id_usuario)) {
-      $this->load->model("Consulta_Model");
       $consulta = new stdClass();
       $consulta->tipo = 0; // Entrada
       $consulta->id_contacto = $id;

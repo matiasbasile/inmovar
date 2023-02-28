@@ -74,6 +74,89 @@ class Consulta_Model extends Abstract_Model {
     parent::__construct("crm_consultas","id","fecha DESC");
   }
 
+  function editar_usuario_asignado($conf = array()) {
+
+    $id_empresa = isset($conf["id_empresa"]) ? $conf["id_empresa"] : parent::get_empresa();
+    $ids = isset($conf["ids"]) ? $conf["ids"] : array();
+    $id_contacto = isset($conf["id_contacto"]) ? $conf["id_contacto"] : 0;
+    $id_usuario = isset($conf["id_usuario"]) ? $conf["id_usuario"] : $_SESSION["id"];
+    $id_usuario_asignado = isset($conf["id_usuario_asignado"]) ? $conf["id_usuario_asignado"] : 0;
+
+    $bcc_array = array("basile.matias99@gmail.com");
+    require_once APPPATH.'libraries/Mandrill/Mandrill.php';
+
+    $this->load->model("Empresa_Model");
+    $this->load->model("Email_Template_Model");
+    $this->load->model("Usuario_Model");
+    $template = $this->Email_Template_Model->get_by_key("asignacion-usuario",936);
+    $empresa = $this->Empresa_Model->get_min($id_empresa);
+
+    // Primero obtenemos el usuario nuevo
+    $usuario_asignado = $this->Usuario_Model->get($id_usuario_asignado,array(
+      "id_empresa"=>$id_empresa,
+    ));
+    if ($usuario_asignado === FALSE) {
+      echo json_encode(array("error"=>1,"mensaje"=>"No existe el usuario solicitado"));
+      exit();
+    }
+
+    $usuario = $this->Usuario_Model->get($id_usuario,array(
+      "id_empresa"=>$id_empresa,
+    ));
+
+    foreach($ids as $id) {
+
+      // Actualizamos el id_usuario de la tabla clientes
+      $sql = "UPDATE clientes SET id_usuario = '$id_usuario_asignado' WHERE id_empresa = $id_empresa AND id = $id_contacto ";
+      $q = $this->db->query($sql);
+
+      // Movemos todas las consultas del contacto hacia el nuevo usuario
+      $sql = "UPDATE crm_consultas SET id_usuario = '$id_usuario_asignado' WHERE id_empresa = $id_empresa AND id_contacto = $id_contacto ";
+      $q = $this->db->query($sql);
+
+      // Creamos un nuevo movimiento en el historial de ese cliente
+      if ($id_usuario_asignado != $id_usuario) {
+        // Otro asigno
+        $texto = $usuario->nombre." ha asignado a ".$usuario_asignado->nombre." para atender la consulta.";  
+      } else {
+        // Me asigne yo mismo
+        $texto = $usuario->nombre." se asigno la consulta.";
+      }
+      
+      $sql = "INSERT INTO crm_consultas (id_contacto,id_empresa,fecha,asunto,texto,id_usuario,tipo,id_origen) VALUES (";
+      $sql.= " $id_contacto,$id_empresa,NOW(),'Asignacion de usuario','$texto',$id_usuario,0,32) ";
+      $this->db->query($sql);
+
+      $web_conf = $this->Empresa_Model->get_web_conf($id_empresa);
+      if ($web_conf->crm_notificar_asignaciones_usuarios == 1 && $id_usuario != $id_usuario_asignado)  {
+
+        $consulta = $this->get($id,array(
+          "id_empresa"=>$id_empresa,
+        ));
+
+        $asunto = ($usuario->nombre)." te asigno un nuevo contacto!";
+        $texto = $template->texto;
+        $texto = str_replace("{{nombre}}", ($usuario_asignado->nombre), $texto);
+        $cuerpo = "<b>Cliente: </b> ".$consulta->nombre." <br/>";
+        $cuerpo.= "<b>Email: </b> ".$consulta->email." <br/>";
+        $cuerpo.= "<b>Telefono: </b> ".$consulta->telefono." <br/>";
+        //$cuerpo.= "<b>ID Consulta: </b> #".$consulta->id." <br/>";
+        $texto = str_replace("{{cuerpo}}", $cuerpo, $texto);
+
+        mandrill_send(array(
+          "to"=>$usuario_asignado->email,
+          "from"=>"no-reply@varcreative.com",
+          "from_name"=>$empresa->nombre,
+          "subject"=>$asunto,
+          "body"=>$texto,
+          //"bcc"=>$bcc_array,
+        ));
+      }
+    }
+
+    return TRUE;
+  }
+
   // Esta funcion 
   function mover_estado($conf = array()) {
     $id_empresa = isset($conf["id_empresa"]) ? $conf["id_empresa"] : parent::get_empresa();

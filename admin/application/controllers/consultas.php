@@ -35,11 +35,12 @@ class Consultas extends REST_Controller {
     $sql.= "FROM crm_consultas CC ";
     $sql.= "LEFT JOIN inm_propiedades P ON (P.id = CC.id_referencia AND P.id_empresa = CC.id_empresa) ";
     $sql.= "LEFT JOIN com_usuarios U ON (U.id = CC.id_usuario AND U.id_empresa = CC.id_empresa) ";
+    $sql.= "LEFT JOIN clientes C ON (CC.id_contacto = C.id AND CC.id_empresa = C.id_empresa) ";
     $sql.= "WHERE CC.fecha >= '$fecha_desde' ";
     $sql.= "AND '$fecha_hasta' >= CC.fecha ";
     if ($id_origen != 0) $sql.= "AND CC.id_origen = '$id_origen'" ;
     if ($id_empresa != 0) $sql.= "AND CC.id_empresa = '$id_empresa'" ;
-    if ($id_usuario > -1) $sql.= "AND CC.id_usuario = '$id_usuario'" ;
+    if ($id_usuario > -1) $sql.= "AND C.id_usuario = '$id_usuario'" ;
 
     $query = $this->db->query($sql);
 
