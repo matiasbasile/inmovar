@@ -2071,6 +2071,8 @@ footer .socials ul li a:hover, footer .socials ul li a:focus {
 	}
 }
 
+.logo a {display: inline-block; width: 200px;}
+
 @media screen and (max-width: 1023px) {
 	.logo a img {
 		width: 150px;
