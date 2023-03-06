@@ -593,7 +593,9 @@
               <button class="btn btn-default mr5 ver_ficha btn-addon"><i class="icon fa fa-file text-muted-2"></i>Ver Ficha</button>
               <% if (id_empresa == ID_EMPRESA) { %>
                 <button class="btn btn-default mr5 editar btn-addon"><i class="icon fa fa-pencil"></i>Editar</button>
-                <button class="btn btn-default mr5 nueva_visita btn-addon"><i class="icon fa fa-home"></i>Nueva Visita</button>
+                <% if (control.check("agenda") > 1) { %>
+                  <button class="btn btn-default mr5 nueva_visita btn-addon"><i class="icon fa fa-home"></i>Nueva Visita</button>
+                <% } %>
               <% } %>
             </div>
           </div>

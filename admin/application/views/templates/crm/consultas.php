@@ -238,10 +238,11 @@
       <li>
         <a id="tab_link_nota" href="#tab_nota" role="tab" data-toggle="tab"><i class="fa fa-file-text text-muted"></i> Nota</a>
       </li>  
-
-      <li>
-        <a href="javascript:void(0)" class="nueva_visita"><i class="fa fa-home text-muted"></i> Visita</a>
-      </li>  
+      <% if (control.check("agenda") > 1) { %>
+        <li>
+          <a href="javascript:void(0)" class="nueva_visita"><i class="fa fa-home text-muted"></i> Visita</a>
+        </li>
+      <% } %>
 
     </ul>
     <div class="tab-content">
