@@ -99,7 +99,7 @@
           <label class="control-label">Propietario</label>
           <div class="input-group">
             <select id="propiedad_propietarios" style="width: 100%" class="form-control"></select>
-            <span class="input-group-addon"><button class="btn ir_propietario"><i class="material-icons fs16">north_east</i></button></span>
+            <span class="input-group-addon ir_propietario"><a href="javascript:void(0)"><i class="material-icons fs16">north_east</i></a></span>
             <div class="input-group-btn">
               <button type="button" class="btn btn-info nuevo_propietario">+ Agregar</button>
             </div>
