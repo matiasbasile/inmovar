@@ -2176,6 +2176,11 @@
       "change #propiedad_calle":"get_coords_by_address",
       "change #propiedad_altura":"get_coords_by_address",
 
+      ".click .ir_propietario":function(e) {
+        var id_propietario = this.$("#propiedad_propietarios").val();
+        if (id_propietario == 0) return;
+        window.open("https://app.inmovar.com/admin/app/#clientes/"+id_propietario,"_blank");
+      },
       "click .nuevo_propietario":function(e){
         var self = this;
         if ($(".propietario_edit_mini").length > 0) return;
