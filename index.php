@@ -10,6 +10,10 @@ if (session_status() == PHP_SESSION_NONE) {
 include("admin/params.php");
 @include("admin/error_handler.php");
 
+// Clave general para los mapas
+// Usuario: inmovar@varcreative.com Contraseña: Qu4r2200!!
+if (!defined("MAPBOX_KEY")) { DEFINE ("MAPBOX_KEY",(isset($_SERVER["MAPBOX_KEY"]) ? $_SERVER["MAPBOX_KEY"] : "pk.eyJ1IjoiaW5tb3ZhciIsImEiOiJjbGZ0bHQxanMwMjRrM2pvYnRkOWo2eHh6In0.1sB6eEzzJ-s2Hirb9suiBQ")); }
+
 // 1) ANALIZAMOS LA URL
 $dominio = strtolower($_SERVER["HTTP_HOST"]);
 //$dominio = str_replace("www.","",$dominio);
