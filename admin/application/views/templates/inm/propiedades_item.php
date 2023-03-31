@@ -243,9 +243,11 @@
         <i <%= (!edicion)?"disabled":"" %> data-toggle="tooltip" title="Activa" class="fa-check iconito fa activo <%= (activo == 1)?"active success":"" %>"></i>
         <i <%= (!edicion)?"disabled":"" %> data-toggle="tooltip" title="Destacado" class="fa fa-star iconito warning destacado <%= (destacado == 1)?"active":"" %>"></i>
 
-        <span title="Compartida en Red Inmovar" data-toggle="tooltip" <%= (!edicion)?"disabled":"" %> class="iconito compartida <%= (compartida >= 1)?"active":"" %>">
-          <img class="svg" src="resources/images/logo.svg" />
-        </span>
+        <% if (control.check("permisos_red")>0) { %>
+          <span title="Compartida en Red Inmovar" data-toggle="tooltip" <%= (!edicion)?"disabled":"" %> class="iconito compartida <%= (compartida >= 1)?"active":"" %>">
+            <img class="svg" src="resources/images/logo.svg" />
+          </span>
+        <% } %>
 
         <i <%= (!edicion)?"disabled":"" %> data-toggle="tooltip" title="Compartida en Webs de colegas" class="fa fa-globe iconito compartida_2 <%= (compartida == 2)?"active":"" %>"></i>
 
