@@ -4,12 +4,14 @@
     <span id="propiedades_propias_total" class="counter">0</span>
   </a>
 </li>
-<li id="buscar_red_tab" class="buscar_tab <%= (window.propiedades_buscar_red == 1)?"active":"" %>">
-  <a href="javascript:void(0)">
-    <img class="svg" style="width: 17px; margin-right: 5px; position: relative; top: -2px;" src="resources/images/logo.svg" /> Red Inmovar
-    <span id="propiedades_red_total" class="counter">0</span>
-  </a>
-</li>
+<% if (control.check("permisos_red")>0) { %>
+  <li id="buscar_red_tab" class="buscar_tab <%= (window.propiedades_buscar_red == 1)?"active":"" %>">
+    <a href="javascript:void(0)">
+      <img class="svg" style="width: 17px; margin-right: 5px; position: relative; top: -2px;" src="resources/images/logo.svg" /> Red Inmovar
+      <span id="propiedades_red_total" class="counter">0</span>
+    </a>
+  </li>
+<% } %>
 <li id="buscar_inactivas_tab" class="buscar_tab <%= (window.propiedades_buscar_red == 2)?"active":"" %>">
   <a href="javascript:void(0)">
     <i class="material-icons">domain_disabled</i> Desactivas
