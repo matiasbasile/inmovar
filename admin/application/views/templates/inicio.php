@@ -40,33 +40,35 @@
         </div>
       </div>
 
-      <div class="col-xs-6 col-sm-3">
-        <div class="panel-default tal panel p15 item" style="height: 100px">
-          <div class="dt w100p">
-            <div class="dtc vam">
-              <span class="h4 block bold c1">Red Inmovar</span>    
+      <% if (control.check("permisos_red")>0) { %>
+        <div class="col-xs-6 col-sm-3">
+          <div class="panel-default tal panel p15 item" style="height: 100px">
+            <div class="dt w100p">
+              <div class="dtc vam">
+                <span class="h4 block bold c1">Red Inmovar</span>    
+              </div>
+              <div class="dtc tar vam">
+                <div class="h1 c1"><%= total_propiedades_red %></div>
+              </div>
             </div>
-            <div class="dtc tar vam">
-              <div class="h1 c1"><%= total_propiedades_red %></div>
-            </div>
+            <a class="link fs14 block" href="app/#permisos_red"><i class="fa fa-external-link mr5"></i> Ver inmobiliarias de la red</a>
           </div>
-          <a class="link fs14 block" href="app/#permisos_red"><i class="fa fa-external-link mr5"></i> Ver inmobiliarias de la red</a>
-        </div>
-      </div>  
+        </div>  
 
-      <div class="col-xs-6 col-sm-3">
-        <div class="panel-default tal panel p15 item" style="height: 100px">
-          <div class="dt w100p">
-            <div class="dtc vam">
-              <span class="h4 block bold c1">Tu Red</span>    
+        <div class="col-xs-6 col-sm-3">
+          <div class="panel-default tal panel p15 item" style="height: 100px">
+            <div class="dt w100p">
+              <div class="dtc vam">
+                <span class="h4 block bold c1">Tu Red</span>    
+              </div>
+              <div class="dtc tar vam">
+                <div class="h1 c1"><%= total_propiedades_tu_red %></div>
+              </div>
             </div>
-            <div class="dtc tar vam">
-              <div class="h1 c1"><%= total_propiedades_tu_red %></div>
-            </div>
+            <a class="link fs14 block" href="javascript:workspace.ver_red()"><i class="fa fa-external-link mr5"></i> Ver tu red inmobiliaria</a>
           </div>
-          <a class="link fs14 block" href="javascript:workspace.ver_red()"><i class="fa fa-external-link mr5"></i> Ver tu red inmobiliaria</a>
-        </div>
-      </div>  
+        </div>  
+      <% } %>
 
     </div>
     <div class="row">
@@ -84,10 +86,12 @@
                     <td class="c-main"><span class="material-icons fs12 mr5">stop_circle</span> En Tu Sitio Web</td>
                     <td class="vam"><h3 class="c-main p0 m0"><%= visitas_sitio_web %></h3></td>
                   </tr>
-                  <tr>
-                    <td class="c-sec vam"><span class="material-icons fs12 mr5">stop_circle</span> Sitios Web de Red Inmovar</td>
-                    <td class="vam"><h3 class="c-sec p0 m0"><%= visitas_red %></h3></td>
-                  </tr>
+                  <% if (control.check("permisos_red")>0) { %>
+                    <tr>
+                      <td class="c-sec vam"><span class="material-icons fs12 mr5">stop_circle</span> Sitios Web de Red Inmovar</td>
+                      <td class="vam"><h3 class="c-sec p0 m0"><%= visitas_red %></h3></td>
+                    </tr>
+                  <% } %>
                 </table>
               </div>
               <div class="col-md-5">
@@ -111,10 +115,12 @@
                     <td class="c-main"><span class="material-icons fs12 mr5">stop_circle</span> En Tu Sitio Web</td>
                     <td class="vam"><h3 class="c-main p0 m0"><%= consultas_sitio_web %></h3></td>
                   </tr>
-                  <tr>
-                    <td class="c-sec vam"><span class="material-icons fs12 mr5">stop_circle</span> Sitios Web de Red Inmovar</td>
-                    <td class="vam"><h3 class="c-sec p0 m0"><%= consultas_red %></h3></td>
-                  </tr>
+                  <% if (control.check("permisos_red")>0) { %>
+                    <tr>
+                      <td class="c-sec vam"><span class="material-icons fs12 mr5">stop_circle</span> Sitios Web de Red Inmovar</td>
+                      <td class="vam"><h3 class="c-sec p0 m0"><%= consultas_red %></h3></td>
+                    </tr>
+                  <% } %>
                 </table>
               </div>
               <div class="col-md-5">
