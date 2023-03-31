@@ -155,7 +155,7 @@ table td { font-size: 14px; }
               <div style="font-size: 15px; line-height: 20px; ">
                 Recib&iacute; de <?php echo $factura->cliente ?>,
                 con DNI/CUIT <?php echo $factura->cuit ?>,
-                la cantidad de pesos <?php echo $letras->ValorEnLetras($factura->total) ?>
+                la cantidad de <?php echo ($factura->moneda == 'U$D') ? 'dolares' : 'pesos' ?> <?php echo $letras->ValorEnLetras($factura->total) ?>
                 por el alquiler de <?php echo $factura->propiedad ?>
                 ubicado en <?php echo $factura->direccion ?>
                 correspondiente al mes de <?php echo $factura->corresponde_a ?>

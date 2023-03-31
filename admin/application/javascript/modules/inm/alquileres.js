@@ -30,6 +30,7 @@
       dia_vencimiento: 1,
       mes_vencimiento: "A", // A = Mes actual | P = Mes proximo
       venc_prox_cuota: "",
+      moneda: "$",
       expensas: [],
     },
   });
@@ -565,6 +566,7 @@
           "dia_vencimiento":self.$("#alquiler_dia_vencimiento").val(),
           "enviar_recordatorios":(self.$("#alquiler_enviar_recordatorios").is(":checked")?1:0),
           "cuotas":cuotas,
+          "moneda":self.$("#alquileres_moneda").val(),
         });
         $(".error").removeClass("error");
         return true;

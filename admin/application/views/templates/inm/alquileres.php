@@ -182,7 +182,7 @@
           <input type="text" value="<%= propiedad %>" class="form-control no-model" id="alquiler_propiedades">
         </div>
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-3">
             <div class="form-group">
               <label class="control-label">Contrato v&aacute;lido desde</label>
               <div class="input-group">
@@ -193,7 +193,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <div class="form-group">
               <label class="control-label">Hasta</label>
               <div class="input-group">
@@ -204,10 +204,19 @@
               </div>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <div class="form-group">
               <label class="control-label">Dia de Vencimiento</label>
               <input type="number" min="1" max="31" id="alquiler_dia_vencimiento" value="<%= dia_vencimiento %>" class="no-model form-control"/>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class="control-label">Moneda del Alquiler</label>
+              <select name="moneda" class="form-control no-model" id="alquileres_moneda">
+                <option <%= (moneda == "$") ? 'selected' : '' %> value="$">Pesos</option>
+                <option <%= (moneda == "U$D") ? 'selected' : '' %> value="U$D">Dolares</option>
+              </select>
             </div>
           </div>
         </div>
@@ -469,16 +478,16 @@
   <td class="<%= clase %> data"><%= propiedad %><br/><%= direccion %></td>
   <td class="<%= clase %> data">
     <% if (monto != total) { %>
-      Alquiler: $ <%= Number(monto).format(0) %><br/>
+      Alquiler: <%= moneda %> <%= Number(monto).format(0) %><br/>
       <% if (expensa != 0) { %>
-        Alquiler: $ <%= Number(expensa).format(0) %><br/>
+        Alquiler: <%= moneda %> <%= Number(expensa).format(0) %><br/>
       <% } %>
       <% if (total_extras != 0) { %>
-        Adicional: $ <%= Number(total_extras).format(0) %><br/>
+        Adicional: <%= moneda %> <%= Number(total_extras).format(0) %><br/>
       <% } %>
-      <b>Total: $ <%= Number(total).format(0) %></b>
+      <b>Total: <%= moneda %> <%= Number(total).format(0) %></b>
     <% } else { %>
-      $ <%= Number(total).format(0) %>
+      <%= moneda %> <%= Number(total).format(0) %>
     <% } %>
   </td>
   <td class="<%= clase %> data"><%= vencimiento %></td>

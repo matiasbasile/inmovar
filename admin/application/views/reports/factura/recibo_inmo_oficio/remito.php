@@ -168,7 +168,7 @@ tbody tr{
               <div class="col-xs-12">
                 <div style="font-size: 13px; line-height: 17px; ">
                   POR EL MANDATO DEL LOCADOR RECIBÍ
-                  LA SUMA DE PESOS <?php echo strtoupper($letras->ValorEnLetras($total)) ?>
+                  LA SUMA DE <?php echo ($factura->moneda == 'U$D') ? 'DOLARES' : 'PESOS' ?> <?php echo strtoupper($letras->ValorEnLetras($total)) ?>
                   POR EL ALQUILER DE <?php echo strtoupper($factura->propiedad) ?>
                   QUE OCUPA EN <?php echo strtoupper($factura->direccion) ?>
                   EN EL PERÍODO <?php echo strtoupper($factura->corresponde_a) ?>
