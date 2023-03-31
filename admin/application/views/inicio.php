@@ -8,7 +8,14 @@
 <link rel="stylesheet" href="/admin/resources/css/common.css">
 <link rel="stylesheet" href="/admin/resources/css/login.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#1d36c2">
+<meta name="theme-color" content="#<?php echo COLOR_1 ?>">
+<style type="text/css">
+:root {
+  --c1: #<?php echo COLOR_1 ?>;          <?php // Color principal (AZUL) ?>
+  --c1_alpha: #<?php echo COLOR_1 ?>75;  <?php // Sombra de color principal ?>
+  --c2: #<?php echo COLOR_2 ?>;          <?php // Color secundario (VERDE) ?>
+}
+</style>
 <meta name="MobileOptimized" content="width">
 <meta name="HandheldFriendly" content="true">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -23,7 +30,7 @@
     <div class="header">
       <div class="row">
         <div class="col-lg-5 col-xs-12 logo">
-          <img src="/admin/resources/images/logo-login.png" alt="Inmovar">
+          <img src="<?php echo LOGO_LOGIN ?>" alt="Inmovar">
         </div>
         <div class="col-lg-7 col-xs-12">
           <div class="linea-2">

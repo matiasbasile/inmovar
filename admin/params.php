@@ -3,12 +3,16 @@ if (session_status() == PHP_SESSION_NONE) {
   @session_start();
 }
 date_default_timezone_set("America/Argentina/Buenos_Aires");
-if (!defined("SERVER_DB")) { DEFINE ("SERVER_DB","localhost"); }
-if (!defined("DATABASE")) { DEFINE ("DATABASE","inmovar"); }
-if (!defined("USER_DB")) { DEFINE ("USER_DB","root"); }
-if (!defined("PASSWORD_DB")) { DEFINE ("PASSWORD_DB",""); }
-if (!defined("FORCE_HTTPS")) { DEFINE ("FORCE_HTTPS",false); }
-if ( !defined("DOMINIO")) { DEFINE ("DOMINIO","http://inmovar"); }
+if (!defined("DATABASE")) { DEFINE ("DATABASE",(isset($_SERVER["DATABASE"]) ? $_SERVER["DATABASE"] : "inmovar")); }
+if (!defined("SERVER_DB")) { DEFINE ("SERVER_DB",(isset($_SERVER["SERVER_DB"]) ? $_SERVER["SERVER_DB"] : "localhost")); }
+if (!defined("USER_DB")) { DEFINE ("USER_DB",(isset($_SERVER["USER_DB"]) ? $_SERVER["USER_DB"] : "root")); }
+if (!defined("PASSWORD_DB")) { DEFINE ("PASSWORD_DB",(isset($_SERVER["PASSWORD_DB"]) ? $_SERVER["PASSWORD_DB"] : "")); }
+if (!defined("FORCE_HTTPS")) { DEFINE ("FORCE_HTTPS",(isset($_SERVER["FORCE_HTTPS"]) ? $_SERVER["FORCE_HTTPS"] : false)); }
+if (!defined("DOMINIO")) { DEFINE ("DOMINIO",(isset($_SERVER["DOMINIO"]) ? $_SERVER["DOMINIO"] : "http://inmovar")); }
+if (!defined("COLOR_1")) { DEFINE ("COLOR_1",(isset($_SERVER["COLOR_1"]) ? $_SERVER["COLOR_1"] : "1d36c2")); }
+if (!defined("COLOR_2")) { DEFINE ("COLOR_2",(isset($_SERVER["COLOR_2"]) ? $_SERVER["COLOR_2"] : "0dd384")); }
+if (!defined("LOGO")) { DEFINE ("LOGO",(isset($_SERVER["LOGO"]) ? $_SERVER["LOGO"] : "/admin/resources/images/inmovar-grande.png")); }
+if (!defined("LOGO_LOGIN")) { DEFINE ("LOGO_LOGIN",(isset($_SERVER["LOGO_LOGIN"]) ? $_SERVER["LOGO_LOGIN"] : "/admin/resources/images/logo-login.png")); }
 
 if (!function_exists("get_conex")) {
   function get_conex() {

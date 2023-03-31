@@ -12,7 +12,7 @@ function modulo_habilitado($permisos,$modulo) {
     <div class="navi-wrap">
 
       <a href="javascript:void(0)" onclick="workspace.toggle_menu()" class="navbar-brand text-lt">
-        <img src="/admin/resources/images/inmovar-grande.png"/>
+        <img src="<?php echo LOGO ?>"/>
       </a>                
     
       <nav class="navi">

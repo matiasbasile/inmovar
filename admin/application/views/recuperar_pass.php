@@ -5,6 +5,13 @@
 <base href="<?php echo current_url(); ?>"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style type="text/css">
+:root {
+  --c1: #<?php echo COLOR_1 ?>;          <?php // Color principal (AZUL) ?>
+  --c1_alpha: #<?php echo COLOR_1 ?>75;  <?php // Sombra de color principal ?>
+  --c2: #<?php echo COLOR_2 ?>;          <?php // Color secundario (VERDE) ?>
+}
+</style>
 <link rel="stylesheet" href="/admin/resources/css/common.css">
 <link rel="stylesheet" href="/admin/resources/css/login.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +21,7 @@
     <div class="header">
       <div class="row">
         <div class="col-lg-5 col-xs-12 logo">
-          <img src="/admin/resources/images/logo-login.png" alt="Inmovar">
+          <img src="<?php echo LOGO_LOGIN ?>" alt="Inmovar">
         </div>
         <div class="col-lg-7 col-xs-12">
           <div class="linea-2">
