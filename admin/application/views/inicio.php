@@ -31,12 +31,12 @@
 <body class="login-page">
   <div class="top-div">
     <div class="header">
-      <div class="row">
-        <div class="col-lg-5 col-xs-12 logo">
-          <img src="<?php echo LOGO_LOGIN ?>" alt="<?php echo PROJECT_NAME ?>">
-        </div>
-        <div class="col-lg-7 col-xs-12">
-          <?php if (PROJECT_NAME == "Inmovar") { ?>
+      <?php if (PROJECT_NAME == "Inmovar") { ?>
+        <div class="row">
+          <div class="col-lg-5 col-xs-12 logo">
+            <img src="<?php echo LOGO_LOGIN ?>" alt="<?php echo PROJECT_NAME ?>">
+          </div>
+          <div class="col-lg-7 col-xs-12">
             <div class="linea-2">
               <div class="dtc">
                 <span>¿Todavía no tenes cuenta en <?php echo PROJECT_NAME ?>?</span>          
@@ -45,9 +45,13 @@
                 <a href="login/registro/" class="button-registrate">REGISTRATE GRATIS</a>
               </div>
             </div>
-          <?php } ?>
+          </div>
         </div>
-      </div>
+      <?php } else { ?>
+        <div class="logo">
+          <img src="<?php echo LOGO_LOGIN ?>" alt="<?php echo PROJECT_NAME ?>">
+        </div>
+      <?php } ?>
     </div>
     <div class="form-top">
       <h1>Iniciar sesión</h1>

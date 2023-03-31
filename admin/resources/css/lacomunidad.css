@@ -1,1 +1,2 @@
 .login-page .top-div { background:var(--c1); }
+.login-page .logo img { width:100%; max-width:320px; margin: 0 auto; display:inline-block; }
