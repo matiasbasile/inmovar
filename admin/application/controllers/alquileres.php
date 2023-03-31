@@ -479,6 +479,7 @@ class Alquileres extends REST_Controller {
     $sql.= " AC.pagada, AC.corresponde_a, AC.id AS id_cuota, ";
     $sql.= " DATE_FORMAT(AC.vencimiento,'%d/%m/%Y') AS vencimiento, AC.monto, AC.expensa, (AC.monto+AC.expensa) AS total, ";
     $sql.= " P.nombre AS propiedad, CONCAT(P.calle,' ',P.altura,' ',P.piso,' ',P.numero) AS direccion, ";
+    $sql.= " IF(A.moneda = '', '$', A.moneda) as moneda, ";
     $sql.= " IF(PRO.nombre IS NULL,'',PRO.nombre) AS propietario ";
     $sql.= "FROM facturas F ";
     $sql.= "INNER JOIN inm_alquileres A ON (A.id = F.id_referencia AND F.id_empresa = A.id_empresa) ";

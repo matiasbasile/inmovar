@@ -122,7 +122,7 @@ td h1, .invoice-items thead th.col-1 { text-align: left; padding-left: 15px; }
 									<tr>
 										<td class="tal pl15">Alquiler por: <?php echo $factura->propiedad ?></td>
 										<td><?php echo $factura->corresponde_a ?></td>
-										<td><?php echo "$ ".number_format($factura->monto,0) ?></td>
+										<td><?php echo $factura->moneda." ".number_format($factura->monto,0) ?></td>
 									</tr>
 									<?php 
 									$total = $factura->monto;
@@ -130,7 +130,7 @@ td h1, .invoice-items thead th.col-1 { text-align: left; padding-left: 15px; }
 										<tr>
 											<td class="tal pl15"><?php echo $item->nombre ?></td>
 											<td><?php echo $factura->corresponde_a ?></td>
-											<td><?php echo "$ ".number_format($item->monto,0) ?></td>
+											<td><?php echo $factura->moneda." ".number_format($item->monto,0) ?></td>
 										</tr>
 									<?php $total += $item->monto; } ?>
 								</tbody>
@@ -143,7 +143,7 @@ td h1, .invoice-items thead th.col-1 { text-align: left; padding-left: 15px; }
 									<tbody>
 										<tr>
 											<th class="col-1">Total:</th>						
-											<td class="col-2"><?php echo "$ ".number_format($total,2); ?></td>
+											<td class="col-2"><?php echo $factura->moneda." ".number_format($total,2); ?></td>
 										</tr>
 									</tbody>
 								</table>
