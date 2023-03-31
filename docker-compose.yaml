@@ -11,6 +11,10 @@ services:
       - PASSWORD_DB=${PASSWORD_DB}
       - SERVER_DB=${SERVER_DB}
       - PROJECT_NAME=${PROJECT_NAME}
+      - COLOR_1=${COLOR_1}
+      - LOGO=${LOGO}
+      - LOGO_LOGIN=${LOGO_LOGIN}
+      - CSS_LOGIN=${CSS_LOGIN}
     volumes:
       - .:/var/www
 

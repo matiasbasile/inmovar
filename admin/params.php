@@ -3,6 +3,7 @@ if (session_status() == PHP_SESSION_NONE) {
   @session_start();
 }
 date_default_timezone_set("America/Argentina/Buenos_Aires");
+if (!defined("PROJECT_NAME")) { DEFINE ("PROJECT_NAME",(isset($_SERVER["PROJECT_NAME"]) ? $_SERVER["PROJECT_NAME"] : "Inmovar")); }
 if (!defined("DATABASE")) { DEFINE ("DATABASE",(isset($_SERVER["DATABASE"]) ? $_SERVER["DATABASE"] : "inmovar")); }
 if (!defined("SERVER_DB")) { DEFINE ("SERVER_DB",(isset($_SERVER["SERVER_DB"]) ? $_SERVER["SERVER_DB"] : "localhost")); }
 if (!defined("USER_DB")) { DEFINE ("USER_DB",(isset($_SERVER["USER_DB"]) ? $_SERVER["USER_DB"] : "root")); }
@@ -13,6 +14,11 @@ if (!defined("COLOR_1")) { DEFINE ("COLOR_1",(isset($_SERVER["COLOR_1"]) ? $_SER
 if (!defined("COLOR_2")) { DEFINE ("COLOR_2",(isset($_SERVER["COLOR_2"]) ? $_SERVER["COLOR_2"] : "0dd384")); }
 if (!defined("LOGO")) { DEFINE ("LOGO",(isset($_SERVER["LOGO"]) ? $_SERVER["LOGO"] : "/admin/resources/images/inmovar-grande.png")); }
 if (!defined("LOGO_LOGIN")) { DEFINE ("LOGO_LOGIN",(isset($_SERVER["LOGO_LOGIN"]) ? $_SERVER["LOGO_LOGIN"] : "/admin/resources/images/logo-login.png")); }
+if (!defined("CSS_LOGIN")) { DEFINE ("CSS_LOGIN",(isset($_SERVER["CSS_LOGIN"]) ? $_SERVER["CSS_LOGIN"] : "")); }
+
+// Clave general para los mapas
+// Usuario: inmovar@varcreative.com Contraseña: Qu4r2200!!
+if (!defined("MAPBOX_KEY")) { DEFINE ("MAPBOX_KEY",(isset($_SERVER["MAPBOX_KEY"]) ? $_SERVER["MAPBOX_KEY"] : "pk.eyJ1IjoiaW5tb3ZhciIsImEiOiJjbGZ0bHQxanMwMjRrM2pvYnRkOWo2eHh6In0.1sB6eEzzJ-s2Hirb9suiBQ")); }
 
 if (!function_exists("get_conex")) {
   function get_conex() {

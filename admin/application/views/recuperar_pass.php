@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html translate="no" lang="es">
 <head>
-<title>Inmovar</title>
+<title><?php echo PROJECT_NAME ?></title>
 <base href="<?php echo current_url(); ?>"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -15,23 +15,28 @@
 <link rel="stylesheet" href="/admin/resources/css/common.css">
 <link rel="stylesheet" href="/admin/resources/css/login.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?php if (!empty(CSS_LOGIN)) { ?>
+  <link rel="stylesheet" href="<?php echo CSS_LOGIN ?>">
+<?php } ?>
 </head>
 <body class="login-page">
   <div class="top-div">
     <div class="header">
       <div class="row">
         <div class="col-lg-5 col-xs-12 logo">
-          <img src="<?php echo LOGO_LOGIN ?>" alt="Inmovar">
+          <img src="<?php echo LOGO_LOGIN ?>" alt="<?php echo PROJECT_NAME ?>">
         </div>
         <div class="col-lg-7 col-xs-12">
-          <div class="linea-2">
-            <div class="dtc">
-              <span>¿Todavía no tenes cuenta en Inmovar?</span>          
+          <?php if (PROJECT_NAME == "Inmovar") { ?>
+            <div class="linea-2">
+              <div class="dtc">
+                <span>¿Todavía no tenes cuenta en <?php echo PROJECT_NAME ?>?</span>          
+              </div>
+              <div class="dtc vat">
+                <a href="login/registro/" class="button-registrate">REGISTRATE GRATIS</a>
+              </div>
             </div>
-            <div class="dtc vat">
-              <a href="login/registro/" class="button-registrate">REGISTRATE GRATIS</a>
-            </div>
-          </div>
+          <?php } ?>
         </div>
       </div>
     </div>
