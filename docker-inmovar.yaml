@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   app:
+    env_file: .env_inmovar
     image: matiasbasile/varcreative
     container_name: inmovar-app
     restart: always
@@ -19,6 +20,7 @@ services:
       - .:/var/www
 
   nginx:
+    env_file: .env_inmovar
     image: matiasbasile/nginx
     container_name: inmovar-nginx
     restart: always
@@ -31,6 +33,7 @@ services:
       - SERVER_DB:"inmovar-mysql"
 
   mysql:
+    env_file: .env_inmovar
     image: mysql:5.7
     restart: always
     container_name: inmovar-mysql
