@@ -245,6 +245,13 @@ class App extends CI_Controller {
       $this->load->model("Permiso_Red_Model");
       $empresas = $this->Permiso_Red_Model->get_inmobiliarias_red();
 
+      $this->load->model("Menu_Alquileres_Model");
+      $configuracion_alquileres = $this->Menu_Alquileres_Model->get($_SESSION["id_empresa"]);
+      if (empty($configuracion_alquileres)) {
+        $configuracion_alquileres = new stdClass();
+        $configuracion_alquileres->comision_inmobiliaria = 0;
+      }
+
       // Perfil de usuario
       if (file_exists("application/models/perfil_model.php")) {
         $this->load->model("Perfil_Model");
@@ -344,6 +351,7 @@ class App extends CI_Controller {
       "modulos"=>$modulos,
       "nombre_usuario" => $_SESSION["nombre_usuario"],
       "email" => $_SESSION["email"],
+      "comision_inmobiliaria" => $configuracion_alquileres->comision_inmobiliaria,
       "empresa" => $empresa,
       "tiempo_notificaciones"=>$configuracion->tiempo_notificaciones,
       "version_js"=>((isset($configuracion->version_js) && !empty($configuracion->version_js) && $configuracion->debug == 1) ? $configuracion->version_js : 0),
@@ -719,6 +727,7 @@ class App extends CI_Controller {
     $array[] = 'application/javascript/modules/cajas_movimientos.js';
     $array[] = 'application/javascript/modules/stories.js';
     $array[] = 'application/javascript/modules/novedades.js';
+    $array[] = 'application/javascript/modules/menu_alquileres.js';
 
     if ($id_proyecto == 0) {
       $array[] = 'application/javascript/modules/config/videos.js';

@@ -81,12 +81,12 @@
           </li>
         <% } %>
         <% if (mostrar_cheques == 1) { %>
-          <li>
+          <li class="dn">
             <a href="#tab5" role="tab" data-toggle="tab"><i class="fa fa-bank"></i>Cheques</a>
           </li>
         <% } %>
         <% if (mostrar_tarjetas == 1) { %>
-          <li>
+          <li class="dn">
             <a href="#tab4" id="tab_tarjetas" role="tab" data-toggle="tab"><i class="fa fa-credit-card"></i>Tarjetas</a>
           </li>
         <% } %>
@@ -96,6 +96,11 @@
         <li>
           <a href="#tab7" id="tab_observaciones" role="tab" data-toggle="tab"><i class="fa fa-comments"></i>Observaciones</a>
         </li>
+        <% if (descontar_caja == 1) { %>
+          <li>
+            <a href="#tab8" id="tab_descuentos" role="tab" data-toggle="tab"><i class="fa fa-money"></i>Descuentos al propietario</a>
+          </li>
+        <% } %>
       </ul>
       <div class="tab-content">
         
@@ -300,87 +305,121 @@
         </div>
 
         <div id="tab4" class="tab-pane">
-        <% if (id == undefined) { %>
-          <div class="clearfix m-b">
-                      <div class="col-md-2 col-sm-6 p0">
-                          <label class="text-muted">Tarjeta</label>
-              <select id="recibo_tarjetas" class="form-control"></select>
-                      </div>          
-                      <div class="col-md-2 col-sm-6 p0">
-                          <label class="text-muted">Lote</label>
-                          <input type="text" class="form-control action no-model" id="recibo_tarjeta_lote"/>
-                      </div>
-                      <div class="col-md-2 col-sm-6 p0">
-                          <label class="text-muted">Cupon</label>
-                          <input type="text" class="form-control action no-model" id="recibo_tarjeta_cupon"/>
-                      </div>
-                      <div class="col-md-2 col-sm-6 p0">
-                          <label class="text-muted">Importe</label>
-                          <input type="text" class="form-control action no-model" id="recibo_tarjeta_importe"/>
-                      </div>
-                      <div class="col-md-2 col-sm-6 p0">
-                          <label class="text-muted">Cuotas</label>
-              <select id="recibo_tarjeta_cuotas" class="form-control no-model">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-                <option>8</option>
-                <option>9</option>
-                <option>10</option>
-                <option>11</option>
-                <option>12</option>
-                <option>13</option>
-                <option>14</option>
-                <option>15</option>
-                <option>16</option>
-                <option>17</option>
-                <option>18</option>
-                <option>19</option>
-                <option>20</option>
-                <option>21</option>
-                <option>22</option>
-                <option>23</option>
-                <option>24</option>
-              </select>
-                      </div>
-                      <div class="col-md-2 col-sm-6 p0">
-                          <label class="text-muted">Interes</label>
-                          <div class="input-group">
-                              <input type="text" class="form-control no-model" disabled id="recibo_tarjeta_interes"/>
-                              <span class="input-group-btn">
-                                <button title="Ingresar linea" id="recibo_tarjeta_agregar_item" class="btn btn-info form-control"><i class="fa fa-plus"></i></button>
-                              </span>
-                          </div>
-                      </div>
-                  </div>
+          <% if (id == undefined) { %>
+            <div class="clearfix m-b">
+                        <div class="col-md-2 col-sm-6 p0">
+                            <label class="text-muted">Tarjeta</label>
+                <select id="recibo_tarjetas" class="form-control"></select>
+                        </div>          
+                        <div class="col-md-2 col-sm-6 p0">
+                            <label class="text-muted">Lote</label>
+                            <input type="text" class="form-control action no-model" id="recibo_tarjeta_lote"/>
+                        </div>
+                        <div class="col-md-2 col-sm-6 p0">
+                            <label class="text-muted">Cupon</label>
+                            <input type="text" class="form-control action no-model" id="recibo_tarjeta_cupon"/>
+                        </div>
+                        <div class="col-md-2 col-sm-6 p0">
+                            <label class="text-muted">Importe</label>
+                            <input type="text" class="form-control action no-model" id="recibo_tarjeta_importe"/>
+                        </div>
+                        <div class="col-md-2 col-sm-6 p0">
+                            <label class="text-muted">Cuotas</label>
+                <select id="recibo_tarjeta_cuotas" class="form-control no-model">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                  <option>8</option>
+                  <option>9</option>
+                  <option>10</option>
+                  <option>11</option>
+                  <option>12</option>
+                  <option>13</option>
+                  <option>14</option>
+                  <option>15</option>
+                  <option>16</option>
+                  <option>17</option>
+                  <option>18</option>
+                  <option>19</option>
+                  <option>20</option>
+                  <option>21</option>
+                  <option>22</option>
+                  <option>23</option>
+                  <option>24</option>
+                </select>
+                        </div>
+                        <div class="col-md-2 col-sm-6 p0">
+                            <label class="text-muted">Interes</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control no-model" disabled id="recibo_tarjeta_interes"/>
+                                <span class="input-group-btn">
+                                  <button title="Ingresar linea" id="recibo_tarjeta_agregar_item" class="btn btn-info form-control"><i class="fa fa-plus"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+          <% } %>
+          <div class="b-a table-responsive">
+            <table class="table table-small table-striped sortable m-b-none default footable">
+              <thead>
+                <tr>
+                  <th>Tarjeta</th>
+                  <th>Lote</th>
+                  <th>Cup&oacute;n</th>
+                  <th>Cuotas</th>
+                  <th>Importe</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody class="tbody" id="recibo_tarjetas_table"></tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="4" class="bold">Total Tarjetas</td>
+                  <td class="tar bold" id="recibo_tarjetas_total">$ 0.00</td>
+                  <td>&nbsp;</td>
+                </tr>
+              </tfoot>
+            </table>            
+          </div>
+        </div>
+
+        <% if (descontar_caja == 1) { %>
+          <div id="tab8" class="tab-pane">
+            <div class="clearfix m-b">
+              <div class="col-md-4 col-sm-6 p0">
+                <label class="text-muted">Razón</label>
+                <input type="text" id="descontar_caja_texto" class="form-control">
+              </div>
+              <div class="col-md-2 col-sm-6 p0">
+                <label class="text-muted">Monto</label>
+                <input type="number" value="0" id="descontar_caja_monto" class="form-control">
+              </div>
+              <div class="col-md-1 col-sm-6 p0 mt25">
+                <div class="input-group">
+                  <span class="input-group-btn">
+                    <button id="recibo_clientes_descontar_caja_agregar" class="btn btn-info form-control"><i class="fa fa-plus"></i></button>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="b-a table-responsive">
+              <table class="table table-small table-striped sortable m-b-none default footable">
+                <thead>
+                  <tr>
+                    <th>Razon</th>
+                    <th class="">Monto</th>
+                    <th class="w25"></th>
+                  </tr>
+                </thead>
+                <tbody class="tbody" id="descontar_caja_table"></tbody>
+              </table>            
+            </div>
+          </div>
         <% } %>
-        <div class="b-a table-responsive">
-          <table class="table table-small table-striped sortable m-b-none default footable">
-            <thead>
-              <tr>
-                <th>Tarjeta</th>
-                <th>Lote</th>
-                <th>Cup&oacute;n</th>
-                <th>Cuotas</th>
-                <th>Importe</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody class="tbody" id="recibo_tarjetas_table"></tbody>
-            <tfoot>
-              <tr>
-                <td colspan="4" class="bold">Total Tarjetas</td>
-                <td class="tar bold" id="recibo_tarjetas_total">$ 0.00</td>
-                <td>&nbsp;</td>
-              </tr>
-            </tfoot>
-          </table>            
-        </div>
-        </div>
 
       </div>
     </div>
@@ -388,7 +427,11 @@
   <div class="panel-footer clearfix">
     <div class="row">
     <div class="col-md-3 col-sm-6">
-      <label class="control-label bold fs16">TOTAL RECIBIDO:</label>
+      <% if (descontar_caja == 0) { %>
+        <label class="control-label bold fs16">TOTAL RECIBIDO:</label>
+      <% } else { %>
+        <label class="control-label bold fs16">TOTAL A PAGAR:</label>
+      <% } %>
       <input type="text" class="tar input bold fs16 form-control" disabled id="recibo_total_valores_entregados"/>
     </div>
     <div class="col-md-3 col-sm-6">

@@ -102,6 +102,13 @@
         });    
         self.$("#configuracion_content").html(view.el);
 
+      } else if (self.model.get("id_modulo") == "alquileres") {
+
+        var view = new app.views.ConfiguracionMenuAlquileres({
+          model: new app.models.AbstractModel(),
+        });    
+        self.$("#configuracion_content").html(view.el);
+
       }
       
       return this;

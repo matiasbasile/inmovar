@@ -824,8 +824,10 @@
       },
       "click .data":"seleccionar",
       "click .agregar_pago":"agregar_pago",
+      "click .pagar_a_propietario":"pagar_a_propietario",
       "click .modificar_pagos":"modificar_pagos",
       "click .imprimir":"imprimir",
+      "click .imprimir_propietario":"imprimir_propietario",
       "click .imprimir_cupon_pago":"imprimir_cupon_pago",
       "click .enviar_cupon_wpp":function(e){
         var self = this;
@@ -1040,10 +1042,79 @@
         }
       });
     },
+    pagar_a_propietario : function() {
+
+      var self = this;
+      var total = self.model.get("total") - (self.model.get("total") * COMISION_INMOBILIARIA / 100);
+      var comprobantes = new Array();
+      comprobantes.push({
+        "id": self.model.get("id"),
+        "id_punto_venta": self.model.get("id_punto_venta"),
+        "fecha": self.model.get("fecha"),
+        "comprobante": self.model.get("comprobante"),
+        "nombre": self.model.get("propietario"),
+        "anulada": 0,
+        "pagada": self.model.get("pagada"),
+        "tipo_pago": "E",
+        "debe": total,
+        "haber": 0,
+        "tipo_punto_venta": 0,
+        "saldo": 0,
+        "tipo": 0, // INDICA SI ES PAGO O NO
+        "tipo_comprobante": "Recibo",
+        "total":total,
+        "pago":0,
+        "progreso":0,
+        "negativo":0,
+        "total_pagado":0,
+      });
+
+      var reciboCliente = new app.models.ReciboCliente({
+        "id_empresa":ID_EMPRESA,
+        "id_cliente":self.model.get("id_propietario"),
+        "cheques": [],
+        "depositos": [],
+        "tarjetas": [],
+        "comprobantes": comprobantes,
+      });
+      app.views.reciboClientes = new app.views.ReciboClientes({
+        model: reciboCliente,
+        descontar_caja: 1,
+      });
+
+      window.id_recibo = 0;
+      
+      // Abrimos el lightbox de pagos
+      crearLightboxHTML({
+        "html":app.views.reciboClientes.el,
+        "width":900,
+        "height":500,
+        "callback":function() {
+          self.collection.pager();
+          if(window.id_recibo != 0) self.imprimir_propietario();          
+        }
+      });
+    },
     imprimir: function() {
       var id = this.model.id;
       $('.modal:last').modal('hide'); // Cerramos si hay otro lightbox abierto
       var iframe = "<iframe style='width:100%; border:none; height:600px;' src='alquileres/function/imprimir/"+id+"'></iframe>";
+      iframe+='<div class="text-right wrapper">';
+      //iframe+='<button class="btn btn-info btn-addon m-r">';
+      //iframe+='<i class="fa fa-send"></i><span>Enviar</span>';
+      //iframe+='</button>';
+      iframe+='<button class="btn btn-default" onclick="workspace.cerrar_impresion()">Cerrar</button>';
+      iframe+='</div>';
+      crearLightboxHTML({
+        "html":iframe,
+        "width":860,
+        "height":600,
+      });
+    },
+    imprimir_propietario: function() {
+      var id = this.model.id;
+      $('.modal:last').modal('hide'); // Cerramos si hay otro lightbox abierto
+      var iframe = "<iframe style='width:100%; border:none; height:600px;' src='alquileres/function/imprimir_propietario/"+id+"'></iframe>";
       iframe+='<div class="text-right wrapper">';
       //iframe+='<button class="btn btn-info btn-addon m-r">';
       //iframe+='<i class="fa fa-send"></i><span>Enviar</span>';
@@ -1080,6 +1151,7 @@
       this.options = options;
       this.habilitar_seleccion = (this.options.habilitar_seleccion == undefined || this.options.habilitar_seleccion == false) ? false : true;
       this.render();
+      console.log(this.model);
     },
     render: function() {
       var obj = { seleccionar: this.habilitar_seleccion };

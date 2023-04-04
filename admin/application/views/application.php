@@ -39,6 +39,7 @@ function lang($languages=array()) {
 <script type="text/javascript">
 var inicio = '<?php echo $inicio; ?>';
 const PERFIL = '<?php echo $perfil; ?>';
+const COMISION_INMOBILIARIA = '<?php echo $comision_inmobiliaria; ?>';
 const IDIOMA = '<?php echo $idioma; ?>';
 const ID_USUARIO = "<?php echo $id_usuario; ?>";
 const ID_SUCURSAL = "<?php echo $id_sucursal; ?>";
@@ -157,6 +158,7 @@ if (file_exists("application/views/templates/inm/permisos_red.php")) include_onc
 if (file_exists("application/views/templates/inm/alquileres.php")) include_once ("application/views/templates/inm/alquileres.php");
 if (file_exists("application/views/templates/inm/agenda.php")) include_once ("application/views/templates/inm/agenda.php");
 if (file_exists("application/views/templates/novedades.php")) include_once ("application/views/templates/novedades.php");
+if (file_exists("application/views/templates/menu_alquileres.php")) include_once ("application/views/templates/menu_alquileres.php");
 include_once ("application/views/templates/cajas.php");
 include_once ("application/views/templates/cajas_movimientos.php");
 include_once ("application/views/templates/facturacion.php");

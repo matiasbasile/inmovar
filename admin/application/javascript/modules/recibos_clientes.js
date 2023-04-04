@@ -123,6 +123,8 @@ app.views.ReciboClientes = app.mixins.View.extend({
       this.$("#recibo_tarjeta_agregar_item").focus();
     },
     "click #recibo_tarjeta_agregar_item":"agregar_tarjeta",
+    "click #recibo_clientes_descontar_caja_agregar":"agregar_descontar_propietario",
+    "click .eliminar_descontar_propietario":"eliminar_descontar_propietario",
 
     /*
     "keydown #recibo_efectivo":function(e) {
@@ -263,6 +265,7 @@ app.views.ReciboClientes = app.mixins.View.extend({
     this.mostrar_depositos = (typeof options.mostrar_depositos !== "undefined") ? options.mostrar_depositos : 1;
     this.mostrar_cheques = (typeof options.mostrar_cheques !== "undefined") ? options.mostrar_cheques : 1;
     this.mostrar_tarjetas = (typeof options.mostrar_tarjetas !== "undefined") ? options.mostrar_tarjetas : 1;
+    this.descontar_caja = (typeof options.descontar_caja !== "undefined") ? options.descontar_caja : 0;
     this.guardando = 0;
     this.id_depositos = 1;
     this.id_movimientos_efectivo = 1;
@@ -283,6 +286,7 @@ app.views.ReciboClientes = app.mixins.View.extend({
       mostrar_depositos: this.mostrar_depositos,
       mostrar_cheques: this.mostrar_cheques,
       mostrar_tarjetas: this.mostrar_tarjetas,
+      descontar_caja: this.descontar_caja,
     };
     $.extend(obj,this.model.toJSON());
     $(this.el).html(this.template(obj));
@@ -429,6 +433,7 @@ app.views.ReciboClientes = app.mixins.View.extend({
       "id_caja":id_caja,
       "caja":caja,
       "monto":monto.toFixed(2),
+      "descontar_caja": this.descontar_caja,
     };
     this.model.get("movimientos_efectivo").push(efectivo);
     this.id_movimientos_efectivo = this.id_movimientos_efectivo + 1;
@@ -530,6 +535,68 @@ app.views.ReciboClientes = app.mixins.View.extend({
     this.model.set({ "tarjetas":tarjetas2 });
     this.render_tabla_tarjetas();
   },  
+
+  agregar_descontar_propietario: function(e) {
+    var self = this;
+    var razon = this.$("#descontar_caja_texto").val();
+    var monto = this.$("#descontar_caja_monto").val();
+
+    if (isEmpty(razon)) {
+      alert ("Por favor ingrese una razón");
+      return false;
+    }
+
+    if (monto <= 0) {
+      alert ("Por favor ingrese un monto valido");
+      return false;
+    }
+
+    var tr = "<tr>";
+    tr+="<td class='razon'>"+razon+"</td>";
+    tr+="<td class='monto'>"+monto+"</td>";
+    tr+="<td>";
+    if (self.model.id == undefined) tr+="<i class='fa fa-times eliminar_descontar_propietario text-danger' />";
+    tr+="</td>";
+    tr+="</tr>";
+    $("#descontar_caja_table").append(tr);
+
+    this.calcular_descuentos_propietarios();
+    this.$("#descontar_caja_texto").val("");
+    this.$("#descontar_caja_monto").val(0);
+  },
+
+  eliminar_descontar_propietario: function(e) {
+    $(e.currentTarget).parent().parent().remove();
+    this.calcular_descuentos_propietarios();
+  },
+
+  calcular_descuentos_propietarios: function() {
+    var descuentos_propietarios = new Array();
+    var haberes_total = 0;
+    
+    $("#descontar_caja_table tr").each(function(i, e){
+      var razon = $(e).find(".razon").text();
+      var monto = $(e).find(".monto").text();
+      haberes_total += parseFloat(monto);
+      descuentos_propietarios.push({
+        "razon": razon,
+        "monto": monto,
+      });
+    });
+
+    var nuevos_comprobantes = new Array();
+    var primer_comprobante = this.model.get("comprobantes")[0];
+    primer_comprobante.haber = haberes_total;
+    nuevos_comprobantes.push(primer_comprobante);
+
+    this.model.set({
+      "descuentos_propietarios": descuentos_propietarios,
+      "comprobantes": nuevos_comprobantes,
+    });
+    
+    $("#recibo_clientes_tabla_comprobantes").empty();
+    this.render_tabla_comprobantes();
+  },
   
   render_tabla_tarjetas: function() {
     var self = this;
@@ -579,7 +646,7 @@ app.views.ReciboClientes = app.mixins.View.extend({
 
       // NUEVO RECIBO
       if (typeof this.model.id == "undefined") {
-        var input = "<input "+((comprobante.negativo==1)?"disabled":"")+" type='text' data-id='"+comprobante.id+"' data-min='0' data-max='"+saldo+"' class='form-control dib w80 total_comprobante' value='"+Number(saldo).toFixed(2)+"' />";
+        var input = "<input disabled type='text' data-id='"+comprobante.id+"' data-min='0' data-max='"+saldo+"' class='form-control dib w80 total_comprobante' value='"+Number(saldo).toFixed(2)+"' />";
         tr+="<td class='tar'>$ "+Number(comprobante.debe).toFixed(2)+"</td>";
         tr+="<td class='tar'>$ "+Number(comprobante.haber).toFixed(2)+"</td>";
         tr+="<td class='tar'>$ "+input+"</td>";      
@@ -628,6 +695,7 @@ app.views.ReciboClientes = app.mixins.View.extend({
     this.$("#recibo_clientes_total_debe").html("$ "+Number(total_debe).toFixed(2));
     this.$("#recibo_clientes_total_haber").html("$ "+Number(total_haber).toFixed(2));
     this.$("#recibo_clientes_total").html("$ "+Number(total_saldo).toFixed(2));
+    $("#recibo_total_diferencia").val(Number(total_saldo).toFixed(2));
   },
 
   cambiar_total_comprobante:function(e) {

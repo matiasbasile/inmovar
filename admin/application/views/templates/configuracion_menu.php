@@ -56,6 +56,12 @@
            Plantillas de Whatsapp
           </a>
         </li>
+        <li>
+          <a class="<%= (id_modulo == "alquileres")?"active":"" %>" href="app/#configuracion/alquileres">
+            <span class="material-icons">arrow_forward_ios</span>
+           Alquileres
+          </a>
+        </li>
       </ul>
     </div>
     <div class="col-md-9">
@@ -685,6 +691,48 @@
     </div>
     <div class="panel-body expand" style="display:block">
       <div id="wpps_container">
+      </div>
+    </div>
+  </div>
+</script>
+
+<script type="text/template" id="configuracion_wpp">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="padder">
+        <div class="form-group mb0 clearfix expand-link cp">
+          <label class="control-label cp">
+            Plantillas de Whatsapp
+          </label>
+          <div class="panel-description">
+            Crear, modificar o eliminar plantillas de Whatsapp.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body expand" style="display:block">
+      <div id="wpps_container">
+      </div>
+    </div>
+  </div>
+</script>
+
+<script type="text/template" id="configuracion_alquileres">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="padder">
+        <div class="form-group mb0 clearfix expand-link cp">
+          <label class="control-label cp">
+            Alquileres
+          </label>
+          <div class="panel-description">
+            Editar parametros de los alquileres.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body expand" style="display:block">
+      <div id="alquileres_container">
       </div>
     </div>
   </div>

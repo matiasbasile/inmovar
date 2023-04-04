@@ -181,6 +181,9 @@ class Recibos extends REST_Controller {
     if (sizeof($array->movimientos_efectivo)>0) {
       foreach($array->movimientos_efectivo as $ef) {
         // Guardamos los movimientos_efectivo
+
+        if ($ef->descontar_caja == 1) $ef->monto = $ef->monto * -1;
+
         if ($ef->monto < 0) {
           $monto = abs($ef->monto);
           $this->Caja_Movimiento_Model->egreso(array(
@@ -232,11 +235,40 @@ class Recibos extends REST_Controller {
 				$q_facturas = $this->db->query($sql);
 				if ($q_facturas->num_rows() <= 0) break;
 				$factura = $q_facturas->row();
-				$sql = "UPDATE inm_alquileres_cuotas SET pagada = 1 ";
-				$sql.= "WHERE numero = $factura->numero_referencia ";
-				$sql.= "AND id_alquiler = $factura->id_referencia ";
-				$this->db->query($sql);
+
+        //Puede ser que el alquiler ya haya sido pagado 
+        //Entonces tenemos que volver a actualizar
+        //Sobre la ya actualizada
+
+        $sql = "SELECT * ";
+        $sql.= "FROM inm_alquileres_cuotas ";
+        $sql.= "WHERE numero = '$factura->numero_referencia' AND id_alquiler = '$factura->id_referencia' ";
+        $q = $this->db->query($sql);
+        $row = $q->row();
+        if ($row->pagada == 0) {
+  				$sql = "UPDATE inm_alquileres_cuotas SET pagada = 1 ";
+  				$sql.= "WHERE numero = $factura->numero_referencia ";
+  				$sql.= "AND id_alquiler = $factura->id_referencia ";
+  				$this->db->query($sql);
+        } else {
+          $sql = "UPDATE inm_alquileres_cuotas SET pagada_a_propietario = 1 ";
+          $sql.= "WHERE numero = $factura->numero_referencia ";
+          $sql.= "AND id_alquiler = $factura->id_referencia ";
+          $this->db->query($sql);
+        }
+        //Si hay descuentos hacia el propietario
+        if (isset($array->descuentos_propietarios)) {
+          //Lo agregamos a facturas items
+          foreach ($array->descuentos_propietarios as $dp) {
+            $sql = "INSERT INTO facturas_items ";
+            $sql.= "(id_empresa, id_punto_venta, id_factura, cantidad, neto, precio, nombre, total_sin_iva, total_con_iva) ";
+            $sql.= "VALUES ";
+            $sql.= "($factura->id_empresa, $factura->punto_venta, $factura->id, 1, $dp->monto, $dp->monto, '$dp->razon', '$dp->monto', '$dp->monto') ";
+            $q = $this->db->query($sql);
+          }   
+        }
 			}
+
 
 		}
 

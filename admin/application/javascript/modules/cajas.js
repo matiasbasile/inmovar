@@ -227,6 +227,7 @@
           "tipo":self.$("#cajas_tipo").val(),
         },{
           success: function(model,response) {
+            location.href = "app/#cajas";
             location.reload();
           }
         });

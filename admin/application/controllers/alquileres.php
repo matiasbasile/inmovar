@@ -364,16 +364,18 @@ class Alquileres extends REST_Controller {
 
     $sql = "SELECT SQL_CALC_FOUND_ROWS C.nombre AS cliente, F.id, F.pago, C.telefono, C.celular, F.hash, F.id_punto_venta, C.email, ";
     $sql.= " F.comprobante, C.id AS id_cliente, DATE_FORMAT(F.fecha,'%d/%m/%Y') AS fecha, ";
-    $sql.= " AC.pagada, AC.corresponde_a, A.id AS id_alquiler, AC.id AS id_cuota, ";
+    $sql.= " AC.pagada, AC.corresponde_a, A.id AS id_alquiler, AC.id AS id_cuota, AC.pagada_a_propietario, ";
     $sql.= " F.enviado_email, F.enviado_wpp, ";
     $sql.= " IF(A.moneda = '', '$', A.moneda) as moneda, ";
     $sql.= " DATE_FORMAT(AC.vencimiento,'%d/%m/%Y') AS vencimiento, AC.monto, AC.expensa, (AC.monto+AC.expensa) AS total, ";
-    $sql.= " P.nombre AS propiedad, CONCAT(P.calle,' ',P.altura,' ',P.piso,' ',P.numero) AS direccion ";
+    $sql.= " P.nombre AS propiedad, CONCAT(P.calle,' ',P.altura,' ',P.piso,' ',P.numero) AS direccion, P.id_propietario, ";
+    $sql.= " IF (CP.nombre IS NULL, '', CP.nombre) as propietario ";
     $sql.= "FROM facturas F ";
     $sql.= "INNER JOIN inm_alquileres A ON (A.id = F.id_referencia AND A.id_empresa = F.id_empresa) ";
     $sql.= "INNER JOIN inm_alquileres_cuotas AC ON (F.numero_referencia = AC.numero AND AC.id_alquiler = A.id AND F.id_empresa = AC.id_empresa) ";        
     $sql.= "INNER JOIN clientes C ON (C.id = A.id_cliente AND F.id_empresa = C.id_empresa) ";
     $sql.= "INNER JOIN inm_propiedades P ON (P.id = A.id_propiedad AND F.id_empresa = P.id_empresa) ";
+    $sql.= "LEFT JOIN clientes CP ON (CP.id = P.id_propietario AND F.id_empresa = CP.id_empresa) ";
     $sql.= "WHERE F.id_empresa = $id_empresa ";
     if (!empty($id_propiedad)) $sql.= "AND A.id_propiedad = $id_propiedad ";
     if ($estado != -1) $sql.= "AND AC.pagada = $estado ";
@@ -463,6 +465,84 @@ class Alquileres extends REST_Controller {
       $this->load->view("reports/factura/recibo_inmo_oficio/remito.php",$datos);
     } else {
       $this->load->view("reports/factura/recibo_inmo/remito.php",$datos);
+    }
+  }
+
+  function imprimir_propietario($id_factura) {
+
+    $id_empresa = parent::get_empresa();
+    $this->load->helper("fecha_helper");
+    $this->load->helper("numero_letra_helper");
+
+    $sql = "SELECT F.id_cliente, C.nombre AS cliente, F.id, F.pago, C.cuit AS cuit, F.id_referencia AS id_alquiler, ";
+    $sql.= " F.comprobante, F.numero, C.id AS id_cliente, DATE_FORMAT(F.fecha,'%d/%m/%Y') AS fecha, ";
+    $sql.= " AC.pagada, AC.corresponde_a, AC.id AS id_cuota, ";
+    $sql.= " DATE_FORMAT(AC.vencimiento,'%d/%m/%Y') AS vencimiento, AC.monto, AC.expensa, (AC.monto+AC.expensa) AS total, ";
+    $sql.= " P.nombre AS propiedad, CONCAT(P.calle,' ',P.altura,' ',P.piso,' ',P.numero) AS direccion, ";
+    $sql.= " IF(A.moneda = '', '$', A.moneda) as moneda, ";
+    $sql.= " IF(CP.nombre IS NULL,'',CP.nombre) AS propietario, ";
+    $sql.= " IF(CP.cuit IS NULL,'',CP.cuit) AS propietario_dni ";
+    $sql.= "FROM facturas F ";
+    $sql.= "INNER JOIN inm_alquileres A ON (A.id = F.id_referencia AND F.id_empresa = A.id_empresa) ";
+    $sql.= "INNER JOIN inm_alquileres_cuotas AC ON (F.numero_referencia = AC.numero AND AC.id_alquiler = A.id AND AC.id_empresa = F.id_empresa) ";        
+    $sql.= "INNER JOIN clientes C ON (C.id = A.id_cliente AND F.id_empresa = C.id_empresa) ";
+    $sql.= "INNER JOIN inm_propiedades P ON (P.id = A.id_propiedad AND F.id_empresa = P.id_empresa) ";
+    $sql.= "LEFT JOIN clientes CP ON (P.id_propietario = CP.id AND F.id_empresa = CP.id_empresa) ";
+    $sql.= "WHERE F.id = $id_factura ";
+    $sql.= "AND F.id_empresa = $id_empresa ";
+    $q = $this->db->query($sql);
+    $factura = $q->row();
+    //Al ser propietario, el total a pagarse se debe descontar de la configuracion
+    $this->load->model("Menu_Alquileres_Model");
+    $configuracion_alquileres = $this->Menu_Alquileres_Model->get($_SESSION["id_empresa"]);
+    if (empty($configuracion_alquileres)) {
+      $configuracion_alquileres = new stdClass();
+      $configuracion_alquileres->comision_inmobiliaria = 0;
+    }
+
+    $factura->monto = $factura->monto - ($factura->monto * $configuracion_alquileres->comision_inmobiliaria / 100);
+    $factura->total = $factura->total - ($factura->total * $configuracion_alquileres->comision_inmobiliaria / 100);
+
+    // TODO: despues cambiar esto y unificar
+    $factura->total_extras = $this->modelo->calcular_total_extras($factura->id_cuota);
+    $factura->total += $r->total_extras;
+    $factura->extras = $this->modelo->get_extras($factura->id_cuota);
+
+    $factura->items = array();
+
+    $sql = "SELECT *, precio as monto FROM facturas_items ";
+    $sql.= "WHERE id_factura = $factura->id ";
+    $sql.= "AND id_empresa = $id_empresa ";
+    $sql.= "ORDER BY orden ASC ";
+    $q_items = $this->db->query($sql);
+    $factura->items = $q_items->result();
+    
+    $this->load->model("Empresa_Model");
+    $empresa = $this->Empresa_Model->get($id_empresa);
+    
+    $sql = "SELECT * FROM fact_configuracion WHERE id_empresa = $id_empresa ";
+    $q = $this->db->query($sql);
+    $fact_configuracion = $q->row();
+    $empresa->numero_ib = $fact_configuracion->numero_ib;
+    $empresa->fecha_inicio = fecha_es($fact_configuracion->fecha_inicio);
+
+    $header = $this->load->view("reports/factura/header",null,true);
+
+    $this->load->model("Cliente_Model");
+    $cliente = $this->Cliente_Model->get($factura->id_cliente, $id_empresa);
+
+    $datos = array(
+      "facturas"=>array($factura),
+      "empresa"=>$empresa,
+      "header"=>$header,
+      "letras"=> new EnLetras(),
+      "cliente"=>$cliente,
+    );
+    //TODO: SACARLE EL HARDCODEO
+    if ($id_empresa == 1392) {
+      $this->load->view("reports/factura/recibo_inmo_oficio/propietario.php",$datos);
+    } else {
+      $this->load->view("reports/factura/recibo_inmo/propietario.php",$datos);
     }
   }
 

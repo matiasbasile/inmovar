@@ -433,7 +433,12 @@
                 <% } %>
                 <th class="sorting" data-sort-by="cliente">Inquilino</th>
                 <th class="sorting" data-sort-by="propiedad">Propiedad</th>
-                <th class="sorting" data-sort-by="monto">Total</th>
+                <% if (active == "recibos_alquileres_pagados") { %>
+                  <th class="sorting" data-sort-by="monto">Total Pagado</th>
+                  <th>Total a Pagar</th>
+                <% } else { %>
+                  <th class="sorting" data-sort-by="monto">Total</th>
+                <% } %>
                 <?php /*
                 <th class="sorting" data-sort-by="expensa">Tasas/Serv.</th>
                 <th class="sorting" data-sort-by="total">Total</th>
@@ -490,6 +495,19 @@
       <%= moneda %> <%= Number(total).format(0) %>
     <% } %>
   </td>
+
+  <% if (pagada == 1) { %>
+    <% var total_a_pagar_propietario = total - (total * COMISION_INMOBILIARIA / 100) %>
+    <td class="<%= clase %> data">
+      <%= moneda %> <%= Number(total_a_pagar_propietario).format(0) %><br>
+      <% if (pagada_a_propietario == 0) { %>
+        <span class="text-danger fs12"><i class="fa fa-times"></i> No pago</span>
+      <% } else { %>
+        <span class="text-success fs12"><i class="fa fa-check"></i> Pagado</span>
+      <% } %>
+    </td>
+  <% } %>
+  
   <td class="<%= clase %> data"><%= vencimiento %></td>
   <% if (!seleccionar) { %>
     <td class="tar <%= clase %>">
@@ -499,7 +517,19 @@
         <button class="btn btn-default enviar_cupon_wpp <%= (enviado_wpp == 1) ? 'btn-success' : '' %>"><i class="fa fa-whatsapp"></i></button>
         <button class="btn btn-default enviar_cupon_email <%= (enviado_email == 1) ? 'btn-warning' : '' %>"><i class="fa fa-envelope"></i></button>
       <% } else { %>
-        <button class="btn btn-default imprimir"><i class="fa fa-print"></i></button>
+        <% if (pagada == 1 && pagada_a_propietario == 0) { %>
+          <button class="btn btn-info pagar_a_propietario">Pagar</button>
+        <% } %>
+
+        <div class="btn-group dropdown">
+          <i title="Opciones" class="iconito fa ml15 mt5 fa fa-print dropdown-toggle" data-toggle="dropdown"></i>
+          <ul class="dropdown-menu pull-right">
+            <li><a href="javascript:void(0)" class="imprimir">Inquilino</a></li>
+            <% if (pagada_a_propietario == 1) { %>
+              <li><a href="javascript:void(0)" class="imprimir_propietario">Propietario</a></li>
+            <% } %>
+          </ul>
+        </div>
       <% } %>
       <div class="btn-group dropdown">
         <i title="Opciones" class="iconito fa ml15 mt5 fa-caret-down dropdown-toggle" data-toggle="dropdown"></i>
