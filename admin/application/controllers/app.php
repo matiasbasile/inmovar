@@ -66,6 +66,7 @@ class App extends CI_Controller {
     $usuario->solo_usuario = 0;
     $usuario->horarios = array();
     $mensaje_cuenta_nivel = 0;
+    $comision_inmobiliaria = 0;
     
     // Debemos cargar el usuario con todo su perfil
     $perfil = $_SESSION["perfil"];
@@ -247,9 +248,8 @@ class App extends CI_Controller {
 
       $this->load->model("Menu_Alquileres_Model");
       $configuracion_alquileres = $this->Menu_Alquileres_Model->get($_SESSION["id_empresa"]);
-      if (empty($configuracion_alquileres)) {
-        $configuracion_alquileres = new stdClass();
-        $configuracion_alquileres->comision_inmobiliaria = 0;
+      if (!empty($configuracion_alquileres)) {
+        $comision_inmobiliaria = $configuracion_alquileres->comision_inmobiliaria;
       }
 
       // Perfil de usuario
@@ -351,7 +351,7 @@ class App extends CI_Controller {
       "modulos"=>$modulos,
       "nombre_usuario" => $_SESSION["nombre_usuario"],
       "email" => $_SESSION["email"],
-      "comision_inmobiliaria" => $configuracion_alquileres->comision_inmobiliaria,
+      "comision_inmobiliaria" => $comision_inmobiliaria,
       "empresa" => $empresa,
       "tiempo_notificaciones"=>$configuracion->tiempo_notificaciones,
       "version_js"=>((isset($configuracion->version_js) && !empty($configuracion->version_js) && $configuracion->debug == 1) ? $configuracion->version_js : 0),
