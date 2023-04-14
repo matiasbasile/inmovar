@@ -86,7 +86,9 @@ class Recibos extends REST_Controller {
   }
             
 	function insert() {
-        
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
 		$id_empresa = parent::get_empresa();
     $this->load->helper("fecha_helper");
     $array = $this->parse_put();
