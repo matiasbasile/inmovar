@@ -501,7 +501,7 @@
     <td class="<%= clase %> data">
       <%= moneda %> <%= Number(total_a_pagar_propietario).format(0) %><br>
       <% if (pagada_a_propietario == 0) { %>
-        <span class="text-danger fs12"><i class="fa fa-times"></i> No pago</span>
+        <span class="text-danger fs12"><i class="fa fa-times"></i> Pendiente pago propietario</span>
       <% } else { %>
         <span class="text-success fs12"><i class="fa fa-check"></i> Pagado</span>
       <% } %>
