@@ -7,7 +7,7 @@
       </div>
       <div class="col-md-6 col-xs-4 tar">
         <a class="btn btn-info" href="app/#caja">&nbsp;&nbsp;Nueva Caja&nbsp;&nbsp;</a>
-        <a class="btn btn-default" href="javascript:void(0)" class="transferencia">Transferencia</a>
+        <a class="btn btn-default transferencia" href="javascript:void(0)">Transferencia</a>
       </div>
     </div>
   </div>
