@@ -124,7 +124,7 @@ function modulo_habilitado($permisos,$modulo) {
                 <a href="app/#alquileres" class=""><i class="material-icons md-22">vpn_key</i><span>Alquileres</span></a>
               </li>
               <li>
-                <a href="app/#cajas" class=""><i class="material-icons md-22">currency_exchange</i><span>Cajas</span></a>
+                <a href="app/#cajas" class=""><i class="material-icons md-22">attach_money</i><span>Cajas</span></a>
               </li>
             <?php } ?>
             <?php if (modulo_habilitado($permisos,"contactos")>0) { ?>
