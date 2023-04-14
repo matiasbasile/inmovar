@@ -7,9 +7,9 @@ if (!defined("PROJECT_NAME")) { DEFINE ("PROJECT_NAME",(isset($_SERVER["PROJECT_
 if (!defined("DATABASE")) { DEFINE ("DATABASE",(isset($_SERVER["DATABASE"]) ? $_SERVER["DATABASE"] : "inmovar")); }
 if (!defined("SERVER_DB")) { DEFINE ("SERVER_DB",(isset($_SERVER["SERVER_DB"]) ? $_SERVER["SERVER_DB"] : "localhost")); }
 if (!defined("USER_DB")) { DEFINE ("USER_DB",(isset($_SERVER["USER_DB"]) ? $_SERVER["USER_DB"] : "root")); }
-if (!defined("PASSWORD_DB")) { DEFINE ("PASSWORD_DB",(isset($_SERVER["PASSWORD_DB"]) ? $_SERVER["PASSWORD_DB"] : "")); }
+if (!defined("PASSWORD_DB")) { DEFINE ("PASSWORD_DB",(isset($_SERVER["PASSWORD_DB"]) ? $_SERVER["PASSWORD_DB"] : "varcreative1805")); }
 if (!defined("FORCE_HTTPS")) { DEFINE ("FORCE_HTTPS",(isset($_SERVER["FORCE_HTTPS"]) ? $_SERVER["FORCE_HTTPS"] : false)); }
-if (!defined("DOMINIO")) { DEFINE ("DOMINIO",(isset($_SERVER["DOMINIO"]) ? $_SERVER["DOMINIO"] : "http://inmovar")); }
+if (!defined("DOMINIO")) { DEFINE ("DOMINIO",(isset($_SERVER["DOMINIO"]) ? $_SERVER["DOMINIO"] : "https://app.inmovar.com/")); }
 if (!defined("COLOR_1")) { DEFINE ("COLOR_1",(isset($_SERVER["COLOR_1"]) ? $_SERVER["COLOR_1"] : "1d36c2")); }
 if (!defined("COLOR_2")) { DEFINE ("COLOR_2",(isset($_SERVER["COLOR_2"]) ? $_SERVER["COLOR_2"] : "0dd384")); }
 if (!defined("LOGO")) { DEFINE ("LOGO",(isset($_SERVER["LOGO"]) ? $_SERVER["LOGO"] : "/admin/resources/images/inmovar-grande.png")); }
