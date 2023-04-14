@@ -10,7 +10,7 @@
 
         <div class="btn-group pull-right dropdown mr5">
           <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-            <i class="fa fa-cog"></i><span>Opciones</span>
+            <i class="fa fa-cog"></i>
           </button>
           <ul class="dropdown-menu">
             <li><a href="javascript:void(0)" class="transferencia">Transferencia</a></li>
