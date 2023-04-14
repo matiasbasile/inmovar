@@ -441,10 +441,9 @@ class Login extends CI_Controller {
               $web_configuracion = $q->row();
               $this->db->query("UPDATE web_configuracion SET primer_login = 0 WHERE id_empresa = $usuario->id_empresa ");
 
-              $db2 = $this->load->database('db2', TRUE);
               $sql = "SELECT * FROM crm_emails_templates ";
-              $sql.= "WHERE clave = 'primeros-pasos' AND id_empresa = 118 ";
-              $query = $db2->query($sql);
+              $sql.= "WHERE clave = 'primeros-pasos' AND id_empresa = 0 "; // TEMPLATES COPIADOS DE VARCREATIVE ID_EMPRESA = 118
+              $query = $this->db->query($sql);
               $template = $query->row();
               if (!empty($template)) {
                 $bcc_array = array("basile.matias99@gmail.com","misticastudio@gmail.com");

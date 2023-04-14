@@ -449,10 +449,9 @@ class Empresas extends REST_Controller {
     $plan = $q_plan->row();
 
     // Enviamos el email al usuario
-    $db2 = $this->load->database('db2', TRUE);
     $sql = "SELECT * FROM crm_emails_templates ";
-    $sql.= "WHERE clave = 'registro' AND id_empresa = 118 ";
-    $query = $db2->query($sql);
+    $sql.= "WHERE clave = 'registro' AND id_empresa = 0 "; // TEMPLATES COPIADOS DE VARCREATIVE ID_EMPRESA = 118
+    $query = $this->db->query($sql);
     $template = $query->row();
     if (!empty($template)) {
       $bcc_array = array("basile.matias99@gmail.com","misticastudio@gmail.com");
