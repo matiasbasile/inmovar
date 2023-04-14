@@ -106,6 +106,10 @@ class Recibos extends REST_Controller {
       "buscar_consultas"=>0,
       "buscar_etiquetas"=>0,
     ));
+    if ($cliente === FALSE) {
+      echo json_encode(array("error"=>1,"mensaje"=>"ERROR: La propiedad no tiene asignado un propietario para aplicar el recibo."));
+      exit();
+    }
 		
 		// Guardamos el recibo como una factura
     $sql = "INSERT INTO facturas (";
@@ -270,46 +274,8 @@ class Recibos extends REST_Controller {
           }   
         }
 			}
-
-
 		}
 
-    // Si es un recibo nuestro
-    // Actualizamos el estado de la empresa
-    if ($id_empresa == 936) {
-      $this->load->model("Empresa_Model");
-      $this->Empresa_Model->actualizar_pago_empresa(array(
-        "id_empresa"=>$array->id_cliente,
-      ));
-    }
-		
-		/*
-		// La variable $a_favor tiene el total del pago, que seria la plata a favor
-		$a_favor = -$array->total; // El pago esta en positivo, lo cambiamos
-
-		// Los comprobantes negativos los tomamos como plata a favor
-		foreach($array->comprobantes as $comprobante) {
-			$comprobante_total = ($comprobante->total + $comprobante->pago - $comprobante->total_pagado);
-			if ($comprobante->negativo == 1) $a_favor += $comprobante_total;
-		}
-
-		// Procesamos todos los comprobantes que tenia el pago, para ponerle pagada
-		foreach($array->comprobantes as $comprobante) {
-			$comprobante_total = ($comprobante->total + $comprobante->pago - $comprobante->total_pagado);
-			if ($comprobante->negativo == 1) $comprobante_total = -$comprobante_total;
-			$resto = $a_favor - $comprobante_total;
-			if ($resto >= 0) {
-			} else if ($a_favor > 0) {
-				// Guardamos el restito en la siguiente factura
-				$sql = "INSERT INTO facturas_pagos (id_empresa,id_pago,id_factura,monto) VALUES (";
-				$sql.= "$id_empresa, $id_recibo, $comprobante->id, $a_favor) ";
-				$this->db->query($sql);
-			} else {
-				// El resto no llega a cubrir la factura, por lo tanto no tiene que pertenecer a ningun pago
-			}
-			$a_favor = $resto;
-		}
-		*/
     echo json_encode(array("error"=>0));
 	}
     
