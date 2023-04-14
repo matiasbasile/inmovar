@@ -6,38 +6,34 @@
         <h1>Cajas</h1>
       </div>
       <div class="col-md-6 col-xs-4 tar">
-        <a class="btn btn-info btn-addon" href="app/#caja"><i class="fa fa-plus"></i>&nbsp;&nbsp;Nueva Caja&nbsp;&nbsp;</a>
+        <a class="btn btn-info" href="app/#caja">&nbsp;&nbsp;Nueva Caja&nbsp;&nbsp;</a>
+
+        <div class="btn-group pull-right dropdown mr5">
+          <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-cog"></i><span>Opciones</span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="javascript:void(0)" class="transferencia">Transferencia</a></li>
+            <li><a href="app/#cajas/1">Ver todas</a></li>
+          </ul>
+        </div>
+
       </div>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-6">
-      <ul class="nav nav-tabs nav-tabs-5 m-b" role="tablist" style="border:none">
-        <li id="cambiar_tab_todos" class="<%= (window.cajas_tipo == "-1") ? "active":"" %>">
-          <a href="javascript:void(0)" class="cambiar_tab" data-tipo="-1" role="tab" data-toggle="tab"><?php echo lang(array("es"=>"Todas","en"=>"All")); ?></a>
-        </li>
-        <li id="cambiar_tab_efectivo" class="<%= (window.cajas_tipo == "0") ? "active":"" %>">
-          <a href="javascript:void(0)" class="cambiar_tab" data-tipo="0" role="tab" data-toggle="tab"><i class="fa fa-money text-success"></i> <?php echo lang(array("es"=>"Efectivo","en"=>"Cash")); ?></a>
-        </li>
-        <li id="cambiar_tab_banco" class="<%= (window.cajas_tipo == "1") ? "active":"" %>">
-          <a href="javascript:void(0)" class="cambiar_tab" data-tipo="1" role="tab" data-toggle="tab"><i class="fa fa-bank text-info"></i> <?php echo lang(array("es"=>"Banco","en"=>"Bank")); ?></a>
-        </li>
-      </ul>          
-    </div>
-    <div class="col-md-6">
-      <div class="btn-group pull-right dropdown mr5">
-        <button class="btn btn-default dropdown-toggle btn-addon" data-toggle="dropdown">
-          <i class="fa fa-cog"></i><span>Opciones</span>
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-          <li><a href="javascript:void(0)" class="transferencia">Transferencia</a></li>
-          <li><a href="app/#cajas/1">Ver todas</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  <ul class="nav nav-tabs nav-tabs-5 m-b" role="tablist" style="border:none">
+    <li id="cambiar_tab_todos" class="<%= (window.cajas_tipo == "-1") ? "active":"" %>">
+      <a href="javascript:void(0)" class="cambiar_tab" data-tipo="-1" role="tab" data-toggle="tab"><?php echo lang(array("es"=>"Todas","en"=>"All")); ?></a>
+    </li>
+    <li id="cambiar_tab_efectivo" class="<%= (window.cajas_tipo == "0") ? "active":"" %>">
+      <a href="javascript:void(0)" class="cambiar_tab" data-tipo="0" role="tab" data-toggle="tab"><i class="fa fa-money text-success"></i> <?php echo lang(array("es"=>"Efectivo","en"=>"Cash")); ?></a>
+    </li>
+    <li id="cambiar_tab_banco" class="<%= (window.cajas_tipo == "1") ? "active":"" %>">
+      <a href="javascript:void(0)" class="cambiar_tab" data-tipo="1" role="tab" data-toggle="tab"><i class="fa fa-bank text-info"></i> <?php echo lang(array("es"=>"Banco","en"=>"Bank")); ?></a>
+    </li>
+  </ul>          
+
   <div class="listado clearfix"></div>
 </script>
 
