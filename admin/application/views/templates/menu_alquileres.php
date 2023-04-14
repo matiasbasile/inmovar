@@ -1,9 +1,9 @@
 <script type="text/template" id="menu_alquileres_edit_panel_template">
   <div class="padder">
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-6">
         <div class="form-group">
-          <label class="control-label">% de tu comision</label>
+          <label class="control-label">% de comision de alquileres</label>
           <input type="number" value="<%= comision_inmobiliaria %>" class="form-control" name="comision_inmobiliaria" id="menu_alquileres_comision_inmobiliaria">
         </div>
       </div>
