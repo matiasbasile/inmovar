@@ -7,16 +7,7 @@
       </div>
       <div class="col-md-6 col-xs-4 tar">
         <a class="btn btn-info" href="app/#caja">&nbsp;&nbsp;Nueva Caja&nbsp;&nbsp;</a>
-
-        <div class="btn-group pull-right ml15">
-          <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-            Opciones
-          </button>
-          <ul class="dropdown-menu">
-            <li><a href="javascript:void(0)" class="transferencia">Transferencia</a></li>
-          </ul>
-        </div>
-
+        <a class="btn btn-default" href="javascript:void(0)" class="transferencia">Transferencia</a>
       </div>
     </div>
   </div>
