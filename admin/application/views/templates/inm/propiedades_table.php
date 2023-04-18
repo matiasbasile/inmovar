@@ -78,7 +78,7 @@
           <p><b class="cantidad_seleccionados"></b> elementos seleccionados <b class="imagenes_propiedades"></b></p>
           <button class="btn btn-default enviar_por_email btn-addon"><i class="icon fa fa-send"></i>Enviar fichas por email</button>
           <button class="btn btn-default enviar_por_whatsapp btn-addon"><i class="icon fa fa-whatsapp"></i>Enviar fichas por whatsapp</button>
-          <% if (control.check("permisos_red")>0) { %>
+          <% if (control.check("permisos_red")>0 || PROJECT_NAME == "Inmovar") { %>
             <div class="btn-group dropdown">
               <button class="btn btn-default btn-addon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="icon fa fa-share-alt"></i>Red Inmovar
