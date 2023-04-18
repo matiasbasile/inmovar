@@ -341,6 +341,7 @@ class App extends CI_Controller {
       "mensaje_cuenta_nivel"=>$mensaje_cuenta_nivel,
       "id_empresa_facturacion"=>$id_empresa_facturacion,
       "total_notificaciones"=>$total_notificaciones,
+      "project_name"=>PROJECT_NAME,
 
       // Datos de permisos
       "permisos" => $this->Permiso_Model->get_permisos(array(
