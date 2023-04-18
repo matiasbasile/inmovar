@@ -58,6 +58,7 @@ const ID_EMPRESA_FACTURACION = "<?php echo $id_empresa_facturacion ?>";
 const MENSAJE_CUENTA_NIVEL = "<?php echo $mensaje_cuenta_nivel ?>";
 const LATITUD = "<?php echo $latitud ?>";
 const LONGITUD = "<?php echo $longitud ?>";
+const PROJECT_NAME = "<?php echo $project_name ?>";
 
 <?php
 // Dominio por defecto
