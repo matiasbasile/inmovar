@@ -336,7 +336,17 @@ if ( $nombre_pagina == "ficha") {
     $pos = strpos($params[1], "-prop?");
     if ($pos > 0) {
       $id_tokko = substr($params[1], 0, $pos);
-      echo $id_tokko;
+      include_once("models/Propiedad_Model.php");
+      $propiedad_model = new Propiedad_Model($empresa->id,$conx);
+      $propiedad = $propiedad_model->get_by_tokko_id($hash);
+      if ($propiedad !== FALSE) {
+        $id = $propiedad->id;
+        include("templates/ficha/home.php");  
+      } else {
+        go_404();
+      }
+    } {
+      go_404();
     }
 
   } else if ($nombre_pagina == "mapa") {
