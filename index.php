@@ -338,7 +338,7 @@ if ( $nombre_pagina == "ficha") {
       $id_tokko = substr($params[1], 0, $pos);
       include_once("models/Propiedad_Model.php");
       $propiedad_model = new Propiedad_Model($empresa->id,$conx);
-      $propiedad = $propiedad_model->get_by_tokko_id($hash);
+      $propiedad = $propiedad_model->get_by_tokko_id($id_tokko);
       if ($propiedad !== FALSE) {
         $id = $propiedad->id;
         include("templates/ficha/home.php");  
