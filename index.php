@@ -331,6 +331,11 @@ if ( $nombre_pagina == "ficha") {
       header("Location: ".$o_link->link);
     }
 
+  // Si la pagina comienza solamente con "p", es un link que viene de tokko
+  } else if ($nombre_pagina == "p") {
+    $pos = strpos($params[1], "-prop?");
+    echo $pos;
+
   } else if ($nombre_pagina == "mapa") {
     if (file_exists($dir_template."mapa.php")) include($dir_template."mapa.php");
     else go_404();
