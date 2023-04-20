@@ -342,6 +342,8 @@ if ( $nombre_pagina == "ficha") {
       if ($propiedad !== FALSE) {
         $id = $propiedad->id;
         include("templates/ficha/home.php");  
+        ob_end_flush();
+        exit();
       } else {
         go_404();
       }
