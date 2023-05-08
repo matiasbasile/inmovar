@@ -17,7 +17,7 @@ $nombre_pagina = "home";
 
   <?php include("includes/home/zonas.php"); ?>
 
-  <?php include("includes/home/momentos.php"); ?>
+  <?php //include("includes/home/momentos.php"); ?>
 
   <?php include("includes/home/countries.php"); ?>
 
