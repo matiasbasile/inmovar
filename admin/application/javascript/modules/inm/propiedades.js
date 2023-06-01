@@ -166,6 +166,7 @@
       alq_precio_huesped_adicional: 0,
       alq_reservar_dias_antes: 1,
       links_ical: "",
+      link: "",
 
       de_prueba: 0, // Indica si son propiedades cargadas de prueba
       es_oferta: 0, // Indica si la propiedad esta en oferta
