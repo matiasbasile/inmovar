@@ -1,9 +1,0 @@
-<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31 31" width="31" height="31">
-	<title>calendario</title>
-	<defs>
-		<image  width="31" height="31" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAfCAMAAAAocOYLAAAAAXNSR0IB2cksfwAAAc5QTFRF////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////YE3jhAAAAJp0Uk5TABmeXTqgM1mfHGz/8req7HMOQEqp7tHK66xCFIPx9o+jSbo8KJrty8PqOKtfsthm6a6h48i/yZgLeT8jeh4Mgc3EnIeKGi8sGHITD0blVve7MPXnNLb4Ww0DARAWCCEiWP4x+0jg+Zdv6D4GLlCN0yvUdsUf2wQ91pYgwQni/Hx/jBdtOWpRewrGme/HpvMmiYQ2aafV3tetRFKtsSQAAAG1SURBVHiclZPnVxNBFMUvihK4IpAAxogBISIdpRqQjqAkgPRerLFF7A1ikNB7seB/65sJ5+hC1oP3w71v57dn5s3MLqAVdeKkzuhTp3XGWGLxt+J4Rmc8z+pMYOIfmGS1JTPFppTKczrtPG9zXAjjtIuMLGe6whkmVCkeuERmZrkuM9uldIU5OnNpceXlkwUoZJFMUsyreq1rLNFZyjjxMpajgpVSXXdX6fHqGzU6s9y14nWsRwMbYaYmViCHFlPezLLjcsdNsaoWsVar2C2Hkd+mHbCSbfCQXqCdbgPv6LwDdHX3eFBb6uwF+voHjPN7lA0OiQ0nqXLkP/sbVdY2pnx4fGJi9BCfvFsO3LufLcs8eCgX88hn5I/5BHiq+n/mDF/dof4cUWr/z4FYssnv7+ELefZx6kh/wl8Cr5gm9Wu+OcLfkn7gHZulfj85fsA/fPwEfJ6anlHnZw8EvjB48H6Yz5KAl5RP8qtur33OwGdC87LxhQ41srgUDIYGNVwGVrhqen62NR/WuWHKSxhAJTe3TPCcnfmoJju3EyNpJ4Hclav/x/+xp6aZ//b9RyT93P8F/AZw713LpWsmPAAAAABJRU5ErkJggg=="/>
-	</defs>
-	<style>
-	</style>
-	<use id="calendario" href="#img1" x="0" y="0"/>
-</svg>
