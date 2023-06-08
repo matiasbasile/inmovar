@@ -739,6 +739,8 @@ class Propiedad_Model {
     $sql.= "WHERE 1=1 ";
     if (!empty($id)) $sql.= "AND A.id = $id ";
     if (!empty($hash)) $sql.= "AND A.hash = '$hash' ";
+
+    $id_empresa = intval($id_empresa);
     $sql.= "AND A.id_empresa = $id_empresa ";
     if ($id_cliente != 0) $sql.= "AND A.id_cliente = $id_cliente ";
 
