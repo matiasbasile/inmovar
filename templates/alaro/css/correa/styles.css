@@ -217,7 +217,7 @@ select.form-control::-ms-expand {
 }
 .social a .fa {
   font-size: 22px;
-  color: #959595;
+  color: #fff;
 }
 .social a:hover, .home-header .social a:hover {
   color: white;

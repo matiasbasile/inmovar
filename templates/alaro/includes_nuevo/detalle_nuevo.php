@@ -368,7 +368,7 @@ else $vc_moneda = "$";
 
       jQuery("#contacto_submit").attr('disabled', 'disabled');
       var datos = {
-        "para":"<?php echo $empresa->email ?>",
+        "para":"alquileres@edificios-alaro.com.ar",
         "nombre":nombre,
         "telefono":telefono,
         "email":email,
