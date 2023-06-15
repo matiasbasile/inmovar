@@ -18,10 +18,10 @@
       </div>
       <div class="col-md-4">
         <div class="next-investment">
-          <h4>ESTAS BUSCANDO<br>
+          <h4>¿ESTÁS BUSCANDO<br>
             TU PR&Oacute;XIMA INVERSI&Oacute;N?
           </h4>
-          <a href="<?php echo mklink("contacto/"); ?>">COMUNICATE</a> 
+          <a href="<?php echo mklink("contacto/"); ?>">¡Contactanos!</a> 
           <div class="header-social">
             <ul>
               <?php if (!empty($empresa->facebook)) { ?>
@@ -38,11 +38,11 @@
         </div>
       </div>
       <div class="col-md-4 en-movil-center">
-        <h5>Suscribete al Newsletter</h5>
+        <h5>Suscribite al Newsletter</h5>
         <form onsubmit="return enviar_newsletter()" class="subscribe-info">
           <input id="newsletter_email" type="email" placeholder="Escribe su email" />
           <input id="newsletter_submit" class="btn btn-black" type="submit" value="enviar" />
-          <p>Suscribete a nuestro newsletter para recibir <br>
+          <p>Suscribite a nuestro newsletter para recibir <br>
             informaci&oacute;n sobre las &uacute;ltimas novedades. </p>
         </form>
       </div>

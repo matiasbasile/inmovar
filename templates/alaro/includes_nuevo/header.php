@@ -65,7 +65,7 @@
   </ul>
   <div id="map_canvas"></div>
   <div class="form-wrap">
-    <h3>Enviar Consulta</h3>
+    <h3>Envianos tu consulta</h3>
     <form onsubmit="return enviar_contacto_header()">
       <div class="row">
         <div class="col-md-6">
@@ -75,7 +75,7 @@
           <input type="text" id="contacto_apellido" placeholder="Apellido" />
         </div>
         <div class="col-md-6">
-          <input type="tel" id="contacto_telefono" placeholder="WhasApp (sin 0 ni 15)" />
+          <input type="tel" id="contacto_telefono" placeholder="WhatsApp (sin 0 ni 15)" />
         </div>
         <div class="col-md-6">
           <input type="email" id="contacto_email" placeholder="Email" />

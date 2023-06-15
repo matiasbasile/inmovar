@@ -72,7 +72,7 @@
 				</ul>
 			</div>
 			<div class="col-md-4">
-				<h6>Suscribe al Newsletter</h6>
+				<h6>Suscribite al Newsletter</h6>
 				<form onsubmit="return enviar_newsletter()">
 					<input type="email" name="Escribe tu email" id="newsletter_email" placeholder="Escribe tu email" class="form-control">
 					<button id="newsletter_submit" type="submit" class="btn btn-secoundry">Enviar</button>

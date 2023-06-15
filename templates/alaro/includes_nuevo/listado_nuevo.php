@@ -281,7 +281,8 @@ $empresa->telefono_num_2 = preg_replace($regex, '', $empresa->telefono_2);
               <div class="product-details">
                 <h4><?php echo $p->nombre ?></h4>
                 <h5>
-                <?php echo $p->direccion_completa ?>
+                <?php $dir = str_replace(array("e/", "E/"), "", $p->direccion_completa); ?>
+                <?php echo $p->dir ?>
                 <?php if (!empty($p->localidad)) { ?>
                 &nbsp;&nbsp;|&nbsp;&nbsp;<?php echo ($p->localidad); ?>
                 <?php } ?>
@@ -388,7 +389,7 @@ $empresa->telefono_num_2 = preg_replace($regex, '', $empresa->telefono_2);
               <input type="tel" name="WhatsApp (sin 0 ni 15) *" id="contacto_telefono" placeholder="WhatsApp (sin 0 ni 15) *" class="form-control">
             </div>
             <div class="form-group">
-              <textarea id="contacto_mensaje" placeholder="Estoy interesado en “Duplex en venta en Ringuelet Cod: 1234”" class="form-control"></textarea>
+              <textarea id="contacto_mensaje" placeholder="Escriba su mensaje" class="form-control"></textarea>
             </div>
             <div class="form-group">
               <button type="submit" id="contacto_submit" class="btn">hablar ahora</button>

@@ -30,9 +30,9 @@ $header_cat = "";
       <div class="row">
         <div class="col-md-12">
           <div class="center-text">
-            <h2>Ingrese su consulta</h2>
-            <p>Complete el formulario de con sus datos y consulta y nos contactaremos<br>
-              a la brevedad. Muchas gracias!</p>
+            <h2>Ingresá tu consulta</h2>
+            <p>Completá el formulario de con tus datos y nos contactaremos<br>
+              a la brevedad.</p>
           </div>
         </div>
         <div class="col-md-8">

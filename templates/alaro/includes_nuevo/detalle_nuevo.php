@@ -244,7 +244,7 @@ else $vc_moneda = "$";
         </div>
         <div class="col-lg-4 pl-5">
           <div class="sidebar-box">
-            <h2>enviar consulta</h2>
+            <h2>Envianos tu consulta</h2>
             <div class="sidebar-border-box">
               <form onsubmit="return enviar_contacto()">
                 <div class="form-group">
