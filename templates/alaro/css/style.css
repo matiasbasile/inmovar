@@ -943,7 +943,7 @@ nav ul li a { padding: 8px; font-size: 12px; }
 .video iframe{height:180px;}
 }
 
-@media(max-width:768px){
+@media(min-width:768px){
   .toggle-menu{display: none;}
 }
 
