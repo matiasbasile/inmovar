@@ -942,9 +942,3 @@ nav ul li a { padding: 8px; font-size: 12px; }
 .page-title { height: 80px; }
 .video iframe{height:180px;}
 }
-
-@media (min-width:1100px) {
-  .toggle-menu { display:none !important }
-  .header-right { padding-right:0px !important; }
-  .dots-toggle { margin-right:25px !important; }
-}
