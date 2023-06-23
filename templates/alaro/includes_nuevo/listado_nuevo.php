@@ -440,7 +440,7 @@ $empresa->telefono_num_2 = preg_replace($regex, '', $empresa->telefono_2);
             }    
             jQuery("#contacto_submit").attr('disabled', 'disabled');
             var datos = {
-              "para":"<?php echo $empresa->email ?>",
+              "para":"<?php echo (($vc_link_tipo_operacion == "alquileres") ? "alquileres@edificios-alaro.com.ar" : $empresa->email) ?>",
               "nombre":nombre,
               "telefono":telefono,
               "email":email,
