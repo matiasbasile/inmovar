@@ -282,7 +282,7 @@ $empresa->telefono_num_2 = preg_replace($regex, '', $empresa->telefono_2);
                 <h4><?php echo $p->nombre ?></h4>
                 <h5>
                 <?php $dir = str_replace(array("e/", "E/"), "", $p->direccion_completa); ?>
-                <?php echo $p->dir ?>
+                <?php echo $dir ?>
                 <?php if (!empty($p->localidad)) { ?>
                 &nbsp;&nbsp;|&nbsp;&nbsp;<?php echo ($p->localidad); ?>
                 <?php } ?>
