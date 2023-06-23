@@ -122,7 +122,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
         <div class="center-content">
           <div class="align-center">
             <h2><?php echo $propiedad->nombre ?></h2>
-            <h4><?php echo $direccion_completa." - ".$propiedad->localidad ?></h4>
+            <h4><?php echo $propiedad->direccion_completa." - ".$propiedad->localidad ?></h4>
           </div>
         </div>
       </div>
