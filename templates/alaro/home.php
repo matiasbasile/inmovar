@@ -89,7 +89,7 @@ error_reporting(E_ALL); ?>
 			<?php
 			$config["id_tipo_operacion"] = 6;
 			$config["solo_propias"] = 1;
-			$config["order"] = 7;
+			$config["order"] = 10;
 			$en_construccion_result = $propiedad_model->get_list($config);
 			foreach ($en_construccion_result as $p) {
 			?>
