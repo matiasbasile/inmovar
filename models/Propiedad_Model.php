@@ -982,6 +982,8 @@ class Propiedad_Model {
       $p->precio = (($p->es_oferta) ? "Oferta" : "Consultar");
     }
 
+    $p->entre_calles = trim($p->entre_calles);
+    $p->entre_calles_2 = trim($p->entre_calles_2);
     $p->direccion_completa = $p->calle.(!empty($p->entre_calles) ? " e/ ".$p->entre_calles.(!empty($p->entre_calles_2) ? " y ".$p->entre_calles_2 : "") : "");
     $p->direccion_completa.= (($p->publica_altura == 1)?" N° ".$p->altura:"") . (!empty($p->piso) ? " Piso ".$p->piso : "") . (!empty($p->numero) ? " Depto. ".$p->numero : "");
     $p->direccion_completa = $this->encod($p->direccion_completa);
