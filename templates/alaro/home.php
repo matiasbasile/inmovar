@@ -189,7 +189,7 @@ error_reporting(E_ALL); ?>
 		"offset" => 999,
 		"id_tipo_operacion" => 1,
 		"order_by" => "ASC"
-	)) ?>
+	)); print_r($destacados); ?>
 	<?php if (!empty($destacados)) { ?>
 		<div class="featured-departments">
 			<div class="container">
