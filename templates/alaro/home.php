@@ -188,9 +188,8 @@ error_reporting(E_ALL); ?>
 		"solo_propias" => 1,
 		"offset" => 999,
 		"id_tipo_operacion" => 1,
-		"order_by" => "ASC"
-	)); print_r($destacados); ?>
-	<?php if (!empty($destacados)) { ?>
+	));
+	if (!empty($destacados)) { ?>
 		<div class="featured-departments">
 			<div class="container">
 				<div class="title-wrap style-two">
