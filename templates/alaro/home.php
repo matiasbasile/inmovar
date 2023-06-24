@@ -186,7 +186,7 @@ error_reporting(E_ALL); ?>
 
 	<?php $destacados = $propiedad_model->get_list(array(
 		"solo_propias" => 1,
-		"offset" => 999,
+		"offset" => 6,
 		"id_tipo_operacion" => 1,
 	));
 	if (!empty($destacados)) { ?>
