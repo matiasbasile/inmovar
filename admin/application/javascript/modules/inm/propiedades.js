@@ -248,6 +248,7 @@
       "click .compartir_meli":"compartir_meli",
       "click .meli_pausar_multiple":"meli_pausar_multiple",
       "click .marcar_interes":"marcar_interes",
+      "click .limpiar_filtros":"limpiar_filtros",
       "click .compartir_red_multiple":function(){
         this.compartir_red_multiple(1);
       },
@@ -656,8 +657,38 @@
       });
       return this;
     },
-        
+       
+    limpiar_filtros: function() {
+      var self = this;
+      window.no_buscar = 1;
+      $("#propiedades_buscar").val("");
+      $("#propiedades_buscar_localidades").val(new Array()).change();
+      $("#propiedades_buscar_tipos_operacion").val(new Array()).change();
+      $("#propiedades_buscar_tipos_inmueble").val(new Array()).change();
+
+      $(".setear_moneda").first().click();
+
+      $("#propiedades_buscar_monto").val("");
+      $("#propiedades_buscar_monto_2").val("");
+      $("#propiedades_buscar_dormitorios").val(new Array()).change();
+      $("#propiedades_buscar_banios").val(new Array()).change();
+      $("#propiedades_buscar_cocheras").val(new Array()).change();
+      $("#propiedades_buscar_tipos_estado").val(new Array()).change();
+      $("#propiedad_usuarios").val(0).change();
+      $("#propiedades_buscar_direccion").val("");
+      $("#propiedades_entre_calles").val("");
+      $("#propiedades_entre_calles_2").val("");
+      $("#propiedades_buscar_propietarios").val(0).change();
+      $("#propiedades_buscar_compartida_en").val("").change();
+
+      setTimeout(function() {
+        window.no_buscar = 0;
+        self.buscar();
+      }, 150);
+    },
+
     buscar: function() {
+      if (window.no_buscar == 1) return false;
 
       var cambio_parametros = false;
 

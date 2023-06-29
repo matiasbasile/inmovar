@@ -280,6 +280,11 @@
         <button data-toggle="tooltip" title="Ver como mapa" id="propiedades_ver_mapa" class="btn btn-default <%= (window.propiedades_mapa == 1)?'btn-info':'' %>">
           <i class="fa fa-map-marker"></i>
         </button>
+
+        <button class="btn-advanced-search m-l btn-default-focus limpiar_filtros">
+          <i class="fa fa-trash-o" aria-hidden="true"></i> <span>Limpiar</span>
+        </button>
+
       </div>
 
     </div>
