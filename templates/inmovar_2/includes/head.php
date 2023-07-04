@@ -32,7 +32,7 @@ include_once("templates/".$empresa->template_path."/css/skins/default.php");
 <link rel="stylesheet" type="text/css"  href="css/jquery.mCustomScrollbar.css">
 <link rel="stylesheet" type="text/css"  href="css/dropzone.css">
 <!-- Custom stylesheet -->
-<link rel="stylesheet" type="text/css" href="css/style.css?v=1">
+<link rel="stylesheet" type="text/css" href="css/style.css?v=2">
 
 <!-- Google fonts -->
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800%7CPlayfair+Display:400,700%7CRoboto:100,300,400,400i,500,700">
