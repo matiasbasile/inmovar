@@ -700,9 +700,9 @@ input[type=checkbox]:checked+label:before {
     z-index: -999 !important
 }
 
-.banner .item {
+/* .banner .item {
     height: 550px
-}
+} */
 
 .banner .item img {
     height: 100%;
@@ -5162,9 +5162,9 @@ all and (min-width: 992px) and (-webkit-transform-3d) {
         margin: 2px
     }
 
-    .banner .item img {
+    /* .banner .item img {
         height: 250px
-    }
+    } */
 
     .logo-2 {
         margin-bottom: 10px;
