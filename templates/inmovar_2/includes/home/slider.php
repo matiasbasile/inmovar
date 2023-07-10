@@ -40,13 +40,13 @@
         <?php } ?>
       </div>
       <!-- Controls -->
-      <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+      <a class="left carousel-control dn" href="#carousel-example-generic" role="button" data-slide="prev">
         <span class="slider-mover-left" aria-hidden="true">
           <i class="fa fa-angle-left"></i>
         </span>
         <span class="sr-only">Anterior</span>
       </a>
-      <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+      <a class="right carousel-control dn" href="#carousel-example-generic" role="button" data-slide="next">
         <span class="slider-mover-right" aria-hidden="true">
           <i class="fa fa-angle-right"></i>
         </span>
