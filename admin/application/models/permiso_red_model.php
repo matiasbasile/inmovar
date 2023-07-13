@@ -45,7 +45,7 @@ class Permiso_Red_Model extends Abstract_Model {
     $id_empresa = (isset($config["id_empresa"])) ? $config["id_empresa"] : parent::get_empresa();
     $filter = (isset($config["filter"])) ? $config["filter"] : "";
     $id_inmobiliaria = (isset($config["id_inmobiliaria"])) ? $config["id_inmobiliaria"] : 0;
-    $sql = "SELECT E.id, E.nombre, E.razon_social, E.lcni, E.path AS logo, WC.email, E.id_zona_web, ";
+    $sql = "SELECT E.id, E.nombre, E.razon_social, E.lcni, E.path AS logo, WC.email, E.id_zona_red, ";
     $sql.= " WC.telefono_web, WC.direccion_web, ";
     $sql.= " IF(L.nombre IS NULL,'',L.nombre) AS localidad ";
     $sql.= "FROM empresas E ";
