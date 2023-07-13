@@ -3,6 +3,13 @@
 <head>
 <title><?php echo PROJECT_NAME ?></title>
 <base href="<?php echo current_url(); ?>"/>
+<style type="text/css">
+:root {
+  --c1: #<?php echo COLOR_1 ?>;          <?php // Color principal (AZUL) ?>
+  --c1_alpha: #<?php echo COLOR_1 ?>75;  <?php // Sombra de color principal ?>
+  --c2: #<?php echo COLOR_2 ?>;          <?php // Color secundario (VERDE) ?>
+}
+</style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/admin/resources/css/common.css">
