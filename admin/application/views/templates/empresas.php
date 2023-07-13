@@ -32,6 +32,7 @@
               <tr>
                 <th class="w25">ID</th>
                 <th>Razon Social</th>
+                <th>Zona</th>
                 <th>Plan</th>
                 <th>Login</th>
                 <th>Estado</th>
@@ -61,6 +62,10 @@
         <a target="_blank" href="https://<%= dom.dominio %>" class="label bg-light dk"><%= dom.dominio %></a>
       <% } %>
     <% } %>
+  </td>
+  <td>
+    <%= (id_zona_red == 1) ? "La Plata y Alrededores" : "" %>
+    <%= (id_zona_red == 2) ? "CABA" : "" %>
   </td>
   <td>
     <span class="label bg-light dk"><%= plan %></span><br/>
@@ -169,13 +174,22 @@
                         </select>
                       </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label class="control-label">Zona</label>
+                        <select class="form-control" id="empresas_zonas_red" name="id_zona_red">
+                          <option <%= (id_zona_red == 1) ? "selected":"" %> value="1">La Plata y Alrededores</option>
+                          <option <%= (id_zona_red == 2) ? "selected":"" %> value="2">CABA</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-2">
                       <div class="form-group">
                         <label class="control-label">Costo Servicio</label>
                         <input type="text" name="costo" class="form-control" id="empresas_costo" value="<%= costo %>"/>
                       </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                       <div class="form-group">
                         <label class="control-label">Limite (0 = Sin Limite)</label>
                         <input type="text" name="limite" class="form-control" id="empresas_limite" value="<%= limite %>"/>

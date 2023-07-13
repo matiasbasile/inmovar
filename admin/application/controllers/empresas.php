@@ -409,6 +409,7 @@ class Empresas extends REST_Controller {
     $password = ($this->input->post("password") !== FALSE ? $this->input->post("password") : "");
     $id_plan = ($this->input->post("id_plan") !== FALSE ? $this->input->post("id_plan") : 1); // 1 = INICIAL
     $casaclick = parent::get_post("casaclick",0);
+    $id_zona_red = parent::get_post("id_zona_red",0);
     $proyecto = 3;
 
     // Si estamos usando reCAPTCHA
@@ -478,6 +479,7 @@ class Empresas extends REST_Controller {
     $obj->id_proyecto = 3;
     $obj->id_tipo_contribuyente = 4;
     $obj->email = $email;
+    $obj->id_zona_red = $id_zona_red;
     $obj->configuracion_menu = 1;
     $obj->configuracion_menu_iconos = 1;
     $obj->telefono_empresa = $telefono;

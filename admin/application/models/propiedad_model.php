@@ -719,12 +719,13 @@ class Propiedad_Model extends Abstract_Model {
     $sql_red.= " AND PR.permiso_red = 1 "; // Tiene el permiso habilitado
     if (!empty($buscar_red_empresa)) $sql_red.= " AND PR.id_empresa = $buscar_red_empresa ";
     $sql_red.= ") ";
+    if ($buscar_red >= 1) $sql_red.= "AND E.id_zona_red = $buscar_red ";
 
     $sql_final = "";
 
     $sql_activo = ($activo != -1 && $activo != '') ? "AND A.activo = $activo " : " ";
 
-    if ($buscar_red == 1) {
+    if ($buscar_red >= 1) {
 
       // ARMAMOS LA CONSULTA PARA LA RED
       $sql = "SELECT ".$sql_fields.$sql_from.$sql_where.$sql_red;
@@ -840,7 +841,7 @@ class Propiedad_Model extends Abstract_Model {
       $r->bloqueado_web = 0;
       $r->permiso_web = 0;
       // Si estamos buscando en la red
-      if ($buscar_red == 1) {
+      if ($buscar_red >= 1) {
 
         // Controlamos si la otra inmobiliaria nos dio permiso
         $sql = "SELECT permiso_web FROM inm_permisos_red ";

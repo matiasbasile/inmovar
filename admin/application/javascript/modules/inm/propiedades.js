@@ -292,6 +292,13 @@
         this.$(".mostrar_en_red").show();
         this.buscar();
       },
+      "click #buscar_red_tab_caba":function() {
+        this.$(".buscar_tab").removeClass("active");
+        this.$("#buscar_red_tab_caba").addClass("active");
+        this.$(".ocultar_en_red").hide();
+        this.$(".mostrar_en_red").show();
+        this.buscar();
+      },
       "click #buscar_inactivas_tab":function() {
         this.$(".buscar_tab").removeClass("active");
         this.$("#buscar_inactivas_tab").addClass("active");
@@ -458,7 +465,7 @@
 
       window.propiedades_marcadas = new Array();
 
-      if (window.propiedades_buscar_red == 1) this.$(".ocultar_en_red").hide();
+      if (window.propiedades_buscar_red >= 1) this.$(".ocultar_en_red").hide();
 
       // Nombre y email de contacto
       this.id_cliente = (typeof this.options.id_cliente != "undefined") ? this.options.id_cliente : 0;
@@ -692,7 +699,9 @@
 
       var cambio_parametros = false;
 
-      var buscar_red = (this.$("#buscar_red_tab").hasClass("active")?1:0);
+      var buscar_red = 0;
+      if (this.$("#buscar_red_tab").hasClass("active")) buscar_red = 1;
+      if (this.$("#buscar_red_tab_caba").hasClass("active")) buscar_red = 2;
       if (window.propiedades_buscar_red != buscar_red) {
         window.propiedades_buscar_red = buscar_red;
         cambio_parametros = true;

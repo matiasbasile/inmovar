@@ -8,6 +8,7 @@
     urlRoot: "empresas/",
     defaults: {
       nombre: "",
+      id_zona_red: 0,
       razon_social: "",
       plan: "",
       id_plan: 3, // Por defecto inmobiliaria

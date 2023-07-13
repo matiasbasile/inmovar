@@ -53,6 +53,12 @@
         <label for="registro_ps">Contraseña</label><br>
         <input id="registro_ps" autocomplete="new-password" type="password" placeholder="Contraseña" /><br>
 
+        <label for="registro_zona">Zona</label><br>
+        <select id="registro_zona">
+          <option value="1">La Plata y Alrededores</option>
+          <option value="2">CABA</option>
+        </select>
+
         <input type="submit" id="submit_registro" class="button-submit" value="Enviar Registro"><br>
 
         <input type="checkbox" id="aceptar_terminos" />
@@ -82,6 +88,7 @@ function enviar_registro() {
   var email = $("#registro_ml").val();
   var telefono = $("#registro_tl").val();
   var password = $("#registro_ps").val();
+  var zona = $("#registro_zona").val();
   var id_plan = 3;
   
   if (isEmpty(nombre)) {
@@ -127,6 +134,7 @@ function enviar_registro() {
   $("#submit_registro").text('Enviando...');
   $("#submit_registro").attr('disabled', 'disabled');
   var datos = {
+    "id_zona_red":zona,
     "nombre":nombre,
     "nombre_inmobiliaria":sitio,
     "telefono":telefono,
