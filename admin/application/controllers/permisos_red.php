@@ -64,8 +64,8 @@ class Permisos_Red extends REST_Controller {
         $row->bloqueado = 0;
       }
 
-      if ($row->id_zona_web == 1) $salida_lp[] = $row;
-      else if ($row->id_zona_web == 2) $salida_caba[] = $row;
+      if ($row->id_zona_red == 1) $salida_lp[] = $row;
+      else if ($row->id_zona_red == 2) $salida_caba[] = $row;
     }
 
     // Contamos el total de solicitudes pendientes
