@@ -28,7 +28,8 @@ class Permisos_Red extends REST_Controller {
       "id_inmobiliaria"=>$id,
       "filter"=>$filter,
     ));
-    $salida = array();
+    $salida_lp = array();
+    $salida_caba = array();
     foreach($s as $row) {
       $sql = "SELECT * FROM inm_permisos_red ";
       $sql.= "WHERE id_empresa_compartida = $row->id ";
@@ -62,7 +63,9 @@ class Permisos_Red extends REST_Controller {
         $row->permiso_web_otra = 0;
         $row->bloqueado = 0;
       }
-      $salida[] = $row;
+
+      if ($row->id_zona_web == 1) $salida_lp[] = $row;
+      else if ($row->id_zona_web == 2) $salida_caba[] = $row;
     }
 
     // Contamos el total de solicitudes pendientes
@@ -71,7 +74,8 @@ class Permisos_Red extends REST_Controller {
     ));
 
     echo json_encode(array(
-      "results"=>$salida,
+      "results_lp"=>$salida_lp,
+      "results_caba"=>$salida_caba,
       "solicitudes_pendientes"=>$pendientes["total"],
     ));
   }

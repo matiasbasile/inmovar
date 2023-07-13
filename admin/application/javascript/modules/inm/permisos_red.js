@@ -6,6 +6,21 @@
 
 		myEvents: {
 			"click .guardar": "guardar",
+
+      "click #buscar_propias_tab":function() {
+        this.$(".buscar_tab").removeClass("active");
+        this.$("#buscar_propias_tab").addClass("active");
+        this.$("#permisos_red_tabla .tbody").addClass("dn");
+        this.$("#permisos_red_tabla #tbody_lp").removeClass("dn");
+      },
+
+      "click #buscar_propias_tab_caba":function() {
+        this.$(".buscar_tab").removeClass("active");
+        this.$("#buscar_propias_tab_caba").addClass("active");
+        this.$("#permisos_red_tabla .tbody").addClass("dn");
+        this.$("#permisos_red_tabla #tbody_caba").removeClass("dn");
+      },
+
       "click .invitar_colega":function() {
         var p = new app.views.InvitarColegaView({
           model: new app.models.AbstractModel()
