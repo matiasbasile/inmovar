@@ -253,7 +253,7 @@
                   <% } %>
                 </h2>
                 <div class="tac fs18">
-                  <% if (descuento > 0) { %>
+                  <% if (plan.precio_anual != plan.precio_sin_dto && descuento > 0) { %>
                     <span><%= descuento %>% OFF!</span> 
                   <% } %>
                   <% if (plan.precio_sin_dto != 0) { %>
@@ -285,7 +285,7 @@
                   <% } %>
                 </h2>
                 <div class="tac fs18">
-                  <% if (descuento > 0) { %>
+                  <% if (plan.precio_anual != plan.precio_sin_dto && descuento > 0) { %>
                     <span><%= descuento %>% OFF!</span>
                   <% } %>
                   <% if (plan.precio_sin_dto != 0) { %>
