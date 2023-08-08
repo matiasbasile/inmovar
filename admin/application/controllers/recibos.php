@@ -262,6 +262,9 @@ class Recibos extends REST_Controller {
           $sql.= "AND id_alquiler = $factura->id_referencia ";
           $this->db->query($sql);
         }
+
+        //TODO: VER SI ACÁ SE ENVIA EL MAIL AL PROPIETARIO 
+
         //Si hay descuentos hacia el propietario
         if (isset($array->descuentos_propietarios)) {
           //Lo agregamos a facturas items

@@ -46,6 +46,45 @@ class Alquileres extends REST_Controller {
     ));
   }
 
+  function enviar_email_recibo() {
+
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
+    $email = parent::get_post("email", "");
+    $link = parent::get_post("link", "");
+    $nombre = parent::get_post("nombre", "");
+    $id_empresa = parent::get_post("id_empresa", parent::get_empresa());
+    $key = parent::get_post("key", "");
+
+    $this->load->model("Email_Template_Model");
+    require_once APPPATH.'libraries/Mandrill/Mandrill.php';
+
+    $this->load->model("Empresa_Model");
+    $empresa = $this->Empresa_Model->get($id_empresa);
+
+    $template = $this->Email_Template_Model->get_by_key($key,$id_empresa);
+    $body = $template->texto;
+    $body = str_replace("{{nombre}}", $nombre, $body);
+    $body = str_replace("{{link}}", $link, $body);
+
+    $bcc_array = array();
+    $bcc_array[] = "basile.matias99@gmail.com";
+
+    mandrill_send(array(
+      "to"=>$email,
+      "from_name"=>$empresa->nombre,
+      "subject"=>$template->nombre,
+      "body"=>$body,
+      "bcc"=>$bcc_array,
+    ));   
+
+    echo json_encode(array(
+      "error"=>0,
+    ));
+  }
+
   // ENVIAMOS LOS EMAILS DE LOS CUPONES DE PAGO DE LOS ALQUILERES
   function enviar_emails() {
 
@@ -369,7 +408,8 @@ class Alquileres extends REST_Controller {
     $sql.= " IF(A.moneda = '', '$', A.moneda) as moneda, ";
     $sql.= " DATE_FORMAT(AC.vencimiento,'%d/%m/%Y') AS vencimiento, AC.monto, AC.expensa, (AC.monto+AC.expensa) AS total, ";
     $sql.= " P.nombre AS propiedad, CONCAT(P.calle,' ',P.altura,' ',P.piso,' ',P.numero) AS direccion, P.id_propietario, ";
-    $sql.= " IF (CP.nombre IS NULL, '', CP.nombre) as propietario ";
+    $sql.= " IF (CP.nombre IS NULL, '', CP.nombre) as propietario, ";
+    $sql.= " IF (CP.email IS NULL, '', CP.email) as email_propietario ";
     $sql.= "FROM facturas F ";
     $sql.= "INNER JOIN inm_alquileres A ON (A.id = F.id_referencia AND A.id_empresa = F.id_empresa) ";
     $sql.= "INNER JOIN inm_alquileres_cuotas AC ON (F.numero_referencia = AC.numero AND AC.id_alquiler = A.id AND F.id_empresa = AC.id_empresa) ";        
@@ -394,6 +434,19 @@ class Alquileres extends REST_Controller {
       $r->total_extras = $this->modelo->calcular_total_extras($r->id_cuota);
       $r->total += $r->total_extras;
       $r->extras = $this->modelo->get_extras($r->id_cuota);
+
+      //Conseguimos las expensas
+      $sql = "SELECT * FROM inm_alquileres_expensas ";
+      $sql.= "WHERE id_alquiler = $r->id_alquiler ";
+      $sql.= "AND id_empresa = $id_empresa ";
+      $sql.= "ORDER BY orden ASC ";
+      
+      $qq = $this->db->query($sql);
+
+      foreach ($qq->result() as $rr) {
+        $r->total += floatval($rr->monto);
+      }
+      //echo $r->total_extras."<br>";
       $salida[] = $r;
     }
 
@@ -500,13 +553,26 @@ class Alquileres extends REST_Controller {
       $configuracion_alquileres->comision_inmobiliaria = 0;
     }
 
-    $factura->monto = $factura->monto - ($factura->monto * $configuracion_alquileres->comision_inmobiliaria / 100);
-    $factura->total = $factura->total - ($factura->total * $configuracion_alquileres->comision_inmobiliaria / 100);
+    $factura->expensas = array();
+    $sql = "SELECT * FROM inm_alquileres_expensas ";
+    $sql.= "WHERE id_alquiler = $factura->id_alquiler ";
+    $sql.= "AND id_empresa = $id_empresa ";
+    $sql.= "ORDER BY orden ASC ";
+    $q_items = $this->db->query($sql);
+    foreach ($q_items->result() as $it) {
+      $factura->expensas[] = $it;
+      $factura->total += floatval($it->monto);
+    }
 
     // TODO: despues cambiar esto y unificar
     $factura->total_extras = $this->modelo->calcular_total_extras($factura->id_cuota);
     $factura->total += $r->total_extras;
     $factura->extras = $this->modelo->get_extras($factura->id_cuota);
+
+    $factura->total_sin_comision = $factura->total;
+    $factura->monto = $factura->monto - ($factura->monto * $configuracion_alquileres->comision_inmobiliaria / 100);
+    $factura->total = $factura->total - ($factura->total * $configuracion_alquileres->comision_inmobiliaria / 100);
+    $factura->comision = $configuracion_alquileres->comision_inmobiliaria;
 
     $factura->items = array();
 
@@ -516,6 +582,8 @@ class Alquileres extends REST_Controller {
     $sql.= "ORDER BY orden ASC ";
     $q_items = $this->db->query($sql);
     $factura->items = $q_items->result();
+
+
     
     $this->load->model("Empresa_Model");
     $empresa = $this->Empresa_Model->get($id_empresa);

@@ -897,7 +897,63 @@
             }
           }
         });
+      },
+      "click .enviar_email_recibo": function(e) {
+        var self = this;
+        var who = $(e.currentTarget).attr("data-who");
+        var email = "";
+        var link = "";
+        var nombre = "";
+        var key = "";
 
+        if (who == "inquilino") {
+          email = self.model.get("email");
+          nombre = self.model.get("cliente");
+          key = "enviar-email-recibo-clientes";
+          link = "http://app.inmovar.com/admin/alquileres/function/imprimir/"+self.model.id;
+
+          if (isEmpty(email)) {
+            if (confirm("ERROR: El cliente no tiene email cargado. Desea editarlo?")) {
+              location.href = "app/#clientes/"+self.model.get("id_cliente");
+            }
+            return;
+          }
+
+        } else if (who == "propietario") {
+          email = self.model.get("email_propietario");
+          nombre = self.model.get("propietario");
+          key = "enviar-email-recibo-propietario";
+          link = "http://app.inmovar.com/admin/alquileres/function/imprimir_propietario/"+self.model.id;
+
+          if (isEmpty(email)) {
+            if (confirm("ERROR: El propietario no tiene email cargado. Desea editarlo?")) {
+              location.href = "app/#clientes/"+self.model.get("id_propietario");
+            }
+            return;
+          }
+
+        }
+
+        $.ajax({
+          "url":"alquileres/function/enviar_email_recibo",
+          "type":"post",
+          "dataType":"json",
+          "data":{
+            "email": email,
+            "link": link,
+            "nombre": nombre,
+            "key": key,
+            "id_empresa": ID_EMPRESA,
+          },
+          "success":function(r) {
+            if (r.error == 0) {
+              alert("Email enviado exitosamente");             
+            }
+          }
+        });
+
+
+        console.log(self.model);
       },
       "click .ver_contrato":"ver_contrato",
       "keyup .radio":function(e) {
@@ -1091,7 +1147,9 @@
         "height":500,
         "callback":function() {
           self.collection.pager();
-          if(window.id_recibo != 0) self.imprimir_propietario();          
+          if(window.id_recibo != 0) {
+            self.imprimir_propietario();
+          }          
         }
       });
     },

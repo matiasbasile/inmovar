@@ -3,7 +3,7 @@ version: '3.8'
 services:
   app:
     image: matiasbasile/varcreative
-    container_name: lacomunidad-app
+    container_name: inmovar-app
     restart: always
     working_dir: /var/www/
     environment:
@@ -20,29 +20,29 @@ services:
 
   nginx:
     image: matiasbasile/nginx
-    container_name: lacomunidad-nginx
+    container_name: inmovar-nginx
     restart: always
     ports:
       - ${NGINX_PORT}:80
     volumes:
       - .:/var/www
-      - ./docker/comunidad:/etc/nginx/conf.d/
+      - ./docker/inmovar:/etc/nginx/conf.d/
     environment:
-      - SERVER_DB:"lacomunidad-mysql"
+      - SERVER_DB:"inmovar-mysql"
 
   mysql:
     image: mysql:5.7
     restart: always
-    container_name: lacomunidad-mysql
+    container_name: inmovar-mysql
     command: mysqld --sql_mode=""
     environment:
       - MYSQL_ROOT_PASSWORD=${PASSWORD_DB}
       - MYSQL_DATABASE=${DATABASE}
     volumes:
-      - lacomunidad-data:/var/lib/mysql
+      - inmovar-data:/var/lib/mysql
 
 volumes:
-  lacomunidad-data:
+  inmovar-data:
 
 networks: 
   default: 

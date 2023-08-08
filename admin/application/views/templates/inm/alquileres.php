@@ -515,7 +515,7 @@
         <button class="btn btn-info agregar_pago">Cobrar</button>
         <button class="btn btn-default imprimir_cupon_pago"><i class="fa fa-print"></i></button>
         <button class="btn btn-default enviar_cupon_wpp <%= (enviado_wpp == 1) ? 'btn-success' : '' %>"><i class="fa fa-whatsapp"></i></button>
-        <button class="btn btn-default enviar_cupon_email <%= (enviado_email == 1) ? 'btn-warning' : '' %>"><i class="fa fa-envelope"></i></button>
+        <button title="Enviar email de recordatorio" class="btn btn-default enviar_cupon_email <%= (enviado_email == 1) ? 'btn-warning' : '' %>"><i class="fa fa-envelope"></i></button>
       <% } else { %>
         <% if (pagada == 1 && pagada_a_propietario == 0) { %>
           <button class="btn btn-info pagar_a_propietario">Pagar</button>
@@ -530,6 +530,17 @@
             <% } %>
           </ul>
         </div>
+
+        <div class="btn-group dropdown">
+          <i title="Opciones" class="iconito fa ml15 mt5 fa fa-envelope dropdown-toggle" data-toggle="dropdown"></i>
+          <ul class="dropdown-menu pull-right">
+            <li><a href="javascript:void(0)" class="enviar_email_recibo" data-who="inquilino">Recibo para Inquilino</a></li>
+            <% if (pagada_a_propietario == 1) { %>
+              <li><a href="javascript:void(0)" class="enviar_email_recibo" data-who="propietario">Recibo para Propietario</a></li>
+            <% } %>
+          </ul>
+        </div>
+
       <% } %>
       <div class="btn-group dropdown">
         <i title="Opciones" class="iconito fa ml15 mt5 fa-caret-down dropdown-toggle" data-toggle="dropdown"></i>

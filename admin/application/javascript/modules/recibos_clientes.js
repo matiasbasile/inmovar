@@ -952,13 +952,18 @@ app.views.ReciboClientes = app.mixins.View.extend({
       return;
     }
     this.model.save({},{
-      "success" : function() {
-        if (typeof app.views.cuentas_corrientes_clientesResultados !== "undefined") {
-          app.views.cuentas_corrientes_clientesResultados.buscar();
+      "success" : function(r) {
+        if (self.model.get("error") == 0) {        
+          if (typeof app.views.cuentas_corrientes_clientesResultados !== "undefined") {
+            app.views.cuentas_corrientes_clientesResultados.buscar();
+          }
+          window.id_recibo = self.model.id;
+          $('.modal:last').modal('hide');
+          self.guardando = 0;
+        } else {
+          window.id_recibo = 0;
+          alert (self.model.get("mensaje"));
         }
-        window.id_recibo = self.model.id;
-        $('.modal:last').modal('hide');
-        self.guardando = 0;
       },
       "error" : function() {
         show("Ocurrio un error cuando se estaba guardando el recibo.");

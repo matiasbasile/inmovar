@@ -182,23 +182,31 @@ tbody tr{
                     <th class="w90">IMPORTE</th>
                   </tr>
                   <tbody>
-                    <?php if ($factura->monto != 0) { ?>
+                    <?php if ($factura->total_sin_comision != 0) { ?>
                       <tr>
                         <td class="pl5">ALQUILER <?php echo $factura->corresponde_a ?></td>
-                        <td class="tar pr5">$ <?php echo number_format($factura->monto,2,",","."); ?></td>
+                        <td class="tar pr5">$ <?php echo round($factura->total_sin_comision,0); ?></td>
                       </tr>
                     <?php } ?>
                     <?php if ($factura->expensa != 0) { ?>
                       <tr>
                         <td class="pl5">EXPENSA</td>
-                        <td class="tar pr5">$ <?php echo number_format($factura->expensa,2,",","."); ?></td>
+                        <td class="tar pr5">$ <?php echo round($factura->expensa,0); ?></td>
                       </tr>
                     <?php } ?>
                     <?php if (sizeof($factura->items)>0) { ?>
                       <?php foreach($factura->items as $i) { ?>
                         <tr>
                           <td class="pl5"><?php echo $i->nombre; ?></td>
-                          <td class="tar pr5"> $ -<?php echo number_format($i->monto,2,",","."); ?></td>
+                          <td class="tar pr5"> $ -<?php echo round($i->monto,0); ?></td>
+                        </tr>
+                      <?php } ?>  
+                    <?php } ?>
+                    <?php if (sizeof($factura->expensas)>0) { ?>
+                      <?php foreach($factura->expensas as $i) { ?>
+                        <tr>
+                          <td class="pl5"><?php echo $i->nombre; ?></td>
+                          <td class="tar pr5">$ <?php echo round($i->monto,0); ?></td>
                         </tr>
                       <?php } ?>  
                     <?php } ?>
@@ -206,13 +214,19 @@ tbody tr{
                       <?php foreach($factura->extras as $i) { ?>
                         <tr>
                           <td class="pl5"><?php echo $i->nombre; ?></td>
-                          <td class="tar pr5">$ <?php echo number_format($i->monto,2,",","."); ?></td>
+                          <td class="tar pr5">$ <?php echo round($i->monto,0); ?></td>
                         </tr>
                       <?php } ?>  
                     <?php } ?>
+                    <?php if ($factura->comision != 0) { ?>
+                      <tr>
+                        <td class="pl5">COMISION (<?php echo $factura->comision ?>%)</td>
+                        <td class="tar pr5">-$ <?php echo round($factura->total_sin_comision - $total,0); ?></td>
+                      </tr>
+                    <?php } ?>                  
                     <tr>
                       <td class="total tar pr5"><b>TOTAL</b></td>
-                      <td class="tar pr5"><b>$ <?php echo number_format($total,2,",",".") ?></b></td>
+                      <td class="tar pr5"><b>$ <?php echo round($total,0); ?></b></td>
                     </tr>
                   </tbody>
                 </table>

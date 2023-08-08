@@ -15,7 +15,9 @@ class Alquiler_Model extends Abstract_Model {
 		$sql.= "WHERE CE.id_cuota = $id_cuota ";
 		$q = $this->db->query($sql);
 		$r = $q->row();
-		return $r->total;
+
+		$total = $r->total;
+		return $total;
 	}
 
 	function get_extras($id_cuota) {
