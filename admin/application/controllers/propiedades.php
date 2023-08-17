@@ -1062,6 +1062,7 @@ class Propiedades extends REST_Controller
     $filtro_inmobusquedas = ($this->input->get("filtro_inmobusquedas") !== FALSE) ? $this->input->get("filtro_inmobusquedas") : -1;
     $filtro_argenprop = ($this->input->get("filtro_argenprop") !== FALSE) ? $this->input->get("filtro_argenprop") : -1;
     $activo = parent::get_get("activo", -1);
+    $exclusiva = parent::get_get("exclusiva", 0);
     $dormitorios = ($this->input->get("dormitorios") !== FALSE) ? $this->input->get("dormitorios") : "";
     $banios = ($this->input->get("banios") !== FALSE) ? $this->input->get("banios") : "";
     $cocheras = ($this->input->get("cocheras") !== FALSE) ? $this->input->get("cocheras") : "";
@@ -1083,6 +1084,7 @@ class Propiedades extends REST_Controller
     $conf = array(
       "buscar_red" => $buscar_red,
       "buscar_red_empresa" => $buscar_red_empresa,
+      "exclusiva" => $exclusiva,
       "limit" => $limit,
       "offset" => $offset,
       "filter" => $filter,

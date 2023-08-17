@@ -1,5 +1,6 @@
 <?php include "includes/init.php";
 $entrada = $entrada_model->get($id);
+if (empty($entrada)) header("Location: ".mklink("/"));
 
 // Tomamos los datos de SEO
 $seo_title = (!empty($entrada->seo_title)) ? ($entrada->seo_title) : $empresa->seo_title;
