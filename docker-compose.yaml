@@ -31,10 +31,9 @@ services:
       - SERVER_DB:"inmovar-mysql"
 
   mysql:
-    image: mysql:5.7
+    image: matiasbasile/mysql
     restart: always
     container_name: inmovar-mysql
-    command: mysqld --sql_mode=""
     environment:
       - MYSQL_ROOT_PASSWORD=${PASSWORD_DB}
       - MYSQL_DATABASE=${DATABASE}
