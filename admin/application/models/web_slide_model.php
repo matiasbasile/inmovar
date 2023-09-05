@@ -44,7 +44,7 @@ class Web_Slide_Model extends Abstract_Model {
 
 	function insert($data) {
 		// Ponemos el orden del elemento en ultimo lugar
-		$sql = "SELECT IF(MAX(orden) IS NULL,0,MAX(orden)+1) AS maximo FROM web_slider WHERE id_empresa = $data->id_empresa AND clave = '$data->clave' ORDER BY orden ASC ";
+		$sql = "SELECT IF(MAX(orden) IS NULL,0,MAX(orden)+1) AS maximo FROM web_slider WHERE id_empresa = $data->id_empresa AND clave = '$data->clave' ";
 		$q = $this->db->query($sql);
 		$row = $q->row();
 		$data->orden = $row->maximo;
