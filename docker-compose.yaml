@@ -15,6 +15,7 @@ services:
       - LOGO=${LOGO}
       - LOGO_LOGIN=${LOGO_LOGIN}
       - CSS_LOGIN=${CSS_LOGIN}
+      - MANTENIMIENTO=${MANTENIMIENTO}
     volumes:
       - .:/var/www
 
