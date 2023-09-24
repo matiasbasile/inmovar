@@ -146,7 +146,7 @@ $vc_dormitorios= isset($get_params["dm"]) ? $get_params["dm"] : 0;
             </div>
             <div class="overlay-block">
               <div class="top-item">
-                <div class="tag <?php echo ($p->id_tipo_operacion == 4)?"dark-blue":($p->id_tipo_operacion ==2)?"light-blue":"" ?>">
+                <div class="tag <?php echo ($p->id_tipo_operacion == 4)?"dark-blue":(($p->id_tipo_operacion ==2)?"light-blue":"") ?>">
                   <?php echo ($p->id_tipo_operacion == 1)?"En Venta":"" ?>
                   <?php echo ($p->id_tipo_operacion == 2)?"En Alquiler":"" ?>
                   <?php echo ($p->id_tipo_operacion == 4)?"Emprendimientos":"" ?>
