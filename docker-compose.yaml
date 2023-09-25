@@ -32,7 +32,8 @@ services:
       - SERVER_DB:"inmovar-mysql"
 
   mysql:
-    image: matiasbasile/mysql
+    #image: matiasbasile/mysql
+    image: mariadb:11
     restart: always
     container_name: inmovar-mysql
     command: mariadbd --sql_mode=""
