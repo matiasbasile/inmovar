@@ -432,7 +432,7 @@ function enviar_newsletter() {
 		"id_origen":2,
 	}
 	$.ajax({
-		"url":"/sistema/consultas/function/enviar/",
+		"url":"/admin/consultas/function/enviar/",
 		"type":"post",
 		"dataType":"json",
 		"data":datos,

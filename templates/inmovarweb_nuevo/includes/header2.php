@@ -2,7 +2,7 @@
 	<div class="container">
 		<?php if (!empty($empresa->logo_1)) {  ?>
 			<a href="<?php echo mklink ("/") ?>" class="logo">
-				<img src="/sistema/<?php echo $empresa->logo_1 ?>" alt="Logo">
+				<img src="/admin/<?php echo $empresa->logo_1 ?>" alt="Logo">
 			</a>
 		<?php } ?>
 		<nav class="navbar navbar-expand-xl">
@@ -45,7 +45,7 @@
 				<div class="pull-left">
 					<?php if (!empty($empresa->logo)) {  ?>
 						<a href="<?php echo mklink ("/") ?>" class="logo">
-							<img src="/sistema/<?php echo $empresa->logo ?>" alt="Logo">
+							<img src="/admin/<?php echo $empresa->logo ?>" alt="Logo">
 						</a>
 					<?php } ?>
 				</div>

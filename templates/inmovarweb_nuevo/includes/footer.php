@@ -1,7 +1,7 @@
 <footer>
 	<div class="container">
 		<?php if (!empty($empresa->logo_1)) {   ?>
-			<a href="<?php echo mklink ("/") ?>" class="logo"><img src="/sistema/<?php echo $empresa->logo_1 ?>" alt="Logo"></a>
+			<a href="<?php echo mklink ("/") ?>" class="logo"><img src="/admin/<?php echo $empresa->logo_1 ?>" alt="Logo"></a>
 		<?php } ?>
 		<ul class="quick-links">
 			<?php $info = $entrada_model->get_list(array("categoria"=>"informacion","offset"=>2))?>
