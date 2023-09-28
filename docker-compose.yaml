@@ -18,6 +18,7 @@ services:
       - MANTENIMIENTO=${MANTENIMIENTO}
     volumes:
       - .:/var/www
+      - ./docker/php:/usr/local/etc/php/
 
   nginx:
     image: matiasbasile/nginx
