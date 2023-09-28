@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   app:
-    image: matiasbasile/varcreative
+    image: matiasbasile/varcreative:v7
     container_name: inmovar-app
     restart: always
     working_dir: /var/www/
@@ -18,7 +18,6 @@ services:
       - MANTENIMIENTO=${MANTENIMIENTO}
     volumes:
       - .:/var/www
-#      - ./docker/php:/usr/local/etc/php/conf.d
 
   nginx:
     image: matiasbasile/nginx
