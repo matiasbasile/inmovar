@@ -1,8 +1,16 @@
 <section class="communicate">
     <div class="container">
         <div class="section-title">
-            <h2>Comunicate con nuestro <span>Staff</span></h2>
-            <p>Nuestro equipo te brindará la mejor atención</p>
+            <?php $communicate_title = $web_model->get_text('communicate_title', 'Comunicate con nuestro <span>Staff</span>'); ?>
+            <h2 class="editable" data-id="<?php echo $communicate_title->id; ?>"
+                data-clave="<?php echo $communicate_title->clave; ?>">
+                <?php echo $communicate_title->plain_text; ?>
+            </h2>
+            <?php $communicate_desc = $web_model->get_text('communicate_desc', 'Nuestro equipo te brindará la mejor atención'); ?>
+            <p class="editable" data-id="<?php echo $communicate_desc->id; ?>"
+                data-clave="<?php echo $communicate_desc->clave; ?>">
+                <?php echo $communicate_desc->plain_text; ?>
+            </p>
         </div>
         <div class="row">
             <?php $usuarios = $usuario_model->get_list(); ?>

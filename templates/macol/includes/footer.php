@@ -5,7 +5,11 @@
         </a>
         <div class="row gy-4">
             <div class="col-lg-3">
-                <h2>Accesos rápidos</h2>
+                <?php $footer_access = $web_model->get_text('footer_access', 'Accesos rápidos'); ?>
+                <h2 class="editable" data-id="<?php echo $footer_access->id; ?>"
+                    data-clave="<?php echo $footer_access->clave; ?>">
+                    <?php echo $footer_access->plain_text; ?>
+                </h2>
                 <ul class="footer-menu">
                     <li><a href="/propiedades/ventas">Comprar</a></li>
                     <li><a href="/propiedades/alquileres">Alquilar</a></li>
@@ -14,7 +18,11 @@
                 </ul>
             </div>
             <div class="col-lg-8">
-                <h2>Vías de comunicación</h2>
+                <?php $footer_contact = $web_model->get_text('footer_contact', 'Vías de comunicación'); ?>
+                <h2 class="editable" data-id="<?php echo $footer_contact->id; ?>"
+                    data-clave="<?php echo $footer_contact->clave; ?>">
+                    <?php echo $footer_contact->plain_text; ?>
+                </h2>
                 <div class="communication">
                     <ul>
                         <li><a href="#0" class="pe-none">
@@ -39,8 +47,17 @@
     </div>
     <div class="copyright">
         <div class="container">
-            <p><span>Macol Inmobiliaria. </span> Todos los Derechos Reservados</p>
-            <p>Diseño Web Inmobiliarias <a href="#0"><img src="assets/images/copyright.png" alt="Copyright"></a></p>
+            <?php $footer_rights = $web_model->get_text('footer_rights', '<span>Macol Inmobiliaria. </span> Todos los Derechos Reservados'); ?>
+            <p class="editable" data-id="<?php echo $footer_rights->id; ?>"
+                data-clave="<?php echo $footer_rights->clave; ?>">
+                <?php echo $footer_rights->plain_text; ?>
+            </p>
+            <?php $footer_design = $web_model->get_text('footer_design', 'Diseño Web Inmobiliarias'); ?>
+            <p class="editable" data-id="<?php echo $footer_design->id; ?>"
+                data-clave="<?php echo $footer_design->clave; ?>">
+                <?php echo $footer_design->plain_text; ?>
+                <a href="#0"><img src="assets/images/copyright.png" alt="Copyright"></a>
+            </p>
         </div>
     </div>
 </footer>

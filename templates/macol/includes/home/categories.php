@@ -1,8 +1,16 @@
 <section class="categories">
     <div class="container">
         <div class="section-title">
-            <h2>Simplificá tu <span>búsqueda</span> filtrando por categoría</h2>
-            <p>Elegí cualquira de las categorías para refinar tu búsqueda</p>
+            <?php $categories_title = $web_model->get_text('categories_title', 'Simplificá tu <span>búsqueda</span> filtrando por categoría'); ?>
+            <h2 class="editable" data-id="<?php echo $categories_title->id; ?>"
+                data-clave="<?php echo $categories_title->clave; ?>">
+                <?php echo $categories_title->plain_text; ?>
+            </h2>
+            <?php $categories_desc = $web_model->get_text('categories_desc', 'Elegí cualquira de las categorías para refinar tu búsqueda'); ?>
+            <p class="editable" data-id="<?php echo $categories_desc->id; ?>"
+                data-clave="<?php echo $categories_desc->clave; ?>">
+                <?php echo $categories_desc->plain_text; ?>
+            </p>
         </div>
         <div class="row gy-5">
             <div class="col-xl-2 col-md-3 col-sm-4 col-6">

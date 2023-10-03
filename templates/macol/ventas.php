@@ -15,7 +15,11 @@ include 'includes/head.php'; ?>
         <div class="row gy-5 gx-0 align-items-center">
             <div class="form-wrap form-wrap-two">
                 <div class="section-title">
-                    <h2>Comunicate con nosotros</h2>
+                    <?php $contact = $web_model->get_text('contact', 'Comunicate con nosotros'); ?>
+                    <h2 class="editable" data-id="<?php echo $contact->id; ?>"
+                        data-clave="<?php echo $contact->clave; ?>">
+                        <?php echo $contact->plain_text; ?>
+                    </h2>
                 </div>
                 <form id="contactForm">
                     <div class="row">

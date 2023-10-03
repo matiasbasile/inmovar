@@ -10,8 +10,16 @@
     </div>
     <div class="container">
         <div class="banner-title">
-            <span>Bienvenidos Macol Inmobiliaria</span>
-            <h1 class="title">Encontrá la propiedad que buscas</h1>
+            <?php $banner_title = $web_model->get_text('banner_title', 'Bienvenidos Macol Inmobiliaria'); ?>
+            <span class="editable" data-id="<?php echo $banner_title->id; ?>"
+                data-clave="<?php echo $banner_title->clave; ?>">
+                <?php echo $banner_title->plain_text; ?>
+            </span>
+            <?php $banner_desc = $web_model->get_text('banner_desc', 'Encontrá la propiedad que buscas'); ?>
+            <h1 class="editable title" data-id="<?php echo $banner_desc->id; ?>"
+                data-clave="<?php echo $banner_desc->clave; ?>">
+                <?php echo $banner_desc->plain_text; ?>
+            </h1>
             <form id="form_buscador" onsubmit="return filtrar()">
                 <input type="hidden" class="base_url"
                     value="<?php echo isset($buscador_mapa) ? mklink('mapa/') : mklink('propiedades/'); ?>" />

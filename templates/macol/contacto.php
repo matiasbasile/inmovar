@@ -30,18 +30,26 @@ include 'includes/head.php'; ?>
     <section class="communicate-us-two">
         <div class="container">
             <div class="section-title">
-                <h2>Comunicate con nosotros</h2>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
-                    and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-                    leap into electronic typesetting, remaining essentially unchanged. </p>
+                <?php $titulo = $web_model->get_text('contacto-titulo', 'Comunicate con nosotros'); ?>
+                <h2 class="editable" data-id="<?php echo $titulo->id; ?>" data-clave="<?php echo $titulo->clave; ?>">
+                    <?php echo $titulo->plain_text; ?>
+                </h2>
+                <?php $descripcion = $web_model->get_text('contacto-descripcion', 'Descripcion'); ?>
+                <p class="editable" data-id="<?php echo $descripcion->id; ?>"
+                    data-clave="<?php echo $descripcion->clave; ?>">
+                    <?php echo $descripcion->plain_text; ?>
+                </p>
             </div>
             <div class="contact-wrap">
                 <div class="row">
                     <div class="col-md-4 col-6">
                         <div class="communicate-items">
                             <img src="assets/images/map-logo.png" alt="Location">
-                            <h3>DIRECCIÓN</h3>
+                            <?php $direccion = $web_model->get_text('direccion', 'DIRECCIÓN'); ?>
+                            <h3 class="editable" data-id="<?php echo $direccion->id; ?>"
+                                data-clave="<?php echo $direccion->clave; ?>">
+                                <?php echo $direccion->plain_text; ?>
+                            </h3>
 
                             <p><?php echo $empresa->direccion; ?></p>
                         </div>
@@ -49,14 +57,22 @@ include 'includes/head.php'; ?>
                     <div class="col-md-4 col-6">
                         <div class="communicate-items">
                             <img src="assets/images/calendar.png" alt="Calendar">
-                            <h3>HORARIOS</h3>
+                            <?php $horarios = $web_model->get_text('horarios', 'HORARIOS'); ?>
+                            <h3 class="editable" data-id="<?php echo $horarios->id; ?>"
+                                data-clave="<?php echo $horarios->clave; ?>">
+                                <?php echo $horarios->plain_text; ?>
+                            </h3>
                             <p><?php echo $empresa->horario; ?></p>
                         </div>
                     </div>
                     <div class="col-md-4 col-6">
                         <div class="communicate-items">
                             <img src="assets/images/phone.png" alt="Phone">
-                            <h3>CONTACTO</h3>
+                            <?php $contacto = $web_model->get_text('contacto', 'CONTACTO'); ?>
+                            <h3 class="editable" data-id="<?php echo $contacto->id; ?>"
+                                data-clave="<?php echo $contacto->clave; ?>">
+                                <?php echo $contacto->plain_text; ?>
+                            </h3>
                             <p class="d-flex flex-column">
                                 <a href="tel:<?php echo $empresa->telefono; ?>"><?php echo $empresa->telefono; ?></a>
                                 <a href="mailto:<?php echo $empresa->email; ?>"><?php echo $empresa->email; ?></a>
@@ -67,7 +83,11 @@ include 'includes/head.php'; ?>
             </div>
             <div class="form-wrap form-wrap-two form-wrap-three">
                 <div class="section-title">
-                    <h2>Envía una consulta</h2>
+                    <?php $consulta = $web_model->get_text('consulta', 'Envía una consulta'); ?>
+                    <h2 class="editable" data-id="<?php echo $consulta->id; ?>"
+                        data-clave="<?php echo $consulta->clave; ?>">
+                        <?php echo $consulta->plain_text; ?>
+                    </h2>
                 </div>
                 <form id="contactForm">
                     <div class="row">

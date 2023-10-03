@@ -3,7 +3,11 @@
         <div class="col-xl-6">
             <div class="form-wrap form-wrap-two">
                 <div class="section-title">
-                    <h2>Comunicate con nosotros</h2>
+                    <?php $contact_title = $web_model->get_text('contact_title', 'Comunicate con nosotros'); ?>
+                    <h2 class="editable" data-id="<?php echo $contact_title->id; ?>"
+                        data-clave="<?php echo $contact_title->clave; ?>">
+                        <?php echo $contact_title->plain_text; ?>
+                    </h2>
                 </div>
                 <form id="contactForm">
                     <div class="row">
