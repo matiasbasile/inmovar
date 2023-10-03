@@ -1,4 +1,4 @@
-<% var clase = (activo==1)?"":"text-muted"; %>
+<% var clase = (activo>=1)?"":"text-muted"; %>
 <% if (!vista_busqueda) { %>
   <td>
     <input type="hidden" id="<%= id %>_localidad" value="<%= id_localidad %>"/>
@@ -240,7 +240,7 @@
 
       <td class="tar td_acciones">
         
-        <i <%= (!edicion)?"disabled":"" %> data-toggle="tooltip" title="Activa" class="fa-check iconito fa activo <%= (activo == 1)?"active success":"" %>"></i>
+        <i <%= (!edicion)?"disabled":"" %> data-toggle="tooltip" title="Activar" class="fa-check iconito fa activo <%= (activo == 1)?"active success":( (activo == 2) ? "active warning" : "") %>"></i>
         <i <%= (!edicion)?"disabled":"" %> data-toggle="tooltip" title="Destacado" class="fa fa-star iconito warning destacado <%= (destacado == 1)?"active":"" %>"></i>
 
         <% if (control.check("permisos_red")>0) { %>
