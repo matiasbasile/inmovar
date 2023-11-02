@@ -28,6 +28,9 @@
                         <li><a href="javascript:void(0)" class="pe-none">
                                 <?php echo $empresa->direccion; ?>
                             </a></li>
+                        <li><a href="javascript:void(0)" class="pe-none">
+                                <?php echo $empresa->codigo_postal; ?>
+                            </a></li>
                     </ul>
                     <ul>
                         <li><a href="tel:<?php echo $empresa->telefono_num ?>"><?php echo $empresa->telefono ?></a></li>
