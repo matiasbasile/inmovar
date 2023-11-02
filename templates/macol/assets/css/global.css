@@ -319,6 +319,7 @@ header a {
 .header-two .header-menu a:hover,.header-two .header-menu a:focus {
   color: var(--white-clr);
 }
+.home .header-two { position:absolute; background-color:transparent; }
 .header-menu li {
   padding: 0 15px;
 }

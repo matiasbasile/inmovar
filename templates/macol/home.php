@@ -5,7 +5,7 @@
 <?php $pageTitle = 'Inicio';
 include 'includes/head.php'; ?>
 </head>
-<body>
+<body class="home">
 
     <!-- Header -->
     <?php 
