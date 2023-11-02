@@ -17,7 +17,7 @@ $entrada = $entrada_model->get($id);
     </div>
   </section>
 
-  <section class="communicate-us-two">
+  <section class="communicate-us-two pb0">
     <div class="container">
       <div class="section-title">
         <h2><?php echo $entrada->titulo ?></h2>
