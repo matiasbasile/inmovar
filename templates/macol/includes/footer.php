@@ -1,6 +1,6 @@
 <footer>
     <div class="container">
-        <a href="/" class="footer-logo">
+        <a href="<?php echo mklink("/") ?>" class="footer-logo">
             <img src="assets/images/footer-logo.png" alt="Logo">
         </a>
         <div class="row gy-4">
@@ -11,10 +11,10 @@
                     <?php echo $footer_access->plain_text; ?>
                 </h2>
                 <ul class="footer-menu">
-                    <li><a href="/propiedades/ventas">Comprar</a></li>
-                    <li><a href="/propiedades/alquileres">Alquilar</a></li>
-                    <li><a href="/web/ventas">Vender</a></li>
-                    <li><a href="/web/contacto">Nosotros</a></li>
+                    <li><a href="<?php echo mklink("propiedades/ventas/") ?>">Comprar</a></li>
+                    <li><a href="<?php echo mklink("propiedades/alquileres/") ?>">Alquilar</a></li>
+                    <li><a href="<?php echo mklink("entradas/vender/") ?>">Vender</a></li>
+                    <li><a href="<?php echo mklink("entradas/nosotros/") ?>">Nosotros</a></li>
                 </ul>
             </div>
             <div class="col-lg-8">
@@ -63,7 +63,7 @@
             <p class="editable" data-id="<?php echo $footer_design->id; ?>"
                 data-clave="<?php echo $footer_design->clave; ?>">
                 <?php echo $footer_design->plain_text; ?>
-                <a href="#0"><img src="assets/images/copyright.png" alt="Copyright"></a>
+                <a href="javascript:void(0)"><img src="assets/images/copyright.png" alt="Copyright"></a>
             </p>
         </div>
     </div>
