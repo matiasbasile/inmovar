@@ -15,7 +15,7 @@
             </p>
             <?php $dream_button = $web_model->get_text('dream_button', '¡Contáctanos hoy mismo!'); ?>
             <a class="editable btn" data-id="<?php echo $dream_button->id; ?>"
-                data-clave="<?php echo $dream_button->clave; ?>" href="/web/contacto">
+                data-clave="<?php echo $dream_button->clave; ?>" href="<?php echo mklink("contacto/") ?>">
                 <?php echo $dream_button->plain_text; ?>
             </a>
         </div>
