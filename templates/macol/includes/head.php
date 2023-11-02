@@ -8,5 +8,5 @@
     href="https://fonts.googleapis.com/css2?family=Lato&family=Poppins:wght@400;700&family=Roboto:wght@300;400;500;700;900&display=swap"
     rel="stylesheet">
 <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all">
-<link rel="stylesheet" type="text/css" href="assets/css/global.css?v=1">
+<link rel="stylesheet" type="text/css" href="assets/css/global.css?v=2">
 <?php include 'templates/comun/post_head.php'; ?>

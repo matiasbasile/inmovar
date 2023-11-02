@@ -1029,6 +1029,7 @@ header a {
 }
 .duplex-slider .item img {
   width: 100%;
+  aspect-ratio: 97 / 81;
 }
 .gallery-link {
   display: flex;
