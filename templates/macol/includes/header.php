@@ -6,8 +6,8 @@
         </a>
         <div class="header-right">
             <ul class="header-menu">
-                <li><a href="<?php echo mklink("propiededes/ventas/") ?>">Comprar</a></li>
-                <li><a href="<?php echo mklink("propiededes/alquileres/") ?>">Alquilar</a></li>
+                <li><a href="<?php echo mklink("propiedades/ventas/") ?>">Comprar</a></li>
+                <li><a href="<?php echo mklink("propiedades/alquileres/") ?>">Alquilar</a></li>
                 <li><a href="<?php echo mklink("entradas/vender/") ?>">Vender</a></li>
                 <li><a href="<?php echo mklink("entradas/nosotros/") ?>">Nosotros</a></li>
                 <li><a href="<?php echo mklink("contacto/") ?>">Contacto</a></li>
