@@ -24,11 +24,12 @@ $entrada = $entrada_model->get($id);
         <p><?php echo $entrada->subtitulo ?></p>
       </div>
 
-      <?php if (!empty($entrada->path)) { ?>
-        <img class="w100p" src="<?php echo $entrada->path ?>" />
-      <?php } ?>
-
-      <?php echo $entrada->texto ?>
+      <div class="contact-wrap">
+        <?php if (!empty($entrada->path)) { ?>
+          <img class="w100p" src="<?php echo $entrada->path ?>" />
+        <?php } ?>
+        <?php echo $entrada->texto ?>
+      </div>
     </div>
   </section>
 
