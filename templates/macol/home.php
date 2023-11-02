@@ -8,7 +8,9 @@ include 'includes/head.php'; ?>
 <body>
 
     <!-- Header -->
-    <?php include 'includes/header.php'; ?>
+    <?php 
+    $header_clase = "header-two";
+    include 'includes/header.php'; ?>
 
     <!-- Banner -->
     <?php include 'includes/home/banner.php'; ?>
