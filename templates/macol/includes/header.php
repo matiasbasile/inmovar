@@ -1,4 +1,4 @@
-<header class="header-two">
+<header class="<?php echo (isset($header_clase) ? $header_clase : "header") ?>">
     <div class="container">
         <a href="<?php echo mklink("/") ?>" class="logo"><img src="assets/images/logo.png" alt="Logo"></a>
         <a href="javascript:void(0);" class="toggle-menu">

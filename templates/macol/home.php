@@ -1,12 +1,10 @@
 <?php include_once 'includes/init.php'; ?>
 <!DOCTYPE html>
-<html dir="ltr" lang="en-US">
-
+<html dir="ltr" lang="es">
 <head>
-    <?php $pageTitle = 'Inicio';
+<?php $pageTitle = 'Inicio';
 include 'includes/head.php'; ?>
 </head>
-
 <body>
 
     <!-- Header -->
