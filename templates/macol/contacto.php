@@ -19,14 +19,19 @@ include 'includes/head.php'; ?>
 
     <!-- Map -->
     <?php if (isset($empresa->latitud) && isset($empresa->longitud)) { ?>
-    <section class="map-location pb-0">
-        <div class="map mb-3">
-            <div class="tab-cont" id="map"></div>
-        </div>
-    </section>
+        <section class="map-location pb-0">
+            <div class="map mb-3">
+                <div class="tab-cont" id="map"></div>
+            </div>
+        </section>
     <?php } ?>
 
-    <?php include 'includes/contacto.php'; ?>
+    <section class="communicate-us-two">
+        <div class="container">
+            <?php include 'includes/comunicate.php'; ?>
+            <?php include 'includes/contacto.php'; ?>
+        </div>
+    </section>
 
     <!-- Footer -->
     <?php include 'includes/footer.php'; ?>

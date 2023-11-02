@@ -26,7 +26,11 @@ $entrada = $entrada_model->get($id);
     </div>
   </section>
 
-  <?php include 'includes/contacto.php'; ?>
+  <section class="communicate-us-two">
+    <div class="container">
+      <?php include 'includes/contacto.php'; ?>
+    </div>
+  </section>
 
   <?php include 'includes/footer.php'; ?>
 
