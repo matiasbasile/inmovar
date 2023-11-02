@@ -29,7 +29,7 @@
                                 <?php echo $empresa->direccion; ?>
                             </a></li>
                         <li><a href="javascript:void(0)" class="pe-none">
-                                <?php echo $empresa->codigo_postal; ?>
+                                <?php echo $empresa->ciudad; ?>
                             </a></li>
                     </ul>
                     <ul>
