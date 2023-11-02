@@ -13,7 +13,7 @@
         </div>
         <div class="row gy-4">
             <div class="col-md-4 col-sm-6">
-                <a href="/propiedades/ventas" class="sale-item">
+                <a href="<?php echo mklink("propiedades/ventas/") ?>" class="sale-item">
                     <span><img src="assets/images/sale1.png" alt="Sale"></span>
                     <?php $buy_title = $web_model->get_text('buy_title', 'Comprar'); ?>
                     <h3 class="editable" data-id="<?php echo $buy_title->id; ?>"
@@ -29,7 +29,7 @@
                 </a>
             </div>
             <div class="col-md-4 col-sm-6">
-                <a href="/web/ventas" class="sale-item">
+                <a href="<?php echo mklink("entradas/vender/") ?>" class="sale-item">
                     <span><img src="assets/images/sale2.png" alt="Sale"></span>
                     <?php $sell_title = $web_model->get_text('sell_title', 'Vender'); ?>
                     <h3 class="editable" data-id="<?php echo $sell_title->id; ?>"
@@ -45,7 +45,7 @@
                 </a>
             </div>
             <div class="col-md-4 col-sm-6">
-                <a href="/propiedades/alquileres" class="sale-item">
+                <a href="<?php echo mklink("propiedades/alquileres/") ?>" class="sale-item">
                     <span><img src="assets/images/sale3.png" alt="Sale"></span>
                     <?php $alq_title = $web_model->get_text('alq_title', 'Alquilar'); ?>
                     <h3 class="editable" data-id="<?php echo $alq_title->id; ?>"
