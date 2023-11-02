@@ -1,6 +1,9 @@
-<?php include_once 'includes/init.php'; ?>
+<?php 
+include_once 'includes/init.php'; 
+$entrada = $entrada_model->get($id);
+?>
 <!DOCTYPE html>
-<html dir="ltr" lang="en-US">
+<html dir="ltr" lang="es">
 
 <head>
     <?php $pageTitle = 'Inicio';

@@ -38,7 +38,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
 ?>
 <?php include_once 'includes/init.php'; ?>
 <!DOCTYPE html>
-<html dir="ltr" lang="en-US">
+<html dir="ltr" lang="es">
 
 <head>
 

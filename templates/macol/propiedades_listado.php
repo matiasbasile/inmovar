@@ -1,6 +1,5 @@
 <?php 
 include_once 'includes/init.php';
-echo "ANDA"; exit();
 
 if (!isset($config_grupo)) {
     $config_grupo = [];
@@ -29,7 +28,7 @@ if (!$vc_nombre_operacion) {
 
 ?>
 <!DOCTYPE html>
-<html dir="ltr" lang="en-US">
+<html dir="ltr" lang="es">
 
 <head>
     <?php $pageTitle = 'Comprar propiedades';
