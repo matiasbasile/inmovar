@@ -36,57 +36,44 @@ $seo_description = (!empty($propiedad->seo_description)) ? ($propiedad->seo_desc
 $seo_keywords = (!empty($propiedad->seo_keywords)) ? ($propiedad->seo_keywords) : $empresa->seo_keywords;
 $nombre_pagina = $propiedad->tipo_operacion_link;
 ?>
-<?php include_once 'includes/init.php'; ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="es">
-
 <head>
-
-  <head>
-    <?php $pageTitle = 'Duplex';
-include 'includes/head.php'; ?>
-    <?php include 'includes/head.php'; ?>
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="<?php echo $propiedad->nombre; ?>" />
-    <meta property="og:description"
-      content="<?php echo str_replace("\n", '', strip_tags(html_entity_decode($propiedad->texto, ENT_QUOTES))); ?>" />
-    <meta property="og:image"
-      content="<?php echo current_url().((!empty($propiedad->_full)) ? $propiedad->imagen_full : $empresa->no_imagen); ?>" />
-  </head>
-
+<?php include 'includes/head.php'; ?>
+<meta property="og:type" content="website" />
+<meta property="og:title" content="<?php echo $propiedad->nombre; ?>" />
+<meta property="og:description"
+  content="<?php echo str_replace("\n", '', strip_tags(html_entity_decode($propiedad->texto, ENT_QUOTES))); ?>" />
+<meta property="og:image"
+  content="<?php echo current_url().((!empty($propiedad->_full)) ? $propiedad->imagen_full : $empresa->no_imagen); ?>" />
 <body>
-  <?php
+<?php
 
-$ambientes = [
-  'Dormitorios' => $propiedad->dormitorios,
-  'Living Comedor' => $propiedad->living_comedor,
-  'Gimnasio' => $propiedad->gimnasio,
-  'Vigilancia' => $propiedad->vigilancia,
-  'Baño' => $propiedad->banios,
-  'Baño Accesible' => $propiedad->accesible,
-  'Cocheras' => $propiedad->cocheras,
-  'Piscina' => $propiedad->piscina,
-  'Patio' => $propiedad->patio,
-  'Balcón' => $propiedad->balcon,
-  'Parrilla' => $propiedad->parrilla,
-  'Terraza' => $propiedad->terraza,
-  'Lavadero' => $propiedad->lavadero,
-  'Sala de Juegos' => $propiedad->sala_juegos,
-];
-?>
+$ambientes = array();
+if ($propiedad->dormitorios == 1) $servicios[] = "Dormitorios";
+if ($propiedad->living_comedor == 1) $servicios[] = "Living Comedor";
+if ($propiedad->gimnasio == 1) $servicios[] = "Gimnasio";
+if ($propiedad->vigilancia == 1) $servicios[] = "Vigilancia";
+if ($propiedad->accesible == 1) $servicios[] = "Baño Accesible";
+if ($propiedad->cocheras == 1) $servicios[] = ($propiedad->cocheras > 1) ? $propiedad->cocheras." Cocheras" : "Cochera";
+if ($propiedad->piscina == 1) $servicios[] = "Piscina";
+if ($propiedad->patio == 1) $servicios[] = "Patio";
+if ($propiedad->balcon == 1) $servicios[] = "Balcón";
+if ($propiedad->parrilla == 1) $servicios[] = "Parrilla";
+if ($propiedad->terraza == 1) $servicios[] = "Terraza";
+if ($propiedad->lavadero == 1) $servicios[] = "Lavadero";
+if ($propiedad->sala_juegos == 1) $servicios[] = "Sala de Juegos";
 
-  <?php
-$servicios = [
-  'Electricidad' => $propiedad->servicios_electricidad,
-  'Agua Corriente' => $propiedad->servicios_agua_corriente,
-  'Asfalto' => $propiedad->servicios_asfalto,
-  'Gas Natural' => $propiedad->servicios_gas,
-  'Cloacas' => $propiedad->servicios_cloacas,
-  'Aire Acondicionado' => $propiedad->servicios_aire_acondicionado,
-  'TV Cable' => $propiedad->servicios_cable,
-  'Teléfono' => $propiedad->servicios_telefono,
-  'WiFi' => $propiedad->servicios_internet,
-];
+$servicios = array();
+if ($propiedad->servicios_electricidad == 1) $servicios[] = "Electricidad";
+if ($propiedad->servicios_agua_corriente == 1) $servicios[] = "Agua Corriente";
+if ($propiedad->servicios_asfalto == 1) $servicios[] = "Asfalto";
+if ($propiedad->servicios_gas == 1) $servicios[] = "Gas Natural";
+if ($propiedad->servicios_cloacas == 1) $servicios[] = "Cloacas";
+if ($propiedad->servicios_aire_acondicionado == 1) $servicios[] = "Aire Acondicionado";
+if ($propiedad->servicios_cable == 1) $servicios[] = "TV Cable";
+if ($propiedad->servicios_telefono == 1) $servicios[] = "Teléfono";
+if ($propiedad->servicios_internet == 1) $servicios[] = "WiFi";
 ?>
 
   <!-- Header -->
@@ -215,13 +202,13 @@ $servicios = [
                 <li>
                   <a href="javascript:void(0);">
                     Apto Crédito
-                    <span><?php echo $propiedad->apto_banco == 0 ? 'No' : 'Sí'; ?></span>
+                    <span><?php echo ($propiedad->apto_banco == 0) ? 'No' : 'Sí'; ?></span>
                   </a>
                 </li>
                 <li>
                   <a href="javascript:void(0);">
                     Permuta
-                    <span><?php echo $propiedad->acepta_permuta == 0 ? 'No' : 'Sí'; ?></span>
+                    <span><?php echo ($propiedad->acepta_permuta == 0) ? 'No' : 'Sí'; ?></span>
                   </a>
                 </li>
                 <?php if ($propiedad->valor_expensas != 0) { ?>
