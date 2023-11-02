@@ -201,21 +201,11 @@ $servicios = [
             <div class="service-wrap">
               <h2>ambientes</h2>
               <ul>
-                <?php $i = 0; ?>
-                <?php foreach ($ambientes as $key => $value) { ?>
-                <?php if ($value > 0) { ?>
-                <li>
-                  <img src="assets/images/check.png" alt="Check">
-                  <a href="javascript:void(0);"><?php echo $key; ?></a>
-                </li>
-                <?php ++$i; ?>
-                <?php } ?>
-
-                <?php if ($i == 4) { ?>
-                <?php $i = 0; ?>
-              </ul>
-              <ul>
-                <?php } ?>
+                <?php foreach ($ambientes as $v) { ?>
+                  <li>
+                    <img src="assets/images/check.png" alt="Check">
+                    <a href="javascript:void(0);"><?php echo $v ?></a>
+                  </li>
                 <?php } ?>
               </ul>
             </div>
@@ -321,7 +311,7 @@ $servicios = [
   <script type="text/javascript" src="assets/js/owl.carousel.min.js"></script>
   <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWmUapFYTBXV3IJL9ggjT9Z1wppCER55g&callback=initMap"> -->
   <?php include_once 'templates/comun/mapa_js.php'; ?>
-  
+
   </script>
   <!-- <script src="assets/js/fancybox.umd.js"></script> -->
   <script src="assets/js/script.js"></script>
