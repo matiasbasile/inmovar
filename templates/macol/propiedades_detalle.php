@@ -222,7 +222,7 @@ if ($propiedad->servicios_internet == 1) $servicios[] = "WiFi";
             </div>
             <div class="service-wrap">
               <h2>ubicación en mapa</h2>
-              <section class="map-location">
+              <section class="map-location pt0">
                 <div class="map mb-3">
                   <div class="tab-cont" id="map"></div>
                 </div>
