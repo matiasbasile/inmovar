@@ -19,12 +19,22 @@
                 <div class="communicate-item">
                     <img src="<?php echo $u->path; ?>" alt="Communicate" width="150px">
                     <h3><?php echo $u->nombre/* .' '.$u->apellido */; ?></h3>
-                    <p><?php echo $u->cargo; ?></p>
+                    <p><?php echo $u->titulo ?></p>
                     <ul>
-                        <li><a href="https://instagram.com/<?php echo $u->instagram; ?>"><img
-                                    src="assets/images/insta.png" alt="Instagram"></a></li>
-                        <li><a href="https://instagram.com/<?php echo $u->facebook; ?>" alt="Facebook"><img
-                                    src="assets/images/facebook.png" alt="Facebook"></a></li>
+                        <?php if (!empty($u->instagram)) { ?>
+                            <li>
+                                <a target="_blank" href="<?php echo $u->instagram; ?>">
+                                    <img src="assets/images/insta.png" alt="Instagram">
+                                </a>
+                            </li>
+                        <?php } ?>
+                        <?php if (!empty($u->instagram)) { ?>
+                            <li>
+                                <a target="_blank" href="<?php echo $u->facebook; ?>" alt="Facebook">
+                                    <img src="assets/images/facebook.png" alt="Facebook">
+                                </a>
+                            </li>
+                        <?php } ?>
                     </ul>
                     <div class="btn-block">
                         <?php $contacto_whatsapp = preg_replace('/[^0-9]/', '', $u->telefono); ?>
