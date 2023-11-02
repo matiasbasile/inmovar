@@ -606,6 +606,7 @@ header a {
 .feature .card:hover .img-wrap img,.for-sale-two .card:hover .img-wrap img {
   scale: 1.2;
 }
+.img-wrap img { aspect-ratio:368 / 201 }
 .card {
   border-radius: 12px;
   border: 0;
