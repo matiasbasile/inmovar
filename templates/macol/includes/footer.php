@@ -69,6 +69,13 @@
     </div>
 </footer>
 
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="assets/js/owl.carousel.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWmUapFYTBXV3IJL9ggjT9Z1wppCER55g&callback=initMap"></script>
+<script src="assets/js/fancybox.umd.js"></script>
+<script src="assets/js/script.js"></script>
 
 <script>
 function buscar_mapa() {
