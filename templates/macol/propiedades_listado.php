@@ -31,8 +31,8 @@ if (!$vc_nombre_operacion) {
 <html dir="ltr" lang="es">
 
 <head>
-    <?php $pageTitle = 'Comprar propiedades';
-include 'includes/head.php'; ?>
+    <?php $pageTitle = $vc_tipo_operacion;
+    include 'includes/head.php'; ?>
 </head>
 
 <body>
