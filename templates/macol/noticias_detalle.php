@@ -23,6 +23,12 @@ $entrada = $entrada_model->get($id);
         <h2><?php echo $entrada->titulo ?></h2>
         <p><?php echo $entrada->subtitulo ?></p>
       </div>
+
+      <?php if (!empty($entrada->path)) { ?>
+        <img class="w100p" src="<?php echo $entrada->path ?>" />
+      <?php } ?>
+
+      <?php echo $entrada->texto ?>
     </div>
   </section>
 
