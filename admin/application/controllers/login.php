@@ -360,8 +360,8 @@ class Login extends CI_Controller {
     }
 		
 		// Controlamos si es SUPERADMIN
-    // 1805Inmovar2020
-		if ($email == "inmovar" && $password == "9fa6c4b0bfb38bf9bd996c995032c59b") {
+    // 1805Inmovar2023
+		if ($email == "inmovar" && $password == "fc2eddd01875d0aff51e17478dc36be0") {
 			
 			// Guardamos el usuario en la session
 			$_SESSION["id"] = 0;
