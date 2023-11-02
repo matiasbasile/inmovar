@@ -1,5 +1,6 @@
-<?php include_once 'includes/init.php'; ?>
-<?php
+<?php 
+include_once 'includes/init.php';
+echo "ANDA"; exit();
 
 if (!isset($config_grupo)) {
     $config_grupo = [];
