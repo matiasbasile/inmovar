@@ -13,8 +13,8 @@
                 <li><a href="<?php echo mklink("contacto/") ?>">Contacto</a></li>
             </ul>
             <div class="socials">
-                <a href="https://wa.me/<?php echo $empresa->whatsapp; ?>"
-                    class="btn btn-left-icon"><?php echo $empresa->whatsapp; ?></a>
+                <a href="https://wa.me/<?php echo $empresa->telefono_num; ?>"
+                    class="btn btn-left-icon"><?php echo $empresa->telefono_num; ?></a>
                 <ul>
                     <?php if (!empty($empresa->instagram)) { ?>
                         <li><a target="_blank" href="<?php echo $empresa->instagram ?>/"><img
