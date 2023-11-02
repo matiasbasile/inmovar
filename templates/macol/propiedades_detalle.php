@@ -9,20 +9,20 @@ $propiedad = $propiedad_model->get($id, [
 ]);
 
 if (($propiedad === false || !isset($propiedad->nombre) || $propiedad->activo == 0) && !isset($get_params['preview'])) {
-    header('HTTP/1.1 302 Moved Temporarily');
-    header('Location:'.mklink('/'));
-    exit;
+  header('HTTP/1.1 302 Moved Temporarily');
+  header('Location:'.mklink('/'));
+  exit;
 }
 
 if (empty($propiedad->id_usuario) || $propiedad->id_empresa != $empresa->id) {
-    $usuarios = $usuario_model->get_list([
-      'activo' => 1,
-      'offset' => 99999,
-      'recibe_notificaciones' => 1,
-    ]);
-    $rand = array_rand($usuarios);
-    $usuario = $usuarios[$rand];
-    $propiedad->id_usuario = $usuario->id;
+  $usuarios = $usuario_model->get_list([
+    'activo' => 1,
+    'offset' => 99999,
+    'recibe_notificaciones' => 1,
+  ]);
+  $rand = array_rand($usuarios);
+  $usuario = $usuarios[$rand];
+  $propiedad->id_usuario = $usuario->id;
 }
 $usuario = $usuario_model->get($propiedad->id_usuario);
 $contacto_whatsapp = preg_replace('/[^0-9]/', '', $usuario->telefono);
@@ -42,20 +42,20 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
 
 <head>
 
-    <head>
-        <?php $pageTitle = 'Duplex';
+  <head>
+    <?php $pageTitle = 'Duplex';
 include 'includes/head.php'; ?>
-        <?php include 'includes/head.php'; ?>
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="<?php echo $propiedad->nombre; ?>" />
-        <meta property="og:description"
-            content="<?php echo str_replace("\n", '', strip_tags(html_entity_decode($propiedad->texto, ENT_QUOTES))); ?>" />
-        <meta property="og:image"
-            content="<?php echo current_url().((!empty($propiedad->_full)) ? $propiedad->imagen_full : $empresa->no_imagen); ?>" />
-    </head>
+    <?php include 'includes/head.php'; ?>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="<?php echo $propiedad->nombre; ?>" />
+    <meta property="og:description"
+      content="<?php echo str_replace("\n", '', strip_tags(html_entity_decode($propiedad->texto, ENT_QUOTES))); ?>" />
+    <meta property="og:image"
+      content="<?php echo current_url().((!empty($propiedad->_full)) ? $propiedad->imagen_full : $empresa->no_imagen); ?>" />
+  </head>
 
 <body>
-    <?php
+  <?php
 
 $ambientes = [
   'Dormitorios' => $propiedad->dormitorios,
@@ -75,7 +75,7 @@ $ambientes = [
 ];
 ?>
 
-    <?php
+  <?php
 $servicios = [
   'Electricidad' => $propiedad->servicios_electricidad,
   'Agua Corriente' => $propiedad->servicios_agua_corriente,
@@ -89,355 +89,347 @@ $servicios = [
 ];
 ?>
 
-    <!-- Header -->
-    <?php include 'includes/header.php'; ?>
+  <!-- Header -->
+  <?php include 'includes/header.php'; ?>
 
-    <!-- Banner -->
-    <section class="duplex">
-        <div class="container">
-            <div class="section-title">
-                <div>
-                    <h2><?php echo $propiedad->nombre; ?></h2>
-                    <p><?php echo $propiedad->direccion_completa; ?><span> <?php echo $propiedad->localidad; ?></span>
-                    </p>
-                </div>
-                <div>
-                    <div class="pricing">
-                        <?php if ($propiedad->precio_porcentaje_anterior < 0.00 && $propiedad->publica_precio == 1) { ?>
-                        <a href="#0"> <img src="assets/images/down-arrow-green.png" alt="Arrow"> Bajo de precio un
-                            <?php echo floatval($propiedad->precio_porcentaje_anterior * -1); ?>%</a>
-                        <?php } ?>
-                        <h2><?php echo $propiedad->precio; ?></h2>
-                    </div>
-                    <div class="card-footer">
-                        <span><?php echo $propiedad->superficie_total; ?> m2</span>
-                        <ul>
-                            <li><img src="assets/images/bed.png" alt="Bed"><?php echo $propiedad->dormitorios; ?></li>
-                            <li><img src="assets/images/wash.png" alt="Wash"><?php echo $propiedad->banios; ?></li>
-                            <li><img src="assets/images/car.png" alt="Car"><?php echo $propiedad->cocheras; ?></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+  <!-- Banner -->
+  <section class="duplex">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2><?php echo $propiedad->nombre; ?></h2>
+          <p><?php echo $propiedad->direccion_completa; ?><span> <?php echo $propiedad->localidad; ?></span>
+          </p>
         </div>
-    </section>
-
-    <!-- Duplex Slider -->
-
-    <?php if (sizeof($propiedad->images) > 0) { ?>
-    <section class="duplex-slider photo-gallery">
-        <div class="owl-carousel" id="galería" data-items="3" data-items-xl="3" data-items-lg="3" data-items-md="3"
-            data-items-sm="3" data-margin="3" data-nav="true" data-dots="false">
-            <?php foreach ($propiedad->images as $img) { ?>
-            <div class="item">
-                <a data-fancybox="gallery" href="<?php echo $img; ?>">
-                    <img src="<?php echo $img; ?>" alt="Duplex">
-                </a>
-            </div>
+        <div>
+          <div class="pricing">
+            <?php if ($propiedad->precio_porcentaje_anterior < 0.00 && $propiedad->publica_precio == 1) { ?>
+              <a href="javascript:void(0)"> 
+                <img src="assets/images/down-arrow-green.png" alt="Arrow"> Bajo de precio un
+                <?php echo floatval($propiedad->precio_porcentaje_anterior * -1); ?>%
+              </a>
             <?php } ?>
+            <h2><?php echo $propiedad->precio; ?></h2>
+          </div>
+          <div class="card-footer">
+            <span><?php echo $propiedad->superficie_total; ?> m2</span>
+            <ul>
+              <li><img src="assets/images/bed.png" alt="Bed"><?php echo $propiedad->dormitorios; ?></li>
+              <li><img src="assets/images/wash.png" alt="Wash"><?php echo $propiedad->banios; ?></li>
+              <li><img src="assets/images/car.png" alt="Car"><?php echo $propiedad->cocheras; ?></li>
+            </ul>
+          </div>
         </div>
-        <!-- <div class="gallery-link">
-            <a data-fancybox="gallery" href="assets/images/duplex-slide1.png"><img src="assets/images/camera.png"
-                    alt="Camera"></a>
-            <a href="#video"><img src="assets/images/video.png" alt="Video"></a>
-        </div> -->
-    </section>
-    <?php } ?>
-
-    <section class="description-list">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="description-wrapper">
-                        <div class="description">
-                            <?php if (!empty($propiedad->texto)) { ?>
-                            <h2>Descripción</h2>
-                            <p><?php echo $propiedad->texto; ?></p>
-                            <?php } ?>
-                            <span>Código: <span class="p"><?php echo $propiedad->codigo; ?></span></span>
-                        </div>
-                        <div class="service-wrap">
-                            <h2>servicios</h2>
-                            <ul>
-                                <?php $k = 0; ?>
-                                <?php foreach ($servicios as $key => $value) { ?>
-                                <?php if ($value == 1) { ?>
-                                <li>
-                                    <img src="assets/images/check.png" alt="Check">
-                                    <a href="javascript:void(0);"><?php echo $key; ?></a>
-                                </li>
-                                <?php ++$k; ?>
-                                <?php } ?>
-
-                                <?php if ($k == 4) { ?>
-                                <?php $k = 0; ?>
-                            </ul>
-                            <ul>
-                                <?php } ?>
-                                <?php } ?>
-                            </ul>
-                        </div>
-                        <div class="service-wrap">
-                            <h2>superficies</h2>
-                            <ul>
-                                <li>
-                                    <p href="javascript:void(0);">
-                                        Cubierta
-                                        <span><?php echo ($propiedad->superficie_cubierta != 0) ? $propiedad->superficie_cubierta : ' '; ?></span>
-                                    </p>
-                                </li>
-                                <li>
-                                    <p href="javascript:void(0);">
-                                        Descubierta
-                                        <span><?php echo ($propiedad->superficie_descubierta != 0) ? $propiedad->superficie_descubierta : ' '; ?></span>
-                                    </p>
-                                </li>
-                                <li>
-                                    <p href="javascript:void(0);">
-                                        Semicubierta
-                                        <span><?php echo ($propiedad->superficie_semicubierta != 0) ? $propiedad->superficie_semicubierta : ' '; ?></span>
-                                    </p>
-                                </li>
-                                <li>
-                                    <p href="javascript:void(0);">
-                                        Total
-                                        <span><?php echo ($propiedad->superficie_total != 0) ? $propiedad->superficie_total : ' '; ?></span>
-                                    </p>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="service-wrap">
-                            <h2>ambientes</h2>
-                            <ul>
-                                <?php $i = 0; ?>
-                                <?php foreach ($ambientes as $key => $value) { ?>
-                                <?php if ($value > 0) { ?>
-                                <li>
-                                    <img src="assets/images/check.png" alt="Check">
-                                    <a href="javascript:void(0);"><?php echo $key; ?></a>
-                                </li>
-                                <?php ++$i; ?>
-                                <?php } ?>
-
-                                <?php if ($i == 4) { ?>
-                                <?php $i = 0; ?>
-                            </ul>
-                            <ul>
-                                <?php } ?>
-                                <?php } ?>
-                            </ul>
-                        </div>
-                        <div class="service-wrap">
-                            <h2>adicionales</h2>
-                            <ul>
-                                <li>
-                                    <a href="javascript:void(0);">
-                                        Apto Crédito
-                                        <span><?php echo $propiedad->apto_banco == 0 ? 'No' : 'Sí'; ?></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">
-                                        Permuta
-                                        <span><?php echo $propiedad->acepta_permuta == 0 ? 'No' : 'Sí'; ?></span>
-                                    </a>
-                                </li>
-                                <?php if ($propiedad->valor_expensas != 0) { ?>
-                                <li><a href="javascript:void(0);">Expensas
-                                        <span>$<?php echo $propiedad->valor_expensas; ?></span></a></li>
-                                <?php } else { ?>
-                                <li><a href="javascript:void(0);">Expensas <span>$<?php echo ' '; ?></span></a></li>
-                                <?php } ?>
-                            </ul>
-                        </div>
-                        <div class="service-wrap">
-                            <h2>ubicación en mapa</h2>
-                            <section class="map-location">
-                                <div class="map mb-3">
-                                    <div class="tab-cont" id="map"></div>
-                                </div>
-                            </section>
-                        </div>
-                        <?php if (!empty($propiedad->video)) { ?>
-                        <div class="service-wrap" id="video">
-                            <h2>video</h2>
-                            <div class="video-wrap">
-                                <img src="<?php echo $propiedad->imagen; ?>" alt="<?php echo $propiedad->nombre; ?>"
-                                    style="width:100%;">
-                                <a href="#0" data-bs-target="#exampleModalToggle" data-bs-toggle="modal"
-                                    class="play-btn"><img src="assets/images/youtube-icon.png" alt="Youtube"></a>
-                            </div>
-                        </div>
-                        <? } ?>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="form-wrap form-wrap-two form-wrap-three">
-                        <div class="section-title">
-                            <h2>enviar consulta</h2>
-                        </div>
-                        <form id="sellContactForm">
-                            <div class="form-group">
-                                <input id="contacto_nombre" class="form-control" type="text" placeholder="Nombre *">
-                            </div>
-                            <div class="form-group">
-                                <input id="contacto_email" class="form-control" type="email" placeholder="Email *">
-                            </div>
-                            <div class="form-group">
-                                <input id="contacto_telefono" class="form-control" type="text"
-                                    placeholder="WhatsApp (sin 0 ni 15) *">
-                            </div>
-                            <div class="form-group">
-                                <textarea id="contacto_mensaje"
-                                    placeholder="Estoy interesado en “<?php echo $propiedad->nombre; ?>”"
-                                    class="form-control"></textarea>
-                            </div>
-                            <div class="btn-block">
-                                <button type="submit" id="contacto_submit" class="btn">enviar email</button>
-                                <?php if (!empty($contacto_whatsapp)) { ?>
-
-                                <a href="https://wa.me/<?php echo $contacto_whatsapp; ?>" target="_blank"
-                                    class="btn btn-icon btn-green"><img src="assets/images/whatsapp2.png"
-                                        alt="Whatsapp">enviar whatsapp</a>
-                                <?php } ?>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <?php include 'includes/footer.php'; ?>
-
-    <?php if (!empty($propiedad->video)) { ?>
-    <!-- Modal -->
-    <div class=" modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
-        tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <?php echo $propiedad->video; ?>
-            </div>
-        </div>
+      </div>
     </div>
-    <? } ?>
+  </section>
 
-    <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" src="assets/js/owl.carousel.min.js"></script>
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWmUapFYTBXV3IJL9ggjT9Z1wppCER55g&callback=initMap"> -->
-    <?php include_once 'templates/comun/mapa_js.php'; ?>
-    </script>
-    <!-- <script src="assets/js/fancybox.umd.js"></script> -->
-    <script src="assets/js/script.js"></script>
-    <!-- <script>
-    Fancybox.bind('[data-fancybox="gallery"]', {
-        //
-    });
-    </script> -->
-    <script>
-    $(document).ready(function() {
-        <?php if (!empty($propiedad->latitud) && !empty($propiedad->longitud)) { ?>
+  <!-- Duplex Slider -->
 
-        /* if ($("#map").length == 0) return; */
-        var mymap = L.map('map').setView([<?php echo $propiedad->latitud; ?>,
-            <?php echo $propiedad->longitud; ?>
-        ], 16);
-
-        L.tileLayer(
-            'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=<?php echo defined('MAPBOX_KEY') ? MAPBOX_KEY : ''; ?>', {
-                attribution: '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
-                tileSize: 512,
-                maxZoom: 18,
-                zoomOffset: -1,
-                id: 'mapbox/streets-v11',
-                accessToken: '<?php echo defined('MAPBOX_KEY') ? MAPBOX_KEY : ''; ?>',
-            }).addTo(mymap);
-
-
-        var icono = L.icon({
-            iconUrl: 'assets/images/map-place.png',
-            iconSize: [60, 60], // size of the icon
-            iconAnchor: [30, 30], // point of the icon which will correspond to marker's location
-        });
-
-        L.marker([<?php echo $propiedad->latitud; ?>, <?php echo $propiedad->longitud; ?>], {
-            icon: icono
-        }).addTo(mymap);
-
+  <?php if (sizeof($propiedad->images) > 0) { ?>
+    <section class="duplex-slider photo-gallery">
+      <div class="owl-carousel" id="galería" data-items="3" data-items-xl="3" data-items-lg="3" data-items-md="3"
+        data-items-sm="3" data-margin="3" data-nav="true" data-dots="false">
+        <?php foreach ($propiedad->images as $img) { ?>
+        <div class="item">
+          <a data-fancybox="gallery" href="<?php echo $img; ?>">
+            <img src="<?php echo $img; ?>" alt="Duplex">
+          </a>
+        </div>
         <?php } ?>
+      </div>
+      <!-- <div class="gallery-link">
+        <a data-fancybox="gallery" href="assets/images/duplex-slide1.png"><img src="assets/images/camera.png"
+            alt="Camera"></a>
+        <a href="#video"><img src="assets/images/video.png" alt="Video"></a>
+      </div> -->
+    </section>
+  <?php } ?>
+
+  <section class="description-list">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="description-wrapper">
+            <div class="description">
+              <?php if (!empty($propiedad->texto)) { ?>
+                <h2>Descripción</h2>
+                <p><?php echo $propiedad->texto; ?></p>
+              <?php } ?>
+              <span>Código: <span class="p"><?php echo $propiedad->codigo; ?></span></span>
+            </div>
+            <div class="service-wrap">
+              <h2>servicios</h2>
+              <ul>
+                <?php foreach ($servicios as $v) { ?>
+                  <li>
+                    <img src="assets/images/check.png" alt="Check">
+                    <a href="javascript:void(0);"><?php echo $v ?></a>
+                  </li>
+                <?php } ?>
+              </ul>
+            </div>
+            <div class="service-wrap">
+              <h2>superficies</h2>
+              <ul>
+                <li>
+                  <p href="javascript:void(0);">
+                    Cubierta
+                    <span><?php echo ($propiedad->superficie_cubierta != 0) ? $propiedad->superficie_cubierta : ' '; ?></span>
+                  </p>
+                </li>
+                <li>
+                  <p href="javascript:void(0);">
+                    Descubierta
+                    <span><?php echo ($propiedad->superficie_descubierta != 0) ? $propiedad->superficie_descubierta : ' '; ?></span>
+                  </p>
+                </li>
+                <li>
+                  <p href="javascript:void(0);">
+                    Semicubierta
+                    <span><?php echo ($propiedad->superficie_semicubierta != 0) ? $propiedad->superficie_semicubierta : ' '; ?></span>
+                  </p>
+                </li>
+                <li>
+                  <p href="javascript:void(0);">
+                    Total
+                    <span><?php echo ($propiedad->superficie_total != 0) ? $propiedad->superficie_total : ' '; ?></span>
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div class="service-wrap">
+              <h2>ambientes</h2>
+              <ul>
+                <?php $i = 0; ?>
+                <?php foreach ($ambientes as $key => $value) { ?>
+                <?php if ($value > 0) { ?>
+                <li>
+                  <img src="assets/images/check.png" alt="Check">
+                  <a href="javascript:void(0);"><?php echo $key; ?></a>
+                </li>
+                <?php ++$i; ?>
+                <?php } ?>
+
+                <?php if ($i == 4) { ?>
+                <?php $i = 0; ?>
+              </ul>
+              <ul>
+                <?php } ?>
+                <?php } ?>
+              </ul>
+            </div>
+            <div class="service-wrap">
+              <h2>adicionales</h2>
+              <ul>
+                <li>
+                  <a href="javascript:void(0);">
+                    Apto Crédito
+                    <span><?php echo $propiedad->apto_banco == 0 ? 'No' : 'Sí'; ?></span>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);">
+                    Permuta
+                    <span><?php echo $propiedad->acepta_permuta == 0 ? 'No' : 'Sí'; ?></span>
+                  </a>
+                </li>
+                <?php if ($propiedad->valor_expensas != 0) { ?>
+                  <li>
+                    <a href="javascript:void(0);">Expensas
+                      <span>$<?php echo $propiedad->valor_expensas; ?></span>
+                    </a>
+                  </li>
+                <?php } ?>
+              </ul>
+            </div>
+            <div class="service-wrap">
+              <h2>ubicación en mapa</h2>
+              <section class="map-location">
+                <div class="map mb-3">
+                  <div class="tab-cont" id="map"></div>
+                </div>
+              </section>
+            </div>
+            <?php if (!empty($propiedad->video)) { ?>
+              <div class="service-wrap" id="video">
+                <h2>video</h2>
+                <div class="video-wrap">
+                  <img src="<?php echo $propiedad->imagen; ?>" alt="<?php echo $propiedad->nombre; ?>"
+                    style="width:100%;">
+                  <a href="#0" data-bs-target="#exampleModalToggle" data-bs-toggle="modal"
+                    class="play-btn"><img src="assets/images/youtube-icon.png" alt="Youtube"></a>
+                </div>
+              </div>
+            <?php } ?>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="form-wrap form-wrap-two form-wrap-three">
+            <div class="section-title">
+              <h2>enviar consulta</h2>
+            </div>
+            <form id="sellContactForm">
+              <div class="form-group">
+                <input id="contacto_nombre" class="form-control" type="text" placeholder="Nombre *">
+              </div>
+              <div class="form-group">
+                <input id="contacto_email" class="form-control" type="email" placeholder="Email *">
+              </div>
+              <div class="form-group">
+                <input id="contacto_telefono" class="form-control" type="text"
+                  placeholder="WhatsApp (sin 0 ni 15) *">
+              </div>
+              <div class="form-group">
+                <textarea id="contacto_mensaje"
+                  placeholder="Estoy interesado en “<?php echo $propiedad->nombre; ?>”"
+                  class="form-control"></textarea>
+              </div>
+              <div class="btn-block">
+                <button type="submit" id="contacto_submit" class="btn">enviar email</button>
+                <?php if (!empty($contacto_whatsapp)) { ?>
+                  <a href="https://wa.me/<?php echo $contacto_whatsapp; ?>" target="_blank"
+                    class="btn btn-icon btn-green"><img src="assets/images/whatsapp2.png"
+                    alt="Whatsapp">enviar whatsapp
+                  </a>
+                <?php } ?>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <?php include 'includes/footer.php'; ?>
+
+  <?php if (!empty($propiedad->video)) { ?>
+    <div class=" modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+      tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <?php echo $propiedad->video; ?>
+        </div>
+      </div>
+    </div>
+  <? } ?>
+
+  <!-- Scripts -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="assets/js/owl.carousel.min.js"></script>
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWmUapFYTBXV3IJL9ggjT9Z1wppCER55g&callback=initMap"> -->
+  <?php include_once 'templates/comun/mapa_js.php'; ?>
+  
+  </script>
+  <!-- <script src="assets/js/fancybox.umd.js"></script> -->
+  <script src="assets/js/script.js"></script>
+  <!-- <script>
+  Fancybox.bind('[data-fancybox="gallery"]', {
+    //
+  });
+  </script> -->
+  <script>
+  $(document).ready(function() {
+    <?php if (!empty($propiedad->latitud) && !empty($propiedad->longitud)) { ?>
+
+    /* if ($("#map").length == 0) return; */
+    var mymap = L.map('map').setView([<?php echo $propiedad->latitud; ?>,
+      <?php echo $propiedad->longitud; ?>
+    ], 16);
+
+    L.tileLayer(
+      'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=<?php echo defined('MAPBOX_KEY') ? MAPBOX_KEY : ''; ?>', {
+        attribution: '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
+        tileSize: 512,
+        maxZoom: 18,
+        zoomOffset: -1,
+        id: 'mapbox/streets-v11',
+        accessToken: '<?php echo defined('MAPBOX_KEY') ? MAPBOX_KEY : ''; ?>',
+      }).addTo(mymap);
+
+
+    var icono = L.icon({
+      iconUrl: 'assets/images/map-place.png',
+      iconSize: [60, 60], // size of the icon
+      iconAnchor: [30, 30], // point of the icon which will correspond to marker's location
     });
-    </script>
-    <script>
-    const sellForm = document.querySelector('#sellContactForm');
-    sellForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        console.log(e)
-        const nombre = $("#contacto_nombre").val();
-        const email = $("#contacto_email").val();
-        const telefono = $("#contacto_telefono").val();
-        const mensaje = $("#contacto_mensaje").val();
 
-        const asunto = "<?php echo $propiedad->nombre; ?>";
-        // var tipo_propiedad = $("#contacto_tipo_propiedad option:selected").text();
-        // var dormitorios = $("#contacto_dormitorios").val();
-        // var banios = $("#contacto_banios").val();
-        // var localidad = $("#contacto_localidad").val();
+    L.marker([<?php echo $propiedad->latitud; ?>, <?php echo $propiedad->longitud; ?>], {
+      icon: icono
+    }).addTo(mymap);
 
-        if (isEmpty(nombre)) {
-            alert("Por favor ingrese un nombre");
-            $("#contacto_nombre").focus();
-            return false;
+    <?php } ?>
+  });
+  </script>
+  <script>
+  const sellForm = document.querySelector('#sellContactForm');
+  sellForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const nombre = $("#contacto_nombre").val();
+    const email = $("#contacto_email").val();
+    const telefono = $("#contacto_telefono").val();
+    const mensaje = $("#contacto_mensaje").val();
+
+    const asunto = "<?php echo $propiedad->nombre; ?>";
+    // var tipo_propiedad = $("#contacto_tipo_propiedad option:selected").text();
+    // var dormitorios = $("#contacto_dormitorios").val();
+    // var banios = $("#contacto_banios").val();
+    // var localidad = $("#contacto_localidad").val();
+
+    if (isEmpty(nombre)) {
+      alert("Por favor ingrese un nombre");
+      $("#contacto_nombre").focus();
+      return false;
+    }
+    if (!validateEmail(email)) {
+      alert("Por favor ingrese un email valido");
+      $("#contacto_email").focus();
+      return false;
+    }
+    if (isEmpty(telefono)) {
+      alert("Por favor ingrese un telefono");
+      $("#contacto_telefono").focus();
+      return false;
+    }
+    if (isEmpty(mensaje)) {
+      alert("Por favor ingrese un mensaje");
+      $("#contacto_mensaje").focus();
+      return false;
+    }
+    $("#contacto_submit").attr('disabled', 'disabled');
+    var datos = {
+      "para": "<?php echo $empresa->email; ?>",
+      "nombre": nombre,
+      "email": email,
+      "telefono": telefono,
+      "asunto": asunto,
+      "mensaje": mensaje,
+      "id_empresa": "<?php echo $empresa->id; ?>",
+      "id_origen": 1,
+    }
+    enviando = 1;
+    $.ajax({
+      "url": "/admin/consultas/function/enviar/",
+      "type": "post",
+      "dataType": "json",
+      "data": datos,
+      "success": function(r) {
+        console.log(r)
+        if (r.error == 0) {
+          alert(
+            "Muchas gracias por enviar tu consulta. Nos comunicaremos a la mayor brevedad posible."
+          );
+        } else {
+          alert("Ocurrio un error al enviar su email. Disculpe las molestias");
+          $("#contacto_submit").removeAttr('disabled');
         }
-        if (!validateEmail(email)) {
-            alert("Por favor ingrese un email valido");
-            $("#contacto_email").focus();
-            return false;
-        }
-        if (isEmpty(telefono)) {
-            alert("Por favor ingrese un telefono");
-            $("#contacto_telefono").focus();
-            return false;
-        }
-        if (isEmpty(mensaje)) {
-            alert("Por favor ingrese un mensaje");
-            $("#contacto_mensaje").focus();
-            return false;
-        }
-        $("#contacto_submit").attr('disabled', 'disabled');
-        var datos = {
-            "para": "<?php echo $empresa->email; ?>",
-            "nombre": nombre,
-            "email": email,
-            "telefono": telefono,
-            "asunto": asunto,
-            "mensaje": mensaje,
-            "id_empresa": "<?php echo $empresa->id; ?>",
-            "id_origen": 1,
-        }
-        enviando = 1;
-        $.ajax({
-            "url": "/admin/consultas/function/enviar/",
-            "type": "post",
-            "dataType": "json",
-            "data": datos,
-            "success": function(r) {
-                console.log(r)
-                if (r.error == 0) {
-                    alert(
-                        "Muchas gracias por enviar tu consulta. Nos comunicaremos a la mayor brevedad posible."
-                    );
-                } else {
-                    alert("Ocurrio un error al enviar su email. Disculpe las molestias");
-                    $("#contacto_submit").removeAttr('disabled');
-                }
-            }
-        });
-        return false;
-    })
-    </script>
+      }
+    });
+    return false;
+  })
+  </script>
 
 </body>
 
