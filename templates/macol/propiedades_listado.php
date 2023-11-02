@@ -32,6 +32,7 @@ if (!$vc_nombre_operacion) {
 
 <head>
     <?php $pageTitle = $vc_tipo_operacion;
+    $pageTitle = ($pageTitle == "Ventas") ? "Comprar" : $pageTitle;
     include 'includes/head.php'; ?>
 </head>
 

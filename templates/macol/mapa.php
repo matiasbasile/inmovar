@@ -8,7 +8,9 @@ $nombre_pagina = $vc_link_tipo_operacion;
 <!DOCTYPE html>
 <html dir="ltr" lang="es">
 <head>
-<?php include 'includes/head.php'; ?>
+    <?php $pageTitle = $vc_tipo_operacion;
+    $pageTitle = ($pageTitle == "Ventas") ? "Comprar" : $pageTitle;
+    include 'includes/head.php'; ?>
 </head>
 <body class="bg-gray">
 
