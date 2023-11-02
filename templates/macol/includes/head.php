@@ -1,10 +1,4 @@
 <?php include 'templates/comun/pre_head.php'; ?>
-<meta charset="UTF-8">
-<meta name="description" content="Macol Listado">
-<meta name="keywords" content="Macol Listado">
-<meta name="author" content="Macol Listado">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>Macol Listado - <?php echo $pageTitle; ?></title>
 <!-- Plugins CSS -->
 <link rel="stylesheet" type="text/css" href="assets/css/owl.carousel.min.css">
 <!-- External CSS -->
