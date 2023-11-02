@@ -25,20 +25,24 @@
                 </h2>
                 <div class="communication">
                     <ul>
-                        <li><a href="#0" class="pe-none">
+                        <li><a href="javascript:void(0)" class="pe-none">
                                 <?php echo $empresa->direccion; ?>
                             </a></li>
                     </ul>
                     <ul>
-                        <li><a href="tel:<?php echo $empresa->telefono; ?>"><?php echo $empresa->telefono; ?></a></li>
+                        <li><a href="tel:<?php echo $empresa->telefono_num ?>"><?php echo $empresa->telefono ?></a></li>
                         <li><a href="mailto:<?php echo $empresa->email; ?>"><?php echo $empresa->email; ?></a></li>
                     </ul>
                     <div class="socials">
                         <ul>
-                            <li><a href="https://instagram.com/<?php echo $empresa->instagram; ?>/"><img
+                            <?php if (!empty($empresa->instagram)) { ?>
+                                <li><a target="_blank" href="<?php echo $empresa->instagram; ?>"><img
                                         src="assets/images/insta.png" alt="Instagram"></a></li>
-                            <li><a href="https://www.facebook.com/<?php echo $empresa->facebook; ?>/"><img
+                            <?php } ?>
+                            <?php if (!empty($empresa->facebook)) { ?>
+                                <li><a target="_blank" href="<?php echo $empresa->facebook; ?>"><img
                                         src="assets/images/facebook.png" alt="Facebook"></a></li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>
