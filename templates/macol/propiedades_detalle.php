@@ -133,6 +133,133 @@ if ($propiedad->servicios_internet == 1) $servicios[] = "WiFi";
     </section>
   <?php } ?>
 
+  
+
+  <!-- Footer -->
+  <?php include 'includes/footer.php'; ?>
+
+  <?php if (!empty($propiedad->video)) { ?>
+    <div class=" modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+      tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <?php echo $propiedad->video; ?>
+        </div>
+      </div>
+    </div>
+  <? } ?>
+
+  <!-- Scripts -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="assets/js/owl.carousel.min.js"></script>
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWmUapFYTBXV3IJL9ggjT9Z1wppCER55g&callback=initMap"> -->
+  <?php include_once 'templates/comun/mapa_js.php'; ?>
+
+  </script>
+  <!-- <script src="assets/js/fancybox.umd.js"></script> -->
+  <script src="assets/js/script.js"></script>
+  <!-- <script>
+  Fancybox.bind('[data-fancybox="gallery"]', {
+    //
+  });
+  </script> -->
+  <script>
+  $(document).ready(function() {
+    <?php if (!empty($propiedad->latitud) && !empty($propiedad->longitud)) { ?>
+
+      /* if ($("#map").length == 0) return; */
+      var mymap = L.map('map').setView([<?php echo $propiedad->latitud; ?>,<?php echo $propiedad->longitud; ?>], 16);
+
+      L.tileLayer(
+        'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=<?php echo defined('MAPBOX_KEY') ? MAPBOX_KEY : ''; ?>', {
+          attribution: '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
+          tileSize: 512,
+          maxZoom: 18,
+          zoomOffset: -1,
+          id: 'mapbox/streets-v11',
+          accessToken: '<?php echo defined('MAPBOX_KEY') ? MAPBOX_KEY : ''; ?>',
+        }).addTo(mymap);
+
+
+      var icono = L.icon({
+        iconUrl: 'assets/images/map-place.png',
+        iconSize: [60, 60], // size of the icon
+        iconAnchor: [30, 30], // point of the icon which will correspond to marker's location
+      });
+
+      L.marker([<?php echo $propiedad->latitud; ?>, <?php echo $propiedad->longitud; ?>], {
+        icon: icono
+      }).addTo(mymap);
+
+    <?php } ?>
+  });
+  </script>
+  <script>
+  const sellForm = document.querySelector('#sellContactForm');
+  sellForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const nombre = $("#contacto_nombre").val();
+    const email = $("#contacto_email").val();
+    const telefono = $("#contacto_telefono").val();
+    const mensaje = $("#contacto_mensaje").val();
+
+    const asunto = "<?php echo $propiedad->nombre; ?>";
+    // var tipo_propiedad = $("#contacto_tipo_propiedad option:selected").text();
+    // var dormitorios = $("#contacto_dormitorios").val();
+    // var banios = $("#contacto_banios").val();
+    // var localidad = $("#contacto_localidad").val();
+
+    if (isEmpty(nombre)) {
+      alert("Por favor ingrese un nombre");
+      $("#contacto_nombre").focus();
+      return false;
+    }
+    if (!validateEmail(email)) {
+      alert("Por favor ingrese un email valido");
+      $("#contacto_email").focus();
+      return false;
+    }
+    if (isEmpty(telefono)) {
+      alert("Por favor ingrese un telefono");
+      $("#contacto_telefono").focus();
+      return false;
+    }
+    if (isEmpty(mensaje)) {
+      alert("Por favor ingrese un mensaje");
+      $("#contacto_mensaje").focus();
+      return false;
+    }
+    $("#contacto_submit").attr('disabled', 'disabled');
+    var datos = {
+      "para": "<?php echo $empresa->email; ?>",
+      "nombre": nombre,
+      "email": email,
+      "telefono": telefono,
+      "asunto": asunto,
+      "mensaje": mensaje,
+      "id_empresa": "<?php echo $empresa->id; ?>",
+      "id_origen": 1,
+    }
+    enviando = 1;
+    $.ajax({
+      "url": "/admin/consultas/function/enviar/",
+      "type": "post",
+      "dataType": "json",
+      "data": datos,
+      "success": function(r) {
+        console.log(r)
+        if (r.error == 0) {
+          alert("Muchas gracias por enviar tu consulta. Nos comunicaremos a la mayor brevedad posible.");
+        } else {
+          alert("Ocurrio un error al enviar su email. Disculpe las molestias");
+          $("#contacto_submit").removeAttr('disabled');
+        }
+      }
+    });
+    return false;
+  })
+  </script>
 
 </body>
 
