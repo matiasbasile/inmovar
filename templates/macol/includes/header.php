@@ -14,7 +14,7 @@
             </ul>
             <div class="socials">
                 <a href="https://wa.me/<?php echo $empresa->telefono_num; ?>"
-                    class="btn btn-left-icon"><?php echo $empresa->telefono_num; ?></a>
+                    class="btn btn-left-icon"><?php echo $empresa->telefono; ?></a>
                 <ul>
                     <?php if (!empty($empresa->instagram)) { ?>
                         <li><a target="_blank" href="<?php echo $empresa->instagram ?>/"><img
