@@ -163,7 +163,8 @@ function mklink($url) {
   $d = $dominio;
   if (substr($d,-1) !== "/") $d.="/"; // Si no termina con /, se la agregamos
   $d = (strpos($d, "http://") !== FALSE) ? $d : "http://".$d; // Siempre le agregamos el http://
-  if ((isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on") || (isset($_SERVER["HTTP_X_FORWARDED_PROTO"]) && strtolower($_SERVER["HTTP_X_FORWARDED_PROTO"]) == "https")) { $d = str_replace("http://", "https://", $d); }
+  //if ((isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on") || (isset($_SERVER["HTTP_X_FORWARDED_PROTO"]) && strtolower($_SERVER["HTTP_X_FORWARDED_PROTO"]) == "https")) { ; }
+  $d = str_replace("http://", "https://", $d);
   return $d.(($url !== "/")?$url:"");
 }
 
