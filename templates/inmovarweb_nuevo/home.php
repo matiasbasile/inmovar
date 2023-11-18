@@ -295,7 +295,7 @@
 					<div class="col-lg-4 light-blue">
 						<h5>Inmobiliaria</h5>
 						<!-- <div class="tag">20% OFF por 3 meses!</div> -->
-						<span>$ <b>16999</b>/mes</span>
+						<span>$ <b>19999</b>/mes</span>
 						<!-- <strike>$<b>6999</b>/mes</strike> -->
 						<small>15 días de prueba gratis</small>
 						<h6>Incluye</h6>
