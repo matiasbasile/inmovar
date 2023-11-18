@@ -260,10 +260,10 @@
                   <% if (plan.precio_sin_dto != 0) { %>
                     $<strike><%= Number(plan.precio_sin_dto).format(0) %></strike>
                   <% } %>
-                  -->
                   <div class="tac fs18">
                     <span>Difundí tus propiedades ahora</span>
                   </div>
+                  -->
                 </div>
               </div>
               <%= plan.observaciones %>
