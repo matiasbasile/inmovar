@@ -296,6 +296,7 @@
                   <% } %>
                   -->
                 </div>
+                <!--
                 <div class="tac fs18">
                   <% if (plan.precio_anual == 0) { %>
                     <span style="color:#0dd384">15 días de prueba gratis</span>
@@ -303,6 +304,7 @@
                     <span style="color:#0dd384">15 días de prueba gratis<br>Válido solo para cuentas nuevas</span>
                   <% } %>
                 </div>
+                -->
               </div>
               <%= plan.observaciones %>
               <div class="panel-footer text-center">
