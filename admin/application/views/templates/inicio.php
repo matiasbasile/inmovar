@@ -308,7 +308,7 @@
               </div>
               <%= plan.observaciones %>
               <div class="panel-footer text-center">
-                <a href="https://wa.me/5492215021999" class="btn btn-success m">CONTRATAR</a>
+                <a href="https://wa.me/5492215021999" target="_blank" class="btn btn-success m">CONTRATAR</a>
               </div>
             </div>
           <% } %>
