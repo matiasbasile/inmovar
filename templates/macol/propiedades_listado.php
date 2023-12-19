@@ -91,9 +91,9 @@ if (!$vc_nombre_operacion) {
             <?php for($i=0;$i<$vc_total_paginas;$i++) { ?>
               <?php if (abs($vc_page-$i)<3) { ?>
                 <?php if ($i == $vc_page) { ?>
-                  <li class="page-item active"><a><?php echo $i+1 ?></a></li>
+                  <li class="page-item active"><a href="javascript:void(0)" rel="nofollow" class="page-link"><?php echo $i+1 ?></a></li>
                 <?php } else { ?>
-                  <li class="page-item"><a href="<?php echo mklink ($vc_link.$i."/".$vc_params ) ?>"><?php echo $i+1 ?></a></li>
+                  <li class="page-item"><a class="page-link" href="<?php echo mklink ($vc_link.$i."/".$vc_params ) ?>"><?php echo $i+1 ?></a></li>
                 <?php } ?>
               <?php } ?>
             <?php } ?>
