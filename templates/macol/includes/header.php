@@ -1,10 +1,10 @@
 <header class="<?php echo (isset($header_clase) ? $header_clase : "header") ?>">
     <div class="container">
         <a href="<?php echo mklink("/") ?>" class="logo">
-            <?php if ($header_clase == "header") { ?>
-                <img src="assets/images/logo-black.png" alt="Logo">
-            <?php } else { ?>
+            <?php if (isset($header_clase)) { ?>
                 <img src="assets/images/logo.png" alt="Logo">
+            <?php } else { ?>
+                <img src="assets/images/logo-black.png" alt="Logo">
             <?php } ?>
         </a>
         <a href="javascript:void(0);" class="toggle-menu">
