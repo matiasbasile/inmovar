@@ -145,57 +145,61 @@ if ($propiedad->servicios_internet == 1) $servicios[] = "WiFi";
               <?php } ?>
               <span>Código: <span class="p"><?php echo $propiedad->codigo; ?></span></span>
             </div>
-            <div class="service-wrap">
-              <h2>servicios</h2>
-              <ul>
-                <?php foreach ($servicios as $v) { ?>
-                  <li>
-                    <img src="assets/images/check.png" alt="Check">
-                    <a href="javascript:void(0);"><?php echo $v ?></a>
-                  </li>
-                <?php } ?>
-              </ul>
-            </div>
+            <?php if (sizeof($servicios)>0) { ?>
+              <div class="service-wrap">
+                <h2>servicios</h2>
+                <ul>
+                  <?php foreach ($servicios as $v) { ?>
+                    <li>
+                      <img src="assets/images/check.png" alt="Check">
+                      <a href="javascript:void(0);"><?php echo $v ?></a>
+                    </li>
+                  <?php } ?>
+                </ul>
+              </div>
+            <?php } ?>
             <div class="service-wrap">
               <h2>superficies</h2>
               <ul>
                 <li>
                   <p href="javascript:void(0);">
-                    Cubierta
-                    <span><?php echo ($propiedad->superficie_cubierta != 0) ? $propiedad->superficie_cubierta : ' '; ?></span>
+                    Cubierta:
+                    <span><?php echo ($propiedad->superficie_cubierta != 0) ? $propiedad->superficie_cubierta : '-'; ?></span>
                   </p>
                 </li>
                 <li>
                   <p href="javascript:void(0);">
-                    Descubierta
-                    <span><?php echo ($propiedad->superficie_descubierta != 0) ? $propiedad->superficie_descubierta : ' '; ?></span>
+                    Descubierta:
+                    <span><?php echo ($propiedad->superficie_descubierta != 0) ? $propiedad->superficie_descubierta : '-'; ?></span>
                   </p>
                 </li>
                 <li>
                   <p href="javascript:void(0);">
-                    Semicubierta
-                    <span><?php echo ($propiedad->superficie_semicubierta != 0) ? $propiedad->superficie_semicubierta : ' '; ?></span>
+                    Semicubierta:
+                    <span><?php echo ($propiedad->superficie_semicubierta != 0) ? $propiedad->superficie_semicubierta : '-'; ?></span>
                   </p>
                 </li>
                 <li>
                   <p href="javascript:void(0);">
-                    Total
-                    <span><?php echo ($propiedad->superficie_total != 0) ? $propiedad->superficie_total : ' '; ?></span>
+                    Total:
+                    <span><?php echo ($propiedad->superficie_total != 0) ? $propiedad->superficie_total : '-'; ?></span>
                   </p>
                 </li>
               </ul>
             </div>
-            <div class="service-wrap">
-              <h2>ambientes</h2>
-              <ul>
-                <?php foreach ($ambientes as $v) { ?>
-                  <li>
-                    <img src="assets/images/check.png" alt="Check">
-                    <a href="javascript:void(0);"><?php echo $v ?></a>
-                  </li>
-                <?php } ?>
-              </ul>
-            </div>
+            <?php if (sizeof($ambientes)>0) { ?>
+              <div class="service-wrap">
+                <h2>ambientes</h2>
+                <ul>
+                  <?php foreach ($ambientes as $v) { ?>
+                    <li>
+                      <img src="assets/images/check.png" alt="Check">
+                      <a href="javascript:void(0);"><?php echo $v ?></a>
+                    </li>
+                  <?php } ?>
+                </ul>
+              </div>
+            <?php } ?>
             <div class="service-wrap">
               <h2>adicionales</h2>
               <ul>
