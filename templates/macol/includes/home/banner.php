@@ -1,3 +1,9 @@
+<?php
+// VALORES POR DEFECTO
+$vc_id_tipo_inmueble = 2;
+$vc_id_tipo_operacion = 1;
+$vc_link_localidad = 'la-plata';
+?>
 <section class="banner">
     <div class="owl-carousel" data-items="1" data-items-xl="1" data-items-lg="1" data-items-md="1" data-items-sm="1"
         data-margin="0" data-nav="false" data-dots="true">
@@ -29,7 +35,7 @@
                             <option value="">Localidad</option>
                             <?php $localidades = $propiedad_model->get_localidades(); ?>
                             <?php foreach ($localidades as $localidad) { ?>
-                            <option value="<?php echo $localidad->link; ?>"><?php echo $localidad->nombre; ?></option>
+                                <option <?php echo ($localidad->link == $vc_link_localidad) ? 'selected' : ''; ?> value="<?php echo $localidad->link; ?>"><?php echo $localidad->nombre; ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -38,7 +44,7 @@
                             <option value="">Tipo de Operación</option>
                             <?php $tipo_operaciones = $propiedad_model->get_tipos_operaciones(); ?>
                             <?php foreach ($tipo_operaciones as $tipo) { ?>
-                            <option value="<?php echo $tipo->link; ?>"><?php echo $tipo->nombre; ?></option>
+                                <option <?php echo ($vc_id_tipo_operacion == $tipo->id) ? 'selected' : ''; ?> value="<?php echo $tipo->link; ?>"><?php echo $tipo->nombre; ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -47,7 +53,7 @@
                             <option value="">Tipo de Propiedad</option>
                             <?php $tipo_propiedades = $propiedad_model->get_tipos_propiedades(); ?>
                             <?php foreach ($tipo_propiedades as $tipo) { ?>
-                            <option value="<?php echo $tipo->id; ?>"><?php echo $tipo->nombre; ?></option>
+                            <option <?php echo ($vc_id_tipo_inmueble == $tipo->id) ? 'selected' : ''; ?> value="<?php echo $tipo->id; ?>"><?php echo $tipo->nombre; ?></option>
                             <?php } ?>
                         </select>
                     </div>
