@@ -32,7 +32,7 @@
 
   <div class="footer-center padding-default">
     <div class="container">
-      <img src="assets/images/logo-footer.png" alt="img">
+      <img src="assets/images/logo-footer.png" class="logo-footer" alt="img">
       <p class="mt-4">Bertoia Col. 7342 <span>|</span> Piñero Col. 7346</p>
       <div class="social">
         <?php if (!empty($empresa->facebook)) { ?>
