@@ -1,7 +1,7 @@
 <header class="<?php echo (isset($nombre_pagina) && $nombre_pagina == "home") ? "sticky-header" : "" ?>">
   <div class="container style-two">
     <nav class="navbar navbar-expand-lg">
-      <a class="navbar-brand" href="<?php echo mklink("/"); ?> "><img src="assets/images/logo.png" alt="Grupo Urbano"></a>
+      <a class="navbar-brand" href="<?php echo mklink("/"); ?> "><img src="assets/images/logo-header.png" alt="Grupo Urbano"></a>
       <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
