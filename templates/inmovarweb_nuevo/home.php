@@ -259,57 +259,75 @@
 			</div>*/ ?>
 			<div class="membership-box">
 				<div class="row">
-					<div class="col-lg-4">
-						<h5>Red Inmovar</h5>
-						<div class="tag">Difundí todas tus propiedades!</div>
-						<span>$ <b>4999</b>/mes</span>
-						<small>Más de 10.000 propiedades</small>
-						<small>Más de 100 inmobiliarias</small>
-						<h6>Incluye</h6>
-						<ul class="bullet-list">
-							<li>Acceso a la <small>Red Inmovar</small></li>
-							<li>API para Integrar Propiedades</li>
-							<li>Gestión Consultas (CRM)</li>
-							<li>Difusión en Portales</li>
-							<li>Soporte</li>
-						</ul>
-						<a class="btn btn-tile" href="https://app.inmovar.com/admin/login/registro/" target="_blank">Prueba gratis 15 dias</a>
-					</div>
-					<div class="col-lg-4 blue">
-						<h5>Martillero</h5>
-						<!-- <div class="tag">20% OFF por 3 meses!</div> -->
-						<span>$ <b>9999</b>/mes</span>
-						<!-- <strike>$<b>3499</b>/mes</strike> -->
-						<small>15 días de prueba gratis</small>
-						<h6>Incluye</h6>
-						<ul class="bullet-list">
-							<li>Web Propia hasta <small>50 Propiedades</small></li>
-							<li>Acceso a la <small>Red Inmovar</small></li>
-							<li>API para Integrar Propiedades</li>
-							<li>Gestión de Consultas (CRM)</li>
-							<li>Difusión en Portales</li>
-							<li>Soporte</li>
-						</ul>
-						<a class="btn btn-blue" href="https://app.inmovar.com/admin/login/registro/" target="_blank">prueba gratis 15 días</a>
-					</div>
-					<div class="col-lg-4 light-blue">
-						<h5>Inmobiliaria</h5>
-						<!-- <div class="tag">20% OFF por 3 meses!</div> -->
-						<span>$ <b>19999</b>/mes</span>
-						<!-- <strike>$<b>6999</b>/mes</strike> -->
-						<small>15 días de prueba gratis</small>
-						<h6>Incluye</h6>
-						<ul class="bullet-list">
-							<li>Web Propia hasta <small>250 propiedades</small></li>
-							<li>Acceso a la <small>Red Inmovar</small></li>
-							<li>API para Integrar Propiedades</li>
-							<li>Gestión de Consultas (CRM)</li>
-							<li>Difusión en Portales</li>
-							<li>Sistema de Alquileres (demo)</li>
-							<li>Soporte</li>
-						</ul>
-						<a class="btn btn-tile" href="https://app.inmovar.com/admin/login/registro/" target="_blank">prueba gratis 15 días</a>
-					</div>
+
+					<?php 
+					$q = mysqli_query($conx,"SELECT * FROM planes WHERE id = 1 ");
+					if (mysqli_num_rows($q)>0) {
+						$plan = mysqli_fetch_object($q); ?>
+						<div class="col-lg-4">
+							<h5>Red Inmovar</h5>
+							<div class="tag">Difundí todas tus propiedades!</div>
+							<span>$ <b><?php echo $plan->precio_anual ?></b>/mes</span>
+							<small>Más de 10.000 propiedades</small>
+							<small>Más de 100 inmobiliarias</small>
+							<h6>Incluye</h6>
+							<ul class="bullet-list">
+								<li>Acceso a la <small>Red Inmovar</small></li>
+								<li>API para Integrar Propiedades</li>
+								<li>Gestión Consultas (CRM)</li>
+								<li>Difusión en Portales</li>
+								<li>Soporte</li>
+							</ul>
+							<a class="btn btn-tile" href="https://app.inmovar.com/admin/login/registro/" target="_blank">Prueba gratis 15 dias</a>
+						</div>
+					<?php } ?>
+					
+					<?php 
+					$q = mysqli_query($conx,"SELECT * FROM planes WHERE id = 2 ");
+					if (mysqli_num_rows($q)>0) {
+						$plan = mysqli_fetch_object($q); ?>					
+						<div class="col-lg-4 blue">
+							<h5>Martillero</h5>
+							<!-- <div class="tag">20% OFF por 3 meses!</div> -->
+							<span>$ <b>9999</b>/mes</span>
+							<!-- <strike>$<b>3499</b>/mes</strike> -->
+							<small>15 días de prueba gratis</small>
+							<h6>Incluye</h6>
+							<ul class="bullet-list">
+								<li>Web Propia hasta <small>50 Propiedades</small></li>
+								<li>Acceso a la <small>Red Inmovar</small></li>
+								<li>API para Integrar Propiedades</li>
+								<li>Gestión de Consultas (CRM)</li>
+								<li>Difusión en Portales</li>
+								<li>Soporte</li>
+							</ul>
+							<a class="btn btn-blue" href="https://app.inmovar.com/admin/login/registro/" target="_blank">prueba gratis 15 días</a>
+						</div>
+					<?php } ?>
+
+					<?php 
+					$q = mysqli_query($conx,"SELECT * FROM planes WHERE id = 3 ");
+					if (mysqli_num_rows($q)>0) {
+						$plan = mysqli_fetch_object($q); ?>					
+						<div class="col-lg-4 light-blue">
+							<h5>Inmobiliaria</h5>
+							<!-- <div class="tag">20% OFF por 3 meses!</div> -->
+							<span>$ <b>19999</b>/mes</span>
+							<!-- <strike>$<b>6999</b>/mes</strike> -->
+							<small>15 días de prueba gratis</small>
+							<h6>Incluye</h6>
+							<ul class="bullet-list">
+								<li>Web Propia hasta <small>250 propiedades</small></li>
+								<li>Acceso a la <small>Red Inmovar</small></li>
+								<li>API para Integrar Propiedades</li>
+								<li>Gestión de Consultas (CRM)</li>
+								<li>Difusión en Portales</li>
+								<li>Sistema de Alquileres (demo)</li>
+								<li>Soporte</li>
+							</ul>
+							<a class="btn btn-tile" href="https://app.inmovar.com/admin/login/registro/" target="_blank">prueba gratis 15 días</a>
+						</div>
+					<?php } ?>
 				</div>
 			</div>
 		</div>
