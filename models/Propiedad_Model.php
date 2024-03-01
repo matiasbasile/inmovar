@@ -1358,9 +1358,9 @@ class Propiedad_Model {
       $sql.= "ORDER BY $order_by_empresa $order_by ";
     } else {
       if ($order == 1) {
-        $sql.= 'ORDER BY '.$order_by_empresa.' IF(A.moneda = "U$S",A.precio_final * '.$cotizacion.', A.precio_final) DESC ';
+        $sql.= 'ORDER BY A.destacado DESC, '.$order_by_empresa.' IF(A.moneda = "U$S",A.precio_final * '.$cotizacion.', A.precio_final) DESC ';
       } else if ($order == 2) {
-        $sql.= 'ORDER BY '.$order_by_empresa.' IF(A.moneda = "U$S",A.precio_final * '.$cotizacion.', A.precio_final) ASC ';
+        $sql.= 'ORDER BY A.destacado DESC, '.$order_by_empresa.' IF(A.moneda = "U$S",A.precio_final * '.$cotizacion.', A.precio_final) ASC ';
       } else if ($order == 3) {
         $sql.= "ORDER BY $order_by_empresa RAND() ASC ";
       } else if ($order == 4) {
