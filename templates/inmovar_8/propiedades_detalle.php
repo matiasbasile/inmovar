@@ -64,8 +64,11 @@ if (!empty($propiedad->imagen)) $propiedad->images = array_merge(array($propieda
 
     .info_content_texto ul {
       margin-left: 30px;
+      margin-top: 15px;
+      margin-bottom: 15px;
     }
     .info_content_texto ul li {
+      width: 100%;
       display: list-item;
       color: #818181;
       font-size: 15px;
