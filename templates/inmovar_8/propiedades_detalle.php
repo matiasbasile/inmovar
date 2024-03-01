@@ -62,6 +62,19 @@ if (!empty($propiedad->imagen)) $propiedad->images = array_merge(array($propieda
       list-style: none;
     }
 
+    .info_content_texto ul {
+      margin-left: 30px;
+    }
+    .info_content_texto ul li {
+      display: list-item;
+      color: #818181;
+      font-size: 15px;
+      line-height: 26px;
+      font-weight: 300;
+      padding-left: 10px;
+      list-style-type: disc !important;      
+    }
+
     @media screen and (max-width: 767px) {
 
       html{
@@ -245,7 +258,7 @@ if (!empty($propiedad->imagen)) $propiedad->images = array_merge(array($propieda
 
               <div class="info_content">
                 <h4 class="heading_info marg_heading">Informacion general</h4>
-                <p><?php echo $propiedad->texto ?></p>
+                <div class="info_content_texto"><?php echo $propiedad->texto ?></div>
               </div>
               <hr>
               <div class="info_content">
