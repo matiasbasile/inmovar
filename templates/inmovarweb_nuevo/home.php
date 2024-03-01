@@ -267,7 +267,7 @@
 						<div class="col-lg-4">
 							<h5>Red Inmovar</h5>
 							<div class="tag">Difundí todas tus propiedades!</div>
-							<span>$ <b><?php echo $plan->precio_anual ?></b>/mes</span>
+							<span>$ <b><?php echo round($plan->precio_anual,0) ?></b>/mes</span>
 							<small>Más de 10.000 propiedades</small>
 							<small>Más de 100 inmobiliarias</small>
 							<h6>Incluye</h6>
@@ -281,7 +281,7 @@
 							<a class="btn btn-tile" href="https://app.inmovar.com/admin/login/registro/" target="_blank">Prueba gratis 15 dias</a>
 						</div>
 					<?php } ?>
-					
+
 					<?php 
 					$q = mysqli_query($conx,"SELECT * FROM planes WHERE id = 2 ");
 					if (mysqli_num_rows($q)>0) {
@@ -289,7 +289,7 @@
 						<div class="col-lg-4 blue">
 							<h5>Martillero</h5>
 							<!-- <div class="tag">20% OFF por 3 meses!</div> -->
-							<span>$ <b>9999</b>/mes</span>
+							<span>$ <b><?php echo round($plan->precio_anual,0) ?></b>/mes</span>
 							<!-- <strike>$<b>3499</b>/mes</strike> -->
 							<small>15 días de prueba gratis</small>
 							<h6>Incluye</h6>
@@ -312,7 +312,7 @@
 						<div class="col-lg-4 light-blue">
 							<h5>Inmobiliaria</h5>
 							<!-- <div class="tag">20% OFF por 3 meses!</div> -->
-							<span>$ <b>19999</b>/mes</span>
+							<span>$ <b><?php echo round($plan->precio_anual,0) ?></b>/mes</span>
 							<!-- <strike>$<b>6999</b>/mes</strike> -->
 							<small>15 días de prueba gratis</small>
 							<h6>Incluye</h6>
