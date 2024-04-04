@@ -5,9 +5,6 @@ require APPPATH.'libraries/REST_Controller.php';
 class Consultas extends REST_Controller {
 
   function __construct() {
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
     parent::__construct();
     $this->load->model('Consulta_Model', 'modelo');
   }
@@ -121,9 +118,6 @@ class Consultas extends REST_Controller {
   // - Procesa todos los correos no leidos y los transforma a consultas
   function procesar() {
 
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
     date_default_timezone_set("America/Argentina/Buenos_Aires");
     set_time_limit(0);    
 
