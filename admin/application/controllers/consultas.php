@@ -398,9 +398,6 @@ class Consultas extends REST_Controller {
   function enviar() {
 
     header('Access-Control-Allow-Origin: *');
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
     $this->load->model("Cliente_Model");
     $this->load->model("Email_Template_Model");
 
