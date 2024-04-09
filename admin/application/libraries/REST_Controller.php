@@ -412,10 +412,6 @@ class REST_Controller extends CI_Controller {
 
   function thumbnails($config = array()) {
 
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);    
-
     $updir = isset($config["dir"]) ? $config["dir"] : "uploads";
     $tipo_redimension = isset($config["tipo_redimension"]) ? $config["tipo_redimension"] : 1;
     $img = isset($config["filename"]) ? $config["filename"] : "";
