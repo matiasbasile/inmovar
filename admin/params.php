@@ -17,7 +17,7 @@ if (!defined("LOGO_LOGIN")) { DEFINE ("LOGO_LOGIN",(isset($_SERVER["LOGO_LOGIN"]
 if (!defined("CSS_LOGIN")) { DEFINE ("CSS_LOGIN",(isset($_SERVER["CSS_LOGIN"]) ? $_SERVER["CSS_LOGIN"] : "")); }
 
 // Clave general para los mapas
-include_once("sistema/application/helpers/mapbox_helper.php");
+include_once("admin/application/helpers/mapbox_helper.php");
 if (!defined("MAPBOX_KEY")) { DEFINE ("MAPBOX_KEY",(isset($_SERVER["MAPBOX_KEY"]) ? $_SERVER["MAPBOX_KEY"] : get_mapbox_key())); } 
 
 if (!function_exists("get_conex")) {
