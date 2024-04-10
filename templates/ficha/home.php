@@ -2,19 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <?php include("includes/head.php"); ?>
-<meta property="og:url" content="<?php echo current_url(); ?>" />
-<meta property="og:type" content="article" />
-<meta property="og:title" content="<?php echo ($propiedad->nombre); ?>" />
-<?php $og_desc = strip_tags(html_entity_decode($propiedad->texto,ENT_QUOTES));
-$og_desc = str_replace("\n","",$og_desc);
-$og_desc = str_replace("\"","",$og_desc);
-$og_desc = (strlen($og_desc)>180) ? substr($og_desc, 0, 180)."..." : $og_desc; ?>
-<meta property="og:description" content="<?php echo $og_desc ?>" />
-<?php if (!empty($propiedad->path)) { ?>
-<meta property="og:image" content="<?php echo current_url(TRUE); ?><?php echo (!empty($propiedad->images[0]))?$propiedad->images[0]:$propiedad->path; ?>"/>
-<meta property="og:image:width" content="800">
-<meta property="og:image:height" content="600">
-<?php } ?>
+<?php include "templates/comun/og.php" ?>
 </head>
 <body class="bgcolorA">
   <div id="big_slides_container" style="display:none;">
