@@ -243,10 +243,15 @@
             </ul>
           </div>
         <?php } ?>
-
-
-
       </div>
+
+      <?php if ($empresa->id == 1718 && $propiedad->id_tipo_operacion == 2) { ?>
+        <section id="ficha_mapa" class="card">
+          <div class="titulo2">Requisitos de Alquiler</div>
+          <?php $entrada = $entrada_model->get(67950);
+          echo $entrada->texto ?>
+        </section>
+      <?php } ?>
 
       <section id="ficha_mapa" class="card">
         <div class="titulo2">Ubicación</div>
