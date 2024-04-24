@@ -113,7 +113,7 @@
           </div>
         </div>
       </div>
-      <div id="ficha_desc">
+      <div class="ficha_desc">
         <section id="ficha_informacion_basica" class="card">
           <div class="titulo2">Información básica</div>
           <ul class="ficha_ul" id="lista_informacion_basica">
@@ -246,7 +246,7 @@
       </div>
 
       <?php if ($empresa->id == 1718 && $propiedad->id_tipo_operacion == 2) { ?>
-        <section id="ficha_mapa" class="card">
+        <section class="ficha_desc card">
           <div class="titulo2">Requisitos de Alquiler</div>
           <?php $entrada = $entrada_model->get(67950);
           echo $entrada->texto ?>

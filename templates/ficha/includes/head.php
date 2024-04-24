@@ -82,7 +82,7 @@ $keywords = str_replace("\n", " ", $keywords);
 
 <link href='assets/fonts/openSans.css' rel='stylesheet' type='text/css'>
 <link href="assets/css/orlando_formulario.css" media="all" type="text/css" rel="stylesheet"/>
-<link href='assets/css/style.css' rel='stylesheet' type='text/css'>
+<link href='assets/css/style.css?v=1' rel='stylesheet' type='text/css'>
 <link href="assets/css/jquery-bxslider.css" rel="stylesheet" />
 <link href="https://static.tokkobroker.com/static/css/jquery-ui-1.11.14.css?20210623013909" />
 <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.css" />
