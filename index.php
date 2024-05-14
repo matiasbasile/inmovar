@@ -245,6 +245,9 @@ if (strpos($url,"robots.txt") !== FALSE) {
   if (empty($empresa->seo_robots)) {
     header('Content-Type: text/plain; charset=UTF-8');
     echo "User-agent: *\n";
+    echo "Disallow: /\n";
+    echo "User-agent: Googlebot\n";
+    echo "Allow: /\n";
     echo "Disallow: /admin/\n";
     echo "Disallow: /admin/*\n";
     echo "Disallow: /compra-ok/\n";
@@ -257,6 +260,7 @@ if (strpos($url,"robots.txt") !== FALSE) {
     echo "Disallow: /favoritos/*\n";
     echo "Disallow: /cart/\n";
     echo "Disallow: /cart/*\n";
+    echo "User-agent: *\n";
     echo "Sitemap: ".current_url(TRUE,TRUE)."/sitemap.xml\n";
   } else echo $empresa->seo_robots;
   ob_end_flush();
