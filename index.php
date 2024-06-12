@@ -216,6 +216,9 @@ if ( (!(strpos($dominio, "app.inmovar") === FALSE) || !(strpos($dominio, "sandbo
 
   // Controlamos si tiene configurado un dominio principal
   if (!empty($empresa->dominio_ppal) && $empresa->dominio_ppal != $dominio) {
+    if (isset($get_params["test"])) {
+      echo "ANDA"; exit();
+    }
     // Redireccionamos
     $actual = $_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI'];
     $nueva = str_replace($_SERVER["HTTP_HOST"], $empresa->dominio_ppal, $actual);
