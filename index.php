@@ -290,11 +290,6 @@ if ( $nombre_pagina == "ficha") {
 
   $dir_template = "templates/$empresa->template_path/";
 
-  if (isset($get_params["test"])) {
-    echo $dir_template;
-    exit();
-  }
-
   // Controlamos a que pagina desea ir
   if ($nombre_pagina == "index" || $nombre_pagina == "/" || empty($nombre_pagina) || strpos($nombre_pagina,"?") === 0) {
     if (file_exists($dir_template.$empresa->template_home.".php")) include($dir_template.$empresa->template_home.".php");
