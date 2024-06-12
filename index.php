@@ -77,7 +77,6 @@ function get_empresa_by_dominio($dominio) {
         }
       }      
     }
-    if (isset($get_params["test"])) { var_dump($empresa); exit(); }
     return $empresa;
   } else {
     return FALSE;
@@ -213,6 +212,10 @@ if ( (!(strpos($dominio, "app.inmovar") === FALSE) || !(strpos($dominio, "sandbo
 } else {
   $empresa = get_empresa_by_dominio($dominio);
   $base = "/";
+  if (isset($get_params["test"])) {
+    print_r($empresa);
+    exit();
+  }
 
   // Controlamos si tiene configurado un dominio principal
   if (!empty($empresa->dominio_ppal) && $empresa->dominio_ppal != $dominio) {
