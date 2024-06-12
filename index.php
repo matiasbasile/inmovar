@@ -47,7 +47,7 @@ function go_404() {
 function get_empresa_by_dominio($dominio) {
   global $conx, $get_params;
   if (empty($dominio)) return FALSE;
-  $dominio_con_www = (strpos("www.", $dominio) === FALSE) ? "www.".$dominio : $dominio;
+  $dominio_con_www = (strpos($dominio, "www.") === FALSE) ? "www.".$dominio : $dominio;
   $sql = "SELECT E.*, T.path AS template_path, WC.*, ";
   $sql.= " IF(L.nombre IS NULL,'',L.nombre) AS localidad ";
   $sql.= "FROM empresas E ";
