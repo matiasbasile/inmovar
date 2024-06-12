@@ -77,6 +77,7 @@ function get_empresa_by_dominio($dominio) {
         }
       }      
     }
+    if (isset($get_params["test"])) { var_dump($empresa); exit(); }
     return $empresa;
   } else {
     return FALSE;
