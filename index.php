@@ -45,7 +45,7 @@ function go_404() {
 }
 
 function get_empresa_by_dominio($dominio) {
-  global $conx;
+  global $conx, $get_params;
   if (empty($dominio)) return FALSE;
   $dominio_con_www = (strpos("www.", $dominio) === FALSE) ? "www.".$dominio : $dominio;
   $sql = "SELECT E.*, T.path AS template_path, WC.*, ";
@@ -57,6 +57,7 @@ function get_empresa_by_dominio($dominio) {
   $sql.= " LEFT JOIN com_localidades L ON (E.id_localidad = L.id) ";
   $sql.= "WHERE ED.dominio = '$dominio' ";
   if ($dominio_con_www != $dominio) $sql.= "OR ED.dominio = '$dominio_con_www' ";
+  if (isset($get_params["test"])) { echo $sql; exit(); }
   $q = mysqli_query($conx,$sql);
   if (mysqli_num_rows($q)>0) {
     $empresa = mysqli_fetch_object($q);
