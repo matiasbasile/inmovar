@@ -212,16 +212,9 @@ if ( (!(strpos($dominio, "app.inmovar") === FALSE) || !(strpos($dominio, "sandbo
 } else {
   $empresa = get_empresa_by_dominio($dominio);
   $base = "/";
-  if (isset($get_params["test"])) {
-    print_r($empresa);
-    exit();
-  }
 
   // Controlamos si tiene configurado un dominio principal
   if (!empty($empresa->dominio_ppal) && $empresa->dominio_ppal != $dominio) {
-    if (isset($get_params["test"])) {
-      echo "ANDA"; exit();
-    }
     // Redireccionamos
     $actual = $_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI'];
     $nueva = str_replace($_SERVER["HTTP_HOST"], $empresa->dominio_ppal, $actual);
@@ -296,6 +289,11 @@ if ( $nombre_pagina == "ficha") {
 } else if (isset($empresa->template_path) && !empty($empresa->template_path)) {
 
   $dir_template = "templates/$empresa->template_path/";
+
+  if (isset($get_params["test"])) {
+    echo $dir_template;
+    exit();
+  }
 
   // Controlamos a que pagina desea ir
   if ($nombre_pagina == "index" || $nombre_pagina == "/" || empty($nombre_pagina) || strpos($nombre_pagina,"?") === 0) {
