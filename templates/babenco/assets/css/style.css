@@ -866,7 +866,7 @@ select.form-control {
   display: flex;
   align-items: center;
 }
-.map-contact #map, .map-contact #map1 {
+.map-contact #map0, .map-contact #map1 {
   width: 100%;
   background: #000;
   position: relative;
