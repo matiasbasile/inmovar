@@ -9,7 +9,7 @@
   </ul>
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="Comprar" role="tabpanel" aria-labelledby="Comprar-tab">
-      <form action="<?php echo URL_LA_PLATA ?>/propiedades/" onsubmit="return filtrar_principal(this)">
+      <form action="<?php echo URL_LA_PLATA ?>propiedades/" onsubmit="return filtrar_principal(this)">
 
         <div class="select-box">
           <label>Tipo de Operación</label>
@@ -44,7 +44,7 @@
       </form>
     </div>
     <div class="tab-pane fade" id="Alquilar" role="tabpanel" aria-labelledby="Alquilar-tab">
-      <form action="<?php echo URL_URUGUAY ?>/propiedades/" onsubmit="return filtrar_principal(this)">
+      <form action="<?php echo URL_URUGUAY ?>propiedades/" onsubmit="return filtrar_principal(this)">
 
         <div class="select-box">
           <label>Tipo de Operación</label>
