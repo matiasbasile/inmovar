@@ -243,7 +243,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
 
         if (sizeof($servicios)>0) { ?>
           <div class="checklist">
-            <h4>servicios</h4>
+            <h4>Servicios</h4>
             <ul>
               <?php foreach($servicios as $s) echo $s; ?>
             </ul>
@@ -259,7 +259,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
         if ($propiedad->balcon != 0) $ambientes[] = "<li>Balcón</li>";
         if (sizeof($ambientes)>0) { ?>
           <div class="checklist">
-            <h4>ambientes</h4>
+            <h4>Ambientes</h4>
             <ul>
               <?php foreach($ambientes as $s) echo $s; ?>
             </ul>
@@ -283,7 +283,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
         <?php } ?>
 
         <div class="adicionales">
-          <h4>adicionales</h4>
+          <h4>Adicionales</h4>
           <div class="row">
             <div class="col-md-4 col-6">
               <div class="listing">
@@ -304,7 +304,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
 
         <?php if (isset($propiedad->video_original) && !empty($propiedad->video_original)) { ?>
           <div class="section-title pt-4">
-            <h3>video</h3>
+            <h3>Video</h3>
           </div>
           <div class="video-box" id="video-box">
             <div class="video-block">
@@ -315,7 +315,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
 
         <?php if ($propiedad->pint) { ?>
           <div class="section-title pt-4">
-            <h3>recorrido virtual</h3>
+            <h3>Recorrido virtual</h3>
           </div>
           <div class="video-box" id="pint-box">
             <div class="video-block">
