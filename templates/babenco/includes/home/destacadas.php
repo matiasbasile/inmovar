@@ -3,7 +3,7 @@ $destacadas = $propiedad_model->destacadas(array(
   "images_limit" => 3,
 ));
 if (sizeof($destacadas)>0) { ?>
-  <section class="featured-properties">
+  <section class="featured-properties properties">
     <div class="container">
       <div class="section-title">
         <span>ciudad de la plata</span>
