@@ -28,10 +28,10 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?php echo mklink("/web/nosotros/") ?>">nosotros</a>
+              <a class="nav-link" href="<?php echo mklink("web/nosotros/") ?>">nosotros</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?php echo mklink("/contacto") ?>">contacto</a>
+              <a class="nav-link" href="<?php echo mklink("contacto") ?>">contacto</a>
             </li>
             <div class="whishlist">
               <a href="<?php echo mklink("favoritos/") ?>">
