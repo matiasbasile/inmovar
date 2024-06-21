@@ -1,6 +1,8 @@
 <?php 
 include 'includes/init.php';
-$vc_listado = $propiedad_model->favoritos();
+$vc_listado = $propiedad_model->favoritos(array(
+  "images_limit" => 3
+));
 ?>
 <!DOCTYPE html>
 <html lang="es">
