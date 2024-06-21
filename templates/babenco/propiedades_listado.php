@@ -28,11 +28,13 @@ if (isset($get_params["tp"]) && ($get_params["tp"] == "27" || $get_params["tp"] 
 
 <section class="page-title">
   <div class="container">
-    <h1>La Plata</h1>
+    <h1><?php 
+      echo ($empresa->id == ID_EMPRESA_LA_PLATA) ? "La Plata" : "Punta del Este";
+    ?></h1>
   </div>
 </section>
 
-<?php include("includes/propiedad/filtros.php") ?>
+<?php include("includes/propiedad/buscador.php") ?>
 
 <!-- Properties Details  -->
 <section class="properties-details">
