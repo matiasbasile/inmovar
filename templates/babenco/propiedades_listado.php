@@ -3,6 +3,7 @@ include 'includes/init.php';
 
 if (!isset($config_grupo)) $config_grupo = array();
 $config_grupo["orden_default"] = 8;
+$config_grupo["images_limit"] = 3;
 
 // Si tiene el flag de ofertas
 if (isset($buscar_ofertas)) {

@@ -361,6 +361,7 @@ class Propiedad_Model {
     } 
     
     $order_empresa = isset($config["order_empresa"]) ? $config["order_empresa"] : 1;
+    $images_limit = isset($config["images_limit"]) ? $config["images_limit"] : 0;
     $desde = isset($config["desde"]) ? $config["desde"] : "";
     $hasta = isset($config["hasta"]) ? $config["hasta"] : "";
     $personas = isset($config["personas"]) ? $config["personas"] : 0;
@@ -490,6 +491,7 @@ class Propiedad_Model {
     if (isset($config["moneda"])) $config_list["moneda"] = $config["moneda"];
     if (isset($get_params["propias"])) $config_list["solo_propias"] = intval($get_params["propias"]);
     if (isset($config["solo_propias"])) $config_list["solo_propias"] = $config["solo_propias"];
+    if ($images_limit > 0) $config_list["images_limit"] = $images_limit;
 
     // Si es obras o emprendimientos, son solo propios
     if ($link_tipo_operacion == "obras" || $link_tipo_operacion == "emprendimientos") $config["solo_propias"] = 1;

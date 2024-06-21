@@ -3,6 +3,15 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+function estaEnFavoritos($id) {
+  if (!isset($_SESSION["favoritos"])) return false;
+  $favoritos = explode(",",$_SESSION["favoritos"]);
+  foreach($favoritos as $f) {
+    if ($f == $id) return true;
+  }
+  return false;
+}
+
 include  "models/Web_Model.php";
 $web_model = new Web_Model ($empresa->id,$conx); 
 include  "models/Entrada_Model.php";

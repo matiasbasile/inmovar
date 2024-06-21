@@ -10,22 +10,38 @@ function propiedad_item($r) { ?>
             </div>
           <?php } ?>
         </div>
-        <a href="#0" class="whishlist-icon"><img src="assets/images/wishlist1.png" alt="Icon"></a>
-        <!--<small>reservada</small>-->
+
+        <?php if (estaEnFavoritos($l->id)) { ?>
+          <a class="whishlist-icon" href="/admin/favoritos/eliminar/?id=<?php echo $l->id; ?>">
+            <img src="assets/images/wishlist.png" alt="Icon">
+          </a>
+        <?php } else { ?>
+          <a class="whishlist-icon" href="/admin/favoritos/agregar/?id=<?php echo $l->id; ?>">
+            <img src="assets/images/wishlist1.png" alt="Icon">
+          </a>
+        <?php } ?>
+
+        <?php if ($r->id_tipo_estado == 4) { ?>
+          <small>reservada</small>
+        <?php } else if ($r->id_tipo_estado == 3) { ?>
+          <small>vendida</small>
+        <?php } ?>
       </div>
     <?php } ?>
     <div class="title-box">
       <h4><a href="<?php echo $r->link_propiedad ?>"><?php echo $r->precio ?></a></h4>
       <p><?php echo $r->nombre ?></p>
       <span><?php echo $r->direccion_completa ?></span>
-      <div class="aminities">
-        <span><?php echo $r->superficie_total ?> m2</span>
-        <ul>
-          <li><img src="assets/images/bedroom.png" alt="Icon"> <?php echo (empty($r->dormitorios)) ? "-" : $r->dormitorios ?></li>
-          <li><img src="assets/images/shower.png" alt="Icon"> <?php echo (empty($r->banios)) ? "-" : $r->banios ?></li>
-          <li><img src="assets/images/parking.png" alt="Icon"> <?php echo (empty($r->cocheras)) ? "-" : $r->cocheras ?></li>
-        </ul>
-      </div>
+      <?php if ($r->id_tipo_operacion != 5) { ?>
+        <div class="aminities">
+          <span><?php echo $r->superficie_total ?> m2</span>
+          <ul>
+            <li><img src="assets/images/bedroom.png" alt="Icon"> <?php echo (empty($r->dormitorios)) ? "-" : $r->dormitorios ?></li>
+            <li><img src="assets/images/shower.png" alt="Icon"> <?php echo (empty($r->banios)) ? "-" : $r->banios ?></li>
+            <li><img src="assets/images/parking.png" alt="Icon"> <?php echo (empty($r->cocheras)) ? "-" : $r->cocheras ?></li>
+          </ul>
+        </div>
+      <?php } ?>
     </div>
     <div class="btn-actions">
       <a href="mailto:emai@gmail.com" class="btn"><svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
