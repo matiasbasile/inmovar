@@ -342,7 +342,8 @@ function filtrar() {
   $("#filter_minimo").val(minimo);
   $("#filter_maximo").val(maximo);
   $(form).attr("action", url);
-  return true;
+  console.log("ENTRA");
+  return false;
 }
 
 function filtrar_principal(form) {
