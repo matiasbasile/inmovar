@@ -10,6 +10,7 @@
       <div class="modal-body">
         <form id="contacto-flotante" onsubmit="return enviarModal()">
           <input type="hidden" id="actionModal" value="whatsapp"/>
+          <input type="hidden" id="id_propiedad" value="0"/>
           <div class="form-group">
             <input type="text" name="nombre" placeholder="Nombre *" class="form-control contacto_nombre">
           </div>
@@ -36,8 +37,9 @@
   </div>
 </div>
 <script>
-function abrirModal(action, mensaje = "") {
+function abrirModal(action, mensaje = "", id_propiedad = 0) {
   $("#actionModal").val(action);
+  $("#id_propiedad").val(id_propiedad);
   if (!isEmpty(mensaje)) $(".modal-whatsapp .contacto_mensaje").val(mensaje);
   $(".modal-whatsapp").modal("show");
 }

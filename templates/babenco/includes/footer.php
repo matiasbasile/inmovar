@@ -120,6 +120,10 @@ function validar(id_form) {
   var email = $("#"+id_form).find(".contacto_email").val();
   var telefono = $("#"+id_form).find(".contacto_telefono").val();
   var mensaje = $("#"+id_form).find(".contacto_mensaje").val();
+  var id_propiedad = $("#"+id_form).find(".id_propiedad").val();
+  if (typeof id_propiedad == "undefined") {
+    id_propiedad = "<?php echo (isset($propiedad) ? $propiedad->id : 0) ?>";
+  }
 
   if (isEmpty(nombre) || nombre == "Nombre") {
     alert("Por favor ingrese un nombre");
@@ -149,7 +153,7 @@ function validar(id_form) {
     "email": email,
     "mensaje": mensaje,
     "telefono": telefono,
-    "id_propiedad": "<?php echo (isset($propiedad) ? $propiedad->id : 0) ?>",
+    "id_propiedad": id_propiedad,
     <?php if (isset($propiedad) && $propiedad->id_empresa != $empresa->id) { ?>
       "id_empresa": "<?php echo $propiedad->id_empresa ?>",
       "id_empresa_relacion": "<?php echo $propiedad->id_empresa ?>",
