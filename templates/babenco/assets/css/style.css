@@ -1060,6 +1060,8 @@ select.form-control {
 }
 .premises-sale .tab-content .item img {
   width: 100%;
+  height: 480px;
+  object-fit: cover;
 }
 .premises-sale .slider {
   margin-bottom: 70px;
