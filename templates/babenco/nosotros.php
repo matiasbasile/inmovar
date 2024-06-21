@@ -50,7 +50,7 @@
           <?php echo $oficina->texto ?>
         </div>
       </div>
-    <?php ?>
+    <?php } ?>
   </div>
 </section>
 
