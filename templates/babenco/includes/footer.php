@@ -214,7 +214,7 @@ function enviar_whatsapp(id_form) {
       "data": datos,
       "success": function(r) {
         if (r.error == 0) {
-          var url = "https://wa.me/"+"<?php echo (isset($celular_whatsapp) ? $celular_whatsapp : $empresa->whatsapp) ?>";
+          var url = "https://wa.me/"+"<?php echo (isset($celular_whatsapp) ? $celular_whatsapp : $empresa->whatsapp_formateado) ?>";
           url+= "?text="+encodeURIComponent(datos.mensaje);
           var open = window.open(url,"_blank");
           if (open == null || typeof(open)=='undefined') {
