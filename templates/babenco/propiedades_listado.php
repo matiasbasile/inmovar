@@ -26,7 +26,6 @@ if (isset($get_params["tp"]) && ($get_params["tp"] == "27" || $get_params["tp"] 
 
   <?php include("includes/header.php") ?>
 
-<!-- Page Title  -->
 <section class="page-title">
   <div class="container">
     <h1>La Plata</h1>
