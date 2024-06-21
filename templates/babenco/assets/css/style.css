@@ -516,10 +516,10 @@ select.form-control {
   align-items: center;
   justify-content: center;
 }
-.property-box .whishlist-icon:hover {
+.property-box .whishlist-icon:hover, .property-box .whishlist-icon.active {
   background: #96425c;
 }
-.property-box .whishlist-icon:hover img {
+.property-box .whishlist-icon:hover img, .property-box .whishlist-icon.active img  {
   filter: brightness(0) invert(1);
 }
 .property-box .img-block small {
