@@ -12,19 +12,19 @@
             <li class="nav-item">
               <a class="nav-link" href="<?php echo mklink("/") ?>">inicio</a></li>
             <li class="nav-item dropdown-nav">
-              <a class="nav-link" href="#">la plata</a>
+              <a class="nav-link" href="javascript:void(0)" rel="nofollow">la plata</a>
               <ul class="dropdown">
-                <li><a href="#0">Venta</a></li>
-                <li><a href="#0">Alquiler</a></li>
-                <li><a href="#0">Emprendimientos</a></li>
+                <li><a href="<?php echo URL_LA_PLATA."propiedades/ventas/" ?>">Venta</a></li>
+                <li><a href="<?php echo URL_LA_PLATA."propiedades/alquileres/" ?>">Alquiler</a></li>
+                <li><a href="<?php echo URL_LA_PLATA."propiedades/emprendimientos/" ?>">Emprendimientos</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown-nav">
-              <a class="nav-link" href="#">punta del este</a>
+              <a class="nav-link" href="javascript:void(0)" rel="nofollow">punta del este</a>
               <ul class="dropdown">
-                <li><a href="#0">Venta</a></li>
-                <li><a href="#0">Alquiler</a></li>
-                <li><a href="#0">Emprendimientos</a></li>
+                <li><a href="<?php echo URL_URUGUAY."propiedades/ventas/" ?>">Venta</a></li>
+                <li><a href="<?php echo URL_URUGUAY."propiedades/alquileres/" ?>">Alquiler</a></li>
+                <li><a href="<?php echo URL_URUGUAY."propiedades/emprendimientos/" ?>">Emprendimientos</a></li>
               </ul>
             </li>
             <li class="nav-item">
