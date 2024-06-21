@@ -124,14 +124,14 @@ function validar(id_form) {
     $("#"+id_form).find(".contacto_nombre").focus();
     throw false;
   }
-  if (!isTelephone(telefono)) {
-    alert("Por favor ingrese un telefono");
-    $("#"+id_form).find(".contacto_telefono").focus();
-    throw false;
-  }
   if (!validateEmail(email)) {
     alert("Por favor ingrese un email valido");
     $("#"+id_form).find(".contacto_email").focus();
+    throw false;
+  }
+  if (!isTelephone(telefono)) {
+    alert("Por favor ingrese un telefono");
+    $("#"+id_form).find(".contacto_telefono").focus();
     throw false;
   }
   if (isEmpty(mensaje)) {
@@ -151,8 +151,9 @@ function validar(id_form) {
     <?php if (isset($propiedad) && $propiedad->id_empresa != $empresa->id) { ?>
       "id_empresa": "<?php echo $propiedad->id_empresa ?>",
       "id_empresa_relacion": "<?php echo $propiedad->id_empresa ?>",
+    <?php } else { ?>
+      "id_empresa": "<?php echo $empresa->id ?>",
     <?php } ?> 
-    //"id_empresa": ID_EMPRESA,
   }
   return datos;
 }
