@@ -313,11 +313,6 @@ function buscar_listado(form) {
   $(form).parents("form").first().submit();
 }
 
-function cambiar_checkboxes(e) {
-  var form = $(e).parents("form");
-  $(form).submit();
-}
-
 function order_solo() {
   var orden = $("#form_buscador select[name=orden]").val();
   var base = "<?php echo current_url(FALSE, TRUE) ?>";
@@ -342,8 +337,7 @@ function filtrar() {
   $("#filter_minimo").val(minimo);
   $("#filter_maximo").val(maximo);
   $(form).attr("action", url);
-  console.log("ENTRA");
-  return false;
+  return true;
 }
 
 function filtrar_principal(form) {

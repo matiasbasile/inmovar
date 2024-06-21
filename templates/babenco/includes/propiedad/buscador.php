@@ -132,15 +132,15 @@
         <span class="check-mob">Otros <a href="javascript:void(0)" rel="nofollow"><img src="assets/images/select-arrow.png" arrow> </a></span>
         <div class="checkbox-list-top">
           <div class="form-check">
-            <input onchange="cambiar_checkboxes(this)" type="checkbox" class="custom-control-input custom-control-input-green" id="customCheck1" <?php echo ($vc_apto_banco == 1)?"checked":"" ?> type="checkbox" name="banco" value="1">
+            <input type="checkbox" class="custom-control-input custom-control-input-green" id="customCheck1" <?php echo ($vc_apto_banco == 1)?"checked":"" ?> type="checkbox" name="banco" value="1">
             <label class="custom-control-label" for="customCheck1">Apto Crédito</label>
           </div>
           <div class="form-check">
-            <input onchange="cambiar_checkboxes(this)" type="checkbox" class="custom-control-input custom-control-input-green" id="customCheck3" <?php echo ($vc_cocheras == 1)?"checked":"" ?> type="checkbox" name="gar" value="1">
+            <input type="checkbox" class="custom-control-input custom-control-input-green" id="customCheck3" <?php echo ($vc_cocheras == 1)?"checked":"" ?> type="checkbox" name="gar" value="1">
             <label class="custom-control-label" for="customCheck2">Cochera</label>
           </div>
           <div class="form-check">
-            <input onchange="cambiar_checkboxes(this)" type="checkbox" class="custom-control-input custom-control-input-green" id="customCheck2" <?php echo ($vc_acepta_permuta == 1)?"checked":"" ?> type="checkbox" name="per" value="1">
+            <input type="checkbox" class="custom-control-input custom-control-input-green" id="customCheck2" <?php echo ($vc_acepta_permuta == 1)?"checked":"" ?> type="checkbox" name="per" value="1">
             <label class="custom-control-label" for="customCheck2">Acepta Permuta</label>
           </div>
         </div>
