@@ -329,7 +329,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
         <div class="expenses-info <?php echo ($propiedad->valor_expensas == 0) ? "sin-expensas" : "con-expensas" ?>">
           <div class="expenses">
             <div class="doller">
-              <h6>$</h6>
+              <img src="assets/images/home.png" alt="Home">
             </div>
             <div class="right-title">
               <?php if ($propiedad->precio_porcentaje_anterior < 0.00 && $propiedad->publica_precio == 1) { ?>
