@@ -1,5 +1,7 @@
 <?php
-$destacadas = $propiedad_model->destacadas();
+$destacadas = $propiedad_model->destacadas(array(
+  "images_limit" => 3,
+));
 if (sizeof($destacadas)>0) { ?>
   <section class="featured-properties">
     <div class="container">
