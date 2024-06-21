@@ -353,7 +353,8 @@ function filtrar_principal(form) {
   var operacion = $(form).find(".operacion").val();
   var localidad = $(form).find(".localidad").val();
   var action = $(form).attr("action");
-  action = action + operacion + "" + localidad + "/";
+  if (!isEmpty(operacion)) action += operacion + "/";
+  if (!isEmpty(localidad)) action += localidad + "";
   console.log(action);
   return false;
 }
