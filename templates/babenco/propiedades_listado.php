@@ -100,6 +100,7 @@ if (isset($get_params["tp"]) && ($get_params["tp"] == "27" || $get_params["tp"] 
 </section>
 
 <?php include("includes/footer.php") ?>
+<?php include 'includes/propiedad/modal.php' ?>
 
 </body>
 </html>
