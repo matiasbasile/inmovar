@@ -1,6 +1,8 @@
 <?php
 define("ID_EMPRESA_LA_PLATA", 1749);
 define("ID_EMPRESA_URUGUAY", 1750);
+define("URL_LA_PLATA", "");
+define("URL_URUGUAY", "");
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -13,6 +15,12 @@ function estaEnFavoritos($id) {
     if ($f == $id) return true;
   }
   return false;
+}
+
+function cantidadFavoritos() {
+  if (!isset($_SESSION["favoritos"])) return 0;
+  $favoritos = explode(",",$_SESSION["favoritos"]);
+  return sizeof($favoritos);  
 }
 
 include  "models/Web_Model.php";
