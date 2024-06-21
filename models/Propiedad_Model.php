@@ -1452,7 +1452,7 @@ class Propiedad_Model {
       if ($images_limit > 0) {
         // Obtenemos las imagenes de ese propiedad
         $sql = "SELECT AI.* FROM inm_propiedades_images AI WHERE AI.id_propiedad = $r->id ";
-        $sql.= "AND AI.id_empresa = $id_empresa ORDER BY AI.orden ASC";
+        $sql.= "AND AI.id_empresa = $this->id_empresa ORDER BY AI.orden ASC";
         $sql.= "LIMIT 0, $images_limit ";
         $q_images = mysqli_query($this->conx,$sql);
         while(($image=mysqli_fetch_object($q_images))!==NULL) {
