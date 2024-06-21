@@ -10,9 +10,9 @@
         <div class="col-lg-9 col-md-12">
           <div class="newsletter">
             <h5>Suscribe al Newsletter</h5>
-            <form>
-              <input class="form-control" type="email" name="Tu dirección de email" placeholder="Tu dirección de email">
-              <button type="submit" class="btn">Enviar</button>
+            <form onsubmit="return enviar_newsletter()">
+              <input class="form-control" id="newsletter_email" type="" placeholder="Tu dirección de email">
+              <input class="submit" id="newsletter_submit" type="submit" value="Enviar">
             </form>
           </div>
         </div>
@@ -354,6 +354,39 @@ function copiar_select(id) {
   $("#"+id).val($("#"+id+"_2").val())
 }
 
+function enviar_newsletter() {
+  var email = $("#newsletter_email").val();
+  if (!validateEmail(email)) {
+    alert("Por favor ingrese un email valido.");
+    $("#newsletter_email").focus();
+    return false;
+  }
+  $("#newsletter_submit").attr('disabled', 'disabled');
+  var datos = {
+    "email":email,
+    "mensaje":"Registro a Newsletter",
+    "asunto":"Registro a Newsletter",
+    "para":"<?php echo $empresa->email ?>",
+    "id_empresa":ID_EMPRESA,
+    "id_origen":2,
+  }
+  $.ajax({
+    "url":"https://app.inmovar.com/admin/consultas/function/enviar/",
+    "type":"post",
+    "dataType":"json",
+    "data":datos,
+    "success":function(r){
+      if (r.error == 0) {
+        alert("Muchas gracias por registrarse a nuestro newsletter!");
+        location.reload();
+      } else {
+        alert("Ocurrio un error al enviar su email. Disculpe las molestias");
+        $("#newsletter_submit").removeAttr('disabled');
+      }
+    }
+  });  
+  return false;
+}
 </script>
 
 <?php include("templates/comun/clienapp.php") ?>
