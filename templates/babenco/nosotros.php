@@ -67,6 +67,7 @@
       <?php
       $i = 0; 
       foreach($oficinas_list as $oficina) {
+        echo $oficina->link_externo;
         if (empty($oficina->link_externo)) continue;
         $coordenadas = explode(",", $oficina->link_externo);
         if (sizeof($coordenadas) != 2) continue;
