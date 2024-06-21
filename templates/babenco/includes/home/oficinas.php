@@ -7,8 +7,9 @@
           <img src="<?php echo $t->plain_text ?>" alt="Property Img">
           <div class="overley-box">
             <?php $t = $web_model->get_text("home-sucursal-1-text","Oficina en La Plata"); ?>
-            <div class="img-box editable" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>">
-            <h2><?php echo $t->plain_text ?></h2>
+            <h2 class="img-box editable" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>">
+              <?php echo $t->plain_text ?>
+            </h2>
           </div>
         </div>
       </div>
