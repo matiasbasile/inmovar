@@ -120,7 +120,7 @@ function validar(id_form) {
   var email = $("#"+id_form).find(".contacto_email").val();
   var telefono = $("#"+id_form).find(".contacto_telefono").val();
   var mensaje = $("#"+id_form).find(".contacto_mensaje").val();
-  var id_propiedad = $("#"+id_form).find(".id_propiedad").val();
+  var id_propiedad = $("#"+id_form).find("#id_propiedad").val();
   if (typeof id_propiedad == "undefined") {
     id_propiedad = "<?php echo (isset($propiedad) ? $propiedad->id : 0) ?>";
   }
