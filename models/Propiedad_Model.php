@@ -1176,6 +1176,9 @@ class Propiedad_Model {
 
     $buscar_etiquetas = isset($config["buscar_etiquetas"]) ? intval($config["buscar_etiquetas"]) : 0;
 
+    // Para traer las imagenes
+    $images_limit = isset($config["images_limit"]) ? intval($config["images_limit"]) : 0;
+
     // Cotizacion del dolar
     $sql_cot = 'SELECT * FROM cotizaciones WHERE moneda = "U$D" ORDER BY fecha DESC LIMIT 0,1 ';
     $q_cot = mysqli_query($this->conx,$sql_cot);
@@ -1439,6 +1442,23 @@ class Propiedad_Model {
         $q_etiq = mysqli_query($this->conx,$sql);
         while(($etiq=mysqli_fetch_object($q_etiq))!==NULL) {
           $r->etiquetas[] = $etiq;
+        }
+      }
+
+      $r->images = array();
+      $r->planos = array();
+      if ($images_limit > 0) {
+        // Obtenemos las imagenes de ese propiedad
+        $sql = "SELECT AI.* FROM inm_propiedades_images AI WHERE AI.id_propiedad = $r->id ";
+        $sql.= "AND AI.id_empresa = $id_empresa ORDER BY AI.orden ASC";
+        $sql.= "LIMIT 0, $images_limit ";
+        $q_images = mysqli_query($this->conx,$sql);
+        while(($image=mysqli_fetch_object($q_images))!==NULL) {
+          if (!empty($image->path)) {
+            $image->path = ((strpos($image->path,"http")===FALSE)) ? "/admin/".$image->path : $image->path;
+          }                
+          if ($image->plano == 1) $r->planos[] = $image->path;
+          else $r->images[] = $image->path;
         }
       }
 

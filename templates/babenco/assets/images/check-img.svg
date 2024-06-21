@@ -1,0 +1,9 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 16" width="18" height="16">
+	<title>check-img-svg</title>
+	<defs>
+		<image width="18" height="16" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAQCAYAAAAbBi9cAAABqElEQVQ4T52SsUsCcRTH3/vlOURN/QFN0hIG1dQSeOlWQ9AQeSUZejq0tDk5FA21BZ4OGepNQUtDYN4lJEG1BhGiDbW0OIUE2vnrd2famabmb/v93nuf3/t+30MY8ESdwiyt0QOgOMMQORyEI/HCDqX0sFGLSBb/DWKQEwbxGBDEMiBnDyrx575BMZ+P04ofF0DpQp0BGgJnF9WTR+Pej7RsOGx5yhXuKIXpRj5BcImqnGnK6wU6XQlbS6XiPQU61YQQsi0qySNzrdFRlBe8SMirP5O4/A2OOIQbADr3YywkAqpc98h0UOLde6zlkP5GEEOimtpvxBnkjEGWm/mI+aCamuikAiO8EGMG+kw/3gJnWYWKtsbk7JqLrBzYttJyoSNIf5QcboUC8CbjWJOtg0ACwYAiS395anh0vLQ5WilX39h+DHdMRMwySY5ug2mOP+bccGmalm4zEbBqHeHGvOfx975AhkTeHWWa/K3jIJ6gmkx0g+ixtoVksDyD2b6D14Ereb4XpDPIJUzST/qgB4cIGfcryZeBQHpRxLEeR6xV2OKJ/UD0nC/yiJGAx+kmSAAAAABJRU5ErkJggg=="/>
+	</defs>
+	<style>
+	</style>
+	<use id="img1" href="#img1" transform="matrix(1,0,0,1,0,0)"/>
+</svg>
