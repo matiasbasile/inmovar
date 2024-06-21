@@ -11,12 +11,12 @@ function propiedad_item($r) { ?>
           <?php } ?>
         </div>
 
-        <?php if (estaEnFavoritos($l->id)) { ?>
-          <a class="whishlist-icon" href="/admin/favoritos/eliminar/?id=<?php echo $l->id; ?>">
+        <?php if (estaEnFavoritos($r->id)) { ?>
+          <a class="whishlist-icon" href="/admin/favoritos/eliminar/?id=<?php echo $r->id; ?>">
             <img src="assets/images/wishlist.png" alt="Icon">
           </a>
         <?php } else { ?>
-          <a class="whishlist-icon" href="/admin/favoritos/agregar/?id=<?php echo $l->id; ?>">
+          <a class="whishlist-icon" href="/admin/favoritos/agregar/?id=<?php echo $r->id; ?>">
             <img src="assets/images/wishlist1.png" alt="Icon">
           </a>
         <?php } ?>
