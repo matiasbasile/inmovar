@@ -752,10 +752,10 @@ select.form-control {
   color: #838383;
   margin-bottom: 30px;
 }
-.about-us .bullet-list {
+.about-us .bullet-list, .about-us ul {
   margin-bottom: 32px;
 }
-.bullet-list li {
+.bullet-list li, .about-us ul {
   font-size: 20px;
   color: #030303;
   font-weight: 600;

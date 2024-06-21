@@ -3,35 +3,50 @@
     <div class="row">
       <div class="col-lg-6">
         <div class="top-img">
-          <img src="assets/images/about-top.png" alt="Img">
+          <?php $t = $web_model->get_text("about-img-1","assets/images/about-top.png"); ?>
+          <img class="editable editable-img" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" src="<?php echo $t->plain_text ?>" alt="Img">
         </div>
         <div class="arrow-down">
-          <img src="assets/images/arrow-down.png" alt="Arrow">
+          <?php $t = $web_model->get_text("about-img-2","assets/images/arrow-down.png"); ?>
+          <img class="editable editable-img" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" src="<?php echo $t->plain_text ?>" alt="Img">
         </div>
         <div class="bottom-img">
-          <img src="assets/images/about-bottom.png" alt="Img">
+          <?php $t = $web_model->get_text("about-img-3","assets/images/about-bottom.png"); ?>
+          <img class="editable editable-img" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" src="<?php echo $t->plain_text ?>" alt="Img">
         </div>
       </div>
       <div class="col-lg-6">
         <div class="section-title">
-          <span>sobre nosotros</span>
-          <h2>Experiencia Inmobiliaria <br>Confiable desde 1985</h2>
+          <?php $t = $web_model->get_text("about-subtitle-1","sobre nosotros"); ?>
+          <span class="editable" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>">
+            <?php echo $t->plain_text ?>
+          </span>
+          <?php $t = $web_model->get_text("about-title-1","Experiencia Inmobiliaria <br>Confiable desde 1985"); ?>
+          <div class="editable" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>">
+            <?php echo $t->plain_text ?>
+          </div>
         </div>
-        <p>Nuestra trayectoria de décadas habla por sí misma. Desde 1985, hemos sido el pilar de confianza en el mercado inmobiliario, ofreciendo un servicio excepcional y resultados probados. Nuestro compromiso es hacer realidad tus sueños de hogar.</p>
+
+        <?php $t = $web_model->get_text("about-text-1","<p>Nuestra trayectoria de décadas habla por sí misma. Desde 1985, hemos sido el pilar de confianza en el mercado inmobiliario, ofreciendo un servicio excepcional y resultados probados. Nuestro compromiso es hacer realidad tus sueños de hogar.</p>"); ?>
+        <div class="editable" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>">
+          <?php echo $t->texto ?>
+        </div>
+        
         <div class="row">
           <div class="col-md-7">
-            <ul class="bullet-list">
-              <li>Experiencia de +35 años</li>
-              <li>Confianza y transparencia <br>garantizadas</li>
-              <li>Resultados comprobados</li>
-              <li>Atención personalizada</li>
-            </ul>
-            <a href="#0" class="btn">Ver más</a>
+            <?php $t = $web_model->get_text("about-text-2"); ?>
+            <div class="editable" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>">
+              <?php echo $t->texto ?>
+            </div>
+            <a href="<?php echo mklink("web/nosotros/") ?>" class="btn">Ver más</a>
           </div>
           <div class="col-md-5">
             <div class="box-info">
               <span>Contamos</span>
-              <h6>+35</h6>
+              <?php $t = $web_model->get_text("about-anios","+35"); ?>
+              <h6 class="editable" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>">
+                <?php echo $t->plain_text ?>
+              </h6>
               <span>Años de <br>Experiencia</span>
             </div>
           </div>
