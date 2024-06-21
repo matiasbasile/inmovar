@@ -1,0 +1,105 @@
+.modal-whatsapp .modal-dialog {
+  width: 95%;
+  max-width: 455px;
+}
+.modal-whatsapp .modal-content {
+  border-radius: 8px;
+}
+.modal-whatsapp .modal-content .btn-cor {
+  background: #51c045;
+  width: 100%;
+  color: #ffffff;
+  padding: 12px 20px;
+  font-size: 18px;
+  border-radius: 10px;
+}
+.modal-whatsapp .modal-content form .form-group:last-child {
+  margin-bottom: 0;
+}
+.modal-whatsapp .modal-body {
+  background: #f3f3f5;
+  padding: 30px 25px;
+}
+.modal-whatsapp .modal-body .form-control {
+  background: #ffffff;
+  font-size: 17px;
+}
+.modal-whatsapp .modal-content .btn:hover, 
+.modal-whatsapp .modal-content .btn:focus {
+  background: #41b035;
+}
+.modal-whatsapp .modal-header {
+  background: #51c045;
+  border: none;
+  text-align: center;
+  display: block;
+  border-radius: 8px 8px 0 0;
+}
+.modal-whatsapp .modal-header h5 {
+  font-family: Lato, sans-serif;
+  color: #ffffff;
+  padding-bottom: 0;
+  font-size: 22px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+.modal-whatsapp .btn {
+  width: 100%;
+  display: block;
+  text-transform: uppercase;
+  background: #51c045;
+  color: #ffffff;
+  padding: 12px 20px;
+  font-size: 18px;
+  border-radius: 10px;  
+  border: none;
+}
+.modal-whatsapp .modal-header h5 img {
+  margin-right: 10px;
+}
+.modal-whatsapp .close {
+  position: absolute;
+  top: -14px;
+  right: -10px;
+  z-index: 1;
+  opacity: 1 !important;
+  background-color: transparent;
+  border: none;
+}
+.modal-whatsapp .modal-backdrop.show {
+  opacity: 0.8;
+}
+
+.modal-whatsapp .form-group:after {
+  display: block;
+  clear: both;
+  content: "";
+}
+.modal-whatsapp .modal.show .modal-dialog {
+  margin-bottom: 100px;
+}
+.modal-whatsapp .form-group {
+  display: block;
+  margin-bottom: 15px;
+}
+.modal-whatsapp .form-control {
+  width: 100%;
+  height: 54px;
+  padding: 10px 24px;
+  color: #7f7f7f;
+  font-weight: 300;
+  font-size: 18px;
+  border-color: #f0f0f0;
+  border-radius: 10px;
+  margin-bottom: 0;
+  appearance: none;
+  transition: all ease .4s;
+}
+.modal-whatsapp .form-control:focus {
+  border-color: #f0f0f0;
+  box-shadow: none;
+}
+.modal-whatsapp textarea.form-control {
+  height: 125px;
+  resize: none;
+}
