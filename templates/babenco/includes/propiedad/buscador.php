@@ -24,7 +24,7 @@
       <option value="0">Dormitorios</option>
       <?php $dormitorios = $propiedad_model->get_dormitorios(); ?>
       <?php foreach ($dormitorios as $dormitorio) { ?>
-        <?php if (empty($dormitorios->dormitorios)) continue; ?>
+        <?php if (empty($dormitorio->dormitorios)) continue; ?>
         <option <?php echo ($vc_dormitorios == $dormitorio->dormitorios) ? "selected" : "" ?> value="<?php echo $dormitorio->dormitorios; ?>">
           <?php echo $dormitorio->dormitorios ?>
         </option>
@@ -95,7 +95,7 @@
             <option value="0">Dormitorios</option>
             <?php $dormitorios = $propiedad_model->get_dormitorios(); ?>
             <?php foreach ($dormitorios as $dormitorio) { ?>
-              <?php if (empty($dormitorios->dormitorios)) continue; ?>
+              <?php if (empty($dormitorio->dormitorios)) continue; ?>
               <option <?php echo ($vc_dormitorios == $dormitorio->dormitorios) ? "selected" : "" ?> value="<?php echo $dormitorio->dormitorios; ?>">
                 <?php echo $dormitorio->dormitorios ?>
               </option>
