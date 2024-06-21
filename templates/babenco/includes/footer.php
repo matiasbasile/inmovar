@@ -328,10 +328,6 @@ function order_solo() {
   location.href = base;
 }
 
-function enviar_filtrar() {
-  //$("#form_buscador").submit();
-}
-
 function filtrar() {
   var form = $("#form_buscador");
   var url = $(form).find(".base_url").val();
@@ -346,7 +342,7 @@ function filtrar() {
   $("#filter_minimo").val(minimo);
   $("#filter_maximo").val(maximo);
   $(form).attr("action", url);
-  return false;
+  return true;
 }
 
 function filtrar_principal(form) {

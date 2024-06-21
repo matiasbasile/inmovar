@@ -4,7 +4,7 @@
     <input type="hidden" class="base_url" value="<?php echo (isset($buscador_mapa) ? mklink("mapa/") : mklink("propiedades/")) ?>" />
     <input type="hidden" id="tipo_operacion" class="filter_tipo_operacion" value="<?php echo $vc_link_tipo_operacion ?>">
 
-    <select onchange="enviar_filtrar()" id="filter_localidad" class="form-select form-control big filter_localidad">
+    <select id="filter_localidad" class="form-select form-control big filter_localidad">
       <option value="">LOCALIDAD</option>
       <?php $localidades = $propiedad_model->get_localidades(); ?>
       <?php foreach ($localidades as $localidad) { ?>
@@ -12,7 +12,7 @@
       <?php } ?>
     </select>
     
-    <select onchange="enviar_filtrar()" id="filter_propiedad" class="form-select form-control big filter_propiedad" name="tp">
+    <select id="filter_propiedad" class="form-select form-control big filter_propiedad" name="tp">
       <option value="0">TIPO DE PROPIEDAD</option>
       <?php $tipo_propiedades = $propiedad_model->get_tipos_propiedades(); ?>
       <?php foreach ($tipo_propiedades as $tipo) { ?>
@@ -20,7 +20,7 @@
       <?php } ?>
     </select>
 
-    <select onchange="enviar_filtrar()" id="filter_dormitorios" class="form-select filter_dormitorios" name="dm">
+    <select id="filter_dormitorios" class="form-select filter_dormitorios" name="dm">
       <option value="0">Dormitorios</option>
       <?php $dormitorios = $propiedad_model->get_dormitorios(); ?>
       <?php foreach ($dormitorios as $dormitorio) { ?>
@@ -30,7 +30,7 @@
       <?php } ?>
     </select>
     
-    <select onchange="enviar_filtrar()" id="filter_banios" class="form-select form-control filter_banios" name="bn">
+    <select id="filter_banios" class="form-select form-control filter_banios" name="bn">
       <option value="0">BAÑOS</option>
       <?php $banios = $propiedad_model->get_banios(); ?>
       <?php foreach ($banios as $banio) { ?>
@@ -40,7 +40,7 @@
       <?php } ?>
     </select>
 
-    <select onchange="enviar_filtrar()" id="filter_rango_precios" class="form-select form-control small">
+    <select id="filter_rango_precios" class="form-select form-control small">
       <option data-min="0" data-max="0">PRECIO</option>
       <?php if ($vc_link_tipo_operacion == "alquileres") { ?>
         <option <?php echo (isset($vc_maximo) && $vc_maximo == 25000) ? "selected" : "" ?> data-min="0" data-max="25000">$ 0 - 25.000</option>
@@ -129,7 +129,7 @@
             <?php } ?>
           </select>
         </div>
-        <span class="check-mob">Otros <a href="#0"><img src="assets/images/select-arrow.png" arrow> </a></span>
+        <span class="check-mob">Otros <a href="javascript:void(0)" rel="nofollow"><img src="assets/images/select-arrow.png" arrow> </a></span>
         <div class="checkbox-list-top">
           <div class="form-check">
             <input onchange="cambiar_checkboxes(this)" type="checkbox" class="custom-control-input custom-control-input-green" id="customCheck1" <?php echo ($vc_apto_banco == 1)?"checked":"" ?> type="checkbox" name="banco" value="1">
@@ -144,9 +144,9 @@
             <label class="custom-control-label" for="customCheck2">Acepta Permuta</label>
           </div>
         </div>
-        <button type="submit" class="btn">Limpiar</button>
+        <button type="submit" class="btn">Buscar</button>
       </div>
     </div>
-    <button type="submit" class="btn">Limpiar</button>
+    <button type="submit" class="btn">Buscar</button>
   </form>
 </section>
