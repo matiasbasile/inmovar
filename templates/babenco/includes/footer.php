@@ -355,8 +355,8 @@ function filtrar_principal(form) {
   var action = $(form).attr("action");
   if (!isEmpty(operacion)) action += operacion + "/";
   if (!isEmpty(localidad)) action += localidad + "";
-  console.log(action);
-  return false;
+  $(form).attr("action",action);
+  return true;
 }
 
 function copiar_select(id) {
