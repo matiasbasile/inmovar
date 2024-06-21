@@ -24,7 +24,7 @@
     if (sizeof($sobre_nosotros_list)>0) {
       $sobre_nosotros = $sobre_nosotros_list[0]; ?>
       <div class="img-block">
-        <img src="/admin/<?php echo $sobre_nosotros->path ?>" alt="<?php echo $sobre_nosotros->titulo ?>">
+        <img src="<?php echo $sobre_nosotros->path ?>" alt="<?php echo $sobre_nosotros->titulo ?>">
       </div>
       <div class="border-info-section">
         <div class="section-title">
@@ -50,7 +50,7 @@
           <?php echo $oficina->texto ?>
         </div>
       </div>
-    <?php } ?>
+    <?php $i++; } ?>
   </div>
 </section>
 
@@ -68,7 +68,7 @@
 
       <?php
       $i = 0; 
-      foreach($oficinas as $oficina) { ?>
+      foreach($oficinas_list as $oficina) { ?>
         var mymap = L.map('map<?php echo $i ?>').setView([<?php echo $oficina->latitud ?>,<?php echo $oficina->longitud ?>], 15);
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoidmNtYXBib3gxNCIsImEiOiJjbHVzZGpndTAwMXBmMnZwZHVzaHpwdnBkIn0.MNg411Qzoi2JfvKRn6qe2A', {
           attribution: '',
