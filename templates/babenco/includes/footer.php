@@ -106,6 +106,8 @@
 <script src="/admin/resources/js/moment.min.js"></script>
 <?php include_once("templates/comun/mapa_js.php"); ?>
 
+<?php include 'propiedad/modal.php' ?>
+
 <script>
 // ======================================
 // FUNCIONES DE CONTACTO
