@@ -34,7 +34,7 @@ if (isset($get_params["tp"]) && ($get_params["tp"] == "27" || $get_params["tp"] 
   </div>
 </section>
 
-<?php //include("includes/propiedad/buscador.php") ?>
+<?php include("includes/propiedad/buscador.php") ?>
 
 <!-- Properties Details  -->
 <section class="properties-details">
