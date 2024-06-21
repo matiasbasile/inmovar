@@ -66,7 +66,13 @@
 
       <?php
       $i = 0; 
-      foreach($oficinas_list as $oficina) { ?>
+      foreach($oficinas_list as $oficina) {
+        if (empty($oficina->link_externo)) continue;
+        $coordenadas = explode(",", $oficina->link_externo);
+        if (sizeof($coordenadas) != 2) continue;
+        $oficina->latitud = trim($coordenadas[0]);
+        $oficina->longitud = trim($coordenadas[1]);
+        ?>
         var mymap = L.map('map<?php echo $i ?>').setView([<?php echo $oficina->latitud ?>,<?php echo $oficina->longitud ?>], 15);
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoidmNtYXBib3gxNCIsImEiOiJjbHVzZGpndTAwMXBmMnZwZHVzaHpwdnBkIn0.MNg411Qzoi2JfvKRn6qe2A', {
           attribution: '',
