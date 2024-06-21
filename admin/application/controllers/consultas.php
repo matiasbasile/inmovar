@@ -556,9 +556,6 @@ class Consultas extends REST_Controller {
     // En el caso de estar consultando por una propiedad de la red
     $id_empresa_relacion = parent::get_post("id_empresa_relacion",$id_empresa);
 
-    if (isset($para) && empty($para)) $para = $empresa->email;
-    if (!is_array($para)) $para = explode(",", $para);
-
     // Si la empresa no esta definida, es porque es para el Administrador
     if (empty($id_empresa) || $id_empresa == 0) {
      
@@ -582,6 +579,8 @@ class Consultas extends REST_Controller {
       }
       if (empty($bcc) && isset($empresa->bcc_email)) $bcc = $empresa->bcc_email;
 
+      if (isset($para) && empty($para)) $para = $empresa->email;
+      if (!is_array($para)) $para = explode(",", $para);
       
       // Buscamos por el parametro id_cliente
       $contacto = FALSE;
