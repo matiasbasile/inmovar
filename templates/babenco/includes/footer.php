@@ -360,7 +360,7 @@ function filtrar_principal(form) {
 }
 
 function copiar_select(id) {
-  $("#"+id).val($("#"+id+"_2").val())
+  //$("#"+id).val($("#"+id+"_2").val())
 }
 
 </script>
