@@ -62,13 +62,13 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
         </div>
         <div class="aminities">
           <ul>
-            <li><img src="assets/images/featured-properties-icon1.svg" alt="icon">Hab <b><?php echo (!empty($propiedad->dormitorios) ? $propiedad->dormitorios : "-") ?></b></li>
+            <li><img src="assets/images/featuredicon1.png" alt="icon">Hab <b><?php echo (!empty($propiedad->dormitorios) ? $propiedad->dormitorios : "-") ?></b></li>
 
-            <li><img src="assets/images/featured-properties-icon2.svg" alt="icon">Baños: <b><?php echo (!empty($propiedad->banios) ? $propiedad->banios : "-") ?></b></li>
+            <li><img src="assets/images/featuredicon2.png" alt="icon">Baños: <b><?php echo (!empty($propiedad->banios) ? $propiedad->banios : "-") ?></b></li>
 
-            <li><img src="assets/images/featured-properties-icon3.svg" alt="icon">Cocheras: <b><?php echo (!empty($propiedad->cocheras)) ? $propiedad->cocheras : "-" ?></b></li>
+            <li><img src="assets/images/featuredicon3.png" alt="icon">Cocheras: <b><?php echo (!empty($propiedad->cocheras)) ? $propiedad->cocheras : "-" ?></b></li>
             
-            <li><img src="assets/images/properties-icon4.svg" alt="icon">Cubierto: <b><?php echo (!empty($propiedad->superficie_cubierta) ? $propiedad->superficie_cubierta : "-") ?> m2</b></li>
+            <li><img src="assets/images/featuredicon4.png" alt="icon">Cubierto: <b><?php echo (!empty($propiedad->superficie_cubierta) ? $propiedad->superficie_cubierta : "-") ?> m2</b></li>
             
             <?php if (!empty($propiedad->superficie_semicubierta)) { ?>
               <li class="semi">Semi: <b><?php echo $propiedad->superficie_semicubierta ?> m2</b></li>
