@@ -6,6 +6,8 @@
 </head>
 <body>
 
+  <?php include("includes/header.php")?>
+
   <section class="top-banner">
     <?php include("includes/home/slider.php")?>
     <?php include("includes/home/buscador.php")?>
