@@ -100,6 +100,9 @@
 <script src="assets/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/owl.carousel.min.js"></script>
 <script src="assets/js/scripts.js"></script>
+<script src="assets/js/fancybox.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="assets/js/jquery-ui.min.js"></script>
 
 <script src="/admin/resources/js/moment.min.js"></script>
 <?php include_once("templates/comun/mapa_js.php"); ?>
@@ -300,7 +303,7 @@ function enviar_telefono(id_form) {
   return false;
 }
 
-  
+
 function buscar_mapa() {
   $("#form_buscador").find(".base_url").val("<?php echo mklink("mapa/") ?>");
   $("#form_buscador").submit();
