@@ -137,9 +137,6 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
               <?php } ?>
             </div>
           </div>
-          <div class="play-btn">
-            <img src="assets/images/right-arrow.svg" alt="Arrow">
-          </div>
         </div>
 
         <?php if (!empty($propiedad->texto)) { ?>
@@ -340,9 +337,6 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
                 <small>+ <?php echo "$" . number_format($propiedad->valor_expensas,0,",",".") ?> Expensas</small>
               <?php } ?>
             </div>
-          </div>
-          <div class="play-btn">
-            <img src="assets/images/right-arrow.svg" alt="Arrow">
           </div>
         </div>
         
