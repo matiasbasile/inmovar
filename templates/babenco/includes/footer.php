@@ -12,7 +12,7 @@
             <h5>Suscribe al Newsletter</h5>
             <form onsubmit="return enviar_newsletter()">
               <input class="form-control" id="newsletter_email" type="" placeholder="Tu dirección de email">
-              <input class="submit" id="newsletter_submit" type="submit" value="Enviar">
+              <input class="submit" id="newsletter_submit" class="btn" type="submit" value="Enviar">
             </form>
           </div>
         </div>
