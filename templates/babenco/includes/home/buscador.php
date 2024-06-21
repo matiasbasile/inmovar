@@ -23,7 +23,9 @@
           <label>Localidad, Barrio o Zona</label>
           <select class="form-control localidad">
             <option value="">Localidad</option>
-            <?php $localidades = $propiedad_model->get_localidades(); ?>
+            <?php $localidades = $propiedad_model->get_localidades(array(
+              "id_pais" => 1
+            )); ?>
             <?php foreach ($localidades as $localidad) { ?>
               <option value="<?php echo $localidad->link ?>"><?php echo $localidad->nombre ?></option>
             <?php } ?>
@@ -58,7 +60,9 @@
           <label>Localidad, Barrio o Zona</label>
           <select class="form-control localidad">
             <option value="">Localidad</option>
-            <?php $localidades = $propiedad_model->get_localidades(); ?>
+            <?php $localidades = $propiedad_model->get_localidades(array(
+              "id_pais" => 224
+            )); ?>
             <?php foreach ($localidades as $localidad) { ?>
               <option value="<?php echo $localidad->link ?>"><?php echo $localidad->nombre ?></option>
             <?php } ?>
