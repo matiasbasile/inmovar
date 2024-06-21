@@ -86,7 +86,7 @@
         L.marker([<?php echo $oficina->latitud ?>,<?php echo $oficina->longitud ?>],{
           icon: icono
         }).addTo(mymap);
-      <?php } ?>
+      <?php $i++; } ?>
 
     });
   </script>
