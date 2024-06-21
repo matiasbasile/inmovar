@@ -15,7 +15,7 @@ function propiedad_item($r) { ?>
 
         <?php if (estaEnFavoritos($r->id)) { ?>
           <a class="whishlist-icon" href="/admin/favoritos/eliminar/?id=<?php echo $r->id; ?>">
-            <img src="assets/images/wishlist.png" alt="Icon">
+            <img src="assets/images/wishlist2.png" alt="Icon">
           </a>
         <?php } else { ?>
           <a class="whishlist-icon" href="/admin/favoritos/agregar/?id=<?php echo $r->id; ?>">
