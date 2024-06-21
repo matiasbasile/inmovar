@@ -81,7 +81,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
           </ul>
         </div>
         <div class="slider">
-          <p>Código: <?php echo $propiedad->codigo ?></p>
+          <p>Código: <strong><?php echo $propiedad->codigo ?></strong></p>
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
               <a href="javascript:void(0)" onclick="abrir_galeria()" class="nav-link active">
@@ -125,7 +125,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
         <div class="expenses-info <?php echo ($propiedad->valor_expensas == 0) ? "sin-expensas" : "con-expensas" ?>">
           <div class="expenses">
             <div class="doller">
-              <h6>$</h6>
+              <img src="assets/images/home.png" alt="Home">
             </div>
             <div class="right-title">
               <?php if ($propiedad->precio_porcentaje_anterior < 0.00 && $propiedad->publica_precio == 1) { ?>
