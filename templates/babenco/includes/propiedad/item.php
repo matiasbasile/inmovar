@@ -6,7 +6,9 @@ function propiedad_item($r) { ?>
         <div class="owl-carousel owl-theme" data-outoplay="true" data-nav="true" data-dots="false">
           <?php foreach($r->images as $image) { ?>
             <div class="item">
-              <img src="<?php echo $image ?>" alt="img">
+              <a href="<?php echo $r->link_propiedad ?>">
+                <img src="<?php echo $image ?>" alt="img">
+              </a>
             </div>
           <?php } ?>
         </div>
