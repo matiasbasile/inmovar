@@ -755,7 +755,7 @@ select.form-control {
 .about-us .bullet-list, .about-us ul {
   margin-bottom: 32px;
 }
-.bullet-list li, .about-us ul {
+.bullet-list li, .about-us ul li {
   font-size: 20px;
   color: #030303;
   font-weight: 600;
