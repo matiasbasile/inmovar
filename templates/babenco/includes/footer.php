@@ -329,7 +329,7 @@ function order_solo() {
 }
 
 function enviar_filtrar() {
-  $("#form_buscador").submit();
+  //$("#form_buscador").submit();
 }
 
 function filtrar() {

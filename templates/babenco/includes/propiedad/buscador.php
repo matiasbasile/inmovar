@@ -69,6 +69,66 @@
       <span class="check-desk">Otros <a href="#0"><img src="assets/images/select-arrow.png" arrow> </a></span>
       <a class="filter-mob" href="#0">FILTRAR <img src="assets/images/select-arrow.png" arrow> </a>
       <div class="checkbox-list check-desk-list">
+        <div class="dropdown-form">
+
+          <select onchange="copiar_select('filter_localidad')" id="filter_localidad_2" class="form-select form-control">
+            <option value="">LOCALIDAD</option>
+            <?php $localidades = $propiedad_model->get_localidades(); ?>
+            <?php foreach ($localidades as $localidad) { ?>
+              <option <?php echo ($localidad->link == $vc_link_localidad)?"selected":"" ?> value="<?php echo $localidad->link ?>"><?php echo $localidad->nombre ?></option>
+            <?php } ?>
+          </select>
+          
+          <select onchange="copiar_select('filter_propiedad')" id="filter_propiedad_2" class="form-select form-control">
+            <option value="0">TIPO DE PROPIEDAD</option>
+            <?php $tipo_propiedades = $propiedad_model->get_tipos_propiedades(); ?>
+            <?php foreach ($tipo_propiedades as $tipo) { ?>
+              <option <?php echo ($vc_id_tipo_inmueble == $tipo->id) ? "selected" : "" ?> value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
+            <?php } ?>
+          </select>
+
+          <select onchange="copiar_select('filter_dormitorios')" id="filter_dormitorios_2" class="form-select form-control">
+            <option value="0">Dormitorios</option>
+            <?php $dormitorios = $propiedad_model->get_dormitorios(); ?>
+            <?php foreach ($dormitorios as $dormitorio) { ?>
+              <option <?php echo ($vc_dormitorios == $dormitorio->dormitorios) ? "selected" : "" ?> value="<?php echo $dormitorio->dormitorios; ?>">
+                <?php echo $dormitorio->dormitorios ?>
+              </option>
+            <?php } ?>
+          </select>
+          
+          <select onchange="copiar_select('filter_banios')" id="filter_banios_2" class="form-select form-control">
+            <option value="0">BAÑOS</option>
+            <?php $banios = $propiedad_model->get_banios(); ?>
+            <?php foreach ($banios as $banio) { ?>
+              <option <?php echo ($vc_banios == $banio->banios) ? "selected" : "" ?> value="<?php echo $banio->banios; ?>">
+                <?php echo $banio->banios ?>
+              </option>
+            <?php } ?>
+          </select>
+
+          <select onchange="copiar_select()" id="filter_rango_precios_2" class="form-select form-control">
+            <option data-min="0" data-max="0">PRECIO</option>
+            <?php if ($vc_link_tipo_operacion == "alquileres") { ?>
+              <option <?php echo (isset($vc_maximo) && $vc_maximo == 25000) ? "selected" : "" ?> data-min="0" data-max="25000">$ 0 - 25.000</option>
+              <option <?php echo (isset($vc_maximo) && $vc_maximo == 50000) ? "selected" : "" ?> data-min="25000" data-max="50000">$ 25.000 - 50.000</option>
+              <option <?php echo (isset($vc_maximo) && $vc_maximo == 75000) ? "selected" : "" ?> data-min="50000" data-max="75000">$ 50.000 - 75.000</option>
+              <option <?php echo (isset($vc_maximo) && $vc_maximo == 100000) ? "selected" : "" ?> data-min="75000" data-max="100000">$ 75.000 - 100.000</option>
+              <option <?php echo (isset($vc_maximo) && $vc_maximo == 150000) ? "selected" : "" ?> data-min="100000" data-max="150000">$ 100.000 - 150.000</option>
+              <option <?php echo (isset($vc_maximo) && $vc_maximo == 999999) ? "selected" : "" ?> data-min="150000" data-max="999999">Más de $ 300.000</option>
+            <?php } else { ?>
+              <option <?php echo (isset($vc_maximo) && $vc_maximo == 25000) ? "selected" : "" ?> data-min="0" data-max="25000">U$S 0 - 25.000</option>
+              <option <?php echo (isset($vc_maximo) && $vc_maximo == 50000) ? "selected" : "" ?> data-min="25000" data-max="50000">U$S 25.000 - 50.000</option>
+              <option <?php echo (isset($vc_maximo) && $vc_maximo == 75000) ? "selected" : "" ?> data-min="50000" data-max="75000">U$S 50.000 - 75.000</option>
+              <option <?php echo (isset($vc_maximo) && $vc_maximo == 100000) ? "selected" : "" ?> data-min="75000" data-max="100000">U$S 75.000 - 100.000</option>
+              <option <?php echo (isset($vc_maximo) && $vc_maximo == 125000) ? "selected" : "" ?> data-min="100000" data-max="125000">U$S 100.000 - 125.000</option>
+              <option <?php echo (isset($vc_maximo) && $vc_maximo == 150000) ? "selected" : "" ?> data-min="125000" data-max="150000">U$S 125.000 - 150.000</option>
+              <option <?php echo (isset($vc_maximo) && $vc_maximo == 200000) ? "selected" : "" ?> data-min="150000" data-max="200000">U$S 150.000 - 200.000</option>
+              <option <?php echo (isset($vc_maximo) && $vc_maximo == 300000) ? "selected" : "" ?> data-min="200000" data-max="300000">U$S 200.000 - 300.000</option>
+              <option <?php echo (isset($vc_maximo) && $vc_maximo == 999999) ? "selected" : "" ?> data-min="300000" data-max="999999">Más de U$S 300.000</option>
+            <?php } ?>
+          </select>
+        </div>
         <span class="check-mob">Otros <a href="#0"><img src="assets/images/select-arrow.png" arrow> </a></span>
         <div class="checkbox-list-top">
           <div class="form-check">
