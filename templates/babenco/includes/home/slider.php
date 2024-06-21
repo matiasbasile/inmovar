@@ -24,6 +24,6 @@ if (sizeof($slider)>0) { ?>
           </div>
         </div>
       </div>
-    <?php ?>
+    <?php } ?>
   </div>
 <?php } ?>
