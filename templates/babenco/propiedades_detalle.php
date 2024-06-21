@@ -48,7 +48,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
 <!-- Page Title  -->
 <section class="page-title">
   <div class="container">
-    <h1>La Plata</h1>
+    <h1><?php echo $propiedad->localidad ?></h1>
   </div>
 </section>
 <!-- Premises Sale -->
