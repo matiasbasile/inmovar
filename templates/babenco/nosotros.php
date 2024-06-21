@@ -54,8 +54,6 @@
   </div>
 </section>
 
-<?php include("includes/contacto.php") ?>
-
 <?php include("includes/footer.php") ?>
 
 <?php if (sizeof($oficinas_list)>0) { ?>
