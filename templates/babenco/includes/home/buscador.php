@@ -9,64 +9,73 @@
   </ul>
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="Comprar" role="tabpanel" aria-labelledby="Comprar-tab">
-      <form>
+      <form action="<?php echo URL_LA_PLATA ?>/propiedades/" onsubmit="return filtrar_principal(this)">
+
         <div class="select-box">
           <label>Tipo de Operación</label>
-          <select class="form-control">
-            <option>Venta1</option>
-            <option>Venta2</option>
-            <option>Venta3</option>
+          <select class="form-control operacion">
+            <option value="ventas">Venta</option>
+            <option value="alquileres">Alquiler</option>
           </select>
         </div>
+
         <div class="select-box">
           <label>Localidad, Barrio o Zona</label>
-          <select class="form-control">
-            <option>La Plata (Casco Urbano)</option>
-            <option>La Plata (Casco Urbano)</option>
-            <option>La Plata (Casco Urbano)</option>
-            <option>La Plata (Casco Urbano)</option>
+          <select class="form-control localidad">
+            <option value="">LOCALIDAD</option>
+            <?php $localidades = $propiedad_model->get_localidades(); ?>
+            <?php foreach ($localidades as $localidad) { ?>
+              <option value="<?php echo $localidad->link ?>"><?php echo $localidad->nombre ?></option>
+            <?php } ?>
           </select>
         </div>
+        
         <div class="select-box">
           <label>tipo de Propiedad</label>
-          <select class="form-control">
-            <option>Departamentos</option>
-            <option>Departamentos</option>
-            <option>Departamentos</option>
-            <option>Departamentos</option>
+          <select class="form-control" name="tp">
+            <option value="0">TIPO DE PROPIEDAD</option>
+            <?php $tipo_propiedades = $propiedad_model->get_tipos_propiedades(); ?>
+            <?php foreach ($tipo_propiedades as $tipo) { ?>
+              <option <?php echo ($vc_id_tipo_inmueble == $tipo->id) ? "selected" : "" ?> value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
+            <?php } ?>
           </select>
         </div>
         <button type="submit" class="btn btn-red">Buscar</button>
       </form>
     </div>
     <div class="tab-pane fade" id="Alquilar" role="tabpanel" aria-labelledby="Alquilar-tab">
-      <form>
+      <form action="<?php echo URL_URUGUAY ?>/propiedades/" onsubmit="return filtrar_principal(this)">
+
         <div class="select-box">
           <label>Tipo de Operación</label>
-          <select class="form-control">
-            <option>Venta1</option>
-            <option>Venta2</option>
-            <option>Venta3</option>
+          <select class="form-control operacion">
+            <option value="ventas">Venta</option>
+            <option value="alquileres">Alquiler</option>
           </select>
         </div>
+
         <div class="select-box">
           <label>Localidad, Barrio o Zona</label>
-          <select class="form-control">
-            <option>La Plata (Casco Urbano)</option>
-            <option>La Plata (Casco Urbano)</option>
-            <option>La Plata (Casco Urbano)</option>
-            <option>La Plata (Casco Urbano)</option>
+          <select class="form-control localidad">
+            <option value="">LOCALIDAD</option>
+            <?php $localidades = $propiedad_model->get_localidades(); ?>
+            <?php foreach ($localidades as $localidad) { ?>
+              <option value="<?php echo $localidad->link ?>"><?php echo $localidad->nombre ?></option>
+            <?php } ?>
           </select>
         </div>
+        
         <div class="select-box">
           <label>tipo de Propiedad</label>
-          <select class="form-control">
-            <option>Departamentos</option>
-            <option>Departamentos</option>
-            <option>Departamentos</option>
-            <option>Departamentos</option>
+          <select class="form-control" name="tp">
+            <option value="0">TIPO DE PROPIEDAD</option>
+            <?php $tipo_propiedades = $propiedad_model->get_tipos_propiedades(); ?>
+            <?php foreach ($tipo_propiedades as $tipo) { ?>
+              <option <?php echo ($vc_id_tipo_inmueble == $tipo->id) ? "selected" : "" ?> value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
+            <?php } ?>
           </select>
         </div>
+
         <button type="submit" class="btn btn-red">Buscar</button>
       </form>
     </div>

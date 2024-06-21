@@ -349,6 +349,15 @@ function filtrar() {
   return true;
 }
 
+function filtrar_principal(form) {
+  var operacion = $(form).find(".operacion").val();
+  var localidad = $(form).find(".localidad").val();
+  var action = $(form).attr("action");
+  action = action + operacion + "" + localidad + "/";
+  console.log(action);
+  return false;
+}
+
 function copiar_select(id) {
   $("#"+id).val($("#"+id+"_2").val())
 }

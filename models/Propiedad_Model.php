@@ -1548,6 +1548,7 @@ class Propiedad_Model {
     $limit = isset($config["limit"]) ? $config["limit"] : 0;
     $offset = isset($config["offset"]) ? $config["offset"] : 999999;
     $id_departamento = isset($config["id_departamento"]) ? $config["id_departamento"] : 0;
+    $id_pais = isset($config["id_pais"]) ? $config["id_pais"] : 0;
 
     $empresas_compartida = $this->get_empresas_red();
     $empresas_compartida[] = $this->id_empresa;
@@ -1556,9 +1557,16 @@ class Propiedad_Model {
     $sql = "SELECT DISTINCT L.id, L.nombre, L.link ";
     $sql.= "FROM inm_propiedades P ";
     $sql.= "INNER JOIN com_localidades L ON (P.id_localidad = L.id) ";
+    if ($id_pais != 0) {
+      $sql.= "LEFT JOIN com_departamentos D ON (L.id_departamento = D.id) ";
+      $sql.= "LEFT JOIN com_provincias PP ON (D.id_provincia = PP.id) ";
+    }
     $sql.= "WHERE P.activo = 1 ";
     if (!empty($emp_comp)) $sql.= "AND P.id_empresa IN ($emp_comp) ";
     if ($id_departamento) $sql.= "AND L.id_departamento = $id_departamento ";
+    if ($id_pais != 0) {
+      $sql.= "AND PP.id_pais = $id_pais ";
+    }
     $sql.= "ORDER BY L.nombre ASC ";
     if ($offset != 0) $sql.= "LIMIT $limit,$offset ";
     $salida = array();
