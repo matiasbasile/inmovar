@@ -105,71 +105,202 @@
 <?php include_once("templates/comun/mapa_js.php"); ?>
 
 <script>
-function enviar_contacto() {
-  var nombre = $("#contacto_nombre").val();
-  var email = $("#contacto_email").val();
-  var telefono = $("#contacto_telefono").val();
-  var asunto = $("#contacto_asunto option:selected").val();
-  var mensaje = $("#contacto_mensaje").val();
-  // var tipo_propiedad = $("#contacto_tipo_propiedad option:selected").text();
-  // var dormitorios = $("#contacto_dormitorios").val();
-  // var banios = $("#contacto_banios").val();
-  // var localidad = $("#contacto_localidad").val();
+// ======================================
+// FUNCIONES DE CONTACTO
+// ======================================
 
-  if (isEmpty(nombre)) {
+window.enviando = 0;
+function validar(id_form) {
+  if (window.enviando == 1) throw false;
+  var nombre = $("#"+id_form).find(".contacto_nombre").val();
+  var email = $("#"+id_form).find(".contacto_email").val();
+  var telefono = $("#"+id_form).find(".contacto_telefono").val();
+  var mensaje = $("#"+id_form).find(".contacto_mensaje").val();
+
+  if (isEmpty(nombre) || nombre == "Nombre") {
     alert("Por favor ingrese un nombre");
-    $("#contacto_nombre").focus();
-    return false;
+    $("#"+id_form).find(".contacto_nombre").focus();
+    throw false;
+  }
+  if (!isTelephone(telefono)) {
+    alert("Por favor ingrese un telefono");
+    $("#"+id_form).find(".contacto_telefono").focus();
+    throw false;
   }
   if (!validateEmail(email)) {
     alert("Por favor ingrese un email valido");
-    $("#contacto_email").focus();
-    return false;
-  }
-  if (isEmpty(telefono)) {
-    alert("Por favor ingrese un telefono");
-    $("#contacto_telefono").focus();
-    return false;
-  }
-  if (isEmpty(asunto)) {
-    alert("Por favor seleccione una opción");
-    $("#contacto_asunto").focus();
-    return false;
+    $("#"+id_form).find(".contacto_email").focus();
+    throw false;
   }
   if (isEmpty(mensaje)) {
     alert("Por favor ingrese un mensaje");
-    $("#contacto_mensaje").focus();
-    return false;
+    $("#"+id_form).find(".contacto_mensaje").focus();
+    throw false;
   }
-  $("#contacto_submit").attr('disabled', 'disabled');
+
+  $("#"+id_form).find(".contacto_submit").attr('disabled', 'disabled');
+  window.enviando = 1;
   var datos = {
-    "para": "<?php echo $empresa->email ?>",
     "nombre": nombre,
     "email": email,
-    "telefono": telefono,
-    "asunto": asunto,
     "mensaje": mensaje,
-    "id_empresa": ID_EMPRESA,
-    "id_origen": 1,
+    "telefono": telefono,
+    "id_propiedad": "<?php echo (isset($propiedad) ? $propiedad->id : 0) ?>",
+    <?php if (isset($propiedad) && $propiedad->id_empresa != $empresa->id) { ?>
+      "id_empresa": "<?php echo $propiedad->id_empresa ?>",
+      "id_empresa_relacion": "<?php echo $propiedad->id_empresa ?>",
+    <?php } ?> 
+    //"id_empresa": ID_EMPRESA,
   }
-  enviando = 1;
-  $.ajax({
-    "url": "https://app.inmovar.com/admin/consultas/function/enviar/",
-    "type": "post",
-    "dataType": "json",
-    "data": datos,
-    "success": function(r) {
-      if (r.error == 0) {
-        alert("Muchas gracias por enviar tu consulta. Nos comunicaremos a la mayor brevedad posible.");
-      } else {
-        alert("Ocurrio un error al enviar su email. Disculpe las molestias");
-        $("#contacto_submit").removeAttr('disabled');
-      }
+  return datos;
+}
+
+function enviar_visita(id_form) {
+  try {
+    // Validamos los datos del otro formulario en realidad
+    var datos = validar('form_whatsapp_sidebar');
+
+    // Validamos tambien que haya elegido una fecha
+    var fecha = $("#"+id_form).find(".visita_fecha").val();
+    if (isEmpty(fecha)) {
+      alert("Por favor seleccione una fecha para la visita.");
+      $("#"+id_form).find(".visita_fecha").focus();
+      return false;
     }
-  });
+
+    datos.id_origen = 8; // VISITA
+    $.ajax({
+      "url": "/admin/consultas/function/enviar/",
+      "type": "post",
+      "dataType": "json",
+      "data": datos,
+      "success": function(r) {
+        if (r.error == 0) {
+          var url = "https://wa.me/"+"<?php echo $empresa->whatsapp  ?>";
+          url+= "?text="+encodeURIComponent(datos.mensaje);
+          var open = window.open(url,"_blank");
+          if (open == null || typeof(open)=='undefined') {
+            // Si se bloqueo el popup, se redirecciona
+            location.href = url;
+          }
+        } else {
+          alert("Ocurrio un error al enviar su email. Disculpe las molestias");
+          $("#"+id_form).find(".contacto_submit").removeAttr('disabled');
+        }
+        window.enviando = 0;
+      },
+      "error":function() {
+        $("#"+id_form).find(".contacto_submit").removeAttr('disabled');
+        window.enviando = 0;
+      }
+    });
+  } catch(e) {
+    $("#"+id_form).find(".contacto_submit").removeAttr('disabled');
+    console.log(e);
+  }
   return false;
 }
 
+function enviar_whatsapp(id_form) {
+  try {
+    var datos = validar(id_form);
+    datos.id_origen = 27;
+    $.ajax({
+      "url": "/admin/consultas/function/enviar/",
+      "type": "post",
+      "dataType": "json",
+      "data": datos,
+      "success": function(r) {
+        if (r.error == 0) {
+          var url = "https://wa.me/"+"<?php echo (isset($celular_whatsapp) ? $celular_whatsapp : $empresa->whatsapp) ?>";
+          url+= "?text="+encodeURIComponent(datos.mensaje);
+          var open = window.open(url,"_blank");
+          if (open == null || typeof(open)=='undefined') {
+            // Si se bloqueo el popup, se redirecciona
+            location.href = url;
+          }
+        } else {
+          alert("Ocurrio un error al enviar su email. Disculpe las molestias");
+          $("#"+id_form).find(".contacto_submit").removeAttr('disabled');
+        }
+        window.enviando = 0;
+      },
+      "error":function() {
+        $("#"+id_form).find(".contacto_submit").removeAttr('disabled');
+        window.enviando = 0;
+      }
+    });
+  } catch(e) {
+    $("#"+id_form).find(".contacto_submit").removeAttr('disabled');
+    console.log(e);
+  }
+  return false;
+}
+
+function enviar_email(id_form) {
+  try {
+    var datos = validar(id_form);
+    datos.id_origen = 1;
+    $.ajax({
+      "url": "/admin/consultas/function/enviar/",
+      "type": "post",
+      "dataType": "json",
+      "data": datos,
+      "success": function(r) {
+        if (r.error == 0) {
+          alert("Su consulta ha sido enviada correctamente. Nos pondremos en contacto a la mayor brevedad!");
+          location.reload();
+        } else {
+          alert("Ocurrio un error al enviar su email. Disculpe las molestias");
+          $("#"+id_form).find(".contacto_submit").removeAttr('disabled');
+        }
+        window.enviando = 0;
+      },
+      "error":function() {
+        $("#"+id_form).find(".contacto_submit").removeAttr('disabled');
+        window.enviando = 0;
+      }
+    });
+  } catch(e) {
+    $("#"+id_form).find(".contacto_submit").removeAttr('disabled');
+    console.log(e);
+  }
+  return false;
+}
+
+function enviar_telefono(id_form) {
+  try {
+    var datos = validar(id_form);
+    datos.id_origen = 1;
+    $.ajax({
+      "url": "/admin/consultas/function/enviar/",
+      "type": "post",
+      "dataType": "json",
+      "data": datos,
+      "success": function(r) {
+        if (r.error == 0) {
+          // Abrimos para hablar por telefono
+          alert("Su consulta ha sido enviada correctamente. Nos pondremos en contacto a la mayor brevedad!");
+          location.reload();
+        } else {
+          alert("Ocurrio un error al enviar su email. Disculpe las molestias");
+          $("#"+id_form).find(".contacto_submit").removeAttr('disabled');
+        }
+        window.enviando = 0;
+      },
+      "error":function() {
+        $("#"+id_form).find(".contacto_submit").removeAttr('disabled');
+        window.enviando = 0;
+      }
+    });
+  } catch(e) {
+    $("#"+id_form).find(".contacto_submit").removeAttr('disabled');
+    console.log(e);
+  }
+  return false;
+}
+
+  
 function buscar_mapa() {
   $("#form_buscador").find(".base_url").val("<?php echo mklink("mapa/") ?>");
   $("#form_buscador").submit();
