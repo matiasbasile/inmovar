@@ -25,28 +25,58 @@
           <p>Contáctanos en La Plata y Punta del Este para empezar a hacer realidad tus sueños de hogar en dos lugares excepcionales.</p>
         </div>
 
-        <?php
-        $oficinas_list = $entrada_model->get_list(array(
-          "from_link_categoria" => "oficinas"
-        ));
-        $i = 0;
-        foreach($oficinas_list as $oficina) { ?>
-          <div class="col-md-4">
-            <div class="map-contact">
-              <div class="map">
-                <img src="assets/images/map1.png" alt="Map">
-              </div>
-              <div class="contact-detail">
-                <strong><?php echo $oficina->titulo ?></strong>
-                <p><?php echo $oficina->video ?></p>
-                <a href="javascript:void(0)" rel="nofollow">
-                  <svg fill="#000000" width="800px" height="800px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M11.42 9.49c-.19-.09-1.1-.54-1.27-.61s-.29-.09-.42.1-.48.6-.59.73-.21.14-.4 0a5.13 5.13 0 0 1-1.49-.92 5.25 5.25 0 0 1-1-1.29c-.11-.18 0-.28.08-.38s.18-.21.28-.32a1.39 1.39 0 0 0 .18-.31.38.38 0 0 0 0-.33c0-.09-.42-1-.58-1.37s-.3-.32-.41-.32h-.4a.72.72 0 0 0-.5.23 2.1 2.1 0 0 0-.65 1.55A3.59 3.59 0 0 0 5 8.2 8.32 8.32 0 0 0 8.19 11c.44.19.78.3 1.05.39a2.53 2.53 0 0 0 1.17.07 1.93 1.93 0 0 0 1.26-.88 1.67 1.67 0 0 0 .11-.88c-.05-.07-.17-.12-.36-.21z"></path><path d="M13.29 2.68A7.36 7.36 0 0 0 8 .5a7.44 7.44 0 0 0-6.41 11.15l-1 3.85 3.94-1a7.4 7.4 0 0 0 3.55.9H8a7.44 7.44 0 0 0 5.29-12.72zM8 14.12a6.12 6.12 0 0 1-3.15-.87l-.22-.13-2.34.61.62-2.28-.14-.23a6.18 6.18 0 0 1 9.6-7.65 6.12 6.12 0 0 1 1.81 4.37A6.19 6.19 0 0 1 8 14.12z"></path></svg> 
-                  +54 (221) 123-5678
-                </a>
-              </div>
+        <div class="col-md-4">
+          <div class="map-contact">
+            <div class="map">
+              <?php $t = $web_model->get_text("oficina1-imagen","assets/images/map1.png"); ?>
+              <img class="editable" data-id_empresa="<?php echo $t->id_empresa ?>" 
+              data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" 
+              src="<?php echo $t->plain_text ?>" alt="Map">
+            </div>
+            <div class="contact-detail">
+              <?php $t = $web_model->get_text("oficina1-titulo","OFICINA LA PLATA"); ?>
+              <strong class="editable" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>">
+                <?php echo $t->plain_text ?>
+              </strong>
+              <?php $t = $web_model->get_text("oficina1-direccion","Calle 8 esquina 59, Nro. 1285"); ?>
+              <p class="editable" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>">
+                <?php echo $t->plain_text ?>
+              </p>
+              <?php $t = $web_model->get_text("oficina1-telefono","+54 (221) 123-5678"); ?>
+              <a class="editable" herf="<?php $t->link ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>">
+                <svg fill="#000000" width="800px" height="800px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M11.42 9.49c-.19-.09-1.1-.54-1.27-.61s-.29-.09-.42.1-.48.6-.59.73-.21.14-.4 0a5.13 5.13 0 0 1-1.49-.92 5.25 5.25 0 0 1-1-1.29c-.11-.18 0-.28.08-.38s.18-.21.28-.32a1.39 1.39 0 0 0 .18-.31.38.38 0 0 0 0-.33c0-.09-.42-1-.58-1.37s-.3-.32-.41-.32h-.4a.72.72 0 0 0-.5.23 2.1 2.1 0 0 0-.65 1.55A3.59 3.59 0 0 0 5 8.2 8.32 8.32 0 0 0 8.19 11c.44.19.78.3 1.05.39a2.53 2.53 0 0 0 1.17.07 1.93 1.93 0 0 0 1.26-.88 1.67 1.67 0 0 0 .11-.88c-.05-.07-.17-.12-.36-.21z"></path><path d="M13.29 2.68A7.36 7.36 0 0 0 8 .5a7.44 7.44 0 0 0-6.41 11.15l-1 3.85 3.94-1a7.4 7.4 0 0 0 3.55.9H8a7.44 7.44 0 0 0 5.29-12.72zM8 14.12a6.12 6.12 0 0 1-3.15-.87l-.22-.13-2.34.61.62-2.28-.14-.23a6.18 6.18 0 0 1 9.6-7.65 6.12 6.12 0 0 1 1.81 4.37A6.19 6.19 0 0 1 8 14.12z"></path></svg> 
+                <?php echo $t->plain_text ?>
+              </a>
             </div>
           </div>
-        <?php } ?>
+        </div>
+
+        <div class="col-md-4">
+          <div class="map-contact">
+            <div class="map">
+              <?php $t = $web_model->get_text("oficina2-imagen","assets/images/map1.png"); ?>
+              <img class="editable" data-id_empresa="<?php echo $t->id_empresa ?>" 
+              data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>" 
+              src="<?php echo $t->plain_text ?>" alt="Map">
+            </div>
+            <div class="contact-detail">
+              <?php $t = $web_model->get_text("oficina2-titulo","OFICINA LA PLATA"); ?>
+              <strong class="editable" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>">
+                <?php echo $t->plain_text ?>
+              </strong>
+              <?php $t = $web_model->get_text("oficina2-direccion","Calle 8 esquina 59, Nro. 1285"); ?>
+              <p class="editable" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>">
+                <?php echo $t->plain_text ?>
+              </p>
+              <?php $t = $web_model->get_text("oficina2-telefono","+54 (221) 123-5678"); ?>
+              <a class="editable" herf="<?php $t->link ?>" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>">
+                <svg fill="#000000" width="800px" height="800px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M11.42 9.49c-.19-.09-1.1-.54-1.27-.61s-.29-.09-.42.1-.48.6-.59.73-.21.14-.4 0a5.13 5.13 0 0 1-1.49-.92 5.25 5.25 0 0 1-1-1.29c-.11-.18 0-.28.08-.38s.18-.21.28-.32a1.39 1.39 0 0 0 .18-.31.38.38 0 0 0 0-.33c0-.09-.42-1-.58-1.37s-.3-.32-.41-.32h-.4a.72.72 0 0 0-.5.23 2.1 2.1 0 0 0-.65 1.55A3.59 3.59 0 0 0 5 8.2 8.32 8.32 0 0 0 8.19 11c.44.19.78.3 1.05.39a2.53 2.53 0 0 0 1.17.07 1.93 1.93 0 0 0 1.26-.88 1.67 1.67 0 0 0 .11-.88c-.05-.07-.17-.12-.36-.21z"></path><path d="M13.29 2.68A7.36 7.36 0 0 0 8 .5a7.44 7.44 0 0 0-6.41 11.15l-1 3.85 3.94-1a7.4 7.4 0 0 0 3.55.9H8a7.44 7.44 0 0 0 5.29-12.72zM8 14.12a6.12 6.12 0 0 1-3.15-.87l-.22-.13-2.34.61.62-2.28-.14-.23a6.18 6.18 0 0 1 9.6-7.65 6.12 6.12 0 0 1 1.81 4.37A6.19 6.19 0 0 1 8 14.12z"></path></svg> 
+                <?php echo $t->plain_text ?>
+              </a>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
