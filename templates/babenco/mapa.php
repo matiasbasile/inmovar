@@ -67,12 +67,11 @@ if (isset($get_params["tp"]) && ($get_params["tp"] == "27" || $get_params["tp"] 
           </div>
         </div>
       </div>
-
-      <div id="mapa" style="width:100%; height:700px"></div>
-      
     </div>      
   </div>
 </section>
+
+<div id="mapa" style="width:100%; height:700px; margin-bottom: 30px;"></div>
 
 <?php include("includes/footer.php") ?>
 <?php include("includes/mapa_js.php"); ?>
