@@ -1,6 +1,7 @@
 <section class="filter-box">
   <form id="form_buscador" onsubmit="return filtrar()" method="get">
 
+    <input type="hidden" id="orden_buscador" value="<?php echo ($vc_orden == 8) ? "selected" : "" ?>" name="orden" />
     <input type="hidden" class="base_url" value="<?php echo (isset($buscador_mapa) ? mklink("mapa/") : mklink("propiedades/")) ?>" />
     <input type="hidden" id="tipo_operacion" class="filter_tipo_operacion" value="<?php echo $vc_link_tipo_operacion ?>">
 

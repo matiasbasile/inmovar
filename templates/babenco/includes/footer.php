@@ -378,7 +378,9 @@ function filtrar() {
 }
 
 function ordenar() {
-  filtrar();
+  var busqueda = $("#orden").val();
+  $("#form_buscador").find("#orden_buscador").val(busqueda);
+  $("#form_buscador").submit();
 }
 
 function filtrar_principal(form) {
