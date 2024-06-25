@@ -377,6 +377,10 @@ function filtrar() {
   return true;
 }
 
+function ordenar() {
+  filtrar();
+}
+
 function filtrar_principal(form) {
   var operacion = $(form).find(".operacion").val();
   var localidad = $(form).find(".localidad").val();

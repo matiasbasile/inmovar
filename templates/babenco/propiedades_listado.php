@@ -55,7 +55,7 @@ if (isset($get_params["tp"]) && ($get_params["tp"] == "27" || $get_params["tp"] 
 				</div>
 				<div class="right-text">
 					<p>Ordenar por:</p>
-          <select name="orden" class="form-select form-control">
+          <select onchange="ordenar()" name="orden" class="form-select form-control">
             <option value="8" <?php echo ($vc_orden == 8) ? "selected" : "" ?>>Propiedades Destacadas</option>
             <option value="2" <?php echo ($vc_orden == 2) ? "selected" : "" ?>>precio de menor a mayor</option>
             <option value="1" <?php echo ($vc_orden == 1) ? "selected" : "" ?>>precio de mayor a menor</option>
