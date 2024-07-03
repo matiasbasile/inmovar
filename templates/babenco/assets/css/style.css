@@ -749,8 +749,6 @@ select.form-control {
   justify-content: flex-end;
   position: relative;
   top: -110px;
-  width: 100%;
-  right: -50px;
  }
  .about-us .bottom-img img {
   border-radius: 8px;
@@ -2631,6 +2629,11 @@ select.form-control {
 }
 
 @media screen and (max-width: 767px) {
+
+  .about-us .bottom-img {
+    width: 100%;
+    right: -50px;
+   }
   #filter_dormitorios {
     display:none !important
   }
