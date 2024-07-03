@@ -14,7 +14,7 @@ $(document).ready(function() {
     dots : ($carousel.data('dots') !== undefined) ? $carousel.data('dots') : true,
     nav : ($carousel.data('nav') !== undefined) ? $carousel.data('nav') : true,
     navText : [""],
-    autoplay : ($carousel.data('autoplay') !== undefined) ? $carousel.data('autoplay') : true,
+    autoplay : ($carousel.data('autoplay') !== undefined) ? $carousel.data('autoplay') : false,
     autoplayTimeout : ($carousel.data('autoplay-timeout') !== undefined) ? $carousel.data('autoplay-timeout') : 3000,
     animateIn : ($carousel.data('animatein') !== undefined) ? $carousel.data('animatein') : false,
     animateOut : ($carousel.data('animateout') !== undefined) ? $carousel.data('animateout') : false,
