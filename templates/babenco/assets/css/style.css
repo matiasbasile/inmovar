@@ -121,6 +121,10 @@ select.form-control {
   align-items: center;
   justify-content: space-between;
 }
+.header .logo img {
+  height:50px
+}
+
 .header .right-nav, .header .navbar-nav {
   display: flex;
   align-items: center;
@@ -160,7 +164,7 @@ select.form-control {
   text-transform: uppercase;
   color: #4d4d4d;
   font-weight: 400;
-  padding: 59px 22.5px;
+  padding: 29px 22.5px;
   position: relative;
   font-weight: 500;
 }
@@ -2040,7 +2044,7 @@ select.form-control {
 
 
 /* Responsive CSS */
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 768px) {  
   .dropdown-form {
     display: none;
   }
@@ -2622,6 +2626,9 @@ select.form-control {
 }
 
 @media screen and (max-width: 767px) {
+  #filter_dormitorios {
+    display:none !important
+  }
   .check-desk-list {
     display: none;
   }
