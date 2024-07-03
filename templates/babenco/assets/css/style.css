@@ -734,6 +734,8 @@ select.form-control {
 .about-us .top-img {
   overflow: hidden;
   padding-right: 130px;
+  position: relative;
+  top: 80;
 }
 .about-us [class*="col-"] {
   position: relative;
@@ -747,6 +749,8 @@ select.form-control {
   justify-content: flex-end;
   position: relative;
   top: -110px;
+  width: 100%;
+  right: -50px;
  }
  .about-us .bottom-img img {
   border-radius: 8px;
@@ -773,6 +777,7 @@ select.form-control {
   position: absolute;
   bottom: 155px;
   left: 60px;
+  z-index: 90;
 }
 .about-us .btn {
   min-width: 190px;
