@@ -28,9 +28,9 @@
         </div>
 
         <?php $t = $web_model->get_text("about-text-1","<p>Nuestra trayectoria de décadas habla por sí misma. Desde 1985, hemos sido el pilar de confianza en el mercado inmobiliario, ofreciendo un servicio excepcional y resultados probados. Nuestro compromiso es hacer realidad tus sueños de hogar.</p>"); ?>
-        <p class="editable" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>">
-          <?php echo $t->plain_text ?>
-        </p>
+        <div class="editable" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>">
+          <?php echo $t->texto ?>
+        </div>
         
         <div class="row">
           <div class="col-md-7">
