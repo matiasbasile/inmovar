@@ -3,7 +3,7 @@ function propiedad_item($r) { ?>
   <div class="property-box">
     <?php if (sizeof($r->images)>0) { ?>
       <div class="img-block">
-        <div class="owl-carousel owl-theme" data-nav="true" data-dots="false">
+        <div class="owl-carousel owl-theme" data-outoplay="false" data-nav="true" data-dots="false">
           <?php foreach($r->images as $image) { ?>
             <div class="item">
               <a href="<?php echo $r->link_propiedad ?>">
