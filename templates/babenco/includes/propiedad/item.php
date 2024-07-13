@@ -6,7 +6,7 @@ function propiedad_item($r) { ?>
         <div class="owl-carousel owl-theme" data-outoplay="false" data-nav="true" data-dots="false">
           <?php foreach($r->images as $image) { ?>
             <div class="item">
-              <a href="<?php echo $r->link_propiedad ?>">
+              <a href="<?php echo $r->link_propiedad ?>" target="_blank">
                 <img src="<?php echo $image ?>" alt="img">
               </a>
             </div>
@@ -31,7 +31,7 @@ function propiedad_item($r) { ?>
       </div>
     <?php } ?>
     <div class="title-box">
-      <h4><a href="<?php echo $r->link_propiedad ?>"><?php echo $r->precio ?></a></h4>
+      <h4><a href="<?php echo $r->link_propiedad ?>" target="_blank"><?php echo $r->precio ?></a></h4>
       <p><?php echo $r->nombre ?></p>
       <span><?php echo $r->direccion_completa ?></span>
       <?php if ($r->id_tipo_operacion != 5) { ?>
@@ -46,7 +46,7 @@ function propiedad_item($r) { ?>
       <?php } ?>
     </div>
     <div class="btn-actions">
-      <a href="<?php echo $r->link_propiedad ?>" class="btn">
+      <a href="<?php echo $r->link_propiedad ?>" target="_blank" class="btn">
         <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M3.75 5.25L3 6V18L3.75 18.75H20.25L21 18V6L20.25 5.25H3.75ZM4.5 7.6955V17.25H19.5V7.69525L11.9999 14.5136L4.5 7.6955ZM18.3099 6.75H5.68986L11.9999 12.4864L18.3099 6.75Z" fill="#080341"/>
         </svg> 
