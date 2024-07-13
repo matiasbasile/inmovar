@@ -126,7 +126,9 @@ select.form-control {
 }
 @media (min-width:1299px) {
   .header .logo img {
-    height: 80px;
+    height: 70px;
+    margin-top: 25px;
+    margin-bottom: 25px;
   }
 }
 
