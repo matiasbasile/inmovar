@@ -124,6 +124,11 @@ select.form-control {
 .header .logo img {
   height:50px
 }
+@media (min-width:1299px) {
+  .header .logo img {
+    height: 80px;
+  }
+}
 
 .header .right-nav, .header .navbar-nav {
   display: flex;
@@ -2104,7 +2109,7 @@ select.form-control {
   }
 }
 
-@media screen and (max-width: 1299px) {
+@media screen and (max-width: 972px) {
   
   .filter-box form {
     padding-top: 40px !important;
