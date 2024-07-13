@@ -388,7 +388,7 @@ function filtrar_principal(form) {
   var localidad = $(form).find(".localidad").val();
   var action = $(form).attr("action");
   if (!isEmpty(operacion)) action += operacion + "/";
-  if (!isEmpty(localidad)) action += localidad + "";
+  if (!isEmpty(localidad)) action += localidad + "/";
   $(form).attr("action",action);
   return true;
 }
