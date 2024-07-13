@@ -61,7 +61,8 @@
           <select class="form-control localidad">
             <option value="">Localidad</option>
             <?php $localidades = $propiedad_model->get_localidades(array(
-              "id_pais" => 224
+              "id_pais" => 224,
+              "id_empresa" => ID_EMPRESA_URUGUAY,
             )); ?>
             <?php foreach ($localidades as $localidad) { ?>
               <option value="<?php echo $localidad->link ?>"><?php echo $localidad->nombre ?></option>

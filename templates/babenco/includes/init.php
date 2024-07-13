@@ -1,6 +1,6 @@
 <?php
 define("ID_EMPRESA_LA_PLATA", 1749);
-define("ID_EMPRESA_URUGUAY", 1750);
+define("ID_EMPRESA_URUGUAY", 1756);
 define("URL_LA_PLATA", "https://app.inmovar.com/sandbox/1749/");
 define("URL_URUGUAY", "https://app.inmovar.com/sandbox/1756/");
 

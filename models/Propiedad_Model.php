@@ -1549,6 +1549,7 @@ class Propiedad_Model {
     $offset = isset($config["offset"]) ? $config["offset"] : 999999;
     $id_departamento = isset($config["id_departamento"]) ? $config["id_departamento"] : 0;
     $id_pais = isset($config["id_pais"]) ? $config["id_pais"] : 0;
+    $id_empresa = isset($config["id_empresa"]) ? $config["id_empresa"] : 0;
 
     $empresas_compartida = $this->get_empresas_red();
     $empresas_compartida[] = $this->id_empresa;
@@ -1562,7 +1563,11 @@ class Propiedad_Model {
       $sql.= "LEFT JOIN com_provincias PP ON (D.id_provincia = PP.id) ";
     }
     $sql.= "WHERE P.activo = 1 ";
-    if (!empty($emp_comp)) $sql.= "AND P.id_empresa IN ($emp_comp) ";
+    if (!empty($id_empresa)) {
+      $sql.= "AND P.id_empresa = $id_empresa ";
+    } else {
+      if (!empty($emp_comp)) $sql.= "AND P.id_empresa IN ($emp_comp) ";
+    }
     if ($id_departamento) $sql.= "AND L.id_departamento = $id_departamento ";
     if ($id_pais != 0) {
       $sql.= "AND PP.id_pais = $id_pais ";
