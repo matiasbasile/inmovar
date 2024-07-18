@@ -15,10 +15,18 @@ $cocheras_list =$propiedad_model->get_cocheras();
 $banios_list = $propiedad_model->get_banios();
 $sliders = $web_model->get_slider();
 $listado_full = $propiedad_model->get_list(array("offset"=>6));
-$propiedades_destacadas = $propiedad_model->get_list(array("destacado"=>1,"offset"=>3,"solo_propias"=>1));
+
+/*------------- Si la empresa es Armentia (id=1644) mostramos 9 destacadas (3 por defecto) -----------*/
+
+if ($id_empresa == 1644) {
+  $propiedades_destacadas = $propiedad_model->get_list(array("destacado"=>1,"offset"=>9,"solo_propias"=>1));
+} else {
+  $propiedades_destacadas = $propiedad_model->get_list(array("destacado"=>1,"offset"=>3,"solo_propias"=>1));
+}
+
 $listado_total_entradas = $entrada_model->get_list(array());
 
-function ver_caracteristicas($p) { ?>
+  function ver_caracteristicas($p) { ?>
   <?php if ($p->id_tipo_inmueble == 5 || $p->id_tipo_inmueble == 6 || $p->id_tipo_inmueble == 7) { ?>
     <?php if ($p->mts_frente != 0 && $p->mts_fondo != 0) { ?>
       <ul class="facilities-list clearfix">
