@@ -17,8 +17,7 @@ $sliders = $web_model->get_slider();
 $listado_full = $propiedad_model->get_list(array("offset"=>6));
 
 /*------------- Si la empresa es Armentia (id=1644) mostramos 9 destacadas (3 por defecto) -----------*/
-
-if ($id_empresa == 1644) {
+if ($empresa->id == 1644) {
   $propiedades_destacadas = $propiedad_model->get_list(array("destacado"=>1,"offset"=>9,"solo_propias"=>1));
 } else {
   $propiedades_destacadas = $propiedad_model->get_list(array("destacado"=>1,"offset"=>3,"solo_propias"=>1));
