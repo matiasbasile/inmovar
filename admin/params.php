@@ -57,7 +57,7 @@ if (!function_exists("get_conex_local_data")) {
 
 if (!function_exists("current_url")) {
   function current_url($solo_dominio = FALSE, $sin_parametros = FALSE) {
-    $pageURL = "https://";
+    $pageURL = (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == 1) ? "https://" : "http://";
     if ($_SERVER["SERVER_PORT"] != "80" && $_SERVER["SERVER_PORT"] != "443") {
       $pageURL .= $_SERVER["HTTP_HOST"].":".$_SERVER["SERVER_PORT"];
     } else {

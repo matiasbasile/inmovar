@@ -9,6 +9,38 @@ class Consultas extends REST_Controller {
     $this->load->model('Consulta_Model', 'modelo');
   }
 
+  function insertar_tasar() {
+    $q = $this->db->query("SELECT * FROM empresas WHERE id_proyecto = 3");
+
+    if ($q->num_rows() > 0) {
+        $empresas = $q->result();
+
+        $values = array();
+        foreach ($empresas as $empresa) {
+          if ($empresa->id != 0) { 
+            $this->db->where('id_empresa', $empresa->id);
+            $this->db->where('nombre', 'Tasar');
+            $query = $this->db->get('crm_consultas_tipos');
+    
+            if ($query->num_rows() == 0) {
+                $values[] = "('" . $this->db->escape_str('Tasar') . "', " . (int)$empresa->id . ")";
+            }
+          }
+        }
+      
+        if (!empty($values)) {
+            $sql = "INSERT IGNORE INTO crm_consultas_tipos (nombre, id_empresa) VALUES " . implode(', ', $values);
+            
+            $this->db->query($sql);
+            echo "Datos insertados correctamente. Filas afectadas: " . $this->db->affected_rows();
+        } else {
+            echo "No hay datos nuevos para insertar.";
+        }
+    } else {
+        echo "No se encontraron empresas.";
+    }
+}
+
   function get_consulta() {
     $id = parent::get_post("id", 0);
     $id_empresa = parent::get_post("id_empresa", parent::get_empresa());
