@@ -20,16 +20,19 @@ class Consultas extends REST_Controller {
           if ($empresa->id != 0) { 
             $this->db->where('id_empresa', $empresa->id);
             $this->db->where('nombre', 'Tasar');
+            $this->db->where('activo', '1');
+            $this->db->where('tiempo_vencimiento', '7');
+            $this->db->where('id', '70');
             $query = $this->db->get('crm_consultas_tipos');
     
             if ($query->num_rows() == 0) {
-                $values[] = "('" . $this->db->escape_str('Tasar') . "', " . (int)$empresa->id . ")";
+                $values[] = "('" . $this->db->escape_str('Tasar') . "', " . (int)$empresa->id . ",1,7,70)";
             }
           }
         }
       
         if (!empty($values)) {
-            $sql = "INSERT IGNORE INTO crm_consultas_tipos (nombre, id_empresa) VALUES " . implode(', ', $values);
+            $sql = "INSERT IGNORE INTO crm_consultas_tipos (nombre, id_empresa,activo,tiempo_vencimiento,id) VALUES " . implode(', ', $values);
             
             $this->db->query($sql);
             echo "Datos insertados correctamente. Filas afectadas: " . $this->db->affected_rows();
