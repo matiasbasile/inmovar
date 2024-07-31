@@ -2,7 +2,7 @@
 include 'includes/init.php';
 
 if (!isset($config_grupo)) $config_grupo = array();
-$config_grupo["orden_default"] = 8;
+$config_grupo["orden_default"] = -1;
 $config_grupo["images_limit"] = 3;
 
 // Si tiene el flag de ofertas
@@ -56,6 +56,7 @@ if (isset($get_params["tp"]) && ($get_params["tp"] == "27" || $get_params["tp"] 
 				<div class="right-text">
 					<p>Ordenar por:</p>
           <select onchange="ordenar()" id="orden" class="form-select form-control">
+            <option value="-1" <?php echo ($vc_orden == -1 ) ? "selected" : "" ?>>Ver los más nuevos</option>
             <option value="8" <?php echo ($vc_orden == 8) ? "selected" : "" ?>>Propiedades Destacadas</option>
             <option value="2" <?php echo ($vc_orden == 2) ? "selected" : "" ?>>precio de menor a mayor</option>
             <option value="1" <?php echo ($vc_orden == 1) ? "selected" : "" ?>>precio de mayor a menor</option>

@@ -7,7 +7,7 @@ if (sizeof($destacadas)>0) { ?>
     <div class="container">
       <div class="section-title">
         <span>ciudad de la plata</span>
-        <h2>Últimos Ingresos</h2>
+        <h2>Propiedades Destacadas</h2>
       </div>
       <div class="row">
         <?php foreach($destacadas as $r) { ?>

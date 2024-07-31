@@ -58,7 +58,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
       <div class="col-xl-8">
         <div class="section-title">
           <h3><?php echo $propiedad->nombre ?></h3>
-          <small><?php echo $propiedad->direccion_completa ?></small>
+          <strong class="direccion"> <?php echo $propiedad->direccion_completa?> </strong>
         </div>
         <div class="aminities">
           <ul>
