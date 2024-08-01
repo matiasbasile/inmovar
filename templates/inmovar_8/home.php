@@ -240,10 +240,12 @@ if (sizeof($slides)>0) { ?>
         <div class="tab-pane fade ajustar show active" id="ventra" role="tabpanel" aria-labelledby="ventra-tab">
           <div class="listing_boxes_wrap">
             <div class="enventa_list">
-              <div class="owl-carousel owl-theme home_owl_slider">
-                <?php foreach ($ventas_listado as $l) {  ?>
-                  <div class="item">
-                   <div class="tab_slider_st">
+            <div class="row">
+
+              <?php foreach ($ventas_listado as $l) {  ?>
+                <div class="col-md-4">
+                  
+                   <div class="tab_slider_st mb20">
                     <div class="tab_list_box">
                       <div class="hover_box_div">
                         <?php 
@@ -302,18 +304,20 @@ if (sizeof($slides)>0) { ?>
                   </div>
                 </div>
               <?php }?>
-            </div>
+            </>
           </div>
+          </div>
+
         </div>
       </div>
         <?php $alquileres_listado = $propiedad_model->get_list(array("destacado"=>"1","tipo_operacion"=>"alquileres"))?>
         <div class="tab-pane fade ajustar" id="alquile" role="tabpanel" aria-labelledby="alquile-tab">
           <div class="listing_boxes_wrap">
             <div class="enventa_list">
-              <div class="owl-carousel owl-theme home_owl_slider">
+              <div class="row">
                 <?php foreach ($alquileres_listado as $l) {  ?>
-                 <div class="item">
-                   <div class="tab_slider_st">
+                 <div class="col-md-4">
+                   <div class="tab_slider_st mb20">
                     <div class="tab_list_box">
                       <div class="hover_box_div">
                         <?php 
