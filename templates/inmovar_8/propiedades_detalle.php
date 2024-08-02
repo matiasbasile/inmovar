@@ -43,6 +43,7 @@ if (!empty($propiedad->imagen)) $propiedad->images = array_merge(array($propieda
 <html lang="en">
 
 <head>
+  <meta class="propiedad-meta-descripcion" name="description" content="Me comunico desde Inmovar interesado en el <?php echo $propiedad->nombre ?> (cod: <?php echo $propiedad->codigo?>) link: <?php echo $propiedad->link_propiedad ?>">
   <?php include "includes/head.php" ?>
   <?php include "templates/comun/og.php" ?>
   <script>
