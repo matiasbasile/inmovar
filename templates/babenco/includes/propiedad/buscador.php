@@ -1,7 +1,7 @@
 <section class="filter-box">
   <form id="form_buscador" onsubmit="return filtrar()" method="get">
 
-    <input type="hidden" id="orden_buscador" value="<?php echo ($vc_orden == 8) ? "selected" : "" ?>" name="orden" />
+    <input type="hidden" id="orden_buscador" value="<?php echo (isset($vc_orden) && $vc_orden == 8) ? "selected" : "" ?>" name="orden" />
     <input type="hidden" class="base_url" value="<?php echo (isset($buscador_mapa) ? mklink("mapa/") : mklink("propiedades/")) ?>" />
     <input type="hidden" id="tipo_operacion" class="filter_tipo_operacion" value="<?php echo $vc_link_tipo_operacion ?>">
 
@@ -9,7 +9,7 @@
       <option value="">Localidad</option>
       <?php $localidades = $propiedad_model->get_localidades(); ?>
       <?php foreach ($localidades as $localidad) { ?>
-        <option <?php echo ($localidad->link == $vc_link_localidad)?"selected":"" ?> value="<?php echo $localidad->link ?>"><?php echo $localidad->nombre ?></option>
+        <option <?php echo (isset($vc_link_localidad) && $localidad->link == $vc_link_localidad)?"selected":"" ?> value="<?php echo $localidad->link ?>"><?php echo $localidad->nombre ?></option>
       <?php } ?>
     </select>
     
@@ -17,7 +17,7 @@
       <option value="0">Tipo de Propiedad</option>
       <?php $tipo_propiedades = $propiedad_model->get_tipos_propiedades(); ?>
       <?php foreach ($tipo_propiedades as $tipo) { ?>
-        <option <?php echo ($vc_id_tipo_inmueble == $tipo->id) ? "selected" : "" ?> value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
+        <option <?php echo (isset($vc_id_tipo_inmueble) && $vc_id_tipo_inmueble == $tipo->id) ? "selected" : "" ?> value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
       <?php } ?>
     </select>
 
@@ -26,7 +26,7 @@
       <?php $dormitorios = $propiedad_model->get_dormitorios(); ?>
       <?php foreach ($dormitorios as $dormitorio) { ?>
         <?php if (empty($dormitorio->dormitorios)) continue; ?>
-        <option <?php echo ($vc_dormitorios == $dormitorio->dormitorios) ? "selected" : "" ?> value="<?php echo $dormitorio->dormitorios; ?>">
+        <option <?php echo (isset($vc_dormitorios) && $vc_dormitorios == $dormitorio->dormitorios) ? "selected" : "" ?> value="<?php echo $dormitorio->dormitorios; ?>">
           <?php echo $dormitorio->dormitorios ?>
         </option>
       <?php } ?>
@@ -37,7 +37,7 @@
       <?php $banios = $propiedad_model->get_banios(); ?>
       <?php foreach ($banios as $banio) { ?>
         <?php if (empty($banio->banios)) continue; ?>
-        <option <?php echo ($vc_banios == $banio->banios) ? "selected" : "" ?> value="<?php echo $banio->banios; ?>">
+        <option <?php echo (isset($vc_banios) && $vc_banios == $banio->banios) ? "selected" : "" ?> value="<?php echo $banio->banios; ?>">
           <?php echo $banio->banios ?>
         </option>
       <?php } ?>
@@ -80,7 +80,7 @@
             <option value="">Localidad</option>
             <?php $localidades = $propiedad_model->get_localidades(); ?>
             <?php foreach ($localidades as $localidad) { ?>
-              <option <?php echo ($localidad->link == $vc_link_localidad)?"selected":"" ?> value="<?php echo $localidad->link ?>"><?php echo $localidad->nombre ?></option>
+              <option <?php echo (isset($vc_link_localidad) && $localidad->link == $vc_link_localidad)?"selected":"" ?> value="<?php echo $localidad->link ?>"><?php echo $localidad->nombre ?></option>
             <?php } ?>
           </select>
           
@@ -88,7 +88,7 @@
             <option value="0">Tipo de Propiedad</option>
             <?php $tipo_propiedades = $propiedad_model->get_tipos_propiedades(); ?>
             <?php foreach ($tipo_propiedades as $tipo) { ?>
-              <option <?php echo ($vc_id_tipo_inmueble == $tipo->id) ? "selected" : "" ?> value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
+              <option <?php echo (isset($vc_id_tipo_inmueble) && $vc_id_tipo_inmueble == $tipo->id) ? "selected" : "" ?> value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
             <?php } ?>
           </select>
 
@@ -97,7 +97,7 @@
             <?php $dormitorios = $propiedad_model->get_dormitorios(); ?>
             <?php foreach ($dormitorios as $dormitorio) { ?>
               <?php if (empty($dormitorio->dormitorios)) continue; ?>
-              <option <?php echo ($vc_dormitorios == $dormitorio->dormitorios) ? "selected" : "" ?> value="<?php echo $dormitorio->dormitorios; ?>">
+              <option <?php echo (isset($vc_dormitorios) && $vc_dormitorios == $dormitorio->dormitorios) ? "selected" : "" ?> value="<?php echo $dormitorio->dormitorios; ?>">
                 <?php echo $dormitorio->dormitorios ?>
               </option>
             <?php } ?>
@@ -108,7 +108,7 @@
             <?php $banios = $propiedad_model->get_banios(); ?>
             <?php foreach ($banios as $banio) { ?>
               <?php if (empty($banio->banios)) continue; ?>
-              <option <?php echo ($vc_banios == $banio->banios) ? "selected" : "" ?> value="<?php echo $banio->banios; ?>">
+              <option <?php echo (isset($vc_banios) && $vc_banios == $banio->banios) ? "selected" : "" ?> value="<?php echo $banio->banios; ?>">
                 <?php echo $banio->banios ?>
               </option>
             <?php } ?>
