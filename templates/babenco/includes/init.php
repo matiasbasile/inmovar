@@ -1,7 +1,7 @@
 <?php
 define("ID_EMPRESA_LA_PLATA", 1749);
 define("ID_EMPRESA_URUGUAY", 1756);
-define("URL_LA_PLATA", "https://app.inmovar.com/sandbox/1749/");
+define("URL_LA_PLATA", "https://www.babencopropiedades.com.ar/");
 define("URL_URUGUAY", "https://app.inmovar.com/sandbox/1756/");
 
 ini_set('display_errors', 1);
