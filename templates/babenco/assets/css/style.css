@@ -3002,13 +3002,6 @@ select.form-control {
     line-height: 24px;
     margin-bottom: 6px;
   }
-  .gray-box .title {
-    align-items: flex-start;
-  flex-direction: column;
-  }
-  .gray-box .title img {
-    margin: 0 0 20px;
-  }
 }
 
 
