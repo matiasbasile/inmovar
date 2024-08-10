@@ -19,7 +19,6 @@
                 <li><a href="<?php echo URL_LA_PLATA."propiedades/emprendimientos/" ?>">Emprendimientos</a></li>
               </ul>
             </li>
-            <?php /*
             <li class="nav-item dropdown-nav">
               <a class="nav-link" href="javascript:void(0)" rel="nofollow">punta del este</a>
               <ul class="dropdown">
@@ -28,7 +27,6 @@
                 <li><a href="<?php echo URL_URUGUAY."propiedades/emprendimientos/" ?>">Emprendimientos</a></li>
               </ul>
             </li>
-            */ ?>
             <li class="nav-item">
               <a class="nav-link" href="<?php echo mklink("web/nosotros/") ?>">nosotros</a>
             </li>

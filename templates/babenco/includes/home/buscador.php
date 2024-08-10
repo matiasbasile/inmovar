@@ -3,10 +3,9 @@
     <li class="nav-item" role="presentation">
       <button class="nav-link active" id="Comprar-tab" data-bs-toggle="tab" data-bs-target="#Comprar" type="button" role="tab" aria-controls="Comprar" aria-selected="true"><img src="assets/images/tab-arrow.png" alt="Arrow"> La Plata</button>
     </li>
-    <?php /*
     <li class="nav-item" role="presentation">
       <button class="nav-link" id="Alquilar-tab" data-bs-toggle="tab" data-bs-target="#Alquilar" type="button" role="tab" aria-controls="Alquilar" aria-selected="false"><img src="assets/images/tab-arrow.png" alt="Arrow"> Punta del Este</button>
-    </li>*/ ?>
+    </li>
   </ul>
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="Comprar" role="tabpanel" aria-labelledby="Comprar-tab">
