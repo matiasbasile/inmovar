@@ -1,10 +1,10 @@
 <div class="tabs">
   <ul class="nav nav-tabs" id="myTabContent" role="tablist">
     <li class="nav-item" role="presentation">
-      <button class="nav-link active" id="Comprar-tab" data-bs-toggle="tab" data-bs-target="#Comprar" type="button" role="tab" aria-controls="Comprar" aria-selected="true"><img src="assets/images/tab-arrow.png" alt="Arrow"> La Plata</button>
+      <button class="nav-link <?php echo $empresa->id == ID_EMPRESA_LA_PLATA ? "active" : "" ?>" id="Comprar-tab" data-bs-toggle="tab" data-bs-target="#Comprar" type="button" role="tab" aria-controls="Comprar" aria-selected="true"><img src="assets/images/tab-arrow.png" alt="Arrow"> La Plata</button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link" id="Alquilar-tab" data-bs-toggle="tab" data-bs-target="#Alquilar" type="button" role="tab" aria-controls="Alquilar" aria-selected="false"><img src="assets/images/tab-arrow.png" alt="Arrow"> Punta del Este</button>
+      <button class="nav-link <?php echo $empresa->id == ID_EMPRESA_URUGUAY ? "active" : "" ?>" id="Alquilar-tab" data-bs-toggle="tab" data-bs-target="#Alquilar" type="button" role="tab" aria-controls="Alquilar" aria-selected="false"><img src="assets/images/tab-arrow.png" alt="Arrow"> Punta del Este</button>
     </li>
   </ul>
   <div class="tab-content" id="myTabContent">
