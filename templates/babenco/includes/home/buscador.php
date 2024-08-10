@@ -8,7 +8,7 @@
     </li>
   </ul>
   <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="Comprar" role="tabpanel" aria-labelledby="Comprar-tab">
+    <div class="tab-pane fade <?php echo $empresa->id == ID_EMPRESA_LA_PLATA ? "show active" : "" ?>" id="Comprar" role="tabpanel" aria-labelledby="Comprar-tab">
       <form action="<?php echo URL_LA_PLATA ?>propiedades/" onsubmit="return filtrar_principal(this)">
 
         <div class="select-box">
@@ -45,7 +45,7 @@
         <button type="submit" class="btn btn-red">Buscar</button>
       </form>
     </div>
-    <div class="tab-pane fade" id="Alquilar" role="tabpanel" aria-labelledby="Alquilar-tab">
+    <div class="tab-pane fade <?php echo $empresa->id == ID_EMPRESA_URUGUAY ? "show active" : "" ?>" id="Alquilar" role="tabpanel" aria-labelledby="Alquilar-tab">
       <form action="<?php echo URL_URUGUAY ?>propiedades/" onsubmit="return filtrar_principal(this)">
 
         <div class="select-box">
