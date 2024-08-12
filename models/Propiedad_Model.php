@@ -277,8 +277,6 @@ class Propiedad_Model {
     $vc_link = "propiedades/";
     $no_analizar_url = isset($config["no_analizar_url"]) ? $config["no_analizar_url"] : 0;
 
-    if ($link_localidad == "assets") exit();
-
     // propiedades/localidad/tipo_operacion/?parametros..
    
     $link_tipo_operacion = isset($config["link_tipo_operacion"]) ? $config["link_tipo_operacion"] : "";
@@ -302,7 +300,10 @@ class Propiedad_Model {
         $vc_id_tipo_operacion = $top->id;
         $vc_nombre_operacion = $top->nombre;
       }
-    }    
+    }
+
+    if ($params[1] == "assets") exit();
+    if ($params[2] == "assets") exit();
 
     $link_localidad = "";
     $vc_nombre_localidad = "";
