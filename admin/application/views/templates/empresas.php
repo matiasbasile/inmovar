@@ -281,7 +281,7 @@
                         <select name="id_web_template" class="form-control" id="empresas_templates"></select>
                       </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 dn">
                       <div class="form-group">
                         <label class="control-label">Dominio principal</label>
                         <input type="text" name="dominio_ppal" class="form-control" id="empresas_dominio_ppal" value="<%= dominio_ppal %>"/>
