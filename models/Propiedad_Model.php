@@ -277,6 +277,8 @@ class Propiedad_Model {
     $vc_link = "propiedades/";
     $no_analizar_url = isset($config["no_analizar_url"]) ? $config["no_analizar_url"] : 0;
 
+    if ($link_localidad == "assets") exit();
+
     // propiedades/localidad/tipo_operacion/?parametros..
    
     $link_tipo_operacion = isset($config["link_tipo_operacion"]) ? $config["link_tipo_operacion"] : "";
