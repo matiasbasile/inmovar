@@ -302,8 +302,8 @@ class Propiedad_Model {
       }
     }
 
-    if ($params[1] == "assets") exit();
-    if ($params[2] == "assets") exit();
+    if (isset($params[1]) && $params[1] == "assets") exit();
+    if (isset($params[2]) && $params[2] == "assets") exit();
 
     $link_localidad = "";
     $vc_nombre_localidad = "";
