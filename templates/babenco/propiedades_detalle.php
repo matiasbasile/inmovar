@@ -113,7 +113,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
               <div class="owl-carousel owl-theme" data-outoplay="true" data-items="1" data-nav="true" data-dots="false">
                 <?php foreach ($propiedad->images as $img) { ?>
                   <div class="item">
-                    <a href="javascript:void(0)" data-fancybox="gallery" >
+                    <a href="javascript:void(0)" data-src="<?php echo $img ?>" data-fancybox="gallery">
                       <img src="<?php echo $img ?>" alt="img">
                     </a>
                   </div>
