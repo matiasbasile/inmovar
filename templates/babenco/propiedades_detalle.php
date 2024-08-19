@@ -113,7 +113,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
               <div class="owl-carousel owl-theme" data-outoplay="true" data-items="1" data-nav="true" data-dots="false">
                 <?php foreach ($propiedad->images as $img) { ?>
                   <div class="item">
-                    <a href="javascript:void(0)" data-fancybox="gallery" data-src="<?php echo $img ?>">
+                    <a href="javascript:void(0)" data-fancybox="gallery">
                       <img src="<?php echo $img ?>" alt="img">
                     </a>
                   </div>
@@ -133,7 +133,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
               <?php } ?>
               <h5><?php echo $propiedad->precio ?></h5>
               <?php if ($propiedad->valor_expensas != 0 && $propiedad->publica_precio == 1) { ?>
-                <small>+ <?php echo "$" . number_format($propiedad->valor_expensas,0,",",".") ?> Expensas</small>
+                <small>+ <?php echo $propiedad->moneda_expensas . number_format($propiedad->valor_expensas,0,",",".") ?> Expensas</small>
               <?php } ?>
             </div>
           </div>
@@ -334,7 +334,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
               <?php } ?>
               <h5><?php echo $propiedad->precio ?></h5>
               <?php if ($propiedad->valor_expensas != 0 && $propiedad->publica_precio == 1) { ?>
-                <small>+ <?php echo "$" . number_format($propiedad->valor_expensas,0,",",".") ?> Expensas</small>
+                <small>+ <?php echo $propiedad->moneda_expensas . number_format($propiedad->valor_expensas,0,",",".") ?> Expensas</small>
               <?php } ?>
             </div>
           </div>
