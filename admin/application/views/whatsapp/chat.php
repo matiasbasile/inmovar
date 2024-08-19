@@ -76,6 +76,14 @@ String.prototype.chat_replaceAll = function(search, replacement) {
     // Tomamos el prefijo por defecto que tiene configurado
     jQuery(chat).find(".chat_user_form_2_prefijo").val(config.prefijo);    
 
+    // Tomamos el meta de Propiedad Detalle como Mensaje x default
+    var $input = jQuery(chat).find(".chat_user_form_2_mensaje");
+    $input.val(
+        jQuery('.propiedad-meta-descripcion').length ? 
+        jQuery('.propiedad-meta-descripcion').attr('content') : 
+        $input.val()
+    );    
+
     // Click sobre un USUARIO
     jQuery(chat).find(".chat_user").click(function(e){
       var id = jQuery(e.currentTarget).data("id");

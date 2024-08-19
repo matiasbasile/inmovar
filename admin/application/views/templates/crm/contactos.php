@@ -282,6 +282,7 @@
             <label data-id_origen="24" data-toggle="tooltip" title="Instagram" class="btn btn-default id_origen"><i class="fa fa-instagram"></i></label>
             <label data-id_origen="3" data-toggle="tooltip" title="Personal" class="btn btn-default id_origen"><i class="fa fa-users"></i></label>
             <label data-id_origen="27" data-toggle="tooltip" title="Whatsapp" class="btn btn-default id_origen"><i class="fa fa-whatsapp"></i></label>
+            <label data-id_origen="70" data-toggle="tooltip" title="Portales" class="btn btn-default id_origen"><i class="fa fa-globe"></i></label>
           </div>
         </div>
       </div>  

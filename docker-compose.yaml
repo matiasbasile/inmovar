@@ -16,6 +16,7 @@ services:
       - LOGO_LOGIN=${LOGO_LOGIN}
       - CSS_LOGIN=${CSS_LOGIN}
       - MANTENIMIENTO=${MANTENIMIENTO}
+      - HTTPS=${HTTPS}
     volumes:
       - .:/var/www
 

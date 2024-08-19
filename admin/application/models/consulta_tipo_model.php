@@ -54,6 +54,26 @@ class Consulta_Tipo_Model extends Abstract_Model {
       else $this->db->query($sql);
     }
 
+    // Tasar
+    $sql = "SELECT * FROM crm_consultas_tipos WHERE id_empresa = $id_empresa AND id = 70";
+    $q = $this->db->query($sql);
+    if ($q->num_rows() == 0) {
+      $sql = "INSERT INTO crm_consultas_tipos (id, id_empresa, nombre, color, orden, activo, tiempo_vencimiento) VALUES (70, '$id_empresa', 'Tasar', 'warning', 1, 1, 7)";
+      if ($imprimir == 1) {
+          $salida .= $sql . ";\n";
+      } else {
+          $this->db->query($sql);
+      }
+  } else {
+      // Actualización del registro existente
+      $sql = "UPDATE crm_consultas_tipos SET nombre = 'Tasar', orden = 1, activo = 1, tiempo_vencimiento = 7 WHERE id_empresa = '$id_empresa' AND id = 1";
+      if ($imprimir == 1) {
+          $salida .= $sql . ";\n";
+      } else {
+          $this->db->query($sql);
+      }
+  }
+
     // Contactado
     $sql = "SELECT * FROM crm_consultas_tipos WHERE id_empresa = $id_empresa AND id = 2";
     $q = $this->db->query($sql);
