@@ -113,7 +113,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
               <div class="owl-carousel owl-theme" data-outoplay="true" data-items="1" data-nav="true" data-dots="false">
                 <?php foreach ($propiedad->images as $img) { ?>
                   <div class="item">
-                    <a href="javascript:void(0)" rel="nofollow">
+                    <a href="javascript:void(0)" onclick="abrir_galeria()" rel="nofollow">
                       <img src="<?php echo $img ?>" alt="img">
                     </a>
                   </div>
@@ -413,10 +413,7 @@ function abrir_galeria() {
           "type": "image",
         },
       <?php } ?>      
-    ],
-    {
-      // Your custom options
-    }
+    ]
   );
 }
 
