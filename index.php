@@ -339,7 +339,7 @@ if ( $nombre_pagina == "ficha") {
 
   // Si la pagina comienza solamente con "p", es un link que viene de tokko
   } else if ($nombre_pagina == "p") {
-    $pos = strpos($params[1], "-prop?");
+    $pos = strpos($params[1], "-prop");
     if ($pos > 0) {
       $id_tokko = substr($params[1], 0, $pos);
       include_once("models/Propiedad_Model.php");

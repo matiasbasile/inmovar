@@ -382,10 +382,9 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad" => $propiedad->id));
                             <?php include 'includes/prefijo_localidades.php' ?>
                           </div>
                           <div class="chat_user_form_row_6">
-                            <input type="text" id="contacto_telefono" value="<?php echo isset($_SESSION["telefono"]) ? $_SESSION["telefono"] : "" ?>"" class=" form-control chat_user_form_input chat_user_form_2_celular" placeholder="Teléfono">
+                            <input type="text" id="contacto_telefono" value="<?php echo isset($_SESSION["telefono"]) ? $_SESSION["telefono"] : "" ?>"" class=" form-control chat_user_form_input chat_user_form_2_celular" placeholder="Celular (sin 0 ni 15)">
                           </div>
                         </div>
-                        <!-- <input class="form-control" id="contacto_telefono" placeholder="Telefono*" type="text"> -->
                       </div>
                     </div>
                     <div class="form-row">
@@ -651,20 +650,20 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad" => $propiedad->id));
       var fax = $("#contacto_fax").val();
       var telefono = $("#contacto_telefono").val();
 
-      if (isEmpty(nombre) || nombre == "Nombre") {
+      if (isEmpty(nombre)) {
         alert("Por favor ingrese un nombre");
         $("#contacto_nombre").focus();
         return false;
       }
 
-      if (isEmpty(telefono) || telefono == "telefono") {
+      if (isEmpty(telefono)) {
         alert("Por favor ingrese un telefono");
         $("#contacto_telefono").focus();
         return false;
       }
 
-      if (isEmpty(telefono) || telefono == "Telefono") {
-        alert("Por favor ingrese un telefono");
+      if (!isTelephone(telefono)) {
+        alert("Por favor ingrese un celular valido sin 0 ni 15.");
         $("#contacto_telefono").focus();
         return false;
       }
@@ -714,7 +713,13 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad" => $propiedad->id));
         "data": datos,
         "success": function(r) {
           if (r.error == 0) {
-            window.location.href = '<?php echo mklink("web/gracias/") ?>';
+            var url = "https://wa.me/"+"<?php echo $empresa->whatsapp  ?>";
+            url+= "?text="+encodeURIComponent(datos.mensaje);
+            var open = window.open(url,"_blank");
+            if (open == null || typeof(open)=='undefined') {
+              // Si se bloqueo el popup, se redirecciona
+              location.href = url;
+            }
           } else {
             alert("Ocurrio un error al enviar su email. Disculpe las molestias");
             $("#contacto_submit").removeAttr('disabled');
@@ -770,7 +775,6 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad" => $propiedad->id));
         <?php if (isset($propiedad) && $propiedad->id_empresa != $empresa->id) { ?> "id_empresa_relacion": "<?php echo $propiedad->id_empresa ?>",
         <?php } ?> "id_empresa": ID_EMPRESA,
         "id_origen": <?php echo (isset($id_origen) ? $id_origen : 1); ?>,
-        "bcc": "basile.matias99@gmail.com",
       }
       $.ajax({
         "url": "https://app.inmovar.com/admin/consultas/function/enviar/",
