@@ -9,6 +9,12 @@ $propiedad = $propiedad_model->get($id, array(
   "buscar_relacionados_offset" => 6,
 ));
 
+if (!empty($propiedad->id_usuario)) {
+  $contacto_whatsapp = preg_replace('/[^0-9]/', '', $propiedad->usuario_celular);
+} else {
+  $contacto_whatsapp = preg_replace('/[^0-9]/', '', $empresa->whatsapp);
+}
+
 if (($propiedad === FALSE || !isset($propiedad->nombre) || $propiedad->activo == 0) && !isset($get_params["preview"])) {
   header("HTTP/1.1 302 Moved Temporarily");
   header("Location:" . mklink("/"));
@@ -713,7 +719,7 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad" => $propiedad->id));
         "data": datos,
         "success": function(r) {
           if (r.error == 0) {
-            var url = "https://wa.me/"+"<?php echo $empresa->whatsapp  ?>";
+            var url = "https://wa.me/"+"<?php echo $contacto_whatsapp  ?>";
             url+= "?text="+encodeURIComponent(datos.mensaje);
             var open = window.open(url,"_blank");
             if (open == null || typeof(open)=='undefined') {
@@ -789,7 +795,7 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad" => $propiedad->id));
         "data": datos,
         "success": function(r) {
           if (r.error == 0) {
-            var url = "https://wa.me/"+"<?php echo $empresa->whatsapp  ?>";
+            var url = "https://wa.me/"+"<?php echo $contacto_whatsapp  ?>";
             url+= "?text="+encodeURIComponent(datos.mensaje);
             var open = window.open(url,"_blank");
             if (open == null || typeof(open)=='undefined') {
