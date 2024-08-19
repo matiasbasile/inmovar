@@ -405,8 +405,6 @@ $(document).ready(function() {
 // ==============================
 // GALERIA DE FOTOS
   
-Fancybox.bind('[data-fancybox="gallery"]', {}); 
-
 function abrir_galeria() {
   $(".owl-carousel .item:first a").trigger("click")
 }
