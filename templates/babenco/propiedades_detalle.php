@@ -113,7 +113,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
               <div class="owl-carousel owl-theme" data-outoplay="true" data-items="1" data-nav="true" data-dots="false">
                 <?php foreach ($propiedad->images as $img) { ?>
                   <div class="item">
-                    <a href="javascript:void(0)" data-src="<?php echo $img ?>" data-fancybox="gallery">
+                    <a href="javascript:void(0)" rel="nofollow" data-src="<?php echo $img ?>" data-fancybox="gallery">
                       <img src="<?php echo $img ?>" alt="img">
                     </a>
                   </div>
@@ -405,6 +405,8 @@ $(document).ready(function() {
 // ==============================
 // GALERIA DE FOTOS
   
+Fancybox.bind('[data-fancybox="gallery"]', {}); 
+
 function abrir_galeria() {
   $(".owl-carousel .item:first a").trigger("click")
 }
