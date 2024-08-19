@@ -63,6 +63,7 @@
       id_tipo_operacion:0,
       id_tipo_estado:0,
       moneda: "U$S",
+      moneda_expensas: "$",
       codigo: "",
       codigo_completo: "", // Tiene el codigo de la empresa + codigo de la propiedad
       nombre: "",
@@ -2707,6 +2708,7 @@
           //"destacado":(self.$("#propiedad_destacado").is(":checked")?1:0),
           "codigo":codigo,
           "moneda":self.$("#propiedad_monedas").val(),
+          "moneda_expensas":self.$("#propiedad_monedas_expensas").val(),
           "nuevo":((self.$("#propiedad_antiguedad").length>0) ? self.$("#propiedad_antiguedad").val() : 0),
           "patio":((self.$("#propiedad_patio").length>0) ? (self.$("#propiedad_patio").is(":checked")?1:0) : 0),
           "balcon":((self.$("#propiedad_balcon").length>0) ? (self.$("#propiedad_balcon").is(":checked")?1:0) : 0),

@@ -145,7 +145,14 @@
             <div class="form-group">
               <label class="control-label">Expensas</label>
               <div class="input-group">
-                <span class="input-group-addon">$</span>
+                <div class="input-group-btn">
+                  <select <%= (!edicion)?"disabled":"" %> id="propiedad_monedas_expensas" class="form-control w80">
+                    <% for(var i=0;i< window.monedas.length;i++) { %>
+                      <% var o = monedas[i]; %>
+                      <option <%= (o.signo == moneda_expensas)?"selected":"" %> value="<%= o.signo %>"><%= o.signo %></option>
+                    <% } %>
+                  </select>                      
+                </div>
                 <input <%= (!edicion)?"disabled":"" %> id="propiedad_valor_expensas" value="<%= valor_expensas %>" type="number" class="form-control number" name="valor_expensas"/>
               </div>
             </div>

@@ -26,7 +26,7 @@ class Localidades extends REST_Controller {
   // Funcion interna que sirve para regenerar todos los links de las propiedades
   function relink() {
     $this->load->helper("file_helper");
-    $q = $this->db->query("SELECT * FROM com_localidades");
+    $q = $this->db->query("SELECT * FROM com_localidades WHERE link = '' ");
     foreach($q->result() as $r) {
       $link = filename($r->nombre,"-",0);
       echo $link."<br/>";
