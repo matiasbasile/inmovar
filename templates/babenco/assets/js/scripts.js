@@ -8,7 +8,7 @@ $(document).ready(function() {
   var $items_mobile_landscape = ($carousel.data('items-mobile-landscape') !== undefined) ? $carousel.data('items-mobile-landscape') : 1;
   var $items_mobile_portrait = ($carousel.data('items-mobile-portrait') !== undefined) ? $carousel.data('items-mobile-portrait') : 1;
   $carousel.owlCarousel ({
-    loop : ($carousel.data('loop') !== undefined) ? $carousel.data('loop') : true,
+    loop : false,
     items : $carousel.data('items'),
     margin : ($carousel.data('margin') !== undefined) ? $carousel.data('margin') : 0,
     dots : ($carousel.data('dots') !== undefined) ? $carousel.data('dots') : true,
