@@ -411,7 +411,7 @@ function abrir_galeria() {
         {
           "src": "<?php echo $img ?>",
           "type": "image",
-        }
+        },
       <?php } ?>      
     ],
     {
