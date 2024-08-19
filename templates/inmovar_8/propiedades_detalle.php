@@ -740,14 +740,20 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad" => $propiedad->id));
       var mensaje = $("#contacto_modal_mensaje").val();
       var telefono = $("#contacto_modal_telefono").val();
 
-      if (isEmpty(nombre) || nombre == "Nombre") {
+      if (isEmpty(nombre)) {
         alert("Por favor ingrese un nombre");
         $("#contacto_modal_nombre").focus();
         return false;
       }
 
-      if (isEmpty(telefono) || telefono == "telefono") {
+      if (isEmpty(telefono)) {
         alert("Por favor ingrese un telefono");
+        $("#contacto_modal_telefono").focus();
+        return false;
+      }
+
+      if (!isTelephone(telefono)) {
+        alert("Por favor ingrese un celular valido sin 0 ni 15");
         $("#contacto_modal_telefono").focus();
         return false;
       }
@@ -783,7 +789,13 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad" => $propiedad->id));
         "data": datos,
         "success": function(r) {
           if (r.error == 0) {
-            window.location.href = '<?php echo mklink("web/gracias/") ?>';
+            var url = "https://wa.me/"+"<?php echo $empresa->whatsapp  ?>";
+            url+= "?text="+encodeURIComponent(datos.mensaje);
+            var open = window.open(url,"_blank");
+            if (open == null || typeof(open)=='undefined') {
+              // Si se bloqueo el popup, se redirecciona
+              location.href = url;
+            }
           } else {
             alert("Ocurrio un error al enviar su email. Disculpe las molestias");
             $("#contacto_modal_submit").removeAttr('disabled');
