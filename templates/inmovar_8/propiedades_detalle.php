@@ -523,7 +523,7 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad" => $propiedad->id));
                 <input class="form-control" id="contacto_modal_nombre" placeholder="Nombre*" type="text">
               </div>
               <div class="form-group col-md-6">
-                <input class="form-control" id="contacto_modal_telefono" placeholder="Telefono*" type="text">
+                <input class="form-control" id="contacto_modal_telefono" placeholder="Celular* (sin 0 ni 15)" type="number">
               </div>
             </div>
             <div class="form-row">
