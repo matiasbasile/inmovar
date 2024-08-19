@@ -215,7 +215,7 @@ if (sizeof($slides)>0) { ?>
 
 <!-- ab part End here --> 
 
-<?php $emprendimientos_listado = $propiedad_model->get_list(array("destacado"=>"1","tipo_operacion"=>"emprendimientos"))?>
+<?php $emprendimientos_listado = $propiedad_model->get_list(array("destacado"=>"1","tipo_operacion"=>"emprendimientos","offset"=>9))?>
 
 <!-- Tab Slider part start here -->
 <div class="tab_slider_section">
@@ -236,14 +236,14 @@ if (sizeof($slides)>0) { ?>
   <div class="listing_boxes mb30">
     <div class="container">
       <div class="tab-content" id="myTabContent">
-        <?php $ventas_listado = $propiedad_model->get_list(array("destacado"=>"1","tipo_operacion"=>"ventas"))?>
+        <?php $ventas_listado = $propiedad_model->get_list(array("destacado"=>"1","tipo_operacion"=>"ventas","offset"=>9))?>
         <div class="tab-pane fade ajustar show active" id="ventra" role="tabpanel" aria-labelledby="ventra-tab">
           <div class="listing_boxes_wrap">
             <div class="enventa_list">
-              <div class="owl-carousel owl-theme home_owl_slider">
+              <div class="row">
                 <?php foreach ($ventas_listado as $l) {  ?>
-                  <div class="item">
-                   <div class="tab_slider_st">
+                  <div class="col-md-4">
+                   <div class="tab_slider_st mb20">
                     <div class="tab_list_box">
                       <div class="hover_box_div">
                         <?php 
@@ -306,14 +306,14 @@ if (sizeof($slides)>0) { ?>
           </div>
         </div>
       </div>
-        <?php $alquileres_listado = $propiedad_model->get_list(array("destacado"=>"1","tipo_operacion"=>"alquileres"))?>
+        <?php $alquileres_listado = $propiedad_model->get_list(array("destacado"=>"1","tipo_operacion"=>"alquileres","offset"=>9))?>
         <div class="tab-pane fade ajustar" id="alquile" role="tabpanel" aria-labelledby="alquile-tab">
           <div class="listing_boxes_wrap">
             <div class="enventa_list">
-              <div class="owl-carousel owl-theme home_owl_slider">
+              <div class="row">
                 <?php foreach ($alquileres_listado as $l) {  ?>
-                 <div class="item">
-                   <div class="tab_slider_st">
+                  <div class="col-md-4">
+                    <div class="tab_slider_st mb20">
                     <div class="tab_list_box">
                       <div class="hover_box_div">
                         <?php 
@@ -383,7 +383,7 @@ if (sizeof($slides)>0) { ?>
                 <div class="<?php echo (sizeof($emprendimientos_listado)>3) ? "owl-carousel owl-theme home_owl_slider" : "row" ?>">
                   <?php foreach ($emprendimientos_listado as $l) {  ?>
                    <div class="<?php echo (sizeof($emprendimientos_listado)>3) ? "item" : "col-md-4" ?>">
-                     <div class="tab_slider_st">
+                     <div class="tab_slider_st mb20">
                       <div class="tab_list_box">
                         <div class="hover_box_div">
                           <?php 
