@@ -16,10 +16,6 @@ if (!defined("LOGO")) { DEFINE ("LOGO",(isset($_SERVER["LOGO"]) ? $_SERVER["LOGO
 if (!defined("LOGO_LOGIN")) { DEFINE ("LOGO_LOGIN",(isset($_SERVER["LOGO_LOGIN"]) ? $_SERVER["LOGO_LOGIN"] : "/admin/resources/images/logo-login.png")); }
 if (!defined("CSS_LOGIN")) { DEFINE ("CSS_LOGIN",(isset($_SERVER["CSS_LOGIN"]) ? $_SERVER["CSS_LOGIN"] : "")); }
 
-// Clave general para los mapas
-include_once("application/helpers/mapbox_helper.php");
-if (!defined("MAPBOX_KEY")) { DEFINE ("MAPBOX_KEY",(isset($_SERVER["MAPBOX_KEY"]) ? $_SERVER["MAPBOX_KEY"] : get_mapbox_key())); } 
-
 if (!function_exists("get_conex")) {
   function get_conex() {
     // Conectamos con la base de datos

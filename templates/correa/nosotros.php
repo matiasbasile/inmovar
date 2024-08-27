@@ -100,13 +100,11 @@ function mostrar_mapa() {
   <?php if (!empty($empresa->latitud && !empty($empresa->longitud))) { ?>
     var mymap = L.map('map1').setView([<?php echo $empresa->latitud ?>,<?php echo $empresa->longitud ?>], <?php echo $empresa->zoom ?>);
 
-    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=<?php echo (defined("MAPBOX_KEY") ? MAPBOX_KEY : "") ?>', {
-      attribution: '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       tileSize: 512,
       maxZoom: 18,
       zoomOffset: -1,
-      id: 'mapbox/streets-v11',
-      accessToken: '<?php echo (defined("MAPBOX_KEY") ? MAPBOX_KEY : "") ?>',
     }).addTo(mymap);
 
     L.marker([<?php echo $empresa->latitud ?>,<?php echo $empresa->longitud ?>]).addTo(mymap);

@@ -56,13 +56,11 @@
         $oficina->longitud = trim($coordenadas[1]);
         ?>
         var mymap = L.map('map<?php echo $i ?>').setView([<?php echo $oficina->latitud ?>,<?php echo $oficina->longitud ?>], 15);
-        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoidmNtYXBib3gxNCIsImEiOiJjbHVzZGpndTAwMXBmMnZwZHVzaHpwdnBkIn0.MNg411Qzoi2JfvKRn6qe2A', {
-          attribution: '',
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
           tileSize: 512,
           maxZoom: 18,
           zoomOffset: -1,
-          id: 'mapbox/streets-v11',
-          accessToken: 'pk.eyJ1IjoidmNtYXBib3gxNCIsImEiOiJjbHVzZGpndTAwMXBmMnZwZHVzaHpwdnBkIn0.MNg411Qzoi2JfvKRn6qe2A',
         }).addTo(mymap);
 
         L.marker([<?php echo $oficina->latitud ?>,<?php echo $oficina->longitud ?>],{

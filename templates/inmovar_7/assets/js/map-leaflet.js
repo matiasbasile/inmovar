@@ -31,8 +31,6 @@ $(document).ready(function($) {
         var leafletMapProvider = mapElement.attr("data-ts-map-leaflet-provider");
         var leafletAttribution = mapElement.attr("data-ts-map-leaflet-attribution");
         var zoomPosition = mapElement.attr("data-ts-map-zoom-position");
-        var mapBoxAccessToken = mapElement.attr("data-ts-map-mapbox-access-token");
-        var mapBoxId = mapElement.attr("data-ts-map-mapbox-id");
 
         if (mapElement.attr("data-ts-display-additional-info")) {
             var displayAdditionalInfoTemp = mapElement.attr("data-ts-display-additional-info").split(";");
@@ -56,12 +54,12 @@ $(document).ready(function($) {
         });
         map.setView([centerLatitude, centerLongitude], mapDefaultZoom);
 
-        L.tileLayer(leafletMapProvider, {
-            attribution: leafletAttribution,
-            id: mapBoxId,
-            accessToken: mapBoxAccessToken
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+          tileSize: 512,
+          maxZoom: 18,
+          zoomOffset: -1,
         }).addTo(map);
-
 
         if( controls !== 0 && zoomPosition ){
             L.control.zoom({position: zoomPosition}).addTo(map);
@@ -446,10 +444,11 @@ $(document).ready(function($) {
         });
         map.setView([centerLatitude, centerLongitude], mapDefaultZoom);
 
-        L.tileLayer(leafletMapProvider, {
-            attribution: leafletAttribution,
-            id: mapBoxId,
-            accessToken: mapBoxAccessToken
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+          tileSize: 512,
+          maxZoom: 18,
+          zoomOffset: -1,
         }).addTo(map);
 
         ( controls === 1 ) ? L.control.zoom({position: "topright"}).addTo(map) : "";
