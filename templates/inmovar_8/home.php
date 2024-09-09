@@ -226,7 +226,9 @@ if (sizeof($slides)>0) { ?>
     <div class="container">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item"> <a class="active" id="ventra-tab" data-toggle="tab" href="#ventra" role="tab" aria-controls="ventra" aria-selected="true"> <span><i class="fa fa-angle-down" aria-hidden="true"></i></span> En Venta</a> </li>
-        <li class="nav-item"> <a id="alquile-tab" data-toggle="tab" href="#alquile" role="tab" aria-controls="alquile" aria-selected="false"> <span><i class="fa fa-angle-down" aria-hidden="true"></i></span> En Alquiler</a> </li>
+        <?php if (sizeof($alquileres_listado)>0) { ?>
+          <li class="nav-item"> <a id="alquile-tab" data-toggle="tab" href="#alquile" role="tab" aria-controls="alquile" aria-selected="false"> <span><i class="fa fa-angle-down" aria-hidden="true"></i></span> En Alquiler</a> </li>
+        <?php } ?>
         <?php if (sizeof($emprendimientos_listado)>0) { ?>
           <li class="nav-item"> <a id="emprendimientos-tab" data-toggle="tab" href="#emprendimientos" role="tab" aria-controls="emprendimientos" aria-selected="false"> <span><i class="fa fa-angle-down" aria-hidden="true"></i></span> Emprendimientos</a> </li>
         <?php } ?>
