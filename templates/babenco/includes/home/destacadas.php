@@ -11,7 +11,7 @@ if (sizeof($destacadas)>0) { ?>
       </div>
       <div class="row">
         <?php foreach($destacadas as $r) { ?>
-          <div class="col-lg-4 col-md-6">
+          <div class="col-lg-4 col-md-6 mb20">
             <?php propiedad_item($r) ?>
           </div>
         <?php } ?>

@@ -71,7 +71,7 @@ if (isset($get_params["tp"]) && ($get_params["tp"] == "27" || $get_params["tp"] 
       
       <div class="row">
         <?php foreach ($vc_listado as $p) { ?>
-          <div class="col-lg-4 col-md-6">
+          <div class="col-lg-4 col-md-6 mb20">
             <?php propiedad_item($p); ?>
           </div>
         <?php } ?>
