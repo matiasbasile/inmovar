@@ -6,6 +6,11 @@ error_reporting(E_ALL);
 include("includes/init.php");
 $titulo_pagina = "propiedades";
 extract($propiedad_model->get_variables());
+
+if (isset($get_params["test"])) {
+  echo $propiedad_model->get_sql();
+}
+
 $titulo_pagina = $vc_link_tipo_operacion;
 $cotizacion_dolar = $propiedad_model->get_dolar();
 
