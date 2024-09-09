@@ -1,6 +1,6 @@
 <?php
 function propiedad_item($r) { ?>
-  <div class="property-box">
+  <div class="property-box mb20">
     <?php if (sizeof($r->images)>0) { ?>
       <div class="img-block">
         <div class="owl-carousel owl-theme" data-outoplay="false" data-nav="true" data-dots="false">
