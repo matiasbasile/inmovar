@@ -548,6 +548,41 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad" => $propiedad->id));
     </div>
   </div>
 
+  <div style="display: none" id="contacto_ficha_modal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title m0">Enviar ficha por email</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form onsubmit="return enviar_contacto_modal()">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <input class="form-control" id="contacto_ficha_modal_nombre" placeholder="Nombre*" type="text">
+              </div>
+              <div class="form-group col-md-6">
+                <input class="form-control" id="contacto_ficha_modal_telefono" placeholder="Celular* (sin 0 ni 15)" type="number">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <input class="form-control" id="contacto_ficha_modal_email" placeholder="Email*" type="email">
+              </div>
+            </div>
+            <div class="form-row ">
+              <div class="form-group col-md-12">
+                <button type="submit" id="contacto_ficha_modal_submit" class="full_width_btn">enviar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- JavaScript
 ================================================== -->
   <script src="/admin/resources/js/jquery.js"></script>
@@ -831,38 +866,66 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad" => $propiedad->id));
 
 
     function enviar_ficha_email() {
-      var email = prompt("Escriba su email: ");
-      if (!validateEmail(email)) {
-        alert("Por favor ingrese un email valido.");
-      } else {
-        var datos = {
-          "email": email,
-          "asunto": "Ficha de: <?php echo $propiedad->nombre ?> (Cod: <?php echo $propiedad->codigo ?>)",
-          "para": email,
-          "id_propiedad": "<?php echo $propiedad->id ?>",
-          <?php if (isset($propiedad) && $propiedad->id_empresa != $empresa->id) { ?> "id_empresa_relacion": "<?php echo $propiedad->id_empresa ?>",
-          <?php } ?> "id_empresa": ID_EMPRESA,
-          "id_origen": <?php echo (isset($id_origen) ? $id_origen : 1); ?>,
-          "bcc": "basile.matias99@gmail.com",
-          "template": "ficha-propiedad",
-          "link_ficha_propiedad": "<?php echo mklink("admin/propiedades/function/ficha/" . $propiedad->hash) ?>",
-        }
-        $.ajax({
-          "url": "https://app.inmovar.com/admin/consultas/function/enviar/",
-          "type": "post",
-          "dataType": "json",
-          "data": datos,
-          "success": function(r) {
-            if (r.error == 0) {
-              alert("Hemos enviado la ficha de la propiedad a '" + email + "'. Muchas gracias.");
-            } else {
-              alert("Ocurrio un error al enviar su email. Disculpe las molestias");
-              $("#contacto_modal_submit").removeAttr('disabled');
-            }
-          }
-        });
+
+      var nombre = $("#contacto_ficha_modal_nombre").val();
+      var email = $("#contacto_ficha_modal_email").val();
+      var mensaje = $("#contacto_ficha_modal_mensaje").val();
+      var telefono = $("#contacto_ficha_modal_telefono").val();
+
+      if (isEmpty(nombre)) {
+        alert("Por favor ingrese un nombre");
+        $("#contacto_modal_nombre").focus();
         return false;
       }
+
+      if (isEmpty(telefono)) {
+        alert("Por favor ingrese un telefono");
+        $("#contacto_modal_telefono").focus();
+        return false;
+      }
+
+      if (!isTelephone(telefono)) {
+        alert("Por favor ingrese un celular valido sin 0 ni 15");
+        $("#contacto_modal_telefono").focus();
+        return false;
+      }
+
+      if (!validateEmail(email)) {
+        alert("Por favor ingrese un email valido");
+        $("#contacto_modal_email").focus();
+        return false;
+      }
+
+      $("#contacto_ficha_modal_submit").attr('disabled', 'disabled');
+      var datos = {
+        "nombre": nombre,
+        "telefono": telefono,
+        "email": email,
+        "asunto": "Ficha de: <?php echo $propiedad->nombre ?> (Cod: <?php echo $propiedad->codigo ?>)",
+        "para": email,
+        "id_propiedad": "<?php echo $propiedad->id ?>",
+        <?php if (isset($propiedad) && $propiedad->id_empresa != $empresa->id) { ?> "id_empresa_relacion": "<?php echo $propiedad->id_empresa ?>",
+        <?php } ?> "id_empresa": ID_EMPRESA,
+        "id_origen": <?php echo (isset($id_origen) ? $id_origen : 1); ?>,
+        "template": "ficha-propiedad",
+        "link_ficha_propiedad": "<?php echo mklink("admin/propiedades/function/ficha/" . $propiedad->hash) ?>",
+      }
+      $.ajax({
+        "url": "https://app.inmovar.com/admin/consultas/function/enviar/",
+        "type": "post",
+        "dataType": "json",
+        "data": datos,
+        "success": function(r) {
+          if (r.error == 0) {
+            alert("Hemos enviado la ficha de la propiedad a '" + email + "'. Muchas gracias.");
+            location.reload();
+          } else {
+            alert("Ocurrio un error al enviar su email. Disculpe las molestias");
+            $("#contacto_ficha_modal_submit").removeAttr('disabled');
+          }
+        }
+      });
+      return false;
     }
   </script>
   <?php
