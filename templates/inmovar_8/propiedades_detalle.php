@@ -864,6 +864,9 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad" => $propiedad->id));
 
     });
 
+    function abrir_enviar_ficha_modal() {
+      $('#contacto_ficha_modal').modal('show')
+    }
 
     function enviar_ficha_email() {
 
