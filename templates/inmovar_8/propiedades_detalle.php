@@ -872,30 +872,29 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad" => $propiedad->id));
 
       var nombre = $("#contacto_ficha_modal_nombre").val();
       var email = $("#contacto_ficha_modal_email").val();
-      var mensaje = $("#contacto_ficha_modal_mensaje").val();
       var telefono = $("#contacto_ficha_modal_telefono").val();
 
       if (isEmpty(nombre)) {
         alert("Por favor ingrese un nombre");
-        $("#contacto_modal_nombre").focus();
+        $("#contacto_ficha_modal_nombre").focus();
         return false;
       }
 
       if (isEmpty(telefono)) {
         alert("Por favor ingrese un telefono");
-        $("#contacto_modal_telefono").focus();
+        $("#contacto_ficha_modal_telefono").focus();
         return false;
       }
 
       if (!isTelephone(telefono)) {
         alert("Por favor ingrese un celular valido sin 0 ni 15");
-        $("#contacto_modal_telefono").focus();
+        $("#contacto_ficha_modal_telefono").focus();
         return false;
       }
 
       if (!validateEmail(email)) {
         alert("Por favor ingrese un email valido");
-        $("#contacto_modal_email").focus();
+        $("#contacto_ficha_modal_email").focus();
         return false;
       }
 
