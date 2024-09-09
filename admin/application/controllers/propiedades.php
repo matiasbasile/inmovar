@@ -572,6 +572,7 @@ class Propiedades extends REST_Controller
       if (strpos($propiedad->video, "iframe") === FALSE) {
         // Si no se adjunto un iframe, tenemos que crearlo
         $propiedad->video_original = $propiedad->video;
+        $propiedad->video = str_replace("https://www.youtube.com/embed/", "", $propiedad->video);
         $propiedad->video = str_replace("https://www.youtube.com/watch?v=", "", $propiedad->video);
         $propiedad->video = str_replace("https://youtube.com/watch?v=", "", $propiedad->video);
         $propiedad->video = str_replace("https://youtube.com/shorts/", "", $propiedad->video);

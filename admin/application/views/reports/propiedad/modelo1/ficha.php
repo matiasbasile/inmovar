@@ -105,13 +105,6 @@ i.bullet { background-color: <?php echo $empresa->color_principal ?>; display: i
               <?php } ?>
             <?php } ?>
 
-            <?php if (!empty($propiedad->youtube_embed)) { ?>
-              <section class="card">
-                <div class="titulo2">Video</div>
-                <iframe src="<?php echo $propiedad->youtube_embed ?>" style="height: 400px; width: 100%;"></iframe>
-              </section>
-            <?php } ?>
-            
             <div class="">
               <div class="empresa_nombre">
                 <?php echo $empresa->razon_social; ?>
@@ -171,6 +164,11 @@ i.bullet { background-color: <?php echo $empresa->color_principal ?>; display: i
                 </ul>
               </div>
             <?php } ?>
+
+            <?php if (!empty($propiedad->youtube_embed)) { ?>
+              <iframe src="<?php echo $propiedad->youtube_embed ?>" style="height: 400px; width: 100%;"></iframe>
+            <?php } ?>
+
           </td>          
         </tr>
       </table>
