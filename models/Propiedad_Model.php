@@ -1009,6 +1009,8 @@ class Propiedad_Model {
         // Si no se adjunto un iframe, tenemos que crearlo
         $p->video_original = $p->video;
         $p->video = str_replace("https://www.youtube.com/watch?v=", "", $p->video);
+        $p->video = str_replace("https://youtube.com/watch?v=", "", $p->video);
+        $p->video = str_replace("https://youtube.com/shorts/", "", $p->video);
         $p->video = str_replace("https://youtu.be/", "", $p->video);
         $p->video_path = "https://img.youtube.com/vi/".$p->video."/0.jpg";
         $p->youtube_embed = "https://www.youtube.com/embed/".$p->video;
