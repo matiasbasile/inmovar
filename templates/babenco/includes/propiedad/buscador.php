@@ -14,7 +14,7 @@
     </select>
     
     <select id="filter_propiedad" class="form-select form-control big filter_propiedad" name="tp">
-      <option value="0">Tipo de Propiedad</option>
+      <option value="0">Propiedad</option>
       <?php $tipo_propiedades = $propiedad_model->get_tipos_propiedades(); ?>
       <?php foreach ($tipo_propiedades as $tipo) { ?>
         <option <?php echo (isset($vc_id_tipo_inmueble) && $vc_id_tipo_inmueble == $tipo->id) ? "selected" : "" ?> value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
@@ -85,7 +85,7 @@
           </select>
           
           <select onchange="copiar_select('filter_propiedad')" id="filter_propiedad_2" class="form-select form-control">
-            <option value="0">Tipo de Propiedad</option>
+            <option value="0">Propiedad</option>
             <?php $tipo_propiedades = $propiedad_model->get_tipos_propiedades(); ?>
             <?php foreach ($tipo_propiedades as $tipo) { ?>
               <option <?php echo (isset($vc_id_tipo_inmueble) && $vc_id_tipo_inmueble == $tipo->id) ? "selected" : "" ?> value="<?php echo $tipo->id ?>"><?php echo $tipo->nombre ?></option>
