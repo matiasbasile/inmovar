@@ -93,7 +93,7 @@ table td { font-size: 14px; }
               <tr>
                 <td rowspan="2" style="width: 35%">
                   <?php if(!empty($empresa->logo)) { ?>
-                    <img style="width: 100%" src="/sistema/<?php echo $empresa->logo ?>"/>
+                    <img style="width: 100%" src="/admin/<?php echo $empresa->logo ?>"/>
                   <?php } ?>
                 </td>
                 <td><div style="font-size: 28px; font-weight: bold; text-align: center;">X</div></td>
