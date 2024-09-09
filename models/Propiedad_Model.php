@@ -359,7 +359,7 @@ class Propiedad_Model {
       if ($get_params['orden']=='nuevo') $orden = -1;
       elseif ($get_params['orden']=='barato') $orden = 2;
       elseif ($get_params['orden']=='caro') $orden = 1;
-      elseif ($get_params['orden']=='destacados') $orden = 4;
+      elseif ($get_params['orden']=='destacados' || $get_params['orden']=='destacadas') $orden = 4;
       else $orden = $get_params["orden"];
     } 
     
