@@ -53,20 +53,36 @@
         <option <?php echo (isset($vc_maximo) && $vc_maximo == 150000) ? "selected" : "" ?> data-min="100000" data-max="150000">$ 100.000 - 150.000</option>
         <option <?php echo (isset($vc_maximo) && $vc_maximo == 999999) ? "selected" : "" ?> data-min="150000" data-max="999999">Más de $ 300.000</option>
       <?php } else { ?>
-        <option <?php echo (isset($vc_maximo) && $vc_maximo == 25000) ? "selected" : "" ?> data-min="0" data-max="25000">U$S 0 - 25.000</option>
-        <option <?php echo (isset($vc_maximo) && $vc_maximo == 50000) ? "selected" : "" ?> data-min="25000" data-max="50000">U$S 25.000 - 50.000</option>
-        <option <?php echo (isset($vc_maximo) && $vc_maximo == 75000) ? "selected" : "" ?> data-min="50000" data-max="75000">U$S 50.000 - 75.000</option>
-        <option <?php echo (isset($vc_maximo) && $vc_maximo == 100000) ? "selected" : "" ?> data-min="75000" data-max="100000">U$S 75.000 - 100.000</option>
-        <option <?php echo (isset($vc_maximo) && $vc_maximo == 125000) ? "selected" : "" ?> data-min="100000" data-max="125000">U$S 100.000 - 125.000</option>
-        <option <?php echo (isset($vc_maximo) && $vc_maximo == 150000) ? "selected" : "" ?> data-min="125000" data-max="150000">U$S 125.000 - 150.000</option>
-        <option <?php echo (isset($vc_maximo) && $vc_maximo == 200000) ? "selected" : "" ?> data-min="150000" data-max="200000">U$S 150.000 - 200.000</option>
-        <option <?php echo (isset($vc_maximo) && $vc_maximo == 300000) ? "selected" : "" ?> data-min="200000" data-max="300000">U$S 200.000 - 300.000</option>
-        <option <?php echo (isset($vc_maximo) && $vc_maximo == 999999) ? "selected" : "" ?> data-min="300000" data-max="999999">Más de U$S 300.000</option>
-        <input type="hidden" id="filter_moneda" name="m" value="<?php echo (!empty($vc_moneda) ? $vc_moneda : ($vc_link_tipo_operacion == "alquileres" ? "ARS" : "USD")) ?>">
-        <input name="vc_minimo" id="filter_minimo" class="form-control filter_minimo" type="hidden" value="<?php echo (empty($vc_minimo) ? "" : $vc_minimo) ?>" min="0" placeholder="Precio Minimo">
-        <input name="vc_maximo" id="filter_maximo" class="form-control filter_maximo" type="hidden" value="<?php echo (empty($vc_maximo) ? "" : $vc_maximo) ?>" min="0" placeholder="Precio Maximo">
+        <?php if ($empresa->id == ID_EMPRESA_URUGUAY) { ?>
+          <option <?php echo (isset($vc_maximo) && $vc_maximo == 50000) ? "selected" : "" ?> data-min="0" data-max="50000">U$S 0 - 50.000</option>
+          <option <?php echo (isset($vc_maximo) && $vc_maximo == 100000) ? "selected" : "" ?> data-min="50000" data-max="100000">U$S 50.000 - 100.000</option>
+          <option <?php echo (isset($vc_maximo) && $vc_maximo == 150000) ? "selected" : "" ?> data-min="100000" data-max="150000">U$S 100.000 - 150.000</option>
+          <option <?php echo (isset($vc_maximo) && $vc_maximo == 200000) ? "selected" : "" ?> data-min="150000" data-max="200000">U$S 150.000 - 200.000</option>
+          <option <?php echo (isset($vc_maximo) && $vc_maximo == 250000) ? "selected" : "" ?> data-min="200000" data-max="250000">U$S 200.000 - 250.000</option>
+          <option <?php echo (isset($vc_maximo) && $vc_maximo == 300000) ? "selected" : "" ?> data-min="250000" data-max="300000">U$S 250.000 - 300.000</option>
+          <option <?php echo (isset($vc_maximo) && $vc_maximo == 350000) ? "selected" : "" ?> data-min="300000" data-max="350000">U$S 300.000 - 350.000</option>
+          <option <?php echo (isset($vc_maximo) && $vc_maximo == 400000) ? "selected" : "" ?> data-min="350000" data-max="400000">U$S 350.000 - 400.000</option>
+          <option <?php echo (isset($vc_maximo) && $vc_maximo == 450000) ? "selected" : "" ?> data-min="400000" data-max="450000">U$S 400.000 - 450.000</option>
+          <option <?php echo (isset($vc_maximo) && $vc_maximo == 500000) ? "selected" : "" ?> data-min="450000" data-max="500000">U$S 450.000 - 500.000</option>
+          <option <?php echo (isset($vc_maximo) && $vc_maximo == 550000) ? "selected" : "" ?> data-min="500000" data-max="550000">U$S 500.000 - 550.000</option>
+          <option <?php echo (isset($vc_maximo) && $vc_maximo == 600000) ? "selected" : "" ?> data-min="550000" data-max="600000">U$S 550.000 - 600.000</option>
+          <option <?php echo (isset($vc_maximo) && $vc_maximo == 999999) ? "selected" : "" ?> data-min="600000" data-max="999999">Más de U$S 600.000</option>
+        <?php } else { ?>
+          <option <?php echo (isset($vc_maximo) && $vc_maximo == 25000) ? "selected" : "" ?> data-min="0" data-max="25000">U$S 0 - 25.000</option>
+          <option <?php echo (isset($vc_maximo) && $vc_maximo == 50000) ? "selected" : "" ?> data-min="25000" data-max="50000">U$S 25.000 - 50.000</option>
+          <option <?php echo (isset($vc_maximo) && $vc_maximo == 75000) ? "selected" : "" ?> data-min="50000" data-max="75000">U$S 50.000 - 75.000</option>
+          <option <?php echo (isset($vc_maximo) && $vc_maximo == 100000) ? "selected" : "" ?> data-min="75000" data-max="100000">U$S 75.000 - 100.000</option>
+          <option <?php echo (isset($vc_maximo) && $vc_maximo == 125000) ? "selected" : "" ?> data-min="100000" data-max="125000">U$S 100.000 - 125.000</option>
+          <option <?php echo (isset($vc_maximo) && $vc_maximo == 150000) ? "selected" : "" ?> data-min="125000" data-max="150000">U$S 125.000 - 150.000</option>
+          <option <?php echo (isset($vc_maximo) && $vc_maximo == 200000) ? "selected" : "" ?> data-min="150000" data-max="200000">U$S 150.000 - 200.000</option>
+          <option <?php echo (isset($vc_maximo) && $vc_maximo == 300000) ? "selected" : "" ?> data-min="200000" data-max="300000">U$S 200.000 - 300.000</option>
+          <option <?php echo (isset($vc_maximo) && $vc_maximo == 999999) ? "selected" : "" ?> data-min="300000" data-max="999999">Más de U$S 300.000</option>
+        <?php } ?>
       <?php } ?>
     </select>
+    <input type="hidden" id="filter_moneda" name="m" value="<?php echo (!empty($vc_moneda) ? $vc_moneda : ($vc_link_tipo_operacion == "alquileres" ? "ARS" : "USD")) ?>">
+    <input name="vc_minimo" id="filter_minimo" class="form-control filter_minimo" type="hidden" value="<?php echo (empty($vc_minimo) ? "" : $vc_minimo) ?>" min="0" placeholder="Precio Minimo">
+    <input name="vc_maximo" id="filter_maximo" class="form-control filter_maximo" type="hidden" value="<?php echo (empty($vc_maximo) ? "" : $vc_maximo) ?>" min="0" placeholder="Precio Maximo">
 
     <div class="multiple-checkbox">
       <span class="check-desk">Otros 
@@ -124,15 +140,31 @@
               <option <?php echo (isset($vc_maximo) && $vc_maximo == 150000) ? "selected" : "" ?> data-min="100000" data-max="150000">$ 100.000 - 150.000</option>
               <option <?php echo (isset($vc_maximo) && $vc_maximo == 999999) ? "selected" : "" ?> data-min="150000" data-max="999999">Más de $ 300.000</option>
             <?php } else { ?>
-              <option <?php echo (isset($vc_maximo) && $vc_maximo == 25000) ? "selected" : "" ?> data-min="0" data-max="25000">U$S 0 - 25.000</option>
-              <option <?php echo (isset($vc_maximo) && $vc_maximo == 50000) ? "selected" : "" ?> data-min="25000" data-max="50000">U$S 25.000 - 50.000</option>
-              <option <?php echo (isset($vc_maximo) && $vc_maximo == 75000) ? "selected" : "" ?> data-min="50000" data-max="75000">U$S 50.000 - 75.000</option>
-              <option <?php echo (isset($vc_maximo) && $vc_maximo == 100000) ? "selected" : "" ?> data-min="75000" data-max="100000">U$S 75.000 - 100.000</option>
-              <option <?php echo (isset($vc_maximo) && $vc_maximo == 125000) ? "selected" : "" ?> data-min="100000" data-max="125000">U$S 100.000 - 125.000</option>
-              <option <?php echo (isset($vc_maximo) && $vc_maximo == 150000) ? "selected" : "" ?> data-min="125000" data-max="150000">U$S 125.000 - 150.000</option>
-              <option <?php echo (isset($vc_maximo) && $vc_maximo == 200000) ? "selected" : "" ?> data-min="150000" data-max="200000">U$S 150.000 - 200.000</option>
-              <option <?php echo (isset($vc_maximo) && $vc_maximo == 300000) ? "selected" : "" ?> data-min="200000" data-max="300000">U$S 200.000 - 300.000</option>
-              <option <?php echo (isset($vc_maximo) && $vc_maximo == 999999) ? "selected" : "" ?> data-min="300000" data-max="999999">Más de U$S 300.000</option>
+              <?php if ($empresa->id == ID_EMPRESA_URUGUAY) { ?>
+                <option <?php echo (isset($vc_maximo) && $vc_maximo == 50000) ? "selected" : "" ?> data-min="0" data-max="50000">U$S 0 - 50.000</option>
+                <option <?php echo (isset($vc_maximo) && $vc_maximo == 100000) ? "selected" : "" ?> data-min="50000" data-max="100000">U$S 50.000 - 100.000</option>
+                <option <?php echo (isset($vc_maximo) && $vc_maximo == 150000) ? "selected" : "" ?> data-min="100000" data-max="150000">U$S 100.000 - 150.000</option>
+                <option <?php echo (isset($vc_maximo) && $vc_maximo == 200000) ? "selected" : "" ?> data-min="150000" data-max="200000">U$S 150.000 - 200.000</option>
+                <option <?php echo (isset($vc_maximo) && $vc_maximo == 250000) ? "selected" : "" ?> data-min="200000" data-max="250000">U$S 200.000 - 250.000</option>
+                <option <?php echo (isset($vc_maximo) && $vc_maximo == 300000) ? "selected" : "" ?> data-min="250000" data-max="300000">U$S 250.000 - 300.000</option>
+                <option <?php echo (isset($vc_maximo) && $vc_maximo == 350000) ? "selected" : "" ?> data-min="300000" data-max="350000">U$S 300.000 - 350.000</option>
+                <option <?php echo (isset($vc_maximo) && $vc_maximo == 400000) ? "selected" : "" ?> data-min="350000" data-max="400000">U$S 350.000 - 400.000</option>
+                <option <?php echo (isset($vc_maximo) && $vc_maximo == 450000) ? "selected" : "" ?> data-min="400000" data-max="450000">U$S 400.000 - 450.000</option>
+                <option <?php echo (isset($vc_maximo) && $vc_maximo == 500000) ? "selected" : "" ?> data-min="450000" data-max="500000">U$S 450.000 - 500.000</option>
+                <option <?php echo (isset($vc_maximo) && $vc_maximo == 550000) ? "selected" : "" ?> data-min="500000" data-max="550000">U$S 500.000 - 550.000</option>
+                <option <?php echo (isset($vc_maximo) && $vc_maximo == 600000) ? "selected" : "" ?> data-min="550000" data-max="600000">U$S 550.000 - 600.000</option>
+                <option <?php echo (isset($vc_maximo) && $vc_maximo == 999999) ? "selected" : "" ?> data-min="600000" data-max="999999">Más de U$S 600.000</option>
+              <?php } else { ?>
+                <option <?php echo (isset($vc_maximo) && $vc_maximo == 25000) ? "selected" : "" ?> data-min="0" data-max="25000">U$S 0 - 25.000</option>
+                <option <?php echo (isset($vc_maximo) && $vc_maximo == 50000) ? "selected" : "" ?> data-min="25000" data-max="50000">U$S 25.000 - 50.000</option>
+                <option <?php echo (isset($vc_maximo) && $vc_maximo == 75000) ? "selected" : "" ?> data-min="50000" data-max="75000">U$S 50.000 - 75.000</option>
+                <option <?php echo (isset($vc_maximo) && $vc_maximo == 100000) ? "selected" : "" ?> data-min="75000" data-max="100000">U$S 75.000 - 100.000</option>
+                <option <?php echo (isset($vc_maximo) && $vc_maximo == 125000) ? "selected" : "" ?> data-min="100000" data-max="125000">U$S 100.000 - 125.000</option>
+                <option <?php echo (isset($vc_maximo) && $vc_maximo == 150000) ? "selected" : "" ?> data-min="125000" data-max="150000">U$S 125.000 - 150.000</option>
+                <option <?php echo (isset($vc_maximo) && $vc_maximo == 200000) ? "selected" : "" ?> data-min="150000" data-max="200000">U$S 150.000 - 200.000</option>
+                <option <?php echo (isset($vc_maximo) && $vc_maximo == 300000) ? "selected" : "" ?> data-min="200000" data-max="300000">U$S 200.000 - 300.000</option>
+                <option <?php echo (isset($vc_maximo) && $vc_maximo == 999999) ? "selected" : "" ?> data-min="300000" data-max="999999">Más de U$S 300.000</option>
+              <?php } ?>
             <?php } ?>
           </select>
         </div>
