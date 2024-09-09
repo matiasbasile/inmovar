@@ -352,7 +352,7 @@ $nombre_pagina = $propiedad->tipo_operacion_link;
           <form id='form_whatsapp_sidebar' onsubmit="return false">
             <input type="text" class="form-control mb15 contacto_nombre" placeholder="Nombre">
             <input type="email" class="form-control mb15 contacto_email" placeholder="Email">
-            <input type="number" class="form-control mb15 contacto_telefono" placeholder="Whatsapp (sin 0 ni 15)">
+            <input type="number" class="form-control mb15 contacto_telefono" placeholder="Whatsapp <?php echo $empresa->id == ID_EMPRESA_LA_PLATA ? "(sin 0 ni 15)" : "" ?>">
             <textarea class="form-control mb15 contacto_mensaje">Me comunico desde tu sitio web interesado en la propiedad (Cod: <?php echo $propiedad->codigo ?>) <?php echo current_url() ?></textarea>
             <button onclick="enviar_whatsapp('form_whatsapp_sidebar')" type="submit" class="btn btn-green contacto_submit">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
