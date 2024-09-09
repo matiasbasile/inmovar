@@ -253,6 +253,13 @@
         </section>
       <?php } ?>
 
+      <?php if (!empty($propiedad->youtube_embed)) { ?>
+        <section class="card">
+          <div class="titulo2">Video</div>
+          <iframe src="<?php echo $propiedad->youtube_embed ?>" style="height: 400px; width: 100%;"></iframe>
+        </section>
+      <?php } ?>
+
       <section id="ficha_mapa" class="card">
         <div class="titulo2">Ubicación</div>
         <div style="height: 400px" id="mapid"></div>
