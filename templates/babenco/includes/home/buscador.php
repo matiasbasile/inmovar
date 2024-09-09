@@ -70,7 +70,12 @@
               "id_empresa" => ID_EMPRESA_URUGUAY,
             )); ?>
             <?php foreach ($localidades as $localidad) { ?>
-              <option value="<?php echo $localidad->link ?>"><?php echo $localidad->nombre ?></option>
+              <?php 
+              $selected = "";
+              if ($empresa->id == ID_EMPRESA_LA_PLATA && $localidad->link == "la-plata") $selected = "selected";
+              if ($empresa->id == ID_EMPRESA_URUGUAY && $localidad->link == "punta-del-este") $selected = "selected";
+              ?>
+              <option <?php echo $selected ?> value="<?php echo $localidad->link ?>"><?php echo $localidad->nombre ?></option>
             <?php } ?>
           </select>
         </div>
