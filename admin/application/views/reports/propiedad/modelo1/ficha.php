@@ -166,7 +166,7 @@ i.bullet { background-color: <?php echo $empresa->color_principal ?>; display: i
             <?php } ?>
 
             <?php if (!empty($propiedad->youtube_embed)) { ?>
-              <iframe src="<?php echo $propiedad->youtube_embed ?>" style="height: 400px; width: 100%;"></iframe>
+              <iframe src="<?php echo $propiedad->youtube_embed ?>" style="height: 400px; width: 100%; border: none"></iframe>
             <?php } ?>
 
           </td>          
