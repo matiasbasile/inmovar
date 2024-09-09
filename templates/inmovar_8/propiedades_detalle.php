@@ -558,7 +558,7 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad" => $propiedad->id));
           </button>
         </div>
         <div class="modal-body">
-          <form onsubmit="return enviar_contacto_modal()">
+          <form onsubmit="return enviar_ficha_email()">
             <div class="form-row">
               <div class="form-group col-md-6">
                 <input class="form-control" id="contacto_ficha_modal_nombre" placeholder="Nombre*" type="text">
