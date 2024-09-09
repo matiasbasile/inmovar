@@ -1710,29 +1710,25 @@ class Propiedades extends REST_Controller
     foreach ($q->result() as $emp) {
       $id_empresa = $emp->id_empresa;
 
-      $emprendimientos = $this->get_tokko_properties(array(
-        "api_key"=>$emp->tokko_apikey,
-        "id_empresa"=>$id_empresa,
-        "type"=>"development"
-      ));
-      print_r($emprendimientos); exit();
-
       $properties = $this->get_tokko_properties(array(
         "api_key"=>$emp->tokko_apikey,
         "id_empresa"=>$id_empresa,
       ));
 
-      /*
-      $auth = new TokkoAuth();
-      $search = new TokkoSearch($auth, array(
-        "operation_types" => 0,
-        "property_types" => 0,
-        "price_from" => 0,
-        "price_to" => 9999999999,
+      $emprendimientos = $this->get_tokko_properties(array(
+        "api_key"=>$emp->tokko_apikey,
+        "id_empresa"=>$id_empresa,
+        "type"=>"development"
       ));
-      $search->do_search();
-      $properties = $search->get_properties();
-      */
+      foreach($emprendimientos as &$emprendimiento) {
+        $emprendimiento->id_tipo_operacion = 4;
+      }
+
+      // Juntamos ambos arrays
+      $properties = array_merge($properties, $emprendimientos);
+
+      print_r($properties); exit();
+
       if (sizeof($properties) > 0) {
         // Limpiamos todas las propiedades que esten sincronizadas con Tokko
         // Porque las que no vienen en el array es porque se deshabilitaron del otro lado
@@ -1766,23 +1762,23 @@ class Propiedades extends REST_Controller
           $p->codigo = preg_replace("/[^0-9.]/", "", $p->codigo);
 
           $p->id_tipo_estado = 1; // Disponible
-          $p->calle = $property->real_address;
+          $p->calle = isset($property->real_address) ? $property->real_address : $property->address;
           $p->altura = "";
           $p->piso = "";
           $p->numero = "";
-          $p->banios = $property->bathroom_amount;
+          $p->banios = isset($property->bathroom_amount) ? $property->bathroom_amount : 0;
           $p->texto = $property->description;
           $p->latitud = $property->geo_lat;
           $p->longitud = $property->geo_long;
           $p->tokko_id = $property->id;
-          $p->tokko_url = $property->public_url;
-          $p->dormitorios = $property->suite_amount;
-          $p->ambientes = $property->room_amount;
-          $p->cocheras = $property->parking_lot_amount;
-          $p->superficie_cubierta = $property->roofed_surface;
-          $p->superficie_semicubierta = $property->semiroofed_surface;
-          $p->superficie_descubierta = $property->unroofed_surface;
-          $p->superficie_total = $property->total_surface;
+          $p->tokko_url = (isset($property->public_url) ? $property->public_url : "");
+          $p->dormitorios = (isset($property->suite_amount) ? $property->suite_amount : 0);
+          $p->ambientes = (isset($property->room_amount) ? $property->room_amount : 0);
+          $p->cocheras = isset($property->parking_lot_amount) ? $property->parking_lot_amount : 0;
+          $p->superficie_cubierta = isset($property->roofed_surface) ? $property->roofed_surface : 0;
+          $p->superficie_semicubierta = isset($property->semiroofed_surface) ? $property->semiroofed_surface : 0;
+          $p->superficie_descubierta = isset($property->unroofed_surface) ? $property->unroofed_surface : 0;
+          $p->superficie_total = isset($property->total_surface) ? $property->total_surface : 0;
           $p->zoom = 17;
           $p->activo = 1;
 
@@ -1806,25 +1802,32 @@ class Propiedades extends REST_Controller
           }
 
           // ID_TIPO_OPERACION
-          $operations = $property->operations;
-          $operacion = $operations[0];
-          if ($operacion->operation_type == "Venta") {
-            $p->id_tipo_operacion = 1;
-          } else if ($operacion->operation_type == "Alquiler") {
-            $p->id_tipo_operacion = 2;
-          } else {
-            // OTRO TIPO DE OPERACION, POR EL MOMENTO NO LA PERMITIMOS
-            continue;
+          if (isset($property->operations)) {
+            $operations = $property->operations;
+            $operacion = $operations[0];
+            if ($operacion->operation_type == "Venta") {
+              $p->id_tipo_operacion = 1;
+            } else if ($operacion->operation_type == "Alquiler") {
+              $p->id_tipo_operacion = 2;
+            } else {
+              // OTRO TIPO DE OPERACION, POR EL MOMENTO NO LA PERMITIMOS
+              continue;
+            }
+          } else if (isset($property->id_tipo_operacion)) {
+            // Ya viene dentro del objeto (Ej. emprendimientos)
+            $p->id_tipo_operacion = $property->id_tipo_operacion;
           }
 
           // PRECIO
           $p->publica_precio = 1;
           $p->precio_final = 0;
-          foreach ($operacion->prices as $precio) {
-            if ($precio->price > 0) {
-              if ($precio->currency == "USD") $p->moneda = 'U$S';
-              else $p->moneda = '$';
-              $p->precio_final = $precio->price;
+          if (isset($operacion->prices)) {
+            foreach ($operacion->prices as $precio) {
+              if ($precio->price > 0) {
+                if ($precio->currency == "USD") $p->moneda = 'U$S';
+                else $p->moneda = '$';
+                $p->precio_final = $precio->price;
+              }
             }
           }
 
@@ -1845,6 +1848,7 @@ class Propiedades extends REST_Controller
           else if ($tipo->name == "Depósito") $p->id_tipo_inmueble = 18;
           else if ($tipo->name == "Edificio Comercial") $p->id_tipo_inmueble = 23;
           else if ($tipo->name == "Hotel") $p->id_tipo_inmueble = 24;
+          else if ($tipo->name == "Barrio Abierto") $p->id_tipo_inmueble = 4;
           else if ($tipo->name == "Nave Industrial") $p->id_tipo_inmueble = 19;
           else {
             // Si no esta definica el tipo de propiedad, lo ponemos como error
