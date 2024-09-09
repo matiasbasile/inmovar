@@ -253,10 +253,10 @@
         </section>
       <?php } ?>
 
-      <?php if (!empty($propiedad->youtube_embed)) { ?>
+      <?php if (!empty($propiedad->video)) { ?>
         <section class="card">
           <div class="titulo2">Video</div>
-          <iframe src="<?php echo $propiedad->youtube_embed ?>" style="height: 400px; width: 100%;"></iframe>
+          <iframe src="<?php echo $propiedad->video ?>" style="height: 400px; width: 100%;"></iframe>
         </section>
       <?php } ?>
 
