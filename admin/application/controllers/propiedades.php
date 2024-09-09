@@ -1664,9 +1664,10 @@ class Propiedades extends REST_Controller
   function get_tokko_properties($config = array()) {
     $api_key = $config["api_key"];
     $id_empresa = $config["id_empresa"];
+    $type = (isset($config["type"]) ? $config["type"] : "property");
     $limit = 1000;
     $offset = 0;
-    $url = "https://tokkobroker.com/api/v1/property/?lang=es_ar&format=json&limit=".$limit."&offset=".$offset."&key=".$api_key;
+    $url = "https://tokkobroker.com/api/v1/$type/?lang=es_ar&format=json&limit=".$limit."&offset=".$offset."&key=".$api_key;
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -1708,6 +1709,13 @@ class Propiedades extends REST_Controller
     $this->load->model("Log_Model");
     foreach ($q->result() as $emp) {
       $id_empresa = $emp->id_empresa;
+
+      $emprendimientos = $this->get_tokko_properties(array(
+        "api_key"=>$emp->tokko_apikey,
+        "id_empresa"=>$id_empresa,
+        "type"=>"development"
+      ));
+      print_r($emprendimientos); exit();
 
       $properties = $this->get_tokko_properties(array(
         "api_key"=>$emp->tokko_apikey,
