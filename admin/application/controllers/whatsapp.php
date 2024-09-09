@@ -122,7 +122,9 @@ class Whatsapp extends CI_Controller {
     $conf["formulario"] = $empresa->config["clienapp_formulario"];
     $conf["posicion"] = $empresa->config["clienapp_posicion"];
     $conf["mostrar_email"] = $empresa->config["clienapp_mostrar_email"];
-    $conf["prefijo"] = "549";
+
+    // TODO: HACER DINAMICO EL PREFIJO
+    $conf["prefijo"] = ($id_empresa == 1756) ? "598" : "549";
     $conf["largo_telefono"] = $empresa->config["clienapp_largo_telefono"];
     $conf["total_disponibles"] = $total_disponibles;
     $tpl_base = $this->load->view("whatsapp/chat_base",null,true);
