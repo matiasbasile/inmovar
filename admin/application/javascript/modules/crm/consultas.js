@@ -154,7 +154,7 @@
       });            
       crearLightboxHTML({
         "html":view.el,
-        "width":550,
+        "width":650,
         "height":140,
         "escapable":false,
       });
