@@ -1847,6 +1847,9 @@ class Propiedades extends REST_Controller
           else if ($tipo->name == "Edificio Comercial") $p->id_tipo_inmueble = 23;
           else if ($tipo->name == "Hotel") $p->id_tipo_inmueble = 24;
           else if ($tipo->name == "Barrio Abierto") $p->id_tipo_inmueble = 4;
+          else if ($tipo->name == "Barrio Privado") $p->id_tipo_inmueble = 4;
+          else if ($tipo->name == "Edificio") $p->id_tipo_inmueble = 28;
+          else if ($tipo->name == "Edificio de oficinas") $p->id_tipo_inmueble = 23;
           else if ($tipo->name == "Nave Industrial") $p->id_tipo_inmueble = 19;
           else {
             // Si no esta definica el tipo de propiedad, lo ponemos como error
