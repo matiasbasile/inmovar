@@ -567,22 +567,6 @@ class Propiedades extends REST_Controller
     // Indicamos que el cliente vio la factura
     //$this->db->query("UPDATE facturas SET visto = visto + 1 WHERE id = $factura->id");
 
-    $propiedad->youtube_embed = "";
-    if (!empty($propiedad->video)) {
-      if (strpos($propiedad->video, "iframe") === FALSE) {
-        // Si no se adjunto un iframe, tenemos que crearlo
-        $propiedad->video_original = $propiedad->video;
-        $propiedad->video = str_replace("https://www.youtube.com/embed/", "", $propiedad->video);
-        $propiedad->video = str_replace("https://www.youtube.com/watch?v=", "", $propiedad->video);
-        $propiedad->video = str_replace("https://youtube.com/watch?v=", "", $propiedad->video);
-        $propiedad->video = str_replace("https://youtube.com/shorts/", "", $propiedad->video);
-        $propiedad->video = str_replace("https://youtu.be/", "", $propiedad->video);
-        $propiedad->video_path = "https://img.youtube.com/vi/".$propiedad->video."/0.jpg";
-        $propiedad->youtube_embed = "https://www.youtube.com/embed/".$propiedad->video;
-        $propiedad->video = '<iframe width="100%" height="400" src="https://www.youtube.com/embed/'.$propiedad->video.'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
-      }
-    }
-
     $datos = array(
       "propiedad" => $propiedad,
       "empresa" => $empresa,

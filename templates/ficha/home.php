@@ -243,6 +243,14 @@
             </ul>
           </div>
         <?php } ?>
+
+        <?php if (!empty($propiedad->youtube_embed)) { ?>
+          <section class="card">
+            <div class="titulo2">Video</div>
+            <iframe src="<?php echo $propiedad->youtube_embed ?>" style="height: 400px; width: 100%;"></iframe>
+          </section>
+        <?php } ?>
+
       </div>
 
       <?php if ($empresa->id == 1718 && $propiedad->id_tipo_operacion == 2) { ?>
@@ -250,13 +258,6 @@
           <div class="titulo2">Requisitos de Alquiler</div>
           <?php $entrada = $entrada_model->get(67950);
           echo $entrada->texto ?>
-        </section>
-      <?php } ?>
-
-      <?php if (!empty($propiedad->youtube_embed)) { ?>
-        <section class="card">
-          <div class="titulo2">Video</div>
-          <iframe src="<?php echo $propiedad->youtube_embed ?>" style="height: 400px; width: 100%;"></iframe>
         </section>
       <?php } ?>
 

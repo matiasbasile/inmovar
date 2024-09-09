@@ -1008,6 +1008,7 @@ class Propiedad_Model {
       if (strpos($p->video, "iframe") === FALSE) {
         // Si no se adjunto un iframe, tenemos que crearlo
         $p->video_original = $p->video;
+        $p->video = str_replace("https://www.youtube.com/embed/", "", $p->video);
         $p->video = str_replace("https://www.youtube.com/watch?v=", "", $p->video);
         $p->video = str_replace("https://youtube.com/watch?v=", "", $p->video);
         $p->video = str_replace("https://youtube.com/shorts/", "", $p->video);
