@@ -1373,7 +1373,7 @@ class Propiedad_Model {
         $sql.= "ORDER BY $order_by_empresa RAND() ASC ";
       } else if ($order == 4) {
         // Las destacadas siempre primero van las propias
-        $sql.= "ORDER BY IF(A.id_empresa = $this->id_empresa,0,1) ASC, A.destacado DESC, A.id DESC ";
+        $sql.= "ORDER BY IF(A.id_empresa = $this->id_empresa, IF(A.destacado == 1, 0, 1) ,2) ASC, A.precio_final ASC, A.id DESC ";
       } else if ($order == 5) {
         $sql.= "ORDER BY $order_by_empresa A.id DESC ";
       } else if ($order == 6) {
