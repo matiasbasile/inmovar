@@ -1727,8 +1727,6 @@ class Propiedades extends REST_Controller
       // Juntamos ambos arrays
       $properties = array_merge($properties, $emprendimientos);
 
-      print_r($properties); exit();
-
       if (sizeof($properties) > 0) {
         // Limpiamos todas las propiedades que esten sincronizadas con Tokko
         // Porque las que no vienen en el array es porque se deshabilitaron del otro lado
