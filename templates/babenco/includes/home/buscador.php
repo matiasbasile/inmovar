@@ -30,7 +30,7 @@
               <?php 
               $selected = "";
               if ($empresa->id == ID_EMPRESA_LA_PLATA && $localidad->link == "la-plata") $selected = "selected";
-              if ($empresa->id == ID_EMPRESA_URUGUAY && $localidad->id == "punta-del-este") $selected = "selected";
+              if ($empresa->id == ID_EMPRESA_URUGUAY && $localidad->link == "punta-del-este") $selected = "selected";
               ?>
               <option <?php echo $selected ?> value="<?php echo $localidad->link ?>"><?php echo $localidad->nombre ?></option>
             <?php } ?>
