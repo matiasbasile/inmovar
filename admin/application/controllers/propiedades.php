@@ -1946,6 +1946,12 @@ class Propiedades extends REST_Controller
             }
           }
 
+          // Si tiene video
+          if (isset($property->videos) && is_array($property->videos) && sizeof($property->videos)>0) {
+            $v1 = $property->videos[0];
+            $p->video = $v1->player_url;
+          }
+
           // Consultamos si la propiedad ya esta subida
           $sql = "SELECT * FROM inm_propiedades WHERE tokko_id = '" . $property->id . "' AND id_empresa = $id_empresa ";
           $q = $this->db->query($sql);
