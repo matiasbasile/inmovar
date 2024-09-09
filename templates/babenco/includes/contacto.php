@@ -17,7 +17,7 @@
             <input type="email" id="contacto_email" placeholder="Email" class="form-control">
           </div>
           <div class="col-md-6">
-            <input type="text" id="contacto_telefono" placeholder="Whatsapp (sin 0 ni 15)" class="form-control">
+            <input type="text" id="contacto_telefono" placeholder="Whatsapp <?php echo ($empresa->id == ID_EMPRESA_LA_PLATA) ? "(sin 0 ni 15)" : "" ?>" class="form-control">
           </div>
           <div class="col-md-6">
             <select id="contacto_asunto" class="form-control">

@@ -165,11 +165,19 @@ function validar(id_form) {
     $("#"+id_form).find(".contacto_email").focus();
     throw false;
   }
-  if (!isTelephone(telefono)) {
-    alert("Por favor ingrese un telefono");
-    $("#"+id_form).find(".contacto_telefono").focus();
-    throw false;
-  }
+  <?php if ($empresa->id == ID_EMPRESA_LA_PLATA) { ?>
+    if (!isTelephone(telefono)) {
+      alert("Por favor ingrese un telefono");
+      $("#"+id_form).find(".contacto_telefono").focus();
+      throw false;
+    }
+  <?php } else { ?>
+    if (isEmpty(telefono)) {
+      alert("Por favor ingrese un telefono");
+      $("#"+id_form).find(".contacto_telefono").focus();
+      throw false;
+    }
+  <?php } ?>
   if (isEmpty(mensaje)) {
     alert("Por favor ingrese un mensaje");
     $("#"+id_form).find(".contacto_mensaje").focus();
