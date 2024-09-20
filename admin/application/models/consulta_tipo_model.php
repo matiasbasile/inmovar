@@ -239,6 +239,37 @@ class Consulta_Tipo_Model extends Abstract_Model {
       }
     }
 
+    // Tasacion
+    $sql = "SELECT * FROM crm_consultas_tipos WHERE id_empresa = $id_empresa AND id = 7";
+    $q = $this->db->query($sql);
+    if ($q->num_rows() == 0) {    
+      $sql = "INSERT INTO crm_consultas_tipos (id,id_empresa,nombre,color,orden,activo,tiempo_vencimiento,tiempo_abandonado) VALUES(";
+      $sql.= "7,'$id_empresa','Tasar','warning',3,1,7,7)";
+      if ($imprimir == 1) $salida.= $sql.";\n";
+      else $this->db->query($sql);
+    } else {
+      $sql = "UPDATE crm_consultas_tipos ";
+      $sql.= "SET nombre = 'Tasar', orden = 3, activo = 1, tiempo_vencimiento = 7, tiempo_abandonado = 7 ";
+      $sql.= "WHERE id_empresa = $id_empresa AND id = 7";
+      if ($imprimir == 1) $salida.= $sql.";\n";
+      else $this->db->query($sql);
+    }
+    $asuntos = array(
+      "Tasación",
+    );
+    for($i=0;$i<sizeof($asuntos);$i++) {
+      $asunto = $asuntos[$i];
+      $id_asunto++;
+      $sql = "SELECT * FROM crm_asuntos WHERE id_empresa = $id_empresa AND id = $id_asunto";
+      $q1 = $this->db->query($sql);
+      if ($q1->num_rows() == 0) {      
+        $sql = "INSERT INTO crm_asuntos (id,id_empresa,nombre,orden,activo,id_tipo) VALUES(";
+        $sql.= "$id_asunto,'$id_empresa','".$asunto."',$id_asunto,1,7)";
+        if ($imprimir == 1) $salida.= $sql.";\n";
+        else $this->db->query($sql);
+      }
+    }
+
     return $salida;
   }
 
