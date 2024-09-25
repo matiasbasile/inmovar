@@ -998,6 +998,7 @@ class Propiedad_Model {
     if ($p->id_tipo_operacion == 4) {
       // EMPRENDIMIENTOS
       $p->nombre = $p->tipo_inmueble.$p->localidad;
+      echo $p->nombre;
     } else {
       $p->nombre = ($p->id_empresa != 1575) ? ($p->tipo_inmueble." en ".$p->tipo_operacion." en ".$p->localidad) : $p->nombre;
     }
