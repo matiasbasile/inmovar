@@ -122,13 +122,15 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad" => $propiedad->id));
                 <span class="cod_span"><strong>Cod:</strong> <?php echo $propiedad->codigo ?></span>
                 <h4 class="heading_details"> <?php echo $propiedad->nombre ?> </h4>
                 <div class="row price_tages">
-                  <div class="col-lg-3 col-md-3 dollar_price">
-                    <h5 style="width: 400px"><?php echo $propiedad->precio ?>
-                      <?php if ($propiedad->precio_porcentaje_anterior < 0.00 && $propiedad->publica_precio == 1) { ?>
-                        <span style="color: #0dd384;">(<i class="fa fa-arrow-down" aria-hidden="true"></i> <?= floatval($propiedad->precio_porcentaje_anterior) ?>%)</span>
-                      <?php } ?>
-                    </h5>
-                  </div>
+                  <?php if ($propiedad->id_tipo_operacion != 4) { ?>
+                    <div class="col-lg-3 col-md-3 dollar_price">
+                      <h5 style="width: 400px"><?php echo $propiedad->precio ?>
+                        <?php if ($propiedad->precio_porcentaje_anterior < 0.00 && $propiedad->publica_precio == 1) { ?>
+                          <span style="color: #0dd384;">(<i class="fa fa-arrow-down" aria-hidden="true"></i> <?= floatval($propiedad->precio_porcentaje_anterior) ?>%)</span>
+                        <?php } ?>
+                      </h5>
+                    </div>
+                  <?php } ?>
                   <div class="col-lg-9 col-md-9 muy text-right">
                     <?php if ($propiedad->total_visitas > 0) { ?>
                       <span class="muy_text">Muy solicitada</span>
@@ -139,35 +141,37 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad" => $propiedad->id));
                 <div class="address_details">
                   <p><img src="images/locate_icon.png" alt="locate"> <?php echo $propiedad->direccion_completa ?> | <span class="color_span"> <?php echo $propiedad->localidad ?></span></p>
                 </div>
-                <div class="border_btm">
-                  <div class="row tab_list_bx">
-                    <div class="col-lg-8 col-md-8">
-                      <div class="tab_list_box_footer">
-                        <ul>
-                          <li>
-                            <p><img src="images/mts_icon.png" alt="mts_icon">
-                              <span class="color_span"><?php echo (!empty($propiedad->superficie_total)) ? $propiedad->superficie_total : "-" ?></span> Mts2
-                            </p>
-                          </li>
-                          <li>
-                            <p><img src="images/hab_icon.png" alt="has_icon"> <span class="color_span"><?php echo (!empty($propiedad->dormitorios)) ? $propiedad->dormitorios : "-" ?></span> Hab</p>
-                          </li>
-                          <li>
-                            <p><img src="images/banos_icon.png" alt="mts_icon"> <span class="color_span"><?php echo (!empty($propiedad->banios)) ? $propiedad->banios : "-" ?></span> Baños</p>
-                          </li>
-                          <li>
-                            <p><img src="images/car_icon.png" alt="car_icon">
-                              <span class="color_span"><?php echo (!empty($propiedad->cocheras)) ? $propiedad->cocheras : "-" ?></span> Cochera
-                            </p>
-                          </li>
-                        </ul>
+                <?php if ($propiedad->id_tipo_operacion != 4) { ?>
+                  <div class="border_btm">
+                    <div class="row tab_list_bx">
+                      <div class="col-lg-8 col-md-8">
+                        <div class="tab_list_box_footer">
+                          <ul>
+                            <li>
+                              <p><img src="images/mts_icon.png" alt="mts_icon">
+                                <span class="color_span"><?php echo (!empty($propiedad->superficie_total)) ? $propiedad->superficie_total : "-" ?></span> Mts2
+                              </p>
+                            </li>
+                            <li>
+                              <p><img src="images/hab_icon.png" alt="has_icon"> <span class="color_span"><?php echo (!empty($propiedad->dormitorios)) ? $propiedad->dormitorios : "-" ?></span> Hab</p>
+                            </li>
+                            <li>
+                              <p><img src="images/banos_icon.png" alt="mts_icon"> <span class="color_span"><?php echo (!empty($propiedad->banios)) ? $propiedad->banios : "-" ?></span> Baños</p>
+                            </li>
+                            <li>
+                              <p><img src="images/car_icon.png" alt="car_icon">
+                                <span class="color_span"><?php echo (!empty($propiedad->cocheras)) ? $propiedad->cocheras : "-" ?></span> Cochera
+                              </p>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-md-4 hm_head text-right">
+                        <?php if ($propiedad->apto_banco == 1) {   ?> <p><img src="images/home_apto_icon.png" alt="home_apto_icon"> Apto crédito </p><?php } ?>
                       </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 hm_head text-right">
-                      <?php if ($propiedad->apto_banco == 1) {   ?> <p><img src="images/home_apto_icon.png" alt="home_apto_icon"> Apto crédito </p><?php } ?>
-                    </div>
                   </div>
-                </div>
+                <?php } ?>
 
                 <div class="details_gallery">
 
@@ -464,7 +468,9 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad" => $propiedad->id));
                         <br /><span class="color_span"><?php echo $l->localidad ?></span>
                       </p>
                       <div class="cod_apto">
-                        <h4 class="dollar_rs"> <?php echo $l->precio ?></h4>
+                        <?php if ($l->id_tipo_operacion != 4) { ?>
+                          <h4 class="dollar_rs"> <?php echo $l->precio ?></h4>
+                        <?php } ?>
                         <span class="text-right apto_like">
                           <?php if (estaEnFavoritos($l->id)) { ?>
                             <a class="like_btn active" rel="nofollow" href="/admin/favoritos/eliminar/?id=<?php echo $l->id; ?>">
@@ -477,21 +483,23 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad" => $propiedad->id));
                           <?php } ?>
                       </div>
                     </div>
-                    <div class="tab_list_box_footer">
-                      <ul>
-                        <li>
-                          <p><img src="images/mts_icon.png" alt="mts_icon">
-                            <span class="color_span"><?php echo (!empty($l->superficie_total)) ? $l->superficie_total : "-" ?></span> Mts2
-                          </p>
-                        </li>
-                        <li>
-                          <p><img src="images/hab_icon.png" alt="has_icon"> <span class="color_span"><?php echo (!empty($l->dormitorios)) ? $l->dormitorios : "-" ?></span> Hab</p>
-                        </li>
-                        <li>
-                          <p><img src="images/banos_icon.png" alt="mts_icon"> <span class="color_span"><?php echo (!empty($l->banios)) ? $l->banios : "-" ?></span> Baños</p>
-                        </li>
-                      </ul>
-                    </div>
+                    <?php if ($l->id_tipo_operacion != 4) { ?>
+                      <div class="tab_list_box_footer">
+                        <ul>
+                          <li>
+                            <p><img src="images/mts_icon.png" alt="mts_icon">
+                              <span class="color_span"><?php echo (!empty($l->superficie_total)) ? $l->superficie_total : "-" ?></span> Mts2
+                            </p>
+                          </li>
+                          <li>
+                            <p><img src="images/hab_icon.png" alt="has_icon"> <span class="color_span"><?php echo (!empty($l->dormitorios)) ? $l->dormitorios : "-" ?></span> Hab</p>
+                          </li>
+                          <li>
+                            <p><img src="images/banos_icon.png" alt="mts_icon"> <span class="color_span"><?php echo (!empty($l->banios)) ? $l->banios : "-" ?></span> Baños</p>
+                          </li>
+                        </ul>
+                      </div>
+                    <?php } ?>
                   </div>
                 </div>
               <?php } ?>

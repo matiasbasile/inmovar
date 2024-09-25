@@ -154,7 +154,9 @@ $list_view = ($vc_apto_banco == 1);
                                   <br/><span class="color_span"><?php echo $l->localidad ?></span>
                                 </p>
                                 <div class="cod_apto">
-                                  <h4 class="dollar_rs"> <?php echo $l->precio ?></h4>
+                                  <?php if ($l->id_tipo_operacion != 4) { ?>
+                                    <h4 class="dollar_rs"> <?php echo $l->precio ?></h4>
+                                  <?php } ?>
                                   <span class="text-right apto_like"> 
                                     <?php if (estaEnFavoritos($l->id)) { ?>
                                       <a class="like_btn active" rel="nofollow" href="/admin/favoritos/eliminar/?id=<?php echo $l->id; ?>">
@@ -168,21 +170,23 @@ $list_view = ($vc_apto_banco == 1);
                                   </span> 
                                 </div>
                               </div>
-                              <div class="tab_list_box_footer">
-                                <ul>
-                                  <li>
-                                    <p><img src="images/mts_icon.png" alt="mts_icon">
-                                      <span class="color_span"><?php echo (!empty($l->superficie_total)) ? $l->superficie_total : "-" ?></span> Mts2
-                                    </p>
-                                  </li>
-                                  <li>
-                                    <p><img src="images/hab_icon.png" alt="has_icon"> <span class="color_span"><?php echo (!empty($l->dormitorios)) ? $l->dormitorios : "-" ?></span> Hab</p>
-                                  </li>
-                                  <li>
-                                    <p><img src="images/banos_icon.png" alt="mts_icon"> <span class="color_span"><?php echo (!empty($l->banios)) ? $l->banios : "-" ?></span> Baños</p>
-                                  </li>
-                                </ul>
-                              </div>
+                              <?php if ($l->id_tipo_operacion != 4) { ?>
+                                <div class="tab_list_box_footer">
+                                  <ul>
+                                    <li>
+                                      <p><img src="images/mts_icon.png" alt="mts_icon">
+                                        <span class="color_span"><?php echo (!empty($l->superficie_total)) ? $l->superficie_total : "-" ?></span> Mts2
+                                      </p>
+                                    </li>
+                                    <li>
+                                      <p><img src="images/hab_icon.png" alt="has_icon"> <span class="color_span"><?php echo (!empty($l->dormitorios)) ? $l->dormitorios : "-" ?></span> Hab</p>
+                                    </li>
+                                    <li>
+                                      <p><img src="images/banos_icon.png" alt="mts_icon"> <span class="color_span"><?php echo (!empty($l->banios)) ? $l->banios : "-" ?></span> Baños</p>
+                                    </li>
+                                  </ul>
+                                </div>
+                              <?php } ?>
                             </div>
                           </div>
                         <?php } ?>
@@ -236,7 +240,9 @@ $list_view = ($vc_apto_banco == 1);
                                 <img src="images/locate_icon.png" alt="locate_icon"> <?php echo $l->direccion_completa ?>
                                 <br/><span class="color_span"> <?php echo $l->localidad ?> </span>
                               </p>
-                              <h4 class="dollar_rs"> <?php echo $l->precio ?></h4>
+                              <?php if ($l->id_tipo_operacion != 4) { ?>
+                                <h4 class="dollar_rs"> <?php echo $l->precio ?></h4>
+                              <?php } ?>
                             </div>
                             <div class="cod_apto">
                               <span class="cod_span"><strong>Cod:</strong> <?php echo $l->codigo ?></span>
@@ -253,20 +259,22 @@ $list_view = ($vc_apto_banco == 1);
                                 <?php } ?>
                               </span>
                             </div>
-                            <div class="list_box_footer">
-                              <ul>
-                                <li>
-                                <p><img src="images/mts_icon.png" alt="mts_icon">
-                                  <span class="color_span"><?php echo (!empty($l->superficie_total)) ? $l->superficie_total : "-" ?></span> Mts2</p>
-                                </li>
-                                <li>
-                                  <p><img src="images/hab_icon.png" alt="has_icon"> <span class="color_span"><?php echo (!empty($l->dormitorios)) ? $l->dormitorios : "-" ?></span> Hab</p>
-                                </li>
-                                <li>
-                                  <p><img src="images/banos_icon.png" alt="mts_icon"> <span class="color_span"><?php echo (!empty($l->banios)) ? $l->banios : "-" ?></span> Baños</p>
-                                </li>
-                              </ul>
-                            </div>
+                            <?php if ($l->id_tipo_operacion != 4) { ?>
+                              <div class="list_box_footer">
+                                <ul>
+                                  <li>
+                                  <p><img src="images/mts_icon.png" alt="mts_icon">
+                                    <span class="color_span"><?php echo (!empty($l->superficie_total)) ? $l->superficie_total : "-" ?></span> Mts2</p>
+                                  </li>
+                                  <li>
+                                    <p><img src="images/hab_icon.png" alt="has_icon"> <span class="color_span"><?php echo (!empty($l->dormitorios)) ? $l->dormitorios : "-" ?></span> Hab</p>
+                                  </li>
+                                  <li>
+                                    <p><img src="images/banos_icon.png" alt="mts_icon"> <span class="color_span"><?php echo (!empty($l->banios)) ? $l->banios : "-" ?></span> Baños</p>
+                                  </li>
+                                </ul>
+                              </div>
+                            <?php } ?>
                           </div>
                         </div>
                       </div>
