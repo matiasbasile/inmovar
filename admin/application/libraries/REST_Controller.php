@@ -301,15 +301,29 @@ class REST_Controller extends CI_Controller {
     $empresa = $this->Empresa_Model->get($id_empresa);
     $this->load->helper("file_helper");
 
+    $upload_dir = isset($param["upload_dir"]) ? $param["upload_dir"] : "uploads/";
+    $upload_url = $this->mklink("admin/".$upload_dir);
+    $upload_dir = dirname($_SERVER['SCRIPT_FILENAME'])."/".$upload_dir;
+
     // PRIMERO SOLO PROCESAMOS LOS HEIC
     if (isset($_FILES['files'])) {
       $i = 0;
-      foreach($_FILES["files"]["name"] as $name) {
+      foreach ($_FILES["files"]["name"] as $name) {
         $extension = strtolower(get_extension($name));
         if ($extension == "heic") {
+          // Cambiar el nombre del archivo y su extensión a JPEG
           $name = strtolower($name);
-          $name = str_replace(".heic", ".jpg", $name);
-          Maestroerror\HeicToJpg::convert($_FILES["files"]["tmp_name"][$i])->saveAs($name);
+          $newName = str_replace(".heic", ".jpg", $name);
+          
+          // Convertir el archivo HEIC a JPEG y guardar
+          $outputPath = $upload_dir . "/" . $newName;
+          Maestroerror\HeicToJpg::convert($_FILES["files"]["tmp_name"][$i])->saveAs($outputPath);
+
+          // Simular que el archivo subido es un JPEG
+          $_FILES['files']['name'][$i] = $newName; // Nombre actualizado
+          $_FILES['files']['type'][$i] = 'image/jpeg'; // Cambiar el MIME type
+          $_FILES['files']['tmp_name'][$i] = $outputPath; // La nueva ruta al archivo convertido
+          $_FILES['files']['size'][$i] = filesize($outputPath); // Tamaño del archivo convertido
         }
         $i++;
       }
@@ -336,13 +350,10 @@ class REST_Controller extends CI_Controller {
       $height = isset($empresa->config[$param["clave_height"]]) ? $empresa->config[$param["clave_height"]] : 400;
     } else $height = 400;
 
-    $upload_dir = isset($param["upload_dir"]) ? $param["upload_dir"] : "uploads/";
-    $upload_url = $this->mklink("admin/".$upload_dir);
-
     include_once("application/libraries/UploadHandler.php");
     $crop = (isset($empresa->config["habilitar_crop_multiple"])) ? true : false;
     $upload_handler = new UploadHandler(array(
-      "upload_dir"=>dirname($_SERVER['SCRIPT_FILENAME'])."/".$upload_dir,
+      "upload_dir"=>$upload_dir,
       "upload_url"=>$upload_url,
       "image_versions"=>array(
         ""=>array(
