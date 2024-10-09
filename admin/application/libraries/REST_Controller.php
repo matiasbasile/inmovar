@@ -302,15 +302,17 @@ class REST_Controller extends CI_Controller {
 
     // PRIMERO SOLO PROCESAMOS LOS HEIC
     if (isset($_FILES['files'])) {
-      foreach($_FILES["files"]["name"] as $i => $name) {
+      $i = 0;
+      foreach($_FILES["files"]["name"] as $name) {
         $extension = strtolower(get_extension($name));
         if ($extension == "heic") {
           echo json_encode([
             "message" => "ERROR: ENCONTRO HEIC"
           ]);
           exit();
-          Maestroerror\HeicToJpg::convert("image1.heic")->saveAs("image1.jpg");
+          //Maestroerror\HeicToJpg::convert("image1.heic")->saveAs("image1.jpg");
         }
+        $i++;
       }
     }
 
@@ -334,55 +336,22 @@ class REST_Controller extends CI_Controller {
     if (isset($param["clave_height"])) {
       $height = isset($empresa->config[$param["clave_height"]]) ? $empresa->config[$param["clave_height"]] : 400;
     } else $height = 400;
-    // TODO: Agregar los otros parametros como quality
 
     $upload_dir = isset($param["upload_dir"]) ? $param["upload_dir"] : "uploads/";
     $upload_url = $this->mklink("admin/".$upload_dir);
 
     include_once("application/libraries/UploadHandler.php");
     $crop = (isset($empresa->config["habilitar_crop_multiple"])) ? true : false;
-    /*if ($crop) {
-      // Tenemos que cortar y redimensionar las imagenes
-      $image_versions = array(
-        ""=>array(
-          "max_width"=>$width,
-          "max_height"=>$height,
-          "min_width"=>$width,
-          "min_height"=>$height,
-          "crop"=>true,
-        )
-      );
-    } else {*/
-      // No se cortan las imagenes
-      // TEST: probamos de cortarla por las dudas de alguna forma
-      $image_versions = array(
+    $upload_handler = new UploadHandler(array(
+      "upload_dir"=>dirname($_SERVER['SCRIPT_FILENAME'])."/".$upload_dir,
+      "upload_url"=>$upload_url,
+      "image_versions"=>array(
         ""=>array(
           "crop"=>false,
           "max_width"=>1920,
           "max_height"=>1080,
         ),
-      );
-      /*
-      if (isset($param["upload_dir_thumbnail"])) {
-        $thumb_dir = dirname($_SERVER['SCRIPT_FILENAME'])."/".$param["upload_dir_thumbnail"];
-        $thumb_url = $this->mklink("admin/".$thumb_dir);
-        $upload_handler = new UploadHandler(array(
-          "upload_dir"=>$thumb_dir,
-          "upload_url"=>$thumb_url,
-          "image_versions"=>array(
-            ""=>array(
-              "crop"=>false,
-              "max_width"=>320,
-              "max_height"=>180,
-            )
-          ),
-        ));
-      }*/
-    //}
-    $upload_handler = new UploadHandler(array(
-      "upload_dir"=>dirname($_SERVER['SCRIPT_FILENAME'])."/".$upload_dir,
-      "upload_url"=>$upload_url,
-      "image_versions"=>$image_versions,
+      ),
     ));
   }
 
