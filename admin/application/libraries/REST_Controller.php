@@ -298,6 +298,29 @@ class REST_Controller extends CI_Controller {
     $this->id_empresa = $id_empresa;
     $this->load->model("Empresa_Model");
     $empresa = $this->Empresa_Model->get($id_empresa);
+
+    if (isset($_FILES['files'])) {
+      $types = $_FILES["files"]["type"];
+      foreach($types as $type) {
+        $type = strtolower($type);
+
+        if ($type == "image/heic") {
+          echo json_encode([
+            "message" => "ERROR: ENCONTRO HEIC"
+          ]);
+          exit();
+      Maestroerror\HeicToJpg::convert("image1.heic")->saveAs("image1.jpg");
+
+        }
+
+        if ($type != "image/jpeg" && $type != "image/jpg" && $type != "image/png" && $type != "image/gif") {
+          echo json_encode([
+            "message" => "ERROR: Tipo de archivo no permitido [$type]. Los archivos permitidos son: jpg, png y gif."
+          ]);
+          exit();
+        }
+      }
+    }
     
     if (isset($param["clave_width"])) {
       $width = isset($empresa->config[$param["clave_width"]]) ? $empresa->config[$param["clave_width"]] : 400;
@@ -350,7 +373,6 @@ class REST_Controller extends CI_Controller {
         ));
       }*/
     //}
-
     $upload_handler = new UploadHandler(array(
       "upload_dir"=>dirname($_SERVER['SCRIPT_FILENAME'])."/".$upload_dir,
       "upload_url"=>$upload_url,
