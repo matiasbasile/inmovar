@@ -298,18 +298,19 @@ class REST_Controller extends CI_Controller {
     $this->id_empresa = $id_empresa;
     $this->load->model("Empresa_Model");
     $empresa = $this->Empresa_Model->get($id_empresa);
+    $this->load->helper("file_helper");
 
     if (isset($_FILES['files'])) {
       $types = $_FILES["files"]["type"];
       foreach($types as $type) {
         $type = strtolower($type);
-
-        if ($type == "image/heic") {
+        $extension = strtolower(get_extension($_FILES["files"]["name"]));
+        if ($extension == "heic") {
           echo json_encode([
             "message" => "ERROR: ENCONTRO HEIC"
           ]);
           exit();
-      Maestroerror\HeicToJpg::convert("image1.heic")->saveAs("image1.jpg");
+         Maestroerror\HeicToJpg::convert("image1.heic")->saveAs("image1.jpg");
 
         }
 
