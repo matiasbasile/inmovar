@@ -306,11 +306,9 @@ class REST_Controller extends CI_Controller {
       foreach($_FILES["files"]["name"] as $name) {
         $extension = strtolower(get_extension($name));
         if ($extension == "heic") {
-          echo json_encode([
-            "message" => "ERROR: ENCONTRO HEIC"
-          ]);
-          exit();
-          //Maestroerror\HeicToJpg::convert("image1.heic")->saveAs("image1.jpg");
+          $name = strtolower($name);
+          $name = str_replace(".heic", ".jpg", $name);
+          Maestroerror\HeicToJpg::convert($_FILES["files"]["tmp_name"][$i])->saveAs($name);
         }
         $i++;
       }
