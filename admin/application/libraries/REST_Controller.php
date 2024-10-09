@@ -297,6 +297,7 @@ class REST_Controller extends CI_Controller {
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
+    require '../vendor/autoload.php';
     $id_empresa = (isset($param["id_empresa"]) ? $param["id_empresa"] : $this->get_empresa());
     $this->id_empresa = $id_empresa;
     $this->load->model("Empresa_Model");
