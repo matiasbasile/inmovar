@@ -300,21 +300,25 @@ class REST_Controller extends CI_Controller {
     $empresa = $this->Empresa_Model->get($id_empresa);
     $this->load->helper("file_helper");
 
+    // PRIMERO SOLO PROCESAMOS LOS HEIC
     if (isset($_FILES['files'])) {
-      print_r($_FILES['files']); exit();
-      $types = $_FILES["files"]["type"];
-      foreach($types as $type) {
-        $type = strtolower($type);
-        $extension = strtolower(get_extension($_FILES["files"]["name"]));
+      foreach($_FILES["files"]["name"] as $i => $name) {
+        $extension = strtolower(get_extension($name));
         if ($extension == "heic") {
           echo json_encode([
             "message" => "ERROR: ENCONTRO HEIC"
           ]);
           exit();
-         Maestroerror\HeicToJpg::convert("image1.heic")->saveAs("image1.jpg");
-
+          Maestroerror\HeicToJpg::convert("image1.heic")->saveAs("image1.jpg");
         }
+      }
+    }
 
+    // En este punto, no tienen que haber HEIC en el array
+    if (isset($_FILES['files'])) {
+      $types = $_FILES["files"]["type"];
+      foreach($types as $type) {
+        $type = strtolower($type);
         if ($type != "image/jpeg" && $type != "image/jpg" && $type != "image/png" && $type != "image/gif") {
           echo json_encode([
             "message" => "ERROR: Tipo de archivo no permitido [$type]. Los archivos permitidos son: jpg, png y gif."
