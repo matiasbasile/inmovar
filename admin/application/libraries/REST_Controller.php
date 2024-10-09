@@ -301,6 +301,7 @@ class REST_Controller extends CI_Controller {
     $this->load->helper("file_helper");
 
     if (isset($_FILES['files'])) {
+      print_r($_FILES['files']); exit();
       $types = $_FILES["files"]["type"];
       foreach($types as $type) {
         $type = strtolower($type);
