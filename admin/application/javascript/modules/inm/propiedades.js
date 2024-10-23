@@ -1722,7 +1722,7 @@
         e.stopPropagation();
         e.preventDefault();
         if($(e.currentTarget).attr("disabled") == "disabled") return;
-        window.open("https://app.inmovar.com/ficha/"+ID_EMPRESA+"/"+this.model.get("hash"),"_blank")+"?h=1";
+        window.open("https://app.inmovar.com/ficha/"+ID_EMPRESA+"/"+this.model.get("hash")+"?h=1","_blank");
         return false;
       },
       "click .compartir_olx":function(e) {
