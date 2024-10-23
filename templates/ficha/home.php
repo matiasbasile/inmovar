@@ -65,7 +65,7 @@
                   <div class="op-venta">
                     <div class="op-operation">Expensas</div>
                     <div class="op-values"> 
-                      <div class="op-value"><?php echo $propiedad->moneda." ".$propiedad->valor_expensas ?></div>
+                      <div class="op-value"><?php echo $propiedad->moneda_expensas." ".number_format($propiedad->valor_expensas, 0, ',', '.') ?></div>
                     </div>
                   </div>
                 </div>
