@@ -59,7 +59,7 @@
               <?php } ?>
             </div>
 
-            <?php if(!empty($propiedad->valor_expensas)) { ?>
+            <?php if($propiedad->valor_expensas > 0) { ?>
               <div class="flex-box">
                 <div class="operations-box dib">
                   <div class="op-venta">
