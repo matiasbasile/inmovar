@@ -483,12 +483,12 @@
               </div>
               <div class="clearfix mt10 mb0">
                 <div class="clearfix">
-                  <b>Fecha de Ingreso: </b><span><%= fecha_ingreso %>
+                  <b>Fecha de Ingreso: </b><span><%= moment(fecha_ingreso, "YYYY-MM-DD").format("DD/MM/YYYY") %>
                 </div>
               </div>
               <div class="clearfix mt10 mb0">
                 <div class="clearfix">
-                  <b>Fecha de Actualización: </b><span><%= fecha_publicacion %>
+                  <b>Fecha de Actualización: </b><span><%= moment(fecha_publicacion, "YYYY-MM-DD").format("DD/MM/YYYY") %>
                 </div>
               </div>
 
