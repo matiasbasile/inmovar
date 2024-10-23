@@ -260,6 +260,7 @@
             <li><a href="javascript:void(0)" class="buscar_interesados"><i class="text-muted-2 fa fa-search w25"></i> Buscar interesados</a></li>
             <li class="divider"></li>
             <li><a href="javascript:void(0)" class="ver_ficha_web" data-id="<%= id %>"><i class="text-muted-2 fa fa-file w25"></i> Ver ficha web</a></li>
+            <li><a href="javascript:void(0)" class="ver_ficha_colega" data-id="<%= id %>"><i class="text-muted-2 fa fa-file w25"></i> Ver ficha colega</a></li>
             <li><a href="javascript:void(0)" class="ver_ficha" data-id="<%= id %>"><i class="text-muted-2 fa fa-file w25"></i> Ver ficha hoja A4</a></li>
             <li><a href="<%= link_completo %>" target="_blank"><i class="text-muted-2 fa fa-globe w25"></i> Ver en web</a></li>
 

@@ -748,7 +748,12 @@
         <label class="control-label control-label-sub">Descripci&oacute;n</label>
         <div class="form-group">
           <textarea <%= (!edicion)?"disabled":"" %> name="texto" name="propiedad_texto" data-ckeditor="basic" id="propiedad_texto"><%= texto %></textarea>
-        </div>          
+        </div>   
+
+        <label class="control-label control-label-sub">Notas Privadas</label>
+        <div class="form-group">
+          <textarea class="form-control h100" <%= (!edicion)?"disabled":"" %> name="observaciones" name="observaciones" id="propiedad_observaciones"><%= observaciones %></textarea>
+        </div>       
 
       </div>
     </div>

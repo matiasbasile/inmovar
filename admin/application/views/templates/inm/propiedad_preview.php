@@ -66,6 +66,21 @@
             </li>
           <% } %>
 
+          <% if (id_empresa == ID_EMPRESA) { %>
+            <li class="">
+              <a id="propiedad_preview_8_link" href="#propiedad_preview_tab8" class="oh buscar_todos" role="tab" data-toggle="tab">
+                <i class="material-icons">description</i>
+                <span class="hidden-xs m-l-xs"> Observaciones</span>
+              </a>
+            </li>
+            <li class="">
+              <a id="propiedad_preview_9_link" href="#propiedad_preview_tab9" class="oh buscar_todos" role="tab" data-toggle="tab">
+                <i class="material-icons">person</i>
+                <span class="hidden-xs m-l-xs"> Propietario</span>
+              </a>
+            </li>
+          <% } %>
+
           <% if (VOLVER_SUPERADMIN == 1) { %>
             <li class="">
               <a id="propiedad_preview_7_link" href="#propiedad_preview_tab7" class="oh" role="tab" data-toggle="tab">
@@ -313,6 +328,35 @@
                 <div class="h250" style="width: 540px;" id="historial_precios_bar"></div>
               </div>
 
+              <div id="propiedad_preview_tab8" class="tab-pane">
+
+                <div class="padder">
+                  <div class="subtitulo">Notas Privadas</div>
+                  <div class="propiedad_preview_texto"><%= observaciones %></div>
+                </div>
+
+              </div>
+
+              <div id="propiedad_preview_tab9" class="tab-pane">
+
+                <div class="padder">
+                  <div class="subtitulo">Propietario</div>
+
+                  <div class="clearfix mb15">
+                    <b>Nombre:</b> <span><%= (!isEmpty(propietario)) ? propietario : "-" %></span>
+                  </div>
+                  <div class="clearfix mb15">
+                    <b>Dirección:</b> <span><%= (!isEmpty(propietario_direccion)) ? propietario_direccion : "-" %></span>
+                  </div>
+                  <div class="clearfix mb15">
+                    <b>Email:</b> <span><%= (!isEmpty(propietario_email)) ? propietario_email : "-" %></span>
+                  </div>
+                  <div class="clearfix mb15">
+                    <b>Teléfono:</b> <span><%= (!isEmpty(propietario_telefono)) ? propietario_telefono : "-" %></span>
+                  </div>
+                </div>
+              </div>
+
               <div id="propiedad_preview_tab7" class="tab-pane">
 
                 <div class="table-responsive">
@@ -433,6 +477,16 @@
                       Activa aproximadamente desde hace <%= meses_activa %> meses
                     <% } %>
                   <% } %>
+                </div>
+              </div>
+              <div class="clearfix mt10 mb0">
+                <div class="clearfix">
+                  <b>Fecha de Ingreso: </b><span><%= fecha_ingreso %>
+                </div>
+              </div>
+              <div class="clearfix mt10 mb0">
+                <div class="clearfix">
+                  <b>Fecha de Actualización: </b><span><%= fecha_publicacion %>
                 </div>
               </div>
 

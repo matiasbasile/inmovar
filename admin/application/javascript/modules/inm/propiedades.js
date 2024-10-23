@@ -40,6 +40,7 @@
       entre_calles_2: "",
       valor_expensas: 0,
       id_propietario: 0,
+      observaciones: "",
 
       permiso_web: 0,
       bloqueado_web: 0,
@@ -1714,6 +1715,14 @@
         e.preventDefault();
         if($(e.currentTarget).attr("disabled") == "disabled") return;
         window.open("https://app.inmovar.com/ficha/"+ID_EMPRESA+"/"+this.model.get("hash"),"_blank");
+        return false;
+      },
+      "click .ver_ficha_colega":function(e){
+        var self = this;
+        e.stopPropagation();
+        e.preventDefault();
+        if($(e.currentTarget).attr("disabled") == "disabled") return;
+        window.open("https://app.inmovar.com/ficha/"+ID_EMPRESA+"/"+this.model.get("hash"),"_blank")+"?h=1";
         return false;
       },
       "click .compartir_olx":function(e) {

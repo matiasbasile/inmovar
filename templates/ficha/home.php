@@ -11,9 +11,11 @@
   	<div id="big_slides_next" onClick="next_enlarged()"></div>
     <img id="big_img" onload="center()">
   </div>
-  <div class="header"> 
-    <img src="/admin/<?= $empresa->logo_1 ?>" height="100" />
-  </div>
+  <?php if (!$hidden_header && !empty($empresa->logo_1)) { ?>
+    <div class="header"> 
+      <img src="/admin/<?= $empresa->logo_1 ?>" height="100" />
+    </div>
+  <?php } ?>
   <div id="property_detail_wrapper" class="content_wrapper">
     <div id="property_detail_content">
       <div id="ficha">
@@ -56,6 +58,20 @@
                 </div>
               <?php } ?>
             </div>
+
+            <?php if(!empty($propiedad->valor_expensas)) { ?>
+              <div class="flex-box">
+                <div class="operations-box dib">
+                  <div class="op-venta">
+                    <div class="op-operation">Expensas</div>
+                    <div class="op-values"> 
+                      <div class="op-value"><?php echo $propiedad->valor_expensas ?></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <?php } ?>
+
             <div class="ficha_detalle_item">
               <b>Dirección:</b><br/>
               <?php echo $propiedad->direccion_completa ?>
@@ -93,25 +109,27 @@
           $email_usuario = $empresa->email;
           $telefono_usuario = $empresa->telefono;
         } 
-        $telefono_usuario_f = preg_replace('/\D/', '', $telefono_usuario); ?>
-        <div id="producer_container" class="card">
-          <img src="<?php echo (!empty($empresa->path) ? "/admin/".$empresa->path : "assets/images/icon-agent.png") ?>"/>
-          <div id="producer_info">
-            <div id="producer_name"><?= $nombre_usuario ?></div>
-            <div class="producer-item">
-              <a href="mailto:<?= $email_usuario ?>">
-                <img src="/templates/ficha/assets/images/mail.svg">
-                <div><?= $email_usuario ?></div>
-              </a>
-            </div>
-            <div class="producer-item">
-              <a href="tel:<?= $telefono_usuario_f ?>" >
-                <img src="/templates/ficha/assets/images/cellphone.svg">
-                <div><?= $telefono_usuario ?></div>
-              </a>
+        $telefono_usuario_f = preg_replace('/\D/', '', $telefono_usuario); 
+        if (!$hidden_header) { ?>
+          <div id="producer_container" class="card">
+            <img src="<?php echo (!empty($empresa->path) ? "/admin/".$empresa->path : "assets/images/icon-agent.png") ?>"/>
+            <div id="producer_info">
+              <div id="producer_name"><?= $nombre_usuario ?></div>
+              <div class="producer-item">
+                <a href="mailto:<?= $email_usuario ?>">
+                  <img src="/templates/ficha/assets/images/mail.svg">
+                  <div><?= $email_usuario ?></div>
+                </a>
+              </div>
+              <div class="producer-item">
+                <a href="tel:<?= $telefono_usuario_f ?>" >
+                  <img src="/templates/ficha/assets/images/cellphone.svg">
+                  <div><?= $telefono_usuario ?></div>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
+        <?php } ?>
       </div>
       <div class="ficha_desc">
         <section id="ficha_informacion_basica" class="card">
