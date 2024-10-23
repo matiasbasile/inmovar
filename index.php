@@ -284,7 +284,7 @@ if ( $nombre_pagina == "ficha") {
   $propiedad_model = new Propiedad_Model($empresa->id,$conx);
   $propiedad = $propiedad_model->get_by_hash($hash);
   $id = $propiedad->id;
-  $hidden_header = isset($get_params["h"]);
+  $hidden_header = isset($get_params["h"]) ? $get_params["h"] : 0;
   include("templates/ficha/home.php");  
 
 } else if (isset($empresa->template_path) && !empty($empresa->template_path)) {

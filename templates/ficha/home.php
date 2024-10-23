@@ -11,7 +11,7 @@
   	<div id="big_slides_next" onClick="next_enlarged()"></div>
     <img id="big_img" onload="center()">
   </div>
-  <?php if (!$hidden_header && !empty($empresa->logo_1)) { ?>
+  <?php if ($hidden_header == 0 && !empty($empresa->logo_1)) { ?>
     <div class="header"> 
       <img src="/admin/<?= $empresa->logo_1 ?>" height="100" />
     </div>
@@ -110,7 +110,7 @@
           $telefono_usuario = $empresa->telefono;
         } 
         $telefono_usuario_f = preg_replace('/\D/', '', $telefono_usuario); 
-        if (!$hidden_header) { ?>
+        if ($hidden_header == 0) { ?>
           <div id="producer_container" class="card">
             <img src="<?php echo (!empty($empresa->path) ? "/admin/".$empresa->path : "assets/images/icon-agent.png") ?>"/>
             <div id="producer_info">
