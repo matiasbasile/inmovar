@@ -70,7 +70,7 @@
             <li class="">
               <a id="propiedad_preview_8_link" href="#propiedad_preview_tab8" class="oh buscar_todos" role="tab" data-toggle="tab">
                 <i class="material-icons">description</i>
-                <span class="hidden-xs m-l-xs"> Observaciones</span>
+                <span class="hidden-xs m-l-xs"> Notas Privadas</span>
               </a>
             </li>
             <li class="">
@@ -331,8 +331,10 @@
               <div id="propiedad_preview_tab8" class="tab-pane">
 
                 <div class="padder">
-                  <div class="subtitulo">Notas Privadas</div>
-                  <div class="propiedad_preview_texto"><%= observaciones %></div>
+                  <div class="titulo mt5 mb10">Notas Privadas</div>
+                  <div class="propiedad_preview_texto">
+                    <%= isEmpty(observaciones) ? "Puede dejar en esta sección notas privadas o comentarios sobre la propiedad." : observaciones %>
+                  </div>
                 </div>
 
               </div>
@@ -340,7 +342,7 @@
               <div id="propiedad_preview_tab9" class="tab-pane">
 
                 <div class="padder">
-                  <div class="subtitulo">Propietario</div>
+                  <div class="titulo mt5 mb10">Propietario</div>
 
                   <div class="clearfix mb15">
                     <b>Nombre:</b> <span><%= (!isEmpty(propietario)) ? propietario : "-" %></span>
