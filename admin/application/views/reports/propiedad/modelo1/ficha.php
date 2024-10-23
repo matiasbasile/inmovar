@@ -133,6 +133,10 @@ i.bullet { background-color: <?php echo $empresa->color_principal ?>; display: i
               <span class="precio_numero">
                 <?php echo $propiedad->precio ?>
               </span>
+              <?php if ($propiedad->valor_expensas > 0) { ?>
+                EXPENSAS<br/>
+                <?php echo $propiedad->moneda_expensas." ".number_format($propiedad->precio, 0, ',', '.') ?>
+              <?php } ?>
             </div>
             <?php if (!empty($propiedad->breve) || !empty($propiedad->texto)) { ?>
               <div class="pt10">
