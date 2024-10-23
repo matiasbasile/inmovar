@@ -572,9 +572,9 @@ class Propiedad_Model extends Abstract_Model {
     $id_tipo_operacion = (isset($conf["id_tipo_operacion"])) ? $conf["id_tipo_operacion"] : 0;
     $id_tipo_inmueble = (isset($conf["id_tipo_inmueble"])) ? $conf["id_tipo_inmueble"] : 0;
     $id_localidad = (isset($conf["id_localidad"])) ? $conf["id_localidad"] : 0;
-    $calle = (isset($conf["calle"])) ? $conf["calle"] : "";
-    $entre_calles = (isset($conf["entre_calles"])) ? $conf["entre_calles"] : "";
-    $entre_calles_2 = (isset($conf["entre_calles_2"])) ? $conf["entre_calles_2"] : "";
+    $calle = (isset($conf["calle"])) ? trim($conf["calle"]) : "";
+    $entre_calles = (isset($conf["entre_calles"])) ? trim($conf["entre_calles"]) : "";
+    $entre_calles_2 = (isset($conf["entre_calles_2"])) ? trim($conf["entre_calles_2"]) : "";
     $id_usuario = (isset($conf["id_usuario"])) ? $conf["id_usuario"] : 0;
     $apto_banco = (isset($conf["apto_banco"])) ? $conf["apto_banco"] : 0;
     $acepta_permuta = (isset($conf["acepta_permuta"])) ? $conf["acepta_permuta"] : 0;
@@ -648,9 +648,9 @@ class Propiedad_Model extends Abstract_Model {
     
     if (!empty($id_propietario)) $sql_where.= "AND A.id_propietario = $id_propietario ";
     if (!empty($id_localidad)) $sql_where.= "AND A.id_localidad IN ($id_localidad) ";
-    if (!empty($calle)) $sql_where.= "AND A.calle = '$calle' ";
-    if (!empty($entre_calles)) $sql_where.= "AND A.entre_calles = '$entre_calles' ";
-    if (!empty($entre_calles_2)) $sql_where.= "AND A.entre_calles_2 = '$entre_calles_2' ";
+    if (!empty($calle)) $sql_where.= "AND TRIM(A.calle) = '$calle' ";
+    if (!empty($entre_calles)) $sql_where.= "AND TRIM(A.entre_calles) = '$entre_calles' ";
+    if (!empty($entre_calles_2)) $sql_where.= "AND TRIM(A.entre_calles_2) = '$entre_calles_2' ";
     if ($apto_banco == 1) $sql_where.= "AND A.apto_banco = 1 ";
     if ($acepta_permuta == 1) $sql_where.= "AND A.acepta_permuta = 1 ";
     if (!empty($dormitorios)) {
