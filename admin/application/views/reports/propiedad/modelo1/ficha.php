@@ -134,8 +134,8 @@ i.bullet { background-color: <?php echo $empresa->color_principal ?>; display: i
                 <?php echo $propiedad->precio ?>
               </span>
               <?php if ($propiedad->valor_expensas > 0) { ?>
-                EXPENSAS<br/>
-                <span class="precio_numero">
+                <span style="display: block; margin-top: 15px;">EXPENSAS</span>
+                <span class="precio_numero" style="font-size: 22px;">
                   <?php echo $propiedad->moneda_expensas." ".number_format($propiedad->valor_expensas, 0, ',', '.') ?>
                 </span>
               <?php } ?>
