@@ -695,6 +695,9 @@ class Empresa_Model extends Abstract_Model {
     // pero como nombre ponemos igual a la razon social (que seria el nombre de la inmobiliaria no el que se registro)
     $nombre = $array->nombre;
     $array->nombre = $array->razon_social;
+    if (empty($array->nombre)) {
+      return array("id"=>0,"error"=>TRUE,"mensaje"=>"Error: el nombre no puede estar vacio.");
+    }
 
     $crear_usuario = isset($array->crear_usuario) ? $array->crear_usuario : TRUE;
     $punto_venta = isset($array->punto_venta) ? $array->punto_venta : 2;
