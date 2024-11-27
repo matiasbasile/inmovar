@@ -1369,7 +1369,7 @@ class Propiedad_Model {
     if ($tiene_interno == 1) $sql.= "AND A.ubicacion_departamento = 'I' ";
     if (!empty($calle)) $sql.= "AND A.calle = '$calle' ";
 
-    $order_by_empresa = ($order_empresa == 1) ? "IF(A.id_empresa = $this->id_empresa,0,1) ASC, " : "";
+    $order_by_empresa = "IF(A.id_empresa = $this->id_empresa,0,1) ASC, ";
 
     if (!empty($order_by)) {
       $sql.= "ORDER BY $order_by_empresa $order_by ";
