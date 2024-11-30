@@ -6,6 +6,10 @@ $nombre_pagina = "listado";
 $titulo_pagina = $vc_link_tipo_operacion;
 $page_active = $vc_link_tipo_operacion;
 $cotizacion_dolar = $propiedad_model->get_dolar();
+
+if (isset($get_params["test"])) {
+  echo $propiedad_model->get_sql();
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -39,7 +43,7 @@ $cotizacion_dolar = $propiedad_model->get_dolar();
                     <div class="top-view">
                       <a href="javascript:void(0);" data-view="lista" onclick="grid_or_list(this);" class="change-view-btn <?php echo ($vc_view==0)?"active-view-btn":"" ?>"><i class="fa fa-th-list"></i></a>
                       <a href="javascript:void(0);" data-view="grid"  onclick="grid_or_list(this);" class="change-view-btn <?php echo ($vc_view==1)?"active-view-btn":"" ?>"><i class="fa fa-th-large"></i></a>
-                      <a href="<?php echo mklink ("mapa/".(empty($vc_link_tipo_operacion)?"todas":$vc_link_tipo_operacion)."/".(empty($link_localidad)?"todas":$link_localidad)."/?".(empty($link_tipo_inmueble)?"":$link_tipo_inmueble)."view=2") ?>"class="change-view-btn"><i class="fa fa-map-marker"></i></a>
+                      <a href="<?php echo mklink ("mapa".(empty($vc_link_tipo_operacion)?"/todas":"/".$vc_link_tipo_operacion)."/".(empty($link_localidad)?"todas":$link_localidad)."/?".(empty($link_tipo_inmueble)?"":$link_tipo_inmueble)."view=2") ?>"class="change-view-btn"><i class="fa fa-map-marker"></i></a>
                     </div>
                   </h4>
                 </div>
