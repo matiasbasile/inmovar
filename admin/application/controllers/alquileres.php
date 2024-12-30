@@ -608,7 +608,7 @@ class Alquileres extends REST_Controller {
     );
     //TODO: SACARLE EL HARDCODEO
     if ($id_empresa == 1392) {
-      $this->load->view("reports/factura/recibo_inmo_oficio/propietario.php",$datos);
+      $this->load->view("reports/factura/recibo_inmo_carino/propietario.php",$datos);
     } else {
       $this->load->view("reports/factura/recibo_inmo/propietario.php",$datos);
     }
