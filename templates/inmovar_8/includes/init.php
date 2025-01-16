@@ -15,4 +15,25 @@ function estaEnFavoritos($id) {
   }
   return false;
 }
+
+$emprendimientos_listado = $propiedad_model->get_list(array(
+  "destacado"=>"1",
+  "tipo_operacion"=>"emprendimientos",
+  "offset"=>9,
+  "solo_propias"=>1,
+));
+
+$alquileres_listado = $propiedad_model->get_list(array(
+  "destacado"=>"1",
+  "tipo_operacion"=>"alquileres",
+  "offset"=>9,
+  "solo_propias"=>1,
+));
+
+$ventas_listado = $propiedad_model->get_list(array(
+  "destacado"=>"1",
+  "tipo_operacion"=>"ventas",
+  "offset"=>9,
+  "solo_propias"=>1,
+));
 ?>

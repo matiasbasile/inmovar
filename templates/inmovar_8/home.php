@@ -213,21 +213,14 @@ if (sizeof($slides)>0) { ?>
   </div>
 </div>
 
-<!-- ab part End here --> 
-
-<?php $emprendimientos_listado = $propiedad_model->get_list(array(
-  "destacado"=>"1",
-  "tipo_operacion"=>"emprendimientos",
-  "offset"=>9,
-  "solo_propias"=>1,
-))?>
+<!-- ab part End here -->
 
 <!-- Tab Slider part start here -->
 <div class="tab_slider_section">
   <div class="container heading_container">
     <h2 class="heading2 margin_heading text-center">Propiedades Destacadas</h2>
   </div>
-  <div class="slider_tab_bar">
+  <div class="slider_tab_bar <?php echo (empty($emprendimientos_listado) && empty($alquileres_listado)) ? "dn" : "" ?>">
     <div class="container">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item"> <a class="active" id="ventra-tab" data-toggle="tab" href="#ventra" role="tab" aria-controls="ventra" aria-selected="true"> <span><i class="fa fa-angle-down" aria-hidden="true"></i></span> En Venta</a> </li>
@@ -243,12 +236,6 @@ if (sizeof($slides)>0) { ?>
   <div class="listing_boxes mb30">
     <div class="container">
       <div class="tab-content" id="myTabContent">
-        <?php $ventas_listado = $propiedad_model->get_list(array(
-          "destacado"=>"1",
-          "tipo_operacion"=>"ventas",
-          "offset"=>9,
-          "solo_propias"=>1,
-        ))?>
         <div class="tab-pane fade ajustar show active" id="ventra" role="tabpanel" aria-labelledby="ventra-tab">
           <div class="listing_boxes_wrap">
             <div class="enventa_list">
@@ -318,12 +305,7 @@ if (sizeof($slides)>0) { ?>
           </div>
         </div>
       </div>
-        <?php $alquileres_listado = $propiedad_model->get_list(array(
-          "destacado"=>"1",
-          "tipo_operacion"=>"alquileres",
-          "offset"=>9,
-          "solo_propias"=>1,
-        ))?>
+
         <?php if (sizeof($alquileres_listado)>0) { ?>
           <div class="tab-pane fade ajustar" id="alquile" role="tabpanel" aria-labelledby="alquile-tab">
             <div class="listing_boxes_wrap">
