@@ -253,7 +253,7 @@ if ($propiedad === FALSE || !isset($propiedad->nombre)) header("Location:".mklin
             <input class="form-control" id="contacto_telefono" type="tel" name="WhatsApp (sin 0 ni 15) *" placeholder="WhatsApp (sin 0 ni 15) *">
           </div>
           <div class="form-group">
-            <textarea class="form-control" id="contacto_mensaje" value="Estoy interesado en <?php echo $propiedad->nombre ?> Cod: <?php echo $propiedad->codigo ?>"></textarea>
+            <textarea class="form-control" id="contacto_mensaje">Estoy interesado en <?php echo $propiedad->nombre ?> Cod: <?php echo $propiedad->codigo ?></textarea>
           </div>
           <button id="contacto_submit" type="submit" class="btn btn-secoundry">Enviar por Email</button>
           <a class="btn btn-whatsup" href="javascript:void(0)" onclick="return enviar_contacto_whatsapp()"><img src="assets/images/whatsapp2.png" alt="Whatsapp Icon" width="24"> enviar whatsapp</a>
