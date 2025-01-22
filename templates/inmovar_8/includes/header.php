@@ -28,7 +28,7 @@ if (isset($_SESSION["favoritos"])) {
                     </div>
                   </div>
                   <ul class="navbar-nav">
-                    <li class="nav-item"><a class="<?php echo $titulo_pagina == "inicio"?"active":"" ?>" href="<?php echo mklink ("/") ?>"> INICIO <span class="sr-only"><?php echo $titulo_pagina == "inicio"?"(current)":"" ?></span></a> </li>
+
                     <?php $categorias_informacion = $entrada_model->get_subcategorias(186)?>
                     <?php if (!empty($categorias_informacion)) {  ?>
                       <li class="nav-item dropdown"> <a class=" dropdown-toggle <?php echo ($titulo_pagina == "informacion")?"active":"" ?>" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Informacion</a>
