@@ -1970,3 +1970,5 @@ footer ul {
 .mfp-title, .mfp-counter {
   display: none;
 }
+
+.navbar-brand img { max-width:200px }
