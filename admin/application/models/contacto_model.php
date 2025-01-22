@@ -168,6 +168,7 @@ class Contacto_Model extends Abstract_Model {
 		$sql.= "  DATE_FORMAT(C.fecha_inicial,'%d/%m/%Y') AS fecha_inicial, ";
     $sql.= "  DATE_FORMAT(C.fecha_ult_operacion,'%d/%m/%Y %H:%i:%s') AS fecha_ult_operacion, ";
     $sql.= "  DATE_FORMAT(C.fecha_vencimiento,'%d/%m/%Y %H:%i:%s') AS fecha_vencimiento, ";
+    $sql.= "  DATE_FORMAT(C.proximo_contacto,'%d/%m/%Y') AS proximo_contacto, ";
 		$sql.= "  IF (TI.nombre IS NULL,'',TI.nombre) AS tipo_iva, ";
 		$sql.= "  IF (L.nombre IS NULL,'',L.nombre) AS localidad ";
 		$sql.= "FROM clientes C ";

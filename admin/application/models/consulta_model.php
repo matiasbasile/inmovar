@@ -654,6 +654,7 @@ class Consulta_Model extends Abstract_Model {
     // Primero buscamos los clientes
     $sql = "SELECT SQL_CALC_FOUND_ROWS C.*, ";
     $sql.= " DATE_FORMAT(C.fecha_vencimiento,'%d/%m/%Y %H:%i') AS fecha_vencimiento, ";
+    $sql.= " DATE_FORMAT(C.proximo_contacto,'%d/%m/%Y %H:%i') AS proximo_contacto, ";
     $sql.= " IF(TIP.nombre IS NULL,'',TIP.nombre) AS consulta_tipo, ";
     $sql.= " IF(U.nombre IS NULL,'',U.nombre) AS usuario ";
     $sql.= "FROM clientes C ";    

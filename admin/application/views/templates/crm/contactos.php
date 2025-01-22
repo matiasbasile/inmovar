@@ -53,6 +53,10 @@
                 </div>
               </div>
 
+              <% if (proximo_contacto != '00/00/0000') { %>
+                <br/><span class="btn etiqueta">Próximo contacto: <%= proximo_contacto %></span>
+              <% } %>
+
             </div>
           </div>
         </div>

@@ -9,40 +9,13 @@ class Consultas extends REST_Controller {
     $this->load->model('Consulta_Model', 'modelo');
   }
 
-  function insertar_tasar() {
-    $q = $this->db->query("SELECT * FROM empresas WHERE id_proyecto = 3");
-
-    if ($q->num_rows() > 0) {
-        $empresas = $q->result();
-
-        $values = array();
-        foreach ($empresas as $empresa) {
-          if ($empresa->id != 0) { 
-            $this->db->where('id_empresa', $empresa->id);
-            $this->db->where('nombre', 'Tasar');
-            $this->db->where('activo', '1');
-            $this->db->where('tiempo_vencimiento', '7');
-            $this->db->where('id', '70');
-            $query = $this->db->get('crm_consultas_tipos');
-    
-            if ($query->num_rows() == 0) {
-                $values[] = "('" . $this->db->escape_str('Tasar') . "', " . (int)$empresa->id . ",1,7,70)";
-            }
-          }
-        }
-      
-        if (!empty($values)) {
-            $sql = "INSERT IGNORE INTO crm_consultas_tipos (nombre, id_empresa,activo,tiempo_vencimiento,id) VALUES " . implode(', ', $values);
-            
-            $this->db->query($sql);
-            echo "Datos insertados correctamente. Filas afectadas: " . $this->db->affected_rows();
-        } else {
-            echo "No hay datos nuevos para insertar.";
-        }
-    } else {
-        echo "No se encontraron empresas.";
-    }
-}
+  // TAREA PROGRAMADA PARA MOVER TODAS LAS NOCHES AQUELLOS CONTACTOS
+  // QUE SE MARCARON PARA CONTACTAR EL DIA DE HOY
+  function mover_proximos_contactos() {
+    $fecha = date("Y-m-d");
+    $sql = "UPDATE clientes SET tipo = 1, proximo_contacto = '0000-00-00' WHERE proximo_contacto = '$fecha' ";
+    $this->db->query($sql);
+  }
 
   function get_consulta() {
     $id = parent::get_post("id", 0);
@@ -110,28 +83,6 @@ class Consultas extends REST_Controller {
     }
   }
 
-  function verdos() {
-    $salida = array();
-    $id_empresa = parent::get_get("id_empresa", parent::get_empresa());
-    //Primero sacamos todos los tipos de consulta
-    $sql = "SELECT * FROM crm_consultas_tipos WHERE id_empresa = $id_empresa ORDER BY orden ASC";
-    $q = $this->db->query($sql);
-    foreach ($q->result() as $c) {
-      $res = $this->modelo->buscar(array(
-        "id_empresa"=>$id_empresa,
-        "tipo"=>$c->id,
-        "offset"=>999,
-      ));
-
-      $c->items = $res;
-      $salida[] = $c; 
-    }
-    echo json_encode(array(
-      "results"=>$salida,
-      "total"=>sizeof($salida),
-    ));
-  }
-
   // Esta funcion llena el campo id_usuario de la tabla clientes
   // con el id_usuario de la ultima consulta
   function pasar_usuarios($id_empresa) {
@@ -147,99 +98,6 @@ class Consultas extends REST_Controller {
     }
     echo "TERMINO";
   }
-
-  // Este proceso se ejecuta cada tantos minutos:
-  // - Analiza el correo de "respuestas.varcreative@gmail.com"
-  // - Procesa todos los correos no leidos y los transforma a consultas
-  function procesar() {
-
-    date_default_timezone_set("America/Argentina/Buenos_Aires");
-    set_time_limit(0);    
-
-    // A traves de un archivo, controlamos que no se ejecuten dos veces el mismo proceso
-    /*
-    $filename = "consultas_email.txt";
-    if (file_exists($filename) === FALSE) file_put_contents($filename, "");
-    $file = fopen($filename, "r+");
-    if (flock($file, LOCK_EX | LOCK_NB) === FALSE) {  // Intenta adquirir un bloqueo exclusivo
-      // Si falla es porque el proceso sigue activo
-      exit();
-    }
-    */
-
-    $id_empresa = 45;
-    $connection = imap_open('{c1040339.ferozo.com:993/imap/ssl}INBOX', 'info@grupo-urbano.com.ar', 'Leonel235') or die('Cannot connect to Gmail: ' . imap_last_error());
-    $emailData = imap_search($connection, 'ALL');
-    //$emailData = imap_search($connection, 'ALL'); //Toma emails no leidos !!!!CAMBIAR ALL POR UNSEEN
-    if (empty($emailData)) return;
-
-    foreach ($emailData as $emailIdent) { //Leer emails
-      $i=0;
-      $overview = imap_fetch_overview($connection, $emailIdent, 0);
-      $structure = imap_fetchstructure($connection, $emailIdent);
-      $message = imap_fetchbody($connection, $emailIdent, '1');
-      if($structure->encoding == 3) {
-        $message = imap_base64($message);
-      } else if($structure->encoding == 4) {
-        $message = imap_qprint($message);
-      }
-      //$messageExcerpt = substr($message, 0, 300); Por si se quiere mostrar X caracteres
-
-      // Datos de los usuarios
-      $text = $message;//trim(quoted_printable_decode($message)); 
-      $to = $overview[$i]->to;
-      $fecha = date("Y-m-d H:i:s", strtotime($overview[$i]->date));
-      $titulo = $overview[$i]->subject;
-      $from = $overview[$i]->from;
-      if (strstr($from, "<")) {
-        //Si el mail no tiene nombre de usuario quito las <, si no lo muestro tal como es
-        $from = strstr($from, "<");
-        $from=str_replace("<", "", $from);
-        $from=str_replace(">", "", $from);
-      }
-      if ($from != "noresponder@eldia.com") continue;
-
-      // ANALISIS DE VIVIENDAS EL DIA
-      $this->load->model("Consulta_Model");
-      $this->load->model("Diario_El_Dia_Model");
-      $this->load->model("Propiedad_Model");
-
-      $consulta = @$this->Diario_El_Dia_Model->parse_email($text);
-      if (isset($consulta->codigo_propiedad)) {
-
-        // Buscamos la propiedad por el codigo
-        $propiedad = $this->Propiedad_Model->get_by_codigo($consulta->codigo_propiedad,array(
-          "id_empresa"=>$id_empresa
-        ));
-        $consulta->tipo = 0; // Recibido
-        $consulta->id_contacto = 0;
-        $consulta->message_id = $overview[$i]->message_id;
-        $consulta->id_empresa = $id_empresa;
-        $consulta->asunto = "Contacto desde Diario El Dia";
-        $consulta->id_origen = 40; // Diario El DIA
-        $consulta->fecha = $fecha;
-
-        $msg = "Nombre: $consulta->nombre\n";
-        $msg.= "Email: $consulta->email\n";
-        $msg.= "Telefono: $consulta->telefono\n";
-        $msg.= "Código Propiedad: $consulta->codigo_propiedad\n";
-        $msg.= "Dirección: $consulta->direccion_propiedad\n";
-        $consulta->texto = $msg;
-        if (isset($consulta->mensaje)) $consulta->texto .= "Mensaje: ".$consulta->mensaje;
-
-        if (!empty($propiedad)) {
-          $consulta->id_usuario = $propiedad->id_usuario;
-          $consulta->id_referencia = $propiedad->id;
-        } else {
-          echo "No se encuentra propiedad con codigo: $consulta->codigo_propiedad <br/>";
-        }
-        print_r($consulta)."<br/><br/>";
-        $this->Consulta_Model->insert($consulta);
-      }
-    }
-    echo "TERMINO";
-  }
-
 
   // USADO EN CRM/CONSULTAS
   function editar_usuario_asignado() {
@@ -327,72 +185,6 @@ class Consultas extends REST_Controller {
     }
 
     echo json_encode(array("error"=>0));
-  }  
-
-  // Registra cuando el usuario hace click en el email de carrito abandonado
-  // Se le envia un email al administrador avisando
-  function aviso_carrito_abandonado($id_empresa,$id_cliente) {
-    header('Access-Control-Allow-Origin: *');
-
-    $this->load->model("Empresa_Model");
-    $this->load->model("Cliente_Model");
-
-    $empresa = $this->Empresa_Model->get($id_empresa);
-    $cliente = $this->Cliente_Model->get($id_cliente,$id_empresa);
-
-    $fecha = date("Y-m-d H:i:s");
-    $asunto = "Interesado en productos";
-    $texto = "$cliente->nombre ha vuelto a abrir el carrito luego de hacer click en el email.";
-    $consulta = array(
-      "id_empresa"=>$id_empresa,
-      "fecha"=>$fecha,
-      "asunto"=>$asunto,
-      "texto"=>$texto,
-      "id_contacto"=>$id_cliente,
-      "id_origen"=>21, // EMAIL AUTOMATICO
-    );
-    $this->modelo->insert($consulta);
-
-    $bcc_array = array("basile.matias99@gmail.com");
-    require_once APPPATH.'libraries/Mandrill/Mandrill.php';
-    mandrill_send(array(
-      "to"=>$empresa->email,
-      "from"=>"no-reply@varcreative.com",
-      "from_name"=>$empresa->nombre,
-      "subject"=>$asunto,
-      "body"=>$texto,
-      "reply_to"=>$email,
-      "bcc"=>$bcc_array,
-    ));
-    header("Location: http://www.grupoanacleto.com.ar/carrito/");
-  }
-
-  // Utilizado en ARGENCASH / crm / consultas.js / guardar_tarea()
-  function guardar_tarea() {
-    $id_empresa = parent::get_empresa();
-    $id_contacto = parent::get_post("id_contacto",0);
-    $fecha = parent::get_post("fecha",date("Y-m-d"));
-    $fecha_visto = parent::get_post("fecha_visto",date("Y-m-d H:i:s"));
-    $hora = parent::get_post("hora",date("H:i:s"));
-    $asunto = parent::get_post("asunto","");
-    $texto = parent::get_post("texto","");
-    $id_origen = parent::get_post("id_origen",0);
-    $id_usuario = parent::get_post("id_usuario",0);
-    $tipo = parent::get_post("tipo",0);
-    $id_asunto = parent::get_post("id_asunto",0);
-    $estado = parent::get_post("estado",0);
-    $sql = "INSERT INTO crm_consultas ( ";
-    $sql.= " id_contacto,id_empresa,fecha,asunto, ";
-    $sql.= " texto,id_origen,id_usuario,tipo,id_asunto,estado,fecha_visto ";
-    $sql.= ") VALUES (";
-    $sql.= " '$id_contacto','$id_empresa','$fecha $hora','$asunto', ";
-    $sql.= " '$texto','$id_origen','$id_usuario','$tipo','$id_asunto','$estado','$fecha_visto' ";
-    $sql.= ")";
-    file_put_contents("consulta_insertar.txt", date("Y-m-d H:i:s")." - ".$sql."\n", FILE_APPEND);
-    $this->db->query($sql);
-    echo json_encode(array(
-      "error"=>0,
-    ));
   }
   
   function ver() {
