@@ -274,7 +274,6 @@ $vc_dormitorios= isset($get_params["dm"]) ? $get_params["dm"] : 0;
   <script src="assets/js/respond.min.js"></script>
   <script src="assets/js/placeholders.min.js"></script>
   <script src="assets/js/owl.carousel.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWmUapFYTBXV3IJL9ggjT9Z1wppCER55g&callback=initMap"></script>
   <script src="assets/js/scripts.js"></script>
   <script type="text/javascript">
   	function change_localidad (link,nombre) { 
