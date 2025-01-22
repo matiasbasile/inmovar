@@ -16,9 +16,16 @@ function estaEnFavoritos($id) {
   return false;
 }
 
-$alquileres_temporarios_listado = $propiedad_model->get_list(array(
-  "tipo_operacion"=>"alquileres",
-  "offset"=>9,
-  "solo_propias"=>1,
+$tiene_emprendimientos = $propiedad_model->get_list(array(
+  "id_tipo_operacion"=>4,
+  "solo_propias" => 1,
+  "solo_contar" => 1,
+));
+
+$tiene_alquileres_temporarios = $propiedad_model->get_list(array(
+  "id_tipo_operacion"=>3,
+  "offset" => 9,
+  "solo_propias" => 1,
+  "solo_contar" => 1,
 ));
 ?>

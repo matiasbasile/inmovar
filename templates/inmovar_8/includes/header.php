@@ -50,7 +50,15 @@ if (isset($_SESSION["favoritos"])) {
                     <?php } ?>
                     <li class="nav-item"> <a class="<?php echo $titulo_pagina == "ventas"?"active":"" ?>" href="<?php echo mklink ("propiedades/ventas/") ?>"> VENTAS </a> </li>
                     <li class="nav-item"> <a class="<?php echo $titulo_pagina == "alquileres"?"active":"" ?>" href="<?php echo mklink ("propiedades/alquileres/") ?>"> ALQUILERES</a> </li>
-                    <li class="nav-item"> <a class="<?php echo $titulo_pagina == "emprendimientos"?"active":"" ?>" href="<?php echo mklink ("propiedades/emprendimientos/") ?>"> EMPRENDIMIENTOS</a> </li>
+
+                    <?php if ($tiene_alquileres_temporarios == 1) { ?>
+                      <li class="nav-item"> <a class="<?php echo $titulo_pagina == "alquileres-temporarios"?"active":"" ?>" href="<?php echo mklink ("propiedades/alquileres-temporarios/") ?>"> ALQUILERES TEMPORARIOS</a> </li>
+                    <?php } ?>
+
+                    <?php if ($tiene_emprendimientos == 1) { ?>
+                      <li class="nav-item"> <a class="<?php echo $titulo_pagina == "emprendimientos"?"active":"" ?>" href="<?php echo mklink ("propiedades/emprendimientos/") ?>"> EMPRENDIMIENTOS</a> </li>
+                    <?php } ?>
+                    
                     <li class="nav-item"> <a class="<?php echo $titulo_pagina == "contacto"?"active":"" ?>" href="<?php echo mklink ("contacto/") ?>"> contacto</a> </li>
                   </ul>
                 </div>
