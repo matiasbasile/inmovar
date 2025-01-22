@@ -1167,6 +1167,10 @@
       if (self.model.get("tipo") == 3) fecha = moment(self.model.get("fecha_vencimiento"),"DD/MM/YYYY HH:mm").toDate();
       createtimepicker(this.$("#cambiar_estado_consulta_fecha"),fecha);
 
+      var proximo = "";
+      proximo = moment(self.model.get("proximo_contacto"),"DD/MM/YYYY HH:mm").toDate();
+      createtimepicker(this.$("#cambiar_estado_consulta_proximo_contacto"),proximo);
+
       // Por primera vez ejecutamos esta funcion asi mostramos bien los datos
       this.editar_tipo(this.model.get("tipo"),this.model.get("consulta_tipo"));
 
