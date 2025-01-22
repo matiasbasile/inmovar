@@ -12,8 +12,12 @@ class Consultas extends REST_Controller {
   // TAREA PROGRAMADA PARA MOVER TODAS LAS NOCHES AQUELLOS CONTACTOS
   // QUE SE MARCARON PARA CONTACTAR EL DIA DE HOY
   function mover_proximos_contactos() {
-    $fecha = date("Y-m-d");
-    $sql = "UPDATE clientes SET tipo = 1, proximo_contacto = '0000-00-00' WHERE proximo_contacto <= '$fecha' ";
+    $fecha = date("Y-m-d H:i:s");
+    $sql = "UPDATE clientes SET ";
+    $sql.= " tipo = 1, "; // Lo movemos a "A Contactar"
+    $sql.= " fecha_ult_operacion = '$fecha', "; // Para que lo ponga primero en la lista
+    $sql.= " proximo_contacto = '0000-00-00' "; // Limpiamos para que no vuelva a procesar
+    $sql.= "WHERE proximo_contacto <= '$fecha' ";
     $this->db->query($sql);
   }
 
