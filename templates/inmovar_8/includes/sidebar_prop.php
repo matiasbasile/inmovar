@@ -27,8 +27,9 @@
 
     <ul class="box_footer_btm">
       <li><a href="<?php echo mklink("admin/propiedades/function/ficha/".$propiedad->hash) ?>" rel="nofollow" target="_blank"><i class="fa fa-file-text-o" aria-hidden="true"></i> Imprimir Ficha</a></li>
+      <?php /*
       <li><a href="javascript:void(0)" onclick="abrir_enviar_ficha_modal()" rel="nofollow"><i class="fa fa-envelope-o" aria-hidden="true"></i> Ficha por Email</a></li>
-      
+      */ ?>
     </ul>
   </div>
 <?php } ?>
