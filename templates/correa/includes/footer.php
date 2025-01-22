@@ -104,7 +104,7 @@
 							<input type="tel" name="WhatsApp (sin 0 ni 15) *" placeholder="WhatsApp (sin 0 ni 15) *" class="form-control telefono">
 						</div>
 						<div class="form-group">
-							<textarea placeholder="Estoy interesado en <?php echo $modal->nombre ?> Cod: <?php echo $modal->codigo ?>" class="form-control mensaje"></textarea>
+							<textarea class="form-control mensaje">Estoy interesado en <?php echo $modal->nombre ?> Cod: <?php echo $modal->codigo ?></textarea>
 						</div>
 						<div class="form-group">
 							<button onclick="enviar_contacto_whatsapp('exampleModalCenter_<?php echo $modal->id ?>')" class="btn submit">hablar ahora</button>
