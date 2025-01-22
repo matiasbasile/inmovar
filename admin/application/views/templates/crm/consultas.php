@@ -133,7 +133,7 @@
       </div>
 
       <% if (proximo_contacto != '00/00/0000') { %>
-        <span class="btn etiqueta">Próximo contacto: <b><%= proximo_contacto %></b></span>
+        <span class="btn etiqueta mt5">Próximo contacto: <b><%= proximo_contacto %></b></span>
       <% } %>
 
     </div>

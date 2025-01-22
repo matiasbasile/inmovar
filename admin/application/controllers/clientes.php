@@ -34,6 +34,7 @@ class Clientes extends REST_Controller {
     $ids = explode(",", $ids);
     $tipo = parent::get_post("tipo",-1);
     $fecha_vencimiento = parent::get_post("fecha_vencimiento","");
+    $proximo_contacto = parent::get_post("proximo_contacto","");
     $id_usuario = parent::get_post("id_usuario",0);
 
     foreach($ids as $id) {
@@ -42,6 +43,7 @@ class Clientes extends REST_Controller {
         "id"=>$id,
         "id_usuario"=>$id_usuario,
         "fecha_vencimiento"=>$fecha_vencimiento,
+        "proximo_contacto"=>$proximo_contacto,
         "id_asunto"=>$id_asunto,
         "custom_1"=>$custom_1,
         "tipo"=>$tipo,

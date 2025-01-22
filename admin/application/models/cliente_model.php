@@ -57,6 +57,7 @@ class Cliente_Model extends Abstract_Model {
     $tipo = isset($config["tipo"]) ? $config["tipo"] : -1;
     $custom_1 = isset($config["custom_1"]) ? $config["custom_1"] : "";
     $fecha_vencimiento = isset($config["fecha_vencimiento"]) ? $config["fecha_vencimiento"] : "";
+    $proximo_contacto = isset($config["proximo_contacto"]) ? $config["proximo_contacto"] : "";
     $registrar_evento = isset($config["registrar_evento"]) ? $config["registrar_evento"] : 1;
 
     if ($id == 0) return array("error"=>1,"mensaje"=>"Falta el parametro id.");
@@ -86,17 +87,23 @@ class Cliente_Model extends Abstract_Model {
 
     // Si no se envia una fecha de vencimiento (eso solo se hace en la visita programada)
     // sumamos los dias que tiene configurado el estado nuevo a la fecha actual
+    $this->load->helper("fecha_helper");
     if (empty($fecha_vencimiento)) {
       $datetime = new DateTime();
       $datetime->modify("+".$estado_nuevo->tiempo_vencimiento." days");
       $vencimiento = $datetime->format("Y-m-d H:i:s");
     } else {
-      $this->load->helper("fecha_helper");
       $vencimiento = fecha_mysql($fecha_vencimiento);
     }
 
     // Actualizamos el tipo en la tabla de clientes
-    $sql = "UPDATE clientes SET tipo = '$tipo', fecha_vencimiento = '$vencimiento' WHERE id_empresa = $id_empresa AND id = $id ";
+    $sql = "UPDATE clientes SET tipo = '$tipo', ";
+    $sql.= " fecha_vencimiento = '$vencimiento' ";
+    if (!empty($proximo_contacto)) {
+      $proximo_contacto = fecha_mysql($proximo_contacto);
+      $sql.= ", proximo_contacto = '$proximo_contacto' ";
+    }
+    $sql.= " WHERE id_empresa = $id_empresa AND id = $id ";
     $q = $this->db->query($sql);
 
     if ($registrar_evento == 1) {

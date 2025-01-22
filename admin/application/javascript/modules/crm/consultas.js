@@ -1073,8 +1073,13 @@
       else this.$(".postergar").hide();
 
       // La fecha solamente se muestra cuando se programa una visita
-      if (tipo_id == 3) this.$("#cambiar_estado_consulta_fecha_cont").show();
-      else this.$("#cambiar_estado_consulta_fecha_cont").hide();
+      if (tipo_id == 3) {
+        this.$("#cambiar_estado_consulta_fecha_proximo_contacto_cont").hide();
+        this.$("#cambiar_estado_consulta_fecha_cont").show();
+      } else {
+        this.$("#cambiar_estado_consulta_fecha_proximo_contacto_cont").show();
+        this.$("#cambiar_estado_consulta_fecha_cont").hide();
+      }
 
       // Solamente mostramos los asuntos que corresponden con ese estado
       this.$("#cambiar_estado_consulta_asuntos").val(0);
@@ -1113,8 +1118,14 @@
 
       var tipo = this.$("#consulta_cambio_estado_id_tipo").val();
       var fecha_vencimiento = "";
+      var proximo_contacto = "";
+      
       // Si es una actividad programada, mandamos la fecha de vencimiento nueva
-      if (tipo == 3) fecha_vencimiento = $("#cambiar_estado_consulta_fecha").val();
+      if (tipo == 3) {
+        fecha_vencimiento = $("#cambiar_estado_consulta_fecha").val();
+      } else {
+        proximo_contacto = this.$("#cambiar_estado_consulta_proximo_contacto").val();
+      }
 
       $.ajax({
         "url":"clientes/function/editar_tipo/",
@@ -1127,6 +1138,7 @@
           "fecha_vencimiento":fecha_vencimiento,
           "id_usuario":ID_USUARIO,
           "tipo":tipo,
+          "proximo_contacto":proximo_contacto,
         },
         "success":function() {
           self.cerrar();
