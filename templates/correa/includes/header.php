@@ -59,9 +59,11 @@
 				<li class="nav-item">
 					<a class="nav-link" href="<?php echo mklink ("web/vender/") ?>">Vender</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="<?php echo mklink ("propiedades/emprendimientos/") ?>">Emprendimientos</a>
-				</li>
+				<?php if ($tiene_emprendimientos) { ?>
+					<li class="nav-item">
+						<a class="nav-link" href="<?php echo mklink ("propiedades/emprendimientos/") ?>">Emprendimientos</a>
+					</li>
+				<?php } ?>
 				<li class="nav-item">
 					<a class="nav-link btn btn-secoundry" href="<?php echo mklink ("contacto/") ?>">Contacto</a>
 				</li>

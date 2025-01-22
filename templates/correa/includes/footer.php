@@ -38,7 +38,11 @@
 					<li><a href="<?php echo mklink ("web/nosotros/") ?>">NOSOTROS</a></li>
 					<li><a href="<?php echo mklink ("web/vender/") ?>">VENDER</a></li>
 					<li><a href="<?php echo mklink ("propiedades/ventas/") ?>">COMPRAR</a></li>
-					<li><a href="<?php echo mklink ("propiedades/emprendimientos/") ?>">EMPRENDIMIENTOS</a></li>
+					
+					<?php if ($tiene_emprendimientos) { ?>
+						<li><a href="<?php echo mklink ("propiedades/emprendimientos/") ?>">EMPRENDIMIENTOS</a></li>
+					<?php } ?>
+					
 					<li><a href="<?php echo mklink ("propiedades/alquileres/") ?>">ALQUILAR</a></li>
 					<li><a href="<?php echo mklink ("contacto/") ?>">CONTACTO</a></li>
 				</ul>
