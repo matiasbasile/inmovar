@@ -1,6 +1,6 @@
-<?php include "includes/init.php"  ?>
-<?php $entrada = $entrada_model->get(44790) ?>
-<?php $page_act = "vender" ?>
+<?php include "includes/init.php";
+$entrada = $entrada_model->get(0, array("titulo" => "Vender"));
+$page_act = "vender"; ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>

@@ -145,6 +145,7 @@ class Entrada_Model {
     $relacionados_offset = isset($config["relacionados_offset"]) ? $config["relacionados_offset"] : 3;
     $encoding = isset($config["encoding"]) ? $config["encoding"] : 1;
     $privada = isset($config["privada"]) ? $config["privada"] : 0;
+    $titulo = isset($config["titulo"]) ? $config["titulo"] : "";
 
     // Parametro general para deshabilitar toda la busqueda anexa
     $buscar_solo_registro = isset($config["buscar_solo_registro"]) ? $config["buscar_solo_registro"] : 0;
@@ -198,6 +199,7 @@ class Entrada_Model {
     $sql.= "LEFT JOIN com_usuarios U ON (A.id_usuario = U.id AND A.id_empresa = U.id_empresa) ";
 		$sql.= "WHERE 1=1 ";
     if ($id != 0) $sql.= "AND A.id = $id ";
+    if (!empty($titulo)) $sql.= "AND LOWER(A.titulo) = '".strtolower($titulo)."' ";
     if ($privada == 0) $sql.= "AND A.privada != 1 ";
     if ($filtro_fecha == 1) $sql.= "AND A.fecha <= '$now' ";
     else if ($filtro_fecha == 2) $sql.= "AND A.fecha >= '$now' ";
