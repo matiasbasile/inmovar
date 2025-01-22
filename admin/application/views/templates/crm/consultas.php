@@ -461,6 +461,19 @@
           <select id="cambiar_estado_consulta_asuntos" class="form-control"></select>
         </div>
       </div>
+
+      <div id="cambiar_estado_consulta_fecha_proximo_contacto_cont" class="col-md-6">
+        <div class="form-group">
+          <label class="control-label">Próximo contacto</label>
+          <div class="input-group">
+            <input placeholder="Fecha" type="text" class="form-control no-model" id="cambiar_estado_consulta_proximo_contacto"/>
+            <span class="input-group-btn">
+              <button tabindex="-1" type="button" class="btn btn-default btn-cal"><i class="fa fa-calendar"></i></button>
+            </span>        
+          </div>
+        </div>
+      </div>
+      
       <div id="cambiar_estado_consulta_fecha_cont" class="col-md-6">
         <div class="form-group">
           <label class="control-label">Fecha y hora de la actividad</label>
