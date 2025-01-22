@@ -169,9 +169,6 @@
     return true;
   }
 
-	function llenar_id(item) { 
-		$("#contacto_id_propiedad").val(item);
-	} 
 	function filtrar() { 
 		var link = "<?php echo mklink("propiedades/")?>";
 		var tipo_operacion = $("#tipo_operacion").val();

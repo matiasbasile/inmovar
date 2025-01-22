@@ -307,7 +307,7 @@ if ($propiedad === FALSE || !isset($propiedad->nombre)) header("Location:".mklin
                 <div class="btns-block">
                  <a href="<?php echo ($p->link_propiedad) ?>" class="btn btn-secoundry">Ver Detalles</a>
                  <a href="<?php echo ($p->link_propiedad) ?>#contacto_nombre" class="icon-box"></a>
-                 <a href="#0" data-toggle="modal" data-target="#exampleModalCenter_"  class="icon-box whatsapp-box"></a>
+                 <a href="#0" data-toggle="modal" data-target="#exampleModalCenter_<?php echo $p->id ?>"  class="icon-box whatsapp-box"></a>
                 </div>
               </div>
             </div>
