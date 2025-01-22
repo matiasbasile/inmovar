@@ -98,11 +98,9 @@ class Cliente_Model extends Abstract_Model {
 
     // Actualizamos el tipo en la tabla de clientes
     $sql = "UPDATE clientes SET tipo = '$tipo', ";
-    $sql.= " fecha_vencimiento = '$vencimiento' ";
-    if (!empty($proximo_contacto)) {
-      $proximo_contacto = fecha_mysql($proximo_contacto);
-      $sql.= ", proximo_contacto = '$proximo_contacto' ";
-    }
+    $sql.= " fecha_vencimiento = '$vencimiento', ";
+    if (!empty($proximo_contacto)) $proximo_contacto = fecha_mysql($proximo_contacto);
+    $sql.= " proximo_contacto = '$proximo_contacto' ";
     $sql.= " WHERE id_empresa = $id_empresa AND id = $id ";
     $q = $this->db->query($sql);
 
