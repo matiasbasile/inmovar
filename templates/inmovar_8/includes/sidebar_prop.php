@@ -96,38 +96,37 @@
         </div>
         <div class="checkbx_list">
           <ul>
-            <li>
+            <li class="dn">
               <label class="custom_checkbox">Balcon 
                 <input id="balcon" name="balcon" value="1" <?php echo (isset($vc_tiene_balcon) && $vc_tiene_balcon==1)?"checked":"" ?> type="checkbox">
                 <span class="custom_checkmark"></span>
               </label>
             </li>
-            <li>
+            <li class="dn">
               <label class="custom_checkbox">Frente 
                 <input id="tiene_frente" name="tiene_frente" value="1" <?php echo (isset($vc_tiene_frente) && $vc_tiene_frente==1)?"checked":"" ?> type="checkbox">
                 <span class="custom_checkmark"></span>
               </label>
-
             </li>
-            <li>
+            <li class="dn">
               <label class="custom_checkbox">Cochera 
                 <input id="cochera" name="cochera" value="1" <?php echo (isset($vc_tiene_cochera) && $vc_tiene_cochera==1)?"checked":"" ?> type="checkbox">
                 <span class="custom_checkmark"></span>
               </label>
             </li>
-            <li>
+            <li class="dn">
               <label class="custom_checkbox">Contrafrente 
                 <input id="tiene_contrafrente" name="tiene_contrafrente" value="1" <?php echo (isset($vc_tiene_contrafrente) && $vc_tiene_contrafrente==1)?"checked":"" ?> type="checkbox">
                 <span class="custom_checkmark"></span>
               </label>
             </li>
-            <li>
+            <li class="dn">
               <label class="custom_checkbox">Patio 
                 <input id="patio" name="patio" value="1" <?php echo (isset($vc_tiene_patio) && $vc_tiene_patio==1)?"checked":"" ?> type="checkbox">
                 <span class="custom_checkmark"></span>
               </label>
             </li>
-            <li>
+            <li class="dn">
               <label class="custom_checkbox">Interno 
                 <input id="tiene_interno" name="tiene_interno" value="1" <?php echo (isset($vc_tiene_interno) && $vc_tiene_interno==1)?"checked":"" ?> type="checkbox">
                 <span class="custom_checkmark"></span>
@@ -142,13 +141,13 @@
               <span class="custom_checkmark"></span>
             </label>
           </div>
-          <div class="mb10">
+          <div class="mb10 dn">
             <label class="custom_checkbox">Recorrido Virtual
               <input type="checkbox" <?php echo (isset($vc_pint) && $vc_pint == 1)?"checked":"" ?> value="1"  name="pint">
               <span class="custom_checkmark"></span>
             </label>
           </div>
-          <div class="mb10">
+          <div class="mb10 dn">
             <label class="custom_checkbox">Video
               <input type="checkbox" <?php echo (isset($vc_video) && $vc_video == 1)?"checked":"" ?> value="1"  name="video">
               <span class="custom_checkmark"></span>
