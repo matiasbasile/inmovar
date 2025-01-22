@@ -194,7 +194,8 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad" => $propiedad->id));
                   <div class="row">
 
                     <?php if (!empty($propiedad->tipo_estado)) { ?>
-                      <div class="muy_text"><?php echo $propiedad->tipo_estado ?></div>
+                      <?php if ($propiedad->tipo_estado == "Reservado") $propiedad->tipo_estado = "La propiedad se encuentra reservada."; ?>
+                      <div class="danger-reserva"><?php echo $propiedad->tipo_estado ?></div>
                     <?php } ?>
 
                     <?php if (!empty($propiedad->video)) {  ?>

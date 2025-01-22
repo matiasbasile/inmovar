@@ -3632,3 +3632,16 @@ h2, .h2 {font-size: 34px;}
 
 .feature-item .tab_list_box_content { padding: 10px 0px; }
 .feature-item .tab_list_box_content p { margin: 5px 0px; }
+
+
+.danger-reserva {
+  background: #d22626 none repeat scroll 0 0;
+  color: white;
+  display: inline-block;
+  font-family: "latobold";
+  border-radius: 5px;
+  font-size: 13px;
+  margin: 0 5px 0 0;
+  padding: 5px 13px;
+  vertical-align: middle;
+}

@@ -3,7 +3,7 @@
 <!-- Bootstrap core CSS -->
 <link href="css/bootstrap.css" rel="stylesheet">
 <!-- Custom styles -->
-<link href="css/custom.css" rel="stylesheet">
+<link href="css/custom.css?v=1" rel="stylesheet">
 <!-- Font Awesome styles -->
 <link href="css/font-awesome.min.css" rel="stylesheet">
 <link href="css/jquery.fancybox.min.css" rel="stylesheet">
