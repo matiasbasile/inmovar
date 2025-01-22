@@ -238,6 +238,7 @@ $vc_dormitorios= isset($get_params["dm"]) ? $get_params["dm"] : 0;
               </div>
             </div>
           </div>
+          <?php $modales[] = $p; ?>
         <?php } ?>
       </div>
       <?php if ($vc_total_paginas > 1) {  ?>
@@ -264,89 +265,7 @@ $vc_dormitorios= isset($get_params["dm"]) ? $get_params["dm"] : 0;
     </div>
   </section>
 
-  <!-- Footer -->
   <?php include "includes/footer.php" ?>
 
-  <!-- Scripts -->
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/js/html5.min.js"></script>
-  <script src="assets/js/respond.min.js"></script>
-  <script src="assets/js/placeholders.min.js"></script>
-  <script src="assets/js/owl.carousel.min.js"></script>
-  <script src="assets/js/scripts.js"></script>
-  <script type="text/javascript">
-  	function change_localidad (link,nombre) { 
-			$('#localidad').val(link);
-  		enviar_buscador_propiedades()
-  	}
-  	function change_tp (link,nombre) { 
-			$('#tp').val(link);
-  		enviar_buscador_propiedades()
-  	}
-  	function change_bn (link,nombre) { 
-			$('#bn').val(link);
-  		enviar_buscador_propiedades()
-  	}
-  	function change_dm (dm) { 
-			$('#dm').val(dm);
-  		enviar_buscador_propiedades()
-  	}
-    function change_price (min,max) { 
-      $('#vc_minimo').val(min);
-      $('#vc_maximo').val(max);
-      enviar_buscador_propiedades()
-    }
-     function change_permuta () { 
-      $('#per').val(1);
-      enviar_buscador_propiedades()
-    }
-     function change_banco () { 
-      $('#banco').val(1);
-      enviar_buscador_propiedades()
-    }
-
-   </script>
-  <script type="text/javascript">
-  $(document).ready(function(){
-    var maximo = 0;
-    $(".product-details h4").each(function(i,e){
-      if ($(e).height() > maximo) maximo = $(e).height();
-    });
-    maximo = Math.ceil(maximo);
-    $(".product-details h4").height(maximo);
-  });
-
-   $(document).ready(function(){
-    var maximo = 0;
-    $(".product-details h5").each(function(i,e){
-      if ($(e).height() > maximo) maximo = $(e).height();
-    });
-    maximo = Math.ceil(maximo);
-    $(".product-details h5").height(maximo);
-  });
- 	$(document).ready(function(){
-		var maximo = 0;
-		$(".product-details .average-detail").each(function(i,e){
-			if ($(e).height() > maximo) maximo = $(e).height();
-		});
-		maximo = Math.ceil(maximo);
-		$(".product-details .average-detail").height(maximo);
-	});
-</script>
-<script type="text/javascript">
-  function enviar_orden() { 
-    $("#orden_form").submit();
-  }
-  function enviar_buscador_propiedades() { 
-    var link = "<?php echo mklink("propiedades/")?>";
-    var tipo_operacion = $("#tipo_operacion").val();
-    var localidad = $("#localidad").val();
-    link = link + tipo_operacion + "/" + localidad + "/";
-    $("#form_propiedades").attr("action",link);
-    $("#form_propiedades").submit();
-    return true;
-  }
-</script>
 </body>
 </html>

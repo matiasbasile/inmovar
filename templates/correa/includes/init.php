@@ -5,4 +5,6 @@ include "models/Entrada_Model.php";
 $entrada_model = new Entrada_Model ($empresa->id,$conx) ; 
 include "models/Propiedad_Model.php";
 $propiedad_model = new Propiedad_Model ($empresa->id,$conx) ; 
+
+$modales = array();
 ?>

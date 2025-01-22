@@ -80,38 +80,40 @@
 <!-- Return to Top -->
 <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
 
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5><img src="assets/images/whatsapp-icon-2.png" alt="Whatsapp"> enviar whatsapp</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<img src="assets/images/popup-close.png" alt="Close Btn">
-				</button>
-			</div>
-			<div class="modal-body">
-				<form onsubmit="enviar_contacto()">
-					<div class="form-group">
-						<input type="hidden" value="" id="contacto_id_propiedad" name="">
-						<input type="name" name="Nombre *" id="contacto_nombre" placeholder="Nombre *" class="form-control">
-					</div>
-					<div class="form-group">
-						<input type="email" name="Email *" id="contacto_email" placeholder="Email *" class="form-control">
-					</div>
-					<div class="form-group">
-						<input type="tel" name="WhatsApp (sin 0 ni 15) *" id="contacto_telefono" placeholder="WhatsApp (sin 0 ni 15) *" class="form-control">
-					</div>
-					<div class="form-group">
-						<textarea id="contacto_mensaje" placeholder="Estoy interesado en “Duplex en venta en Ringuelet Cod: 1234”" class="form-control"></textarea>
-					</div>
-					<div class="form-group">
-						<button type="submit" id="contacto_submit" class="btn">hablar ahora</button>
-					</div>
-				</form>
+<?php foreach($modales as $modal) { ?>
+	<div class="modal fade" id="exampleModalCenter_<?php echo $modal->id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5><img src="assets/images/whatsapp-icon-2.png" alt="Whatsapp"> enviar whatsapp</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<img src="assets/images/popup-close.png" alt="Close Btn">
+					</button>
+				</div>
+				<div class="modal-body">
+					<form onsubmit="return false">
+						<div class="form-group">
+							<input type="hidden" value="<?php echo $modal->id ?>" id="contacto_id_propiedad" name="">
+							<input type="name" name="Nombre *" id="contacto_nombre" placeholder="Nombre *" class="form-control">
+						</div>
+						<div class="form-group">
+							<input type="email" name="Email *" id="contacto_email" placeholder="Email *" class="form-control">
+						</div>
+						<div class="form-group">
+							<input type="tel" name="WhatsApp (sin 0 ni 15) *" id="contacto_telefono" placeholder="WhatsApp (sin 0 ni 15) *" class="form-control">
+						</div>
+						<div class="form-group">
+							<textarea id="contacto_mensaje" placeholder="Estoy interesado en <?php echo $modal->nombre ?> Cod: <?php echo $modal->codigo ?>" class="form-control"></textarea>
+						</div>
+						<div class="form-group">
+							<button onclick="enviar_contacto()" id="contacto_submit" class="btn">hablar ahora</button>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
+<?php } ?>
 
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/bootstrap.bundle.min.js"></script>
@@ -123,6 +125,50 @@
 <script src="assets/js/scripts.js"></script>
 
 <script type="text/javascript">
+
+	function change_localidad (link,nombre) { 
+		$('#localidad').val(link);
+		enviar_buscador_propiedades()
+	}
+	function change_tp (link,nombre) { 
+		$('#tp').val(link);
+		enviar_buscador_propiedades()
+	}
+	function change_bn (link,nombre) { 
+		$('#bn').val(link);
+		enviar_buscador_propiedades()
+	}
+	function change_dm (dm) { 
+		$('#dm').val(dm);
+		enviar_buscador_propiedades()
+	}
+  function change_price (min,max) { 
+    $('#vc_minimo').val(min);
+    $('#vc_maximo').val(max);
+    enviar_buscador_propiedades()
+  }
+   function change_permuta () { 
+    $('#per').val(1);
+    enviar_buscador_propiedades()
+  }
+   function change_banco () { 
+    $('#banco').val(1);
+    enviar_buscador_propiedades()
+  }
+
+  function enviar_orden() { 
+    $("#orden_form").submit();
+  }
+  function enviar_buscador_propiedades() { 
+    var link = "<?php echo mklink("propiedades/")?>";
+    var tipo_operacion = $("#tipo_operacion").val();
+    var localidad = $("#localidad").val();
+    link = link + tipo_operacion + "/" + localidad + "/";
+    $("#form_propiedades").attr("action",link);
+    $("#form_propiedades").submit();
+    return true;
+  }
+
 	function llenar_id(item) { 
 		$("#contacto_id_propiedad").val(item);
 	} 
@@ -246,7 +292,6 @@
       jQuery("#contacto_nombre").focus();
       return false;          
     }
-
 
     if (isEmpty(telefono) || telefono == "telefono") {
       alert("Por favor ingrese un telefono");
