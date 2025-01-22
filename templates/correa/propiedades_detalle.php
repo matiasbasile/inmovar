@@ -322,33 +322,7 @@ if ($propiedad === FALSE || !isset($propiedad->nombre)) header("Location:".mklin
 
 <link rel="stylesheet" type="text/css" href="assets/css/jquery.fancybox.min.css">
 <script type="text/javascript" src="assets/js/jquery.fancybox.min.js"></script>
-<script type="text/javascript">
-  $(document).ready(function(){
-    var maximo = 0;
-    $(".product-details h4").each(function(i,e){
-      if ($(e).height() > maximo) maximo = $(e).height();
-    });
-    maximo = Math.ceil(maximo);
-    $(".product-details h4").height(maximo);
-  });
 
-  $(document).ready(function(){
-    var maximo = 0;
-    $(".product-details h5").each(function(i,e){
-      if ($(e).height() > maximo) maximo = $(e).height();
-    });
-    maximo = Math.ceil(maximo);
-    $(".product-details h5").height(maximo);
-  });
-  $(document).ready(function(){
-    var maximo = 0;
-    $(".product-details .average-detail").each(function(i,e){
-     if ($(e).height() > maximo) maximo = $(e).height();
-   });
-    maximo = Math.ceil(maximo);
-    $(".product-details .average-detail").height(maximo);
-  });
-</script>
 <?php if (isset($propiedad->latitud) && isset($propiedad->longitud) && $propiedad->latitud != 0 && $propiedad->longitud != 0) { ?>
   <?php include_once("templates/comun/mapa_js.php"); ?>
   <script type="text/javascript">
