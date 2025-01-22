@@ -114,6 +114,11 @@ class Cliente_Model extends Abstract_Model {
       } else {
         $texto = $estado_actual->nombre." > ".$estado_nuevo->nombre;
       }
+
+      if (!empty($proximo_contacto)) {
+        $texto.= ". Próximo contacto: ".fecha_es($proximo_contacto);
+      }
+
       $sql = "INSERT INTO crm_consultas (id_contacto,id_empresa,fecha,asunto,texto,id_usuario,tipo,id_origen,id_asunto,custom_1) VALUES (";
       $sql.= " $id,$id_empresa,NOW(),'Cambio de estado','$texto',$id_usuario,0,32,'$id_asunto','$custom_1') ";
       $this->db->query($sql);
