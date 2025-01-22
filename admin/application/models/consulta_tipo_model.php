@@ -222,6 +222,7 @@ class Consulta_Tipo_Model extends Abstract_Model {
       else $this->db->query($sql);
     }
     $asuntos = array(
+      "Volver a contactar más adelante",
       "No respondió el cliente",
       "El cliente no está interesado",
       "Los datos de contacto del cliente son erróneos",

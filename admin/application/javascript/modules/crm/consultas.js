@@ -1171,7 +1171,7 @@
       if (self.model.get("proximo_contacto") != "00/00/0000") {
         proximo = moment(self.model.get("proximo_contacto"),"DD/MM/YYYY HH:mm").toDate();
       }
-      createtimepicker(this.$("#cambiar_estado_consulta_proximo_contacto"),proximo);
+      createdatepicker(this.$("#cambiar_estado_consulta_proximo_contacto"),proximo);
 
       // Por primera vez ejecutamos esta funcion asi mostramos bien los datos
       this.editar_tipo(this.model.get("tipo"),this.model.get("consulta_tipo"));
