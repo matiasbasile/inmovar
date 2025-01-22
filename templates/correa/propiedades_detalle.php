@@ -242,21 +242,25 @@ if ($propiedad === FALSE || !isset($propiedad->nombre)) header("Location:".mklin
     <div class="sidebar-box">
       <h2>enviar consulta</h2>
       <div class="sidebar-border-box">
-        <form onsubmit="return enviar_contacto()">
+        <form id="propiedad_form" onsubmit="return enviar_contacto()">
+
+          <input type="hidden" value="<?php echo $propiedad->id ?>" class="id_propiedad" name="">
+          <input type="hidden" value="Contacto por: <?php echo $propiedad->nombre ?>. Cod: <?php echo $propiedad->codigo ?>" class="asunto">
+
           <div class="form-group">
-            <input class="form-control" id="contacto_nombre" type="text" name="Nombre *" placeholder="Nombre *">
+            <input class="form-control nombre" id="contacto_nombre" type="text" name="Nombre *" placeholder="Nombre *">
           </div>
           <div class="form-group">
-            <input class="form-control" id="contacto_email" type="email" name="Email *" placeholder="Email *">
+            <input class="form-control email" id="contacto_email" type="email" name="Email *" placeholder="Email *">
           </div>
           <div class="form-group">
-            <input class="form-control" id="contacto_telefono" type="tel" name="WhatsApp (sin 0 ni 15) *" placeholder="WhatsApp (sin 0 ni 15) *">
+            <input class="form-control telefono" id="contacto_telefono" type="tel" name="WhatsApp (sin 0 ni 15) *" placeholder="WhatsApp (sin 0 ni 15) *">
           </div>
           <div class="form-group">
-            <textarea class="form-control" id="contacto_mensaje">Estoy interesado en <?php echo $propiedad->nombre ?> Cod: <?php echo $propiedad->codigo ?></textarea>
+            <textarea class="form-control mensaje" id="contacto_mensaje">Estoy interesado en <?php echo $propiedad->nombre ?> Cod: <?php echo $propiedad->codigo ?></textarea>
           </div>
-          <button id="contacto_submit" type="submit" class="btn btn-secoundry">Enviar por Email</button>
-          <a class="btn btn-whatsup" href="javascript:void(0)" onclick="return enviar_contacto_whatsapp()"><img src="assets/images/whatsapp2.png" alt="Whatsapp Icon" width="24"> enviar whatsapp</a>
+          <button id="contacto_submit" type="submit" class="btn btn-secoundry submit">Enviar por Email</button>
+          <a class="btn btn-whatsup" href="javascript:void(0)" onclick="return enviar_contacto_whatsapp('propiedad_form')"><img src="assets/images/whatsapp2.png" alt="Whatsapp Icon" width="24"> enviar whatsapp</a>
         </form>
       </div>
       <div class="social">

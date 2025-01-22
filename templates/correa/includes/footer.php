@@ -93,20 +93,21 @@
 				<div class="modal-body">
 					<form onsubmit="return false">
 						<div class="form-group">
-							<input type="hidden" value="<?php echo $modal->id ?>" id="contacto_id_propiedad" name="">
-							<input type="name" name="Nombre *" id="contacto_nombre" placeholder="Nombre *" class="form-control">
+							<input type="hidden" value="<?php echo $modal->id ?>" class="id_propiedad" name="">
+							<input type="hidden" value="Contacto por: <?php echo $modal->nombre ?>. Cod: <?php echo $modal->codigo ?>" class="asunto">
+							<input type="name" name="Nombre *" placeholder="Nombre *" class="form-control nombre">
 						</div>
 						<div class="form-group">
-							<input type="email" name="Email *" id="contacto_email" placeholder="Email *" class="form-control">
+							<input type="email" name="Email *" placeholder="Email *" class="form-control email">
 						</div>
 						<div class="form-group">
-							<input type="tel" name="WhatsApp (sin 0 ni 15) *" id="contacto_telefono" placeholder="WhatsApp (sin 0 ni 15) *" class="form-control">
+							<input type="tel" name="WhatsApp (sin 0 ni 15) *" placeholder="WhatsApp (sin 0 ni 15) *" class="form-control telefono">
 						</div>
 						<div class="form-group">
-							<textarea id="contacto_mensaje" placeholder="Estoy interesado en <?php echo $modal->nombre ?> Cod: <?php echo $modal->codigo ?>" class="form-control"></textarea>
+							<textarea placeholder="Estoy interesado en <?php echo $modal->nombre ?> Cod: <?php echo $modal->codigo ?>" class="form-control mensaje"></textarea>
 						</div>
 						<div class="form-group">
-							<button onclick="enviar_contacto()" id="contacto_submit" class="btn">hablar ahora</button>
+							<button onclick="enviar_contacto_whatsapp('exampleModalCenter_<?php echo $modal->id ?>')" class="btn submit">hablar ahora</button>
 						</div>
 					</form>
 				</div>
@@ -180,38 +181,38 @@
 	}
 
 	function enviar_newsletter() {
-  var email = $("#newsletter_email").val();
-  if (!validateEmail(email)) {
-    alert("Por favor ingrese un email valido.");
-    $("#newsletter_email").focus();
-    return false;
-  }
-  $("#newsletter_submit").attr('disabled', 'disabled');
-  var datos = {
-    "email":email,
-    "mensaje":"Registro a Newsletter",
-    "asunto":"Registro a Newsletter",
-    "para":"<?php echo $empresa->email ?>",
-    "id_empresa":ID_EMPRESA,
-    "id_origen":2,
-  }
-  $.ajax({
-    "url":"https://app.inmovar.com/admin/consultas/function/enviar/",
-    "type":"post",
-    "dataType":"json",
-    "data":datos,
-    "success":function(r){
-      if (r.error == 0) {
-        alert("Muchas gracias por registrarse a nuestro newsletter!");
-        location.reload();
-      } else {
-        alert("Ocurrio un error al enviar su email. Disculpe las molestias");
-        $("#newsletter_submit").removeAttr('disabled');
-      }
-    }
-  });  
-  return false;
-}  
+	  var email = $("#newsletter_email").val();
+	  if (!validateEmail(email)) {
+	    alert("Por favor ingrese un email valido.");
+	    $("#newsletter_email").focus();
+	    return false;
+	  }
+	  $("#newsletter_submit").attr('disabled', 'disabled');
+	  var datos = {
+	    "email":email,
+	    "mensaje":"Registro a Newsletter",
+	    "asunto":"Registro a Newsletter",
+	    "para":"<?php echo $empresa->email ?>",
+	    "id_empresa":ID_EMPRESA,
+	    "id_origen":2,
+	  }
+	  $.ajax({
+	    "url":"https://app.inmovar.com/admin/consultas/function/enviar/",
+	    "type":"post",
+	    "dataType":"json",
+	    "data":datos,
+	    "success":function(r){
+	      if (r.error == 0) {
+	        alert("Muchas gracias por registrarse a nuestro newsletter!");
+	        location.reload();
+	      } else {
+	        alert("Ocurrio un error al enviar su email. Disculpe las molestias");
+	        $("#newsletter_submit").removeAttr('disabled');
+	      }
+	    }
+	  });  
+	  return false;
+	}  
 </script>
 
 <script type="text/javascript">
@@ -278,44 +279,47 @@
 
 
 <script type="text/javascript">
-  function enviar_contacto_whatsapp() {
-    var nombre = jQuery("#contacto_nombre").val();
-    var email = jQuery("#contacto_email").val();
-    var mensaje = jQuery("#contacto_mensaje").val();
-    var telefono = jQuery("#contacto_telefono").val();
+  function enviar_contacto_whatsapp(form) {
+
+    var nombre = jQuery("#"+form+" .nombre").val();
+    var email = jQuery("#"+form+" .email").val();
+    var mensaje = jQuery("#"+form+" .mensaje").val();
+    var telefono = jQuery("#"+form+" .telefono").val();
+    var id_propiedad = jQuery("#"+form+" .id_propiedad").val();
+    var asunto = jQuery("#"+form+" .asunto").val();
 
     if (isEmpty(nombre) || nombre == "Nombre") {
       alert("Por favor ingrese un nombre");
-      jQuery("#contacto_nombre").focus();
+      jQuery("#"+form+" .nombre").focus();
       return false;          
     }
 
     if (isEmpty(telefono) || telefono == "telefono") {
       alert("Por favor ingrese un telefono");
-      jQuery("#contacto_telefono").focus();
+      jQuery("#"+form+" .telefono").focus();
       return false;          
     }
 
     if (!validateEmail(email)) {
       alert("Por favor ingrese un email valido");
-      jQuery("#contacto_email").focus();
+      jQuery("#"+form+" .email").focus();
       return false;          
     }
     if (isEmpty(mensaje) || mensaje == "Mensaje") {
       alert("Por favor ingrese un mensaje");
-      jQuery("#contacto_mensaje").focus();
+      jQuery("#"+form+" .mensaje").focus();
       return false;              
     }    
     
-    jQuery("#contacto_submit").attr('disabled', 'disabled');
+    jQuery("#"+form+" .submit").attr('disabled', 'disabled');
     var datos = {
       "para":"<?php echo $empresa->email ?>",
       "nombre":nombre,
       "telefono":telefono,
       "email":email,
-      "asunto":"Consulta por: <?php echo $propiedad->nombre ?>",
+      "asunto":asunto,
       "mensaje":mensaje,
-      "id_propiedad":"<?php echo isset($propiedad) ? $propiedad->id : 0 ?>",
+      "id_propiedad":id_propiedad,
       "id_empresa":ID_EMPRESA,
     }
     jQuery.ajax({
@@ -329,7 +333,7 @@
           window.location.href = "https://api.whatsapp.com/send?phone=549<?php echo $empresa->telefono ?>&text="+ mensaje;
         } else {
           alert("Ocurrio un error al enviar su email. Disculpe las molestias");
-          jQuery("#contacto_submit").removeAttr('disabled');
+          jQuery("#"+form+" .submit").removeAttr('disabled');
         }
       }
     });
