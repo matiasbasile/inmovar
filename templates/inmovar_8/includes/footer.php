@@ -21,10 +21,24 @@
            <?php $t = $web_model->get_text("nosotros-link",mklink ("entradas/"))?>
            <a class="editable" data-id_empresa="<?php echo $empresa->id ?>" data-id="<?php echo $t->id ?>" data-clave="<?php echo $t->clave ?>" href="<?php echo (!empty($t->link))?$t->link:$t->plain_text ?>">NOSOTROS</a> 
           </li>
-          <li> <a href="<?php echo mklink ("entradas/") ?>">información</a> </li>
+         
+          <?php if (isset($sobre_nosotros) && $sobre_nosotros != null) { ?>
+            <li> <a href="<?php echo mklink ($sobre_nosotros->link) ?>">Sobre Nosotros</a> </li>
+          <?php } ?>
+
           <li> <a href="<?php echo mklink ("propiedades/ventas/") ?>">VENTAS</a> </li>
-          <li> <a href="<?php echo mklink ("propiedades/alquileres/") ?>">ALQUILERES</a> </li>
-          <li> <a href="<?php echo mklink ("propiedades/emprendimientos/") ?>">EMPRENDIMIENTOS</a> </li>
+          
+          <?php if ($tiene_alquileres == 1) { ?>
+            <li> <a href="<?php echo mklink ("propiedades/alquileres/") ?>">ALQUILERES</a> </li>
+          <?php } ?>
+
+          <?php if ($tiene_alquileres_temporarios == 1) { ?>
+            <li> <a href="<?php echo mklink ("propiedades/alquileres-temporarios/") ?>">ALQUILERES TEMPORARIOS</a> </li>
+          <?php } ?>
+
+          <?php if ($tiene_emprendimientos == 1) { ?>
+            <li> <a href="<?php echo mklink ("propiedades/emprendimientos/") ?>">EMPRENDIMIENTOS</a> </li>
+          <?php } ?>
         </ul>
       </div>
       <div class="row copyright">

@@ -1,6 +1,7 @@
 <?php include "includes/init.php" ?>
 <?php $entrada = $entrada_model->get($id)?>
 <?php ($entrada->categoria_link=="empresa")?$titulo_pagina="empresa": $titulo_pagina = "informacion" ?>
+<?php if ($entrada->titulo == "Sobre Nosotros") { $titulo_pagina = "sobre_nosotros"; } ?>
 <!doctype html>
 <html lang="en">
 <head>

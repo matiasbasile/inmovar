@@ -639,6 +639,7 @@ class Entrada_Model {
     $custom_3 = isset($config["custom_3"]) ? $config["custom_3"] : "";
     $custom_4 = isset($config["custom_4"]) ? $config["custom_4"] : "";
     $subtitulo = isset($config["subtitulo"]) ? $config["subtitulo"] : "";
+    $titulo = isset($config["titulo"]) ? $config["titulo"] : "";
 
     // Sirve solamente para obtener la cantidad
     $solo_contar = isset($config["solo_contar"]) ? intval($config["solo_contar"]) : 0;
@@ -691,6 +692,10 @@ class Entrada_Model {
     $sql.= "LEFT JOIN com_usuarios U ON (A.id_usuario = U.id AND A.id_empresa = U.id_empresa) ";
 		$sql.= "WHERE 1=1 ";
 		$sql.= "AND A.id_empresa = $this->id_empresa ";
+    if (!empty($titulo)) {
+      $titulo = strtolower($titulo);
+      $sql.= "AND LOWER(A.titulo) = '$titulo' ";
+    }
 		if ($filtro_fecha == 1) $sql.= "AND A.fecha <= '$now' ";
 		else if ($filtro_fecha == 2) $sql.= "AND A.fecha >= '$now' ";
 		if ($not_id > 0) $sql.= "AND A.id != $not_id ";
