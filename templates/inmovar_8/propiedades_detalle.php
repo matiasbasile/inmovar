@@ -193,6 +193,10 @@ $propiedad_model->set_tracking_cookie(array("id_propiedad" => $propiedad->id));
 
                   <div class="row">
 
+                    <?php if (!empty($propiedad->tipo_estado)) { ?>
+                      <div class="muy_text"><?php echo $propiedad->tipo_estado ?></div>
+                    <?php } ?>
+
                     <?php if (!empty($propiedad->video)) {  ?>
                       <div class="w100p">
                         <hr class="mt20 mb20">
