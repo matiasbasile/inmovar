@@ -28,7 +28,7 @@ class Consultas extends REST_Controller {
     $archivados = 99;
     $contactados = 2;
 
-    $sql = "SELECT * FROM clientes WHERE id_empresa = $id_empresa ORDER BY id ASC ";
+    $sql = "SELECT * FROM clientes WHERE id_empresa = $id_empresa AND custom_3 = '1' ORDER BY id ASC ";
     $q = $this->db->query($sql);
     foreach($q->result() as $cliente) {
       $sql = "SELECT asunto, fecha, texto ";
