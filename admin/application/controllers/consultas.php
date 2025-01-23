@@ -33,7 +33,7 @@ class Consultas extends REST_Controller {
     foreach($q->result() as $cliente) {
       $sql = "SELECT asunto, fecha, texto ";
       $sql.= "FROM crm_consultas WHERE id_empresa = $id_empresa ";
-      $sql.= "and id_contacto = $cliente->id order by fecha desc LIMIT 0,1 ";
+      $sql.= "and id_contacto = $cliente->id order by fecha desc, id desc LIMIT 0,1 ";
       $qq = $this->db->query($sql);
       $estado = $archivados;
 
