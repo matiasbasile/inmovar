@@ -51,7 +51,7 @@ class Consultas extends REST_Controller {
         }
       }
 
-      echo $cliente->id." - ".$consulta->fecha." - ".$estado;
+      echo $cliente->id." - ".$consulta->fecha." - ".$estado."<br/>";
       $i++;
     }
   }
