@@ -30,7 +30,7 @@ class Consultas extends REST_Controller {
     $sql = "SELECT * FROM clientes WHERE id_empresa = $id_empresa ORDER BY id ASC ";
     $q = $this->db->query($sql);
     foreach($q->result() as $cliente) {
-      $sql = "SELECT asunto, fecha ";
+      $sql = "SELECT asunto, fecha, texto ";
       $sql.= "FROM crm_consultas WHERE id_empresa = $id_empresa ";
       $sql.= "and id_contacto = $cliente->id order by fecha desc LIMIT 0,1 ";
       $qq = $this->db->query($sql);
@@ -40,7 +40,7 @@ class Consultas extends REST_Controller {
         $consulta = $qq->row();
 
         if ($consulta->asunto == "Cambio de estado") {
-          echo $cliente->id." ".$consulta->asunto."<br/>";
+          echo $cliente->id." ".$consulta->asunto." - ".$consulta->texto."<br/>";
         } else {
           if ($consulta->fecha > "2024-12-24") {
             $estado = ($consulta->tipo == 1) ? $contactados : $a_contactar;
