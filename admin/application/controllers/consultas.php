@@ -45,11 +45,10 @@ class Consultas extends REST_Controller {
         } else {
           if ($consulta->fecha > "2024-12-24") {
             $estado = ($consulta->tipo == 1) ? $contactados : $a_contactar;
-            echo $i." - ".$cliente->id." - $estado <br/>";
           } else {
             $estado = $archivados;
-            echo $i." - ".$cliente->id." - $estado <br/>";
           }
+          echo $i." - ".$cliente->id." ".$consulta->asunto." - ".$consulta->estado."<br/>";
         }
       } else {
         echo $i." - ".$cliente->id." - NO TIENE CONSULTAS <br/>";
