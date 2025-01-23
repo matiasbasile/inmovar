@@ -48,7 +48,7 @@ class Consultas extends REST_Controller {
           } else {
             $estado = $archivados;
           }
-          echo $i." - ".$cliente->id." ".$consulta->asunto." - ".$consulta->estado."<br/>";
+          echo $i." - ".$cliente->id." ".$consulta->asunto." - ".$estado."<br/>";
         }
       } else {
         echo $i." - ".$cliente->id." - NO TIENE CONSULTAS <br/>";
