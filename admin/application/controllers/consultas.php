@@ -26,6 +26,7 @@ class Consultas extends REST_Controller {
 
     $a_asunto = array();
     $asuntos = $this->db->query("SELECT DISTINCT id, nombre, id_tipo FROM crm_asuntos");
+    print_r($asuntos); exit();
     foreach($asuntos as $asunto) {
       $a_asunto[$asunto->id] = array($asunto->id_tipo, $asunto->nombre);
     }
