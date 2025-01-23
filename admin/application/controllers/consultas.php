@@ -22,6 +22,7 @@ class Consultas extends REST_Controller {
   }
 
   function arreglo() {
+    $i = 0;
     $id_empresa = 45;
     $a_contactar = 1;
     $archivados = 99;
@@ -40,7 +41,8 @@ class Consultas extends REST_Controller {
         $consulta = $qq->row();
 
         if ($consulta->asunto == "Cambio de estado") {
-          echo $cliente->id." ".$consulta->asunto." - ".$consulta->texto."<br/>";
+          echo $i." - ".$cliente->id." ".$consulta->asunto." - ".$consulta->texto."<br/>";
+          $i++;
         } else {
           if ($consulta->fecha > "2024-12-24") {
             $estado = ($consulta->tipo == 1) ? $contactados : $a_contactar;
