@@ -40,7 +40,7 @@ class Consultas extends REST_Controller {
         $consulta = $qq->row();
 
         if ($consulta->asunto == "Cambio de estado") {
-          echo $cliente->id." ".$consulta->asunto;
+          echo $cliente->id." ".$consulta->asunto."<br/>";
         } else {
           if ($consulta->fecha > "2024-12-24") {
             $estado = ($consulta->tipo == 1) ? $contactados : $a_contactar;
