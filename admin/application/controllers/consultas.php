@@ -18,7 +18,34 @@ class Consultas extends REST_Controller {
     $sql.= " fecha_ult_operacion = '$fecha', "; // Para que lo ponga primero en la lista
     $sql.= " proximo_contacto = '0000-00-00' "; // Limpiamos para que no vuelva a procesar
     $sql.= "WHERE proximo_contacto <= '$fecha' ";
-    $this->db->query($sql);
+    //$this->db->query($sql);
+  }
+
+  function arreglo() {
+    $id_empresa = 45;
+
+    $a_asunto = array();
+    $asuntos = $this->db->query("SELECT DISTINCT id, nombre, id_tipo FROM crm_asuntos");
+    foreach($asuntos as $asunto) {
+      $a_asunto[$asunto->id] = array($asunto->id_tipo, $asunto->nombre);
+    }
+
+    $sql = "SELECT * FROM clientes WHERE id_empresa = $id_empresa ";
+    $q = $this->db->query($sql);
+    foreach($q->result() as $cliente) {
+      $sql = "SELECT id_asunto, fecha ";
+      $sql.= "FROM crm_consultas WHERE id_empresa = $id_empresa ";
+      $sql.= "AND id_asunto != 0 ";
+      $sql.= "AND tipo = 0 and id_contacto = $cliente->id order by fecha desc LIMIT 0,1 ";
+      $qq = $this->db->query($sql);
+      if ($qq->num_rows() > 0) {
+        $consulta = $qq->row();
+        $estado = $a_asunto[$consulta->id_asunto];
+        echo $cliente->nombre." ESTADO: $estado <br/> ";
+      } else {
+        echo $cliente->nombre." no identificamos estado. <br/>";
+      }
+    }
   }
 
   function get_consulta() {
@@ -85,22 +112,6 @@ class Consultas extends REST_Controller {
       $this->db->query($sql);
       echo json_encode(array("error"=>0));
     }
-  }
-
-  // Esta funcion llena el campo id_usuario de la tabla clientes
-  // con el id_usuario de la ultima consulta
-  function pasar_usuarios($id_empresa) {
-    $sql = "SELECT DISTINCT id_contacto, id_usuario FROM crm_consultas ";
-    $sql.= "WHERE id_empresa = $id_empresa AND id_usuario != 0 ";
-    $sql.= "ORDER BY fecha DESC ";
-    $q = $this->db->query($sql);
-    foreach($q->result() as $r) {
-      $sql = "UPDATE clientes SET id_usuario = $r->id_usuario ";
-      $sql.= "WHERE id_empresa = $id_empresa ";
-      $sql.= "AND id = $r->id_contacto ";
-      $this->db->query($sql);
-    }
-    echo "TERMINO";
   }
 
   // USADO EN CRM/CONSULTAS
