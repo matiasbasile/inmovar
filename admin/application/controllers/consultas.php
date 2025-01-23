@@ -29,7 +29,6 @@ class Consultas extends REST_Controller {
     foreach($q->result() as $asunto) {
       $a_asunto[$asunto->id] = array($asunto->id_tipo, $asunto->nombre);
     }
-    print_r($a_asunto);
 
     $sql = "SELECT * FROM clientes WHERE id_empresa = $id_empresa ORDER BY id ASC ";
     $q = $this->db->query($sql);
@@ -41,7 +40,6 @@ class Consultas extends REST_Controller {
       $qq = $this->db->query($sql);
       if ($qq->num_rows() > 0) {
         $consulta = $qq->row();
-        print_r($consulta);
         $estado = $a_asunto[$consulta->id_asunto];
         print_r($estado); exit();
         echo $cliente->nombre." ESTADO: ".$estado[1]." <br/> ";
