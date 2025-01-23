@@ -40,11 +40,12 @@ class Consultas extends REST_Controller {
       $qq = $this->db->query($sql);
       if ($qq->num_rows() > 0) {
         $consulta = $qq->row();
+        print_r($consulta);
         $estado = $a_asunto[$consulta->id_asunto];
         print_r($estado); exit();
         echo $cliente->nombre." ESTADO: ".$estado[1]." <br/> ";
       } else {
-        echo $cliente->nombre." no identificamos estado. <br/>";
+        //echo $cliente->nombre." no identificamos estado. <br/>";
       }
     }
   }
