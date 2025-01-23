@@ -30,7 +30,7 @@ class Consultas extends REST_Controller {
       $a_asunto[$asunto->id] = array($asunto->id_tipo, $asunto->nombre);
     }
 
-    $sql = "SELECT * FROM clientes WHERE id_empresa = $id_empresa ";
+    $sql = "SELECT * FROM clientes WHERE id_empresa = $id_empresa ORDER BY id ASC ";
     $q = $this->db->query($sql);
     foreach($q->result() as $cliente) {
       $sql = "SELECT id_asunto, fecha ";
@@ -41,7 +41,7 @@ class Consultas extends REST_Controller {
       if ($qq->num_rows() > 0) {
         $consulta = $qq->row();
         $estado = $a_asunto[$consulta->id_asunto];
-        echo $cliente->nombre." ESTADO: $estado <br/> ";
+        echo $cliente->nombre." ESTADO: ".$estado[1]." <br/> ";
       } else {
         echo $cliente->nombre." no identificamos estado. <br/>";
       }
