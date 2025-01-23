@@ -38,12 +38,13 @@ class Consultas extends REST_Controller {
       $sql.= "AND id_asunto != 0 ";
       $sql.= "AND tipo = 0 and id_contacto = $cliente->id order by fecha desc LIMIT 0,1 ";
       $qq = $this->db->query($sql);
+      $estado = null;
       if ($qq->num_rows() > 0) {
         $consulta = $qq->row();
-        $estado = $a_asunto[$consulta->id_asunto];
-        echo $cliente->nombre." ESTADO: ".$estado[1]." <br/> ";
-      } else {
-        echo $cliente->nombre." no identificamos estado. <br/>";
+        $estado = $a_asunto[$consulta->id_asunto][0];
+        if ($consulta->fecha > "2024-12-24") {
+          echo $cliente->nombre." - ".$estado;
+        }
       }
     }
   }
