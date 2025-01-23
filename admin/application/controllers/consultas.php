@@ -24,26 +24,18 @@ class Consultas extends REST_Controller {
   function arreglo() {
     $id_empresa = 45;
 
-    $a_asunto = array();
-    $q = $this->db->query("SELECT DISTINCT id, nombre, id_tipo FROM crm_asuntos");
-    foreach($q->result() as $asunto) {
-      $a_asunto[$asunto->id] = array($asunto->id_tipo, $asunto->nombre);
-    }
-
     $sql = "SELECT * FROM clientes WHERE id_empresa = $id_empresa ORDER BY id ASC ";
     $q = $this->db->query($sql);
     foreach($q->result() as $cliente) {
-      $sql = "SELECT id_asunto, fecha ";
+      $sql = "SELECT asunto, fecha ";
       $sql.= "FROM crm_consultas WHERE id_empresa = $id_empresa ";
-      $sql.= "AND id_asunto != 0 ";
       $sql.= "AND tipo = 0 and id_contacto = $cliente->id order by fecha desc LIMIT 0,1 ";
       $qq = $this->db->query($sql);
       $estado = null;
       if ($qq->num_rows() > 0) {
         $consulta = $qq->row();
-        $estado = $a_asunto[$consulta->id_asunto][0];
         if ($consulta->fecha > "2024-12-24") {
-          echo $cliente->nombre." - ".$estado;
+          echo $cliente->nombre." - ".$consulta->asunto;
         }
       }
     }
