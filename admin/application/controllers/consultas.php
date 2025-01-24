@@ -23,40 +23,48 @@ class Consultas extends REST_Controller {
 
   function arreglo() {
     $i = 0;
-    $id_empresa = 45;
     $a_contactar = 1;
     $archivados = 99;
     $contactados = 2;
 
-    $sql = "SELECT * FROM clientes WHERE id_empresa = $id_empresa AND custom_3 = '1' ORDER BY id ASC ";
-    $q = $this->db->query($sql);
-    foreach($q->result() as $cliente) {
-      $sql = "SELECT asunto, fecha, texto ";
-      $sql.= "FROM crm_consultas WHERE id_empresa = $id_empresa ";
-      $sql.= "and id_contacto = $cliente->id order by fecha desc, id desc LIMIT 0,1 ";
-      $qq = $this->db->query($sql);
-      $estado = $archivados;
+    $q_empresas = $this->db->query("SELECT * FROM empresas");
+    foreach($q_empresas->result() as $empresa) {
+      $id_empresa = $empresa->id;
 
-      if ($qq->num_rows() > 0) {
-        $consulta = $qq->row();
+      $sql = "SELECT * FROM clientes WHERE id_empresa = $id_empresa AND custom_3 = '1' ORDER BY id ASC ";
+      $q = $this->db->query($sql);
+      foreach($q->result() as $cliente) {
+        $sql = "SELECT asunto, fecha, texto ";
+        $sql.= "FROM crm_consultas WHERE id_empresa = $id_empresa ";
+        $sql.= "and id_contacto = $cliente->id order by fecha desc, id desc LIMIT 0,1 ";
+        $qq = $this->db->query($sql);
+        $estado = $archivados;
 
-        if ($consulta->asunto == "Cambio de estado") {
+        $fecha = $cliente->fecha_inicial;
+        if ($qq->num_rows() > 0) {
+          $consulta = $qq->row();
+          $fecha = $consulta->fecha;
 
-          if (strpos($consulta->texto, "> Contactados") > 0) {
-            $estado = $contactados;
-          }
+          if ($consulta->asunto == "Cambio de estado") {
 
-        } else {
-          if ($consulta->fecha > "2024-12-24") {
-            $estado = ($consulta->tipo == 1) ? $contactados : $a_contactar;
+            if (strpos($consulta->texto, "> Contactados") > 0) {
+              $estado = $contactados;
+            }
+
           } else {
-            $estado = $archivados;
+            if ($consulta->fecha > "2024-12-24") {
+              $estado = ($consulta->tipo == 1) ? $contactados : $a_contactar;
+            } else {
+              $estado = $archivados;
+            }
           }
         }
-      }
 
-      echo $cliente->id." - ".$consulta->fecha." - ".$estado."<br/>";
-      $i++;
+
+        $sql = "UPDATE clientes SET tipo = $estado, fecha_ult_operacion = '$fecha' WHERE id = $cliente->id AND id_empresa = $id_empresa ";
+        echo $sql."<br/>";
+        $i++;
+      }
     }
   }
 
