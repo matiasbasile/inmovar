@@ -28,12 +28,6 @@ $tiene_alquileres_temporarios = $propiedad_model->get_list(array(
   "solo_contar" => 1,
 ));
 
-$tiene_alquileres = $propiedad_model->get_list(array(
-  "id_tipo_operacion"=>2,
-  "solo_propias" => 1,
-  "solo_contar" => 1,
-));
-
 $sobre_nosotros = null;
 $tiene_sobre_nosotros = $entrada_model->get_list(array(
   "titulo"=>"sobre nosotros",

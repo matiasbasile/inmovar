@@ -23,9 +23,7 @@
 
           <li> <a href="<?php echo mklink ("propiedades/ventas/") ?>">VENTAS</a> </li>
           
-          <?php if ($tiene_alquileres == 1) { ?>
-            <li> <a href="<?php echo mklink ("propiedades/alquileres/") ?>">ALQUILERES</a> </li>
-          <?php } ?>
+          <li> <a href="<?php echo mklink ("propiedades/alquileres/") ?>">ALQUILERES</a> </li>
 
           <?php if ($tiene_alquileres_temporarios == 1) { ?>
             <li> <a href="<?php echo mklink ("propiedades/alquileres-temporarios/") ?>">ALQUILERES TEMPORARIOS</a> </li>

@@ -51,9 +51,7 @@ if (isset($_SESSION["favoritos"])) {
 
                     <li class="nav-item"> <a class="<?php echo $titulo_pagina == "ventas"?"active":"" ?>" href="<?php echo mklink ("propiedades/ventas/") ?>"> VENTAS </a> </li>
 
-                    <?php if ($tiene_alquileres == 1) { ?>
-                      <li class="nav-item"> <a class="<?php echo $titulo_pagina == "alquileres"?"active":"" ?>" href="<?php echo mklink ("propiedades/alquileres/") ?>"> ALQUILERES</a> </li>
-                    <?php } ?>
+                    <li class="nav-item"> <a class="<?php echo $titulo_pagina == "alquileres"?"active":"" ?>" href="<?php echo mklink ("propiedades/alquileres/") ?>"> ALQUILERES</a> </li>
 
                     <?php if ($tiene_alquileres_temporarios == 1) { ?>
                       <li class="nav-item"> <a class="<?php echo $titulo_pagina == "alquileres-temporarios"?"active":"" ?>" href="<?php echo mklink ("propiedades/alquileres-temporarios/") ?>"> ALQUILERES TEMPORARIOS</a> </li>
