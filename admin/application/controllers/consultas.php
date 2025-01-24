@@ -26,7 +26,7 @@ class Consultas extends REST_Controller {
     $a_contactar = 1;
     $archivados = 99;
     $contactados = 2;
-
+    file_put_contents("arreglo.sql", "");
     $q_empresas = $this->db->query("SELECT * FROM empresas");
     foreach($q_empresas->result() as $empresa) {
       $id_empresa = $empresa->id;
@@ -61,10 +61,12 @@ class Consultas extends REST_Controller {
         }
 
 
-        $sql = "UPDATE clientes SET tipo = $estado, fecha_ult_operacion = '$fecha' WHERE id = $cliente->id AND id_empresa = $id_empresa ";
-        echo $sql."<br/>";
+        $sql = "UPDATE clientes SET tipo = $estado, fecha_ult_operacion = '$fecha' WHERE id = $cliente->id AND id_empresa = $id_empresa ;\n";
+        file_put_contents("arreglo.sql", $sql, FILE_APPEND);
+
         $i++;
       }
+      echo "TERMINO";
     }
   }
 
