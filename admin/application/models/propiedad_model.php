@@ -497,11 +497,11 @@ class Propiedad_Model extends Abstract_Model {
         "price" => $prop_meli->precio_meli
       );
       if ($prop_meli->id_empresa == 1749) {
-        $body["seller_contact"] = array(
-          "country_code" => "54",
-          "phone" => "2215419009",
-          "country_code2" => "54",
-          "phone2" => "2215419009",
+        $body = array(
+          "seller_contact" => array(
+            "country_code2" => "54",
+            "phone2" => "2215419009",
+          )
         );
       }
       $response = $meli->put("/items/".$prop_meli->id_meli, $body, $params);
