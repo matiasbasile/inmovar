@@ -875,6 +875,16 @@ class Propiedades extends REST_Controller
     }
   }
 
+  function babenco() {
+    $sql = "SELECT * FROM inm_propiedades_meli ";
+    $sql.= "WHERE id_empresa = 1749";
+    $q = $this->db->query($sql);
+    foreach($q->result() as $r) {
+      $this->Propiedad_Model->update_publicacion_mercadolibre($r->id_propiedad);
+    }
+    echo "TERMINO";
+  }
+
 
   function get_by_codigo($codigo = '')
   {
