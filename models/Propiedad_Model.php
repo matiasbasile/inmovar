@@ -1303,6 +1303,9 @@ class Propiedad_Model {
       // SI ES UN DEPARTAMENTO, Y ESTA BUSCANDO SIN DORMITORIOS, TAMBIEN TOMAMOS LOS MONOAMBIENTES
       if (!empty($id_tipo_inmueble)) $sql.= "AND (A.id_tipo_inmueble = $id_tipo_inmueble OR A.id_tipo_inmueble = 14) ";
       if (!empty($link_tipo_inmueble))  $sql.= "AND (A.id_tipo_inmueble = 14 OR (A.id_tipo_inmueble = 2 AND dormitorios = 0)) ";
+    } else if ($id_tipo_inmueble == 2 || $link_tipo_inmueble == "departamento") {
+      // SI ESTA BUSCANDO DEPARTAMENTOS, TAMBIEN INCLUIMOS LOS MONOAMBIENTES
+      $sql.= "AND (A.id_tipo_inmueble = 2 OR A.id_tipo_inmueble = 14) ";
     } else {
       if (!empty($id_tipo_inmueble)) $sql.= "AND A.id_tipo_inmueble = $id_tipo_inmueble ";
       if (!empty($link_tipo_inmueble)) $sql.= "AND TI.link = '$link_tipo_inmueble' ";
