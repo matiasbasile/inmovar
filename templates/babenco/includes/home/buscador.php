@@ -11,6 +11,8 @@
     <div class="tab-pane fade <?php echo $empresa->id == ID_EMPRESA_LA_PLATA ? "show active" : "" ?>" id="Comprar" role="tabpanel" aria-labelledby="Comprar-tab">
       <form action="<?php echo URL_LA_PLATA ?>propiedades/" onsubmit="return filtrar_principal(this)">
 
+        <input type="hidden" value="99" name="dm">
+        
         <div class="select-box">
           <label>Tipo de Operación</label>
           <select class="form-control operacion">
