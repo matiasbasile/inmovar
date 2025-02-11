@@ -876,6 +876,9 @@ class Propiedades extends REST_Controller
   }
 
   function babenco() {
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
     $sql = "SELECT * FROM inm_propiedades_meli ";
     $sql.= "WHERE id_empresa = 1749";
     $q = $this->db->query($sql);
