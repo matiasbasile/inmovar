@@ -498,7 +498,10 @@ class Propiedad_Model extends Abstract_Model {
       );
       if ($prop_meli->id_empresa == 1749) {
         $body["seller_contact"] = array(
-          "phone" => "549 221 5419009"
+          "country_code" => "54",
+          "phone" => "2215419009"
+          "country_code2" => "54",
+          "phone2" => "2215419009"
         );
       }
       $response = $meli->put("/items/".$prop_meli->id_meli, $body, $params);
