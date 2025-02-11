@@ -460,6 +460,7 @@ class Propiedad_Model extends Abstract_Model {
 
     // Volvemos a obtener el objeto
     $prop_meli = $this->get($id);
+    print_r($prop_meli); exit();
     if ($prop_meli === FALSE) return FALSE;
 
     if ($prop_meli->status == "active") {
