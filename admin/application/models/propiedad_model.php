@@ -499,8 +499,10 @@ class Propiedad_Model extends Abstract_Model {
       if ($prop_meli->id_empresa == 1749) {
         $body = array(
           "seller_contact" => array(
-            "country_code2" => "54",
-            "phone2" => "2215419009",
+            "country_code" => "54",
+            "phone" => "2215419009",
+            "country_code2" => "",
+            "phone2" => "",
           )
         );
       }
