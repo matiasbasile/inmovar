@@ -494,8 +494,13 @@ class Propiedad_Model extends Abstract_Model {
 
       $params = array('access_token'=>$web_conf->ml_access_token);
       $body = array(
-        "price"=>$prop_meli->precio_meli,
+        "price" => $prop_meli->precio_meli
       );
+      if ($prop_meli->id_empresa == 1749) {
+        $body["seller_contact"] = array(
+          "phone" => "549 221 5419009"
+        );
+      }
       $response = $meli->put("/items/".$prop_meli->id_meli, $body, $params);
       if ($response["httpCode"] == 200) {
         return TRUE;
