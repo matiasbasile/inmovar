@@ -503,6 +503,7 @@ class Propiedad_Model extends Abstract_Model {
             "phone2" => "2215419009",
           )
         );
+        print_r($body); exit();
       }
       $response = $meli->put("/items/".$prop_meli->id_meli, $body, $params);
       if ($response["httpCode"] == 200) {
