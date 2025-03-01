@@ -10,7 +10,7 @@ $nombre_pagina = "home";
 <body>
   <div class="container">
     <div class="row" style="margin: 200px 0px;">
-      <div class="col-md-6">
+      <div class="col-md-6" style="margin-bottom: 150px;">
         <div class="pl30 pr30 tac">
           <img class="w100p mb30" src="assets/images/bertoia.png" />
           <p class="fs22 mb15">Sucursal 47 Número 881</p>
