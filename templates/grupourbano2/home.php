@@ -9,23 +9,26 @@ $nombre_pagina = "home";
 </head>
 <body>
 
-  <?php include("includes/header.php"); ?>
+  <?php if ($dominio == "grupo-urbano.com.ar") { ?>
+    <?php include("inicio.php"); ?>
+  <?php } else { ?>
+    <?php include("includes/header.php"); ?>
 
-  <?php include("includes/home/slider.php"); ?>
+    <?php include("includes/home/slider.php"); ?>
 
-  <?php include("includes/home/banners.php"); ?>
+    <?php include("includes/home/banners.php"); ?>
 
-  <?php include("includes/home/zonas.php"); ?>
+    <?php include("includes/home/zonas.php"); ?>
 
-  <?php //include("includes/home/momentos.php"); ?>
+    <?php //include("includes/home/momentos.php"); ?>
 
-  <?php include("includes/home/countries.php"); ?>
+    <?php include("includes/home/countries.php"); ?>
 
-  <?php include("includes/home/obras.php"); ?>
+    <?php include("includes/home/obras.php"); ?>
 
-  <?php include("includes/home/marcas.php"); ?>
+    <?php include("includes/home/marcas.php"); ?>
 
-  <?php include("includes/footer.php"); ?>
-
+    <?php include("includes/footer.php"); ?>
+  <?php } ?>
 </body>
 </html>
