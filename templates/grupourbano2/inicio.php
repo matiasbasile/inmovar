@@ -11,16 +11,20 @@ $nombre_pagina = "home";
   <div class="container">
     <div class="row mt100">
       <div class="col-md-6">
-        <img src="assets/images/bertoia.png" />
-        <p>Sucursal 47 Número 881</p>
-        <p>La Plata</p>
-        <a class="btn btn-outline-secondary" href="https://grupourbanobertoia.com.ar">INGRESAR</a>
+        <div class="pl30 pr30 tac">
+          <img class="w100p" src="assets/images/bertoia.png" />
+          <p>Sucursal 47 Número 881</p>
+          <p>La Plata</p>
+          <a class="btn btn-outline-secondary" href="https://grupourbanobertoia.com.ar">INGRESAR</a>
+        </div>
       </div>
       <div class="col-md-6">
-        <img src="assets/images/pinero.png" />
-        <p>Sucursal 532 Número 1265</p>
-        <p>La Plata</p>
-        <a class="btn btn-outline-secondary" href="https://grupourbanobertoia.com.ar">INGRESAR</a>
+        <div class="pl30 pr30 tac">
+          <img class="w100p" src="assets/images/pinero.png" />
+          <p>Sucursal 532 Número 1265</p>
+          <p>La Plata</p>
+          <a class="btn btn-outline-secondary" href="https://grupourbanobertoia.com.ar">INGRESAR</a>
+        </div>
       </div>
     </div>
   </div>
