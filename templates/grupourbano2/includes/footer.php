@@ -1,39 +1,14 @@
 <footer>
 
-  <?php if (isset($nombre_pagina) && $nombre_pagina == "home") { ?>
-    <div class="footer-top padding-default">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-3">
-            <h5>VENTAS Y ALQUILERES</h5>
-            <p><a rel="nofollow" href="tel:5492214271544"><i class="fa fa-phone mr-2" aria-hidden="true"></i> (0221) 427-1544 /45</a></p>
-            <p><a rel="nofollow" href="mailto:info@grupo-urbano.com.ar"><i class="fa fa-envelope-o mr-2"></i> info@grupo-urbano.com.ar</a></p>
-          </div>
-          <div class="col-md-3">
-            <h5>ADMINISTRACIÓN </h5>
-            <p><a rel="nofollow" href="https://wa.me/5492214637615"><i class="fa fa-whatsapp mr-2" aria-hidden="true"></i> +54 (221) 463-7615</a></p>
-            <p><a rel="nofollow" href="mailto:administracion@grupo-urbano.com.ar"><i class="fa fa-envelope-o mr-2"></i> administracion@grupo-urbano.com.ar</a></p>
-          </div>
-          <div class="col-md-3">
-            <h5>CONSORCIOS</h5>
-            <p><a rel="nofollow" href="https://wa.me/5492214637615"><i class="fa fa-whatsapp mr-2" aria-hidden="true"></i> +54 (221) 463-7615</a></p>
-            <p><a rel="nofollow" href="https://wa.me/5492214376487"><i class="fa fa-whatsapp mr-2" aria-hidden="true"></i> +54 (221) 437-6487 (Urgencias)</a></p>
-            <p><a rel="nofollow" href="mailto:consorcios@grupo-urbano.com.ar"><i class="fa fa-envelope-o mr-2"></i> consorcios@grupo-urbano.com.ar</a></p>
-          </div>
-          <div class="col-md-3">
-            <h5>DESARROLLOS</h5>
-            <p><a rel="nofollow" href="https://wa.me/5492216372369"><i class="fa fa-whatsapp mr-2" aria-hidden="true"></i> +54 (221) 637-2369</a></p>
-            <p><a rel="nofollow" href="mailto:pablog@grupo-urbano.com.ar"><i class="fa fa-envelope-o mr-2"></i> pablog@grupo-urbano.com.ar</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  <?php } ?>
-
   <div class="footer-center padding-default">
     <div class="container">
-      <img src="assets/images/logo-footer.png" class="logo-footer" alt="img">
-      <p class="mt-4">Bertoia Col. 7342 <span>|</span> Piñero Col. 7346</p>
+      <img src="assets/images/footer.png" class="logo-footer" alt="img">
+      <p class="mt-4">
+        <?php $t = $web_model->get_text("footer-texto","Bertoia Col. 7342"); ?>
+        <span class="editable" data-id_empresa="<?php echo $t->id_empresa ?>" data-clave="<?php echo $t->clave ?>" data-id="<?php echo $t->id ?>">
+          <?php echo $t->plain_text ?>
+        </span>
+      </p>
       <div class="social">
         <?php if (!empty($empresa->facebook)) { ?>
           <a target="_blank" href="<?php echo $empresa->facebook ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a>
