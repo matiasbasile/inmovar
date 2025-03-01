@@ -9,11 +9,12 @@ $nombre_pagina = "home";
 </head>
 <body>
 
-  <?php echo $dominio; exit(); if ($dominio == "grupo-urbano.com.ar") { ?>
+  <?php if (strpos($dominio, "grupo-urbano.com.ar") !== FALSE) { ?>
   
     <?php include("inicio.php"); ?>
   
   <?php } else { ?>
+    
     <?php include("includes/header.php"); ?>
 
     <?php include("includes/home/slider.php"); ?>
@@ -31,6 +32,7 @@ $nombre_pagina = "home";
     <?php include("includes/home/marcas.php"); ?>
 
     <?php include("includes/footer.php"); ?>
+    
   <?php } ?>
 </body>
 </html>
