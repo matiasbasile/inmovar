@@ -9,8 +9,10 @@ $nombre_pagina = "home";
 </head>
 <body>
 
-  <?php if ($dominio == "grupo-urbano.com.ar") { ?>
+  <?php echo $dominio; exit(); if ($dominio == "grupo-urbano.com.ar") { ?>
+  
     <?php include("inicio.php"); ?>
+  
   <?php } else { ?>
     <?php include("includes/header.php"); ?>
 
