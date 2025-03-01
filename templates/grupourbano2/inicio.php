@@ -9,7 +9,7 @@ $nombre_pagina = "home";
 </head>
 <body>
   <div class="container">
-    <div class="row mt100">
+    <div class="row" style="margin: 200px 0px;">
       <div class="col-md-6">
         <div class="pl30 pr30 tac">
           <img class="w100p" src="assets/images/bertoia.png" />
