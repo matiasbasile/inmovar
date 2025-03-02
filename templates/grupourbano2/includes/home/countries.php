@@ -3,6 +3,7 @@
   "limit" => 0, 
   "destacado" =>  1,
   "id_tipo_operacion" => 1,
+  "solo_propias" => 1,
 )); ?>
 <?php if (!empty($countries_destacadas)) { ?>
   <section class="neighborhoods padding-default">
