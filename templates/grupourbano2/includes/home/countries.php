@@ -1,4 +1,9 @@
-<?php $countries_destacadas = $propiedad_model->get_list(array("offset" => 12, "limit" => 0, "destacado" =>  1)); ?>
+<?php $countries_destacadas = $propiedad_model->get_list(array(
+  "offset" => 12, 
+  "limit" => 0, 
+  "destacado" =>  1,
+  "id_tipo_operacion" => 1,
+)); ?>
 <?php if (!empty($countries_destacadas)) { ?>
   <section class="neighborhoods padding-default">
     <div class="container text-center">

@@ -23,7 +23,7 @@ $nombre_pagina = "home";
           <img class="w100p mb30" src="assets/images/pinero.png" />
           <p class="fs22 mb15">Sucursal 532 Número 1265</p>
           <p class="fs22 mb15">La Plata</p>
-          <a class="btn btn-outline-secondary" href="https://grupourbanobertoia.com.ar">INGRESAR</a>
+          <a class="btn btn-outline-secondary" href="https://grupourbanopiñero.com.ar">INGRESAR</a>
         </div>
       </div>
     </div>
