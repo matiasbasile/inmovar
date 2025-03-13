@@ -893,7 +893,12 @@ class Propiedad_Model {
       $propiedad->departamentos[] = $r;
     }
 
-    $propiedad->usuario_celular = preg_replace("/[^0-9]/", "", $propiedad->usuario_celular);
+    // MUY IMPORTANTE
+    // Esto solo es valido si la propiedad es PROPIA,
+    // Si es una propiedad de la red, siempre tiene que dar el telefono de la empresa
+    $propiedad->usuario_celular = ($propiedad->id_empresa == $this->id_empresa)
+      ? preg_replace("/[^0-9]/", "", $propiedad->usuario_celular)
+      : "";
 
     // Area total
     $propiedad->superficie_total = $propiedad->superficie_cubierta + $propiedad->superficie_descubierta + $propiedad->superficie_semicubierta;
