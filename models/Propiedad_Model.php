@@ -899,6 +899,8 @@ class Propiedad_Model {
     $propiedad->usuario_celular = ($propiedad->id_empresa == $this->id_empresa)
       ? preg_replace("/[^0-9]/", "", $propiedad->usuario_celular)
       : "";
+    // Si no es la empresa, limpiamos el id_usuario
+    $propiedad->id_usuario = ($propiedad->id_empresa == $this->id_empresa) ? $propiedad->id_usuario : 0;
 
     // Area total
     $propiedad->superficie_total = $propiedad->superficie_cubierta + $propiedad->superficie_descubierta + $propiedad->superficie_semicubierta;
