@@ -50,7 +50,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   margin: 0;
   line-height: 1;
   font-weight: normal;
-  font-family: 'Didot';
+  font-family: 'Museo';
 }
 .form-control {
   box-shadow: none !important;
@@ -60,52 +60,18 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 }
 
 @font-face {
-  font-family: 'Didot Bold';
-  src: url('../fonts/Didot-Bold.eot');
-  src: url('../fonts/Didot-Bold.eot?#iefix') format('embedded-opentype'),
-      url('../fonts/Didot-Bold.woff2') format('woff2'),
-      url('../fonts/Didot-Bold.woff') format('woff'),
-      url('../fonts/Didot-Bold.svg#Didot-Bold') format('svg');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
+    font-family: 'Museo';
+    src: url('MuseoSans-500.eot');
+    src: url('MuseoSans-500.eot?#iefix') format('embedded-opentype'),
+        url('MuseoSans-500.woff2') format('woff2'),
+        url('MuseoSans-500.woff') format('woff'),
+        url('MuseoSans-500.ttf') format('truetype'),
+        url('MuseoSans-500.svg#MuseoSans-500') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
-@font-face {
-  font-family: 'Didot Title';
-  src: url('../fonts/DidotTitle.eot');
-  src: url('../fonts/DidotTitle.eot?#iefix') format('embedded-opentype'),
-      url('../fonts/DidotTitle.woff2') format('woff2'),
-      url('../fonts/DidotTitle.woff') format('woff'),
-      url('../fonts/DidotTitle.svg#DidotTitle') format('svg');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Didot Italic';
-  src: url('../fonts/Didot-Italic.eot');
-  src: url('../fonts/Didot-Italic.eot?#iefix') format('embedded-opentype'),
-      url('../fonts/Didot-Italic.woff2') format('woff2'),
-      url('../fonts/Didot-Italic.woff') format('woff'),
-      url('../fonts/Didot-Italic.svg#Didot-Italic') format('svg');
-  font-weight: normal;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Didot';
-  src: url('../fonts/Didot.eot');
-  src: url('../fonts/Didot.eot?#iefix') format('embedded-opentype'),
-      url('../fonts/Didot.woff2') format('woff2'),
-      url('../fonts/Didot.woff') format('woff'),
-      url('../fonts/Didot.svg#Didot') format('svg');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   font-weight: 400;
   color: #000201 !important;
@@ -386,8 +352,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 /* Featured Properties CSS */
 .featured-properties {
   padding: 55px 0;
-  background: url(../images/featured-properties-background-img.svg) repeat;
-  background-size: contain;
+  background-color: #f0f0f0;
 }
 .featured-properties .section-title h2 {
   padding-bottom: 0;
@@ -1307,7 +1272,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 .premises-sale .white-box .comunicate .right-text b {
   color: #c3c1c1;
   font-size: 16px;
-  font-family: 'Didot';
+  font-family: 'Museo';
 }
 .premises-sale .white-box .comunicate .right-text p {
   margin: 0;
