@@ -295,11 +295,15 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   line-height: 32px;
 }
 .top-banner .nav-tabs {
-  display: inline-flex;
+  width: 100%;
+  display: flex;
   background: #fff;
   border-radius: 10px 10px 0 0;
   padding: 15px 15px 0;
   border: none;
+}
+.top-banner .nav-tabs .nav-item {
+
 }
 .top-banner .nav-tabs .nav-item .nav-link, .top-banner .nav-tabs .nav-link {
   border: none !important;
@@ -687,8 +691,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 /* Last News CSS */
 .last-news {
   padding: 55px 0 75px;
-  background: url(../images/featured-properties-background-img.svg) repeat;
-  background-size: 50%;
+  background-color: #f0f0f0;
 }
 .last-news .section-title h2 {
   padding-bottom: 0;
