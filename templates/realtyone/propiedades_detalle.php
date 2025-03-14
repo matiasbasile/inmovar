@@ -4,7 +4,7 @@ $propiedad = $propiedad_model->get($id,array(
   "buscar_total_visitas"=>1,
 ));
 
-if (($propiedad === FALSE || !isset($propiedad->nombre) || $propiedad->activo == 0 || $propiedad->estado_empresa != 10 || $propiedad->ocultar_portal != 0) && !isset($get_params["preview"])) {
+if (($propiedad === FALSE || !isset($propiedad->nombre) || $propiedad->activo == 0 || $propiedad->ocultar_portal != 0) && !isset($get_params["preview"])) {
   header("HTTP/1.1 302 Moved Temporarily");
   header("Location:".mklink("/"));
   exit();
