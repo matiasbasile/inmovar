@@ -2,7 +2,7 @@
 <header class="header">
   <div class="logo">
     <a href="<?php echo mklink("/") ?>">
-      <img src="assets/images/logo.png" alt="logo">
+      <img src="assets/images/logo.png?v=1" alt="logo">
     </a>
   </div>
   <div class="right-nav">
@@ -15,32 +15,14 @@
           <li class="nav-item <?php echo (isset($menu_active) && $menu_active == "propiedades") ? "active":"" ?>">
             <a class="nav-link" href="<?php echo mklink("propiedades/") ?>">PROPIEDADES</a>
           </li>
-          <li class="nav-item <?php echo (isset($menu_active) && $menu_active == "emprendimientos") ? "active":"" ?>">
-            <a class="nav-link" href="<?php echo mklink("emprendimientos/") ?>">EMPRENDIMIENTOS</a>
-          </li>
-          <!--
-          <li class="nav-item <?php echo (isset($menu_active) && $menu_active == "inversiones") ? "active":"" ?>">
-            <a class="nav-link" href="<?php echo mklink("inversiones/") ?>">inversiones</a>
-          </li>
-          -->
           <li class="nav-item <?php echo (isset($menu_active) && $menu_active == "el-club") ? "active":"" ?>">
-            <a class="nav-link" href="<?php echo mklink("entrada/el-club/") ?>">EL CLUB</a>
+            <a class="nav-link" href="<?php echo mklink("entrada/el-club/") ?>">EL ÉXITO ONE</a>
           </li>
           <li class="nav-item <?php echo (isset($menu_active) && $menu_active == "nosotros") ? "active":"" ?>">
-            <a class="nav-link" href="<?php echo mklink("entrada/nosotros/") ?>">NOSOTROS</a>
-          </li>
-          <li class="nav-item <?php echo (isset($menu_active) && $menu_active == "franquicias") ? "active":"" ?>">
-            <a class="nav-link" href="<?php echo mklink("entrada/franquicias/") ?>">FRANQUICIAS</a>
-          </li>
-
-          <li class="nav-item <?php echo (isset($menu_active) && $menu_active == "miembros") ? "active":"" ?>">
-            <a class="nav-link" href="<?php echo mklink("web/miembros/") ?>">miembros</a>
+            <a class="nav-link" href="<?php echo mklink("entrada/nosotros/") ?>">OFICINAS ONE</a>
           </li>
           <li class="nav-item">
-            <a target="_blank" class="btn" href="https://comunidadinmobiliaria.com.ar/admin/" style="min-width: auto;">CRM</a>
-          </li>
-          <li class="nav-item">
-            <a target="_blank" class="btn" href="https://comunidadlaplata.com.ar/login">Acceso Socios</a>
+            <a target="_blank" class="btn" href="javascript:void(0)">Unite a ONE</a>
           </li>
           <div class="socials">
             <ul>
