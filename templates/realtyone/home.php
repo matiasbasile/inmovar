@@ -75,25 +75,9 @@
 
   <?php include 'includes/home/accesos.php' ?>
 
-  <?php include 'includes/home/emprendimientos.php' ?>
-
   <?php include 'includes/home/ultimas_noticias.php' ?>
 
   <?php include 'includes/footer.php' ?>
-
-  <?php //if (!isset($_GET["chat"])) { ?>
-    <?php //include 'templates/comun/clienapp.php' ?>
-  <?php //} else { ?>
-    <script>
-      /*
-      $("<div id='widget-chat-plugin'/>").load("https://chatpluginweb.varcreative.com.ar/chat/123456", function(){
-        setTimeout(function(){
-          initChat();
-        },300);
-      }).appendTo("body");
-      */
-    </script>
-  <?php //} ?>
 
 </body>
 

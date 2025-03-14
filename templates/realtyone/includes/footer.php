@@ -4,32 +4,13 @@
     <div class="row">
       <div class="col-lg-4 col-md-6">
         <div class="logo">
-          <img src="assets/images/footer-logo.svg" alt="logo">
+          <img src="assets/images/logo-footer.png" alt="logo">
         </div>
-        <div class="address-info">
-          <ul>
-            <?php if (!empty($empresa->direccion)) { ?>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                  <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-                </svg>
-                <a href="javascript:void(0);"><?php echo $empresa->direccion ?></a>
-              </li>
-            <?php } ?>
-            <?php if (!empty($empresa->email)) { ?>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
-                  <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
-                </svg>
-                <a href="mailto:<?php echo $empresa->email ?>"><?php echo $empresa->email ?></a>
-              </li>
-            <?php } ?>
-          </ul>
-        </div>
+        <p class="text-white mt20">Acompañanos mientras seguimos pintando de dorado el país, revolucionando la industria inmobiliaria.</p>
       </div>
       <div class="col-lg-3 col-md-6">
         <div class="footer-info">
-          <h6>en Venta</h6>
+          <h6>Legales</h6>
           <ul>
             <li><a href="<?php echo mklink("propiedades/ventas/la-plata/?tp=2") ?>">Departamento en Venta La Plata</a></li>
             <li><a href="<?php echo mklink("propiedades/ventas/la-plata/?tp=1") ?>">Casa en Venta La Plata</a></li>
@@ -42,14 +23,26 @@
       </div>
       <div class="col-lg-3 col-md-6">
         <div class="footer-info">
-          <h6>en alquiler</h6>
-          <ul>
-            <li><a href="<?php echo mklink("propiedades/alquileres/la-plata/?tp=2") ?>">Departamento en Alquiler en La Plata</a></li>
-            <li><a href="<?php echo mklink("propiedades/alquileres/la-plata/?tp=9") ?>">Local en Alquiler en La Plata</a></li>
-            <li><a href="<?php echo mklink("propiedades/alquileres/la-plata/?tp=1") ?>">Casa en Alquiler La Plata</a></li>
-          </ul>
-          <div class="link-text">
-            <a href="<?php echo mklink("propiedades/alquileres") ?>">Ver Más</a>
+          <h6>Contactanos</h6>
+          <div class="address-info mt0">
+            <ul>
+              <?php if (!empty($empresa->direccion)) { ?>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+                  </svg>
+                  <a href="javascript:void(0);"><?php echo $empresa->direccion ?></a>
+                </li>
+              <?php } ?>
+              <?php if (!empty($empresa->email)) { ?>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                    <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
+                  </svg>
+                  <a href="mailto:<?php echo $empresa->email ?>"><?php echo $empresa->email ?></a>
+                </li>
+              <?php } ?>
+            </ul>
           </div>
         </div>
       </div>
@@ -71,7 +64,7 @@
 
 <section class="copyright">
   <div class="container">
-    <p><span>La Comu Club de Negocios.</span> Todos los derechos reservados</p>
+    <p><span>Realty One Group.</span> Todos los derechos reservados</p>
     <p>Diseño y Desarrollo Web <a href="https://www.misticastudio.com/" target="_blank"><img src="assets/images/copyright-logo.svg" alt="logo"></a></p>
   </div>
 </section>
