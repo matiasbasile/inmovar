@@ -243,12 +243,26 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   width: 100%;
   font-size: 55px;
   line-height: 60px;
-  text-transform: uppercase;
+  text-transform: lowercase;
   color: #ccad66;
   font-weight: 400;
   text-align: center;
   padding-bottom: 35px;
 }
+
+.banner-caption h2 {
+  font-family: 'Museo';
+  text-align: center;
+  width: 100%;
+  font-size: 55px;
+  line-height: 60px;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: 400;
+  text-align: center;
+  padding-bottom: 35px;
+}
+
 .owl-dots {
   position: absolute;
   bottom: 25px;
