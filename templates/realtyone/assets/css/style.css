@@ -72,6 +72,20 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'Freeland';
+    src: url('../fonts/Freeland.eot');
+    src: url('../fonts/Freeland.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Freeland.woff2') format('woff2'),
+        url('../fonts/Freeland.woff') format('woff'),
+        url('../fonts/Freeland.ttf') format('truetype'),
+        url('../fonts/Freeland.svg#Freeland') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   font-weight: 400;
   color: #000201 !important;
@@ -224,12 +238,13 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   justify-content: center;
 }
 .banner-caption h1 {
+  font-family: 'Freeland';
   text-align: center;
   width: 100%;
   font-size: 55px;
   line-height: 60px;
   text-transform: uppercase;
-  color: #fff;
+  color: #ccad66;
   font-weight: 400;
   text-align: center;
   padding-bottom: 35px;
