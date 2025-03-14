@@ -25,6 +25,9 @@
           <?php if (!empty($s->linea_1)) { ?>
             <h1><?php echo $s->linea_1 ?></h1>
           <?php } ?>
+          <?php if (!empty($s->linea_2)) { ?>
+            <h2><?php echo $s->linea_2 ?></h2>
+          <?php } ?>
         <?php } ?>
                 
         <ul class="nav nav-tabs" id="myTab" role="tablist">
