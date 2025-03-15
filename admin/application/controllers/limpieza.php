@@ -40,8 +40,19 @@ class Limpieza extends REST_Controller {
     }
     echo "TOTAL DE IMAGENES EN inm_propiedades.path: ".($total_paths)."\n";
 
+    // Archivo
+    $sql = "SELECT * FROM inm_propiedades WHERE id_empresa = $id_empresa AND archivo != '' ";
+    $q = $this->db->query($sql);
+    $total_archivos = $q->num_rows();
+    foreach($q->result() as $image) {
+      if (!in_array($imagenes, $image->archivo)) {
+        $imagenes[] = $image->archivo;
+      }
+    }
+    echo "TOTAL DE IMAGENES EN inm_propiedades.archivo: ".($total_archivos)."\n";
 
-    echo "TOTAL DE IMAGENES EN BASE DE DATOS: ".($total_tabla_images + $total_paths)."\n";
+
+    echo "TOTAL DE IMAGENES EN BASE DE DATOS: ".($total_tabla_images + $total_paths + $total_archivos)."\n";
 
     $para_borrar = array();
 
