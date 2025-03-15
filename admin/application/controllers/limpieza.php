@@ -22,7 +22,9 @@ class Limpieza extends REST_Controller {
       if (strpos($image->path, "?") !== false) {
         $image->path = substr($image->path, 0, strpos($image->path, "?"));
       }
-      $imagenes[] = $image->path;
+      if (!in_array($imagenes, $image->path)) {
+        $imagenes[] = $image->path;
+      }
     }
 
     // Imagen Principal
