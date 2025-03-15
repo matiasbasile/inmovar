@@ -74,7 +74,8 @@ class Limpieza extends REST_Controller {
 
     echo "TOTAL DE ARCHIVOS PARA BORRAR: ".sizeof($para_borrar)."\n";
     foreach($para_borrar as $archivo) {
-      echo $archivo; exit();
+      $nuevo = str_replace($base, $base."backup/", $archivo);
+      echo $nuevo; exit();
     }
 
 
