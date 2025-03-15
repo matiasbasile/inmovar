@@ -10,7 +10,7 @@ class Limpieza extends REST_Controller {
 
   function imagenes() {
     $id_empresa = 45;
-    $base = "admin/uploads/$id_empresa/propiedades/";
+    $base = "uploads/$id_empresa/propiedades/";
     $sql = "SELECT * FROM inm_propiedades_images WHERE id_empresa = $id_empresa ";
     $q = $this->db->query($sql);
     echo "TOTAL DE IMAGENES: ".$q->num_rows()."\n";
