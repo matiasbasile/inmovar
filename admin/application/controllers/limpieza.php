@@ -55,8 +55,6 @@ class Limpieza extends REST_Controller {
       }
     }
 
-    print_r($para_borrar); exit();
-
     echo "TOTAL DE ARCHIVOS PARA BORRAR: ".sizeof($para_borrar)."\n";
   }
 
