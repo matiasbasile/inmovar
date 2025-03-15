@@ -18,7 +18,7 @@ class Limpieza extends REST_Controller {
     }
   }
 
-  function borrar_imagenes($id_empresa, $ejecutar = 0) {
+  function borrar_imagenes($id_empresa, $ejecutar = 1) {
     $contador = 0;
     $imagenes = array();
     $base = "uploads/$id_empresa/propiedades/";
