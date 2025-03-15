@@ -27,7 +27,9 @@ class Limpieza extends REST_Controller {
     $q = $this->db->query($sql);
     $total_paths = $q->num_rows();
     foreach($q->result() as $image) {
-      $imagenes[] = $image->path;
+      if (!in_array($imagenes, $image->path)) {
+        $imagenes[] = $image->path;
+      }
     }
 
     echo "TOTAL DE IMAGENES EN BASE DE DATOS: ".($total_tabla_images + $total_paths)."\n";
