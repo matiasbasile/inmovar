@@ -20,12 +20,23 @@ class Limpieza extends REST_Controller {
       $imagenes[] = $image->path;
     }
 
-    $archivos = glob($base."*");
-    print_r($archivos); exit();
-    foreach($archivos as $archivo) {
+    $para_borrar = array();
 
+    $archivos = glob($base."*");
+    foreach($archivos as $archivo) {
+      $encontro = false;
+      foreach($imagenes as $imagen) {
+        if ($imagen == $archivo) {
+          $encontro = true;
+          break;
+        }
+      }
+      if (!$encontro) {
+        $para_borrar[] = $archivo;
+      }
     }
 
+    echo "TOTAL DE ARCHIVOS PARA BORRAR: ".sizeof($para_borrar)."\n";
   }
 
 }
