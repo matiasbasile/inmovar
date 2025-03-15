@@ -26,6 +26,8 @@ class Limpieza extends REST_Controller {
         $imagenes[] = $image->path;
       }
     }
+    echo "TOTAL DE IMAGENES EN inm_propiedades_images: ".($total_tabla_images)."\n";
+
 
     // Imagen Principal
     $sql = "SELECT * FROM inm_propiedades WHERE id_empresa = $id_empresa AND path != '' ";
@@ -36,6 +38,8 @@ class Limpieza extends REST_Controller {
         $imagenes[] = $image->path;
       }
     }
+    echo "TOTAL DE IMAGENES EN inm_propiedades.path: ".($total_paths)."\n";
+
 
     echo "TOTAL DE IMAGENES EN BASE DE DATOS: ".($total_tabla_images + $total_paths)."\n";
 
