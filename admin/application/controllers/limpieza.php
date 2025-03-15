@@ -19,6 +19,9 @@ class Limpieza extends REST_Controller {
     $q = $this->db->query($sql);
     $total_tabla_images = $q->num_rows();
     foreach($q->result() as $image) {
+      if (strpos($image->path, "?") !== false) {
+        $image->path = substr($image->path, 0, strpos($image->path, "?"));
+      }
       $imagenes[] = $image->path;
     }
 
