@@ -30,11 +30,13 @@ class Limpieza extends REST_Controller {
       $imagenes[] = $image->path;
     }
 
-    echo "TOTAL DE IMAGENES: ".($total_tabla_images + $total_paths)."\n";
+    echo "TOTAL DE IMAGENES EN BASE DE DATOS: ".($total_tabla_images + $total_paths)."\n";
 
     $para_borrar = array();
 
     $archivos = glob($base."*");
+    echo "TOTAL DE ARCHIVOS: ".sizeof($archivos)."\n";
+
     foreach($archivos as $archivo) {
       $encontro = false;
       foreach($imagenes as $imagen) {
