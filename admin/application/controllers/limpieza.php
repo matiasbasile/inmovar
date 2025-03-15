@@ -55,7 +55,6 @@ class Limpieza extends REST_Controller {
     echo "TOTAL DE IMAGENES EN BASE DE DATOS: ".($total_tabla_images + $total_paths + $total_archivos)."\n";
 
     $para_borrar = array();
-    $estan = array();
 
     $archivos = glob($base."*");
     echo "TOTAL DE ARCHIVOS: ".sizeof($archivos)."\n";
@@ -70,12 +69,15 @@ class Limpieza extends REST_Controller {
       }
       if (!$encontro) {
         $para_borrar[] = $archivo;
-      } else {
-        $estan[] = $archivo;
       }
     }
 
     echo "TOTAL DE ARCHIVOS PARA BORRAR: ".sizeof($para_borrar)."\n";
+    foreach($para_borrar as $archivo) {
+      echo $archivo; exit();
+    }
+
+
     echo "TOTAL DE ARCHIVOS EXISTENTES: ".sizeof($estan)."\n";
   }
 
