@@ -9,7 +9,16 @@ class Limpieza extends REST_Controller {
   }
 
   function imagenes() {
-    $id_empresa = 45;
+    $sql = "SELECT id FROM empresas";
+    $q = $this->db->query($sql);
+    foreach($q->result() as $empresa) {
+      echo "\nLIMPIANDO EMPRESA: $empresa->id \n";
+      $this->borrar_imagenes($empresa->id);
+      echo "-------------------\n";
+    }
+  }
+
+  function borrar_imagenes($id_empresa, $ejecutar = 0) {
     $contador = 0;
     $imagenes = array();
     $base = "uploads/$id_empresa/propiedades/";
@@ -26,7 +35,7 @@ class Limpieza extends REST_Controller {
         $imagenes[] = $image->path;
       }
     }
-    echo "TOTAL DE IMAGENES EN inm_propiedades_images: ".($total_tabla_images)."\n";
+    echo "inm_propiedades_images: ".($total_tabla_images)."\n";
 
 
     // Imagen Principal
@@ -38,7 +47,7 @@ class Limpieza extends REST_Controller {
         $imagenes[] = $image->path;
       }
     }
-    echo "TOTAL DE IMAGENES EN inm_propiedades.path: ".($total_paths)."\n";
+    echo "inm_propiedades.path: ".($total_paths)."\n";
 
     // Archivo
     $sql = "SELECT * FROM inm_propiedades WHERE id_empresa = $id_empresa AND archivo != '' ";
@@ -49,10 +58,10 @@ class Limpieza extends REST_Controller {
         $imagenes[] = $image->archivo;
       }
     }
-    echo "TOTAL DE IMAGENES EN inm_propiedades.archivo: ".($total_archivos)."\n";
+    echo "inm_propiedades.archivo: ".($total_archivos)."\n";
 
 
-    echo "TOTAL DE IMAGENES EN BASE DE DATOS: ".($total_tabla_images + $total_paths + $total_archivos)."\n";
+    echo "TOTAL BASE DE DATOS: ".($total_tabla_images + $total_paths + $total_archivos)."\n";
 
     $para_borrar = array();
 
@@ -72,12 +81,12 @@ class Limpieza extends REST_Controller {
       }
     }
 
-    echo "TOTAL DE ARCHIVOS PARA BORRAR: ".sizeof($para_borrar)."\n";
+    echo "TOTAL PARA BORRAR: ".sizeof($para_borrar)."\n";
     foreach($para_borrar as $archivo) {
-      $nuevo = str_replace($base, $base."backup/", $archivo);
-      rename($archivo, $nuevo);
+      if ($ejecutar == 1) {
+        unlink($archivo);
+      }
     }
-    echo "TERMINO";
   }
 
 }
