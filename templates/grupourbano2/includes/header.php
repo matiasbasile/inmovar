@@ -17,9 +17,11 @@
               <a class="dropdown-item" href="#0">How it Works</a>
             </div> -->
           </li>
+          <!--
           <li class="nav-item <?php echo ($nombre_pagina == "ofertas" ? "active" : "") ?>">
             <a class="nav-link" href="<?php echo mklink("ofertas/") ?>">ofertas</a>
           </li>
+          -->
           <li class="nav-item <?php echo ($nombre_pagina == "alquileres" ? "active" : "") ?>">
             <a class="nav-link" href="<?php echo mklink("propiedades/alquileres/") ?>">alquileres</a>
           </li>
@@ -36,7 +38,7 @@
             <a class="nav-link" href="<?php echo mklink("web/vendedores") ?>">nosotros</a>
           </li>
         </ul>
-        <!-- <a href="#0" class="btn">contacto</a> -->
+        <!-- <a href="#0" class="btn">contacto</a> 
         <div class="social">
           <?php if (!empty($empresa->facebook)) { ?>
             <a href="<?php echo $empresa->facebook ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -48,6 +50,7 @@
             <a href="<?php echo $empresa->youtube ?>"><i class="fa fa-play" aria-hidden="true"></i></a>
           <?php } ?>
         </div>
+        -->
       </div>
     </nav>
   </div>
