@@ -25,13 +25,10 @@
   <div class="footer-bottom">
     <div class="container">
       <div class="row align-items-center">
-        <div class="col-md-3">
-          <img src="assets/images/cdu-logo.png" alt="img">
-        </div>
         <div class="col-md-6">
           <p><b>&copy; <?php echo $empresa->razon_social ?></b> - Todos Los Derechos Reservados</p>
         </div>
-        <div class="col-md-3 text-right">
+        <div class="col-md-6 text-right">
           <a target="_blank" href="https://www.inmovar.com/" class="mr-3"><img src="assets/images/inmover-logo.png" alt="img"></a>
           <a target="_blank" href="https://www.misticastudio.com/"><img src="assets/images/mistica-logo.png" alt="img"></a>
         </div>
