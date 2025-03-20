@@ -848,7 +848,9 @@ class Propiedades extends REST_Controller
 
   function update($id)
   {
-    try {
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
       $array = $this->parse_put();
       $array->id = $id;
       $array->id_empresa = parent::get_empresa();
@@ -857,9 +859,6 @@ class Propiedades extends REST_Controller
         "id" => $id,
         "error" => 0,
       ));
-    } catch (Exception $e) {
-      $this->send_error($e->getMessage());
-    }
   }
 
   // INSERT
