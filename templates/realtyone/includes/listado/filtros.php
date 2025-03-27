@@ -113,7 +113,7 @@ function antiguedad_seleccionada($opciones = array()) {
         <div class="checkbox-list">
 
           <h6>Dormitorios</h6>
-          <div class="checkbox-list-bottom">
+          <div class="checkbox-list-top">
             <div class="row">
               <div class="col-6">
                 <select id="filter_dormitorios" class="form-select form-control filter_dormitorios" name="dm">
