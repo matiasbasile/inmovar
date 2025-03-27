@@ -186,19 +186,6 @@ include 'includes/header.php'; ?>
         <?php } ?>
 
         <div class="section-title">
-          <h3>Donde se encuentra</h3>
-        </div>
-        <div class="title">
-          <p><?php echo $propiedad->direccion_completa ?></p>
-        </div>
-
-        <?php if (!empty($propiedad->latitud)) { ?>
-          <div class="map-block">
-            <div id="map"></div>
-          </div>
-        <?php } ?>
-
-        <div class="section-title">
           <h3>Más información</h3>
         </div>
 
@@ -336,7 +323,20 @@ include 'includes/header.php'; ?>
               <iframe src="<?php echo $propiedad->pint ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
           </div>
-        <?php } ?>        
+        <?php } ?>
+
+        <div class="section-title">
+          <h3>Donde se encuentra</h3>
+        </div>
+        <div class="title">
+          <p><?php echo $propiedad->direccion_completa ?></p>
+        </div>
+
+        <?php if (!empty($propiedad->latitud)) { ?>
+          <div class="map-block">
+            <div id="map"></div>
+          </div>
+        <?php } ?>    
 
         <p class="tal">
           <span>Nota importante:</span> 
