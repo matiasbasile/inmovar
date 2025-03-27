@@ -1,4 +1,5 @@
 <script src="assets/js/leaflet.draw.js?v=2"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/leaflet.markercluster.js"></script>
 <script type="text/javascript">
 var buscar_ajax = 0;
 var markers;
