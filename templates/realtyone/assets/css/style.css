@@ -336,12 +336,17 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   height: 56px;
   margin: 0 9px;
   background: url(../images/map-icon2.svg) no-repeat 15px 50%;
+  background-color: #1a1a1a;
+  color: #999999;
   padding-left: 40px;
+}
+.top-banner form input.form-control:focus {
+  background-color: #1a1a1a;
+  color: #999999
 }
 .top-banner form .btn {
   background: #cfa95b;
   color: black;
-  min-width: 134px;
   padding: 10px 20px;
 }
 .top-banner form .btn:hover {
