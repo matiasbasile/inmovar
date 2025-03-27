@@ -2294,7 +2294,7 @@ button.gm-ui-hover-effect {
     font-size: 26px;
   }
   .section-title h2 {
-    font-size: 33px;
+    font-size: 22px;
     line-height: 45px;
   }
   .last-news .owl-dots {
@@ -2344,8 +2344,11 @@ button.gm-ui-hover-effect {
 
 
 @media screen and (max-width: 767px) {
+  .top-banner .owl-carousel .owl-item img {
+    max-height: auto;
+  }
   .banner-caption h2 {
-    font-size: 20px;
+    font-size: 16px;
     line-height: 25px;
   }
   .banner-caption h1 {
@@ -2383,7 +2386,7 @@ button.gm-ui-hover-effect {
     padding: 15px;
   }
   .section-title h2 {
-    font-size: 30px;
+    font-size: 22px;
     line-height: 45px;
   }
   .last-news .img-block .inner-title h5 {
@@ -2418,7 +2421,6 @@ button.gm-ui-hover-effect {
   }
   .top-banner .nav-tabs {
     display: flex;
-    padding-bottom: 15px;
   }
   .properties .sort {
     flex-direction: column;
@@ -2664,8 +2666,12 @@ button.gm-ui-hover-effect {
 
 @media screen and (max-width: 399px) {
   .top-banner .nav-tabs .nav-link {
-    padding: 4px 10px 10px;
-    font-size: 16px;
+    padding: 4px 10px;
+    font-size: 12px;
+  }
+  .top-banner .nav-tabs {
+    margin-bottom: 5px;
+    padding-bottom: 0px;
   }
   .properties .property-box .aminities .icon-box a {
     width: 30px;
