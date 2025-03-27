@@ -1132,11 +1132,11 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 .premises-sale .listing ul li {
   font-size: 17px;
   line-height: 38px;
-  color: #000000;
+  color: #8a8a8a;
   font-weight: 500;
 }
 .premises-sale .listing ul li span {
-  color: #8a8a8a;
+  color: #000000;
   font-weight: 400;
 }
 .premises-sale .checklist ul {
