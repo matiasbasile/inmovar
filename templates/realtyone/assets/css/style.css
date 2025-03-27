@@ -525,47 +525,17 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   background-image: url("../images/fondito.png");
   background-size: cover;
 }
-.the-property .item:hover {
-  background-color: #fff;
-  box-shadow: 1px 2px 9px 1px rgba(0, 0, 0, 0.08);
-}
-.the-property .item:hover .icon-box {
-  background-color: #c0aa69;
-}
-.the-property .item:hover .inner-text h5 {
-  color: #121414;
-}
-.the-property .item:hover .inner-text p {
-  color: #121414;
-}
-.the-property .item:hover .inner-text p span {
-  color: #9f9f9f;
-}
-.the-property .item .icon-box {
-  width: 83px;
-  height: 83px;
-  border-radius: 42px;
-  background-color: #cfa95b;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 15px;
-}
-.the-property .owl-carousel .owl-item img {
-  width: auto;
-  height: auto;
-}
 .the-property .item .inner-text h5 {
   font-size: 24px;
   line-height: 26px;
   color: #ffffff;
-  font-weight: bold;
+  font-weight: normal;
   padding-bottom: 0;
 }
 .the-property .item .inner-text p {
   font-size: 17px;
   line-height: 32px;
-  color: #ffffff;
+  color: #acacac;
   font-weight: 400;
   margin-bottom: 0;
 }
