@@ -1322,6 +1322,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 2px solid #3ac170;
 }
 .premises-sale .white-box form .btn-green:hover, .premises-sale .white-box .form .btn-green:hover {
   background-color: transparent;
