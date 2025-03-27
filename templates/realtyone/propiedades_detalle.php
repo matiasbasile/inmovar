@@ -325,7 +325,7 @@ include 'includes/header.php'; ?>
           </div>
         <?php } ?>
 
-        <div class="section-title mt50">
+        <div class="section-title mt70">
           <h3>Donde se encuentra</h3>
         </div>
         <div class="title">
@@ -364,9 +364,6 @@ include 'includes/header.php'; ?>
                 <small>+ <?php echo "$" . number_format($propiedad->valor_expensas,0,",",".") ?> Expensas</small>
               <?php } ?>
             </div>
-          </div>
-          <div class="play-btn">
-            <img src="assets/images/right-arrow.svg" alt="Arrow">
           </div>
         </div>
         <div class="white-box">
