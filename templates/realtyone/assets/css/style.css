@@ -1118,7 +1118,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   font-size: 17px;
   line-height: 38px;
   color: #000000;
-  font-weight: 700;
+  font-weight: 500;
 }
 .premises-sale .listing ul li span {
   color: #8a8a8a;
@@ -1297,10 +1297,11 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 }
 .premises-sale .white-box .comunicate .right-text p {
   margin: 0;
-  font-size: 17px;
+  font-size: 24px;
   font-weight: 400;
   text-align: left;
   text-transform: uppercase;
+  color: #000;
 }
 .premises-sale .white-box form .form-control, .premises-sale .white-box .form .form-control {
   border-radius: 8px;
@@ -2692,7 +2693,7 @@ button.gm-ui-hover-effect {
 }
 
 .entry-box-title{max-width: 336px;}
-.adicionales { border-top: 2px solid rgba(0, 0, 0, 0.2); margin-top: 25px; }
+.adicionales { margin-top: 25px; }
 
 #form_buscador .select2-container { background: url("../images/map-icon2.svg") no-repeat 15px 50%; }
 #form_buscador .select2-container .select2-selection__arrow { display: none }

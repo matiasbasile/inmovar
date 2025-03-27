@@ -372,7 +372,7 @@ include 'includes/header.php'; ?>
              <img src="assets/images/white-box-icon1.svg" alt="icon">
            </div>
             <div class="right-text">
-             <p>CONSULTÁ POR ESTA PROPIEDAD</p>
+             <p>CONSULTÁ POR<br/>ESTA PROPIEDAD</p>
             </div>
           </div>
           <form id='form_whatsapp_sidebar' onsubmit="return false">
