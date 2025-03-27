@@ -2023,10 +2023,6 @@ button.gm-ui-hover-effect {
   .banner-caption {
     top: 20%;
   }
-  .banner-caption h1 {
-    font-size: 40px;
-    line-height: 50px;
-  }
   .header .navbar-nav .nav-item .nav-link {
     font-size: 16px;
   }
@@ -2251,10 +2247,6 @@ button.gm-ui-hover-effect {
   .filter-box .clear {
     margin-left: 0;
   }
-  .banner-caption h1 {
-    font-size: 36px;
-    padding-bottom: 15px;
-  } 
   .top-banner form select {
     max-width: 197px;
     height: 46px;
@@ -2506,10 +2498,6 @@ button.gm-ui-hover-effect {
   }
   .banner-caption {
     top: 13%;
-  }
-  .banner-caption h1 {
-    font-size: 30px;
-    line-height: 40px;
   }
   .ventures .img-block img, .last-news .img-block img {
     width: 100%;
