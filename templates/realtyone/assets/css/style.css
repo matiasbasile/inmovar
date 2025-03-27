@@ -293,13 +293,14 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   width: 100%;
   display: flex;
   background: transparent;
-  border-radius: 10px 10px 0 0;
+  border-radius: 10px;
+  margin-bottom: 24px;
   padding: 0;
   border: none;
   gap: 20px;
 }
 .top-banner .nav-tabs .nav-item {
-  flex: calc(25% - 15px);
+  flex: calc(25% - 30px);
 }
 .top-banner .nav-tabs .nav-item .nav-link, .top-banner .nav-tabs .nav-link {
   border: none !important;
@@ -311,13 +312,8 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   width: 100%;
   text-align: center;
 }
-.top-banner .nav-tabs .nav-link.active {
-  background: #f0f0f0;
-  font-weight: bold;
-  color: #000;
-}
-.top-banner .nav-tabs .nav-link.active:before {
-  max-width: 60%;
+.top-banner .nav-tabs.active .nav-link {
+  background: #cfa95b;
 }
 .top-banner .tab-content {
   padding: 15px;

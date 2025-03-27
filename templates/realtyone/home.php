@@ -31,8 +31,8 @@
         <?php } ?>
                 
         <ul class="nav nav-tabs" id="myTab" role="tablist">
-          <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="Comprar-tab" data-bs-toggle="tab" data-bs-target="#Comprar" type="button" role="tab" aria-controls="Comprar" aria-selected="true">Comprar</button>
+          <li class="nav-item active" role="presentation">
+            <button class="nav-link" id="Comprar-tab" data-bs-toggle="tab" data-bs-target="#Comprar" type="button" role="tab" aria-controls="Comprar" aria-selected="true">Comprar</button>
           </li>
           <li class="nav-item" role="presentation">
             <button class="nav-link" id="Alquilar-tab" data-bs-toggle="tab" data-bs-target="#Alquilar" type="button" role="tab" aria-controls="Alquilar" aria-selected="false">Alquilar</button>
