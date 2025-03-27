@@ -180,7 +180,7 @@ include 'includes/header.php'; ?>
           <div class="section-title">
             <h3>descripción</h3>
           </div>
-          <div class="title mb20">
+          <div class="title mb40">
             <?php echo $propiedad->texto ?>
           </div>
         <?php } ?>
@@ -340,8 +340,11 @@ include 'includes/header.php'; ?>
 
         <p class="tal">
           <span>Nota importante:</span> 
-          Toda la información y medidas provistas son aproximadas y deberán ratificarse con la documentación pertinente y no
-          compromete contractualmente a nuestra empresa. Los gastos expresados (expensas, ABL) se refieren a la última información recabada y deberán confirmarse. Fotografías no vinculantes ni contractuales.
+          Realty ONE Group Argentina no ejerce corretaje inmobiliario. Cada oficina asociada es independiente
+          y responsable de sus publicaciones y operaciones. Las transacciones son intermediadas
+          por un corredor público inmobiliario matriculado, cuyos datos figuran en cada publicación.
+          La información sobre medidas, expensas, impuestos y precios es aproximada y debe
+          verificarse con el corredor responsable.  
         </p>
 
       </div>

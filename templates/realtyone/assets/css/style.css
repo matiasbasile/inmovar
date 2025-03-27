@@ -1006,7 +1006,10 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   font-size: 16px;
   line-height: 32px;
   color: #848484;
-  font-weight: 700;
+  font-weight: 500;
+}
+.premises-sale p span {
+  color: #000;
 }
 .premises-sale .item {
   position: relative;
@@ -1025,7 +1028,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   }
 }
 .premises-sale .slider {
-  margin-bottom: 70px;
+  margin-bottom: 40px;
   position: relative;
 }
 .premises-sale .slider .nav-tabs {
