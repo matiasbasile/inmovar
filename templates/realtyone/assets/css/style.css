@@ -1316,7 +1316,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 }
 .premises-sale .white-box form .btn-green, .premises-sale .white-box .form .btn-green {
   width: 100%;
-  background-color: #cfa95b;
+  background-color: #3ac170;
   padding: 10px;
   color: #FFF;
   display: flex;
@@ -1325,8 +1325,8 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 }
 .premises-sale .white-box form .btn-green:hover, .premises-sale .white-box .form .btn-green:hover {
   background-color: transparent;
-  color: #92b85a;
-  border: 2px solid #cfa95b;
+  color: #3ac170;
+  border: 2px solid #3ac170;
 }
 .premises-sale .white-box form .btn-green svg, .premises-sale .white-box .form .btn-green svg {
   height: 25px;
