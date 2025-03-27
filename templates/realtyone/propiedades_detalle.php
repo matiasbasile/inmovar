@@ -66,16 +66,16 @@ include 'includes/header.php'; ?>
     <div class="row">
       <div class="col-xl-8">
         <div class="section-title">
-          <h3><?php echo $propiedad->nombre ?></h3>
+          <h3 class="principal"><?php echo $propiedad->nombre ?></h3>
           <small><?php echo $propiedad->direccion_completa ?></small>
         </div>
         <div class="aminities">
           <ul>
-            <li><img src="assets/images/featured-properties-icon1.svg" alt="icon">Hab <b><?php echo (!empty($propiedad->dormitorios) ? $propiedad->dormitorios : "-") ?></b></li>
+            <li><img src="assets/images/featured-properties-icon1.svg" alt="icon"><b><?php echo (!empty($propiedad->dormitorios) ? $propiedad->dormitorios : "-") ?></b></li>
 
-            <li><img src="assets/images/featured-properties-icon2.svg" alt="icon">Baños: <b><?php echo (!empty($propiedad->banios) ? $propiedad->banios : "-") ?></b></li>
+            <li><img src="assets/images/featured-properties-icon2.svg" alt="icon"><b><?php echo (!empty($propiedad->banios) ? $propiedad->banios : "-") ?></b></li>
 
-            <li><img src="assets/images/featured-properties-icon3.svg" alt="icon">Cocheras: <b><?php echo (!empty($propiedad->cocheras)) ? $propiedad->cocheras : "-" ?></b></li>
+            <li><img src="assets/images/featured-properties-icon3.svg" alt="icon"><b><?php echo (!empty($propiedad->cocheras)) ? $propiedad->cocheras : "-" ?></b></li>
             
             <li><img src="assets/images/properties-icon4.svg" alt="icon">Cubierto: <b><?php echo (!empty($propiedad->superficie_cubierta) ? $propiedad->superficie_cubierta : "-") ?> m2</b></li>
             
@@ -90,9 +90,34 @@ include 'includes/header.php'; ?>
           </ul>
         </div>
         <div class="slider">
-          
-          <p>Código: <?php echo $propiedad->codigo ?></p>
 
+          <div class="adicionales">
+            <h4>adicionales</h4>
+            <div class="row">
+              <div class="col-4">
+                <div class="listing">
+                  <ul>
+                    <li>Acepta Permuta: <small><?php echo $propiedad->acepta_permuta == 1 ? "Si" : "No" ?></small></li>
+                  </ul>
+                </div>
+              </div> 
+              <div class="col-4">
+                <div class="listing">
+                  <ul>
+                    <li>Apto Crédito: <small><?php echo $propiedad->apto_banco == 1 ? "Si" : "No" ?></small></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="listing">
+                  <ul>
+                    <li>Código: <small><?php echo $propiedad->codigo ?></small></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
               <a href="javascript:void(0)" onclick="abrir_galeria()" class="nav-link active">
@@ -147,9 +172,6 @@ include 'includes/header.php'; ?>
                 <small>+ <?php echo "$" . number_format($propiedad->valor_expensas,0,",",".") ?> Expensas</small>
               <?php } ?>
             </div>
-          </div>
-          <div class="play-btn">
-            <img src="assets/images/right-arrow.svg" alt="Arrow">
           </div>
         </div>
     
@@ -291,26 +313,6 @@ include 'includes/header.php'; ?>
             </ul>
           </div>
         <?php } ?>
-
-        <div class="adicionales">
-          <h4>adicionales</h4>
-          <div class="row">
-            <div class="col-md-4 col-6">
-              <div class="listing">
-                <ul>
-                  <li>Acepta Permuta: <small><?php echo $propiedad->acepta_permuta == 1 ? "Si" : "No" ?></small></li>
-                </ul>
-              </div>
-            </div> 
-            <div class="col-md-4 col-6">
-              <div class="listing">
-                <ul>
-                  <li>Apto Crédito: <small><?php echo $propiedad->apto_banco == 1 ? "Si" : "No" ?></small></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
       
         <?php if (isset($propiedad->video_original) && !empty($propiedad->video_original)) { ?>
           <div class="section-title pt-4">
@@ -369,8 +371,7 @@ include 'includes/header.php'; ?>
              <img src="assets/images/white-box-icon1.svg" alt="icon">
            </div>
             <div class="right-text">
-             <h5>COMUNICATE AHORA</h5>
-             <p>POR ESTA PROPIEDAD</p>
+             <p>CONSULTÁ POR ESTA PROPIEDAD</p>
             </div>
           </div>
           <form id='form_whatsapp_sidebar' onsubmit="return false">
