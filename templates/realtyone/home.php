@@ -31,11 +31,11 @@
         <?php } ?>
                 
         <ul class="nav nav-tabs" id="myTab" role="tablist">
-          <li class="nav-item active" role="presentation">
-            <button class="nav-link" id="Comprar-tab" data-bs-toggle="tab" data-bs-target="#Comprar" type="button" role="tab" aria-controls="Comprar" aria-selected="true">Comprar</button>
+          <li class="nav-item active" data-bs-toggle="tab" data-bs-target="#Comprar" type="button" role="tab" aria-controls="Comprar" aria-selected="true">
+            <button class="nav-link" id="Comprar-tab">Comprar</button>
           </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="Alquilar-tab" data-bs-toggle="tab" data-bs-target="#Alquilar" type="button" role="tab" aria-controls="Alquilar" aria-selected="false">Alquilar</button>
+          <li class="nav-item" data-bs-toggle="tab" data-bs-target="#Alquilar" type="button" role="tab" aria-controls="Alquilar" aria-selected="false">
+            <button class="nav-link" id="Alquilar-tab">Alquilar</button>
           </li>
           <li class="nav-item" role="presentation">
             <a href="<?php echo mklink("propiedades/") ?>" class="nav-link" role="tab" aria-controls="Emprendimientos" aria-selected="false">Emprendimientos</a>
