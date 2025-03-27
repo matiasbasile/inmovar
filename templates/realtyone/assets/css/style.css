@@ -1374,7 +1374,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 
 /* Listado Pages CSS */
 .filter-box {
-  background-color: #f0f0f0;
+  background-color: white;
   padding: 30px 0;
 }
 .filter-box .drowdown-options-mobile-container, .filter-box {
@@ -1560,8 +1560,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 }
 
 .properties {
-  background: url(../images/featured-properties-background-img.svg) repeat 0 0;
-  background-size: contain;
+  background-color: #f0f0f0;
   padding: 40px;
   position: relative;
 }
