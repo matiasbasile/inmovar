@@ -91,8 +91,7 @@ include 'includes/header.php'; ?>
         </div>
         <div class="slider">
 
-          <div class="adicionales">
-            <h4>adicionales</h4>
+          <div class="adicionales mb20">
             <div class="row">
               <div class="col-4">
                 <div class="listing">
@@ -118,6 +117,20 @@ include 'includes/header.php'; ?>
             </div>
           </div>
           
+          <div class="tab-content mb20">
+            <div class="tab-pane fade show active">  
+              <div class="owl-carousel owl-theme" data-outoplay="true" data-items="1" data-nav="true" data-dots="false">
+                <?php foreach ($propiedad->images as $img) { ?>
+                  <div class="item">
+                    <a href="javascript:void(0)" onclick="abrir_galeria()">
+                      <img src="<?php echo $img ?>" alt="img">
+                    </a>
+                  </div>
+                <?php } ?>
+              </div>
+            </div>
+          </div>
+
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
               <a href="javascript:void(0)" onclick="abrir_galeria()" class="nav-link active">
@@ -144,19 +157,7 @@ include 'includes/header.php'; ?>
               </li>
             <?php } ?>
           </ul>
-          <div class="tab-content">
-            <div class="tab-pane fade show active">  
-              <div class="owl-carousel owl-theme" data-outoplay="true" data-items="1" data-nav="true" data-dots="false">
-                <?php foreach ($propiedad->images as $img) { ?>
-                  <div class="item">
-                    <a href="javascript:void(0)" onclick="abrir_galeria()">
-                      <img src="<?php echo $img ?>" alt="img">
-                    </a>
-                  </div>
-                <?php } ?>
-              </div>
-            </div>
-          </div>
+
         </div>
         <div class="expenses-info <?php echo ($propiedad->valor_expensas == 0) ? "sin-expensas" : "con-expensas" ?>">
           <div class="expenses">
