@@ -813,6 +813,9 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   color: #ffffff;
   font-weight: bold;
 }
+.footer .footer-info ul {
+  list-style-position: inside;
+}
 .footer .footer-info ul li {
   list-style-type: disc;
   color: #c0aa69;
@@ -826,6 +829,9 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 }
 .footer .footer-info ul li a:hover {
   color: #c0aa69;
+}
+.footer p {
+  line-height: 28px;
 }
 .footer .footer-info .link-text a {
   font-size: 17px;
