@@ -14,6 +14,9 @@
           <?php item_destacada($des) ?>
         <?php } ?>
       </div>
+      <div class="tac">
+        <a href="<?php echo mklink("propiedades/") ?>" class="btn">Ver Todas las Propiedades</a>
+      </div>
     </div>
   </section>
 <?php } ?>
