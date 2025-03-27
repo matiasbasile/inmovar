@@ -15,7 +15,7 @@
         <?php } ?>
       </div>
       <div class="tac">
-        <a href="<?php echo mklink("propiedades/") ?>" class="btn pl30 pr30 mt20 mb20">Ver Todas las Propiedades</a>
+        <a href="<?php echo mklink("propiedades/") ?>" class="btn pl30 pr30 mt20 mb20">Ver todas las propiedades</a>
       </div>
     </div>
   </section>

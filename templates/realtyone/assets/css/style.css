@@ -2352,6 +2352,16 @@ button.gm-ui-hover-effect {
 
 
 @media screen and (max-width: 767px) {
+  .banner-caption h2 {
+    font-size: 20px;
+    line-height: 25px;
+  }
+  .banner-caption h1 {
+    font-size: 45px;
+  }
+  .top-banner form .form-control {
+    margin: 0;
+  }
   .properties, .featured-properties, .last-news {
     background-size: 300%;
   }
@@ -2369,9 +2379,6 @@ button.gm-ui-hover-effect {
   }
   .filter-box {
     padding-top: 15px; padding-bottom: 15px;
-  }
-  .banner-caption h1 {
-    font-size: 30px;
   }
   .property-box .title-box p, .property-box .title-box span {
     font-size: 16px;
