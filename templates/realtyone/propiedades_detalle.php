@@ -325,7 +325,7 @@ include 'includes/header.php'; ?>
           </div>
         <?php } ?>
 
-        <div class="section-title mt30">
+        <div class="section-title mt50">
           <h3>Donde se encuentra</h3>
         </div>
         <div class="title">
