@@ -92,28 +92,12 @@ include 'includes/header.php'; ?>
         <div class="slider">
 
           <div class="adicionales mb20">
-            <div class="row">
-              <div class="col-4">
-                <div class="listing">
-                  <ul>
-                    <li>Acepta Permuta: <small><?php echo $propiedad->acepta_permuta == 1 ? "Si" : "No" ?></small></li>
-                  </ul>
-                </div>
-              </div> 
-              <div class="col-4">
-                <div class="listing">
-                  <ul>
-                    <li>Apto Crédito: <small><?php echo $propiedad->apto_banco == 1 ? "Si" : "No" ?></small></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-4">
-                <div class="listing">
-                  <ul>
-                    <li>Código: <small><?php echo $propiedad->codigo ?></small></li>
-                  </ul>
-                </div>
-              </div>
+            <div class="listing">
+              <ul>
+                <li>Acepta Permuta: <small><?php echo $propiedad->acepta_permuta == 1 ? "Si" : "No" ?></small></li>
+                <li>Apto Crédito: <small><?php echo $propiedad->apto_banco == 1 ? "Si" : "No" ?></small></li>
+                <li>Código: <small><?php echo $propiedad->codigo ?></small></li>
+              </ul>
             </div>
           </div>
           
@@ -325,7 +309,7 @@ include 'includes/header.php'; ?>
           </div>
         <?php } ?>
 
-        <div class="section-title mt70">
+        <div class="section-title mt50">
           <h3>Donde se encuentra</h3>
         </div>
         <div class="title">
