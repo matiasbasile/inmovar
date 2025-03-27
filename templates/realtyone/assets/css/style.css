@@ -109,7 +109,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   line-height: 32px;
   color: #cfa95b;
   font-weight: 500;
-  min-width: 160px;
+  min-width: 120px;
   border-radius: 10px;
   border: 2px solid #cfa95b;
 }
@@ -294,7 +294,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   display: flex;
   background: transparent;
   border-radius: 10px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   padding: 0;
   border: none;
   gap: 20px;
@@ -331,7 +331,6 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   #form_buscador .filter_propiedad { max-width:210px; }
 }
 .top-banner form input {
-  max-width: 328px;
   height: 56px;
   background: url(../images/map-icon2.svg) no-repeat 15px 50%;
   background-color: #1a1a1a;
