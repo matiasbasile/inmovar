@@ -77,7 +77,7 @@ include 'includes/header.php'; ?>
 
             <li><img src="assets/images/featured-properties-icon3.svg" alt="icon"><b><?php echo (!empty($propiedad->cocheras)) ? $propiedad->cocheras : "-" ?></b></li>
             
-            <li><img src="assets/images/properties-icon4.svg" alt="icon">Cubierto: <b><?php echo (!empty($propiedad->superficie_cubierta) ? $propiedad->superficie_cubierta : "-") ?> m2</b></li>
+            <li><img src="assets/images/properties-icon4.svg?v=1" alt="icon">Cubierto: <b><?php echo (!empty($propiedad->superficie_cubierta) ? $propiedad->superficie_cubierta : "-") ?> m2</b></li>
             
             <?php if (!empty($propiedad->superficie_semicubierta)) { ?>
               <li class="semi">Semi: <b><?php echo $propiedad->superficie_semicubierta ?> m2</b></li>
