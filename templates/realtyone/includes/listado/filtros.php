@@ -70,13 +70,6 @@ function antiguedad_seleccionada($opciones = array()) {
         <?php } ?>
       </select>
 
-      <select id="filter_dormitorios" class="form-select form-control filter_dormitorios" name="dm">
-        <?php $dormitorios = $propiedad_model->get_dormitorios(); ?>
-        <?php foreach ($dormitorios as $dormitorio) { ?>
-          <option <?php echo ($vc_dormitorios == $dormitorio->dormitorios)?"selected":"" ?> value="<?php echo $dormitorio->dormitorios; ?>"><?php echo (($dormitorio->dormitorios == 0) ? "Dormitorios" : $dormitorio->dormitorios) ?></option>
-        <?php } ?>
-      </select>
-
       <div class="multiple-checkbox drowdown-options mr5">
         <span>Precio</span>
         <a href="javascript:void(0)">
@@ -118,6 +111,53 @@ function antiguedad_seleccionada($opciones = array()) {
           </svg>
         </a>
         <div class="checkbox-list">
+
+          <h6>Dormitorios</h6>
+          <div class="checkbox-list-bottom">
+            <div class="row">
+              <div class="col-6">
+                <select id="filter_dormitorios" class="form-select form-control filter_dormitorios" name="dm">
+                  <?php $dormitorios = $propiedad_model->get_dormitorios(); ?>
+                  <option>Sin mínimo</option>
+                  <?php foreach ($dormitorios as $dormitorio) { ?>
+                    <option <?php echo ($vc_dormitorios == $dormitorio->dormitorios)?"selected":"" ?> value="<?php echo $dormitorio->dormitorios; ?>"><?php echo (($dormitorio->dormitorios == 0) ? "Dormitorios" : $dormitorio->dormitorios) ?></option>
+                  <?php } ?>
+                </select>
+              </div>
+              <div class="col-6">
+                <select id="filter_dormitorios" class="form-select form-control filter_dormitorios" name="dm">
+                  <?php $dormitorios = $propiedad_model->get_dormitorios(); ?>
+                  <option>Sin máximo</option>
+                  <?php foreach ($dormitorios as $dormitorio) { ?>
+                    <option <?php echo ($vc_dormitorios == $dormitorio->dormitorios)?"selected":"" ?> value="<?php echo $dormitorio->dormitorios; ?>"><?php echo (($dormitorio->dormitorios == 0) ? "Dormitorios" : $dormitorio->dormitorios) ?></option>
+                  <?php } ?>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <h6>Superficie</h6>
+          <div class="checkbox-list-top">
+            <div class="checkbox-list-top" style="border-bottom: none; padding-bottom: 5px; padding-left: 0px; width: 100%;">
+              <div class="form-check">
+                <input <?php echo (isset($vc_tipo_superficie) && strtoupper($vc_tipo_superficie) == "C")?"checked":"" ?> name="tipo_superficie" class="form-check-input" type="radio" value="C" id="superficieCubierta">
+                <label class="form-check-label" for="superficieCubierta">Cubierta</label>
+              </div>
+              <div class="form-check">
+                <input <?php echo (isset($vc_tipo_superficie) && strtoupper($vc_tipo_superficie) == "T")?"checked":"" ?> name="tipo_superficie" class="form-check-input" type="radio" value="T" id="superficieTotal">
+                <label class="form-check-label" for="superficieTotal">Total</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <input min="0" name="superficie_minimo" type="number" value="<?php echo (isset($vc_superficie_minimo) && !empty($vc_superficie_minimo) ? $vc_superficie_minimo : "") ?>" placeholder="Desde" class="form-control">
+              </div>
+              <div class="col-6">
+                <input min="0" name="superficie_maximo" type="number" value="<?php echo (isset($vc_superficie_maximo) && !empty($vc_superficie_maximo) ? $vc_superficie_maximo : "") ?>" placeholder="Hasta" class="form-control">
+              </div>
+            </div>
+          </div>
+
           <h6>Antiguedad</h6>
           <div class="checkbox-list-top">
             <div class="form-check">
@@ -166,6 +206,7 @@ function antiguedad_seleccionada($opciones = array()) {
               </label>
             </div>
           </div>
+
           <h6>Otros</h6> 
           <div class="checkbox-list-top">
             <div class="form-check">
@@ -175,52 +216,24 @@ function antiguedad_seleccionada($opciones = array()) {
               </label>
             </div>
             <div class="form-check">
-              <input <?php echo (isset($vc_uso_comercial) && $vc_uso_comercial > 0)?"checked":"" ?> class="form-check-input" type="checkbox" name="uso_comercial" value="1" id="flexCheckDefault8">
-              <label class="form-check-label" for="flexCheckDefault8">
-                Uso comercial
-              </label>
-            </div>
-            <div class="form-check">
               <input <?php echo ($vc_tiene_cochera > 0)?"checked":"" ?> class="form-check-input" type="checkbox" name="cochera" value="1" id="flexCheckDefault9">
               <label class="form-check-label" for="flexCheckDefault9">
-                Con cochera
-              </label>
-            </div>
-            <div class="form-check">
-              <input <?php echo ($vc_es_oferta == 1)?"checked":"" ?> name="oferta" value="1" class="form-check-input" type="checkbox" id="flexCheckDefault10">
-              <label class="form-check-label" for="flexCheckDefault10">
-                Oportunidades
+                Acepta permuta
               </label>
             </div>
           </div>
-          <h6>Superficie</h6>
+
+          <h6>Búsqueda por Código</h6>
           <div class="checkbox-list-bottom">
-            <div class="checkbox-list-top" style="border-bottom: none; padding-bottom: 5px; padding-left: 0px; width: 100%;">
-              <div class="form-check">
-                <input <?php echo (isset($vc_tipo_superficie) && strtoupper($vc_tipo_superficie) == "C")?"checked":"" ?> name="tipo_superficie" class="form-check-input" type="radio" value="C" id="superficieCubierta">
-                <label class="form-check-label" for="superficieCubierta">Cubierta</label>
-              </div>
-              <div class="form-check">
-                <input <?php echo (isset($vc_tipo_superficie) && strtoupper($vc_tipo_superficie) == "T")?"checked":"" ?> name="tipo_superficie" class="form-check-input" type="radio" value="T" id="superficieTotal">
-                <label class="form-check-label" for="superficieTotal">Total</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-6">
-                <input min="0" name="superficie_minimo" type="number" value="<?php echo (isset($vc_superficie_minimo) && !empty($vc_superficie_minimo) ? $vc_superficie_minimo : "") ?>" placeholder="Desde" class="form-control">
-              </div>
-              <div class="col-6">
-                <input min="0" name="superficie_maximo" type="number" value="<?php echo (isset($vc_superficie_maximo) && !empty($vc_superficie_maximo) ? $vc_superficie_maximo : "") ?>" placeholder="Hasta" class="form-control">
-              </div>
-            </div>
+            <input name="superficie_minimo" type="text" value="<?php echo (isset($vc_superficie_minimo) && !empty($vc_superficie_minimo) ? $vc_superficie_minimo : "") ?>" placeholder="Ingrese el código de la propiedad" class="form-control">
           </div>
+
           <div class="dropdown-btn-block">
             <a href="javascript:void(0)" rel="nofollow" onclick="enviar_filtrar()" style="width: 100%; display: block; margin-left: 0px;" class="btn btn-green">Aplicar</a>
           </div>
         </div>
       </div>
       <button type="submit" class="btn btn-green">Aplicar</button>
-      <a href="<?php echo mklink("propiedades/") ?>" class="clear">Limpiar filtros</a>
     </div>
   </form>
 </section>
