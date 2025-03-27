@@ -337,13 +337,13 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   color: #999999;
   padding-left: 40px;
 }
-.top-banner form input::placeholder {
-  color: #999999;
-  opacity: 1;
-}
 .top-banner form .form-control {
   color: white;
   background-color: #1a1a1a;
+}
+.top-banner form .form-control::placeholder {
+  color: #999999;
+  opacity: 1;  
 }
 .top-banner form input.form-control:focus {
   background-color: #1a1a1a;
