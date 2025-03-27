@@ -1,8 +1,7 @@
 <section class="the-property">
   <div class="container">
     
-    <?php // FALTAN: Duplex, Countries, Locales ?>
-    <div class="owl-carousel owl-theme" data-outoplay="true" data-items="3" data-nav="true" data-dots="false" data-margin="25" data-items-tablet="3" data-items-mobile-landscape="2" data-items-mobile-portrait="1">
+    <div class="owl-carousel owl-theme" data-outoplay="false" data-items="3" data-nav="true" data-dots="false" data-margin="25" data-items-tablet="3" data-items-mobile-landscape="2" data-items-mobile-portrait="1">
 
       <div class="item">
         <div class="inner-text">

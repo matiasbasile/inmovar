@@ -519,7 +519,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 .the-property .item {
   display: flex;
   align-items: center;
-  padding: 15px 20px;
+  padding: 20px 30px;
   border-radius: 10px;
   background-color: #1a1a1a;
   background-image: url("../images/fondito.png");
@@ -531,13 +531,17 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   color: #ffffff;
   font-weight: normal;
   padding-bottom: 0;
+  margin: 15px 0px;
 }
 .the-property .item .inner-text p {
   font-size: 17px;
-  line-height: 32px;
+  line-height: 28px;
   color: #acacac;
   font-weight: 400;
-  margin-bottom: 0;
+  margin-bottom: 15px;
+}
+.the-property .item .inner-text .btn {
+  margin-bottom: 10px;
 }
 .the-property .section-title {
   margin-bottom: 15px;
