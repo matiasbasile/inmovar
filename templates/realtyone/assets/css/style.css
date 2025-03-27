@@ -241,26 +241,26 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   font-family: 'Freeland';
   text-align: center;
   width: 100%;
-  font-size: 55px;
+  font-size: 100px;
   line-height: 60px;
   text-transform: lowercase;
   color: #ccad66;
   font-weight: 400;
   text-align: center;
-  padding-bottom: 35px;
+  padding-bottom: 5px;
 }
 
 .banner-caption h2 {
   font-family: 'Museo';
   text-align: center;
   width: 100%;
-  font-size: 55px;
+  font-size: 40px;
   line-height: 60px;
   text-transform: uppercase;
   color: #fff;
   font-weight: 400;
   text-align: center;
-  padding-bottom: 35px;
+  padding-bottom: 55px;
 }
 
 .owl-dots {
