@@ -12,13 +12,9 @@
         <div class="footer-info">
           <h6>Legales</h6>
           <ul>
-            <li><a href="<?php echo mklink("propiedades/ventas/la-plata/?tp=2") ?>">Departamento en Venta La Plata</a></li>
-            <li><a href="<?php echo mklink("propiedades/ventas/la-plata/?tp=1") ?>">Casa en Venta La Plata</a></li>
-            <li><a href="<?php echo mklink("propiedades/ventas/la-plata/?tp=3") ?>">PH en Venta La Plata</a></li>
+            <li><a href="#">Política de Privacidad</a></li>
+            <li><a href="#">Términos y Condiciones</a></li>
           </ul>
-          <div class="link-text">
-            <a href="<?php echo mklink("propiedades/ventas") ?>">Ver Más</a>
-          </div>
         </div>
       </div>
       <div class="col-lg-3 col-md-6">

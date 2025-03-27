@@ -4,7 +4,7 @@ html {
 body {
   font-size: 14px;
   background: #fff;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Museo', sans-serif;
   font-weight: 400;
   line-height: 1.42857143;
   text-rendering: optimizeLegibility;
@@ -108,7 +108,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   font-size: 18px;
   line-height: 32px;
   color: #cfa95b;
-  font-weight: 600;
+  font-weight: 500;
   min-width: 160px;
   border-radius: 10px;
   border: 2px solid #cfa95b;
@@ -292,13 +292,14 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 .top-banner .nav-tabs {
   width: 100%;
   display: flex;
-  background: #fff;
+  background: transparent;
   border-radius: 10px 10px 0 0;
-  padding: 15px 15px 0;
+  padding: 0;
   border: none;
+  gap: 20px;
 }
 .top-banner .nav-tabs .nav-item {
-
+  flex: calc(25% - 15px);
 }
 .top-banner .nav-tabs .nav-item .nav-link, .top-banner .nav-tabs .nav-link {
   border: none !important;
@@ -307,18 +308,8 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   border-radius: 10px;
   padding: 12px 30px 15px;
   position: relative;
-}
-.top-banner .nav-tabs .nav-link:before {
-  position: absolute;
-  bottom: 10px;
-  left: 0;
-  right: 0;
-  max-width: 0;
-  height: 2px;
-  margin: 0 auto;
-  background-color: #cfa95b;
-  content: "";
-  transition: all 0.5s ease;
+  width: 100%;
+  text-align: center;
 }
 .top-banner .nav-tabs .nav-link.active {
   background: #f0f0f0;
@@ -353,12 +344,13 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 }
 .top-banner form .btn {
   background: #cfa95b;
-  color: #fff;
-  min-width: 184px;
+  color: black;
+  min-width: 134px;
   padding: 10px 20px;
 }
 .top-banner form .btn:hover {
   background: #000;
+  color: white;
 }
 .top-banner .owl-carousel .owl-item img {
   width: 100%;
@@ -446,7 +438,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   font-size: 16px;
   line-height: 32px;
   color: #cfa95b;
-  font-weight: 700;
+  font-weight: 500;
   display: flex;
   align-items: center;
 }
@@ -460,7 +452,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   font-size: 19px;
   line-height: 32px;
   color: #000201;
-  font-weight: 700;
+  font-weight: 500;
   margin-bottom: 0;
 }
 .property-box .title-box span {
@@ -480,7 +472,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   line-height: 28px;
   text-transform: uppercase;
   color: #000201;
-  font-weight: 700;
+  font-weight: 500;
 }
 .aminities ul {
   display: flex;
@@ -496,7 +488,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   line-height: 28px;
   text-transform: uppercase;
   color: #000201;
-  font-weight: 700;
+  font-weight: 500;
   display: flex;
   align-items: center;
 }
@@ -2274,7 +2266,7 @@ button.gm-ui-hover-effect {
     height: 46px;
   }
   .top-banner form .btn {
-    min-width: 174px;
+    min-width: 134px;
     padding: 5px 20px;
   }
   .banner-caption {
