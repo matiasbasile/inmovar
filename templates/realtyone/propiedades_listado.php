@@ -40,10 +40,10 @@ if (isset($get_params["test"])) echo $propiedad_model->get_sql();
 <?php include 'includes/footer.php' ?>
 <?php include 'includes/propiedad/modal.php' ?>
 
-<?php if ($vc_view == 0) {
-  include_once("templates/comun/mapa_js.php"); 
-  include_once("includes/listado/mapa_js.php");
-} ?>
+<?php
+include_once("templates/comun/mapa_js.php"); 
+include_once("includes/listado/mapa_js.php");
+?>
 
 </body>
 </html>
