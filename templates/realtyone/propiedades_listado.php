@@ -1,8 +1,9 @@
 <?php 
 include 'includes/init.php';
 $config2 = array(
-  "orden_default"=>8,
-  "buscar_listado_completo"=>1, // Para usarlo en los mapas que traiga todo completo
+  "images_limit" => 3,
+  "orden_default" => 8,
+  "buscar_listado_completo" => 1, // Para usarlo en los mapas que traiga todo completo
 );
 if (isset($buscar_solo_emprendimientos)) {
   // Buscamos solo los emprendimientos
