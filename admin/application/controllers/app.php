@@ -408,6 +408,7 @@ class App extends CI_Controller {
 
       "color_1" => $color_1,
       "color_2" => $color_2,
+      "color_success" => $color_success,
     );
     
     $this->load->view('application',$data);
