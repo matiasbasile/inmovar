@@ -70,6 +70,7 @@ class App extends CI_Controller {
 
     $color_1 = COLOR_1;
     $color_2 = COLOR_2;
+    $color_success = "0dd384";
     
     // Debemos cargar el usuario con todo su perfil
     $perfil = $_SESSION["perfil"];
@@ -327,6 +328,7 @@ class App extends CI_Controller {
     if ($empresa->subred == 1) {
       $color_1 = "cfa95b";
       $color_2 = "000";
+      $color_success = $color_1;
     }
 
     // Este array tiene las variables que son utilizadas por la vista
@@ -832,7 +834,7 @@ class App extends CI_Controller {
       "resources/css/simple-line-icons.css",
       //"resources/css/font.css",
       "resources/fonts/lato/lato.css",
-      "resources/css/app.css?v=13",
+      "resources/css/app.css?v=14",
       "resources/js/jquery/ui/jquery-ui.min.css",
       "resources/css/tablednd.css",
       "resources/css/footable/footable.core.css",
