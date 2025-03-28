@@ -17,10 +17,13 @@
               <a class="nav-link" href="<?php echo mklink("propiedades/") ?>">PROPIEDADES</a>
             </li>
             <li class="nav-item <?php echo (isset($menu_active) && $menu_active == "el-club") ? "active":"" ?>">
-              <a class="nav-link" href="<?php echo mklink("entrada/el-club/") ?>">EL ÉXITO ONE</a>
+              <a class="nav-link" href="<?php echo mklink("entrada/el-exito-one/") ?>">EL ÉXITO ONE</a>
             </li>
             <li class="nav-item <?php echo (isset($menu_active) && $menu_active == "nosotros") ? "active":"" ?>">
-              <a class="nav-link" href="<?php echo mklink("entrada/nosotros/") ?>">OFICINAS ONE</a>
+              <a class="nav-link" href="<?php echo mklink("entrada/oficinas-one/") ?>">OFICINAS ONE</a>
+            </li>
+            <li class="nav-item <?php echo (isset($menu_active) && $menu_active == "contacto") ? "active":"" ?>">
+              <a class="nav-link" href="<?php echo mklink("entrada/contacto/") ?>">CONTACTO</a>
             </li>
             <li class="nav-item">
               <a target="_blank" class="btn" href="javascript:void(0)">Unite a ONE</a>
