@@ -1179,6 +1179,9 @@ class Propiedad_Model {
     $valido_hasta = isset($config["valido_hasta"]) ? $config["valido_hasta"] : ($this->id_empresa == 263 ? date("Y-m-d") : "");
     $tiene_etiqueta_link = isset($config["tiene_etiqueta_link"]) ? $config["tiene_etiqueta_link"] : "";
 
+    // IMPORTANTE: Este parametro es usado para inhabilitar por defecto el tema de RED INMOVAR normal
+    $subred = isset($config["subred"]) ? intval($config["subred"]) : 0;
+
     $tiene_cocheras = isset($config["tiene_cocheras"]) ? intval($config["tiene_cocheras"]) : 0;
     $tiene_balcon = isset($config["tiene_balcon"]) ? intval($config["tiene_balcon"]) : 0;
     $tiene_patio = isset($config["tiene_patio"]) ? intval($config["tiene_patio"]) : 0;
@@ -1239,7 +1242,7 @@ class Propiedad_Model {
     //$sql.= "AND A.id_empresa = $this->id_empresa ";
 
     $sql.= "AND (A.id_empresa = $this->id_empresa ";
-    if ($solo_propias == 0) {
+    if ($solo_propias == 0 && $subred == 0) {
       $empresas_compartida = $this->get_empresas_red();
       if (sizeof($empresas_compartida)>0) {
         $emp_comp = implode(",", $empresas_compartida);
@@ -1261,6 +1264,9 @@ class Propiedad_Model {
         $sql.= " AND A.id_tipo_estado NOT IN (2,3,4,6) ";
         $sql.= " AND A.activo = 1 ) ";
       }
+    } else if ($subred != 0) {
+      // Muestra todas las propiedades de la subred
+      $sql.= "OR E.subred = $subred ";
     }
     $sql.= ") ";
 

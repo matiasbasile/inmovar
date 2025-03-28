@@ -67,6 +67,9 @@ class App extends CI_Controller {
     $usuario->horarios = array();
     $mensaje_cuenta_nivel = 0;
     $comision_inmobiliaria = 0;
+
+    $color_1 = COLOR_1;
+    $color_2 = COLOR_2;
     
     // Debemos cargar el usuario con todo su perfil
     $perfil = $_SESSION["perfil"];
@@ -91,6 +94,7 @@ class App extends CI_Controller {
       $empresa->servidor_local = "";
       $empresa->administrar_pagos = 0;
       $empresa->activo = 1;
+      $empresa->subred = 0;
 
       // Si tenemos DEBUG = 1, entonces tomamos los archivos directamente
       // Sino, usamos su version comprimida y compilada
@@ -320,6 +324,11 @@ class App extends CI_Controller {
       ),
     );
 
+    if ($empresa->subred == 1) {
+      $color_1 = "#cfa95b";
+      $color_2 = "#000";
+    }
+
     // Este array tiene las variables que son utilizadas por la vista
     $data = array(
       "base_url"=>$this->config->item("base_url"),
@@ -394,6 +403,9 @@ class App extends CI_Controller {
       
       "categorias_noticias" => $categorias_noticias,
       "novedades" => $novedades,
+
+      "color_1" => $color_1,
+      "color_2" => $color_2,
     );
     
     $this->load->view('application',$data);

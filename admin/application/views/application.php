@@ -18,9 +18,9 @@ function lang($languages=array()) {
 <base href="<?php echo $base_url; ?>"/>
 <style type="text/css">
 :root {
-  --c1: #<?php echo COLOR_1 ?>;          <?php // Color principal (AZUL) ?>
-  --c1_alpha: #<?php echo COLOR_1 ?>75;  <?php // Sombra de color principal ?>
-  --c2: #<?php echo COLOR_2 ?>;          <?php // Color secundario (VERDE) ?>
+  --c1: #<?php echo $color_1 ?>;          <?php // Color principal (AZUL) ?>
+  --c1_alpha: #<?php echo $color_1 ?>75;  <?php // Sombra de color principal ?>
+  --c2: #<?php echo $color_2 ?>;          <?php // Color secundario (VERDE) ?>
 }
 </style>
 
