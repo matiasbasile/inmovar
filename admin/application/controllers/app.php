@@ -325,8 +325,8 @@ class App extends CI_Controller {
     );
 
     if ($empresa->subred == 1) {
-      $color_1 = "#cfa95b";
-      $color_2 = "#000";
+      $color_1 = "cfa95b";
+      $color_2 = "000";
     }
 
     // Este array tiene las variables que son utilizadas por la vista
