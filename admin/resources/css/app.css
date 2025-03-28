@@ -4531,15 +4531,15 @@ tfoot.bg-important tr td { color:#222 !important; }
 .oh { overflow: hidden; }
 .select2_textarea .select2-choices { min-height: 86px !important; }
 
-.fila_alerta { background-color: #f8faff !important; border-top: solid 1px #e7eefc !important; }
+.fila_alerta { background-color: #f8faff !important; border-top: solid 1px var(--c1-light) !important; }
 .fila_roja { background-color: #f7b9b9 !important; border-top: solid 1px #da7878 !important; }
 .fila_inactiva { color: #cad2d4 !important }
 
-.table > tbody > tr td.fila_alerta { background-color: #f8faff !important; border-top: solid 1px #e7eefc !important; }
+.table > tbody > tr td.fila_alerta { background-color: #f8faff !important; border-top: solid 1px var(--c1-light) !important; }
 .table > tbody > tr td.fila_roja { background-color: #f7b9b9 !important; border-top: solid 1px #da7878 !important; }
 .table > tbody > tr td.fila_inactiva, .table > tbody > tr td.fila_inactiva span { color: #cad2d4 !important }
 .table > tbody > tr.no_leido td { background-color: #fffdee !important; border-top: solid 1px #fff8c4 !important; }
-.table > tbody > tr.seleccionado td { background-color: #f8faff !important; border-top: solid 1px #e7eefc !important; }
+.table > tbody > tr.seleccionado td { background-color: #f8faff !important; border-top: solid 1px var(--c1-light) !important; }
 .table > tbody > tr.fila_roja td { background-color: #f7b9b9 !important; border-top: solid 1px #da7878 !important; }
 
 @media (max-width:992px) {
@@ -4750,7 +4750,7 @@ h1 { line-height: 46px;font-size: 38px!important;color: #2d2d2d; font-weight: bo
 .table-small .tag_precio_2 { padding: 4px 10px; background-color: transparent; font-size:13px; white-space: nowrap; }
 .icono_principal { font-size:20px !important; margin-right: 10px; color: #5a5a5a; }
 tfoot .total_items { float: left; margin-top: 5px; margin-right: -100px; }
-.avatar-texto { width: 48px; height: 48px; line-height: 48px; text-align: center; display: inline-block; background-color: #e7eefc; color: var(--c1); }
+.avatar-texto { width: 48px; height: 48px; line-height: 48px; text-align: center; display: inline-block; background-color: var(--c1-light); color: var(--c1); }
 .avatar-texto.bg-info { color: white; background-color: var(--c1); }
 .avatar-texto.xl { width: 64px; height: 64px; line-height: 64px; font-size: 24px; text-align: center; }
 .avatar-texto.xs { width: 38px; height: 38px; line-height: 38px; font-size: 14px; text-align: center; }
@@ -4958,7 +4958,7 @@ table.mesas td.ocupado { background-color: #e06559; }
 .nav-tabs-2 li.active a { color: var(--c1) !important; }
 .nav-tabs-2 li .counter, .etiqueta { background-color: #efefef; display: inline-block; border-radius: 5px; padding: 2px 10px; font-size: 14px; font-weight: normal; } 
 .nav-tabs-2 li .counter { margin-left: 10px; }
-.nav-tabs-2 li.active .counter, .etiqueta { background-color: #e7eefc; color: var(--c1); }
+.nav-tabs-2 li.active .counter, .etiqueta { background-color: var(--c1-light); color: var(--c1); }
 .etiqueta.desactivo { background-color: #f0f0f0; color: #4f4f4f; }
 
 .nav-tabs-5 { background-color: transparent; padding-top: 5px; padding-left: 5px; }
