@@ -832,7 +832,7 @@ class App extends CI_Controller {
       "resources/css/simple-line-icons.css",
       //"resources/css/font.css",
       "resources/fonts/lato/lato.css",
-      "resources/css/app.css?v=11",
+      "resources/css/app.css?v=12",
       "resources/js/jquery/ui/jquery-ui.min.css",
       "resources/css/tablednd.css",
       "resources/css/footable/footable.core.css",
