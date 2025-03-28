@@ -121,7 +121,7 @@ function antiguedad_seleccionada($opciones = array()) {
                     <?php $dormitorios = $propiedad_model->get_dormitorios(); ?>
                     <option>Sin mínimo</option>
                     <?php foreach ($dormitorios as $dormitorio) { ?>
-                      <?php if ($dormitorio->dormitorio > 0) { ?>
+                      <?php if ($dormitorio->dormitorios > 0) { ?>
                         <option <?php echo ($vc_dormitorios == $dormitorio->dormitorios)?"selected":"" ?> value="<?php echo $dormitorio->dormitorios; ?>"><?php echo $dormitorio->dormitorios ?></option>
                       <?php } ?>
                     <?php } ?>
@@ -132,7 +132,7 @@ function antiguedad_seleccionada($opciones = array()) {
                     <?php $dormitorios = $propiedad_model->get_dormitorios(); ?>
                     <option>Sin máximo</option>
                     <?php foreach ($dormitorios as $dormitorio) { ?>
-                      <?php if ($dormitorio->dormitorio > 0) { ?>
+                      <?php if ($dormitorio->dormitorios > 0) { ?>
                         <option <?php echo ($vc_dormitorios == $dormitorio->dormitorios)?"selected":"" ?> value="<?php echo $dormitorio->dormitorios; ?>"><?php echo $dormitorio->dormitorios ?></option>
                       <?php } ?>
                     <?php } ?>
