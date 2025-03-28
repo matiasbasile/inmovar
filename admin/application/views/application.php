@@ -21,6 +21,7 @@ function lang($languages=array()) {
   --c1: #<?php echo $color_1 ?>;          <?php // Color principal (AZUL) ?>
   --c1_alpha: #<?php echo $color_1 ?>75;  <?php // Sombra de color principal ?>
   --c2: #<?php echo $color_2 ?>;          <?php // Color secundario (VERDE) ?>
+  --c1-dark: color-mix(in srgb, var(--c1) 80%, black);
 }
 </style>
 

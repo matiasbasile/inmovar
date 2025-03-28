@@ -277,7 +277,7 @@ a.list-group-item:focus {
 .nav .open > a,
 .nav .open > a:hover,
 .nav .open > a:focus {
-  background-color: #374fd7;
+  background-color: var(--c1-dark);
 }
 .navbar-nav > li > .dropdown-menu { margin-top: 10px; }
 .nav-tabs {
@@ -4634,7 +4634,7 @@ tfoot.bg-important tr td { color:#222 !important; }
 #aside-user { margin-bottom: 20px; margin-top: 10px; }
 .navbar-nav > li { border-radius: 5px; margin: 10px 5px; }
 .navbar-nav > li > a { padding: 5px 10px; color: white; border-radius: 5px; }
-.navbar-nav > li:hover > a, .navbar-nav > li > a:focus { background-color:#374fd7 }
+.navbar-nav > li:hover > a, .navbar-nav > li > a:focus { background-color:var(--c1-dark) }
 .nombre_usuario { font-family:'product_sansregular'; font-weight: normal; color: white; }
 .nombre_empresa { font-family:'product_sansregular'; text-transform: uppercase; }
 #lupa { font-size: 18px; margin-right: 10px; color:#eaeaea }
