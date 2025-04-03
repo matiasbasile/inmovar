@@ -231,65 +231,6 @@
       </div>
     </div>
   </div>
-
-  <% if (VOLVER_SUPERADMIN == 1) { %>
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <div class="padder">
-          <div class="form-group mb0 clearfix expand-link cp">
-            <label class="control-label cp">
-              Inmobusqueda
-            </label>
-            <div class="panel-description">
-              Sincronice las propiedades con Inmobusqueda
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="panel-body expand">
-        <div class="padder">
-
-          <div class="form-group">
-            <label class="control-label">URL de la inmobiliaria para la importación desde Inmobusqueda</label>
-            <div class="input-group">            
-              <input type="text" class="form-control" name="url_web_inmobusqueda" value="<%= url_web_inmobusqueda %>" />
-              <span class="input-group-btn">
-                <button class="sincronizar_inmobusqueda btn btn-default">Sincronizar</button>
-              </span>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="checkbox">
-              <label class="i-checks">
-                <input type="checkbox" id="web_seo_inmobusqueda_diario" name="inmobusqueda_diario" <%= (inmobusqueda_diario == 1) ? 'checked' : '' %>><i></i> 
-                Importar todas las noches las propiedades desde Inmobusqueda.
-              </label>
-            </div>                    
-          </div>                          
-
-          <div class="form-group">
-            <div class="checkbox">
-              <label class="i-checks">
-                <input type="checkbox" id="web_seo_inmobusqueda_diario_fotos" name="inmobusqueda_diario_fotos" <%= (inmobusqueda_diario_fotos == 1) ? 'checked' : '' %>><i></i> 
-                No incluir en la importación de Inmobusqueda las fotos de las propiedades.
-              </label>
-            </div>                    
-          </div>
-
-          <div class="form-group">
-            <label class="control-label">URL de exportación de propiedades a Inmobusqueda</label>
-            <input type="text" class="form-control" name="url_inmobusqueda" value="<%= url_inmobusqueda %>" />
-          </div>
-
-          <div class="clearfix">
-            <button class="btn fr btn-info guardar"><?php echo lang(array("es"=>"Guardar","en"=>"Save")); ?></button>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  <% } %>
   
 </script>
 
