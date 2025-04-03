@@ -58,6 +58,7 @@ class Realtyone extends REST_Controller
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
     set_time_limit(0);
+    echo "ANDA"; exit();
 
     include_once APPPATH . 'libraries/tokko/api.php';
     $this->load->model("Propiedad_Model");
