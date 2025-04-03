@@ -48,16 +48,11 @@ function antiguedad_seleccionada($opciones = array()) {
         
         <!-- <?php echo $vc_link_tipo_operacion ?>-->
         <select class="form-select form-control filter_tipo_operacion">
-          <?php if ($vc_link_tipo_operacion == "emprendimientos") { ?>
-            <option selected value="emprendimientos" data-id="4">Emprendimientos</option>
-          <?php } else { ?>
-            <?php $tipos_op = $propiedad_model->get_tipos_operaciones(array(
-              "mostrar_todos"=>1,
-            )); ?>
-            <?php foreach ($tipos_op as $tipo) { ?>
-              <?php if ($tipo->id > 3) continue; ?>
-              <option <?php echo ($vc_link_tipo_operacion == $tipo->link)?"selected":"" ?> data-id="<?php echo $tipo->id ?>" value="<?php echo $tipo->link ?>"><?php echo $tipo->nombre ?></option>
-            <?php } ?>
+          <?php $tipos_op = $propiedad_model->get_tipos_operaciones(array(
+            "mostrar_todos"=>1,
+          )); ?>
+          <?php foreach ($tipos_op as $tipo) { ?>
+            <option <?php echo ($vc_link_tipo_operacion == $tipo->link)?"selected":"" ?> data-id="<?php echo $tipo->id ?>" value="<?php echo $tipo->link ?>"><?php echo $tipo->nombre ?></option>
           <?php } ?>
         </select>
 
