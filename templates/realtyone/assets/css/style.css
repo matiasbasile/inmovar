@@ -1729,9 +1729,8 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 }
 
 .listing-details2 {
-  background: url(../images/featured-properties-background-img.svg) repeat;
   padding: 30px 0 40px;
-  background-size: 50%;
+  background-color: #f0f0f0;
 }
 .listing-details2 .properties {
   padding: 0;
