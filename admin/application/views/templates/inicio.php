@@ -40,7 +40,7 @@
         </div>
       </div>
 
-      <% if (control.check("permisos_red")>0) { %>
+      <% if (control.check("permisos_red")>0 && REALTYONE == 0) { %>
         <div class="col-xs-6 col-sm-3">
           <div class="panel-default tal panel p15 item" style="height: 100px">
             <div class="dt w100p">
