@@ -86,6 +86,7 @@
 </script>
 
 <script type="text/template" id="web_diseno_template">
+<% if (REALTYONE == 0) { %>
   <div class="panel panel-default db cp">
     <div class="panel-body">
       <div class="padder">
@@ -264,6 +265,7 @@
       <div id="web_configuracion_sliders" class="ordenable"></div>
     </div>
   </div>
+<% } %>
 </script>
 
 <script type="text/template" id="web_solicitar_disenio">
