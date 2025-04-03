@@ -1541,13 +1541,16 @@ class Propiedad_Model {
 
   function get_tipos_operaciones($config = array()) {
     $id_empresa = isset($config["id_empresa"]) ? $config["id_empresa"] : $this->id_empresa;
-    
-    $empresas_compartida = $this->get_empresas_red();
-    $empresas_compartida[] = $id_empresa;
-    $emp_comp = implode(",", $empresas_compartida);
-
     $mostrar_todos = isset($config["mostrar_todos"]) ? $config["mostrar_todos"] : 0;
     $solo_propias = isset($config["solo_propias"]) ? $config["solo_propias"] : 0;
+    
+    $emp_comp = "";
+    if ($mostrar_todos == 0) {
+      $empresas_compartida = $this->get_empresas_red();
+      $empresas_compartida[] = $id_empresa;
+      $emp_comp = implode(",", $empresas_compartida);
+    }
+
     if ($mostrar_todos == 0) {
       $sql = "SELECT DISTINCT L.nombre, L.link, L.id ";
       $sql.= "FROM inm_propiedades P ";
