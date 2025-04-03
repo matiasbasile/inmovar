@@ -12,7 +12,9 @@ function modulo_habilitado($permisos,$modulo) {
     <div class="navi-wrap">
 
       <a href="javascript:void(0)" onclick="workspace.toggle_menu()" class="navbar-brand text-lt">
-        <img src="<?php echo LOGO ?>"/>
+        <?php if ($realtyone == 0) { ?>
+          <img src="<?php echo LOGO ?>"/>
+        <?php } ?>
       </a>                
     
       <nav class="navi">
