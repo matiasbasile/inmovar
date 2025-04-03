@@ -3,7 +3,7 @@
     <div class="header-lg">
       <div class="row">
         <div class="col-md-6 col-xs-8">
-          <h1>Red Inmovar</h1>
+          <h1><%= window.control.get("permisos_red").title %></h1>
         </div>
         <div class="col-md-6 col-xs-4 tar">
           <a href='javascript:void(0)' class='btn btn-info invitar_colega'>
