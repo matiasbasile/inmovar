@@ -399,7 +399,7 @@ window.onload = function () {
                 </a>
               </li>
             <?php } ?>
-            <?php if ($perfil != -1) { ?>
+            <?php if ($perfil != -1 && $realtyone == 0) { ?>
               <!--<li><a href="app/#mi_cuenta">Estado de cuenta</a></li>-->
               <li><a href="app/#precios">Planes</a></li>
               <li class="divider"></li>
