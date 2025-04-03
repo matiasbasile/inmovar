@@ -69,21 +69,6 @@
           <div class="menu-compartir">
             <div class="dt">
 
-              <div class="dtr">
-                <div class="dtc menu-compartir-logo facebook tac">
-                  <% if (compartida_facebook == 1) { %>
-                    <img src="/admin/resources/images/facebook.png" data-toggle="tooltip" title="Compartir en Facebook"/>
-                  <% } else { %>
-                    <img src="/admin/resources/images/facebook_d.png" data-toggle="tooltip" title="Compartir en Facebook"/>
-                  <% } %>
-                </div>
-                <div class="dtc menu-compartir-nombre">
-                  <span class="facebook">Facebook</span>
-                </div>
-                <div class="dtc menu-compartir-submenu">
-                </div>
-              </div>
-
               <% if (typeof DOMINIO != "undefined" && !isEmpty(DOMINIO) && (typeof ML_ACCESS_TOKEN != "undefined")) { %>
                 <div class="dtr">
                   <div class="dtc menu-compartir-logo tac">
@@ -132,65 +117,6 @@
 
               <div class="dtr">
                 <div class="dtc menu-compartir-logo tac">
-                  <% if (olx_habilitado == 0) { %>
-                    <img src="/admin/resources/images/OLX-Off.png" data-toggle="tooltip" class="compartir_olx" title="Compartir en OLX"/>
-                  <% } else { %>
-                    <div style="position: relative;">
-                      <% if (isEmpty(olx_id)) { %>
-                        <img src="/admin/resources/images/OLX-On.png" data-toggle="tooltip" title="Esperando aprobacion de OLX"/>
-                        <b style="position: absolute; bottom: -5px; right: -5px; font-size: 7px" class="badge bg-warning pull-right"><i class="fa fa-clock-o"></i></b>
-                      <% } else { %>
-                        <img src="/admin/resources/images/OLX-On.png" data-toggle="tooltip" title="Compartido en OLX"/>
-                        <b style="position: absolute; bottom: -5px; right: -5px; font-size: 7px" class="badge bg-success pull-right"><i class="fa fa-play"></i></b>
-                      <% } %>
-                    </div>
-                  <% } %>
-                </div>
-                <div class="dtc menu-compartir-nombre">
-                  <span class="compartir_olx">OLX</span>
-                </div>
-                <div class="dtc menu-compartir-submenu">
-                  <div class="btn-group dropdown ml10">
-                    <i title="Opciones" class="iconito fa fa-caret-down dropdown-toggle menu-compartir-submenu-dropdown" data-toggle="dropdown"></i>
-                    <ul class="dropdown-menu pull-right">
-                      <% if (!isEmpty(olx_id)) { %>
-                        <li><a target="_blank" href="https://www.olx.com.ar/iid-<%= olx_id %>">Ver publicacion</a></li>
-                      <% } %>
-                      <li><a class="compartir_olx" href="javascript:void(0)">Dejar de compartir</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <div class="dtr">
-                <div class="dtc menu-compartir-logo tac">
-                  <div style="position: relative;">
-                    <img src="<%= (inmobusquedas_habilitado==1)?"/admin/resources/images/inmobusquedas.png":"/admin/resources/images/inmobusquedas_d.png" %>" data-toggle="tooltip" class="<%= (inmobusquedas_habilitado==0) ? "inmobusquedas_habilitado":"" %>" title="<%= (inmobusquedas_habilitado==0)? "Compartir en Inmobusqueda": ((isEmpty(inmobusquedas_url))?"Revisar informacion":"Compartido correctamente") %>"/>
-                    <% if (inmobusquedas_habilitado==1 && !isEmpty(inmobusquedas_url)) { %>
-                      <b style="position: absolute; bottom: -5px; right: -5px; font-size: 7px" class="badge bg-success pull-right"><i class="fa fa-play"></i></b>
-                    <% } else if (inmobusquedas_habilitado==1 && isEmpty(inmobusquedas_url)) { %>
-                      <b style="position: absolute; bottom: -5px; right: -5px; font-size: 7px" class="badge bg-danger pull-right"><i class="fa fa-times"></i></b>
-                    <% } %>
-                  </div>
-                </div>
-                <div class="dtc menu-compartir-nombre">
-                  <span class="inmobusquedas_habilitado">Inmobusqueda</span>
-                </div>
-                <div class="dtc menu-compartir-submenu">
-                  <div class="btn-group dropdown ml10">
-                    <i title="Opciones" class="iconito fa fa-caret-down dropdown-toggle menu-compartir-submenu-dropdown" data-toggle="dropdown"></i>
-                    <ul class="dropdown-menu pull-right">
-                      <% if (!isEmpty(inmobusquedas_url)) { %>
-                        <li><a target="_blank" href="https://www.inmobusqueda.com.ar/ficha-<%= inmobusquedas_url %>">Ver publicacion</a></li>
-                      <% } %>
-                      <li><a class="inmobusquedas_habilitado" href="javascript:void(0)">Dejar de compartir</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <div class="dtr">
-                <div class="dtc menu-compartir-logo tac">
                   <div style="position: relative;">
                     <img src="<%= (argenprop_habilitado >= 1)?"/admin/resources/images/argenprop.png":"/admin/resources/images/argenprop_d.png" %>" data-toggle="tooltip" class="argenprop_habilitado" title="<%= (argenprop_habilitado==1)? "Compartido en Argenprop":"Compartir en Argenprop" %>"/>
                     <% if (argenprop_habilitado==1) { %>
@@ -219,17 +145,6 @@
                       </ul>
                     </div>
                   <% } %>
-                </div>
-              </div>
-
-              <div class="dtr">
-                <div class="dtc menu-compartir-logo tac">
-                  <img src="<%= (eldia_habilitado==1)?"/admin/resources/images/eldia.png":"/admin/resources/images/eldia_d.png" %>" data-toggle="tooltip" class="eldia_habilitado" title="<%= (eldia_habilitado==1)? "Compartido en Diario El Dia":"Compartir en Diario El Dia" %>"/>
-                </div>
-                <div class="dtc menu-compartir-nombre">
-                  <span class="eldia_habilitado">Diario El Dia</span>
-                </div>
-                <div class="dtc menu-compartir-submenu">
                 </div>
               </div>
 
