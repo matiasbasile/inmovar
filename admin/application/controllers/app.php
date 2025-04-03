@@ -409,6 +409,7 @@ class App extends CI_Controller {
       "color_1" => $color_1,
       "color_2" => $color_2,
       "color_success" => $color_success,
+      "realtyone" => ($empresa->subred == 1) ? 1 : 0,
     );
     
     $this->load->view('application',$data);

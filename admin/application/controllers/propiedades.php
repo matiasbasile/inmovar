@@ -1712,9 +1712,11 @@ class Propiedades extends REST_Controller
     $errores = array();
     include_once APPPATH . 'libraries/tokko/api.php';
     // Buscamos todas las empresas que tengan la importacion automatica de TOKKO
-    $sql = "SELECT id_empresa, tokko_apikey FROM web_configuracion ";
-    $sql .= "WHERE tokko_apikey != '' AND tokko_importacion = 1 ";
-    if (!empty($id_empresa)) $sql .= "AND id_empresa = $id_empresa ";
+    $sql = "SELECT WC.id_empresa, WC.tokko_apikey FROM web_configuracion WC ";
+    $sql .= "INNER JOIN empresas E ON (WC.id_empresa = E.id) ";
+    $sql .= "WHERE WC.tokko_apikey != '' AND WC.tokko_importacion = 1 ";
+    $sql .= " AND E.subred = 0 ";
+    if (!empty($id_empresa)) $sql .= "AND WC.id_empresa = $id_empresa ";
     $q = $this->db->query($sql);
     $this->load->model("Propiedad_Model");
     $this->load->helper("file_helper");

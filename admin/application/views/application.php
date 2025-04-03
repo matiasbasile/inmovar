@@ -62,6 +62,7 @@ const MENSAJE_CUENTA_NIVEL = "<?php echo $mensaje_cuenta_nivel ?>";
 const LATITUD = "<?php echo $latitud ?>";
 const LONGITUD = "<?php echo $longitud ?>";
 const PROJECT_NAME = "<?php echo $project_name ?>";
+const REALTYONE = "<?php echo $realtyone ?>";
 
 <?php
 // Dominio por defecto
