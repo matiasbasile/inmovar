@@ -33,9 +33,9 @@ if (isset($get_params["test"])) echo $propiedad_model->get_sql();
 <?php include 'includes/listado/filtros.php' ?>
 
 <?php if ($vc_view == 1) { ?>
-  <?php include 'includes/listado/lista.php' ?>
-<?php } else { ?>
   <?php include 'includes/listado/mapa.php' ?>
+<?php } else { ?>
+  <?php include 'includes/listado/lista.php' ?>
 <?php } ?>
 
 <?php include 'includes/footer.php' ?>
