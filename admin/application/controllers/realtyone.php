@@ -6,7 +6,7 @@ class Realtyone extends REST_Controller
 {
   private $subred = 1;
   private $id_empresa = 2807;
-  private $tokko_apikey = "";
+  private $tokko_apikey = "4f5671513aca2a5040bb8213ca97ba07847d4a63";
   private $errores = array();
 
   function __construct()
