@@ -20,18 +20,20 @@
             </a>
           </li>
         <% } %>
-        <li>
-          <a class="<%= (id_modulo == "buscador")?"active":"" %>" href="app/#configuracion/buscador">
-            <span class="material-icons">arrow_forward_ios</span>
-            Buscador Inmovar
-          </a>
-        </li>
-        <li>
-          <a class="<%= (id_modulo == "api")?"active":"" %>" href="app/#configuracion/api">
-            <span class="material-icons">arrow_forward_ios</span>
-            API para desarrolladores
-          </a>
-        </li>
+        <% if (REALTYONE == 0) { %>
+          <li>
+            <a class="<%= (id_modulo == "buscador")?"active":"" %>" href="app/#configuracion/buscador">
+              <span class="material-icons">arrow_forward_ios</span>
+              Buscador Inmovar
+            </a>
+          </li>
+          <li>
+            <a class="<%= (id_modulo == "api")?"active":"" %>" href="app/#configuracion/api">
+              <span class="material-icons">arrow_forward_ios</span>
+              API para desarrolladores
+            </a>
+          </li>
+        <% } %>
         <li>
           <a class="<%= (id_modulo == "notificaciones")?"active":"" %>" href="app/#configuracion/notificaciones">
             <span class="material-icons">arrow_forward_ios</span>
