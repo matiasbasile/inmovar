@@ -1563,7 +1563,7 @@ class Propiedad_Model {
       $sql = "SELECT nombre, link, id FROM inm_tipos_operacion ";
       $sql.= "WHERE 1 = 1 ";
       if (!empty($emp_comp)) {
-        $sql.= "id_empresa IN ($emp_comp) ";
+        $sql.= "AND id_empresa IN ($emp_comp) ";
       }
       $sql.= "ORDER BY orden ASC ";
     }
