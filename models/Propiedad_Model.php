@@ -1567,6 +1567,7 @@ class Propiedad_Model {
       }
       $sql.= "ORDER BY orden ASC ";
     }
+    echo $sql; exit();
     $salida = array();
     $q = mysqli_query($this->conx,$sql);
     while(($r=mysqli_fetch_object($q))!==NULL) {
