@@ -1541,11 +1541,6 @@ class Propiedad_Model {
 
   function get_tipos_operaciones($config = array()) {
     $id_empresa = isset($config["id_empresa"]) ? $config["id_empresa"] : $this->id_empresa;
-    
-    $empresas_compartida = $this->get_empresas_red();
-    $empresas_compartida[] = $id_empresa;
-    $emp_comp = implode(",", $empresas_compartida);
-
     $mostrar_todos = isset($config["mostrar_todos"]) ? $config["mostrar_todos"] : 0;
     $solo_propias = isset($config["solo_propias"]) ? $config["solo_propias"] : 0;
     if ($mostrar_todos == 0) {
@@ -1564,6 +1559,7 @@ class Propiedad_Model {
       $sql.= "WHERE id_empresa IN ($emp_comp) ";
       $sql.= "ORDER BY orden ASC ";
     }
+    echo $sql; exit();
     $salida = array();
     $q = mysqli_query($this->conx,$sql);
     while(($r=mysqli_fetch_object($q))!==NULL) {
