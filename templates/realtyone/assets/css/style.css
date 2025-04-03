@@ -137,7 +137,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1400px;
+  max-width: 100%;
 }
 .header .right-nav, .header .navbar-nav {
   display: flex;
@@ -248,14 +248,14 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   color: #ccad66;
   font-weight: 400;
   text-align: center;
-  padding-bottom: 5px;
+  padding-bottom: 0px;
 }
 
 .banner-caption h2 {
   font-family: 'Museo';
   text-align: center;
   width: 100%;
-  font-size: 40px;
+  font-size: 45px;
   line-height: 60px;
   text-transform: uppercase;
   color: #fff;
@@ -324,6 +324,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 .top-banner form {
   display: flex;
   align-items: flex-start;
+  gap: 10px;
 }
 .top-banner form select {
   height: 56px;
@@ -1100,7 +1101,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 .premises-sale .owl-nav .owl-next:hover {
   background-position: -277px -177px !important;
 }
-.premises-sale .title p {
+.premises-sale .title p, .premises-sale .title {
   text-align: left;
   font-size: 17px;
   line-height: 27px;
