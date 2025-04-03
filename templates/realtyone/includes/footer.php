@@ -87,12 +87,12 @@
 // ======================================
 
 function buscar_mapa() {
-  $("#ver_mapa").val("0");
+  $("#ver_mapa").val("1");
   $("#form_buscador").submit();
 }
 
 function buscar_listado() {
-  $("#ver_mapa").val("1");
+  $("#ver_mapa").val("0");
   $("#form_buscador").submit();
 }
 
