@@ -1715,7 +1715,7 @@ class Propiedades extends REST_Controller
     $sql = "SELECT WC.id_empresa, WC.tokko_apikey FROM web_configuracion WC ";
     $sql .= "INNER JOIN empresas E ON (WC.id_empresa = E.id) ";
     $sql .= "WHERE WC.tokko_apikey != '' AND WC.tokko_importacion = 1 ";
-    $sql .= " AND E.subred = 0 ";
+    //$sql .= " AND E.subred = 0 ";
     if (!empty($id_empresa)) $sql .= "AND WC.id_empresa = $id_empresa ";
     $q = $this->db->query($sql);
     $this->load->model("Propiedad_Model");
