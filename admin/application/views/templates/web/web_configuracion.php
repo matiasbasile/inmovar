@@ -23,12 +23,14 @@
     <div class="row">
       <div class="col-md-3">
         <ul class="submenu">
-          <li>
-            <a class="<%= (id_modulo == "diseno")?"active":"" %>" href="app/#web/diseno">
-              <span class="material-icons">arrow_forward_ios</span>
-              Diseño
-            </a>
-          </li>
+          <% if (REALTYONE == 0) { %>
+            <li>
+              <a class="<%= (id_modulo == "diseno")?"active":"" %>" href="app/#web/diseno">
+                <span class="material-icons">arrow_forward_ios</span>
+                Diseño
+              </a>
+            </li>
+          <% } %>
           <li>
             <a class="<%= (id_modulo == "contenido")?"active":"" %>" href="app/#web/contenido">
               <span class="material-icons">arrow_forward_ios</span>
