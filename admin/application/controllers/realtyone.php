@@ -65,6 +65,7 @@ class Realtyone extends REST_Controller
     $this->load->model("Log_Model");
 
     $properties = $this->get_tokko_properties();
+    print_r($properties); exit();
 
     /*
     $emprendimientos = $this->get_tokko_properties(array(
