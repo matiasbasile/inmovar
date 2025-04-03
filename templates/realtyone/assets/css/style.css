@@ -1632,7 +1632,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 }
 .properties .right-text .form-select {
   border-radius: 8px;
-  background-color: #f0f0f0;
+  background-color: #fff;
   border: none;
   margin-left: 8px;
   height: 43px;
